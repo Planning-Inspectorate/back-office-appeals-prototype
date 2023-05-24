@@ -1,0 +1,34 @@
+// Import GOV.UK Frontend and any extension styles if extensions have been configured
+
+.app-pi-hmrc-internal-header__service-name {
+	width:auto;
+}
+
+.app-pi-govuk-header__navigation {
+	float: right;
+	width: 40%;
+}
+
+.app-pi-layout-header {
+	
+	border-bottom-color: #13A19B;
+	
+	.hmrc-internal-header__logo {
+		width: 30%;
+	}
+
+
+  .govuk-header__link:link,
+  .govuk-header__link:visited,
+  .govuk-header__logotype-text {
+    color: govuk-colour("black");
+    font-weight: normal;
+    text-decoration: underline;
+  }
+  
+  .govuk-header__navigation-item--active .govuk-header__link {
+	  font-weight: bold;
+	  text-decoration: none;
+  }
+  
+}

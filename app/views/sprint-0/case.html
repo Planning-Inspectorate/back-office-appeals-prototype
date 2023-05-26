@@ -41,41 +41,29 @@
       classes: "govuk-tag--red"
     })}}
     
-    
-      	{% from "govuk/components/table/macro.njk" import govukTable %}
+	
+	
+	{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 
-
-	{{ govukTable({
-	  captionClasses: "govuk-table__caption--m",
-	  firstCellIsHeader: true,
-	  head: [
-	    {
-	      text: ""
-	    },
-	    {
-	      text: ""
-	    },
-	    {
-	      text: ""
-	    }
-	  ],
+	{{ govukSummaryList({
+	  classes: 'govuk-summary-list--no-border govuk-!-margin-top-6',
 	  rows: [
-	    [
-	      {
+	    {
+	      key: {
 	        text: "Site address"
 	      },
-	      {
+	      value: {
 	        text: "Address line 1, Address line 2, Town or city, Postcode"
 	      }
-	    ],
-	    [
-	      {
+	    },
+	    {
+	      key: {
 	        text: "Local planning authority"
 	      },
-	      {
+	      value: {
 	        text: "Council name"
 	      }
-	    ]
+	    }
 	  ]
 	}) }}
     

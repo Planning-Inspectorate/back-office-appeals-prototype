@@ -1,0 +1,260 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Case details" %}
+
+{% block content %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+
+{{ govukBackLink({
+  text: "Back",
+  href: "case.html"
+}) }}
+
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+	  	  
+	  
+	<span class="govuk-caption-l">2110166</span>
+	<h1 class="govuk-heading-l">Appellant case</h1>
+	
+	
+	{{govukTag({
+      text: "Statement review",
+      classes: "govuk-tag--red"
+    })}}
+    
+    
+	
+	{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+	{{ govukSummaryList({
+	  classes: 'govuk-summary-list--no-border govuk-!-margin-top-6',
+	  rows: [
+	    {
+	      key: {
+	        text: "Site address"
+	      },
+	      value: {
+	        text: "Address line 1, Address line 2, Town or city, Postcode"
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Local planning authority"
+	      },
+	      value: {
+	        text: "Council name"
+	      }
+	    }
+	  ]
+	}) }}
+    
+
+    
+	{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+	{{ govukSummaryList({
+	  card: {
+	    title: {
+	      text: "1. The appellant"
+	    }
+	  },
+	  rows: [
+	    {
+	      key: {
+	        text: "Name"
+	      },
+	      value: {
+	        html: "Jane Doe"
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Another individual"
+	      },
+	      value: {
+	        html: "UK national resident in UK"
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Application refernce"
+	      },
+	      value: {
+	        html: "ABC123456"
+	      }
+	    }
+	  ]
+	}) }}
+	
+	{{ govukSummaryList({
+	  card: {
+	    title: {
+	      text: "2. The appeal site"
+	    }
+	  },
+	  rows: [
+	    {
+	      key: {
+	        text: "Site address"
+	      },
+	      value: {
+	        html: "21 The pavement, Wandsworth, SW4 0HY"
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Site fully owned"
+	      },
+	      value: {
+	        html: "No"
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Site partially owned"
+	      },
+	      value: {
+	        html: "Yes"
+	      }
+	    },
+	    {
+	      key: {
+	        text: "All owners known"
+	      },
+	      value: {
+	        html: "No"
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Attempted to identify owners"
+	      },
+	      value: {
+	        html: "Yes"
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Advertised appeal"
+	      },
+	      value: {
+	        html: "No"
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Visibility"
+	      },
+	      value: {
+	        html: "No"
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Site health and safety issuer"
+	      },
+	      value: {
+	        html: "Yes"
+	      }
+	    }
+	    
+	  ]
+	}) }}
+	
+	{{ govukSummaryList({
+	  card: {
+	    title: {
+	      text: "3. The appeal"
+	    }
+	  },
+	  rows: [
+	    {
+	      key: {
+	        text: "Application form known"
+	      },
+	      value: {
+	        html: "<a href='#'>application-form.pdf</a>"
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Decision letter"
+	      },
+	      value: {
+	        html: "<a href='#'>decision-letter.pdf</a>"
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Appeal statement"
+	      },
+	      value: {
+	        html: "<a href='#'>application-statement.pdf</a>"
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Add new supporting documents"
+	      },
+	      value: {
+	        html: "Yes"
+	      }
+	      
+	    },
+	    {
+	      key: {
+	        text: "New supporting documents"
+	      },
+	      value: {
+	        html: "<a href='#'>other.pdf</a>"
+	      }
+	      
+	    }
+	  ]
+	}) }}  
+    
+    
+    <form action="/form-handler" method="post" class="govuk-!-margin-top-9" novalidate>
+
+        {{ govukRadios({
+          name: "where-do-you-live",
+          fieldset: {
+            legend: {
+              text: "Whats the outcome of your review?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "valid",
+              text: "The appellant case is valid"
+            },
+            {
+              value: "invlaid",
+              text: "The appellant case is invalid"
+            },
+            {
+              value: "complete",
+              text: "The appellant case is complete"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+        
+	  </form>
+  	
+  	
+  </div>
+</div>
+
+
+{% endblock %}

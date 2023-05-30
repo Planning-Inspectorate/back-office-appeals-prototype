@@ -1,0 +1,91 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Check answers" %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+	    
+	          
+		<span class="govuk-caption-xl">Appeal 2110166</span>
+		<h1 class="govuk-heading-xl">Check your answers before confirming your review</h1>
+		
+		{{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Review outcome"
+            },
+            value: {
+              text: "invalid"
+            },
+            actions: {
+              items: [
+                {
+                  href: "indel.html",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Invalid reasons"
+            },
+            value: {
+              html: '<p class="govuk-body">Reason lorem ipsum</p>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "index.html",
+                  text: "Change",
+                  visuallyHiddenText: "contact details"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Due date"
+            },
+            value: {
+              html: '<p class="govuk-body">Date to go here</p>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "index.html",
+                  text: "Change",
+                  visuallyHiddenText: "due date"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+      
+      
+      {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+		{{ govukInsetText({
+		  text: "Confirming this review as incomplete will email the appellant to request further documents"
+		}) }}
+
+      
+      {% from "govuk/components/button/macro.njk" import govukButton %}
+
+		{{ govukButton({
+		  text: "Confirm",
+		  href: "complete"
+		}) }}
+      
+
+    </div>
+  </div>
+
+{% endblock %}

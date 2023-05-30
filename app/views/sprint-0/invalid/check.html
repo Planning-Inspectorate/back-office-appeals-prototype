@@ -1,0 +1,74 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Check answers" %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+	    
+	          
+		<span class="govuk-caption-xl">Appeal 2110166</span>
+		<h1 class="govuk-heading-xl">Check your answers before confirming your review</h1>
+		
+		{{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Review outcome"
+            },
+            value: {
+              text: "invalid"
+            },
+            actions: {
+              items: [
+                {
+                  href: "indel.html",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Invalid reasons"
+            },
+            value: {
+              html: '<p class="govuk-body">Reason lorem ipsum</p>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "index.html",
+                  text: "Change",
+                  visuallyHiddenText: "contact details"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+      
+      
+      {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+		{{ govukInsetText({
+		  text: "Confirming this review as invalid will email the appellant to inform the case will be dismissed"
+		}) }}
+
+      
+      {% from "govuk/components/button/macro.njk" import govukButton %}
+
+		{{ govukButton({
+		  text: "Confirm",
+		  href: "complete"
+		}) }}
+      
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,6 +1,6 @@
 {% extends "layouts/PINS.html" %}
 
-{% set pageName="Case details" %}
+{% set pageName="Appellant Case" %}
 
 {% block content %}
 
@@ -13,20 +13,16 @@
 }) }}
 
 
-
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-	  	  
 	  
 	<span class="govuk-caption-l">2110166</span>
 	<h1 class="govuk-heading-l">Appellant case</h1>
-	
 	
 	{{govukTag({
       text: "Statement review",
       classes: "govuk-tag--red"
     })}}
-    
     
 	
 	{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
@@ -219,10 +215,12 @@
 	}) }}  
     
     
-    <form action="/form-handler" method="post" class="govuk-!-margin-top-9" novalidate>
+    <form action="/appellant-outcome" method="post" class="govuk-!-margin-top-9" novalidate>
+	    
+	    <!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
 
         {{ govukRadios({
-          name: "where-do-you-live",
+          name: "appelant-outcome",
           fieldset: {
             legend: {
               text: "Whats the outcome of your review?",
@@ -232,16 +230,16 @@
           },
           items: [
             {
-              value: "valid",
+              value: "valid~/sprint-0/valid/",
               text: "The appellant case is valid"
             },
             {
-              value: "invlaid",
+              value: "invlaid~/sprint-0/invalid",
               text: "The appellant case is invalid"
             },
             {
-              value: "complete",
-              text: "The appellant case is complete"
+              value: "complete~/sprint-0/incomplete",
+              text: "The appellant case is incomplete"
             }
           ]
         }) }}

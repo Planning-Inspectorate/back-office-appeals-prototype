@@ -1,0 +1,185 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Appellant Case" %}
+
+{% block content %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+
+{{ govukBackLink({
+  text: "Back",
+  href: "appellant-case.html"
+}) }}
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+	  
+	<span class="govuk-caption-l">Manage documents</span>
+	<h1 class="govuk-heading-l">New supporting documents</h1>
+	
+	   
+	
+	{% from "govuk/components/button/macro.njk" import govukButton %}
+
+	{{ govukButton({
+	  text: "Upload a new document"
+	}) }}
+	
+	
+	
+	<h2 class="govuk-heading-m govuk-!-margin-top-6">Uploaded documents</h2>
+	
+	{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+	{{ govukSummaryList({
+	  card: {
+	    title: {
+	      text: "Document-name-version.pdf"
+	    },
+	    actions: {
+	      items: [
+	        {
+	          href: "#",
+	          text: "Delete",
+	          visuallyHiddenText: "document"
+	        },
+	        {
+	          href: "document-details.html",
+	          text: "Details",
+	          visuallyHiddenText: "of document"
+	        }
+	      ]
+	    }
+	  },
+	  rows: [
+	    {
+	      key: {
+	        text: "Description"
+	      },
+	      value: {
+	        html: "Constraints, designations and other issues"
+	      }
+	    },
+	    {
+	      key: {
+	        text: "File type and size"
+	      },
+	      value: {
+	        html: "PDF, 99KB"
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Version"
+	      },
+	      value: {
+	        html: "4"
+	      }
+	    }
+	  ]
+	}) }}
+	
+	{{ govukSummaryList({
+	  card: {
+	    title: {
+	      text: "Document-name-another-version.pdf"
+	    },
+	    actions: {
+	      items: [
+	        {
+	          href: "#",
+	          text: "Delete",
+	          visuallyHiddenText: "document"
+	        },
+	        {
+	          href: "document-details.html",
+	          text: "Details",
+	          visuallyHiddenText: "of document"
+	        }
+	      ]
+	    }
+	  },
+	  rows: [
+	    {
+	      key: {
+	        text: "Description"
+	      },
+	      value: {
+	        html: "Constraints, designations and other issues"
+	      }
+	    },
+	    {
+	      key: {
+	        text: "File type and size"
+	      },
+	      value: {
+	        html: "PDF, 99KB"
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Version"
+	      },
+	      value: {
+	        html: "3"
+	      }
+	    }
+	  ]
+	}) }}
+	
+	{{ govukSummaryList({
+	  card: {
+	    title: {
+	      text: "Document-version.pdf"
+	    },
+	    actions: {
+	      items: [
+	        {
+	          href: "#",
+	          text: "Delete",
+	          visuallyHiddenText: "document"
+	        },
+	        {
+	          href: "document-details.html",
+	          text: "Details",
+	          visuallyHiddenText: "of docment"
+	        }
+	      ]
+	    }
+	  },
+	  rows: [
+	    {
+	      key: {
+	        text: "Description"
+	      },
+	      value: {
+	        html: "Constraints, designations and other issues"
+	      }
+	    },
+	    {
+	      key: {
+	        text: "File type and size"
+	      },
+	      value: {
+	        html: "PDF, 99KB"
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Version"
+	      },
+	      value: {
+	        html: "2"
+	      }
+	    }
+	  ]
+	}) }}
+    	  	
+  	
+  </div>
+</div>
+
+
+{% endblock %}

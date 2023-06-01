@@ -1,6 +1,6 @@
 {% extends "layouts/PINS.html" %}
 
-{% set pageName="Appellant Case" %}
+{% set pageName="Manage documents" %}
 
 {% block content %}
 
@@ -22,7 +22,8 @@
 	{% from "govuk/components/button/macro.njk" import govukButton %}
 
 	{{ govukButton({
-	  text: "Add a new document"
+	  text: "Add a new document",
+	  href: "add-document.html"
 	}) }}
 
   </div>
@@ -43,6 +44,9 @@
 	      text: "Document information"
 	    },
 	    {
+	      text: "Version"
+	    },
+	    {
 	      text: "Date received"
 	    },
 	    {
@@ -56,6 +60,9 @@
 	    [
 	      {
 	        html: "<p><a href='document-details.html'>Document title</a></p><p class='govuk-body govuk-!-font-size-16'>From: Joe Bloggs<br>File type and size : PDF, 97KB</p>"
+	      },
+	      {
+	        text: "2"
 	      },
 	      {
 	        text: "dd/mm/yyyy"
@@ -72,6 +79,9 @@
 	        html: "<p><a href='document-details.html'>Document title</a></p><p class='govuk-body govuk-!-font-size-16'>From: Joe Bloggs<br>File type and size : PDF, 97KB</p>"
 	      },
 	      {
+	        text: "1"
+	      },
+	      {
 	        text: "dd/mm/yyyy"
 	      },
 	      {
@@ -84,6 +94,9 @@
 	    [
 	      {
 	        html: "<p><a href='document-details.html'>Document title</a></p><p class='govuk-body govuk-!-font-size-16'>From: Joe Bloggs<br>File type and size : PDF, 97KB</p>"
+	      },
+	      {
+	        text: "4"
 	      },
 	      {
 	        text: "dd/mm/yyyy"

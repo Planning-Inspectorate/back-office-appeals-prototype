@@ -86,38 +86,28 @@
 	{% set pastDayHtml %}
 	<h2 class="govuk-heading-l">Document properties</h2>
 	{{ govukTable({
-	  head: [
-	    {
-	      text: "Case manager"
-	    },
-	    {
-	      text: "Cases opened"
-	    },
-	    {
-	      text: "Cases closed"
-	    }
-	  ],
+		firstCellIsHeader: true,
 	  rows: [
 	    [
 	      {
-	        text: "David Francis"
+	        text: "File name"
 	      },
 	      {
-	        text: "3"
+	        text: "Tree preservation order extent"
 	      },
 	      {
-	        text: "0"
+	        html: "<a href='#'>change</a>"
 	      }
 	    ],
 	    [
 	      {
-	        text: "Paul Farmer"
+	        text: "Description"
 	      },
 	      {
-	        text: "1"
+	        text: "Constraints, designations and other issues"
 	      },
 	      {
-	        text: "0"
+	        html: "<a href='#'>change</a>"
 	      }
 	    ],
 	    [
@@ -128,7 +118,7 @@
 	        text: "2"
 	      },
 	      {
-	        text: "0"
+	        html: "<a href='#'>change</a>"
 	      }
 	    ]
 	  ]
@@ -138,17 +128,7 @@
 	{% set pastWeekHtml %}
 	<h2 class="govuk-heading-l">Document history</h2>
 	{{ govukTable({
-	  head: [
-	    {
-	      text: "Case manager"
-	    },
-	    {
-	      text: "Cases opened"
-	    },
-	    {
-	      text: "Cases closed"
-	    }
-	  ],
+	  firstCellIsHeader: true,
 	  rows: [
 	    [
 	      {

@@ -15,7 +15,7 @@
 		<h1 class="govuk-heading-xl">Why is the appeal invalid</h1>
       
       
-       <form action="/sprint-0/invalid/check" method="post" class="govuk-!-margin-top-9" novalidate>
+       <form action="/projects/appellant-case/invalid/check" method="post" class="govuk-!-margin-top-9" novalidate>
 	    
 	    
 	    {% set textHtml %}
@@ -34,15 +34,15 @@
           name: "reason-invalid",
           items: [
             {
-              value: "valid~/sprint-0/valid/",
+              value: "valid~/projects/appellant-case/valid/",
               text: "It passed the deadline for the submission of all outstanding appeal documents"
             },
             {
-              value: "invlaid~/sprint-0/invalid",
+              value: "invlaid~/projects/appellant-case/invalid",
               text: "The appellant doesn’t have the right to appeal"
             },
             {
-              value: "complete~/sprint-0/complete",
+              value: "complete~/projects/appellant-case/complete",
               text: "Other",
 		      conditional: {
 		        html: textHtml

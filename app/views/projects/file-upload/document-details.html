@@ -112,10 +112,54 @@
 	    ],
 	    [
 	      {
-	        text: "Rita Patel"
+	        text: "From"
 	      },
 	      {
-	        text: "2"
+	        text: "Bradford Council"
+	      },
+	      {
+	        html: "<a href='#'>change</a>"
+	      }
+	    ],
+	    [
+	      {
+	        text: "Agent (optional)"
+	      },
+	      {
+	        text: ""
+	      },
+	      {
+	        html: ""
+	      }
+	    ],
+	    [
+	      {
+	        text: "Case stage"
+	      },
+	      {
+	        text: "LPA Questionnaire"
+	      },
+	      {
+	        html: "<a href='#'>change</a>"
+	      }
+	    ],
+	    [
+	      {
+	        text: "Date received"
+	      },
+	      {
+	        text: "1 Feb 2023"
+	      },
+	      {
+	        html: "<a href='#'>change</a>"
+	      }
+	    ],
+	    [
+	      {
+	        text: "Redaction"
+	      },
+	      {
+	        text: "Unredacted"
 	      },
 	      {
 	        html: "<a href='#'>change</a>"
@@ -127,40 +171,79 @@
 	
 	{% set pastWeekHtml %}
 	<h2 class="govuk-heading-l">Document history</h2>
+
 	{{ govukTable({
-	  firstCellIsHeader: true,
+	  caption: "Uploaded documents",
+	  captionClasses: "govuk-table__caption--m",
+	  firstCellIsHeader: false,
+	  classes : " govuk-!-font-size-16",
+	  head: [
+	    {
+	      text: "Document information"
+	    },
+	    {
+	      text: "Version"
+	    },
+	    {
+	      text: "Activity"
+	    },
+	    {
+	      text: "Redaction"
+	    },
+	    {
+	      text: "Actions"
+	    }
+	  ],
 	  rows: [
 	    [
 	      {
-	        text: "David Francis"
+	        html: "<p class='govuk-!-font-size-16'><a href='document-details.html'>Document title</a></p><p class='govuk-body govuk-!-font-size-16'>From: Joe Bloggs<br>File type and size : PDF, 97KB</p>"
 	      },
 	      {
-	        text: "24"
+	        text: "1"
 	      },
 	      {
-	        text: "18"
+	        html: "<strong>Uploaded:</strong> 09:48, 22 Mar 2023, Jane Watson"
+	      },
+	      {
+	        text: "Redacted"
+	      },
+	      {
+	        html: "<a href='#'>Download</a>"
 	      }
 	    ],
 	    [
 	      {
-	        text: "Paul Farmer"
+	        html: "<p class='govuk-!-font-size-16'><a href='document-details.html'>Document title</a></p><p class='govuk-body govuk-!-font-size-16'>From: Joe Bloggs<br>File type and size : PDF, 97KB</p>"
 	      },
 	      {
-	        text: "16"
+	        text: "2"
 	      },
 	      {
-	        text: "20"
+	        html: "<strong>Uploaded:</strong> 09:48, 22 Mar 2023, Jane Watson"
+	      },
+	      {
+	        text: "Unredacted"
+	      },
+	      {
+	        html: "<a href='#'>Download</a>"
 	      }
 	    ],
 	    [
 	      {
-	        text: "Rita Patel"
+	        html: "<p class=' govuk-!-font-size-16'><a href='document-details.html'>Document title</a></p><p class='govuk-body  govuk-!-font-size-16'>From: Joe Bloggs<br>File type and size : PDF, 97KB</p>"
 	      },
 	      {
-	        text: "24"
+	        text: "3"
 	      },
 	      {
-	        text: "27"
+	        html: "<strong>Uploaded:</strong> 09:48, 22 Mar 2023, Jane Watson"
+	      },
+	      {
+	        text: "Unredacted"
+	      },
+	      {
+	        html: "<a href='#'>Download</a>"
 	      }
 	    ]
 	  ]

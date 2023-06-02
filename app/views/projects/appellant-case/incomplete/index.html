@@ -12,10 +12,10 @@
 	    
 	          
 		<span class="govuk-caption-xl">Appeal 2110166</span>
-		<h1 class="govuk-heading-xl">Why is the appeal case incomplete</h1>
+		<h1 class="govuk-heading-xl">Why is the appeal case incomplete?</h1>
       
       
-       <form action="/sprint-0/incomplete/date" method="post" class="govuk-!-margin-top-9" novalidate>
+       <form action="/projects/appellant-case/incomplete/date" method="post" class="govuk-!-margin-top-9" novalidate>
 	    
 	    {% set textHtml %}
 			{{ govukTextarea({
@@ -24,7 +24,7 @@
 			  label: {
 			    text: "List any other reasons",
 			    classes: "govuk-label--s",
-			    isPageHeading: falst
+			    isPageHeading: false
 			  }
 			}) }}
 		{% endset -%}

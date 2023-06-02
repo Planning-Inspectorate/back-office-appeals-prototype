@@ -9,7 +9,7 @@
 
 {{ govukBackLink({
   text: "Back",
-  href: "case.html"
+  href: "index.html"
 }) }}
 
 
@@ -312,6 +312,8 @@
 	  ]
 	}) }}
 	
+	<p class="govuk-body">(more summary lists would appear here)</p>
+	
     
     
     <form action="/appellant-outcome" method="post" class="govuk-!-margin-top-9" novalidate>
@@ -322,23 +324,19 @@
           name: "appelant-outcome",
           fieldset: {
             legend: {
-              text: "What's the outcome of your review?",
+              text: "What’s the outcome of your review?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--m"
             }
           },
           items: [
             {
-              value: "valid~/sprint-0/valid/",
-              text: "The appellant case is valid"
+              value: "complete~/url/complete/",
+              text: "LPA questionnaire is complete"
             },
             {
-              value: "invlaid~/sprint-0/invalid",
-              text: "The appellant case is invalid"
-            },
-            {
-              value: "complete~/sprint-0/incomplete",
-              text: "The appellant case is incomplete"
+              value: "incomplete~/url-0/incomplete",
+              text: "LPA questionnaire is incomplete"
             }
           ]
         }) }}

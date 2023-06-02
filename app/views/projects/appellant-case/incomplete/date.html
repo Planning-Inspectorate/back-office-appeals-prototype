@@ -1,6 +1,6 @@
 {% extends "layouts/PINS.html" %}
 
-{% set pageName="Case details" %}
+{% set pageName="Appellant case due date" %}
 
 {% block content %}
 
@@ -12,9 +12,9 @@
 	    
 	          
 		<span class="govuk-caption-xl">Appeal 2110166</span>
-		<h1 class="govuk-heading-xl">Why is the appeal case incomplete</h1>
+		<h1 class="govuk-heading-xl">Add appellant case due date</h1>
       
-       <form action="/sprint-0/incomplete/check" method="post" class="govuk-!-margin-top-9" novalidate>
+       <form action="/projects/appellant-case/incomplete/check" method="post" class="govuk-!-margin-top-9" novalidate>
 	    
 	   {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
 

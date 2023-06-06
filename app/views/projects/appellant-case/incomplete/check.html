@@ -20,7 +20,7 @@
               text: "Review outcome"
             },
             value: {
-              text: "invalid"
+              text: "Incomplete"
             },
             actions: {
               items: [
@@ -37,7 +37,7 @@
               text: "Invalid reasons"
             },
             value: {
-              html: '<p class="govuk-body">Reason lorem ipsum</p>'
+              html: '<p class="govuk-body">Missing documents</p>'
             },
             actions: {
               items: [
@@ -54,7 +54,7 @@
               text: "Due date"
             },
             value: {
-              html: '<p class="govuk-body">Date to go here</p>'
+              html: '<p class="govuk-body">DD/MM/YYYY</p>'
             },
             actions: {
               items: [
@@ -73,7 +73,7 @@
       {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
 		{{ govukInsetText({
-		  text: "Confirming this review as incomplete will email the appellant to request further documents"
+		  text: "Confirming this review as incomplete will inform the appellant to submit further documents"
 		}) }}
 
       

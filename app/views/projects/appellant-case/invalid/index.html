@@ -12,23 +12,31 @@
 	    
 	          
 		<span class="govuk-caption-xl">Appeal 2110166</span>
-		<h1 class="govuk-heading-xl">Why is the appeal invalid</h1>
+		<h1 class="govuk-heading-xl">Why is the appeal invalid?</h1>
       
       
-       <form action="/projects/appellant-case/invalid/check" method="post" class="govuk-!-margin-top-9" novalidate>
+       <form action="/projects/appellant-case/invalid/check" method="post" class="govuk-!-margin-top-9" validate>
 	    
 	    
 	    {% set textHtml %}
-			{{ govukTextarea({
+	    
+	    {% from "govuk/components/character-count/macro.njk" import govukCharacterCount %}
+
+			{{ govukCharacterCount({
 			  name: "more-detail",
 			  id: "more-detail",
+			  maxlength: 300,
 			  label: {
-			    text: "List any other reasons",
+			    text: "List any other reasons?",
 			    classes: "govuk-label--s",
-			    isPageHeading: falst
+			    isPageHeading: false
+			  },
+			  hint: {
+			    text: "Try to layout reasons in a list, for example using dashes or bullets"
 			  }
 			}) }}
-		{% endset -%}
+	    
+	 		{% endset -%}
 
         {{ govukCheckboxes({
           name: "reason-invalid",
@@ -38,7 +46,7 @@
               text: "It passed the deadline for the submission of all outstanding appeal documents"
             },
             {
-              value: "invlaid~/projects/appellant-case/invalid",
+              value: "invalid~/projects/appellant-case/invalid",
               text: "The appellant doesn’t have the right to appeal"
             },
             {

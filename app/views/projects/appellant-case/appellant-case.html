@@ -16,13 +16,8 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 	  
-	<span class="govuk-caption-l">2110166</span>
+	<span class="govuk-caption-l">Appeal 2110166</span>
 	<h1 class="govuk-heading-l">Appellant case</h1>
-	
-	{{govukTag({
-      text: "Statement review",
-      classes: "govuk-tag--red"
-    })}}
     
 	
 	{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
@@ -223,7 +218,7 @@
           name: "appelant-outcome",
           fieldset: {
             legend: {
-              text: "Whats the outcome of your review?",
+              text: "What is the outcome of your review?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--m"
             }
@@ -231,15 +226,15 @@
           items: [
             {
               value: "valid~/projects/appellant-case/valid/",
-              text: "The appellant case is valid"
+              text: "Valid"
             },
             {
-              value: "invlaid~/projects/appellant-case/invalid",
-              text: "The appellant case is invalid"
+              value: "invalid~/projects/appellant-case/invalid",
+              text: "Invalid"
             },
             {
               value: "complete~/projects/appellant-case/incomplete",
-              text: "The appellant case is incomplete"
+              text: "Incomplete"
             }
           ]
         }) }}

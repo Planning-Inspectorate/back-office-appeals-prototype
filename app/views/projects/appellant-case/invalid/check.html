@@ -20,7 +20,7 @@
               text: "Review outcome"
             },
             value: {
-              text: "invalid"
+              text: "Invalid"
             },
             actions: {
               items: [
@@ -37,7 +37,7 @@
               text: "Invalid reasons"
             },
             value: {
-              html: '<p class="govuk-body">Reason lorem ipsum</p>'
+              html: '<p class="govuk-body">The appellant doesn’t have the right to appeal</p>'
             },
             actions: {
               items: [
@@ -56,7 +56,7 @@
       {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
 		{{ govukInsetText({
-		  text: "Confirming this review as invalid will email the appellant to inform the case will be dismissed"
+		  text: "Confirming this review as invalid will inform the appellant that the case will be closed"
 		}) }}
 
       

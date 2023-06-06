@@ -12,21 +12,44 @@
 	    
 	          
 		<span class="govuk-caption-xl">Appeal 2110166</span>
-		<h1 class="govuk-heading-xl">Why is the appeal case incomplete?</h1>
+		<h1 class="govuk-heading-xl">Why is the appeal incomplete?</h1>
       
       
        <form action="/projects/appellant-case/incomplete/date" method="post" class="govuk-!-margin-top-9" novalidate>
 	    
-	    {% set textHtml %}
-			{{ govukTextarea({
+	    
+	    {% set missingHtml %}
+			{{ govukCharacterCount({
 			  name: "more-detail",
 			  id: "more-detail",
+			  maxlength: 300,
 			  label: {
-			    text: "List any other reasons",
+			    text: "List any missing documents",
 			    classes: "govuk-label--s",
 			    isPageHeading: false
+			  },
+			  hint: {
+			    text: "Try to layout documents in a list, for example using dashes or bullets"
 			  }
 			}) }}
+
+		{% endset -%}
+	    
+	    {% set textHtml %}
+			{{ govukCharacterCount({
+			  name: "more-detail",
+			  id: "more-detail",
+			  maxlength: 300,
+			  label: {
+			    text: "List any other reasons?",
+			    classes: "govuk-label--s",
+			    isPageHeading: false
+			  },
+			  hint: {
+			    text: "Try to layout reasons in a list, for example using dashes or bullets"
+			  }
+			}) }}
+
 		{% endset -%}
 	    
 
@@ -35,7 +58,10 @@
           items: [
             {
               value: "missing",
-              text: "Missing documents"
+              text: "Missing documents",
+              conditional: {
+		        html: missingHtml
+		      }
             },
             {
               value: "lorem",

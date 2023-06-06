@@ -43,9 +43,15 @@
 	    }
 	  ]
 	}) }}
+	
+  </div>
+</div>
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">	
     
 
-    
 	{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 
 	{{ govukSummaryList({
@@ -61,7 +67,16 @@
 	      },
 	      value: {
 	        html: "Jane Doe"
-	      }
+	      },
+	      actions: {
+	          items: [
+	            {
+	              href: "#",
+	              text: "Change",
+	              visuallyHiddenText: "name"
+	            }
+	          ]
+	        }
 	    },
 	    {
 	      key: {
@@ -69,15 +84,33 @@
 	      },
 	      value: {
 	        html: "UK national resident in UK"
-	      }
+	      },
+	      actions: {
+	          items: [
+	            {
+	              href: "#",
+	              text: "Change",
+	              visuallyHiddenText: "Another individual"
+	            }
+	          ]
+	        }
 	    },
 	    {
 	      key: {
-	        text: "Application refernce"
+	        text: "Application reference"
 	      },
 	      value: {
 	        html: "ABC123456"
-	      }
+	      },
+	      actions: {
+	          items: [
+	            {
+	              href: "#",
+	              text: "Change",
+	              visuallyHiddenText: "Application reference"
+	            }
+	          ]
+	        }
 	    }
 	  ]
 	}) }}
@@ -95,7 +128,16 @@
 	      },
 	      value: {
 	        html: "21 The pavement, Wandsworth, SW4 0HY"
-	      }
+	      },
+	      actions: {
+	          items: [
+	            {
+	              href: "#",
+	              text: "Change",
+	              visuallyHiddenText: "Another individual"
+	            }
+	          ]
+	        }
 	    },
 	    {
 	      key: {
@@ -103,7 +145,16 @@
 	      },
 	      value: {
 	        html: "No"
-	      }
+	      },
+	      actions: {
+	          items: [
+	            {
+	              href: "#",
+	              text: "Change",
+	              visuallyHiddenText: "Another individual"
+	            }
+	          ]
+	        }
 	    },
 	    {
 	      key: {
@@ -111,7 +162,16 @@
 	      },
 	      value: {
 	        html: "Yes"
-	      }
+	      },
+	      actions: {
+	          items: [
+	            {
+	              href: "#",
+	              text: "Change",
+	              visuallyHiddenText: "Another individual"
+	            }
+	          ]
+	        }
 	    },
 	    {
 	      key: {
@@ -119,7 +179,16 @@
 	      },
 	      value: {
 	        html: "No"
-	      }
+	      },
+	      actions: {
+	          items: [
+	            {
+	              href: "#",
+	              text: "Change",
+	              visuallyHiddenText: "Another individual"
+	            }
+	          ]
+	        }
 	    },
 	    {
 	      key: {
@@ -127,7 +196,16 @@
 	      },
 	      value: {
 	        html: "Yes"
-	      }
+	      },
+	      actions: {
+	          items: [
+	            {
+	              href: "#",
+	              text: "Change",
+	              visuallyHiddenText: "Another individual"
+	            }
+	          ]
+	        }
 	    },
 	    {
 	      key: {
@@ -135,7 +213,16 @@
 	      },
 	      value: {
 	        html: "No"
-	      }
+	      },
+	      actions: {
+	          items: [
+	            {
+	              href: "#",
+	              text: "Change",
+	              visuallyHiddenText: "Another individual"
+	            }
+	          ]
+	        }
 	    },
 	    {
 	      key: {
@@ -143,7 +230,16 @@
 	      },
 	      value: {
 	        html: "No"
-	      }
+	      },
+	      actions: {
+	          items: [
+	            {
+	              href: "#",
+	              text: "Change",
+	              visuallyHiddenText: "Another individual"
+	            }
+	          ]
+	        }
 	    },
 	    {
 	      key: {
@@ -151,7 +247,16 @@
 	      },
 	      value: {
 	        html: "Yes"
-	      }
+	      },
+	      actions: {
+	          items: [
+	            {
+	              href: "#",
+	              text: "Change",
+	              visuallyHiddenText: "Another individual"
+	            }
+	          ]
+	        }
 	    }
 	    
 	  ]
@@ -170,7 +275,16 @@
 	      },
 	      value: {
 	        html: "<a href='#'>application-form.pdf</a>"
-	      }
+	      },
+	      actions: {
+	          items: [
+	            {
+	              href: "#",
+	              text: "Change",
+	              visuallyHiddenText: "Another individual"
+	            }
+	          ]
+	        }
 	    },
 	    {
 	      key: {
@@ -178,7 +292,16 @@
 	      },
 	      value: {
 	        html: "<a href='#'>decision-letter.pdf</a>"
-	      }
+	      },
+	      actions: {
+	          items: [
+	            {
+	              href: "#",
+	              text: "Change",
+	              visuallyHiddenText: "Another individual"
+	            }
+	          ]
+	        }
 	    },
 	    {
 	      key: {
@@ -186,7 +309,16 @@
 	      },
 	      value: {
 	        html: "<a href='#'>application-statement.pdf</a>"
-	      }
+	      },
+	      actions: {
+	          items: [
+	            {
+	              href: "#",
+	              text: "Change",
+	              visuallyHiddenText: "Another individual"
+	            }
+	          ]
+	        }
 	    },
 	    {
 	      key: {
@@ -194,8 +326,16 @@
 	      },
 	      value: {
 	        html: "Yes"
-	      }
-	      
+	      },
+	      actions: {
+	          items: [
+	            {
+	              href: "#",
+	              text: "Change",
+	              visuallyHiddenText: "Another individual"
+	            }
+	          ]
+	        }
 	    },
 	    {
 	      key: {
@@ -203,8 +343,16 @@
 	      },
 	      value: {
 	        html: "<a href='#'>other.pdf</a>"
-	      }
-	      
+	      },
+	      actions: {
+	          items: [
+	            {
+	              href: "#",
+	              text: "Change",
+	              visuallyHiddenText: "Another individual"
+	            }
+	          ]
+	        }
 	    }
 	  ]
 	}) }}  

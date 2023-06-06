@@ -55,25 +55,28 @@
             },
             value: {
               html: '<p class="govuk-body">DD/MM/YYYY</p>'
-            },
-            actions: {
-              items: [
-                {
-                  href: "index.html",
-                  text: "Change",
-                  visuallyHiddenText: "due date"
-                }
-              ]
-            }
+            }            
           }
         ]
       }) }}
+      
+      <!--
+      actions: {
+          items: [
+            {
+              href: "index.html",
+              text: "Change",
+              visuallyHiddenText: "due date"
+            }
+          ]
+        }
+       -->
       
       
       {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
 		{{ govukInsetText({
-		  text: "Confirming this review as incomplete will inform the appellant to submit further documents"
+		  text: "Confirming this review will inform the appellant of the outcome"
 		}) }}
 
       

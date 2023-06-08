@@ -16,6 +16,14 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 	  
+	  {% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
+
+	{% set html %}
+	  <h3 class="govuk-notification-banner__heading">
+	    Files successfully added
+	  </h3>
+	{% endset %}
+	  
 	<span class="govuk-caption-l">Appeal 2110166</span>
 	<h1 class="govuk-heading-l">LPA Questionnaire</h1>
 	
@@ -59,14 +67,6 @@
 	  card: {
 	    title: {
 	      text: "1. Constraints, designations and other issues"
-	    },
-	    actions: {
-	      items: [
-	        {
-	          href: "location-select.html",
-	          text: "Add new file"
-	        }
-	      ]
 	    }
 	  },
 	  rows: [
@@ -93,6 +93,15 @@
 	      },
 	      value: {
 	        html: ""
+	      },
+	      actions: {
+	        items: [
+	          {
+	            href: "add-document",
+	            text: "Add",
+	            visuallyHiddenText: "a listed building extract"
+	          }
+	        ]
 	      }
 	    },
 	    {
@@ -228,7 +237,7 @@
 	        text: "Tree Preservation Order"
 	      },
 	      value: {
-	        html: "No"
+	        html: "yes"
 	      },
 	      actions: {
 	        items: [
@@ -242,10 +251,24 @@
 	    },
 	    {
 	      key: {
-	        text: "Tree Preservation Order upload"
+	        text: "Tree Preservation Order extract"
 	      },
 	      value: {
-	        html: ""
+	        html: "<ul class='govuk-list govuk-list--bullet govuk-!-font-size-16'><li><a href='#'>tree-preservation-order-1.pdf</a></li><li><a href='#'>tree-preservation-order-2.pdf</a></li></ul>"
+	      },
+	      actions: {
+	        items: [
+	          {
+	            href: "../manage-documents/",
+	            text: "Change",
+	            visuallyHiddenText: "Tree Preservation Order extent"
+	          },
+	          {
+	            href: "add-document",
+	            text: "Add",
+	            visuallyHiddenText: "Tree Preservation Order extent"
+	          }
+	        ]
 	      }
 	    },
 	    {
@@ -302,8 +325,9 @@
 	  ]
 	}) }}
 	
-	<p class="govuk-body">(more sections would appear here)</p>
+	<p class="govuk-body">(more summary lists would appear here)</p>
 	
+    
     
     <form action="/appellant-outcome" method="post" class="govuk-!-margin-top-9" novalidate>
 	    

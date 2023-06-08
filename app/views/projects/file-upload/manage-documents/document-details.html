@@ -9,7 +9,7 @@
 
 {{ govukBackLink({
   text: "Back",
-  href: 'javascript:history.back()'
+  href: 'manage-documents'
 }) }}
 
 
@@ -17,7 +17,7 @@
   <div class="govuk-grid-column-two-thirds">
 	  
 	<span class="govuk-caption-l">Document details</span>
-	<h1 class="govuk-heading-l">Document title</h1>
+	<h1 class="govuk-heading-l">Tree preservation order 1</h1>
 	
 	{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 
@@ -64,7 +64,8 @@
 	{% from "govuk/components/button/macro.njk" import govukButton %}
 
 	{{ govukButton({
-	  text: "Upload a new version"
+	  text: "Upload a new version",
+	  href: "upload-document"
 	}) }}
 		
     	  	
@@ -93,7 +94,7 @@
 	        text: "File name"
 	      },
 	      {
-	        text: "Tree preservation order extent"
+	        text: "Tree preservation order 1"
 	      },
 	      {
 	        html: "<a href='#'>change</a>"
@@ -197,10 +198,10 @@
 	  rows: [
 	    [
 	      {
-	        html: "<p class='govuk-!-font-size-16'><a href='document-details.html'>Document title</a></p><p class='govuk-body govuk-!-font-size-16'>From: Joe Bloggs<br>File type and size : PDF, 97KB</p>"
+	        html: "<p class='govuk-!-font-size-16'><a href='manage-documents/document-details.html'>Document title</a></p><p class='govuk-body govuk-!-font-size-16'>From: Joe Bloggs<br>File type and size : PDF, 97KB</p>"
 	      },
 	      {
-	        text: "1"
+	        text: "4"
 	      },
 	      {
 	        html: "<strong>Uploaded:</strong> 09:48, 22 Mar 2023, Jane Watson"
@@ -214,7 +215,24 @@
 	    ],
 	    [
 	      {
-	        html: "<p class='govuk-!-font-size-16'><a href='document-details.html'>Document title</a></p><p class='govuk-body govuk-!-font-size-16'>From: Joe Bloggs<br>File type and size : PDF, 97KB</p>"
+	        html: "<p class='govuk-!-font-size-16'><a href='manage-documents/document-details.html'>Document title</a></p><p class='govuk-body govuk-!-font-size-16'>From: Joe Bloggs<br>File type and size : PDF, 97KB</p>"
+	      },
+	      {
+	        text: "3"
+	      },
+	      {
+	        html: "<strong>Uploaded:</strong> 09:48, 22 Mar 2023, Jane Watson"
+	      },
+	      {
+	        text: "Unredacted"
+	      },
+	      {
+	        html: "<a href='#'>Download</a>"
+	      }
+	    ],
+	    [
+	      { 
+	        html: "<p class=' govuk-!-font-size-16'><a href='document-details.html'>Document title</a></p><p class='govuk-body  govuk-!-font-size-16'>From: Joe Bloggs<br>File type and size : PDF, 97KB</p>"
 	      },
 	      {
 	        text: "2"
@@ -234,7 +252,7 @@
 	        html: "<p class=' govuk-!-font-size-16'><a href='document-details.html'>Document title</a></p><p class='govuk-body  govuk-!-font-size-16'>From: Joe Bloggs<br>File type and size : PDF, 97KB</p>"
 	      },
 	      {
-	        text: "3"
+	        text: "1"
 	      },
 	      {
 	        html: "<strong>Uploaded:</strong> 09:48, 22 Mar 2023, Jane Watson"

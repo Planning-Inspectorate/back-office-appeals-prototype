@@ -16,8 +16,7 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 	  
-	
-	
+	  	
 	{% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
 
 	{% set html %}
@@ -106,7 +105,7 @@
 	    },
 	    {
 	      key: {
-	        text: "Listed building extract"
+	        text: "Listed building upload"
 	      },
 	      value: {
 	        html: ""
@@ -245,7 +244,7 @@
 	        text: "Tree Preservation Order"
 	      },
 	      value: {
-	        html: "yes"
+	        html: "No"
 	      },
 	      actions: {
 	        items: [
@@ -259,15 +258,15 @@
 	    },
 	    {
 	      key: {
-	        text: "Tree Preservation Order extract"
+	        text: "Tree Preservation Order upload"
 	      },
 	      value: {
-	        html: "<ul class='govuk-list govuk-list--bullet'><li><a href='#'>tree-preservation-order-1.pdf</a></li><li><a href='#'>tree-preservation-order-2.pdf</a></li></ul>"
+	        html: "<ul class='govuk-list govuk-list--bullet govuk-!-font-size-16'><li><a href='#'>tree-preservation-order-1.pdf</a></li><li><a href='#'>tree-preservation-order-2.pdf</a></li></ul>"
 	      },
 	      actions: {
 	        items: [
 	          {
-	            href: "manage-documents",
+	            href: "../manage-documents",
 	            text: "Change",
 	            visuallyHiddenText: "Tree Preservation Order extent"
 	          }
@@ -313,7 +312,7 @@
 	        text: "Definitive map and statement extract"
 	      },
 	      value: {
-	        html: "<a href='#'>right-of-way.pdf</a>"
+	        html: "<a href='#' class='govuk-!-font-size-16'>right-of-way.pdf</a>"
 	      },
 	      actions: {
 	        items: [

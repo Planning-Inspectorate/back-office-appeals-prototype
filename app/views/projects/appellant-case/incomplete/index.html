@@ -35,43 +35,48 @@
 
 		{% endset -%}
 	    
-	    {% set textHtml %}
-			{{ govukCharacterCount({
-			  name: "more-detail",
-			  id: "more-detail",
-			  maxlength: 300,
-			  label: {
-			    text: "List any other reasons?",
-			    classes: "govuk-label--s",
-			    isPageHeading: false
-			  },
-			  hint: {
-			    text: "Try to layout reasons in a list, for example using dashes or bullets"
-			  }
-			}) }}
-
-		{% endset -%}
 	    
 
         {{ govukCheckboxes({
           name: "reason-incomplete",
           items: [
             {
-              value: "missing",
-              text: "Missing documents",
-              conditional: {
-		        html: missingHtml
-		      }
+              value: "incorrect",
+              text: "Incorrect appeal form for the type of development"
             },
             {
-              value: "lorem",
-              text: "Lorem ipsum"
+              value: "postcode-incorrect",
+              text: "Site postcode has been entered incorrectly"
+            },
+            {
+              value: "appellant-name",
+              text: "Appellant name is not the same on the application form and appeal form"
+            },
+            {
+              value: "development-different",
+              text: "Development is different on the application form, decision notice and appeal form"
+            },
+            {
+              value: "attachments",
+              text: "All attachments have been included to the full statement of case"
+            },
+            {
+              value: "ownership-certificate",
+              text: "Site ownership certificate, agricultural holding certificate and declaration have not been completed on the appeal form"
+            },
+            {
+              value: "decision-incorrect",
+              text: "LPA’s decision notice is incorrect or incomplete"
+            },
+            {
+              value: "docs-plans-missing",
+              text: "Documents and plans referred in the application form, decision notice and appeal covering letter are missing"
             },
             {
               value: "other",
               text: "Other",
 		      conditional: {
-		        html: textHtml
+		        html: missingHtml
 		      }
             }
           ]

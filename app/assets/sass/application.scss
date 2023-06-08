@@ -25,7 +25,6 @@
 		
 	}
 	
-	
 	.govuk-button {
 		
 		@include govuk-media-query($from: tablet) {
@@ -35,4 +34,20 @@
 	}
 	
 	
+}
+
+// Modify the moj multi upload drop styles
+.moj-multi-file-upload__dropzone {
+	outline-color: $govuk-link-colour;
+	outline-width: 4px;
+
+	@include govuk-media-query($from: desktop) {
+		padding: 80px 15px;
+	}
+}
+
+.moj-multi-file-upload--dragover {
+	background-color: #f1f1f1;
+	color: $govuk-focus-text-colour;
+	outline-color: $govuk-focus-colour;
 }

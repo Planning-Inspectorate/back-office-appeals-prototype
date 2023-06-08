@@ -8,7 +8,6 @@ window.GOVUKPrototypeKit.documentReady(() => {
 })
 
 
-
 // Setup the MOJ multi file upload, we've made some minor changes to get things working
 if(MOJFrontend.dragAndDropSupported() && MOJFrontend.formDataSupported() && MOJFrontend.fileApiSupported()) {
   MOJFrontend.MultiFileUpload = function(params) {
@@ -115,6 +114,12 @@ if(MOJFrontend.dragAndDropSupported() && MOJFrontend.formDataSupported() && MOJF
     html += '<dd class="govuk-summary-list__value moj-multi-file-upload__message">';
     html += '<span class="moj-multi-file-upload__filename">'+file.name+'</span>';
     html += '<span class="moj-multi-file-upload__progress">(0%)</span>';
+//    html += '<p class="moj-multi-file-upload__details"><details class="govuk-details" data-module="govuk-details"><summary class="govuk-details__summary"><span class="govuk-details__summary-text">Add file details</span></summary><div class="govuk-details__text" id="includedContent">';
+//    $(function(){
+//      $("#includedContent").load("B-test/file-info.html"); 
+//    });
+//    html += '</div>';
+//    html += '</p>';
     html += '</dd>';
     html += '<dd class="govuk-summary-list__actions moj-multi-file-upload__actions">';
     html += '<a class="remove-link moj-multi-file-upload__delete" href="#0" value="' + file.name + '">Remove <span class="govuk-visually-hidden">' + file.name + '</span></a>';

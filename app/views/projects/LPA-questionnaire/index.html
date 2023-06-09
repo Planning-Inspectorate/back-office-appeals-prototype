@@ -1,6 +1,6 @@
 {% extends "layouts/PINS.html" %}
 
-{% set pageName="Appellant case" %}
+{% set pageName="LPA Questionnaire legacy" %}
 
 {% block content %}
 
@@ -20,7 +20,7 @@
       Appeal a planning decision
     </span>
     <h1 class="govuk-heading-l">
-      Appellant case
+      LPA Questionnaire
     </h1>
 
     <section class="govuk-!-margin-bottom-6">
@@ -30,8 +30,8 @@
 		{%- from "govuk/components/tag/macro.njk" import govukTag -%}
 		
 		{{govukTag({
-          text: "Ready for review",
-          classes: "govuk-!-margin-left-2 govuk-tag--blue"
+          text: "In progress",
+          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
         })}}
 		
 		<!-- Status tag options
@@ -66,14 +66,14 @@
 				
 	</h2>
 	
-	<p class="govuk-body">Case officer can review a case and submit a decision</p>
+	<p class="govuk-body">User can review the LPA questionnaire with an outcome.</p>
 	
 	
 	{% from "govuk/components/button/macro.njk" import govukButton %}
 	
 	{{ govukButton({
 	  text: "View prototype",
-	  href: "cases",
+	  href: "lpa-questionnaire",
 	  isStartButton: true
 	}) }}
 

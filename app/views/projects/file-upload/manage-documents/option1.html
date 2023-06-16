@@ -16,6 +16,7 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 	  
+	
 	<span class="govuk-caption-l">Appeal 2110166</span>
 	<h1 class="govuk-heading-l">LPA Questionnaire</h1>
 	
@@ -89,7 +90,7 @@
 	      actions: {
 	        items: [
 	          {
-	            href: "#",
+	            href: "add-document",
 	            text: "Add",
 	            visuallyHiddenText: "a listed building upload"
 	          }
@@ -229,7 +230,7 @@
 	        text: "Tree Preservation Order"
 	      },
 	      value: {
-	        html: "No"
+	        html: "yes"
 	      },
 	      actions: {
 	        items: [
@@ -243,18 +244,23 @@
 	    },
 	    {
 	      key: {
-	        text: "Tree Preservation Order upload"
+	        text: "Tree Preservation Order extract"
 	      },
 	      value: {
 	        html: "<ul class='govuk-list govuk-list--bullet'>
-		        	<li><a href='#'>tree-preservation-order-A.pdf</a></li>
-		        	<li><a href='#'>tree-preservation-order-B.pdf</a></li>
+		        	<li><a href='/public/downloads/tree-preservation-order-A.pdf'>tree-preservation-order-A.pdf</a></li>
+		        	<li><a href='/public/downloads/tree-preservation-order-A.pdf'>tree-preservation-order-B.pdf</a></li>
 		        </ul>"
 	      },
 	      actions: {
 	        items: [
 	          {
-	            href: "../manage-documents",
+	            href: "../manage-documents/",
+	            text: "Change",
+	            visuallyHiddenText: "Tree Preservation Order extent"
+	          },
+	          {
+	            href: "add-document",
 	            text: "Add",
 	            visuallyHiddenText: "Tree Preservation Order extent"
 	          }
@@ -297,10 +303,10 @@
 	    },
 	    {
 	      key: {
-	        text: "Definitive map and statement upload"
+	        text: "Definitive map and statement extract"
 	      },
 	      value: {
-	        html: "<a href='#' class='govuk-!-font-size-16'>right-of-way.pdf</a>"
+	        html: "<a href='#'>right-of-way.pdf</a>"
 	      },
 	      actions: {
 	        items: [

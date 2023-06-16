@@ -21,6 +21,43 @@
 	
 	{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 
+	{{ govukSummaryList({
+	  classes: 'govuk-summary-list--no-border',
+	  rows: [
+	    {
+	      key: {
+	        text: "Description"
+	      },
+	      value: {
+	        text: "Constraints, designations and other issues"
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Appeal reference"
+	      },
+	      value: {
+	        text: "21110166"
+	      }
+	    },
+	    {
+	      key: {
+	        text: "File type and size"
+	      },
+	      value: {
+	        html: "PDF, 99KB"
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Version"
+	      },
+	      value: {
+	        html: '<p class="govuk-body">4</p>'
+	      }
+	    }
+	  ]
+	}) }}
 	   
 	
 	{% from "govuk/components/button/macro.njk" import govukButton %}
@@ -152,12 +189,15 @@
 	    },
 	    {
 	      text: "Redaction"
+	    },
+	    {
+	      text: "Actions"
 	    }
 	  ],
 	  rows: [
 	    [
 	      {
-	        html: "<p class='govuk-!-font-size-16'><a href='manage-documents/document-details.html'>tree-preservation-order-A.pdf</a></p><p class='govuk-body govuk-!-font-size-16'>From: Joe Bloggs<br>File type and size : PDF, 97KB</p>"
+	        html: "<p class='govuk-!-font-size-16'><a href='manage-documents/document-details.html'>Document title</a></p><p class='govuk-body govuk-!-font-size-16'>From: Joe Bloggs<br>File type and size : PDF, 97KB</p>"
 	      },
 	      {
 	        text: "4"
@@ -167,11 +207,14 @@
 	      },
 	      {
 	        text: "Redacted"
+	      },
+	      {
+	        html: "<a href='#'>Download</a>"
 	      }
 	    ],
 	    [
 	      {
-	        html: "<p class='govuk-!-font-size-16'><a href='manage-documents/document-details.html'>tree-preservation-order-A.pdf</a></p><p class='govuk-body govuk-!-font-size-16'>From: Joe Bloggs<br>File type and size : PDF, 97KB</p>"
+	        html: "<p class='govuk-!-font-size-16'><a href='manage-documents/document-details.html'>Document title</a></p><p class='govuk-body govuk-!-font-size-16'>From: Joe Bloggs<br>File type and size : PDF, 97KB</p>"
 	      },
 	      {
 	        text: "3"
@@ -181,11 +224,14 @@
 	      },
 	      {
 	        text: "Unredacted"
+	      },
+	      {
+	        html: "<a href='#'>Download</a>"
 	      }
 	    ],
 	    [
 	      { 
-	        html: "<p class=' govuk-!-font-size-16'><a href='document-details.html'>tree-preservation-order-A.pdf</a></p><p class='govuk-body  govuk-!-font-size-16'>From: Joe Bloggs<br>File type and size : PDF, 97KB</p>"
+	        html: "<p class=' govuk-!-font-size-16'><a href='document-details.html'>Document title</a></p><p class='govuk-body  govuk-!-font-size-16'>From: Joe Bloggs<br>File type and size : PDF, 97KB</p>"
 	      },
 	      {
 	        text: "2"
@@ -195,11 +241,14 @@
 	      },
 	      {
 	        text: "Unredacted"
+	      },
+	      {
+	        html: "<a href='#'>Download</a>"
 	      }
 	    ],
 	    [
 	      { 
-	        html: "<p class=' govuk-!-font-size-16'><a href='document-details.html'>tree-preservation-order-A.pdf</a></p><p class='govuk-body  govuk-!-font-size-16'>From: Joe Bloggs<br>File type and size : PDF, 97KB</p>"
+	        html: "<p class=' govuk-!-font-size-16'><a href='document-details.html'>Document title</a></p><p class='govuk-body  govuk-!-font-size-16'>From: Joe Bloggs<br>File type and size : PDF, 97KB</p>"
 	      },
 	      {
 	        text: "1"
@@ -209,6 +258,9 @@
 	      },
 	      {
 	        text: "Unredacted"
+	      },
+	      {
+	        html: "<a href='#'>Download</a>"
 	      }
 	    ]
 	  ]

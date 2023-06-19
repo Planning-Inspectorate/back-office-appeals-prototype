@@ -1,6 +1,6 @@
 {% extends "layouts/PINS.html" %}
 
-{% set pageName="Appellant Case" %}
+{% set pageName="Document removed" %}
 
 {% block content %}
 
@@ -9,19 +9,29 @@
 
 {{ govukBackLink({
   text: "Back",
-  href: 'manage-documents'
+  href: '../lpa-questionnaire'
 }) }}
 
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 	  
+	  {% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
+
+	{% set html %}
+	  <h3 class="govuk-notification-banner__heading">
+	    File successfully removed
+	  </h3>
+	{% endset %}
+	
+	{{ govukNotificationBanner({
+	  html: html,
+	  type: 'success'
+	}) }}	  
+	  
 	<span class="govuk-caption-l">Document details</span>
 	<h1 class="govuk-heading-l">tree-preservation-order-A.pdf</h1>
-	
-	{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
-
-	   
+		   
 	
 	{% from "govuk/components/button/macro.njk" import govukButton %}
 
@@ -31,7 +41,6 @@
 	}) }}
 		
     	  	
-  	
   </div>
 </div>
 
@@ -56,10 +65,10 @@
 	        text: "File name"
 	      },
 	      {
-	        text: "tree-preservation-order-A.pdf"
+	        text: "tree preservation order A"
 	      },
 	      {
-	        html: "<a href='#'>Change</a>"
+	        html: "<a href='#'>change</a>"
 	      }
 	    ],
 	    [
@@ -70,7 +79,7 @@
 	        text: "Constraints, designations and other issues"
 	      },
 	      {
-	        html: "<a href='#'>Change</a>"
+	        html: "<a href='#'>change</a>"
 	      }
 	    ],
 	    [
@@ -81,7 +90,7 @@
 	        text: "Bradford Council"
 	      },
 	      {
-	        html: "<a href='#'>Change</a>"
+	        html: "<a href='#'>change</a>"
 	      }
 	    ],
 	    [
@@ -103,7 +112,7 @@
 	        text: "LPA Questionnaire"
 	      },
 	      {
-	        html: "<a href='#'>Change</a>"
+	        html: "<a href='#'>change</a>"
 	      }
 	    ],
 	    [
@@ -114,7 +123,7 @@
 	        text: "1 Feb 2023"
 	      },
 	      {
-	        html: "<a href='#'>Change</a>"
+	        html: "<a href='#'>change</a>"
 	      }
 	    ],
 	    [
@@ -125,7 +134,7 @@
 	        text: "Unredacted"
 	      },
 	      {
-	        html: "<a href='#'>Change</a>"
+	        html: "<a href='#'>change</a>"
 	      }
 	    ]
 	  ]
@@ -158,23 +167,6 @@
 	    }
 	  ],
 	  rows: [
-	    [
-	      {
-	        html: "<p class='govuk-!-font-size-16'><a href='manage-documents/document-details.html'>tree-preservation-order-A.pdf</a></p><p class='govuk-body govuk-!-font-size-16'>From: Joe Bloggs<br>File type and size : PDF, 97KB</p>"
-	      },
-	      {
-	        text: "4"
-	      },
-	      {
-	        html: "<strong>Uploaded:</strong> 09:48, 22 Mar 2023, Jane Watson"
-	      },
-	      {
-	        text: "Redacted"
-	      },
-	      {
-	        html: "<a href='remove-sure'>Remove</a>"
-	      }
-	    ],
 	    [
 	      {
 	        html: "<p class='govuk-!-font-size-16'><a href='manage-documents/document-details.html'>tree-preservation-order-A.pdf</a></p><p class='govuk-body govuk-!-font-size-16'>From: Joe Bloggs<br>File type and size : PDF, 97KB</p>"

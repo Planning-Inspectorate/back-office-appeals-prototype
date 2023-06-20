@@ -1,21 +1,6 @@
 <li>
   <h2 class="app-task-list__section">
-    <span class="app-task-list__section-number">1. </span> Constraints, designations and other issues
-    {% if data['constraints-completed'] == 'true' %}
-      {{ govukTag({
-        html: 'Completed'
-      }) }}
-    {% elif data['constraints-started'] == 'true' %}
-      {{ govukTag({
-        html: 'In progress',
-        classes: 'govuk-tag--blue'
-      }) }}
-    {% else %}
-      {{ govukTag({
-        html: 'Not started',
-        classes: 'govuk-tag--grey'
-      }) }}
-    {% endif %}
+    Constraints, designations and other issues
   </h2>
 
   {{ govukSummaryList({

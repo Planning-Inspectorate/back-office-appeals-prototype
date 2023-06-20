@@ -12,22 +12,13 @@
           html: 'Representations from other parties'
         },
         value: {
-          html: data['other-parties-check'] or 'No'
-        }
-        if data['other-parties-checked'] else
-        {
-          html: '<span class="govuk-hint">Not started</span>'
+          html: 'Yes'
         },
         actions: {
           items: [
             {
               href: 'consultation/other-parties-check?cya=true',
               html: 'Change'
-            }
-            if data['other-parties-checked'] else
-            {
-              href: 'consultation/other-parties-check',
-              html: 'Answer'
             }
           ]
         }
@@ -37,11 +28,7 @@
           html: 'Upload representations from other parties'
         },
         value: {
-          html: data['other-parties-upload'] or 'other-parties.pdf'
-        }
-        if data['other-parties-uploaded'] else
-        {
-          html: '<span class="govuk-hint">Not started</span>'
+          html: '<a href="" class="govuk-link">155 York Rd representations 2023.pdf</a>'
         },
         actions: {
           items: [
@@ -49,14 +36,9 @@
               href: 'consultation/other-parties-upload?cya=true',
               html: 'Change'
             }
-            if data['other-parties-uploaded'] else
-            {
-              href: 'consultation/other-parties-upload',
-              html: 'Upload'
-            }
           ]
         }
-      } if data['other-parties-check'] == 'Yes'
+      }
     ]
   }) }}
 </li>

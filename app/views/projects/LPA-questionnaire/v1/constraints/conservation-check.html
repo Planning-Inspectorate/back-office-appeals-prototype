@@ -1,0 +1,29 @@
+{% extends '_layouts/layout-pins.html' %}
+
+{% set title = 'Is the site in or next to a conservation area?' %}
+
+{% block questions %}
+  {{ govukRadios({
+    idPrefix: 'conservation-check',
+    name: 'conservation-check',
+    fieldset: {
+      legend: {
+        html: title,
+        classes: 'govuk-fieldset__legend--l',
+        isPageHeading: true
+      }
+    },
+    items: [
+      {
+        html: 'Yes',
+        value: 'Yes',
+        checked: checked('conservation-check','Yes')
+      },
+      {
+        html: 'No',
+        value: 'No',
+        checked: checked('conservation-check','No')
+      }
+    ]
+  }) }}
+{% endblock %}

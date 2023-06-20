@@ -1,0 +1,77 @@
+<li>
+  <h2 class="app-task-list__section">
+    <span class="app-task-list__section-number">3. </span> Consultation responses and representations
+    {% if data['consultation-completed'] == 'true' %}
+      {{ govukTag({
+        html: 'Completed'
+      }) }}
+    {% elif data['consultation-started'] == 'true' %}
+      {{ govukTag({
+        html: 'In progress',
+        classes: 'govuk-tag--blue'
+      }) }}
+    {% else %}
+      {{ govukTag({
+        html: 'Not started',
+        classes: 'govuk-tag--grey'
+      }) }}
+    {% endif %}
+  </h2>
+
+  {{ govukSummaryList({
+    classes: 'govuk-!-margin-bottom-9',
+    rows: [
+
+      {
+        key: {
+          html: 'Representations from other parties'
+        },
+        value: {
+          html: data['other-parties-check'] or 'No'
+        }
+        if data['other-parties-checked'] else
+        {
+          html: '<span class="govuk-hint">Not started</span>'
+        },
+        actions: {
+          items: [
+            {
+              href: 'consultation/other-parties-check?cya=true',
+              html: 'Change'
+            }
+            if data['other-parties-checked'] else
+            {
+              href: 'consultation/other-parties-check',
+              html: 'Answer'
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          html: 'Upload representations from other parties'
+        },
+        value: {
+          html: data['other-parties-upload'] or 'other-parties.pdf'
+        }
+        if data['other-parties-uploaded'] else
+        {
+          html: '<span class="govuk-hint">Not started</span>'
+        },
+        actions: {
+          items: [
+            {
+              href: 'consultation/other-parties-upload?cya=true',
+              html: 'Change'
+            }
+            if data['other-parties-uploaded'] else
+            {
+              href: 'consultation/other-parties-upload',
+              html: 'Upload'
+            }
+          ]
+        }
+      } if data['other-parties-check'] == 'Yes'
+    ]
+  }) }}
+</li>

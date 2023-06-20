@@ -1,0 +1,174 @@
+<li>
+  <h2 class="app-task-list__section">
+    <span class="app-task-list__section-number">6. </span> Appeal process
+    {% if data['appeal-process-completed'] == 'true' %}
+      {{ govukTag({
+        html: 'Completed'
+      }) }}
+    {% elif data['appeal-process-started'] == 'true' %}
+      {{ govukTag({
+        html: 'In progress',
+        classes: 'govuk-tag--blue'
+      }) }}
+    {% else %}
+      {{ govukTag({
+        html: 'Not started',
+        classes: 'govuk-tag--grey'
+      }) }}
+    {% endif %}
+  </h2>
+
+  {{ govukSummaryList({
+    classes: 'govuk-!-margin-bottom-9',
+    rows: [
+      {
+        key: {
+          html: 'Procedure type'
+        },
+        value: {
+          html: (data['procedure'] or 'Written representations')+
+                ('<br>'+(data['procedure-lenth'] or '3')+' days' if data['procedure'] == 'Inquiry')
+        }
+        if data['procedure-complete'] else
+        {
+          html: '<span class="govuk-hint">Not started</span>'
+        },
+        actions: {
+          items: [
+            {
+              href: 'appeal-process/procedure?cya=true',
+              html: 'Change'
+            }
+            if data['procedure-complete'] else
+            {
+              href: 'appeal-process/procedure',
+              html: 'Answer'
+            }
+          ]
+        }
+      },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      {
+        key: {
+          html: 'Other appeals'
+        },
+        value: {
+          html: data['appeal-refs'] | e | replace(',', '<br>') or '0123456'
+        }
+        if data['other-appeals-complete'] else
+        {
+          html: '<span class="govuk-hint">Not started</span>'
+        },
+
+        actions: {
+          items: [
+            {
+              href: 'appeal-process/other-appeals?cya=true',
+              html: 'Change'
+            }
+            if data['other-appeals-complete'] else
+            {
+              href: 'appeal-process/other-appeals',
+              html: 'Answer'
+            }
+          ]
+        }
+      }
+      if data['other-appeals-radio'] == 'Yes' else
+      {
+        key: {
+          html: 'Other appeals'
+        },
+        value: {
+          html: 'No'
+        }
+        if data['other-appeals-complete'] else
+        {
+          html: '<span class="govuk-hint">Not started</span>'
+        },
+
+        actions: {
+          items: [
+            {
+              href: 'appeal-process/other-appeals?cya=true',
+              html: 'Change'
+            }
+            if data['other-appeals-complete'] else
+            {
+              href: 'appeal-process/other-appeals',
+              html: 'Answer'
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          html: 'Request new conditions'
+        },
+        value: {
+          html: data['extra-conditions'] or 'Some new conditions'
+        }
+        if data['extra-conditions-complete'] else
+        {
+          html: '<span class="govuk-hint">Not started</span>'
+        },
+
+        actions: {
+          items: [
+            {
+              href: 'appeal-process/extra-conditions?cya=true',
+              html: 'Change'
+            }
+            if data['extra-conditions-complete'] else
+            {
+              href: 'appeal-process/extra-conditions',
+              html: 'Answer'
+            }
+          ]
+        }
+      }
+      if data['extra-conditions-check'] == 'Yes' else
+      {
+        key: {
+          html: 'Request new conditions'
+        },
+        value: {
+          html: 'No'
+        }
+        if data['extra-conditions-complete'] else
+        {
+          html: '<span class="govuk-hint">Not started</span>'
+        },
+
+        actions: {
+          items: [
+            {
+              href: 'appeal-process/extra-conditions?cya=true',
+              html: 'Change'
+            }
+            if data['extra-conditions-complete'] else
+            {
+              href: 'appeal-process/extra-conditions',
+              html: 'Answer'
+            }
+          ]
+        }
+      }
+
+    ]
+  }) }}
+</li>

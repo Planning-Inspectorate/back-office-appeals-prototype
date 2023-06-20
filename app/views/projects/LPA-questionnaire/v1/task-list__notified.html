@@ -1,0 +1,129 @@
+<li>
+  <h2 class="app-task-list__section">
+    <span class="app-task-list__section-number">2. </span> Notifying people about the application
+    {% if data['notified-completed'] == 'true' %}
+      {{ govukTag({
+        html: 'Completed'
+      }) }}
+    {% elif data['notified-started'] == 'true' %}
+      {{ govukTag({
+        html: 'In progress',
+        classes: 'govuk-tag--blue'
+      }) }}
+    {% else %}
+      {{ govukTag({
+        html: 'Not started',
+        classes: 'govuk-tag--grey'
+      }) }}
+    {% endif %}
+  </h2>
+  {{ govukSummaryList({
+    classes: 'govuk-!-margin-bottom-9',
+    rows: [
+      {
+        key: {
+          html: 'How you notified people'
+        },
+        value: {
+          html: '<a href="#">'+data['notified-how'] | e | replace(',', '<br>') or 'A press advert'
+        }
+        if data['notified-how'] else
+        {
+          html: '<span class="govuk-hint">Not started</span>'
+        },
+        actions: {
+          items: [
+
+            {
+              href: 'notified/notified-how?cya=true',
+              html: 'Change'
+            }
+
+            if data['notified-how'] else
+
+            {
+              href: 'notified/notified-how',
+              html: 'Answer'
+            }
+
+          ]
+        }
+      },
+      {
+        key: {
+          html: 'Site notice'
+        },
+        value: {
+          html: data['site-notice-upload'] or 'site-notice.pdf'
+        }
+        if data['site-notice-uploaded'] else
+        {
+          html: '<span class="govuk-hint">Not started</span>'
+        },
+        actions: {
+          items: [
+            {
+              href: 'notified/site-notice-upload?cya=true',
+              html: 'Change'
+            }
+            if data['site-notice-uploaded'] else
+            {
+              href: 'notified/site-notice-upload',
+              html: 'Upload'
+            }
+          ]
+        }
+      } if data['notified-how'] and data['notified-how'].includes('A site notice'),
+      {
+        key: {
+          html: 'Letter sent to neighbours'
+        },
+        value: {
+          html: data['letters-upload'] or 'letter.pdf'
+        }
+        if data['letters-uploaded'] else
+        {
+          html: '<span class="govuk-hint">Not started</span>'
+        },
+        actions: {
+          items: [
+            {
+              href: 'notified/letters-upload?cya=true',
+              html: 'Change'
+            }
+            if data['letters-uploaded'] else
+            {
+              href: 'notified/letters-upload',
+              html: 'Upload'
+            }
+          ]
+        }
+      } if data['notified-how'] and data['notified-how'].includes('Letters to the neighbours'),
+      {
+        key: {
+          html: 'Press advert'
+        },
+        value: {
+          html: data['press-advert-upload'] or 'press-advert.pdf'
+        }
+        if data['advert-uploaded'] else
+        {
+          html: '<span class="govuk-hint">Not started</span>'
+        },
+        actions: {
+          items: [
+            {
+              href: 'notified/press-advert-upload?cya=true',
+              html: 'Change'
+            }
+            if data['advert-uploaded'] else
+            {
+              href: 'notified/press-advert-upload',
+              html: 'Upload'
+            }
+          ]
+        }
+      } if data['notified-how'] and data['notified-how'].includes('A press advert')
+    ]
+  }) }}
+</li>

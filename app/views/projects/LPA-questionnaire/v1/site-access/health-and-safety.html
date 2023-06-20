@@ -1,0 +1,77 @@
+{% extends '_layouts/layout-pins.html' %}
+
+{% set title = 'Does the site have potential safety risks?' %}
+
+{% block questions %}
+
+  {% set textareaHTML %}
+    {{ govukTextarea({
+      name: 'health-and-safety__details',
+      id: 'health-and-safety__details',
+      value: data['health-and-safety__details'],
+      rows: '',
+      label: {
+        html: 'Add details of the potential risk and what the inspector might need'
+      }
+    }) }}
+  {% endset -%}
+
+  <h1 class="govuk-heading-l">
+    {{ title }}
+  </h1>
+
+  <p class="govuk-body">
+    Inspectors need to know how to prepare for a visit and what to bring.
+  </p>
+
+  <p class="govuk-!-margin-bottom-2">For example, tell us about:</p>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>
+      no or limited mobile reception
+    </li>
+    <li>
+      if ladders or other access equipment is needed
+    </li>
+    <li>
+      the need to wear high-visibility clothes or a hard hat
+    </li>
+    <li>
+      livestock or other animals
+    </li>
+    <li>
+      blocked access to areas, for example because of debris or overgrown vegetation
+    </li>
+    <li>
+      the potential for hazardous materials on site, such as asbestos
+    </li>
+  </ul>
+
+  {{ govukRadios({
+    idPrefix: 'health-and-safety',
+    name: 'health-and-safety',
+    fieldset: {
+      legend: {
+        html: 'Do you want to add any potential safety issues?',
+        classes: 'govuk-fieldset__legend--m'
+      }
+    },
+    items: [
+      {
+        html: 'Yes',
+        value: 'Yes',
+        checked: checked('health-and-safety','Yes'),
+        conditional: {
+          html: textareaHTML
+        }
+      },
+      {
+        html: 'No',
+        value: 'No',
+        checked: checked('health-and-safety','No')
+      }
+    ]
+  }) }}
+
+{% endblock %}
+
+{% block pageScripts %}{% endblock %}

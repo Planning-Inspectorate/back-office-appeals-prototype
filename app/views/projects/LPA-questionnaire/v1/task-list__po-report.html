@@ -1,0 +1,56 @@
+<li>
+  <h2 class="app-task-list__section">
+    <span class="app-task-list__section-number">4. </span>
+
+      Planning officer’s report and supplementary documents
+
+    {% if data['po-report-completed'] == 'true' %}
+      {{ govukTag({
+        html: 'Completed'
+      }) }}
+    {% elif data['po-report-started'] == 'true' %}
+      {{ govukTag({
+        html: 'In progress',
+        classes: 'govuk-tag--blue'
+      }) }}
+    {% else %}
+      {{ govukTag({
+        html: 'Not started',
+        classes: 'govuk-tag--grey'
+      }) }}
+    {% endif %}
+  </h2>
+
+  {% set levyDate = (data['community-infrastructure-date-day'] or '1') +' '+ (data['community-infrastructure-date-month'] | formatMonth or 'July') +' '+ (data['community-infrastructure-date-year'] or '2022') %}
+  {{ govukSummaryList({
+    classes: 'govuk-!-margin-bottom-9',
+    rows: [
+      {
+        key: {
+          html: 'Upload what your decision notice would have said' if data['non-determination'] == 'true' else 'Upload planning officer’s report'
+        },
+        value: {
+          html: data['report-upload'] or 'report.pdf'
+        }
+        if data['po-report-uploaded'] else
+        {
+          html: '<span class="govuk-hint">Not started</span>'
+        },
+        actions: {
+          items: [
+            {
+              href: 'po-report/report-upload?cya=true',
+              html: 'Change'
+            }
+            if data['po-report-uploaded'] else
+            {
+              href: 'po-report/report-upload',
+              html: 'Upload'
+            }
+          ]
+        }
+      }
+
+    ]
+  }) }}
+</li>

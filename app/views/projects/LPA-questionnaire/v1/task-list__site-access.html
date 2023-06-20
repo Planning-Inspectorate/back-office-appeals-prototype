@@ -11,22 +11,13 @@
           html: 'Inspector access'
         },
         value: {
-          html: 'Yes' if data['site-entry'] == 'Yes' else 'No'
-        }
-        if data['site-entry-complete'] else
-        {
-          html: '<span class="govuk-hint">Not started</span>'
+          html: 'Yes'
         },
         actions: {
           items: [
             {
               href: 'site-access/site-entry?cya=true',
               html: 'Change'
-            }
-            if data['site-entry-complete'] else
-            {
-              href: 'site-access/site-entry',
-              html: 'Answer'
             }
           ]
         }
@@ -36,22 +27,13 @@
           html: 'Could a neighbouring site be affected?'
         },
         value: {
-          html: 'Yes' if data['neighbours-land'] == 'Yes' else 'No'
-        }
-        if data['neighbours-land-complete'] else
-        {
-          html: '<span class="govuk-hint">Not started</span>'
+          html: 'Yes'
         },
         actions: {
           items: [
             {
               href: 'site-access/neighbours-land?cya=true',
               html: 'Change'
-            }
-            if data['neighbours-land-complete'] else
-            {
-              href: 'site-access/neighbours-land',
-              html: 'Answer'
             }
           ]
         }
@@ -63,10 +45,6 @@
         },
         value: {
           html: 'Affect outlook or privacy<br>Detract from site surroundings'
-        }
-        if data['neighbours-reasons-complete'] else
-        {
-          html: '<span class="govuk-hint">Not started</span>'
         },
         actions: {
           items: [
@@ -74,27 +52,18 @@
               href: 'site-access/neighbours-land-reasons?cya=true',
               html: 'Change'
             }
-            if data['neighbours-reasons-complete'] else
-            {
-              href: 'site-access/neighbours-land-reasons',
-              html: 'Answer'
-            }
           ]
         }
-      } if data['neighbours-land'] == 'Yes',
+      },
 
       {
         key: {
           html: 'Neighbouring site 1 address'
         },
         value: {
-          html: ('172, York Road')+
-                ('<br>'+data['neighbours-address-line-2'] if data['neighbours-address-line-2'])+
-                ('<br>'+(data['neighbours-address-town'] or 'Bristol'))+
-                ('<br>'+(data['neighbours-address-postcode'] or 'BS3 4AL'))
-        } if data['neighbours-address-complete'] else
-        {
-          html: '<span class="govuk-hint">Not started</span>'
+          html: '172, York Road<br>
+                  Bristol<br>
+                  BS3 4AL'
         },
         actions: {
           items: [
@@ -102,24 +71,16 @@
               href: 'site-access/neighbours-address?cya=true',
               html: 'Change'
             }
-            if data['neighbours-address-complete'] else
-            {
-              href: 'site-access/neighbours-address',
-              html: 'Answer'
-            }
           ]
         }
-      } if data['neighbours-land'] == 'Yes',
+      },
       {
         key: {
           html: 'Neighbouring site 1 contact'
         },
         value: {
-          html: ('Sam Fisher')+
-                ('<br>01179123456')
-        } if data['neighbours-contact-complete'] else
-        {
-          html: '<span class="govuk-hint">Not started</span>'
+          html: 'Sam Fisher<br>
+                 01179123456'
         },
         actions: {
           items: [
@@ -127,35 +88,22 @@
               href: 'site-access/neighbours-contact-details?cya=true',
               html: 'Change'
             }
-            if data['neighbours-contact-complete'] else
-            {
-              href: 'site-access/neighbours-contact-details',
-              html: 'Answer'
-            }
           ]
         }
-      } if data['neighbours-land'] == 'Yes',
+      },
       {
         key: {
           html: 'Potential safety risks'
         },
         value: {
-          html: 'Yes<br>'+(data['health-and-safety__details'] or 'Dogs on site') if data['health-and-safety'] == 'Yes' else 'No'
-        }
-        if data['health-and-safety-complete'] else
-        {
-          html: '<span class="govuk-hint">Not started</span>'
+          html: 'Yes<br>
+                 Dogs on site'
         },
         actions: {
           items: [
             {
               href: 'site-access/health-and-safety?cya=true',
               html: 'Change'
-            }
-            if data['health-and-safety-complete'] else
-            {
-              href: 'site-access/health-and-safety',
-              html: 'Answer'
             }
           ]
         }

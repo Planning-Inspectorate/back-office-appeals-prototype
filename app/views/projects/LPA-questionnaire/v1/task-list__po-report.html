@@ -9,25 +9,16 @@
     rows: [
       {
         key: {
-          html: 'Upload what your decision notice would have said' if data['non-determination'] == 'true' else 'Upload planning officer’s report'
+          html: 'Planning officer’s report'
         },
         value: {
-          html: data['report-upload'] or 'report.pdf'
-        }
-        if data['po-report-uploaded'] else
-        {
-          html: '<span class="govuk-hint">Not started</span>'
+          html: '<a href="" class="govuk-body">155 York Rd PO report 2023.pdf</a>'
         },
         actions: {
           items: [
             {
               href: 'po-report/report-upload?cya=true',
               html: 'Change'
-            }
-            if data['po-report-uploaded'] else
-            {
-              href: 'po-report/report-upload',
-              html: 'Upload'
             }
           ]
         }

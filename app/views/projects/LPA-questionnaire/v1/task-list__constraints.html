@@ -12,22 +12,13 @@
           html: 'Affects a listed building'
         },
         value: {
-          html: data['affected-listed-building-check'] or 'No'
-        }
-        if data['affected-listed-building-check-complete'] else
-        {
-          html: '<span class="govuk-hint">Not started</span>'
+          html: 'Yes'
         },
         actions: {
           items: [
             {
               href: 'constraints/affected-listed-building-check?cya=true',
               html: 'Change'
-            }
-            if data['affected-listed-building-check-complete'] else
-            {
-              href: 'constraints/affected-listed-building-check',
-              html: 'Answer'
             }
           ]
         }
@@ -37,12 +28,9 @@
           html: 'Listed buildings'
         },
         value: {
-          html: '<a href="#">'+(data['historicenglandsearchnumber'] or '1282050')+'</a>'+
-                '<br>Grade II listed building'+
-                '<br>155, York Road, Bedminster, Bristol, BS3 4AL'
-        } if data['affected-listed-buildings-complete'] else
-        {
-          html: '<span class="govuk-hint">Not started</span>'
+          html: '<a href="#">1282050</a><br>
+                 Grade II listed building<br>
+                 155, York Road, Bedminster, Bristol, BS3 4AL'
         },
         actions: {
           items: [
@@ -50,35 +38,21 @@
               href: 'constraints/affected-listed-building-details?cya=true',
               html: 'Change'
             }
-            if data['affected-listed-buildings-complete'] else
-            {
-              href: 'constraints/affected-listed-building-details',
-              html: 'Answer'
-            }
           ]
         }
-      } if data['affected-listed-building-check'] == 'Yes',
+      },
       {
         key: {
           html: 'Conservation area'
         },
         value: {
-          html: data['conservation-check'] or 'No'
-        }
-        if data['conservation-check-complete'] else
-        {
-          html: '<span class="govuk-hint">Not started</span>'
+          html: 'Yes'
         },
         actions: {
           items: [
             {
               href: 'constraints/conservation-check?cya=true',
               html: 'Change'
-            }
-            if data['conservation-check-complete'] else
-            {
-              href: 'constraints/conservation-check',
-              html: 'Answer'
             }
           ]
         }
@@ -88,11 +62,7 @@
           html: 'Conservation area map and guidance'
         },
         value: {
-          html: data['conservation-upload'] or 'conservation-map.pdf'
-        }
-        if data['conservation-upload-complete'] else
-        {
-          html: '<span class="govuk-hint">Not started</span>'
+          html: '<a href="#" class="govuk-link">BS3 4AL Conservation-map.pdf</a>'
         },
         actions: {
           items: [
@@ -100,35 +70,21 @@
               href: 'constraints/conservation-upload?cya=true',
               html: 'Change'
             }
-            if data['conservation-upload-complete'] else
-            {
-              href: 'constraints/conservation-upload',
-              html: 'Upload'
-            }
           ]
         }
-      } if data['conservation-check'] == 'Yes',
+      },
       {
         key: {
           html: 'Green belt'
         },
         value: {
-          html: data['green-belt'] or 'No'
-        }
-        if data['green-belt-complete'] else
-        {
-          html: '<span class="govuk-hint">Not started</span>'
+          html: 'No'
         },
         actions: {
           items: [
             {
               href: 'constraints/green-belt?cya=true',
               html: 'Change'
-            }
-            if data['green-belt-complete'] else
-            {
-              href: 'constraints/green-belt',
-              html: 'Answer'
             }
           ]
         }

@@ -1,21 +1,6 @@
 <li>
   <h2 class="app-task-list__section">
-    <span class="app-task-list__section-number">2. </span> Notifying people about the application
-    {% if data['notified-completed'] == 'true' %}
-      {{ govukTag({
-        html: 'Completed'
-      }) }}
-    {% elif data['notified-started'] == 'true' %}
-      {{ govukTag({
-        html: 'In progress',
-        classes: 'govuk-tag--blue'
-      }) }}
-    {% else %}
-      {{ govukTag({
-        html: 'Not started',
-        classes: 'govuk-tag--grey'
-      }) }}
-    {% endif %}
+    Notifying people about the application
   </h2>
   {{ govukSummaryList({
     classes: 'govuk-!-margin-bottom-9',

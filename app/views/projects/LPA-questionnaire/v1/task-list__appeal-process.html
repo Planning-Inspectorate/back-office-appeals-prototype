@@ -1,21 +1,6 @@
 <li>
   <h2 class="app-task-list__section">
-    <span class="app-task-list__section-number">6. </span> Appeal process
-    {% if data['appeal-process-completed'] == 'true' %}
-      {{ govukTag({
-        html: 'Completed'
-      }) }}
-    {% elif data['appeal-process-started'] == 'true' %}
-      {{ govukTag({
-        html: 'In progress',
-        classes: 'govuk-tag--blue'
-      }) }}
-    {% else %}
-      {{ govukTag({
-        html: 'Not started',
-        classes: 'govuk-tag--grey'
-      }) }}
-    {% endif %}
+    Appeal process
   </h2>
 
   {{ govukSummaryList({

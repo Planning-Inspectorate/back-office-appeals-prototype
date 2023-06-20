@@ -1,21 +1,6 @@
 <li>
   <h2 class="app-task-list__section">
-    <span class="app-task-list__section-number">3. </span> Consultation responses and representations
-    {% if data['consultation-completed'] == 'true' %}
-      {{ govukTag({
-        html: 'Completed'
-      }) }}
-    {% elif data['consultation-started'] == 'true' %}
-      {{ govukTag({
-        html: 'In progress',
-        classes: 'govuk-tag--blue'
-      }) }}
-    {% else %}
-      {{ govukTag({
-        html: 'Not started',
-        classes: 'govuk-tag--grey'
-      }) }}
-    {% endif %}
+    Consultation responses and representations
   </h2>
 
   {{ govukSummaryList({

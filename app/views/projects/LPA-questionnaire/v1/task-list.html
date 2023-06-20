@@ -69,34 +69,10 @@
         </div>
       </dl>
 
-
+<hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
     </div>
 
-    <div class="govuk-grid-column-three-quarters-from-desktop">
 
-      <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--l">
-
-      <h2 class="govuk-heading-s">
-        Complete the questionnaire
-      </h2>
-      <p class="govuk-!-margin-bottom-7">You have completed {{count}} of 7 sections.</p>
-
-      {# Tweak the task list so we can merge the CYA in #}
-      <style>
-        .app-task-list>li {
-          position: relative;
-        }
-        .app-task-list__section .govuk-tag {
-          position: absolute;
-          top: 3px;
-          right: 0;
-        }
-        .app-task-list .govuk-summary-list {
-          border-top: 1px solid #b1b4b6;
-        }
-      </style>
-
-    </div>
 
     <div class="govuk-grid-column-full">
 
@@ -108,7 +84,6 @@
         {% include "./task-list__po-report.html" %}
         {% include "./task-list__site-access.html" %}
         {% include "./task-list__appeal-process.html" %}
-        {% include "./task-list__submit.html" %}
 
       </ol>
     </div>
@@ -118,7 +93,7 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-full">
 
-        <form action="/appellant-outcome" method="post" class="govuk-!-margin-top-9" novalidate>
+        <form action="/appellant-outcome" method="post" novalidate>
 
     	    <!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
 

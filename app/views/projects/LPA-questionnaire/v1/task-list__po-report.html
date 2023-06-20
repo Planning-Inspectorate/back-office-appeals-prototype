@@ -1,24 +1,6 @@
 <li>
   <h2 class="app-task-list__section">
-    <span class="app-task-list__section-number">4. </span>
-
-      Planning officer’s report and supplementary documents
-
-    {% if data['po-report-completed'] == 'true' %}
-      {{ govukTag({
-        html: 'Completed'
-      }) }}
-    {% elif data['po-report-started'] == 'true' %}
-      {{ govukTag({
-        html: 'In progress',
-        classes: 'govuk-tag--blue'
-      }) }}
-    {% else %}
-      {{ govukTag({
-        html: 'Not started',
-        classes: 'govuk-tag--grey'
-      }) }}
-    {% endif %}
+    Planning officer’s report and supplementary documents
   </h2>
 
   {% set levyDate = (data['community-infrastructure-date-day'] or '1') +' '+ (data['community-infrastructure-date-month'] | formatMonth or 'July') +' '+ (data['community-infrastructure-date-year'] or '2022') %}

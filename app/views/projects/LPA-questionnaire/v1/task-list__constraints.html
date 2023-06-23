@@ -6,7 +6,22 @@
   {{ govukSummaryList({
     classes: 'govuk-!-margin-bottom-9',
     rows: [
-
+      {
+        key: {
+          html: 'Is the appeal type appropriate?'
+        },
+        value: {
+          html: 'Yes'
+        },
+        actions: {
+          items: [
+            {
+              href: 'constraints/appropriate?cya=true',
+              html: 'Change'
+            }
+          ]
+        }
+      },
       {
         key: {
           html: 'Affects a listed building'
@@ -62,7 +77,8 @@
           html: 'Conservation area map and guidance'
         },
         value: {
-          html: '<a href="#" class="govuk-link">BS3 4AL Conservation-map.pdf</a>'
+          html: '<a href="#" class="govuk-link">BS3 4AL Conservation-map.pdf</a><br>
+                 <a href="#" class="govuk-link">BS3 4AL Conservation-guidance.doc</a><br>'
         },
         actions: {
           items: [

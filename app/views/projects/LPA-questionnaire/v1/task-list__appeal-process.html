@@ -24,6 +24,22 @@
       },
       {
         key: {
+          html: 'Procedure reason'
+        },
+        value: {
+          html: '<span class="govuk-hint">Not required for written representations</span>'
+        },
+        actions: {
+          items: [
+            {
+              href: 'appeal-process/procedure?cya=true',
+              html: 'Change'
+            }
+          ]
+        }
+      } if data['procedure'] != 'written-representations',
+      {
+        key: {
           html: 'Other appeals'
         },
         value: {

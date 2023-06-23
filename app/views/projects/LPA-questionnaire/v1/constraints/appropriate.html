@@ -1,11 +1,11 @@
 {% extends "layouts/PINS.html" %}
 
-{% set title = 'Did you receive representations from other parties?' %}
+{% set title = 'Is the householder appeal type appropriate for this appeal?' %}
 
 {% block questions %}
   {{ govukRadios({
-    idPrefix: 'other-parties-check',
-    name: 'other-parties-check',
+    idPrefix: 'appropriate',
+    name: 'appropriate',
     fieldset: {
       legend: {
         html: title,
@@ -17,12 +17,12 @@
       {
         html: 'Yes',
         value: 'Yes',
-        checked: checked('other-parties-check','Yes')
+        checked: checked('appropriate','Yes')
       },
       {
         html: 'No',
         value: 'No',
-        checked: checked('other-parties-check','No')
+        checked: checked('appropriate','No')
       }
     ]
   }) }}

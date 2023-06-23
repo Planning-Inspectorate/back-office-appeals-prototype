@@ -36,6 +36,13 @@ router.get('/task-list', function(req, res, next){
   if (req.session.data['appeal-process-completed'] == 'true') { count++ }
 
   res.locals.count = count
+
+
+
+  // set some variables
+  req.session.data['procedure'] = 'Written representations'
+
+
   next()
 })
 

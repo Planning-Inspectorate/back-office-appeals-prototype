@@ -20,38 +20,108 @@
 	  
 	<span class="govuk-caption-l">Appeal 2110166</span>
 	<h1 class="govuk-heading-l">Case history</h1>
-	
-	{%- from "hmrc/components/timeline/macro.njk" import hmrcTimeline -%}
-	
 
-	{% set auditContent1 %}<p class="govuk-body">by John Smith</p>{% endset %}
-	{% set auditContent2 %}<p class="govuk-body">by Jane Watson</p>{% endset %}
-	{% set auditContent3 %}<p class="govuk-body">by John Smith</p>{% endset %}
+
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">	
 	
-	  {{ hmrcTimeline({
-	    headingLevel: "2",
-	    events: [
-	      {
-	        title: 'LPA Questionnaire set to invalid',
-	        datetime: '2020-07-15',
-	        time: '15 July 2020, 13:00',
-	        content: auditContent1
-	      },
-	      {
-	        title: 'Listed building document version 4 removed',
-	        datetime: '2020-07-14',
-	        time: '14 July 2020, 15:00',
-	        content: auditContent2
-	      }
-	      ,
-	      {
-	        title: 'Listed building document version 5 added',
-	        datetime: '2020-07-13',
-	        time: '13 July 2020, 10:06',
-	        content: auditContent3
-	      }
-	    ]
-	  }) }}
+	{% from "govuk/components/table/macro.njk" import govukTable %}
+
+{{ govukTable({
+  captionClasses: "govuk-table__caption--m",
+  firstCellIsHeader: false,
+  head: [
+    {
+      text: "Date and time"
+    },
+    {
+      text: "Log type"
+    },
+    {
+      text: "Change from"
+    },
+    {
+      text: "Change to"
+    },
+    {
+      text: "Author"
+    }
+    
+  ],
+  rows: [
+    [
+      {
+        text: "15 July 2023, 13:00"
+      },
+      {
+        text: "LPA Questionnaire"
+      },
+      {
+        html: ""
+      },
+      {
+        html: "<strong class='govuk-tag govuk-tag--grey'>Invalid</strong>"
+      },
+      {
+        text: "John Smith"
+      }
+    ],[
+      {
+        text: "14 July 2023, 15:00"
+      },
+      {
+        text: "Document added to listed building"
+      },
+      {
+        html: "No documents"
+      },
+      {
+        html: "document-name.pdf added<br><a href='#' class='govuk-link'>View document history</a>"
+      },
+      {
+        text: "John Smith"
+      }
+    ],
+    [
+      {
+        text: "13 July 2023, 10:08"
+      },
+      {
+        text: "Case status changed"
+      },
+      {
+        html: "<strong class='govuk-tag govuk-tag--green'>Ready to start</strong>"
+      },
+      {
+        html: "<strong class='govuk-tag govuk-tag--yellow'>LPA Questionnaire</strong>"
+      },
+      {
+        text: "Jane Watson"
+      }
+    ],
+    [
+      {
+        text: "12 July 2023, 10:06"
+      },
+      {
+        text: "Case status set"
+      },
+      {
+        html: ""
+      },
+      {
+        html: "<strong class='govuk-tag govuk-tag--green'>Ready to start</strong>"
+      },
+      {
+        text: "John Smith"
+      }
+    ]
+  ]
+}) }}
+	
     
   	
   </div>

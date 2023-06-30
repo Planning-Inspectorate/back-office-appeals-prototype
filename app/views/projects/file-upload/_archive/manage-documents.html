@@ -4,34 +4,17 @@
 
 {% block content %}
 
-{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
-
-
-{{ govukBackLink({
-  text: "Back",
-  href: "appellant-case.html"
-}) }}
-
-
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-	  
+
 	<span class="govuk-caption-l">Manage documents</span>
 	<h1 class="govuk-heading-l">New supporting documents</h1>
-	
-	   
-	
-	{% from "govuk/components/button/macro.njk" import govukButton %}
 
 	{{ govukButton({
 	  text: "Upload a new document"
 	}) }}
-	
-	
-	
+
 	<h2 class="govuk-heading-m govuk-!-margin-top-6">Uploaded documents</h2>
-	
-	{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 
 	{{ govukSummaryList({
 	  card: {
@@ -75,8 +58,8 @@
 	    }
 	  ]
 	}) }}
-	
-	
+
+
 	{{ govukSummaryList({
 	  card: {
 	    title: {
@@ -119,8 +102,8 @@
 	    }
 	  ]
 	}) }}
-    	  	
-  	
+
+
   </div>
 </div>
 

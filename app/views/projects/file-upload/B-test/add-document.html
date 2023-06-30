@@ -1,28 +1,16 @@
 {% extends "layouts/PINS.html" %}
 
-{% set pageName="Add documents" %}
+{% set pageName="Add document" %}
 
 {% block content %}
 
-{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
-
-
-{{ govukBackLink({
-  text: "Back",
-  href: 'javascript:history.back()'
-}) }}
-
-
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-	 
-  	<span class="govuk-caption-l">Add documents</span>
-	<h1 class="govuk-heading-l">Tree Preservation Order upload</h1>	   
 
-	{% from "moj/components/multi-file-upload/macro.njk" import mojMultiFileUpload %}
-	{% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
-	
-	  {% set uploadHtml %}	    
+  	<span class="govuk-caption-l">Add documents</span>
+	   <h1 class="govuk-heading-l">Tree Preservation Order upload</h1>
+
+	  {% set uploadHtml %}
 
       {{ govukFileUpload({
         id: "final-documents",
@@ -44,7 +32,7 @@
       })}}
 
     {% endset %}
-    
+
     {{ mojMultiFileUpload({
     uploadedFiles: {
         heading: { text: 'Files added' },
@@ -52,12 +40,12 @@
       },
       uploadHtml: uploadHtml
     }) }}
-    
+
     {{ govukButton({
       text: "Continue",
       href: "file-details"
     }) }}
-  	
+
   </div>
 </div>
 
@@ -75,7 +63,7 @@
 
       $(this).unbind('submit').submit();
     })
-    
+
 
   </script>
 {% endblock %}

@@ -2,12 +2,9 @@
 
 {% set pageName="Complete" %}
 
+{% set back = false %}
+
 {% block content %}
-
-{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
-
-
-{% from "govuk/components/panel/macro.njk" import govukPanel %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -23,7 +20,7 @@
       <p class="govuk-body">
         We’ve sent an email to the appellant to inform the case is invalid.
       </p>
-      
+
        <p class="govuk-body">
         <a href="#" class="govuk-link">Read email</a>
       </p>

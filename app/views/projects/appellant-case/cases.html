@@ -2,17 +2,17 @@
 
 {% set pageName="Case officer home" %}
 
+{% set back = false %}
+
 {% block content %}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-	  
+
   <h1 class="govuk-heading-l">National list</h1>
-  
-  
+
+
   <div class="search-box">
-  
-  {% from "govuk/components/input/macro.njk" import govukInput %}
 
 	{{ govukInput({
 	  label: {
@@ -29,22 +29,22 @@
 	  inputmode: "numeric",
 	  spellcheck: false
 	}) }}
-	
+
 	<div class="govuk-button-group">
 	  <button class="govuk-button" data-module="govuk-button">
 	    Search
 	  </button>
 	</div>
-	
+
   </div>
-	
+
   </div>
 </div>
 
 
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-full"> 
-	  	  
+  <div class="govuk-grid-column-full">
+
 	  <table class="govuk-table">
 		  <caption class="govuk-table__caption govuk-table__caption--m">All cases</caption>
 		  <thead class="govuk-table__head">
@@ -108,9 +108,9 @@
 		    </tr>
 		  </tbody>
 	</table>
-	    
-	
-	
+
+
+
 	{% from "govuk/components/pagination/macro.njk" import govukPagination %}
 
 	{{ govukPagination({

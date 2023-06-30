@@ -2,37 +2,31 @@
 
 {% set pageName="Appellant Case" %}
 
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: '../LPA-has-questionnaire'
+  }) }}
+{% endblock %}
+
 {% block content %}
-
-{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
-
-
-{{ govukBackLink({
-  text: "Back",
-  href: '../LPA-has-questionnaire'
-}) }}
-
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-	  
-	  {% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
 
 	{% set html %}
 	  <h3 class="govuk-notification-banner__heading">
 	    Files successfully added
 	  </h3>
 	{% endset %}
-	
+
 	{{ govukNotificationBanner({
 	  html: html,
 	  type: 'success'
-	}) }}	  
-	  
+	}) }}
+
 	<span class="govuk-caption-l">Document details</span>
 	<h1 class="govuk-heading-l">tree preservation order A</h1>
-	
-	{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 
 	{{ govukSummaryList({
 	  classes: 'govuk-summary-list--no-border',
@@ -71,18 +65,12 @@
 	    }
 	  ]
 	}) }}
-	
-	   
-	
-	{% from "govuk/components/button/macro.njk" import govukButton %}
 
 	{{ govukButton({
 	  text: "Upload a new version",
 	  href: "upload-document"
 	}) }}
-		
-    	  	
-  	
+
   </div>
 </div>
 
@@ -91,12 +79,7 @@
   <div class="govuk-grid-column-full">
 
 	<h2 class="govuk-heading-m govuk-!-margin-top-6">Document details</h2>
-	
-	
-	
-	{% from "govuk/components/tabs/macro.njk" import govukTabs %}
-	{% from "govuk/components/table/macro.njk" import govukTable %}
-	
+
 	{% set pastDayHtml %}
 	<h2 class="govuk-heading-l">Document properties</h2>
 	{{ govukTable({
@@ -182,7 +165,7 @@
 	  ]
 	}) }}
 	{% endset -%}
-	
+
 	{% set pastWeekHtml %}
 	<h2 class="govuk-heading-l">Document history</h2>
 
@@ -261,7 +244,7 @@
 	      }
 	    ],
 	    [
-	      { 
+	      {
 	        html: "<p class=' govuk-!-font-size-16'><a href='document-details.html'>Document title</a></p><p class='govuk-body  govuk-!-font-size-16'>From: Joe Bloggs<br>File type and size : PDF, 97KB</p>"
 	      },
 	      {
@@ -278,7 +261,7 @@
 	      }
 	    ],
 	    [
-	      { 
+	      {
 	        html: "<p class=' govuk-!-font-size-16'><a href='document-details.html'>Document title</a></p><p class='govuk-body  govuk-!-font-size-16'>From: Joe Bloggs<br>File type and size : PDF, 97KB</p>"
 	      },
 	      {
@@ -297,9 +280,9 @@
 	  ]
 	}) }}
 	{% endset -%}
-	
-	
-	
+
+
+
 	{{ govukTabs({
 	  items: [
 	    {

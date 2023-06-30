@@ -4,11 +4,6 @@
 
 {% block content %}
 
-{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
-
-
-{% from "govuk/components/panel/macro.njk" import govukPanel %}
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       {{ govukPanel({
@@ -24,10 +19,10 @@
         We’ve sent an email to the appellant to inform the case is incomplete, and let them know what to do next.
       </p>
 
-	<p class="govuk-body">
-	We also sent them a reminder about the appeal’s due date.
-  </p>
-      
+    	<p class="govuk-body">
+    	   We also sent them a reminder about the appeal’s due date.
+      </p>
+
       <p class="govuk-body">
         <a href="#" class="govuk-link">Read email</a>
       </p>

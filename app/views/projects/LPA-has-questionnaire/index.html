@@ -4,15 +4,6 @@
 
 {% block content %}
 
-{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
-
-
-{{ govukBackLink({
-  text: "Back to all prototypes",
-  href: "/"
-}) }}
-
-
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
@@ -27,12 +18,11 @@
 
 
 	<h2 class="govuk-heading-m">Version 1
-		{%- from "govuk/components/tag/macro.njk" import govukTag -%}
 
 		{{govukTag({
-          text: "In progress",
-          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-        })}}
+      text: "In progress",
+      classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+    })}}
 
 		<!-- Status tag options
 
@@ -67,9 +57,6 @@
 	</h2>
 
 	<p class="govuk-body">User can review the questionnaire answers with an outcome.</p>
-
-
-	{% from "govuk/components/button/macro.njk" import govukButton %}
 
 	{{ govukButton({
 	  text: "View prototype",

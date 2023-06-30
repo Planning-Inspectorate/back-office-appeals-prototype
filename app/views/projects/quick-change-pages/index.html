@@ -1,0 +1,80 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Quick change pages" %}
+
+{% block content %}
+
+{{ govukBackLink({
+  text: "Back to all prototypes",
+  href: "/"
+}) }}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">
+      Appeal a planning decision
+    </span>
+    <h1 class="govuk-heading-l">
+      LPA householder questionnaire
+    </h1>
+
+    <section class="govuk-!-margin-bottom-6">
+
+
+	<h2 class="govuk-heading-m">Version 1
+		{%- from "govuk/components/tag/macro.njk" import govukTag -%}
+
+		{{govukTag({
+          text: "In progress",
+          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+        })}}
+
+		<!-- Status tag options
+
+		{{govukTag({
+          text: "New",
+          classes: "govuk-!-margin-left-2 govuk-tag--green"
+        })}}
+
+        {{govukTag({
+          text: "In progress",
+          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+        })}}
+
+        {{govukTag({
+          text: "Ready for review",
+          classes: "govuk-!-margin-left-2 govuk-tag--blue"
+        })}}
+
+        {{govukTag({
+          text: "Ready for research",
+          classes: "govuk-!-margin-left-2 govuk-tag--green"
+        })}}
+
+        {{govukTag({
+          text: "Researched",
+          classes: " govuk-!-margin-left-2 govuk-tag--green"
+        })}}
+
+        -->
+
+
+	</h2>
+
+	<p class="govuk-body">User can review the questionnaire answers with an outcome.</p>
+
+
+	{% from "govuk/components/button/macro.njk" import govukButton %}
+
+	{{ govukButton({
+	  text: "View prototype",
+	  href: "v1/task-list",
+	  isStartButton: true
+	}) }}
+
+    </section>
+
+  </div>
+
+{% endblock %}

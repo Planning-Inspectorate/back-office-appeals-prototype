@@ -4,3 +4,166 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
 #}
 
 {% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
+
+{# Add a configurable back link to each page #}
+{% block beforeContent %}
+
+	{# Add a back link block to just override that and not the phase banner #}
+	{# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ #}
+
+	{% block backLink %}
+
+		{# Add a javascript back link, remove on pages that don't need it with:
+		{# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ #}
+		{# {% set back = false %} #}
+		{# ░░░░░░░░░░░░░░░░░░░░░░ #}
+
+		{{ govukBackLink({
+			html: 'Back',
+			href: 'javascript:history.back()'
+		}) if back != false }}
+
+	{% endblock %}
+
+{% endblock %}
+
+{# Automatic content block that can be overridden #}
+{# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ #}
+
+{% block content %}
+	<div class="govuk-grid-row">
+		<div class="govuk-grid-column-three-quarters govuk-grid-column-two-thirds-from-desktop">
+
+			{# Forms all post to themselves, action controlled by _routes.js in each prototype #}
+			<form method="post">
+
+				{# Use the questions block on each page without needing to add in the rest of this block #}
+				{# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ #}
+
+				{% block questions %}{% endblock %}
+				{# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ #}
+
+				{# Set default button to continue, use buttons block to override #}
+				{# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ #}
+
+				{% block buttons %}
+
+					{{ govukButton({
+						text: 'Continue'
+					}) }}
+
+					{# Option to add a return to task list link #}
+					{# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ #}
+					{# Add on pages that with: #}
+					{# {% set return = true %} #}
+					{# ░░░░░░░░░░░░░░░░░░░░░░░ #}
+
+					{# or add for whole prototype in routes.js with: #}
+					{# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ #}
+					{# res.locals['return'] = true #}
+					{# ░░░░░░░░░░░░░░░░░░░░░░░░░░░ #}
+
+					{% if return == true %}
+						<p class="govuk-body">
+							<a href="../task-list" class="govuk-link--no-visited-state">
+								Return to questionnaire homepage
+							</a>
+						</p>
+					{% endif %}
+
+				{% endblock %}
+
+			</form>
+
+		</div>
+	</div>
+{% endblock %}
+
+{% block footer %}
+
+	{# Add prototype links if set in page, use with: #}
+	{# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ #}
+
+	{#
+
+		{% set prototypeLinks = [
+		  {
+		    href: '#0',
+		    text: 'Links to a page'
+		  },
+		  {
+		    href: '#1',
+		    text: 'Links to another page'
+		  }
+		] %}
+
+	#}
+
+	{# Add extra footer links to Heroku app if running locally #}
+	{# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ #}
+
+	{{ govukFooter({
+		navigation: [
+			{
+				items: prototypeLinks
+			}
+		] if prototypeLinks,
+		meta: {
+			items: [
+				{
+					href: '/manage-prototype',
+					text: 'Manage prototype'
+				} if local,
+				{
+					href: '/manage-prototype/clear-data',
+					text: 'Clear data'
+				},
+				{
+					href: 'https://appeals-prototype.herokuapp.com' + currentURL,
+					text: "View page on Heroku (opens in new tab)",
+					attributes: {
+						target: 'blank'
+					}
+				} if local
+			] | cleanArray,
+			visuallyHiddenTitle: 'Footer links'
+		}
+	}) }}
+
+{% endblock %}
+
+{# Import GOV components #}
+{# ░░░░░░░░░░░░░░░░░░░░░ #}
+{# Grabs all of the required Nunjucks so we don’t need to do it inline #}
+{# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ #}
+
+{% from 'govuk/components/accordion/macro.njk'           import govukAccordion %}
+{% from 'govuk/components/back-link/macro.njk'           import govukBackLink %}
+{% from 'govuk/components/breadcrumbs/macro.njk'         import govukBreadcrumbs %}
+{% from 'govuk/components/button/macro.njk'              import govukButton %}
+{% from 'govuk/components/character-count/macro.njk'     import govukCharacterCount %}
+{% from 'govuk/components/checkboxes/macro.njk'          import govukCheckboxes %}
+{% from 'govuk/components/cookie-banner/macro.njk'       import govukCookieBanner %}
+{% from 'govuk/components/date-input/macro.njk'          import govukDateInput %}
+{% from 'govuk/components/details/macro.njk'             import govukDetails %}
+{% from 'govuk/components/error-message/macro.njk'       import govukErrorMessage %}
+{% from 'govuk/components/error-summary/macro.njk'       import govukErrorSummary %}
+{% from 'govuk/components/fieldset/macro.njk'            import govukFieldset %}
+{% from 'govuk/components/file-upload/macro.njk'         import govukFileUpload %}
+{% from 'govuk/components/input/macro.njk'               import govukInput %}
+{% from 'govuk/components/inset-text/macro.njk'          import govukInsetText %}
+{% from 'govuk/components/notification-banner/macro.njk' import govukNotificationBanner %}
+{% from 'govuk/components/panel/macro.njk'               import govukPanel %}
+{% from 'govuk/components/phase-banner/macro.njk'        import govukPhaseBanner %}
+{% from 'govuk/components/radios/macro.njk'              import govukRadios %}
+{% from 'govuk/components/select/macro.njk'              import govukSelect %}
+{% from 'govuk/components/skip-link/macro.njk'           import govukSkipLink %}
+{% from 'govuk/components/summary-list/macro.njk'        import govukSummaryList %}
+{% from 'govuk/components/table/macro.njk'               import govukTable %}
+{% from 'govuk/components/tabs/macro.njk'                import govukTabs %}
+{% from 'govuk/components/tag/macro.njk'                 import govukTag %}
+{% from 'govuk/components/textarea/macro.njk'            import govukTextarea %}
+{% from 'govuk/components/warning-text/macro.njk'        import govukWarningText %}
+
+{# Import MOJ components #}
+{% from "moj/components/multi-file-upload/macro.njk"		 import mojMultiFileUpload %}

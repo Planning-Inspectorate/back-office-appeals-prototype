@@ -8,10 +8,10 @@ const router = govukPrototypeKit.requests.setupRouter()
 router.get('*', function(req, res, next){
 
   // Change the service name for this feature
-  res.locals['serviceName'] = 'Manage your appeals'
+  res.locals['serviceName'] = 'Manage my appeals'
 
   // Add return to task list
-  res.locals['return'] = true
+  res.locals['return'] = false
 
   next()
 })
@@ -25,53 +25,13 @@ router.post('*', function(req, res, next){
   }
 })
 
-router.get('/task-list', function(req, res, next){
-  let count = 0
-  if (req.session.data['constraints-completed'] == 'true') { count++ }
-  if (req.session.data['env-impact-completed'] == 'true') { count++ }
-  if (req.session.data['notified-completed'] == 'true') { count++ }
-  if (req.session.data['consultation-completed'] == 'true') { count++ }
-  if (req.session.data['po-report-completed'] == 'true') { count++ }
-  if (req.session.data['site-access-completed'] == 'true') { count++ }
-  if (req.session.data['appeal-process-completed'] == 'true') { count++ }
-
-  res.locals.count = count
-
-
-
-  // set some variables
-  req.session.data['procedure'] = 'Written representations'
-
-
-  next()
-})
-
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 // CONSTRAINTS
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-// router.post('/constraints/:page', function (req, res, next) {
-//   req.session.data['constraints-started'] = 'true'
-//   req.session.data[`${req.params.page}-complete`] = 'true'
-//
-//   if (
-//     req.session.data['listed-building-check-complete']
-//     && req.session.data['affected-listed-building-check-complete']
-//     && req.session.data['scheduled-monument-complete']
-//     && req.session.data['conservation-check-complete']
-//     && req.session.data['protected-species-complete']
-//     && req.session.data['green-belt-complete']
-//     && req.session.data['outstanding-natural-beauty-complete']
-//     && req.session.data['designated-sites-complete']
-//     && req.session.data['tree-order-check-complete']
-//     && req.session.data['traveller-complete']
-//     && req.session.data['right-of-way-check-complete']
-//   ){
-//     req.session.data['constraints-completed'] = 'true'
-//   }
-//
-//   next()
-// })
+router.post('/constraints/appropriate', function (req, res) {
+  res.redirect('affected-listed-building-check')
+})
 
 router.post('/constraints/affected-listed-building-check', function (req, res) {
   if (req.session.data['affected-listed-building-check'] == 'Yes') {

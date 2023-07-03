@@ -1,16 +1,52 @@
 {% extends "layouts/PINS.html" %}
 
-{% set title = 'Uploaded planning officer’s report' %}
+{% set title = 'Supporting documents' %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back to questionnaire",
+    href: '#0'
+  }) }}
+{% endblock %}
 
 {% block questions %}
 
+  <span class="govuk-caption-l">Appeal 2110166</span>
   <h1 class="govuk-heading-l">
     {{ title }}
   </h1>
 
-  {{ govukInsetText({
-    html: "<a href='#0' class='govuk-link'>Planning-officers-report.doc</a> "
-  }) }}
+  <h2 class="govuk-heading-m">
+    Uploaded files
+  </h2>
+
+  <div class="govuk-inset-text">
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+
+        <dt class="govuk-summary-list__value">
+          <a href='#0' class='govuk-link'>{{ data['file1'] }}</a>
+        </dt>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="#">
+            Remove<span class="govuk-visually-hidden"> file 1</span>
+          </a>
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+
+        <dd class="govuk-summary-list__value">
+          <a href='#0' class='govuk-link'>{{ data['file2'] }}</a>
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="#">
+            Remove<span class="govuk-visually-hidden"> file 2</span>
+          </a>
+        </dd>
+      </div>
+    </dl>
+
+  </div>
 
   {% set uploadHtml %}
 

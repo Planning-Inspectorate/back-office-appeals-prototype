@@ -1,0 +1,43 @@
+{% extends "layouts/PINS.html" %}
+
+{% set title = 'Uploaded planning officer’s report' %}
+
+{% block questions %}
+
+  <h1 class="govuk-heading-l">
+    {{ title }}
+  </h1>
+
+  {{ govukInsetText({
+    html: "<a href='#0' class='govuk-link'>"+ data['document']+"</a>"
+  }) }}
+
+  {% set uploadHtml %}
+
+    {{ govukFileUpload({
+      id: "final-documents",
+      name: "final-documents",
+      classes: 'moj-multi-file-upload__input',
+      label: {
+        text: "Replace this file",
+        classes: 'govuk-label--m'
+      },
+      attributes: { multiple: '' }
+    }) }}
+
+    {{govukButton({
+      text: 'Upload file',
+      classes: 'govuk-button--secondary moj-multi-file-upload__button'
+    })}}
+
+  {% endset %}
+
+  {{ mojMultiFileUpload({
+    uploadedFiles: {
+      heading: { text: 'Files added' },
+      items: []
+    },
+    uploadHtml: uploadHtml
+  }) }}
+
+{% endblock %}

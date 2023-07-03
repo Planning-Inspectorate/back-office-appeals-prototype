@@ -1,0 +1,19 @@
+{% extends "layouts/PINS.html" %}
+
+{% set title = 'What is start date?' %}
+
+{% block questions %}
+
+  {{ govukDateInput({
+  id: "startDate",
+  namePrefix: "startDate",
+  fieldset: {
+    legend: {
+      text: title,
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  }
+  }) }}
+
+{% endblock %}

@@ -2,10 +2,10 @@
 
 {% set pageName="Quick change pages" %}
 
-{% backLink %}
+{% block backLink %}
   {{ govukBackLink({
-    text: "Back to all prototypes",
-    href: "/"
+    text: "Back to prototypes",
+    href: 'manage-documents'
   }) }}
 {% endblock %}
 
@@ -24,16 +24,16 @@
     <section class="govuk-!-margin-bottom-6">
 
 
-	<h2 class="govuk-heading-m">Version 1
+      <h2 class="govuk-heading-m">Version 1
 
-		{{govukTag({
-      text: "In progress",
-      classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-    })}}
+        {{govukTag({
+          text: "In progress",
+          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+        })}}
 
-		<!-- Status tag options
+        <!-- Status tag options
 
-		{{govukTag({
+        {{govukTag({
           text: "New",
           classes: "govuk-!-margin-left-2 govuk-tag--green"
         })}}
@@ -59,20 +59,57 @@
         })}}
 
         -->
+      </h2>
 
+      <p class="govuk-body">
+        Case Officers can edit user submitted data.
+      </p>
 
-	</h2>
-
-	<p class="govuk-body">User can review the questionnaire answers with an outcome.</p>
-
-	{{ govukButton({
-	  text: "View prototype",
-	  href: "v1/task-list",
-	  isStartButton: true
-	}) }}
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          <a href="v1/boolean?greenBelt=No" class="govuk-link">
+            Boolean
+          </a>
+        </li>
+        <li>
+          <a href="v1/boolean-and-string?linkedAppealCheck=Yes&appealReference=0123456" class="govuk-link">
+            Boolean and string
+          </a>
+        </li>
+        <li>
+          <a href="v1/multiple-strings?firstName=Jan&lastName=Bodge" class="govuk-link">
+            Multiple strings
+          </a>
+        </li>
+        <li>
+          <a href="v1/date?date-day=12&date-month=7&date-year=23" class="govuk-link">
+            Date
+          </a>
+        </li>
+        <li>
+          <a href="v1/text-input?text=A company" class="govuk-link">
+            Text input
+          </a>
+        </li>
+        <li>
+          <a href="v1/multiline-text-input?multiline-text=Because%20we%20are%20a%20rule%206%20party%20with%20varying%20opinions%20and%20despite%20several%20meetings%20we%20cannot%20come%20to%20an%20agreement%20on%20appropriate%20conditions." class="govuk-link">
+            Multiline text area input
+          </a>
+        </li>
+        <li>
+          <a href="#0" class="govuk-link">
+            A document
+          </a>
+        </li>
+        <li>
+          <a href="#0" class="govuk-link">
+            Multiple documents
+          </a>
+        </li>
+      </ul>
 
     </section>
 
   </div>
-
+</div>
 {% endblock %}

@@ -1,0 +1,18 @@
+{% extends "layouts/PINS.html" %}
+
+{% set title = 'What is the company name?' %}
+
+{% block questions %}
+
+  {{ govukInput({
+    label: {
+      text: title,
+      classes: "govuk-label--l",
+      isPageHeading: true
+    },
+    id: "text",
+    name: "text",
+    value: data['text']
+  }) }}
+
+{% endblock %}

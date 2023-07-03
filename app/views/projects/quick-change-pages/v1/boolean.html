@@ -1,11 +1,11 @@
 {% extends "layouts/PINS.html" %}
 
-{% set title = 'Do you think the appeal type is appropriate?' %}
+{% set title = 'Is the appeal in a green belt?' %}
 
 {% block questions %}
   {{ govukRadios({
-    idPrefix: 'appropriate',
-    name: 'appropriate',
+    idPrefix: 'greenBelt',
+    name: 'greenBelt',
     fieldset: {
       legend: {
         html: title,
@@ -17,12 +17,12 @@
       {
         html: 'Yes',
         value: 'Yes',
-        checked: checked('appropriate','Yes')
+        checked: checked('greenBelt','Yes')
       },
       {
         html: 'No',
         value: 'No',
-        checked: checked('appropriate','No')
+        checked: checked('greenBelt','No')
       }
     ]
   }) }}

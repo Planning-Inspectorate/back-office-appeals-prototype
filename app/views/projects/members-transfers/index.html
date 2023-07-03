@@ -1,0 +1,104 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Add members & transfer cases" %}
+
+{% block content %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+
+{{ govukBackLink({
+  text: "Back to all prototypes",
+  href: "/"
+}) }}
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">
+      Appeal a planning decision
+    </span>
+    <h1 class="govuk-heading-l">
+      Add members &amp; transfer cases
+    </h1>
+
+    <section class="govuk-!-margin-bottom-6">
+
+      
+	<h2 class="govuk-heading-m">Version 1
+		{%- from "govuk/components/tag/macro.njk" import govukTag -%}
+		
+		{{govukTag({
+          text: "New",
+          classes: "govuk-!-margin-left-2 govuk-tag--green"
+        })}}
+		
+		<!-- Status tag options
+		
+		{{govukTag({
+          text: "New",
+          classes: "govuk-!-margin-left-2 govuk-tag--green"
+        })}}
+        
+        {{govukTag({
+          text: "In progress",
+          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+        })}}
+        
+        {{govukTag({
+          text: "Ready for review",
+          classes: "govuk-!-margin-left-2 govuk-tag--blue"
+        })}}
+        
+        {{govukTag({
+          text: "Ready for research",
+          classes: "govuk-!-margin-left-2 govuk-tag--green"
+        })}}
+        
+        {{govukTag({
+          text: "Researched",
+          classes: " govuk-!-margin-left-2 govuk-tag--green"
+        })}}
+        
+        -->
+        
+				
+	</h2>
+			
+	<p><a href="https://trello.com/c/sjwnw6Qz/72-add-members-transfer-cases">Trello ticket</a></p>
+	
+	<h3 class="govuk-heading-m">Add members</h3>
+	
+	<ul class="govuk-list govuk-list--bullet">
+        <li>Once the case is ready to start, a manager will add a case officer to the Case team</li>
+		<li>Once an inspector is identified and allocated to the case, the manager or case officer will add the inspector to the Case team</li>
+	</ul>
+	
+	{{ govukButton({
+	  text: "View prototype",
+	  href: "v1/add-members/case",
+	  isStartButton: true
+	}) }}
+
+	<h3 class="govuk-heading-m">Transfer case</h3>
+
+	<ul class="govuk-list govuk-list--bullet">
+        <li>During the appeal the team might need to transfer the case from one case officer to another, or from inspector to another;</li>
+		<li>This might happen because someone will be off sick, holidays or if someone’s backlog is too big;</li>
+	</ul>
+	
+	
+	{% from "govuk/components/button/macro.njk" import govukButton %}
+	
+	{{ govukButton({
+	  text: "View prototype",
+	  href: "v1",
+	  isStartButton: true
+	}) }}
+
+    </section>
+
+  </div>
+
+{% endblock %}

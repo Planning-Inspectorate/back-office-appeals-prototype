@@ -2,17 +2,14 @@
 
 {% set pageName="Appellant case" %}
 
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back to all prototypes",
+    href: "/"
+  }) }}
+{% endblock %}
+
 {% block content %}
-
-{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
-
-
-{{ govukBackLink({
-  text: "Back to all prototypes",
-  href: "/"
-}) }}
-
-
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
@@ -25,52 +22,52 @@
 
     <section class="govuk-!-margin-bottom-6">
 
-      
+
 	<h2 class="govuk-heading-m">Version 1
 		{%- from "govuk/components/tag/macro.njk" import govukTag -%}
-		
+
 		{{govukTag({
           text: "Ready for research",
           classes: "govuk-!-margin-left-2 govuk-tag--green"
         })}}
-		
+
 		<!-- Status tag options
-		
+
 		{{govukTag({
           text: "New",
           classes: "govuk-!-margin-left-2 govuk-tag--green"
         })}}
-        
+
         {{govukTag({
           text: "In progress",
           classes: "govuk-!-margin-left-2 govuk-tag--yellow"
         })}}
-        
+
         {{govukTag({
           text: "Ready for review",
           classes: "govuk-!-margin-left-2 govuk-tag--blue"
         })}}
-        
+
         {{govukTag({
           text: "Ready for research",
           classes: "govuk-!-margin-left-2 govuk-tag--green"
         })}}
-        
+
         {{govukTag({
           text: "Researched",
           classes: "govuk-!-margin-left-2 govuk-tag--green"
         })}}
-        
+
         -->
-        
-				
+
+
 	</h2>
-	
+
 	<p class="govuk-body">Case officer can review a case and submit a decision</p>
-	
-	
+
+
 	{% from "govuk/components/button/macro.njk" import govukButton %}
-	
+
 	{{ govukButton({
 	  text: "View prototype",
 	  href: "cases",

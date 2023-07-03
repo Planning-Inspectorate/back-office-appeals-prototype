@@ -7,11 +7,11 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-	    
-	          
+
+
 		<span class="govuk-caption-xl">Appeal 2110166</span>
 		<h1 class="govuk-heading-xl">Check your answers before confirming your review</h1>
-		
+
 		{{ govukSummaryList({
         classes: 'govuk-!-margin-bottom-9',
         rows: [
@@ -55,11 +55,11 @@
             },
             value: {
               html: '<p class="govuk-body">DD/MM/YYYY</p>'
-            }            
+            }
           }
         ]
       }) }}
-      
+
       <!--
       actions: {
           items: [
@@ -71,22 +71,22 @@
           ]
         }
        -->
-      
-      
+
+
       {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
 		{{ govukInsetText({
 		  text: "Confirming this review will inform the appellant of the outcome"
 		}) }}
 
-      
+
       {% from "govuk/components/button/macro.njk" import govukButton %}
 
 		{{ govukButton({
 		  text: "Confirm",
 		  href: "complete"
 		}) }}
-      
+
 
     </div>
   </div>

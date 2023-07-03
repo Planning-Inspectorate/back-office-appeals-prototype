@@ -4,20 +4,17 @@
 
 {% block content %}
 
-
-{% from "govuk/components/panel/macro.njk" import govukPanel %}
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-	    
-	          
+
+
 		<span class="govuk-caption-xl">Appeal 2110166</span>
 		<h1 class="govuk-heading-xl">Why is the appeal incomplete?</h1>
-      
-      
+
+
        <form action="/projects/appellant-case/incomplete/date" method="post" class="govuk-!-margin-top-9" novalidate>
-	    
-	    
+
+
 	    {% set missingHtml %}
 			{{ govukCharacterCount({
 			  name: "more-detail",
@@ -34,57 +31,55 @@
 			}) }}
 
 		{% endset -%}
-	    
-	    
 
-        {{ govukCheckboxes({
-          name: "reason-incomplete",
-          items: [
-            {
-              value: "appellant-name",
-              text: "Appellant name is not the same on the application form and appeal form"
-            },
-            {
-              value: "development-different",
-              text: "Attachments and/or appendices have not been included to the full statement of case"
-            },
-            {
-              value: "decision-incorrect",
-              text: "LPA’s decision notice is incorrect or incomplete"
-            },
-            {
-              value: "docs-plans-missing",
-              text: "Documents and plans referred in the application form, decision notice and appeal covering letter are missing"
-            },
-            
-            {
-              value: "ownership-certificate",
-              text: "Site ownership certificate, agricultural holding certificate and declaration have not been completed on the appeal form"
-            },
-            {
-              value: "application-missing",
-              text: "The original application form is incomplete or missing"
-            },
-            {
-              value: "attachments",
-              text: "Statement of case and ground of appeal are missing"
-            },
-            {
-              value: "other",
-              text: "Other",
-		      conditional: {
-		        html: missingHtml
-		      }
-            }
-          ]
-        }) }}
+      {{ govukCheckboxes({
+        name: "reason-incomplete",
+        items: [
+          {
+            value: "appellant-name",
+            text: "Appellant name is not the same on the application form and appeal form"
+          },
+          {
+            value: "development-different",
+            text: "Attachments and/or appendices have not been included to the full statement of case"
+          },
+          {
+            value: "decision-incorrect",
+            text: "LPA’s decision notice is incorrect or incomplete"
+          },
+          {
+            value: "docs-plans-missing",
+            text: "Documents and plans referred in the application form, decision notice and appeal covering letter are missing"
+          },
 
-        {{ govukButton({
-          text: "Save and continue"
-        }) }}
-        
+          {
+            value: "ownership-certificate",
+            text: "Site ownership certificate, agricultural holding certificate and declaration have not been completed on the appeal form"
+          },
+          {
+            value: "application-missing",
+            text: "The original application form is incomplete or missing"
+          },
+          {
+            value: "attachments",
+            text: "Statement of case and ground of appeal are missing"
+          },
+          {
+            value: "other",
+            text: "Other",
+	      conditional: {
+	        html: missingHtml
+	      }
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Save and continue"
+      }) }}
+
 	  </form>
-      
+
 
     </div>
   </div>

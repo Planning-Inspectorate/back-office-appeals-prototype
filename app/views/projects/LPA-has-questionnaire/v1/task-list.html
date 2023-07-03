@@ -1,17 +1,13 @@
 {% extends "layouts/PINS.html" %}
 
 {% set title = 'Appeal questionnaire' %}
-{% set prototypeLinks = [
-  {
-    href: 'confirmation',
-    text: 'Skip to confirmation'
-  }]
-%}
 
+{# overrides back link #}
+{# ░░░░░░░░░░░░░░░░░░░ #}
 {% block backLink %}
   {{ govukBackLink({
-    html: 'Back to your planning appeals',
-    href: '/manage/appeals/v3?action='
+    html: 'Back to appeals',
+    href: '#'
   }) }}
 {% endblock %}
 

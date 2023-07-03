@@ -4,35 +4,19 @@
 
 {% block content %}
 
-{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
-
-
-{{ govukBackLink({
-  text: "Back",
-  href: 'javascript:history.back()'
-}) }}
-
-
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-	  	 
+
   	<span class="govuk-caption-l">Add document details</span>
-	<h1 class="govuk-heading-l">Tree Preservation Order documents</h1>	   
-	
+	<h1 class="govuk-heading-l">Tree Preservation Order documents</h1>
+
 	    <form action="/documents-added" method="post" class="govuk-!-margin-top-9" novalidate>
-	    
+
 	    <!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
 
-	{% from "govuk/components/input/macro.njk" import govukInput %}
-	
-	
 	<span class="govuk-caption-m">File name</span>
-	<h2 class="govuk-heading-m">tree-preservation-order-A.pdf</h2>		
-		
-		
-	
-	{% from "govuk/components/date-input/macro.njk" import govukDateInput %}
-	
+	<h2 class="govuk-heading-m">tree-preservation-order-A.pdf</h2>
+
 	{{ govukDateInput({
 	  id: "date-recieved",
 	  namePrefix: "date-recieved",
@@ -42,10 +26,7 @@
 	    }
 	  }
 	}) }}
-	
-	
-	{% from "govuk/components/radios/macro.njk" import govukRadios %}
-	
+
 	{{ govukRadios({
 	  name: "redaction",
 	  fieldset: {
@@ -64,15 +45,12 @@
 	    }
 	  ]
 	}) }}
-	
+
 	<hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
 	<span class="govuk-caption-m">File name</span>
-	<h2 class="govuk-heading-m">tree-preservation-order-B.pdf</h2>	
-	
-	
-	{% from "govuk/components/date-input/macro.njk" import govukDateInput %}
-	
+	<h2 class="govuk-heading-m">tree-preservation-order-B.pdf</h2>
+
 	{{ govukDateInput({
 	  id: "date-recieved",
 	  namePrefix: "date-recieved",
@@ -82,10 +60,7 @@
 	    }
 	  }
 	}) }}
-	
-	
-	{% from "govuk/components/radios/macro.njk" import govukRadios %}
-	
+
 	{{ govukRadios({
 	  name: "redaction",
 	  fieldset: {
@@ -104,13 +79,13 @@
 	    }
 	  ]
 	}) }}
-	
-	
-	 {{ govukButton({
-          text: "Continue",
-          href: "lpa-questionnaire-A-added"
-        }) }}
-        
+
+
+	   {{ govukButton({
+        text: "Continue",
+        href: "lpa-questionnaire-A-added"
+      }) }}
+
 	  </form>
 
 

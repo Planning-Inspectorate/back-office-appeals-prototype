@@ -1,6 +1,13 @@
 {% extends "layouts/PINS.html" %}
 
-{% set pageName="LPA Questionnaire legacy" %}
+{% set pageName="Quick change pages" %}
+
+{% backLink %}
+  {{ govukBackLink({
+    text: "Back to all prototypes",
+    href: "/"
+  }) }}
+{% endblock %}
 
 {% block content %}
 

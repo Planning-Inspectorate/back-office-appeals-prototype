@@ -2,6 +2,13 @@
 
 {% set pageName="LPA Questionnaire legacy" %}
 
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back to prototypes",
+    href: 'manage-documents'
+  }) }}
+{% endblock %}
+
 {% block content %}
 
 <div class="govuk-grid-row">

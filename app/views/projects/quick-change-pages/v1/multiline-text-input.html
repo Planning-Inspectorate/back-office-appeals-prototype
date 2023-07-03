@@ -1,0 +1,18 @@
+{% extends "layouts/PINS.html" %}
+
+{% set title = 'Why do you think this should be an inquiry?' %}
+
+{% block questions %}
+
+  {{ govukTextarea({
+    name: "multiline-text",
+    id: "multiline-text",
+    label: {
+      text: title,
+      classes: "govuk-label--l",
+      isPageHeading: true
+    },
+    value: data['multiline-text']
+  }) }}
+
+{% endblock %}

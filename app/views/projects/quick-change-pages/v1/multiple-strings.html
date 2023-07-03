@@ -1,0 +1,27 @@
+{% extends "layouts/PINS.html" %}
+
+{% set title = 'Is this linked to another appeal?' %}
+
+{% block questions %}
+
+  {{ govukInput({
+    label: {
+      text: "First name"
+    },
+    classes: "govuk-input--width-20",
+    id: "firstName",
+    name: "firstName",
+    value: data['firstName']
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: "Last name"
+    },
+    classes: "govuk-input--width-20",
+    id: "lastName",
+    name: "lastName",
+    value: data['lastName']
+  }) }}
+
+{% endblock %}

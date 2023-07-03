@@ -1,0 +1,83 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Case history" %}
+
+{% block content %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+
+{{ govukBackLink({
+  text: "Back to case",
+  href: 'javascript:history.back()'
+}) }}
+
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+	  
+	  
+	<span class="govuk-caption-l">Appeal 2110166</span>
+	<h1 class="govuk-heading-l">Case history</h1>
+	
+	{%- from "hmrc/components/timeline/macro.njk" import hmrcTimeline -%}
+	
+
+	{% set auditContent4 %}
+		<p class="govuk-body">Author: <strong>John Smith</strong></p>
+	{% endset %}
+	
+	{% set auditContent3 %}
+		<p class="govuk-body">
+			Document added to listed building<br><a href="#" class="govuk-link">View document history</a>
+		</p>
+		<p class="govuk-body">Author: <strong>Jane Watson</strong></p>
+	{% endset %}
+	
+	{% set auditContent2 %}
+		<p class="govuk-body"><strong class='govuk-tag govuk-tag--yellow'>LPA questionnaire</strong></p>
+		<p class="govuk-body">Author: <strong>John Smith</strong></p>
+	{% endset %}
+	
+	{% set auditContent1 %}
+		<p class="govuk-body"><strong class='govuk-tag govuk-tag--green'>Ready to start</strong></p>
+		<p class="govuk-body">Author: <strong>John Smith</strong></p>
+	{% endset %}
+	
+	  {{ hmrcTimeline({
+	    headingLevel: "2",
+	    events: [
+	      {
+	        title: 'LPA Questionnaire set to invalid',
+	        datetime: '2023-07-15',
+	        time: '15 July 2023, 13:00',
+	        content: auditContent4
+	      },
+	      {
+	        title: 'Document added',
+	        datetime: '2023-07-14',
+	        time: '14 July 2023, 15:00',
+	        content: auditContent3
+	      },
+	      {
+	        title: 'Case status changed',
+	        datetime: '2023-07-13',
+	        time: '13 July 2023, 10:08',
+	        content: auditContent2
+	      },
+	      {
+	        title: 'Case status set',
+	        datetime: '2023-07-13',
+	        time: '12 July 2023, 10:06',
+	        content: auditContent1
+	      }
+	    ]
+	  }) }}
+    
+  	
+  </div>
+</div>
+
+
+{% endblock %}

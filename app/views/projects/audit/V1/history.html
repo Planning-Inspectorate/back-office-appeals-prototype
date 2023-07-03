@@ -1,0 +1,131 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Case history" %}
+
+{% block content %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+
+{{ govukBackLink({
+  text: "Back to case",
+  href: 'javascript:history.back()'
+}) }}
+
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+	  
+	  
+	<span class="govuk-caption-l">Appeal 2110166</span>
+	<h1 class="govuk-heading-l">Case history</h1>
+
+
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">	
+	
+	{% from "govuk/components/table/macro.njk" import govukTable %}
+
+{{ govukTable({
+  captionClasses: "govuk-table__caption--m",
+  firstCellIsHeader: false,
+  head: [
+    {
+      text: "Date and time"
+    },
+    {
+      text: "Log type"
+    },
+    {
+      text: "Change from"
+    },
+    {
+      text: "Change to"
+    },
+    {
+      text: "Author"
+    }
+    
+  ],
+  rows: [
+    [
+      {
+        text: "15 July 2023, 13:00"
+      },
+      {
+        text: "LPA Questionnaire"
+      },
+      {
+        html: ""
+      },
+      {
+        html: "<strong class='govuk-tag govuk-tag--grey'>Invalid</strong>"
+      },
+      {
+        text: "John Smith"
+      }
+    ],[
+      {
+        text: "14 July 2023, 15:00"
+      },
+      {
+        text: "Document added to listed building"
+      },
+      {
+        html: "No documents"
+      },
+      {
+        html: "document-name.pdf added<br><a href='#' class='govuk-link'>View document history</a>"
+      },
+      {
+        text: "John Smith"
+      }
+    ],
+    [
+      {
+        text: "13 July 2023, 10:08"
+      },
+      {
+        text: "Case status changed"
+      },
+      {
+        html: "<strong class='govuk-tag govuk-tag--green'>Ready to start</strong>"
+      },
+      {
+        html: "<strong class='govuk-tag govuk-tag--yellow'>LPA Questionnaire</strong>"
+      },
+      {
+        text: "Jane Watson"
+      }
+    ],
+    [
+      {
+        text: "12 July 2023, 10:06"
+      },
+      {
+        text: "Case status set"
+      },
+      {
+        html: ""
+      },
+      {
+        html: "<strong class='govuk-tag govuk-tag--green'>Ready to start</strong>"
+      },
+      {
+        text: "John Smith"
+      }
+    ]
+  ]
+}) }}
+	
+    
+  	
+  </div>
+</div>
+
+
+{% endblock %}

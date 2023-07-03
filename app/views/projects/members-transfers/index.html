@@ -2,15 +2,14 @@
 
 {% set pageName="Add members & transfer cases" %}
 
-{% block content %}
-
-{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
-
-
 {{ govukBackLink({
   text: "Back to all prototypes",
   href: "/"
 }) }}
+
+
+{% block content %}
+
 
 
 <div class="govuk-grid-row">
@@ -68,7 +67,7 @@
 			
 	<p><a href="https://trello.com/c/sjwnw6Qz/72-add-members-transfer-cases">Trello ticket</a></p>
 	
-	<h3 class="govuk-heading-m">Add members</h3>
+	<h3 class="govuk-heading-m">Assign members</h3>
 	
 	<ul class="govuk-list govuk-list--bullet">
         <li>Once the case is ready to start, a manager will add a case officer to the Case team</li>
@@ -77,7 +76,7 @@
 	
 	{{ govukButton({
 	  text: "View prototype",
-	  href: "v1/add-members/case",
+	  href: "v1/assign-members/case",
 	  isStartButton: true
 	}) }}
 
@@ -88,9 +87,7 @@
 		<li>This might happen because someone will be off sick, holidays or if someone’s backlog is too big;</li>
 	</ul>
 	
-	
-	{% from "govuk/components/button/macro.njk" import govukButton %}
-	
+		
 	{{ govukButton({
 	  text: "View prototype",
 	  href: "v1",

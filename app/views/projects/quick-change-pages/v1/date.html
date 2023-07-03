@@ -2,6 +2,13 @@
 
 {% set title = 'What is start date?' %}
 
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back to questionnaire",
+    href: '#0'
+  }) }}
+{% endblock %}
+
 {% block questions %}
 
   {{ govukDateInput({
@@ -9,7 +16,7 @@
   namePrefix: "startDate",
   fieldset: {
     legend: {
-      text: title,
+      html: "<span class='govuk-caption-l'>Appeal 2110166</span>"+title,
       isPageHeading: true,
       classes: "govuk-fieldset__legend--l"
     }

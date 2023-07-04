@@ -33,6 +33,15 @@
 		}
 	}
 	
+	&.no-border {
+		border: none;
+		padding: 0;
+		
+		.govuk-button {
+			margin-top: 2.2em
+		}
+	}
+	
 	
 }
 

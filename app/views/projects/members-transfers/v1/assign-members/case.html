@@ -18,7 +18,6 @@
   <div class="govuk-grid-column-two-thirds">
 	  
 	 	  
-	{% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
 	
 	{% set html %}
 	  <p class="govuk-notification-banner__heading">
@@ -42,8 +41,6 @@
     })}}
     
 	
-	
-	{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 
 	{{ govukSummaryList({
 	  classes: 'govuk-summary-list--no-border govuk-!-margin-top-6',
@@ -79,7 +76,7 @@
 	      </h2>
 	    </div>
 	    <div id="accordion-default-content-1" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-1">
-			{% include "projects/members-transfers/v1/add-members/includes/case-overview-table.html" %}
+			{% include "projects/members-transfers/v1/assign-members/includes/case-overview-table.html" %}
 	    </div>
 	  </div>
 	  <div class="govuk-accordion__section">
@@ -91,7 +88,6 @@
 	      </h2>
 	    </div>
 	    <div id="accordion-default-content-2" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-2">
-	      {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
 		{{ govukInsetText({
 		  html: "<p class='govuk-body'>Case not started</p><p><a href='appellant-case.html'>Start the review</a></p>"
@@ -108,7 +104,7 @@
 	      </h2>
 	    </div>
 	    <div id="accordion-default-content-3" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-3">
-	      {% include "projects/members-transfers/v1/add-members/includes/case-documentation-table.html" %}
+	      {% include "projects/members-transfers/v1/assign-members/includes/case-documentation-table.html" %}
 	    </div>
 	  </div>
 	  <div class="govuk-accordion__section">
@@ -120,7 +116,7 @@
 	      </h2>
 	    </div>
 	    <div id="accordion-default-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-4">
-	      {% include "projects/members-transfers/v1/add-members/includes/case-team-table.html" %}
+	      {% include "projects/members-transfers/v1/assign-members/includes/case-team-table.html" %}
 	    </div>
 	  </div>
 	</div>

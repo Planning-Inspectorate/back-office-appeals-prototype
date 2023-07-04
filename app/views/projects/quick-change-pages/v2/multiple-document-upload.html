@@ -1,0 +1,76 @@
+{% extends "layouts/PINS.html" %}
+
+{% set title = 'Supporting documents' %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back to questionnaire",
+    href: '#0'
+  }) }}
+{% endblock %}
+
+{% block questions %}
+
+  <span class="govuk-caption-l">Appeal 2110166</span>
+  <h1 class="govuk-heading-l">
+    {{ title }}
+  </h1>
+
+  <h2 class="govuk-heading-m">
+    Uploaded files
+  </h2>
+
+  <dl class="govuk-summary-list">
+    <div class="govuk-summary-list__row">
+
+      <dt class="govuk-summary-list__value">
+        <a href='#0' class='govuk-link'>{{ data['file1'] }}</a>
+      </dt>
+      <dd class="govuk-summary-list__actions">
+        <a class="govuk-link" href="#">
+          Remove<span class="govuk-visually-hidden"> file 1</span>
+        </a>
+      </dd>
+    </div>
+    <div class="govuk-summary-list__row">
+
+      <dd class="govuk-summary-list__value">
+        <a href='#0' class='govuk-link'>{{ data['file2'] }}</a>
+      </dd>
+      <dd class="govuk-summary-list__actions">
+        <a class="govuk-link" href="#">
+          Remove<span class="govuk-visually-hidden"> file 2</span>
+        </a>
+      </dd>
+    </div>
+  </dl>
+
+  {% set uploadHtml %}
+
+    {{ govukFileUpload({
+      id: "final-documents",
+      name: "final-documents",
+      classes: 'moj-multi-file-upload__input',
+      label: {
+        text: "Add files",
+        classes: 'govuk-label--m'
+      },
+      attributes: { multiple: '' }
+    }) }}
+
+    {{govukButton({
+      text: 'Upload file',
+      classes: 'govuk-button--secondary moj-multi-file-upload__button'
+    })}}
+
+  {% endset %}
+
+  {{ mojMultiFileUpload({
+    uploadedFiles: {
+      heading: { text: 'Files added' },
+      items: []
+    },
+    uploadHtml: uploadHtml
+  }) }}
+
+{% endblock %}

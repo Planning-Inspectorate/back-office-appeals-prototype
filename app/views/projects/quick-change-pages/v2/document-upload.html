@@ -1,0 +1,39 @@
+{% extends "layouts/PINS.html" %}
+
+{% set title = 'Uploaded planning officer’s report' %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back to questionnaire",
+    href: '#0'
+  }) }}
+{% endblock %}
+
+{% block questions %}
+
+  <span class="govuk-caption-l">Appeal 2110166</span>
+  <h1 class="govuk-heading-l">
+    {{ title }}
+  </h1>
+
+  <h2 class="govuk-heading-m">
+    Uploaded file
+  </h2>
+
+  <p class="govuk-body">
+    <a href='#0' class='govuk-link'>{{ data['document'] }}</a>
+  </p>
+
+  <h2 class="govuk-heading-m">
+    Replace this file
+  </h2>
+
+  {{ govukFileUpload({
+    id: "file-upload-1",
+    name: "file-upload-1",
+    label: {
+      text: "New file"
+    }
+  })}}
+
+{% endblock %}

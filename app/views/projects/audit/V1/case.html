@@ -58,106 +58,7 @@
             </h2>
           </div>
           <div id="accordion-default-content-1" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-1">
-            {{ govukTable({
-          	  captionClasses: "govuk-table__caption--m",
-          	  firstCellIsHeader: true,
-          	  rows: [
-          	    [
-          	      {
-          	        text: "Appeal type"
-          	      },
-          	      {
-          	        text: "Householder appeal (HAS)"
-          	      },
-          	      {
-          	        html: "<a href='#'>Change</a>"
-          	      }
-          	    ],
-          	    [
-          	      {
-          	        text: "Case procedure"
-          	      },
-          	      {
-          	        text: "Written"
-          	      },
-          	      {
-          	        html: "<a href='#'>Change</a>"
-          	      }
-          	    ],
-          	    [
-          	      {
-          	        text: "Appellant name"
-          	      },
-          	      {
-          	        text: "Fiona Shell"
-          	      },
-          	      {
-          	        html: "<a href='#'>Change</a>"
-          	      }
-          	    ],[
-          	      {
-          	        text: "Agent name"
-          	      },
-          	      {
-          	        text: "Naomi Jonhson"
-          	      },
-          	      {
-          	        html: "<a href='#'>Change</a>"
-          	      }
-          	    ],[
-          	      {
-          	        text: "Linked appeal"
-          	      },
-          	      {
-          	        html: "<a href='.'>21/725284</a>"
-          	      },
-          	      {
-          	        html: "<a href='#'>Change</a>"
-          	      }
-          	    ],[
-          	      {
-          	        text: "Other appeals"
-          	      },
-          	      {
-          	        html: "<a href='.'>21/725234</a>"
-          	      },
-          	      {
-          	        html: "<a href='#'>Change</a>"
-          	      }
-          	    ],[
-          	      {
-          	        text: "Allocation details"
-          	      },
-          	      {
-          	        text: "F / General Allocation"
-          	      },
-          	      {
-          	        html: "<a href='#'>Change</a>"
-          	      }
-          	    ],[
-          	      {
-          	        text: "LPA reference"
-          	      },
-          	      {
-          	        text: "22/00118/FULL"
-          	      },
-          	      {
-          	        html: "<a href='#'>Change</a>"
-          	      }
-          	    ],[
-          	      {
-          	        text: "Decision"
-          	      },
-          	      {
-          	        text: "Not issued yet"
-          	      },
-          	      {
-          	        html: "<a href='.'>Change</a>"
-          	      }
-          	    ]
-          	  ]
-          	}) }}
-
+      		{% include "projects/audit/v1/includes/case-overview-table.html" %}
           </div>
         </div>
         <div class="govuk-accordion__section">
@@ -185,56 +86,7 @@
             </h2>
           </div>
           <div id="accordion-default-content-3" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-3">
-
-            {{ govukTable({
-          	  captionClasses: "govuk-table__caption--m",
-          	  firstCellIsHeader: false,
-          	  head: [
-          		    {
-          		      text: "Documentation"
-          		    },
-          		    {
-          		      text: "Status"
-          		    },
-          		    {
-          		      text: "Due date"
-          		    },
-          		    {
-          		      text: "Action"
-          		    }
-          		  ],
-          	  rows: [
-          	    [
-          	      {
-          	        text: "Appellant case"
-          	      },
-          	      {
-          	        text: "Received"
-          	      },
-          	      {
-          	        text: ""
-          	      },
-          	      {
-          	        html: "<a href='#'>Review</a>"
-          	      }
-          	    ],
-          	    [
-          	      {
-          	        text: "LPA questionnaire"
-          	      },
-          	      {
-          	        text: "Not received"
-          	      },
-          	      {
-          	        text: ""
-          	      },
-          	      {
-          	        html: ""
-          	      }
-          	    ]
-          	  ]
-          	}) }}
-
+            {% include "projects/audit/v1/includes/case-documentation-table.html" %}
           </div>
         </div>
         <div class="govuk-accordion__section">
@@ -246,35 +98,7 @@
             </h2>
           </div>
           <div id="accordion-default-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-4">
-            {{ govukTable({
-          	  captionClasses: "govuk-table__caption--m",
-          	  firstCellIsHeader: true,
-          	  rows: [
-          	    [
-          	      {
-          	        text: "Case officer"
-          	      },
-          	      {
-          	        html: "Robert Williams<br><a href='#'>robert.williams@planninginspectorate.gov.uk</a><br>0300 027 2189</a> "
-          	      },
-          	      {
-          	        html: "<a href='#'>Change</a>"
-          	      }
-          	    ],
-          	    [
-          	      {
-          	        text: "Inspector"
-          	      },
-          	      {
-          	        text: "No project members have been added yet"
-          	      },
-          	      {
-          	        html: "<a href='#'>Add</a>"
-          	      }
-          	    ]
-          	  ]
-          	}) }}
-
+            {% include "projects/audit/v1/includes/case-team-table.html" %}
           </div>
         </div>
       </div>

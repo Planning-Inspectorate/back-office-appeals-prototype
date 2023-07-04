@@ -4,21 +4,11 @@
 
 {% block content %}
 
-{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
-
-
-{{ govukBackLink({
-  text: "Back to national list",
-  href: 'javascript:history.back()'
-}) }}
-
-
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 	  
 	 	  
-	{% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
 	
 	{% set html %}
 	  <p class="govuk-notification-banner__heading">
@@ -43,8 +33,6 @@
     
 	
 	
-	{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
-
 	{{ govukSummaryList({
 	  classes: 'govuk-summary-list--no-border govuk-!-margin-top-6',
 	  rows: [

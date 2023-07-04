@@ -1,0 +1,47 @@
+{% extends "layouts/PINS.html" %}
+
+{% set title = 'Is this linked to another appeal?' %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back to questionnaire",
+    href: '#0'
+  }) }}
+{% endblock %}
+
+{% block questions %}
+  {{ govukRadios({
+    idPrefix: 'linkedAppealCheck',
+    name: 'linkedAppealCheck',
+    fieldset: {
+      legend: {
+        html: "<span class='govuk-caption-l'>Appeal 2110166</span>"+title,
+        classes: 'govuk-fieldset__legend--l',
+        isPageHeading: true
+      }
+    },
+    items: [
+      {
+        html: 'Yes',
+        value: 'Yes',
+        checked: checked('linkedAppealCheck','Yes')
+      },
+      {
+        html: 'No',
+        value: 'No',
+        checked: checked('linkedAppealCheck','No')
+      }
+    ]
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: "7 digit appeal reference number"
+    },
+    classes: "govuk-input--width-10",
+    id: "appealReference",
+    name: "appealReference",
+    value: data['appealReference']
+  }) }}
+
+{% endblock %}

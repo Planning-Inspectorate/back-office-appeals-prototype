@@ -1,0 +1,39 @@
+{% extends "layouts/PINS.html" %}
+
+{% set title = 'Is this linked to another appeal?' %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back to questionnaire",
+    href: '#0'
+  }) }}
+{% endblock %}
+
+{% block questions %}
+
+  <span class="govuk-caption-l">Appeal 2110166</span>
+  <h1 class="govuk-heading-l">
+    {{ title }}
+  </h1>
+
+  {{ govukInput({
+    label: {
+      text: "First name"
+    },
+    classes: "govuk-input--width-20",
+    id: "firstName",
+    name: "firstName",
+    value: data['firstName']
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: "Last name"
+    },
+    classes: "govuk-input--width-20",
+    id: "lastName",
+    name: "lastName",
+    value: data['lastName']
+  }) }}
+
+{% endblock %}

@@ -48,8 +48,6 @@
     	  ]
     	}) }}
 
-
-
       <div class="govuk-accordion govuk-!-margin-top-9" data-module="govuk-accordion" id="accordion-default">
         <div class="govuk-accordion__section">
           <div class="govuk-accordion__section-header">
@@ -60,7 +58,7 @@
             </h2>
           </div>
           <div id="accordion-default-content-1" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-1">
-      		{% include "projects/audit/v1/includes/case-overview-table.html" %}
+            <!-- {% include "projects/audit/v1/includes/case-overview-table.html" %} -->
           </div>
         </div>
         <div class="govuk-accordion__section">
@@ -88,7 +86,57 @@
             </h2>
           </div>
           <div id="accordion-default-content-3" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-3">
-            {% include "projects/audit/v1/includes/case-documentation-table.html" %}
+
+            {{ govukTable({
+          	  captionClasses: "govuk-table__caption--m",
+          	  firstCellIsHeader: false,
+          	  head: [
+          		    {
+          		      text: "Documentation"
+          		    },
+          		    {
+          		      text: "Status"
+          		    },
+          		    {
+          		      text: "Due date"
+          		    },
+          		    {
+          		      text: "Action"
+          		    }
+          		  ],
+          	  rows: [
+          	    [
+          	      {
+          	        text: "Appellant case"
+          	      },
+          	      {
+          	        text: "Received"
+          	      },
+          	      {
+          	        text: ""
+          	      },
+          	      {
+          	        html: "<a href='#'>Review</a>"
+          	      }
+          	    ],
+          	    [
+          	      {
+          	        text: "LPA questionnaire"
+          	      },
+          	      {
+          	        text: "Not received"
+          	      },
+          	      {
+          	        text: ""
+          	      },
+          	      {
+          	        html: ""
+          	      }
+          	    ]
+          	  ]
+          	}) }}
+
+
           </div>
         </div>
         <div class="govuk-accordion__section">
@@ -100,7 +148,7 @@
             </h2>
           </div>
           <div id="accordion-default-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-4">
-            {% include "projects/audit/v1/includes/case-team-table.html" %}
+            <!-- {% include "projects/audit/v1/includes/case-team-table.html" %} -->
           </div>
         </div>
       </div>

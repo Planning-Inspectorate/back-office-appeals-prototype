@@ -23,59 +23,54 @@
 
     <section class="govuk-!-margin-bottom-6">
 
+    	<h2 class="govuk-heading-m">Version 1
 
-	<h2 class="govuk-heading-m">Version 1
-		{%- from "govuk/components/tag/macro.njk" import govukTag -%}
-
-		{{govukTag({
+    		{{govukTag({
           text: "New",
           classes: "govuk-!-margin-left-2 govuk-tag--green"
         })}}
 
-		<!-- Status tag options
+    		<!-- Status tag options
 
-		{{govukTag({
-          text: "New",
-          classes: "govuk-!-margin-left-2 govuk-tag--green"
-        })}}
+    		{{govukTag({
+              text: "New",
+              classes: "govuk-!-margin-left-2 govuk-tag--green"
+            })}}
 
-        {{govukTag({
-          text: "In progress",
-          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-        })}}
+            {{govukTag({
+              text: "In progress",
+              classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+            })}}
 
-        {{govukTag({
-          text: "Ready for review",
-          classes: "govuk-!-margin-left-2 govuk-tag--blue"
-        })}}
+            {{govukTag({
+              text: "Ready for review",
+              classes: "govuk-!-margin-left-2 govuk-tag--blue"
+            })}}
 
-        {{govukTag({
-          text: "Ready for research",
-          classes: "govuk-!-margin-left-2 govuk-tag--green"
-        })}}
+            {{govukTag({
+              text: "Ready for research",
+              classes: "govuk-!-margin-left-2 govuk-tag--green"
+            })}}
 
-        {{govukTag({
-          text: "Researched",
-          classes: " govuk-!-margin-left-2 govuk-tag--green"
-        })}}
+            {{govukTag({
+              text: "Researched",
+              classes: " govuk-!-margin-left-2 govuk-tag--green"
+            })}}
 
-        -->
+            -->
+      </h2>
 
+      <p class="govuk-body">As we temporarily (MVP) allow case officers to edit the properties of appeals, LPA questionnaires, statements and other forms on behalf of the authors, it’s important for PINS to keep an audit of the changes to increase transparency and traceability.</p>
 
-	</h2>
+      <p>
+        <a href="https://trello.com/c/EPok8X8z/61-access-and-review-a-history-of-changes-to-the-case-documentation-audit">Trello ticket</a>
+      </p>
 
-	<p class="govuk-body">As we temporarily (MVP) allow case officers to edit the properties of appeals, LPA questionnaires, statements and other forms on behalf of the authors, it’s important for PINS to keep an audit of the changes to increase transparency and traceability.</p>
-
-	<p><a href="https://trello.com/c/EPok8X8z/61-access-and-review-a-history-of-changes-to-the-case-documentation-audit">Trello ticket</a></p>
-
-
-	{% from "govuk/components/button/macro.njk" import govukButton %}
-
-	{{ govukButton({
-	  text: "View prototype",
-	  href: "v1/case",
-	  isStartButton: true
-	}) }}
+    	{{ govukButton({
+    	  text: "View prototype",
+    	  href: "v1/case",
+    	  isStartButton: true
+    	}) }}
 
     </section>
 

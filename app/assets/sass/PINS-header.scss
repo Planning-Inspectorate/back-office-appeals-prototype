@@ -5,9 +5,14 @@
 }
 
 .app-pi-govuk-header__navigation {
-	float: right;
-	width: 40%;
+	
+	.govuk-header__navigation-list {
+		text-align: right;
+	}
 }
+
+
+
 
 .app-pi-layout-header {
 	

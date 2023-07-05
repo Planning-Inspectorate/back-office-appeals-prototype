@@ -65,14 +65,10 @@
 
 	<p class="govuk-body">User can upload addition files to the LPA questionnaire</p>
 
-
-	{% from "govuk/components/button/macro.njk" import govukButton %}
-
 	{{ govukButton({
 	  text: "View prototype",
 	  href: "lpa-questionnaire",
-	  isStartButton: true,
-	  disabled: true
+	  isStartButton: true
 	}) }}
 
 
@@ -82,7 +78,7 @@
 
 	<ul class="govuk-list">
 	  <li>
-	    <a class="govuk-link" href="lpa-questionnaire.html">Test A</a>
+	    <a class="govuk-link" href="lpa-questionnaire.html">Test A</a> (preferred option)
 	  </li>
 	  <li>
 	    <a class="govuk-link" href="B-test/lpa-questionnaire-B.html">Test B</a>

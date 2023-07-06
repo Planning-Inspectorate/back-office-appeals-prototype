@@ -4,32 +4,10 @@
 
 {% block content %}
 
-{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
-
-
-{{ govukBackLink({
-  text: "Back to national list",
-  href: 'javascript:history.back()'
-}) }}
-
-
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-	  
-	 	  
-	
-	{% set html %}
-	  <p class="govuk-notification-banner__heading">
-	    LPA Questionnaire is ready for review
-	  </p>
-	  <p><a class="govuk-notification-banner__link" href="appellant-case.html">Start the review</a></p>
-	{% endset %}
-	
-	{{ govukNotificationBanner({
-	  html: html
-	}) }}
-	  
+	 	  		  
 	  
 	<span class="govuk-caption-l">Appeal 2110166</span>
 	<h1 class="govuk-heading-l">Case details</h1>
@@ -40,7 +18,6 @@
       classes: "govuk-tag--red"
     })}}
     
-	
 
 	{{ govukSummaryList({
 	  classes: 'govuk-summary-list--no-border govuk-!-margin-top-6',

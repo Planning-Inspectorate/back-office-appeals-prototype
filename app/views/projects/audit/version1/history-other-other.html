@@ -1,0 +1,107 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Case history" %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+	  
+	  
+	<span class="govuk-caption-l">Appeal 2110166</span>
+	<h1 class="govuk-heading-l">Case history</h1>
+
+
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">	
+	
+	{% from "govuk/components/table/macro.njk" import govukTable %}
+
+{{ govukTable({
+  captionClasses: "govuk-table__caption--m",
+  firstCellIsHeader: false,
+  head: [
+    {
+      text: "Date and time"
+    },
+    {
+      text: "Event"
+    },
+    {
+      text: "Description"
+    },
+    {
+      text: "User"
+    }
+    
+  ],
+  rows: [
+    [
+      {
+        html: "15 July 2023<br><span class='govuk-!-font-size-16'>13:00</span>"
+      },
+      {
+        text: "LPA Questionnaire outcome"
+      },
+      {
+        html: "<strong class='govuk-tag govuk-tag--grey'>Invalid</strong>"
+      },
+      {
+        text: "John Smith"
+      }
+    ],[
+      {
+        html: "14 July 2023<br><span class='govuk-!-font-size-16'>15:00</span>"
+      },
+      {
+        text: "Document added to listed building"
+      },
+      {
+        html: "document-name.pdf added<br><a href='#' class='govuk-link'>View document history</a>"
+      },
+      {
+        text: "John Smith"
+      }
+    ],
+    [
+      {
+        html: "13 July 2023<br><span class='govuk-!-font-size-16'>10:08</span>"
+      },
+      {
+        text: "Case status changed"
+      },
+      {
+        html: "<strong class='govuk-tag govuk-tag--yellow'>LPA Questionnaire</strong>"
+      },
+      {
+        text: "Jane Watson"
+      }
+    ],
+    [
+      {
+        html: "12 July 2023<br><span class='govuk-!-font-size-16'>10:06</span>"
+      },
+      {
+        text: "Case status set"
+      },
+      {
+        html: "<strong class='govuk-tag govuk-tag--green'>Ready to start</strong>"
+      },
+      {
+        text: "John Smith"
+      }
+    ]
+  ]
+}) }}
+	
+    
+  	
+  </div>
+</div>
+
+
+{% endblock %}

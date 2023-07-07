@@ -1,0 +1,49 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Are you sure?" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+		<span class="govuk-caption-xl">Appeal 2110166</span>
+		<h1 class="govuk-heading-xl">Assign Case Officer</h1>
+
+       <form action="document-details-removed" method="post" class="govuk-!-margin-top-9" novalidate>
+
+		<!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
+
+		{{ govukRadios({
+		  name: "add-sure",
+		  fieldset: {
+		    legend: {
+		      text: "Are you sure you want to assign John Smith as a case officer?",
+		      isPageHeading: false,
+		      classes: "govuk-fieldset__legend--m"
+		    }
+		  },
+		  items: [
+		    {
+		      value: "yes~/projects/members-transfers/v1/assign-members/assigned",
+		      text: "Yes"
+		    },
+		    {
+		      value: "no~/projects/members-transfers/v1/assign-members/results",
+		      text: "No"
+		    }
+		   ]
+		}) }}
+
+		{{ govukButton({
+          text: "Continue"
+        }) }}
+
+
+	  </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

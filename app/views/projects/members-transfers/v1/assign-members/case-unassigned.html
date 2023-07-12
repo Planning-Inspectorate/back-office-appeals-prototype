@@ -1,6 +1,6 @@
 {% extends "layouts/PINS.html" %}
 
-{% set pageName="Case details success" %}
+{% set pageName="Case details" %}
 
 {% block content %}
 
@@ -8,15 +8,14 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 	  
-	  
-	{% set notificationMessage %}
+	{% set html %}
 	  <h3 class="govuk-notification-banner__heading">
-	    Allocation details successfully updated
+	    Case officer has been removed
 	  </h3>
 	{% endset %}
 	
 	{{ govukNotificationBanner({
-	  html: notificationMessage,
+	  html: html,
 	  type: 'success'
 	}) }}
 	 	  		  
@@ -65,7 +64,7 @@
 	      </h2>
 	    </div>
 	    <div id="accordion-default-content-1" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-1">
-			{% include "projects/members-transfers/v1/inspector-score/includes/case-overview-table-allocated.html" %}
+			{% include "projects/members-transfers/v1/assign-members/includes/case-overview-table.html" %}
 	    </div>
 	  </div>
 	  <div class="govuk-accordion__section">
@@ -93,7 +92,7 @@
 	      </h2>
 	    </div>
 	    <div id="accordion-default-content-3" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-3">
-	      {% include "projects/members-transfers/v1/inspector-score/includes/case-documentation-table.html" %}
+	      {% include "projects/members-transfers/v1/assign-members/includes/case-documentation-table.html" %}
 	    </div>
 	  </div>
 	  <div class="govuk-accordion__section">
@@ -105,7 +104,7 @@
 	      </h2>
 	    </div>
 	    <div id="accordion-default-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-4">
-	      {% include "projects/members-transfers/v1/inspector-score/includes/case-team-table.html" %}
+	      {% include "projects/members-transfers/v1/assign-members/includes/case-team-table.html" %}
 	    </div>
 	  </div>
 	</div>

@@ -1,0 +1,91 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Check answers" %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+		<span class="govuk-caption-xl">Appeal 2110166</span>
+		<h1 class="govuk-heading-xl">Check the allocation details</h1>
+		
+		{% if 'allocation-level' in data %}
+		
+		<div class="govuk-inset-text">
+		{{ data['allocation-level'] }} {% if 'allocation-band' in data %} / {{ data['allocation-band'] }} {% endif %} {% if 'allocation-specialist' in data %} / {{ data['allocation-specialist'] }} {% endif %}
+		</div>
+		
+		{% endif %}
+		
+		
+		{{ govukSummaryList({
+        classes: 'govuk-!-margin-bottom-9',
+        rows: [
+          {
+            key: {
+              text: "Level"
+            },
+            value: {
+              text: data['allocation-level'] 
+            },
+            actions: {
+              items: [
+                {
+                  href: "add-allocation-level.html",
+                  text: "Change",
+                  visuallyHiddenText: "level"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Band"
+            },
+            value: {
+              text: data['allocation-band'] 
+            },
+            actions: {
+              items: [
+                {
+                  href: "add-allocation-band.html",
+                  text: "Change",
+                  visuallyHiddenText: "band"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Specialism"
+            },
+            value: {
+              text: data['allocation-specialist'] 
+            },
+            actions: {
+              items: [
+                {
+                  href: "add-allocation-specialism.html",
+                  text: "Change",
+                  visuallyHiddenText: "specialism"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+
+		{{ govukButton({
+		  text: "Confirm",
+		  href: "case-allocated"
+		}) }}
+
+
+    </div>
+  </div>
+
+{% endblock %}

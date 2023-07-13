@@ -1,0 +1,80 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Are you sure?" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+		<span class="govuk-caption-xl">Appeal 2110166</span>
+		<h1 class="govuk-heading-xl">Allocation level</h1>
+		
+		{% if 'allocation-level' in data %}
+		
+		<div class="govuk-inset-text">
+		{{ data['allocation-level'] }} {% if 'allocation-band' in data %} / {{ data['allocation-band'] }} {% endif %} {% if 'allocation-specialist' in data %} / {{ data['allocation-specialist'] }} {% endif %}
+		</div>
+		
+		{% endif %}
+
+       <form action="add-allocation-band" method="post" class="govuk-!-margin-top-9" novalidate>
+
+		{{ govukRadios({
+		  name: "allocation-level",
+		  value: data['allocation-level'],
+		  fieldset: {
+		    legend: {
+		      text: "Select allocation level",
+		      isPageHeading: false,
+		      classes: "govuk-fieldset__legend--m"
+		    }
+		  },
+		  items: [
+		    {
+		      value: "A",
+		      text: "A"
+		    },
+		    {
+		      value: "B",
+		      text: "B"
+		    },
+		    {
+		      value: "C",
+		      text: "C"
+		    },
+		    {
+		      value: "D",
+		      text: "D"
+		    },
+		    {
+		      value: "E",
+		      text: "E"
+		    },
+		    {
+		      value: "F",
+		      text: "F"
+		    },
+		    {
+		      value: "G",
+		      text: "G"
+		    },
+		    {
+		      value: "H",
+		      text: "H"
+		    }
+		   ]
+		}) }}
+
+		{{ govukButton({
+          text: "Continue"
+        }) }}
+
+
+	  </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

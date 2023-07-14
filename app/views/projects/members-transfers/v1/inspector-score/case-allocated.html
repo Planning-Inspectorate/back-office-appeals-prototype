@@ -19,6 +19,48 @@
 	  html: notificationMessage,
 	  type: 'success'
 	}) }}
+	
+	{% set allocationList %}
+	
+	 <ul class="govuk-list govuk-list--bullet">
+	    
+	    <li>Level: {{ data["allocation-level"] }}
+	    </li>
+	    
+	    <li>Band: {{ data["allocation-band"] }}
+	    </li>
+	    
+	    
+	    <li>Specialism:
+	    	<ul>
+		    	{% for item in data["allocation-specialist"] %}
+	    <li>
+	      {{ item }}
+	    </li>
+	  {% endfor %}
+	    	</ul>
+	    </li>
+	    
+	  
+	</ul>
+	
+	
+	{% endset %}
+	
+	
+	{% set allocationListREMOVE %}
+	data['allocation-level'] + data['allocation-band']
+    <ul class="govuk-list govuk-list--bullet">
+	    
+	    
+	    
+	  {% for item in data["allocation-specialist"] %}
+	    <li>
+	      {{ item }}
+	    </li>
+	  {% endfor %}
+	</ul>
+	{% endset %}
 	 	  		  
 	  
 	<span class="govuk-caption-l">Appeal 2110166</span>

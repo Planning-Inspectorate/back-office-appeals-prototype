@@ -7,7 +7,17 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
+	    
+	    {% set specialismList %}
+	    <ul class="govuk-list govuk-list--bullet">
+		  {% for item in data["allocation-specialist"] %}
+		    <li>
+		      {{ item }}
+		    </li>
+		  {% endfor %}
+		</ul>
+		{% endset %}
+	
 
 		<span class="govuk-caption-xl">Appeal 2110166</span>
 		<h1 class="govuk-heading-xl">Check the allocation details</h1>
@@ -55,7 +65,7 @@
               text: "Specialism"
             },
             value: {
-              text: data['allocation-specialist'] 
+              html: specialismList
             },
             actions: {
               items: [

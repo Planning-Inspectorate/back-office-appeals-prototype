@@ -37,7 +37,13 @@
 			      Specialism
 			    </dt>
 			    <dd class="govuk-summary-list__value">
-			      {{ data['allocation-specialist'] }}
+			      <ul class="govuk-list govuk-list--bullet">
+				  {% for item in data["allocation-specialist"] %}
+				    <li>
+				      {{ item }}
+				    </li>
+				  {% endfor %}
+				</ul>
 			    </dd>
 			  </div>
 			  {% endif %}

@@ -10,6 +10,8 @@
 		<span class="govuk-caption-xl">Appeal 2110166</span>
 		<h1 class="govuk-heading-xl">Allocation band</h1>
 		
+		
+		
 		{% if 'allocation-level' in data %}
 		
 		<dl class="govuk-summary-list govuk-summary-list">
@@ -37,7 +39,13 @@
 			      Specialism
 			    </dt>
 			    <dd class="govuk-summary-list__value">
-			      {{ data['allocation-specialist'] }}
+			      <ul class="govuk-list govuk-list--bullet">
+				  {% for item in data["allocation-specialist"] %}
+				    <li>
+				      {{ item }}
+				    </li>
+				  {% endfor %}
+				</ul>
 			    </dd>
 			  </div>
 			  {% endif %}

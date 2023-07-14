@@ -1,3 +1,5 @@
+{% if (data['is-assigned'] == "yes") %}
+
 {{ govukTable({
 	  captionClasses: "govuk-table__caption--m",
 	  firstCellIsHeader: true,
@@ -7,7 +9,40 @@
 	        text: "Case officer"
 	      },
 	      {
-	        text: "No project members have been assigned yet"
+	        html: "John smith<br>john.smith@planninginspectorate.gov.uk"
+	      },
+	      {
+	        html: "<a href='search'>Change</a>"
+	      }
+	    ],
+	    [
+	      {
+	        text: "Inspector"
+	      },
+	      {
+	        text: "No members have been assigned yet"
+	      },
+	      {
+	        html: "<a href='search'>Assign</a>"
+	      }
+	    ]
+	  ]
+	}) }}
+    
+    
+{% else %}
+	
+	  
+	  {{ govukTable({
+	  captionClasses: "govuk-table__caption--m",
+	  firstCellIsHeader: true,
+	  rows: [
+	    [
+	      {
+	        text: "Case officer"
+	      },
+	      {
+	        text: "No members have been assigned yet"
 	      },
 	      {
 	        html: "<a href='search'>Assign</a>"
@@ -18,7 +53,7 @@
 	        text: "Inspector"
 	      },
 	      {
-	        text: "No project members have been assigned yet"
+	        text: "No members have been assigned yet"
 	      },
 	      {
 	        html: "<a href='search'>Assign</a>"
@@ -26,4 +61,7 @@
 	    ]
 	  ]
 	}) }}
+	
+		
+{% endif %}
     

@@ -15,7 +15,7 @@
 		<!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
 
 		{{ govukRadios({
-		  name: "add-sure",
+		  name: "is-assigned",
 		  fieldset: {
 		    legend: {
 		      text: "Are you sure you want to remove John Smith as a case officer?",
@@ -25,11 +25,11 @@
 		  },
 		  items: [
 		    {
-		      value: "yes~/projects/members-transfers/v1/assign-members/case-unassigned",
+		      value: "no~/projects/members-transfers/v1/assign-members/assign-another",
 		      text: "Yes"
 		    },
 		    {
-		      value: "no~/projects/members-transfers/v1/assign-members/assigned",
+		      value: "yes~/projects/members-transfers/v1/assign-members/assigned",
 		      text: "No"
 		    }
 		   ]

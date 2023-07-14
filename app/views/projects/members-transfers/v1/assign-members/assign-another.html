@@ -1,6 +1,6 @@
 {% extends "layouts/PINS.html" %}
 
-{% set pageName="Are you sure?" %}
+{% set pageName="Assign another?" %}
 
 {% block content %}
 
@@ -8,28 +8,28 @@
     <div class="govuk-grid-column-two-thirds">
 
 		<span class="govuk-caption-xl">Appeal 2110166</span>
-		<h1 class="govuk-heading-xl">Assign Case Officer</h1>
+		<h1 class="govuk-heading-xl">New Case Officer</h1>
 
        <form action="document-details-removed" method="post" class="govuk-!-margin-top-9" novalidate>
 
 		<!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
 
 		{{ govukRadios({
-		  name: "is-assigned",
+		  name: "assign-another",
 		  fieldset: {
 		    legend: {
-		      text: "Are you sure you want to assign John Smith as a case officer?",
+		      text: "Do you want to assign a new case officer?",
 		      isPageHeading: false,
 		      classes: "govuk-fieldset__legend--m"
 		    }
 		  },
 		  items: [
 		    {
-		      value: "yes~/projects/members-transfers/v1/assign-members/case-assigned",
+		      value: "yes~/projects/members-transfers/v1/assign-members/search",
 		      text: "Yes"
 		    },
 		    {
-		      value: "no~/projects/members-transfers/v1/assign-members/results",
+		      value: "no~/projects/members-transfers/v1/assign-members/case-unassigned",
 		      text: "No"
 		    }
 		   ]

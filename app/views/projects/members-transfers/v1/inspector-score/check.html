@@ -11,15 +11,7 @@
 
 		<span class="govuk-caption-xl">Appeal 2110166</span>
 		<h1 class="govuk-heading-xl">Check the allocation details</h1>
-		
-		{% if 'allocation-level' in data %}
-		
-		<div class="govuk-inset-text">
-		{{ data['allocation-level'] }} {% if 'allocation-band' in data %} / {{ data['allocation-band'] }} {% endif %} {% if 'allocation-specialist' in data %} / {{ data['allocation-specialist'] }} {% endif %}
-		</div>
-		
-		{% endif %}
-		
+				
 		
 		{{ govukSummaryList({
         classes: 'govuk-!-margin-bottom-9',

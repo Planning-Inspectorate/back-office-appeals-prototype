@@ -12,12 +12,39 @@
 		
 		{% if 'allocation-level' in data %}
 		
-		<div class="govuk-inset-text">
-		{{ data['allocation-level'] }} {% if 'allocation-band' in data %} / {{ data['allocation-band'] }} {% endif %} {% if 'allocation-specialist' in data %} / {{ data['allocation-specialist'] }} {% endif %}
-		</div>
-		
+		<dl class="govuk-summary-list govuk-summary-list">
+			  <div class="govuk-summary-list__row">
+			    <dt class="govuk-summary-list__key">
+			      Level
+			    </dt>
+			    <dd class="govuk-summary-list__value">
+			      {{ data['allocation-level'] }}
+			    </dd>
+			  </div>
+			  {% if 'allocation-band' in data %}
+			  <div class="govuk-summary-list__row">
+			    <dt class="govuk-summary-list__key">
+			      Band
+			    </dt>
+			    <dd class="govuk-summary-list__value">
+			      {{ data['allocation-band'] }}
+			    </dd>
+			  </div>
+			  {% endif %}
+			  {% if 'allocation-specialist' in data %}
+			  <div class="govuk-summary-list__row">
+			    <dt class="govuk-summary-list__key">
+			      Specialism
+			    </dt>
+			    <dd class="govuk-summary-list__value">
+			      {{ data['allocation-specialist'] }}
+			    </dd>
+			  </div>
+			  {% endif %}
+			</dl>
+			
+				
 		{% endif %}
-
        <form action="add-allocation-band" method="post" class="govuk-!-margin-top-9" novalidate>
 
 		{{ govukRadios({

@@ -34,6 +34,15 @@
 		    }
 		   ]
 		}) }}
+		
+		
+		{% if (data['is-assigned'] == "yes") %}
+		
+		<div class="govuk-inset-text">
+		  Only one case officer can be assigned to a case. <strong>John Smith will be replaced as the case officer</strong>
+		</div>
+		
+		{% endif %}
 
 		{{ govukButton({
           text: "Continue"

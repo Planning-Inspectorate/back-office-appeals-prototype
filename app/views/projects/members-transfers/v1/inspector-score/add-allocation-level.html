@@ -21,13 +21,19 @@
 			      {{ data['allocation-level'] }}
 			    </dd>
 			  </div>
-			  {% if 'allocation-band' in data %}
+			  {% if 'allocation-level' in data %}
 			  <div class="govuk-summary-list__row">
 			    <dt class="govuk-summary-list__key">
 			      Band
 			    </dt>
 			    <dd class="govuk-summary-list__value">
-			      {{ data['allocation-band'] }}
+			       {% if (data['allocation-level'] == "A" or data['allocation-level'] == "B") %}
+			      3
+			      {% elseif (data['allocation-level'] == "C" or data['allocation-level'] == "D") %}
+			      2
+			      {% else %}
+			      1
+			      {% endif %}
 			    </dd>
 			  </div>
 			  {% endif %}
@@ -51,7 +57,7 @@
 			
 				
 		{% endif %}
-       <form action="add-allocation-band" method="post" class="govuk-!-margin-top-9" novalidate>
+       <form action="add-allocation-specialism" method="post" class="govuk-!-margin-top-9" novalidate>
 
 		{{ govukRadios({
 		  name: "allocation-level",

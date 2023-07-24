@@ -20,6 +20,8 @@
 	  type: 'success'
 	}) }}
 	
+	
+	
 	{% set allocationList %}
 	
 	 <ul class="govuk-list govuk-list--bullet">
@@ -27,9 +29,14 @@
 	    <li>Level: {{ data["allocation-level"] }}
 	    </li>
 	    
-	    <li>Band: {{ data["allocation-band"] }}
+	    <li>Band: {% if (data['allocation-level'] == "A" or data['allocation-level'] == "B") %}
+	      3
+	      {% elseif (data['allocation-level'] == "C" or data['allocation-level'] == "D") %}
+	      2
+	      {% else %}
+	      1
+	      {% endif %}
 	    </li>
-	    
 	    
 	    <li>Specialism:
 	    	<ul>
@@ -40,27 +47,13 @@
 	  {% endfor %}
 	    	</ul>
 	    </li>
-	    
 	  
 	</ul>
 	
-	
 	{% endset %}
 	
 	
-	{% set allocationListREMOVE %}
-	data['allocation-level'] + data['allocation-band']
-    <ul class="govuk-list govuk-list--bullet">
-	    
-	    
-	    
-	  {% for item in data["allocation-specialist"] %}
-	    <li>
-	      {{ item }}
-	    </li>
-	  {% endfor %}
-	</ul>
-	{% endset %}
+	
 	 	  		  
 	  
 	<span class="govuk-caption-l">Appeal 2110166</span>

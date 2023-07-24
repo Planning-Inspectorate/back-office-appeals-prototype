@@ -17,7 +17,17 @@
 		  {% endfor %}
 		</ul>
 		{% endset %}
-	
+		
+		
+		{% set bandNumber %}
+		 {% if (data['allocation-level'] == "A" or data['allocation-level'] == "B") %}
+	      3
+	      {% elseif (data['allocation-level'] == "C" or data['allocation-level'] == "D") %}
+	      2
+	      {% else %}
+	      1
+	      {% endif %}
+		{% endset %} 
 
 		<span class="govuk-caption-xl">Appeal 2110166</span>
 		<h1 class="govuk-heading-xl">Check the allocation details</h1>
@@ -48,16 +58,7 @@
               text: "Band"
             },
             value: {
-              text: data['allocation-band'] 
-            },
-            actions: {
-              items: [
-                {
-                  href: "add-allocation-band.html",
-                  text: "Change",
-                  visuallyHiddenText: "band"
-                }
-              ]
+              html: bandNumber
             }
           },
           {

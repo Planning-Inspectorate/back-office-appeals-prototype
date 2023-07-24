@@ -1,0 +1,303 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Appellant Case" %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: '../LPA-has-questionnaire'
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+	{% set html %}
+	  <h3 class="govuk-notification-banner__heading">
+	    Files successfully added
+	  </h3>
+	{% endset %}
+
+	{{ govukNotificationBanner({
+	  html: html,
+	  type: 'success'
+	}) }}
+
+	<span class="govuk-caption-l">Document details</span>
+	<h1 class="govuk-heading-l">tree preservation order A</h1>
+
+	{{ govukSummaryList({
+	  classes: 'govuk-summary-list--no-border',
+	  rows: [
+	    {
+	      key: {
+	        text: "Appeal reference"
+	      },
+	      value: {
+	        text: "21110166"
+	      }
+	    },
+	    {
+	      key: {
+	        text: "File type and size"
+	      },
+	      value: {
+	        html: "PDF, 99KB"
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Version"
+	      },
+	      value: {
+	        html: '<p class="govuk-body">5</p>'
+	      }
+	    }
+	  ]
+	}) }}
+
+	{{ govukButton({
+	  text: "Upload a new version",
+	  href: "upload-document"
+	}) }}
+
+  </div>
+</div>
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+	<h2 class="govuk-heading-m govuk-!-margin-top-6">Document details</h2>
+
+	{% set pastDayHtml %}
+	<h2 class="govuk-heading-l">Document properties</h2>
+	{{ govukTable({
+		firstCellIsHeader: true,
+	  rows: [
+	    [
+	      {
+	        text: "File name"
+	      },
+	      {
+	        text: "tree preservation order A"
+	      },
+	      {
+	        html: "<a href='#'>change</a>"
+	      }
+	    ],
+	    [
+	      {
+	        text: "Description"
+	      },
+	      {
+	        text: "Constraints, designations and other issues"
+	      },
+	      {
+	        html: "<a href='#'>change</a>"
+	      }
+	    ],
+	    [
+	      {
+	        text: "From"
+	      },
+	      {
+	        text: "Bradford Council"
+	      },
+	      {
+	        html: "<a href='#'>change</a>"
+	      }
+	    ],
+	    [
+	      {
+	        text: "Agent (optional)"
+	      },
+	      {
+	        text: ""
+	      },
+	      {
+	        html: ""
+	      }
+	    ],
+	    [
+	      {
+	        text: "Case stage"
+	      },
+	      {
+	        text: "LPA Questionnaire"
+	      },
+	      {
+	        html: "<a href='#'>change</a>"
+	      }
+	    ],
+	    [
+	      {
+	        text: "Date received"
+	      },
+	      {
+	        text: "1 Feb 2023"
+	      },
+	      {
+	        html: "<a href='#'>change</a>"
+	      }
+	    ],
+	    [
+	      {
+	        text: "Redaction"
+	      },
+	      {
+	        text: "Unredacted"
+	      },
+	      {
+	        html: "<a href='#'>change</a>"
+	      }
+	    ]
+	  ]
+	}) }}
+	{% endset -%}
+
+	{% set pastWeekHtml %}
+	<h2 class="govuk-heading-l">Document history</h2>
+
+	{{ govukTable({
+	  caption: "Uploaded documents",
+	  captionClasses: "govuk-table__caption--m",
+	  firstCellIsHeader: false,
+	  classes : " govuk-!-font-size-16",
+	  head: [
+	    {
+	      text: "Document information"
+	    },
+	    {
+	      text: "Version"
+	    },
+	    {
+	      text: "Activity"
+	    },
+	    {
+	      text: "Redaction"
+	    },
+	    {
+	      text: "Actions"
+	    }
+	  ],
+	  rows: [
+	    [
+	      {
+	        html: "<p class='govuk-!-font-size-16'><a href='manage-documents/document-details.html'>tree preservation order A</a></p><p class='govuk-body govuk-!-font-size-16'>From: Joe Bloggs<br>File type and size : PDF, 97KB</p>"
+	      },
+	      {
+	        text: "5"
+	      },
+	      {
+	        html: "<strong>Uploaded:</strong> 09:48, 22 Mar 2023, Jane Watson"
+	      },
+	      {
+	        text: "Redacted"
+	      },
+	      {
+	        html: "<a href='#'>Remove</a>"
+	      }
+	    ],
+	    [
+	      {
+	        html: "<p class='govuk-!-font-size-16'><a href='manage-documents/document-details.html'>tree preservation order A</a></p><p class='govuk-body govuk-!-font-size-16'>From: Joe Bloggs<br>File type and size : PDF, 97KB</p>"
+	      },
+	      {
+	        text: "4"
+	      },
+	      {
+	        html: "<strong>Uploaded:</strong> 09:48, 22 Mar 2023, Jane Watson"
+	      },
+	      {
+	        text: "Redacted"
+	      },
+	      {
+	        html: "<a href='#'>Remove</a>"
+	      }
+	    ],
+	    [
+	      {
+	        html: "<p class='govuk-!-font-size-16'><a href='manage-documents/document-details.html'>tree preservation order A</a></p><p class='govuk-body govuk-!-font-size-16'>From: Joe Bloggs<br>File type and size : PDF, 97KB</p>"
+	      },
+	      {
+	        text: "3"
+	      },
+	      {
+	        html: "<strong>Uploaded:</strong> 09:48, 22 Mar 2023, Jane Watson"
+	      },
+	      {
+	        text: "Unredacted"
+	      },
+	      {
+	        html: "<a href='#'>Remove</a>"
+	      }
+	    ],
+	    [
+	      {
+	        html: "<p class=' govuk-!-font-size-16'><a href='document-details.html'>tree preservation order A</a></p><p class='govuk-body  govuk-!-font-size-16'>From: Joe Bloggs<br>File type and size : PDF, 97KB</p>"
+	      },
+	      {
+	        text: "2"
+	      },
+	      {
+	        html: "<strong>Uploaded:</strong> 09:48, 22 Mar 2023, Jane Watson"
+	      },
+	      {
+	        text: "Unredacted"
+	      },
+	      {
+	        html: "<a href='#'>Remove</a>"
+	      }
+	    ],
+	    [
+	      {
+	        html: "<p class=' govuk-!-font-size-16'><a href='document-details.html'>tree preservation order A</a></p><p class='govuk-body  govuk-!-font-size-16'>From: Joe Bloggs<br>File type and size : PDF, 97KB</p>"
+	      },
+	      {
+	        text: "1"
+	      },
+	      {
+	        html: "<strong>Uploaded:</strong> 09:48, 22 Mar 2023, Jane Watson"
+	      },
+	      {
+	        text: "Unredacted"
+	      },
+	      {
+	        html: "<a href='#'>Remove</a>"
+	      }
+	    ]
+	  ]
+	}) }}
+	{% endset -%}
+
+
+
+	{{ govukTabs({
+	  items: [
+	    {
+	      label: "Document properties",
+	      id: "past-day",
+	      panel: {
+	        html: pastDayHtml
+	      }
+	    },
+	    {
+	      label: "Document history",
+	      id: "past-week",
+	      panel: {
+	        html: pastWeekHtml
+	      }
+	    }
+	  ]
+	}) }}
+
+
+	</div>
+</div>
+
+
+
+{% endblock %}

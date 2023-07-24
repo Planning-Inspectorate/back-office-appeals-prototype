@@ -1,0 +1,51 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Appellant case due date" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+	    <span class="govuk-caption-l">1. Constraints, designations and other issues</span>
+		<h1 class="govuk-heading-l">Add a new file</h1>
+
+       <form action="/projects/file-upload/B-test/#" method="post" class="govuk-!-margin-top-9" novalidate>
+
+		{{ govukRadios({
+		  name: "choose-file-location",
+		  fieldset: {
+		    legend: {
+		      text: "Which section are you adding add a new file to?",
+		      isPageHeading: false,
+		      classes: "govuk-fieldset__legend--m"
+		    }
+		  },
+		  items: [
+		    {
+		      value: "listed-building",
+		      text: "Listed building"
+		    },
+		    {
+		      value: "tree-preservation-order",
+		      text: "Tree preservation order"
+		    },
+		    {
+		      value: "map-and-statement",
+		      text: "Definitive map and statement"
+		    }
+		   ]
+		}) }}
+
+		{{ govukButton({
+          text: "Continue",
+          href: "add-document"
+        }) }}
+
+	  </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

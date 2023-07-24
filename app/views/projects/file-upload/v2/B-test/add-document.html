@@ -1,0 +1,69 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Add document" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+  	<span class="govuk-caption-l">Add documents</span>
+	   <h1 class="govuk-heading-l">Tree Preservation Order upload</h1>
+
+	  {% set uploadHtml %}
+
+      {{ govukFileUpload({
+        id: "final-documents",
+        name: "final-documents",
+        classes: 'moj-multi-file-upload__input',
+        label: {
+          text: "Upload files",
+          classes: 'govuk-label--m'
+        },
+        hint: {
+          text: 'The files must be a DOC, DOCX, PDF, TIF, JPG or PNG and be smaller than 15MB'
+        },
+        attributes: { multiple: '' }
+      }) }}
+
+      {{govukButton({
+        text: 'Upload file',
+        classes: 'govuk-button--secondary moj-multi-file-upload__button'
+      })}}
+
+    {% endset %}
+
+    {{ mojMultiFileUpload({
+    uploadedFiles: {
+        heading: { text: 'Files added' },
+        items: []
+      },
+      uploadHtml: uploadHtml
+    }) }}
+
+    {{ govukButton({
+      text: "Continue",
+      href: "file-details"
+    }) }}
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block pageScripts %}
+  <script>
+  // I really should learn how the MOJ upload works, however, a hack to get all the files passed into data
+    $('#multiupload').submit(function(e) {
+      e.preventDefault();
+
+      $('.moj-multi-file-upload__filename').each(function() {
+        $('<input name="final-documents" type="checkbox" value="'+ $(this).text() +'" checked="true" style="display: none">').insertBefore('.govuk-heading-l');
+      });
+
+      $(this).unbind('submit').submit();
+    })
+
+
+  </script>
+{% endblock %}

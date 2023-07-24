@@ -1,0 +1,359 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="LPA Questionnaire" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+	{% set html %}
+	  <h3 class="govuk-notification-banner__heading">
+	    Files successfully added
+	  </h3>
+	{% endset %}
+
+	{{ govukNotificationBanner({
+	  html: html,
+	  type: 'success'
+	}) }}
+
+	<span class="govuk-caption-l">Appeal 2110166</span>
+	<h1 class="govuk-heading-l">LPA Questionnaire</h1>
+
+	{{ govukSummaryList({
+	  classes: 'govuk-summary-list--no-border govuk-!-margin-top-6',
+	  rows: [
+	    {
+	      key: {
+	        text: "Appeal site"
+	      },
+	      value: {
+	        text: "Address line 1, Address line 2, Town or city, Postcode"
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Local planning authority"
+	      },
+	      value: {
+	        text: "Council name"
+	      }
+	    }
+	  ]
+	}) }}
+
+
+
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+	{{ govukSummaryList({
+	  card: {
+	    title: {
+	      text: "1. Constraints, designations and other issues"
+	    }
+	  },
+	  rows: [
+	    {
+	      key: {
+	        text: "Listed building"
+	      },
+	      value: {
+	        html: "No"
+	      },
+	      actions: {
+	        items: [
+	          {
+	            href: "#",
+	            text: "Change",
+	            visuallyHiddenText: "Listed building"
+	          }
+	        ]
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Listed building upload"
+	      },
+	      value: {
+	        html: ""
+	      },
+	      actions: {
+	        items: [
+	          {
+	            href: "add-document",
+	            text: "Add",
+	            visuallyHiddenText: "a listed building upload"
+	          }
+	        ]
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Affects a listed building"
+	      },
+	      value: {
+	        html: "No"
+	      },
+	      actions: {
+	        items: [
+	          {
+	            href: "#",
+	            text: "Change",
+	            visuallyHiddenText: "Affects a listed building"
+	          }
+	        ]
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Affects a scheduled monument"
+	      },
+	      value: {
+	        html: "No"
+	      },
+	      actions: {
+	        items: [
+	          {
+	            href: "#",
+	            text: "Change",
+	            visuallyHiddenText: "Affects a scheduled monument"
+	          }
+	        ]
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Conservation area"
+	      },
+	      value: {
+	        html: "In a conservation area"
+	      },
+	      actions: {
+	        items: [
+	          {
+	            href: "#",
+	            text: "Change",
+	            visuallyHiddenText: "Conservation area"
+	          }
+	        ]
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Protected species"
+	      },
+	      value: {
+	        html: "Yes"
+	      },
+	      actions: {
+	        items: [
+	          {
+	            href: "#",
+	            text: "Change",
+	            visuallyHiddenText: "Protected species"
+	          }
+	        ]
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Green belt"
+	      },
+	      value: {
+	        html: "Yes"
+	      },
+	      actions: {
+	        items: [
+	          {
+	            href: "#",
+	            text: "Change",
+	            visuallyHiddenText: "Green belt"
+	          }
+	        ]
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Area of outstanding natural beauty"
+	      },
+	      value: {
+	        html: "Yes"
+	      },
+	      actions: {
+	        items: [
+	          {
+	            href: "#",
+	            text: "Change",
+	            visuallyHiddenText: "Area of outstanding natural beauty"
+	          }
+	        ]
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Designated sites"
+	      },
+	      value: {
+	        html: "
+	        <ul class='govuk-list govuk-list--bullet'>
+		        <li>SSSI (site of special scientific interest)</li>
+				<li>cSAC (candidate special area of conservation)</li>
+				<li>SAC (special area of conservation)</li>
+				<li>pSPA (potential special protection area)</li>
+				<li>SPA Ramsar (Ramsar special protection area)</li>
+				<li>Other</li>
+	        </ul>
+	        "
+	      },
+	      actions: {
+	        items: [
+	          {
+	            href: "#",
+	            text: "Change",
+	            visuallyHiddenText: "Designated sites"
+	          }
+	        ]
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Tree Preservation Order"
+	      },
+	      value: {
+	        html: "yes"
+	      },
+	      actions: {
+	        items: [
+	          {
+	            href: "#",
+	            text: "Change",
+	            visuallyHiddenText: "Tree Preservation Order"
+	          }
+	        ]
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Tree Preservation Order extract"
+	      },
+	      value: {
+	        html: "<ul class='govuk-list govuk-list--bullet govuk-!-font-size-16'>
+		        	<li><a href='/public/downloads/tree-preservation-order-A.pdf'>tree-preservation-order-A.pdf</a></li>
+		        	<li><a href='/public/downloads/tree-preservation-order-A.pdf'>tree-preservation-order-B.pdf</a></li>
+		        </ul>"
+	      },
+	      actions: {
+	        items: [
+	          {
+	            href: "../manage-documents/",
+	            text: "Change",
+	            visuallyHiddenText: "Tree Preservation Order extent"
+	          },
+	          {
+	            href: "add-document",
+	            text: "Add",
+	            visuallyHiddenText: "Tree Preservation Order extent"
+	          }
+	        ]
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Gypsy or traveller"
+	      },
+	      value: {
+	        html: "Yes"
+	      },
+	      actions: {
+	        items: [
+	          {
+	            href: "#",
+	            text: "Change",
+	            visuallyHiddenText: "Gypsy or traveller"
+	          }
+	        ]
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Public right of way"
+	      },
+	      value: {
+	        html: "Yes"
+	      },
+	      actions: {
+	        items: [
+	          {
+	            href: "#",
+	            text: "Change",
+	            visuallyHiddenText: "Public right of way"
+	          }
+	        ]
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Definitive map and statement extract"
+	      },
+	      value: {
+	        html: "<a href='#' class='govuk-!-font-size-16'>right-of-way.pdf</a>"
+	      },
+	      actions: {
+	        items: [
+	          {
+	            href: "#",
+	            text: "Change",
+	            visuallyHiddenText: "Definitive map and statement extract"
+	          }
+	        ]
+	      }
+	    }
+	  ]
+	}) }}
+
+	<p class="govuk-body">(more summary lists would appear here)</p>
+
+
+
+    <form action="/appellant-outcome" method="post" class="govuk-!-margin-top-9" novalidate>
+
+	    <!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
+
+        {{ govukRadios({
+          name: "appelant-outcome",
+          fieldset: {
+            legend: {
+              text: "What’s the outcome of your review?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "complete~/url/complete/",
+              text: "LPA questionnaire is complete"
+            },
+            {
+              value: "incomplete~/url-0/incomplete",
+              text: "LPA questionnaire is incomplete"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+	  </form>
+
+
+  </div>
+</div>
+
+
+{% endblock %}

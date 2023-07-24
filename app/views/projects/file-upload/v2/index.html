@@ -28,8 +28,8 @@
 		{%- from "govuk/components/tag/macro.njk" import govukTag -%}
 
 		{{govukTag({
-          text: "Researched",
-          classes: " govuk-!-margin-left-2 govuk-tag--green"
+          text: "Ready for research",
+          classes: "govuk-!-margin-left-2 govuk-tag--green"
         })}}
 
 		<!-- Status tag options
@@ -95,69 +95,6 @@
     </section>
 
     <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
-
-<section class="govuk-!-margin-bottom-6">
-
-
-	<h2 class="govuk-heading-m">Version 2
-
-		{{govukTag({
-          text: "In progress",
-          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-        })}}
-
-		<!-- Status tag options
-
-		{{govukTag({
-          text: "New",
-          classes: "govuk-!-margin-left-2 govuk-tag--green"
-        })}}
-
-        {{govukTag({
-          text: "In progress",
-          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-        })}}
-
-        {{govukTag({
-          text: "Ready for review",
-          classes: "govuk-!-margin-left-2 govuk-tag--blue"
-        })}}
-
-        {{govukTag({
-          text: "Ready for research",
-          classes: "govuk-!-margin-left-2 govuk-tag--green"
-        })}}
-
-        {{govukTag({
-          text: "Researched",
-          classes: " govuk-!-margin-left-2 govuk-tag--green"
-        })}}
-
-        -->
-
-	</h2>
-
-
-	{{ govukButton({
-	  text: "View prototype",
-	  href: "v2/lpa-questionnaire",
-	  isStartButton: true
-	}) }}
-
-	<p class="govuk-body">Changes:</p>
-
-	<ul class="govuk-list govuk-list--bullet">
-        <li>
-          Rework of file 
-        </li>
-        <li>
-          Multiple copy changes
-        </li>
-      </ul>
-
-
-    </section>
-
 
   </div>
 

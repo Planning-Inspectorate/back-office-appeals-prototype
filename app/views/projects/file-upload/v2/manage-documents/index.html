@@ -24,8 +24,6 @@
 <div class="govuk-grid-row  govuk-!-margin-top-9">
   <div class="govuk-grid-column-full">
 
-	{% from "govuk/components/table/macro.njk" import govukTable %}
-
 	{{ govukTable({
 	  caption: "Uploaded documents",
 	  captionClasses: "govuk-table__caption--m",
@@ -56,7 +54,7 @@
 	        text: "Redacted"
 	      },
 	      {
-	        html: "<p><a href='document-details.html'>Change</a></p>"
+	        html: "<p><a href='document-details-new-v4.html'>Document details</a></p>"
 	      }
 	    ],
 	    [
@@ -70,7 +68,7 @@
 	        text: "Unredacted"
 	      },
 	      {
-	        html: "<p><a href='document-details.html'>Change</a></p>"
+	        html: "<p><a href='document-details-new-v4.html'>Document details</a></p>"
 	      }
 	    ]
 

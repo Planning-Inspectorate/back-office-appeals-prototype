@@ -8,7 +8,7 @@
     <div class="govuk-grid-column-two-thirds">
 
 		<span class="govuk-caption-xl">Appeal 2110166</span>
-		<h1 class="govuk-heading-xl">Assign Case Officer</h1>
+		<h1 class="govuk-heading-xl">Assign this case officer</h1>
 
        <form action="document-details-removed" method="post" class="govuk-!-margin-top-9" novalidate>
 
@@ -18,7 +18,7 @@
 		  name: "is-assigned",
 		  fieldset: {
 		    legend: {
-		      text: "Are you sure you want to assign john.smith2@planninginspectorate.gov.uk as a case officer?",
+		      text: "john.smith2@planninginspectorate.gov.uk",
 		      isPageHeading: false,
 		      classes: "govuk-fieldset__legend--m"
 		    }
@@ -39,7 +39,7 @@
 		{% if (data['is-assigned'] == "yes") %}
 		
 		<div class="govuk-inset-text">
-		  Only one case officer can be assigned to a case. <strong>john.smith@planninginspectorate.gov.uk will be replaced</strong> as the case officer
+		  Only one case officer can be assigned to a case. <strong>john.smith@planninginspectorate.gov.uk</strong> will be replaced as the current case officer.
 		</div>
 		
 		{% endif %}

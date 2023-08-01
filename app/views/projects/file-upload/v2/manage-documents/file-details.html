@@ -46,44 +46,10 @@
 	  ]
 	}) }}
 
-	<hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-
-	<span class="govuk-caption-m">File name</span>
-	<h2 class="govuk-heading-m">tree-preservation-order-B.pdf</h2>
-
-	{{ govukDateInput({
-	  id: "date-recieved",
-	  namePrefix: "date-recieved",
-	  fieldset: {
-	    legend: {
-	      text: "Date recieved"
-	    }
-	  }
-	}) }}
-
-	{{ govukRadios({
-	  name: "redaction",
-	  fieldset: {
-	    legend: {
-	      text: "Redaction"
-	    }
-	  },
-	  items: [
-	    {
-	      value: "redacted",
-	      text: "Redacted"
-	    },
-	    {
-	      value: "unredacted",
-	      text: "Unredacted"
-	    }
-	  ]
-	}) }}
-
 
 	   {{ govukButton({
         text: "Continue",
-        href: "lpa-questionnaire-A-added"
+        href: "document-details-added"
       }) }}
 
 	  </form>

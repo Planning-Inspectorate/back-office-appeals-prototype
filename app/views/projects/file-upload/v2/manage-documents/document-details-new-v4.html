@@ -74,13 +74,23 @@
 	}) }}
 	
 	
-	{{ govukButton({
-	  text: "Upload a new version",
-	  href: "upload-document"
-	}) }}
+	<div class="govuk-button-group">
 		
-	
-	
+		{{ govukButton({
+		  text: "Upload a new version",
+		  href: "upload-document"
+		}) }}
+
+	  {{ govukButton({
+	    text: "Delete this version",
+	    classes: "govuk-button--secondary",
+	    href: "remove-sure"
+	  }) }}
+	  
+	  	  
+	</div>
+
+		
   </div>
 </div>
 

@@ -15,7 +15,7 @@
   <div class="govuk-grid-column-two-thirds">
 
 	<span class="govuk-caption-l">Manage documents</span>
-	<h1 class="govuk-heading-l">Tree Preservation Order uploads</h1>
+	<h1 class="govuk-heading-l">Uploaded tree preservation orders</h1>
 
   </div>
 </div>
@@ -25,8 +25,6 @@
   <div class="govuk-grid-column-full">
 
 	{{ govukTable({
-	  caption: "Uploaded documents",
-	  captionClasses: "govuk-table__caption--m",
 	  firstCellIsHeader: false,
 	  head: [
 	    {
@@ -54,7 +52,7 @@
 	        text: "Redacted"
 	      },
 	      {
-	        html: "<p><a href='document-details-new-v4.html'>View details</a></p>"
+	        html: "<p><a href='document-details-new-v4.html'>View and edit</a></p>"
 	      }
 	    ],
 	    [
@@ -68,7 +66,7 @@
 	        text: "Unredacted"
 	      },
 	      {
-	        html: "<p><a href='document-details-new-v4.html'>View details</a></p>"
+	        html: "<p><a href='document-details-new-v4.html'>View and edit</a></p>"
 	      }
 	    ]
 

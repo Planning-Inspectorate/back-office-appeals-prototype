@@ -48,7 +48,7 @@
 	          {
 	            href: "file-details",
 	            text: "Change",
-	            visuallyHiddenText: "Tree Preservation Order extent"
+	            visuallyHiddenText: "Tree preservation order extent"
 	          }
 	        ]
 	      }
@@ -65,7 +65,7 @@
 	          {
 	            href: "file-details",
 	            text: "Change",
-	            visuallyHiddenText: "Tree Preservation Order extent"
+	            visuallyHiddenText: "Tree preservation order extent"
 	          }
 	        ]
 	      }
@@ -82,6 +82,12 @@
 		}) }}
 
 	  {{ govukButton({
+	    text: "Move",
+	    classes: "govuk-button--secondary",
+	    href: "move-sure"
+	  }) }}
+	  
+	   {{ govukButton({
 	    text: "Remove this version",
 	    classes: "govuk-button--secondary",
 	    href: "remove-sure"

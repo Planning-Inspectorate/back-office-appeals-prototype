@@ -11,7 +11,7 @@
 	  
   {% set html %}
 	  <h3 class="govuk-notification-banner__heading">
-	    Files successfully added
+	    Files added
 	  </h3>
 	{% endset %}
 
@@ -20,7 +20,7 @@
 	  type: 'success'
 	}) }}
 
-	<span class="govuk-caption-l">Uploaded document</span>
+	<span class="govuk-caption-l">Current version</span>
 	<h1 class="govuk-heading-l">tree-preservation-order-A.pdf</h1>	
 	
 	
@@ -81,9 +81,15 @@
 	
 	
 	{{ govukButton({
-	  text: "Upload a new version",
-	  href: "upload-document"
-	}) }}
+		  text: "Upload a new version",
+		  href: "upload-document"
+		}) }}
+	  
+	   {{ govukButton({
+	    text: "Remove this version",
+	    classes: "govuk-button--secondary",
+	    href: "remove-sure"
+	  }) }}
 		
 	
 	
@@ -93,6 +99,11 @@
 
 <div class="govuk-grid-row govuk-!-padding-top-6">
   <div class="govuk-grid-column-full">
+	  
+	  
+	  <h2 class="govuk-heading-m">Document history</h2>
+	  
+	  <p>Version history, remove files, user actions</p>
 	  
 	  
 	  <details class="govuk-details" data-module="govuk-details">

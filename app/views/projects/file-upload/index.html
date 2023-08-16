@@ -20,6 +20,72 @@
     <h1 class="govuk-heading-l">
       File upload
     </h1>
+    
+    <section class="govuk-!-margin-bottom-6">
+
+
+	<h2 class="govuk-heading-m">Version 2
+
+		{{govukTag({
+          text: "Researched",
+          classes: " govuk-!-margin-left-2 govuk-tag--green"
+        })}}
+
+		<!-- Status tag options
+
+		{{govukTag({
+          text: "New",
+          classes: "govuk-!-margin-left-2 govuk-tag--green"
+        })}}
+
+        {{govukTag({
+          text: "In progress",
+          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+        })}}
+
+        {{govukTag({
+          text: "Ready for review",
+          classes: "govuk-!-margin-left-2 govuk-tag--blue"
+        })}}
+
+        {{govukTag({
+          text: "Ready for research",
+          classes: "govuk-!-margin-left-2 govuk-tag--green"
+        })}}
+
+        {{govukTag({
+          text: "Researched",
+          classes: " govuk-!-margin-left-2 govuk-tag--green"
+        })}}
+
+        -->
+
+	</h2>
+
+
+	{{ govukButton({
+	  text: "View prototype",
+	  href: "v2/lpa-questionnaire",
+	  isStartButton: true
+	}) }}
+
+	<p class="govuk-body">Changes:</p>
+
+	<ul class="govuk-list govuk-list--bullet">
+        <li>
+          Rework of view a document layout
+        </li>
+        <li>
+          Multiple copy amends
+        </li>
+      </ul>
+
+
+    </section>
+    
+    
+    <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+
 
     <section class="govuk-!-margin-bottom-6">
 
@@ -94,69 +160,7 @@
 
     </section>
 
-    <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
 
-<section class="govuk-!-margin-bottom-6">
-
-
-	<h2 class="govuk-heading-m">Version 2
-
-		{{govukTag({
-          text: "Ready for research",
-          classes: "govuk-!-margin-left-2 govuk-tag--green"
-        })}}
-
-		<!-- Status tag options
-
-		{{govukTag({
-          text: "New",
-          classes: "govuk-!-margin-left-2 govuk-tag--green"
-        })}}
-
-        {{govukTag({
-          text: "In progress",
-          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-        })}}
-
-        {{govukTag({
-          text: "Ready for review",
-          classes: "govuk-!-margin-left-2 govuk-tag--blue"
-        })}}
-
-        {{govukTag({
-          text: "Ready for research",
-          classes: "govuk-!-margin-left-2 govuk-tag--green"
-        })}}
-
-        {{govukTag({
-          text: "Researched",
-          classes: " govuk-!-margin-left-2 govuk-tag--green"
-        })}}
-
-        -->
-
-	</h2>
-
-
-	{{ govukButton({
-	  text: "View prototype",
-	  href: "v2/lpa-questionnaire",
-	  isStartButton: true
-	}) }}
-
-	<p class="govuk-body">Changes:</p>
-
-	<ul class="govuk-list govuk-list--bullet">
-        <li>
-          Rework of view a document layout
-        </li>
-        <li>
-          Multiple copy amends
-        </li>
-      </ul>
-
-
-    </section>
 
 
   </div>

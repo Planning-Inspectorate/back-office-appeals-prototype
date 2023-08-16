@@ -4,6 +4,15 @@
 	width:auto;
 }
 
+.hmrc-internal-header__logo-link {
+	line-height: 22px !important;
+}
+
+.hmrc-internal-header__logo-link svg {
+	float: none;
+}
+
+
 .app-pi-govuk-header__navigation {
 	
 	.govuk-header__navigation-list {
@@ -17,6 +26,10 @@
 	
 	.hmrc-internal-header__logo {
 		width: 30%;
+	}
+	.hmrc-internal-header__logo-text {
+		width: 50%;
+		font-size: 1.125rem;
 	}
 
 

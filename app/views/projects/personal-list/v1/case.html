@@ -21,12 +21,27 @@
     	<span class="govuk-caption-l">Appeal 2110166</span>
     	<h1 class="govuk-heading-l">Case details</h1>
 
-      {{ govukTag({
-        text: "Ready to start",
-        classes: "govuk-tag--green"
-      })}}
+      {% if data['status'] == 'determination' %}
 
-    	{{ govukSummaryList({
+        {{ govukTag({
+          text: "Issue determination",
+          classes: "govuk-tag--pink"
+        })}}
+
+      {% else %}
+
+        {{ govukTag({
+          text: "Ready to start",
+          classes: "govuk-tag--green"
+        })}}
+
+      {% endif %}
+
+
+      {% include "/includes/appeal-content/lpa-has-appeal-meta.html" %}
+      <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    	<!-- {{ govukSummaryList({
     	  classes: 'govuk-summary-list--no-border govuk-!-margin-top-6',
     	  rows: [
     	    {
@@ -46,7 +61,7 @@
     	      }
     	    }
     	  ]
-    	}) }}
+    	}) }} -->
 
       <div class="govuk-accordion govuk-!-margin-top-9" data-module="govuk-accordion" id="accordion-default">
         <div class="govuk-accordion__section">
@@ -112,6 +127,49 @@
 
     </div>
   </div>
+
+  {% if data['status'] == 'determination' %}
+
+    <form action="" method="post" class="govuk-!-margin-top-6" novalidate>
+
+      <!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
+
+        {{ govukRadios({
+          name: "issue-decision",
+          fieldset: {
+            legend: {
+              text: "Issue your decision",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "allowed~../../issue-decision/v1/decision-date",
+              text: "Allowed"
+            },
+            {
+              value: "dismissed~../../issue-decision/v1/decision-date",
+              text: "Dismissed"
+            },
+            {
+              value: "split~../../issue-decision/v1/decision-date",
+              text: "Split-decision"
+            },
+            {
+              value: "invalid~../../issue-decision/v1/decision-date",
+              text: "Invalid"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+    </form>
+
+  {% endif %}
 
 
 {% endblock %}

@@ -16,6 +16,91 @@
 
     <section class="govuk-!-margin-bottom-6">
 
+      <p class="govuk-body">As a BO user I want to link / unlink appeals so that I can process cases in combination to align the decision process and economise CO/inspector time resource</p>
+       <p>Jira Ticket: <a href="https://pins-ds.atlassian.net/browse/BOATD-25">BOATD-25</a></p>
+
+      <h2 class="govuk-heading-m">Version 2
+        {%- from "govuk/components/tag/macro.njk" import govukTag -%}
+    
+        {{govukTag({
+          text: "In progress",
+          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+        })}}
+    
+        <!-- Status tag options
+    
+        {{govukTag({
+              text: "New",
+              classes: "govuk-!-margin-left-2 govuk-tag--green"
+            })}}
+    
+            {{govukTag({
+              text: "In progress",
+              classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+            })}}
+    
+            {{govukTag({
+              text: "Ready for review",
+              classes: "govuk-!-margin-left-2 govuk-tag--blue"
+            })}}
+    
+            {{govukTag({
+              text: "Ready for research",
+              classes: "govuk-!-margin-left-2 govuk-tag--green"
+            })}}
+    
+            {{govukTag({
+              text: "Researched",
+              classes: " govuk-!-margin-left-2 govuk-tag--green"
+            })}}
+    
+            -->
+    
+    
+      </h2>
+
+      <p class="govuk-body">This version is redesigned based on allowing us to surface appeals stored in Horizon within the Back Office interface.</p>
+    
+
+      <!--
+        <h3 class="govuk-heading-s">Features:</h3>
+	<ul class="govuk-list govuk-list--bullet">
+        <li>
+          ability to link claims
+        </li>
+        <li>
+          ability to set claims as a parent or child
+        </li>
+        <li>
+          ability to unlink claims
+        </li>
+      </ul>
+
+
+      <h3 class="govuk-heading-s">Assumptions:</h3>
+
+      <ul class="govuk-list govuk-list--bullet">
+            <li>
+              That we will be able to tell if a claim ID is for a case in back office or horizon. If it is in back office it will be a hyperlink to the relevant appeal, if it is in Horizon we should leave unlinked and label it as <em>(horizon)</em>.
+            </li>
+          </ul>
+
+          <h3 class="govuk-heading-s">What this doesn't do yet:</h3>
+
+      <ul class="govuk-list govuk-list--bullet">
+            <li>
+              handle multiple linked appeals
+            </li>
+          </ul> -->
+
+          {{ govukButton({
+            text: "View prototype",
+            href: "v2/",
+            isStartButton: true
+          }) }}
+
+          <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
 
 	<h2 class="govuk-heading-m">Version 1
 		{%- from "govuk/components/tag/macro.njk" import govukTag -%}
@@ -57,8 +142,6 @@
 
 	</h2>
 
-	<p class="govuk-body">As a BO user I want to link / unlink appeals so that I can process cases in combination to align the decision process and economise CO/inspector time resource</p>
-  <p>Jira Ticket: <a href="https://pins-ds.atlassian.net/browse/BOATD-25">BOATD-25</a></p>
   
 	<h3 class="govuk-heading-s">Features:</h3>
 

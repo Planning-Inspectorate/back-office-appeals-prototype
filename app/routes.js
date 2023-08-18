@@ -43,3 +43,9 @@ router.use("/:service/v:version", (req, res, next) => {
 		next()
 	}
 })
+
+router.get("/projects/linked-appeals/v2/link-to-appeal-parent", (req, res) => {
+		delete req.session.data.search
+		delete req.session.data.unlinkappeal
+		res.redirect(req.originalUrl.replace("link-to-appeal-parent","link-appeal-parent"))
+})

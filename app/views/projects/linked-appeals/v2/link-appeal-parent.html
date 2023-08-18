@@ -4,20 +4,6 @@
 
 {% block content %}
 
-<script type="text/javascript">
-  // get the URL query string
-  const queryString = window.location.search;
-  console.log(queryString);
-
-  // strip appealid from query string and save
-  const urlParams = new URLSearchParams(queryString);
-  const appealid = urlParams.get('appealid')
-  console.log(appealid);
-
-  // save appealid to session
-  sessionStorage.setItem('appealid', appealid);
-</script>
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 

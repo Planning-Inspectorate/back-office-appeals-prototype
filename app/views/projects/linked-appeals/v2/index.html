@@ -25,11 +25,11 @@
         </div>
     	  <div class="govuk-notification-banner__content"> 
           <p class="govuk-notification-banner__heading">
-            {% if data ['which-appeal-is-the-parent'] === "2110166" %}
+            {% if data ['which-appeal-is-the-parent'] === "Child" %}
             This appeal is now the parent of appeal {{ data ['appealid'] }}
             {% endif %}
 
-            {% if data ['which-appeal-is-the-parent'] === data ['appealid'] %}
+            {% if data ['which-appeal-is-the-parent'] === "Parent" %}
             This appeal is now the child of appeal {{ data ['appealid'] }}
             {% endif %}
           </p>
@@ -46,13 +46,13 @@
       })}}
       {% if data ['unlink-appeal'] === "yes" %}
       {% elseif data ['appealid'] %}
-          {% if data ['which-appeal-is-the-parent'] === "2110166" %}
+          {% if data ['which-appeal-is-the-parent'] === "Child" %}
           {{ govukTag({
             text: "Parent appeal",
             classes: "govuk-tag--grey"
           })}}
           {% endif %}
-          {% if data ['which-appeal-is-the-parent'] === data ['appealid'] %}
+          {% if data ['which-appeal-is-the-parent'] === "Parent" %}
           {{ govukTag({
             text: "Child appeal",
             classes: "govuk-tag--grey"
@@ -89,7 +89,7 @@
               <a href="link-appeal-search">Add a linked appeal</a>
             </dd>    
           </div>
-        {% elseif data ['which-appeal-is-the-parent'] === "2110166" %}
+        {% elseif data ['which-appeal-is-the-parent'] === "Child" %}
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
                 Child appeals
@@ -102,7 +102,7 @@
                 <a href="#">View<span class="govuk-visually-hidden"> appeal {{ data ['appealid'] }}</span></a> | <a href="unlink-appeal.html">Unlink<span class="govuk-visually-hidden"> appeal {{ data ['appeal-id'] }} from 2110166</span></a>
               </dd> 
             </div>
-        {% elseif data ['appealid'] and data ['which-appeal-is-the-parent'] === data ['appealid'] %}
+        {% elseif data ['appealid'] and data ['which-appeal-is-the-parent'] === "Parent" %}
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
                 Parent appeal

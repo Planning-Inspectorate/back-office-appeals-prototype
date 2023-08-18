@@ -99,26 +99,27 @@
 </header>
 
 
-<!-- ACCOUNT MENU -->
+<!-- Sub MENU -->
 <div class="govuk-width-container">
 	
 
 {{ mojSubNavigation({
   label: 'Sub navigation',
   items: [
-    {
-    text: 'National list',
-    href: 'national-list?list=national',
-    active: data['list'] == 'national'
-  },
-{
-    text: 'My tasks',
-    href: 'index?list=personal',
-    active: data['list'] == 'personal'
-  }
+	
+	{
+	    text: 'Assigned to me',
+	    href: 'index?list=personal',
+	    active: data['list'] == 'personal'
+	  },
+	  {
+	    text: 'National list',
+	    href: 'national-list?list=national',
+	    active: data['list'] == 'national'
+	  }
     ]
 }) }}
 
 
 </div>
-<!-- END ACCOUNT MENU -->
+<!-- END SUB MENU -->

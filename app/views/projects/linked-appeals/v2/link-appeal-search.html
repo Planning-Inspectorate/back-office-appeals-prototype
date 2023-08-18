@@ -9,22 +9,25 @@
 
     	<span class="govuk-caption-l">Appeal 2110166</span>
 
+      <h1 class="govuk-heading-l">Linking an appeal</h1>
 
-      {{ govukInput({
-        label: {
-          text: "Search for an appeal",
-          classes: "govuk-label--m",
-          isPageHeading: false
-        },
-        classes: "",
-        hint: {
-          text: "Enter appeal ID or postcode"
-        },
-        id: "account-number",
-        name: "account-number",
-        inputmode: "numeric",
-        spellcheck: false
-      }) }}
+      <form action="link-appeal-search" method="post">
+        {{ govukInput({
+          label: {
+            text: "Search appeals",
+            classes: "govuk-label--m",
+            isPageHeading: false
+          },
+          classes: "",
+          hint: {
+            text: "Enter appeal ID or postcode"
+          },
+          id: "search",
+          name: "search",
+          inputmode: "numeric",
+          value: data ['search'],
+          spellcheck: false
+        }) }}
     
       <div class="govuk-button-group">
         <button class="govuk-button" data-module="govuk-button">
@@ -32,14 +35,51 @@
         </button>
       </div>
       
+    </form>
+
       <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
-      <form action="link-appeal-parent" method="post">
-    	
-    </form>
+
 
     </div>
   </div>
 
+  {% if data ['search'] %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <h2 class="govuk-heading-m">Results</h2>
+  
+      {% include "projects/linked-appeals/v2/includes/linking-list-table.html" %}
+  
+    {{ govukPagination({
+      previous: {
+        href: "#"
+      },
+      next: {
+        href: "#"
+      },
+      items: [
+        {
+          number: 1,
+          current: true,
+          href: "#"
+        },
+        {
+          number: 2,
+          href: "#"
+        },
+        {
+          number: 3,
+          href: "#"
+        }
+      ]
+    }) }}
+  
+    </div>
+  </div>
+
+  {% endif %}
 
 {% endblock %}

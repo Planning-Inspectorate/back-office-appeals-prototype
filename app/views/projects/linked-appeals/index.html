@@ -17,7 +17,9 @@
     <section class="govuk-!-margin-bottom-6">
 
       <p class="govuk-body">As a BO user I want to link / unlink appeals so that I can process cases in combination to align the decision process and economise CO/inspector time resource</p>
-       <p>Jira Ticket: <a href="https://pins-ds.atlassian.net/browse/BOATD-25">BOATD-25</a></p>
+       <p><strong>Jira Ticket:</strong> <a href="https://pins-ds.atlassian.net/browse/BOATD-25">BOATD-25</a></p>
+
+       <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
       <h2 class="govuk-heading-m">Version 2
         {%- from "govuk/components/tag/macro.njk" import govukTag -%}
@@ -62,7 +64,6 @@
       <p class="govuk-body">This version is redesigned based on allowing us to surface appeals stored in Horizon within the Back Office interface.</p>
     
 
-      <!--
         <h3 class="govuk-heading-s">Features:</h3>
 	<ul class="govuk-list govuk-list--bullet">
         <li>
@@ -81,7 +82,13 @@
 
       <ul class="govuk-list govuk-list--bullet">
             <li>
-              That we will be able to tell if a claim ID is for a case in back office or horizon. If it is in back office it will be a hyperlink to the relevant appeal, if it is in Horizon we should leave unlinked and label it as <em>(horizon)</em>.
+              That we can display the data in the search table for claims in both back office and horizon.
+            </li>
+            <li>
+              That if the case officer needs more information than in the search table they will click to view the appeal or manually check horizon.
+            </li>
+            <li>
+              That not linking the appeal id is sufficient to indicate that the appeal is in horizon rather than back office.
             </li>
           </ul>
 
@@ -91,7 +98,7 @@
             <li>
               handle multiple linked appeals
             </li>
-          </ul> -->
+          </ul> 
 
           {{ govukButton({
             text: "View prototype",

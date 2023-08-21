@@ -1,0 +1,189 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Case details" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+    	{% set html %}
+    	  <p class="govuk-notification-banner__heading">
+    	    The appeal is ready for review
+    	  </p>
+    	  <p>
+          <a class="govuk-notification-banner__link" href="appellant-case.html">
+            Start the review
+          </a>
+        </p>
+    	{% endset %}
+
+    	<span class="govuk-caption-l">Appeal 2110166</span>
+    	<h1 class="govuk-heading-xl">Case details</h1>
+
+      {% if data['status'] == 'ready-to-start' %}
+
+        {{ govukTag({
+          text: "Ready to start",
+          classes: "govuk-tag--green"
+        })}}
+
+      {% elif data['status'] == 'lpa-questionnaire' %}
+
+        {{ govukTag({
+          text: "LPA questionnaire",
+          classes: "govuk-tag--yellow"
+        })}}
+
+      {% elif data['status'] == 'statement-review' %}
+
+        {{ govukTag({
+          text: "Statement review",
+          classes: "govuk-tag--orange"
+        })}}
+
+      {% elif data['status'] == 'final-comment-review' %}
+
+        {{ govukTag({
+          text: "Final comment review",
+          classes: "govuk-tag--purple"
+        })}}
+
+      {% elif data['status'] == 'site-visit' %}
+
+        {{ govukTag({
+          text: "Site review",
+          classes: "govuk-tag--blue"
+        })}}
+
+      {% elif data['status'] == 'determination' %}
+
+        {{ govukTag({
+          text: "Issue determination",
+          classes: "govuk-tag--pink"
+        })}}
+
+      {% else %}
+
+        {{ govukTag({
+          text: "Complete",
+          classes: "govuk-tag--blue"
+        })}}
+
+      {% endif %}
+
+      {% include "/includes/appeal-content/lpa-has-appeal-meta.html" %}
+      <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+      {% if data['status'] == 'determination' %}
+
+        <form action="" method="post" class="govuk-!-margin-top-6" novalidate>
+
+          <!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
+
+            {{ govukRadios({
+              name: "issue-decision",
+              fieldset: {
+                legend: {
+                  text: "Issue your decision",
+                  isPageHeading: true,
+                  classes: "govuk-fieldset__legend--m"
+                }
+              },
+              items: [
+                {
+                  value: "allowed~../../issue-decision/v1/decision-date",
+                  text: "Allowed"
+                },
+                {
+                  value: "dismissed~../../issue-decision/v1/decision-date",
+                  text: "Dismissed"
+                },
+                {
+                  value: "split~../../issue-decision/v1/decision-date",
+                  text: "Split-decision"
+                },
+                {
+                  value: "invalid~../../issue-decision/v1/decision-date",
+                  text: "Invalid"
+                }
+              ]
+            }) }}
+
+            {{ govukButton({
+              text: "Continue"
+            }) }}
+
+        </form>
+        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+      {% endif %}
+
+
+
+    	<!-- {{ govukSummaryList({
+    	  classes: 'govuk-summary-list--no-border govuk-!-margin-top-6',
+    	  rows: [
+    	    {
+    	      key: {
+    	        text: "Site address"
+    	      },
+    	      value: {
+    	        text: "Address line 1, Address line 2, Town or city, Postcode"
+    	      }
+    	    },
+    	    {
+    	      key: {
+    	        text: "Local planning authority"
+    	      },
+    	      value: {
+    	        text: "Council name"
+    	      }
+    	    }
+    	  ]
+    	}) }} -->
+
+      <h2 class='govuk-heading-l'>
+        Case overview
+      </h2>
+
+      {% include "/includes/audit/case-overview-table.html" %}
+
+      <h2 class='govuk-heading-l'>
+        Case timetable
+      </h2>
+
+      <!-- {{ govukInsetText({
+        html: "<p class='govuk-body'>Case not started</p><p><a href='appellant-case.html'>Start the review</a></p>"
+      }) }} -->
+
+      {% include "/includes/appeal-content/case-timetable.html" %}
+
+      <h2 class='govuk-heading-l'>
+        Case documentation
+      </h2>
+
+    </div>
+    <div class="govuk-grid-column-one-half">
+
+      {% include "/includes/appeal-content/case-documentation-table.html" %}
+
+    </div>
+    <div class="govuk-grid-column-two-thirds">
+
+      <h2 class='govuk-heading-l'>
+        Case team
+      </h2>
+
+      {% include "/includes/audit/case-team-table.html" %}
+
+    	<h3 class="govuk-heading-m govuk-!-margin-top-9">
+        Audit history
+      </h3>
+    	<p class="govuk-body">
+        <a href="history">View changes</a> that have been made to this account
+      </p>
+
+    </div>
+  </div>
+
+{% endblock %}

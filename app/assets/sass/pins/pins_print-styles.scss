@@ -1,0 +1,43 @@
+/* Print Styles */
+@media print {
+  * {
+	  background: transparent !important;
+	  box-shadow: none !important;
+	  color: #000 !important;
+	  text-shadow: none !important;
+  }
+
+	.header,
+	.govuk-phase-banner,
+	.govuk-back-link,
+	.hr,
+	.govuk-button--secondary,
+	.footer {
+		display: none;
+	}
+
+	#main-content {
+		margin-bottom: 2rem;
+		border: none;
+	}
+
+	@page {
+		size: auto;   /* auto is the initial value */
+    margin: 0;  /* this affects the margin in the printer settings */
+	}
+
+	@page :first {
+		margin-top: 2cm;
+	}
+
+ 	h2, ul {
+ 		page-break-after: avoid;
+		font-size: 24pt;
+	}
+
+  p, ul {
+	  orphans: 3;
+	  widows: 3;
+	  font-size: 14pt;
+  }
+}

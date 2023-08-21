@@ -4,14 +4,15 @@
 //
 
 @import "PINS-header";
+@import "pins/pins_tables";
 
 // Add extra styles here
 
 
 .pins-masthead {
-	
+
 	background: $govuk-brand-colour;
-	
+
 	h1 {
 		color: #fff;
 	}
@@ -22,37 +23,37 @@
 	border-top:4px solid $govuk-brand-colour;
 	padding: 1em;
 	@include govuk-responsive-margin(6, "bottom");
-	
+
 	@include govuk-media-query($from: tablet) {
 		display: flex;
 		flex-direction: row;
 	}
-	
+
 	.govuk-form-group {
 		@include govuk-media-query($from: tablet) {
 			flex: 1;
 			}
-		
+
 	}
-	
+
 	.govuk-button {
-		
+
 		@include govuk-media-query($from: tablet) {
 			margin-top: 4.2em;
 			margin-left: 1em;
 		}
 	}
-	
+
 	&.no-border {
 		border: none;
 		padding: 0;
-		
+
 		.govuk-button {
 			margin-top: 2.1em
 		}
 	}
-	
-	
+
+
 }
 
 // Modify the moj multi upload drop styles

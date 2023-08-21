@@ -8,31 +8,6 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
 {# Add a configurable back link to each page #}
 {% block beforeContent %}
 
-	{# Subnavigation for the back office #}
-	{# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ #}
-
-	{% block subNav %}
-
-		{%- from "moj/components/sub-navigation/macro.njk" import mojSubNavigation -%}
-
-		{{ mojSubNavigation({
-			label: 'Sub navigation',
-			items: [
-				{
-				text: 'National list',
-				href: '/projects/personal-list/v2/national-list?list=national',
-				active: data['list'] == 'national'
-			},
-		{
-				text: 'My tasks',
-				href: '/projects/personal-list/v2/?list=personal',
-				active: data['list'] == 'personal'
-			}
-				]
-		}) }}
-
-	{% endblock %}
-
 	{# Add a back link block to just override that and not the phase banner #}
 	{# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ #}
 

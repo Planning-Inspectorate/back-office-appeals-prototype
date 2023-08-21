@@ -16,64 +16,98 @@
 
     <section class="govuk-!-margin-bottom-6">
 
+      <h2 class="govuk-heading-m">
+        Version 2
 
-	<h2 class="govuk-heading-m">Version 1
+      {{govukTag({
+        text: "In progress",
+        classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+      })}}
+
+      </h2>
+
+      <p class="govuk-body">
+        Different appeal states for different statuses.
+      </p>
+
+      {{ govukButton({
+        text: "View prototype",
+        href: "v2/",
+        isStartButton: true
+      }) }}
+
+
+	  <h2 class="govuk-heading-m">
+      Version 1
 
 		{{govukTag({
-          text: "Ready for research",
-          classes: "govuk-!-margin-left-2 govuk-tag--green"
-        })}}
+      text: "Ready for research",
+      classes: "govuk-!-margin-left-2 govuk-tag--green"
+    })}}
 
 		<!-- Status tag options
 
 		{{govukTag({
-          text: "New",
-          classes: "govuk-!-margin-left-2 govuk-tag--green"
-        })}}
+      text: "New",
+      classes: "govuk-!-margin-left-2 govuk-tag--green"
+    })}}
 
-        {{govukTag({
-          text: "In progress",
-          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-        })}}
+    {{govukTag({
+      text: "In progress",
+      classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+    })}}
 
-        {{govukTag({
-          text: "Ready for review",
-          classes: "govuk-!-margin-left-2 govuk-tag--blue"
-        })}}
+    {{govukTag({
+      text: "Ready for review",
+      classes: "govuk-!-margin-left-2 govuk-tag--blue"
+    })}}
 
-        {{govukTag({
-          text: "Ready for research",
-          classes: "govuk-!-margin-left-2 govuk-tag--green"
-        })}}
+    {{govukTag({
+      text: "Ready for research",
+      classes: "govuk-!-margin-left-2 govuk-tag--green"
+    })}}
 
-        {{govukTag({
-          text: "Researched",
-          classes: " govuk-!-margin-left-2 govuk-tag--green"
-        })}}
+    {{govukTag({
+      text: "Researched",
+      classes: " govuk-!-margin-left-2 govuk-tag--green"
+    })}}
 
-        -->
+    -->
 
+    </h2>
 
-	</h2>
+    <p class="govuk-body">
+      I want to view my personal list so that I can see all the cases that are assigned to me
+    </p>
 
-	<p class="govuk-body">I want to view my personal list so that I can see all the cases that are assigned to me</p>
+  	{{ govukButton({
+  	  text: "View prototype",
+  	  href: "v1/",
+  	  isStartButton: true
+  	}) }}
 
-	{{ govukButton({
-	  text: "View prototype",
-	  href: "v1/",
-	  isStartButton: true
-	}) }}
-	
-	
-	<p>Shortcut's:</p>
-	<ul class="govuk-list govuk-list--bullet">
-        <li>
-          <a href="v1/">Standalone list</a>
-          <ul>
-	          <li><a href="v1/index-status">With document status</a></li>
-	          <li><a href="v1/index-status-action">With document status + action</a></li>
-          </ul>
-        </li>
+    <p>
+      Shortcut’s:
+    </p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>
+        <a href="v1/">
+          Standalone list
+        </a>
+        <ul>
+          <li>
+            <a href="v1/index-status">
+              With document status
+            </a>
+          </li>
+	        <li>
+            <a href="v1/index-status-action">
+              With document status + action
+            </a>
+          </li>
+        </ul>
+
         <li>
           <a href="v1/cases-search-asis">Cases search (as is view)</a>
         </li>
@@ -81,10 +115,15 @@
           <a href="v1/personal-list-mix">Mixed with national list - Radio button filter</a>
         </li>
         <li>
-          <a href="v1/personal-list-mix-tabs">Mixed with national list - Tabs</a>
-          
+          <a href="v1/personal-list-mix-tabs">
+            Mixed with national list - Tabs
+          </a>
           <ul>
-	          <li><a href="v1/personal-list-mix-tabs-search-res">Search results</a></li>
+	          <li>
+              <a href="v1/personal-list-mix-tabs-search-res">
+                Search results
+              </a>
+            </li>
           </ul>
         </li>
       </ul>

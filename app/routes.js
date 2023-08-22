@@ -49,3 +49,9 @@ router.get("/projects/linked-appeals/v2/link-to-appeal-parent", (req, res) => {
 		delete req.session.data.unlinkappeal
 		res.redirect(req.originalUrl.replace("link-to-appeal-parent","link-appeal-parent"))
 })
+
+router.get("/projects/linked-appeals/v3/link-to-appeal-parent", (req, res) => {
+	delete req.session.data.search
+	delete req.session.data.unlinkappeal
+	res.redirect(req.originalUrl.replace("link-to-appeal-parent","link-appeal-parent"))
+})

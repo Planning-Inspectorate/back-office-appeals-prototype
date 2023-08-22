@@ -11,7 +11,7 @@
 	  
   {% set html %}
 	  <h3 class="govuk-notification-banner__heading">
-	    File removed
+	    Document removed
 	  </h3>
 	{% endset %}
 
@@ -21,10 +21,12 @@
 	}) }}
 
 	<span class="govuk-caption-l">Uploaded document</span>
-	<h1 class="govuk-heading-l">tree-preservation-order-A.pdf</h1>	
+	<h1 class="govuk-heading-l">tree-preservation-order-A.pdf</h1>
 	
 	
-	{{ govukSummaryList({
+	
+	
+		{{ govukSummaryList({
 	  classes: 'govuk-summary-list',
 	  rows: [
 	    {
@@ -47,13 +49,13 @@
 	        text: "Date received"
 	      },
 	      value: {
-	        html: "1 Feb 2023 <a href='document-details' class='govuk-!-padding-left-4'>Change</a>"
+	        html: "1 Feb 2023"
 	      },
 	      actions: {
 	        items: [
 	          {
-	            href: "../add-document",
-	            text: "",
+	            href: "file-details",
+	            text: "Change",
 	            visuallyHiddenText: "Tree preservation order extent"
 	          }
 	        ]
@@ -64,13 +66,13 @@
 	        text: "Redaction"
 	      },
 	      value: {
-	        html: "Unredacted <a href='document-details' class='govuk-!-padding-left-4'>Change</a>"
+	        html: "Unredacted"
 	      },
 	      actions: {
 	        items: [
 	          {
-	            href: "../add-document",
-	            text: "",
+	            href: "file-details",
+	            text: "Change",
 	            visuallyHiddenText: "Tree preservation order extent"
 	          }
 	        ]
@@ -80,16 +82,8 @@
 	}) }}
 	
 	
-	{{ govukButton({
-		  text: "Upload a new version",
-		  href: "upload-document"
-		}) }}
-	  
-	   {{ govukButton({
-	    text: "Remove this version",
-	    classes: "govuk-button--secondary",
-	    href: "remove-sure"
-	  }) }}
+	{% include "projects/file-upload/v2/manage-documents/includes/document-actions.html" %} 
+	
 		
 	  </div>
 </div>
@@ -114,10 +108,10 @@
 	  classes : " govuk-!-font-size-16",
 	  head: [
 	    {
-	      text: "Document name"
+	      text: "Version"
 	    },
 	    {
-	      text: "Version"
+	      text: "Document name"
 	    },
 	    {
 	      text: "Activity"
@@ -132,10 +126,10 @@
 	  rows: [
 	    [
 	      {
-	        html: "<p class='govuk-!-font-size-16'>tree-preservation-order-A.pdf</p>"
+	        html: "4"
 	      },
 	      {
-	        html: "4"
+	        html: "<p class='govuk-!-font-size-16'>tree-preservation-order-A.pdf</p>"
 	      },
 	      {
 	        html: "<p class='govuk-!-font-size-16'><strong>Removed:</strong> 10:01, 23 Mar 2023, John Smith</p>
@@ -150,10 +144,10 @@
 	    ],
 	    [
 	      {
-	        html: "<p class='govuk-!-font-size-16'><a href='manage-documents/document-details.html'>tree-preservation-order-A.pdf</a></p><p><strong class='govuk-tag govuk-tag--grey'>Current version</strong></p>"
+	        text: "3"
 	      },
 	      {
-	        text: "3"
+	        html: "<p class='govuk-!-font-size-16'><a href='manage-documents/document-details.html'>tree-preservation-order-A.pdf</a></p><p><strong class='govuk-tag govuk-tag--grey'>Current version</strong></p>"
 	      },
 	      {
 	        html: "<strong>Uploaded:</strong> 09:48, 22 Mar 2023, <br>by Jane Watson"
@@ -166,13 +160,13 @@
 	      }
 	    ],
 	    [
-	      {
-	        html: "<p class=' govuk-!-font-size-16'><a href='document-details.html'>tree-preservation-order-A.pdf</a></p>"
-	      },
 	      {
 	        text: "2"
 	      },
 	      {
+	        html: "<p class=' govuk-!-font-size-16'><a href='document-details.html'>tree-preservation-order-A.pdf</a></p>"
+	      },
+	      {
 	        html: "<strong>Uploaded:</strong> 09:48, 22 Mar 2023, <br>by Jane Watson"
 	      },
 	      {
@@ -184,10 +178,10 @@
 	    ],
 	    [
 	      {
-	        html: "<p class=' govuk-!-font-size-16'><a href='document-details.html'>tree-preservation-order-A.pdf</a></p>"
+	        text: "1"
 	      },
 	      {
-	        text: "1"
+	        html: "<p class=' govuk-!-font-size-16'><a href='document-details.html'>tree-preservation-order-A.pdf</a></p>"
 	      },
 	      {
 	        html: "<strong>Uploaded:</strong> 09:48, 22 Mar 2023, <br>by Jane Watson"

@@ -11,7 +11,7 @@
 	  
   {% set html %}
 	  <h3 class="govuk-notification-banner__heading">
-	    Files added
+	    Document added
 	  </h3>
 	{% endset %}
 
@@ -80,17 +80,7 @@
 	}) }}
 	
 	
-	{{ govukButton({
-		  text: "Upload a new version",
-		  href: "upload-document"
-		}) }}
-	  
-	   {{ govukButton({
-	    text: "Remove this version",
-	    classes: "govuk-button--secondary",
-	    href: "remove-sure"
-	  }) }}
-		
+	{% include "projects/file-upload/v2/manage-documents/includes/document-actions.html" %} 		
 	
 	
   </div>

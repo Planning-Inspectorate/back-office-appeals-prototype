@@ -1,0 +1,215 @@
+{% extends "layouts/PINS-SUB.html" %}
+
+{% set pageName="Personal list" %}
+
+{% set back = false %}
+
+{% block header %}
+	{% include "includes/PINS-header-simple.html" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+  <h1 class="govuk-heading-l">Cases assigned to you</h1>
+
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-three-quarters">
+
+		<table class="govuk-table">
+		  <thead class="govuk-table__head">
+		    <tr class="govuk-table__row">
+		      <th scope="col" class="govuk-table__header">Appeal ID</th>
+		      <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Due by</th>
+		      <th scope="col" class="govuk-table__header govuk-table__header--numeric">Due in</th>
+		      <th scope="col" class="govuk-table__header govuk-!-width-one-third">Status</th>
+		      <!-- <th scope="col" class="govuk-table__header">Document status</th> -->
+
+		    </tr>
+		  </thead>
+		  <tbody class="govuk-table__body">
+		    <tr class="govuk-table__row">
+		      <th scope="row" class="govuk-table__header">
+		        <a href="case.html?status=ready-to-start">
+		          <span class="govuk-visually-hidden">View appeal </span>
+		          2110166
+		        </a>
+		      </th>
+		      <td class="govuk-table__cell">
+		        {{ 2 | daysInFuture }}
+		      </td>
+		      <td class="govuk-table__cell govuk-table__cell--numeric">
+		        2 days
+		      </td>
+		      <td class="govuk-table__cell">
+		        <strong class="govuk-tag govuk-tag--green">
+		          Ready to start
+		        </strong>
+		      </td>
+		    </tr>
+		    <tr class="govuk-table__row">
+		      <th scope="row" class="govuk-table__header">
+		        <a href="case.html?status=ready-to-start">
+		          <span class="govuk-visually-hidden">View appeal </span>
+		          2110165
+		        </a>
+		      </th>
+		      <td class="govuk-table__cell">
+		        {{ 3 | daysInFuture }}
+		      </td>
+		      <td class="govuk-table__cell govuk-table__cell--numeric">
+		        3 days
+		      </td>
+		      <td class="govuk-table__cell">
+		        <strong class="govuk-tag govuk-tag--green">
+		          Review new appeal
+		        </strong>
+		      </td>
+		    </tr>
+		    <tr class="govuk-table__row">
+		      <th scope="row" class="govuk-table__header">
+		        <a href="case.html?status=lpa-questionnaire">
+		          <span class="govuk-visually-hidden">View appeal </span>
+		          2110167
+		        </a>
+		      </th>
+		      <td class="govuk-table__cell">
+		        {{ 3 | daysInFuture }}
+		      </td>
+		      <td class="govuk-table__cell govuk-table__cell--numeric">
+		        3 days
+		      </td>
+		      <td class="govuk-table__cell">
+		        <strong class="govuk-tag govuk-tag--green">
+		          Review LPA questionnaire
+		        </strong>
+		      </td>
+		    </tr>
+		    <tr class="govuk-table__row">
+		      <th scope="row" class="govuk-table__header">
+		        <a href="case.html?status=awaiting-statement">
+		          <span class="govuk-visually-hidden">View appeal </span>
+		          2110153
+		        </a>
+		      </th>
+		      <td class="govuk-table__cell">
+		        {{ 5 | daysInFuture }}
+		      </td>
+		      <td class="govuk-table__cell govuk-table__cell--numeric">
+		        5 days
+		      </td>
+		      <td class="govuk-table__cell">
+		        <strong class="govuk-tag govuk-tag--yellow">
+		          Awaiting stament
+		        </strong>
+		      </td>
+		    </tr>
+		    <tr class="govuk-table__row">
+		      <th scope="row" class="govuk-table__header">
+		        <a href="case.html?status=awaiting-statement">
+		          <span class="govuk-visually-hidden">View appeal </span>
+		          2110162
+		        </a>
+		      </th>
+		      <td class="govuk-table__cell">
+		        {{ 8 | daysInFuture }}
+		      </td>
+		      <td class="govuk-table__cell govuk-table__cell--numeric">
+		        8 days
+		      </td>
+		      <td class="govuk-table__cell">
+		        <strong class="govuk-tag govuk-tag--yellow">
+		          Awaiting statement
+		        </strong>
+		      </td>
+		    </tr>
+		    <tr class="govuk-table__row">
+		      <th scope="row" class="govuk-table__header">
+		        <a href="case.html?status=determination">
+		          <span class="govuk-visually-hidden">View appeal </span>
+		          2110159
+		        </a>
+		      </th>
+		      <td class="govuk-table__cell">
+		        {{ 12 | daysInFuture }}
+		      </td>
+		      <td class="govuk-table__cell govuk-table__cell--numeric">
+		        12 days
+		      </td>
+		      <td class="govuk-table__cell">
+		        <strong class="govuk-tag govuk-tag--green">
+		          Make a determination
+		        </strong>
+		      </td>
+		    </tr>
+		    <tr class="govuk-table__row">
+		      <th scope="row" class="govuk-table__header">
+		        <a href="case.html?status=site-visit">
+		          <span class="govuk-visually-hidden">View appeal </span>
+		          2110160
+		        </a>
+		      </th>
+		      <td class="govuk-table__cell">
+		        {{ 12 | daysInFuture }}
+		      </td>
+		      <td class="govuk-table__cell govuk-table__cell--numeric">
+		        12 days
+		      </td>
+		      <td class="govuk-table__cell">
+		        <strong class="govuk-tag govuk-tag--blue">
+		          Upcoming site visit
+		        </strong>
+		      </td>
+		    </tr>
+		    <tr class="govuk-table__row">
+		      <th scope="row" class="govuk-table__header">
+		        <a href="case.html?status=site-visit">
+		          <span class="govuk-visually-hidden">View appeal </span>
+		          2110161
+		        </a>
+		      </th>
+		      <td class="govuk-table__cell">
+		        {{ 12 | daysInFuture }}
+		      </td>
+		      <td class="govuk-table__cell govuk-table__cell--numeric">
+		        12 days
+		      </td>
+		      <td class="govuk-table__cell">
+		        <strong class="govuk-tag govuk-tag--blue">
+		          Upcoming site visit
+		        </strong>
+		      </td>
+		    </tr>
+		    <tr class="govuk-table__row">
+		      <th scope="row" class="govuk-table__header">
+		        <a href="case.html?status=final-comment-review">
+		          <span class="govuk-visually-hidden">View appeal </span>
+		          2110158
+		        </a>
+		      </th>
+		      <td class="govuk-table__cell">
+		        {{ 12 | daysInFuture }}
+		      </td>
+		      <td class="govuk-table__cell govuk-table__cell--numeric">
+		        12 days
+		      </td>
+		      <td class="govuk-table__cell">
+		        <strong class="govuk-tag govuk-tag--green">
+		          Review final comments
+		        </strong>
+		      </td>
+		    </tr>
+
+		  </tbody>
+		</table>
+
+
+  </div>
+</div>
+
+{% endblock %}

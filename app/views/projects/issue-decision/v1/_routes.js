@@ -9,13 +9,14 @@ router.get('*', function(req, res, next){
 })
 
 
-router.post('/decision-date', function (req, res) {
-  res.redirect('upload-decision')
+router.post('/upload-decision', function (req, res) {
+  res.redirect('decision-date')
 })
 
-router.post('/upload-decision', function (req, res) {
+router.post('/decision-date', function (req, res) {
   res.redirect('check-your-answers')
 })
+
 
 router.post('/check-your-answers', function (req, res) {
   res.redirect('confirmation')

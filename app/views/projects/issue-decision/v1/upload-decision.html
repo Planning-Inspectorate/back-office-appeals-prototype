@@ -6,12 +6,20 @@
 
 {% block questions %}
 
-  {% include "/includes/appeal-content/lpa-has-appeal-meta.html" %}
-  <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-
+  <span class="govuk-caption-l">
+    Appeal 2110166
+  </span>
   <h1 class="govuk-heading-l">
     {{ title }}
   </h1>
+
+  {{ govukTag({
+    text: "Issue determination",
+    classes: "govuk-tag--pink"
+  })}}
+
+  {% include "/includes/appeal-content/lpa-has-appeal-meta.html" %}
+  <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
   <!-- <p class="govuk-body">
     Before uploading your decision check the following things on the letter:

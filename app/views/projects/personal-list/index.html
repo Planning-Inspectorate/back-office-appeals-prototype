@@ -14,41 +14,6 @@
       Personal list
     </h1>
 
-    <section class="govuk-!-margin-bottom-6">
-
-      <h2 class="govuk-heading-m">
-        Version 2
-
-      {{govukTag({
-        text: "In progress",
-        classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-      })}}
-
-      </h2>
-
-      <p class="govuk-body">
-        Changes include:
-      </p>
-
-      <ul class="govuk-list govuk-list--bullet">
-        <li>
-          simplified header
-        </li>
-        <li>
-          subnav toggles between national and personal list
-        </li>
-        <li>
-          simple tag colours, based on actions
-        </li>
-      </ul>
-
-      {{ govukButton({
-        text: "View prototype",
-        href: "v2/",
-        isStartButton: true
-      }) }}
-
-
 	  <h2 class="govuk-heading-m">
       Version 1
 
@@ -97,63 +62,64 @@
   	  href: "v1/",
   	  isStartButton: true
   	}) }}
-  	
-  	
+
+
   	<details class="govuk-details" data-module="govuk-details">
-	  <summary class="govuk-details__summary">
-	    <span class="govuk-details__summary-text">
-	      Archive
-	    </span>
-	  </summary>
-	  <div class="govuk-details__text">
-	
-    <p>
-      Shortcut’s:
-    </p>
+  	  <summary class="govuk-details__summary">
+  	    <span class="govuk-details__summary-text">
+  	      Archive
+  	    </span>
+  	  </summary>
+  	  <div class="govuk-details__text">
+        <p>
+          Shortcut’s:
+        </p>
 
-    <ul class="govuk-list govuk-list--bullet">
-      <li>
-        <a href="v1/">
-          Standalone list
-        </a>
-        <ul>
+        <ul class="govuk-list govuk-list--bullet">
           <li>
-            <a href="v1/index-status">
-              With document status
+            <a href="v1/">
+              Standalone list
             </a>
-          </li>
-	        <li>
-            <a href="v1/index-status-action">
-              With document status + action
-            </a>
-          </li>
-        </ul>
+            <ul>
+              <li>
+                <a href="v1/index-status">
+                  With document status
+                </a>
+              </li>
+    	        <li>
+                <a href="v1/index-status-action">
+                  With document status + action
+                </a>
+              </li>
+            </ul>
 
-        <li>
-          <a href="v1/cases-search-asis">Cases search (as is view)</a>
-        </li>
-        <li>
-          <a href="v1/personal-list-mix">Mixed with national list - Radio button filter</a>
-        </li>
-        <li>
-          <a href="v1/personal-list-mix-tabs">
-            Mixed with national list - Tabs
-          </a>
-          <ul>
-	          <li>
-              <a href="v1/personal-list-mix-tabs-search-res">
-                Search results
+            <li>
+              <a href="v1/cases-search-asis">Cases search (as is view)</a>
+            </li>
+            <li>
+              <a href="v1/personal-list-mix">Mixed with national list - Radio button filter</a>
+            </li>
+            <li>
+              <a href="v1/personal-list-mix-tabs">
+                Mixed with national list - Tabs
+              </a>
+              <ul>
+    	          <li>
+                  <a href="v1/personal-list-mix-tabs-search-res">
+                    Search results
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="personal-list-exploration">
+                Personal list exploration (was v2)
               </a>
             </li>
-          </ul>
-        </li>
-      </ul>
-      
+        </ul>
       </div>
-	</details>
-
-    </section>
+    </details>
 
   </div>
-
+</div>
 {% endblock %}

@@ -25,7 +25,7 @@
         </div>
     	  <div class="govuk-notification-banner__content"> 
             {% if data ['which-appeal-is-the-parent'] === "2110166" %}
-            This appeal is now the parent of appeal {{ data ['appeal-id'] }}
+            This appeal is now the lead for appeal {{ data ['appeal-id'] }}
             {% endif %}
 
             {% if data ['which-appeal-is-the-parent'] === data ['appeal-id'] %}
@@ -46,7 +46,7 @@
       {% elseif data ['appeal-id'] %}
           {% if data ['which-appeal-is-the-parent'] === "2110166" %}
           {{ govukTag({
-            text: "Parent appeal",
+            text: "Lead appeal",
             classes: "govuk-tag--grey"
           })}}
           {% endif %}
@@ -94,7 +94,7 @@
               </dt>
               <dd class="govuk-summary-list__value">
                 <p>{{ data ['appeal-id'] }}</p>
-                <p><a href="link-appeal-reference">Add a child appeal</a></p>
+                <p><a href="link-appeal-reference">Link to another child appeal</a></p>
               </dd>
               <dd class="govuk-summary-list__value">    
                 <a href="#">View<span class="govuk-visually-hidden"> appeal {{ data ['appeal-id'] }}</span></a> | <a href="unlink-appeal.html">Unlink<span class="govuk-visually-hidden"> appeal {{ data ['appeal-id'] }} from 2110166</span></a>
@@ -103,11 +103,11 @@
         {% elseif data ['appeal-id'] and data ['which-appeal-is-the-parent'] === data ['appeal-id'] %}
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Parent appeal
+                Lead appeal
               </dt>
               <dd class="govuk-summary-list__value">
                 <p>{{ data ['appeal-id'] }}</p>
-                <p><a href="link-appeal-reference">Add a linked appeal</a></p>
+                <p><a href="link-appeal-reference">Link to another child appeal</a></p>
               </dd>
               <dd class="govuk-summary-list__value">    
                 <a href="#">View<span class="govuk-visually-hidden"> appeal {{ data ['appeal-id'] }}</span></a> | <a href="unlink-appeal.html">Unlink<span class="govuk-visually-hidden"> appeal {{ data ['appeal-id'] }} from 2110166</span></a>

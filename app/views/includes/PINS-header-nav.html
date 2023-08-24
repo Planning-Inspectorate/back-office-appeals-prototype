@@ -68,7 +68,7 @@
 	    </div>
 
 	    <div class="hmrc-internal-header__service-name-with-nav app-pi-hmrc-internal-header__service-name  govuk-!-margin-left-0 govuk-!-margin-top-1">
-	      <a href="/" class="hmrc-internal-header__link">
+	      <a href="index?list=personal" class="hmrc-internal-header__link">
 	        Manage appeals
 	      </a>
 	    </div>
@@ -86,15 +86,15 @@
 						Assigned to me
 					</a>
 				</li> 
-	        {% if data ['list'] === "national" %}
+				{% if data ['list'] === "national" %}
 				<li class="govuk-header__navigation-item govuk-header__navigation-item--active">
 			{% else %}
 				<li class="govuk-header__navigation-item">
 			{% endif %}
 				<a class="govuk-header__link" href="national-list?list=national">
-					National list
+					Search national list
 				</a>
-				</li>
+				</li> 
 	        <li class="govuk-header__navigation-item">
 	          <a class="govuk-header__link" href="#">
 	            Sign out

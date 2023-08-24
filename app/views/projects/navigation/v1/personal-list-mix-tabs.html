@@ -1,0 +1,119 @@
+{% extends "layouts/PINS-SUB.html" %}
+
+{% set pageName="Personal list" %}
+
+{% set back = false %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+  <h1 class="govuk-heading-l">National list</h1>
+
+
+	{{ govukInput({
+	  label: {
+	    text: "Search cases",
+	    classes: "govuk-label--m",
+	    isPageHeading: false
+	  },
+	  classes: "",
+	  hint: {
+	    text: "Enter appeal ID or postcode"
+	  },
+	  id: "account-number",
+	  name: "account-number",
+	  inputmode: "numeric",
+	  spellcheck: false
+	}) }}
+
+	{{ govukButton({
+	  text: "Search",
+	  href: "personal-list-mix-tab-search-res#all-cases"
+	}) }}
+	
+
+  </div>
+</div>
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+	  
+	  
+	  <div class="govuk-tabs" data-module="govuk-tabs">
+	  <ul class="govuk-tabs__list">
+	    <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+	      <a class="govuk-tabs__tab" href="#all-cases">
+	        All cases
+	      </a>
+	    </li>
+	    <li class="govuk-tabs__list-item">
+	      <a class="govuk-tabs__tab" href="#assigned-to-me">
+	        Assigned to me
+	      </a>
+	    </li>
+	  </ul>
+	  <div class="govuk-tabs__panel" id="all-cases">
+		  
+		 {% include "projects/personal-list/v1/includes/national-list-table.html" %}
+		
+		
+		{{ govukPagination({
+		  previous: {
+		    href: "#"
+		  },
+		  next: {
+		    href: "#"
+		  },
+		  items: [
+		    {
+		      number: 1,
+		      current: true,
+		      href: "#"
+		    },
+		    {
+		      number: 2,
+		      href: "#"
+		    },
+		    {
+		      number: 3,
+		      href: "#"
+		    }
+		  ]
+		}) }}
+	
+	  </div>
+	  <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="assigned-to-me">
+		  
+		   {% include "projects/personal-list/v1/includes/personal-list-table.html" %}
+		
+		{{ govukPagination({
+		  previous: {
+		    href: "#"
+		  },
+		  next: {
+		    href: "#"
+		  },
+		  items: [
+		    {
+		      number: 1,
+		      current: true,
+		      href: "#"
+		    },
+		    {
+		      number: 2,
+		      href: "#"
+		    }
+		  ]
+		}) }}	  
+	    
+	  </div>
+	</div>
+
+	
+  </div>
+</div>
+
+{% endblock %}

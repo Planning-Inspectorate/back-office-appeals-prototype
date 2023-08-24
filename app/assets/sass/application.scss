@@ -72,3 +72,63 @@
 	color: $govuk-focus-text-colour;
 	outline-color: $govuk-focus-colour;
 }
+
+// Actual GOV UK Header navigation (have suffixed class base name with '-original' //
+
+.govuk-header__navigation-original {margin-bottom:10px}
+.govuk-header__navigation-original-list{margin:0;padding:0;list-style:none}
+.govuk-header__navigation-original-list[hidden]{display:none}
+@media(min-width: 48.0625em){.govuk-header__navigation-original--end{margin:0;padding:5px 0;text-align:right}}
+.govuk-header__navigation-original--no-service-name{padding-top:40px}
+.govuk-header__navigation-original-item{padding:10px 0;border-bottom:1px solid #2e3133}
+@media(min-width: 48.0625em){.govuk-header__navigation-original-item{display:inline-block;margin-right:15px;padding:5px 0;border:0}}
+.govuk-header__navigation-original-item a{font-family:"GDS Transport",arial,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-weight:700;font-size:14px;font-size:.875rem;line-height:1.1428571429;white-space:nowrap}
+@media print{.govuk-header__navigation-original-item a{font-family:sans-serif}}
+@media(min-width: 40.0625em){.govuk-header__navigation-original-item a{font-size:16px;font-size:1rem;line-height:1.25}}
+@media print{.govuk-header__navigation-original-item a{font-size:14pt;line-height:1.2}}
+.govuk-header__navigation-original-item--active a:link,.govuk-header__navigation-original-item--active a:hover,.govuk-header__navigation-original-item--active a:visited{color:#1d8feb}
+@media print{.govuk-header__navigation-original-item--active a{color:#1d70b8}}
+.govuk-header__navigation-original-item--active a:focus{color:#0b0c0c}
+.govuk-header__navigation-original-item:last-child{margin-right:0;border-bottom:0}
+
+// Actual GOV UK Header links (have suffixed class base name with '-original' //
+
+.govuk-header__link-original{font-family:"GDS Transport",arial,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-decoration:none}
+@media print{.govuk-header__link-original{font-family:sans-serif}}
+.govuk-header__link-original:link,.govuk-header__link-original:visited{color:#fff}
+.govuk-header__link-original:hover,.govuk-header__link-original:active{color:rgba(255,255,255,.99)}
+.govuk-header__link-original:focus{color:#0b0c0c}
+.govuk-header__link-original:hover{text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:.1578em}
+.govuk-header__link-original:focus{outline:3px solid rgba(0,0,0,0);color:#0b0c0c;background-color:#fd0;box-shadow:0 -2px #fd0,0 4px #0b0c0c;text-decoration:none;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.govuk-header__link-original--homepage{font-family:"GDS Transport",arial,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-weight:700;display:inline-block;margin-right:10px;font-size:30px;line-height:1}
+@media print{.govuk-header__link-original--homepage{font-family:sans-serif}}
+@media(min-width: 40.0625em){.govuk-header__link-original--homepage{display:inline}.govuk-header__link-original--homepage:focus{box-shadow:0 0 #fd0}}
+.govuk-header__link-original--homepage:link,.govuk-header__link-original--homepage:visited{text-decoration:none}
+.govuk-header__link-original--homepage:hover,.govuk-header__link-original--homepage:active{margin-bottom:-3px;border-bottom:3px solid}
+.govuk-header__link-original--homepage:focus{margin-bottom:0;border-bottom:0}
+.govuk-header__service-name,.govuk-header__link-original--service-name{display:inline-block;margin-bottom:10px;font-family:"GDS Transport",arial,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-weight:700;font-size:18px;font-size:1.125rem;line-height:1.1111111111}
+@media print{.govuk-header__service-name,.govuk-header__link-original--service-name{font-family:sans-serif}}
+@media(min-width: 40.0625em){.govuk-header__service-name,.govuk-header__link-original--service-name{font-size:24px;font-size:1.5rem;line-height:1.25}}
+@media print{.govuk-header__service-name,.govuk-header__link-original--service-name{font-size:18pt;line-height:1.15}}
+
+// Edited classes for PINS Menu colours
+
+.govuk-header__navigation-original-item--active a:link,.govuk-header__navigation-original-item--active a:hover,.govuk-header__navigation-original-item--active a:visited{color:#10847E}
+.govuk-header__link-original:link,.govuk-header__link-original:visited{color:#000}
+.govuk-header__link-original:hover,.govuk-header__link-original:active{color:rgba(0,0,0,.99)}
+
+@media (min-width: 48.0625em) {.hmrc-internal-header__service-name-with-nav {float:none;}}
+
+// Edited classes for MOJ primary nav in PINS colours
+
+.moj-primary-navigation__link[aria-current] {
+    color: #10847E;
+}
+
+.moj-primary-navigation__link[aria-current]:before {
+    background-color: #10847E;
+}
+
+.moj-primary-navigation__link:link, .moj-primary-navigation__link:visited {
+    color: #10847E;
+}

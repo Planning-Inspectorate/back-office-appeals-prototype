@@ -7,12 +7,9 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-
-	{% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
-
 	{% set html %}
 	  <h3 class="govuk-notification-banner__heading">
-	    Files successfully added
+	    Document added
 	  </h3>
 	{% endset %}
 
@@ -21,12 +18,8 @@
 	  type: 'success'
 	}) }}
 
-
-
 	<span class="govuk-caption-l">Appeal 2110166</span>
 	<h1 class="govuk-heading-l">LPA Questionnaire</h1>
-
-	{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 
 	{{ govukSummaryList({
 	  classes: 'govuk-summary-list--no-border govuk-!-margin-top-6',
@@ -58,22 +51,10 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
 
-
-
-	{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
-
 	{{ govukSummaryList({
 	  card: {
 	    title: {
 	      text: "1. Constraints, designations and other issues"
-	    },
-	    actions: {
-	      items: [
-	        {
-	          href: "location-select.html",
-	          text: "Add new file"
-	        }
-	      ]
 	    }
 	  },
 	  rows: [
@@ -96,10 +77,19 @@
 	    },
 	    {
 	      key: {
-	        text: "Listed building upload"
+	        text: "Listed building documents"
 	      },
 	      value: {
 	        html: ""
+	      },
+	      actions: {
+	        items: [
+	          {
+	            href: "add-document",
+	            text: "Add",
+	            visuallyHiddenText: "a listed building documents"
+	          }
+	        ]
 	      }
 	    },
 	    {
@@ -235,7 +225,7 @@
 	        text: "Tree preservation order"
 	      },
 	      value: {
-	        html: "No"
+	        html: "yes"
 	      },
 	      actions: {
 	        items: [
@@ -249,17 +239,24 @@
 	    },
 	    {
 	      key: {
-	        text: "Tree preservation order upload"
+	        text: "Tree preservation order documents"
 	      },
 	      value: {
-	        html: "<li><a href='/public/downloads/tree-preservation-order-A.pdf'>tree-preservation-order-A.pdf</a></li>
-		        	<li><a href='/public/downloads/tree-preservation-order-A.pdf'>tree-preservation-order-B.pdf</a></li>"
+	        html: "<ul class='govuk-list govuk-list--bullet govuk-!-font-size-16'>
+		        	<li><a href='/public/downloads/tree-preservation-order-A.pdf'>tree-preservation-order-A.pdf</a></li>
+		        	<li><a href='/public/downloads/tree-preservation-order-A.pdf'>tree-preservation-order-B.pdf</a></li>
+		        </ul>"
 	      },
 	      actions: {
 	        items: [
 	          {
-	            href: "../manage-documents",
-	            text: "Change",
+	            href: "manage-documents",
+	            text: "Manage",
+	            visuallyHiddenText: "Tree preservation order extent"
+	          },
+	          {
+	            href: "add-document",
+	            text: "Add",
 	            visuallyHiddenText: "Tree preservation order extent"
 	          }
 	        ]
@@ -301,17 +298,17 @@
 	    },
 	    {
 	      key: {
-	        text: "Definitive map and statement upload"
+	        text: "Definitive map and statement documents"
 	      },
 	      value: {
-	        html: "<a href='#' class='govuk-!-font-size-16'>right of way</a>"
+	        html: "<a href='#' class='govuk-!-font-size-16'>right-of-way.pdf</a>"
 	      },
 	      actions: {
 	        items: [
 	          {
 	            href: "#",
 	            text: "Change",
-	            visuallyHiddenText: "Definitive map and statement extract"
+	            visuallyHiddenText: "Definitive map and statement documents"
 	          }
 	        ]
 	      }
@@ -319,7 +316,8 @@
 	  ]
 	}) }}
 
-	<p class="govuk-body">(more sections would appear here)</p>
+	<p class="govuk-body">(more summary lists would appear here)</p>
+
 
 
     <form action="/appellant-outcome" method="post" class="govuk-!-margin-top-9" novalidate>

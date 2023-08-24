@@ -74,29 +74,29 @@
 	    </div>
 
 
-	    <nav aria-label="Menu" class="govuk-header__navigation-original app-pi-govuk-header__navigation-original">
+	    <nav aria-label="Menu" class="govuk-header__navigation">
 	      <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide menu" hidden>Menu</button>
-	      <ul id="navigation" class="govuk-header__navigation-original-list">
+	      <ul id="navigation" class="govuk-header__navigation-list">
 			{% if data ['list'] === "personal" %}
-	        	<li class="govuk-header__navigation-original-item govuk-header__navigation-original-item--active">
+	        	<li class="govuk-header__navigation-item govuk-header__navigation-item--active">
 			{% else %}
-				<li class="govuk-header__navigation-original-item">
+				<li class="govuk-header__navigation-item">
 			{% endif %}
-					<a class="govuk-header__link-original" href="index?list=personal">
+					<a class="govuk-header__link" href="index?list=personal">
 						Assigned to me
 					</a>
 				</li> 
 	        {% if data ['list'] === "national" %}
-				<li class="govuk-header__navigation-original-item govuk-header__navigation-original-item--active">
+				<li class="govuk-header__navigation-item govuk-header__navigation-item--active">
 			{% else %}
-				<li class="govuk-header__navigation-original-item">
+				<li class="govuk-header__navigation-item">
 			{% endif %}
-				<a class="govuk-header__link-original" href="national-list?list=national">
+				<a class="govuk-header__link" href="national-list?list=national">
 					National list
 				</a>
 				</li>
-	        <li class="govuk-header__navigation-original-item">
-	          <a class="govuk-header__link-original" href="#">
+	        <li class="govuk-header__navigation-item">
+	          <a class="govuk-header__link" href="#">
 	            Sign out
 	          </a>
 	        </li>

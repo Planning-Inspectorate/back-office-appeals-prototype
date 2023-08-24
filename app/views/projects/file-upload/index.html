@@ -21,8 +21,68 @@
       File upload
     </h1>
     
+    
     <section class="govuk-!-margin-bottom-6">
 
+	<h2 class="govuk-heading-m">Version 3
+
+		{{govukTag({
+          text: "In progress",
+          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+        })}}
+
+		<!-- Status tag options
+
+		{{govukTag({
+          text: "New",
+          classes: "govuk-!-margin-left-2 govuk-tag--green"
+        })}}
+
+        {{govukTag({
+          text: "In progress",
+          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+        })}}
+
+        {{govukTag({
+          text: "Ready for review",
+          classes: "govuk-!-margin-left-2 govuk-tag--blue"
+        })}}
+
+        {{govukTag({
+          text: "Ready for research",
+          classes: "govuk-!-margin-left-2 govuk-tag--green"
+        })}}
+
+        {{govukTag({
+          text: "Researched",
+          classes: " govuk-!-margin-left-2 govuk-tag--green"
+        })}}
+
+        -->
+
+	</h2>
+
+
+	{{ govukButton({
+	  text: "View prototype",
+	  href: "v3/lpa-questionnaire",
+	  isStartButton: true
+	}) }}
+
+	<p class="govuk-body">Changes:</p>
+
+	<ul class="govuk-list govuk-list--bullet">
+        <li>
+          Remove 'document remove' functionality
+        </li>
+      </ul>
+
+
+    </section>
+    
+    
+    <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+	
 
 	<h2 class="govuk-heading-m">Version 2
 
@@ -133,7 +193,7 @@
 
 	{{ govukButton({
 	  text: "View prototype",
-	  href: "lpa-questionnaire",
+	  href: "v1/lpa-questionnaire",
 	  isStartButton: true
 	}) }}
 
@@ -144,16 +204,16 @@
 
 	<ul class="govuk-list">
 	  <li>
-	    <a class="govuk-link" href="lpa-questionnaire.html">Test A</a> (preferred option)
+	    <a class="govuk-link" href="v1/lpa-questionnaire.html">Test A</a> (preferred option)
 	  </li>
 	  <li>
-	    <a class="govuk-link" href="B-test/lpa-questionnaire-B.html">Test B</a>
+	    <a class="govuk-link" href="v1/B-test/lpa-questionnaire-B.html">Test B</a>
 	  </li>
 	  <li>
 	    Manage documents
 	    <ul>
-		    <li><a href="manage-documents/option1.html">Option 1</a></li>
-		    <li><a href="manage-documents/option2.html">Option 2</a></li>
+		    <li><a href="v1/manage-documents/option1.html">Option 1</a></li>
+		    <li><a href="v1/manage-documents/option2.html">Option 2</a></li>
 	  </li>
 	</ul>
 

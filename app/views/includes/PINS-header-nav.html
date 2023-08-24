@@ -67,22 +67,36 @@
 	      </a>
 	    </div>
 
-	    <div class="hmrc-internal-header__service-name app-pi-hmrc-internal-header__service-name  govuk-!-margin-left-0 govuk-!-margin-top-1">
+	    <div class="hmrc-internal-header__service-name-with-nav app-pi-hmrc-internal-header__service-name  govuk-!-margin-left-0 govuk-!-margin-top-1">
 	      <a href="/" class="hmrc-internal-header__link">
 	        Manage appeals
 	      </a>
 	    </div>
 
-	    <nav aria-label="Menu" class="govuk-header__navigation app-pi-govuk-header__navigation">
+
+	    <nav aria-label="Menu" class="govuk-header__navigation-original app-pi-govuk-header__navigation-original">
 	      <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide menu" hidden>Menu</button>
-	      <ul id="navigation" class="govuk-header__navigation-list">
-	        <!-- <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
-	          <a class="govuk-header__link" href="#">
-	            Case officer
-	          </a>
-	        </li> -->
-	        <li class="govuk-header__navigation-item  govuk-!-margin-left-9 govuk-!-margin-top-0">
-	          <a class="govuk-header__link govuk-!-font-size-19" href="#">
+	      <ul id="navigation" class="govuk-header__navigation-original-list">
+			{% if data ['list'] === "personal" %}
+	        	<li class="govuk-header__navigation-original-item govuk-header__navigation-original-item--active">
+			{% else %}
+				<li class="govuk-header__navigation-original-item">
+			{% endif %}
+					<a class="govuk-header__link-original" href="index?list=personal">
+						Assigned to me
+					</a>
+				</li> 
+	        {% if data ['list'] === "national" %}
+				<li class="govuk-header__navigation-original-item govuk-header__navigation-original-item--active">
+			{% else %}
+				<li class="govuk-header__navigation-original-item">
+			{% endif %}
+				<a class="govuk-header__link-original" href="national-list?list=national">
+					National list
+				</a>
+				</li>
+	        <li class="govuk-header__navigation-original-item">
+	          <a class="govuk-header__link-original" href="#">
 	            Sign out
 	          </a>
 	        </li>
@@ -93,29 +107,3 @@
   </div>
 </header>
 
-
-<!-- Sub MENU -->
-<div class="govuk-width-container">
-
-
-{{ mojSubNavigation({
-  label: 'Sub navigation',
-  items: [
-
-	{
-	    text: 'Assigned to me',
-	    href: 'index?list=personal',
-	    active: data['list'] == 'personal'
-	  },
-	  {
-	    text: 'National list',
-	    href: 'national-list?list=national',
-	    active: data['list'] == 'national'
-	  }
-    ]
-}) }}
-
-
-
-</div>
-<!-- END SUB MENU -->

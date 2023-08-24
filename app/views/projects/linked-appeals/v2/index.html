@@ -25,11 +25,11 @@
         </div>
     	  <div class="govuk-notification-banner__content"> 
           <p class="govuk-notification-banner__heading">
-            {% if data ['which-appeal-is-the-parent'] === "Child" %}
-            This appeal is now the parent of appeal {{ data ['appealid'] }}
+            {% if data ['which-appeal-is-the-parent'] === "child" %}
+            This appeal is now the lead for appeal {{ data ['appealid'] }}
             {% endif %}
 
-            {% if data ['which-appeal-is-the-parent'] === "Parent" %}
+            {% if data ['which-appeal-is-the-parent'] === "lead" %}
             This appeal is now the child of appeal {{ data ['appealid'] }}
             {% endif %}
           </p>
@@ -46,13 +46,13 @@
       })}}
       {% if data ['unlink-appeal'] === "yes" %}
       {% elseif data ['appealid'] %}
-          {% if data ['which-appeal-is-the-parent'] === "Child" %}
+          {% if data ['which-appeal-is-the-parent'] === "child" %}
           {{ govukTag({
-            text: "Parent appeal",
+            text: "Lead appeal",
             classes: "govuk-tag--grey"
           })}}
           {% endif %}
-          {% if data ['which-appeal-is-the-parent'] === "Parent" %}
+          {% if data ['which-appeal-is-the-parent'] === "lead" %}
           {{ govukTag({
             text: "Child appeal",
             classes: "govuk-tag--grey"
@@ -89,27 +89,27 @@
               <a href="link-appeal-search">Add a linked appeal</a>
             </dd>    
           </div>
-        {% elseif data ['which-appeal-is-the-parent'] === "Child" %}
+        {% elseif data ['which-appeal-is-the-parent'] === "child" %}
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
                 Child appeals
               </dt>
               <dd class="govuk-summary-list__value">
                 <p>{{ data ['appealid'] }}</p>
-                <p><a href="link-appeal-search">Add another child appeal</a></p>
+                <p><a href="link-appeal-search">Link to another child appeal</a></p>
               </dd>
               <dd class="govuk-summary-list__value">    
                 <a href="#">View<span class="govuk-visually-hidden"> appeal {{ data ['appealid'] }}</span></a> | <a href="unlink-appeal.html">Unlink<span class="govuk-visually-hidden"> appeal {{ data ['appeal-id'] }} from 2110166</span></a>
               </dd> 
             </div>
-        {% elseif data ['appealid'] and data ['which-appeal-is-the-parent'] === "Parent" %}
+        {% elseif data ['appealid'] and data ['which-appeal-is-the-parent'] === "lead" %}
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Parent appeal
+                Lead appeal
               </dt>
               <dd class="govuk-summary-list__value">
                 <p>{{ data ['appealid'] }}</p>
-                <p><a href="link-appeal-search">Add a sibling appeal</a></p>
+                <p><a href="link-appeal-search">Link to another child appeal</a></p>
               </dd>
               <dd class="govuk-summary-list__value">    
                 <a href="#">View<span class="govuk-visually-hidden"> appeal {{ data ['appealid'] }}</span></a> | <a href="unlink-appeal.html">Unlink<span class="govuk-visually-hidden"> appeal {{ data ['appeal-id'] }} from 2110166</span></a>

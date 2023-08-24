@@ -1,0 +1,185 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Project name" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">
+      Appeal a planning decision
+    </span>
+    <h1 class="govuk-heading-l">
+      Start journey (navigation)
+    </h1>
+
+    <p class="govuk-body">
+      I want to easily navigate the service when I start my journey.
+    </p>
+
+    <p><strong>Jira Ticket:</strong> <a href="https://pins-ds.atlassian.net/browse/BOATD-105">BOATD-105 (Start journey)</a></p>
+
+       <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+       <h2 class="govuk-heading-m">
+        Version 3
+  
+        {{govukTag({
+          text: "In progress",
+          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+        })}}
+  
+      <!-- Status tag options
+  
+      {{govukTag({
+        text: "New",
+        classes: "govuk-!-margin-left-2 govuk-tag--green"
+      })}}
+  
+      {{govukTag({
+        text: "In progress",
+        classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+      })}}
+  
+      {{govukTag({
+        text: "Ready for review",
+        classes: "govuk-!-margin-left-2 govuk-tag--blue"
+      })}}
+  
+      {{govukTag({
+        text: "Ready for research",
+        classes: "govuk-!-margin-left-2 govuk-tag--green"
+      })}}
+  
+      {{govukTag({
+        text: "Researched",
+        classes: " govuk-!-margin-left-2 govuk-tag--green"
+      })}}
+  
+      -->
+  
+      </h2>
+  
+      <p class="govuk-body">Navigation below header, based on the <a href="https://design-patterns.service.justice.gov.uk/components/primary-navigation/">MOJ Primary navigation</a> component.</p>
+      <h3 class="govuk-heading-s">Accessibility notes</h3>
+      <p class="govuk-body">The link in the header is a slightly darker teal (#10847E), allowing it to pass WCAG AA. The existing teal does not pass at all on the light grey background.</p>
+      <p class="govuk-body">To pass at WCAG AAA, it would have to go darker (#0D7776). This is based on the assumption that the font stays above size 14 and bold. If it goes smaller or to normal weight it should be darker (#0B605E) to remain accessible.</p>
+  
+  
+      {{ govukButton({
+        text: "View prototype",
+        href: "v3/index?list=personal",
+        isStartButton: true
+      }) }}
+  
+      <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+
+    <h2 class="govuk-heading-m">
+      Version 2
+
+      {{govukTag({
+        text: "In progress",
+        classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+      })}}
+
+		<!-- Status tag options
+
+		{{govukTag({
+      text: "New",
+      classes: "govuk-!-margin-left-2 govuk-tag--green"
+    })}}
+
+    {{govukTag({
+      text: "In progress",
+      classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+    })}}
+
+    {{govukTag({
+      text: "Ready for review",
+      classes: "govuk-!-margin-left-2 govuk-tag--blue"
+    })}}
+
+    {{govukTag({
+      text: "Ready for research",
+      classes: "govuk-!-margin-left-2 govuk-tag--green"
+    })}}
+
+    {{govukTag({
+      text: "Researched",
+      classes: " govuk-!-margin-left-2 govuk-tag--green"
+    })}}
+
+    -->
+
+    </h2>
+
+    <p class="govuk-body">Navigation in header, based on the <a href="https://design-system.service.gov.uk/components/header/#header-with-service-name-and-navigation">GDS Header navigation</a> component.</p>
+    <h3 class="govuk-heading-s">Accessibility notes</h3>
+    <p class="govuk-body">The link in the header is a slightly darker teal (#10847E), allowing it to pass WCAG AAA. The existing teal (#13A19B) passes at WCAG AA.</p>
+    <p class="govuk-body">This is based on the assumption that the font stays above size 14 and bold. If it goes smaller or to normal weight it should be darker (#0B605E) to remain accessible.</p>
+
+
+  	{{ govukButton({
+  	  text: "View prototype",
+  	  href: "v2/index?list=personal",
+  	  isStartButton: true
+  	}) }}
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+	  <h2 class="govuk-heading-m">
+      Version 1
+
+      {{govukTag({
+        text: "In progress",
+        classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+      })}}
+
+		<!-- Status tag options
+
+		{{govukTag({
+      text: "New",
+      classes: "govuk-!-margin-left-2 govuk-tag--green"
+    })}}
+
+    {{govukTag({
+      text: "In progress",
+      classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+    })}}
+
+    {{govukTag({
+      text: "Ready for review",
+      classes: "govuk-!-margin-left-2 govuk-tag--blue"
+    })}}
+
+    {{govukTag({
+      text: "Ready for research",
+      classes: "govuk-!-margin-left-2 govuk-tag--green"
+    })}}
+
+    {{govukTag({
+      text: "Researched",
+      classes: " govuk-!-margin-left-2 govuk-tag--green"
+    })}}
+
+    -->
+
+    </h2>
+
+    <p class="govuk-body">
+      Navigation using the <a href="https://design-patterns.service.justice.gov.uk/components/sub-navigation/">MOJ Sub navigation</a> component.
+    </p>
+
+  	{{ govukButton({
+  	  text: "View prototype",
+  	  href: "v1/index?list=personal",
+  	  isStartButton: true
+  	}) }}
+
+
+
+  </div>
+</div>
+{% endblock %}

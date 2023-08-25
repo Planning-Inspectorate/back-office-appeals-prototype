@@ -28,7 +28,7 @@
 <div class="govuk-grid-column-two-thirds">
 
   {{ govukRadios({
-    name: "issue-decision",
+    name: "issued-decision",
     fieldset: {
       legend: {
         text: "Issue your decision",
@@ -38,19 +38,19 @@
     },
     items: [
       {
-        value: "allowed~upload-decision",
+        value: "Allowed~upload-decision",
         text: "Allowed"
       },
       {
-        value: "dismissed~upload-decision",
+        value: "Dismissed~upload-decision",
         text: "Dismissed"
       },
       {
-        value: "split~upload-decision",
+        value: "Split-decision~upload-decision",
         text: "Split-decision"
       },
       {
-        value: "invalid~upload-decision",
+        value: "Invalid~invalid",
         text: "Invalid"
       }
     ]

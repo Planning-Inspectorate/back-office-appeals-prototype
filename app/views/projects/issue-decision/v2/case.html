@@ -15,14 +15,33 @@
   <div class="govuk-grid-column-two-thirds">
 
 	{% set html %}
-	  <p class="govuk-notification-banner__heading">
-	    The appeal is ready for determination
-	  </p>
-	  <p>
-      <a class="govuk-notification-banner__link" href="decision.html">
-        Issue a determination
-      </a>
-    </p>
+
+    {% if data['status'] == 'determination' %}
+  	  <p class="govuk-notification-banner__heading">
+  	    The appeal is ready for determination
+  	  </p>
+  	  <p>
+        <a class="govuk-notification-banner__link" href="decision.html">
+          Issue a determination
+        </a>
+      </p>
+    {% elif data['status'] == 'incomplete' %}
+
+        <p class="govuk-notification-banner__heading">
+          The appeal is invalid
+        </p>
+      {% if data['missing-evidence__reasons'] == 'Missing evidence' %}
+        <p>
+          Missing evidence: {{ data['missing-evidence__detail'] }}
+        </p>
+      {% else %}
+        <p>
+          Inspector notes: {{ data['other__detail'] }}
+        </p>
+      {% endif %}
+
+    {% endif %}
+
 	{% endset %}
 
 	{{ govukNotificationBanner({
@@ -72,6 +91,13 @@
     {{ govukTag({
       text: "Issue determination",
       classes: "govuk-tag--pink"
+    })}}
+
+  {% elif data['status'] == 'incomplete' %}
+
+    {{ govukTag({
+      text: "Incomplete",
+      classes: "govuk-tag--red"
     })}}
 
   {% else %}

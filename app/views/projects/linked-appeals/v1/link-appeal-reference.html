@@ -9,7 +9,7 @@
 
     	<span class="govuk-caption-l">Appeal 2110166</span>
 
-      <form action="link-appeal-parent" method="post">
+      <form action="link-appeal-details" method="post">
     	{{ govukInput({
         label: {
           text: "What is the appeal ID?",
@@ -17,9 +17,6 @@
           isPageHeading: true
         },
         classes: "govuk-input--width-10",
-        hint: {
-          text: "This is the seven digit unique reference"
-        },
         id: "appeal-id",
         name: "appeal-id"
       }) }}

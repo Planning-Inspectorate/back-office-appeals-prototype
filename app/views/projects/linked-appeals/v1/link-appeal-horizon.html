@@ -8,14 +8,29 @@
     <div class="govuk-grid-column-two-thirds">
 
     	<span class="govuk-caption-l">Appeal 2110166</span>
+      <h1 class="govuk-heading-l">Linking to an appeal in Horizon</h1>
+
+
       <form action="index" method="post">
+
+        {{ govukInput({
+          label: {
+            text: "What is the URL of the appeal on Horizon?",
+            classes: "govuk-label--s",
+            isPageHeading: false
+          },
+          id: "horizon-url",
+          name: "horizon-url"
+        }) }}
+
+
         {{ govukRadios({
           name: "which-appeal-is-the-parent",
           fieldset: {
             legend: {
               text: "Which appeal is the lead?",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--s"
             }
           },
           items: [

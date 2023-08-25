@@ -8,8 +8,8 @@ router.get('*', function(req, res, next){
   next()
 })
 
-router.post('/decision', function (req, res) {
-  res.redirect('upload-decision')
+router.post('/invalid', function (req, res) {
+  res.redirect('case?status=incomplete')
 })
 
 router.post('/upload-decision', function (req, res) {

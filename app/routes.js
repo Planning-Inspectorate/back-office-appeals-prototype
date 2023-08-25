@@ -55,3 +55,14 @@ router.get("/projects/linked-appeals/v3/link-to-appeal-parent", (req, res) => {
 	delete req.session.data.unlinkappeal
 	res.redirect(req.originalUrl.replace("link-to-appeal-parent","link-appeal-parent"))
 })
+
+router.get("/projects/linked-appeals/v1/link-to-appeal", (req, res) => {
+	if (req.session.data.appealid == "horizon") {
+		delete req.session.data.unlinkappeal
+		res.redirect(req.originalUrl.replace("link-to-appeal","link-appeal-horizon"))
+	}
+	else {
+		delete req.session.data.unlinkappeal
+		res.redirect(req.originalUrl.replace("link-to-appeal","link-appeal-details"))
+	}
+})

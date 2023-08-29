@@ -18,10 +18,10 @@
     <h2 class="govuk-heading-m">
       Version 2
 
-		{{govukTag({
-      text: "In progress",
-      classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-    })}}
+  		{{govukTag({
+        text: "Ready for research",
+        classes: "govuk-!-margin-left-2 govuk-tag--green"
+      })}}
 
     </h2>
 
@@ -29,21 +29,22 @@
       As an Inspector I want to be able to issue appeal decisions.
     </p>
 
+    <p class="govuk-body">
+      Changes:
+    </p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>content updates</li>
+    </ul>
+
+
   	{{ govukButton({
   	  text: "View prototype",
-  	  href: "v2/case?status=determination",
+  	  href: "/projects/personal-list/v1/?decision=ready",
   	  isStartButton: true
   	}) }}
 
     {% set v1HTML %}
-
-  	  <h2 class="govuk-heading-m">
-        Version 1
-
-  		{{govukTag({
-        text: "In progress",
-        classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-      })}}
 
   		<!-- Status tag options
 
@@ -73,8 +74,6 @@
       })}}
 
       -->
-
-      </h2>
 
       <p class="govuk-body">
         As an Inspector I want to be able to issue appeal decisions.

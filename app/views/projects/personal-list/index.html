@@ -14,42 +14,15 @@
       Personal list
     </h1>
 
-	  <h2 class="govuk-heading-m">
-      Version 1
+    {% set version = "2" %}
 
-		{{govukTag({
-      text: "Ready for research",
-      classes: "govuk-!-margin-left-2 govuk-tag--green"
-    })}}
-
-		<!-- Status tag options
-
-		{{govukTag({
-      text: "New",
-      classes: "govuk-!-margin-left-2 govuk-tag--green"
-    })}}
-
-    {{govukTag({
-      text: "In progress",
-      classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-    })}}
-
-    {{govukTag({
-      text: "Ready for review",
-      classes: "govuk-!-margin-left-2 govuk-tag--blue"
-    })}}
+    <h2 class="govuk-heading-m">
+      Version {{version}}
 
     {{govukTag({
       text: "Ready for research",
       classes: "govuk-!-margin-left-2 govuk-tag--green"
     })}}
-
-    {{govukTag({
-      text: "Researched",
-      classes: " govuk-!-margin-left-2 govuk-tag--green"
-    })}}
-
-    -->
 
     </h2>
 
@@ -57,11 +30,47 @@
       I want to view my personal list so that I can see all the cases that are assigned to me
     </p>
 
-  	{{ govukButton({
-  	  text: "View prototype",
-  	  href: "v1/",
-  	  isStartButton: true
-  	}) }}
+    {{ govukButton({
+      text: "View prototype",
+      href: "v2/",
+      isStartButton: true
+    }) }}
+
+    {% set v1HTML %}
+
+      {% set version = "1" %}
+
+      <p class="govuk-body">
+        I want to view my personal list so that I can see all the cases that are assigned to me.
+      </p>
+
+      <p class="govuk-body">
+        For August user research with Inspectors.
+      </p>
+
+    	{{ govukButton({
+    	  text: "View prototype",
+    	  href: "v1/?decision=ready",
+    	  isStartButton: true
+    	}) }}
+
+    {% endset -%}
+
+    {{ govukAccordion({
+      id: 'previous',
+      classes: 'govuk-!-margin-top-5',
+      items: [
+
+        {
+          heading: {
+            html: 'Version 1 <strong class="govuk-tag govuk-tag--green govuk-!-margin-left-2">Ready for research</strong>'
+          },
+          content: {
+            html: v1HTML
+          }
+        }
+      ]
+    }) }}
 
 
   	<details class="govuk-details" data-module="govuk-details">

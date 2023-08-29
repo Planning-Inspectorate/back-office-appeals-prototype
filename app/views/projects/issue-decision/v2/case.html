@@ -3,10 +3,17 @@
 {% set pageName="Case details" %}
 
 {% block backLink %}
-  {{ govukBackLink({
-    text: "Back to national list",
-    href: 'javascript:history.back()'
-  }) }}
+  {% if data['decision'] == 'incomplete-appeal' %}
+    {{ govukBackLink({
+      text: "Back to personal list",
+      href: '/projects/personal-list/v1/?decision=incomplete-appeal'
+    }) }}
+  {% else %}
+    {{ govukBackLink({
+      text: "Back to personal list",
+      href: '/projects/personal-list/v1/'
+    }) }}
+  {% endif %}
 {% endblock %}
 
 {% block content %}
@@ -18,11 +25,11 @@
 
     {% if data['status'] == 'determination' %}
   	  <p class="govuk-notification-banner__heading">
-  	    The appeal is ready for determination
+  	    The appeal is ready for a decision
   	  </p>
   	  <p>
         <a class="govuk-notification-banner__link" href="decision.html">
-          Issue a determination
+          Issue a decision
         </a>
       </p>
     {% elif data['status'] == 'incomplete' %}
@@ -40,6 +47,10 @@
         </p>
       {% endif %}
 
+    {% elif data['status'] == 'done' %}
+      <p class="govuk-notification-banner__heading">
+        The appeal decision has been issued
+      </p>
     {% endif %}
 
 	{% endset %}
@@ -48,7 +59,7 @@
 	  html: html
 	}) }}
 
-	<span class="govuk-caption-l">Appeal 2110166</span>
+	<span class="govuk-caption-l">Appeal 1234562</span>
 	<h1 class="govuk-heading-l">Case details</h1>
 
   {% if data['status'] == 'ready-to-start' %}
@@ -89,7 +100,7 @@
   {% elif data['status'] == 'determination' %}
 
     {{ govukTag({
-      text: "Issue determination",
+      text: "Ready for final review",
       classes: "govuk-tag--pink"
     })}}
 
@@ -122,7 +133,11 @@
 	      </h2>
 	    </div>
 	    <div id="accordion-default-content-1" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-1">
-			{% include "projects/appellant-case/includes/case-overview-table.html" %}
+      {% if data['status'] != 'done' %}
+        {% include "../v2/includes/case-overview-table" %}
+      {% else %}
+        {% include "../v2/includes/case-overview-table-done" %}
+      {% endif %}
 	    </div>
 	  </div>
 	  <div class="govuk-accordion__section">

@@ -38,32 +38,11 @@
       <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--purple">Final comment review</strong></td>
     </tr>
     <tr class="govuk-table__row">
-
-      {% if data['decision'] == 'ready' %}
-        <td class="govuk-table__cell"><a href="/projects/issue-decision/v2/case?status=determination">1234562</a></td>
-      {% elif data['decision'] == 'incomplete-appeal' %}
-        <td class="govuk-table__cell"><a href="/projects/issue-decision/v2/case?status=incomplete">1234562</a></td>
-      {% elif data['decision'] == 'done' %}
-        <td class="govuk-table__cell"><a href="/projects/issue-decision/v2/case?status=done">1234562</a></td>
-      {% endif %}
-
+      <td class="govuk-table__cell"><a href="case.html">1234562</a></td>
       <td class="govuk-table__cell"></td>
-      {% if data['decision'] == 'ready' %}
-        <td class="govuk-table__cell"><a href="/projects/issue-decision/v2/decision" class="govuk-link govuk-link--no-visited-state">Issue a decision</a></td>
-      {% elif data['decision'] == 'incomplete-appeal' %}
-        <td class="govuk-table__cell"><a href="#" class="govuk-link govuk-link--no-visited-state">Review case</a></td>
-      {% else %}
-        <td class="govuk-table__cell"></td>
-      {% endif %}
       <td class="govuk-table__cell"></td>
-      {% if data['decision'] == 'ready' %}
-        <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--pink">Ready for final review</strong></td>
-      {% elif data['decision'] == 'incomplete-appeal' %}
-        <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Incomplete</strong></td>
-      {% else %}
-        <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Completed</strong></td>
-      {% endif %}
-
+      <td class="govuk-table__cell"></td>
+      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--pink">Issue determination</strong></td>
     </tr>
     <tr class="govuk-table__row">
       <td class="govuk-table__cell"><a href="case.html?status=site-visit">1234561</a></td>
@@ -76,7 +55,7 @@
       <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Child</strong></td>
       <td class="govuk-table__cell"></td>
       <td class="govuk-table__cell"></td>
-      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Completed</strong></td>
+      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Complete</strong></td>
     </tr>
   </tbody>
 </table>

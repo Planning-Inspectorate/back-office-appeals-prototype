@@ -1,0 +1,67 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Manage documents" %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: 'option1'
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+	<span class="govuk-caption-l">Manage documents</span>
+	<h1 class="govuk-heading-l">Definitive map and statement documents</h1>
+
+  </div>
+</div>
+
+
+<div class="govuk-grid-row  govuk-!-margin-top-9">
+  <div class="govuk-grid-column-full">
+
+	{{ govukTable({
+	  firstCellIsHeader: false,
+	  head: [
+	    {
+	      text: "Document information"
+	    },
+	    {
+	      text: "Date received"
+	    },
+	    {
+	      text: "Redaction"
+	    },
+	    {
+	      text: "Actions"
+	    }
+	  ],
+	  rows: [
+	    [
+	      {
+	        html: "<p><a href='/public/downloads/tree-preservation-order-A.pdf'>right-of-way.pdf</a></p><p class='govuk-body govuk-!-font-size-16'>From: Joe Bloggs<br>File type and size : PDF, 97KB</p>"
+	      },
+	      {
+	        text: "dd Mon YYYY"
+	      },
+	      {
+	        text: "Redacted"
+	      },
+	      {
+	        html: "<p><a href='document-details'>View and edit</a></p>"
+	      }
+	    ]
+	  ]
+	}) }}
+
+
+
+  </div>
+</div>
+
+
+{% endblock %}

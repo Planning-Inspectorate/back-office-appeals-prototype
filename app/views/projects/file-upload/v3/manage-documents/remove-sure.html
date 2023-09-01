@@ -10,9 +10,29 @@
 	    <span class="govuk-caption-l">Manage documents</span>
 		<h1 class="govuk-heading-l">Are you sure you want to remove this document?</h1>
 				
-		<div class="govuk-inset-text">
-		  tree-preservation-order-A.pdf
-		</div>
+		
+		{{ govukSummaryList({
+		  classes: 'govuk-summary-list',
+		  rows: [
+		    {
+		      key: {
+		        text: "File"
+		      },
+		      value: {
+		        html: 'tree-preservation-order-A.pdf'
+		      }
+		    },{
+		      key: {
+		        text: "Version"
+		      },
+		      value: {
+		        text: '4'
+		      }
+		    }
+		   
+		    
+		  ]
+		}) }}
 
        <form action="document-details-removed" method="post" class="govuk-!-margin-top-9" novalidate>
 

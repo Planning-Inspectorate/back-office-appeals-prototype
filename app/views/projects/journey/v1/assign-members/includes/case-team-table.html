@@ -1,0 +1,67 @@
+{% if (data['is-assigned'] == "yes") %}
+
+{{ govukTable({
+	  captionClasses: "govuk-table__caption--m",
+	  firstCellIsHeader: true,
+	  rows: [
+	    [
+	      {
+	        text: "Case officer"
+	      },
+	      {
+	        html: "John smith<br>john.smith@planninginspectorate.gov.uk"
+	      },
+	      {
+	        html: "<a href='search'>Change</a>"
+	      }
+	    ],
+	    [
+	      {
+	        text: "Inspector"
+	      },
+	      {
+	        text: ""
+	      },
+	      {
+	        html: "<a href='search'>Assign</a>"
+	      }
+	    ]
+	  ]
+	}) }}
+    
+    
+{% else %}
+	
+	  
+	  {{ govukTable({
+	  captionClasses: "govuk-table__caption--m",
+	  firstCellIsHeader: true,
+	  rows: [
+	    [
+	      {
+	        text: "Case officer"
+	      },
+	      {
+	        text: ""
+	      },
+	      {
+	        html: "<a href='search'>Assign</a>"
+	      }
+	    ],
+	    [
+	      {
+	        text: "Inspector"
+	      },
+	      {
+	        text: ""
+	      },
+	      {
+	        html: "<a href='search'>Assign</a>"
+	      }
+	    ]
+	  ]
+	}) }}
+	
+		
+{% endif %}
+    

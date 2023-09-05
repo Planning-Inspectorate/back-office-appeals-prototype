@@ -12,17 +12,16 @@
         <div class="govuk-heading-xl">Select site visit type</div>
 
         {{ govukRadios({
-            name: "how-many-balls",
+            name: "site-visit-type",
             fieldset: {
               legend: {
-                text: "How many balls can you juggle?",
                 isPageHeading: false,
                 classes: "govuk-fieldset__legend--l"
               }
             },
             items: [
               {
-                value: Unaccompanied",
+                value: "Unaccompanied",
                 text: "Unaccompanied"
               },
               {
@@ -34,6 +33,10 @@
                 text: "Accompanied"
               }
             ]
+          }) }}
+
+          {{ govukButton({
+            text: "Continue"
           }) }}
 
 

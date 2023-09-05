@@ -1,0 +1,143 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Case officer home" %}
+
+{% set back = false %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+  <h1 class="govuk-heading-l">National list</h1>
+
+
+  <div class="search-box">
+
+	{{ govukInput({
+	  label: {
+	    text: "Search cases",
+	    classes: "govuk-label--m",
+	    isPageHeading: false
+	  },
+	  classes: "",
+	  hint: {
+	    text: "Enter appeal ID or postcode"
+	  },
+	  id: "account-number",
+	  name: "account-number",
+	  inputmode: "numeric",
+	  spellcheck: false
+	}) }}
+
+	<div class="govuk-button-group">
+	  <button class="govuk-button" data-module="govuk-button">
+	    Search
+	  </button>
+	</div>
+
+  </div>
+
+  </div>
+</div>
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+	  <table class="govuk-table">
+		  <caption class="govuk-table__caption govuk-table__caption--m">All cases</caption>
+		  <thead class="govuk-table__head">
+		    <tr class="govuk-table__row">
+		      <th scope="col" class="govuk-table__header">Appeal ID</th>
+		      <th scope="col" class="govuk-table__header">Site address</th>
+		      <th scope="col" class="govuk-table__header">Local planning authority</th>
+		      <th scope="col" class="govuk-table__header">Appeal type</th>
+		      <th scope="col" class="govuk-table__header">Status</th>
+		    </tr>
+		  </thead>
+		  <tbody class="govuk-table__body">
+		    <tr class="govuk-table__row">
+		      <th scope="row" class="govuk-table__header"><a href="case.html">2110166</a></th>
+		      <td class="govuk-table__cell">Address line 1, Address line 2, Town or city, Postcode</td>
+		      <td class="govuk-table__cell">Council name</td>
+		      <td class="govuk-table__cell">Appeal type</td>
+		      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Ready to start</strong></td>
+		    </tr>
+		    <tr class="govuk-table__row">
+		      <th scope="row" class="govuk-table__header"><a href="case.html">2110166</a></th>
+		      <td class="govuk-table__cell">Address line 1, Address line 2, Town or city, Postcode</td>
+		      <td class="govuk-table__cell">Council name</td>
+		      <td class="govuk-table__cell">Appeal type</td>
+		      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">LPA questionnaire</strong></td>
+		    </tr>
+		    <tr class="govuk-table__row">
+		      <th scope="row" class="govuk-table__header"><a href="case.html">2110166</a></th>
+		      <td class="govuk-table__cell">Address line 1, Address line 2, Town or city, Postcode</td>
+		      <td class="govuk-table__cell">Council name</td>
+		      <td class="govuk-table__cell">Appeal type</td>
+		      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--orange">Statement review</strong></td>
+		    </tr>
+		    <tr class="govuk-table__row">
+		      <th scope="row" class="govuk-table__header"><a href="#">1234560</a></th>
+		      <td class="govuk-table__cell">Address line 1, Address line 2, Town or city, Postcode</td>
+		      <td class="govuk-table__cell">Council name</td>
+		      <td class="govuk-table__cell">Appeal type</td>
+		      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--purple">Final comment review</strong></td>
+		    </tr>
+		    <tr class="govuk-table__row">
+		      <th scope="row" class="govuk-table__header"><a href="case.html">1234561</a></th>
+		      <td class="govuk-table__cell">Address line 1, Address line 2, Town or city, Postcode</td>
+		      <td class="govuk-table__cell">Council name</td>
+		      <td class="govuk-table__cell">Appeal type</td>
+		      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue">Arrange site visit</strong></td>
+		    </tr>
+		    <tr class="govuk-table__row">
+		      <th scope="row" class="govuk-table__header"><a href="case.html">1234562</a></th>
+		      <td class="govuk-table__cell">Address line 1, Address line 2, Town or city, Postcode</td>
+		      <td class="govuk-table__cell">Council name</td>
+		      <td class="govuk-table__cell">Appeal type</td>
+		      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--pink">Issue determination</strong></td>
+		    </tr>
+		    <tr class="govuk-table__row">
+		      <th scope="row" class="govuk-table__header"><a href="case.html">1234563</a></th>
+		      <td class="govuk-table__cell">Address line 1, Address line 2, Town or city, Postcode</td>
+		      <td class="govuk-table__cell">Council name</td>
+		      <td class="govuk-table__cell">Appeal type</td>
+		      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Complete</strong></td>
+		    </tr>
+		  </tbody>
+	</table>
+
+	
+
+	{% from "govuk/components/pagination/macro.njk" import govukPagination %}
+
+	{{ govukPagination({
+	  previous: {
+	    href: "#"
+	  },
+	  next: {
+	    href: "#"
+	  },
+	  items: [
+	    {
+	      number: 1,
+	      current: true,
+	      href: "#"
+	    },
+	    {
+	      number: 2,
+	      href: "#"
+	    },
+	    {
+	      number: 3,
+	      href: "#"
+	    }
+	  ]
+	}) }}
+
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Case officer home" %}
+
+{% set back = false %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ govukPanel({
+        titleText: "Site visit scheduled",
+        html: "Appeal ID<br><strong>2110166</strong>"
+      }) }}
+      <div class="govuk-body">
+        <p>Your unaccompanied site visit at 21 The Pavement, Wandsworth, 
+            SW4 0HY is booked for 5 August 2023 between 10:30–12:30.</p>
+      </div>
+    
+      <h2 class="govuk-heading-m">What happens next</h2>
+      <div class="govuk-body">We updated the case timetable. We’ve sent an email to the LPA and appellant to confirm the site visit.</div>
+      <p class="govuk-body">
+      <a href="#" class="govuk-link govuk-link--no-visited-state">Go back to case details</a></p>
+
+    </div>
+  </div>
+
+{% endblock %}

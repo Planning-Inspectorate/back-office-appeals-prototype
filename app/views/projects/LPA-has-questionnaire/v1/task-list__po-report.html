@@ -1,12 +1,14 @@
 <li>
-  <h2 class="app-task-list__section">
-    Planning officer’s report and supplementary documents
-  </h2>
 
   {% set levyDate = (data['community-infrastructure-date-day'] or '1') +' '+ (data['community-infrastructure-date-month'] | formatMonth or 'July') +' '+ (data['community-infrastructure-date-year'] or '2022') %}
   {{ govukSummaryList({
     classes: 'govuk-!-margin-bottom-9',
-    rows: [
+    card: {
+	    title: {
+	      text: "Planning officer’s report and supplementary documents"
+	    }
+	  },
+	  rows: [
       {
         key: {
           html: 'Planning officer’s report'

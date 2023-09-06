@@ -1,10 +1,12 @@
 <li>
-  <h2 class="app-task-list__section">
-    Notifying people about the application
-  </h2>
   {{ govukSummaryList({
     classes: 'govuk-!-margin-bottom-9',
-    rows: [
+    card: {
+	    title: {
+	      text: "Notifying people about the application"
+	    }
+	  },
+	  rows: [
       {
         key: {
           html: 'Who was notified'

@@ -1,10 +1,15 @@
 <li>
   <h2 class="app-task-list__section">
-    Constraints, designations and other issues
+    
   </h2>
 
   {{ govukSummaryList({
     classes: 'govuk-!-margin-bottom-9',
+    card: {
+	    title: {
+	      text: "Constraints, designations and other issues"
+	    }
+	  },
     rows: [
       {
         key: {

@@ -1,0 +1,71 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Search and assign an inspector" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+	    
+		<span class="govuk-caption-xl">Appeal 2110166</span>
+		<h1 class="govuk-heading-xl">Search for an inspector</h1>
+	  
+	   <form action="results" method="post" class="govuk-!-margin-top-9" novalidate>
+	    
+	
+			{{ govukInput({
+			  label: {
+			    classes: "govuk-label--m",
+			    isPageHeading: false
+			  },
+			  classes: "",
+			  hint: {
+			    text: "Search by name or email address"
+			  },
+			  id: "account-number",
+			  name: "account-number",
+			  inputmode: "numeric",
+			  spellcheck: false
+			}) }}
+		
+			  <button class="govuk-button" data-module="govuk-button">
+			    Search
+			  </button>
+		
+	    
+	  </form>
+	  
+	  
+	  {% if (data['is-assigned-inspector'] == "yes") %}
+	
+	  
+	  	<h2 class="govuk-heading-m govuk-!-margin-top-9">Inspector currently assigned</h2>	  		  
+	  
+		{{ govukSummaryList({
+		  rows: [
+		    {
+		      key: {
+		        text: "Johnny Smith"
+		      },
+		      value: {
+		        text: "johnny.smith@planninginspectorate.gov.uk"
+		      },
+		      actions: {
+		        items: [
+		          {
+		            href: "remove-sure",
+		            text: "Remove",
+		            visuallyHiddenText: "from this case"
+		          }
+		        ]
+		      }
+		    }
+		  ]
+		}) }}
+		
+		{% endif %}
+	  	
+	</div>
+</div>
+
+{% endblock %}

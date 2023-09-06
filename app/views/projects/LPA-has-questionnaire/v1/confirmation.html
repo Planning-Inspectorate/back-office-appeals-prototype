@@ -1,38 +1,29 @@
 {% extends "layouts/PINS.html" %}
 
-{% set title = 'Questionnaire submitted' %}
+{% set pageName="Complete" %}
 
-{% block beforeContent %}
-  {{ govukPhaseBanner({
-    tag: {
-      text: "Beta"
-    },
-    html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
-  }) }}
-{% endblock %}
+{% set back = false %}
 
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
       {{ govukPanel({
-        titleHtml: title
-      }) }}
+		  titleText: "LPA questionnaire complete",
+		  html: "Appeal ID<br><strong>2110166</strong>"
+		}) }}
 
-      <p class="govuk-body">We&rsquo;ve sent you a confirmation email with a link to download a copy of your questionnaire.</p>
+      <p>The review of LPA questionnaire is finished.</p>
 
-      {{ govukInsetText({
-        html: '<p class="govuk-body">You need to email a copy of your questionnaire to the appellant. This must include a copy of any documents you uploaded.</p>'
-      }) }}
 
       <h2 class="govuk-heading-m">
         What happens next
       </h2>
 
-      <p class="govuk-body">We&rsquo;ll review your evidence and will be in touch if we need any further information.</p>
+      <p>We’ve sent an email to the LPA to confirm their questionnaire is complete and the the review is finished.</p>
 
       <p class="govuk-body">
-        <a href="../../appeals/v2/??no-appeals=false&questionnaire=complete" class="govuk-link--no-visited-state">View your planning appeals</a>
+        <a href="/projects/members-transfers/v1/inspector-score/case" class="govuk-link--no-visited-state">Go back to case details </a>
       </p>
 
     </div>

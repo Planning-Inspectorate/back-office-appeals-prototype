@@ -1,11 +1,13 @@
 <li>
-  <h2 class="app-task-list__section">
-    Consultation responses and representations
-  </h2>
 
   {{ govukSummaryList({
     classes: 'govuk-!-margin-bottom-9',
-    rows: [
+    card: {
+	    title: {
+	      text: "Consultation responses and representations"
+	    }
+	  },
+	  rows: [
 
       {
         key: {

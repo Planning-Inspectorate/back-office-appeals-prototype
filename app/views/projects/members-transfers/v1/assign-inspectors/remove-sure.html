@@ -1,0 +1,49 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Are you sure?" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+		<span class="govuk-caption-xl">Appeal 2110166</span>
+		<h1 class="govuk-heading-xl">Remove this case officer</h1>
+
+       <form action="document-details-removed" method="post" class="govuk-!-margin-top-9" novalidate>
+
+		<!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
+
+		{{ govukRadios({
+		  name: "is-assigned",
+		  fieldset: {
+		    legend: {
+		      text: "john.smith@planninginspectorate.gov.uk",
+		      isPageHeading: false,
+		      classes: "govuk-fieldset__legend--m"
+		    }
+		  },
+		  items: [
+		    {
+		      value: "no~/projects/members-transfers/v1/assign-members/assign-another",
+		      text: "Yes"
+		    },
+		    {
+		      value: "yes~/projects/members-transfers/v1/assign-members/assigned",
+		      text: "No"
+		    }
+		   ]
+		}) }}
+
+		{{ govukButton({
+          text: "Continue"
+        }) }}
+
+
+	  </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

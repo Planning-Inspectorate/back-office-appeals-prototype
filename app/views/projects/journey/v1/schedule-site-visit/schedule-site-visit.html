@@ -12,11 +12,47 @@
         <div class="govuk-heading-xl">Schedule site visit</div>
 
 
-        {{ govukDetails({
-        summaryText: "Site information",
-        text: "We need to know your nationality so we can work out which elections you’re entitled to vote in. If you cannot provide your nationality, you’ll have to send copies of identity documents through the post."
-            
-        }) }}
+        <details class="govuk-details" data-module="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+                Site information
+              </span>
+            </summary>
+            <div class="govuk-details__text">
+                {{ govukSummaryList({
+                    classes: "govuk-summary-list--no-border",
+                    rows: [
+                      {
+                        key: {
+                          text: "Site address"
+                        },
+                        value: {
+                          text: "21 The Pavement, Wandsworth, SW4 0HY"
+                        }
+                      },
+                      {
+                        key: {
+                          text: "Potential safety risks"
+                        },
+                        value: {
+                          text: "Yes, dogs on site"
+                        }
+                      },
+                      {
+                        key: {
+                          text: "Site details 1"
+                        },
+                        value: {
+                          html: "Jane Bishop <br>172, York Road, Bedminster, <br>
+                          Bristol, BS3 4AL <br>
+                          jane.bishop@gmail.com <br>
+                          +44 07477 652834"
+                        }  
+                      }
+                    ]
+                  }) }}
+            </div>
+          </details>
 
         <h2 class="govuk-heading-m">Select visit type</h2>
         {{ govukRadios({

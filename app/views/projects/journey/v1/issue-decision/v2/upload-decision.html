@@ -1,0 +1,106 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Add documents" %}
+
+{% set title = "Upload the decision letter" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+  	<span class="govuk-caption-l">Appeal 2110166</span>
+	<h1 class="govuk-heading-l">{{ title }}</h1>
+	
+	
+	
+	{{ govukWarningText({
+      text: "Before uploading the decision letter check the following things:",
+      iconFallbackText: "Warning"
+    }) }}
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>
+        you have used the correct appeal reference
+      </li>
+      <li>
+        you have added the decision and visit dates
+      </li>
+      <li>
+        you have added the correct site address
+      </li>
+      <li>
+        the decision at the top and bottom of the letter
+      </li>
+      <li>
+        your signature
+      </li>
+    </ul>
+  </section>
+
+
+	{% from "moj/components/multi-file-upload/macro.njk" import mojMultiFileUpload %}
+	{% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
+
+	  {% set uploadHtml %}
+
+      {{ govukFileUpload({
+        id: "final-documents",
+        name: "final-documents",
+        classes: 'moj-multi-file-upload__input',
+        label: {
+          text: "Upload files",
+          classes: 'govuk-label--m'
+        },
+        hint: {
+          text: 'The files must be a DOC, DOCX, PDF, TIF, JPG or PNG and be smaller than 15MB'
+        },
+        attributes: { multiple: '' }
+      }) }}
+
+      {{govukButton({
+        text: 'Upload file',
+        classes: 'govuk-button--secondary moj-multi-file-upload__button'
+      })}}
+
+    {% endset %}
+
+    {{ mojMultiFileUpload({
+    uploadedFiles: {
+        heading: { text: 'Files added' },
+        items: []
+      },
+      uploadHtml: uploadHtml
+    }) }}
+
+    {{ govukButton({
+      text: "Continue",
+      href: "confirmation"
+    }) }}
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block pageScripts %}
+  <script>
+  // I really should learn how the MOJ upload works, however, a hack to get all the files passed into data
+    $('#multiupload').submit(function(e) {
+      e.preventDefault();
+
+      $('.moj-multi-file-upload__filename').each(function() {
+        $('<input name="final-documents" type="checkbox" value="'+ $(this).text() +'" checked="true" style="display: none">').insertBefore('.govuk-heading-l');
+      });
+
+      $(this).unbind('submit').submit();
+    })
+
+
+  </script>
+{% endblock %}
+
+
+
+
+

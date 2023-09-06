@@ -1,0 +1,39 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Decision date" %}
+
+{% set title = "What was the decision date?" %}
+
+{% block questions %}
+
+  <span class="govuk-caption-l">
+    Appeal 2110166
+  </span>
+  <h1 class="govuk-heading-l">
+    {{ title }}
+  </h1>
+
+  {{ govukTag({
+    text: "Issue determination",
+    classes: "govuk-tag--pink"
+  })}}
+
+  {% include "/includes/appeal-content/lpa-has-appeal-meta.html" %}
+  <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+  {{ govukDateInput({
+    id: "decision-date",
+    namePrefix: "decision-date",
+    fieldset: {
+      legend: {
+        text: "Decision date on the letter",
+        isPageHeading: false,
+        classes: "govuk-fieldset__legend--m"
+      }
+    },
+    hint: {
+      html: "For example, 13 9 2023"
+    }
+  }) }}
+
+{% endblock %}

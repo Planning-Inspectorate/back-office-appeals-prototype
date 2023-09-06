@@ -1,0 +1,108 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName = "Issuing decisions" %}
+{% set title = pageName %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">
+      Appeal a planning decision
+    </span>
+    <h1 class="govuk-heading-l">
+      {{ title }}
+    </h1>
+
+    <h2 class="govuk-heading-m">
+      Version 2
+
+  		{{govukTag({
+        text: "Ready for research",
+        classes: "govuk-!-margin-left-2 govuk-tag--green"
+      })}}
+
+    </h2>
+
+    <p class="govuk-body">
+      As an Inspector I want to be able to issue appeal decisions.
+    </p>
+
+    <p class="govuk-body">
+      Changes:
+    </p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>content updates</li>
+    </ul>
+
+
+  	{{ govukButton({
+  	  text: "View prototype",
+  	  href: "/projects/personal-list/v1/?decision=ready",
+  	  isStartButton: true
+  	}) }}
+
+    {% set v1HTML %}
+
+  		<!-- Status tag options
+
+  		{{govukTag({
+        text: "New",
+        classes: "govuk-!-margin-left-2 govuk-tag--green"
+      })}}
+
+      {{govukTag({
+        text: "In progress",
+        classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+      })}}
+
+      {{govukTag({
+        text: "Ready for review",
+        classes: "govuk-!-margin-left-2 govuk-tag--blue"
+      })}}
+
+      {{govukTag({
+        text: "Ready for research",
+        classes: "govuk-!-margin-left-2 govuk-tag--green"
+      })}}
+
+      {{govukTag({
+        text: "Researched",
+        classes: " govuk-!-margin-left-2 govuk-tag--green"
+      })}}
+
+      -->
+
+      <p class="govuk-body">
+        As an Inspector I want to be able to issue appeal decisions.
+      </p>
+
+    	{{ govukButton({
+    	  text: "View prototype",
+    	  href: "v1/case?status=determination",
+    	  isStartButton: true
+    	}) }}
+
+    {% endset -%}
+
+    {{ govukAccordion({
+      id: 'previous',
+      classes: 'govuk-!-margin-top-9',
+      items: [
+
+        {
+          heading: {
+            html: 'Version 1 <strong class="govuk-tag govuk-tag--green govuk-!-margin-left-2">Ready for research</strong>'
+          },
+          content: {
+            html: v1HTML
+          }
+        }
+      ]
+    }) }}
+
+  </div>
+</div>
+{% endblock %}

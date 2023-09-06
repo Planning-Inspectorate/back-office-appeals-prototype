@@ -1,0 +1,46 @@
+{% extends "layouts/PINS.html" %}
+
+{% set title = 'Are there any other ongoing appeals near the site?' %}
+
+{% block questions %}
+  {% set appealRefs %}
+    {{ govukInput({
+      id: 'appeal-refs',
+      name: 'appeal-refs',
+      value: data['appeal-refs'],
+      label: {
+        html: 'Add appeal reference number'
+      },
+      hint: {
+        html: 'Use commas to separate reference numbers if adding several'
+      }
+    }) }}
+  {% endset -%}
+
+  {{ govukRadios({
+    idPrefix: 'other-appeals-radio',
+    name: 'other-appeals-radio',
+    fieldset: {
+      legend: {
+        html: title,
+        classes: 'govuk-fieldset__legend--l',
+        isPageHeading: true
+      }
+    },
+    items: [
+      {
+        html: 'Yes',
+        value: 'Yes',
+        checked: checked('other-appeals-radio','Yes'),
+        conditional: {
+          html: appealRefs
+        }
+      },
+      {
+        html: 'No',
+        value: 'No',
+        checked: checked('other-appeals-radio','No')
+      }
+    ]
+  }) }}
+{% endblock %}

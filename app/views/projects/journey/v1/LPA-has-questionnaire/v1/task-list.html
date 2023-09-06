@@ -1,0 +1,127 @@
+{% extends "layouts/PINS.html" %}
+
+{% set title = 'Appeal questionnaire' %}
+
+{# overrides back link #}
+{# ░░░░░░░░░░░░░░░░░░░ #}
+{% block backLink %}
+  {{ govukBackLink({
+    html: 'Back to appeals',
+    href: '#'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full govuk-!-margin-bottom-3">
+
+      <span class="govuk-caption-l">Appeal 2110166</span>
+      <h1 class="govuk-heading-l">
+        {{ title }}
+      </h1>
+
+    </div>
+
+    <div class="govuk-grid-column-full">
+      {# Tweak the summary list to be smaller #}
+
+      <style>
+        .appeal-details .govuk-summary-list__key,
+        .appeal-details .govuk-summary-list__value,
+        .appeal-details .govuk-summary-list__actions {
+          padding-top: .2rem;
+          padding-bottom: 0;
+        }
+        /* Give some space for the tag being inline now */
+        .app-task-list__section {
+          padding-right: 140px
+        }
+      </style>
+
+      <dl class="govuk-summary-list appeal-details govuk-summary-list--no-border">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Appeal type
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <p class="govuk-body">Householder appeal</p>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Appeal site
+          </dt>
+          <dd class="govuk-summary-list__value">
+            21 Cheers Drive, Speedwell, Bristol BS5 7FQ
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Application number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            21/04125/FUL
+          </dd>
+        </div>
+      </dl>
+
+      <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    </div>
+
+    <div class="govuk-grid-column-full">
+
+      <ol class="app-task-list">
+
+        {% include "./task-list__constraints.html" %}
+        {% include "./task-list__notified.html" %}
+        {% include "./task-list__consultation.html" %}
+        {% include "./task-list__po-report.html" %}
+        {% include "./task-list__site-access.html" %}
+        {% include "./task-list__appeal-process.html" %}
+
+      </ol>
+    </div>
+  </div>
+
+  <section>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full">
+
+        <form action="/appellant-outcome" method="post" novalidate>
+
+    	    <!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
+
+            {{ govukRadios({
+              name: "appelant-outcome",
+              fieldset: {
+                legend: {
+                  text: "What’s the outcome of your review?",
+                  isPageHeading: true,
+                  classes: "govuk-fieldset__legend--m"
+                }
+              },
+              items: [
+                {
+                  value: "complete~../../projects/LPA-has-questionnaire/v1/confirmation",
+                  text: "LPA questionnaire is complete"
+                },
+                {
+                  value: "incomplete~/url-0/incomplete",
+                  text: "LPA questionnaire is incomplete"
+                }
+              ]
+            }) }}
+
+            {{ govukButton({
+              text: "Continue"
+            }) }}
+
+    	  </form>
+
+
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

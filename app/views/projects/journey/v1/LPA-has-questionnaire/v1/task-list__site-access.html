@@ -1,0 +1,102 @@
+<li>
+
+  {{ govukSummaryList({
+    classes: 'govuk-!-margin-bottom-9',
+    card: {
+	    title: {
+	      text: "Site access"
+	    }
+	  },
+	  rows: [
+
+      {
+        key: {
+          html: 'Inspector access'
+        },
+        value: {
+          html: 'Yes'
+        },
+        actions: {
+          items: [
+            {
+              href: 'site-access/site-entry?cya=true',
+              html: 'Change'
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          html: 'Could a neighbouring site be affected?'
+        },
+        value: {
+          html: 'Yes'
+        },
+        actions: {
+          items: [
+            {
+              href: 'site-access/neighbours-land?cya=true',
+              html: 'Change'
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          html: 'Neighbouring site 1'
+        },
+        value: {
+          html: 'Sam Fisher<br>
+                 01179123456<br>
+                 172 York Road<br>
+                 Bristol<br>
+                 BS3 4AL'
+        },
+        actions: {
+          items: [
+            {
+              href: 'site-access/neighbours-address?cya=true',
+              html: 'Change'
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          html: 'Neighbouring site 2'
+        },
+        value: {
+          html: 'Screwfix<br>
+                 170, York Road<br>
+                 Bristol<br>
+                 BS3 4AL'
+        },
+        actions: {
+          items: [
+            {
+              href: 'site-access/neighbours-address?cya=true',
+              html: 'Change'
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          html: 'Potential safety risks'
+        },
+        value: {
+          html: 'Yes<br>
+                 Dogs on site'
+        },
+        actions: {
+          items: [
+            {
+              href: 'site-access/health-and-safety?cya=true',
+              html: 'Change'
+            }
+          ]
+        }
+      }
+    ]
+  }) }}
+</li>

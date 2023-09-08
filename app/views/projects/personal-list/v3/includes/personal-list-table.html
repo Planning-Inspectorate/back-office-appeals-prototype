@@ -38,9 +38,7 @@
       <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--purple">Final comment review</strong></td>
     </tr>
     <tr class="govuk-table__row">
-      <!-- this code is nutty -->
-      {% if data['version'] == '3' %}
-        <!-- version 3 of the Inspector decisions work -->
+
         {% if data['decision'] == 'ready' %}
           <td class="govuk-table__cell"><a href="/projects/issue-decision/v3/case?status=determination">1234562</a></td>
         {% elif data['decision'] == 'incomplete-appeal' %}
@@ -48,25 +46,10 @@
         {% elif data['decision'] == 'done' %}
           <td class="govuk-table__cell"><a href="/projects/issue-decision/v3/case?status=done">1234562</a></td>
         {% endif %}
-      {% else %}
-        <!-- version 2 of the Inspector decisions work -->
-        {% if data['decision'] == 'ready' %}
-          <td class="govuk-table__cell"><a href="/projects/issue-decision/v2/case?status=determination">1234562</a></td>
-        {% elif data['decision'] == 'incomplete-appeal' %}
-          <td class="govuk-table__cell"><a href="/projects/issue-decision/v2/case?status=incomplete">1234562</a></td>
-        {% elif data['decision'] == 'done' %}
-          <td class="govuk-table__cell"><a href="/projects/issue-decision/v2/case?status=done">1234562</a></td>
-        {% endif %}
-      {% endif %}
 
       <td class="govuk-table__cell"></td>
       {% if data['decision'] == 'ready' %}
-        <!-- this code is nutty -->
-        {% if data['version'] == '3' %}
           <td class="govuk-table__cell"><a href="/projects/issue-decision/v3/decision" class="govuk-link govuk-link--no-visited-state">Issue a decision</a></td>
-        {% else %}
-          <td class="govuk-table__cell"><a href="/projects/issue-decision/v2/decision" class="govuk-link govuk-link--no-visited-state">Issue a decision</a></td>
-        {% endif %}
       {% elif data['decision'] == 'incomplete-appeal' %}
         <td class="govuk-table__cell"><a href="#" class="govuk-link govuk-link--no-visited-state">Review case</a></td>
       {% else %}

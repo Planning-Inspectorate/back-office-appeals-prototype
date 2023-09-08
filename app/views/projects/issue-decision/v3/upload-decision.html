@@ -1,0 +1,111 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName = "Decision date" %}
+
+{% set title = "Upload your decision letter" %}
+
+{% block questions %}
+
+  <span class="govuk-caption-l">
+    Appeal 2110166
+  </span>
+  <h1 class="govuk-heading-l">
+    {{ title }}
+  </h1>
+
+  <!-- {{ govukTag({
+    text: "Issue determination",
+    classes: "govuk-tag--pink"
+  })}} -->
+
+<!-- </div>
+<div class="govuk-grid-column-full">
+
+  {% include "../v3/includes/case-meta-data.html" %}
+  <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+</div>
+<div class="govuk-grid-column-two-thirds"> -->
+
+  <section class="govuk-!-margin-top-6 govuk-!-margin-bottom-6">
+
+    {{ govukWarningText({
+      text: "Before uploading the decision letter check the following things:",
+      iconFallbackText: "Warning"
+    }) }}
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>
+        you have used the correct appeal reference
+      </li>
+      <li>
+        you have added the decision and visit dates
+      </li>
+      <li>
+        you have added the correct site address
+      </li>
+      <li>
+        the decision at the top and bottom of the letter
+      </li>
+      <li>
+        your signature
+      </li>
+    </ul>
+  </section>
+
+  {% set uploadHtml %}
+    {{ govukFileUpload({
+      id: 'letters-upload',
+      name: 'letters-upload',
+      classes: 'moj-multi-file-upload__input',
+      label: {
+        text: 'Upload a file',
+        classes: 'govuk-label--m'
+      },
+      hint: {
+        text: 'The file must be a DOC, DOCX, PDF, TIF, JPG or PNG and be smaller than 15MB'
+      }
+    }) }}
+
+    {{govukButton({
+      text: 'Upload file',
+      classes: 'govuk-button--secondary moj-multi-file-upload__button'
+    })}}
+  {% endset %}
+
+  {{ mojMultiFileUpload({
+    uploadedFiles: {
+      heading: { text: 'File added' },
+      items: []
+    },
+    uploadHtml: uploadHtml
+  }) }}
+{% endblock %}
+
+{% block pageScripts %}
+  <script>
+    // Hacky hacky single file
+    $('.moj-multi-file-upload__dropzone .govuk-body').text('Drag and drop a file here or ')
+    $('.moj-multi-file-upload__dropzone .govuk-button').text('Select file')
+    $('.moj-multi-file__uploaded-files').on('fileAdded', function() {
+      $('.moj-multi-file-upload__upload').hide()
+    });
+
+    $('.moj-multi-file__uploaded-files').click(function() {
+      $('.moj-multi-file-upload__upload').show()
+    });
+
+
+
+    // I really should learn how the MOJ upload works, however, a hack to get all the files passed into data
+    $('form').submit(function(e) {
+      e.preventDefault();
+
+      $('.moj-multi-file-upload__filename').each(function() {
+        $('<input name="letters-upload" type="checkbox" value="'+ $(this).text() +'" checked="true" style="display: none">').insertBefore('.govuk-heading-l');
+      });
+
+      $(this).unbind('submit').submit();
+    })
+  </script>
+{% endblock %}

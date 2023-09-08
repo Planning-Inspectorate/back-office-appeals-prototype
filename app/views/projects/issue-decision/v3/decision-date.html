@@ -1,0 +1,45 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Decision date" %}
+
+{% set title = "Tell us the date on your decision letter" %}
+
+{% block questions %}
+
+  <span class="govuk-caption-l">
+    Appeal 2110166
+  </span>
+  <!-- <h1 class="govuk-heading-l">
+    {{ title }}
+  </h1> -->
+
+  <!-- {{ govukTag({
+    text: "Issue determination",
+    classes: "govuk-tag--pink"
+  })}} -->
+
+<!-- </div>
+<div class="govuk-grid-column-full">
+
+  {% include "../v3/includes/case-meta-data.html" %}
+  <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+</div>
+<div class="govuk-grid-column-two-thirds"> -->
+
+  {{ govukDateInput({
+    id: "decision-date",
+    namePrefix: "decision-date",
+    fieldset: {
+      legend: {
+        text: title,
+        isPageHeading: true,
+        classes: "govuk-fieldset__legend--l"
+      }
+    },
+    hint: {
+      html: "For example, 13 9 2023"
+    }
+  }) }}
+
+{% endblock %}

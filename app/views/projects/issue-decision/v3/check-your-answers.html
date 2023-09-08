@@ -1,0 +1,120 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Decision date" %}
+
+{% set title = "Check your answers" %}
+
+{% block questions %}
+
+  <span class="govuk-caption-l">
+    Appeal 2110166
+  </span>
+  <h1 class="govuk-heading-l">
+    {{ title }}
+  </h1>
+
+  <!-- {{ govukTag({
+    text: "Issue determination",
+    classes: "govuk-tag--pink"
+  })}} -->
+
+<!-- </div>
+<div class="govuk-grid-column-full">
+
+  {% include "../v3/includes/case-meta-data.html" %}
+  <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+</div>
+<div class="govuk-grid-column-two-thirds"> -->
+
+  {{ govukSummaryList({
+    classes: 'govuk-!-margin-bottom-6',
+    rows: [
+      {
+        key: {
+          text: "Decision"
+        },
+        value: {
+          text: data['issued-decision'] or 'Allowed'
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: " decision"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Decision letter"
+        },
+        value: {
+          html: "<a href='#' class='govuk-link'>4012345-planning-appeal-decision.doc</a>"
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: " decision letter"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Decision date"
+        },
+        value: {
+          html: 1 | daysAgo
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: " decision date"
+            }
+          ]
+        }
+      }
+    ]
+  }) }}
+
+{% endblock %}
+
+{% block buttons %}
+
+  {{ govukWarningText({
+    text: "You are about to send the decision to all parties and close the appeal. Please make sure you have reviewed the decision information",
+    iconFallbackText: "Warning"
+  }) }}
+
+  {{ govukCheckboxes({
+
+    idPrefix: 'ready-to-send',
+    name: 'ready-to-send',
+    classes: 'checkboxes-long-text',
+    fieldset: {
+      legend: {
+        html: 'Confirmation you are ready to send this decision',
+        classes: 'govuk-fieldset__legend--m govuk-visually-hidden'
+      }
+    },
+    items: [
+      {
+        html: 'This decision is ready to be sent to all parties',
+        value: 'Yes',
+        checked: checked('ready-to-send','Yes')
+      }
+    ]
+  }) }}
+
+	{{ govukButton({
+		text: 'Submit this decision'
+	}) }}
+
+{% endblock %}

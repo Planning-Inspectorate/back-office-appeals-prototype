@@ -15,8 +15,12 @@
       {{ title }}
     </h1>
 
+    <p class="govuk-body-l">
+      As an Inspector I want to be able to issue appeal decisions.
+    </p>
+
     <h2 class="govuk-heading-m">
-      Version 2
+      Version 3
 
   		{{govukTag({
         text: "Ready for research",
@@ -26,23 +30,45 @@
     </h2>
 
     <p class="govuk-body">
-      As an Inspector I want to be able to issue appeal decisions.
-    </p>
-
-    <p class="govuk-body">
-      Changes:
+      Content updates following research:
     </p>
 
     <ul class="govuk-list govuk-list--bullet">
-      <li>content updates</li>
+      <li>updates to upload decision letter content and decision date</li>
+      <li>update to ‘Inspector access / Yes’ on the LPA questionnaire answers</li>
     </ul>
 
 
   	{{ govukButton({
   	  text: "View prototype",
-  	  href: "/projects/personal-list/v1/?decision=ready",
+  	  href: "/projects/personal-list/v3/?decision=ready",
   	  isStartButton: true
   	}) }}
+
+    {% set v2HTML %}
+
+      <p>
+        Researched August 2023<br>
+        <a href="https://pins-ds.atlassian.net/wiki/spaces/BO/pages/1258389505/Inspectors%3A+Inspector+decisions+for+householder+appeals" class="govuk-link">
+          Inspectors: Inspector decisions for householder appeals
+        </a>
+      </p>
+
+      <p class="govuk-body">
+        Changes:
+      </p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>content updates</li>
+      </ul>
+
+      {{ govukButton({
+        text: "View prototype",
+        href: "/projects/personal-list/v1/?decision=ready",
+        isStartButton: true
+      }) }}
+
+    {% endset -%}
 
     {% set v1HTML %}
 
@@ -75,10 +101,6 @@
 
       -->
 
-      <p class="govuk-body">
-        As an Inspector I want to be able to issue appeal decisions.
-      </p>
-
     	{{ govukButton({
     	  text: "View prototype",
     	  href: "v1/case?status=determination",
@@ -92,6 +114,14 @@
       classes: 'govuk-!-margin-top-9',
       items: [
 
+        {
+          heading: {
+            html: 'Version 2 <strong class="govuk-tag govuk-tag--blue govuk-!-margin-left-2">Researched</strong>'
+          },
+          content: {
+            html: v2HTML
+          }
+        },
         {
           heading: {
             html: 'Version 1 <strong class="govuk-tag govuk-tag--green govuk-!-margin-left-2">Ready for research</strong>'

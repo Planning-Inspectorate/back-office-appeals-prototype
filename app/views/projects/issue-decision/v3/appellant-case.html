@@ -1,0 +1,178 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Appellant Case" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+  	<span class="govuk-caption-l">Appeal 1234562</span>
+  	<h1 class="govuk-heading-l">Appellant case</h1>
+
+    {% include "../v3/includes/case-meta-data.html" %}
+
+  	{{ govukSummaryList({
+  	  card: {
+  	    title: {
+  	      text: "1. The appellant"
+  	    }
+  	  },
+  	  rows: [
+  	    {
+  	      key: {
+  	        text: "Name"
+  	      },
+  	      value: {
+  	        html: "Jane Doe"
+  	      }
+  	    },
+  	    {
+  	      key: {
+  	        text: "Another individual"
+  	      },
+  	      value: {
+  	        html: "UK national resident in UK"
+  	      }
+  	    },
+  	    {
+  	      key: {
+  	        text: "Application reference"
+  	      },
+  	      value: {
+  	        html: "ABC123456"
+  	      }
+  	    }
+  	  ]
+  	}) }}
+
+	{{ govukSummaryList({
+	  card: {
+	    title: {
+	      text: "2. The appeal site"
+	    }
+	  },
+	  rows: [
+	    {
+	      key: {
+	        text: "Site address"
+	      },
+	      value: {
+	        html: "21 The pavement, Wandsworth, SW4 0HY"
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Site fully owned"
+	      },
+	      value: {
+	        html: "No"
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Site partially owned"
+	      },
+	      value: {
+	        html: "Yes"
+	      }
+	    },
+	    {
+	      key: {
+	        text: "All owners known"
+	      },
+	      value: {
+	        html: "No"
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Attempted to identify owners"
+	      },
+	      value: {
+	        html: "Yes"
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Advertised appeal"
+	      },
+	      value: {
+	        html: "No"
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Visibility"
+	      },
+	      value: {
+	        html: "No"
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Site health and safety issuer"
+	      },
+	      value: {
+	        html: "Yes"
+	      }
+	    }
+
+	  ]
+	}) }}
+
+	{{ govukSummaryList({
+	  card: {
+	    title: {
+	      text: "3. The appeal"
+	    }
+	  },
+	  rows: [
+	    {
+	      key: {
+	        text: "Application form known"
+	      },
+	      value: {
+	        html: "<a href='#'>application-form.pdf</a>"
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Decision letter"
+	      },
+	      value: {
+	        html: "<a href='#'>decision-letter.pdf</a>"
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Appeal statement"
+	      },
+	      value: {
+	        html: "<a href='#'>application-statement.pdf</a>"
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Add new supporting documents"
+	      },
+	      value: {
+	        html: "Yes"
+	      }
+	    },
+	    {
+	      key: {
+	        text: "New supporting documents"
+	      },
+	      value: {
+	        html: "<a href='#'>other.pdf</a>"
+	      }
+	    }
+	  ]
+	}) }}
+
+  </div>
+</div>
+
+
+{% endblock %}

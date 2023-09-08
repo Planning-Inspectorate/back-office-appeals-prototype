@@ -1,0 +1,67 @@
+<li>
+  <h2 class="app-task-list__section">
+    Constraints, designations and other issues
+  </h2>
+
+  {{ govukSummaryList({
+    card: {
+      title: {
+        text: "Constraints, designations and other issues"
+      }
+    },
+    rows: [
+      {
+        key: {
+          html: 'Is the appeal type appropriate?'
+        },
+        value: {
+          html: 'Yes'
+        }
+      },
+      {
+        key: {
+          html: 'Affects a listed building'
+        },
+        value: {
+          html: 'Yes'
+        }
+      },
+      {
+        key: {
+          html: 'Listed buildings'
+        },
+        value: {
+          html: '<a href="#">1282050</a><br>
+                 Grade II listed building<br>
+                 155, York Road, Bedminster, Bristol, BS3 4AL'
+        }
+      },
+      {
+        key: {
+          html: 'Conservation area'
+        },
+        value: {
+          html: 'Yes'
+        }
+      },
+      {
+        key: {
+          html: 'Conservation area map and guidance'
+        },
+        value: {
+          html: '<a href="#" class="govuk-link">BS3 4AL Conservation-map.pdf</a><br>
+                 <a href="#" class="govuk-link">BS3 4AL Conservation-guidance.doc</a><br>'
+        }
+      },
+      {
+        key: {
+          html: 'Green belt'
+        },
+        value: {
+          html: 'No'
+        }
+      }
+
+    ]
+  }) }}
+</li>

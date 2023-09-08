@@ -1,0 +1,102 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Reasons the appeal is invalid" %}
+
+{% set title = "Why is the appeal invalid?" %}
+
+{% block questions %}
+
+  <span class="govuk-caption-l">
+    Appeal 2110166
+  </span>
+  <h1 class="govuk-heading-l">
+    {{ title }}
+  </h1>
+
+  <!-- <p class="govuk-body">
+    You need to tell inspectors how to prepare for a site visit and what to bring.
+  </p>
+
+  <p class="govuk-!-margin-bottom-2">
+    What you tell us might include:
+  </p>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>
+      there is no, or limited mobile reception
+    </li>
+    <li>
+      access is blocked
+    </li>
+    <li>
+      ladders or other equipment is needed
+    </li>
+    <li>
+      site health and safety rules need to be followed (for instance, a hard hat, boots and hi visibility clothing)
+    </li>
+    <li>
+      there is livestock or other animals
+    </li>
+    <li>
+      there is dangerous debris or overgrown vegetation
+    </li>
+    <li>
+      there is potentially hazardous material, such as asbestos
+    </li>
+  </ul> -->
+
+  {% set missingEvidenceHTML %}
+    {{ govukTextarea({
+      name: 'missing-evidence__detail',
+      id: 'missing-evidence__detail',
+      value: data['missing-evidence__detail'],
+      rows: '',
+      label: {
+        html: 'What evidence is missing?'
+      }
+    }) }}
+  {% endset -%}
+
+  {% set otherReasonHTML %}
+    {{ govukTextarea({
+      name: 'other__detail',
+      id: 'other__detail',
+      value: data['other__detail'],
+      rows: '',
+      label: {
+        html: 'Detail why the appeal is invalid'
+      }
+    }) }}
+  {% endset -%}
+
+  {{ govukRadios({
+    idPrefix: 'missing-evidence__reasons',
+    name: 'missing-evidence__reasons',
+    fieldset: {
+      legend: {
+        html: 'State why the appeal is invalid',
+        classes: 'govuk-fieldset__legend--m'
+      }
+    },
+    items: [
+      {
+        html: 'Missing evidence',
+        value: 'Missing evidence',
+        checked: checked('missing-evidence__reasons','Missing evidence'),
+        conditional: {
+          html: missingEvidenceHTML
+        }
+      },
+      {
+        html: 'Another reason',
+        value: 'Another reason',
+        checked: checked('missing-evidence__reasons','Another reason'),
+        conditional: {
+          html: otherReasonHTML
+        }
+      }
+    ]
+  }) }}
+
+{% endblock %}
+
+{% block pageScripts %}{% endblock %}

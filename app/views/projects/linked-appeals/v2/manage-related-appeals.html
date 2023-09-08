@@ -7,14 +7,14 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {% if data ['unlink-appeal'] === "yes" %}
+      {% if data ['unrelateappeal'] === "yes" %}
 
       <div class="govuk-notification-banner  govuk-notification-banner--success" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
     	  <div class="govuk-notification-banner__header">
     	    <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">Success</h2>
         </div>
     	  <div class="govuk-notification-banner__content"> 
-            You have unlinked this appeal from appeal {{ data ['appealid'] }}
+            You have removed the relationship between this appeal and appeal {{ data ['relappealid'] }}
         </div>
         </div>
 
@@ -22,21 +22,9 @@
 
     	<span class="govuk-caption-l">Appeal 2110166</span>
               <h1 class="govuk-heading-l">
-              Manage linked appeals
+              Manage related appeals
             </h1>
 
-            {% if data ['which-appeal-is-the-parent'] === "2110166" %}
-              {{ govukTag({
-                text: "Lead appeal",
-                classes: "govuk-tag--grey"
-              })}}
-            {% else %}
-              {{ govukTag({
-                text: "Child appeal",
-                classes: "govuk-tag--grey"
-              })}}
-            {% endif %}
-            
             </div>
           </div>
 
@@ -47,7 +35,7 @@
             <!-- show if child appeal -->
 
             {{ govukTable({
-              caption: "Lead appeal",
+              caption: "Related appeals",
               captionClasses: "govuk-table__caption--m govuk-!-margin-top-6",
               firstCellIsHeader: false,
               head: [
@@ -72,7 +60,7 @@
                     text: "Listed buildings"
                   },
                   {
-                    html: "<a href='unlink-appeal'>Unlink</a>"
+                    html: "<a href='unrelate-appeal'>Remove</a>"
                   }
                 ]
               ]
@@ -81,38 +69,6 @@
             
             <!---->
               
-
-            {{ govukTable({
-              caption: "Other child appeals",
-              captionClasses: "govuk-table__caption--m govuk-!-margin-top-6",
-              firstCellIsHeader: false,
-              head: [
-                {
-                  text: "Appeal ID"
-                },
-                {
-                  text: "Appeal type",
-                  classes: "govuk-!-width-one-half"
-                },
-                {
-                  text: "Action",
-                  classes: "govuk-!-width-one-quarter"
-                }
-              ],
-              rows: [
-                [
-                  {
-                    html: "<a href='case'>2137616</a>"
-                  },
-                  {
-                    text: "Householder appeal (HAS)"
-                  },
-                  {
-                    html: "<a href='unlink-appeal'>Unlink</a>"
-                  }
-                ]
-              ]
-            }) }}
 
 
     </div>

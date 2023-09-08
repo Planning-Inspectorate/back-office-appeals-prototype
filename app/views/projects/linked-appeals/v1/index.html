@@ -130,7 +130,9 @@
                           <!-- Display linked appeal -->
                           {% if data ['unlink-appeal'] === "yes" %}
                           {% elseif data ['appealid'] %}
-                          <a href="#">{{ data ['appealid'] }}<span class="govuk-visually-hidden"> appeal overview</span></a>{% if data ['appealid'] and data ['which-appeal-is-the-parent'] === data ['appealid'] %} (Lead) {% endif %}
+                          <ul class="govuk-list govuk-list--bullet"><li>
+                            <a href="#">{{ data ['appealid'] }}<span class="govuk-visually-hidden"> appeal overview</span></a>{% if data ['appealid'] and data ['which-appeal-is-the-parent'] === data ['appealid'] %} (Lead) {% endif %}
+                          </li></ul>
                           {% else %}
                           {% endif %}
                           <!-- / Display linked appeal -->

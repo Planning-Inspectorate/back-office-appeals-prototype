@@ -66,3 +66,26 @@ router.get("/projects/linked-appeals/v1/link-to-appeal", (req, res) => {
 		res.redirect(req.originalUrl.replace("link-to-appeal","link-appeal-details"))
 	}
 })
+
+
+router.get("/projects/linked-appeals/v2/link-to-appeal", (req, res) => {
+	if (req.session.data.appealid == "horizon") {
+		delete req.session.data.unlinkappeal
+		res.redirect(req.originalUrl.replace("link-to-appeal","link-appeal-horizon"))
+	}
+	else {
+		delete req.session.data.unlinkappeal
+		res.redirect(req.originalUrl.replace("link-to-appeal","link-appeal-details"))
+	}
+})
+
+router.get("/projects/linked-appeals/v2/relate-appeal", (req, res) => {
+	if (req.session.data.relappealid == "horizon") {
+		delete req.session.data.unrelateappeal
+		res.redirect(req.originalUrl.replace("relate-appeal","related-appeal-horizon"))
+	}
+	else {
+		delete req.session.data.unrelateappeal
+		res.redirect(req.originalUrl.replace("relate-appeal","related-appeal-details"))
+	}
+})

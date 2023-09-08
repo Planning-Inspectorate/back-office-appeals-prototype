@@ -21,7 +21,7 @@
 
        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
-     <!-- <h2 class="govuk-heading-m">Version 2
+   <h2 class="govuk-heading-m">Version 2
         {%- from "govuk/components/tag/macro.njk" import govukTag -%}
     
         {{govukTag({
@@ -29,6 +29,7 @@
           classes: "govuk-!-margin-left-2 govuk-tag--yellow"
         })}}
     
+        <!--
          Status tag options
     
         {{govukTag({
@@ -55,13 +56,13 @@
               text: "Researched",
               classes: " govuk-!-margin-left-2 govuk-tag--green"
             })}}
-    
+    -->
             
     
     
       </h2>
 
-      <p class="govuk-body">This version is redesigned based on allowing us to surface appeals stored in Horizon within the Back Office interface.</p>
+      <p class="govuk-body">This version contains both linked and related appeals. I've kept them in the same space in the prototype as they go hand in hand and we should keep the pattern usage consistent.</p>
     
 
         <h3 class="govuk-heading-s">Features:</h3>
@@ -70,10 +71,16 @@
           ability to link claims
         </li>
         <li>
-          ability to set claims as a parent or child
+          ability to set claims as a lead or child
         </li>
         <li>
-          ability to unlink claims
+          ability to manage and unlink claims
+        </li>
+        <li>
+          ability to show claims as related
+        </li>
+        <li>
+          ability to manage related claims
         </li>
       </ul>
 
@@ -81,22 +88,16 @@
       <h3 class="govuk-heading-s">Assumptions:</h3>
 
       <ul class="govuk-list govuk-list--bullet">
-            <li>
-              That we can display the data in the search table for claims in both back office and horizon.
-            </li>
-            <li>
-              That if the case officer needs more information than in the search table they will click to view the appeal or manually check horizon.
-            </li>
-            <li>
-              That not linking the appeal id is sufficient to indicate that the appeal is in horizon rather than back office.
-            </li>
+        <li>
+          That we will be able to tell if a claim ID is for a case in back office or horizon. If it is in back office it will be a hyperlink to the relevant appeal, if it is in Horizon we should leave unlinked and label it as <em>(horizon)</em>.
+        </li>
           </ul>
 
-          <h3 class="govuk-heading-s">What this doesn't do yet:</h3>
+          <h3 class="govuk-heading-s">What this doesn't do:</h3>
 
       <ul class="govuk-list govuk-list--bullet">
             <li>
-              the prototype shows the link for adding multiple appeals but doesn't do it functionally
+              the prototype shows the links for adding multiple appeals but doesn't do it functionally
             </li>
           </ul> 
 
@@ -106,7 +107,7 @@
             isStartButton: true
           }) }}
 
-          <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible"> -->
+          <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible"> 
 
 
 	<h2 class="govuk-heading-m">Version 1
@@ -186,7 +187,7 @@
 
 	{{ govukButton({
 	  text: "View prototype",
-	  href: "v1/",
+	  href: "v/",
 	  isStartButton: true
 	}) }}
 

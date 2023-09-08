@@ -9,30 +9,19 @@
 
       {% if data ['unlinkappeal'] === "yes" %}
 
-      <div class="govuk-notification-banner  govuk-notification-banner--success" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
-    	  <div class="govuk-notification-banner__header">
-    	    <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">Success</h2>
-        </div>
-    	  <div class="govuk-notification-banner__content"> 
-            You have unlinked this appeal from appeal {{ data ['appealid'] }}
-        </div>
-        </div>
-
     	{% elseif data ['appealid'] %}
       <div class="govuk-notification-banner  govuk-notification-banner--success" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
     	  <div class="govuk-notification-banner__header">
     	    <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">Success</h2>
         </div>
     	  <div class="govuk-notification-banner__content"> 
-          <p class="govuk-notification-banner__heading">
-            {% if data ['which-appeal-is-the-parent'] === "child" %}
+            {% if data ['which-appeal-is-the-parent'] === "2110166" %}
             This appeal is now the lead for appeal {{ data ['appealid'] }}
             {% endif %}
 
-            {% if data ['which-appeal-is-the-parent'] === "lead" %}
+            {% if data ['which-appeal-is-the-parent'] === data ['appealid'] %}
             This appeal is now the child of appeal {{ data ['appealid'] }}
             {% endif %}
-          </p>
         </div>
         </div>
     	{% endif %}
@@ -44,15 +33,15 @@
         text: "Ready to start",
         classes: "govuk-tag--green"
       })}}
-      {% if data ['unlink-appeal'] === "yes" %}
+      {% if data ['unlinkappeal'] === "yes" %}
       {% elseif data ['appealid'] %}
-          {% if data ['which-appeal-is-the-parent'] === "child" %}
+          {% if data ['which-appeal-is-the-parent'] === "2110166" %}
           {{ govukTag({
             text: "Lead appeal",
             classes: "govuk-tag--grey"
           })}}
           {% endif %}
-          {% if data ['which-appeal-is-the-parent'] === "lead" %}
+          {% if data ['which-appeal-is-the-parent'] === data ['appealid'] %}
           {{ govukTag({
             text: "Child appeal",
             classes: "govuk-tag--grey"
@@ -67,7 +56,8 @@
             Site address
           </dt>
           <dd class="govuk-summary-list__value">
-            Address line 1, Address line 2, Town or city, Postcode
+            
+            
           </dd>   
         </div>
  
@@ -79,50 +69,6 @@
             Council name
           </dd>        
         </div>
-
-        {% if data ['unlinkappeal'] === "yes" %}
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Linked appeals
-            </dt>
-            <dd class="govuk-summary-list__value">
-              <a href="link-appeal-search">Add a linked appeal</a>
-            </dd>    
-          </div>
-        {% elseif data ['which-appeal-is-the-parent'] === "child" %}
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Linked appeals
-              </dt>
-              <dd class="govuk-summary-list__value">
-                <ul class="govuk-list govuk-list--bullet"><li><a href="#">{{ data ['appealid'] }}</a></li></ul>
-              </dd>
-              <dd class="govuk-summary-list__value">    
-                <a href="#">Manage<span class="govuk-visually-hidden"> linked appeals</span></a> | <a href="unlink-appeal.html">Add<span class="govuk-visually-hidden"> a linked appeal</span></a>
-              </dd> 
-            </div>
-        {% elseif data ['appealid'] and data ['which-appeal-is-the-parent'] === "lead" %}
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Linked appeal
-              </dt>
-              <dd class="govuk-summary-list__value">
-                <p>{{ data ['appealid'] }} (Lead)</p>
-              </dd>
-              <dd class="govuk-summary-list__value">    
-                <a href="#">View<span class="govuk-visually-hidden"> appeal {{ data ['appealid'] }}</span></a> | <a href="unlink-appeal.html">Unlink<span class="govuk-visually-hidden"> appeal {{ data ['appeal-id'] }} from 2110166</span></a>
-              </dd>    
-            </div>
-        {% else %}
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Linked appeals
-              </dt>
-              <dd class="govuk-summary-list__value">
-                <a href="link-appeal-search">Add<span class="govuk-visually-hidden"> a linked appeal</span></a>
-              </dd>    
-            </div>
-        {% endif %}
       
   </dl>
 
@@ -138,96 +84,109 @@
             </h2>
           </div>
           <div id="accordion-default-content-1" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-1">
-            {{ govukTable({
-              captionClasses: "govuk-table__caption--m",
-              firstCellIsHeader: true,
-              rows: [
-                [
-                  {
-                    text: "Appeal type"
-                  },
-                  {
-                    text: "Householder appeal (HAS)"
-                  },
-                  {
-                    html: "<a href='#'>Change</a>"
-                  }
-                ],
-                [
-                  {
-                    text: "Case procedure"
-                  },
-                  {
-                    text: "Written"
-                  },
-                  {
-                    html: "<a href='#'>Change</a>"
-                  }
-                ],
-                [
-                  {
-                    text: "Appellant name"
-                  },
-                  {
-                    text: "Fiona Shell"
-                  },
-                  {
-                    html: "<a href='#'>Change</a>"
-                  }
-                ],[
-                  {
-                    text: "Agent name"
-                  },
-                  {
-                    text: "Naomi Jonhson"
-                  },
-                  {
-                    html: "<a href='#'>Change</a>"
-                  }
-                ],
-                [
-                  {
-                    text: "Other appeals"
-                  },
-                  {
-                    html: ""
-                  },
-                  {
-                    html: "<a href='#'>Add<span class='govuk-visually-hidden'> an other appeal</span></a>"
-                  }
-                ],[
-                  {
-                    text: "Allocation details"
-                  },
-                  {
-                    text: "F / General Allocation"
-                  },
-                  {
-                    html: "<a href='#'>Change</a>"
-                  }
-                ],[
-                  {
-                    text: "LPA reference"
-                  },
-                  {
-                    text: "22/00118/FULL"
-                  },
-                  {
-                    html: "<a href='#'>Change</a>"
-                  }
-                ],[
-                  {
-                    text: "Decision"
-                  },
-                  {
-                    text: "Not issued yet"
-                  },
-                  {
-                    html: "<a href='.'>Change</a>"
-                  }
-                ]
-              ]
-            }) }}
+            
+            <!--  Case overview table -->
+            <table class="govuk-table">
+
+              <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                      <th scope="row" class="govuk-table__header">Appeal type</th>
+                      <td class="govuk-table__cell">Householder appeal (HAS)</td>
+                      <td class="govuk-table__cell"><a href="#">Change</a></td>
+                    </tr>
+            
+                    <tr class="govuk-table__row">
+                      <th scope="row" class="govuk-table__header">Case procedure</th>
+                      <td class="govuk-table__cell">Written</td>
+                      <td class="govuk-table__cell"><a href="#">Change</a></td>
+                    </tr>
+               
+                    <tr class="govuk-table__row">
+                      <th scope="row" class="govuk-table__header">Appellant name</th>
+                      <td class="govuk-table__cell">Fiona Shell</td>
+                      <td class="govuk-table__cell"><a href="#">Change</a></td>
+                    </tr>
+            
+                    <tr class="govuk-table__row">
+                      <th scope="row" class="govuk-table__header">Agent name</th>
+                      <td class="govuk-table__cell">Naomi Jonhson</td>
+                      <td class="govuk-table__cell"><a href="#">Change</a></td>
+                    </tr>
+
+                    <tr class="govuk-table__row">
+                      <th scope="row" class="govuk-table__header">
+                             Linked appeals
+                      </th>
+                        <td class="govuk-table__cell">
+                          <!-- Display linked appeal -->
+                          {% if data ['unlinkappeal'] === "yes" %}
+                          {% elseif data ['appealid'] %}
+                          <ul class="govuk-list govuk-list--bullet"><li>
+                            <a href="#">{{ data ['appealid'] }}<span class="govuk-visually-hidden"> appeal overview</span></a>{% if data ['appealid'] and data ['which-appeal-is-the-parent'] === data ['appealid'] %} (Lead) {% endif %}
+                          </li></ul>
+                          {% else %}
+                          {% endif %}
+                          <!-- / Display linked appeal -->
+                        </td>
+                        <td class="govuk-table__cell">
+                          <!-- Display correct action -->
+                          {% if data ['unlinkappeal'] === "yes" %}
+                          {% elseif data ['appealid'] %}
+                          <a href="manage-linked-appeals.html">Manage<span class="govuk-visually-hidden"> linked appeals</span></a> | 
+                          {% endif %}
+                          <a href="link-appeal-reference">Add<span class="govuk-visually-hidden"> a linked appeal</span></a>
+                          <!-- / Display correct actions -->
+                          </td>
+                      </tr>
+
+          
+                  
+                    <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Related appeals</th>
+                      <td class="govuk-table__cell">
+                        <!-- Display related appeal -->
+                        {% if data ['unrelateappeal'] === "yes" %}
+                        {% elseif data ['relappealid'] %}
+                        <ul class="govuk-list govuk-list--bullet"><li>
+                          <a href="#">{{ data ['relappealid'] }}<span class="govuk-visually-hidden"> appeal overview</span></a>
+                        </li></ul>
+                        {% else %}
+                        {% endif %}
+                        <!-- / Display related appeal -->
+                      </td>
+                      <td class="govuk-table__cell">
+                        <!-- Display correct action -->
+                        {% if data ['unrelateappeal'] === "yes" %}
+                        {% elseif data ['relappealid'] %}
+                        <a href="manage-related-appeals.html">Manage<span class="govuk-visually-hidden"> related appeals</span></a> | 
+                        {% endif %}
+                        <a href="related-appeal-reference">Add<span class="govuk-visually-hidden"> a related appeal</span></a>
+                        <!-- / Display correct actions -->  
+                      </td>
+                    </tr>
+            
+                    <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Allocation details</th>
+                      <td class="govuk-table__cell">F / General Allocation</td>
+                      <td class="govuk-table__cell"><a href="#">Change</a></td>
+                    </tr>
+            
+                    <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">LPA reference</th>
+                      <td class="govuk-table__cell">22/00118/FULL</td>
+                      <td class="govuk-table__cell"><a href="#">Change</a></td>
+                    </tr>
+                  
+                    <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Decision</th>
+                       <td class="govuk-table__cell">Not issued yet</td>          
+                      <td class="govuk-table__cell"><a href=".">Change</a></td>
+                    </tr>
+            
+              </tbody>
+            </table>
+
+            <!--  / Case overview table -->
               
           </div>
         </div>

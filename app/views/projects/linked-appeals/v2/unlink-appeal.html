@@ -8,24 +8,24 @@
     <div class="govuk-grid-column-two-thirds">
 
     	<span class="govuk-caption-l">Appeal 2110166</span>
-      <form action="index" method="post">
+      <form action="manage-linked-appeals" method="post">
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-fieldset__heading">
-              Do you want to unlink appeal {{ data ['appeal-id'] }} from appeal 2110166?
+              Do you want to unlink appeal {{ data ['appealid'] }} from appeal 2110166?
             </h1>
             </legend>
             <div class="govuk-radios" data-module="govuk-radios">
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="unlinkappeal" name="unlinkappeal" type="radio" value="yes">
-                <label class="govuk-label govuk-radios__label" for="unlink-appeal">
+                <label class="govuk-label govuk-radios__label" for="unlinkappeal">
                   Yes 
                 </label>
               </div>
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="unlinkappeal-2" name="unlinkappeal-2" type="radio" value="no">
-                <label class="govuk-label govuk-radios__label" for="unlink-appeal-2">
+                <label class="govuk-label govuk-radios__label" for="unlinkappeal-2">
                   No
                 </label>
               </div>

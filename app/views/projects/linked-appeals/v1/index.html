@@ -124,26 +124,13 @@
 
                     <tr class="govuk-table__row">
                       <th scope="row" class="govuk-table__header">
-                        <!-- Display right label -->
-                        {% if data ['unlink-appeal'] === "yes" %}
                              Linked appeals
-                              {% elseif data ['which-appeal-is-the-parent'] === "2110166" %}
-                              Child appeals
-                              {% elseif data ['appealid'] and data ['which-appeal-is-the-parent'] === data ['appealid'] %}
-                              Lead appeal
-                              {% else %}
-                              Linked appeals
-                        {% endif %}
-                        <!-- / Display right label -->
                       </th>
                         <td class="govuk-table__cell">
                           <!-- Display linked appeal -->
                           {% if data ['unlink-appeal'] === "yes" %}
-                          {% elseif data ['which-appeal-is-the-parent'] === "2110166" %}
-                          <p><a href="#">{{ data ['appealid'] }}<span class="govuk-visually-hidden"> appeal overview</span></a></p>
-                          <a href="link-appeal-reference">Add another child appeal</span></a>
-                          {% elseif data ['appealid'] and data ['which-appeal-is-the-parent'] === data ['appealid'] %}
-                          <a href="#">{{ data ['appealid'] }}<span class="govuk-visually-hidden"> appeal overview</span></a>
+                          {% elseif data ['appealid'] %}
+                          <a href="#">{{ data ['appealid'] }}<span class="govuk-visually-hidden"> appeal overview</span></a>{% if data ['appealid'] and data ['which-appeal-is-the-parent'] === data ['appealid'] %} (Lead) {% endif %}
                           {% else %}
                           {% endif %}
                           <!-- / Display linked appeal -->
@@ -151,15 +138,11 @@
                         <td class="govuk-table__cell">
                           <!-- Display correct action -->
                           {% if data ['unlink-appeal'] === "yes" %}
-                          <a href="link-appeal-reference?unlink-appeal=no">Add<span class="govuk-visually-hidden"> a linked appeal</span></a>
-                          {% elseif data ['which-appeal-is-the-parent'] === "2110166" %}
-                          <a href="unlink-appeal.html">Unlink<span class="govuk-visually-hidden"> appeal {{ data ['appealid'] }} from 2110166</span></a>
-                          {% elseif data ['appealid'] and data ['which-appeal-is-the-parent'] === data ['appealid'] %}
-                          <a href="unlink-appeal.html">Unlink<span class="govuk-visually-hidden"> appeal {{ data ['appealid'] }} from 2110166</span></a>
-                          {% else %}
-                          <a href="link-appeal-reference">Add<span class="govuk-visually-hidden"> a linked appeal</span></a>
+                          {% elseif data ['appealid'] %}
+                          <a href="manage-linked-appeals.html">Manage<span class="govuk-visually-hidden"> linked appeals</span></a> | 
                           {% endif %}
-                          <!-- / Display correct action -->
+                          <a href="link-appeal-reference">Add<span class="govuk-visually-hidden"> a linked appeal</span></a>
+                          <!-- / Display correct actions -->
                           </td>
                       </tr>
 

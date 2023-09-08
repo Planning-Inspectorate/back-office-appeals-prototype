@@ -92,24 +92,22 @@
         {% elseif data ['which-appeal-is-the-parent'] === "child" %}
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Child appeals
+                Linked appeals
               </dt>
               <dd class="govuk-summary-list__value">
-                <p>{{ data ['appealid'] }}</p>
-                <p><a href="link-appeal-search">Link to another child appeal</a></p>
+                <ul class="govuk-list govuk-list--bullet"><li><a href="#">{{ data ['appealid'] }}</a></li></ul>
               </dd>
               <dd class="govuk-summary-list__value">    
-                <a href="#">View<span class="govuk-visually-hidden"> appeal {{ data ['appealid'] }}</span></a> | <a href="unlink-appeal.html">Unlink<span class="govuk-visually-hidden"> appeal {{ data ['appeal-id'] }} from 2110166</span></a>
+                <a href="#">Manage<span class="govuk-visually-hidden"> linked appeals</span></a> | <a href="unlink-appeal.html">Add<span class="govuk-visually-hidden"> a linked appeal</span></a>
               </dd> 
             </div>
         {% elseif data ['appealid'] and data ['which-appeal-is-the-parent'] === "lead" %}
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Lead appeal
+                Linked appeal
               </dt>
               <dd class="govuk-summary-list__value">
-                <p>{{ data ['appealid'] }}</p>
-                <p><a href="link-appeal-search">Link to another child appeal</a></p>
+                <p>{{ data ['appealid'] }} (Lead)</p>
               </dd>
               <dd class="govuk-summary-list__value">    
                 <a href="#">View<span class="govuk-visually-hidden"> appeal {{ data ['appealid'] }}</span></a> | <a href="unlink-appeal.html">Unlink<span class="govuk-visually-hidden"> appeal {{ data ['appeal-id'] }} from 2110166</span></a>
@@ -121,7 +119,7 @@
                 Linked appeals
               </dt>
               <dd class="govuk-summary-list__value">
-                <a href="link-appeal-search">Add a linked appeal</a>
+                <a href="link-appeal-search">Add<span class="govuk-visually-hidden"> a linked appeal</span></a>
               </dd>    
             </div>
         {% endif %}

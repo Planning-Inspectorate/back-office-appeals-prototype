@@ -1,6 +1,6 @@
 {{ govukTable({
 	  captionClasses: "govuk-table__caption--m",
-	  firstCellIsHeader: false,
+	  firstCellIsHeader: true,
 	  head: [
 		    {
 		      text: "Documentation"
@@ -18,16 +18,16 @@
 	  rows: [
 	    [
 	      {
-	        text: "Appellant case"
+			text: "Appellant case"
 	      },
 	      {
-	        text: "Received"
+	        text: "Valid"
 	      },
 	      {
-	        text: ""
+	        text: "22 Jul 2023"
 	      },
 	      {
-	        html: "<a href='#'>Review</a>"
+	        html: "<a href='#'>View</a>"
 	      }
 	    ],
 	    [
@@ -35,15 +35,30 @@
 	        text: "LPA questionnaire"
 	      },
 	      {
-	        text: "Not received"
+	        text: "Complete"
 	      },
 	      {
-	        text: ""
+	        text: "18 Jul 2023"
 	      },
 	      {
-	        html: ""
+	        html: "<a href='#'>View</a>"
 	      }
 	    ],
+
+		[
+		{
+		  text: "Missing evidence"
+		},
+		{
+		  text: ""
+		},
+		{
+		  text: ""
+		},
+		{
+			html: "<a href='#'>Add</a>"
+		}
+	  ]
 
 	  ]
 	}) }}

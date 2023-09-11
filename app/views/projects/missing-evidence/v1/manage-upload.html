@@ -1,0 +1,121 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Case details" %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <span class="govuk-caption-l">Appellant case</span>
+        <h1 class="govuk-heading-l">Manage document</h1>
+
+        <h2 class="govuk-heading-m">File 1 of 2</h2>
+
+        <span class="govuk-caption-m">File name</span>
+        <h3 class="govuk-heading-s">LPA-added.pdf</h3>
+
+        {{ govukDateInput({
+        id: "date-received",
+        namePrefix: "date-received",
+        fieldset: {
+        legend: {
+        text: "Date received",
+        isPageHeading: false,
+        classes: "govuk-body"
+        }
+        },
+        hint: {
+        text: "For example, 27 3 2007"
+        }
+        }) }}
+
+        {{ govukRadios({
+        name: "redaction",
+        fieldset: {
+        legend: {
+        text: "Is it redacted?",
+        isPageHeading: false,
+        classes: "govuk-body"
+        }
+        },
+        items: [
+        {
+        value: "yes",
+        text: "Yes"
+        },
+        {
+        value: "no",
+        text: "No"
+        },
+        {
+        divider: "or"
+        },
+        {
+        value: "not-needed",
+        text: "Doesn't need redaction"
+        }
+
+        ]
+        }) }}
+
+        {{ govukInput({
+        label: {
+        text: "Who is it from?"
+        },
+        hint: {
+        text: "The person or organisation who sent the file"
+        },
+        id: "who-from",
+        name: "whoFrom"
+        }) }}
+
+
+        {{ govukRadios({
+        name: "whereDoYouLive",
+        fieldset: {
+        legend: {
+        text: "Select destination in Appellant case",
+        isPageHeading: false,
+        classes: "govuk-fieldset__legend--m"
+        }
+        },
+        items: [
+        {
+        value: "application-form",
+        text: "Application form"
+        },
+        {
+        value: "decision-letter",
+        text: "Decision letter"
+        },
+        {
+        value: "appeal-statement",
+        text: "Appeal statement"
+        },
+        {
+        value: "new-documents",
+        text: "New supporting documents"
+        },
+        {
+        divider: "or"
+        },
+        {
+        value: "other",
+        text: "Non of the above"
+        }
+        ]
+        }) }}
+
+        {{ govukButton({
+            text: "Continue",
+            href: "#"
+            }) }}
+
+
+
+    </div>
+</div>
+
+{% endblock %}

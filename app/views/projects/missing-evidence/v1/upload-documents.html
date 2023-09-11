@@ -1,0 +1,40 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Case details" %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <span class="govuk-caption-l">LPA questionnaire</span>
+        <h1 class="govuk-heading-l">Upload additional documents</h1>
+
+
+        <p class="govuk-body govuk-secondary-text-colour" style="color:#505a5f">Choose a single or multiple files to
+            upload.</p>
+        <p class="govuk-body govuk-secondary-text-colour" style="color:#505a5f">Your file must be DOC, DOCX, JPEG, JPG,
+            MOV, MPEG, MP3, MP4, MSG, PDF, PNG, PPT, PPTX, TIF, TIFF, XLS or XLSX.</p>
+        <p class="govuk-body govuk-secondary-text-colour" style="color:#505a5f">The total of your uploaded files must be
+            smaller than 1 GB.</p>
+
+
+        {{ govukFileUpload({
+        id: "file-upload-1",
+        name: "fileUpload1",
+        label: {
+        text: "Upload one or more files"
+        }
+        }) }}
+
+
+        {{ govukButton({
+        text: "Continue",
+        href: "manage-upload.html"
+        }) }}
+
+    </div>
+</div>
+
+{% endblock %}

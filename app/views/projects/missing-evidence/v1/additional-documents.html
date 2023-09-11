@@ -1,0 +1,152 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Case details" %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">
+            <span class="govuk-caption-l">Appeal 2110166</span>
+            Additional documents
+        </h1>
+
+
+
+        {{ govukSummaryList({
+        classes: 'govuk-summary-list--no-border govuk-!-margin-top-6',
+        rows: [
+        {
+        key: {
+        text: "Site address"
+        },
+        value: {
+        text: "21 The Pavement, Wandsworth, SW4 0HY"
+        }
+        },
+        {
+        key: {
+        text: "Local planning authority"
+        },
+        value: {
+        text: "Lambeth"
+        }
+        }
+        ]
+        }) }}
+
+        {{ govukButton({
+        text: "Add a new document",
+        href: "select-location.html"
+        }) }}
+
+    </div>
+</div>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+        {{ govukSummaryList({
+        card: {
+        title: {
+        text: "Appellant case"
+        }
+        },
+        rows: [
+        {
+        key: {
+        text: "Uncategorised"
+        },
+        value: {
+        html: "<a href='#'>additional-appellant-document.pdf</a> <br>
+        The photo provided shows how the extension does not cover the view of the Council’s rose bush planted last year
+        and subject of the appeal"
+        },
+        actions: {
+        items: [
+        {
+        href: "#",
+        text: "Manage",
+        visuallyHiddenText: "uncategorised folder"
+        }
+        ]
+        }
+        },
+        {
+        key: {
+        text: "Decision letter"
+        },
+        value: {
+
+        html: "<a href='#'>additional-other-document.pdf</a>"
+
+        },
+        actions: {
+        items: [
+        {
+        href: "#",
+        text: "Manage",
+        visuallyHiddenText: "decision letter folder"
+        }
+        ]
+        }
+        }
+
+        ]
+        }) }}
+
+        {{ govukSummaryList({
+            card: {
+            title: {
+            text: "LPA questionnaire"
+            }
+            },
+            rows: [
+            {
+            key: {
+            text: "Uncategorised"
+            },
+            value: {
+            html: "<a href='#'>additional-appellant-document.pdf</a> <br>
+            The photo provided shows how the extension does not cover the view of the Council’s rose bush planted last year
+            and subject of the appeal"
+            },
+            actions: {
+            items: [
+            {
+            href: "#",
+            text: "Manage",
+            visuallyHiddenText: "uncategorised folder"
+            }
+            ]
+            }
+            },
+            {
+            key: {
+            text: "Decision letter"
+            },
+            value: {
+    
+            html: "<a href='#'>additional-other-document.pdf</a>"
+    
+            },
+            actions: {
+            items: [
+            {
+            href: "#",
+            text: "Manage",
+            visuallyHiddenText: "decision letter folder"
+            }
+            ]
+            }
+            }
+    
+            ]
+            }) }}
+
+    </div>
+</div>
+
+{% endblock %}

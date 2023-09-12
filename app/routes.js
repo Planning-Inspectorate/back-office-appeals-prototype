@@ -69,7 +69,7 @@ router.get("/projects/linked-appeals/v1/link-to-appeal", (req, res) => {
 
 
 router.get("/projects/linked-appeals/v2/link-to-appeal", (req, res) => {
-	if (req.session.data.appealid == "horizon") {
+	if (req.session.data.appealid == "5176892") {
 		delete req.session.data.unlinkappeal
 		res.redirect(req.originalUrl.replace("link-to-appeal","link-appeal-horizon"))
 	}
@@ -80,7 +80,7 @@ router.get("/projects/linked-appeals/v2/link-to-appeal", (req, res) => {
 })
 
 router.get("/projects/linked-appeals/v2/relate-appeal", (req, res) => {
-	if (req.session.data.relappealid == "horizon") {
+	if (req.session.data.relappealid == "5176892") {
 		delete req.session.data.unrelateappeal
 		res.redirect(req.originalUrl.replace("relate-appeal","related-appeal-horizon"))
 	}

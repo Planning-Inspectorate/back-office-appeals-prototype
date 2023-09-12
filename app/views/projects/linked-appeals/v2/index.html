@@ -14,7 +14,8 @@
     	  <div class="govuk-notification-banner__header">
     	    <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">Success</h2>
         </div>
-    	  <div class="govuk-notification-banner__content"> 
+    	  <div class="govuk-notification-banner__content">
+          <p class="govuk-notification-banner__heading">
             {% if data ['which-appeal-is-the-parent'] === "2110166" %}
             This appeal is now the lead for appeal {{ data ['appealid'] }}
             {% endif %}
@@ -22,8 +23,22 @@
             {% if data ['which-appeal-is-the-parent'] === data ['appealid'] %}
             This appeal is now the child of appeal {{ data ['appealid'] }}
             {% endif %}
+          </p>
         </div>
         </div>
+
+        {% elseif data ['relappealid'] %}
+        <div class="govuk-notification-banner  govuk-notification-banner--success" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+          <div class="govuk-notification-banner__header">
+            <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">Success</h2>
+          </div>
+          <div class="govuk-notification-banner__content"> 
+            <p class="govuk-notification-banner__heading">
+              This appeal is now the related to appeal {{ data ['relappealid'] }}
+              </p>
+          </div>
+          </div>
+
     	{% endif %}
 
     	<span class="govuk-caption-l">Appeal 2110166</span>
@@ -122,7 +137,9 @@
                           {% if data ['unlinkappeal'] === "yes" %}
                           {% elseif data ['appealid'] %}
                           <ul class="govuk-list govuk-list--bullet"><li>
-                            <a href="#">{{ data ['appealid'] }}<span class="govuk-visually-hidden"> appeal overview</span></a>{% if data ['appealid'] and data ['which-appeal-is-the-parent'] === data ['appealid'] %} (Lead) {% endif %}
+                            <a href="#">{{ data ['appealid'] }}<span class="govuk-visually-hidden"> appeal overview</span></a>
+                            {% if data ['appealid'] === "5176892" and data ['which-appeal-is-the-parent'] === data ['appealid'] %} (Lead, Horizon) 
+                            {% elseif data ['appealid'] and data ['which-appeal-is-the-parent'] === data ['appealid'] %}(Lead){% endif %}
                           </li></ul>
                           {% else %}
                           {% endif %}
@@ -149,6 +166,9 @@
                         {% elseif data ['relappealid'] %}
                         <ul class="govuk-list govuk-list--bullet"><li>
                           <a href="#">{{ data ['relappealid'] }}<span class="govuk-visually-hidden"> appeal overview</span></a>
+                          {% if data ['relappealid'] === "5176892" %}
+                              (Horizon)
+                              {% endif %}
                         </li></ul>
                         {% else %}
                         {% endif %}

@@ -14,7 +14,7 @@
         <h2 class="govuk-heading-m">File 1 of 2</h2>
 
         <span class="govuk-caption-m">File name</span>
-        <h3 class="govuk-heading-s">LPA-added.pdf</h3>
+        <h3 class="govuk-heading-m">additional-appellant-document.pdf</h3>
 
         {{ govukDateInput({
         id: "date-received",
@@ -25,17 +25,15 @@
         isPageHeading: false,
         classes: "govuk-body"
         }
-        },
-        hint: {
-        text: "For example, 27 3 2007"
         }
+      
         }) }}
 
         {{ govukRadios({
         name: "redaction",
         fieldset: {
         legend: {
-        text: "Is it redacted?",
+        text: "Redaction",
         isPageHeading: false,
         classes: "govuk-body"
         }
@@ -54,7 +52,7 @@
         },
         {
         value: "not-needed",
-        text: "Doesn't need redaction"
+        text: "Redaction not required"
         }
 
         ]
@@ -70,6 +68,19 @@
         id: "who-from",
         name: "whoFrom"
         }) }}
+
+
+        {% set otherHtml %}
+        {{ govukTextarea({
+        id: "none-above",
+        name: "none-above",
+        type: "none",
+        autocomplete: "none",
+        label: {
+        text: "What does this file relate to?"
+        }
+        }) }}
+        {% endset -%}
 
 
         {{ govukRadios({
@@ -103,15 +114,18 @@
         },
         {
         value: "other",
-        text: "Non of the above"
+        text: "None of the above",
+        conditional: {
+            html: otherHtml
+          }
         }
         ]
         }) }}
 
         {{ govukButton({
-            text: "Continue",
-            href: "#"
-            }) }}
+        text: "Continue",
+        href: "manage-upload-2.html"
+        }) }}
 
 
 

@@ -10,26 +10,50 @@
 <span class="govuk-caption-l">Appeal a planning decision</span>
 <h1 class="govuk-heading-l">Request missing evidence</h1>
 
-<p class="govuk-body">Typical user: case officer</p>
-<p class="govuk-body">User story: I want to request for missing evidence if something is unclear</p>
+<p class="govuk-body-l">Planning Inspectorate need case officers to keep additional documentation (evidence) separate. This is because inspectors might decide to ignore documents sent after a certain deadline closed. However it's important to list the additional evidence in the appropriate case documentation location.</p>
 
-<p class="govuk-body">Context</p>
-<p class="govuk-body">Planning Inspectorate needs case officers to keep additional documentation (evidence) separate. This is because inspector might decide to ignore a document that was sent after a certain deadline closed. However it is important to list the additional evidence in the appropriate case documentation location</p>
+{{ govukTable({
+  captionClasses: "govuk-table__caption--m",
+  firstCellIsHeader: true,
 
-<p class="govuk-body govuk-!-font-weight-bold">Jira ticket: <a class="govuk-body" href="https://pins-ds.atlassian.net.mcas.ms/browse/BOATD-19" class="govuk-link">BOAT-19: Request for missing evidence</a></p>
-
-<hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+  rows: [
+    [
+      {
+        text: "Typical user"
+      },
+      {
+        text: "Case officers"
+      }
+    ],
+    [
+      {
+        text: "User story"
+      },
+      {
+        text: "I want to request for missing evidence if something is unclear"
+      }
+    ],
+    [
+      {
+        text: "Jira ticket"
+      },
+      {
+        html: '<a href="https://pins-ds.atlassian.net.mcas.ms/jira/software/projects/BOATD/boards/210?selectedIssue=BOATD-19">BOAT-19: Request for missing evidence</a>'
+      }
+    ]
+  ]
+}) }}
 
 <h1 class="govuk-heading-m">Version 1
 
     {{govukTag({
-        text: "In progress",
-        classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+        text: "Ready for research",
+        classes: "govuk-!-margin-left-2 govuk-tag--blue"
       })}}
 
 </h1>
 
-<p class="govuk-body">Notes...</p>
+<p class="govuk-body">We will research this on Wed 13 Sep</p>
 
 <a href="v1/missing-evidence-case.html" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
     View prototype

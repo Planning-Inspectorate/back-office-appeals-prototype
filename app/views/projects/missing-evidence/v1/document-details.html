@@ -3,179 +3,215 @@
 {% set pageName="Appellant Case" %}
 
 {% block backLink %}
-  {{ govukBackLink({
-    text: "Back",
-    href: 'index'
-  }) }}
+{{ govukBackLink({
+text: "Back",
+href: 'index'
+}) }}
 {% endblock %}
 
 {% block content %}
 
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-full">
+	<div class="govuk-grid-column-full">
 
-	<span class="govuk-caption-l">Manage documents</span>
-	<h1 class="govuk-heading-l">additional-appellant-document.pdf</h1>	
-	
-	
-	{{ govukSummaryList({
-	  classes: 'govuk-summary-list',
-	  rows: [
-	    {
-	      key: {
-	        text: "File"
-	      },
-	      value: {
-	        html: '<a href="#">additional-appellant-document.pdf</a>'
-	      }
-	    },{
-	      key: {
-	        text: "Version"
-	      },
-	      value: {
-	        text: '1'
-	      }
-	    },
-	    {
-	      key: {
-	        text: "Date received"
-	      },
-	      value: {
-	        html: "27 Sep 2023"
-	      },
-	      actions: {
-	        items: [
-	          {
-	            href: "file-details",
-	            text: "Change",
-	            visuallyHiddenText: "Tree preservation order extent"
-	          }
-	        ]
-	      }
-	    },
-	    {
-	      key: {
-	        text: "Redaction"
-	      },
-	      value: {
-	        html: "Redacted"
-	      },
-	      actions: {
-	        items: [
-	          {
-	            href: "file-details",
-	            text: "Change",
-	            visuallyHiddenText: "Tree preservation order extent"
-	          }
-	        ]
-	      }
-	    },
+		<span class="govuk-caption-l">Manage documents</span>
+		<h1 class="govuk-heading-l">additional-appellant-document.pdf</h1>
+
+
+		{{ govukSummaryList({
+		classes: 'govuk-summary-list',
+		rows: [
+		{
+		key: {
+		text: "File"
+		},
+		value: {
+		html: '<a href="#">additional-appellant-document.pdf</a>'
+		}
+		},{
+		key: {
+		text: "Version"
+		},
+		value: {
+		text: '1'
+		}
+		},
+		{
+		key: {
+		text: "Date received"
+		},
+		value: {
+		html: "12 Sep 2023"
+		},
+		actions: {
+		items: [
+		{
+		href: "manage-upload-1",
+		text: "Change",
+		visuallyHiddenText: "date received"
+		}
+		]
+		}
+		},
 		{
 			key: {
-			  text: "Case documentation"
+			text: "From"
 			},
 			value: {
-			  html: "Appellant case"
+			html: "Lexi Patel, ET Planning"
 			},
 			actions: {
-			  items: [
-				{
-				  href: "select-location.html",
-				  text: "Change",
-				  visuallyHiddenText: "Tree preservation order extent"
-				}
-			  ]
+			items: [
+			{
+			href: "manage-upload-1",
+			text: "Change",
+			visuallyHiddenText: "date received"
 			}
-		  },
-		  {
+			]
+			}
+			},
+		{
+		key: {
+		text: "Redaction"
+		},
+		value: {
+		html: "Redacted"
+		},
+		actions: {
+		items: [
+		{
+		href: "manage-upload-1",
+		text: "Change",
+		visuallyHiddenText: "redaction of document"
+		}
+		]
+		}
+		},
+		{
+		key: {
+		text: "Case documentation"
+		},
+		value: {
+		html: "Appellant case"
+		},
+		actions: {
+		items: [
+		{
+		href: "select-location.html",
+		text: "Change",
+		visuallyHiddenText: "case documentation"
+		}
+		]
+		}
+		},
+		{
+		key: {
+		text: "Location"
+		},
+		value: {
+		text: "Uncategorised"
+		},
+		actions: {
+		items: [
+		{
+		href: "manage-upload-1",
+		text: "Change",
+		visuallyHiddenText: "location within documentation"
+		}
+		]
+		}
+		},
+		{
 			key: {
-			  text: "Location"
+			text: "Notes"
 			},
 			value: {
-			  html: "Uncategorised"
+			text: "	The photo provided shows how the extension does not cover the view of the Council’s rose bush planted last year and subject of the appeal"
 			},
 			actions: {
-			  items: [
-				{
-				  href: "manage-upload-1",
-				  text: "Change",
-				  visuallyHiddenText: "Tree preservation order extent"
-				}
-			  ]
+			items: [
+			{
+			href: "manage-upload-1",
+			text: "Change",
+			visuallyHiddenText: "notes about location"
 			}
-		  }
-	  ]
-	}) }}
-	
-	
-	{% include "projects/file-upload/v2/manage-documents/includes/document-actions.html" %} 
+			]
+			}
+			}
+		]
+		}) }}
 
-		
-  </div>
+
+		{% include "projects/file-upload/v2/manage-documents/includes/document-actions.html" %}
+
+
+	</div>
 </div>
 
 
 <div class="govuk-grid-row govuk-!-padding-top-6">
-  <div class="govuk-grid-column-full">
-	  
-	  
-	  {% include "projects/file-upload/v2/manage-documents/includes/document-history-heading.html" %} 
-	  
-	 <details class="govuk-details" data-module="govuk-details">
-	<summary class="govuk-details__summary">
-		<span class="govuk-details__summary-text">
-		  Document history
-		</span>
-	</summary>
-	
-	<div class="govuk-details__text">
-	    
-    {{ govukTable({
-	  captionClasses: "govuk-table__caption--m",
-	  firstCellIsHeader: false,
-	  classes : " govuk-!-font-size-16",
-	  head: [
-	    {
-	      text: "Version"
-	    },
-	    {
-	      text: "Document name"
-	    },
-	    {
-	      text: "Activity"
-	    },
-	    {
-	      text: "Redaction"
-	    },
-	    {
-	      text: "Action"
-	    }
-	  ],
-	  rows: [
-	    [
-	      {
-	        text: "1"
-	      },
-	      {
-	        html: "<p class='govuk-!-font-size-16'><a href='manage-documents/document-details.html'>additional-appellant-document.pdf</a></p><p><strong class='govuk-tag govuk-tag'>Current version</strong></p>"
-	      },
-	      {
-	        html: "<strong>Uploaded:</strong> 10:10, 28 Sep 2023, <br>by Lexi Patel"
-	      },
-	      {
-	        text: "Redacted"
-	      },
-	      {
-	        html: "<a href='#'>Remove</a>"
-	      }
-	    ]
-	  ]
-	}) }}
-	    
-	  </div>
-	</details>
-	  	  
-	  
+	<div class="govuk-grid-column-full">
+
+
+		{% include "projects/file-upload/v2/manage-documents/includes/document-history-heading.html" %}
+
+		<details class="govuk-details" data-module="govuk-details">
+			<summary class="govuk-details__summary">
+				<span class="govuk-details__summary-text">
+					Document history
+				</span>
+			</summary>
+
+			<div class="govuk-details__text">
+
+				{{ govukTable({
+				captionClasses: "govuk-table__caption--m",
+				firstCellIsHeader: false,
+				classes : " govuk-!-font-size-16",
+				head: [
+				{
+				text: "Version"
+				},
+				{
+				text: "Document name"
+				},
+				{
+				text: "Activity"
+				},
+				{
+				text: "Redaction"
+				},
+				{
+				text: "Action"
+				}
+				],
+				rows: [
+				[
+				{
+				text: "1"
+				},
+				{
+				html: "<p class='govuk-!-font-size-16'><a
+						href='manage-documents/document-details.html'>additional-appellant-document.pdf</a></p>
+				<p><strong class='govuk-tag govuk-tag'>Current version</strong></p>"
+				},
+				{
+				html: "<strong>Uploaded:</strong> 10:10, 28 Sep 2023, <br>by Erin Joseph"
+				},
+				{
+				text: "Redacted"
+				},
+				{
+				html: "<a href='#'>Remove</a>"
+				}
+				]
+				]
+				}) }}
+
+			</div>
+		</details>
+
+
 
 	</div>
 </div>

@@ -1,0 +1,65 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Case details" %}
+
+{% set back = false %}
+
+{% block content %}
+
+
+<span class="govuk-caption-l">Appeal a planning decision</span>
+<h1 class="govuk-heading-l">Manage the site visit</h1>
+
+<p class="govuk-body-l">Nearly all site visits are unaccompanied. Validation officers set the visit type ahead of case officers scheduling the site visit. But it can happen that inspectors request for the site visit to be changed after it was booked. This prototype illustrate the journey.</p>
+
+{{ govukTable({
+  captionClasses: "govuk-table__caption--m",
+  firstCellIsHeader: true,
+
+  rows: [
+    [
+      {
+        text: "Typical user"
+      },
+      {
+        text: "Case officers"
+      }
+    ],
+    [
+      {
+        text: "User story"
+      },
+      {
+        text: "I want to change the visit type or reschedule the site visit if the inspector needs me to"
+      }
+    ],
+    [
+      {
+        text: "Jira ticket"
+      },
+      {
+        html: '<a href="https://pins-ds.atlassian.net/browse/BOATD-18">BOAT-18: Site visit change details (date & time)</a>'
+      }
+    ]
+  ]
+}) }}
+
+<h1 class="govuk-heading-m">Version 1
+
+    {{govukTag({
+        text: "In progress",
+        classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+      })}}
+
+</h1>
+
+<p class="govuk-body"></p>
+
+<a href="v1/case-issue-determination.html" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
+    View prototype
+    <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+      <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+    </svg></a>
+
+
+{% endblock %}

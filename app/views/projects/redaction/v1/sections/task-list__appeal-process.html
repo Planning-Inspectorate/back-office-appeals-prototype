@@ -1,0 +1,79 @@
+<li>
+
+  {{ govukSummaryList({
+    classes: 'govuk-!-margin-bottom-9',
+    card: {
+	    title: {
+	      text: "Appeal process"
+	    }
+	  },
+	  rows: [
+      {
+        key: {
+          html: 'Procedure type'
+        },
+        value: {
+          html: 'Written representations'
+        },
+        actions: {
+          items: [
+            {
+              href: 'appeal-process/procedure?cya=true',
+              html: 'Change'
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          html: 'Procedure reason'
+        },
+        value: {
+          html: '<span class="govuk-hint">Not required for written representations</span>'
+        },
+        actions: {
+          items: [
+            {
+              href: 'appeal-process/procedure?cya=true',
+              html: 'Change'
+            }
+          ]
+        }
+      } if data['procedure'] != 'written-representations',
+      {
+        key: {
+          html: 'Other appeals'
+        },
+        value: {
+          html: '<a href="#" class="govuk-body">0123456</a><br>
+                 <a href="#" class="govuk-body">0127745</a>'
+        },
+        actions: {
+          items: [
+            {
+              href: 'appeal-process/other-appeals?cya=true',
+              html: 'Change'
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          html: 'Request new conditions'
+        },
+        value: {
+          html: 'Some new conditions'
+        },
+        actions: {
+          items: [
+            {
+              href: 'appeal-process/extra-conditions?cya=true',
+              html: 'Change'
+            }
+          ]
+        }
+      }
+
+    ]
+  }) }}
+</li>

@@ -1,0 +1,46 @@
+<li>
+  {{ govukSummaryList({
+    classes: 'govuk-!-margin-bottom-9',
+    card: {
+	    title: {
+	      text: "Notifying people about the application"
+	    }
+	  },
+	  rows: [
+      {
+        key: {
+          html: 'Who was notified'
+        },
+        value: {
+          html: '<a href="#" class="govuk-link">York Rd - notified neighbours.odt</a><br>
+                 <a href="#" class="govuk-link">Your Rd - internal consultees.odt</a>'
+        },
+        actions: {
+          items: [
+            {
+              href: 'notified/notified-who?cya=true',
+              html: 'Change'
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          html: 'How you notified people'
+        },
+        value: {
+          html: '<a href="#" class="govuk-link">155 York Rd site notice 2023.pdf</a><br>
+                 <a href="#" class="govuk-link">155 York Rd appeal advert 2023.pdf</a>'
+        },
+        actions: {
+          items: [
+            {
+              href: 'notified/notified-how?cya=true',
+              html: 'Change'
+            }
+          ]
+        }
+      }
+    ]
+  }) }}
+</li>

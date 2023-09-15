@@ -2,7 +2,7 @@
 
 {% set pageName="Reasons the appeal is invalid" %}
 
-{% set title = "Why is the appeal invalid?" %}
+{% set title = "State why the appeal is invalid" %}
 
 {% block questions %}
 
@@ -51,7 +51,7 @@
       value: data['missing-evidence__detail'],
       rows: '',
       label: {
-        html: 'What evidence is missing?'
+        html: 'What is missing?'
       }
     }) }}
   {% endset -%}
@@ -63,7 +63,7 @@
       value: data['other__detail'],
       rows: '',
       label: {
-        html: 'Detail why the appeal is invalid'
+        html: 'State the reason'
       }
     }) }}
   {% endset -%}
@@ -71,12 +71,6 @@
   {{ govukRadios({
     idPrefix: 'missing-evidence__reasons',
     name: 'missing-evidence__reasons',
-    fieldset: {
-      legend: {
-        html: 'State why the appeal is invalid',
-        classes: 'govuk-fieldset__legend--m'
-      }
-    },
     items: [
       {
         html: 'Missing evidence',

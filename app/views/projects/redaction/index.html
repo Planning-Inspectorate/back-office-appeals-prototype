@@ -1,0 +1,74 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Case details" %}
+
+{% set back = false %}
+
+{% block content %}
+
+
+
+	<span class="govuk-caption-l">Appeal a planning decision</span>
+	<h1 class="govuk-heading-l">Add Checked Documents/Redaction step to Validation Journey</h1>
+	
+	<p class="govuk-body-l">There is a need to redact inflammatory comments and personally identifiable information from documents which have been submitted through the FO service BEFORE they are sent to the LPA for Questionnaire Review Stage.</p>
+	
+	{{ govukTable({
+	  captionClasses: "govuk-table__caption--m",
+	  firstCellIsHeader: true,
+	
+	  rows: [
+	    [
+	      {
+	        text: "Typical user"
+	      },
+	      {
+	        text: "Case officers"
+	      }
+	    ],
+	    [
+	      {
+	        text: "User story"
+	      },
+	      {
+	        text: "I need to check and acknowledge if a document has been redacted before issuing a valid outcome"
+	      }
+	    ],
+	    [
+	      {
+	        text: "Jira ticket"
+	      },
+	      {
+	        html: '<a href="https://pins-ds.atlassian.net.mcas.ms/jira/software/projects/BOATD/boards/210?assignee=712020%3Aac114836-b426-4952-b4f0-9bbbaaa3061a&selectedIssue=BOATD-114">BOAT-114: Add Checked Documents/Redaction step to Validation Journey</a>'
+	      }
+	    ]
+	  ]
+	}) }}
+	
+	<h1 class="govuk-heading-m">Version 1
+	
+	    {{govukTag({
+	        text: "New",
+	        classes: "govuk-!-margin-left-2 govuk-tag--green"
+	      })}}
+	
+	</h1>
+	<!--
+	<p class="govuk-body">Research due on </p>
+	-->
+	
+	<ul class="govuk-list">
+		<li><a class="govuk-link" href="v1/task-list.html">Link 1</a></li>
+		<li><a class="govuk-link" href="v1/">Link 2</a></li>
+	</ul>
+	
+	<!--
+	<a href="v1/missing-evidence-case.html" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
+	    View prototype
+	    <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+	      <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+	    </svg></a>
+	-->
+	
+
+{% endblock %}

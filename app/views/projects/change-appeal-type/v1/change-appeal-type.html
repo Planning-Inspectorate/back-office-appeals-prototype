@@ -1,0 +1,77 @@
+{% extends "layouts/PINS-Header-Nav.html" %}
+
+{% set pageName="Change appeal type" %}
+
+{% set back = true %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Appeal 2110166</span>
+    <form action="change-appeal-resubmit.html" method="post">
+
+    {{ govukRadios({
+      name: "appealType",
+      fieldset: {
+        legend: {
+          text: "What type should this appeal be?",
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--l"
+        }
+      },
+      items: [
+        {
+          value: "planning appeal",
+          text: "Planning appeal"
+        },
+        {
+          value: "enforcement notice",
+          text: "Enforcement notice appeal"
+        },
+        {
+          value: "listed buildings",
+          text: "Planning listed building and conservation area appeal"
+        },
+        {
+          value: "discontinuance",
+          text: "Discontinuance notice appeal"
+        },
+        {
+          value: "community infrastructure",
+          text: "Community infrastructure levy"
+        },
+        {
+          value: "planing obligation",
+          text: "Planning obligation appeal"
+        },
+        {
+          value: "affordable housing",
+          text: "Affordable housing obligation appeal"
+        },
+        {
+          value: "call in",
+          text: "Call-in application"
+        },
+        {
+          value: "lawful dev",
+          text: "Lawful development certificate appeal"
+        },
+        {
+          value: "commercial appeal",
+          text: "Commercial appeal (CAS)"
+        }
+      ]
+    }) }}
+
+    {{ govukButton({
+      text: "Continue"
+    }) }}
+  </form>
+
+  </div>
+</div>
+
+
+{% endblock %}

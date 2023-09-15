@@ -1,0 +1,78 @@
+{% extends "layouts/PINS-Header-Nav.html" %}
+
+{% set pageName="Case officer home" %}
+
+{% set back = false %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+
+
+	{{ govukInput({
+	  label: {
+	    text: "Search national list",
+	    classes: "govuk-label--l",
+	    isPageHeading: false
+	  },
+	  classes: "",
+	  hint: {
+	    text: "Enter appeal ID or postcode"
+	  },
+	  id: "account-number",
+	  name: "account-number",
+	  inputmode: "numeric",
+	  spellcheck: false
+	}) }}
+
+	<div class="govuk-button-group">
+	  <button class="govuk-button" data-module="govuk-button">
+	    Search
+	  </button>
+	</div>
+		
+
+
+  </div>
+</div>
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+	
+	  
+	  
+	  <h2 class="govuk-heading-m">All cases</h2>
+
+	  {% include "projects/navigation/v2/includes/national-list-table.html" %}
+
+	{{ govukPagination({
+	  previous: {
+	    href: "#"
+	  },
+	  next: {
+	    href: "#"
+	  },
+	  items: [
+	    {
+	      number: 1,
+	      current: true,
+	      href: "#"
+	    },
+	    {
+	      number: 2,
+	      href: "#"
+	    },
+	    {
+	      number: 3,
+	      href: "#"
+	    }
+	  ]
+	}) }}
+
+  </div>
+</div>
+
+{% endblock %}

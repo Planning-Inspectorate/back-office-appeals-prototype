@@ -89,3 +89,21 @@ router.get("/projects/linked-appeals/v2/relate-appeal", (req, res) => {
 		res.redirect(req.originalUrl.replace("relate-appeal","related-appeal-details"))
 	}
 })
+
+router.get("/projects/change-appeal-type/v1/change-appeal-resubmit-process", (req, res) => {
+	if (req.session.data.appealResubmit == "yes") {
+		res.redirect(req.originalUrl.replace("change-appeal-resubmit-process","change-appeal-final-date"))
+	}
+	else {
+		res.redirect(req.originalUrl.replace("change-appeal-resubmit-process","change-appeal-horizon-id"))
+	}
+})
+
+router.get("/projects/change-appeal-type/v2/change-appeal-resubmit-process", (req, res) => {
+	if (req.session.data.appealResubmit == "yes") {
+		res.redirect(req.originalUrl.replace("change-appeal-resubmit-process","change-appeal-final-date"))
+	}
+	else {
+		res.redirect(req.originalUrl.replace("change-appeal-resubmit-process","case"))
+	}
+})

@@ -15,9 +15,16 @@
           <p>You must email the appelant to ask them to resubmit an appeal of the correct type. The email must include the final date resubmission is possible.</p>
         {% endset %}
 
+        {% set horizonrefneeded %}
+          <p class="govuk-notification-banner__heading">
+            This appeal has been closed.
+          </p>
+          <p>This appeal must now be transferred to Horizon. When this is done, <a href="change-appeal-horizon-id">update this appeal with the new horzion reference</a>.</p>
+        {% endset %}
+
         {% set newhorizon %}
           <p class="govuk-notification-banner__heading">
-            This appeal has been closed and reopened in Horizon.
+            Horizon reference added
           </p>
         {% endset %}
 
@@ -26,9 +33,14 @@
               html: emailappelant,
               type: "success"
             }) }}
-        {% elseif data ['appealResubmit'] === "no" %}
+        {% elseif data ['appealResubmit'] === "no" and data ['horizonid'] %}
             {{ govukNotificationBanner({
               html: newhorizon,
+              type: "success"
+            }) }}
+            {% elseif data ['appealResubmit'] === "no" %}
+            {{ govukNotificationBanner({
+              html: horizonrefneeded,
               type: "success"
             }) }}
         {% endif %}
@@ -56,8 +68,10 @@
 
       {% if data ['appealResubmit'] === "yes" %}
       <div class="govuk-inset-text"><p>This appeal needed to change to {{ data ['appealType'] }}.</p><p>The appelant has until 30 November 2023 to resubmit.</p></div>
-  {% elseif data ['appealResubmit'] === "no" %}
-  <div class="govuk-inset-text"><p>This appeal needed to change to {{ data ['appealType'] }}.</p><p>The appeal has been reopned in Horizon as appeal 862/6824.</p></div>
+      {% elseif data ['appealResubmit'] === "no" and data ['horizonid'] %}
+      <div class="govuk-inset-text"><p>This appeal needed to change to {{ data ['appealType'] }}.</p><p>It has been transferred to Horizon with the reference {{ data ['horizonid'] }}.</p></div>
+      {% elseif data ['appealResubmit'] === "no" %}
+  <div class="govuk-inset-text"><p>This appeal needs to change to {{ data ['appealType'] }}.</p><p>The appeal must been reopned in Horizon. When this is done <a href="change-appeal-horizon-id">update this appeal with the new horzion reference</a>.</p></div>
   {% endif %}
       
 

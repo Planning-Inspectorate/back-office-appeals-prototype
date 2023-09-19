@@ -12,19 +12,14 @@
     <span class="govuk-caption-l">Appeal 2110166</span>
     <form action="case" method="post">
 
-      {{ govukDateInput({
-        id: "final-date",
-        namePrefix: "final-date",
-        fieldset: {
-          legend: {
-            text: "What is the final date the appelant must resubmit by?",
-          isPageHeading: true,
-          classes: "govuk-fieldset__legend--l"
-          }
+      {{ govukInput({
+        label: {
+          text: "What is the ID of the new appeal on Horizon?",
+          classes: "govuk-label--l",
+          isPageHeading: true
         },
-        hint: {
-          text: "For example, 27 11 2023"
-        }
+        id: "horizonid",
+        name: "horizonid"
       }) }}
 
     {{ govukButton({

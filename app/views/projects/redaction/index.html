@@ -6,7 +6,17 @@
 
 {% block content %}
 
-
+	
+	
+	{% set html %}
+	  <p class="govuk-notification-banner__heading">
+	    No longer required
+	  </p>
+	{% endset %}
+	
+	{{ govukNotificationBanner({
+	  html: html
+	}) }}
 
 	<span class="govuk-caption-l">Appeal a planning decision</span>
 	<h1 class="govuk-heading-l">Add Checked Documents/Redaction step to Validation Journey</h1>
@@ -58,8 +68,14 @@
 	-->
 	
 	<ul class="govuk-list">
-		<li><a class="govuk-link" href="v1/task-list.html">Link 1</a></li>
-		<li><a class="govuk-link" href="v1/">Link 2</a></li>
+		<li><a class="govuk-link" href="v1/task-list.html">LPA option 1</a></li>
+		<li><a class="govuk-link" href="v1/task-list-B.html">LPA option 2</a></li>
+		<li><a class="govuk-link" href="v1/task-list-C.html">LPA option 3</a></li>
+	</ul>
+	
+	<ul class="govuk-list">
+		<li><a class="govuk-link" href="v1/redact-files-A.html">redact list option 1</a></li>
+		<li><a class="govuk-link" href="v1/redact-files-A.html">redact list option 2</a></li>
 	</ul>
 	
 	<!--

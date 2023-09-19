@@ -14,7 +14,7 @@
       Personal list
     </h1>
 
-    {% set version = "2" %}
+    {% set version = "3" %}
 
     <h2 class="govuk-heading-m">
       Version {{version}}
@@ -27,7 +27,7 @@
     </h2>
 
     <p class="govuk-body">
-      I want to view my personal list so that I can see all the cases that are assigned to me
+      Personal list works with Inspector decisions v3
     </p>
 
     {{ govukButton({
@@ -35,6 +35,22 @@
       href: "v2/",
       isStartButton: true
     }) }}
+
+    {% set v2HTML %}
+
+      {% set version = "2" %}
+
+      <p class="govuk-body">
+        I want to view my personal list so that I can see all the cases that are assigned to me
+      </p>
+
+      {{ govukButton({
+        text: "View prototype",
+        href: "v2/",
+        isStartButton: true
+      }) }}
+
+    {% endset -%}
 
     {% set v1HTML %}
 
@@ -61,7 +77,15 @@
       classes: 'govuk-!-margin-top-5',
       items: [
 
-        {
+          {
+            heading: {
+              html: 'Version 2 <strong class="govuk-tag govuk-tag--green govuk-!-margin-left-2">Ready for research</strong>'
+            },
+            content: {
+              html: v2HTML
+            }
+          },
+          {
           heading: {
             html: 'Version 1 <strong class="govuk-tag govuk-tag--green govuk-!-margin-left-2">Ready for research</strong>'
           },

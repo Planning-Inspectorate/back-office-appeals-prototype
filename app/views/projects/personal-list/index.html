@@ -14,42 +14,61 @@
       Personal list
     </h1>
 
-    {% set version = "3" %}
+    <p class="govuk-body">
+      I want to view my personal list so that I can see all the cases that are assigned to me
+    </p>
+
+    {% set version = "4" %}
 
     <h2 class="govuk-heading-m">
       Version {{version}}
 
       {{govukTag({
-        text: "Researched",
-        classes: "govuk-!-margin-left-2 govuk-tag--blue"
+        text: "ready for research",
+        classes: "govuk-!-margin-left-2 govuk-tag--green"
       })}}
 
     </h2>
 
-    <p>
-      Used in research for <a href="/projects/issue-decision/#version-2" class="govuk-link">Issuing decisions (version 2)</a> August 2023<br>
-      <a href="https://pins-ds.atlassian.net/wiki/spaces/BO/pages/1258389505" class="govuk-link">
-        Inspectors: Inspector decisions for householder appeals
-      </a>
+    <p class="govuk-body">
+      Content updates following research:
     </p>
 
-    <p class="govuk-body">
-      Personal list works with Inspector decisions v3
-    </p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>udpated invalid appeal decision tag change to Completed</li>
+      <li>links with Inspector decisions v3</li>
+    </ul>
 
     {{ govukButton({
       text: "View prototype",
-      href: "v2/",
+      href: "v4/",
       isStartButton: true
     }) }}
+
+    {% set v3HTML %}
+
+      <p>
+        Used in research for <a href="/projects/issue-decision/#version-2" class="govuk-link">Issuing decisions (version 2)</a> August 2023<br>
+        <a href="https://pins-ds.atlassian.net/wiki/spaces/BO/pages/1258389505" class="govuk-link">
+          Inspectors: Inspector decisions for householder appeals
+        </a>
+      </p>
+
+      <p class="govuk-body">
+        Personal list works with Inspector decisions v3
+      </p>
+
+      {{ govukButton({
+        text: "View prototype",
+        href: "v3/",
+        isStartButton: true
+      }) }}
+
+    {% endset -%}
 
     {% set v2HTML %}
 
       {% set version = "2" %}
-
-      <p class="govuk-body">
-        I want to view my personal list so that I can see all the cases that are assigned to me
-      </p>
 
       {{ govukButton({
         text: "View prototype",
@@ -84,6 +103,14 @@
       classes: 'govuk-!-margin-top-5',
       items: [
 
+          {
+            heading: {
+              html: 'Version 3 <strong class="govuk-tag govuk-tag--blue govuk-!-margin-left-2">Researched</strong>'
+            },
+            content: {
+              html: v3HTML
+            }
+          },
           {
             heading: {
               html: 'Version 2 <strong class="govuk-tag govuk-tag--green govuk-!-margin-left-2">Ready for research</strong>'

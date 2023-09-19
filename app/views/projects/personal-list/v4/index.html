@@ -1,0 +1,25 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Personal list" %}
+
+{% set back = false %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+  <h1 class="govuk-heading-l">Cases assigned to you</h1>
+
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+	  {% include "projects/personal-list/v4/includes/personal-list-table.html" %}
+
+  </div>
+</div>
+
+{% endblock %}

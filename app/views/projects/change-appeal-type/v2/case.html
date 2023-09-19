@@ -49,21 +49,29 @@
     <span class="govuk-caption-l">Appeal 2110166</span>
     	<h1 class="govuk-heading-l">Case details</h1>
 
-      {% if data ['appealResubmit'] %}
 
-        {{ govukTag({
-          text: "Closed",
-          classes: "govuk-tag--grey"
-        })}}
+      {% if data ['appealResubmit'] === "yes" %}
+            {{ govukTag({
+              text: "Closed",
+              classes: "govuk-tag--grey"
+            })}}
+        {% elseif data ['appealResubmit'] === "no" and data ['horizonid'] %}
+                {{ govukTag({
+                  text: "Transferred",
+                  classes: "govuk-tag--grey"
+                })}}
+            {% elseif data ['appealResubmit'] === "no" %}
+                  {{ govukTag({
+                    text: "Awaiting transfer",
+                    classes: "govuk-tag--red"
+                  })}}
 
-      {% else %}
-
-        {{ govukTag({
-          text: "Ready to start",
-          classes: "govuk-tag--green"
-        })}}
-
-      {% endif %}
+                  {% else %}
+                  {{ govukTag({
+                    text: "Ready to start",
+                    classes: "govuk-tag--green"
+                  })}}
+                {% endif %}
 
 
       {% if data ['appealResubmit'] === "yes" %}

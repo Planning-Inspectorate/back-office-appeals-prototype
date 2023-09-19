@@ -77,9 +77,9 @@
       {% if data ['appealResubmit'] === "yes" %}
       <div class="govuk-inset-text"><p>This appeal needed to change to {{ data ['appealType'] }}.</p><p>The appelant has until 30 November 2023 to resubmit.</p></div>
       {% elseif data ['appealResubmit'] === "no" and data ['horizonid'] %}
-      <div class="govuk-inset-text"><p>This appeal needed to change to {{ data ['appealType'] }}.</p><p>It has been transferred to Horizon with the reference {{ data ['horizonid'] }}.</p></div>
+      <div class="govuk-inset-text"><p>This appeal needed to change to {{ data ['appealType'] }}.</p><p>It has been transferred to Horizon with the reference <a href="#">{{ data ['horizonid'] }}</a>.</p></div>
       {% elseif data ['appealResubmit'] === "no" %}
-  <div class="govuk-inset-text"><p>This appeal needs to change to {{ data ['appealType'] }}.</p><p>The appeal must been reopned in Horizon. When this is done <a href="change-appeal-horizon-id">update this appeal with the new horzion reference</a>.</p></div>
+  <div class="govuk-inset-text"><p>This appeal needs to change to {{ data ['appealType'] }}.</p><p>The appeal must been reopned in Horizon. When this is done <a href="change-appeal-horizon-id">update this appeal with the new horizon reference</a>.</p></div>
   {% endif %}
       
 

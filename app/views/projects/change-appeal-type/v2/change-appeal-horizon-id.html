@@ -10,16 +10,32 @@
   <div class="govuk-grid-column-two-thirds">
 
     <span class="govuk-caption-l">Appeal 2110166</span>
+<h1 class="govuk-heading-l">Transferred appeal details</h1>
+
+
     <form action="case" method="post">
 
       {{ govukInput({
         label: {
           text: "What is the ID of the new appeal on Horizon?",
-          classes: "govuk-label--l",
-          isPageHeading: true
+          classes: "govuk-label--s",
+          isPageHeading: false
         },
         id: "horizonid",
         name: "horizonid"
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "What is the URL of the appeal on Horizon?",
+          classes: "govuk-label--s",
+          isPageHeading: false
+        },
+        hint: {
+          text: "You can copy and paste this from the address bar of the browser window containing Horizon."
+        },
+        id: "horizon-url",
+        name: "horizon-url"
       }) }}
 
     {{ govukButton({

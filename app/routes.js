@@ -104,6 +104,6 @@ router.get("/projects/change-appeal-type/v2/change-appeal-resubmit-process", (re
 		res.redirect(req.originalUrl.replace("change-appeal-resubmit-process","change-appeal-final-date"))
 	}
 	else {
-		res.redirect(req.originalUrl.replace("change-appeal-resubmit-process","case"))
+		res.redirect(req.originalUrl.replace("change-appeal-resubmit-process","case-closed"))
 	}
 })

@@ -28,6 +28,13 @@
           classes: "govuk-tag--pink"
         })}}
 
+      {% elif data['status'] == 'invalid' %}
+
+        {{ govukTag({
+          text: "Completed",
+          classes: "govuk-tag--green"
+        })}}
+
       {% else %}
 
         {{ govukTag({

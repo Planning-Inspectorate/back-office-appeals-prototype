@@ -32,18 +32,14 @@
           Issue a decision
         </a>
       </p>
-    {% elif data['status'] == 'incomplete' %}
+    {% elif data['status'] == 'invalid' %}
 
         <p class="govuk-notification-banner__heading">
-          The appeal is invalid
+          The appeal decision has been issued
         </p>
-      {% if data['missing-evidence__reasons'] == 'Missing evidence' %}
+      {% if data['issued-decision'] == 'Invalid' %}
         <p>
-          Missing evidence: {{ data['missing-evidence__detail'] }}
-        </p>
-      {% else %}
-        <p>
-          Inspector notes: {{ data['other__detail'] }}
+          Appeal decision was invalid: {{ data['invalidDetail'] }}
         </p>
       {% endif %}
 
@@ -114,8 +110,8 @@
   {% else %}
 
     {{ govukTag({
-      text: "Complete",
-      classes: "govuk-tag--blue"
+      text: "Completed",
+      classes: "govuk-tag--green"
     })}}
 
   {% endif %}

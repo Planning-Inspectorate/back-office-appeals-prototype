@@ -1,0 +1,52 @@
+{% extends "layouts/PINS-Header-Nav.html" %}
+
+{% set pageName="Change appeal type" %}
+
+{% set back = true %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Appeal 2110166</span>
+    <form action="close-case-process" method="post">
+
+
+
+    {{ govukRadios({
+      name: "closeAppeal",
+      fieldset: {
+        legend: {
+          text: "Do you want to close this appeal?",
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--l"
+        }
+      },
+      hint: {
+        text: "If you close this appeal, you will no longer be able to make changes."
+      },
+      items: [
+        {
+          value: "yes",
+          text: "Yes"
+        },
+        {
+          value: "no",
+          text: "No"
+        }
+      ]
+    }) }}
+
+    {{ govukButton({
+      text: "Continue",
+      classes: "govuk-button--warning"
+    }) }}
+  </form>
+
+  </div>
+</div>
+
+
+{% endblock %}
+

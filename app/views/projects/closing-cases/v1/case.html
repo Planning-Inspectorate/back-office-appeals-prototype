@@ -207,57 +207,16 @@
       <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
       <h3 class="govuk-heading-m govuk-!-margin-top-3">
-        Close this case
+        Appeal withdrawal
       </h3>
     	<p class="govuk-body">
-        You can <a href="close-case">close this case</a> if the appellant has withdrawn their appeal
+        You can <a href="close-case">close this appeal</a> if the appellant has asked for it to be withdrawn
       </p>
 
     </div>
   </div>
 
-  {% if data['status'] == 'determination' %}
-
-    <form action="" method="post" class="govuk-!-margin-top-6" novalidate>
-
-      <!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
-
-        {{ govukRadios({
-          name: "issue-decision",
-          fieldset: {
-            legend: {
-              text: "Issue your decision",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--m"
-            }
-          },
-          items: [
-            {
-              value: "allowed~../../issue-decision/v1/decision-date",
-              text: "Allowed"
-            },
-            {
-              value: "dismissed~../../issue-decision/v1/decision-date",
-              text: "Dismissed"
-            },
-            {
-              value: "split~../../issue-decision/v1/decision-date",
-              text: "Split-decision"
-            },
-            {
-              value: "invalid~../../issue-decision/v1/decision-date",
-              text: "Invalid"
-            }
-          ]
-        }) }}
-
-        {{ govukButton({
-          text: "Continue"
-        }) }}
-
-    </form>
-
-  {% endif %}
+  
 
 
 {% endblock %}

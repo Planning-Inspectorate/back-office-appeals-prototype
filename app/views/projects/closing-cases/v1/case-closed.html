@@ -19,7 +19,7 @@
           <p class="govuk-notification-banner__heading">
             This appeal is awaiting transfer.
           </p>
-          <p>This appeal must now be transferred to Horizon. When this is done, <a href="change-appeal-horizon-id">update this appeal with the new horzion reference</a>.</p>
+          <p>This appeal must be transferred to Horizon. When this is done, <a href="change-appeal-horizon-id">update the appeal with the new horzion reference</a>.</p>
         {% endset %}
 
         {% set newhorizon %}
@@ -68,21 +68,21 @@
       </div>
 
       {% elseif data ['appealResubmit'] === "no" and data ['horizonid'] %}
+      <div class="govuk-inset-text">
       {{ govukTag({
         text: "Transferred",
         classes: "govuk-tag--grey govuk-!-margin-bottom-4"
       })}}
-      <div class="govuk-inset-text">
         <p>This appeal needed to change to {{ data ['appealType'] }}.</p><p>It has been transferred to Horizon with the reference <a href="#">{{ data ['horizonid'] }}</a>.</p>
       </div>
 
       {% elseif data ['appealResubmit'] === "no" %}
       {{ govukTag({
         text: "Awaiting transfer",
-        classes: "govuk-tag--red govuk-!-margin-bottom-4"
+        classes: "govuk-tag--red"
       })}}
       <div class="govuk-inset-text">
-      <p>This appeal needs to change to {{ data ['appealType'] }}.</p><p>The appeal must been reopned in Horizon. When this is done <a href="change-appeal-horizon-id">update this appeal with the new horizon reference</a>.</p>
+      <p>This appeal needs to change to {{ data ['appealType'] }}.</p><p>This appeal must be transferred to Horizon. When this is done <a href="change-appeal-horizon-id">update the appeal with the new horizon reference</a>.</p>
     </div>
  
               {% else %}

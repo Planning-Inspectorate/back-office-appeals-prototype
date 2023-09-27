@@ -8,9 +8,9 @@
 
 
 <span class="govuk-caption-l">Appeal a planning decision</span>
-<h1 class="govuk-heading-l">Change appeal type</h1>
+<h1 class="govuk-heading-l">Closing an appeal</h1>
 
-<p class="govuk-body-l">Appeals sometimes need to change to a new appeal type. This is usually identified at either validation or LPAQ review stage. In most cases the appellant will be asked to resubmit with the correct appeal type, if this is not possible the appeal will be manually added to horizon. The appeal in back office should be closed, with a status to show why. For MVP the case officer will manually email the appelant to arrange this. </p>
+<p class="govuk-body-l">Sometimes appeals are closed. This can be because an appellant chooses to withdraw their appeal, or because it changes type (covered by ticket 42). </p>
 
 {{ govukTable({
   captionClasses: "govuk-table__caption--m",
@@ -30,7 +30,7 @@
         text: "User story"
       },
       {
-        text: "I want to change the case appeal type if submitted incorrectly so that each case is handled in the most suitable way"
+        text: "I can close appeals without a decision do that they can be handled appropriately given a change in circumstance."
       }
     ],
     [
@@ -38,13 +38,13 @@
         text: "Jira ticket"
       },
       {
-        html: '<a href="https://pins-ds.atlassian.net.mcas.ms/jira/software/projects/BOATD/boards/210?selectedIssue=BOATD-42">BOATD-42: Changing Appeal Type - Workaround</a>'
+        html: '<a href="https://pins-ds.atlassian.net.mcas.ms/jira/software/projects/BOATD/boards/210?selectedIssue=BOATD-106">BOATD-106: Closing an appeal</a>'
       }
     ]
   ]
 }) }}
 
-<h1 class="govuk-heading-m">Version 2
+<h1 class="govuk-heading-m">Version 1
 
   {{govukTag({
       text: "In Discovery",
@@ -53,9 +53,9 @@
 
 </h1>
 
-<p class="govuk-body">In this version the case officer can fill in the Horizon ID after closing the case.</p>
+<p class="govuk-body">Using a button to close an appeal.</p>
 
-<a href="v2/" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
+<a href="v1/index?list=personal" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
   View prototype
   <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
     <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
@@ -63,22 +63,6 @@
 
   <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
-<h1 class="govuk-heading-m">Version 1
-
-    {{govukTag({
-        text: "In Discovery",
-        classes: "govuk-!-margin-left-2 govuk-tag--blue"
-      })}}
-
-</h1>
-
-<p class="govuk-body">This is one flow that ties everything up at the point of case closure.</p>
-
-<a href="v1/" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
-    View prototype
-    <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
-      <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
-    </svg></a>
 
 
 {% endblock %}

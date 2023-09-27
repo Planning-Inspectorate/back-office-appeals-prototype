@@ -44,6 +44,8 @@ router.use("/:service/v:version", (req, res, next) => {
 	}
 })
 
+// LINKED APPEALS
+
 router.get("/projects/linked-appeals/v2/link-to-appeal-parent", (req, res) => {
 		delete req.session.data.search
 		delete req.session.data.unlinkappeal
@@ -67,7 +69,6 @@ router.get("/projects/linked-appeals/v1/link-to-appeal", (req, res) => {
 	}
 })
 
-
 router.get("/projects/linked-appeals/v2/link-to-appeal", (req, res) => {
 	if (req.session.data.appealid == "5176892") {
 		delete req.session.data.unlinkappeal
@@ -78,6 +79,8 @@ router.get("/projects/linked-appeals/v2/link-to-appeal", (req, res) => {
 		res.redirect(req.originalUrl.replace("link-to-appeal","link-appeal-details"))
 	}
 })
+
+// RELATED APPEALS
 
 router.get("/projects/linked-appeals/v2/relate-appeal", (req, res) => {
 	if (req.session.data.relappealid == "5176892") {
@@ -90,6 +93,8 @@ router.get("/projects/linked-appeals/v2/relate-appeal", (req, res) => {
 	}
 })
 
+// CHANGE APPEAL TYPE
+
 router.get("/projects/change-appeal-type/v1/change-appeal-resubmit-process", (req, res) => {
 	if (req.session.data.appealResubmit == "yes") {
 		res.redirect(req.originalUrl.replace("change-appeal-resubmit-process","change-appeal-final-date"))
@@ -100,6 +105,26 @@ router.get("/projects/change-appeal-type/v1/change-appeal-resubmit-process", (re
 })
 
 router.get("/projects/change-appeal-type/v2/change-appeal-resubmit-process", (req, res) => {
+	if (req.session.data.appealResubmit == "yes") {
+		res.redirect(req.originalUrl.replace("change-appeal-resubmit-process","change-appeal-final-date"))
+	}
+	else {
+		res.redirect(req.originalUrl.replace("change-appeal-resubmit-process","case-closed"))
+	}
+})
+
+// CLOSING APPEALS
+
+router.get("/projects/closing-cases/v1/close-case-process", (req, res) => {
+	if (req.session.data.closeAppeal == "yes") {
+		res.redirect(req.originalUrl.replace("close-case-process","confirm-case-closed"))
+	}
+	else {
+		res.redirect(req.originalUrl.replace("close-case-process","case"))
+	}
+})
+
+router.get("/projects/closing-cases/v1/change-appeal-resubmit-process", (req, res) => {
 	if (req.session.data.appealResubmit == "yes") {
 		res.redirect(req.originalUrl.replace("change-appeal-resubmit-process","change-appeal-final-date"))
 	}

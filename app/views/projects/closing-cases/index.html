@@ -8,9 +8,11 @@
 
 
 <span class="govuk-caption-l">Appeal a planning decision</span>
-<h1 class="govuk-heading-l">Closing an appeal</h1>
+<h1 class="govuk-heading-l">Changing appeal types and closing cases</h1>
 
-<p class="govuk-body-l">Sometimes appeals are closed. This can be because an appellant chooses to withdraw their appeal, or because it changes type (covered by ticket 42). </p>
+<p class="govuk-body-l">Sometimes appeals are closed. This can be because an appellant chooses to withdraw their appeal or because it changes type. </p>
+
+<p class="govuk-body-l">This area of the prototype shows all scenarios where a case is closed without a decision. It also shows the case details page after a decision has been made, but does not include the <a href="../issue-decision/">issuing a decision journey</a>. </p>
 
 {{ govukTable({
   captionClasses: "govuk-table__caption--m",
@@ -30,12 +32,12 @@
         text: "User story"
       },
       {
-        text: "I can close appeals without a decision do that they can be handled appropriately given a change in circumstance."
+        text: "I can close appeals without a decision do that they can be handled appropriately given a change in appeal type or circumstances."
       }
     ],
     [
       {
-        text: "Jira ticket"
+        text: "Jira tickets"
       },
       {
         html: '<a href="https://pins-ds.atlassian.net.mcas.ms/jira/software/projects/BOATD/boards/210?selectedIssue=BOATD-106">BOATD-106: Closing an appeal</a>'
@@ -47,8 +49,8 @@
 <h1 class="govuk-heading-m">Version 1
 
   {{govukTag({
-      text: "In Discovery",
-      classes: "govuk-!-margin-left-2 govuk-tag--blue"
+      text: "In progress",
+      classes: "govuk-!-margin-left-2 govuk-tag--yellow"
     })}}
 
 </h1>

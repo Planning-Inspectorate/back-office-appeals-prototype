@@ -52,12 +52,6 @@ router.get("/projects/linked-appeals/v2/link-to-appeal-parent", (req, res) => {
 		res.redirect(req.originalUrl.replace("link-to-appeal-parent","link-appeal-parent"))
 })
 
-router.get("/projects/linked-appeals/v3/link-to-appeal-parent", (req, res) => {
-	delete req.session.data.search
-	delete req.session.data.unlinkappeal
-	res.redirect(req.originalUrl.replace("link-to-appeal-parent","link-appeal-parent"))
-})
-
 router.get("/projects/linked-appeals/v1/link-to-appeal", (req, res) => {
 	if (req.session.data.appealid == "horizon") {
 		delete req.session.data.unlinkappeal
@@ -80,12 +74,34 @@ router.get("/projects/linked-appeals/v2/link-to-appeal", (req, res) => {
 	}
 })
 
+router.get("/projects/linked-appeals/v3/link-to-appeal", (req, res) => {
+	if (req.session.data.appealid == "5176892") {
+		delete req.session.data.unlinkappeal
+		res.redirect(req.originalUrl.replace("link-to-appeal","link-appeal-reference"))
+	}
+	else {
+		delete req.session.data.unlinkappeal
+		res.redirect(req.originalUrl.replace("link-to-appeal","link-appeal-details"))
+	}
+})
+
 // RELATED APPEALS
 
 router.get("/projects/linked-appeals/v2/relate-appeal", (req, res) => {
 	if (req.session.data.relappealid == "5176892") {
 		delete req.session.data.unrelateappeal
 		res.redirect(req.originalUrl.replace("relate-appeal","related-appeal-horizon"))
+	}
+	else {
+		delete req.session.data.unrelateappeal
+		res.redirect(req.originalUrl.replace("relate-appeal","related-appeal-details"))
+	}
+})
+
+router.get("/projects/linked-appeals/v3/relate-appeal", (req, res) => {
+	if (req.session.data.relappealid == "5176892") {
+		delete req.session.data.unrelateappeal
+		res.redirect(req.originalUrl.replace("relate-appeal","related-appeal-reference"))
 	}
 	else {
 		delete req.session.data.unrelateappeal

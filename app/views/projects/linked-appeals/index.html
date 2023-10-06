@@ -21,12 +21,76 @@
 
        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
+       <h2 class="govuk-heading-m">Version 3
+            {%- from "govuk/components/tag/macro.njk" import govukTag -%}
+        
+            {{govukTag({
+              text: "New",
+              classes: "govuk-!-margin-left-2 govuk-tag--green"
+            })}}
+        
+            <!--
+             Status tag options
+        
+            {{govukTag({
+                  text: "New",
+                  classes: "govuk-!-margin-left-2 govuk-tag--green"
+                })}}
+        
+                {{govukTag({
+                  text: "In progress",
+                  classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+                })}}
+        
+                {{govukTag({
+                  text: "Ready for review",
+                  classes: "govuk-!-margin-left-2 govuk-tag--blue"
+                })}}
+        
+                {{govukTag({
+                  text: "Ready for research",
+                  classes: "govuk-!-margin-left-2 govuk-tag--green"
+                })}}
+        
+                {{govukTag({
+                  text: "Researched",
+                  classes: " govuk-!-margin-left-2 govuk-tag--green"
+                })}}
+        -->
+                
+        
+        
+          </h2>
+    
+          <p class="govuk-body">This version contains both linked and related appeals. I've kept them in the same space in the prototype as they go hand in hand and we should keep the pattern usage consistent. If you use the appeal ID <strong>5176892</strong> in either journey it will show the error for when the appeal is not found.</p>
+      
+    
+          <h3 class="govuk-heading-s">Assumptions:</h3>
+    
+          <ul class="govuk-list govuk-list--bullet">
+            <li>
+              That we will be able to query our database to see if a claim is in back office. If not we can check the horizon api to see if an appeal exists and return some basic information.
+            </li>
+              </ul>
+    
+    
+              {{ govukButton({
+                text: "View prototype",
+                href: "v3/",
+                isStartButton: true
+              }) }}
+    
+
+
+       <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+       
+
    <h2 class="govuk-heading-m">Version 2
         {%- from "govuk/components/tag/macro.njk" import govukTag -%}
     
         {{govukTag({
-          text: "In progress",
-          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+          text: "Researched",
+          classes: " govuk-!-margin-left-2 govuk-tag--green"
         })}}
     
         <!--
@@ -114,8 +178,8 @@
 		{%- from "govuk/components/tag/macro.njk" import govukTag -%}
 
 		{{govukTag({
-      text: "New",
-      classes: "govuk-!-margin-left-2 govuk-tag--green"
+      text: "Researched",
+      classes: " govuk-!-margin-left-2 govuk-tag--green"
     })}}
 
 		<!-- Status tag options

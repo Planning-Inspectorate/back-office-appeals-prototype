@@ -1,0 +1,171 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Case officer home" %}
+
+{% block content %}
+
+<div class="gov govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <span class="govuk-caption-xl">Appeal 2110166</span>
+        <div class="govuk-heading-xl">Manage site visit</div>
+
+
+        <details class="govuk-details" data-module="govuk-details">
+            <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                    Site information
+                </span>
+            </summary>
+            <div class="govuk-details__text">
+                {{ govukSummaryList({
+                classes: "govuk-summary-list--no-border",
+                rows: [
+                {
+                key: {
+                text: "Site address"
+                },
+                value: {
+                text: "21 The Pavement, Wandsworth, SW4 0HY"
+                }
+                },
+                {
+                key: {
+                text: "Potential safety risks"
+                },
+                value: {
+                text: "Yes, dogs on site"
+                }
+                }
+                ]
+                }) }}
+            </div>
+        </details>
+
+        <h2 class="govuk-heading-m">Select visit type</h2>
+        {{ govukRadios({
+        name: "site-visit-type",
+        fieldset: {
+        legend: {
+        isPageHeading: false,
+        classes: "govuk-fieldset__legend--l"
+        }
+        },
+        items: [
+        {
+        value: "Unaccompanied",
+        text: "Unaccompanied",
+        checked: "true"
+        },
+        {
+        value: "Access required",
+        text: "Access required"
+        },
+        {
+        value: "Accompanied",
+        text: "Accompanied"
+        }
+        ]
+        }) }}
+
+        {{ govukDateInput({
+            id: "visit date",
+            namePrefix: "visit date",
+            fieldset: {
+                legend: {
+                text: "Select a date",
+                isPageHeading: false,
+                classes: "govuk-fieldset__legend--m"
+                }
+            },
+            hint: {
+                text: "For example, 27 3 2023"
+            },
+            items: [
+                {
+                classes: "govuk-input--width-2 govuk-body",
+                name: "day",
+                value: "16"
+                },
+                {
+                classes: "govuk-input--width-2 govuk-body",
+                name: "month",
+                value: "09"
+                },
+                {
+                classes: "govuk-input--width-4 govuk-body",
+                name: "year",
+                value: "2023"
+                }
+            ]
+
+        }) }}
+
+
+
+
+
+        <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" role="group" aria-describedby="site-visit-time-hint">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                    <h1 class="govuk-fieldset__heading">
+                        Select a time
+                    </h1>
+                </legend>
+                <div id="site-visit-time-hint" class="govuk-hint">
+                    Time is optional for unaccompanied site visits
+                </div>
+                <div id="site-visit-time-hint" class="govuk-hint">
+                    Enter a time, for example 9:00 or 16:30
+                </div>
+                <div class="govuk-date-input" id="start-time">
+                    <div class="govuk-date-input__item govuk-!-margin-bottom-3">
+
+                        <div class="govuk-form-group">
+                            <label class="govuk-label govuk-date-input__label" for="start-time">
+                                <span class="govuk-body govuk-!-font-weight-bold">Start time</span>
+                            </label>
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="start-time"
+                                name="start-time" type="text" inputmode="numeric" value="10">
+                            <span class="govuk-body govuk-!-margin-left-1 govuk-!-margin-right-1">:</span>
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="start-time"
+                                name="start-time" type="text" inputmode="numeric" value="00">
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="govuk-date-input__item">
+                        <div class="govuk-form-group">
+                            <label class="govuk-label govuk-date-input__label" for="end-time">
+                                <span class="govuk-body govuk-!-font-weight-bold">End time</span>
+                            </label>
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="end-time"
+                                name="end-time" type="text" inputmode="numeric" value="12">
+                            <span class="govuk-body govuk-!-margin-left-1 govuk-!-margin-right-1">:</span>
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="end-time"
+                                name="end-time" type="text" inputmode="numeric" value="00">
+                        </div>
+                    </div>
+
+                </div>
+            </fieldset>
+        </div>
+        {{ govukButton({
+        text: "Confirm",
+        href: "site-visit-confirmation.html"
+        }) }}
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+</div>
+
+{% endblock %}

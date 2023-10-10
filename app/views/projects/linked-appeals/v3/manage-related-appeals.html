@@ -1,0 +1,78 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Case details" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% if data ['unrelateappeal'] === "yes" %}
+
+      <div class="govuk-notification-banner  govuk-notification-banner--success" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+    	  <div class="govuk-notification-banner__header">
+    	    <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">Success</h2>
+        </div>
+    	  <div class="govuk-notification-banner__content"> 
+            You have removed the relationship between this appeal and appeal {{ data ['relappealid'] }}
+        </div>
+        </div>
+
+        {% endif %}
+
+    	<span class="govuk-caption-l">Appeal 2110166</span>
+              <h1 class="govuk-heading-l">
+              Manage related appeals
+            </h1>
+
+            </div>
+          </div>
+
+          <div class="govuk-grid-row">
+            <div class="govuk-grid-column-full">
+        
+            
+            <!-- show if child appeal -->
+
+            {{ govukTable({
+              caption: "Related appeals",
+              captionClasses: "govuk-table__caption--m govuk-!-margin-top-6",
+              firstCellIsHeader: false,
+              head: [
+                {
+                  text: "Appeal ID"
+                },
+                {
+                  text: "Appeal type",
+                  classes: "govuk-!-width-one-half"
+                },
+                {
+                  text: "Action",
+                  classes: "govuk-!-width-one-quarter"
+                }
+              ],
+              rows: [
+                [
+                  {
+                    html: "<a href='case'>2188616</a> (Horizon)"
+                  },
+                  {
+                    text: "Listed buildings"
+                  },
+                  {
+                    html: "<a href='unrelate-appeal'>Remove</a>"
+                  }
+                ]
+              ]
+            }) }}
+
+            
+            <!---->
+              
+
+
+    </div>
+  </div>
+
+
+{% endblock %}

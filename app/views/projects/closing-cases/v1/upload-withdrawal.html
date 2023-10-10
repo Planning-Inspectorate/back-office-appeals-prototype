@@ -1,0 +1,46 @@
+{% extends "layouts/PINS-Header-Nav.html" %}
+
+{% set pageName="Change appeal type" %}
+
+{% set back = true %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Appeal 2110166</span>
+
+
+
+      <h1 class="govuk-heading-l">Upload the appellant's withdrawal request</h1>
+
+
+      <p class="govuk-body govuk-secondary-text-colour" style="color:#505a5f">Choose a file to
+          upload.</p>
+      <p class="govuk-body govuk-secondary-text-colour" style="color:#505a5f">Your file must be DOC, DOCX, JPEG, JPG,
+          MOV, MPEG, MP3, MP4, MSG, PDF, PNG, PPT, PPTX, TIF, TIFF, XLS or XLSX.</p>
+      <p class="govuk-body govuk-secondary-text-colour" style="color:#505a5f">Your uploaded file must be
+          smaller than 1 GB.</p>
+
+
+      {{ govukFileUpload({
+      id: "file-upload-1",
+      name: "fileUpload1",
+      label: {
+      text: "Upload a file"
+      }
+      }) }}
+
+
+      {{ govukButton({
+      text: "Continue",
+      href: "close-case"
+      }) }} 
+
+  </div>
+</div>
+
+
+{% endblock %}
+

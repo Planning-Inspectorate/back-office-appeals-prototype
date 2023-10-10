@@ -1,0 +1,734 @@
+{% extends "layouts/PINS.html" %}
+
+{% set title = '26 Document redaction statuses' %}
+
+{% block content %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds govuk-!-margin-bottom-3">
+	
+	  <span class="govuk-caption-l">Appeal 2110166</span>
+	  <h1 class="govuk-heading-l">
+	    {{ title }}
+	  </h1>
+	  	
+	</div>
+	
+	
+	<div class="govuk-grid-column-two-thirds">
+		
+		<style>
+        /* Give some space for the tag being inline now */
+        .govuk-checkboxes--small .govuk-checkboxes__item {
+          margin-bottom: 18px
+        }
+      </style>
+		
+		<table class="govuk-table">
+		  <thead class="govuk-table__head">
+		    <tr class="govuk-table__row">
+		      <th scope="col" class="govuk-table__header">Document</th>
+		      <th scope="col" class="govuk-table__header">Redacted status</th>
+		    </tr>
+		  </thead>
+		  <tbody class="govuk-table__body">
+		    <tr class="govuk-table__row">
+		      <td class="govuk-table__cell"><a href="/public/downloads/tree-preservation-order-A.pdf" target="_blank">filename.pdf</a></td>
+		      <td class="govuk-table__cell">
+			      
+			      {{ govukRadios({
+					  classes: "govuk-radios--small",
+					  name: "redactStatus",
+					  items: [
+					    {
+					      value: "redacted",
+					      text: "Is redacted"
+					    },
+					    {
+					      value: "unredacted",
+					      text: "Unredacted"
+					    },
+					    {
+					      value: "not required",
+					      text: "No redaction required"
+					    }
+					  ]
+					}) }}
+			      
+		      </td>
+		    </tr>
+		    <tr class="govuk-table__row">
+		      <td class="govuk-table__cell"><a href="/public/downloads/tree-preservation-order-A.pdf" target="_blank">filename-1.pdf</a></td>
+		      <td class="govuk-table__cell">
+			      
+			      {{ govukRadios({
+					  classes: "govuk-radios--small",
+					  name: "redactStatus",
+					  items: [
+					    {
+					      value: "redacted",
+					      text: "Is redacted"
+					    },
+					    {
+					      value: "unredacted",
+					      text: "Unredacted"
+					    },
+					    {
+					      value: "not required",
+					      text: "No redaction required"
+					    }
+					  ]
+					}) }}
+			      
+		      </td>
+		    </tr>
+		    <tr class="govuk-table__row">
+		      <td class="govuk-table__cell"><a href="/public/downloads/tree-preservation-order-A.pdf" target="_blank">filename-2.pdf</a></td>
+		      <td class="govuk-table__cell">
+			      
+			      {{ govukRadios({
+					  classes: "govuk-radios--small",
+					  name: "redactStatus",
+					  items: [
+					    {
+					      value: "redacted",
+					      text: "Is redacted"
+					    },
+					    {
+					      value: "unredacted",
+					      text: "Unredacted"
+					    },
+					    {
+					      value: "not required",
+					      text: "No redaction required"
+					    }
+					  ]
+					}) }}
+			      
+		      </td>
+		    </tr>
+		    <tr class="govuk-table__row">
+		      <td class="govuk-table__cell"><a href="/public/downloads/tree-preservation-order-A.pdf" target="_blank">filename-3.pdf</a></td>
+		      <td class="govuk-table__cell">
+			      
+			      {{ govukRadios({
+					  classes: "govuk-radios--small",
+					  name: "redactStatus",
+					  items: [
+					    {
+					      value: "redacted",
+					      text: "Is redacted"
+					    },
+					    {
+					      value: "unredacted",
+					      text: "Unredacted"
+					    },
+					    {
+					      value: "not required",
+					      text: "No redaction required"
+					    }
+					  ]
+					}) }}
+			      
+		      </td>
+		    </tr>
+		    <tr class="govuk-table__row">
+		      <td class="govuk-table__cell"><a href="/public/downloads/tree-preservation-order-A.pdf" target="_blank">filename-4.pdf</a></td>
+		      <td class="govuk-table__cell">
+			      
+			      {{ govukRadios({
+					  classes: "govuk-radios--small",
+					  name: "redactStatus",
+					  items: [
+					    {
+					      value: "redacted",
+					      text: "Is redacted"
+					    },
+					    {
+					      value: "unredacted",
+					      text: "Unredacted"
+					    },
+					    {
+					      value: "not required",
+					      text: "No redaction required"
+					    }
+					  ]
+					}) }}
+			      
+		      </td>
+		    </tr>
+		    <tr class="govuk-table__row">
+		      <td class="govuk-table__cell"><a href="/public/downloads/tree-preservation-order-A.pdf" target="_blank">filename-5.pdf</a></td>
+		      <td class="govuk-table__cell">
+			      
+			      {{ govukRadios({
+					  classes: "govuk-radios--small",
+					  name: "redactStatus",
+					  items: [
+					    {
+					      value: "redacted",
+					      text: "Is redacted"
+					    },
+					    {
+					      value: "unredacted",
+					      text: "Unredacted"
+					    },
+					    {
+					      value: "not required",
+					      text: "No redaction required"
+					    }
+					  ]
+					}) }}
+			      
+		      </td>
+		    </tr>
+		    <tr class="govuk-table__row">
+		      <td class="govuk-table__cell"><a href="/public/downloads/tree-preservation-order-A.pdf" target="_blank">filename-6.pdf</a></td>
+		      <td class="govuk-table__cell">
+			      
+			      {{ govukRadios({
+					  classes: "govuk-radios--small",
+					  name: "redactStatus",
+					  items: [
+					    {
+					      value: "redacted",
+					      text: "Is redacted"
+					    },
+					    {
+					      value: "unredacted",
+					      text: "Unredacted"
+					    },
+					    {
+					      value: "not required",
+					      text: "No redaction required"
+					    }
+					  ]
+					}) }}
+			      
+		      </td>
+		    </tr>
+		    <tr class="govuk-table__row">
+		      <td class="govuk-table__cell"><a href="/public/downloads/tree-preservation-order-A.pdf" target="_blank">filename-7.pdf</a></td>
+		      <td class="govuk-table__cell">
+			      
+			      {{ govukRadios({
+					  classes: "govuk-radios--small",
+					  name: "redactStatus",
+					  items: [
+					    {
+					      value: "redacted",
+					      text: "Is redacted"
+					    },
+					    {
+					      value: "unredacted",
+					      text: "Unredacted"
+					    },
+					    {
+					      value: "not required",
+					      text: "No redaction required"
+					    }
+					  ]
+					}) }}
+			      
+		      </td>
+		    </tr>
+		    <tr class="govuk-table__row">
+		      <td class="govuk-table__cell"><a href="/public/downloads/tree-preservation-order-A.pdf" target="_blank">filename-8.pdf</a></td>
+		      <td class="govuk-table__cell">
+			      
+			      {{ govukRadios({
+					  classes: "govuk-radios--small",
+					  name: "redactStatus",
+					  items: [
+					    {
+					      value: "redacted",
+					      text: "Is redacted"
+					    },
+					    {
+					      value: "unredacted",
+					      text: "Unredacted"
+					    },
+					    {
+					      value: "not required",
+					      text: "No redaction required"
+					    }
+					  ]
+					}) }}
+			      
+		      </td>
+		    </tr>
+		    <tr class="govuk-table__row">
+		      <td class="govuk-table__cell"><a href="/public/downloads/tree-preservation-order-A.pdf" target="_blank">filename-9.pdf</a></td>
+		      <td class="govuk-table__cell">
+			      
+			      {{ govukRadios({
+					  classes: "govuk-radios--small",
+					  name: "redactStatus",
+					  items: [
+					    {
+					      value: "redacted",
+					      text: "Is redacted"
+					    },
+					    {
+					      value: "unredacted",
+					      text: "Unredacted"
+					    },
+					    {
+					      value: "not required",
+					      text: "No redaction required"
+					    }
+					  ]
+					}) }}
+			      
+		      </td>
+		    </tr>
+		    <tr class="govuk-table__row">
+		      <td class="govuk-table__cell"><a href="/public/downloads/tree-preservation-order-A.pdf" target="_blank">filename-10.pdf</a></td>
+		      <td class="govuk-table__cell">
+			      
+			      {{ govukRadios({
+					  classes: "govuk-radios--small",
+					  name: "redactStatus",
+					  items: [
+					    {
+					      value: "redacted",
+					      text: "Is redacted"
+					    },
+					    {
+					      value: "unredacted",
+					      text: "Unredacted"
+					    },
+					    {
+					      value: "not required",
+					      text: "No redaction required"
+					    }
+					  ]
+					}) }}
+			      
+		      </td>
+		    </tr>
+		    <tr class="govuk-table__row">
+		      <td class="govuk-table__cell"><a href="/public/downloads/tree-preservation-order-A.pdf" target="_blank">filename-11.pdf</a></td>
+		      <td class="govuk-table__cell">
+			      
+			      {{ govukRadios({
+					  classes: "govuk-radios--small",
+					  name: "redactStatus",
+					  items: [
+					    {
+					      value: "redacted",
+					      text: "Is redacted"
+					    },
+					    {
+					      value: "unredacted",
+					      text: "Unredacted"
+					    },
+					    {
+					      value: "not required",
+					      text: "No redaction required"
+					    }
+					  ]
+					}) }}
+			      
+		      </td>
+		    </tr>
+		    <tr class="govuk-table__row">
+		      <td class="govuk-table__cell"><a href="/public/downloads/tree-preservation-order-A.pdf" target="_blank">filename-12.pdf</a></td>
+		      <td class="govuk-table__cell">
+			      
+			      {{ govukRadios({
+					  classes: "govuk-radios--small",
+					  name: "redactStatus",
+					  items: [
+					    {
+					      value: "redacted",
+					      text: "Is redacted"
+					    },
+					    {
+					      value: "unredacted",
+					      text: "Unredacted"
+					    },
+					    {
+					      value: "not required",
+					      text: "No redaction required"
+					    }
+					  ]
+					}) }}
+			      
+		      </td>
+		    </tr>
+		    <tr class="govuk-table__row">
+		      <td class="govuk-table__cell"><a href="/public/downloads/tree-preservation-order-A.pdf" target="_blank">filename-13.pdf</a></td>
+		      <td class="govuk-table__cell">
+			      
+			      {{ govukRadios({
+					  classes: "govuk-radios--small",
+					  name: "redactStatus",
+					  items: [
+					    {
+					      value: "redacted",
+					      text: "Is redacted"
+					    },
+					    {
+					      value: "unredacted",
+					      text: "Unredacted"
+					    },
+					    {
+					      value: "not required",
+					      text: "No redaction required"
+					    }
+					  ]
+					}) }}
+			      
+		      </td>
+		    </tr>
+		    <tr class="govuk-table__row">
+		      <td class="govuk-table__cell"><a href="/public/downloads/tree-preservation-order-A.pdf" target="_blank">filename-14.pdf</a></td>
+		      <td class="govuk-table__cell">
+			      
+			      {{ govukRadios({
+					  classes: "govuk-radios--small",
+					  name: "redactStatus",
+					  items: [
+					    {
+					      value: "redacted",
+					      text: "Is redacted"
+					    },
+					    {
+					      value: "unredacted",
+					      text: "Unredacted"
+					    },
+					    {
+					      value: "not required",
+					      text: "No redaction required"
+					    }
+					  ]
+					}) }}
+			      
+		      </td>
+		    </tr>
+		    <tr class="govuk-table__row">
+		      <td class="govuk-table__cell"><a href="/public/downloads/tree-preservation-order-A.pdf" target="_blank">filename-15.pdf</a></td>
+		      <td class="govuk-table__cell">
+			      
+			      {{ govukRadios({
+					  classes: "govuk-radios--small",
+					  name: "redactStatus",
+					  items: [
+					    {
+					      value: "redacted",
+					      text: "Is redacted"
+					    },
+					    {
+					      value: "unredacted",
+					      text: "Unredacted"
+					    },
+					    {
+					      value: "not required",
+					      text: "No redaction required"
+					    }
+					  ]
+					}) }}
+			      
+		      </td>
+		    </tr>
+		    <tr class="govuk-table__row">
+		      <td class="govuk-table__cell"><a href="/public/downloads/tree-preservation-order-A.pdf" target="_blank">filename-16.pdf</a></td>
+		      <td class="govuk-table__cell">
+			      
+			      {{ govukRadios({
+					  classes: "govuk-radios--small",
+					  name: "redactStatus",
+					  items: [
+					    {
+					      value: "redacted",
+					      text: "Is redacted"
+					    },
+					    {
+					      value: "unredacted",
+					      text: "Unredacted"
+					    },
+					    {
+					      value: "not required",
+					      text: "No redaction required"
+					    }
+					  ]
+					}) }}
+			      
+		      </td>
+		    </tr>
+		    <tr class="govuk-table__row">
+		      <td class="govuk-table__cell"><a href="/public/downloads/tree-preservation-order-A.pdf" target="_blank">filename-17.pdf</a></td>
+		      <td class="govuk-table__cell">
+			      
+			      {{ govukRadios({
+					  classes: "govuk-radios--small",
+					  name: "redactStatus",
+					  items: [
+					    {
+					      value: "redacted",
+					      text: "Is redacted"
+					    },
+					    {
+					      value: "unredacted",
+					      text: "Unredacted"
+					    },
+					    {
+					      value: "not required",
+					      text: "No redaction required"
+					    }
+					  ]
+					}) }}
+			      
+		      </td>
+		    </tr>
+		    <tr class="govuk-table__row">
+		      <td class="govuk-table__cell"><a href="/public/downloads/tree-preservation-order-A.pdf" target="_blank">filename-18.pdf</a></td>
+		      <td class="govuk-table__cell">
+			      
+			      {{ govukRadios({
+					  classes: "govuk-radios--small",
+					  name: "redactStatus",
+					  items: [
+					    {
+					      value: "redacted",
+					      text: "Is redacted"
+					    },
+					    {
+					      value: "unredacted",
+					      text: "Unredacted"
+					    },
+					    {
+					      value: "not required",
+					      text: "No redaction required"
+					    }
+					  ]
+					}) }}
+			      
+		      </td>
+		    </tr>
+		    <tr class="govuk-table__row">
+		      <td class="govuk-table__cell"><a href="/public/downloads/tree-preservation-order-A.pdf" target="_blank">filename-19.pdf</a></td>
+		      <td class="govuk-table__cell">
+			      
+			      {{ govukRadios({
+					  classes: "govuk-radios--small",
+					  name: "redactStatus",
+					  items: [
+					    {
+					      value: "redacted",
+					      text: "Is redacted"
+					    },
+					    {
+					      value: "unredacted",
+					      text: "Unredacted"
+					    },
+					    {
+					      value: "not required",
+					      text: "No redaction required"
+					    }
+					  ]
+					}) }}
+			      
+		      </td>
+		    </tr>
+		    <tr class="govuk-table__row">
+		      <td class="govuk-table__cell"><a href="/public/downloads/tree-preservation-order-A.pdf" target="_blank">filename-20.pdf</a></td>
+		      <td class="govuk-table__cell">
+			      
+			      {{ govukRadios({
+					  classes: "govuk-radios--small",
+					  name: "redactStatus",
+					  items: [
+					    {
+					      value: "redacted",
+					      text: "Is redacted"
+					    },
+					    {
+					      value: "unredacted",
+					      text: "Unredacted"
+					    },
+					    {
+					      value: "not required",
+					      text: "No redaction required"
+					    }
+					  ]
+					}) }}
+			      
+		      </td>
+		    </tr>
+		    <tr class="govuk-table__row">
+		      <td class="govuk-table__cell"><a href="/public/downloads/tree-preservation-order-A.pdf" target="_blank">filename-21.pdf</a></td>
+		      <td class="govuk-table__cell">
+			      
+			      {{ govukRadios({
+					  classes: "govuk-radios--small",
+					  name: "redactStatus",
+					  items: [
+					    {
+					      value: "redacted",
+					      text: "Is redacted"
+					    },
+					    {
+					      value: "unredacted",
+					      text: "Unredacted"
+					    },
+					    {
+					      value: "not required",
+					      text: "No redaction required"
+					    }
+					  ]
+					}) }}
+			      
+		      </td>
+		    </tr>
+		    <tr class="govuk-table__row">
+		      <td class="govuk-table__cell"><a href="/public/downloads/tree-preservation-order-A.pdf" target="_blank">filename-22.pdf</a></td>
+		      <td class="govuk-table__cell">
+			      
+			      {{ govukRadios({
+					  classes: "govuk-radios--small",
+					  name: "redactStatus",
+					  items: [
+					    {
+					      value: "redacted",
+					      text: "Is redacted"
+					    },
+					    {
+					      value: "unredacted",
+					      text: "Unredacted"
+					    },
+					    {
+					      value: "not required",
+					      text: "No redaction required"
+					    }
+					  ]
+					}) }}
+			      
+		      </td>
+		    </tr>
+		    <tr class="govuk-table__row">
+		      <td class="govuk-table__cell"><a href="/public/downloads/tree-preservation-order-A.pdf" target="_blank">filename-23.pdf</a></td>
+		      <td class="govuk-table__cell">
+			      
+			      {{ govukRadios({
+					  classes: "govuk-radios--small",
+					  name: "redactStatus",
+					  items: [
+					    {
+					      value: "redacted",
+					      text: "Is redacted"
+					    },
+					    {
+					      value: "unredacted",
+					      text: "Unredacted"
+					    },
+					    {
+					      value: "not required",
+					      text: "No redaction required"
+					    }
+					  ]
+					}) }}
+			      
+		      </td>
+		    </tr>
+		    <tr class="govuk-table__row">
+		      <td class="govuk-table__cell"><a href="/public/downloads/tree-preservation-order-A.pdf" target="_blank">filename-24.pdf</a></td>
+		      <td class="govuk-table__cell">
+			      
+			      {{ govukRadios({
+					  classes: "govuk-radios--small",
+					  name: "redactStatus",
+					  items: [
+					    {
+					      value: "redacted",
+					      text: "Is redacted"
+					    },
+					    {
+					      value: "unredacted",
+					      text: "Unredacted"
+					    },
+					    {
+					      value: "not required",
+					      text: "No redaction required"
+					    }
+					  ]
+					}) }}
+			      
+		      </td>
+		    </tr>
+		    <tr class="govuk-table__row">
+		      <td class="govuk-table__cell"><a href="/public/downloads/tree-preservation-order-A.pdf" target="_blank">filename-25.pdf</a></td>
+		      <td class="govuk-table__cell">
+			      
+			      {{ govukRadios({
+					  classes: "govuk-radios--small",
+					  name: "redactStatus",
+					  items: [
+					    {
+					      value: "redacted",
+					      text: "Is redacted"
+					    },
+					    {
+					      value: "unredacted",
+					      text: "Unredacted"
+					    },
+					    {
+					      value: "not required",
+					      text: "No redaction required"
+					    }
+					  ]
+					}) }}
+			      
+		      </td>
+		    </tr>
+		    <tr class="govuk-table__row">
+		      <td class="govuk-table__cell"><a href="/public/downloads/tree-preservation-order-A.pdf" target="_blank">filename-26.pdf</a></td>
+		      <td class="govuk-table__cell">
+			      
+			      {{ govukRadios({
+					  classes: "govuk-radios--small",
+					  name: "redactStatus",
+					  items: [
+					    {
+					      value: "redacted",
+					      text: "Is redacted"
+					    },
+					    {
+					      value: "unredacted",
+					      text: "Unredacted"
+					    },
+					    {
+					      value: "not required",
+					      text: "No redaction required"
+					    }
+					  ]
+					}) }}
+			      
+		      </td>
+		    </tr>
+		  </tbody>
+		</table>
+		
+		
+		
+		
+	</div>
+</div>
+
+
+
+
+<section>
+	<div class="govuk-grid-row">
+		<div class="govuk-grid-column-two-thirds">
+		  
+		{{ govukButton({
+		  text: "Continue",
+		  href: "#"
+		}) }}
+		
+		</div>
+	</div>
+</section>
+
+{% endblock %}

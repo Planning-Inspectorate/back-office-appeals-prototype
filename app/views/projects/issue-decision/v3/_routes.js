@@ -9,7 +9,7 @@ router.get('*', function(req, res, next){
 })
 
 router.post('/invalid', function (req, res) {
-  res.redirect('/projects/personal-list/v3/?status=incomplete&decision=incomplete-appeal')
+  res.redirect('/projects/personal-list/v4/?status=incomplete&decision=invalid-appeal')
 })
 
 router.post('/upload-decision', function (req, res) {

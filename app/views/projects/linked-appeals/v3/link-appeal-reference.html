@@ -1,0 +1,73 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Case details" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% if data ['appealid'] %}
+
+        {{ govukErrorSummary({
+          titleText: "No appeal was found with this ID",
+          errorList: [
+            {
+              text: "Enter an appeal ID",
+              href: "#appealid"
+            }
+          ]
+        }) }}
+
+      {% endif %}
+
+    	<span class="govuk-caption-l">Appeal 2110166</span>
+
+      <form action="link-to-appeal" method="post">
+
+
+    
+
+      {% if data ['appealid'] %}
+
+        {{ govukInput({
+          label: {
+            text: "What is the appeal ID?",
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          classes: "govuk-input--width-10",
+          id: "appealid",
+          name: "appealid",
+          errorMessage: {
+            text: "Enter an appeal ID"
+          }
+        }) }}
+
+        {% else %}
+
+        {{ govukInput({
+          label: {
+            text: "What is the appeal ID?",
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          classes: "govuk-input--width-10",
+          id: "appealid",
+          name: "appealid"
+        }) }}
+
+      {% endif %}
+
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+    </div>
+  </div>
+
+
+{% endblock %}

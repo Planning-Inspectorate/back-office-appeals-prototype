@@ -34,10 +34,11 @@
     </p>
 
     <ul class="govuk-list govuk-list--bullet">
+      <li>updates to invalid decision step to collect a single reason</li>
       <li>updates to upload decision letter content and decision date</li>
       <li>update to ‘Inspector access / Yes’ on the LPA questionnaire answers</li>
+      <li>change to personal list (version 4) to show invalid appeal decision as Completed</li>
     </ul>
-
 
   	{{ govukButton({
   	  text: "View prototype",
@@ -47,26 +48,30 @@
 
     {% set v2HTML %}
 
-      <p>
-        Researched August 2023<br>
-        <a href="https://pins-ds.atlassian.net/wiki/spaces/BO/pages/1258389505/Inspectors%3A+Inspector+decisions+for+householder+appeals" class="govuk-link">
-          Inspectors: Inspector decisions for householder appeals
-        </a>
-      </p>
+      <section id="version-2">
 
-      <p class="govuk-body">
-        Changes:
-      </p>
+        <p>
+          Researched August 2023<br>
+          <a href="https://pins-ds.atlassian.net/wiki/spaces/BO/pages/1258389505/Inspectors%3A+Inspector+decisions+for+householder+appeals" class="govuk-link">
+            Inspectors: Inspector decisions for householder appeals
+          </a>
+        </p>
 
-      <ul class="govuk-list govuk-list--bullet">
-        <li>content updates</li>
-      </ul>
+        <p class="govuk-body">
+          Changes:
+        </p>
 
-      {{ govukButton({
-        text: "View prototype",
-        href: "/projects/personal-list/v1/?decision=ready",
-        isStartButton: true
-      }) }}
+        <ul class="govuk-list govuk-list--bullet">
+          <li>content updates</li>
+        </ul>
+
+        {{ govukButton({
+          text: "View prototype",
+          href: "/projects/personal-list/v1/?decision=ready",
+          isStartButton: true
+        }) }}
+
+      </section>
 
     {% endset -%}
 

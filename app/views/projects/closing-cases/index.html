@@ -1,0 +1,70 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Case details" %}
+
+{% set back = false %}
+
+{% block content %}
+
+
+<span class="govuk-caption-l">Appeal a planning decision</span>
+<h1 class="govuk-heading-l">Changing appeal types and closing cases</h1>
+
+<p class="govuk-body-l">Sometimes appeals are closed. This can be because an appellant chooses to withdraw their appeal or because it changes type. </p>
+
+<p class="govuk-body-l">This area of the prototype shows all scenarios where a case is closed without a decision. It also shows the case details page after a decision has been made, but does not include the <a href="../issue-decision/">issuing a decision journey</a>. </p>
+
+{{ govukTable({
+  captionClasses: "govuk-table__caption--m",
+  firstCellIsHeader: true,
+
+  rows: [
+    [
+      {
+        text: "Typical user"
+      },
+      {
+        text: "Case officers"
+      }
+    ],
+    [
+      {
+        text: "User story"
+      },
+      {
+        text: "I can close appeals without a decision do that they can be handled appropriately given a change in appeal type or circumstances."
+      }
+    ],
+    [
+      {
+        text: "Jira tickets"
+      },
+      {
+        html: '<a href="https://pins-ds.atlassian.net.mcas.ms/jira/software/projects/BOATD/boards/210?selectedIssue=BOATD-106">BOATD-106: Closing an appeal</a>, <a href="https://pins-ds.atlassian.net.mcas.ms/jira/software/projects/BOATD/boards/210?selectedIssue=BOATD-42">BOATD-42: Changing appeal type (workaround)</a>, <a href="https://pins-ds.atlassian.net.mcas.ms/jira/software/projects/BOATD/boards/210?selectedIssue=BOATD-106">BOATD-106: Closing an appeal</a>'
+      }
+    ]
+  ]
+}) }}
+
+<h1 class="govuk-heading-m">Version 1
+
+  {{govukTag({
+      text: "In progress",
+      classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+    })}}
+
+</h1>
+
+<p class="govuk-body">Using a button to close an appeal.</p>
+
+<a href="v1/index?list=personal" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
+  View prototype
+  <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+    <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+  </svg></a>
+
+  <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+
+
+{% endblock %}

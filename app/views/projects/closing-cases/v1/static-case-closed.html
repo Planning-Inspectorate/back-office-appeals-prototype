@@ -15,83 +15,27 @@
           <p>You must email the appellant to ask them to resubmit an appeal of the correct type. The email must include the final date resubmission is possible.</p>
         {% endset %}
 
-        {% set horizonrefneeded %}
-          <p class="govuk-notification-banner__heading">
-            This appeal is awaiting transfer.
-          </p>
-          <p>This appeal must be transferred to Horizon. When this is done, <a href="change-appeal-horizon-id">update the appeal with the new horizon reference</a>.</p>
-        {% endset %}
+       
 
-        {% set newhorizon %}
-          <p class="govuk-notification-banner__heading">
-            Horizon reference added.</p>
-            <p>You must email the appellant to tell them of the change in appeal type and let them know what they need to provide.
-          </p>
-        {% endset %}
-
-        {% if data ['closeAppeal'] === "yes" %}
-        {% elseif data ['appealResubmit'] === "yes" %}
+       
             {{ govukNotificationBanner({
               html: emailappelant,
               type: "success"
             }) }}
-        {% elseif data ['appealResubmit'] === "no" and data ['horizonid'] %}
-            {{ govukNotificationBanner({
-              html: newhorizon,
-              type: "success"
-            }) }}
-            {% elseif data ['appealResubmit'] === "no" %}
-            {{ govukNotificationBanner({
-              html: horizonrefneeded,
-              type: "success"
-            }) }}
-        {% endif %}
+        
 
     <!--	<span class="govuk-caption-l">Appeal 2110166</span> -->
     <span class="govuk-caption-l">Appeal 2110166</span>
     	<h1 class="govuk-heading-l">Case details</h1>
 
-      {% if data ['closeAppeal'] === "yes" %}
-      <div class="govuk-inset-text">
-            {{ govukTag({
-              text: "Withdrawn",
-              classes: "govuk-tag--grey govuk-!-margin-bottom-4"
-            })}}
-            <p>This appeal was withdrawn by the appellant on 21 September 2023.</p><p>You can <a href="view-letter">view the withdrawal request</a>.</p>
-      </div>
-      {% elseif data ['appealResubmit'] === "yes" %}
       <div class="govuk-inset-text">
         {{ govukTag({
           text: "Closed",
           classes: "govuk-tag--grey govuk-!-margin-bottom-4"
         })}}
-        <p>This appeal needed to change to {{ data ['appealType'] }}.</p><p>The appellant has until 30 November 2023 to resubmit.</p>
+        <p>This appeal needed to change to a planning appeal (A).</p><p>The appellant has until 30 November 2023 to resubmit.</p>
       </div>
 
-      {% elseif data ['appealResubmit'] === "no" and data ['horizonid'] %}
-      <div class="govuk-inset-text">
-      {{ govukTag({
-        text: "Transferred",
-        classes: "govuk-tag--grey govuk-!-margin-bottom-4"
-      })}}
-        <p>This appeal needed to change to {{ data ['appealType'] }}.</p><p>It has been transferred to Horizon with the reference <a href="#">{{ data ['horizonid'] }}</a>.</p>
-      </div>
-
-      {% elseif data ['appealResubmit'] === "no" %}
-      {{ govukTag({
-        text: "Awaiting transfer",
-        classes: "govuk-tag--red"
-      })}}
-      <div class="govuk-inset-text">
-      <p>This appeal needs to change to {{ data ['appealType'] }}.</p><p>This appeal must be transferred to Horizon. When this is done <a href="change-appeal-horizon-id">update the appeal with the new horizon reference</a>.</p>
-    </div>
- 
-              {% else %}
-                  {{ govukTag({
-                    text: "Ready to start",
-                    classes: "govuk-tag--green govuk-!-margin-bottom-4"
-                  })}}
-                {% endif %}
       
 
       {% include "/includes/appeal-content/lpa-has-appeal-meta.html" %}
@@ -271,20 +215,6 @@
                   },
                   {
                     text: ""
-                  }
-                ],
-                [
-                  {
-                    text: "Withdrawal request"
-                  },
-                  {
-                    text: "Uploaded"
-                  },
-                  {
-                    text: ""
-                  },
-                  {
-                    html: "<a href='#'>View <span class='visually-hidden'>the withdrawal request</span></a>"
                   }
                 ]
               ]

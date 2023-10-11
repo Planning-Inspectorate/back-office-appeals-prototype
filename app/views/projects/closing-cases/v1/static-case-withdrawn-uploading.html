@@ -8,6 +8,17 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      {% set uploadhtml %}
+  <p class="govuk-notification-banner__heading">
+    Documents uplodading</p>
+    <p><a class="govuk-notification-banner__link" href="#">Refresh the page to update file upload progress</a>
+  </p>
+{% endset %}
+
+{{ govukNotificationBanner({
+  html: uploadhtml
+}) }}
+
     
 
     <!--	<span class="govuk-caption-l">Appeal 2110166</span> -->
@@ -208,13 +219,13 @@
                     text: "Withdrawal request"
                   },
                   {
-                    text: "Uploaded"
+                    html: "<strong class='govuk-tag govuk-tag--yellow'>Uploading</strong>"
                   },
                   {
                     text: ""
                   },
                   {
-                    html: "<a href='#'>View <span class='govuk-visually-hidden'>the withdrawal request</span></a>"
+                    html: ""
                   }
                 ]
               ]

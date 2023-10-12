@@ -14,10 +14,72 @@
   </div>
 </div>
 
+
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
 
-	  {% include "projects/navigation/v2/includes/personal-list-table.html" %}
+    <details class="govuk-details" data-module="govuk-details">
+		  <summary class="govuk-details__summary">
+		    <span class="govuk-details__summary-text">
+		      Filters
+		    </span>
+		  </summary>
+		  <div class="govuk-details__text">
+		    
+		    {{ govukSelect({
+			  id: "sort",
+			  name: "sort",
+			  label: {
+			    text: "Show cases with status"
+			  },
+			  items: [
+			    {
+			      value: "all",
+			      text: "All",
+			      selected: true
+			    },
+			    {
+			      value: "ready to start",
+			      text: "Ready to start"
+			    },
+			    {
+			      value: "LPA questionnaire",
+			      text: "LPA questionnaire"
+			    },
+			    {
+			      value: "final comment review",
+			      text: "Final comment review"
+			    },
+			    {
+			      value: "ready final review",
+			      text: "Ready for final review"
+			    },
+			    {
+			      value: "arrange site visit",
+			      text: "Arrange site visit"
+			    },
+			    {
+			      value: "completed",
+			      text: "Completed"
+			    }
+			  ]
+			}) }}
+			
+			<div class="govuk-button-group">
+			
+			{{ govukButton({
+				  text: "Apply",
+				  classes: "govuk-button--secondary"
+				}) }}
+				
+				<a class="govuk-link" href="#">Clear filter</a>
+				
+			</div>
+		    
+		  </div>
+		</details>
+
+	  {% include "projects/closing-cases/v1/includes/personal-list-table.html" %}
 
   </div>
 </div>

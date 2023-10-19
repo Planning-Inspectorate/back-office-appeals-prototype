@@ -1,0 +1,158 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Case details" %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-xl">
+            <span class="govuk-caption-xl">Appeal 2110166</span>
+            Missing evidence
+        </h1>
+
+
+
+        {{ govukSummaryList({
+        classes: 'govuk-summary-list--no-border govuk-!-margin-top-6',
+        rows: [
+        {
+        key: {
+        text: "Site address"
+        },
+        value: {
+        text: "21 The Pavement, Wandsworth, SW4 0HY"
+        }
+        },
+        {
+        key: {
+        text: "Planning authority"
+        },
+        value: {
+        text: "Lambeth"
+        }
+        }
+        ]
+        }) }}
+
+    </div>
+</div>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+        <h2 class="gov govuk-heading-l">Appellant case</h2>
+
+        {{ govukSummaryList({
+        card: {
+        title: {
+        html: "<a href='#'>additional-appellant-document.pdf</a>"
+        },
+        actions: {
+        items: [
+        {
+        href: "document-details",
+        text: "View and edit",
+        visuallyHiddenText: "of University of Gloucestershire"
+        }
+
+        ]
+        }
+        },
+        rows: [
+        {
+        key: {
+        text: "From"
+        },
+        value: {
+        html: "Lexi Patel, ET Planning"
+        }
+        },
+        {
+            key: {
+            text: "Date received"
+            },
+            value: {
+            html: "12 September 2023"
+            }
+            },
+        {
+        key: {
+        text: "Location"
+        },
+        value: {
+        html: "Uncategorised"
+        }
+        },
+        {
+        key: {
+        text: "Notes"
+        },
+        value: {
+        html: "The photo provided shows how the extension does not cover the view of the Council’s rose bush planted last year
+        and subject of the appeal"
+        }
+        }
+        ]
+        }) }}
+
+        {{ govukSummaryList({
+            card: {
+            title: {
+            html: "<a href='#'>additional-other-document.pdf</a>"
+            },
+            actions: {
+            items: [
+            {
+            href: "document-details",
+            text: "View and edit",
+            visuallyHiddenText: "of University of Gloucestershire"
+            }
+    
+            ]
+            }
+            },
+            rows: [
+            {
+                key: {
+                text: "From"
+                },
+                value: {
+                html: "Lexi Patel, ET Planning"
+                }
+                },
+            {
+            key: {
+            text: "Date received"
+            },
+            value: {
+            html: "12 September 2023"
+            }
+            },
+            {
+            key: {
+            text: "Location"
+            },
+            value: {
+            html: "Decision letter"
+            }
+            },
+            {
+            key: {
+            text: "Notes"
+            },
+            value: {
+            html: ""
+            }
+            }
+            ]
+            }) }}
+
+            <h2 class="gov govuk-heading-l">LPA questionnaire</h2>
+
+    </div>
+</div>
+
+{% endblock %}

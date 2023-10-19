@@ -1,0 +1,129 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Case details" %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <span class="govuk-caption-l">Appellant case</span>
+        <h1 class="govuk-heading-l">Manage document</h1>
+
+        <h2 class="govuk-heading-m">File 1 of 2</h2>
+
+        <span class="govuk-caption-m">File name</span>
+        <h3 class="govuk-heading-m">additional-appellant-document.pdf</h3>
+
+        {{ govukDateInput({
+        id: "date-received",
+        namePrefix: "date-received",
+        fieldset: {
+        legend: {
+        text: "Date received",
+        isPageHeading: false,
+        classes: "govuk-body"
+        }
+        }
+      
+        }) }}
+
+        {{ govukRadios({
+        name: "redaction",
+        fieldset: {
+        legend: {
+        text: "Redaction",
+        isPageHeading: false,
+        classes: "govuk-body"
+        }
+        },
+        items: [
+        {
+        value: "yes",
+        text: "Yes"
+        },
+        {
+        value: "no",
+        text: "No"
+        },
+        {
+        divider: "or"
+        },
+        {
+        value: "not-needed",
+        text: "Redaction not required"
+        }
+
+        ]
+        }) }}
+
+        {{ govukInput({
+        label: {
+        text: "Who is it from?"
+        },
+        hint: {
+        text: "The person or organisation who sent the file"
+        },
+        id: "who-from",
+        name: "whoFrom"
+        }) }}
+
+
+        {% set otherHtml %}
+        {{ govukTextarea({
+        id: "none-above",
+        name: "none-above",
+        type: "none",
+        autocomplete: "none",
+        label: {
+        text: "What does this file relate to?"
+        }
+        }) }}
+        {% endset -%}
+
+
+
+
+
+        <h4 class="govuk-heading-m">Select destination in LPA questionnaire</h4>
+        <details class="govuk-details" data-module="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+                1. Constraints, designations and other issues
+              </span>
+            </summary>
+            <div class="govuk-details__text">
+                {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+                {{ govukRadios({
+                  name: "1. Constraints, designations and other issues",
+                  items: [
+                    {
+                      value: "Conservation Area Map and Guidance Document",
+                      text: "Conservation Area Map and Guidance Document"
+                    },
+                    {
+                      value: "Tree Preservation Order document",
+                      text: "Tree Preservation Order document"
+                    },
+                    {
+                      value: "Definitive map and statement document",
+                      text: "Definitive map and statement document"
+                    }
+                  ]
+                }) }}
+            </div>
+          </details>
+
+        {{ govukButton({
+        text: "Continue",
+        href: "manage-upload-2.html"
+        }) }}
+
+
+
+    </div>
+</div>
+
+{% endblock %}

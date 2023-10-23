@@ -1,0 +1,97 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Case details" %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">
+            <span class="govuk-caption-l">Appeal 2110166</span>
+            Missing evidence
+        </h1>
+
+
+
+        {{ govukSummaryList({
+        classes: 'govuk-summary-list--no-border govuk-!-margin-top-6',
+        rows: [
+        {
+        key: {
+        text: "Site address"
+        },
+        value: {
+        text: "21 The Pavement, Wandsworth, SW4 0HY"
+        }
+        },
+        {
+        key: {
+        text: "Planning authority"
+        },
+        value: {
+        text: "Lambeth"
+        }
+        }
+        ]
+        }) }}
+
+
+    </div>
+</div>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+        {{ govukSummaryList({
+        card: {
+        title: {
+        text: "Appellant case"
+        }
+        },
+        rows: [
+        {
+        key: {
+        text: "Uncategorised"
+        },
+        value: {
+        html: "<a href='#'>additional-appellant-document.pdf</a>"
+        },
+
+        actions: {
+        items: [
+        {
+        href: "document-details.html",
+        text: "View and edit",
+        visuallyHiddenText: "uncategorised folder"
+        }
+        ]
+        }
+        },
+        {
+        key: {
+        text: "Decision letter"
+        },
+        value: {
+        html: "<a href='#'>additional-other-document.pdf</a>"
+
+        },
+        actions: {
+        items: [
+        {
+        href: "#",
+        text: "View and edit",
+        visuallyHiddenText: "decision letter folder"
+        }
+        ]
+        }
+        }
+
+        ]
+        }) }}
+
+    </div>
+</div>
+
+{% endblock %}

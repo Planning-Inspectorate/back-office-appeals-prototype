@@ -1,0 +1,39 @@
+{{ govukTable({
+    captionClasses: "govuk-table__caption--m",
+    firstCellIsHeader: true,
+    rows: [
+      [
+        {
+          text: "Start date"
+        },
+        {
+          text: 38 | daysAgo
+        },
+        {
+          html: ""
+        }
+      ],
+      [
+        {
+          text: "LPA questionnaire due"
+        },
+        {
+          text: 31 | daysAgo
+        },
+        {
+          html: "<a href='#'>Change</a>"
+        }
+      ],
+      [
+        {
+          text: "Site visit"
+        },
+        {
+          text: -3 | daysAgo
+        },
+        {
+          html: "<a href='#'>Change</a>"
+        }
+      ]
+    ]
+  }) }}

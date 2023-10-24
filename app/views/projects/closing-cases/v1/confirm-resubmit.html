@@ -1,0 +1,31 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Decision date" %}
+
+{% set title = "Check your answers" %}
+
+{% set back = false %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {{ govukPanel({
+      titleText: "Appeal closed",
+      html: "Appeal reference<br><strong>2110166</strong>"
+    }) }}
+
+    <p class="govuk-body">The appellant has been emailled to ask them to resubmit their appeal with the correct type.</p>
+
+    <p class="govuk-body">   
+        You can go <a href='index' class='govuk-link'>back to your list</a> or <a href='case-closed' class='govuk-link'>view the closed case</a>.
+    </p>
+
+    <!-- <p class="govuk-body">
+      <a href="#" class="govuk-link">What did you think of this service?</a> (takes 30 seconds)
+    </p> -->
+
+  </div>
+</div>
+
+{% endblock %}

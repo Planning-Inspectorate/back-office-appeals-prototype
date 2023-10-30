@@ -78,48 +78,7 @@
                   {
                     html: "<a href='#'>Change</a>"
                   }
-                ],
-                [
-                  {
-                    text: "Appellant name"
-                  },
-                  {
-                    text: "Fiona Shell"
-                  },
-                  {
-                    html: "<a href='#'>Change</a>"
-                  }
                 ],[
-                {
-                  text: "Appellant email address"
-                },
-                {
-                  text: "fiona.shell@gmail.com"
-                },
-                {
-                  html: "<a href='#'>Change</a>"
-                }
-              ],[
-                  {
-                    text: "Agent name"
-                  },
-                  {
-                    text: "Naomi Jonhson"
-                  },
-                  {
-                    html: "<a href='#'>Change</a>"
-                  }
-                ],[
-                {
-                  text: "Agent email address"
-                },
-                {
-                  text: "naomi.jonhson@planningagencyname.co.uk"
-                },
-                {
-                  html: "<a href='#'>Change</a>"
-                }
-              ],[
                   {
                     text: "Linked appeal"
                   },
@@ -160,16 +119,6 @@
                     html: "<a href='#'>Change</a>"
                   }
                 ],[
-                {
-                  text: "LPA email address"
-                },
-                {
-                  text: "name@localauthority.gov.uk"
-                },
-                {
-                  html: "<a href='#'>Change</a>"
-                }
-              ],[
                   {
                     text: "Decision"
                   },
@@ -185,6 +134,57 @@
           
           </div>
         </div>
+
+        <div class="govuk-accordion__section">
+          <div class="govuk-accordion__section-header">
+            <h2 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-4">
+                Case contacts
+              </span>
+            </h2>
+          </div>
+          <div id="accordion-default-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-4">
+            {{ govukTable({
+              captionClasses: "govuk-table__caption--m",
+              firstCellIsHeader: true,
+              rows: [
+                [
+                {
+                  text: "Appellant"
+                },
+                {
+                  html: "Fiona Shell<br><a href='fiona.shell@gmail.com'>fiona.shell@gmail.com</a>"
+                },
+                {
+                  html: "<a href='#'>Change</a>"
+                }
+              ],[
+                {
+                  text: "Agent"
+                },
+                {
+                  html: "Naomi Johnson<br><a href='naomi.jonhson@planningagencyname.co.uk'>naomi.jonhson@planningagencyname.co.uk</a>"
+                },
+                {
+                  html: "<a href='#'>Change</a>"
+                }
+              ],[
+                {
+                  text: "Planning authority"
+                },
+                {
+                  html: "Tim Cooper<br><a href='name@localauthority.gov.uk'>tim.cooper@localauthority.gov.uk</a>"
+
+                },
+                {
+                  html: "<a href='#'>Change</a>"
+                }
+              ]
+              ]
+            }) }}
+          </div>
+        </div>
+
         <div class="govuk-accordion__section">
           <div class="govuk-accordion__section-header">
             <h2 class="govuk-accordion__section-heading">

@@ -116,6 +116,45 @@
             </div>
           </details>
 
+          <details class="govuk-details" data-module="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+                2. Environmental impact assessment
+              </span>
+            </summary>
+            <div class="govuk-details__text">
+                {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+                {{ govukRadios({
+                  name: "1. Environmental impact assessment",
+                  items: [
+                    {
+                      value: "Issued screening document",
+                      text: "Issued screening document"
+                    },
+                    {
+                      value: "Screening direction",
+                      text: "Screening direction"
+                    },
+                    {
+                      value: "Environmental statement document",
+                      text: "Environmental statement document"
+                    },
+                    {
+                      value: "Responses for the environmental statement",
+                      text: "Responses for the environmental statement"
+                    },
+                    {
+                      value: "Site notice",
+                      text: "Site notice"
+                    }
+                  ]
+                }) }}
+            </div>
+          </details>
+
+          <h4 class="govuk-body govuk-body-red">This prototype only shows two sections containing documents.</h4>
+
         {{ govukButton({
         text: "Continue",
         href: "manage-upload-2.html"

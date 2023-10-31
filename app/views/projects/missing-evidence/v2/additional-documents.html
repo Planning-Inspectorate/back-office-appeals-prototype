@@ -91,6 +91,35 @@
         ]
         }) }}
 
+        {{ govukSummaryList({
+            card: {
+            title: {
+            text: "LPA questionnaire"
+            }
+            },
+            rows: [
+            {
+            key: {
+            text: "Conservation Area Map and Guidance Document"
+            },
+            value: {
+            html: "<a href='#'>additional-LPA-document.pdf</a>"
+            },
+    
+            actions: {
+            items: [
+            {
+            href: "document-details.html",
+            text: "View and edit",
+            visuallyHiddenText: "uncategorised folder"
+            }
+            ]
+            }
+            }
+    
+            ]
+            }) }}
+
     </div>
 </div>
 

@@ -11,10 +11,8 @@
         <span class="govuk-caption-l">Appellant case</span>
         <h1 class="govuk-heading-l">Manage document</h1>
 
-        <h2 class="govuk-heading-m">File 1 of 2</h2>
-
         <span class="govuk-caption-m">File name</span>
-        <h3 class="govuk-heading-m">additional-appellant-document.pdf</h3>
+        <h3 class="govuk-heading-m">additional-LPA-document.pdf</h3>
 
         {{ govukDateInput({
         id: "date-received",
@@ -110,6 +108,16 @@
                     {
                       value: "Definitive map and statement document",
                       text: "Definitive map and statement document"
+                    },
+                    {
+                      divider: "or"
+                    },
+                    {
+                      value: "other",
+                      text: "None of the above",
+                      conditional: {
+                      html: otherHtml
+                      }
                     }
                   ]
                 }) }}
@@ -147,18 +155,28 @@
                     {
                       value: "Site notice",
                       text: "Site notice"
+                    },
+                    {
+                      divider: "or"
+                    },
+                    {
+                      value: "other",
+                      text: "None of the above",
+                      conditional: {
+                      html: otherHtml
+                      }
                     }
                   ]
                 }) }}
             </div>
           </details>
 
-          <h4 class="govuk-body govuk-body-red">This prototype only shows two sections containing documents.</h4>
-          
+          <h4 class="govuk-body govuk-body-red">This prototype only shows two sections containing documents. Please refer to Jira for the complete list of sections.</h4>
+
 
         {{ govukButton({
         text: "Continue",
-        href: "manage-upload-2.html"
+        href: "missing-evidence-case-success.html"
         }) }}
 
 

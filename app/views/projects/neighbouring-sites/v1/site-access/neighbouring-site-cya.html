@@ -1,0 +1,54 @@
+{% extends "layouts/PINS.html" %}
+
+{% set title = 'Check your answers' %}
+
+{% block content %}
+
+<!-- <p class="govuk-hint">This should match the address on the application to the local planning authority</p> -->
+<div class="govuk-grid-row">
+<div class="govuk-grid-column-two-thirds">
+
+<span class="govuk-caption-l">Appeal 2110166</span>
+  <h1 class='govuk-heading-l'>
+    {{ title }}
+  </h1>
+
+  <form action="neighbouring-site-cya" method="post">
+
+
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "Address"
+          },
+          value: {
+            html: "{{ data ['appealid'] }}<br>{{ data['neighbours-address-line-1'] }}<br>{{ data['neighbours-address-line-2']}}<br>{{ data['neighbours-address-town'], data['neighbours-address-postcode']}}"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Change",
+                visuallyHiddenText: "address"
+              }
+            ]
+          }
+        }
+      ]
+    }) }}
+
+
+
+  {{ govukButton({
+    text: 'Confirm'
+  }) }}
+
+</form>
+
+</div>
+</div>
+
+{% endblock %}
+
+{% block pageScripts %}{% endblock %}

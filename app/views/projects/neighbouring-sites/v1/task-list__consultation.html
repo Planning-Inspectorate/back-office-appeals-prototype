@@ -1,0 +1,46 @@
+<li>
+
+  {{ govukSummaryList({
+    classes: 'govuk-!-margin-bottom-9',
+    card: {
+	    title: {
+	      text: "Consultation responses and representations"
+	    }
+	  },
+	  rows: [
+
+      {
+        key: {
+          html: 'Representations from other parties'
+        },
+        value: {
+          html: 'Yes'
+        },
+        actions: {
+          items: [
+            {
+              href: 'consultation/other-parties-check?cya=true',
+              html: 'Change'
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          html: 'Upload representations from other parties'
+        },
+        value: {
+          html: '<a href="" class="govuk-link">155 York Rd representations 2023.pdf</a>'
+        },
+        actions: {
+          items: [
+            {
+              href: 'consultation/other-parties-upload?cya=true',
+              html: 'Change'
+            }
+          ]
+        }
+      }
+    ]
+  }) }}
+</li>

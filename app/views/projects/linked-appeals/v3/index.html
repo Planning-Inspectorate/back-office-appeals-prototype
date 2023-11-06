@@ -138,9 +138,9 @@
                           {% elseif data ['appealid'] %}
                           <ul class="govuk-list govuk-list--bullet"><li>
                             <a href="#">{{ data ['appealid'] }}<span class="govuk-visually-hidden"> appeal overview</span></a>
-                            {% if data ['appealid'] === "5176892" and data ['which-appeal-is-the-parent'] === data ['appealid'] %} (Lead, Horizon) 
+                            {% if data ['appealid'] === "7349815" and data ['which-appeal-is-the-parent'] === data ['appealid'] %} (Lead, Horizon) 
                             {% elseif data ['appealid'] and data ['which-appeal-is-the-parent'] === data ['appealid'] %}(Lead)
-                            {% elseif data ['appealid'] === "5176892" %}(Child, Horizon)
+                            {% elseif data ['appealid'] === "7349815" %}(Child, Horizon)
                             {% else %} (Child)
                             {% endif %}
                           </li></ul>
@@ -169,9 +169,9 @@
                         {% elseif data ['relappealid'] %}
                         <ul class="govuk-list govuk-list--bullet"><li>
                           <a href="#">{{ data ['relappealid'] }}<span class="govuk-visually-hidden"> appeal overview</span></a>
-                          {% if data ['relappealid'] === "5176892" %}
+                          {% if data ['relappealid'] === "7349815" %}
                               (Horizon)
-                              {% endif %}
+                          {% endif %}
                         </li></ul>
                         {% else %}
                         {% endif %}

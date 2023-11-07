@@ -1,0 +1,29 @@
+{% extends "layouts/PINS.html" %}
+
+{% set title = 'Is the site in a green belt?' %}
+
+{% block questions %}
+  {{ govukRadios({
+    idPrefix: 'green-belt',
+    name: 'green-belt',
+    fieldset: {
+      legend: {
+        html: title,
+        classes: 'govuk-fieldset__legend--l',
+        isPageHeading: true
+      }
+    },
+    items: [
+      {
+        html: 'Yes',
+        value: 'Yes',
+        checked: checked('green-belt','Yes')
+      },
+      {
+        html: 'No',
+        value: 'No',
+        checked: checked('green-belt','No')
+      }
+    ]
+  }) }}
+{% endblock %}

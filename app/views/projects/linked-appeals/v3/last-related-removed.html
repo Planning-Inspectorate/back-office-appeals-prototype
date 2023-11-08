@@ -1,0 +1,231 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Case details" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+      <div class="govuk-notification-banner  govuk-notification-banner--success" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+    	  <div class="govuk-notification-banner__header">
+    	    <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">Success</h2>
+        </div>
+    	  <div class="govuk-notification-banner__content">
+          <p class="govuk-notification-banner__heading">
+            You have removed the relationship between this appeal and appeal 2351467
+          </p>
+        </div>
+        </div>
+
+
+    	<span class="govuk-caption-l">Appeal 2110166</span>
+    	<h1 class="govuk-heading-l">Case details</h1>
+
+      {{ govukTag({
+        text: "Ready to start",
+        classes: "govuk-tag--green"
+      })}}
+      {% if data ['unlinkappeal'] === "yes" %}
+      {% elseif data ['appealid'] %}
+          {% if data ['which-appeal-is-the-parent'] === "2110166" %}
+          {{ govukTag({
+            text: "Lead appeal",
+            classes: "govuk-tag--grey"
+          })}}
+          {% endif %}
+          {% if data ['which-appeal-is-the-parent'] === data ['appealid'] %}
+          {{ govukTag({
+            text: "Child appeal",
+            classes: "govuk-tag--grey"
+          })}}
+          {% endif %}
+      {% endif %}
+
+      <dl class="govuk-summary-list govuk-summary-list--no-border govuk-!-margin-top-6">
+      
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Site address
+          </dt>
+          <dd class="govuk-summary-list__value">
+            
+            
+          </dd>   
+        </div>
+ 
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Local planning authority
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Council name
+          </dd>        
+        </div>
+      
+  </dl>
+
+    	
+
+      <div class="govuk-accordion govuk-!-margin-top-9" data-module="govuk-accordion" id="accordion-default">
+        <div class="govuk-accordion__section">
+          <div class="govuk-accordion__section-header">
+            <h2 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-1">
+                Case overview
+              </span>
+            </h2>
+          </div>
+          <div id="accordion-default-content-1" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-1">
+            
+            <!--  Case overview table -->
+            <table class="govuk-table">
+
+              <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                      <th scope="row" class="govuk-table__header">Appeal type</th>
+                      <td class="govuk-table__cell">Householder appeal (HAS)</td>
+                      <td class="govuk-table__cell"><a href="#">Change</a></td>
+                    </tr>
+            
+                    <tr class="govuk-table__row">
+                      <th scope="row" class="govuk-table__header">Case procedure</th>
+                      <td class="govuk-table__cell">Written</td>
+                      <td class="govuk-table__cell"><a href="#">Change</a></td>
+                    </tr>
+               
+                    <tr class="govuk-table__row">
+                      <th scope="row" class="govuk-table__header">Appellant name</th>
+                      <td class="govuk-table__cell">Fiona Shell</td>
+                      <td class="govuk-table__cell"><a href="#">Change</a></td>
+                    </tr>
+            
+                    <tr class="govuk-table__row">
+                      <th scope="row" class="govuk-table__header">Agent name</th>
+                      <td class="govuk-table__cell">Naomi Jonhson</td>
+                      <td class="govuk-table__cell"><a href="#">Change</a></td>
+                    </tr>
+
+                    <tr class="govuk-table__row">
+                      <th scope="row" class="govuk-table__header">
+                             Linked appeals
+                      </th>
+                        <td class="govuk-table__cell">
+
+                        </td>
+                        <td class="govuk-table__cell">
+                          <!-- Display correct action -->
+                          <a href="link-appeal-reference">Add<span class="govuk-visually-hidden"> a linked appeal</span></a>
+                          <!-- / Display correct actions -->
+                          </td>
+                      </tr>
+
+          
+                  
+                    <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Related appeals</th>
+                      <td class="govuk-table__cell">
+                        <!-- Display related appeal -->
+                        {% if data ['unrelateappeal'] === "yes" %}
+                        {% elseif data ['relappealid'] %}
+                        <ul class="govuk-list govuk-list--bullet"><li>
+                          <a href="#">{{ data ['relappealid'] }}<span class="govuk-visually-hidden"> appeal overview</span></a>
+                          {% if data ['relappealid'] === "7349815" %}
+                              (Horizon)
+                          {% endif %}
+                        </li></ul>
+                        {% else %}
+                        {% endif %}
+                        <!-- / Display related appeal -->
+                      </td>
+                      <td class="govuk-table__cell">
+                        <!-- Display correct action -->
+                        {% if data ['unrelateappeal'] === "yes" %}
+                        {% elseif data ['relappealid'] %}
+                        <a href="manage-related-appeals.html">Manage<span class="govuk-visually-hidden"> related appeals</span></a> | 
+                        {% endif %}
+                        <a href="related-appeal-reference">Add<span class="govuk-visually-hidden"> a related appeal</span></a>
+                        <!-- / Display correct actions -->  
+                      </td>
+                    </tr>
+            
+                    <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Allocation details</th>
+                      <td class="govuk-table__cell">F / General Allocation</td>
+                      <td class="govuk-table__cell"><a href="#">Change</a></td>
+                    </tr>
+            
+                    <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">LPA reference</th>
+                      <td class="govuk-table__cell">22/00118/FULL</td>
+                      <td class="govuk-table__cell"><a href="#">Change</a></td>
+                    </tr>
+                  
+                    <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">Decision</th>
+                       <td class="govuk-table__cell">Not issued yet</td>          
+                      <td class="govuk-table__cell"><a href=".">Change</a></td>
+                    </tr>
+            
+              </tbody>
+            </table>
+
+            <!--  / Case overview table -->
+              
+          </div>
+        </div>
+        <div class="govuk-accordion__section">
+          <div class="govuk-accordion__section-header">
+            <h2 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-2">
+                Case timetable
+              </span>
+            </h2>
+          </div>
+
+          <div id="accordion-default-content-2" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-2">
+          	{{ govukInsetText({
+          	  html: "<p class='govuk-body'>Case not started</p><p><a href='appellant-case.html'>Start the review</a></p>"
+          	}) }}
+          </div>
+        </div>
+
+        <div class="govuk-accordion__section">
+          <div class="govuk-accordion__section-header">
+            <h2 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-3">
+                Case documentation
+              </span>
+            </h2>
+          </div>
+          <div id="accordion-default-content-3" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-3">
+            {% include "/includes/audit/case-documentation-table.html" %}
+          </div>
+        </div>
+        <div class="govuk-accordion__section">
+          <div class="govuk-accordion__section-header">
+            <h2 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-4">
+                Case team
+              </span>
+            </h2>
+          </div>
+          <div id="accordion-default-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-4">
+            {% include "/includes/audit/case-team-table.html" %}
+          </div>
+        </div>
+      </div>
+
+    	<h3 class="govuk-heading-m govuk-!-margin-top-9">
+        Audit history
+      </h3>
+    	<p class="govuk-body">
+        <a href="history">View changes</a> that have been made to this account
+      </p>
+
+    </div>
+  </div>
+
+
+{% endblock %}

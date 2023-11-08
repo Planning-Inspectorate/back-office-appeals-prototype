@@ -13,42 +13,45 @@
   data-module="govuk-notification-banner">
   <div class="govuk-notification-banner__header">
     <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
-      LPA Questionnaire is incomplete
+     Case details is incomplete
     </h2>
   </div>
   <div class="govuk-notification-banner__content">
 
-
+ 
 	{{ govukDetails({
 		summaryText: "Incorrect name and/or missing documents",
 		html: "<ul><li> Appellant name is not the same on the application form and appeal form</li>
 				<li> LPA's decision notice is missing</li>
 				<li> Agricultural holding certificate and declaration have not been completed on the appeal form</li>
 				<li> The original application form is missing</li>
-				<li> Statement of case and ground of appeal are missing </li></ul>"
-		
+				<li> Statement of case and ground of appeal are missing </li></ul>",
+		classes: "govuk-!-margin-bottom-2"
 	  }) }}
 	  
 	  {{ govukDetails({
 		summaryText: "Attachments and/or appendices have not been included to the full statement of case",
-		html: "<ul><li>Appendix 3C - statement case </li></ul>"
+		html: "<ul><li>Appendix 3C - statement case </li></ul>",
+		classes: "govuk-!-margin-bottom-2"
 	   
 	  }) }}
 	  
 	  {{ govukDetails({
 		summaryText: "LPA's decision notice is incorrect or incomplete",
 		html: "<ul><li> Decision notice misses the LPA's signature </li> 
-					<li>The decision notice lacks the logo</li></ul>"
+					<li>The decision notice lacks the logo</li></ul>",
+					classes: "govuk-!-margin-bottom-2"
 	   
 	  }) }}
 	  
 	  {{ govukDetails({
 		summaryText: "Documents and/or plans referred in the application form, decision notice and appeal covering letter are missing",
 		html: "<ul><li>  Electric certificates is missing</li>
-			  <li>Full elevation plans </li></ul>"
+			  <li>Full elevation plans </li></ul>",
+			  classes: "govuk-!-margin-bottom-2"
 	   
 	  }) }}
-
+	 
   </div>
 </div>
 

@@ -13,7 +13,16 @@
     {{ title }}
   </h1>
 
-  <form action="neighbouring-site-cya" method="post">
+  <form action="../task-list" method="post">
+
+    {% set html %}
+    {{ data['neighbours-address-line-1'] }}<br>
+    {{ data['neighbours-address-line-2']}}
+    {% if data ['neighbours-address-line-2'] %}<br>
+    {% endif %}
+    {{ data['neighbours-address-town']}}<br>
+    {{ data['neighbours-address-postcode']}}
+    {% endset %}
 
 
     {{ govukSummaryList({
@@ -23,7 +32,7 @@
             text: "Address"
           },
           value: {
-            html: "{{ data ['appealid'] }}<br>{{ data['neighbours-address-line-1'] }}<br>{{ data['neighbours-address-line-2']}}<br>{{ data['neighbours-address-town'], data['neighbours-address-postcode']}}"
+            html: html
           },
           actions: {
             items: [

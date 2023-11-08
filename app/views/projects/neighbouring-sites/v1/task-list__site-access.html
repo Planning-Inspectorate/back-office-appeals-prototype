@@ -2,7 +2,7 @@
 
   <div class="govuk-summary-card">
     <div class="govuk-summary-card__title-wrapper"><h2 class="govuk-summary-card__title">Site access</h2><ul class="govuk-summary-card__actions">
-      <li class="govuk-summary-card__action"> <a class="govuk-link" href="site-access/add-neighbours-address?cya=true">
+      <li class="govuk-summary-card__action"> <a class="govuk-link" href="site-access/additional-neighbours-address">
           Add neighbouring site
         </a>
       </li>
@@ -115,6 +115,29 @@
             </dd>
           
         </div>
+
+        {% if data['neighbours-address-line-1'] %}
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Neighbouring site 3
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['neighbours-address-line-1'] }}<br>
+            {{ data['neighbours-address-line-2']}}
+            {% if data ['neighbours-address-line-2'] %}<br>
+            {% endif %}
+            {{ data['neighbours-address-town']}}<br>
+            {{ data['neighbours-address-postcode']}}
+          </dd>
+            <dd class="govuk-summary-list__actions">
+                <ul class="govuk-summary-list__actions-list"><li class="govuk-summary-list__actions-list-item"><a class="govuk-link" href="site-access/neighbours-address?cya=true">
+                          Change</a></li><li class="govuk-summary-list__actions-list-item"><a class="govuk-link" href="site-access/neighbours-address?cya=true">
+                          Remove</a></li></ul>
+            </dd>
+        </div>
+
+        {% endif %}
       
     
   </dl></div>

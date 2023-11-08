@@ -41,7 +41,7 @@
 	    {% call govukFieldset({
 	      classes: 'moj-add-another__item',
 	      legend: {
-	        text: 'Which part is incorrect or incomplete',
+	        text: 'Which attachment or appendix is missing?',
 	        classes: 'moj-add-another__title ',
 	        isPageHeading: false
 	      }
@@ -65,9 +65,143 @@
 	
 	</div>
 
+	
+
 		{% endset -%}
 		
+		{% set addMore2 %}
 		
+		<div data-module="moj-add-another">
+			
+			{% call govukFieldset({
+			  classes: 'moj-add-another__item',
+			  legend: {
+				text: 'Which part is incorrect or incomplete?',
+				classes: 'moj-add-another__title ',
+				isPageHeading: false
+			  }
+			}) %}
+			
+			{{ govukInput({
+			  id: "event-name",
+			  name: "event-name",
+			  classes: "govuk-!-margin-bottom-4"
+			}) }}
+		
+			{% endcall %}
+		
+			<div class="moj-button-action">
+			  {{ govukButton({
+				text: 'Add another',
+				classes: 'govuk-button--secondary moj-add-another__add-button govuk-!-margin-bottom-4'
+			  }) }}
+			</div>
+		
+		
+		</div>
+	
+		
+	
+			{% endset -%}
+
+			{% set addMore3 %}
+		
+		<div data-module="moj-add-another">
+			
+			{% call govukFieldset({
+			  classes: 'moj-add-another__item',
+			  legend: {
+				text: 'Which document or plan is missing?',
+				classes: 'moj-add-another__title ',
+				isPageHeading: false
+			  }
+			}) %}
+			
+			{{ govukInput({
+			  id: "event-name",
+			  name: "event-name",
+			  classes: "govuk-!-margin-bottom-4"
+			}) }}
+		
+			{% endcall %}
+		
+			<div class="moj-button-action">
+			  {{ govukButton({
+				text: 'Add another',
+				classes: 'govuk-button--secondary moj-add-another__add-button govuk-!-margin-bottom-4'
+			  }) }}
+			</div>
+		
+		
+		</div>
+	
+			{% endset -%}
+
+			{% set addMore4 %}
+		
+			<div data-module="moj-add-another">
+				
+				{% call govukFieldset({
+				  classes: 'moj-add-another__item',
+				  legend: {
+					text: 'Which part is incomplete?',
+					classes: 'moj-add-another__title ',
+					isPageHeading: false
+				  }
+				}) %}
+				
+				{{ govukInput({
+				  id: "event-name",
+				  name: "event-name",
+				  classes: "govuk-!-margin-bottom-4"
+				}) }}
+			
+				{% endcall %}
+			
+				<div class="moj-button-action">
+				  {{ govukButton({
+					text: 'Add another',
+					classes: 'govuk-button--secondary moj-add-another__add-button govuk-!-margin-bottom-4'
+				  }) }}
+				</div>
+			
+			
+			</div>
+		
+			{% endset -%}
+
+			{% set addMore5 %}
+		
+			<div data-module="moj-add-another">
+				
+				{% call govukFieldset({
+				  classes: 'moj-add-another__item',
+				  legend: {
+					text: 'What reason?',
+					classes: 'moj-add-another__title ',
+					isPageHeading: false
+				  }
+				}) %}
+				
+				{{ govukInput({
+				  id: "event-name",
+				  name: "event-name",
+				  classes: "govuk-!-margin-bottom-4"
+				}) }}
+			
+				{% endcall %}
+			
+				<div class="moj-button-action">
+				  {{ govukButton({
+					text: 'Add another',
+					classes: 'govuk-button--secondary moj-add-another__add-button govuk-!-margin-bottom-4'
+				  }) }}
+				</div>
+			
+			
+			</div>
+		
+			{% endset -%}
 
       {{ govukCheckboxes({
         name: "reason-incomplete",
@@ -87,14 +221,14 @@
             value: "decision-incorrect",
             text: "LPA’s decision notice is incorrect, incomplete or missing",
             conditional: {
-		        html: addMore
+		        html: addMore2
 		      }
           },
           {
             value: "docs-plans-missing",
             text: "Documents and/or plans referred in the application form, decision notice and appeal covering letter are missing",
             conditional: {
-		        html: addMore
+		        html: addMore3
 		      }
           },
 
@@ -106,7 +240,7 @@
             value: "application-missing",
             text: "The original application form is incomplete or missing",
             conditional: {
-		        html: addMore
+		        html: addMore4
 		      }
           },
           {
@@ -117,7 +251,7 @@
             value: "other",
             text: "Other",
             conditional: {
-		        html: addMore
+		        html: addMore5
 		      }
           }
         ]

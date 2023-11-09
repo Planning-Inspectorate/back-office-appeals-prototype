@@ -17,42 +17,6 @@
   <form action="neighbouring-site-cya" method="post">
 
 
-    <fieldset class="govuk-fieldset">
-      <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-        <h2 class="govuk-fieldset__heading">
-          Name and contact details
-        </h2>
-      </legend>  
-
-      {{ govukInput({
-        id: 'firstname',
-        name: 'firstname',
-        value: data['firstname'],
-        label: {
-          html: 'First name'
-        }
-      }) }}
-
-      {{ govukInput({
-        id: 'lastname',
-        name: 'lastname',
-        value: data['lastname'],
-        label: {
-          html: 'Last name'
-        }
-      }) }}
-
-
-
-      </fieldset>
-
-    <fieldset class="govuk-fieldset">
-      <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-        <h2 class="govuk-fieldset__heading">
-          Address
-        </h2>
-      </legend>  
-
   {{ govukInput({
     id: 'neighbours-address-line-1',
     name: 'neighbours-address-line-1',
@@ -91,7 +55,6 @@
     }
   }) }}
 
-  </fieldset>
 
   {{ govukButton({
     text: 'Continue'

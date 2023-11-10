@@ -1,0 +1,110 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Manage neighbouring sites" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% if data ['unlinkappeal'] === "yes" %}
+
+      <div class="govuk-notification-banner  govuk-notification-banner--success" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+    	  <div class="govuk-notification-banner__header">
+    	    <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">Success</h2>
+        </div>
+    	  <div class="govuk-notification-banner__content"> 
+          <p class="govuk-notification-banner__heading">
+            You have unlinked this appeal from appeal {{ data ['appealid'] }}</p>
+        </div>
+        </div>
+
+        {% endif %}
+
+    	<span class="govuk-caption-l">Appeal 2110166</span>
+              <h1 class="govuk-heading-l">
+              Manage neighbouring sites
+            </h1>
+            
+            </div>
+          </div>
+
+          <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+        
+            
+            <!-- show if child appeal -->
+
+            {{ govukTable({
+              caption: "Neighbouring sites from the LPAQ",
+              captionClasses: "govuk-table__caption--m govuk-!-margin-top-6",
+              firstCellIsHeader: false,
+              head: [
+                  {
+                    text: "Address",
+                    classes: "govuk-!-width-three-quarters"
+                  },
+                  {
+                    text: "Action",
+                    classes: "govuk-!-width-one-quarter"
+                  }
+              ],
+              rows: [
+                [
+                  {
+                    html: "170 York Road<br>Bristol<br>BS3 4AL"
+                  },
+                  {
+                    html: "<a href='#'>Change</a> | <a href='#'>Remove</a>"
+                  }
+                ],
+                [
+                {
+                  html: "172, York Road<br>Bristol<br>BS3 4AL"
+                },
+                {
+                  html: "<a href='#'>Change</a> | <a href='#'>Remove</a>"
+                }
+              ]
+              ]
+            }) }}
+
+            
+            <!---->
+
+
+           
+              
+
+            {{ govukTable({
+              caption: "Manually added neighbouring sites",
+              captionClasses: "govuk-table__caption--m govuk-!-margin-top-6",
+              firstCellIsHeader: false,
+              head: [
+                {
+                  text: "Address",
+                  classes: "govuk-!-width-three-quarters"
+                },
+                {
+                  text: "Action",
+                  classes: "govuk-!-width-one-quarter"
+                }
+              ],
+              rows: [
+                [
+                  {
+                    html: "173 York Road<br>Bristol<br>BS3 4AL"
+                  },
+                  {
+                    html: "<a href='#'>Change</a> | <a href='#'>Remove</a>"
+                  }
+                ]
+              ]
+            }) }}
+
+
+    </div>
+  </div>
+
+
+{% endblock %}

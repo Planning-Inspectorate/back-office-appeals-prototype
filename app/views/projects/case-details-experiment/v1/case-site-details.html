@@ -1,0 +1,188 @@
+{% extends "layouts/PINS-Header-Nav.html" %}
+
+{% set pageName="Site details" %}
+
+{% set back = false %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-quarter">
+      {{ mojSideNavigation({
+        label: 'Side navigation',
+        items: [{
+          text: 'Case overview',
+          href: 'case-overview'
+        }, {
+          text: 'Site details',
+          href: 'case-site-details',
+          active: true
+        }, {
+          text: 'Timetable',
+          href: 'case-timetable'
+        }, {
+          text: 'Documentation',
+          href: 'case-documentation'
+        }, {
+          text: 'Contacts',
+          href: 'case-contacts'
+        }, {
+          text: 'Team',
+          href: 'case-team'
+        }]
+      }) }}
+    </div>
+
+    <div class="govuk-grid-column-three-quarters">
+
+    
+
+    <!--	<span class="govuk-caption-l">Appeal 2110166</span> -->
+    <span class="govuk-caption-l">Appeal 2110166</span>
+    	<h1 class="govuk-heading-l">Case details</h1>
+
+
+      
+
+    	<!-- {{ govukSummaryList({
+    	  classes: 'govuk-summary-list--no-border govuk-!-margin-top-6',
+    	  rows: [
+    	    {
+    	      key: {
+    	        text: "Site address"
+    	      },
+    	      value: {
+    	        text: "Address line 1, Address line 2, Town or city, Postcode"
+    	      }
+    	    },
+    	    {
+    	      key: {
+    	        text: "Local planning authority"
+    	      },
+    	      value: {
+    	        text: "Council name"
+    	      }
+    	    }
+    	  ]
+    	}) }} -->
+
+      
+          	<dl class="govuk-summary-list">
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Inspector access agreed by LPA
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  <span>No answer provided</span>
+                </dd>
+                  <dd class="govuk-summary-list__actions">
+                      <a class="govuk-link" href="/appeals-service/appeal-details/441/change-appeal-details/lpa-inspector-access/">
+                      Change</a>
+                  </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Inspector access agreed by appellant
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  <span>No</span>
+                </dd>
+                  <dd class="govuk-summary-list__actions">
+                      <a class="govuk-link" href="/appeals-service/appeal-details/441/change-appeal-details/appellant-case-inspector-access">
+                      Change</a>
+                  </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Neighbouring site affected
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  No answer provided
+                </dd>
+                  <dd class="govuk-summary-list__actions">
+                      <a class="govuk-link" href="/appeals-service/appeal-details/441/change-appeal-details/neighbouring-site-is-affected">
+                      Change</a>
+                  </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Safety risks identified by LPA
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  <span>No answer provided</span>
+                </dd>
+                  <dd class="govuk-summary-list__actions">
+                      <a class="govuk-link" href="/appeals-service/appeal-details/441/change-appeal-details/lpa-health-and-safety">
+                      Change</a>
+                  </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Safety risks identified by appellant
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  <span>No answer provided</span>
+                </dd>
+                  <dd class="govuk-summary-list__actions">
+                      <a class="govuk-link" href="/appeals-service/appeal-details/441/change-appeal-details/appellant-case-health-and-safety">
+                      Change</a>
+                  </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Visit type
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  Unaccompanied
+                </dd>
+                  <dd class="govuk-summary-list__actions">
+                      <a class="govuk-link" href="/appeals-service/appeal-details/441/site-visit/set-visit-type">
+                      Change</a>
+                  </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Neighbouring site affected
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  No answer provided
+                </dd>
+                  <dd class="govuk-summary-list__actions">
+                      <a class="govuk-link" href="/appeals-service/appeal-details/441/change-appeal-details/neighbouring-site-is-affected">
+                      Change</a>
+                  </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Neighbouring sites
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  <ul class="govuk-list govuk-list--bullet">
+                    <li>172 York Road<br>
+                      Bristol<br>
+                      BS3 4AL</li>
+                    <li>170, York Road<br>
+                      Bristol<br>
+                      BS3 4AL</li>
+                      <li>173 York Road<br>
+                        Bristol<br>
+                        BS3 4AL</li>
+                  </ul>
+                </dd>
+                  <dd class="govuk-summary-list__actions">
+                      <a class="govuk-link" href="manage-neighbouring-sites.html">
+                      Manage</a> | <a class="govuk-link" href="#">
+                        Add</a>
+                  </dd>
+              </div>
+        </dl>
+          
+
+    </div>
+  </div>
+
+  
+
+
+{% endblock %}

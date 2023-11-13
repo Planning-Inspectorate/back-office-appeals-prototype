@@ -1,0 +1,117 @@
+{% extends "layouts/PINS-Header-Nav.html" %}
+
+{% set pageName="Contacts" %}
+
+{% set back = false %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-quarter">
+      {{ mojSideNavigation({
+        label: 'Side navigation',
+        items: [{
+          text: 'Case overview',
+          href: 'case-overview'
+        }, {
+          text: 'Site details',
+          href: 'case-site-details'
+        }, {
+          text: 'Timetable',
+          href: 'case-timetable'
+        }, {
+          text: 'Documentation',
+          href: 'case-documentation'
+        }, {
+          text: 'Contacts',
+          href: 'case-contacts',
+          active: true
+        }, {
+          text: 'Team',
+          href: 'case-team'
+        }]
+      }) }}
+    </div>
+
+    <div class="govuk-grid-column-three-quarters">
+
+    
+
+    <!--	<span class="govuk-caption-l">Appeal 2110166</span> -->
+    <span class="govuk-caption-l">Appeal 2110166</span>
+    	<h1 class="govuk-heading-l">Contacts</h1>
+
+
+      
+
+    	<!-- {{ govukSummaryList({
+    	  classes: 'govuk-summary-list--no-border govuk-!-margin-top-6',
+    	  rows: [
+    	    {
+    	      key: {
+    	        text: "Site address"
+    	      },
+    	      value: {
+    	        text: "Address line 1, Address line 2, Town or city, Postcode"
+    	      }
+    	    },
+    	    {
+    	      key: {
+    	        text: "Local planning authority"
+    	      },
+    	      value: {
+    	        text: "Council name"
+    	      }
+    	    }
+    	  ]
+    	}) }} -->
+
+     
+            {{ govukTable({
+              captionClasses: "govuk-table__caption--m",
+              firstCellIsHeader: true,
+              rows: [
+                [
+                {
+                  text: "Appellant"
+                },
+                {
+                  html: "Fiona Shell<br><a href='fiona.shell@gmail.com'>fiona.shell@gmail.com</a>"
+                },
+                {
+                  html: "<a href='#'>Change</a>"
+                }
+              ],[
+                {
+                  text: "Agent"
+                },
+                {
+                  html: "Naomi Johnson<br><a href='naomi.jonhson@planningagency.co.uk'>naomi.jonhson@planningagency.co.uk</a>"
+                },
+                {
+                  html: "<a href='#'>Change</a>"
+                }
+              ],[
+                {
+                  text: "Planning authority"
+                },
+                {
+                  html: "Tim Cooper<br><a href='name@localauthority.gov.uk'>tim.cooper@localauthority.gov.uk</a>"
+
+                },
+                {
+                  html: "<a href='#'>Change</a>"
+                }
+              ]
+              ]
+            }) }}
+          
+
+    </div>
+  </div>
+
+  
+
+
+{% endblock %}

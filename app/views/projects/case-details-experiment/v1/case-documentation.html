@@ -1,0 +1,123 @@
+{% extends "layouts/PINS-Header-Nav.html" %}
+
+{% set pageName="Documentation" %}
+
+{% set back = false %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-quarter">
+      {{ mojSideNavigation({
+        label: 'Side navigation',
+        items: [{
+          text: 'Case overview',
+          href: 'case-overview'
+        }, {
+          text: 'Site details',
+          href: 'case-site-details'
+        }, {
+          text: 'Timetable',
+          href: 'case-timetable'
+        }, {
+          text: 'Documentation',
+          href: 'case-documentation',
+          active: true
+        }, {
+          text: 'Contacts',
+          href: 'case-contacts'
+        }, {
+          text: 'Team',
+          href: 'case-team'
+        }]
+      }) }}
+    </div>
+
+    <div class="govuk-grid-column-three-quarters">
+
+    
+
+    <!--	<span class="govuk-caption-l">Appeal 2110166</span> -->
+    <span class="govuk-caption-l">Appeal 2110166</span>
+    	<h1 class="govuk-heading-l">Documentation</h1>
+
+
+      
+      
+
+    	<!-- {{ govukSummaryList({
+    	  classes: 'govuk-summary-list--no-border govuk-!-margin-top-6',
+    	  rows: [
+    	    {
+    	      key: {
+    	        text: "Site address"
+    	      },
+    	      value: {
+    	        text: "Address line 1, Address line 2, Town or city, Postcode"
+    	      }
+    	    },
+    	    {
+    	      key: {
+    	        text: "Local planning authority"
+    	      },
+    	      value: {
+    	        text: "Council name"
+    	      }
+    	    }
+    	  ]
+    	}) }} -->
+
+      
+            <table class="govuk-table">
+  
+  
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                
+                  <th scope="col" class="govuk-table__header">Documentation</th>
+                
+                  <th scope="col" class="govuk-table__header">Status</th>
+                
+                  <th scope="col" class="govuk-table__header">Due date</th>
+                
+                  <th scope="col" class="govuk-table__header">Action</th>
+                
+                </tr>
+              </thead>
+              
+              <tbody class="govuk-table__body">
+                
+                  
+                    <tr class="govuk-table__row">
+
+                      <td class="govuk-table__cell">Appellant case</td>
+                      <td class="govuk-table__cell">Received</td>
+                      <td class="govuk-table__cell"></td>
+                      <td class="govuk-table__cell"><a href="#">Review</a></td>
+
+                    </tr>
+                  
+                
+                  
+                    <tr class="govuk-table__row">
+      
+                      <td class="govuk-table__cell">LPA questionnaire</td>
+                      <td class="govuk-table__cell">Received</td>
+                      <td class="govuk-table__cell"></td>
+                      <td class="govuk-table__cell"><a href="task-list">Review</a></td>
+                 
+                    </tr>
+                  
+                
+              </tbody>
+            </table>
+          
+
+    </div>
+  </div>
+
+  
+
+
+{% endblock %}

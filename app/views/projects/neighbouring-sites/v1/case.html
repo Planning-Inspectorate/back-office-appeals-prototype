@@ -303,7 +303,7 @@
               </div>
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
-                  Neighbouring sites
+                  Neighbouring sites from LPAQ
                 </dt>
                 <dd class="govuk-summary-list__value">
                   <ul class="govuk-list govuk-list--bullet">
@@ -313,14 +313,36 @@
                     <li>170, York Road<br>
                       Bristol<br>
                       BS3 4AL</li>
-                      <li>173 York Road<br>
-                        Bristol<br>
-                        BS3 4AL</li>
                   </ul>
                 </dd>
                   <dd class="govuk-summary-list__actions">
                       <a class="govuk-link" href="manage-neighbouring-sites.html">
-                      Manage</a> | <a class="govuk-link" href="#">
+                      View LPAQ</a> 
+                  </dd>
+              </div>
+               <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Neighbouring sites (additional)
+                </dt>
+                <dd class="govuk-summary-list__value">
+                {% if data['neighbours-address-line-1'] %}
+                <ul class="govuk-list govuk-list--bullet">
+                  <li>
+                  {{ data['neighbours-address-line-1'] }}<br>
+                  {{ data['neighbours-address-line-2']}}
+                  {% if data ['neighbours-address-line-2'] %}<br>
+                  {% endif %}
+                  {{ data['neighbours-address-town']}}<br>
+                  {{ data['neighbours-address-postcode']}}
+                  </li>
+                </ul>
+                {% else %}
+                  None
+                {% endif %}
+                </dd>
+                  <dd class="govuk-summary-list__actions">
+                     {% if data['neighbours-address-line-1'] %}<a class="govuk-link" href="manage-neighbouring-sites.html">
+                      Manage</a> | {% endif %}<a class="govuk-link" href="additional-neighbours-address">
                         Add</a>
                   </dd>
               </div>

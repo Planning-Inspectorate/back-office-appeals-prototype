@@ -1,0 +1,60 @@
+{% macro personalList(appealid, appeallink, linked, actiontext, actionlink, dueby, casestatus) %}
+
+<table class="govuk-table">
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Appeal ID</th>
+      <th scope="col" class="govuk-table__header"></th>
+      <th scope="col" class="govuk-table__header">Action required</th>
+      <th scope="col" class="govuk-table__header">Due by</th>
+      <th scope="col" class="govuk-table__header">Case status</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header"><a href="{{ appeallink }}">{{ appealid }}</a></th>
+      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">{{ linked }}</strong></td>
+      <td class="govuk-table__cell"><a href="{{ actionlink }}">{{ actiontext }}</a></td>
+      <td class="govuk-table__cell">{{ dueby }}</td>
+      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">{{ casestatus }}</strong></td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header"><a href="case.html?status=lpa-questionnaire">2110167</a></th>
+      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Child</strong></td>
+      <td class="govuk-table__cell"><a href="#">Review LPA Questionnaire</a></td>
+      <td class="govuk-table__cell">11 July 2023</td>
+      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">LPA questionnaire</strong></td>
+    </tr>
+    <th scope="row" class="govuk-table__header"><a href="case-closed.html">2936179</a></th>
+    <td class="govuk-table__cell"></td>
+    <td class="govuk-table__cell"><a href="#">Update Horizon reference</a></td>
+    <td class="govuk-table__cell">11 July 2023</td>
+    <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Awaiting transfer</strong></td>
+  </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header"><a href="case.html?status=statement-review">2110168</a></th>
+      <td class="govuk-table__cell"></td>
+      <td class="govuk-table__cell">Not received</td>
+      <td class="govuk-table__cell">12 July 2023</td>
+      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--orange">Statement review</strong></td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header"><a href="case.html?status=statement-review">1234560</a></th>
+      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Lead</strong></td>
+      <td class="govuk-table__cell"><a href="#">Review IP comments/final comments</a></td>
+      <td class="govuk-table__cell">13 July 2023</td>
+      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--purple">Final comment review</strong></td>
+    </tr>
+
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header"><a href="case.html?status=site-visit">1234561</a></th>
+      <td class="govuk-table__cell"></td>
+      <td class="govuk-table__cell"><a href="#">Arrange site visit</a></td>
+      <td class="govuk-table__cell">18 July 2023</td>
+      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue">Arrange site visit</strong></td>
+    </tr>
+    
+  </tbody>
+</table>
+
+{% endmacro %}

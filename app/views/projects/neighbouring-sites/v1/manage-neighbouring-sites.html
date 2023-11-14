@@ -55,7 +55,7 @@
                     html: "170 York Road<br>Bristol<br>BS3 4AL"
                   },
                   {
-                    html: "<a href='#'>Change</a> | <a href='#'>Remove</a>"
+                    html: "<a href='#'>Change</a>"
                   }
                 ],
                 [
@@ -63,7 +63,7 @@
                   html: "172, York Road<br>Bristol<br>BS3 4AL"
                 },
                 {
-                  html: "<a href='#'>Change</a> | <a href='#'>Remove</a>"
+                  html: "<a href='#'>Change</a>"
                 }
               ]
               ]
@@ -73,7 +73,14 @@
             <!---->
 
 
-           
+               {% set html %}
+                {{ data['neighbours-address-line-1'] }}<br>
+                {{ data['neighbours-address-line-2']}}
+                {% if data ['neighbours-address-line-2'] %}<br>
+                {% endif %}
+                {{ data['neighbours-address-town']}}<br>
+                {{ data['neighbours-address-postcode']}}
+                {% endset %}
               
 
             {{ govukTable({
@@ -93,7 +100,7 @@
               rows: [
                 [
                   {
-                    html: "173 York Road<br>Bristol<br>BS3 4AL"
+                    html: html
                   },
                   {
                     html: "<a href='#'>Change</a> | <a href='#'>Remove</a>"

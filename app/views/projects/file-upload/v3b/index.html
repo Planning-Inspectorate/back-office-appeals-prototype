@@ -1,0 +1,101 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="File upload" %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back to all prototypes",
+    href: "/"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">
+      Appeal a planning decision
+    </span>
+    <h1 class="govuk-heading-l">
+      File upload
+    </h1>
+
+    <section class="govuk-!-margin-bottom-6">
+
+
+	<h2 class="govuk-heading-m">Version 1
+		{%- from "govuk/components/tag/macro.njk" import govukTag -%}
+
+		{{govukTag({
+          text: "Ready for research",
+          classes: "govuk-!-margin-left-2 govuk-tag--green"
+        })}}
+
+		<!-- Status tag options
+
+		{{govukTag({
+          text: "New",
+          classes: "govuk-!-margin-left-2 govuk-tag--green"
+        })}}
+
+        {{govukTag({
+          text: "In progress",
+          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+        })}}
+
+        {{govukTag({
+          text: "Ready for review",
+          classes: "govuk-!-margin-left-2 govuk-tag--blue"
+        })}}
+
+        {{govukTag({
+          text: "Ready for research",
+          classes: "govuk-!-margin-left-2 govuk-tag--green"
+        })}}
+
+        {{govukTag({
+          text: "Researched",
+          classes: " govuk-!-margin-left-2 govuk-tag--green"
+        })}}
+
+        -->
+
+	</h2>
+
+	<p class="govuk-body">User can upload addition files to the LPA questionnaire</p>
+
+	{{ govukButton({
+	  text: "View prototype",
+	  href: "lpa-questionnaire",
+	  isStartButton: true
+	}) }}
+
+
+	<h3 class="govuk-heading-m">Scenario for UR</h3>
+
+	<p>Case worker has received an email with 2 documents (PDFs) they need to add to the LPA questionnaire. Having navigated to LPA Questionnaire page, they need to successfully <strong>upload 2 files for a Tree Preservation Order</strong> and enter file details for for the two files.</p>
+
+	<ul class="govuk-list">
+	  <li>
+	    <a class="govuk-link" href="lpa-questionnaire.html">Test A</a> (preferred option)
+	  </li>
+	  <li>
+	    <a class="govuk-link" href="B-test/lpa-questionnaire-B.html">Test B</a>
+	  </li>
+	  <li>
+	    Manage documents
+	    <ul>
+		    <li><a href="manage-documents/option1.html">Option 1</a></li>
+		    <li><a href="manage-documents/option2.html">Option 2</a></li>
+	  </li>
+	</ul>
+
+
+    </section>
+
+    <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+
+  </div>
+
+{% endblock %}

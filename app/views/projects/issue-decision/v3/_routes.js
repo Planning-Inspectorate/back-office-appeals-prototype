@@ -9,7 +9,11 @@ router.get('*', function(req, res, next){
 })
 
 router.post('/invalid', function (req, res) {
-  res.redirect('/projects/personal-list/v4/?status=incomplete&decision=invalid-appeal')
+  res.redirect('check-your-answers-invalid')
+})
+
+router.post('/check-your-answers-invalid', function (req, res) {
+  res.redirect('confirmation-invalid')
 })
 
 router.post('/upload-decision', function (req, res) {

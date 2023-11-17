@@ -2,7 +2,7 @@
 
 {% set pageName="Reasons the appeal is invalid" %}
 
-{% set title = "State why the appeal is invalid" %}
+{% set title = "Why is the appeal invalid?" %}
 
 {% block questions %}
 
@@ -10,9 +10,10 @@
     Appeal 2110166
   </span>
 
-  {{ govukTextarea({
+  {{ govukCharacterCount({
     name: "invalidDetail",
     id: "more-detail",
+    maxlength: 1000,
     label: {
       text: title,
       classes: "govuk-label--l",

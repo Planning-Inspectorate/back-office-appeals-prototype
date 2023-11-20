@@ -6,6 +6,14 @@
 
 {% block content %}
 
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <span class="govuk-caption-m">Appeal 2110166</span>
+      <span class="govuk-heading-m govuk-!-margin-bottom-0">21 The Pavement, Wandsworth, SW4 0HY</span> 
+          <p>Appellant: Fiona Shell | LPA: Lambeth Council</p>
+          <strong class="govuk-tag govuk-tag--blue">Arrange site visit</strong>
+    </div>
+  </div>
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-one-quarter">
@@ -35,42 +43,7 @@
     </div>
 
     <div class="govuk-grid-column-three-quarters">
-
-    
-
-    <!--	<span class="govuk-caption-l">Appeal 2110166</span> -->
-    <span class="govuk-caption-l">Appeal 2110166</span>
-    	<h1 class="govuk-heading-l">Case overview</h1>
-
-
-      
-      
-
-      {% include "/includes/appeal-content/lpa-has-appeal-meta.html" %}
-      <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-
-    	<!-- {{ govukSummaryList({
-    	  classes: 'govuk-summary-list--no-border govuk-!-margin-top-6',
-    	  rows: [
-    	    {
-    	      key: {
-    	        text: "Site address"
-    	      },
-    	      value: {
-    	        text: "Address line 1, Address line 2, Town or city, Postcode"
-    	      }
-    	    },
-    	    {
-    	      key: {
-    	        text: "Local planning authority"
-    	      },
-    	      value: {
-    	        text: "Council name"
-    	      }
-    	    }
-    	  ]
-    	}) }} -->
-
+<h1 class="govuk-heading-l">Case overview</h1>
       
             {{ govukTable({
               captionClasses: "govuk-table__caption--m",

@@ -16,17 +16,15 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-
-      {% set uploadhtml %}
-  <p class="govuk-notification-banner__heading">
-    Document upload in progress</p>
-    <p><a class="govuk-notification-banner__link" href="#">Refresh page to see if upload has finished</a>
-  </p>
-{% endset %}
-
-{{ govukNotificationBanner({
-  html: uploadhtml
-}) }}
+{{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: [
+            {
+              text: "The selected file contains a virus. Upload a different version.",
+              href: "#actions"
+            }
+          ]
+        }) }}
 
 	<span class="govuk-caption-l">Manage documents</span>
 	<h1 class="govuk-heading-l">tree-preservation-order-B.pdf</h1>	
@@ -39,7 +37,7 @@
 	        text: "File"
 	      },
 	      value: {
-	        html: '<p>tree-preservation-order-B.pdf</p><p><strong class="govuk-tag govuk-tag--yellow">Uploading</strong></p></p>'
+	        html: '<p>tree-preservation-order-B.pdf</p><p><strong class="govuk-tag govuk-tag--red">Virus detected</strong></p></p>'
 	      }
 	    },{
 	      key: {
@@ -86,6 +84,21 @@
 	  ]
 	}) }}
 	
+		<div class="govuk-button-group" id="actions">
+		
+	{{ govukButton({
+	  text: "Upload new version",
+	  href: "upload-document"
+	}) }}
+  
+   {{ govukButton({
+    text: "Remove document",
+    classes: "govuk-button--secondary",
+    href: "remove-sure"
+  }) }}
+  
+  	  
+</div>
 
 		
   </div>
@@ -95,8 +108,6 @@
 <div class="govuk-grid-row govuk-!-padding-top-6">
   <div class="govuk-grid-column-full">
 	  
-	  
-	  {% include "projects/file-upload/v2/manage-documents/includes/document-history-heading.html" %} 
 	  
 	 <details class="govuk-details" data-module="govuk-details">
 	<summary class="govuk-details__summary">
@@ -134,7 +145,7 @@
 	        html: "1"
 	      },
 	      {
-	        html: "<p class='govuk-!-font-size-16'>tree-preservation-order-B.pdf</p><p><strong class='govuk-tag govuk-tag'>Current version</strong> <strong class='govuk-tag govuk-tag--yellow'>Uploading</strong></p>"
+	        html: "<p class='govuk-!-font-size-16'>tree-preservation-order-B.pdf</p><p><strong class='govuk-tag govuk-tag--red'>Virus detected</strong></p>"
 	      },
 	      {
 	        html: "<strong>Uploaded:</strong> 09:48, 20 Feb 2023, <br>by Jane Watson"
@@ -143,7 +154,7 @@
 	        text: "Unredacted"
 	      },
 	      {
-	        html: ""
+	        html: "<a href='#'>Remove</a>"
 	      }
 	    ]
 	  ]

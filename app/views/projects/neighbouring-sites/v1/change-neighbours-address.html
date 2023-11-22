@@ -1,0 +1,70 @@
+{% extends "layouts/PINS.html" %}
+
+{% set title = 'Add neighbouring site' %}
+
+{% block content %}
+
+<!-- <p class="govuk-hint">This should match the address on the application to the local planning authority</p> -->
+
+<div class="govuk-grid-row">
+<div class="govuk-grid-column-two-thirds">
+
+<span class="govuk-caption-l">Appeal 2110166</span>
+  <h1 class='govuk-heading-l'>
+    {{ title }}
+  </h1>
+
+  <form action="neighbouring-site-change-cya" method="post">
+
+
+  {{ govukInput({
+    id: 'neighbours-address-line-1',
+    name: 'neighbours-address-line-1',
+    value: data['neighbours-address-line-1'],
+    label: {
+      html: 'Address line 1'
+    }
+  }) }}
+
+  {{ govukInput({
+    id: 'neighbours-address-line-2',
+    name: 'neighbours-address-line-2',
+    value: data['neighbours-address-line-2'],
+    label: {
+      html: 'Address line 2 (optional)'
+    }
+  }) }}
+
+  {{ govukInput({
+    id: 'neighbours-address-town',
+    name: 'neighbours-address-town',
+    value: data['neighbours-address-town'],
+    classes: 'govuk-!-width-two-thirds',
+    label: {
+      html: 'Town or city'
+    }
+  }) }}
+
+  {{ govukInput({
+    id: 'neighbours-address-postcode',
+    name: 'neighbours-address-postcode',
+    value: data['neighbours-address-postcode'],
+    classes: 'govuk-input--width-10',
+    label: {
+      html: 'Postcode'
+    }
+  }) }}
+
+
+  {{ govukButton({
+    text: 'Continue'
+  }) }}
+
+</form>
+
+</div>
+</div>
+
+{% endblock %}
+
+{% block pageScripts %}{% endblock %}

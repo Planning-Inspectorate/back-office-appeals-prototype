@@ -1,0 +1,53 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Case details" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+    	<span class="govuk-caption-l">Appeal 2110166</span>
+  <h1 class="govuk-heading-l">Remove neighbouring site</h1>
+
+  <p>{{ data['neighbours-address-line-1'] }}<br>
+    {{ data['neighbours-address-line-2']}}
+    {% if data ['neighbours-address-line-2'] %}<br>
+    {% endif %}
+    {{ data['neighbours-address-town']}}<br>
+    {{ data['neighbours-address-postcode']}}</p>
+
+      <form action="manage-neighbouring-sites" method="post">
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+              <h2 class="govuk-fieldset__heading">
+              Do you want to remove this site?
+            </h2>
+            </legend>
+            <div class="govuk-radios" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="remove" name="remove" type="radio" value="yes">
+                <label class="govuk-label govuk-radios__label" for="remove">
+                  Yes 
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="remove-2" name="remove-2" type="radio" value="no">
+                <label class="govuk-label govuk-radios__label" for="remove-2">
+                  No
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+    </form>
+
+    </div>
+  </div>
+
+
+{% endblock %}

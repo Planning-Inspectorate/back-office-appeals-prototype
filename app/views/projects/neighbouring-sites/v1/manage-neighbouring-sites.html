@@ -80,7 +80,10 @@
                 {{ data['neighbours-address-town']}}<br>
                 {{ data['neighbours-address-postcode']}}
                 {% endset %}
-              
+
+        {% if data ['remove'] %} 
+
+        {% elseif data ['neighbours-address-line-1'] %}
 
 
             {{ govukTable({
@@ -109,7 +112,7 @@
               ]
             }) }}
        
-
+{% endif %}
 
     </div>
   </div>

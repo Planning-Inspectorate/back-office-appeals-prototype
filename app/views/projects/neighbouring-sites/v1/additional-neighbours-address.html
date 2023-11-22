@@ -46,6 +46,16 @@
   }) }}
 
   {{ govukInput({
+    id: 'neighbours-address-county',
+    name: 'neighbours-address-county',
+    value: data['neighbours-address-county'],
+    classes: 'govuk-!-width-two-thirds',
+    label: {
+      html: 'County (optional)'
+    }
+  }) }}
+
+  {{ govukInput({
     id: 'neighbours-address-postcode',
     name: 'neighbours-address-postcode',
     value: data['neighbours-address-postcode'],

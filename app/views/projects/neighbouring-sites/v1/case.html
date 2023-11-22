@@ -330,12 +330,17 @@
                 {% if data['neighbours-address-line-1'] %}
                 <ul class="govuk-list govuk-list--bullet">
                   <li>
-                  {{ data['neighbours-address-line-1'] }}<br>
-                  {{ data['neighbours-address-line-2']}}
-                  {% if data ['neighbours-address-line-2'] %}<br>
-                  {% endif %}
-                  {{ data['neighbours-address-town']}}<br>
-                  {{ data['neighbours-address-postcode']}}
+                    {% set html %}
+                    {{ data['neighbours-address-line-1'] }}<br>
+                    {{ data['neighbours-address-line-2']}}
+                    {% if data ['neighbours-address-line-2'] %}<br>
+                    {% endif %}
+                    {{ data['neighbours-address-town']}} 
+                    {% if data['neighbours-address-county']%}<br>
+                    {% endif %}
+                    {{ data['neighbours-address-county']}}<br>
+                    {{ data['neighbours-address-postcode']}}
+                    {% endset %}
                   </li>
                 </ul>
                 {% else %}

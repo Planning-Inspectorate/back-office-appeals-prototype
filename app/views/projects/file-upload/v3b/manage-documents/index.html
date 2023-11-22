@@ -14,12 +14,13 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-     {% set uploadhtml %}
+{% set uploadhtml %}
   <p class="govuk-notification-banner__heading">
-    Document upload in progress</p>
-    <p><a class="govuk-notification-banner__link" href="#">Refresh page to see if upload has finished</a>
+   Virus scan in progress</p>
+    <p><a class="govuk-notification-banner__link" href="#">Refresh page to see if scan has finished</a>
   </p>
 {% endset %}
+
 
 {{ govukNotificationBanner({
   html: uploadhtml
@@ -68,7 +69,7 @@
 	    ],
 	    [
 	      {
-	        html: "<p>tree-preservation-order-B.pdf</p><p class='govuk-body govuk-!-font-size-16'>File type and size : PDF, 97KB</p><p><strong class='govuk-tag govuk-tag--yellow'>Uploading</strong></p>"
+	        html: "<p>tree-preservation-order-B.pdf</p><p class='govuk-body govuk-!-font-size-16'>File type and size : PDF, 97KB</p><p><strong class='govuk-tag govuk-tag--yellow'>Virus Scanning</strong></p>"
 	      },
 	      {
 	        text: "dd Mon YYYY"

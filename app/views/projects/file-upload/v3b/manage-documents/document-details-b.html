@@ -19,10 +19,11 @@
 
       {% set uploadhtml %}
   <p class="govuk-notification-banner__heading">
-    Document upload in progress</p>
-    <p><a class="govuk-notification-banner__link" href="#">Refresh page to see if upload has finished</a>
+   Virus scan in progress</p>
+    <p><a class="govuk-notification-banner__link" href="#">Refresh page to see if scan has finished</a>
   </p>
 {% endset %}
+
 
 {{ govukNotificationBanner({
   html: uploadhtml
@@ -39,7 +40,7 @@
 	        text: "File"
 	      },
 	      value: {
-	        html: '<p>tree-preservation-order-B.pdf</p><p><strong class="govuk-tag govuk-tag--yellow">Uploading</strong></p></p>'
+	        html: '<p>tree-preservation-order-B.pdf</p><p><strong class="govuk-tag govuk-tag--yellow">Virus Scanning</strong></p></p>'
 	      }
 	    },{
 	      key: {
@@ -134,7 +135,7 @@
 	        html: "1"
 	      },
 	      {
-	        html: "<p class='govuk-!-font-size-16'>tree-preservation-order-B.pdf</p><p><strong class='govuk-tag govuk-tag'>Current version</strong> <strong class='govuk-tag govuk-tag--yellow'>Uploading</strong></p>"
+	        html: "<p class='govuk-!-font-size-16'>tree-preservation-order-B.pdf</p><p><strong class='govuk-tag govuk-tag'>Current version</strong> <strong class='govuk-tag govuk-tag--yellow'>Virus Scanning</strong></p>"
 	      },
 	      {
 	        html: "<strong>Uploaded:</strong> 09:48, 20 Feb 2023, <br>by Jane Watson"

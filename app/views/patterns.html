@@ -30,6 +30,26 @@
     <h2 class="govuk-heading-m">National list</h2>
 
     <h2 class="govuk-heading-m">Personal list</h2>
+    <p>The personal list component</p>
+
+     
+
+<pre>
+<code>
+
+{% from "../../../patterns/personal-list/default.njk" import personalList %}
+
+	  {{ personalList (
+		appealid = "2110166",
+		appeallink = "case-overview",
+		linked = "LEAD", 
+		actiontext = "Validate appellant case", 
+		actionlink = "#", 
+		dueby = "10 July 2023", 
+		casestatus = "Ready to start"
+		) }}
+    </code>
+    </pre>
 
 	  <h2 class="govuk-heading-m">Uploading a file</h2>
     <p>Uploading a file uses the GOV.UK Design System file upload component, with additional content from us around file types.</p>

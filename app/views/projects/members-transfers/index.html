@@ -24,6 +24,71 @@
 
     <section class="govuk-!-margin-bottom-6">
 
+    <h2 class="govuk-heading-m">Version 2
+		
+		{{govukTag({
+          text: "Ready for research",
+          classes: "govuk-!-margin-left-2 govuk-tag--green"
+        })}}
+		
+		<!-- Status tag options
+		
+		{{govukTag({
+          text: "New",
+          classes: "govuk-!-margin-left-2 govuk-tag--green"
+        })}}
+        
+        {{govukTag({
+          text: "In progress",
+          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+        })}}
+        
+        {{govukTag({
+          text: "Ready for review",
+          classes: "govuk-!-margin-left-2 govuk-tag--blue"
+        })}}
+        
+        {{govukTag({
+          text: "Ready for research",
+          classes: "govuk-!-margin-left-2 govuk-tag--green"
+        })}}
+        
+        {{govukTag({
+          text: "Researched",
+          classes: " govuk-!-margin-left-2 govuk-tag--green"
+        })}}
+        
+        -->
+        
+				
+	</h2>
+			
+	
+	<h3 class="govuk-heading-m">Assign members</h3>
+	
+	<ul class="govuk-list govuk-list--bullet">
+        <li>Once the case is ready to start, a manager will assign a case officer to the Case team</li>
+		<li>Once an inspector is identified and allocated to the case, the manager or case officer will assign the inspector to the Case team</li>
+	</ul>
+	
+	
+
+	<h3 class="govuk-heading-m">Transfer case</h3>
+
+	<ul class="govuk-list govuk-list--bullet">
+        <li>During the appeal the team might need to transfer the case from one case officer to another, or from inspector to another;</li>
+		<li>This might happen because someone will be off sick, holidays or if someone’s backlog is too big;</li>
+	</ul>
+	
+	
+	{{ govukButton({
+	  text: "View prototype",
+	  href: "v2/assign-members/",
+	  isStartButton: true
+	}) }}
+	
+  <hr>
+
       
 	<h2 class="govuk-heading-m">Version 1
 		

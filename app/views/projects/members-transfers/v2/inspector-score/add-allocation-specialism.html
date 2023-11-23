@@ -1,0 +1,175 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Are you sure?" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+		<span class="govuk-caption-xl">Appeal 2110166</span>
+		<h1 class="govuk-heading-xl">Allocation specialism</h1>
+		
+		{% if 'allocation-level' in data %}
+		
+		<dl class="govuk-summary-list govuk-summary-list">
+			  <div class="govuk-summary-list__row">
+			    <dt class="govuk-summary-list__key">
+			      Level
+			    </dt>
+			    <dd class="govuk-summary-list__value">
+			      {{ data['allocation-level'] }}
+			    </dd>
+			  </div>
+			  {% if 'allocation-level' in data %}
+			  <div class="govuk-summary-list__row">
+			    <dt class="govuk-summary-list__key">
+			      Band
+			    </dt>
+			    <dd class="govuk-summary-list__value">
+			      {% if (data['allocation-level'] == "A" or data['allocation-level'] == "B") %}
+			      3
+			      {% elseif (data['allocation-level'] == "C" or data['allocation-level'] == "D") %}
+			      2
+			      {% else %}
+			      1
+			      {% endif %}
+			    </dd>
+			  </div>
+			  {% endif %}
+			  {% if 'allocation-specialist' in data %}
+			  <div class="govuk-summary-list__row">
+			    <dt class="govuk-summary-list__key">
+			      Specialism
+			    </dt>
+			    <dd class="govuk-summary-list__value">
+			      <ul class="govuk-list govuk-list--bullet">
+				  {% for item in data["allocation-specialist"] %}
+				    <li>
+				      {{ item }}
+				    </li>
+				  {% endfor %}
+				</ul>
+			    </dd>
+			  </div>
+			  {% endif %}
+			</dl>
+			
+				
+		{% endif %}
+
+       <form action="check" method="post" class="govuk-!-margin-top-9" novalidate>
+
+		<!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
+
+		{{ govukCheckboxes({
+		  name: "allocation-specialist",
+		  values: data['allocation-specialist'],
+		  classes: "govuk-checkboxes--small",
+		  fieldset: {
+		    legend: {
+		      text: "Select allocation specialism",
+		      isPageHeading: false,
+		      classes: "govuk-fieldset__legend--m"
+		    }
+		  },
+		  items: [
+		    {
+		      value: "Enforcement",
+		      text: "Enforcement"
+		    },
+		    {
+		      value: "General allocation",
+		      text: "General allocation"
+		    },
+		    {
+		      value: "Housing orders",
+		      text: "Housing orders"
+		    },
+		    {
+		      value: "Rights of way",
+		      text: "Rights of way"
+		    },
+		    {
+		      value: "shopping",
+		      text: "Shopping"
+		    },
+		    {
+		      value: "Gypsy",
+		      text: "Gypsy"
+		    },
+		    {
+		      value: "Housing",
+		      text: "Housing"
+		    },
+		    {
+		      value: "Access",
+		      text: "Access"
+		    },
+		    {
+		      value: "Advertisements",
+		      text: "Advertisements"
+		    },
+		    {
+		      value: "Appearance design",
+		      text: "Appearance design"
+		    },
+		    {
+		      value: "architecture",
+		      text: "Architecture design"
+		    },
+		    {
+		      value: "High hedges",
+		      text: "High hedges"
+		    },
+		    {
+		      value: "Historic heritage",
+		      text: "Historic heritage"
+		    },
+		    {
+		      value: "Listed building and enforcement",
+		      text: "Listed building and enforcement"
+		    },
+		    {
+		      value: "Natural heritage",
+		      text: "Natural heritage"
+		    },
+		    {
+		      value: "Renewable energy/wind farms",
+		      text: "Renewable energy/wind farms"
+		    },
+		    {
+		      value: "Roads and traffics",
+		      text: "Roads and traffics"
+		    },
+		    {
+		      value: "Transport",
+		      text: "Transport"
+		    },
+		    {
+		      value: "Tree preservation order",
+		      text: "Tree preservation order"
+		    },
+		    {
+		      value: "Waste",
+		      text: "Waste "
+		    },
+		    {
+		      value: "Water",
+		      text: "Water"
+		    }		
+		   ]
+		}) }}
+
+		{{ govukButton({
+          text: "Continue"
+        }) }}
+
+
+	  </form>
+		  
+
+    </div>
+  </div>
+
+{% endblock %}

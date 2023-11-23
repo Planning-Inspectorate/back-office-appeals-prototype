@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-admin.html" %}
 
-{% set pageName="Home" %}
+{% set pageName="Patterns" %}
 
 {% set back = false %}
 
@@ -34,22 +34,22 @@
 
      
 
-<pre>
-<code>
+      <pre>
+      <code class="language-html">
+        {% from &quot;../../../patterns/personal-list/default.njk&quot; import personalList %}
 
-{% from "../../../patterns/personal-list/default.njk" import personalList %}
+        {{ personalList (
+          appealid = &quot;2110166&quot;,
+          appeallink = &quot;case-overview&quot;,
+          linked = &quot;LEAD&quot;, 
+          actiontext = &quot;Validate appellant case&quot;, 
+          actionlink = &quot;#&quot;, 
+          dueby = &quot;10 July 2023&quot;, 
+          casestatus = &quot;Ready to start&quot;
+        ) }}
 
-	  {{ personalList (
-		appealid = "2110166",
-		appeallink = "case-overview",
-		linked = "LEAD", 
-		actiontext = "Validate appellant case", 
-		actionlink = "#", 
-		dueby = "10 July 2023", 
-		casestatus = "Ready to start"
-		) }}
-    </code>
-    </pre>
+      </code>
+      </pre>
 
 	  <h2 class="govuk-heading-m">Uploading a file</h2>
     <p>Uploading a file uses the GOV.UK Design System file upload component, with additional content from us around file types.</p>

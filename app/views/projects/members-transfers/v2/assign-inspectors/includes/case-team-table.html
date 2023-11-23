@@ -1,0 +1,100 @@
+{% if (data['is-assigned'] == "yes") %}
+
+{{ govukTable({
+	  captionClasses: "govuk-table__caption--m",
+	  firstCellIsHeader: true,
+	  rows: [
+	    [
+	      {
+	        text: "Case officer"
+	      },
+	      {
+	        html: "John smith<br>john.smith@planninginspectorate.gov.uk"
+	      },
+	      {
+	        html: "<a href='../assign-members/search'>Change</a>"
+	      }
+	    ],
+	    [
+	      {
+	        text: "Inspector"
+	      },
+	      {
+	        text: ""
+	      },
+	      {
+	        html: "<a href='../assign-inspectors/search'>Assign</a>"
+	      }
+	    ]
+	  ]
+	}) }}
+
+
+{% elseif (data['is-assigned'] == "yes") and (data['is-assigned-inspector'] == "yes") %}
+
+
+{{ govukTable({
+	  captionClasses: "govuk-table__caption--m",
+	  firstCellIsHeader: true,
+	  rows: [
+	    [
+	      {
+	        text: "Case officer"
+	      },
+	      {
+	        html: "John smith<br>john.smith@planninginspectorate.gov.uk"
+	      },
+	      {
+	        html: "<a href='../assign-members/search'>Change</a>"
+	      }
+	    ],
+	    [
+	      {
+	        text: "Inspector"
+	      },
+	      {
+	        text: "Harpeet Singh<br>harpreet.singh@planninginspectorate.gov.uk"
+	      },
+	      {
+	        html: "<a href='../assign-inspectors/search'>Assign</a>"
+	      }
+	    ]
+	  ]
+	}) }}
+    
+    
+{% else %}
+	
+	  
+	  {{ govukTable({
+	  captionClasses: "govuk-table__caption--m",
+	  firstCellIsHeader: true,
+	  rows: [
+	    [
+	      {
+	        text: "Case officer"
+	      },
+	      {
+	        text: ""
+	      },
+	      {
+	        html: "<a href='../assign-members/search'>Assign</a>"
+	      }
+	    ],
+	    [
+	      {
+	        text: "Inspector"
+	      },
+	      {
+	        text: ""
+	      },
+	      {
+	        html: "<a href='../assign-inspectors/search'>Assign</a>"
+	      }
+	    ]
+	  ]
+	}) }}
+	
+		
+{% endif %}
+    

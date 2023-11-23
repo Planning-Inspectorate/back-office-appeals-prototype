@@ -1,0 +1,145 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Are you sure?" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+		<span class="govuk-caption-xl">Appeal 2110166</span>
+		<h1 class="govuk-heading-xl">Allocation band</h1>
+		
+		{% if 'allocation-level' in data %}
+		
+		<div class="govuk-inset-text">
+		Level: <strong>{{ data['allocation-level'] }}</strong> {% if 'allocation-band' in data %} Band: <strong>{{ data['allocation-band'] }}</strong> {% endif %} {% if 'allocation-specialist' in data %} Specialism: <strong>{{ data['allocation-specialist'] }}</strong> {% endif %}
+		</div>
+		
+		<div class="govuk-inset-text">
+		Level: <strong>{{ data['allocation-level'] }}</strong> {% if 'allocation-band' in data %}</br>Band: <strong>{{ data['allocation-band'] }}</strong> {% endif %} {% if 'allocation-specialist' in data %}</br>Specialism: <strong>{{ data['allocation-specialist'] }}</strong> {% endif %}
+		</div>
+		
+		
+		<div class="govuk-inset-text">
+			<ul>
+				<li>Level: {{ data['allocation-level'] }}</li>
+				{% if 'allocation-band' in data %}<li>Band: {{ data['allocation-band'] }}</li>{% endif %}
+				{% if 'allocation-specialist' in data %} <li>Specialism: {{ data['allocation-specialist'] }}</li>{% endif %}
+			</ul>
+		  
+		</div>
+		
+		
+		<div class="govuk-inset-text">
+			<dl class="govuk-summary-list govuk-summary-list">
+			  <div class="govuk-summary-list__row">
+			    <dt class="govuk-summary-list__key">
+			      Level
+			    </dt>
+			    <dd class="govuk-summary-list__value">
+			      {{ data['allocation-level'] }}
+			    </dd>
+			  </div>
+			  {% if 'allocation-band' in data %}
+			  <div class="govuk-summary-list__row">
+			    <dt class="govuk-summary-list__key">
+			      Band
+			    </dt>
+			    <dd class="govuk-summary-list__value">
+			      {{ data['allocation-band'] }}
+			    </dd>
+			  </div>
+			  {% endif %}
+			  {% if 'allocation-specialist' in data %}
+			  <div class="govuk-summary-list__row">
+			    <dt class="govuk-summary-list__key">
+			      Specialism
+			    </dt>
+			    <dd class="govuk-summary-list__value">
+			      {{ data['allocation-specialist'] }}
+			    </dd>
+			  </div>
+			  {% endif %}
+			</dl>		  
+		</div>
+		
+		
+		<dl class="govuk-summary-list govuk-summary-list">
+			  <div class="govuk-summary-list__row">
+			    <dt class="govuk-summary-list__key">
+			      Level
+			    </dt>
+			    <dd class="govuk-summary-list__value">
+			      {{ data['allocation-level'] }}
+			    </dd>
+			  </div>
+			  {% if 'allocation-band' in data %}
+			  <div class="govuk-summary-list__row">
+			    <dt class="govuk-summary-list__key">
+			      Band
+			    </dt>
+			    <dd class="govuk-summary-list__value">
+			      {{ data['allocation-band'] }}
+			    </dd>
+			  </div>
+			  {% endif %}
+			  {% if 'allocation-specialist' in data %}
+			  <div class="govuk-summary-list__row">
+			    <dt class="govuk-summary-list__key">
+			      Specialism
+			    </dt>
+			    <dd class="govuk-summary-list__value">
+			      {{ data['allocation-specialist'] }}
+			    </dd>
+			  </div>
+			  {% endif %}
+			</dl>
+			
+		
+		<div class="govuk-inset-text">
+		{{ data['allocation-level'] }} {% if 'allocation-band' in data %} / {{ data['allocation-band'] }} {% endif %} {% if 'allocation-specialist' in data %} / {{ data['allocation-specialist'] }} {% endif %}
+		</div>
+		
+		{% endif %}
+		
+       <form action="add-allocation-specialism" method="post" class="govuk-!-margin-top-9" novalidate>
+
+		{{ govukRadios({
+		  name: "allocation-band",
+		  value: data['allocation-band'],
+		  fieldset: {
+		    legend: {
+		      text: "Select allocation band",
+		      isPageHeading: false,
+		      classes: "govuk-fieldset__legend--m"
+		    }
+		  },
+		  items: [
+		    {
+		      value: "1",
+		      text: "1"
+		    },
+		    {
+		      value: "2",
+		      text: "2"
+		    },
+		    {
+		      value: "3",
+		      text: "3"
+		    }
+		   ]
+		}) }}
+
+		{{ govukButton({
+          text: "Continue"
+        }) }}
+
+
+	  </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Are you sure?" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+		<span class="govuk-caption-xl">Appeal 2110166</span>
+
+       <form action="document-details-removed" method="post" novalidate>
+
+		<!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
+		
+		
+		{% if (data['is-assigned-inspector'] == "yes") %}
+
+			{{ govukRadios({
+		  name: "is-assigned-inspector",
+		  fieldset: {
+		    legend: {
+		     text: "Assign Graham MacDonald to this case?",
+		      isPageHeading: true,
+		      classes: "govuk-fieldset__legend--l"
+		    }
+		  },
+		  items: [
+		    {
+		      value: "yes~/projects/members-transfers/v2/assign-inspectors/case-changed",
+		      text: "Yes"
+		    },
+		    {
+		      value: "no~/projects/members-transfers/v2/assign-inspectors/results",
+		      text: "No"
+		    }
+		   ]
+		}) }}
+		
+		<div class="govuk-inset-text">
+		  Only one inspector can be assigned to a case. <strong>harpreet.singh@planninginspectorate.gov.uk</strong> will be replaced as the current inspector.
+		</div>
+
+		{% else %}
+
+		{{ govukRadios({
+		  name: "is-assigned-inspector",
+		  fieldset: {
+		    legend: {
+		     text: "Assign Harpreet Singh to this case?",
+		      isPageHeading: true,
+		      classes: "govuk-fieldset__legend--l"
+		    }
+		  },
+		  items: [
+		    {
+		      value: "yes~/projects/members-transfers/v2/assign-inspectors/case-assigned",
+		      text: "Yes"
+		    },
+		    {
+		      value: "no~/projects/members-transfers/v2/assign-inspectors/results",
+		      text: "No"
+		    }
+		   ]
+		}) }}
+		
+		{% endif %}
+
+		{{ govukButton({
+          text: "Continue"
+        }) }}
+
+
+	  </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

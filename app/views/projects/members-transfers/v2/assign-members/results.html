@@ -1,0 +1,191 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Search and assign a case officer" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+	    
+		<span class="govuk-caption-xl">Appeal 2110166</span>
+		<h1 class="govuk-heading-xl">Search for a case officer</h1>
+	  
+	   <form action="" method="post" class="govuk-!-margin-top-9" novalidate>
+	    	
+			{{ govukInput({
+			  label: {
+			    classes: "govuk-label--m",
+			    isPageHeading: false
+			  },
+			  classes: "",
+			  hint: {
+			    text: "Search by name or email address"
+			  },
+			  id: "account-number",
+			  name: "account-number",
+			  inputmode: "numeric",
+			  spellcheck: false
+			}) }}
+		
+			  <button class="govuk-button" data-module="govuk-button">
+			    Search
+			  </button>
+		
+	    
+	  </form>
+
+	  </div>
+	</div>
+
+<div class="govuk-grid-row">
+	  <div class="govuk-grid-column-full">
+	  
+	
+	  
+
+	  {% if (data['is-assigned'] == "yes") %}
+
+	  <h2 class="govuk-heading-m govuk-!-margin-top-6">Search results</h2>
+
+	  <p>Displaying results for <strong>Kate</strong></p>	  
+	  
+		{{ govukSummaryList({
+		  rows: [
+		    {
+		      key: {
+		        text: "Kate Booth"
+		      },
+		      value: {
+		        text: "kate.booth@planninginspectorate.gov.uk"
+		      },
+		      actions: {
+		        items: [
+		          {
+		            href: "add-sure",
+		            text: "Assign",
+		            visuallyHiddenText: "to this case"
+		          }
+		        ]
+		      }
+		    },
+		    {
+		      key: {
+		        text: "Kate Hepscott"
+		      },
+		      value: {
+		        text: "kate.hepscott@planninginspectorate.gov.uk"
+		      },
+		      actions: {
+		        items: [
+		          {
+		            href: "add-sure",
+		            text: "Assign",
+		            visuallyHiddenText: "to this case"
+		          }
+		        ]
+		      }
+		    },
+		    {
+		      key: {
+		        text: "Kate Wilkes"
+		      },
+		      value: {
+		        html: "kate.wilkes@planninginspectorate.gov.uk"
+		      },
+		      actions: {
+		        items: [
+		          {
+		            href: "add-sure",
+		            text: "Assign",
+		            visuallyHiddenText: "to this case"
+		          }
+		        ]
+		      }
+		    }
+		  ]
+		}) }}
+	
+	  
+	  	<h2 class="govuk-heading-m govuk-!-margin-top-9">Currently assigned case officer</h2>	  		  
+	  
+		{{ govukSummaryList({
+		  rows: [
+		    {
+		      key: {
+		        text: "John Smith"
+		      },
+		      value: {
+		        text: "john.smith@planninginspectorate.gov.uk"
+		      }
+		    }
+		  ]
+		}) }}
+
+	  {% else %}
+
+	  <h2 class="govuk-heading-m govuk-!-margin-top-6">Search results</h2>
+	  <p>Displaying results for <strong>Smith</strong></p>	  
+	  
+		{{ govukSummaryList({
+		  rows: [
+		    {
+		      key: {
+		        text: "John Smith"
+		      },
+		      value: {
+		        text: "john.smith@planninginspectorate.gov.uk"
+		      },
+		      actions: {
+		        items: [
+		          {
+		            href: "add-sure",
+		            text: "Assign",
+		            visuallyHiddenText: "to this case"
+		          }
+		        ]
+		      }
+		    },
+		    {
+		      key: {
+		        text: "Johnny Smith"
+		      },
+		      value: {
+		        text: "johnny.smith@planninginspectorate.gov.uk"
+		      },
+		      actions: {
+		        items: [
+		          {
+		            href: "add-sure",
+		            text: "Assign",
+		            visuallyHiddenText: "to this case"
+		          }
+		        ]
+		      }
+		    },
+		    {
+		      key: {
+		        text: "Jonjo Smith"
+		      },
+		      value: {
+		        html: "jonjo.smith@planninginspectorate.gov.uk"
+		      },
+		      actions: {
+		        items: [
+		          {
+		            href: "add-sure",
+		            text: "Assign",
+		            visuallyHiddenText: "to this case"
+		          }
+		        ]
+		      }
+		    }
+		  ]
+		}) }}
+		
+		{% endif %}
+	  
+	  	
+	</div>
+</div>
+
+{% endblock %}

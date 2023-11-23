@@ -1,0 +1,88 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Are you sure?" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+		<span class="govuk-caption-xl">Appeal 2110166</span>
+
+		{% if (data['is-assigned'] == "yes") %}
+		{% else %}
+		<h1 class="govuk-heading-xl">Assign John Smith to this case?</h1>
+		{% endif %}
+
+       <form action="document-details-removed" method="post" class="govuk-!-margin-top-3" novalidate>
+
+		<!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
+
+	{% if (data['is-assigned'] == "yes") %}
+
+		{{ govukRadios({
+		  name: "is-assigned",
+		  fieldset: {
+				legend: {
+				text: "Assign Kate Wilkes to this case?",
+				classes: "govuk-fieldset__legend--l",
+				isPageHeading: true
+			}
+		  },
+		  items: [
+		    {
+		      value: "yes~/projects/members-transfers/v2/assign-members/case-changed",
+		      text: "Yes"
+		    },
+		    {
+		      value: "no~/projects/members-transfers/v2/assign-members/results",
+		      text: "No"
+		    }
+		   ]
+		}) }}
+		
+		{% else %}
+
+		{{ govukRadios({
+		  name: "is-assigned",
+		  fieldset: {
+		    legend: {
+		     text: "john.smith@planninginspectorate.gov.uk",
+		      isPageHeading: false,
+		      classes: "govuk-fieldset__legend--m"
+		    }
+		  },
+		  items: [
+		    {
+		      value: "yes~/projects/members-transfers/v2/assign-members/case-assigned",
+		      text: "Yes"
+		    },
+		    {
+		      value: "no~/projects/members-transfers/v2/assign-members/results",
+		      text: "No"
+		    }
+		   ]
+		}) }}
+
+		{% endif %}
+		
+		{% if (data['is-assigned'] == "yes") %}
+		
+		<div class="govuk-inset-text">
+		  Only one case officer can be assigned to a case. <strong>john.smith@planninginspectorate.gov.uk</strong> will be replaced as the current case officer.
+		</div>
+		
+		{% endif %}
+
+		{{ govukButton({
+          text: "Continue"
+        }) }}
+
+
+	  </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

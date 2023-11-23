@@ -10,4 +10,9 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
 
 {% block header %}
 	{% include "includes/PINS-header-admin.html" %}
+	{# Add highlights component #}
+	<link rel="stylesheet" href="/public/css/highlights/default.min.css">
+	<script src="/public/javascripts/highlights/highlight.min.js"></script>
+
+	<script>hljs.highlightAll();</script>
 {% endblock %}

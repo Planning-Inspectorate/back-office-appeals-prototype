@@ -11,16 +11,16 @@
   <div class="govuk-grid-column-one-quarter">
  
     <ul class="govuk-list govuk-list-bullet">
-      <li><a href="patterns/personal-list/" class="govuk-link--no-visited-state govuk-link--no-underline">Personal list</a></li>
+      <li><a href="/patterns/personal-list/" class="govuk-link--no-visited-state govuk-link--no-underline">Personal list</a></li>
     </ul>
 
     </div>
 
 <div class="govuk-grid-column-three-quarters">
 
-    <h1 class="govuk-heading-l" id="personal-list">Personal list</h1>
-    <p><strong class="govuk-tag">Experimental</strong></p>
-    <p>The personal list pattern is used to display a lits of appeals assigned to a specific case officer or inspector.</p>
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-2" id="personal-list">Personal list</h1>
+    <p><strong class="govuk-tag govuk-!-margin-bottom-5">Experimental</strong></p>
+    <p>The personal list pattern is used to display a list of appeals assigned to a specific case officer or inspector.</p>
 
 {% set exampleHtml %}
     {% from "/patterns/personal-list/default.njk" import personalList %}
@@ -39,20 +39,21 @@
 
 {% set codeHtml %}
     <pre class="code-snippet">
-      <code class="language-html">
-      {% raw %}
-        {% from &quot;../../../patterns/personal-list/default.njk&quot; import personalList %}
+      <code>
+{% raw -%}{% from "/patterns/personal-list/default.njk" import personalList %}
 
-        {{ personalList (
-          appealid = &quot;2110166&quot;,
-          appeallink = &quot;case-overview&quot;,
-          linked = &quot;LEAD&quot;, 
-          actiontext = &quot;Validate appellant case&quot;, 
-          actionlink = &quot;#&quot;, 
-          dueby = &quot;10 July 2023&quot;, 
-          casestatus = &quot;Ready to start&quot;
-        ) }}
-      {% endraw %}
+  {{ 
+    personalList (
+      appealid = "EXAMPLE",
+        appeallink = "http;//www.google.com",
+        linked = "CHILD", 
+        actiontext = "Validate appellant case", 
+        actionlink = "#", 
+        dueby = "10 July 2023", 
+        casestatus = "Ready to start",
+        exampledata = "true"
+    )
+  }}{% endraw %}
       </code>
       </pre>
 {% endset -%}
@@ -76,10 +77,10 @@
   ]
 }) }}         
 
-<h2 class="govuk-heading-m">When to use this pattern</h2>
+<h2 class="govuk-heading-l">When to use this pattern</h2>
 
 <p>Use this pattern to display the list of cases assigned to a case officer or inspector.</p>
 
-<h2 class="govuk-heading-m">How it works</h2>
+<h2 class="govuk-heading-l">How it works</h2>
 
 {% endblock %}

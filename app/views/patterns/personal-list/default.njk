@@ -1,4 +1,4 @@
-{% macro personalList(appealid, appeallink, linked, actiontext, actionlink, dueby, casestatus, exampledata) %}
+{% macro personalList(appealId, appealLink, linked, actionText, actionLink, dueBy, caseStatus, exampleData) %}
 
 <table class="govuk-table">
   <thead class="govuk-table__head">
@@ -12,14 +12,14 @@
   </thead>
   <tbody class="govuk-table__body">
     <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header"><a href="{{ appeallink }}">{{ appealid }}</a></th>
-      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">{{ linked }}</strong></td>
-      <td class="govuk-table__cell"><a href="{{ actionlink }}">{{ actiontext }}</a></td>
-      <td class="govuk-table__cell">{{ dueby }}</td>
-      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">{{ casestatus }}</strong></td>
+      <th scope="row" class="govuk-table__header"><a href="{{ appealLink }}">{{ appealId }}</a></th>
+      <td class="govuk-table__cell">{% if linked %}<strong class="govuk-tag govuk-tag--grey">{{ linked }}{% endif %} </strong></td>
+      <td class="govuk-table__cell"><a href="{{ actionLink }}">{{ actionText }}</a></td>
+      <td class="govuk-table__cell">{{ dueBy }}</td>
+      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">{{ caseStatus }}</strong></td>
     </tr>
 
-    {% if exampledata === "false" %}
+    {% if exampleData === "false" %}
     {% else %}
     <tr class="govuk-table__row">
       <th scope="row" class="govuk-table__header"><a href="case.html?status=lpa-questionnaire">2110167</a></th>

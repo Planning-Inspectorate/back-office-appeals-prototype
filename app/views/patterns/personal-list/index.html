@@ -26,14 +26,13 @@
     {% from "/patterns/personal-list/default.njk" import personalList %}
 
           {{ personalList (
-          appealid = "EXAMPLE",
-          appeallink = "http;//www.google.com",
-          linked = "CHILD", 
-          actiontext = "Validate appellant case", 
-          actionlink = "#", 
-          dueby = "10 July 2023", 
-          casestatus = "Ready to start",
-          exampledata = "true"
+          appealId = "EXAMPLE",
+          appealLink = "http;//www.google.com",
+          actionText = "Validate appellant case", 
+          actionLink = "#", 
+          dueBy = "10 July 2023", 
+          caseStatus = "Ready to start",
+          exampleData = "true"
           ) }}
 {% endset -%}
 
@@ -43,14 +42,14 @@
 
   {{ 
     personalList (
-        appealid = "EXAMPLE",
-        appeallink = "http;//www.google.com",
+        appealId = "EXAMPLE",
+        appealLink = "http;//www.google.com",
         linked = "CHILD", 
-        actiontext = "Validate appellant case", 
-        actionlink = "#", 
-        dueby = "10 July 2023", 
-        casestatus = "Ready to start",
-        exampledata = "true"
+        actionText = "Validate appellant case", 
+        actionLink = "#", 
+        dueBy = "10 July 2023", 
+        caseStatus = "Ready to start",
+        exampleData = "true"
     )
   }}{% endraw %}
       </code></pre>
@@ -66,8 +65,8 @@
       }
     },
     {
-      label: "Code",
-      id: "code",
+      label: "Nunjucks",
+      id: "nunjucks",
       panel: {
         html: codeHtml
       }
@@ -80,5 +79,78 @@
 <p>Use this pattern to display the list of cases assigned to a case officer or inspector.</p>
 
 <h2 class="govuk-heading-l">How it works</h2>
+
+<p>This pattern displays a personal list in the prototype. It allows customisation by passing parameters. This means that we can customise elements of the list without duplicating the whole pattern.</p>
+
+<h3 class="govuk-heading-m">Parameters</h3>
+
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "appealId"
+      },
+      value: {
+        text: "The ID of the example appeal"
+      }
+    },
+    {
+      key: {
+        text: "appealLink"
+      },
+      value: {
+        text: "The link the example appeal should go to"
+      }
+    },
+    {
+      key: {
+        text: "linked"
+      },
+      value: {
+        html: "Displays a tag if the appeal is a linked appeal. Can be <strong>lead</strong>, <strong>child</strong> or left empty."
+      }
+    },
+    {
+      key: {
+        text: "actionText"
+      },
+      value: {
+        html: 'The text of the action required link for the example appeal'
+      }
+    },
+    {
+      key: {
+        text: "actionLink"
+      },
+      value: {
+        html: 'The link the action required text should go to'
+      }
+    },
+    {
+      key: {
+        text: "dueBy"
+      },
+      value: {
+        html: 'The date the action on the example appeal is due by'
+      }
+    },
+    {
+      key: {
+        text: "caseStatus"
+      },
+      value: {
+        html: 'The status of the example appeal'
+      }
+    },
+    {
+      key: {
+        text: "exampleData"
+      },
+      value: {
+        html: 'A boolean value to specify whether to show a set of example data as well as the example appeal. Can be <strong>true</strong>, <strong>false</strong> or left empty.'
+      }
+    }
+  ]
+}) }}
 
 {% endblock %}

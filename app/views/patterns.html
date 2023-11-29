@@ -34,8 +34,9 @@
 
      
 
-      <pre>
+      <pre class="code-snippet">
       <code class="language-html">
+      {% raw %}
         {% from &quot;../../../patterns/personal-list/default.njk&quot; import personalList %}
 
         {{ personalList (
@@ -47,7 +48,7 @@
           dueby = &quot;10 July 2023&quot;, 
           casestatus = &quot;Ready to start&quot;
         ) }}
-
+      {% endraw %}
       </code>
       </pre>
 

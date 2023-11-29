@@ -38,13 +38,12 @@
 {% endset -%}
 
 {% set codeHtml %}
-    <pre class="code-snippet">
-      <code>
+    <pre class="code-snippet"><code>
 {% raw -%}{% from "/patterns/personal-list/default.njk" import personalList %}
 
   {{ 
     personalList (
-      appealid = "EXAMPLE",
+        appealid = "EXAMPLE",
         appeallink = "http;//www.google.com",
         linked = "CHILD", 
         actiontext = "Validate appellant case", 
@@ -54,8 +53,7 @@
         exampledata = "true"
     )
   }}{% endraw %}
-      </code>
-      </pre>
+      </code></pre>
 {% endset -%}
 
 {{ govukTabs({

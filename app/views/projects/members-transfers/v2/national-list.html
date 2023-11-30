@@ -42,10 +42,10 @@
 		<div class="govuk-details__text">
 		  
 		  {{ govukSelect({
-			id: "sort",
-			name: "sort",
+			id: "caseStatus",
+			name: "caseStatus",
 			label: {
-			  text: "Show cases with status"
+			  text: "Filter by case status"
 			},
 			items: [
 			  {
@@ -84,7 +84,7 @@
 			id: "inspectorAssigned",
 			name: "inspectorAssigned",
 			label: {
-			  text: "Show cases by inspector assignment"
+			  text: "Filter by inspector status"
 			},
 			items: [
 			  {
@@ -105,10 +105,9 @@
 		  
 		  <div class="govuk-button-group">
 		  
-		  {{ govukButton({
-				text: "Apply",
-				classes: "govuk-button--secondary"
-			  }) }}
+		  <button class="govuk-button govuk-button--secondary" data-module="govuk-button"  onclick="myFunction()">
+				Apply
+				</button>
 			  
 			  <a class="govuk-link" href="#">Clear filter</a>
 			  
@@ -116,6 +115,17 @@
 		  
 		</div>
 	  </details>
+
+	  <script type="text/javascript">
+	  function myFunction() {
+	  	var divsToHide = document.getElementsByClassName("table-row-assigned"); //divsToHide is an array
+    	for(var i = 0; i < divsToHide.length; i++){
+        divsToHide[i].style.visibility = "hidden"; // or
+        divsToHide[i].style.display = "none"; // depending on what you're doing
+    }
+
+	  }
+	  </script>
 
 
   </div>
@@ -129,7 +139,7 @@
 	  
 	  <h2 class="govuk-heading-m">All cases</h2>
 
-	  {% include "projects/closing-cases/v1/includes/national-list-table.html" %}
+	  {% include "projects/members-transfers/v2/includes/national-list-table.html" %}
 
 	{{ govukPagination({
 	  previous: {

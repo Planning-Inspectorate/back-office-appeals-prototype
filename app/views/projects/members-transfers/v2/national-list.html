@@ -117,14 +117,43 @@
 	  </details>
 
 	  <script type="text/javascript">
+
 	  function myFunction() {
-	  	var divsToHide = document.getElementsByClassName("table-row-assigned"); //divsToHide is an array
-    	for(var i = 0; i < divsToHide.length; i++){
-        divsToHide[i].style.visibility = "hidden"; // or
-        divsToHide[i].style.display = "none"; // depending on what you're doing
+		var filterAction = document.getElementById("inspectorAssigned");
+		var value = filterAction.value;
+
+		if (value == "all") {
+					var divsToShow = document.getElementsByClassName("table-row-unassigned"); //divsToHide is an array
+					var divsToShow2 = document.getElementsByClassName("table-row-assigned"); //divsToHide is an array
+    				for(var i = 0; i < divsToShow2.length; i++){
+        			divsToShow2[i].style.display = "table-row"; // depending on what you're doing
+					}
+					for(var i = 0; i < divsToShow.length; i++){
+					divsToShow[i].style.display = "table-row"; // depending on what you're doing		
+          } }
+
+		if (value == "assigned") {
+					var divsToHide = document.getElementsByClassName("table-row-unassigned"); //divsToHide is an array
+					var divsToShow = document.getElementsByClassName("table-row-assigned"); //divsToHide is an array
+    				for(var j = 0; j < divsToHide.length; j++){
+        			divsToHide[j].style.display = "none"; // depending on what you're doing
+					}
+					for(var j = 0; j < divsToShow.length; j++){
+					divsToShow[j].style.display = "table-row"; // depending on what you're doing
+          } }
+
+		if (value == "unassigned") {
+					var divsToHide = document.getElementsByClassName("table-row-assigned"); //divsToHide is an array
+					var divsToShow = document.getElementsByClassName("table-row-unassigned"); //divsToHide is an array
+    				for(var k = 0; k < divsToHide.length; k++){
+        			divsToHide[k].style.display = "none"; // depending on what you're doing
+					}
+					for(var k = 0; k < divsToShow.length; k++){
+					divsToShow[k].style.display = "table-row"; // depending on what you're doing
+          } }
     }
 
-	  }
+
 	  </script>
 
 

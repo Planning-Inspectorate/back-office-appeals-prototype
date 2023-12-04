@@ -1,6 +1,6 @@
 {% extends "layouts/PINS.html" %}
 
-{% set pageName="Assign another?" %}
+{% set pageName="Are you sure?" %}
 
 {% block content %}
 
@@ -14,21 +14,21 @@
 		<!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
 
 		{{ govukRadios({
-		  name: "assign-another",
+		  name: "is-assigned",
 		  fieldset: {
 		    legend: {
-		      text: "Assign a new inspector?",
+		      text: "Remove Harpreet Singh as inspector?",
 		      isPageHeading: true,
 		      classes: "govuk-fieldset__legend--l"
 		    }
 		  },
 		  items: [
 		    {
-		      value: "yes~/projects/members-transfers/v2/assign-inspectors/search",
+		      value: "no~/projects/members-transfers/v2/assign-inspectors/assign-another",
 		      text: "Yes"
 		    },
 		    {
-		      value: "no~/projects/members-transfers/v2/assign-inspectors/case",
+		      value: "yes~/projects/members-transfers/v2/assign-inspectors/case",
 		      text: "No"
 		    }
 		   ]

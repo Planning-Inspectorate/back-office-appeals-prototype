@@ -7,6 +7,20 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
+
+
+		{% if (data['assignanother'] == "no") %}
+			{% set html %}
+			<h3 class="govuk-notification-banner__heading">
+				Harpreet Singh has been removed as inspector on this case.
+			</h3>
+			{% endset %}
+			
+			{{ govukNotificationBanner({
+			html: html,
+			type: 'success'
+			}) }}
+		{% endif %}
 	 	  		  
 	  
 	<span class="govuk-caption-l">Appeal 2110169</span>

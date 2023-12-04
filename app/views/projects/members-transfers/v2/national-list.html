@@ -1,0 +1,200 @@
+{% extends "layouts/PINS-Header-Nav.html" %}
+
+{% set pageName="Case officer home" %}
+
+{% set back = false %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+
+
+	{{ govukInput({
+	  label: {
+	    text: "Search national list",
+	    classes: "govuk-label--l",
+	    isPageHeading: false
+	  },
+	  classes: "",
+	  hint: {
+	    text: "Enter appeal ID or postcode"
+	  },
+	  id: "account-number",
+	  name: "account-number",
+	  inputmode: "numeric",
+	  spellcheck: false
+	}) }}
+
+	<div class="govuk-button-group">
+	  <button class="govuk-button" data-module="govuk-button">
+	    Search
+	  </button>
+	</div>
+		
+	<details class="govuk-details" data-module="govuk-details">
+		<summary class="govuk-details__summary">
+		  <span class="govuk-details__summary-text">
+			Filters
+		  </span>
+		</summary>
+		<div class="govuk-details__text">
+		  
+		  {{ govukSelect({
+			id: "caseStatus",
+			name: "caseStatus",
+			label: {
+			  text: "Filter by case status"
+			},
+			items: [
+			  {
+				value: "all",
+				text: "All",
+				selected: true
+			  },
+			  {
+				value: "ready to start",
+				text: "Ready to start"
+			  },
+			  {
+				value: "LPA questionnaire",
+				text: "LPA questionnaire"
+			  },
+			  {
+				value: "final comment review",
+				text: "Final comment review"
+			  },
+			  {
+				value: "ready final review",
+				text: "Ready for final review"
+			  },
+			  {
+				value: "arrange site visit",
+				text: "Arrange site visit"
+			  },
+			  {
+				value: "completed",
+				text: "Completed"
+			  }
+			]
+		  }) }}
+
+		  {{ govukSelect({
+			id: "inspectorAssigned",
+			name: "inspectorAssigned",
+			label: {
+			  text: "Filter by inspector status"
+			},
+			items: [
+			  {
+				value: "all",
+				text: "All",
+				selected: true
+			  },
+			  {
+				value: "assigned",
+				text: "Assigned"
+			  },
+			  {
+				value: "unassigned",
+				text: "Unassigned"
+			  }
+			]
+		  }) }}
+		  
+		  <div class="govuk-button-group">
+		  
+		  <button class="govuk-button govuk-button--secondary" data-module="govuk-button"  onclick="myFunction()">
+				Apply
+				</button>
+			  
+			  <a class="govuk-link" href="national-list?list=national">Clear filter</a>
+			  
+		  </div>
+		  
+		</div>
+	  </details>
+
+	  <script type="text/javascript">
+
+	  function myFunction() {
+		var filterAction = document.getElementById("inspectorAssigned");
+		var value = filterAction.value;
+
+		if (value == "all") {
+					var divsToShow = document.getElementsByClassName("table-row-unassigned"); //divsToHide is an array
+					var divsToShow2 = document.getElementsByClassName("table-row-assigned"); //divsToHide is an array
+    				for(var i = 0; i < divsToShow2.length; i++){
+        			divsToShow2[i].style.display = "table-row"; // depending on what you're doing
+					}
+					for(var i = 0; i < divsToShow.length; i++){
+					divsToShow[i].style.display = "table-row"; // depending on what you're doing		
+          } }
+
+		if (value == "assigned") {
+					var divsToHide = document.getElementsByClassName("table-row-unassigned"); //divsToHide is an array
+					var divsToShow = document.getElementsByClassName("table-row-assigned"); //divsToHide is an array
+    				for(var j = 0; j < divsToHide.length; j++){
+        			divsToHide[j].style.display = "none"; // depending on what you're doing
+					}
+					for(var j = 0; j < divsToShow.length; j++){
+					divsToShow[j].style.display = "table-row"; // depending on what you're doing
+          } }
+
+		if (value == "unassigned") {
+					var divsToHide = document.getElementsByClassName("table-row-assigned"); //divsToHide is an array
+					var divsToShow = document.getElementsByClassName("table-row-unassigned"); //divsToHide is an array
+    				for(var k = 0; k < divsToHide.length; k++){
+        			divsToHide[k].style.display = "none"; // depending on what you're doing
+					}
+					for(var k = 0; k < divsToShow.length; k++){
+					divsToShow[k].style.display = "table-row"; // depending on what you're doing
+          } }
+    }
+
+
+	  </script>
+
+
+  </div>
+</div>
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+	
+	  
+	  
+	  <h2 class="govuk-heading-m">All cases</h2>
+
+	  {% include "projects/members-transfers/v2/includes/national-list-table.html" %}
+
+	{{ govukPagination({
+	  previous: {
+	    href: "#"
+	  },
+	  next: {
+	    href: "#"
+	  },
+	  items: [
+	    {
+	      number: 1,
+	      current: true,
+	      href: "#"
+	    },
+	    {
+	      number: 2,
+	      href: "#"
+	    },
+	    {
+	      number: 3,
+	      href: "#"
+	    }
+	  ]
+	}) }}
+
+  </div>
+</div>
+
+{% endblock %}

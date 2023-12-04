@@ -88,13 +88,18 @@
 
 		{
 			text: 'Current work',
-			href: 'index?view=current',
+			href: '/index?view=current',
 			active: data['view'] == 'current'
 		  },
 		  {
 			text: 'Archive',
-			href: 'archive?view=archive',
+			href: '/archive?view=archive',
 			active: data['view'] == 'archive'
+		  },
+		  {
+			text: 'Patterns',
+			href: '/patterns?view=patterns',
+			active: data['view'] == 'patterns'
 		  } 
 		]
 	  }) }}

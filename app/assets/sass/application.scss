@@ -148,3 +148,13 @@ $govuk-font-family: Helvetica, Arial, sans-serif;
 .govuk-body-red {
     color: #d4351c;
 }
+
+// Code snippet styling
+
+pre {
+	overflow-y: scroll;
+	border: 1px solid #999;
+	font-size:1.2em;
+	line-height: 1.5em;
+	margin: 0;
+}

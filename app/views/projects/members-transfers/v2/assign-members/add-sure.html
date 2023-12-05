@@ -9,12 +9,8 @@
 
 		<span class="govuk-caption-xl">Appeal 2110166</span>
 
-		{% if (data['is-assigned'] == "yes") %}
-		{% else %}
-		<h1 class="govuk-heading-xl">Assign John Smith to this case?</h1>
-		{% endif %}
 
-       <form action="document-details-removed" method="post" class="govuk-!-margin-top-3" novalidate>
+       <form action="document-details-removed" method="post" novalidate>
 
 		<!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
 
@@ -46,11 +42,11 @@
 		{{ govukRadios({
 		  name: "is-assigned",
 		  fieldset: {
-		    legend: {
-		     text: "john.smith@planninginspectorate.gov.uk",
-		      isPageHeading: false,
-		      classes: "govuk-fieldset__legend--m"
-		    }
+				legend: {
+				text: "Assign John Smith to this case?",
+				classes: "govuk-fieldset__legend--l",
+				isPageHeading: true
+			}
 		  },
 		  items: [
 		    {

@@ -1,0 +1,119 @@
+{% extends "layouts/PINS-admin.html" %}
+
+{% set pageName="Home" %}
+
+{% set back = false %}
+
+{% block content %}
+
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-quarter">
+<ul class="govuk-list govuk-list-bullet">
+      <li><a href="#progress" class="govuk-link--no-visited-state govuk-link--no-underline">Work in progress</a></li>
+      <li><a href="#spikes" class="govuk-link--no-visited-state govuk-link--no-underline">Design spikes</a></li>
+      <li><a href="#dev" class="govuk-link--no-visited-state govuk-link--no-underline">Ready for development</a></li>
+    </ul>
+    </div>
+
+<div class="govuk-grid-column-three-quarters">
+
+  <h1 class="govuk-heading-xl">
+    Post MVP
+  </h1>
+
+    <h2 class="govuk-heading-m" id="progress">Work in progress</h2>
+
+    {{ govukTable({
+  firstCellIsHeader: true,
+  head: [
+    {
+      text: "Name"
+    },
+    {
+      text: "Tickets"
+    },
+    {
+      text: "Related docs"
+    }
+  ],
+  rows: [
+    [
+      {
+        html: "<a href='#'>Interested party comments</a>"
+      },
+      {
+        html: "<a href='https://pins-ds.atlassian.net.mcas.ms/browse/BDPAR-16?McasTsid=20596&McasCtx=4'>BDPAR-16</a>"
+      },
+      {
+      }
+    ]
+  ]
+}) }}
+
+      
+    </ul>
+
+    <h2 class="govuk-heading-m" id="spikes">Design spikes</h2>
+
+        {{ govukTable({
+  firstCellIsHeader: true,
+  head: [
+    {
+      text: "Name"
+    },
+    {
+      text: "Tickets"
+    },
+    {
+      text: "Related docs"
+    }
+  ],
+  rows: [
+    [
+      {
+        html: "<a class='govuk-link' href='projects/case-details-experiment/'>Early case details exploration</a>"
+      },
+      {
+      },
+      {
+      }
+    ]
+  ]
+}) }}
+
+
+	  
+	  <h2 class="govuk-heading-m" id="dev">Ready for development</h2>
+
+    <p>Features that have been refined and are ready to be developed. These prototypes should not change unless a fix is needed or the requirments change.</p>
+
+    {{ govukTable({
+  firstCellIsHeader: true,
+  head: [
+    {
+      text: "Name"
+    },
+    {
+      text: "Tickets"
+    },
+    {
+      text: "Related docs"
+    }
+  ],
+  rows: [
+    
+  ]
+}) }}
+	  
+  </div>
+  
+  
+</div>
+
+
+
+  
+
+{% endblock %}

@@ -19,8 +19,6 @@
 	  type: 'success'
 	}) }}
 	
-	
-	
 	 	  		  
 	  
 	<span class="govuk-caption-l">Appeal 2110166</span>
@@ -105,39 +103,10 @@
 	    </div>
 	    <div id="accordion-default-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-4">
 	      
-		  {% if (data['is-assigned'] == "yes") %}
-
-			{{ govukTable({
-				captionClasses: "govuk-table__caption--m",
-				firstCellIsHeader: true,
-				rows: [
-					[
-					{
-						text: "Case officer"
-					},
-					{
-						html: "John smith<br>john.smith@planninginspectorate.gov.uk"
-					},
-					{
-						html: "<a href='../assign-members/search'>Change</a>"
-					}
-					],
-					[
-					{
-						text: "Inspector"
-					},
-					{
-						text: ""
-					},
-					{
-						html: "<a href='../assign-inspectors/search'>Assign</a>"
-					}
-					]
-				]
-				}) }}
+		  
 
 
-				{% elseif (data['is-assigned'] == "yes") and (data['is-assigned-inspector'] == "yes") %}
+				{% if (data['is-assigned'] == "yes") and (data['is-assigned-inspector'] == "yes") %}
 
 
 				{{ govukTable({
@@ -168,6 +137,37 @@
 						]
 					]
 					}) }}
+
+				{% elseif (data['is-assigned'] == "yes") %}
+
+			{{ govukTable({
+				captionClasses: "govuk-table__caption--m",
+				firstCellIsHeader: true,
+				rows: [
+					[
+					{
+						text: "Case officer"
+					},
+					{
+						html: "John smith<br>john.smith@planninginspectorate.gov.uk"
+					},
+					{
+						html: "<a href='../assign-members/search'>Change</a>"
+					}
+					],
+					[
+					{
+						text: "Inspector"
+					},
+					{
+						text: ""
+					},
+					{
+						html: "<a href='../assign-inspectors/search'>Assign</a>"
+					}
+					]
+				]
+				}) }}
 
 				{% elseif (data['is-assigned-inspector'] == "yes") %}
 

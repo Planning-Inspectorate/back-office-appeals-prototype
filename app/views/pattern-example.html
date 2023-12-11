@@ -1,0 +1,54 @@
+{% extends "layouts/PINS-admin.html" %}
+
+{% set pageName="Home" %}
+
+{% set back = false %}
+
+{% block content %}
+
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-quarter">
+ 
+    <ul class="govuk-list govuk-list-bullet">
+      <li><a href="#progress" class="govuk-link--no-visited-state govuk-link--no-underline">Work in progress</a></li>
+      <li><a href="#review" class="govuk-link--no-visited-state govuk-link--no-underline">Ready for review</a></li>
+      <li><a href="#dev" class="govuk-link--no-visited-state govuk-link--no-underline">Ready for development</a></li>
+    </ul>
+
+    </div>
+
+<div class="govuk-grid-column-three-quarters">
+
+  <h1 class="govuk-heading-xl">
+    Current work
+  </h1>
+
+   {% from "/patterns/personal-list/default.njk" import personalList %}
+
+  {{ 
+    personalList (
+        appealId = "EXAMPLE",
+        appealLink = "http;//www.google.com",
+        linked = "CHILD", 
+        actionText = "Validate appellant case", 
+        actionLink = "#", 
+        dueBy = "10 July 2023", 
+        caseStatus = "Ready to start",
+        exampleData = "false"
+    )
+  }}
+
+	  
+	  
+  </div>
+  
+  
+</div>
+
+
+
+  
+
+{% endblock %}

@@ -77,6 +77,29 @@
 		  }) }}
 
 		  {{ govukSelect({
+			id: "caseStatus",
+			name: "caseStatus",
+			label: {
+			  text: "Filter by case officer status"
+			},
+			items: [
+			  {
+				value: "all",
+				text: "All",
+				selected: true
+			  },
+			  {
+				value: "assigned",
+				text: "Assigned"
+			  },
+			  {
+				value: "unassigned",
+				text: "Unassigned"
+			  }
+			]
+		  }) }}
+
+		  {{ govukSelect({
 			id: "inspectorAssigned",
 			name: "inspectorAssigned",
 			label: {

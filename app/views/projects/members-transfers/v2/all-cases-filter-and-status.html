@@ -1,0 +1,133 @@
+{% extends "layouts/PINS-Header-Nav.html" %}
+
+{% set pageName="Case officer home" %}
+
+{% set back = false %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+<h1 class="govuk-heading-l">All cases</h1>
+
+<form action="all-cases-results" method="POST">
+
+
+	{{ govukInput({
+	  label: {
+	    text: "Search all cases",
+	    classes: "govuk-label--m",
+	    isPageHeading: false
+	  },
+	  classes: "",
+	  hint: {
+	    text: "Enter appeal ID or postcode"
+	  },
+	  id: "account-number",
+	  name: "account-number",
+	  inputmode: "numeric",
+	  spellcheck: false
+	}) }}
+
+		
+		  
+		  {{ govukSelect({
+			id: "caseStatus",
+			name: "caseStatus",
+			label: {
+			  text: "Filter by case status"
+			},
+			items: [
+			  {
+				value: "all",
+				text: "All",
+				selected: true
+			  },
+			  {
+				value: "ready to start",
+				text: "Ready to start"
+			  },
+			  {
+				value: "assign case officer",
+				text: "Assign case officer"
+			  },
+			  {
+				value: "LPA questionnaire",
+				text: "LPA questionnaire"
+			  },
+			  {
+				value: "arrange site visit",
+				text: "Arrange site visit"
+			  },
+			  {
+				value: "completed",
+				text: "Completed"
+			  }
+			]
+		  }) }}
+
+		  {{ govukSelect({
+			id: "caseStatus",
+			name: "caseStatus",
+			label: {
+			  text: "Filter by case officer status"
+			},
+			items: [
+			  {
+				value: "all",
+				text: "All",
+				selected: true
+			  },
+			  {
+				value: "assigned",
+				text: "Assigned"
+			  },
+			  {
+				value: "unassigned",
+				text: "Unassigned"
+			  }
+			]
+		  }) }}
+
+		  {{ govukSelect({
+			id: "inspectorAssigned",
+			name: "inspectorAssigned",
+			label: {
+			  text: "Filter by inspector status"
+			},
+			items: [
+			  {
+				value: "all",
+				text: "All",
+				selected: true
+			  },
+			  {
+				value: "assigned",
+				text: "Assigned"
+			  },
+			  {
+				value: "unassigned",
+				text: "Unassigned"
+			  }
+			]
+		  }) }}
+
+		  	<div class="govuk-button-group">
+	  <button class="govuk-button" data-module="govuk-button">
+	    Search
+	  </button>
+	</div>
+
+	</form>
+
+  </div>
+</div>
+
+
+
+
+  </div>
+</div>
+
+{% endblock %}

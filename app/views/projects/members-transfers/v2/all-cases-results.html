@@ -64,28 +64,6 @@
 			]
 		  }) }}
 
-		  {{ govukSelect({
-			id: "caseStatus",
-			name: "caseStatus",
-			label: {
-			  text: "Filter by case officer status"
-			},
-			items: [
-			  {
-				value: "all",
-				text: "All",
-				selected: true
-			  },
-			  {
-				value: "assigned",
-				text: "Assigned"
-			  },
-			  {
-				value: "unassigned",
-				text: "Unassigned"
-			  }
-			]
-		  }) }}
 
 		  {{ govukSelect({
 			id: "inspectorAssigned",
@@ -124,6 +102,10 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
 	<p class="govuk-!-margin-top-7 govuk-!-margin-bottom-6">Displaying results for <strong>BS1</strong>, <strong>all statusses</strong>, <strong>case officer assigned</strong>, <strong>inspector unassigned</strong></p>
+
+	{{ govukInsetText({
+  text: "Results are displayed with the oldest at the top."
+}) }}
 
 	  <table class="govuk-table">
 <!-- <caption class="govuk-table__caption govuk-table__caption--s">Showing search results for BS</caption> -->

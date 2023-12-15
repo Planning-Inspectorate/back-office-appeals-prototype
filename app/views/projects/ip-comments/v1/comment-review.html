@@ -51,6 +51,8 @@
 
 	  <form action="" method="post" class="govuk-!-margin-top-7">
 
+    <!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
+
       {{ govukRadios({
         name: "commentReview",
         fieldset: {
@@ -62,18 +64,18 @@
         },
         items: [
           {
-            value: "valid",
+            value: "valid~ip-comments",
             text: "Yes, no redaction needed"
           },
           {
-            value: "redactionNeeded",
+            value: "redactionNeeded~comment-redact",
             text: "Yes, but it needs redaction"
           },
             {
               divider: "or"
             },
           {
-            value: "invalid",
+            value: "invalid~invalid",
             text: "No"
           }
         ]

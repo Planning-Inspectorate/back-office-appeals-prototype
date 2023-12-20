@@ -1,0 +1,301 @@
+{% extends "layouts/PINS-Header-Nav.html" %}
+
+{% set pageName="Personal list" %}
+
+{% set back = true %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% if data ['commentReview'] === 'valid' %}
+        <div class="govuk-notification-banner  govuk-notification-banner--success" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+          <div class="govuk-notification-banner__header">
+            <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">Success</h2>
+          </div>
+          <div class="govuk-notification-banner__content"> 
+            <p class="govuk-notification-banner__heading">
+              The comment from Ian Smith has been marked as valid.
+              </p>
+          </div>
+          </div>
+
+    	{% endif %}
+
+<span class="govuk-caption-l">Appeal 2110166</span>
+  <h1 class="govuk-heading-l">Interested party comments</h1>
+
+  </div>
+</div>
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+{% set reviewHtml %}
+  {{ govukTable({
+  caption: "Waiting for review",
+  captionClasses: "govuk-table__caption--m",
+  firstCellIsHeader: false,
+  head: [
+    {
+      text: "Name"
+    },
+    {
+      text: "Email"
+    },
+    {
+      text: "Submitted"
+    },
+    {
+      text: "Action"
+    }
+  ],
+  rows: [
+    [
+        {
+          text: "Ian Smith"
+        },
+        {
+          text: "ian.smith@gmail.com"
+        },
+        {
+          text: "26 Nov 2023"
+        },
+        {
+          html: "<a href='comment-review'>Review</a>"
+        }
+    ],
+    [
+      {
+          text: "Robyn Jenkins"
+        },
+        {
+          text: "robyn.jenkins@hotmail.com"
+        },
+        {
+          text: "27 Nov 2023"
+        },
+        {
+          html: "<a href='#'>Review</a>"
+        }
+    ],
+    [
+      {
+          text: "Cath Fairfield"
+        },
+        {
+          text: "cathyf@gmail.com"
+        },
+        {
+          text: "29 Nov 2023"
+        },
+        {
+          html: "<a href='#'>Review</a>"
+        }
+    ],
+    [
+      {
+          text: "Brian Thompson"
+        },
+        {
+          text: "brian@thompsonbrothers.com"
+        },
+        {
+          text: "1 Dec 2023"
+        },
+        {
+          html: "<a href='#'>Review</a>"
+        }
+    ],
+    [
+      {
+          text: "Dan Brighthouse"
+        },
+        {
+          text: "brighthousedan167@gmail.com"
+        },
+        {
+          text: "3 Dec 2023"
+        },
+        {
+          html: "<a href='#'>Review</a>"
+        }
+    ]
+  ]
+}) }}
+
+{% endset %}
+
+{% set redactHtml %}
+
+{{ govukTable({
+  caption: "Waiting for review",
+  captionClasses: "govuk-table__caption--m",
+  firstCellIsHeader: false,
+  head: [
+    {
+      text: "Name"
+    },
+    {
+      text: "Email"
+    },
+    {
+      text: "Submitted"
+    },
+    {
+      text: "Action"
+    }
+  ],
+  rows: [
+    [
+        {
+          text: "Vic Waterhouse"
+        },
+        {
+          text: "vwaterhouse@ymail.com"
+        },
+        {
+          text: "18 Nov 2023"
+        },
+        {
+          html: "<a href='comment-redact'>Redact</a>"
+        }
+    ],
+    [
+      {
+          text: "Louise Brigham"
+        },
+        {
+          text: "loubrigham@hotmail.com"
+        },
+        {
+          text: "20 Nov 2023"
+        },
+        {
+          html: "<a href='#'>Redact</a>"
+        }
+    ],
+    [
+      {
+          text: "Phil Howick"
+        },
+        {
+          text: "thephilhowick@gmail.com"
+        },
+        {
+          text: "21 Nov 2023"
+        },
+        {
+          html: "<a href='#'>Redact</a>"
+        }
+    ]
+    ]
+}) }}
+
+{% endset %}
+
+{% set validHtml %}
+{{ govukTable({
+  caption: "Waiting for review",
+  captionClasses: "govuk-table__caption--m",
+  firstCellIsHeader: false,
+  head: [
+    {
+      text: "Name"
+    },
+    {
+      text: "Email"
+    },
+    {
+      text: "Submitted"
+    },
+    {
+      text: "Action"
+    }
+  ],
+  rows: [
+    [
+        {
+          text: "Terrance Harper"
+        },
+        {
+          text: "harps@gmail.com"
+        },
+        {
+          text: "16 Nov 2023"
+        },
+        {
+          html: "<a href='comment-view'>View</a>"
+        }
+    ],
+    [
+      {
+          text: "Viola Richardson"
+        },
+        {
+          text: "vrichardson@aol.com"
+        },
+        {
+          text: "16 Nov 2023"
+        },
+        {
+          html: "<a href='#'>View</a>"
+        }
+    ],
+    [
+      {
+          text: "Carla Fenwick"
+        },
+        {
+          text: "carlafenwick@gmail.com"
+        },
+        {
+          text: "17 Nov 2023"
+        },
+        {
+          html: "<a href='#'>View</a>"
+        }
+    ]
+]
+}) }}
+
+{% endset %}
+
+
+   {{ govukTabs({
+  items: [
+    {
+      label: "Waiting for review",
+      id: "review-tab",
+      panel: {
+        html: reviewHtml
+      }
+    },
+    {
+      label: "Waiting for redaction",
+      id: "redact-tab",
+      panel: {
+        html: redactHtml
+      }
+    },
+    {
+      label: "Valid",
+      id: "valid-tab",
+      panel: {
+        html: validHtml
+      }
+    }
+  ]
+}) }} 
+
+
+
+
+
+  </div>
+</div>
+
+{% endblock %}

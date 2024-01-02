@@ -8,7 +8,11 @@
 	<div class="govuk-grid-column-two-thirds">
 	    
 		<span class="govuk-caption-xl">Appeal 2110166</span>
+		{% if (data['is-assigned'] == "yes") %}
+		<h1 class="govuk-heading-xl">Find a new case officer</h1>
+		{% else %}
 		<h1 class="govuk-heading-xl">Find a case officer</h1>
+		{% endif %}
 	  
 	   <form action="" method="post" class="govuk-!-margin-top-9" novalidate>
 	    	
@@ -124,7 +128,7 @@
 	  {% else %}
 
 	  <h2 class="govuk-heading-m govuk-!-margin-top-6">Search results</h2>
-	  <p>Displaying results for <strong>Smith</strong></p>	  
+	  <p>Matches for <strong>Smith</strong></p>	  
 	  
 		{{ govukSummaryList({
 		  rows: [

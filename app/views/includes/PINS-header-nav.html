@@ -82,17 +82,17 @@
 			{% else %}
 				<li class="govuk-header__navigation-item">
 			{% endif %}
-					<a class="govuk-header__link" href="../index?list=personal">
+					<a class="govuk-header__link" href="index?list=personal">
 						Assigned to me
 					</a>
 				</li> 
-				{% if data ['list'] === "national" %}
+				{% if data ['list'] === "all" %}
 				<li class="govuk-header__navigation-item govuk-header__navigation-item--active">
 			{% else %}
 				<li class="govuk-header__navigation-item">
 			{% endif %}
-				<a class="govuk-header__link" href="../national-list?list=national">
-					Search national list
+				<a class="govuk-header__link" href="all-cases?list=all">
+					All cases
 				</a>
 				</li> 
 	        <li class="govuk-header__navigation-item">

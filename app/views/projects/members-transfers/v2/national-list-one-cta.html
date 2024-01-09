@@ -1,0 +1,281 @@
+{% extends "layouts/PINS-Header-Nav.html" %}
+
+{% set pageName="Case officer home" %}
+
+{% set back = false %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+
+
+	{{ govukInput({
+	  label: {
+	    text: "Search national list",
+	    classes: "govuk-label--l",
+	    isPageHeading: false
+	  },
+	  classes: "",
+	  hint: {
+	    text: "Enter appeal ID or postcode"
+	  },
+	  id: "account-number",
+	  name: "account-number",
+	  inputmode: "numeric",
+	  spellcheck: false
+	}) }}
+
+	<details class="govuk-details" data-module="govuk-details">
+		<summary class="govuk-details__summary">
+		  <span class="govuk-details__summary-text">
+			Filters
+		  </span>
+		</summary>
+		<div class="govuk-details__text">
+		  
+		  {{ govukSelect({
+			id: "caseStatus",
+			name: "caseStatus",
+			label: {
+			  text: "Filter by case status"
+			},
+			items: [
+			  {
+				value: "all",
+				text: "All",
+				selected: true
+			  },
+			  {
+				value: "ready to start",
+				text: "Ready to start"
+			  },
+			  {
+				value: "assign case officer",
+				text: "Assign case officer"
+			  },
+			  {
+				value: "LPA questionnaire",
+				text: "LPA questionnaire"
+			  },
+			  {
+				value: "arrange site visit",
+				text: "Arrange site visit"
+			  },
+			  {
+				value: "completed",
+				text: "Completed"
+			  }
+			]
+		  }) }}
+
+		  {{ govukSelect({
+			id: "inspectorAssigned",
+			name: "inspectorAssigned",
+			label: {
+			  text: "Filter by inspector status"
+			},
+			items: [
+			  {
+				value: "all",
+				text: "All",
+				selected: true
+			  },
+			  {
+				value: "assigned",
+				text: "Assigned"
+			  },
+			  {
+				value: "unassigned",
+				text: "Unassigned"
+			  }
+			]
+		  }) }}
+		  
+		</div>
+	  </details>
+
+	  <div class="govuk-button-group">
+	  <button class="govuk-button" data-module="govuk-button" onclick="myFunction()">
+	    Search
+	  </button>
+	  <a class="govuk-link" href="national-list?list=national">Clear search</a>
+	</div>
+
+	  <script type="text/javascript">
+
+	  function myFunction() {
+		var filterAction = document.getElementById("inspectorAssigned");
+		var value = filterAction.value;
+
+		var statusAction = document.getElementById("caseStatus");
+		var value2 = statusAction.value;
+
+		if (value == "all") {
+					var divsToShow = document.getElementsByClassName("table-row-unassigned"); //divsToHide is an array
+					var divsToShow2 = document.getElementsByClassName("table-row-assigned"); //divsToHide is an array
+    				for(var i = 0; i < divsToShow2.length; i++){
+        			divsToShow2[i].style.display = "table-row"; // depending on what you're doing
+					}
+					for(var i = 0; i < divsToShow.length; i++){
+					divsToShow[i].style.display = "table-row"; // depending on what you're doing		
+          } }
+
+		if (value == "assigned") {
+					var divsToHide = document.getElementsByClassName("table-row-unassigned"); //divsToHide is an array
+					var divsToShow = document.getElementsByClassName("table-row-assigned"); //divsToHide is an array
+    				for(var j = 0; j < divsToHide.length; j++){
+        			divsToHide[j].style.display = "none"; // depending on what you're doing
+					}
+					for(var j = 0; j < divsToShow.length; j++){
+					divsToShow[j].style.display = "table-row"; // depending on what you're doing
+          } }
+
+		if (value == "unassigned") {
+					var divsToHide = document.getElementsByClassName("table-row-assigned"); //divsToHide is an array
+					var divsToShow = document.getElementsByClassName("table-row-unassigned"); //divsToHide is an array
+    				for(var k = 0; k < divsToHide.length; k++){
+        			divsToHide[k].style.display = "none"; // depending on what you're doing
+					}
+					for(var k = 0; k < divsToShow.length; k++){
+					divsToShow[k].style.display = "table-row"; // depending on what you're doing
+          } }
+    }
+
+
+	  </script>
+
+
+  </div>
+</div>
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+	
+	  
+	  
+	  <h2 class="govuk-heading-m">All cases</h2>
+
+	  <table class="govuk-table">
+<!-- <caption class="govuk-table__caption govuk-table__caption--s">All cases:</caption> -->
+<thead class="govuk-table__head">
+<tr class="govuk-table__row">
+  <th scope="col" class="govuk-table__header">Appeal ID</th>
+  <th scope="col" class="govuk-table__header">Site address</th>
+  <th scope="col" class="govuk-table__header">Local planning authority</th>
+  <th scope="col" class="govuk-table__header">Householder Appeal</th>
+  <th scope="col" class="govuk-table__header">Status</th>
+</tr>
+</thead>
+<tbody class="govuk-table__body">
+<tr class="govuk-table__row table-row-assigned">
+  <th scope="row" class="govuk-table__header"><a href="assign-members/case.html?list=unset">2110166</a></th>
+  <td class="govuk-table__cell">23 King Street, Bristol, BS17 2FT</td>
+  <td class="govuk-table__cell">Council name</td>
+  <td class="govuk-table__cell">Householder Appeal</td>
+  <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Ready to start</strong></td>
+</tr>
+<tr class="govuk-table__row table-row-unassigned">
+  <th scope="row" class="govuk-table__header"><a href="assign-inspectors/case.html?list=unset">2110169</a></th>
+  <td class="govuk-table__cell">24 Whickham Avenue, Totterdown, Bristol, BS3 6TU</td>
+  <td class="govuk-table__cell">Council name</td>
+  <td class="govuk-table__cell">Householder Appeal</td>
+  <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Ready to start</strong></td>
+</tr>
+<tr class="govuk-table__row table-row-unassigned">
+  <th scope="row" class="govuk-table__header"><a href="assign-inspectors/case.html?list=unset">2110165</a></th>
+  <td class="govuk-table__cell">13 The High Road, Clifton, Bristol, BS9 4GF</td>
+  <td class="govuk-table__cell">Council name</td>
+  <td class="govuk-table__cell">Householder Appeal</td>
+  <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Ready to start</strong></td>
+</tr>
+<tr class="govuk-table__row table-row-unassigned">
+  <th scope="row" class="govuk-table__header"><a href="assign-inspectors/case.html?list=unset">2110167</a></th>
+  <td class="govuk-table__cell">271 Elm Road, Bristol, BS13 6DS</td>
+  <td class="govuk-table__cell">Council name</td>
+  <td class="govuk-table__cell">Householder Appeal</td>
+  <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">LPA questionnaire</strong></td>
+</tr>
+<tr class="govuk-table__row table-row-assigned">
+  <th scope="row" class="govuk-table__header"><a href="assign-members/case.html?list=unset">2110168</a></th>
+  <td class="govuk-table__cell">4 Shropshire Crescent, Bristol, BS4 6VB</td>
+  <td class="govuk-table__cell">Council name</td>
+  <td class="govuk-table__cell">Householder Appeal</td>
+  <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--orange">Assign case officer</strong></td>
+</tr>
+<tr class="govuk-table__row table-row-assigned">
+  <th scope="row" class="govuk-table__header"><a href="assign-members/case.html?list=unset">1234561</a></th>
+  <td class="govuk-table__cell">The Birches, Wessington Way, Bristol, BS12 3XH</td>
+  <td class="govuk-table__cell">Council name</td>
+  <td class="govuk-table__cell">Householder Appeal</td>
+  <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue">Arrange site visit</strong></td>
+</tr>
+<tr class="govuk-table__row table-row-assigned">
+  <th scope="row" class="govuk-table__header"><a href="assign-members/case.html?list=unset">1234562</a></th>
+  <td class="govuk-table__cell">16 The Hollow, Clifton, Bristol, BS17 5TG</td>
+  <td class="govuk-table__cell">Council name</td>
+  <td class="govuk-table__cell">Householder Appeal</td>
+  <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--pink">Issue determination</strong></td>
+</tr>
+<tr class="govuk-table__row table-row-assigned">
+  <th scope="row" class="govuk-table__header"><a href="assign-members/case.html?list=unset">1234563</a></th>
+  <td class="govuk-table__cell">1 County Lane, Bristol, BS16 6CH</td>
+  <td class="govuk-table__cell">Council name</td>
+  <td class="govuk-table__cell">Householder Appeal</td>
+  <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Completed</strong></td>
+</tr>
+<tr class="govuk-table__row table-row-assigned">
+  <th scope="row" class="govuk-table__header"><a href="assign-members/case.html?list=unset">1760278</a></th>
+  <td class="govuk-table__cell">The Old Church House, Hazeldene, BS38 8CB</td>
+  <td class="govuk-table__cell">Council name</td>
+  <td class="govuk-table__cell">Householder Appeal</td>
+  <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Completed</strong></td>
+</tr>
+<tr class="govuk-table__row table-row-assigned">
+  <th scope="row" class="govuk-table__header"><a href="../../closing-cases/v1/static-case-awaiting?list=unset">2936179</a></th>
+  <td class="govuk-table__cell">8 Hanover Street, Totterdown, Bristol BS12 5AS</td>
+  <td class="govuk-table__cell">Council name</td>
+  <td class="govuk-table__cell">Householder Appeal</td>
+  <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Awaiting transfer</strong></td>
+</tr>
+<tr class="govuk-table__row table-row-assigned">
+  <th scope="row" class="govuk-table__header"><a href="../../closing-cases/v1/static-case-closed.html?list=unset">1357682</a></td>
+  <td class="govuk-table__cell">42 Woodford Drive, Bristol, BS6 9HB</td>
+  <td class="govuk-table__cell">Council name</td>
+  <td class="govuk-table__cell">Householder Appeal</td>
+  <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Closed</strong></td>
+</tr>
+</tbody>
+</table>
+
+
+	{{ govukPagination({
+	  previous: {
+	    href: "#"
+	  },
+	  next: {
+	    href: "#"
+	  },
+	  items: [
+	    {
+	      number: 1,
+	      current: true,
+	      href: "#"
+	    },
+	    {
+	      number: 2,
+	      href: "#"
+	    },
+	    {
+	      number: 3,
+	      href: "#"
+	    }
+	  ]
+	}) }}
+
+  </div>
+</div>
+
+{% endblock %}

@@ -10,7 +10,7 @@
       {% if data ['relappealid'] %}
 
         {{ govukErrorSummary({
-          titleText: "No appeal was found with this ID",
+          titleText: "No appeal was found with this reference",
           errorList: [
             {
               text: "Enter an appeal ID",
@@ -30,7 +30,7 @@
 
         {{ govukInput({
           label: {
-            text: "What is the appeal ID?",
+            text: "What is the appeal reference?",
             classes: "govuk-label--l",
             isPageHeading: true
           },
@@ -46,7 +46,7 @@
 
         {{ govukInput({
           label: {
-            text: "What is the appeal ID?",
+            text: "What is the appeal reference?",
             classes: "govuk-label--l",
             isPageHeading: true
           },

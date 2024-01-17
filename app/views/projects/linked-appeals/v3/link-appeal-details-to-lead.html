@@ -1,0 +1,102 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Case details" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Appeal 2110166</span>
+      <h1 class="govuk-heading-l">Details of the appeal you're linking to</h1>
+
+      <table class="govuk-table">
+      <tbody class="govuk-table__body">
+
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">Appeal reference</th>
+          <td class="govuk-table__cell">{{ data ['appealid'] }}
+            {% if data ['relappealid'] === "7349815" %}
+                  (Horizon)
+             {% endif %}
+          </td>
+        </tr>
+
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">Appeal status</th>
+          <td class="govuk-table__cell">Ready to start</td>
+        </tr>
+
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">Appeal type</th>
+          <td class="govuk-table__cell">Householder appeal (HAS)</td>
+        </tr>
+
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">Site address</th>
+          <td class="govuk-table__cell">Address line 1, Address line 2, Town or city, Postcode</td>
+        </tr>
+
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">Local planning authority</th>
+          <td class="govuk-table__cell">Council name</td>
+        </tr>
+
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">Appellant name</th>
+          <td class="govuk-table__cell">Fiona Shell</td>
+        </tr>
+
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">Agent name</th>
+          <td class="govuk-table__cell">Naomi Jonhson</td>
+        </tr>
+
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">Submission date</th>
+          <td class="govuk-table__cell">7 September 2023</td>
+        </tr>
+
+      </tbody>
+    </table>
+    <form action="index" method="post" class="govuk-!-margin-top-9">
+
+        {{ govukRadios({
+          name: "which-appeal-is-the-parent",
+          fieldset: {
+            legend: {
+              text: "Is this the appeal you want to link?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+                text: "Only child appeals can be added to a lead appeal."
+              },
+          items: [
+            {
+              value: "2110166",
+              text: "Yes, this is a child appeal of 2110166"
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "no",
+              text: "No, return to search"
+            }
+          ]
+        }) }}
+
+
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </form>
+
+    </div>
+  </div>
+
+
+{% endblock %}

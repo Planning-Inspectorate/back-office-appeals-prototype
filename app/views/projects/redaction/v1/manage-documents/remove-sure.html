@@ -1,0 +1,78 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Are you sure?" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+	    <span class="govuk-caption-l">Manage documents</span>
+		<h1 class="govuk-heading-l">Are you sure you want to remove this document?</h1>
+				
+		
+		{{ govukSummaryList({
+		  classes: 'govuk-summary-list',
+		  rows: [
+		    {
+		      key: {
+		        text: "File"
+		      },
+		      value: {
+		        html: 'tree-preservation-order-A.pdf'
+		      }
+		    },{
+		      key: {
+		        text: "Version"
+		      },
+		      value: {
+		        text: '4'
+		      }
+		    }
+		   
+		    
+		  ]
+		}) }}
+
+       <form action="document-details-removed" method="post" class="govuk-!-margin-top-9" novalidate>
+
+		<!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
+
+	   {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+		{{ govukRadios({
+		  name: "remove-file",
+		  fieldset: {
+		    legend: {
+		      text: "",
+		      isPageHeading: false,
+		      classes: "govuk-fieldset__legend--m"
+		    }
+		  },
+		  items: [
+		    {
+		      value: "yes~/projects/file-upload/v2/manage-documents/document-details-removed",
+		      text: "Yes"
+		    },
+		    {
+		      value: "no~/projects/file-upload/v2/manage-documents/document-details-new-v4",
+		      text: "No"
+		    }
+		   ]
+		}) }}
+
+		{{ govukButton({
+          text: "Continue"
+        }) }}
+
+
+
+
+
+	  </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

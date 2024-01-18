@@ -1,0 +1,107 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Add documents" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+  	<span class="govuk-caption-l">Add document details</span>
+	<h1 class="govuk-heading-l">Tree preservation order documents</h1>
+
+	    <form action="lpa-questionnaire-added" method="post" class="govuk-!-margin-top-9" novalidate>
+
+	    <!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
+
+	<h2 class="govuk-heading-m">tree-preservation-order-A.pdf</h2>
+
+	{{ govukDateInput({
+	  id: "date-recieved",
+	  namePrefix: "date-recieved",
+	  fieldset: {
+	    legend: {
+	      text: "Date recieved"
+	    }
+	  }
+	}) }}
+
+	{{ govukRadios({
+	  name: "redaction",
+	  fieldset: {
+	    legend: {
+	      text: "Redaction"
+	    }
+	  },
+	  items: [
+	    {
+	      value: "redacted",
+	      text: "Redacted"
+	    },
+	    {
+	      value: "unredacted",
+	      text: "Unredacted"
+	    },
+		    {
+		  divider: "or"
+		},
+	    {
+	      value: "No redaction required",
+	      text: "No redaction required"
+	    }
+	  ]
+	}) }}
+
+	<hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+	<h2 class="govuk-heading-m">tree-preservation-order-B.pdf</h2>
+
+	{{ govukDateInput({
+	  id: "date-recieved",
+	  namePrefix: "date-recieved",
+	  fieldset: {
+	    legend: {
+	      text: "Date recieved"
+	    }
+	  }
+	}) }}
+
+	{{ govukRadios({
+	  name: "redaction2",
+	  fieldset: {
+	    legend: {
+	      text: "Redaction"
+	    }
+	  },
+	  items: [
+	    {
+	      value: "redacted",
+	      text: "Redacted"
+	    },
+	    {
+	      value: "unredacted",
+	      text: "Unredacted"
+	    },
+		    {
+		  divider: "or"
+		},
+	    {
+	      value: "No redaction required",
+	      text: "No redaction required"
+	    }
+	  ]
+	}) }}
+
+
+  	 {{ govukButton({
+        text: "Continue",
+        href: "lpa-questionnaire-added"
+      }) }}
+
+	  </form>
+
+
+  </div>
+</div>
+
+{% endblock %}

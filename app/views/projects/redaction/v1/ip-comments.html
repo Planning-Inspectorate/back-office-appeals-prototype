@@ -1,0 +1,256 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set pageName="Personal list" %}
+
+{% set back = true %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% if data ['commentReview'] === 'valid' %}
+        <div class="govuk-notification-banner  govuk-notification-banner--success" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+          <div class="govuk-notification-banner__header">
+            <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">Success</h2>
+          </div>
+          <div class="govuk-notification-banner__content"> 
+            <p class="govuk-notification-banner__heading">
+              The comment from Ian Smith has been marked as valid.
+              </p>
+          </div>
+          </div>
+
+    	{% endif %}
+
+<span class="govuk-caption-l">Appeal 2110166</span>
+  <h1 class="govuk-heading-l">Interested party comments</h1>
+
+  </div>
+</div>
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <details class="govuk-details" data-module="govuk-details">
+		  <summary class="govuk-details__summary">
+		    <span class="govuk-details__summary-text">
+		      Filters
+		    </span>
+		  </summary>
+		  <div class="govuk-details__text">
+		    
+		    {{ govukSelect({
+			  id: "commentDisplay",
+			  name: "commentDisplay",
+			  label: {
+			    text: "Show comments that are"
+			  },
+			  items: [
+			    {
+			      value: "all",
+			      text: "All comments",
+			      selected: true
+			    },
+			    {
+			      value: "awaiting review",
+			      text: "Awaiting review"
+			    },
+			    {
+			      value: "awaiting redaction",
+			      text: "Awaiting redaction"
+			    },
+			    {
+			      value: "valid",
+			      text: "Valid"
+			    }
+			  ]
+			}) }}
+			
+			<div class="govuk-button-group">
+			
+			{{ govukButton({
+				  text: "Apply",
+				  classes: "govuk-button--secondary"
+				}) }}
+				
+				<a class="govuk-link" href="#">Clear filter</a>
+				
+			</div>
+		    
+		  </div>
+		</details>
+
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Comment from Ian Smith</h2>
+        <ul class="govuk-summary-card__actions">
+          <li class="govuk-summary-card__action">  {% if data ['commentReview'] === 'valid' %}<a class="govuk-link" href="comment-review">Change status<span class="govuk-visually-hidden"> of comment from Ian Smith</span>{% else %} <a class="govuk-link" href="comment-review">Review<span class="govuk-visually-hidden"> comment from Ian Smith</span>{% endif %}</a>
+          </li>
+        </ul>
+      </div>
+          <div class="govuk-summary-card__content">
+            <dl class="govuk-summary-list">
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Name
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  Ian Smith
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Email
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  ian.smith@gmail.com
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Comment
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  Having reviewed the proposal I would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead.
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Status
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {% if data ['commentReview'] === 'valid' %}
+                    Valid
+                    {% else %}
+                  Awaiting review
+                  {% endif %}
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+
+         <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Comment from Sam Richards</h2>
+        <ul class="govuk-summary-card__actions">
+          <li class="govuk-summary-card__action"> <a class="govuk-link" href="#">Change status<span class="govuk-visually-hidden"> of comment from Sam Richards</span></a> | <a class="govuk-link" href="#">Redact<span class="govuk-visually-hidden"> comment from Sam Richards</span></a>
+          </li>
+        </ul>
+      </div>
+          <div class="govuk-summary-card__content">
+            <dl class="govuk-summary-list">
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Name
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  Sam Richards
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Email
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  sam.w.richards@ymail.com
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Comment
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  Not near me you don't. What a horrendous eyesore. The home values here are linked to our position close to nature, furthering industrial activity on the outskirts of an area of national beauty like this will devalue houses and diminish the reputation we have nationwide as a visitor destination. The design does not look like it has been done sympathetically to the existing local buildings. Terrible.
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Status
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  Awaiting redaction
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+
+     <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Comment from Jayne Smith</h2>
+        <ul class="govuk-summary-card__actions">
+          <li class="govuk-summary-card__action"> <a class="govuk-link" href="#">Change status<span class="govuk-visually-hidden"> comment from Jayne Smith</span></a>
+          </li>
+        </ul>
+      </div>
+          <div class="govuk-summary-card__content">
+            <dl class="govuk-summary-list">
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Name
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  Jayne Smith
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Email
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  thejaynesmith@hotmail.com
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Comment
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  On balance I think this should go ahead. It will bring much needed jobs to the area. I do wish they'd consider the colour of the roof to make it more reflective of the surroundings but we need the investment.
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Status
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  Valid
+                </dd>
+              </div>
+            </dl>
+
+          </div>
+        </div>
+
+	  {{ govukPagination({
+	  previous: {
+	    href: "#"
+	  },
+	  next: {
+	    href: "#"
+	  },
+	  items: [
+	    {
+	      number: 1,
+	      current: true,
+	      href: "#"
+	    },
+	    {
+	      number: 2,
+	      href: "#"
+	    },
+	    {
+	      number: 3,
+	      href: "#"
+	    }
+	  ]
+	}) }}
+
+  </div>
+</div>
+
+{% endblock %}

@@ -7,7 +7,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {% if data ['appealid'] %}
+      {% if data ['appealid'] == "5176892" %}
 
         {{ govukErrorSummary({
           titleText: "No appeal was found with this reference",
@@ -28,7 +28,7 @@
 
     
 
-      {% if data ['appealid'] %}
+      {% if data ['appealid'] == "5176892" %}
 
         {{ govukInput({
           label: {

@@ -1,0 +1,164 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Appellant Case" %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+	  
+	  
+  {% set html %}
+	  <h3 class="govuk-notification-banner__heading">
+	    Document added
+	  </h3>
+	{% endset %}
+
+	{{ govukNotificationBanner({
+	  html: html,
+	  type: 'success'
+	}) }}
+
+	<span class="govuk-caption-l">Current version</span>
+	<h1 class="govuk-heading-l">right-of-way-v2.pdf</h1>	
+	
+	
+	{{ govukSummaryList({
+	  classes: 'govuk-summary-list',
+	  rows: [
+	    {
+	      key: {
+	        text: "File"
+	      },
+	      value: {
+	        html: '<a href="#">right-of-way-v2.pdf</a>'
+	      }
+	    },{
+	      key: {
+	        text: "Version"
+	      },
+	      value: {
+	        text: '2'
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Date received"
+	      },
+	      value: {
+	        html: "1 Feb 2023"
+	      },
+	      actions: {
+	        items: [
+	          {
+	            href: "file-details",
+	            text: "Change",
+	            visuallyHiddenText: "Tree preservation order extent"
+	          }
+	        ]
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Redaction"
+	      },
+	      value: {
+	        html: "Redacted"
+	      }
+	    }
+	  ]
+	}) }}
+	
+	
+	{% include "projects/file-upload/v2/manage-documents/includes/document-actions.html" %} 		
+	
+	
+  </div>
+</div>
+
+
+<div class="govuk-grid-row govuk-!-padding-top-6">
+  <div class="govuk-grid-column-full">
+	  
+	  
+	  {% include "projects/file-upload/v2/manage-documents/includes/document-history-heading.html" %} 
+	  
+	  
+	  <details class="govuk-details" data-module="govuk-details">
+	  <summary class="govuk-details__summary">
+	    <span class="govuk-details__summary-text">
+	      Document history
+	    </span>
+	  </summary>
+	  <div class="govuk-details__text">
+	    
+    {{ govukTable({
+	  captionClasses: "govuk-table__caption--m",
+	  firstCellIsHeader: false,
+	  classes : " govuk-!-font-size-16",
+	  head: [
+	    {
+	      text: "Version"
+	    },
+	    {
+	      text: "Document name"
+	    },
+	    {
+	      text: "Activity"
+	    },
+	    {
+	      text: "Redaction"
+	    },
+	    {
+	      text: "Action"
+	    }
+	  ],
+	  rows: [
+	    [
+	      {
+	        html: "2"
+	      },
+	      {
+	        html: "<p class='govuk-!-font-size-16'><a href='manage-documents/document-details.html'>right-of-way-v2.pdf</a></p><p><strong class='govuk-tag govuk-tag'>Current version</strong></p>"
+	      },
+	      {
+	        html: "<strong>Uploaded:</strong> 09:48, 22 Mar 2023, <br>by Jane Watson"
+	      },
+	      {
+	        text: "Redacted"
+	      },
+	      {
+	        html: "<a href='remove-sure'>Remove</a>"
+	      }
+	    ],[
+	      {
+	        html: "1"
+	      },
+	      {
+	        html: "<p class='govuk-!-font-size-16'>right-of-way.pdf</p>"
+	      },
+  	      {
+	        html: "<p class='govuk-!-font-size-16'><strong>Removed:</strong> 10:01, 23 Mar 2023, John Smith</p>
+		        <p class='govuk-!-font-size-16'><strong>Uploaded:</strong> 09:48, 22 Mar 2023, Jane Watson</p>"
+	      },
+
+	      {
+	        text: "Redacted"
+	      },
+	      {
+	        html: ""
+	      }
+	    ]	  ]
+	}) }}
+	    
+	  </div>
+	</details>
+	  	  
+	  
+
+	</div>
+</div>
+
+
+{% endblock %}

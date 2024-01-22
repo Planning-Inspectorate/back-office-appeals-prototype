@@ -1,0 +1,18 @@
+{#
+For guidance on how to use layouts see:
+https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
+#}
+
+{% extends "layouts/main.html" %}
+
+{# Overrides the GOVUK standard header
+	 with a PINs back office header #}
+
+{% block header %}
+	{% include "includes/PINS-header-admin-post-mvp.html" %}
+	{# Add highlights component #}
+	<link rel="stylesheet" href="/public/css/highlights/default.min.css">
+	<script src="/public/javascripts/highlights/highlight.min.js"></script>
+
+	<script>hljs.highlightAll();</script>
+{% endblock %}

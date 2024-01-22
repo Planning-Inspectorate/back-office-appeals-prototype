@@ -1,4 +1,4 @@
-{% extends "layouts/PINS-Simple.html" %}
+{% extends "layouts/PINS-Simple-post-mvp.html" %}
 
 {% set pageName="Case details" %}
 
@@ -6,85 +6,67 @@
 
 {% block content %}
 
-	
-	
-	{% set html %}
-	  <p class="govuk-notification-banner__heading">
-	    No longer required
-	  </p>
-	{% endset %}
-	
-	{{ govukNotificationBanner({
-	  html: html
-	}) }}
 
-	<span class="govuk-caption-l">Appeal a planning decision</span>
-	<h1 class="govuk-heading-l">Add Checked Documents/Redaction step to Validation Journey</h1>
-	
-	<p class="govuk-body-l">There is a need to redact inflammatory comments and personally identifiable information from documents which have been submitted through the FO service BEFORE they are sent to the LPA for Questionnaire Review Stage.</p>
-	
-	{{ govukTable({
-	  captionClasses: "govuk-table__caption--m",
-	  firstCellIsHeader: true,
-	
-	  rows: [
-	    [
-	      {
-	        text: "Typical user"
-	      },
-	      {
-	        text: "Case officers"
-	      }
-	    ],
-	    [
-	      {
-	        text: "User story"
-	      },
-	      {
-	        text: "I need to check and acknowledge if a document has been redacted before issuing a valid outcome"
-	      }
-	    ],
-	    [
-	      {
-	        text: "Jira ticket"
-	      },
-	      {
-	        html: '<a href="https://pins-ds.atlassian.net.mcas.ms/jira/software/projects/BOATD/boards/210?assignee=712020%3Aac114836-b426-4952-b4f0-9bbbaaa3061a&selectedIssue=BOATD-114">BOAT-114: Add Checked Documents/Redaction step to Validation Journey</a>'
-	      }
-	    ]
-	  ]
-	}) }}
-	
-	<h1 class="govuk-heading-m">Version 1
-	
-	    {{govukTag({
-	        text: "New",
-	        classes: "govuk-!-margin-left-2 govuk-tag--green"
-	      })}}
-	
-	</h1>
-	<!--
-	<p class="govuk-body">Research due on </p>
-	-->
-	
-	<ul class="govuk-list">
-		<li><a class="govuk-link" href="v1/task-list.html">LPA option 1</a></li>
-		<li><a class="govuk-link" href="v1/task-list-B.html">LPA option 2</a></li>
-		<li><a class="govuk-link" href="v1/task-list-C.html">LPA option 3</a></li>
-	</ul>
-	
-	<ul class="govuk-list">
-		<li><a class="govuk-link" href="v1/redact-files-A.html">redact list option 1</a></li>
-		<li><a class="govuk-link" href="v1/redact-files-A.html">redact list option 2</a></li>
-	</ul>
-	
-	<!--
-	<a href="v1/missing-evidence-case.html" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
-	    View prototype
-	    <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
-	      <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
-	    </svg></a>
-	-->
-	
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+<span class="govuk-caption-l">Appeal a planning decision</span>
+<h1 class="govuk-heading-l">Redaction</h1>
+
+{{ govukTable({
+  captionClasses: "govuk-table__caption--m",
+  firstCellIsHeader: true,
+
+  rows: [
+    [
+      {
+        text: "Typical user"
+      },
+      {
+        text: "Case officers"
+      }
+    ],
+    [
+      {
+        text: "User story"
+      },
+      {
+        html: "<ul class='govuk-list govuk-list--bullet'><li>As a case officer I need to redact documents.</li></ul>"
+      }
+    ],
+    [
+      {
+        text: "Jira ticket"
+      },
+      {
+        html: ''
+      }
+    ]
+  ]
+}) }}
+  
+
+<h1 class="govuk-heading-m">Version 1
+
+  {{govukTag({
+      text: "In progress",
+      classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+    })}}
+
+</h1>
+
+<h2 class="govuk-heading-s">Features:</h2>
+<ul class='govuk-list govuk-list--bullet'><li>redact a document from the document details page</li></ul>
+
+<a href="v1/lpa-questionnaire?list=none" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
+  View prototype
+  <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+    <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+  </svg></a>
+
+  <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+</div>
+</div>
 
 {% endblock %}

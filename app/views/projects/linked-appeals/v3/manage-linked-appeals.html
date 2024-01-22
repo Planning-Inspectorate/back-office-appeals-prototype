@@ -44,50 +44,10 @@
           <div class="govuk-grid-row">
             <div class="govuk-grid-column-full">
         
+         {% if data ['which-appeal-is-the-parent'] === "2110166" %}
             
-            <!-- show if child appeal -->
-
             {{ govukTable({
-              caption: "Lead appeal of 2110166",
-              captionClasses: "govuk-table__caption--m govuk-!-margin-top-6",
-              firstCellIsHeader: false,
-              head: [
-                {
-                  text: "Appeal ID"
-                },
-                {
-                  text: "Appeal type",
-                  classes: "govuk-!-width-one-half"
-                },
-                {
-                  text: "Action",
-                  classes: "govuk-!-width-one-quarter"
-                }
-              ],
-              rows: [
-                [
-                  {
-                    html: "<a href='case'>2188616</a> (Horizon)"
-                  },
-                  {
-                    text: "Listed buildings"
-                  },
-                  {
-                    html: "<a href='unlink-appeal'>Unlink</a>"
-                  }
-                ]
-              ]
-            }) }}
-
-            
-            <!---->
-
-
-           
-              
-
-            {{ govukTable({
-              caption: "Other child appeals of 2188616",
+              caption: "Child appeals of 2188616",
               captionClasses: "govuk-table__caption--m govuk-!-margin-top-6",
               firstCellIsHeader: false,
               head: [
@@ -140,6 +100,91 @@
               ]
             }) }}
 
+            {% else %}
+
+
+          
+            {{ govukTable({
+              caption: "Lead appeal of 2110166",
+              captionClasses: "govuk-table__caption--m govuk-!-margin-top-6",
+              firstCellIsHeader: false,
+              head: [
+                {
+                  text: "Appeal ID"
+                },
+                {
+                  text: "Appeal type",
+                  classes: "govuk-!-width-one-half"
+                },
+                {
+                  text: "Action",
+                  classes: "govuk-!-width-one-quarter"
+                }
+              ],
+              rows: [
+                [
+                  {
+                    html: "<a href='case'>2188616</a> (Horizon)"
+                  },
+                  {
+                    text: "Listed buildings"
+                  },
+                  {
+                    html: "<a href='unlink-appeal'>Unlink</a>"
+                  }
+                ]
+              ]
+            }) }}
+
+            
+            <!---->
+
+
+           
+              
+
+            {{ govukTable({
+              caption: "Other child appeals of 2188616",
+              captionClasses: "govuk-table__caption--m govuk-!-margin-top-6",
+              firstCellIsHeader: false,
+              head: [
+                {
+                  text: "Appeal ID"
+                },
+                {
+                  text: "Appeal type",
+                  classes: "govuk-!-width-three-quarters"
+                }
+              ],
+              rows: [
+                [
+                  {
+                    html: "<a href='case'>2137616</a>"
+                  },
+                  {
+                    text: "Householder appeal (HAS)"
+                  }
+                ],
+                [
+                  {
+                    html: "<a href='case'>5613616</a>"
+                  },
+                  {
+                    text: "Householder appeal (HAS)"
+                  }
+                ],
+                [
+                  {
+                    html: "<a href='case'>2157816</a>"
+                  },
+                  {
+                    text: "Householder appeal (HAS)"
+                  }
+                ]
+              ]
+            }) }}
+
+{% endif %}
 
     </div>
   </div>

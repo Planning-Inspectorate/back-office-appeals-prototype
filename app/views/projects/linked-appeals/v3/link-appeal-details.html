@@ -59,8 +59,10 @@
 
       </tbody>
     </table>
-    	
-      <form action="index" method="post" class="govuk-!-margin-top-9">
+    <form action="index" method="post" class="govuk-!-margin-top-9">
+
+    {% if data ['which-appeal-is-the-parent'] === "2110166" %}
+
         {{ govukRadios({
           name: "which-appeal-is-the-parent",
           fieldset: {
@@ -70,11 +72,10 @@
               classes: "govuk-fieldset__legend--m"
             }
           },
+          hint: {
+                text: "Only child appeals can be added to a lead appeal."
+              },
           items: [
-            {
-              value: data ['appealid'],
-              text: "Yes, make this the lead appeal for 2110166"
-            },
             {
               value: "2110166",
               text: "Yes, this is a child appeal of 2110166"
@@ -88,6 +89,41 @@
             }
           ]
         }) }}
+
+        {% else %}
+            
+            {{ govukRadios({
+              name: "which-appeal-is-the-parent",
+              fieldset: {
+                legend: {
+                  text: "Is this the appeal you want to link?",
+                  isPageHeading: false,
+                  classes: "govuk-fieldset__legend--m"
+                }
+              },
+              
+              items: [
+                {
+                  value: data ['appealid'],
+                  text: "Yes, make this the lead appeal for 2110166"
+                },
+                {
+                  value: "2110166",
+                  text: "Yes, this is a child appeal of 2110166"
+                },
+                {
+                  divider: "or"
+                },
+                {
+                  value: "no",
+                  text: "No, return to search"
+                }
+              ]
+            }) }}
+
+            {% endif %}
+    	
+
 
       {{ govukButton({
         text: "Continue"

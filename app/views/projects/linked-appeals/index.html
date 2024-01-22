@@ -73,6 +73,24 @@
             </li>
               </ul>
 
+
+             <p>There are four possible variations of the page that is returned when trying to link to an appeal, they are:</p>
+    
+          <ul class="govuk-list govuk-list--bullet">
+            <li>
+              <a href="v3/link-appeal-details-default">Default</a> - This is the screen if there are no existing links for the appeals.
+              </li>
+              <li>
+              <a href="v3/link-appeal-details-to-lead">Linking from a lead appeal</a> - This is the screen if the appeal you are linking <strong>from</strong> is already a lead, therefore the appeal you're linking to can only be a child.
+              </li>
+              <li>
+              <a href="v3/link-appeal-details-conflict">Linking to a lead appeal</a> - This is the screen if the appeal you are linking <strong>to</strong> is already a lead, therefore the appeal you're linking from can only be a child.
+              </li>
+              <li>
+              <a href="v3/link-appeal-details-conflict-two">Linking not possible</a> - This is the screen if the appeal you are trying to link to is a child appeal, therefore cannot be linked to. (It can't have two leads.)
+              </li>
+              </ul>
+
     
     
               {{ govukButton({

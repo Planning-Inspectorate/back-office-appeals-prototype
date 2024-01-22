@@ -152,9 +152,16 @@
                           <!-- Display correct action -->
                           {% if data ['unlinkappeal'] === "yes" %}
                           {% elseif data ['appealid'] %}
-                          <a href="manage-linked-appeals.html">Manage<span class="govuk-visually-hidden"> linked appeals</span></a> | 
+                          <a href="manage-linked-appeals.html">Manage<span class="govuk-visually-hidden"> linked appeals</span></a>
                           {% endif %}
+                          {% if data ['appealid'] %}
+                            {% if data ['which-appeal-is-the-parent'] === data ['appealid'] %}
+                            {% else %}
+                            | <a href="link-appeal-reference">Add<span class="govuk-visually-hidden"> a linked appeal</span></a>
+                            {% endif %}
+                          {% else %}
                           <a href="link-appeal-reference">Add<span class="govuk-visually-hidden"> a linked appeal</span></a>
+                          {% endif %}
                           <!-- / Display correct actions -->
                           </td>
                       </tr>

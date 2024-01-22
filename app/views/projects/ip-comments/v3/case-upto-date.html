@@ -1,0 +1,466 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set pageName="Case details" %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+    
+
+    <!--	<span class="govuk-caption-l">Appeal 2110166</span> -->
+    <span class="govuk-caption-l">Appeal 2110166</span>
+    	<h1 class="govuk-heading-l">Case details</h1>
+      <strong class="govuk-tag govuk-tag--purple">
+        IP Comments
+      </strong>
+
+      
+      
+
+      {% include "/includes/appeal-content/lpa-has-appeal-meta.html" %}
+      <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+
+      <div class="govuk-accordion govuk-!-margin-top-9" data-module="govuk-accordion" id="accordion-default">
+        <div class="govuk-accordion__section">
+          <div class="govuk-accordion__section-header">
+            <h2 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-1">
+                Case overview
+              </span>
+            </h2>
+          </div>
+          <div id="accordion-default-content-1" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-1">
+            {{ govukTable({
+              captionClasses: "govuk-table__caption--m",
+              firstCellIsHeader: true,
+              rows: [
+                [
+                  {
+                    text: "Appeal type"
+                  },
+                  {
+                    text: "Section 78"
+                  },
+                  {
+                    html: "<a href='change-appeal-type.html'>Change</a>"
+                  }
+                ],
+                [
+                  {
+                    text: "Case procedure"
+                  },
+                  {
+                    text: "Written"
+                  },
+                  {
+                    html: "<a href='#'>Change</a>"
+                  }
+                ],
+                [
+                  {
+                    text: "Appellant name"
+                  },
+                  {
+                    text: "Fiona Shell"
+                  },
+                  {
+                    html: "<a href='#'>Change</a>"
+                  }
+                ],[
+                  {
+                    text: "Agent name"
+                  },
+                  {
+                    text: "Naomi Jonhson"
+                  },
+                  {
+                    html: "<a href='#'>Change</a>"
+                  }
+                ],[
+                  {
+                    text: "Linked appeals"
+                  },
+                  {
+                    html: "<a href='.'>21/725284</a>"
+                  },
+                  {
+                    html: "<a href='#'>Change</a>"
+                  }
+                ],[
+                  {
+                    text: "Related appeals"
+                  },
+                  {
+                    html: "<a href='.'>21/725234</a>"
+                  },
+                  {
+                    html: "<a href='#'>Change</a>"
+                  }
+                ],[
+                  {
+                    text: "Allocation details"
+                  },
+                  {
+                    text: "F / General Allocation"
+                  },
+                  {
+                    html: "<a href='#'>Change</a>"
+                  }
+                ],[
+                  {
+                    text: "LPA reference"
+                  },
+                  {
+                    text: "22/00118/FULL"
+                  },
+                  {
+                    html: "<a href='#'>Change</a>"
+                  }
+                ],[
+                  {
+                    text: "Decision"
+                  },
+                  {
+                    text: "Not issued yet"
+                  },
+                  {
+                    html: "<a href='.'>Change</a>"
+                  }
+                ]
+              ]
+            }) }}
+          
+          </div>
+        </div>
+
+        
+
+        <div class="govuk-accordion__section">
+          <div class="govuk-accordion__section-header">
+            <h2 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-5">
+                Site details
+              </span>
+            </h2>
+          </div>
+
+          <div id="accordion-default-content-5" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-5">
+          	<dl class="govuk-summary-list">
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Inspection access (LPA answer)
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  <span>No answer provided</span>
+                </dd>
+                  <dd class="govuk-summary-list__actions">
+                      <a class="govuk-link" href="/appeals-service/appeal-details/441/change-appeal-details/lpa-inspector-access/">
+                      Change</a>
+                  </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Inspection access (appellant answer)
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  <span>No</span>
+                </dd>
+                  <dd class="govuk-summary-list__actions">
+                      <a class="govuk-link" href="/appeals-service/appeal-details/441/change-appeal-details/appellant-case-inspector-access">
+                      Change</a>
+                  </dd>
+              </div>
+              
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Potential safety risks (LPA answer)
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  <span>No answer provided</span>
+                </dd>
+                  <dd class="govuk-summary-list__actions">
+                      <a class="govuk-link" href="/appeals-service/appeal-details/441/change-appeal-details/lpa-health-and-safety">
+                      Change</a>
+                  </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Potential safety risks (apellant answer)
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  <span>No answer provided</span>
+                </dd>
+                  <dd class="govuk-summary-list__actions">
+                      <a class="govuk-link" href="/appeals-service/appeal-details/441/change-appeal-details/appellant-case-health-and-safety">
+                      Change</a>
+                  </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Visit type
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  Unaccompanied
+                </dd>
+                  <dd class="govuk-summary-list__actions">
+                      <a class="govuk-link" href="/appeals-service/appeal-details/441/site-visit/set-visit-type">
+                      Change</a>
+                  </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Neighbouring site affected
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  No answer provided
+                </dd>
+                  <dd class="govuk-summary-list__actions">
+                      <a class="govuk-link" href="/appeals-service/appeal-details/441/change-appeal-details/neighbouring-site-is-affected">
+                      Change</a>
+                  </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Neighbouring sites (LPA answer) 
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  <ul class="govuk-list govuk-list--bullet">
+                    <li>172 York Road<br>
+                      Bristol<br>
+                      BS3 4AL</li>
+                    <li>170, York Road<br>
+                      Bristol<br>
+                      BS3 4AL</li>
+                  </ul>
+                </dd>
+                  <dd class="govuk-summary-list__actions">
+                      <a class="govuk-link" href="manage-neighbouring-sites.html">
+                      View LPAQ</a> 
+                  </dd>
+              </div>
+               <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Neighbouring sites (Inspector and/or third party request)
+                </dt>
+                <dd class="govuk-summary-list__value">
+                
+                  None
+                
+                </dd>
+                  <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="additional-neighbours-address">
+                        Add</a>
+                  </dd>
+              </div>
+        </dl>
+          </div>
+        </div>
+
+
+        <div class="govuk-accordion__section">
+          <div class="govuk-accordion__section-header">
+            <h2 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-2">
+                Case timetable
+              </span>
+            </h2>
+          </div>
+
+          <div id="accordion-default-content-2" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-2">
+          	{{ govukTable({
+    captionClasses: "govuk-table__caption--m",
+    firstCellIsHeader: true,
+    rows: [
+      [
+        {
+          text: "Start date"
+        },
+        {
+          text: 38 | daysAgo
+        },
+        {
+          html: ""
+        }
+      ],
+      [
+        {
+          text: "LPA questionnaire due"
+        },
+        {
+          text: 31 | daysAgo
+        },
+        {
+          html: "<a href='#'>Change</a>"
+        }
+      ],
+      [
+        {
+          text: "Site visit"
+        },
+        {
+          text: -3 | daysAgo
+        },
+        {
+          html: "<a href='site-visit.html'>Manage</a>"
+        }
+      ]
+    ]
+  }) }}
+
+          </div>
+        </div>
+
+        <div class="govuk-accordion__section">
+          <div class="govuk-accordion__section-header">
+            <h2 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-3">
+                Case documentation
+              </span>
+            </h2>
+          </div>
+          <div id="accordion-default-content-3" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-3">
+            <table class="govuk-table">
+  
+  
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                
+                  <th scope="col" class="govuk-table__header">Documentation</th>
+                
+                  <th scope="col" class="govuk-table__header">Status</th>
+                
+                  <th scope="col" class="govuk-table__header">Due date</th>
+                
+                  <th scope="col" class="govuk-table__header">Action</th>
+                
+                </tr>
+              </thead>
+              
+              <tbody class="govuk-table__body">
+                
+                  
+                    <tr class="govuk-table__row">
+
+                      <td class="govuk-table__cell">Appellant case</td>
+                      <td class="govuk-table__cell">Complete</td>
+                      <td class="govuk-table__cell"></td>
+                      <td class="govuk-table__cell"><a href="#">Review</a></td>
+
+                    </tr>
+                  
+                
+                  
+                    <tr class="govuk-table__row">
+      
+                      <td class="govuk-table__cell">LPA questionnaire</td>
+                      <td class="govuk-table__cell">Complete</td>
+                      <td class="govuk-table__cell"></td>
+                      <td class="govuk-table__cell"><a href="task-list">Review</a></td>
+                 
+                    </tr>
+
+                    <tr class="govuk-table__row">
+      
+                      <td class="govuk-table__cell">Interested party comments</td>
+                      <td class="govuk-table__cell">Up to date<br>(54 comments)</td>
+                      <td class="govuk-table__cell"></td>
+                      <td class="govuk-table__cell"><a href="ip-comments">View</a></td>
+                 
+                    </tr>
+                  
+                
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="govuk-accordion__section">
+          <div class="govuk-accordion__section-header">
+            <h2 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-4">
+                Case contacts
+              </span>
+            </h2>
+          </div>
+          <div id="accordion-default-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-4">
+            {{ govukTable({
+              captionClasses: "govuk-table__caption--m",
+              firstCellIsHeader: true,
+              rows: [
+                [
+                {
+                  text: "Appellant"
+                },
+                {
+                  html: "Fiona Shell<br><a href='fiona.shell@gmail.com'>fiona.shell@gmail.com</a>"
+                },
+                {
+                  html: "<a href='#'>Change</a>"
+                }
+              ],[
+                {
+                  text: "Agent"
+                },
+                {
+                  html: "Naomi Johnson<br><a href='naomi.jonhson@planningagency.co.uk'>naomi.jonhson@planningagency.co.uk</a>"
+                },
+                {
+                  html: "<a href='#'>Change</a>"
+                }
+              ],[
+                {
+                  text: "Planning authority"
+                },
+                {
+                  html: "Tim Cooper<br><a href='name@localauthority.gov.uk'>tim.cooper@localauthority.gov.uk</a>"
+
+                },
+                {
+                  html: "<a href='#'>Change</a>"
+                }
+              ]
+              ]
+            }) }}
+          </div>
+        </div>
+
+        <div class="govuk-accordion__section">
+          <div class="govuk-accordion__section-header">
+            <h2 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-4">
+                Case team
+              </span>
+            </h2>
+          </div>
+          <div id="accordion-default-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-4">
+            {% include "/includes/audit/case-team-table.html" %}
+          </div>
+        </div>
+      </div>
+
+    	<h3 class="govuk-heading-m govuk-!-margin-top-9">
+        Audit history
+      </h3>
+    	<p class="govuk-body">
+        <a href="history">View changes</a> made to this case
+      </p>
+
+      <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+      <h3 class="govuk-heading-m govuk-!-margin-top-3">
+        Appeal withdrawal
+      </h3>
+    	<p class="govuk-body">
+        You can <a href="upload-withdrawal">close this appeal</a> if appellant has withdrawn case
+      </p>
+
+    </div>
+  </div>
+
+  
+
+
+{% endblock %}

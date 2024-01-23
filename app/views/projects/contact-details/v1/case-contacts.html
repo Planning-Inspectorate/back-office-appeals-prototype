@@ -135,55 +135,7 @@
           </div>
         </div>
 
-        <div class="govuk-accordion__section">
-          <div class="govuk-accordion__section-header">
-            <h2 class="govuk-accordion__section-heading">
-              <span class="govuk-accordion__section-button" id="accordion-default-heading-4">
-                Case contacts
-              </span>
-            </h2>
-          </div>
-          <div id="accordion-default-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-4">
-            {{ govukTable({
-              captionClasses: "govuk-table__caption--m",
-              firstCellIsHeader: true,
-              rows: [
-                [
-                {
-                  text: "Appellant"
-                },
-                {
-                  html: "Fiona Shell<br><a href='fiona.shell@gmail.com'>fiona.shell@gmail.com</a>"
-                },
-                {
-                  html: "<a href='#'>Change</a>"
-                }
-              ],[
-                {
-                  text: "Agent"
-                },
-                {
-                  html: "Naomi Johnson<br><a href='naomi.jonhson@planningagency.co.uk'>naomi.jonhson@planningagency.co.uk</a>"
-                },
-                {
-                  html: "<a href='#'>Change</a>"
-                }
-              ],[
-                {
-                  text: "Planning authority"
-                },
-                {
-                  html: "Tim Cooper<br><a href='name@localauthority.gov.uk'>tim.cooper@localauthority.gov.uk</a>"
-
-                },
-                {
-                  html: "<a href='#'>Change</a>"
-                }
-              ]
-              ]
-            }) }}
-          </div>
-        </div>
+        
 
         <div class="govuk-accordion__section">
           <div class="govuk-accordion__section-header">
@@ -213,6 +165,57 @@
             {% include "/includes/audit/case-documentation-table.html" %}
           </div>
         </div>
+
+<div class="govuk-accordion__section">
+          <div class="govuk-accordion__section-header">
+            <h2 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-4">
+                Case contacts
+              </span>
+            </h2>
+          </div>
+          <div id="accordion-default-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-4">
+            {{ govukTable({
+              captionClasses: "govuk-table__caption--m",
+              firstCellIsHeader: true,
+              rows: [
+                [
+                {
+                  text: "Appellant"
+                },
+                {
+                  html: "Fiona Shell<br>fiona.shell@gmail.com"
+                },
+                {
+                  html: "<a href='#'>Change</a>"
+                }
+              ],[
+                {
+                  text: "Agent"
+                },
+                {
+                  html: "Naomi Johnson<br>naomi.jonhson@planningagency.co.uk"
+                },
+                {
+                  html: "<a href='#'>Change</a>"
+                }
+              ],[
+                {
+                  text: "Planning authority"
+                },
+                {
+                  html: "Tim Cooper<br>tim.cooper@localauthority.gov.uk"
+
+                },
+                {
+                  html: "<a href='#'>Change</a>"
+                }
+              ]
+              ]
+            }) }}
+          </div>
+        </div>
+
         <div class="govuk-accordion__section">
           <div class="govuk-accordion__section-header">
             <h2 class="govuk-accordion__section-heading">

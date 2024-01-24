@@ -1,0 +1,129 @@
+ 
+{% extends "layouts/PINS-post-mvp.html" %}
+{% set pageName="LPA statement review" %}
+ 
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+    	{% set html %}
+    	  <p class="govuk-notification-banner__heading">
+    	    The appeal is ready for review
+    	  </p>
+    	  <p>
+          <a class="govuk-notification-banner__link" href="appellant-case.html">
+            Start the review
+          </a>
+        </p>
+    	{% endset %}
+
+    
+    <span class="govuk-caption-l">Appeal 2110166</span>
+  
+
+      <h1 class="govuk-heading-l">Check your answers</h1>
+
+ 
+ 
+ 
+
+    <form action="lpa-statement-complete" method="post" class="govuk-!-margin-top-6" novalidate>
+
+      
+ 
+
+      {{ govukSummaryList({
+        classes: "govuk-!-margin-bottom-9",
+        rows: [
+          {
+            key: {
+              text: "Review outcome"
+            },
+            value: {
+              html: "Complete"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "statement content"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Level"
+            },
+            value: {
+              text: "B"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Level"
+                }
+              ]
+            }
+          },
+
+          {
+            key: {
+              text: "Band"
+            },
+            value: {
+              html: "3"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: " ",
+                  visuallyHiddenText: "Bans"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Specialism(s)"
+            },
+            value: {
+              html: " <li>Enforcement</li>
+                <li>General allocation</li>
+                <li>Rights of way</li>
+               "
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Specialism"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+<p>If this has changed, a different inspector may need to be assigned to the case. </p>
+{{ govukButton({
+  text: "Confirm"
+}) }}
+    </form>
+
+ 
+
+
+{% endblock %}
+
+
+
+</div>
+</div>

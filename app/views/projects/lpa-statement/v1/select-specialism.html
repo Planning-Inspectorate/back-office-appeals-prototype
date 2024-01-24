@@ -1,0 +1,202 @@
+ 
+{% extends "layouts/PINS-post-mvp.html" %}
+{% set pageName="LPA statement review" %}
+ 
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+    	{% set html %}
+    	  <p class="govuk-notification-banner__heading">
+    	    The appeal is ready for review
+    	  </p>
+    	  <p>
+          <a class="govuk-notification-banner__link" href="appellant-case.html">
+            Start the review
+          </a>
+        </p>
+    	{% endset %}
+
+    
+    <span class="govuk-caption-l">Appeal 2110166</span>
+  
+
+      <h1 class="govuk-heading-l">Select allocation specialism(s)</h1>
+
+ 
+      {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+      {{ govukInsetText({
+        html: "Current allocation matrix is level B and 3, Enforcement."
+      }) }}  
+ 
+<p>Select all that apply</p>
+    <form action="check-your-answers" method="post" class="govuk-!-margin-top-6" novalidate>
+
+      {{ govukSummaryList({
+        classes: "govuk-!-margin-bottom-9",
+        rows: [
+           
+          {
+            key: {
+              text: "Level"
+            },
+            value: {
+              text: "B"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: " ",
+                  visuallyHiddenText: "statement pdf"
+                }
+              ]
+            }
+          },
+
+          {
+            key: {
+              text: "Band"
+            },
+            value: {
+              html: "3"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: " ",
+                  visuallyHiddenText: "statement content"
+                }
+              ]
+            }
+          } 
+        ]
+      }) }}
+      
+      {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{{ govukCheckboxes({
+  name: "specialism",
+  classes: "govuk-checkboxes--small",
+  fieldset: {
+    legend: {
+      text: "",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  items: [
+    {
+      value: "Schedule-1",
+      text: "Schedule 1"
+    },
+    {
+      value: "Schedule-2",
+      text: "Schedule 2"
+    },
+    {
+      value: "Enforcement",
+      text: "Enforcement"
+    },
+    {
+      value: "General allocation",
+      text: "General allocation"
+    },
+    {
+      value: "Housing-orders",
+      text: "Housing orders"
+    },
+    {
+      value: "Rights-of-way",
+      text: "Rights of way"
+    },
+    {
+      value: "Shopping",
+      text: "Shopping"
+    },
+    {
+      value: "Gypsy",
+      text: "Gypsy"
+    },
+    {
+      value: "Housing",
+      text: "Housing"
+    },
+    {
+      value: "Access",
+      text: "Access"
+    },
+    {
+      value: "Advertisements",
+      text: "Advertisements"
+    },
+    {
+      value: "Appearance-design",
+      text: "Appearance design"
+    },
+    {
+      value: "Architecture-design",
+      text: "Architecture design"
+    },
+    {
+      value: "High-hedges",
+      text: "High hedges"
+    },
+    {
+      value: "Historic-heritage",
+      text: "Historic heritage"
+    },
+    {
+      value: "Listed",
+      text: "Listed building and enforcement"
+    },
+    {
+      value: "Natura-heritage",
+      text: "Natural heritage"
+    },
+    {
+      value: "Renewable",
+      text: "Renewable energy/wind farms"
+    },
+    {
+      value: "Roads",
+      text: "Roads and traffics"
+    },
+    {
+      value: "Transport",
+      text: "Transport"
+    },
+    {
+      value: "TPO",
+      text: "Tree preservation order"
+    },
+    {
+      value: "Waste",
+      text: "Waste"
+    }
+    ,
+    {
+      value: "Water",
+      text: "Water"
+    }
+  ]
+}) }}
+
+{{ govukButton({
+  text: "Continue"
+}) }}
+    </form>
+
+ 
+
+
+{% endblock %}
+
+
+
+</div>
+</div>

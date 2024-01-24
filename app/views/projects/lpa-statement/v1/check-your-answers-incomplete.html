@@ -1,0 +1,120 @@
+ 
+{% extends "layouts/PINS-post-mvp.html" %}
+{% set pageName="LPA statement review" %}
+ 
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+    	{% set html %}
+    	  <p class="govuk-notification-banner__heading">
+    	    The appeal is ready for review
+    	  </p>
+    	  <p>
+          <a class="govuk-notification-banner__link" href="appellant-case.html">
+            Start the review
+          </a>
+        </p>
+    	{% endset %}
+
+    
+    <span class="govuk-caption-l">Appeal 2110166</span>
+  
+
+      <h1 class="govuk-heading-l">Check your answers</h1>
+
+ 
+ 
+ 
+
+    <form action="lpa-statement-incomplete" method="post" class="govuk-!-margin-top-6" novalidate>
+
+      
+ 
+
+      {{ govukSummaryList({
+        classes: "govuk-!-margin-bottom-9",
+        rows: [
+          {
+            key: {
+              text: "Review outcome"
+            },
+            value: {
+              html: "Complete"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "statement content"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Reasons"
+            },
+            value: {
+              text: data['why-reasons' ] or "Reason 1"
+            },
+            actions: {
+              items: [
+                {
+                  href: "why-incomplete",
+                  text: "Change",
+                  visuallyHiddenText: " "
+                }
+              ]
+            }
+          },
+
+          {
+            key: {
+              text: "New due date"
+            },
+            value: {
+              text: data['lpa-statement-due-date-year']  or "18 July 2023"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: " "
+                }
+              ]
+            }
+          } 
+        ]
+      }) }}
+
+ 
+<h2 class="govuk-heading-m">Confirm outcome</h2>
+
+ 
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+{{ govukInsetText({
+  html: "Confirming will inform the relevant parties
+  of the outcome"
+}) }}  
+
+
+{{ govukButton({
+  text: "Confirm"
+}) }}
+    </form>
+
+ 
+
+
+{% endblock %}
+
+
+
+</div>
+</div>

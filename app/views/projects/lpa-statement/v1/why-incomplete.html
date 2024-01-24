@@ -1,0 +1,86 @@
+ 
+{% extends "layouts/PINS-post-mvp.html" %}
+{% set pageName="LPA statement review" %}
+ 
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+    	{% set html %}
+    	  <p class="govuk-notification-banner__heading">
+    	    The appeal is ready for review
+    	  </p>
+    	  <p>
+          <a class="govuk-notification-banner__link" href="appellant-case.html">
+            Start the review
+          </a>
+        </p>
+    	{% endset %}
+
+    
+    <span class="govuk-caption-l">Appeal 2110166</span>
+  
+
+      <h1 class="govuk-heading-l">Why is the LPA statement incomplete?</h1>
+
+ 
+ 
+ 
+
+    <form action="update-due-date" method="post" class="govuk-!-margin-top-6" novalidate>
+
+      
+      {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+      {{ govukCheckboxes({
+        name: "why-reasons",
+        classes: "govuk-checkboxes--small",
+        fieldset: {
+          legend: {
+            text: "",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+          {
+            value: "Reason 1",
+            text: "Reason1"
+          },
+          {
+            value: "Reason 2",
+            text: "Reason2"
+          },
+          {
+            value: "Reason 3",
+            text: "Reason3"
+          },
+          {
+            value: "Reason 4",
+            text: "Reason4"
+          }, 
+          {
+            value: "Reason 5",
+            text: "Reason5"
+          }
+        ]
+      }) }}
+      
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+        
+
+    </form>
+
+ 
+
+
+{% endblock %}
+
+
+
+</div>
+</div>

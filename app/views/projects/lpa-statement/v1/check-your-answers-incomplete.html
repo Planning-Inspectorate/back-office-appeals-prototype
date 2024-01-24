@@ -77,7 +77,7 @@
               text: "New due date"
             },
             value: {
-              text: data['lpa-statement-due-date-year']  or "18 July 2023"
+              text: data['lpa-statement-due-date']  or "18 Jul 2023"
             },
             actions: {
               items: [
@@ -92,9 +92,10 @@
         ]
       }) }}
 
- 
+ <p>{{data['lpa-statement-due-date-day']}} / {{data['lpa-statement-due-date-month']}} / {{data['lpa-statement-due-date-year']}}
+</p>
 <h2 class="govuk-heading-m">Confirm outcome</h2>
-
+ 
  
 {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 

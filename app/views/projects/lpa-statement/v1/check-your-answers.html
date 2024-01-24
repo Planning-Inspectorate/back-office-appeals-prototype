@@ -59,7 +59,7 @@
               text: "Level"
             },
             value: {
-              text: "B"
+              text: data['allocation-level'] or "help"
             },
             actions: {
               items: [
@@ -94,9 +94,11 @@
               text: "Specialism(s)"
             },
             value: {
-              html: " <li>Enforcement</li>
+              text: data['specialism'] or " <li>Enforcement</li>
                 <li>General allocation</li>
                 <li>Rights of way</li>
+                
+                
                "
             },
             actions: {

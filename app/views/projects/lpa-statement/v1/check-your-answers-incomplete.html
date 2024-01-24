@@ -92,8 +92,8 @@
         ]
       }) }}
 
- <p>{{data['lpa-statement-due-date-day']}} / {{data['lpa-statement-due-date-month']}} / {{data['lpa-statement-due-date-year']}}
-</p>
+ <p>{{data['lpa-statement-due-date-day']}} / {{data['lpa-statement-due-date-month']}} / {{data['lpa-statement-due-date-year'] }}
+  lpa-statement-due-date  {{ data | isoDateFromDateInput("dob") | govukDate }} </p>
 <h2 class="govuk-heading-m">Confirm outcome</h2>
  
  

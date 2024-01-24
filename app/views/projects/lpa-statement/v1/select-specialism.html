@@ -24,7 +24,7 @@
   
 
       <h1 class="govuk-heading-l">Select allocation specialism(s)</h1>
-
+      <form action="check-your-answers" method="post" class="govuk-!-margin-top-6" novalidate>
  
       {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
@@ -33,7 +33,7 @@
       }) }}  
  
 <p>Select all that apply</p>
-    <form action="check-your-answers" method="post" class="govuk-!-margin-top-6" novalidate>
+    
 
       {{ govukSummaryList({
         classes: "govuk-!-margin-bottom-9",
@@ -44,7 +44,7 @@
               text: "Level"
             },
             value: {
-              text: "B"
+              text: data['allocation-level'] or "BLANK"
             },
             actions: {
               items: [
@@ -77,7 +77,7 @@
         ]
       }) }}
       
-      {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
 
 {{ govukCheckboxes({
   name: "specialism",
@@ -91,11 +91,11 @@
   },
   items: [
     {
-      value: "Schedule-1",
+      value: "Schedule 1",
       text: "Schedule 1"
     },
     {
-      value: "Schedule-2",
+      value: "Schedule 2",
       text: "Schedule 2"
     },
     {

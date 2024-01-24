@@ -4,6 +4,22 @@
  
 {% block content %}
 
+{% set html %}
+<p class="govuk-notification-banner__heading">
+  LPA statement ready for review
+</p>
+<p>
+  <a class="govuk-notification-banner__link" href="lpa-statement-review">
+    Review 
+  </a>
+</p>
+{% endset %}
+
+{{ govukNotificationBanner({
+html: html
+}) }}
+
+
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -25,8 +41,8 @@
  
 
         {{ govukTag({
-          text: "Issue determination",
-          classes: "govuk-tag--pink"
+          text: "Statement",
+          classes: "govuk-tag--blue"
         })}}
 
  
@@ -133,7 +149,7 @@
           <div class="govuk-accordion__section-header">
             <h1 class="govuk-accordion__section-heading">
               <span class="govuk-accordion__section-button" id="accordion-default-heading-2">
-                Site details
+               Site details
               </span>
             </h2>
           </div>
@@ -411,13 +427,13 @@
                     text: "LPA statement"
                   },
                   {
-                    text: " "
+                    text: "Received"
                   },
                   {
-                    text: ""
+                    text: "19 July 2023"
                   },
                   {
-                    html: "<a href='#'>Add</a>"
+                    html: "<a href='lpa-statement-review'>Review</a>"
                   }
                 ]
                 ,

@@ -4,29 +4,32 @@
  
 {% block content %}
 
+ 
+ 
+
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-    	{% set html %}
-    	  <p class="govuk-notification-banner__heading">
-    	    The appeal is ready for review
-    	  </p>
-    	  <p>
-          <a class="govuk-notification-banner__link" href="appellant-case.html">
-            Start the review
-          </a>
-        </p>
-    	{% endset %}
-
-    <!--	<span class="govuk-caption-l">Appeal 2110166</span> -->
+    	
+      {% set html %}
+      <p class="govuk-notification-banner__heading">
+        The appeal is ready for review
+      </p>
+      <p>
+        <a class="govuk-notification-banner__link" href="appellant-case.html">
+          Start the review
+        </a>
+      </p>
+    {% endset %}
+ 
     <span class="govuk-caption-l">Appeal 2110166</span>
     	<h1 class="govuk-heading-l">Case details</h1>
  
 
         {{ govukTag({
-          text: "Issue determination",
-          classes: "govuk-tag--pink"
+          text: "Statement",
+          classes: "govuk-tag--blue"
         })}}
 
  
@@ -411,13 +414,13 @@
                     text: "LPA statement"
                   },
                   {
-                    text: " "
+                    text: "Complete"
                   },
                   {
-                    text: ""
+                    text: "19 Jan 2024"
                   },
                   {
-                    html: "<a href='#'>Add</a>"
+                    html: "<a href='lpa-statement-review'>View</a>"
                   }
                 ]
                 ,

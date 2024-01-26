@@ -29,15 +29,15 @@
  
  
 
-    <form action="" method="post" class="govuk-!-margin-top-6" novalidate>
-
+   
+<form action="select-specialism" method="post" class="govuk-!-margin-top-6" novalidate>
       
       {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
       {{ govukInsetText({
         html: "Current allocation matrix is level B and 3, Enforcement."
       }) }}  
-
+      
 
         {{ govukRadios({
           name: "allocation-level",
@@ -50,35 +50,35 @@
           },
           items: [
             {
-              value: "A~select-specialism",
+              value: "A",
               text: "A"
             },
             {
-              value: "B~select-specialism",
+              value: "B",
               text: "B"
             },
             {
-              value: "C~select-specialism",
+              value: "C",
               text: "C"
             },
             {
-              value: "D~select-specialism",
+              value: "D",
               text: "D"
             },
             {
-              value: "E~select-specialism",
+              value: "E",
               text: "E"
             },
             {
-              value: "F~select-specialism",
+              value: "F",
               text: "F"
             },
             {
-              value: "G~select-specialism",
+              value: "G",
               text: "G"
             },
             {
-              value: "H~select-specialism",
+              value: "H",
               text: "H"
             }
              

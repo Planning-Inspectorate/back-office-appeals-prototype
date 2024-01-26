@@ -53,21 +53,21 @@
       {{ govukTextarea({
         name: "redactedComment",
         id: "redactedComment",
-        rows: "10",
+        rows: "6",
         label: {
           text: "Redacted comment",
           classes: "govuk-label--m",
           isPageHeading: false
         },
-        hint: {
-          text: "Remove any sections that need redacting and replace with the word (Redacted)."
-        },
+       
         value: "Having reviewed the proposal I would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead."
         
       }) }}
 
+      <a href="#" class="govuk-button govuk-button--secondary">Redact</a>
+
       {{ govukButton({
-        text: "Continue"
+        text: "Save and continue"
       }) }}
     </form>
   </div>

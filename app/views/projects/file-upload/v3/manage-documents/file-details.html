@@ -54,6 +54,51 @@
 	}) }}
 
 
+{% set otherHtml %}
+{{ govukInput({
+  id: "contact-by-text",
+  name: "contactByText",
+  type: "tel",
+  autocomplete: "tel",
+  classes: "govuk-!-width-two-thirds",
+  label: {
+    text: "Sender"
+  }
+}) }}
+{% endset -%}
+
+{{ govukRadios({
+  name: "contact",
+  fieldset: {
+    legend: {
+      text: "From",
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  hint: {
+    text: "The person or organisation who sent the file."
+  },
+  items: [
+    {
+      value: "Appellant",
+      text: "Appellant"
+    },
+    {
+      value: "LPA",
+      text: "LPA"
+    },
+    {
+      value: "other",
+      text: "Other",
+      conditional: {
+        html: otherHtml
+      }
+    }
+  ]
+}) }}
+
+
 	   {{ govukButton({
         text: "Continue",
         href: "document-details-added"

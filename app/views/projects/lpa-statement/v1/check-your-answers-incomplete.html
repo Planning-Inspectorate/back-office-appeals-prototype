@@ -32,68 +32,44 @@
     <form action="lpa-statement-incomplete" method="post" class="govuk-!-margin-top-6" novalidate>
 
       
- 
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Review outcome
+          </dt>
+          <dd class="govuk-summary-list__value">
+           Complete
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> outcome</span></a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+           Reasons
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['why-reasons' ] or "Reason 1" }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden">reason</span></a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+           New due date
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ ( data['lpa-statement-due-date-year']+ "-" + data['lpa-statement-due-date-month'] + "-" + data['lpa-statement-due-date-day'] ) | govukDate }} </p>
+  
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> due date</span></a>
+          </dd>
+        </div>
+      </dl>
 
-      {{ govukSummaryList({
-        classes: "govuk-!-margin-bottom-9",
-        rows: [
-          {
-            key: {
-              text: "Review outcome"
-            },
-            value: {
-              html: "Complete"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "statement content"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Reasons"
-            },
-            value: {
-              text: data['why-reasons' ] or "Reason 1"
-            },
-            actions: {
-              items: [
-                {
-                  href: "why-incomplete",
-                  text: "Change",
-                  visuallyHiddenText: " "
-                }
-              ]
-            }
-          },
-
-          {
-            key: {
-              text: "New due date"
-            },
-            value: {
-              text: data['lpa-statement-due-date']  or "18 Jul 2023"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: " "
-                }
-              ]
-            }
-          } 
-        ]
-      }) }}
-
- <p>{{data['lpa-statement-due-date-day']}} / {{data['lpa-statement-due-date-month']}} / {{data['lpa-statement-due-date-year']}}
-</p>
+   
 <h2 class="govuk-heading-m">Confirm outcome</h2>
  
  

@@ -1,0 +1,551 @@
+ 
+{% extends "layouts/PINS-post-mvp.html" %}
+{% set pageName="Case details" %}
+ 
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+    	{% set html %}
+    	  <p class="govuk-notification-banner__heading">
+    	    The appeal is ready for review
+    	  </p>
+    	  <p>
+          <a class="govuk-notification-banner__link" href="appellant-case.html">
+            Start the review
+          </a>
+        </p>
+    	{% endset %}
+
+    <!--	<span class="govuk-caption-l">Appeal 2110166</span> -->
+    <span class="govuk-caption-l">Appeal 2110166</span>
+    	<h1 class="govuk-heading-l">Case details</h1>
+ 
+
+        {{ govukTag({
+          text: "Issue determination",
+          classes: "govuk-tag--pink"
+        })}}
+
+ 
+  
+
+
+      {% include "/includes/appeal-content/mvp-has-appeal-meta.html" %}
+      <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+     
+
+      <div class="govuk-accordion govuk-!-margin-top-9" data-module="govuk-accordion" id="accordion-default">
+        <div class="govuk-accordion__section">
+          <div class="govuk-accordion__section-header">
+            <h2 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-1">
+                Case overview
+              </span>
+            </h2>
+          </div>
+          <div id="accordion-default-content-1" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-1">
+            {{ govukTable({
+              captionClasses: "govuk-table__caption--m",
+              firstCellIsHeader: true,
+              rows: [
+                [
+                  {
+                    text: "Appeal type"
+                  },
+                  {
+                    text: "Householder appeal (HAS)"
+                  },
+                  {
+                    html: "<a href='#'>Change</a>"
+                  }
+                ],
+                [
+                  {
+                    text: "Case procedure"
+                  },
+                  {
+                    text: "Written"
+                  },
+                  {
+                    html: "<a href='#'>Change</a>"
+                  }
+                ],
+                [
+                  {
+                    text: "Linked appeal"
+                  },
+                  {
+                    html: "<a href='.'>21/725284</a>"
+                  },
+                  {
+                    html: "<a href='#'>Change</a>"
+                  }
+                ],[
+                  {
+                    text: "Related appeals"
+                  },
+                  {
+                    html: "<a href='.'>21/725234</a>"
+                  },
+                  {
+                    html: "<a href='#'>Change</a>"
+                  }
+                ],[
+                  {
+                    text: "Allocation details"
+                  },
+                  {
+                    text: "F / General Allocation"
+                  },
+                  {
+                    html: "<a href='#'>Change</a>"
+                  }
+                ],[
+                  {
+                    text: "LPA reference"
+                  },
+                  {
+                    text: "22/00118/FULL"
+                  },
+                  {
+                    html: "<a href='#'>Change</a>"
+                  }
+                ],[
+                  {
+                    text: "Decision"
+                  },
+                  {
+                    text: "Not issued yet"
+                  },
+                  {
+                    html: "<a href='.'>Change</a>"
+                  }
+                ]
+              ]
+            }) }}
+          </div>
+        </div>
+        <div class="govuk-accordion__section">
+          <div class="govuk-accordion__section-header">
+            <h1 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-2">
+                Site details
+              </span>
+            </h2>
+          </div>
+
+          <div id="accordion-default-content-2" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-2">
+            {{ govukTable({
+              captionClasses: "govuk-table__caption--m",
+              firstCellIsHeader: true,
+              rows: [
+                [
+                  {
+                    text: "Inspector access (LPA answer)"
+                  },
+                  {
+                    text: "Yes"
+                  },
+                  {
+                    html: "<a href='#'>Change</a>"
+                  }
+                ],
+                [
+                  {
+                    text: "Inspector access (appellant answer)"
+                  },
+                  {
+                    text: "Yes"
+                  },
+                  {
+                    html: "<a href='#'>Change</a>"
+                  }
+                ],
+                [
+                  {
+                    text: "Potential safety risks (LPA answer)"
+                  },
+                  {
+                    html: "Yes. <br>Dogs on site"
+                  },
+                  {
+                    html: "<a href='#'>Change</a>"
+                  }
+                ],[
+                {
+                  text: "Potential safety risks (appellant answer)"
+                },
+                {
+                  html: "Yes. <br>Dogs on site"
+                },
+                {
+                  html: "<a href='.'>Change</a>" 
+                }
+                ],
+                [
+                  {
+                    text: "Visit type"
+                  },
+                  {
+                    text: "Unaccompanied"
+                  },
+                  {
+                    html: "<a href='#'>Change</a>"
+                  }
+                ],[
+                  {
+                    text: "Could a neighbouring site be affected?
+                    "
+                  },
+                  {
+                    html: "Yes. <br>Dogs on site"
+                  },
+                  {
+                    html: "<a href='#'>Change</a>"
+                  }
+                ],[
+                  {
+                    text: "Neighbouring sites
+                    (LPA answer)"
+                  },
+                  {
+                    text: "72, York Road, Bedminster, Bristol, BS3 4AL"
+                  },
+                  {
+                    html: "<a href='#'>Change</a>"
+                  }
+                ],[
+                  {
+                    text: "Neighbouring sites
+                    (Inspector and / or 
+                    third party request)"
+                  },
+                  {
+                    text: "None"
+                  },
+                  {
+                    html: "<a href='#'>Add</a> | <a href='#'>Manage</a>"
+                  }
+                ]
+              ]
+            }) }}
+          </div>
+        </div>
+
+        <div class="govuk-accordion__section">
+          <div class="govuk-accordion__section-header">
+            <h2 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-3">
+                Case timetable
+              </span>
+            </h2>
+          </div>
+          <div id="accordion-default-content-3" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-3">
+            {{ govukTable({
+              captionClasses: "govuk-table__caption--m",
+              firstCellIsHeader: true,
+              rows: [
+                [
+                  {
+                    text: "Start date"
+                  },
+                  {
+                    text: "8 Oct 2023"
+                  },
+                  {
+                    html: " "
+                  }
+                ],
+                [
+                  {
+                    text: "LPA questionnaire due"
+                  },
+                  {
+                    text: "15 Oct 2023"
+                  },
+                  {
+                    html: "<a href='#'>Change</a>"
+                  }
+                ],
+                [
+                  {
+                    text: "LPA statement due"
+                  },
+                  {
+                    text: " "
+                  },
+                  {
+                    html: "<a href='#'>Add</a>"
+                  }
+                ],[
+                {
+                  text: "Comments from interested parties due"
+                },
+                {
+                  text: " "
+                },
+                {
+                  html: "<a href='#'>Add</a>"
+                }
+                ],
+                [
+                  {
+                    text: "S106 obligation due"
+                  },
+                  {
+                    text: " "
+                  },
+                  {
+                    html: "<a href='#'>Add</a>"
+                  }
+                ] ,[
+                  {
+                    text: "Case management conference"
+                  },
+                  {
+                    text: " "
+                  },
+                  {
+                    html: "<a href='#'>Add</a>"
+                  }
+                ],[
+                  {
+                    text: "Hearing"
+                  },
+                  {
+                    text: " "
+                  },
+                  {
+                    html: "<a href='#'>Add</a>"
+                  }
+                ]
+                ,[
+                  {
+                    text: "Site visit
+                    "
+                  },
+                  {
+                    text: "18 Nov 2023"
+                  },
+                  {
+                    html: "<a href='#'>Manage</a>"
+                  }
+                ]
+              ]
+            }) }}
+          </div>
+        </div>
+
+        <div class="govuk-accordion__section">
+          <div class="govuk-accordion__section-header">
+            <h2 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-4">
+                Case documentation
+              </span>
+            </h2>
+          </div>
+          <div id="accordion-default-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-4">
+            {{ govukTable({
+              captionClasses: "govuk-table__caption--m",
+              firstCellIsHeader: false,
+              head: [
+                  {
+                    text: "Documentation"
+                  },
+                  {
+                    text: "Status"
+                  },
+                  {
+                    text: "Due date"
+                  },
+                  {
+                    text: "Action"
+                  }
+                ],
+              rows: [
+                [
+                  {
+                    text: "Appellant case"
+                  },
+                  {
+                    text: "Valid"
+                  },
+                  {
+                    text: "22 Jul 2023"
+                  },
+                  {
+                    html: "<a href='#'>View</a>"
+                  }
+                ],
+                [
+                  {
+                    text: "LPA questionnaire"
+                  },
+                  {
+                    text: "Complete"
+                  },
+                  {
+                    text: "18 Jul 2023"
+                  },
+                  {
+                    html: "<a href='#'>View</a>"
+                  }
+                ],
+                [
+                  {
+                    text: "LPA statement"
+                  },
+                  {
+                    text: " "
+                  },
+                  {
+                    text: ""
+                  },
+                  {
+                    html: "<a href='#'>Add</a>"
+                  }
+                ] ,[
+                  {
+                    text: "Comments from interested parties"
+                  },
+                  {
+                    text: " "
+                  },
+                  {
+                    text: ""
+                  },
+                  {
+                    html: "<a href='#'>Add</a>"
+                  }
+                ],[
+                {
+                  text: "S106 obligation"
+                },
+                {
+                  text: " "
+                },
+                {
+                  text: ""
+                },
+                {
+                  html: "<a href='#'>Add</a>"
+                }
+              ],
+                [
+                  {
+                    text: "Case management conference"
+                  },
+                  {
+                    text: " "
+                  },
+                  {
+                    text: ""
+                  },
+                  {
+                    html: "<a href='#'>Add</a>"
+                  }
+                ]
+                 
+              ]
+            }) }}
+          </div>
+        </div>
+        
+        
+
+        <div class="govuk-accordion__section">
+          <div class="govuk-accordion__section-header">
+            <h2 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-6">
+                Case team
+              </span>
+            </h2>
+          </div>
+          <div id="accordion-default-content-6" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-6">
+            {{ govukTable({
+              captionClasses: "govuk-table__caption--m",
+              firstCellIsHeader: true,
+              rows: [
+                [
+                  {
+                    text: "Case officer"
+                  },
+                  {
+                    html: "Robert Williams<br><a href='#'>robert.williams@planninginspectorate.gov.uk</a> <br>0300 027 2188"
+                  },
+                  {
+                    html: "<a href='#'>Change</a>"
+                  }
+                ],
+                [
+                  {
+                    text: "Inspector"
+                  },
+                  {
+                    html: "Rupi Sentil<br><a href='#'>rupi.sentil@localauthority.gov.uk</a> <br>0300 021 4494"
+                  },
+                  {
+                    html: "<a href='#'>Change</a>"
+                  }
+                ] 
+              ]
+            }) }}
+          </div>
+        </div>
+
+      </div>
+
+     
+
+    </div>
+  </div>
+
+  {% if data['status'] == 'determination' %}
+
+    <form action="" method="post" class="govuk-!-margin-top-6" novalidate>
+
+      <!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
+
+        {{ govukRadios({
+          name: "issue-decision",
+          fieldset: {
+            legend: {
+              text: "Issue your decision",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "allowed~../../issue-decision/v1/decision-date",
+              text: "Allowed"
+            },
+            {
+              value: "dismissed~../../issue-decision/v1/decision-date",
+              text: "Dismissed"
+            },
+            {
+              value: "split~../../issue-decision/v1/decision-date",
+              text: "Split-decision"
+            },
+            {
+              value: "invalid~../../issue-decision/v1/decision-date",
+              text: "Invalid"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+    </form>
+
+  {% endif %}
+
+
+{% endblock %}

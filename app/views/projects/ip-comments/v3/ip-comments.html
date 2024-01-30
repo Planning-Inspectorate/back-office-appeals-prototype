@@ -17,7 +17,7 @@
           </div>
           <div class="govuk-notification-banner__content"> 
             <p class="govuk-notification-banner__heading">
-              The comment from Ian Smith has been redacted.
+              Comment from Ian Smith redacted
               </p>
           </div>
           </div>
@@ -29,7 +29,7 @@
           </div>
           <div class="govuk-notification-banner__content"> 
             <p class="govuk-notification-banner__heading">
-              The comment from Ian Smith has been marked as valid.
+              Comment from Ian Smith confirmed valid
               </p>
           </div>
           </div>
@@ -52,10 +52,10 @@
   firstCellIsHeader: false,
   head: [
     {
-      text: "Name"
+      text: "Interested party"
     },
     {
-      text: "Email"
+      text: "Email address"
     },
     {
       text: "Submitted"
@@ -142,15 +142,15 @@
 
 {% set validHtml %}
 {{ govukTable({
-  caption: "Waiting for review",
+  caption: "Awaiting review",
   captionClasses: "govuk-table__caption--m",
   firstCellIsHeader: false,
   head: [
     {
-      text: "Name"
+      text: "Interested party"
     },
     {
-      text: "Email"
+      text: "Email address"
     },
     {
       text: "Submitted"
@@ -211,7 +211,7 @@
    {{ govukTabs({
   items: [
     {
-      label: "Waiting for review",
+      label: "Awaiting review",
       id: "review-tab",
       panel: {
         html: reviewHtml

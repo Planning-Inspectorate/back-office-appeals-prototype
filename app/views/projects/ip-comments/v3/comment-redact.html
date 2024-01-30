@@ -53,6 +53,9 @@
       {{ govukTextarea({
         name: "redactedComment",
         id: "redactedComment",
+        hint: {
+          text: "Highlight the section you want to remove, then select 'redact'."
+        },
         rows: "6",
         label: {
           text: "Redacted comment",

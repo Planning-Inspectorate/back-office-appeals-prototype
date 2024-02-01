@@ -19,6 +19,30 @@
       As an Inspector I want to be able to issue appeal decisions.
     </p>
 
+<h2 class="govuk-heading-m">
+      Version 4
+
+    </h2>
+
+    <p class="govuk-body">
+      Changes to ask about costs
+    </p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>updates to invalid decision step to collect a single reason</li>
+      <li>updates to upload decision letter content and decision date</li>
+      <li>update to ‘Inspector access / Yes’ on the LPA questionnaire answers</li>
+      <li>change to personal list (version 4) to show invalid appeal decision as Completed</li>
+    </ul>
+
+  	{{ govukButton({
+  	  text: "View prototype",
+  	  href: "/projects/personal-list/v4/?decision=ready",
+  	  isStartButton: true
+  	}) }}
+
+{% set v3HTML %}
+
     <h2 class="govuk-heading-m">
       Version 3
 
@@ -45,6 +69,8 @@
   	  href: "/projects/personal-list/v3/?decision=ready",
   	  isStartButton: true
   	}) }}
+
+    {% endset %}
 
     {% set v2HTML %}
 
@@ -118,7 +144,14 @@
       id: 'previous',
       classes: 'govuk-!-margin-top-9',
       items: [
-
+        {
+          heading: {
+            html: 'Version 3 <strong class="govuk-tag govuk-tag--blue govuk-!-margin-left-2">Researched</strong>'
+          },
+          content: {
+            html: v3HTML
+          }
+        },
         {
           heading: {
             html: 'Version 2 <strong class="govuk-tag govuk-tag--blue govuk-!-margin-left-2">Researched</strong>'

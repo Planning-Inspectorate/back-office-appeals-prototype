@@ -1,0 +1,45 @@
+<li>
+
+  {{ govukSummaryList({
+    card: {
+      title: {
+        text: "Apeal process"
+      }
+    },
+    rows: [
+      {
+        key: {
+          html: 'Procedure type'
+        },
+        value: {
+          html: 'Written representations'
+        }
+      },
+      {
+        key: {
+          html: 'Procedure reason'
+        },
+        value: {
+          html: '<span class="govuk-hint">Not required for written representations</span>'
+        }
+      } if data['procedure'] != 'written-representations',
+      {
+        key: {
+          html: 'Other appeals'
+        },
+        value: {
+          html: '<a href="#" class="govuk-body">0123456</a><br>
+                 <a href="#" class="govuk-body">0127745</a>'
+        }
+      },
+      {
+        key: {
+          html: 'Request new conditions'
+        },
+        value: {
+          html: 'Some new conditions'
+        }
+      }
+    ]
+  }) }}
+</li>

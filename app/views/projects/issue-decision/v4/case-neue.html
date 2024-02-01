@@ -1,0 +1,660 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Case details" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+    	{% set html %}
+    	  <p class="govuk-notification-banner__heading">
+    	    The appeal is ready for review
+    	  </p>
+    	  <p>
+          <a class="govuk-notification-banner__link" href="appellant-case.html">
+            Start the review
+          </a>
+        </p>
+    	{% endset %}
+
+    	<span class="govuk-caption-l">Appeal 2110166</span>
+    	<h1 class="govuk-heading-xl">Case details</h1>
+
+      {% if data['status'] == 'ready-to-start' %}
+
+        {{ govukTag({
+          text: "Ready to start",
+          classes: "govuk-tag--green"
+        })}}
+
+      {% elif data['status'] == 'lpa-questionnaire' %}
+
+        {{ govukTag({
+          text: "LPA questionnaire",
+          classes: "govuk-tag--yellow"
+        })}}
+
+      {% elif data['status'] == 'statement-review' %}
+
+        {{ govukTag({
+          text: "Statement review",
+          classes: "govuk-tag--orange"
+        })}}
+
+      {% elif data['status'] == 'final-comment-review' %}
+
+        {{ govukTag({
+          text: "Final comment review",
+          classes: "govuk-tag--purple"
+        })}}
+
+      {% elif data['status'] == 'site-visit' %}
+
+        {{ govukTag({
+          text: "Site review",
+          classes: "govuk-tag--blue"
+        })}}
+
+      {% elif data['status'] == 'determination' %}
+
+        {{ govukTag({
+          text: "Issue determination",
+          classes: "govuk-tag--pink"
+        })}}
+
+      {% else %}
+
+        {{ govukTag({
+          text: "Complete",
+          classes: "govuk-tag--blue"
+        })}}
+
+      {% endif %}
+
+      {% include "/includes/appeal-content/lpa-has-appeal-meta.html" %}
+      <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+      {% if data['status'] == 'determination' %}
+
+        <form action="" method="post" class="govuk-!-margin-top-6" novalidate>
+
+          <!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
+
+          {{ govukRadios({
+            name: "issue-decision",
+            fieldset: {
+              legend: {
+                text: "Issue your decision",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            items: [
+              {
+                value: "allowed~upload-decision",
+                text: "Allowed"
+              },
+              {
+                value: "dismissed~upload-decision",
+                text: "Dismissed"
+              },
+              {
+                value: "split~upload-decision",
+                text: "Split-decision"
+              },
+              {
+                value: "invalid~upload-decision",
+                text: "Invalid"
+              }
+            ]
+          }) }}
+
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+
+        </form>
+        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+      {% endif %}
+
+      <h2 class='govuk-heading-l'>
+        Case overview
+      </h2>
+
+      {% include "/includes/audit/case-overview-table.html" %}
+
+      <h2 class='govuk-heading-l'>
+        Case timetable
+      </h2>
+
+      <!-- {{ govukInsetText({
+        html: "<p class='govuk-body'>Case not started</p><p><a href='appellant-case.html'>Start the review</a></p>"
+      }) }} -->
+
+      {% include "/includes/appeal-content/case-timetable.html" %}
+
+      <h2 class='govuk-heading-l'>
+        Case documentation
+      </h2>
+
+    </div>
+    <div class="govuk-grid-column-full">
+
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Appellant case
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+
+          {% include "../v3/includes/appellant-case-data.html" %}
+
+        </div>
+      </details>
+
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            LPA questionnaire
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+
+          {{ govukSummaryList({
+            card: {
+              title: {
+                text: "1. The appellant"
+              }
+            },
+            rows: [
+              {
+                key: {
+                  text: "Name"
+                },
+                value: {
+                  html: "Jane Doe"
+                },
+                actions: {
+                    items: [
+                      {
+                        href: "#",
+                        text: "Change",
+                        visuallyHiddenText: "name"
+                      }
+                    ]
+                  }
+              },
+              {
+                key: {
+                  text: "Another individual"
+                },
+                value: {
+                  html: "UK national resident in UK"
+                },
+                actions: {
+                    items: [
+                      {
+                        href: "#",
+                        text: "Change",
+                        visuallyHiddenText: "Another individual"
+                      }
+                    ]
+                  }
+              },
+              {
+                key: {
+                  text: "Application reference"
+                },
+                value: {
+                  html: "ABC123456"
+                },
+                actions: {
+                    items: [
+                      {
+                        href: "#",
+                        text: "Change",
+                        visuallyHiddenText: "Application reference"
+                      }
+                    ]
+                  }
+              }
+            ]
+          }) }}
+
+          {{ govukSummaryList({
+            card: {
+              title: {
+                text: "2. The appeal site"
+              }
+            },
+            rows: [
+              {
+                key: {
+                  text: "Site address"
+                },
+                value: {
+                  html: "21 The pavement, Wandsworth, SW4 0HY"
+                },
+                actions: {
+                    items: [
+                      {
+                        href: "#",
+                        text: "Change",
+                        visuallyHiddenText: "Another individual"
+                      }
+                    ]
+                  }
+              },
+              {
+                key: {
+                  text: "Site fully owned"
+                },
+                value: {
+                  html: "No"
+                },
+                actions: {
+                    items: [
+                      {
+                        href: "#",
+                        text: "Change",
+                        visuallyHiddenText: "Another individual"
+                      }
+                    ]
+                  }
+              },
+              {
+                key: {
+                  text: "Site partially owned"
+                },
+                value: {
+                  html: "Yes"
+                },
+                actions: {
+                    items: [
+                      {
+                        href: "#",
+                        text: "Change",
+                        visuallyHiddenText: "Another individual"
+                      }
+                    ]
+                  }
+              },
+              {
+                key: {
+                  text: "All owners known"
+                },
+                value: {
+                  html: "No"
+                },
+                actions: {
+                    items: [
+                      {
+                        href: "#",
+                        text: "Change",
+                        visuallyHiddenText: "Another individual"
+                      }
+                    ]
+                  }
+              },
+              {
+                key: {
+                  text: "Attempted to identify owners"
+                },
+                value: {
+                  html: "Yes"
+                },
+                actions: {
+                    items: [
+                      {
+                        href: "#",
+                        text: "Change",
+                        visuallyHiddenText: "Another individual"
+                      }
+                    ]
+                  }
+              },
+              {
+                key: {
+                  text: "Advertised appeal"
+                },
+                value: {
+                  html: "No"
+                },
+                actions: {
+                    items: [
+                      {
+                        href: "#",
+                        text: "Change",
+                        visuallyHiddenText: "Another individual"
+                      }
+                    ]
+                  }
+              },
+              {
+                key: {
+                  text: "Visibility"
+                },
+                value: {
+                  html: "No"
+                },
+                actions: {
+                    items: [
+                      {
+                        href: "#",
+                        text: "Change",
+                        visuallyHiddenText: "Another individual"
+                      }
+                    ]
+                  }
+              },
+              {
+                key: {
+                  text: "Site health and safety issuer"
+                },
+                value: {
+                  html: "Yes"
+                },
+                actions: {
+                    items: [
+                      {
+                        href: "#",
+                        text: "Change",
+                        visuallyHiddenText: "Another individual"
+                      }
+                    ]
+                  }
+              }
+
+            ]
+          }) }}
+
+          {{ govukSummaryList({
+            card: {
+              title: {
+                text: "3. The appeal"
+              }
+            },
+            rows: [
+              {
+                key: {
+                  text: "Application form known"
+                },
+                value: {
+                  html: "<a href='#'>application-form.pdf</a>"
+                },
+                actions: {
+                    items: [
+                      {
+                        href: "#",
+                        text: "Change",
+                        visuallyHiddenText: "Another individual"
+                      }
+                    ]
+                  }
+              },
+              {
+                key: {
+                  text: "Decision letter"
+                },
+                value: {
+                  html: "<a href='#'>decision-letter.pdf</a>"
+                },
+                actions: {
+                    items: [
+                      {
+                        href: "#",
+                        text: "Change",
+                        visuallyHiddenText: "Another individual"
+                      }
+                    ]
+                  }
+              },
+              {
+                key: {
+                  text: "Appeal statement"
+                },
+                value: {
+                  html: "<a href='#'>application-statement.pdf</a>"
+                },
+                actions: {
+                    items: [
+                      {
+                        href: "#",
+                        text: "Change",
+                        visuallyHiddenText: "Another individual"
+                      }
+                    ]
+                  }
+              },
+              {
+                key: {
+                  text: "Add new supporting documents"
+                },
+                value: {
+                  html: "Yes"
+                },
+                actions: {
+                    items: [
+                      {
+                        href: "#",
+                        text: "Change",
+                        visuallyHiddenText: "Another individual"
+                      }
+                    ]
+                  }
+              },
+              {
+                key: {
+                  text: "New supporting documents"
+                },
+                value: {
+                  html: "<a href='#'>other.pdf</a>"
+                },
+                actions: {
+                    items: [
+                      {
+                        href: "#",
+                        text: "Change",
+                        visuallyHiddenText: "Another individual"
+                      }
+                    ]
+                  }
+              }
+            ]
+          }) }}
+
+
+
+
+        </div>
+      </details>
+
+    </div>
+    <div class="govuk-grid-column-two-thirds">
+
+      <!-- {{ govukTable({
+      	  captionClasses: "govuk-table__caption--m",
+      	  firstCellIsHeader: false,
+      	  head: [
+      		    {
+      		      text: "Documentation"
+      		    },
+      		    {
+      		      text: "Action"
+      		    }
+      		  ],
+      	  rows: [
+      	    [
+      	      {
+      	        text: "Appellant case"
+      	      },
+      	      {
+      	        html: "<a href='#'>Review</a>"
+      	      }
+      	    ],
+      	    [
+      	      {
+      	        text: "LPA questionnaire"
+      	      },
+      	      {
+      	        html: "<a href='#'>Review</a>"
+      	      }
+      	    ]
+      	  ]
+      	}) }} -->
+
+
+      <!--
+      {{ govukTable({
+      	  captionClasses: "govuk-table__caption--m",
+      	  firstCellIsHeader: false,
+      	  head: [
+      		    {
+      		      text: "Documentation"
+      		    },
+      		    {
+      		      text: "Status"
+      		    },
+      		    {
+      		      text: "Due date"
+      		    },
+      		    {
+      		      text: "Action"
+      		    }
+      		  ],
+      	  rows: [
+      	    [
+      	      {
+      	        text: "Appellant case"
+      	      },
+      	      {
+      	        text: "Received"
+      	      },
+      	      {
+      	        text: ""
+      	      },
+      	      {
+      	        html: "<a href='#'>Review</a>"
+      	      }
+      	    ],
+      	    [
+      	      {
+      	        text: "LPA questionnaire"
+      	      },
+      	      {
+      	        text: "Recieved"
+      	      },
+      	      {
+      	        text: "20 April 2023"
+      	      },
+      	      {
+      	        html: "<a href='#'>Review</a>"
+      	      }
+      	    ],
+      	    [
+      	      {
+      	        text: "Statement proofs"
+      	      },
+      	      {
+      	        text: "Overdue"
+      	      },
+      	      {
+      	        text: "30 April 2023"
+      	      },
+      	      {
+      	        html: "<a href='#'>Send reminder</a>"
+      	      }
+      	    ],[
+      	      {
+      	        text: "Interested parties"
+      	      },
+      	      {
+      	        text: "Not received"
+      	      },
+      	      {
+      	        text: "30 April 2023"
+      	      },
+      	      {
+      	        html: ""
+      	      }
+      	    ],[
+      	      {
+      	        text: "Final comments"
+      	      },
+      	      {
+      	        text: "Not received"
+      	      },
+      	      {
+      	        text: "30 April 2023"
+      	      },
+      	      {
+      	        html: ""
+      	      }
+      	    ],[
+      	      {
+      	        text: "Costs"
+      	      },
+      	      {
+      	        text: "Not received"
+      	      },
+      	      {
+      	        text: "30 April 2023"
+      	      },
+      	      {
+      	        html: ""
+      	      }
+      	    ],[
+      	      {
+      	        text: "Planning Obligation"
+      	      },
+      	      {
+      	        text: "Not received"
+      	      },
+      	      {
+      	        text: "30 April 2023"
+      	      },
+      	      {
+      	        html: ""
+      	      }
+      	    ],[
+      	      {
+      	        text: "Statement of common ground"
+      	      },
+      	      {
+      	        text: "Not received"
+      	      },
+      	      {
+      	        text: "30 April 2023"
+      	      },
+      	      {
+      	        html: ""
+      	      }
+      	    ]
+      	  ]
+      	}) }}
+
+      -->
+
+
+    </div>
+    <div class="govuk-grid-column-two-thirds">
+
+      <h2 class='govuk-heading-l'>
+        Case team
+      </h2>
+
+      {% include "/includes/audit/case-team-table.html" %}
+
+    	<h3 class="govuk-heading-m govuk-!-margin-top-9">
+        Audit history
+      </h3>
+    	<p class="govuk-body">
+        <a href="history">View changes</a> that have been made to this account
+      </p>
+
+    </div>
+  </div>
+
+{% endblock %}

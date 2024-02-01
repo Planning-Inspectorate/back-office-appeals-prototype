@@ -1,0 +1,21 @@
+<li>
+  {% set levyDate = (data['community-infrastructure-date-day'] or '1') +' '+ (data['community-infrastructure-date-month'] | formatMonth or 'July') +' '+ (data['community-infrastructure-date-year'] or '2022') %}
+  {{ govukSummaryList({
+    card: {
+      title: {
+        text: "Planning officer’s report and supplementary documents"
+      }
+    },
+    rows: [
+      {
+        key: {
+          html: 'Planning officer’s report'
+        },
+        value: {
+          html: '<a href="" class="govuk-body">155 York Rd PO report 2023.pdf</a>'
+        }
+      }
+
+    ]
+  }) }}
+</li>

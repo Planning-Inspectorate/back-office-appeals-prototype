@@ -1,0 +1,26 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Reasons the appeal is invalid" %}
+
+{% set title = "Why is the appeal invalid?" %}
+
+{% block questions %}
+
+  <span class="govuk-caption-l">
+    Appeal 2110166
+  </span>
+
+  {{ govukCharacterCount({
+    name: "invalidDetail",
+    id: "more-detail",
+    maxlength: 1000,
+    label: {
+      text: title,
+      classes: "govuk-label--l",
+      isPageHeading: true
+    }
+  }) }}
+
+{% endblock %}
+
+{% block pageScripts %}{% endblock %}

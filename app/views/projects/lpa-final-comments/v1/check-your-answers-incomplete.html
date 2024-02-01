@@ -1,0 +1,98 @@
+ 
+{% extends "layouts/PINS-post-mvp.html" %}
+{% set pageName="LPA statement review" %}
+ 
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+    	{% set html %}
+    	  <p class="govuk-notification-banner__heading">
+    	    The appeal is ready for review
+    	  </p>
+    	  <p>
+          <a class="govuk-notification-banner__link" href="appellant-case.html">
+            Start the review
+          </a>
+        </p>
+    	{% endset %}
+
+    
+    <span class="govuk-caption-l">Appeal 43687</span>
+  
+
+      <h1 class="govuk-heading-l">Check your answers</h1>
+
+ 
+ 
+ 
+
+    <form action="lpa-final-comments-incomplete" method="post" class="govuk-!-margin-top-6" novalidate>
+
+      
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Review outcome
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['issue-decision' ] or "Incomplete" }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="lpa-final-comment-review">Change<span class="govuk-visually-hidden"> outcome</span></a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+           Reasons
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['comment-why-reasons' ] or "Reason 1" }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="why-incomplete">Change<span class="govuk-visually-hidden">reason</span></a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+           New due date
+          </dt>
+          <dd class="govuk-summary-list__value">
+          
+            {{ ( data['lpa-comment-due-date-year']+ "-" + data['lpa-comment-due-date-month'] + "-" + data['lpa-comment-due-date-day']  or "Reason 1"  ) | govukDate("truncate") }} </p>
+            
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="update-due-date">Change<span class="govuk-visually-hidden"> due date</span></a>
+          </dd>
+        </div>
+      </dl>
+
+   
+<!-- <h2 class="govuk-heading-m">Confirm outcome</h2> -->
+ <!---- 
+ 
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+{{ govukInsetText({
+  html: "Confirming will inform the relevant parties
+  of the outcome"
+}) }}  
+-->
+
+{{ govukButton({
+  text: "Confirm"
+}) }}
+    </form>
+
+ 
+
+
+{% endblock %}
+
+
+
+</div>
+</div>

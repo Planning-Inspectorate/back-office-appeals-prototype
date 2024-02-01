@@ -38,7 +38,7 @@
             Review outcome
           </dt>
           <dd class="govuk-summary-list__value">
-           Complete
+           Incomplete
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> outcome</span></a>
@@ -52,7 +52,7 @@
             {{ data['why-reasons' ] or "Reason 1" }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden">reason</span></a>
+            <a class="govuk-link" href="why-incomplete">Change<span class="govuk-visually-hidden">reason</span></a>
           </dd>
         </div>
         <div class="govuk-summary-list__row">
@@ -60,11 +60,11 @@
            New due date
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ ( data['lpa-statement-due-date-year']+ "-" + data['lpa-statement-due-date-month'] + "-" + data['lpa-statement-due-date-day'] ) | govukDate }} </p>
+            {{ ( data['lpa-statement-due-date-year']+ "-" + data['lpa-statement-due-date-month'] + "-" + data['lpa-statement-due-date-day'] ) | govukDate or "None" }} </p>
   
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> due date</span></a>
+            <a class="govuk-link" href="update-due-date">Change<span class="govuk-visually-hidden"> due date</span></a>
           </dd>
         </div>
       </dl>

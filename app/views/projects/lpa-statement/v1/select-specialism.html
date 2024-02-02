@@ -29,10 +29,9 @@
       {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
       {{ govukInsetText({
-        html: "Current allocation matrix is level B and 3, Enforcement."
+        html: "Current allocation matrix is level B and 3, Enforcement"
       }) }}  
- 
-<p>Select all that apply</p>
+       
     
 
       {{ govukSummaryList({
@@ -88,6 +87,9 @@
       isPageHeading: true,
       classes: "govuk-fieldset__legend--m"
     }
+  },
+  hint: {
+    text: "Select all that apply"
   },
   items: [
     {

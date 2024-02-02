@@ -7,45 +7,54 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
-    	{% set html %}
-    	  <p class="govuk-notification-banner__heading">
-    	    The appeal is ready for review
-    	  </p>
-    	  <p>
-          <a class="govuk-notification-banner__link" href="appellant-case.html">
-            Start the review
-          </a>
-        </p>
-    	{% endset %}
-
-    
+  
     <span class="govuk-caption-l">Appeal 2110166</span>
   
-
       <h1 class="govuk-heading-l">Redact the LPA statement</h1>
+      <form action="redact-both2" method="post" class="govuk-!-margin-top-2">
+      <div class="govuk-grid-row">
+      <div class="govuk-grid-column-one-half">
+        <h2 class="govuk-heading-m">Original statement</h2>
+        <p>LPA statement goes here.
+          Lorem ipsum dolor sit amet. Quo commodi quia qui nobis voluptatum ut quis illum in omnis sunt At tempore laborum est repellendus ipsum.</p>
+     
+      </div>
+      <div class="govuk-grid-column-one-half">
+        
+    
+          {{ govukTextarea({
+            name: "redactedStatement",
+            id: "redactedStatement",
+            hint: {
+              text: "Highlight the section you want to remove, then select 'redact'."
+            },
+            rows: "6",
+            label: {
+              text: "Redacted statement",
+              classes: "govuk-label--m",
+              isPageHeading: false
+            },
+           
+            value: "LPA statement goes here. Lorem ipsum dolor sit amet. Quo commodi quia qui nobis voluptatum ut quis illum in omnis sunt At tempore laborum est repellendus ipsum."
+            
+          }) }}
+    
+          <a href="#" class="govuk-button govuk-button--secondary">Redact</a>
+    
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+        </form>
+      </div>
+    </div>
 
  
 
-       
+
+{% endblock %} 
 
     </div>
   </div>
  
  
 
-    <form action="redact-both2" method="post" class="govuk-!-margin-top-6" novalidate>
-
-      
- 
-
-        {{ govukButton({
-          text: "Continue"
-        }) }}
-
-    </form>
-
- 
-
-
-{% endblock %}

@@ -4,14 +4,12 @@
  
 {% block content %}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
 {% set html %}
 <p class="govuk-notification-banner__heading">
-  LPA statement ready for review
+  LPA final comment ready for review
 </p>
 <p>
-  <a class="govuk-notification-banner__link" href="lpa-statement-redactions">
+  <a class="govuk-notification-banner__link" href="lpa-final-comment-review">
     Review 
   </a>
 </p>
@@ -21,17 +19,34 @@
 html: html
 }) }}
 
-     
 
- 
-    <span class="govuk-caption-l">Appeal 2110166</span>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+    	{% set html %}
+    	  <p class="govuk-notification-banner__heading">
+    	    The appeal is ready for review
+    	  </p>
+    	  <p>
+          <a class="govuk-notification-banner__link" href="appellant-case.html">
+            Start the review
+          </a>
+        </p>
+    	{% endset %}
+
+    <!--	<span class="govuk-caption-l">Appeal 2110166</span> -->
+    <span class="govuk-caption-l">Appeal 43687</span>
     	<h1 class="govuk-heading-l">Case details</h1>
  
 
         {{ govukTag({
-          text: "Statement",
-          classes: "govuk-tag--blue"
+          text: "Final comment",
+          classes: "govuk-tag--orange"
         })}}
+
+ 
+  
 
 
       {% include "/includes/appeal-content/mvp-has-appeal-meta.html" %}
@@ -415,10 +430,10 @@ html: html
                     text: "Received"
                   },
                   {
-                    text: "19 Jul 2023"
+                    text: "19 July 2023"
                   },
                   {
-                    html: "<a href='lpa-statement-redactions'>Review</a>"
+                    html: "<a href='#'>Review</a>"
                   }
                 ]
                 ,
@@ -457,13 +472,13 @@ html: html
                     text: "LPA final comments"
                   },
                   {
-                    text: ""
+                    text: "Received"
                   },
                   {
-                    text: ""
+                    text: " "
                   },
                   {
-                    html: "<a href='#'>Add</a>"
+                    html: "<a href='lpa-final-comment-review'>Review</a>"
                   }
                 ]
                 ,

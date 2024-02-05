@@ -4,27 +4,17 @@
  
 {% block content %}
 
+ 
+ 
+
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-{% set html %}
-<p class="govuk-notification-banner__heading">
-  LPA statement ready for review
-</p>
-<p>
-  <a class="govuk-notification-banner__link" href="lpa-statement-redactions">
-    Review 
-  </a>
-</p>
-{% endset %}
 
-{{ govukNotificationBanner({
-html: html
-}) }}
-
-     
+    	
 
  
-    <span class="govuk-caption-l">Appeal 2110166</span>
+    <span class="govuk-caption-l">Appeal 43687</span>
     	<h1 class="govuk-heading-l">Case details</h1>
  
 
@@ -32,6 +22,9 @@ html: html
           text: "Statement",
           classes: "govuk-tag--blue"
         })}}
+
+ 
+  
 
 
       {% include "/includes/appeal-content/mvp-has-appeal-meta.html" %}
@@ -134,7 +127,7 @@ html: html
           <div class="govuk-accordion__section-header">
             <h1 class="govuk-accordion__section-heading">
               <span class="govuk-accordion__section-button" id="accordion-default-heading-2">
-               Site details
+                Site details
               </span>
             </h2>
           </div>
@@ -412,13 +405,13 @@ html: html
                     text: "LPA statement"
                   },
                   {
-                    text: "Received"
+                    text: "Complete"
                   },
                   {
-                    text: "19 Jul 2023"
+                    text: "19 Jan 2024"
                   },
                   {
-                    html: "<a href='lpa-statement-redactions'>Review</a>"
+                    html: "<a href='#'>View</a>"
                   }
                 ]
                 ,
@@ -457,13 +450,13 @@ html: html
                     text: "LPA final comments"
                   },
                   {
-                    text: ""
+                    text: "Complete"
                   },
                   {
                     text: ""
                   },
                   {
-                    html: "<a href='#'>Add</a>"
+                    html: "<a href='#'>View</a>"
                   }
                 ]
                 ,
@@ -505,7 +498,7 @@ html: html
                     text: "Apellant"
                   },
                   {
-                    html: "Apellant Name<br><a href='#'>apellant-names@example.co.uk</a> <br>0300 0272189"
+                    html: "Apellant Name<br><a href='#'>apellant-names@example.co.uk</a> <br>0300 027 2189"
                   },
                   {
                     html: "<a href='#'>Change</a>"
@@ -516,7 +509,7 @@ html: html
                     text: "Agent"
                   },
                   {
-                    html: "Robert Williams<br><a href='#'>robert.williams@planninginspectorate.gov.uk</a> <br>0300 027 2189"
+                    html: "Agent Name<br><a href='#'>agent.name@example.co.uk</a> <br>0300 017 4492"
                   },
                   {
                     html: "<a href='#'>Change</a>"
@@ -527,7 +520,7 @@ html: html
                     text: "LPA"
                   },
                   {
-                    html: "Local Planning Authority Name<br><a href='#'>Name@localauthority.gov.uk</a> <br>0300 021 2189"
+                    html: "Local Planning Authority Name<br><a href='#'>Name@localauthority.gov.uk</a> <br>0300 027 2190"
                   },
                   {
                     html: "<a href='#'>Change</a>"
@@ -538,7 +531,7 @@ html: html
                     text: "Interested parties"
                   },
                   {
-                    html: "Interested Name<br><a href='#'>interested-parties@example.co.uk</a> <br>0300 027 2189"
+                    html: "Interested Name<br><a href='#'>interested-parties@example.co.uk</a> <br>0300 021 4493"
                   },
                   {
                     html: "<a href='#'>Change</a>"
@@ -567,7 +560,7 @@ html: html
                     text: "Case officer"
                   },
                   {
-                    html: "Robert Williams<br><a href='#'>robert.williams@planninginspectorate.gov.uk</a> <br>0300 0272189"
+                    html: "Robert Williams<br><a href='#'>robert.williams@planninginspectorate.gov.uk</a> <br>0300 027 2188"
                   },
                   {
                     html: "<a href='#'>Change</a>"
@@ -578,7 +571,7 @@ html: html
                     text: "Inspector"
                   },
                   {
-                    html: "Rupi Sentil<br><a href='#'>rupi.sentil@localauthority.gov.uk</a> <br>0300 021 4492"
+                    html: "Rupi Sentil<br><a href='#'>rupi.sentil@localauthority.gov.uk</a> <br>0300 021 4494"
                   },
                   {
                     html: "<a href='#'>Change</a>"

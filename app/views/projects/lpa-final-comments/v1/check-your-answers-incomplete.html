@@ -20,7 +20,7 @@
     	{% endset %}
 
     
-    <span class="govuk-caption-l">Appeal 2110166</span>
+    <span class="govuk-caption-l">Appeal 43687</span>
   
 
       <h1 class="govuk-heading-l">Check your answers</h1>
@@ -29,7 +29,7 @@
  
  
 
-    <form action="lpa-statement-incomplete" method="post" class="govuk-!-margin-top-6" novalidate>
+    <form action="lpa-final-comments-incomplete" method="post" class="govuk-!-margin-top-6" novalidate>
 
       
       <dl class="govuk-summary-list">
@@ -38,10 +38,10 @@
             Review outcome
           </dt>
           <dd class="govuk-summary-list__value">
-           Incomplete
+            {{ data['issue-decision' ] or "Incomplete" }}
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> outcome</span></a>
+            <a class="govuk-link" href="lpa-final-comment-review">Change<span class="govuk-visually-hidden"> outcome</span></a>
           </dd>
         </div>
         <div class="govuk-summary-list__row">
@@ -49,7 +49,7 @@
            Reasons
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['why-reasons' ] or "Reason 1" }}
+            {{ data['comment-why-reasons' ] or "Reason 1" }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="why-incomplete">Change<span class="govuk-visually-hidden">reason</span></a>
@@ -60,8 +60,9 @@
            New due date
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ ( data['lpa-statement-due-date-year']+ "-" + data['lpa-statement-due-date-month'] + "-" + data['lpa-statement-due-date-day'] ) | govukDate or "None" }} </p>
-  
+          
+            {{ ( data['lpa-comment-due-date-year']+ "-" + data['lpa-comment-due-date-month'] + "-" + data['lpa-comment-due-date-day']  or "Reason 1"  ) | govukDate("truncate") }} </p>
+            
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="update-due-date">Change<span class="govuk-visually-hidden"> due date</span></a>

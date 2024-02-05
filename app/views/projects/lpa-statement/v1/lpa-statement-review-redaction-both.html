@@ -25,10 +25,6 @@
 
       <h1 class="govuk-heading-l">Check the LPA statement</h1>
 
- 
-
-       
-
       <h2 class="govuk-heading-m">Statement</h2>
 
       {{ govukSummaryList({
@@ -36,31 +32,27 @@
         rows: [
           {
             key: {
-              text: "Statement content"
+              text: "Statement content (redacted)"
             },
             value: {
-              html: "LPA statement goes here.<br>
-               
-              
-              Lorem ipsum dolor sit amet. Quo commodi quia qui nobis voluptatum ut quis illum in omnis sunt At tempore laborum est repellendus ipsum.  
-               "
+              html:  data['redactedStatement' ] or "LPA statement goes here. Lorem ipsum dolor sit amet. Quo commodi quia qui nobis voluptatum ut quis illum in omnis sunt At tempore laborum est repellendus ipsum."
             },
             actions: {
               items: [
                 {
                   href: "#",
                   text: "Change",
-                  visuallyHiddenText: "statement content"
+                  visuallyHiddenText: "statement content app/views/projects/lpa-statement/v1/lpa-statement-review-redaction2.html"
                 }
               ]
             }
           },
           {
             key: {
-              text: "Supporting documents"
+              text: "Supporting documents (redacted)"
             },
             value: {
-              text: "example.pdf"
+              text: data['final-document-1' ] or "example2.pdf"
             },
             actions: {
               items: [

@@ -20,23 +20,23 @@
     	{% endset %}
 
     
-    <span class="govuk-caption-l">Appeal 2110166</span>
+    <span class="govuk-caption-l">Appeal 43687</span>
   
 
-      <h1 class="govuk-heading-l">Check the LPA statement</h1>
+      <h1 class="govuk-heading-l">LPA final comment</h1>
 
  
 
        
 
-      <h2 class="govuk-heading-m">Statement</h2>
+      
 
       {{ govukSummaryList({
         classes: "govuk-!-margin-bottom-9",
         rows: [
           {
             key: {
-              text: "Statement content"
+              text: "Final comment content"
             },
             value: {
               html: "LPA statement goes here.<br>
@@ -60,7 +60,7 @@
               text: "Supporting documents"
             },
             value: {
-              text: "example.pdf"
+              html: "<a href='#''>Document1.pdf</a><br><a href='#'>Document1.pdf</a>"
             },
             actions: {
               items: [
@@ -97,11 +97,11 @@
           },
           items: [
             {
-              value: "complete~matrix-update",
+              value: "Complete~lpa-final-comment-complete",
               text: "Complete"
             },
             {
-              value: "dismissed~why-incomplete",
+              value: "Incomplete~why-incomplete",
               text: "Incomplete"
             } 
              

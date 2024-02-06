@@ -2,7 +2,7 @@
 
 {% set pageName="Decision date" %}
 
-{% set title = "Tell us the date on your decision letter" %}
+{% set title = "Who has applied for costs?" %}
 
 {% block content %}
 
@@ -12,13 +12,10 @@
   <span class="govuk-caption-l">
     Appeal 2110166
   </span>
-  <!-- <h1 class="govuk-heading-l">
-    {{ title }}
-  </h1> -->
 
   <!-- {{ govukTag({
     text: "Issue determination",
-    classes: "govuk-tag--pink"
+    classes: "govuk-tag--pink govuk-!-margin-bottom-6"
   })}} -->
 
 <!-- </div>
@@ -29,22 +26,36 @@
 
 </div>
 <div class="govuk-grid-column-two-thirds"> -->
-<form action="costs-decision" method="post">
-  {{ govukDateInput({
-    id: "decision-date",
-    namePrefix: "decision-date",
+
+  <form action="costs-decision" method="post">
+
+  {{ govukRadios({
+    name: "costs-awarded",
     fieldset: {
       legend: {
-        text: title,
+        text: "Have you awarded costs?",
         isPageHeading: true,
         classes: "govuk-fieldset__legend--l"
       }
     },
-    hint: {
-      html: "For example, 13 9 2023"
-    }
+    items: [
+      {
+        value: "Full costs awarded~costs-upload",
+        text: "Full costs awarded"
+      },
+      {
+        value: "Partial costs awarded~costs-upload",
+        text: "Partial costs awarded"
+      },
+      {
+        divider: "or"
+      },
+      {
+        value: "Not awarded~check-your-answers",
+        text: "Not awarded"
+      }
+    ]
   }) }}
-
   
 {{ govukButton({
   text: "Continue"

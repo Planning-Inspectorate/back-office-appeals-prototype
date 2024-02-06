@@ -2,7 +2,7 @@
 
 {% set pageName = "Decision date" %}
 
-{% set title = "Upload your decision letter" %}
+{% set title = "Upload your costs decision" %}
 
 {% block content %}
 
@@ -32,30 +32,6 @@
 
   <section class="govuk-!-margin-top-6 govuk-!-margin-bottom-6">
 
-    {{ govukWarningText({
-      text: "Before uploading the decision letter check that you:",
-      iconFallbackText: "Warning"
-    }) }}
-
-    <ul class="govuk-list govuk-list--bullet">
-      <li>
-        have used the correct appeal reference
-      </li>
-      <li>
-        have added the decision and visit dates
-      </li>
-      <li>
-        have added the correct site address
-      </li>
-      <li>
-        have added the decision to the top and bottom of the letter
-      </li>
-      <li>
-        signed the letter
-      </li>
-    </ul>
-  </section>
-
   {% set uploadHtml %}
     {{ govukFileUpload({
       id: 'letters-upload',
@@ -84,7 +60,7 @@
     uploadHtml: uploadHtml
   }) }}
 
-<form action="decision-date" method="post">
+<form action="check-your-answers" method="post">
 {{ govukButton({
   text: "Continue"
 }) }}

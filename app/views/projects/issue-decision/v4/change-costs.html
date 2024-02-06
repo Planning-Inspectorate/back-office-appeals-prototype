@@ -2,23 +2,18 @@
 
 {% set pageName="Decision date" %}
 
-{% set title = "Tell us the date on your decision letter" %}
+{% set title = "Who has applied for costs?" %}
 
-{% block content %}
+{% block questions %}
 
- <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
 
   <span class="govuk-caption-l">
     Appeal 2110166
   </span>
-  <!-- <h1 class="govuk-heading-l">
-    {{ title }}
-  </h1> -->
 
   <!-- {{ govukTag({
     text: "Issue determination",
-    classes: "govuk-tag--pink"
+    classes: "govuk-tag--pink govuk-!-margin-bottom-6"
   })}} -->
 
 <!-- </div>
@@ -29,27 +24,39 @@
 
 </div>
 <div class="govuk-grid-column-two-thirds"> -->
-<form action="costs-decision" method="post">
-  {{ govukDateInput({
-    id: "decision-date",
-    namePrefix: "decision-date",
+
+  {{ govukRadios({
+    name: "costs-applied-for",
     fieldset: {
       legend: {
-        text: title,
+        text: "Who has applied for costs?",
         isPageHeading: true,
         classes: "govuk-fieldset__legend--l"
       }
     },
-    hint: {
-      html: "For example, 13 9 2023"
-    }
+    items: [
+      {
+        value: "Appellant~case",
+        text: "Appellant"
+      },
+      {
+        value: "LPA~case",
+        text: "LPA"
+      },
+      {
+        value: "Both parties~case",
+        text: "Both parties"
+      },
+      {
+        divider: "or"
+      },
+      {
+        value: "Not submitted~case",
+        text: "Not submitted"
+      }
+    ]
   }) }}
 
-  
-{{ govukButton({
-  text: "Continue"
-}) }}
-  </form>
 
-</div></div>
+
 {% endblock %}

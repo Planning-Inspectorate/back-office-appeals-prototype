@@ -18,10 +18,10 @@
         rows: [
           {
             key: {
-              text: "Statement content (redacted)"
+              text: "Original statement content "
             },
             value: {
-              html:  data['redactedStatement' ] or "LPA statement goes here. Lorem ipsum dolor sit amet. Quo commodi quia qui nobis voluptatum ut quis illum in omnis sunt At tempore laborum est repellendus ipsum."
+              html: "LPA statement goes here. Lorem ipsum dolor sit amet. Quo commodi quia qui nobis voluptatum ut quis illum in omnis sunt At tempore laborum est repellendus ipsum."
             },
             actions: {
               items: [
@@ -35,7 +35,24 @@
           },
           {
             key: {
-              text: "Supporting documents (redacted)"
+              text: "Statement content (redacted)"
+            },
+            value: {
+              html:  data['redactedStatement' ] or "No chnage"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "statement content app/views/projects/lpa-statement/v1/lpa-statement-review-redaction2.html"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Supporting documents "
             },
             value: {
               text: data['final-document' ] or "example2.pdf"

@@ -12,45 +12,23 @@
       <h1 class="govuk-heading-l">Upload redacted supporting documents</h1>
 
     
-      {% from "moj/components/multi-file-upload/macro.njk" import mojMultiFileUpload %}
       {% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
-    
-        {% set uploadHtml %}
-    
-          {{ govukFileUpload({
-            id: "final-documents",
-            name: "final-documents",
-            classes: 'moj-multi-file-upload__input',
-            label: {
-              text: "Upload files",
-              classes: 'govuk-label--m'
-            },
-            hint: {
-              text: 'The files must be a DOC, DOCX, PDF, TIF, JPG or PNG and be smaller than 15MB'
-            },
-            attributes: { multiple: '' }
-          }) }}
-    
-          {{govukButton({
-            text: 'Upload file',
-            classes: 'govuk-button--secondary moj-multi-file-upload__button'
-          })}}
-    
-        {% endset %}
-    
-        {{ mojMultiFileUpload({
-        uploadedFiles: {
-            heading: { text: 'Files added' },
-            items: []
-          },
-          uploadHtml: uploadHtml
-        }) }}
-    
-        
- 
- 
 
-    <form action="lpa-statement-review-redaction-both" method="post" class="govuk-!-margin-top-6" novalidate>
+      {{ govukFileUpload({
+        id: "file-upload-1",
+        name: "file-upload-1",
+        label: {
+          text: "Upload a file"
+        },
+        hint: {
+              text: 'The files must be a DOC, DOCX, PDF, TIF, JPG or PNG and be smaller than 15MB'
+            }
+      }) }}
+    
+      {% from "govuk/components/button/macro.njk" import govukButton %}
+    
+
+    <form action="redact-both3" method="post" class="govuk-!-margin-top-6" novalidate>
 
       
  

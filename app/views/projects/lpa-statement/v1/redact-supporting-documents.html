@@ -17,45 +17,26 @@
       <h1 class="govuk-heading-l">Upload redacted supporting documents</h1>
 
     
-      {% from "moj/components/multi-file-upload/macro.njk" import mojMultiFileUpload %}
       {% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
-    
-        {% set uploadHtml %}
-    
-          {{ govukFileUpload({
-            id: "file-upload-1",
-            name: "fileUpload1",
-            classes: 'moj-multi-file-upload__input',
-            label: {
-              text: "Upload files",
-              classes: 'govuk-label--m'
-            },
-            hint: {
+
+      {{ govukFileUpload({
+        id: "file-upload-1",
+        name: "file-upload-1",
+        label: {
+          text: "Upload a file"
+        },
+        hint: {
               text: 'The files must be a DOC, DOCX, PDF, TIF, JPG or PNG and be smaller than 15MB'
-            },
-            attributes: { multiple: '' }
-          }) }}
+            }
+      }) }}
     
-          {{govukButton({
-            text: 'Upload file',
-            classes: 'govuk-button--secondary moj-multi-file-upload__button'
-          })}}
+      {% from "govuk/components/button/macro.njk" import govukButton %}
     
-        {% endset %}
-    
-        {{ mojMultiFileUpload({
-        uploadedFiles: {
-            heading: { text: 'Files added' },
-            items: []
-          },
-          uploadHtml: uploadHtml
-        }) }}
-    
-        
+     
  
  
 
-    <form action="lpa-statement-review-redaction2" method="post" class="govuk-!-margin-top-6" novalidate>
+    <form action="redact-supporting-documents2" method="post" class="govuk-!-margin-top-6" novalidate>
 
       
  

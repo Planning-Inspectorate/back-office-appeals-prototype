@@ -7,10 +7,35 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-  
-    <span class="govuk-caption-l">Appeal 2110166</span>
-      <h1 class="govuk-heading-l">LPA statement</h1>
 
+ 
+      {% set html %}
+      <p class="govuk-notification-banner__heading">
+        LPA statement incomplete
+      </p>
+      <p>
+        <a class="govuk-notification-banner__link" href="lpa-statement-redactions">
+          Reason 1 
+        </a>
+      </p>
+      {% endset %}
+      
+      {{ govukNotificationBanner({
+      html: html
+      }) }}
+      
+
+    
+    <span class="govuk-caption-l">Appeal 2110166</span>
+  
+
+      <h1 class="govuk-heading-l">Check the LPA statement</h1>
+
+ 
+
+       
+
+      <h2 class="govuk-heading-m">Statement</h2>
 
       {{ govukSummaryList({
         classes: "govuk-!-margin-bottom-9",
@@ -71,30 +96,20 @@
           name: "issue-decision",
           fieldset: {
             legend: {
-              text: "Do the documents need redacting?",
+              text: "What is the outcome of your review?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--m"
             }
           },
           items: [
             {
-              value: "both~redact-both",
-              text: "Yes, both the LPA statement and supporting documents"
+              value: "complete~matrix-update",
+              text: "Complete"
             },
             {
-              value: "statement~redact-lpa-statement",
-              text: "Only the LPA statement"
-            }
-            ,
-            {
-              value: "supporting-docs~redact-supporting-documents",
-              text: "Only the supporting documents "
+              value: "dismissed~why-incomplete",
+              text: "Incomplete"
             } 
-            ,
-            {
-              value: "no~lpa-statement-review",
-              text: "No"
-            }  
              
           ]
         }) }}

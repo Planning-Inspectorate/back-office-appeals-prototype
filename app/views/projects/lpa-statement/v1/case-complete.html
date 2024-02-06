@@ -7,6 +7,21 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      {% set html %}
+<p class="govuk-notification-banner__heading">
+  LPA statement ready for publishing
+</p>
+<p>
+  <a class="govuk-notification-banner__link" href="../../cross-copy/v1/lpa-statement-publish">
+    Publish
+  </a>
+</p>
+{% endset %}
+
+{{ govukNotificationBanner({
+html: html
+}) }}
+
  
     <span class="govuk-caption-l">Appeal 2110166</span>
     	<h1 class="govuk-heading-l">Case details</h1>

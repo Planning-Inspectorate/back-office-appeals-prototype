@@ -1,8 +1,8 @@
 {% extends "layouts/PINS.html" %}
 
-{% set pageName = "Decision date" %}
+{% set pageName = "Upload the costs application" %}
 
-{% set title = "Upload decision letter" %}
+{% set title = "Upload the costs application" %}
 
 {% block content %}
 
@@ -32,30 +32,6 @@
 
   <section class="govuk-!-margin-top-6 govuk-!-margin-bottom-6">
 
-    {{ govukWarningText({
-      text: "Before uploading, check that you have: ",
-      iconFallbackText: "Warning"
-    }) }}
-
-    <ul class="govuk-list govuk-list--bullet">
-      <li>
-        added the correct appeal reference
-      </li>
-      <li>
-        added the decision date and visit date
-      </li>
-      <li>
-        added the correct site address
-      </li>
-      <li>
-        added the decision to the top and bottom of the letter
-      </li>
-      <li>
-        signed the letter
-      </li>
-    </ul>
-  </section>
-
   {% set uploadHtml %}
     {{ govukFileUpload({
       id: 'letters-upload',
@@ -84,11 +60,12 @@
     uploadHtml: uploadHtml
   }) }}
 
-<form action="decision-date" method="post">
+<form action="case" method="post">
 {{ govukButton({
   text: "Continue"
 }) }}
   </form>
+  <p><a href="case-no-upload">Application already uploaded</a></p>
 
   </div></div>
 

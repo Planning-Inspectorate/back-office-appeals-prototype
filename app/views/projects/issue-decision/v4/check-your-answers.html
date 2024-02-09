@@ -30,6 +30,8 @@
 <div class="govuk-grid-column-two-thirds"> -->
 
   <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+
+    {% if data['issued-decision'] %}
     
       
         <div class="govuk-summary-list__row">
@@ -90,9 +92,11 @@
           
         </div>
 
+        {% endif %}
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Costs decision
+            Costs awarded
           </dt>
           <dd class="govuk-summary-list__value">
           {{ data ['costs-awarded'] }}
@@ -108,10 +112,10 @@
           
         </div>
 
-         {% if data ['costs-awarded'] === 'Full costs awarded' or data ['costs-awarded'] === 'Partial costs awarded' %}
+         {% if data ['costs-awarded'] === 'yes' or data ['costs-awarded'] === 'no' %}
           <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Costs decision letter
+            Costs letter
           </dt>
           <dd class="govuk-summary-list__value">
             <a href="#" class="govuk-link">4012345-costs-decision.doc</a>
@@ -120,7 +124,7 @@
             <dd class="govuk-summary-list__actions">
               
                 <a class="govuk-link" href="#">
-                Change<span class="govuk-visually-hidden">  costs decision</span>
+                Change<span class="govuk-visually-hidden">  costs letter</span>
                 </a>
               
             </dd>
@@ -133,7 +137,7 @@
   </dl>
 
   {{ govukWarningText({
-    text: "You are about to send the decision to all parties and close the appeal. Please make sure you have reviewed the decision information",
+    text: "You are about to send the decision to all parties and close the appeal. Make sure you have reviewed the decision information.",
     iconFallbackText: "Warning"
   }) }}
 

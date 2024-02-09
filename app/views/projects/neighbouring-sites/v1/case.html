@@ -21,6 +21,19 @@
           </div>
           {% endif %}
 
+  {% if data ['neighbours-address-lpa-line-1'] %}
+    <div class="govuk-notification-banner  govuk-notification-banner--success" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+          <div class="govuk-notification-banner__header">
+            <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">Success</h2>
+          </div>
+          <div class="govuk-notification-banner__content"> 
+            <p class="govuk-notification-banner__heading">
+              Neighbouring site from LPA added.
+              </p>
+          </div>
+          </div>
+          {% endif %}
+
     
 
     <!--	<span class="govuk-caption-l">Appeal 2110166</span> -->
@@ -315,11 +328,25 @@
                     <li>170, York Road<br>
                       Bristol<br>
                       BS3 4AL</li>
+                    {% if data['neighbours-address-lpa-line-1'] %}
+                  <li>
+                    {{ data['neighbours-address-lpa-line-1']}}<br>
+                    {{ data['neighbours-address-lpa-line-2']}}
+                    {% if data ['neighbours-address-lpa-line-2'] %}<br>
+                    {% endif %}
+                    {{ data['neighbours-address-lpa-town']}} 
+                    {% if data['neighbours-address-lpa-county']%}<br>
+                    {% endif %}
+                    {{ data['neighbours-address-lpa-county']}}<br>
+                    {{ data['neighbours-address-lpa-postcode']}}
+                  </li>
+                {% endif %}
                   </ul>
                 </dd>
                   <dd class="govuk-summary-list__actions">
                       <a class="govuk-link" href="manage-neighbouring-sites.html">
-                      Manage</a> 
+                      Manage</a> | <a class="govuk-link" href="additional-neighbours-address-lpa">
+                        Add</a> 
                   </dd>
               </div>
                <div class="govuk-summary-list__row">

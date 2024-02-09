@@ -29,27 +29,54 @@
 
   <form action="costs-decision" method="post">
 
-  {{ govukRadios({
-    name: "costs-awarded",
-    fieldset: {
-      legend: {
-        text: "Have you awarded costs?",
-        isPageHeading: true,
-        classes: "govuk-fieldset__legend--l"
-      }
-    },
-    items: [
-      {
-        value: "Yes~costs-upload",
-        text: "Yes"
-      },
-      {
-        value: "No~costs-upload",
-        text: "No"
-      }
-    ]
-  }) }}
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
   
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+  
+    <h1 class="govuk-fieldset__heading">
+      Have you awarded costs?
+    </h1>
+  
+  </legend>
+
+  <div class="govuk-radios" data-module="govuk-radios">
+     
+        <div class="govuk-radios__item">
+          <input class="govuk-radios__input" id="costs-awarded" name="costs-awarded" type="radio" value="Yes~costs-upload">
+          <label class="govuk-label govuk-radios__label" for="costs-awarded">
+        Yes
+      </label>
+          
+        </div>
+        
+        <div class="govuk-radios__item">
+          <input class="govuk-radios__input" id="costs-awarded-2" name="costs-awarded" type="radio" value="No~costs-upload">
+          <label class="govuk-label govuk-radios__label" for="costs-awarded-2">
+        No
+      </label>
+          
+        </div>
+        {% if data ['issued-decision'] %}
+
+        <div class="govuk-radios__divider">or</div>
+      
+        <div class="govuk-radios__item">
+          <input class="govuk-radios__input" id="costs-awarded-4" name="costs-awarded" type="radio" value="Not applied for~check-your-answers">
+          <label class="govuk-label govuk-radios__label" for="costs-awarded-4">
+        Not applied for
+      </label>
+          
+        </div>
+
+        {% endif %}
+  </div>
+
+
+</fieldset>
+  
+  </div>
+
 {{ govukButton({
   text: "Continue"
 }) }}

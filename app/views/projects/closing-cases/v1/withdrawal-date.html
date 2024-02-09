@@ -1,0 +1,40 @@
+{% extends "layouts/PINS-Header-Nav.html" %}
+
+{% set pageName="Change appeal type" %}
+
+{% set back = true %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Appeal 2110166</span>
+    <form action="close-case" method="post">
+
+      {{ govukDateInput({
+        id: "withdrawal-date",
+        namePrefix: "withdrawal-date",
+        fieldset: {
+          legend: {
+            text: "Enter date of withdrawal request",
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--l"
+          }
+        },
+        hint: {
+          text: "For example, 27 11 2023"
+        }
+      }) }}
+
+    {{ govukButton({
+      text: "Continue"
+    }) }}
+  </form>
+
+  </div>
+</div>
+
+
+{% endblock %}
+

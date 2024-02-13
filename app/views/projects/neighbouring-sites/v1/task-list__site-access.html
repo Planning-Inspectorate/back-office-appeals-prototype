@@ -110,7 +110,65 @@
           
         </div>
 
-        {% if data['neighbours-address-line-1'] %}
+        {% if data['neighbours-address-lpa-line-1'] and data['neighbours-address-line-1'] %}
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Neighbouring site 3
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['neighbours-address-lpa-line-1'] }}<br>
+            {{ data['neighbours-address-lpa-line-2']}}
+            {% if data ['neighbours-address-lpa-line-2'] %}<br>
+            {% endif %}
+            {{ data['neighbours-address-lpa-town']}}<br>
+            {{ data['neighbours-address-lpa-postcode']}}
+          </dd>
+            <dd class="govuk-summary-list__actions">
+                <ul class="govuk-summary-list__actions-list"><li class="govuk-summary-list__actions-list-item"><a class="govuk-link" href="site-access/neighbours-address?cya=true">
+                          Change</a></li></ul>
+            </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Neighbouring site 4
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['neighbours-address-line-1'] }}<br>
+            {{ data['neighbours-address-line-2']}}
+            {% if data ['neighbours-address-line-2'] %}<br>
+            {% endif %}
+            {{ data['neighbours-address-town']}}<br>
+            {{ data['neighbours-address-postcode']}}
+          </dd>
+            <dd class="govuk-summary-list__actions">
+                <ul class="govuk-summary-list__actions-list"><li class="govuk-summary-list__actions-list-item"><a class="govuk-link" href="site-access/neighbours-address?cya=true">
+                          Change</a></li></ul>
+            </dd>
+        </div>
+
+        {% elseif data['neighbours-address-lpa-line-1'] %}
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Neighbouring site 3
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['neighbours-address-lpa-line-1'] }}<br>
+            {{ data['neighbours-address-lpa-line-2']}}
+            {% if data ['neighbours-address-lpa-line-2'] %}<br>
+            {% endif %}
+            {{ data['neighbours-address-lpa-town']}}<br>
+            {{ data['neighbours-address-lpa-postcode']}}
+          </dd>
+            <dd class="govuk-summary-list__actions">
+                <ul class="govuk-summary-list__actions-list"><li class="govuk-summary-list__actions-list-item"><a class="govuk-link" href="site-access/neighbours-address?cya=true">
+                          Change</a></li></ul>
+            </dd>
+        </div>
+
+        {% elseif data['neighbours-address-line-1'] %}
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">

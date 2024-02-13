@@ -1,64 +1,50 @@
  
 {% extends "layouts/PINS-post-mvp.html" %}
-{% set pageName="LPA statement review" %}
+{% set pageName="LPA final comment review" %}
  
 {% block content %}
 
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
-    <span class="govuk-caption-l">Appeal 2110166</span>
-  
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
 
-      <h1 class="govuk-heading-l">Check the LPA statement</h1>
-      <h2 class="govuk-heading-m">Statement</h2>
+  <span class="govuk-caption-l">Appeal 2110166</span>
+    <h1 class="govuk-heading-l">Check the LPA final comment</h1>
+
+
+ 
+
+       
+
+      <h2 class="govuk-heading-m">Comment</h2>
 
       {{ govukSummaryList({
         classes: "govuk-!-margin-bottom-9",
         rows: [
           {
             key: {
-              text: "Original statement content "
+              text: "Original comment"
             },
             value: {
-              html: "
-              Ut dapibus, elit cursus condimentum consequat, Suspendisse consequat, nibh sit amet luctus pharetra, sapien neque consec
-              <span style>...</span>
-              <a href='#' class='show' style>Read more</a> "
+              html: "LPA final comment goes here.<br>  Lorem ipsum dolor sit amet. Quo commodi quia qui nobis voluptatum ut quis illum in omnis sunt At tempore laborum est repellendus ipsum.  
+               "
             },
             actions: {
               items: [
                 {
                   href: "#",
                   text: "Change",
-                  visuallyHiddenText: "statement content app/views/projects/lpa-statement/v1/lpa-statement-review-redaction2.html"
+                  visuallyHiddenText: "statement content"
                 }
               ]
             }
           },
           {
             key: {
-              text: "Statement content (redacted)"
+              text: "Supporting documents (redacted)"
             },
             value: {
-              html:  data['redactedStatement' ] or "No change"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "statement content app/views/projects/lpa-statement/v1/lpa-statement-review-redaction2.html"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Supporting documents "
-            },
-            value: {
-              text: data['final-document' ] or "example2.pdf"
+              text: data['file-upload-1' ] or "example2.pdf"
             },
             actions: {
               items: [
@@ -95,11 +81,11 @@
           },
           items: [
             {
-              value: "complete~matrix-update",
+              value: "complete~lpa-final-comment-complete",
               text: "Complete"
             },
             {
-              value: "dismissed~why-incomplete",
+              value: "incomplete~why-incomplete",
               text: "Incomplete"
             } 
              

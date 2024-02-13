@@ -31,7 +31,7 @@
            Reasons
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['why-reasons' ] or "Reason 1" }}
+            {{ data['reason-incomplete' ] + "   " + data['whats-missing' ]  + data['what-reason' ] + "  " or "Reason 1" }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="why-incomplete">Change<span class="govuk-visually-hidden">reason</span></a>

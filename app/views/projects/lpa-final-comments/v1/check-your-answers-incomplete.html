@@ -49,7 +49,7 @@
            Reasons
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['comment-why-reasons' ] or "Reason 1" }}
+            {{ data['lpa-statement-reason-incomplete'  ] + data['what-reason' ]  or "Reason 10" }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="why-incomplete">Change<span class="govuk-visually-hidden">reason</span></a>
@@ -61,7 +61,7 @@
           </dt>
           <dd class="govuk-summary-list__value">
           
-            {{ ( data['lpa-comment-due-date-year']+ "-" + data['lpa-comment-due-date-month'] + "-" + data['lpa-comment-due-date-day']  or "Reason 1"  ) | govukDate("truncate") }} </p>
+            {{ ( data['lpa-comment-due-date-year']+ "-" + data['lpa-comment-due-date-month'] + "-" + data['lpa-comment-due-date-day']   ) | govukDate("truncate")  or "Reason 1" }} </p>
             
           </dd>
           <dd class="govuk-summary-list__actions">

@@ -1,30 +1,62 @@
- 
+
 {% extends "layouts/PINS-post-mvp.html" %}
 {% set pageName="LPA statement review" %}
  
+
 {% block content %}
 
 
-  <div class="govuk-grid-row">
+<div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
     <span class="govuk-caption-l">Appeal 2110166</span>
   
 
-      <h1 class="govuk-heading-l">Check the LPA statement</h1>
-      <h2 class="govuk-heading-m">Statement</h2>
+      <h1 class="govuk-heading-l">Check the LPA final comment</h1>
+      <h2 class="govuk-heading-m">Comment</h2>
+
+      {% set appellantStatement = '
+  ' %}
+
+{{ govukSummaryList({
+  classes: 'long-answers govuk-!-margin-bottom-9',
+  rows: [
+    {
+      key: {
+        html: 'Statement text',
+        classes: 'govuk-!-width-one-quarter'
+      },
+      value: {
+        html: appellantStatement | nl2br
+      }
+    
+     
+    }
+
+  ]
+}) }}
 
       {{ govukSummaryList({
         classes: "govuk-!-margin-bottom-9",
         rows: [
           {
             key: {
-              text: "Original statement content "
+              text: "Original comment "
             },
             value: {
               html: "
-              Ut dapibus, elit cursus condimentum consequat, Suspendisse consequat, nibh sit amet luctus pharetra, sapien neque consec
-              <span style>...</span>
-              <a href='#' class='show' style>Read more</a> "
+                 Praesent non nibh nunc. Nulla pretium sagittis elit. Mauris in lectus nunc. 
+                 <br><br>
+                 Cras eu eleifend dolor, mollis vulputate sapien. Vestibulum finibus lacinia vestibulum.<br><br>
+                Phasellus dignissim sagittis eros, vitae accumsan quam rhoncus vitae.
+                Aenean ac venenatis metus. Praesent sed turpis elit. In faucibus tincidunt consequat. 
+                Etiam molestie justo vitae ultrices vulputate. 
+                <br><br>Phasellus commodo lectus eu urna feugiat, eu dictum nisi congue. 
+                Maecenas nec dolor vitae nulla efficitur rhoncus. 
+                Pellentesque hendrerit pellentesque justo ac viverra. 
+                Pellentesque vel metus nec lectus malesuada bibendum id id urna. 
+                Duis at erat efficitur, feugiat purus euismod, finibus turpis. 
+                Duis venenatis nibh quam, eget sagittis ligula pulvinar ac. 
+                Cras rutrum nisi eu mauris finibus, vel iaculis eros viverra. "
             },
             actions: {
               items: [
@@ -38,7 +70,7 @@
           },
           {
             key: {
-              text: "Statement content (redacted)"
+              text: "Comment (redacted)"
             },
             value: {
               html:  data['redactedStatement' ] or "No change"
@@ -80,6 +112,7 @@
  
  
 
+
     <form action="" method="post" class="govuk-!-margin-top-6" novalidate>
 
       
@@ -95,7 +128,7 @@
           },
           items: [
             {
-              value: "complete~matrix-update",
+              value: "complete~lpa-final-comment-complete",
               text: "Complete"
             },
             {
@@ -110,9 +143,8 @@
           text: "Continue"
         }) }}
 
-    </form>
-
- 
-
+    </form> 
 
 {% endblock %}
+
+

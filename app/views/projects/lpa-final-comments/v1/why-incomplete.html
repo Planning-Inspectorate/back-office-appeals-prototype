@@ -7,72 +7,103 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
-    	{% set html %}
-    	  <p class="govuk-notification-banner__heading">
-    	    The appeal is ready for review
-    	  </p>
-    	  <p>
-          <a class="govuk-notification-banner__link" href="appellant-case.html">
-            Start the review
-          </a>
-        </p>
-    	{% endset %}
+ 
 
     
     <span class="govuk-caption-l">Appeal 43687</span>
-  
-
       <h1 class="govuk-heading-l">Why is the LPA final comment incomplete?</h1>
-
- <p>Select all that apply</p>
+  <p  class="govuk-hint">Select all that apply</p>
  
  
 
     <form action="update-due-date" method="post" class="govuk-!-margin-top-6" novalidate>
 
-      
-      {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+    {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+  
+    {% set missingHtml %}
+    {{ govukCharacterCount({
+      name: "comment-why-reasons",
+      id: "comment-why-reasons",
+      maxlength: 300,
+      label: {
+        text: "List any other reasons",
+        classes: "govuk-label--s",
+        isPageHeading: false
+      },
+      hint: {
+        text: "Try to organise your list, for example using dashes or bullets"
+      }
+    }) }}
 
-      {{ govukCheckboxes({
-        name: "comment-why-reasons",
-        classes: "govuk-checkboxes--small",
-        fieldset: {
-          legend: {
-            text: "",
-            isPageHeading: true,
-            classes: "govuk-fieldset__legend--m"
-          }
+  {% endset -%}
+  
+
+  
+    {% set addMore2 %}
+  
+    <div data-module="moj-add-another">
+      
+      {% call govukFieldset({
+        classes: 'moj-add-another__item',
+        legend: {
+        text: 'What reason?',
+        classes: 'moj-add-another__title ',
+        isPageHeading: false
+        }
+      }) %}
+      
+      {{ govukInput({
+        id: "what-reason",
+        name: "what-reason",
+        classes: "govuk-!-margin-bottom-4"
+      }) }}
+    
+      {% endcall %}
+    
+      <div class="moj-button-action">
+        {{ govukButton({
+        text: 'Add another',
+        classes: 'govuk-button--secondary moj-add-another__add-button govuk-!-margin-bottom-4'
+        }) }}
+      </div>
+    
+    
+    </div>
+  
+    {% endset -%}
+
+    {{ govukCheckboxes({
+      name: "lpa-statement-reason-incomplete",
+      items: [
+        {
+          value: "Appeal not submitted on time",
+          text: "Appeal not submitted on time"
         },
-        items: [
-          {
-            value: "Appeal not submitted on time",
-            text: "Appeal not submitted on time"
-          },
-          {
-            value: "Supporting documents not submitted on time",
-            text: "Supporting documents not submitted on time"
-          },
-          {
-            value: "Appellant does not have the right to appeal",
-            text: "Appellant does not have the right to appeal"
-          },
-          {
-            value: "Another reason",
-            text: "Another reason"
-          }
-        ]
-      }) }}
-      
-      {{ govukButton({
-        text: "Continue"
-      }) }}
+        {
+          value: "Supporting documents not submitted on time",
+          text: "Supporting documents not submitted on time" 
         
+        },
+        {
+          value: "Appellant does not have the right to appeal",
+          text: "Appellant does not have the right to appeal" 
+        },
+        {
+          value: "Another reason",
+          text: "Another reason",
+          conditional: {
+          html: addMore2
+        }
+        }
+      ]
+    }) }}
 
-    </form>
+    {{ govukButton({
+      text: "Continue"
+    }) }}
 
- 
 
+  </form>
 
 {% endblock %}
 

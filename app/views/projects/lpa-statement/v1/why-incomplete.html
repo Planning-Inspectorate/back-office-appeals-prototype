@@ -16,44 +16,133 @@
 
       
       {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+ 
+        
+      {% set missingHtml %}
+			{{ govukCharacterCount({
+			  name: "more-detail",
+			  id: "more-detail",
+			  maxlength: 300,
+			  label: {
+			    text: "List any other reasons",
+			    classes: "govuk-label--s",
+			    isPageHeading: false
+			  },
+			  hint: {
+			    text: "Try to organise your list, for example using dashes or bullets"
+			  }
+			}) }}
+
+		{% endset -%}
+		
+		
+		
+		{% set addMore %}
+		
+	<div data-module="moj-add-another">
+		
+	    {% call govukFieldset({
+	      classes: 'moj-add-another__item',
+	      legend: {
+	        text: 'Which attachment or appendix is missing?',
+	        classes: 'moj-add-another__title ',
+	        isPageHeading: false
+	      }
+	    }) %}
+	    
+	    {{ govukInput({
+		  id: "whats-missing",
+		  name: "whats-missing",
+		  classes: "govuk-!-margin-bottom-4"
+		}) }}
+	
+	    {% endcall %}
+	
+	    <div class="moj-button-action">
+	      {{ govukButton({
+	        text: 'Add another',
+	        classes: 'govuk-button--secondary moj-add-another__add-button govuk-!-margin-bottom-4'
+	      }) }}
+	    </div>
+	
+	
+	</div>
+
+	
+
+		{% endset -%}
+		
+		
+			{% set addMore2 %}
+		
+			<div data-module="moj-add-another">
+				
+				{% call govukFieldset({
+				  classes: 'moj-add-another__item',
+				  legend: {
+					text: 'What reason?',
+					classes: 'moj-add-another__title ',
+					isPageHeading: false
+				  }
+				}) %}
+				
+				{{ govukInput({
+				  id: "what-reason",
+				  name: "what-reason",
+				  classes: "govuk-!-margin-bottom-4"
+				}) }}
+			
+				{% endcall %}
+			
+				<div class="moj-button-action">
+				  {{ govukButton({
+					text: 'Add another',
+					classes: 'govuk-button--secondary moj-add-another__add-button govuk-!-margin-bottom-4'
+				  }) }}
+				</div>
+			
+			
+			</div>
+		
+			{% endset -%}
 
       {{ govukCheckboxes({
-        name: "why-reasons",
-        classes: "govuk-checkboxes--small",
-        fieldset: {
-          legend: {
-            text: "",
-            isPageHeading: true,
-            classes: "govuk-fieldset__legend--m"
-          }
-        },
-        hint: {
-          text: "Select all that apply"
-        },
+        name: "reason-incomplete",
         items: [
           {
-            value: "Appeal not submitted on time",
-            text: "Appeal not submitted on time"
+            value: "The statement contains sensitive or contentious information identified",
+            text: "The statement contains sensitive or contentious information identified"
           },
           {
-            value: "Supporting documents not submitted on time",
-            text: "Supporting documents not submitted on time"
+            value: "The statement identifies individuals",
+            text: "The statement identifies individuals" 
+		      
           },
           {
-            value: "Appellant does not have the right to appeal",
-            text: "Appellant does not have the right to appeal"
+            value: "The statement breach of GDPR rules",
+            text: "The statement breach of GDPR rules" 
           },
           {
-            value: "Another reason",
-            text: "Another reason"
+            value: "Attachments and/or appendices missing",
+            text: "Attachments and/or appendices missing",
+            conditional: {
+		        html: addMore
+		      }
+          } ,
+          {
+            value: "other",
+            text: "Other",
+            conditional: {
+		        html: addMore2
+		      }
           }
         ]
       }) }}
-      
+
       {{ govukButton({
         text: "Continue"
       }) }}
-        
+
 
     </form>
 

@@ -3,17 +3,10 @@
 {% set pageName="Case details" %}
 
 {% block backLink %}
-  {% if data['decision'] == 'incomplete-appeal' %}
     {{ govukBackLink({
       text: "Back to personal list",
-      href: '/projects/personal-list/v3/?decision=incomplete-appeal'
+      href: 'index'
     }) }}
-  {% else %}
-    {{ govukBackLink({
-      text: "Back to personal list",
-      href: '/projects/personal-list/v3/'
-    }) }}
-  {% endif %}
 {% endblock %}
 
 {% block content %}
@@ -206,10 +199,10 @@
 	    ],
 	    [
 	      {
-	        text: "Costs application"
+	        text: "Costs"
 	      },
 	      {
-	        text: "Received"
+	        text: "Awarded"
 	      },
 	      {
 	        text: ""

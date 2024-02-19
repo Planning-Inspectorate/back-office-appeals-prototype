@@ -112,7 +112,8 @@
           
         </div>
 
-         {% if data ['costs-awarded'] === 'Yes' or data ['costs-awarded'] === 'No' %}
+        
+         {% if data ['costs-awarded'] === 'Full costs' or data ['costs-awarded'] === 'Partial costs' %}
           <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Costs letter
@@ -137,7 +138,7 @@
   </dl>
 
   {{ govukWarningText({
-    text: "You are about to send the decision to all parties and close the appeal. Make sure you have reviewed the decision information.",
+    text: "You are about to send the decision to the relevant parties and close the appeal. Make sure you have reviewed the decision information.",
     iconFallbackText: "Warning"
   }) }}
 

@@ -11,36 +11,20 @@
     <span class="govuk-caption-l">Appeal 2110166</span>
   
 
-      <h1 class="govuk-heading-l">Check the LPA final comment</h1>
-      <h2 class="govuk-heading-m">Comment</h2>
+      <h1 class="govuk-heading-l">LPA final comment</h1>
+ 
 
       {% set appellantStatement = '
   ' %}
 
-{{ govukSummaryList({
-  classes: 'long-answers govuk-!-margin-bottom-9',
-  rows: [
-    {
-      key: {
-        html: 'Statement text',
-        classes: 'govuk-!-width-one-quarter'
-      },
-      value: {
-        html: appellantStatement | nl2br
-      }
-    
-     
-    }
-
-  ]
-}) }}
+ 
 
       {{ govukSummaryList({
-        classes: "govuk-!-margin-bottom-9",
+        classes: "long-answers govuk-!-margin-bottom-9",
         rows: [
           {
             key: {
-              text: "Original comment "
+              text: "Final comment content"
             },
             value: {
               html: "
@@ -57,23 +41,6 @@
                 Duis at erat efficitur, feugiat purus euismod, finibus turpis. 
                 Duis venenatis nibh quam, eget sagittis ligula pulvinar ac. 
                 Cras rutrum nisi eu mauris finibus, vel iaculis eros viverra. "
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "statement content app/views/projects/lpa-statement/v1/lpa-statement-review-redaction2.html"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Comment (redacted)"
-            },
-            value: {
-              html:  data['redactedStatement' ] or "No change"
             },
             actions: {
               items: [

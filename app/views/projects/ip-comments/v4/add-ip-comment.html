@@ -1,0 +1,56 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set pageName="Personal list" %}
+
+{% set back = true %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+<span class="govuk-caption-l">Appeal 2110166</span>
+  <h1 class="govuk-heading-l">Add the interested party comment</h1>
+
+
+	  <form action="add-ip-attachment" method="post" class="govuk-!-margin-top-7">
+
+   {{ govukDateInput({
+  id: "manual-ip-date",
+  namePrefix: "manual-ip-date",
+  fieldset: {
+    legend: {
+      text: "Comment date",
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  hint: {
+    text: "For example, 27 3 2007"
+  }
+}) }}
+
+{{ govukTextarea({
+  name: "manual-ip-comment",
+  id: "manual-ip-comment",
+  rows: "10",
+  label: {
+    text: "Comment",
+    classes: "govuk-label--s",
+    isPageHeading: false
+  }
+}) }}
+
+
+
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

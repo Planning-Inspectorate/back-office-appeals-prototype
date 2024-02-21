@@ -11,7 +11,7 @@
   
 
       <h1 class="govuk-heading-l">Check the LPA statement</h1>
-      <h2 class="govuk-heading-m">Statement</h2>
+       
 
       {{ govukSummaryList({
         classes: "govuk-!-margin-bottom-9",
@@ -60,7 +60,7 @@
               text: "Statement content (redacted)"
             },
             value: {
-              html:  data['redactedStatement' ] or "No change"
+              html:  data['redactedStatement' ] + "<br><a href'#'>Read more</a>" or "No change"
             },
             actions: {
               items: [

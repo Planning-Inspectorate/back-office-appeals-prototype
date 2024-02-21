@@ -67,7 +67,7 @@
                 {
                   href: "http://localhost:3000/projects/lpa-statement/v1/redact-lpa-statement",
                   text: "Change",
-                  visuallyHiddenText: "statement content"
+                  visuallyHiddenText: "statement content" 
                 }
               ]
             }
@@ -77,8 +77,8 @@
               text: "Statement content (redacted)"
             },
             value: {
-              text:   data['redactedStatement' ] or "LPA statement goes here. Lorem ipsum dolor sit amet. Quo commodi quia qui nobis voluptatum ut quis illum in omnis sunt At tempore laborum est repellendus ipsum." 
-              
+               
+              html:  data['redactedStatement' ] + "<br><a href'#'>Read more</a>" or "No change"
               
               
             },

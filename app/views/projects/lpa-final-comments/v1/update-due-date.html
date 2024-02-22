@@ -20,14 +20,9 @@
     	{% endset %}
 
     
-    <span class="govuk-caption-l">Appeal 43687</span>
-  
-
+      <span class="govuk-caption-l">Appeal 2110166</span>
       <h1 class="govuk-heading-l">Update LPA final comment due date</h1>
 
- 
- 
- 
 
     <form action="check-your-answers-incomplete" method="post" class="govuk-!-margin-top-6" novalidate>
 
@@ -44,7 +39,7 @@
  {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
  
       {{ govukDateInput({
-        id: "lpa-statement-due-date",
+        id: "lpa-comment-due-date",
         namePrefix: "lpa-comment-due-date",
         fieldset: {
           legend: {
@@ -58,6 +53,7 @@
         }
       }) }}   
      
+      
 
 <div class="govuk-button-group">
   {{ govukButton({
@@ -66,19 +62,20 @@
 
   {{ govukButton({
     text: "Skip",
-    classes: "govuk-button--secondary"
+    classes: "govuk-button--secondary" 
+    
   }) }}
 </div>
-        
+ 
 
     </form>
 
- 
+  
 
 
 {% endblock %}
 
-
+ 
 
 </div>
 </div>

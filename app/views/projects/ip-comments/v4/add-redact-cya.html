@@ -10,7 +10,7 @@
   <div class="govuk-grid-column-two-thirds">
 
 <span class="govuk-caption-l">Appeal 2110166</span>
-  <h1 class="govuk-heading-l">Comment from {{ data ['manual-ip-first-name'] }} {{ data ['manual-ip-last-name'] }}</h1>
+  <h1 class="govuk-heading-l">Check redaction</h1>
 
   </div>
 </div>
@@ -27,15 +27,11 @@
                 <dd class="govuk-summary-list__value">
                   {{ data ['manual-ip-first-name'] }} {{ data ['manual-ip-last-name'] }}
                 </dd>
-                <dd class="govuk-summary-list__actions">
-                  
-                    <a class="govuk-link" href="#">
-                Change<span class="govuk-visually-hidden"></span>
-                </a>
-              
+            <dd class="govuk-summary-list__actions">
             </dd>
               </div>
-             
+
+             {% if data ['manual-ip-email'] %}
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
                   Email address
@@ -44,13 +40,10 @@
                   {{ data ['manual-ip-email'] }}
                 </dd>
                 <dd class="govuk-summary-list__actions">
-                  
-                    <a class="govuk-link" href="#">
-                Change<span class="govuk-visually-hidden"></span>
-                </a>
-              
-            </dd>
+                  </dd> 
+
               </div>
+              {% endif %}
            
               {% if data['manual-ip-address-line-1'] %}
                 <div class="govuk-summary-list__row">
@@ -68,12 +61,7 @@
                     {{ data['manual-ip-address-county']}}<br>
                     {{ data['manual-ip-address-postcode']}}
                 </dd>
-                <dd class="govuk-summary-list__actions">
-                  
-                    <a class="govuk-link" href="#">
-                Change<span class="govuk-visually-hidden"></span>
-                </a>
-              
+            <dd class="govuk-summary-list__actions">
             </dd>
               </div>
               {% endif %}
@@ -84,12 +72,7 @@
                 <dd class="govuk-summary-list__value">
                   21 Feb 2024
                 </dd>
-                <dd class="govuk-summary-list__actions">
-                  
-                    <a class="govuk-link" href="#">
-                Change<span class="govuk-visually-hidden"></span>
-                </a>
-              
+            <dd class="govuk-summary-list__actions">
             </dd>
               </div>
 
@@ -101,6 +84,18 @@
                   {{ data['manual-ip-comment']}}
                 </dd>
                 <dd class="govuk-summary-list__actions">
+            </dd>
+              </div>
+
+            {% if data['manual-ip-redactedComment'] %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Redacted comment
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['manual-ip-redactedComment']}}
+                </dd>
+                <dd class="govuk-summary-list__actions">
                   
                     <a class="govuk-link" href="#">
                 Change<span class="govuk-visually-hidden"></span>
@@ -108,115 +103,41 @@
               
             </dd>
               </div>
+              {% endif %}
 
-              
+              {% if data['attachment'] === 'yes' %}
               <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
                 Attachments
               </dt>
               <dd class="govuk-summary-list__value">
-                {% if data['attachment'] === 'yes' %}
-                <a href="#" class="govuk-link">4012345-costs-decision.doc</a>
-                {% endif %}
+              <ul class="govuk-list govuk-list--bullet">
+                <li><a href="#" class="govuk-link">4012345-costs-decision.doc</a></li>
+                 <li><a href="#" class="govuk-link">4012345-costs-decision-redacted.doc</a></li>
+              </ul>
               </dd>
               
                 <dd class="govuk-summary-list__actions">
                   
+                  <a class="govuk-link" href="#">
+                Manage<span class="govuk-visually-hidden"> attachments</span></a> |
                     <a class="govuk-link" href="#">
-                Change<span class="govuk-visually-hidden">  attachments</span>
+                Add<span class="govuk-visually-hidden"> attachments</span>
                 </a>
               
             </dd>
             </dl>
-            
+            {% endif %}
           </div>
          
         
         </div>
 
-	  <form action="" method="post" class="govuk-!-margin-top-7">
+	  <form action="ip-comments" method="post" class="govuk-!-margin-top-7">
 
     <!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
 
-{% if data['manual-ip-comment'] and data['attachment'] === 'yes' %}
-      {{ govukRadios({
-        name: "commentReview",
-        fieldset: {
-          legend: {
-            text: "Is redaction needed?",
-            isPageHeading: false,
-            classes: "govuk-fieldset__legend--m"
-          }
-        },
-        items: [
-         {
-            value: "redactionNeeded~add-redact-comment?option=commentonly",
-            text: "Yes, comment needs redaction"
-          },
-         {
-            value: "valid~add-redact-attachment",
-            text: "Yes, attachment needs redaction"
-          },
-          {
-            value: "valid~add-redact-comment?option=both",
-            text: "Yes, both comment and attachment need redaction"
-          },
-            {
-              divider: "or"
-            },
-          {
-            value: "no~ip-comments",
-            text: "No redaction needed"
-          }
-        ]
-      }) }}
-      
-    {% elseif data['manual-ip-comment'] and data['attachment'] === 'no' %}
 
-      {{ govukRadios({
-        name: "commentReview",
-        fieldset: {
-          legend: {
-            text: "Is redaction needed?",
-            isPageHeading: false,
-            classes: "govuk-fieldset__legend--m"
-          }
-        },
-        items: [
-         {
-            value: "redactionNeeded~add-redact-comment?option=commentonly",
-            text: "Yes, comment needs redaction"
-          },
-          {
-            value: "no~ip-comments",
-            text: "No redaction needed"
-          }
-        ]
-      }) }}
-      {% elseif data['attachment'] === 'yes' %}
-
-      {{ govukRadios({
-        name: "commentReview",
-        fieldset: {
-          legend: {
-            text: "Is redaction needed?",
-            isPageHeading: false,
-            classes: "govuk-fieldset__legend--m"
-          }
-        },
-        items: [
-         {
-            value: "redactionNeeded~add-redact-attachment",
-            text: "Yes, attachment needs redaction"
-          },
-          {
-            value: "no~ip-comments",
-            text: "No redaction needed"
-          }
-        ]
-      }) }}
-
-      {% endif %}
 
       {{ govukButton({
         text: "Continue"

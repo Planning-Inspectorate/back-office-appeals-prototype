@@ -12,7 +12,7 @@
   <div class="govuk-grid-column-two-thirds">
     <span class="govuk-caption-l">Appeal 2110166</span>
     <h1 class="govuk-heading-l">Redact comment from 
-      Ian Smith      
+      {{ data ['manual-ip-first-name'] }} {{ data ['manual-ip-last-name'] }}     
       </h1>
     <dl class="govuk-summary-list">
               <div class="govuk-summary-list__row">
@@ -20,23 +20,46 @@
                   Interested party
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  Ian Smith
+                  {{ data ['manual-ip-first-name'] }} {{ data ['manual-ip-last-name'] }}
                 </dd>
               </div>
+              
+              {% if data['manual-ip-email'] %}
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
                   Email address
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  ian.smith@gmail.com
+                  {{ data ['manual-ip-email'] }}
                 </dd>
               </div>
+              {% endif %}
+
+              {% if data['manual-ip-address-line-1'] %}
+                <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Address
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['manual-ip-address-line-1']}}<br>
+                    {{ data['manual-ip-address-line-2']}}
+                    {% if data ['manual-ip-address-line-2'] %}<br>
+                    {% endif %}
+                    {{ data['manual-ip-address-town']}} 
+                    {% if data['manual-ip-address-county']%}<br>
+                    {% endif %}
+                    {{ data['manual-ip-address-county']}}<br>
+                    {{ data['manual-ip-address-postcode']}}
+                </dd>
+              </div>
+              {% endif %}
+
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
                   Submitted
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  26 Nov 2023
+                  21 Feb 2024
                 </dd>
               </div>
            </dl>   
@@ -46,15 +69,15 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-one-half">
     <h2 class="govuk-heading-m">Original comment</h2>
-    <p>Having reviewed the proposal I would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead.</p>
+    <p>{{ data ['manual-ip-comment'] }}</p>
  
   </div>
   <div class="govuk-grid-column-one-half">
-    <form action="cya-redact" method="post" class="govuk-!-margin-top-2">
+    <form action="add-redact-cya" method="post" class="govuk-!-margin-top-2">
 
       {{ govukTextarea({
-        name: "redactedComment",
-        id: "redactedComment",
+        name: "manual-ip-redactedComment",
+        id: "manual-ip-redactedComment",
         hint: {
           html: "Highlight section to be removed and select 'redact'. Repeat until all redactions made."
         },
@@ -65,15 +88,24 @@
           isPageHeading: false
         },
        
-        value: "Having reviewed the proposal I would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead."
+        value: data['manual-ip-comment']
         
       }) }}
 
       <a href="#" class="govuk-button govuk-button--secondary">Redact</a>
 
+      {% if data['option'] === 'commentonly' %}
       {{ govukButton({
         text: "Continue"
       }) }}
+      {% endif %}
+
+      {% if data['option'] === 'both' %}
+      {{ govukButton({
+        text: "Continue",
+        href: "add-redact-attachment"
+      }) }}
+      {% endif %}
     </form>
   </div>
 </div>

@@ -12,8 +12,6 @@
   <span class="govuk-caption-l">
     Appeal 2110166
   </span>
- 
-
 
 <!-- </div>
 
@@ -27,7 +25,7 @@
       name: 'letters-upload',
       classes: 'moj-multi-file-upload__input',
       label: {
-        text: 'Upload a file',
+        text: 'Upload a redacted file',
         classes: 'govuk-label--l',
         isPageHeading: true
       },
@@ -53,13 +51,7 @@
 <form action="add-ip-cya" method="post">
 {{ govukButton({
   text: "Continue",
-  href: "add-ip-cya?attachment=yes"
-}) }}
-
-{{ govukButton({
-  text: "No attachment",
-  href: "add-ip-cya?attachment=no",
-  classes: "govuk-button--secondary"
+  href: "add-redact-confirm"
 }) }}
   </form>
 

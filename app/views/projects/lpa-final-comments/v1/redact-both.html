@@ -15,8 +15,14 @@
       <div class="govuk-grid-row">
       <div class="govuk-grid-column-one-half">
         <h2 class="govuk-heading-m">Original comment</h2>
-        <p>LPA final lpa-final-comments-publish goes here.
-          Lorem ipsum dolor sit amet. Quo commodi quia qui nobis voluptatum ut quis illum in omnis sunt At tempore laborum est repellendus ipsum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus. 
+              Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus. 
+              Mauris nulla erat, posuere ut nisi vitae, pulvinar gravida arcu.
+              <br><br>
+              Morbi ac mauris enim. Curabitur magna lacus, eleifend in euismod in, accumsan convallis velit. Quisque bibendum urna id molestie hendrerit. Cras mattis mi non lobortis eleifend. 
+              Quisque nisl purus, sollicitudin interdum convallis a, tristique vulputate mi. Mauris eget nisl in massa mollis luctus. Vestibulum consectetur maximus cursus. Integer molestie ipsum et nunc eleifend venenatis. 
+              Aliquam posuere dui et felis tempor tristique. Aenean porta vehicula imperdiet. Nunc sed egestas risus, ut fringilla orci. Proin lobortis sapien interdum nunc iaculis rutrum. Phasellus consectetur vitae dui in vulputate.
+              <br> <a href'#'>Read more</a>
      
       </div>
       <div class="govuk-grid-column-one-half">
@@ -28,14 +34,16 @@
             hint: {
               text: "Highlight the section you want to remove, then select 'redact'."
             },
-            rows: "6",
+            rows: "20",
             label: {
               text: "Redacted final comment",
               classes: "govuk-label--m",
               isPageHeading: false
             },
            
-            value: data['redactedStatement' ] or "LPA statement goes here. Lorem ipsum dolor sit amet. Quo commodi quia qui nobis voluptatum ut quis illum in omnis sunt At tempore laborum est repellendus ipsum."
+            value: data['redactedComment' ] or "LPA Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus. 
+            Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus. 
+            Mauris nulla erat, posuere ut nisi vitae, pulvinar gravida arcu."
             
           }) }}
     

@@ -8,26 +8,33 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
-    
     <span class="govuk-caption-l">Appeal 2110166</span>
-  
-
       <h1 class="govuk-heading-l">LPA final comment</h1>
+      
+ 
 
-      <h2 class="govuk-heading-m">Comment</h2>
+{% set appellantStatement = 'Curabitur elementum eget metus quis volutpat.\n\nUt dapibus, elit cursus condimentum consequat, libero massa viverra sapien, vitae porttitor ex massa ac nisi. Cras ac urna vel lectus suscipit cursus. Proin faucibus porttitor erat ut iaculis. Proin vel faucibus magna. Nulla consectetur erat quis diam consectetur fermentum. Ut porta vel lacus at sagittis. Curabitur vitae sollicitudin neque. Suspendisse consequat, nibh sit amet luctus pharetra, sapien neque consectetur augue, sit amet consequat velit nulla at metus. Maecenas auctor massa ex, eu interdum orci interdum eu. Praesent non nibh nunc. Nulla pretium sagittis elit. Mauris in lectus nunc. Cras eu eleifend dolor, mollis vulputate sapien. Vestibulum finibus lacinia vestibulum.\n\nNulla pharetra tincidunt tellus vehicula tempus. Phasellus dignissim sagittis eros, vitae accumsan quam rhoncus vitae. Aenean ac venenatis metus. Praesent sed turpis elit. In faucibus tincidunt consequat. Etiam molestie justo vitae ultrices vulputate. Phasellus commodo lectus eu urna feugiat, eu dictum nisi congue. Maecenas nec dolor vitae nulla efficitur rhoncus. Pellentesque hendrerit pellentesque justo ac viverra. Pellentesque vel metus nec lectus malesuada bibendum id id urna. Duis at erat efficitur, feugiat purus euismod, finibus turpis. Duis venenatis nibh quam, eget sagittis ligula pulvinar ac. Cras rutrum nisi eu mauris finibus, vel iaculis eros viverra.\n\nIn hac habitasse platea dictumst. Mauris accumsan lacus ante, vehicula vehicula metus commodo nec. Praesent et odio nibh. Quisque nec nibh eu ante eleifend bibendum venenatis sed tellus. Ut posuere consequat risus. In facilisis ex eu pretium blandit. Curabitur lacinia accumsan turpis, et vestibulum magna gravida ac. Suspendisse vel enim tincidunt, tempor quam nec, elementum dui. Donec sed ligula non ligula fringilla iaculis. Integer nec sem vitae lorem pharetra scelerisque pretium eget enim. Nullam venenatis lectus non nisi sodales vestibulum. Ut tempor id mi quis finibus. Fusce cursus scelerisque justo, eu condimentum leo sagittis in.\n\nMaecenas nec dictum ligula, vitae cursus lectus. Maecenas et pulvinar velit, vel ultrices tellus. Donec ullamcorper mi vitae orci convallis, a efficitur eros dapibus. Duis tortor ligula, feugiat vitae maximus in, aliquet eu magna. Suspendisse potenti. Fusce ac est ligula. Fusce consequat massa vitae sapien placerat dapibus. Phasellus et blandit odio. Aliquam id nibh gravida massa mollis lacinia. Proin venenatis egestas augue vitae suscipit. Pellentesque vestibulum sed lacus vitae pellentesque. Sed non efficitur tellus.\n\nNam in pretium metus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec sit amet diam sit amet purus bibendum sollicitudin. Suspendisse turpis magna, tincidunt a elit vel, scelerisque facilisis metus. Curabitur ut pellentesque sapien. Aliquam arcu nisl, tempus non dictum sit amet, interdum sed metus. Aliquam sed nulla volutpat, varius elit vitae, cursus purus. Pellentesque non lacinia ligula.\n\nInteger volutpat faucibus mauris, lobortis auctor quam dapibus sed. Aliquam et lectus porttitor, rutrum nulla in, dignissim est. Aliquam a magna dignissim, molestie purus vitae, ultrices risus. Sed at ultrices elit, varius tincidunt ex. Nam fermentum eros a dui lobortis, non egestas enim blandit. Maecenas massa nibh, rhoncus sit amet magna vitae, ultrices condimentum nunc. Pellentesque fringilla nisi et nunc pulvinar feugiat. Sed a lorem sollicitudin, dapibus lectus et, pharetra est. Sed ut sapien turpis. Nam non eros bibendum odio egestas congue condimentum eu eros. Nam sed auctor arcu. Praesent tincidunt sollicitudin ex, eu pellentesque metus. Morbi tristique fermentum dolor, et sodales ex mattis ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n\nSed sodales libero magna, eget consectetur elit malesuada ac. Aenean quis arcu at velit maximus scelerisque quis vitae felis. Mauris bibendum urna et viverra lobortis. Quisque molestie nisl eget nibh congue suscipit. Nullam blandit tincidunt tortor, sed tempor turpis scelerisque id. Fusce condimentum venenatis mi, at auctor turpis tincidunt sed. Vivamus rutrum accumsan nisl et malesuada. Nunc porttitor risus eu nibh laoreet facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.\n\nSuspendisse et elit sed felis feugiat feugiat. Fusce non est est. Curabitur at quam ut ex accumsan vehicula. Morbi semper risus eu tincidunt fermentum. Ut hendrerit diam sit amet lacus pretium, id maximus urna dapibus. Nullam sed bibendum nunc. In hac habitasse platea dictumst. Nulla posuere, lectus tincidunt convallis fringilla, sapien massa interdum diam, et tincidunt dui lacus sit amet risus. Suspendisse tincidunt libero eu enim tempor porttitor. Aliquam semper libero turpis. Proin nisl leo, fringilla quis pharetra a, vestibulum vitae velit. Quisque scelerisque iaculis dolor, nec pretium justo venenatis mollis..
+' %}
 
-      {{ govukSummaryList({
-        classes: "govuk-!-margin-bottom-9",
-        rows: [
-          {
-            key: {
-              text: "Final comment content"
-            },
-            value: {
-              text:  "LPA final comment goes here. Lorem ipsum dolor sit amet. Quo commodi quia qui nobis voluptatum ut quis illum in omnis sunt At tempore laborum est repellendus ipsum." 
+    {{ govukSummaryList({
+      classes: "long-answers govuk-!-margin-bottom-9",
+      rows: [
+        {
+          key: {
+            html: "Final comment content<br>(redacted)",
+            classes: 'govuk-!-width-one-quarter'
+          },
+          value: {
+            html: "
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus. 
+            Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus. 
+            Mauris nulla erat, posuere ut nisi vitae, pulvinar gravida arcu.
+            <br><br>
+            Morbi ac mauris enim. Curabitur magna lacus, eleifend in euismod in, accumsan convallis velit. Quisque bibendum urna id molestie hendrerit. Cras mattis mi non lobortis eleifend. 
+            Quisque nisl purus, sollicitudin interdum convallis a, tristique vulputate mi. Mauris eget nisl in massa mollis luctus. Vestibulum consectetur maximus cursus. Integer molestie ipsum et nunc eleifend venenatis. 
+            Aliquam posuere dui et felis tempor tristique. Aenean porta vehicula imperdiet. Nunc sed egestas risus, ut fringilla orci. Proin lobortis sapien interdum nunc iaculis rutrum. Phasellus consectetur vitae dui in vulputate.
               
-              
-              
+            <br><a href'#'>Read more</a>"
             },
             actions: {
               items: [

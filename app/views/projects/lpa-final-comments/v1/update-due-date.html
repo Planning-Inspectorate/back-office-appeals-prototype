@@ -39,7 +39,7 @@
  {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
  
       {{ govukDateInput({
-        id: "lpa-statement-due-date",
+        id: "lpa-comment-due-date",
         namePrefix: "lpa-comment-due-date",
         fieldset: {
           legend: {
@@ -53,6 +53,7 @@
         }
       }) }}   
      
+      
 
 <div class="govuk-button-group">
   {{ govukButton({
@@ -61,19 +62,20 @@
 
   {{ govukButton({
     text: "Skip",
-    classes: "govuk-button--secondary"
+    classes: "govuk-button--secondary" 
+    
   }) }}
 </div>
-        
+ 
 
     </form>
 
- 
+  
 
 
 {% endblock %}
 
-
+ 
 
 </div>
 </div>

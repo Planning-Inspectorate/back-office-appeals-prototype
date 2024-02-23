@@ -1,26 +1,9 @@
- 
-{% extends "layouts/PINS-post-mvp.html" %}
-{% set pageName="LPA statement review" %}
- 
-{% block content %}
-
-
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
-  
-    <span class="govuk-caption-l">Appeal 2110166</span>
-      <h1 class="govuk-heading-l">LPA statement</h1>
-
-
-      {{ govukSummaryList({
-        classes: "govuk-!-margin-bottom-9",
-        rows: [
-          {
+{ 
             key: {
-              text: "Statement content", 
+              text: "Original statement content ",
               classes: 'govuk-!-width-one-quarter'
             },
-            value: {
+             value: {
               html: "
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus. 
               Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus. 
@@ -43,91 +26,14 @@
               Morbi ut purus eget lectus pretium elementum. In tristique, orci ac condimentum egestas, turpis diam auctor ligula, pellentesque dictum augue massa non felis. Nunc sed nulla ultricies eros fermentum consequat sit amet id diam. 
               Sed dignissim suscipit enim sed sagittis. Aliquam id massa elementum, lobortis mi eget, dictum nunc. Aenean consectetur vulputate rhoncus. Etiam facilisis ipsum sit amet odio fermentum varius. 
               <br><a href'#'>Read more</a>"
-               
             },
             actions: {
               items: [
                 {
                   href: "#",
                   text: "Change",
-                  visuallyHiddenText: "statement content"
+                  visuallyHiddenText: "statement content app/views/projects/lpa-statement/v1/lpa-statement-review-redaction2.html"
                 }
               ]
-            }
-          },
-          {
-            key: {
-              text: "Supporting documents"
-            },
-            value: {
-              text: "example.pdf"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  html: "<a href='#'> Manage</a> | <a href='#'> Add</a> ",
-                  visuallyHiddenText: "statement pdf"
-                }
-              ]
-            }
-          }
-        ]
-      }) }}
-
-       
-
-    </div>
-  </div>
- 
- 
-
-    <form action="" method="post" class="govuk-!-margin-top-6" novalidate>
-
-      
-
-        {{ govukRadios({
-          name: "issue-decision",
-          fieldset: {
-            legend: {
-              text: "Do the documents need redacting?",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--m"
-            }
-          },
-          items: [
-            {
-              value: "both~redact-both",
-              text: "Yes, both the LPA statement and supporting documents"
-            },
-            {
-              value: "statement~redact-lpa-statement",
-              text: "Only the LPA statement"
-            }
-            ,
-            {
-              value: "supporting-docs~redact-supporting-documents",
-              text: "Only the supporting documents"
             } 
-            ,
-            {
-          divider: "or"
-        },
-            {
-              value: "no~lpa-statement-review",
-              text: "No"
-            }  
-             
-          ]
-        }) }}
-
-        {{ govukButton({
-          text: "Continue"
-        }) }}
-
-    </form>
-
- 
-
-
-{% endblock %}
+          }, 

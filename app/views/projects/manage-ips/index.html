@@ -1,0 +1,68 @@
+{% extends "layouts/PINS-Simple-post-mvp.html" %}
+
+{% set pageName="Case details" %}
+
+{% set back = false %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+
+<span class="govuk-caption-l">Appeal a planning decision</span>
+<h1 class="govuk-heading-l">Add and manage interested parties</h1>
+
+{{ govukTable({
+  captionClasses: "govuk-table__caption--m",
+  firstCellIsHeader: true,
+
+  rows: [
+    [
+      {
+        text: "Typical user"
+      },
+      {
+        text: "Case officers"
+      }
+    ],
+    [
+      {
+        text: "User story"
+      },
+      {
+        html: "<ul class='govuk-list govuk-list-bullet'><li>As a case officer I need to add and manage interested parties, so that I can contact them about matters related to the case</li></ul>"
+      }
+    ],
+    [
+      {
+        text: "Jira ticket"
+      },
+      {
+        html: '<a href="https://pins-ds.atlassian.net.mcas.ms/browse/BDPAR-88">BDPAR-88: Adding + Managing Interested Parties</a>'
+      }
+    ]
+  ]
+}) }}
+
+<h1 class="govuk-heading-m">Version 1
+  {{govukTag({
+      text: "In progress",
+      classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+    })}}
+
+</h1>
+
+
+<a href="v1/index?list=personal" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
+  View prototype
+  <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+    <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+  </svg></a>
+
+  <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+</div>
+</div>
+
+{% endblock %}

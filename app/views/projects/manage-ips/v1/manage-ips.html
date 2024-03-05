@@ -115,115 +115,73 @@
 
 	  </script>
 
-{{ govukTable({
-  caption: "Interested parties",
-  captionClasses: "govuk-table__caption--m govuk-visually-hidden",
-  firstCellIsHeader: false,
-  head: [
-    {
-      text: "Name"
-    },
-    {
-      text: "Address"
-    },
-    {
-      text: "Email address"
-    },
-    {
-      text: "Source"
-    },
-    {
-      text: "Action"
-    }
-  ],
-  rows: [
-    [
-        {
-          text: "Ian Smith"
-        },
-        {
-          html: "23 Main Road<br>Bristol<br>BS3 6TU"
-        },
-        {
-          text: "ian.smith@gmail.com"
-        },
-        {
-          html: "<a href='../../ip-comments/v4/comment-view'>IP comment</a>"
-        },
-        {
-          html: "<a href='comment-review'>Edit</a> | <a href='comment-review'>Remove</a>"
-        }
-    ],
-    [
-      {
-          text: "Robyn Jenkins"
-        },
-        {
-          text: "Not provided"
-        },
-        {
-          text: "Not provided"
-        },
-        {
-          html: "<a href='#'>LPA questionnaire</a>"
-        },
-        {
-          html: "<a href='comment-review'>Edit</a> | <a href='comment-review'>Remove</a>"
-        }
-    ],
-    [
-      {
-          text: "Cath Fairfield"
-        },
-        {
-          text: "Not provided"
-        },
-        {
-          text: "cathyf@gmail.com"
-        },
-        {
-          html: "<a href='#'>Appellant case</a>"
-        },
-        {
-          html: "<a href='comment-review'>Edit</a> | <a href='comment-review'>Remove</a>"
-        }
-    ],
-    [
-      {
-          text: "Brian Thompson"
-        },
-        {
-          text: "Not provided"
-        },
-        {
-          text: "Not provided"
-        },
-        {
-          html: "Manually added"
-        },
-        {
-          html: "<a href='comment-review'>Edit</a> | <a href='comment-review'>Remove</a>"
-        }
-    ],
-    [
-      {
-          text: "Dan Brighthouse"
-        },
-        {
-          text: "Not provided"
-        },
-        {
-          text: "brighthousedan167@gmail.com"
-        },
-        {
-          html: "Manually added"
-        },
-        {
-          html: "<a href='comment-review'>Edit</a> | <a href='comment-review'>Remove</a>"
-        }
-    ]
-  ]
-}) }}
+<table class="govuk-table">
+  
+  <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">Interested parties</caption>
+  
+  
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+    
+      <th scope="col" class="govuk-table__header">Name</th>
+    
+      <th scope="col" class="govuk-table__header">Address</th>
+    
+      <th scope="col" class="govuk-table__header">Email address</th>
+    
+      <th scope="col" class="govuk-table__header">Source</th>
+    
+      <th scope="col" class="govuk-table__header">Action</th>
+    
+    </tr>
+  </thead>
+  
+  <tbody class="govuk-table__body">
+    
+      
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Ian Smith</td>
+          <td class="govuk-table__cell">23 Main Road<br>Bristol<br>BS3 6TU</td>
+          <td class="govuk-table__cell">ian.smith@gmail.com</td>
+          <td class="govuk-table__cell"><a href="../../ip-comments/v4/comment-view">IP comment</a></td>
+          <td class="govuk-table__cell"><a href="comment-review">Edit</a> | <a href="comment-review">Remove</a></td>
+        </tr>
+ 
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Robyn Jenkins</td>
+          <td class="govuk-table__cell">Not provided</td>
+          <td class="govuk-table__cell">Not provided</td>
+          <td class="govuk-table__cell"><a href="#">LPA questionnaire</a></td>
+          <td class="govuk-table__cell"><a href="comment-review">Edit</a> | <a href="comment-review">Remove</a></td>
+        </tr>
+ 
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Cath Fairfield</td>
+          <td class="govuk-table__cell">Not provided</td>
+          <td class="govuk-table__cell">cathyf@gmail.com</td>
+          <td class="govuk-table__cell"><a href="#">Appellant case</a></td>
+          <td class="govuk-table__cell"><a href="comment-review">Edit</a> | <a href="comment-review">Remove</a></td>
+        </tr>
+ 
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Brian Thompson</td>
+          <td class="govuk-table__cell">Not provided</td>
+          <td class="govuk-table__cell">Not provided</td>
+          <td class="govuk-table__cell">Manually added</td>
+          <td class="govuk-table__cell"><a href="comment-review">Edit</a> | <a href="comment-review">Remove</a></td>
+        </tr>
+
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Dan Brighthouse</td>
+          <td class="govuk-table__cell">Not provided</td>
+          <td class="govuk-table__cell">brighthousedan167@gmail.com</td>
+          <td class="govuk-table__cell">Manually added</td>
+          <td class="govuk-table__cell"><a href="comment-review">Edit</a> | <a href="comment-review">Remove</a></td>
+        </tr>
+      
+    
+  </tbody>
+</table>
 
 
 

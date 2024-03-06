@@ -1,0 +1,112 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set pageName="Personal list" %}
+
+{% set back = true %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+<span class="govuk-caption-l">Appeal 2110166</span>
+  <h1 class="govuk-heading-l">About the commenter</h1>
+<p>All fields are optional</p>
+	  <form action="add-ip-cya" method="post" class="govuk-!-margin-top-7">
+
+   
+{{ govukInput({
+  label: {
+    text: "First name"
+  },
+  id: "add-ip-address-first-name",
+  name: "add-ip-address-first-name",
+  autocomplete: "first-name",
+  classes: "govuk-!-width-two-thirds",
+  spellcheck: false
+}) }}
+
+{{ govukInput({
+  label: {
+    text: "Last name"
+  },
+  id: "add-ip-address-last-name",
+  name: "add-ip-address-last-name",
+  autocomplete: "last-name",
+  classes: "govuk-!-width-two-thirds",
+  spellcheck: false
+}) }}
+
+{{ govukInput({
+  label: {
+    text: "Email address"
+  },
+  id: "add-ip-address-email",
+  name: "add-ip-address-email",
+  autocomplete: "email",
+  classes: "govuk-!-width-two-thirds",
+  spellcheck: false
+}) }}
+
+<h2 class="govuk-heading-m" id="add-ip-address">Address</h2>
+
+{{ govukInput({
+    id: 'add-ip-address-address-line-1',
+    name: 'add-ip-address-address-line-1',
+    value: data['add-ip-address-address-line-1'],
+    label: {
+      html: 'Address line 1'
+    }
+  }) }}
+
+  {{ govukInput({
+    id: 'add-ip-address-address-line-2',
+    name: 'add-ip-address-address-line-2',
+    value: data['add-ip-address-address-line-2'],
+    label: {
+      html: 'Address line 2'
+    }
+  }) }}
+
+  {{ govukInput({
+    id: 'add-ip-address-address-town',
+    name: 'add-ip-address-address-town',
+    value: data['add-ip-address-address-town'],
+    classes: 'govuk-!-width-two-thirds',
+    label: {
+      html: 'Town or city'
+    }
+  }) }}
+
+  {{ govukInput({
+    id: 'add-ip-address-address-county',
+    name: 'add-ip-address-address-county',
+    value: data['add-ip-address-address-county'],
+    classes: 'govuk-!-width-two-thirds',
+    label: {
+      html: 'County'
+    }
+  }) }}
+
+  {{ govukInput({
+    id: 'add-ip-address-address-postcode',
+    name: 'add-ip-address-address-postcode',
+    value: data['add-ip-address-address-postcode'],
+    classes: 'govuk-input--width-10',
+    label: {
+      html: 'Postcode'
+    }
+  }) }}
+
+
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

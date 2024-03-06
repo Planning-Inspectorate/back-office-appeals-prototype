@@ -8,6 +8,19 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      {% if data['add-ip-address-first-name'] or data['add-ip-address-last-name'] or data['add-ip-address-address-email'] or data['add-ip-address-address-line-1'] %} 
+        <div class="govuk-notification-banner  govuk-notification-banner--success" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+          <div class="govuk-notification-banner__header">
+            <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">Success</h2>
+          </div>
+          <div class="govuk-notification-banner__content"> 
+            <p class="govuk-notification-banner__heading">
+              Interested party added
+              </p>
+          </div>
+          </div>
+      {% endif %}
+
     <!--	<span class="govuk-caption-l">Appeal 2110166</span> -->
     <span class="govuk-caption-l">Appeal 2110166</span>
     	<h1 class="govuk-heading-l">Case details</h1>
@@ -425,11 +438,11 @@
                   text: "Interested parties"
                 },
                 {
-                  html: "78 interested parties"
+                  html: "8 interested parties"
 
                 },
                 {
-                  html: "<a href='manage-ips'>Manage</a> | <a href='#'>Add</a>"
+                  html: "<a href='manage-ips'>Manage</a> | <a href='add-ip'>Add</a>"
                 }
               ]
               ]

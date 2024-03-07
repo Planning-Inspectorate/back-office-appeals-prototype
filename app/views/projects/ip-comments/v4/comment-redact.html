@@ -1,8 +1,8 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set pageName="Decision date" %}
+{% set pageName="Redact comment" %}
 
-{% set title = "Check your answers" %}
+{% set title = "Redact comment" %}
 
 {% set back = true %}
 
@@ -46,7 +46,7 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-one-half">
     <h2 class="govuk-heading-m">Original comment</h2>
-    <p>Having reviewed the proposal I would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead.</p>
+    <p>Having reviewed the proposal I would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. All of us here at 12 Crawley Rd agree.</p>
  
   </div>
   <div class="govuk-grid-column-one-half">
@@ -65,11 +65,11 @@
           isPageHeading: false
         },
        
-        value: "Having reviewed the proposal I would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead."
+        value: "Having reviewed the proposal I would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. All of us here at 12 Crawley Rd agree."
         
       }) }}
 
-      <a href="#" class="govuk-button govuk-button--secondary">Redact</a>
+      <button type="button" class="govuk-button govuk-button--secondary" id="redactButton">Redact</button>
 
       {{ govukButton({
         text: "Continue"
@@ -77,5 +77,30 @@
     </form>
   </div>
 </div>
+
+<script type="text/javascript">
+
+function getSel() // javascript
+{
+    // obtain the object reference for the textarea>
+    var txtarea = document.getElementById("redactedComment");
+    // obtain the index of the first selected character
+    var start = txtarea.selectionStart;
+    // obtain the index of the last selected character
+    var finish = txtarea.selectionEnd;
+    //obtain all Text
+    var allText = txtarea.value;
+
+    // obtain the selected text
+    var sel = allText.substring(start, finish);
+    //append te text;
+    var newText=allText.substring(0, start)+"(Redacted)"+allText.substring(finish, allText.length);
+
+    txtarea.value=newText;
+}
+
+document.getElementById("redactButton").addEventListener("click",getSel);
+
+</script>
 
 {% endblock %}

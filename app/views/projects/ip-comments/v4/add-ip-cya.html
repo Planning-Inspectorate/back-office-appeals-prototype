@@ -10,7 +10,7 @@
   <div class="govuk-grid-column-two-thirds">
 
 <span class="govuk-caption-l">Appeal 2110166</span>
-  <h1 class="govuk-heading-l">Comment from {{ data ['manual-ip-first-name'] }} {{ data ['manual-ip-last-name'] }}</h1>
+  <h1 class="govuk-heading-l">Comment information</h1>
 
   </div>
 </div>
@@ -120,7 +120,7 @@
               
               <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Attachments
+                Supporting document
               </dt>
               <dd class="govuk-summary-list__value">
                 {% if data['attachment'] === 'yes' %}
@@ -163,11 +163,11 @@
           },
          {
             value: "valid~add-redact-attachment",
-            text: "Yes, attachment needs redaction"
+            text: "Yes, supporting document needs redaction"
           },
           {
             value: "valid~add-redact-both?option=both",
-            text: "Yes, both comment and attachment need redaction"
+            text: "Yes, both comment and supporting document need redaction"
           },
             {
               divider: "or"
@@ -215,7 +215,7 @@
         items: [
          {
             value: "redactionNeeded~add-redact-attachment",
-            text: "Yes, attachment needs redaction"
+            text: "Yes, supporting document needs redaction"
           },
           {
             value: "no~ip-comments",

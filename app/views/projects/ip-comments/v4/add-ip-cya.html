@@ -41,7 +41,11 @@
                   Email address
                 </dt>
                 <dd class="govuk-summary-list__value">
+                  {% if data['manual-ip-email'] %}
                   {{ data ['manual-ip-email'] }}
+                  {% else %}
+                  Not provided
+                    {% endif %}
                 </dd>
                 <dd class="govuk-summary-list__actions">
                   
@@ -52,12 +56,13 @@
             </dd>
               </div>
            
-              {% if data['manual-ip-address-line-1'] %}
+              
                 <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
                   Address
                 </dt>
                 <dd class="govuk-summary-list__value">
+                  {% if data['manual-ip-address-line-1'] %}
                   {{ data['manual-ip-address-line-1']}}<br>
                     {{ data['manual-ip-address-line-2']}}
                     {% if data ['manual-ip-address-line-2'] %}<br>
@@ -67,6 +72,9 @@
                     {% endif %}
                     {{ data['manual-ip-address-county']}}<br>
                     {{ data['manual-ip-address-postcode']}}
+                    {% else %}
+                    Not provided
+                    {% endif %}
                 </dd>
                 <dd class="govuk-summary-list__actions">
                   
@@ -76,7 +84,7 @@
               
             </dd>
               </div>
-              {% endif %}
+              
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
                   Submitted

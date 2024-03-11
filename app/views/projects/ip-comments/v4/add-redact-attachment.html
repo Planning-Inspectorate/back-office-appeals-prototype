@@ -1,8 +1,8 @@
 {% extends "layouts/PINS.html" %}
 
-{% set pageName = "Upload the costs application" %}
+{% set pageName = "Upload a redacted file" %}
 
-{% set title = "Upload the costs application" %}
+{% set title = "Upload a redacted file" %}
 
 {% block content %}
 
@@ -48,10 +48,10 @@
     uploadHtml: uploadHtml
   }) }}
 
-<form action="add-ip-cya" method="post">
+<form action="" method="post">
 {{ govukButton({
   text: "Continue",
-  href: "add-redact-confirm"
+  href: "add-redact-cya"
 }) }}
   </form>
 

@@ -27,7 +27,7 @@
       name: 'letters-upload',
       classes: 'moj-multi-file-upload__input',
       label: {
-        text: 'Upload a file',
+        text: 'Upload supporting documents',
         classes: 'govuk-label--l',
         isPageHeading: true
       },
@@ -56,11 +56,13 @@
   href: "add-ip-cya?attachment=yes"
 }) }}
 
+{% if data['manual-ip-comment'] %}
 {{ govukButton({
   text: "No attachment",
   href: "add-ip-cya?attachment=no",
   classes: "govuk-button--secondary"
 }) }}
+{% endif %}
   </form>
 
   </div></div>

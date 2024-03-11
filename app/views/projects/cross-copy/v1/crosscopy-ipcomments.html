@@ -19,8 +19,9 @@
 
 
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-full">
+  <div class="govuk-grid-column-two-thirds">
 
+<!---
 {{ govukTable({
   firstCellIsHeader: false,
   head: [
@@ -153,6 +154,36 @@
 ]
 }) }}
 
+-->
+
+{{ govukTable({
+  firstCellIsHeader: true,
+  head: [
+    {
+      text: "Documentation"
+    },
+    {
+      text: "Status"
+    },
+    {
+      text: "Action"
+    }
+  ],
+  rows: [
+    [
+      {
+        text: "IP comments"
+      },
+      {
+        text: "9 valid comments"
+      },
+      {
+        html: "<a href='../../ip-comments/v3/ip-comments#valid-tab'>View</a>"
+      }
+    ]
+  ]
+}) }}
+
 </div>
 </div>
 
@@ -164,7 +195,7 @@
 <form action="confirm-ipcomments" method="post" class="govuk-!-margin-top-2">
 
   {{ govukWarningText({
-    html: "You are about to cross copy all valid interested party comments to the main parties. There are still <a href='../../ip-comments/v3/ip-comments'>5 comments to review</a>. These will not be cross copied unless reviewed.",
+    html: "You are about to cross copy all valid interested party comments to the relevant parties. There are still <a href='../../ip-comments/v3/ip-comments'>5 comments to review</a>. These will not be cross copied unless reviewed.",
     iconFallbackText: "Warning"
   }) }}
 

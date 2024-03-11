@@ -1,0 +1,102 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set pageName="Personal list" %}
+
+{% set back = true %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+<span class="govuk-caption-l">Appeal 2110166</span>
+  <h1 class="govuk-heading-l">Check intersted party details</h1>
+
+  </div>
+</div>
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+            <dl class="govuk-summary-list">
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Name
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {% if data['add-ip-address-first-name'] or data['add-ip-address-last-name'] %} 
+                    {{ data ['add-ip-address-first-name'] }} {{ data ['add-ip-address-last-name'] }}
+                  {% else %}
+                    Not provided
+                  {% endif %}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="add-ip#add-ip-address-first-name">Change<span class="govuk-visually-hidden"></span></a>
+                </dd>
+              </div>
+             
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Email address
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {% if data['add-ip-address-email'] %}
+                  {{ data ['add-ip-address-email'] }}
+                  {% else %}
+                  Not provided
+                  {% endif %}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  
+                    <a class="govuk-link" href="add-ip#add-ip-address-email">
+                Change<span class="govuk-visually-hidden"></span>
+                </a>
+              
+            </dd>
+              </div>
+           
+      
+                <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Address
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {% if data['add-ip-address-address-line-1'] %}
+                  {{ data['add-ip-address-address-line-1']}}<br>
+                    {{ data['add-ip-address-address-line-2']}}
+                    {% if data ['add-ip-address-address-line-2'] %}<br>
+                    {% endif %}
+                    {{ data['add-ip-address-address-town']}} 
+                    {% if data['add-ip-address-address-county']%}<br>
+                    {% endif %}
+                    {{ data['add-ip-address-address-county']}}<br>
+                    {{ data['add-ip-address-address-postcode']}}
+                    {% else %}
+                    Not provided
+              {% endif %}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  
+                    <a class="govuk-link" href="add-ip#add-ip-address">
+                Change<span class="govuk-visually-hidden"></span>
+                </a>
+              
+            </dd>
+              </div>
+      
+        
+
+
+	  <form action="case" method="post" class="govuk-!-margin-top-7">
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

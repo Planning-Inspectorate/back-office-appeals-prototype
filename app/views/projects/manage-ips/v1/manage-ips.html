@@ -10,11 +10,25 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
+    {% if data['remove-ip'] === "Yes" %}
+      {% set html %}
+        <h3 class="govuk-notification-banner__heading">
+          Interested party removed
+        </h3>
+      {% endset %}
+
+      {{ govukNotificationBanner({
+        html: html,
+        type: "success"
+      }) }}
+    {% endif %}
+
 <span class="govuk-caption-l">Appeal 2110166</span>
   <h1 class="govuk-heading-l">Manage interested parties</h1>
-
   </div>
 </div>
+
+    
 
 
 <div class="govuk-grid-row">
@@ -128,11 +142,6 @@
 
 	  </script>
 
-    {{ govukButton({
-  text: "Add an interest party",
-  classes: "govuk-button--secondary"
-}) }}
-
 <table class="govuk-table">
   
   <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">Interested parties</caption>
@@ -156,20 +165,23 @@
   
   <tbody class="govuk-table__body">
  
+        {% if data['remove-ip'] === "Yes" %}
+        {% else %}
         <tr class="govuk-table__row tableall manual">
           <td class="govuk-table__cell">Dan Brighthouse</td>
           <td class="govuk-table__cell">Not provided</td>
           <td class="govuk-table__cell">brighthousedan167@gmail.com</td>
           <td class="govuk-table__cell">Manually added</td>
-          <td class="govuk-table__cell"><a href="comment-review">Edit</a> | <a href="comment-review">Remove</a></td>
+          <td class="govuk-table__cell"><a href="edit-ip">Edit</a> | <a href="remove-ip">Remove</a></td>
         </tr>
+        {% endif %}
 
         <tr class="govuk-table__row tableall appellant">
           <td class="govuk-table__cell">Cath Fairfield</td>
           <td class="govuk-table__cell">Not provided</td>
           <td class="govuk-table__cell">cathyf@gmail.com</td>
           <td class="govuk-table__cell">Appellant case</td>
-          <td class="govuk-table__cell"><a href="comment-review">Edit</a> | <a href="comment-review">Remove</a></td>
+          <td class="govuk-table__cell"><a href="edit-ip">Edit</a> | <a href="remove-ip">Remove</a></td>
         </tr>
 
         <tr class="govuk-table__row tableall lpaq">
@@ -177,7 +189,7 @@
           <td class="govuk-table__cell">172 York Road<br>Bristol<br>BS3 4AL</td>
           <td class="govuk-table__cell">Not provided</td>
           <td class="govuk-table__cell">LPA questionnaire</td>
-          <td class="govuk-table__cell"><a href="comment-review">Edit</a> | <a href="comment-review">Remove</a></td>
+          <td class="govuk-table__cell"><a href="edit-ip">Edit</a> | <a href="remove-ip">Remove</a></td>
         </tr>
 
         <tr class="govuk-table__row tableall manual">
@@ -185,7 +197,7 @@
           <td class="govuk-table__cell">22 High Street<br>Totterdown<br>Bristol<br>BS13 6FB</td>
           <td class="govuk-table__cell">Not provided</td>
           <td class="govuk-table__cell">Manually added</td>
-          <td class="govuk-table__cell"><a href="comment-review">Edit</a> | <a href="comment-review">Remove</a></td>
+          <td class="govuk-table__cell"><a href="edit-ip">Edit</a> | <a href="remove-ip">Remove</a></td>
         </tr>
  
         <tr class="govuk-table__row tableall appellant">
@@ -193,7 +205,7 @@
           <td class="govuk-table__cell">231 William St<br>Bristol<br>BS3 8FW</td>
           <td class="govuk-table__cell">violet.kiptum@hotmail.com</td>
           <td class="govuk-table__cell">Appellant case</td>
-          <td class="govuk-table__cell"><a href="comment-review">Edit</a> | <a href="comment-review">Remove</a></td>
+          <td class="govuk-table__cell"><a href="edit-ip">Edit</a> | <a href="remove-ip">Remove</a></td>
         </tr>
 
         <tr class="govuk-table__row tableall lpaq">
@@ -201,7 +213,7 @@
           <td class="govuk-table__cell">172 York Road<br>Bristol<br>BS3 4AL</td>
           <td class="govuk-table__cell">philr@biggersddressdomain.com</td>
           <td class="govuk-table__cell">LPA questionnaire</td>
-          <td class="govuk-table__cell"><a href="comment-review">Edit</a> | <a href="comment-review">Remove</a></td>
+          <td class="govuk-table__cell"><a href="edit-ip">Edit</a> | <a href="remove-ip">Remove</a></td>
         </tr>
 
         <tr class="govuk-table__row tableall ipcomment">
@@ -209,7 +221,7 @@
           <td class="govuk-table__cell">23 Main Road<br>Bristol<br>BS3 6TU</td>
           <td class="govuk-table__cell">ian.smith@gmail.com</td>
           <td class="govuk-table__cell">IP comment</td>
-          <td class="govuk-table__cell"><a href="comment-review">Edit</a> | <a href="comment-review">Remove</a></td>
+          <td class="govuk-table__cell"><a href="edit-ip">Edit</a> | <a href="remove-ip">Remove</a></td>
         </tr>
 
         <tr class="govuk-table__row tableall manual">
@@ -217,7 +229,7 @@
           <td class="govuk-table__cell">Not provided</td>
           <td class="govuk-table__cell">Not provided</td>
           <td class="govuk-table__cell">Manually added</td>
-          <td class="govuk-table__cell"><a href="comment-review">Edit</a> | <a href="comment-review">Remove</a></td>
+          <td class="govuk-table__cell"><a href="edit-ip">Edit</a> | <a href="remove-ip">Remove</a></td>
         </tr>
     
   </tbody>

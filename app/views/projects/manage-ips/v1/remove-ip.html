@@ -1,0 +1,86 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Remove interested party?" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+		<span class="govuk-caption-xl">Appeal 2110166</span>
+		<h1 class="govuk-heading-l">Remove interested party</h1>
+
+		<dl class="govuk-summary-list">
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Interested party
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  Dan Brighthouse
+                </dd>
+              </div>
+			  <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Address
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  Not provided
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Email address
+                </dt>
+                <dd class="govuk-summary-list__value">
+                	brighthousedan167@gmail.com
+                </dd>
+              </div>
+              
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Source
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  Manually added
+                </dd>
+              </div>
+
+            </dl>
+
+       <form action="manage-ips" method="post" novalidate>
+
+		<!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
+
+		{{ govukRadios({
+		  name: "remove-ip",
+		  fieldset: {
+		    legend: {
+		      text: "Remove Dan Brighthouse as interested party?",
+		      isPageHeading: false,
+		      classes: "govuk-fieldset__legend--s"
+		    }
+		  },
+		  items: [
+		    {
+		      value: "Yes",
+		      text: "Yes"
+		    },
+		    {
+		      value: "No",
+		      text: "No"
+		    }
+		   ]
+		}) }}
+
+		{{ govukButton({
+          text: "Continue"
+        }) }}
+
+
+	  </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

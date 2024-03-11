@@ -1,0 +1,36 @@
+{% extends "layouts/PINS-admin.html" %}
+
+{% set pageName="Home" %}
+
+{% set back = false %}
+
+{% block content %}
+
+
+
+<div class="govuk-grid-row">
+
+<div class="govuk-grid-column-two-thirds">
+
+  <h1 class="govuk-heading-xl">
+    Research on interested party comments
+  </h1>
+
+   {{ govukButton({
+      text: "Start now",
+      href: "projects/ip-comments/v4",
+      isStartButton: true
+    }) }}
+
+	  
+	  
+  </div>
+  
+  
+</div>
+
+
+
+  
+
+{% endblock %}

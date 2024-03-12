@@ -1,0 +1,103 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Personal list" %}
+
+{% set back = false %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+  <h1 class="govuk-heading-l">Cases assigned to you</h1>
+
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+	 <table class="govuk-table">
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Appeal ID</th>
+      <th scope="col" class="govuk-table__header"></th>
+      <th scope="col" class="govuk-table__header">Action required</th>
+      <th scope="col" class="govuk-table__header">Due by</th>
+      <th scope="col" class="govuk-table__header">Case status</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell"><a href="#">2110166</a></td>
+      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Lead</strong></td>
+      <td class="govuk-table__cell"><a href="#">View appellant case</a></td>
+      <td class="govuk-table__cell">10 July 2023</td>
+      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Ready to start</strong></td>
+    </tr>
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell"><a href="#">2238491</a></td>
+      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Child</strong></td>
+      <td class="govuk-table__cell"><a href="#">View appellant case</a></td>
+      <td class="govuk-table__cell">13 July 2023</td>
+      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Ready to start</strong></td>
+    </tr>
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell"><a href="case-lpaq">2146718</a></td>
+      <td class="govuk-table__cell"></td>
+      <td class="govuk-table__cell"><a href="#">Review LPA Questionnaire</a></td>
+      <td class="govuk-table__cell">11 July 2023</td>
+      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">LPA questionnaire</strong></td>
+    </tr>
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell"><a href="case-lpaq">2110167</a></td>
+      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Lead</strong></td>
+      <td class="govuk-table__cell"><a href="#">Review LPA Questionnaire</a></td>
+      <td class="govuk-table__cell">11 July 2023</td>
+      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">LPA questionnaire</strong></td>
+    </tr>
+    
+    <tr class="govuk-table__row">
+
+        {% if data['decision'] == 'ready' %}
+          <td class="govuk-table__cell"><a href="/projects/issue-decision/v5/case?status=determination">1234562</a></td>
+        {% elif data['decision'] == 'incomplete-appeal' %}
+          <td class="govuk-table__cell"><a href="/projects/issue-decision/v5/case?status=incomplete">1234562</a></td>
+        {% elif data['decision'] == 'done' %}
+          <td class="govuk-table__cell"><a href="/projects/issue-decision/v5/case?status=done">1234562</a></td>
+        {% endif %}
+
+      <td class="govuk-table__cell"></td>
+      {% if data['decision'] == 'ready' %}
+          <td class="govuk-table__cell"><a href="/projects/issue-decision/v5/decision" class="govuk-link govuk-link--no-visited-state">Issue decision</a></td>
+      {% elif data['decision'] == 'incomplete-appeal' %}
+        <td class="govuk-table__cell"><a href="#" class="govuk-link govuk-link--no-visited-state">Review case</a></td>
+      {% else %}
+        <td class="govuk-table__cell"></td>
+      {% endif %}
+      <td class="govuk-table__cell"></td>
+      {% if data['decision'] == 'ready' %}
+        <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--pink">Ready for final review</strong></td>
+      {% elif data['decision'] == 'incomplete-appeal' %}
+        <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Incomplete</strong></td>
+      {% else %}
+        <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Completed</strong></td>
+      {% endif %}
+
+    </tr>
+
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell"><a href="case.html?status=complete">1234563</a></td>
+      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Child</strong></td>
+      <td class="govuk-table__cell"></td>
+      <td class="govuk-table__cell"></td>
+      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Completed</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+
+  </div>
+</div>
+
+{% endblock %}

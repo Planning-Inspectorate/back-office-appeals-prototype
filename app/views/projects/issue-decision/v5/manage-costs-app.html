@@ -1,0 +1,82 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Manage documents" %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: 'option1'
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+	<span class="govuk-caption-l">Manage documents</span>
+	<h1 class="govuk-heading-l">Costs application</h1>
+
+  </div>
+</div>
+
+
+<div class="govuk-grid-row ">
+  <div class="govuk-grid-column-full">
+
+	{{ govukTable({
+	  firstCellIsHeader: false,
+	  head: [
+	    {
+	      text: "Document information"
+	    },
+	    {
+	      text: "Date received"
+	    },
+	    {
+	      text: "Redaction"
+	    },
+	    {
+	      text: "Actions"
+	    }
+	  ],
+	  rows: [
+	    [
+	      {
+	        html: "<p><a href='#'>costs-application-a.pdf</a></p><p class='govuk-body govuk-!-font-size-16'>File type and size : PDF, 97KB</p>"
+	      },
+	      {
+	        text: "dd Mon YYYY"
+	      },
+	      {
+	        text: "Redacted"
+	      },
+	      {
+	        html: "<p><a href='document-details'>View and edit</a></p>"
+	      }
+	    ],
+	    [
+	      {
+	        html: "<p><a href='#'>costs-application-b.pdf</a></p><p class='govuk-body govuk-!-font-size-16'>File type and size : PDF, 97KB</p>"
+	      },
+	      {
+	        text: "dd Mon YYYY"
+	      },
+	      {
+	        text: "Unredacted"
+	      },
+	      {
+	        html: "<p><a href='document-details'>View and edit</a></p>"
+	      }
+	    ]
+
+	  ]
+	}) }}
+
+
+
+  </div>
+</div>
+
+
+{% endblock %}

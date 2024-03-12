@@ -1,0 +1,238 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Case details" %}
+
+{% block backLink %}
+    {{ govukBackLink({
+      text: "Back to personal list",
+      href: 'index'
+    }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+	{% set html %}
+
+    {% if data['status'] == 'determination' %}
+  	  <p class="govuk-notification-banner__heading">
+  	    The appeal is ready for a decision
+  	  </p>
+  	  <p>
+        <a class="govuk-notification-banner__link" href="decision.html">
+          Issue a decision
+        </a>
+      </p>
+    {% elif data['status'] == 'invalid' %}
+
+        <p class="govuk-notification-banner__heading">
+          The appeal decision has been issued
+        </p>
+      {% if data['issued-decision'] == 'Invalid' %}
+        <p>
+          Appeal decision was invalid: {{ data['invalidDetail'] }}
+        </p>
+      {% endif %}
+
+    {% elif data['status'] == 'done' %}
+      <p class="govuk-notification-banner__heading">
+        The appeal decision has been issued
+      </p>
+    {% endif %}
+
+	{% endset %}
+
+	{{ govukNotificationBanner({
+	  html: html
+	}) }}
+
+	<span class="govuk-caption-l">Appeal 1234562</span>
+	<h1 class="govuk-heading-l">Case details</h1>
+
+  {% if data['status'] == 'ready-to-start' %}
+
+    {{ govukTag({
+      text: "Ready to start",
+      classes: "govuk-tag--green"
+    })}}
+
+  {% elif data['status'] == 'lpa-questionnaire' %}
+
+    {{ govukTag({
+      text: "LPA questionnaire",
+      classes: "govuk-tag--yellow"
+    })}}
+
+  {% elif data['status'] == 'statement-review' %}
+
+    {{ govukTag({
+      text: "Statement review",
+      classes: "govuk-tag--orange"
+    })}}
+
+  {% elif data['status'] == 'final-comment-review' %}
+
+    {{ govukTag({
+      text: "Final comment review",
+      classes: "govuk-tag--purple"
+    })}}
+
+  {% elif data['status'] == 'site-visit' %}
+
+    {{ govukTag({
+      text: "Site review",
+      classes: "govuk-tag--blue"
+    })}}
+
+  {% elif data['status'] == 'determination' %}
+
+    {{ govukTag({
+      text: "Ready for final review",
+      classes: "govuk-tag--pink"
+    })}}
+
+  {% elif data['status'] == 'incomplete' %}
+
+    {{ govukTag({
+      text: "Incomplete",
+      classes: "govuk-tag--red"
+    })}}
+
+  {% else %}
+
+    {{ govukTag({
+      text: "Completed",
+      classes: "govuk-tag--green"
+    })}}
+
+  {% endif %}
+
+  {% include "../v3/includes/case-meta-data.html" %}
+  <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+  <div class="govuk-accordion govuk-!-margin-top-9" data-module="govuk-accordion" id="accordion-default">
+	  <div class="govuk-accordion__section">
+	    <div class="govuk-accordion__section-header">
+	      <h2 class="govuk-accordion__section-heading">
+	        <span class="govuk-accordion__section-button" id="accordion-default-heading-1">
+	          Case overview
+	        </span>
+	      </h2>
+	    </div>
+	    <div id="accordion-default-content-1" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-1">
+      {% if data['status'] != 'done' %}
+        {% include "../v4/includes/case-overview-table" %}
+      {% else %}
+        {% include "../v4/includes/case-overview-table-done" %}
+      {% endif %}
+	    </div>
+	  </div>
+	  <div class="govuk-accordion__section">
+	    <div class="govuk-accordion__section-header">
+	      <h2 class="govuk-accordion__section-heading">
+	        <span class="govuk-accordion__section-button" id="accordion-default-heading-2">
+	          Case timetable
+	        </span>
+	      </h2>
+	    </div>
+	    <div id="accordion-default-content-2" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-2">
+	      {% include "../v3/includes/case-timetable.html" %}
+	    </div>
+	  </div>
+	  <div class="govuk-accordion__section">
+	    <div class="govuk-accordion__section-header">
+	      <h2 class="govuk-accordion__section-heading">
+	        <span class="govuk-accordion__section-button" id="accordion-default-heading-3">
+	          Case documentation
+	        </span>
+	      </h2>
+	    </div>
+	    <div id="accordion-default-content-3" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-3">
+	      
+{{ govukTable({
+	  captionClasses: "govuk-table__caption--m",
+	  firstCellIsHeader: false,
+	  head: [
+		    {
+		      text: "Documentation"
+		    },
+		    {
+		      text: "Status"
+		    },
+				{
+					text: "Date due"
+				},
+		    {
+		      text: "Action"
+		    }
+		  ],
+	  rows: [
+	    [
+	      {
+	        text: "Appellant case"
+	      },
+	      {
+	        text: "Received"
+	      },
+	      {
+	        text: ""
+	      },
+	      {
+	        html: "<a href=''>View</a>"
+	      }
+	    ],
+	    [
+	      {
+	        text: "LPA questionnaire"
+	      },
+	      {
+	        text: "Received"
+	      },
+	      {
+	        text: ""
+	      },
+	      {
+        	html: "<a href=''>View</a>"
+	      }
+	    ],
+	    [
+	      {
+	        text: "Costs"
+	      },
+	      {
+	        text: "Awarded"
+	      },
+	      {
+	        text: ""
+	      },
+	      {
+        	html: "<a href='manage-costs-application'>Manage</a> | <a href='costs-application-no-skip'>Add</a>"
+	      }
+	    ]
+	  ]
+	}) }}
+
+
+	    </div>
+	  </div>
+	  <div class="govuk-accordion__section">
+	    <div class="govuk-accordion__section-header">
+	      <h2 class="govuk-accordion__section-heading">
+	        <span class="govuk-accordion__section-button" id="accordion-default-heading-4">
+	          Case team
+	        </span>
+	      </h2>
+	    </div>
+	    <div id="accordion-default-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-4">
+	      {% include "../v3/includes/case-team.html" %}
+	    </div>
+	  </div>
+	</div>
+
+
+</div>
+
+
+{% endblock %}

@@ -48,31 +48,46 @@
 		  ]
 		}) }}	 
 
-		<!-- 
 
-			{{ govukRadios({
-			name: "obligation-decision",
+		{{ govukRadios({
+			name: "redaction",
 			fieldset: {
 			  legend: {
-				text: "What is the status of the S106 obligation?",
-				isPageHeading: true,
-				classes: "govuk-fieldset__legend--m"
+				text: "Redaction"
 			  }
 			},
 			items: [
 			  {
-				value: "finale~obligation-review",
-				text: "Final"
+				value: "redacted",
+				text: "Redacted"
 			  },
 			  {
-				value: "draft~obligation-review",
-				text: "Draft"
-			  } 
-			   
+				value: "unredacted",
+				text: "Unredacted"
+			  },
+				  {
+				divider: "or"
+			  },
+			  {
+				value: "No redaction required",
+				text: "No redaction required"
+			  }
 			]
 		  }) }}
-		-->
-  
+	  
+	  {% set otherHtml %}
+	  {{ govukInput({
+		id: "contact-by-text",
+		name: "contactByText",
+		type: "tel",
+		autocomplete: "tel",
+		classes: "govuk-!-width-two-thirds",
+		label: {
+		  text: "Sender"
+		}
+	  }) }}
+	  {% endset -%}
+		
  
  
 

@@ -6,10 +6,22 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
- 
 
- 
+      {% set html %}
+<p class="govuk-notification-banner__heading">
+  S106 obligation (draft) added
+</p>
+<p>
+  <a class="govuk-notification-banner__link" href="../../cross-copy/v1/lpa-statement-publish">
      
+  </a>
+</p>
+{% endset %}
+
+{{ govukNotificationBanner({
+  html: html,
+  type: "success"
+}) }}
 
  
     <span class="govuk-caption-l">Appeal 2110166</span>
@@ -24,8 +36,6 @@
 
       {% include "/includes/appeal-content/mvp-has-appeal-meta.html" %}
       <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-
-     
 
       <div class="govuk-accordion govuk-!-margin-top-9" data-module="govuk-accordion" id="accordion-default">
         <div class="govuk-accordion__section">
@@ -122,7 +132,7 @@
           <div class="govuk-accordion__section-header">
             <h1 class="govuk-accordion__section-heading">
               <span class="govuk-accordion__section-button" id="accordion-default-heading-2">
-               Site details
+                Site details
               </span>
             </h2>
           </div>
@@ -400,13 +410,13 @@
                     text: "LPA statement"
                   },
                   {
-                    text: "Received"
+                    text: "Complete"
                   },
                   {
-                    text: "19 Jul 2023"
+                    text: "19 Jan 2024"
                   },
                   {
-                    html: "<a href='lpa-statement-redactions'>Review</a>"
+                    html: "<a href='../../cross-copy/v1/lpa-statement-publish'>Publish</a>"
                   }
                 ]
                 ,
@@ -455,28 +465,26 @@
                   }
                 ]
                 ,
-                
                 [
                   {
-                    text: "S106 obligation (draft)"
+                    text: "S106 obligation draft"
                   },
                   {
                     text: "Received"
                   },
                   {
-                    text: " "
+                    text: "24 Aug 2023 (received-date)"
                   },
                   {
-                    html: "<a href='#'>View</a> | <a href='upload-obligation-draft'>Add</a>"
+                    html: "<a href='#'>View</a>"
                   }
-                ]
-                ,
+                ],
                 [
                   {
-                    text: "S106 obligation (final)"
+                    text: "S106 obligation final"
                   },
                   {
-                    text: "Incomplete"
+                    text: "Not received"
                   },
                   {
                     text: ""
@@ -509,7 +517,7 @@
                     text: "Apellant"
                   },
                   {
-                    html: "Apellant Name<br><a href='#'>apellant-names@example.co.uk</a> <br>0300 0272189"
+                    html: "Apellant Name<br><a href='#'>apellant-names@example.co.uk</a> <br>0300 027 2189"
                   },
                   {
                     html: "<a href='#'>Change</a>"
@@ -520,7 +528,7 @@
                     text: "Agent"
                   },
                   {
-                    html: "Robert Williams<br><a href='#'>robert.williams@planninginspectorate.gov.uk</a> <br>0300 027 2189"
+                    html: "Agent Name<br><a href='#'>agent.name@example.co.uk</a> <br>0300 017 4492"
                   },
                   {
                     html: "<a href='#'>Change</a>"
@@ -531,7 +539,7 @@
                     text: "LPA"
                   },
                   {
-                    html: "Local Planning Authority Name<br><a href='#'>Name@localauthority.gov.uk</a> <br>0300 021 2189"
+                    html: "Local Planning Authority Name<br><a href='#'>Name@localauthority.gov.uk</a> <br>0300 027 2190"
                   },
                   {
                     html: "<a href='#'>Change</a>"
@@ -542,7 +550,7 @@
                     text: "Interested parties"
                   },
                   {
-                    html: "Interested Name<br><a href='#'>interested-parties@example.co.uk</a> <br>0300 027 2189"
+                    html: "Interested Name<br><a href='#'>interested-parties@example.co.uk</a> <br>0300 021 4493"
                   },
                   {
                     html: "<a href='#'>Change</a>"
@@ -571,7 +579,7 @@
                     text: "Case officer"
                   },
                   {
-                    html: "Robert Williams<br><a href='#'>robert.williams@planninginspectorate.gov.uk</a> <br>0300 0272189"
+                    html: "Robert Williams<br><a href='#'>robert.williams@planninginspectorate.gov.uk</a> <br>0300 027 2188"
                   },
                   {
                     html: "<a href='#'>Change</a>"
@@ -582,7 +590,7 @@
                     text: "Inspector"
                   },
                   {
-                    html: "Rupi Sentil<br><a href='#'>rupi.sentil@localauthority.gov.uk</a> <br>0300 021 4492"
+                    html: "Rupi Sentil<br><a href='#'>rupi.sentil@localauthority.gov.uk</a> <br>0300 021 4494"
                   },
                   {
                     html: "<a href='#'>Change</a>"

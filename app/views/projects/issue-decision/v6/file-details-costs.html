@@ -1,6 +1,6 @@
 {% extends "layouts/PINS.html" %}
 
-{% set pageName="Add documents" %}
+{% set pageName="Costs application document details" %}
 
 {% block content %}
 
@@ -8,14 +8,22 @@
   <div class="govuk-grid-column-two-thirds">
 
   	<span class="govuk-caption-l">Add document details</span>
-	<h1 class="govuk-heading-l">Costs application document</h1>
-
-	    <form action="case" method="post" class="govuk-!-margin-top-9" novalidate>
+	<h1 class="govuk-heading-l">
+		    {% if data['party'] === "appellant" %}
+			Appellant costs application
+			</h1>
+			<form action="case?costs-appellant=yes" method="post" class="govuk-!-margin-top-3" novalidate>
+			{% elseif data['party'] === "lpa" %}
+			LPA costs application
+			</h1>
+			<form action="case?costs-lpa=yes" method="post" class="govuk-!-margin-top-3" novalidate>
+			{% endif %}
+	
 
 	    <!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
 
 	<span class="govuk-caption-m">File name</span>
-	<h2 class="govuk-heading-m">costs-application-a.pdf</h2>
+	<h2 class="govuk-heading-m">costs-application-b.pdf</h2>
 
 	{{ govukDateInput({
 	  id: "date-recieved",
@@ -53,50 +61,6 @@
 	  ]
 	}) }}
 
-
-{% set otherHtml %}
-{{ govukInput({
-  id: "contact-by-text",
-  name: "contactByText",
-  type: "tel",
-  autocomplete: "tel",
-  classes: "govuk-!-width-two-thirds",
-  label: {
-    text: "Sender"
-  }
-}) }}
-{% endset -%}
-
-{{ govukRadios({
-  name: "contact",
-  fieldset: {
-    legend: {
-      text: "From",
-      isPageHeading: false,
-      classes: "govuk-fieldset__legend--s"
-    }
-  },
-  hint: {
-    text: "The person or organisation who sent the file."
-  },
-  items: [
-    {
-      value: "Appellant",
-      text: "Appellant"
-    },
-    {
-      value: "LPA",
-      text: "LPA"
-    },
-    {
-      value: "other",
-      text: "Other",
-      conditional: {
-        html: otherHtml
-      }
-    }
-  ]
-}) }}
 
 
 	   {{ govukButton({

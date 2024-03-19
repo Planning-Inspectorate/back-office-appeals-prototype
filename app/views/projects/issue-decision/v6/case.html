@@ -44,9 +44,11 @@
 
 	{% endset %}
 
+ {% if data['status'] %}
 	{{ govukNotificationBanner({
 	  html: html
 	}) }}
+  {% endif %}
 
 	<span class="govuk-caption-l">Appeal 1234562</span>
 	<h1 class="govuk-heading-l">Case details</h1>
@@ -159,7 +161,7 @@
     <tr class="govuk-table__row">
       <th scope="col" class="govuk-table__header">Documentation</th>
       <th scope="col" class="govuk-table__header">Status</th>
-      <th scope="col" class="govuk-table__header">Date due</th>
+      <th scope="col" class="govuk-table__header">Received</th>
       <th scope="col" class="govuk-table__header">Action</th>
     </tr>
   </thead>
@@ -178,14 +180,38 @@
           <td class="govuk-table__cell"><a href="">View</a></td>
         </tr>
 		<tr class="govuk-table__row">
-          <td class="govuk-table__cell">Costs application</td>
+          <td class="govuk-table__cell">Costs application (appellant)</td>
           <td class="govuk-table__cell">
-			{% if data ['costs-applied-for'] %}
-			{{ data ['costs-applied-for'] }}
-			{% endif %}     
+          {% if data ['costs-appellant'] === "yes" %}
+          Received
+          {% elseif data ['costs-appellant'] === "no" %}
+          Withdrawn
+          {% endif %}     
 		  </td>
           <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{% if data ['costs-applied-for'] %}<a href="manage-costs-app">Manage</a> | {% endif %}<a href="change-costs">Add</a></td>
+          <td class="govuk-table__cell">
+            {% if data ['costs-appellant'] === "yes" %}<a href="manage-costs-application?party=appellant">Manage</a> | <a href="costs-withdrawal-upload?party=appellant">Withdraw</a>
+            {% elseif data ['costs-appellant'] === "no" %}<a href="manage-costs-application?party=appellant">Manage</a> | <a href="costs-application-upload?party=appellant">Add</a>
+            {% else %}<a href="costs-application-upload?party=appellant">Add</a>
+            {% endif %}
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Costs application (LPA)</td>
+          <td class="govuk-table__cell">
+        {% if data ['costs-lpa'] === "yes" %}
+          Received
+          {% elseif data ['costs-lpa'] === "no" %}
+          Withdrawn
+          {% endif %}     
+		  </td>
+          <td class="govuk-table__cell"></td>
+          <td class="govuk-table__cell">
+            {% if data ['costs-lpa'] === "yes" %}<a href="manage-costs-application?party=lpa">Manage</a> | <a href="costs-withdrawal-upload?party=lpa">Withdraw</a>
+            {% elseif data ['costs-lpa'] === "no" %}<a href="manage-costs-application?party=lpa">Manage</a> | <a href="costs-application-upload?party=lpa">Add</a>
+            {% else %}<a href="costs-application-upload?party=lpa">Add</a>
+            {% endif %}
+          </td>
         </tr>
   </tbody>
 </table>

@@ -2,10 +2,9 @@
 
 {% set pageName="Decision date" %}
 
-{% set title = "Who has applied for costs?" %}
+{% set title = "What is the decision?" %}
 
 {% block questions %}
-
 
   <span class="govuk-caption-l">
     Appeal 2110166
@@ -26,34 +25,32 @@
 <div class="govuk-grid-column-two-thirds"> -->
 
   {{ govukRadios({
-    name: "costs-applied-for",
+    name: "issued-decision",
     fieldset: {
       legend: {
-        text: "Who has applied for costs?",
+        text: "What is the decision?",
         isPageHeading: true,
         classes: "govuk-fieldset__legend--l"
       }
     },
     items: [
       {
-        value: "From appellant~costs-application-upload",
-        text: "Appellant"
+        value: "Allowed~upload-decision",
+        text: "Allowed"
       },
       {
-        value: "From LPA~costs-application-upload",
-        text: "LPA"
+        value: "Dismissed~upload-decision",
+        text: "Dismissed"
       },
       {
-        value: "From both parties~costs-application-upload",
-        text: "Both parties"
+        value: "Split decision~upload-decision",
+        text: "Split decision"
       },
       {
-        value: "None submitted~costs-application-upload",
-        text: "Neither party"
+        value: "Invalid~invalid",
+        text: "Invalid"
       }
     ]
   }) }}
-
-
 
 {% endblock %}

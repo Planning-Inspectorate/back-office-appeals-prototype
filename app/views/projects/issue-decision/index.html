@@ -20,6 +20,26 @@
     </p>
 
     <h2 class="govuk-heading-m">
+      Version 6
+
+    </h2>
+
+    <p class="govuk-body">
+      Introduced documentation sections for 'appellant costs' and 'LPA costs', this means that the status of the costs application can be understood from the state of the documentation. Each of the two doc types can be null, recieved or withdrawn. This also makes the withdrawn journey much simpler and should mean that most of costs is reusing the file management we already have.
+    </p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li><a href="v6/case-complete">example of completed case pages with ability to add costs after decision</a></li>
+    </ul>
+
+  	{{ govukButton({
+  	  text: "View prototype",
+  	  href: "v6/index?decision=ready",
+  	  isStartButton: true
+  	}) }}
+
+{% set v5HTML %}
+    <h2 class="govuk-heading-m">
       Version 5
 
     </h2>
@@ -37,8 +57,9 @@
   	  href: "v5/index?decision=ready",
   	  isStartButton: true
   	}) }}
+    {% endset %}
 
-{% set v2HTML %}
+{% set v4HTML %}
 <h2 class="govuk-heading-m">
       Version 4
 
@@ -169,10 +190,17 @@
       items: [
           {
           heading: {
+            html: 'Version 5 <strong class="govuk-tag govuk-tag--blue govuk-!-margin-left-2">Researched</strong>'
+          },
+          content: {
+            html: v5HTML
+          }
+        },{
+          heading: {
             html: 'Version 4 <strong class="govuk-tag govuk-tag--blue govuk-!-margin-left-2">Researched</strong>'
           },
           content: {
-            html: v3HTML
+            html: v4HTML
           }
         },
         {

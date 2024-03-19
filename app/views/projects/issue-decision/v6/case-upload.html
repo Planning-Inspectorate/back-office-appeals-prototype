@@ -123,9 +123,9 @@
 	    </div>
 	    <div id="accordion-default-content-1" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-1">
       {% if data['status'] != 'done' %}
-        {% include "../v5/includes/case-overview-table" %}
+        {% include "../v4/includes/case-overview-table" %}
       {% else %}
-        {% include "../v5/includes/case-overview-table-done" %}
+        {% include "../v4/includes/case-overview-table-done" %}
       {% endif %}
 	    </div>
 	  </div>
@@ -141,7 +141,6 @@
 	      {% include "../v3/includes/case-timetable.html" %}
 	    </div>
 	  </div>
-
 	  <div class="govuk-accordion__section">
 	    <div class="govuk-accordion__section-header">
 	      <h2 class="govuk-accordion__section-heading">
@@ -152,52 +151,72 @@
 	    </div>
 	    <div id="accordion-default-content-3" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-3">
 	      
-<table class="govuk-table">
-  
-  
-  <thead class="govuk-table__head">
-    <tr class="govuk-table__row">
-      <th scope="col" class="govuk-table__header">Documentation</th>
-      <th scope="col" class="govuk-table__header">Status</th>
-      <th scope="col" class="govuk-table__header">Date due</th>
-      <th scope="col" class="govuk-table__header">Action</th>
-    </tr>
-  </thead>
-  
-  <tbody class="govuk-table__body">
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">Appellant case</td>
-          <td class="govuk-table__cell">Received</td>
-          <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell"><a href="">View</a></td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell">LPA questionnaire</td>
-          <td class="govuk-table__cell">Received</td>
-          <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell"><a href="">View</a></td>
-        </tr>
-		<tr class="govuk-table__row">
-          <td class="govuk-table__cell">Costs application</td>
-          <td class="govuk-table__cell">
-			{% if data ['costs-applied-for'] %}
-			{{ data ['costs-applied-for'] }}
-			{% endif %}     
-		  </td>
-          <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{% if data ['costs-applied-for'] %}<a href="manage-costs-app">Manage</a> | {% endif %}<a href="change-costs">Add</a></td>
-        </tr>
-  </tbody>
-</table>
+{{ govukTable({
+	  captionClasses: "govuk-table__caption--m",
+	  firstCellIsHeader: false,
+	  head: [
+		    {
+		      text: "Documentation"
+		    },
+		    {
+		      text: "Status"
+		    },
+				{
+					text: "Date due"
+				},
+		    {
+		      text: "Action"
+		    }
+		  ],
+	  rows: [
+	    [
+	      {
+	        text: "Appellant case"
+	      },
+	      {
+	        text: "Received"
+	      },
+	      {
+	        text: ""
+	      },
+	      {
+	        html: "<a href=''>View</a>"
+	      }
+	    ],
+	    [
+	      {
+	        text: "LPA questionnaire"
+	      },
+	      {
+	        text: "Received"
+	      },
+	      {
+	        text: ""
+	      },
+	      {
+        	html: "<a href=''>View</a>"
+	      }
+	    ],
+	    [
+	      {
+	        text: "Costs"
+	      },
+	      {
+	        text: "Awarded"
+	      },
+	      {
+	        text: ""
+	      },
+	      {
+        	html: "<a href='manage-costs-application'>Manage</a> | <a href='costs-application-no-skip'>Add</a>"
+	      }
+	    ]
+	  ]
+	}) }}
 
 
 	    </div>
 	  </div>
-
-
-
-
-
 	  <div class="govuk-accordion__section">
 	    <div class="govuk-accordion__section-header">
 	      <h2 class="govuk-accordion__section-heading">

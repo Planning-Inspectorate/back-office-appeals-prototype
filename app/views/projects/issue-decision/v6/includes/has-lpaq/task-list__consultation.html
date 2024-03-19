@@ -1,0 +1,29 @@
+<li>
+
+  {{ govukSummaryList({
+    card: {
+      title: {
+        text: "Consultation responses and representations"
+      }
+    },
+    rows: [
+
+      {
+        key: {
+          html: 'Representations from other parties'
+        },
+        value: {
+          html: 'Yes'
+        }
+      },
+      {
+        key: {
+          html: 'Upload representations from other parties'
+        },
+        value: {
+          html: '<a href="" class="govuk-link">155 York Rd representations 2023.pdf</a>'
+        }
+      }
+    ]
+  }) }}
+</li>

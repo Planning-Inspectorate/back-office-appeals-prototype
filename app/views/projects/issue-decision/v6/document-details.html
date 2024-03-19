@@ -1,0 +1,219 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Appellant Case" %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: 'index'
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+	<span class="govuk-caption-l">Manage documents</span>
+	<h1 class="govuk-heading-l">costs-application-a.pdf</h1>	
+	
+	
+	{{ govukSummaryList({
+	  classes: 'govuk-summary-list',
+	  rows: [
+	    {
+	      key: {
+	        text: "File"
+	      },
+	      value: {
+	        html: '<a href="#">costs-application-a.pdf</a>'
+	      }
+	    },{
+	      key: {
+	        text: "Version"
+	      },
+	      value: {
+	        text: '4'
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Date received"
+	      },
+	      value: {
+	        html: "1 Feb 2023"
+	      },
+	      actions: {
+	        items: [
+	          {
+	            href: "file-details",
+	            text: "Change",
+	            visuallyHiddenText: "Costs application"
+	          }
+	        ]
+	      }
+	    },
+	    {
+	      key: {
+	        text: "Redaction"
+	      },
+	      value: {
+	        html: "Unredacted"
+	      },
+	      actions: {
+	        items: [
+	          {
+	            href: "file-details",
+	            text: "Change",
+	            visuallyHiddenText: "Costs application"
+	          }
+	        ]
+	      }
+	    },
+	    {
+	      key: {
+	        text: "From"
+	      },
+	      value: {
+	        html: "LPA"
+	      },
+	      actions: {
+	        items: [
+	          {
+	            href: "file-details",
+	            text: "Change",
+	            visuallyHiddenText: "Costs application"
+	          }
+	        ]
+	      }
+	    }
+	  ]
+	}) }}
+	
+	
+	{% include "projects/file-upload/v2/manage-documents/includes/document-actions.html" %} 
+
+		
+  </div>
+</div>
+
+
+<div class="govuk-grid-row govuk-!-padding-top-6">
+  <div class="govuk-grid-column-full">
+	  
+	  
+	  {% include "projects/file-upload/v2/manage-documents/includes/document-history-heading.html" %} 
+	  
+	 <details class="govuk-details" data-module="govuk-details">
+	<summary class="govuk-details__summary">
+		<span class="govuk-details__summary-text">
+		  Document history
+		</span>
+	</summary>
+	
+	<div class="govuk-details__text">
+	    
+    {{ govukTable({
+	  captionClasses: "govuk-table__caption--m",
+	  firstCellIsHeader: false,
+	  classes : " govuk-!-font-size-16",
+	  head: [
+	    {
+	      text: "Version"
+	    },
+	    {
+	      text: "Document name"
+	    },
+	    {
+	      text: "Activity"
+	    },
+	    {
+	      text: "Redaction"
+	    },
+	    {
+	      text: "Action"
+	    }
+	  ],
+	  rows: [
+	    [
+	      {
+	        html: "4"
+	      },
+	      {
+	        html: "<p class='govuk-!-font-size-16'><a href='manage-documents/document-details.html'>tree-preservation-order-A-V4.pdf</a></p><p><strong class='govuk-tag govuk-tag'>Current version</strong></p>"
+	      },
+	      {
+	        html: "<strong>Uploaded:</strong> 09:48, 22 Mar 2023, <br>by Jane Watson"
+	      },
+	      {
+	        text: "Redacted"
+	      },
+	      {
+	        html: "<a href='remove-sure'>Remove</a>"
+	      }
+	    ],
+	    [
+	      {
+	        text: "3"
+	      },
+	      {
+	        html: "<p class='govuk-!-font-size-16'><a href='manage-documents/document-details.html'>tree-preservation-order-A-V3.pdf</a></p>"
+	      },
+	      {
+	        html: "<strong>Uploaded:</strong> 09:48, 22 Mar 2023, <br>by Jane Watson"
+	      },
+	      {
+	        text: "Unredacted"
+	      },
+	      {
+	        html: "<a href='remove-sure'>Remove</a>"
+	      }
+	    ],
+	    [
+	      {
+	        text: "2"
+	      },
+	      {
+	        html: "<p class=' govuk-!-font-size-16'><a href='document-details.html'>tree-preservation-order-A-V2.pdf</a></p>"
+	      },
+	      {
+	        html: "<strong>Uploaded:</strong> 09:48, 22 Mar 2023, <br>by Jane Watson"
+	      },
+	      {
+	        text: "Unredacted"
+	      },
+	      {
+	        html: "<a href='remove-sure'>Remove</a>"
+	      }
+	    ],
+	    [
+	      {
+	        text: "1"
+	      },
+	      {
+	        html: "<p class=' govuk-!-font-size-16'><a href='document-details.html'>tree-preservation-order-A-V1.pdf</a></p>"
+	      },
+	      {
+	        html: "<strong>Uploaded:</strong> 09:48, 22 Mar 2023, <br>by Jane Watson"
+	      },
+	      {
+	        text: "Unredacted"
+	      },
+	      {
+	        html: "<a href='remove-sure'>Remove</a>"
+	      }
+	    ]
+	  ]
+	}) }}
+	    
+	  </div>
+	</details>
+	  	  
+	  
+
+	</div>
+</div>
+
+
+
+{% endblock %}

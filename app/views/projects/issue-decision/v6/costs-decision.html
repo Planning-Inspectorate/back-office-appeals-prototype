@@ -28,11 +28,22 @@
 <div class="govuk-grid-column-two-thirds"> -->
 
   <form action="costs-decision" method="post">
+{% set html %}
+  {% if data ['costs-appellant'] === "yes" and data ['costs-lpa'] === "no" %}
+    "Costs applied for by the appellant"
+  {% endif %}
+  {% if data ['costs-appellant'] === "no" and data ['costs-lpa'] === "yes" %}
+    "Costs applied for by the LPA"
+  {% endif %}
+  {% if data ['costs-appellant'] === "yes" and data ['costs-lpa'] === "yes" %}
+    "Costs applied for by the both parties"
+  {% endif %}
+{% endset %}
 
 <div class="govuk-form-group">
   <fieldset class="govuk-fieldset">
 
-{% if data['costs-applied-for'] %}
+{% if data ['costs-appellant'] === "yes" or data ['costs-lpa'] === "yes" %}
   {{ govukRadios({
     name: "costs-awarded",
     fieldset: {
@@ -43,7 +54,7 @@
       }
     },
       hint: {
-      html: "Costs applied for by the appellant, <a href='#'>view costs application (opens in new tab)</a>"
+      html: html
       },
     items: [
       {

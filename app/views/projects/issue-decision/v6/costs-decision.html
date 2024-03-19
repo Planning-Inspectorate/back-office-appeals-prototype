@@ -29,15 +29,25 @@
 
   <form action="costs-decision" method="post">
 {% set html %}
-  {% if data ['costs-appellant'] === "yes" and data ['costs-lpa'] === "no" %}
-    "Costs applied for by the appellant"
+  {% if data ['costs-appellant'] === "yes" %}
+      {% if data ['costs-appellant'] === "yes" and data ['costs-lpa'] === "no" %}
+        Costs applied for by the appellant
+      {% endif %}
+      {% if data ['costs-appellant'] === "yes" and data ['costs-lpa'] === "yes" %}
+        Costs applied for by the both parties
+      {% else %}
+        Costs applied for by the appellant
+      {% endif %}
+  {% elseif data ['costs-lpa'] === "yes" %}
+      {% if data ['costs-appellant'] === "no" and data ['costs-lpa'] === "yes" %}
+        Costs applied for by the LPA
+      {% else %}
+        Costs applied for by the appellant
+      {% endif %}
+  {% else %}
+        Costs not applied for
   {% endif %}
-  {% if data ['costs-appellant'] === "no" and data ['costs-lpa'] === "yes" %}
-    "Costs applied for by the LPA"
-  {% endif %}
-  {% if data ['costs-appellant'] === "yes" and data ['costs-lpa'] === "yes" %}
-    "Costs applied for by the both parties"
-  {% endif %}
+  
 {% endset %}
 
 <div class="govuk-form-group">

@@ -44,7 +44,7 @@
 
 	{% endset %}
 
- {% if data['status'] %}
+ {% if data['status'] == 'determination' or data['status'] == 'invalid' or data['issued-decision'] == 'Invalid' or data['status'] == 'done' %}
 	{{ govukNotificationBanner({
 	  html: html
 	}) }}

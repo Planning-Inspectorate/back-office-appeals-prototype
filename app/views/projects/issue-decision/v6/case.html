@@ -44,6 +44,30 @@
 
 	{% endset %}
 
+{% set html2 %}
+          {% if data ['costs-appellant'] === "yes" %}
+          <p class="govuk-notification-banner__heading">
+            Appelant costs application uploaded
+          </p>
+          {% elseif data ['costs-appellant'] === "no" %}
+          <p class="govuk-notification-banner__heading">
+            Appelant costs withdrawal uploaded
+          </p> 
+          {% elseif data ['costs-lpa'] === "yes" %}
+            LPA costs application uploaded
+          {% elseif data ['costs-lpa'] === "no" %}
+            LPA costs withdrawal uploaded
+          {% endif %}    
+{% endset %}
+
+
+{% if data['costs-appellant'] or data['costs-lpa'] %}
+  {{ govukNotificationBanner({
+	  html: html2,
+    type: "success"
+	}) }}
+  {% endif %}
+
  {% if data['status'] == 'determination' or data['status'] == 'invalid' or data['issued-decision'] == 'Invalid' or data['status'] == 'done' %}
 	{{ govukNotificationBanner({
 	  html: html

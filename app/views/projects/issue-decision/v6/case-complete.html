@@ -7,6 +7,18 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+  {% if data['success'] == 'postcompletionupload' %}
+  {% set html %}
+  	  <p class="govuk-notification-banner__heading">
+  	    Costs decision uploaded
+  	  </p>
+    {% endset %}
+
+      {{ govukNotificationBanner({
+        html: html,
+        type: "success"
+      }) }}
+  {% endif %}
 
 
     <!--	<span class="govuk-caption-l">Appeal 2110166</span> -->
@@ -213,24 +225,48 @@
           <td class="govuk-table__cell"><a href="">View</a></td>
         </tr>
 		<tr class="govuk-table__row">
-          <td class="govuk-table__cell">Costs application</td>
+          <td class="govuk-table__cell">Costs application (appellant)</td>
           <td class="govuk-table__cell">
-			{% if data ['costs-applied-for'] %}
-			{{ data ['costs-applied-for'] }}
-			{% endif %}     
+          {% if data ['costs-appellant'] === "yes" %}
+          Received
+          {% elseif data ['costs-appellant'] === "no" %}
+          Withdrawn
+          {% endif %}     
 		  </td>
           <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{% if data ['costs-applied-for'] %}<a href="manage-costs-app">Manage</a> | {% endif %}<a href="change-costs">Add</a></td>
+          <td class="govuk-table__cell">
+            {% if data ['costs-appellant'] === "yes" %}<a href="manage-costs-application?party=appellant">Manage</a> | <a href="costs-withdrawal-upload?party=appellant">Withdraw</a>
+            {% elseif data ['costs-appellant'] === "no" %}<a href="manage-costs-application?party=appellant">Manage</a> | <a href="costs-application-upload?party=appellant">Add</a>
+            {% else %}<a href="costs-application-upload?party=appellant">Add</a>
+            {% endif %}
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Costs application (LPA)</td>
+          <td class="govuk-table__cell">
+        {% if data ['costs-lpa'] === "yes" %}
+          Received
+          {% elseif data ['costs-lpa'] === "no" %}
+          Withdrawn
+          {% endif %}     
+		  </td>
+          <td class="govuk-table__cell"></td>
+          <td class="govuk-table__cell">
+            {% if data ['costs-lpa'] === "yes" %}<a href="manage-costs-application?party=lpa">Manage</a> | <a href="costs-withdrawal-upload?party=lpa">Withdraw</a>
+            {% elseif data ['costs-lpa'] === "no" %}<a href="manage-costs-application?party=lpa">Manage</a> | <a href="costs-application-upload?party=lpa">Add</a>
+            {% else %}<a href="costs-application-upload?party=lpa">Add</a>
+            {% endif %}
+          </td>
         </tr>
         <tr class="govuk-table__row">
           <td class="govuk-table__cell">Costs decision</td>
           <td class="govuk-table__cell">
-			{% if data ['costs-applied-for'] %}
-			{{ data ['costs-applied-for'] }}
+			{% if data['success'] == 'postcompletionupload' %}
+          {{ data ['costs-awarded'] }}
 			{% endif %}     
 		  </td>
           <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell"><a href='costs-decision?coststiming=postcompletion'>Add <span class='govuk-visually-hidden'>a costs decision</span></a></td>
+          <td class="govuk-table__cell"><a href='costs-decision?coststiming=postcompletion'>Manage <span class='govuk-visually-hidden'>a costs decision</span></a> | <a href='costs-decision?coststiming=postcompletion'>Add <span class='govuk-visually-hidden'>a costs decision</span></a></td>
         </tr>
   </tbody>
 </table>

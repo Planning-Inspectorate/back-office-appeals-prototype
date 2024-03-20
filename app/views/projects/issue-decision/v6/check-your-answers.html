@@ -164,6 +164,12 @@
     ]
   }) }}
 
+  <form action="case-complete?success=postcompletionupload" method="post">
+	{{ govukButton({
+		text: 'Submit this decision'
+	}) }}
+</form>
+
 {% else %}
 
   {{ govukWarningText({
@@ -191,13 +197,15 @@
     ]
   }) }}
 
-{% endif %}
-
-
-<form action="confirmation" method="post">
+  <form action="confirmation" method="post">
 	{{ govukButton({
 		text: 'Submit this decision'
 	}) }}
 </form>
+
+{% endif %}
+
+
+
 </div></div>
 {% endblock %}

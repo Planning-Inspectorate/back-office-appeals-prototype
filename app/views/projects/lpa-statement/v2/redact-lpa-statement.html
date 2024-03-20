@@ -1,0 +1,71 @@
+ 
+{% extends "layouts/PINS-post-mvp.html" %}
+{% set pageName="LPA statement review" %}
+ 
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+     
+    
+    <span class="govuk-caption-l">Appeal 2110166</span>
+  
+
+    <h1 class="govuk-heading-l">Redact the LPA statement</h1>
+    <form action="lpa-statement-redacted" method="post" class="govuk-!-margin-top-2">
+    <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">
+      <h2 class="govuk-heading-m">Original statement</h2>
+      <p>  
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus. 
+        Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus. 
+        Mauris nulla erat, posuere ut nisi vitae, pulvinar gravida arcu.
+        <br><br>
+        Morbi ac mauris enim. Curabitur magna lacus, eleifend in euismod in, accumsan convallis velit. Quisque bibendum urna id molestie hendrerit. Cras mattis mi non lobortis eleifend. 
+        Quisque nisl purus, sollicitudin interdum convallis a, tristique vulputate mi. Mauris eget nisl in massa mollis luctus. Vestibulum consectetur maximus cursus. Integer molestie ipsum et nunc eleifend venenatis. 
+        Aliquam posuere dui et felis tempor tristique. Aenean porta vehicula imperdiet. Nunc sed egestas risus, ut fringilla orci. Proin lobortis sapien interdum nunc iaculis rutrum. Phasellus consectetur vitae dui in vulputate.
+        <br><br>
+        Ut elementum, ipsum sit amet faucibus eleifend, mi mauris feugiat leo, interdum tincidunt tortor lacus et augue. Maecenas pulvinar tellus finibus justo sagittis, eget cursus elit porta. 
+        Fusce dictum eros vitae arcu eleifend, vitae tempor risus tristique. Proin porttitor vitae turpis vel ultricies. Nullam interdum porttitor nisi sed euismod. Suspendisse ut mi at ligula consectetur aliquam. 
+        Nulla tristique laoreet pharetra. Ut ornare vulputate erat.
+        <br><br>
+        Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam id diam sapien. Proin erat lorem, posuere ac elit vitae, tempor elementum justo. Vestibulum laoreet scelerisque suscipit. 
+        Nulla facilisis elit vel faucibus maximus. Donec non malesuada nisl. Sed a lorem arcu. In iaculis faucibus ultricies. Donec elementum, odio euismod feugiat ullamcorper, enim nunc varius metus, sit amet auctor mauris lacus eget augue. 
+        Maecenas sed lacus sit amet elit pretium dignissim. Suspendisse non pellentesque nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean sed facilisis sem.
+         <a href'#'>Read more</a>.</p>
+   
+    </div>
+    <div class="govuk-grid-column-one-half">
+      
+  
+        {{ govukTextarea({
+          name: "redactedStatement",
+          id: "redactedStatement",
+          hint: {
+            text: "Highlight the section you want to remove, then select 'redact'."
+          },
+          rows: "20",
+          label: {
+            text: "Redacted statement",
+            classes: "govuk-label--m",
+            isPageHeading: false
+          },
+         
+          value:  data['redactedStatement' ] or "LPA statement goes here. Lorem ipsum dolor sit amet. Quo commodi quia qui nobis voluptatum ut quis illum in omniLPA statement goes here. Lorem ipsum dolor sit amet. Quo commodi quia qui nobis voluptatum ut quis illum in omnis sunt At tempore laborum est repellendus ipsum."
+          
+        }) }}
+  
+        <a href="#" class="govuk-button govuk-button--secondary">Redact</a>
+  
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+ 
+
+
+{% endblock %}

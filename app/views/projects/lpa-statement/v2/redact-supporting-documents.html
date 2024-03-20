@@ -1,0 +1,77 @@
+ 
+{% extends "layouts/PINS-post-mvp.html" %}
+{% set pageName="LPA statement review" %}
+ 
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+  
+    <span class="govuk-caption-l">Appeal 2110166</span>
+      <h1 class="govuk-heading-l">Check the supporting documents</h1>
+      <p class="govuk-body"> 
+
+        <table class="govuk-table">
+          <caption class="govuk-table__caption govuk-table__caption--s">Supporting documents</caption>
+           
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">example1.pdf</th>
+              <td class="govuk-table__cell"><a href='#'> Manage</a> | <a href='#'> Add</a> </td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">example2.pdf</th>
+              <td class="govuk-table__cell"><a href='#'> Manage</a> | <a href='#'> Add</a> </td>
+              </tr>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">example3.pdf</th>
+              <td class="govuk-table__cell"><a href='#'> Manage</a> | <a href='#'> Add</a> </td>
+            </tr>
+            </tr>
+          </tbody>
+        </table>   
+        
+             
+       
+
+    </div>
+  </div>
+  <form action="" method="post" class="govuk-!-margin-top-6" novalidate>
+ 
+
+
+
+      
+
+    {{ govukRadios({
+      name: "issue-decision",
+      fieldset: {
+        legend: {
+          text: "Does the supporting documents need redaction?",
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--m"
+        }
+      },
+      items: [
+        {
+          value: "yes~redact-supporting-documents2",
+          text: "Yes"
+        },
+        {
+          value: "no~matrix-update",
+          text: "No"
+        } 
+         
+      ]
+    }) }}
+
+    {{ govukButton({
+      text: "Continue"
+    }) }}
+
+</form>
+
+
+{% endblock %}

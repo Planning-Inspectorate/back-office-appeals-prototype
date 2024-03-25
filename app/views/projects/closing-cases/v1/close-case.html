@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-Header-Nav.html" %}
 
-{% set pageName="Change appeal type" %}
+{% set pageName="Check your answers" %}
 
 {% set back = true %}
 
@@ -10,36 +10,78 @@
   <div class="govuk-grid-column-two-thirds">
 
     <span class="govuk-caption-l">Appeal 2110166</span>
-    <form action="close-case-process" method="post">
+    <form action="confirm-case-closed" method="post">
 
+      <h1 class="govuk-heading-l">Check your answers</h1>
 
-
-    {{ govukRadios({
-      name: "closeAppeal",
-      fieldset: {
-        legend: {
-          text: "Withdraw this appeal?",
-          isPageHeading: true,
-          classes: "govuk-fieldset__legend--l"
-        }
-      },
-      hint: {
-        text: "If the appeal is withdrawn, you will no longer be able to make changes."
-      },
-      items: [
-        {
-          value: "yes",
-          text: "Yes"
+      {{ govukSummaryList({
+    classes: 'govuk-!-margin-bottom-6',
+    rows: [
+      {
+        key: {
+          text: "Withdrawal request"
         },
-        {
-          value: "no",
-          text: "No"
+        value: {
+          html: "<a href='#'>appellant-withdrawal-request.pdf</a>"
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: " withdrawal request"
+            }
+          ]
         }
-      ]
-    }) }}
+      },
+      {
+        key: {
+          text: "Request date"
+        },
+        value: {
+          text: "25 February 2023"
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: " request date"
+            }
+          ]
+        }
+      }
+    ]
+  }) }}
+
+
+ {{ govukWarningText({
+    text: "You are about to send the withdrawal request to the relevant parties and close the case. Any event arrangements for this case should be cancelled. Only limited changes can be made to the case once it is closed.",
+    iconFallbackText: "Warning"
+  }) }}
+
+  {{ govukCheckboxes({
+
+    idPrefix: 'closeAppeal',
+    name: 'closeAppeal',
+    classes: 'checkboxes-long-text',
+    fieldset: {
+      legend: {
+        html: 'Confirmation you are ready to send the withdrawal request',
+        classes: 'govuk-fieldset__legend--m govuk-visually-hidden'
+      }
+    },
+    items: [
+      {
+        html: 'The withdrawal request is ready to be sent to the relevant parties',
+        value: 'Yes'
+      }
+    ]
+  }) }}
+    
 
     {{ govukButton({
-      text: "Continue",
+      text: "Send withdrawal request",
       classes: "govuk-button--warning"
     }) }}
   </form>

@@ -1,0 +1,60 @@
+<li>
+  {{ govukSummaryList({
+    card: {
+      title: {
+        text: "Site access and affected neighbours"
+      }
+    },
+    rows: [
+
+      {
+        key: {
+          html: 'Will the Inspector need access to the site?'
+        },
+        value: {
+          html: 'Yes'
+        }
+      },
+      {
+        key: {
+          html: 'Could a neighbouring site be affected?'
+        },
+        value: {
+          html: 'Yes'
+        }
+      },
+      {
+        key: {
+          html: 'Neighbouring site 1'
+        },
+        value: {
+          html: 'Sam Fisher<br>
+                 01179123456<br>
+                 172 York Road<br>
+                 Bristol<br>
+                 BS3 4AL'
+        }
+      },
+      {
+        key: {
+          html: 'Neighbouring site 2'
+        },
+        value: {
+          html: 'Screwfix<br>
+                 170, York Road<br>
+                 Bristol<br>
+                 BS3 4AL'
+        }
+      },
+      {
+        key: {
+          html: 'Potential safety risks'
+        },
+        value: {
+          html: 'Yes<br>
+                 Dogs on site'
+        }
+      }
+    ]
+  }) }}
+</li>

@@ -11,14 +11,21 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     {{ govukPanel({
-      titleText: "Appeal withdrawn",
+      titleText: "Appeal invalid",
       html: "Appeal reference<br><strong>2110166</strong>"
     }) }}
 
-    <p class="govuk-body">The case has been closed. The relevant parties have been informed.</p>
+    <p class="govuk-body">The relevant parties have been informed.</p>
 
-    <p><a href='index' class='govuk-link'>Go back to your list</a></p>
-    <p><a href='static-case-withdrawn' class='govuk-link'>View withdrawn appeal</a></p>
+    <p class="govuk-body">
+      The appeal will be closed.
+    </p>
+
+    <p class="govuk-body">
+      <a href='/projects/personal-list/v3/?decision=done' class='govuk-link'>
+        Back to your list
+      </a>
+    </p>
 
     <!-- <p class="govuk-body">
       <a href="#" class="govuk-link">What did you think of this service?</a> (takes 30 seconds)

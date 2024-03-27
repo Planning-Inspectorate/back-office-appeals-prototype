@@ -7,23 +7,34 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+  {% if data['success'] == 'postcompletionupload' %}
+  {% set html %}
+  	  <p class="govuk-notification-banner__heading">
+  	    Costs decision uploaded
+  	  </p>
+    {% endset %}
 
-    
+      {{ govukNotificationBanner({
+        html: html,
+        type: "success"
+      }) }}
+  {% endif %}
+
 
     <!--	<span class="govuk-caption-l">Appeal 2110166</span> -->
-    <span class="govuk-caption-l">Appeal 2110166</span>
+    <span class="govuk-caption-l">Appeal 1234562</span>
     	<h1 class="govuk-heading-l">Case details</h1>
 
-      {{ govukTag({
-              text: "Withdrawn",
-              classes: "govuk-tag--grey govuk-!-margin-bottom-4"
+            {{ govukTag({
+              text: "Complete",
+              classes: "govuk-tag--green govuk-!-margin-bottom-4"
             })}}
 
-      <div class="govuk-inset-text govuk-!-margin-top-0">
-            <p>Withdrawn: 21 September 2023.</p>
-            <p><a href="view-letter">View withdrawal request</a></p>
-      </div>
-    
+             <div class="govuk-inset-text">
+                <p>Appeal completed: 6 February 2024</p>
+                <p>Decision: {{ data ['issued-decision'] }}</p>
+                <p><a href="view-letter">View decision letter</a></p>
+              </div>
       
 
       {% include "/includes/appeal-content/lpa-has-appeal-meta.html" %}
@@ -128,7 +139,7 @@
                     text: "Decision"
                   },
                   {
-                    text: "Not issued yet"
+                    text: "Allowed"
                   }
                 ]
               ]
@@ -188,68 +199,77 @@
             </h2>
           </div>
           <div id="accordion-default-content-3" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-3">
-            {{ govukTable({
-              captionClasses: "govuk-table__caption--m",
-              firstCellIsHeader: false,
-              head: [
-                  {
-                    text: "Documentation"
-                  },
-                  {
-                    text: "Status"
-                  },
-                  {
-                    text: "Due date"
-                  },
-                  {
-                    text: "Action"
-                  }
-                ],
-              rows: [
-                [
-                  {
-                    text: "Appellant case"
-                  },
-                  {
-                    text: "Received"
-                  },
-                  {
-                    text: ""
-                  },
-                  {
-                    html: "<a href='#'>View <span class='govuk-visually-hidden'>the appelant case</span></a>"
-                  }
-                ],
-                [
-                  {
-                    text: "LPA questionnaire"
-                  },
-                  {
-                    text: "Not received"
-                  },
-                  {
-                    text: ""
-                  },
-                  {
-                    text: ""
-                  }
-                ],
-                [
-                  {
-                    text: "Withdrawal request"
-                  },
-                  {
-                    text: "Received"
-                  },
-                  {
-                    text: ""
-                  },
-                  {
-                    html: "<a href='#'>Manage <span class='govuk-visually-hidden'>the withdrawal request</span></a> | <a href='#'>Add <span class='govuk-visually-hidden'>the withdrawal request</span></a>"
-                  }
-                ]
-              ]
-            }) }}
+            <table class="govuk-table">
+  
+  
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Documentation</th>
+      <th scope="col" class="govuk-table__header">Status</th>
+      <th scope="col" class="govuk-table__header">Date due</th>
+      <th scope="col" class="govuk-table__header">Action</th>
+    </tr>
+  </thead>
+  
+  <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Appellant case</td>
+          <td class="govuk-table__cell">Received</td>
+          <td class="govuk-table__cell"></td>
+          <td class="govuk-table__cell"><a href="">View</a></td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">LPA questionnaire</td>
+          <td class="govuk-table__cell">Received</td>
+          <td class="govuk-table__cell"></td>
+          <td class="govuk-table__cell"><a href="">View</a></td>
+        </tr>
+		<tr class="govuk-table__row">
+          <td class="govuk-table__cell">Costs application (appellant)</td>
+          <td class="govuk-table__cell">
+          {% if data ['costs-appellant'] === "yes" %}
+          Received
+          {% elseif data ['costs-appellant'] === "no" %}
+          Withdrawn
+          {% endif %}     
+		  </td>
+          <td class="govuk-table__cell"></td>
+          <td class="govuk-table__cell">
+            {% if data ['costs-appellant'] === "yes" %}<a href="manage-costs-application?party=appellant">Manage</a> | <a href="costs-withdrawal-upload?party=appellant">Withdraw</a>
+            {% elseif data ['costs-appellant'] === "no" %}<a href="manage-costs-application?party=appellant">Manage</a> | <a href="costs-application-upload?party=appellant">Add</a>
+            {% else %}<a href="costs-application-upload?party=appellant">Add</a>
+            {% endif %}
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Costs application (LPA)</td>
+          <td class="govuk-table__cell">
+        {% if data ['costs-lpa'] === "yes" %}
+          Received
+          {% elseif data ['costs-lpa'] === "no" %}
+          Withdrawn
+          {% endif %}     
+		  </td>
+          <td class="govuk-table__cell"></td>
+          <td class="govuk-table__cell">
+            {% if data ['costs-lpa'] === "yes" %}<a href="manage-costs-application?party=lpa">Manage</a> | <a href="costs-withdrawal-upload?party=lpa">Withdraw</a>
+            {% elseif data ['costs-lpa'] === "no" %}<a href="manage-costs-application?party=lpa">Manage</a> | <a href="costs-application-upload?party=lpa">Add</a>
+            {% else %}<a href="costs-application-upload?party=lpa">Add</a>
+            {% endif %}
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Costs decision</td>
+          <td class="govuk-table__cell">
+			{% if data['success'] == 'postcompletionupload' %}
+          Uploaded
+			{% endif %}     
+		  </td>
+          <td class="govuk-table__cell"></td>
+          <td class="govuk-table__cell">{% if data['success'] == 'postcompletionupload' %}<a href='#'>Manage<span class='govuk-visually-hidden'> a costs decision</span></a> | {% endif %}<a href='costs-upload?coststiming=postcompletion'>Add <span class='govuk-visually-hidden'>a costs decision</span></a></td>
+        </tr>
+  </tbody>
+</table>
                         
           </div>
         </div>
@@ -298,7 +318,6 @@
 
     </div>
   </div>
-
 
 
 {% endblock %}

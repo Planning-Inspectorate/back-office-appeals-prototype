@@ -21,7 +21,7 @@
           </p>
         {% endset %}
 
-        {% if data ['closeAppeal'] === "yes" %}
+        {% if data ['closeAppeal'] === "Yes" %}
         {% elseif data ['appealResubmit'] === "no" and data ['horizonid'] %}
             {{ govukNotificationBanner({
               html: newhorizon,
@@ -38,7 +38,7 @@
     <span class="govuk-caption-l">Appeal 2110166</span>
     	<h1 class="govuk-heading-l">Case details</h1>
 
-      {% if data ['closeAppeal'] === "yes" %}
+      {% if data ['closeAppeal'] === "Yes" %}
       <div class="govuk-inset-text">
             {{ govukTag({
               text: "Withdrawn",

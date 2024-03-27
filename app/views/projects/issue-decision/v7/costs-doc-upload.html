@@ -1,8 +1,8 @@
 {% extends "layouts/PINS.html" %}
 
-{% set pageName = "Upload the costs withdrawal" %}
+{% set pageName = "Upload costs application" %}
 
-{% set title = "Upload the costs withdrawal" %}
+{% set title = "Upload costs application" %}
 
 {% block content %}
 
@@ -14,9 +14,9 @@
   </span>
   <h1 class="govuk-heading-l">
     {% if data['party'] === "appellant" %}
-    Upload appellant costs withdrawal
+    Upload appellant costs document
     {% elseif data['party'] === "lpa" %}
-    Upload LPA costs withdrawal
+    Upload LPA costs document
     {% endif %}
   </h1>
 
@@ -64,7 +64,7 @@
     uploadHtml: uploadHtml
   }) }}
 
-<form action="file-details-costs-withdrawal" method="post">
+<form action="file-details-costs" method="post">
 {{ govukButton({
   text: "Continue"
 }) }}

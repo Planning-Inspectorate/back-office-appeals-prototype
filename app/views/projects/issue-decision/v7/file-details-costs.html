@@ -10,11 +10,11 @@
   	<span class="govuk-caption-l">Add document details</span>
 	<h1 class="govuk-heading-l">
 		    {% if data['party'] === "appellant" %}
-			Appellant costs application
+			Appellant costs document
 			</h1>
 			<form action="case?costs-appellant=yes" method="post" class="govuk-!-margin-top-3" novalidate>
 			{% elseif data['party'] === "lpa" %}
-			LPA costs application
+			LPA costs document
 			</h1>
 			<form action="case?costs-lpa=yes" method="post" class="govuk-!-margin-top-3" novalidate>
 			{% endif %}

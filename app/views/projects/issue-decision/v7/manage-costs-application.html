@@ -12,9 +12,9 @@
 	<span class="govuk-caption-l">Manage documents</span>
 	<h1 class="govuk-heading-l">
 	    {% if data['party'] === "appellant" %}
-		Manage appellant costs application
+		Manage appellant costs documents
 		{% elseif data['party'] === "lpa" %}
-		Manage LPA costs application
+		Manage LPA costs documents
 		{% endif %}
 	</h1>
   </div>
@@ -31,6 +31,9 @@
 	      text: "Document information"
 	    },
 	    {
+	      text: "Type"
+	    },
+	    {
 	      text: "Date received"
 	    },
 	    {
@@ -44,6 +47,9 @@
 	    [
 	      {
 	        html: "<p><a href='/public/downloads/tree-preservation-order-A.pdf'>costs-application.pdf</a></p><p class='govuk-body govuk-!-font-size-16'>File type and size : PDF, 97KB</p>"
+	      },
+		  {
+	        text: "Application"
 	      },
 	      {
 	        text: "dd Mon YYYY"

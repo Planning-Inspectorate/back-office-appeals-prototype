@@ -1,0 +1,55 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Costs application document details" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+		    {% if data['party'] === "appellant" %}
+			<form action="costs-doc-upload?costs-appellant=yes" method="post"  novalidate>
+			{% elseif data['party'] === "lpa" %}
+			<form action="costs-doc-upload?costs-lpa=yes" method="post" novalidate>
+			{% endif %}
+
+	    <!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
+
+	{{ govukRadios({
+  name: "docUploadType",
+  fieldset: {
+    legend: {
+      text: "What is the document type?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  items: [
+    {
+      value: "Application",
+      text: "Application"
+    },
+    {
+      value: "Withdrawal",
+      text: "Withdrawal"
+    },
+    {
+      value: "Correspondence",
+      text: "Correspondence"
+    }
+  ]
+}) }}
+
+
+
+	   {{ govukButton({
+        text: "Continue"
+      }) }}
+
+	  </form>
+
+
+  </div>
+</div>
+
+{% endblock %}

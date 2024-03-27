@@ -31,7 +31,7 @@
 
   	{{ govukButton({
   	  text: "View prototype",
-  	  href: "v6/index?decision=ready",
+  	  href: "v7/index?decision=ready",
   	  isStartButton: true
   	}) }}
 
@@ -209,14 +209,21 @@
       items: [
           {
           heading: {
-            html: 'Version 5 <strong class="govuk-tag govuk-tag--blue govuk-!-margin-left-2">Researched</strong>'
+            html: 'Version 6'
+          },
+          content: {
+            html: v6HTML
+          }
+        },{
+          heading: {
+            html: 'Version 5'
           },
           content: {
             html: v5HTML
           }
         },{
           heading: {
-            html: 'Version 4 <strong class="govuk-tag govuk-tag--blue govuk-!-margin-left-2">Researched</strong>'
+            html: 'Version 4'
           },
           content: {
             html: v4HTML
@@ -224,7 +231,7 @@
         },
         {
           heading: {
-            html: 'Version 3 <strong class="govuk-tag govuk-tag--blue govuk-!-margin-left-2">Researched</strong>'
+            html: 'Version 3'
           },
           content: {
             html: v3HTML
@@ -232,7 +239,7 @@
         },
         {
           heading: {
-            html: 'Version 2 <strong class="govuk-tag govuk-tag--blue govuk-!-margin-left-2">Researched</strong>'
+            html: 'Version 2'
           },
           content: {
             html: v2HTML
@@ -240,7 +247,7 @@
         },
         {
           heading: {
-            html: 'Version 1 <strong class="govuk-tag govuk-tag--green govuk-!-margin-left-2">Ready for research</strong>'
+            html: 'Version 1'
           },
           content: {
             html: v1HTML

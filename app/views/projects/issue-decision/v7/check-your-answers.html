@@ -56,7 +56,7 @@
       
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Decision letter
+            Appeal decision
           </dt>
           <dd class="govuk-summary-list__value">
             <a href="#" class="govuk-link">4012345-planning-appeal-decision.doc</a><br><strong class="govuk-tag govuk-tag--yellow govuk-!-margin-top-2">Virus Scanning</strong>
@@ -65,7 +65,7 @@
             <dd class="govuk-summary-list__actions">
               
                 <a class="govuk-link" href="#">
-                Change<span class="govuk-visually-hidden">  decision letter</span>
+                Change<span class="govuk-visually-hidden"> appeal decision</span>
                 </a>
               
             </dd>
@@ -94,9 +94,10 @@
 
         {% endif %}
 
+{% if data ['costs-awarded'] %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Costs awarded
+            Costs decision
           </dt>
           <dd class="govuk-summary-list__value">
           {{ data ['costs-awarded'] }}
@@ -111,12 +112,13 @@
             </dd>
           
         </div>
+        {% endif %}
 
         
-         {% if data ['costs-awarded'] === 'Full costs' or data ['costs-awarded'] === 'Partial costs' %}
+         {% if data ['costs-awarded'] === 'Yes' or data ['coststiming'] === 'postcompletion' %}
           <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Costs letter
+            Costs decision letter
           </dt>
           <dd class="govuk-summary-list__value">
             <a href="#" class="govuk-link">4012345-costs-decision.doc</a>
@@ -125,7 +127,7 @@
             <dd class="govuk-summary-list__actions">
               
                 <a class="govuk-link" href="#">
-                Change<span class="govuk-visually-hidden">  costs letter</span>
+                Change<span class="govuk-visually-hidden"> costs decision letter</span>
                 </a>
               
             </dd>

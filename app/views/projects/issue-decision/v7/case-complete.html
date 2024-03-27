@@ -262,11 +262,11 @@
           <td class="govuk-table__cell">Costs decision</td>
           <td class="govuk-table__cell">
 			{% if data['success'] == 'postcompletionupload' %}
-          {{ data ['costs-awarded'] }}
+          Uploaded
 			{% endif %}     
 		  </td>
           <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell"><a href='costs-decision?coststiming=postcompletion'>Manage<span class='govuk-visually-hidden'> a costs decision</span></a> | <a href='costs-decision?coststiming=postcompletion'>Add <span class='govuk-visually-hidden'>a costs decision</span></a></td>
+          <td class="govuk-table__cell">{% if data['success'] == 'postcompletionupload' %}<a href='#'>Manage<span class='govuk-visually-hidden'> a costs decision</span></a> | {% endif %}<a href='costs-upload?coststiming=postcompletion'>Add <span class='govuk-visually-hidden'>a costs decision</span></a></td>
         </tr>
   </tbody>
 </table>

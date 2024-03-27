@@ -1,0 +1,113 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Add documents" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+  	<span class="govuk-caption-l">Add document details</span>
+	<h1 class="govuk-heading-l">Costs application document</h1>
+
+	    <form action="/documents-added" method="post" class="govuk-!-margin-top-9" novalidate>
+
+	    <!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
+
+	<span class="govuk-caption-m">File name</span>
+	<h2 class="govuk-heading-m">costs-application-a.pdf</h2>
+
+	{{ govukDateInput({
+	  id: "date-recieved",
+	  namePrefix: "date-recieved",
+	  fieldset: {
+	    legend: {
+	      text: "Date recieved"
+	    }
+	  }
+	}) }}
+
+	{{ govukRadios({
+	  name: "redaction",
+	  fieldset: {
+	    legend: {
+	      text: "Redaction"
+	    }
+	  },
+	  items: [
+	    {
+	      value: "redacted",
+	      text: "Redacted"
+	    },
+	    {
+	      value: "unredacted",
+	      text: "Unredacted"
+	    },
+	    {
+		  divider: "or"
+		},
+	    {
+	      value: "No redaction required",
+	      text: "No redaction required"
+	    }
+	  ]
+	}) }}
+
+
+{% set otherHtml %}
+{{ govukInput({
+  id: "contact-by-text",
+  name: "contactByText",
+  type: "tel",
+  autocomplete: "tel",
+  classes: "govuk-!-width-two-thirds",
+  label: {
+    text: "Sender"
+  }
+}) }}
+{% endset -%}
+
+{{ govukRadios({
+  name: "contact",
+  fieldset: {
+    legend: {
+      text: "From",
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  hint: {
+    text: "The person or organisation who sent the file."
+  },
+  items: [
+    {
+      value: "Appellant",
+      text: "Appellant"
+    },
+    {
+      value: "LPA",
+      text: "LPA"
+    },
+    {
+      value: "other",
+      text: "Other",
+      conditional: {
+        html: otherHtml
+      }
+    }
+  ]
+}) }}
+
+
+	   {{ govukButton({
+        text: "Continue",
+        href: "document-details-added"
+      }) }}
+
+	  </form>
+
+
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,211 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Decision date" %}
+
+{% set title = "Check your answers" %}
+
+{% block content %}
+ <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+  <span class="govuk-caption-l">
+    Appeal 2110166
+  </span>
+  <h1 class="govuk-heading-l">
+    {{ title }}
+  </h1>
+
+  <!-- {{ govukTag({
+    text: "Issue determination",
+    classes: "govuk-tag--pink"
+  })}} -->
+
+<!-- </div>
+<div class="govuk-grid-column-full">
+
+  {% include "../v3/includes/case-meta-data.html" %}
+  <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+</div>
+<div class="govuk-grid-column-two-thirds"> -->
+
+  <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+
+    {% if data['issued-decision'] %}
+    
+      
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Decision
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Allowed
+          </dd>
+          
+            <dd class="govuk-summary-list__actions">
+              
+                <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden">  decision</span>
+                </a>
+              
+            </dd>
+          
+        </div>
+      
+    
+      
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Decision letter
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <a href="#" class="govuk-link">4012345-planning-appeal-decision.doc</a><br><strong class="govuk-tag govuk-tag--yellow govuk-!-margin-top-2">Virus Scanning</strong>
+          </dd>
+          
+            <dd class="govuk-summary-list__actions">
+              
+                <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden">  decision letter</span>
+                </a>
+              
+            </dd>
+          
+        </div>
+      
+    
+      
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Decision date
+          </dt>
+          <dd class="govuk-summary-list__value">
+            5 February 2024
+          </dd>
+          
+            <dd class="govuk-summary-list__actions">
+              
+                <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden">  decision date</span>
+                </a>
+              
+            </dd>
+          
+        </div>
+
+        {% endif %}
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Costs awarded
+          </dt>
+          <dd class="govuk-summary-list__value">
+          {{ data ['costs-awarded'] }}
+          </dd>
+          
+            <dd class="govuk-summary-list__actions">
+              
+                <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden">  costs decision</span>
+                </a>
+              
+            </dd>
+          
+        </div>
+
+        
+         {% if data ['costs-awarded'] === 'Full costs' or data ['costs-awarded'] === 'Partial costs' %}
+          <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Costs letter
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <a href="#" class="govuk-link">4012345-costs-decision.doc</a>
+          </dd>
+          
+            <dd class="govuk-summary-list__actions">
+              
+                <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden">  costs letter</span>
+                </a>
+              
+            </dd>
+          
+        </div>
+        {% endif %}
+      
+      
+    
+  </dl>
+
+{% if data ['coststiming'] === "postcompletion" %}
+
+  {{ govukWarningText({
+    text: "You must email the relevant parties to inform them of the decision",
+    iconFallbackText: "Warning"
+  }) }}
+
+  {{ govukCheckboxes({
+
+    idPrefix: 'ready-to-send',
+    name: 'ready-to-send',
+    classes: 'checkboxes-long-text',
+    fieldset: {
+      legend: {
+        html: 'Confirmation you will email the relevant parties',
+        classes: 'govuk-fieldset__legend--m govuk-visually-hidden'
+      }
+    },
+    items: [
+      {
+        html: 'I will email the relevant parties',
+        value: 'Yes',
+        checked: checked('ready-to-send','Yes')
+      }
+    ]
+  }) }}
+
+  <form action="case-complete?success=postcompletionupload" method="post">
+	{{ govukButton({
+		text: 'Submit this decision'
+	}) }}
+</form>
+
+{% else %}
+
+  {{ govukWarningText({
+    text: "You are about to send the decision to the relevant parties and close the appeal. Make sure you have reviewed the decision information.",
+    iconFallbackText: "Warning"
+  }) }}
+
+  {{ govukCheckboxes({
+
+    idPrefix: 'ready-to-send',
+    name: 'ready-to-send',
+    classes: 'checkboxes-long-text',
+    fieldset: {
+      legend: {
+        html: 'Confirmation you are ready to send this decision',
+        classes: 'govuk-fieldset__legend--m govuk-visually-hidden'
+      }
+    },
+    items: [
+      {
+        html: 'This decision is ready to be sent to all parties',
+        value: 'Yes',
+        checked: checked('ready-to-send','Yes')
+      }
+    ]
+  }) }}
+
+  <form action="confirmation" method="post">
+	{{ govukButton({
+		text: 'Submit this decision'
+	}) }}
+</form>
+
+{% endif %}
+
+
+
+</div></div>
+{% endblock %}

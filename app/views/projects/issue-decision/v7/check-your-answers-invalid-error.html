@@ -1,0 +1,116 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Decision date" %}
+
+{% set title = "Check your answers" %}
+
+{% block questions %}
+
+{{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: [
+            {
+              text: "Select that the decision is ready to be sent to all parties",
+              href: "#ready-to-send"
+            }
+          ]
+        }) }}
+
+  <span class="govuk-caption-l">
+    Appeal 2110166
+  </span>
+  <h1 class="govuk-heading-l">
+    {{ title }}
+  </h1>
+
+  <!-- {{ govukTag({
+    text: "Issue determination",
+    classes: "govuk-tag--pink"
+  })}} -->
+
+<!-- </div>
+<div class="govuk-grid-column-full">
+
+  {% include "../v3/includes/case-meta-data.html" %}
+  <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+</div>
+<div class="govuk-grid-column-two-thirds"> -->
+
+  {{ govukSummaryList({
+    classes: 'govuk-!-margin-bottom-6',
+    rows: [
+      {
+        key: {
+          text: "Decision"
+        },
+        value: {
+          text: data['issued-decision'] or 'Allowed'
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: " decision"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Reasons"
+        },
+        value: {
+          text: data['invalidDetail']
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: " decision letter"
+            }
+          ]
+        }
+      }
+    ]
+  }) }}
+
+{% endblock %}
+
+{% block buttons %}
+
+  {{ govukWarningText({
+    text: "You are about to send the decision to the main parties and close the appeal. Make sure you have reviewed the decision information.",
+    iconFallbackText: "Warning"
+  }) }}
+
+  {{ govukCheckboxes({
+
+    idPrefix: 'ready-to-send',
+    name: 'ready-to-send',
+    classes: 'checkboxes-long-text',
+          errorMessage: {
+            text: "Select that the decision is ready to be sent to all parties"
+          },
+    fieldset: {
+      legend: {
+        html: 'Confirmation you are ready to send this decision',
+        classes: 'govuk-fieldset__legend--m govuk-visually-hidden'
+      }
+    },
+    items: [
+      {
+        html: 'This decision is ready to be sent to all parties',
+        value: 'Yes',
+        checked: checked('ready-to-send','Yes')
+      }
+    ]
+  }) }}
+
+	{{ govukButton({
+		text: 'Submit this decision'
+	}) }}
+
+{% endblock %}

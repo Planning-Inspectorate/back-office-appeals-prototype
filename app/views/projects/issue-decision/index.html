@@ -19,6 +19,24 @@
       As an Inspector I want to be able to issue appeal decisions.
     </p>
 
+    <h2 class="govuk-heading-m">Version 7</h2>
+
+    <p class="govuk-body">
+      Simplified the journey to remove the intelligent hint text and rephrase the question to 'is there a costs decision?'. Added document type indicator for the costs folders.
+    </p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li><a href="v7/case-complete">example of completed case pages with ability to add costs after decision</a></li>
+    </ul>
+
+  	{{ govukButton({
+  	  text: "View prototype",
+  	  href: "v6/index?decision=ready",
+  	  isStartButton: true
+  	}) }}
+
+
+{% set v6HTML %}
     <h2 class="govuk-heading-m">
       Version 6
 
@@ -37,6 +55,7 @@
   	  href: "v6/index?decision=ready",
   	  isStartButton: true
   	}) }}
+    {% endset %}
 
 {% set v5HTML %}
     <h2 class="govuk-heading-m">

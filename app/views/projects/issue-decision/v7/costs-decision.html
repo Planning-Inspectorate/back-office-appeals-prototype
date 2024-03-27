@@ -1,0 +1,69 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Decision date" %}
+
+{% set title = "Who has applied for costs?" %}
+
+{% block content %}
+
+ <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+  <span class="govuk-caption-l">
+    Appeal 2110166
+  </span>
+
+  <!-- {{ govukTag({
+    text: "Issue determination",
+    classes: "govuk-tag--pink govuk-!-margin-bottom-6"
+  })}} -->
+
+<!-- </div>
+<div class="govuk-grid-column-full">
+
+  {% include "../v3/includes/case-meta-data.html" %}
+  <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+</div>
+<div class="govuk-grid-column-two-thirds"> -->
+
+  <form action="costs-decision" method="post">
+
+
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+
+
+    {{ govukRadios({
+    name: "costs-awarded",
+    fieldset: {
+      legend: {
+        text: "Is there a costs decision?",
+        isPageHeading: true,
+        classes: "govuk-fieldset__legend--l"
+      }
+    },
+    
+    items: [
+      {
+        value: "Awarded~costs-upload",
+        text: "Yes"
+      },
+      {
+        value: "Not awarded~check-your-answers",
+        text: "No"
+      }
+    ]
+  }) }}
+]
+  
+</fieldset>
+</div>
+
+{{ govukButton({
+  text: "Continue"
+}) }}
+  </form>
+
+</div></div>
+{% endblock %}

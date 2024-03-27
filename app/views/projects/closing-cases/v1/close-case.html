@@ -56,7 +56,7 @@
 
 
  {{ govukWarningText({
-    text: "You are about to send the withdrawal request to the relevant parties and close the case. Any event arrangements for this case should be cancelled. Only limited changes can be made to the case once it is closed.",
+    text: "You are about to send the withdrawal request to the relevant parties and close the case. Any appointments for this case should be cancelled. Only limited changes can be made to the case once it is closed.",
     iconFallbackText: "Warning"
   }) }}
 
@@ -73,7 +73,7 @@
     },
     items: [
       {
-        html: 'The withdrawal request is ready to be sent to the relevant parties',
+        html: 'The relevant parties can be informed of the appeal withdrawal',
         value: 'Yes'
       }
     ]
@@ -81,7 +81,7 @@
     
 
     {{ govukButton({
-      text: "Send withdrawal request",
+      text: "Confirm",
       classes: "govuk-button--warning"
     }) }}
   </form>

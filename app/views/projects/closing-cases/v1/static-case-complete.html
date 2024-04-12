@@ -243,6 +243,20 @@
                   {
                     html: "<a href='#'>View <span class='govuk-visually-hidden'>the decision letter</span></a>"
                   }
+                ],
+                [
+                  {
+                    text: "Costs decision"
+                  },
+                  {
+                    text: ""
+                  },
+                  {
+                    text: ""
+                  },
+                  {
+                    html: "<a href='#'>Add<span class='govuk-visually-hidden'> a costs decision</span></a>"
+                  }
                 ]
               ]
             }) }}
@@ -294,49 +308,6 @@
 
     </div>
   </div>
-
-  {% if data['status'] == 'determination' %}
-
-    <form action="" method="post" class="govuk-!-margin-top-6" novalidate>
-
-      <!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
-
-        {{ govukRadios({
-          name: "issue-decision",
-          fieldset: {
-            legend: {
-              text: "Issue your decision",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--m"
-            }
-          },
-          items: [
-            {
-              value: "allowed~../../issue-decision/v1/decision-date",
-              text: "Allowed"
-            },
-            {
-              value: "dismissed~../../issue-decision/v1/decision-date",
-              text: "Dismissed"
-            },
-            {
-              value: "split~../../issue-decision/v1/decision-date",
-              text: "Split-decision"
-            },
-            {
-              value: "invalid~../../issue-decision/v1/decision-date",
-              text: "Invalid"
-            }
-          ]
-        }) }}
-
-        {{ govukButton({
-          text: "Continue"
-        }) }}
-
-    </form>
-
-  {% endif %}
 
 
 {% endblock %}

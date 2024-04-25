@@ -1,0 +1,514 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set pageName="Personal list" %}
+
+{% set back = true %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <!-- Notification banner -->
+    {% if data ['redactedComment'] %}
+      <div class="govuk-notification-banner  govuk-notification-banner--success" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+        <div class="govuk-notification-banner__header">
+          <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+            Success
+          </h2>
+        </div>
+        <div class="govuk-notification-banner__content">
+          <p class="govuk-notification-banner__heading">
+            Comment from Ian Smith redacted
+          </p>
+        </div>
+      </div>
+    {% elseif data ['commentReview'] === 'valid' %}
+      <div class="govuk-notification-banner  govuk-notification-banner--success" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+        <div class="govuk-notification-banner__header">
+          <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+            Success
+          </h2>
+        </div>
+        <div class="govuk-notification-banner__content">
+          <p class="govuk-notification-banner__heading">
+            Comment from Ian Smith confirmed valid
+          </p>
+        </div>
+      </div>
+  	{% elseif data ['manual-ip-comment'] %}
+      <div class="govuk-notification-banner  govuk-notification-banner--success" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+        <div class="govuk-notification-banner__header">
+          <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+            Success
+          </h2>
+        </div>
+        <div class="govuk-notification-banner__content">
+          <p class="govuk-notification-banner__heading">
+            Comment from {{ data ['manual-ip-first-name']}} {{ data ['manual-ip-last-name']}} added
+          </p>
+        </div>
+      </div>
+  	{% endif %}
+
+    <span class="govuk-caption-l">Appeal 2114328</span>
+    <h1 class="govuk-heading-l">
+      Interested party comments
+    </h1>
+
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    {% set reviewHtml %}
+      {{ govukTable({
+        caption: "Awaiting review",
+        captionClasses: "govuk-table__caption--m",
+        firstCellIsHeader: false,
+        head: [
+          {
+            text: "Interested party"
+          },
+          {
+            text: "Email address"
+          },
+          {
+            text: "Submitted"
+          },
+          {
+            text: "Action"
+          }
+        ],
+        rows: [
+          [
+              {
+                text: "Ian Smith"
+              },
+              {
+                text: "ian.smith@gmail.com"
+              },
+              {
+                text: "26 Nov 2023"
+              },
+              {
+                html: "<a href='comment-review'>Review</a>"
+              }
+          ],
+          [
+            {
+                text: "Robyn Jenkins"
+              },
+              {
+                text: "Not provided"
+              },
+              {
+                text: "27 Nov 2023"
+              },
+              {
+                html: "<a href='#'>Review</a>"
+              }
+          ],
+          [
+            {
+                text: "Cath Fairfield"
+              },
+              {
+                text: "cathyf@gmail.com"
+              },
+              {
+                text: "29 Nov 2023"
+              },
+              {
+                html: "<a href='#'>Review</a>"
+              }
+          ],
+          [
+            {
+                text: "Brian Thompson"
+              },
+              {
+                text: "brian@thompsonbrothers.com"
+              },
+              {
+                text: "1 Dec 2023"
+              },
+              {
+                html: "<a href='#'>Review</a>"
+              }
+          ],
+          [
+            {
+                text: "Dan Brighthouse"
+              },
+              {
+                text: "brighthousedan167@gmail.com"
+              },
+              {
+                text: "3 Dec 2023"
+              },
+              {
+                html: "<a href='#'>Review</a>"
+              }
+          ]
+        ]
+      }) }}
+
+    {% endset %}
+
+    {% set validHtml %}
+      {{ govukTable({
+        caption: "Accepted comments",
+        captionClasses: "govuk-table__caption--m",
+        firstCellIsHeader: false,
+        head: [
+          {
+            text: "Interested party"
+          },
+          {
+            text: "Email address"
+          },
+          {
+            text: "Submitted"
+          },
+          {
+            text: "Action"
+          }
+        ],
+        rows: [
+          [
+              {
+                text: "Terrance Harper"
+              },
+              {
+                text: "harps@gmail.com"
+              },
+              {
+                text: "16 Nov 2023"
+              },
+              {
+                html: "<a href='comment-view'>View</a>"
+              }
+          ],
+          [
+            {
+                text: "Viola Richardson"
+              },
+              {
+                text: "vrichardson@aol.com"
+              },
+              {
+                text: "16 Nov 2023"
+              },
+              {
+                html: "<a href='#'>View</a>"
+              }
+          ],
+          [
+            {
+                text: "Carla Fenwick"
+              },
+              {
+                text: "carlafenwick@gmail.com"
+              },
+              {
+                text: "17 Nov 2023"
+              },
+              {
+                html: "<a href='#'>View</a>"
+              }
+          ],
+          [
+            {
+                text: "Carla Fenwick"
+              },
+              {
+                text: "carlafenwick@gmail.com"
+              },
+              {
+                text: "17 Nov 2023"
+              },
+              {
+                html: "<a href='#'>View</a>"
+              }
+          ],
+          [
+            {
+                text: "Carla Fenwick"
+              },
+              {
+                text: "carlafenwick@gmail.com"
+              },
+              {
+                text: "17 Nov 2023"
+              },
+              {
+                html: "<a href='#'>View</a>"
+              }
+          ],
+          [
+            {
+                text: "Carla Fenwick"
+              },
+              {
+                text: "carlafenwick@gmail.com"
+              },
+              {
+                text: "17 Nov 2023"
+              },
+              {
+                html: "<a href='#'>View</a>"
+              }
+          ],
+          [
+            {
+                text: "Carla Fenwick"
+              },
+              {
+                text: "carlafenwick@gmail.com"
+              },
+              {
+                text: "17 Nov 2023"
+              },
+              {
+                html: "<a href='#'>View</a>"
+              }
+          ],
+          [
+            {
+                text: "Carla Fenwick"
+              },
+              {
+                text: "carlafenwick@gmail.com"
+              },
+              {
+                text: "17 Nov 2023"
+              },
+              {
+                html: "<a href='#'>View</a>"
+              }
+          ],
+          [
+            {
+                text: "Carla Fenwick"
+              },
+              {
+                text: "carlafenwick@gmail.com"
+              },
+              {
+                text: "17 Nov 2023"
+              },
+              {
+                html: "<a href='#'>View</a>"
+              }
+          ],
+          [
+            {
+                text: "Carla Fenwick"
+              },
+              {
+                text: "carlafenwick@gmail.com"
+              },
+              {
+                text: "17 Nov 2023"
+              },
+              {
+                html: "<a href='#'>View</a>"
+              }
+          ],
+          [
+            {
+                text: "Carla Fenwick"
+              },
+              {
+                text: "carlafenwick@gmail.com"
+              },
+              {
+                text: "17 Nov 2023"
+              },
+              {
+                html: "<a href='#'>View</a>"
+              }
+          ],
+          [
+            {
+                text: "Carla Fenwick"
+              },
+              {
+                text: "carlafenwick@gmail.com"
+              },
+              {
+                text: "17 Nov 2023"
+              },
+              {
+                html: "<a href='#'>View</a>"
+              }
+          ],
+          [
+            {
+                text: "Carla Fenwick"
+              },
+              {
+                text: "carlafenwick@gmail.com"
+              },
+              {
+                text: "17 Nov 2023"
+              },
+              {
+                html: "<a href='#'>View</a>"
+              }
+          ],
+          [
+            {
+                text: "Carla Fenwick"
+              },
+              {
+                text: "carlafenwick@gmail.com"
+              },
+              {
+                text: "17 Nov 2023"
+              },
+              {
+                html: "<a href='#'>View</a>"
+              }
+          ],
+          [
+            {
+                text: "Carla Fenwick"
+              },
+              {
+                text: "carlafenwick@gmail.com"
+              },
+              {
+                text: "17 Nov 2023"
+              },
+              {
+                html: "<a href='#'>View</a>"
+              }
+          ],
+          [
+            {
+                text: "Carla Fenwick"
+              },
+              {
+                text: "carlafenwick@gmail.com"
+              },
+              {
+                text: "17 Nov 2023"
+              },
+              {
+                html: "<a href='#'>View</a>"
+              }
+          ],
+          [
+            {
+                text: "Carla Fenwick"
+              },
+              {
+                text: "carlafenwick@gmail.com"
+              },
+              {
+                text: "17 Nov 2023"
+              },
+              {
+                html: "<a href='#'>View</a>"
+              }
+          ],
+          [
+            {
+                text: "Carla Fenwick"
+              },
+              {
+                text: "carlafenwick@gmail.com"
+              },
+              {
+                text: "17 Nov 2023"
+              },
+              {
+                html: "<a href='#'>View</a>"
+              }
+          ],
+          [
+            {
+                text: "Carla Fenwick"
+              },
+              {
+                text: "carlafenwick@gmail.com"
+              },
+              {
+                text: "17 Nov 2023"
+              },
+              {
+                html: "<a href='#'>View</a>"
+              }
+          ],
+          [
+            {
+                text: "Carla Fenwick"
+              },
+              {
+                text: "carlafenwick@gmail.com"
+              },
+              {
+                text: "17 Nov 2023"
+              },
+              {
+                html: "<a href='#'>View</a>"
+              }
+          ]
+      ]
+      }) }}
+
+      {{ govukPagination({
+        previous: {
+          href: "#"
+        },
+        next: {
+          href: "#"
+        },
+        items: [
+          {
+            number: 1,
+            current: true,
+            href: "#"
+          },
+          {
+            number: 2,
+            href: "#"
+          },
+          {
+            number: 3,
+            href: "#"
+          }
+        ]
+      }) }}
+
+    {% endset %}
+
+
+     {{ govukTabs({
+      items: [
+        {
+          label: "Awaiting review",
+          id: "review-tab",
+          panel: {
+            html: reviewHtml
+          }
+        },
+        {
+          label: "Accepted",
+          id: "valid-tab",
+          panel: {
+            html: validHtml
+          }
+        }
+      ]
+    }) }}
+
+
+  </div>
+</div>
+
+{% endblock %}

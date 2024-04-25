@@ -1,0 +1,46 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set pageName="Personal list" %}
+
+{% set back = true %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+<span class="govuk-caption-l">Appeal 2114328</span>
+	  <form action="" method="post" >
+
+    <!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
+
+      {{ govukRadios({
+        name: "commentType",
+        fieldset: {
+          legend: {
+            text: "How was the comment submitted?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+         {
+            value: "email~add-ip-email",
+            text: "Email"
+          },
+         {
+            value: "post~add-ip-post",
+            text: "Post"
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

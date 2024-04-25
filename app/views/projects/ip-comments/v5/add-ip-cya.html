@@ -1,0 +1,238 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set pageName="Personal list" %}
+
+{% set back = true %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+<span class="govuk-caption-l">Appeal 2114328</span>
+  <h1 class="govuk-heading-l">Comment information</h1>
+
+  </div>
+</div>
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+            <dl class="govuk-summary-list">
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Interested party
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data ['manual-ip-first-name'] }} {{ data ['manual-ip-last-name'] }}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  
+                    <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"></span>
+                </a>
+              
+            </dd>
+              </div>
+             
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Email address
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {% if data['manual-ip-email'] %}
+                  {{ data ['manual-ip-email'] }}
+                  {% else %}
+                  Not provided
+                    {% endif %}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  
+                    <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"></span>
+                </a>
+              
+            </dd>
+              </div>
+           
+              
+                <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Address
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {% if data['manual-ip-address-line-1'] %}
+                  {{ data['manual-ip-address-line-1']}}<br>
+                    {{ data['manual-ip-address-line-2']}}
+                    {% if data ['manual-ip-address-line-2'] %}<br>
+                    {% endif %}
+                    {{ data['manual-ip-address-town']}} 
+                    {% if data['manual-ip-address-county']%}<br>
+                    {% endif %}
+                    {{ data['manual-ip-address-county']}}<br>
+                    {{ data['manual-ip-address-postcode']}}
+                    {% else %}
+                    Not provided
+                    {% endif %}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  
+                    <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"></span>
+                </a>
+              
+            </dd>
+              </div>
+              
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Submitted
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  21 Feb 2024
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  
+                    <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"></span>
+                </a>
+              
+            </dd>
+              </div>
+
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Comment
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['manual-ip-comment']}}
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  
+                    <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"></span>
+                </a>
+              
+            </dd>
+              </div>
+
+              
+              <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Supporting document
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {% if data['attachment'] === 'yes' %}
+                <a href="#" class="govuk-link">4012345-costs-decision.doc</a>
+                {% endif %}
+              </dd>
+              
+                <dd class="govuk-summary-list__actions">
+                  
+                    <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden">  attachments</span>
+                </a>
+              
+            </dd>
+            </dl>
+            
+          </div>
+         
+        
+        </div>
+
+	  <form action="" method="post" class="govuk-!-margin-top-7">
+
+    <!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
+
+{% if data['manual-ip-comment'] and data['attachment'] === 'yes' %}
+      {{ govukRadios({
+        name: "commentReview",
+        fieldset: {
+          legend: {
+            text: "Is redaction needed?",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+         {
+            value: "redactionNeeded~add-redact-comment?option=commentonly",
+            text: "Yes, comment needs redaction"
+          },
+         {
+            value: "valid~add-redact-attachment",
+            text: "Yes, supporting document needs redaction"
+          },
+          {
+            value: "valid~add-redact-both?option=both",
+            text: "Yes, both comment and supporting document need redaction"
+          },
+            {
+              divider: "or"
+            },
+          {
+            value: "no~ip-comments",
+            text: "No redaction needed"
+          }
+        ]
+      }) }}
+      
+    {% elseif data['manual-ip-comment'] and data['attachment'] === 'no' %}
+
+      {{ govukRadios({
+        name: "commentReview",
+        fieldset: {
+          legend: {
+            text: "Is redaction needed?",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+         {
+            value: "redactionNeeded~add-redact-comment?option=commentonly",
+            text: "Yes, comment needs redaction"
+          },
+          {
+            value: "no~ip-comments",
+            text: "No redaction needed"
+          }
+        ]
+      }) }}
+      {% elseif data['attachment'] === 'yes' %}
+
+      {{ govukRadios({
+        name: "commentReview",
+        fieldset: {
+          legend: {
+            text: "Is redaction needed?",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+         {
+            value: "redactionNeeded~add-redact-attachment",
+            text: "Yes, supporting document needs redaction"
+          },
+          {
+            value: "no~ip-comments",
+            text: "No redaction needed"
+          }
+        ]
+      }) }}
+
+      {% endif %}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

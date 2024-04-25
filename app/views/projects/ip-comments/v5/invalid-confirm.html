@@ -1,0 +1,44 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set pageName="Personal list" %}
+
+{% set back = true %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {{ govukPanel({
+      titleText: "Comment rejected",
+	    html: "Appeal reference<br><strong>2114328</strong>"
+    }) }}
+
+    {% if data['no-email'] %}
+      <p class="govuk-body">
+        The interested party has not been informed. No email address was provided.
+      </p>
+    {% else %}
+      <p class="govuk-body">
+        The interested party has been informed.
+      </p>
+      <p class="govuk-body">
+        They have been given the opportunity to change their comment and resubmit. 
+      </p>
+    {% endif %}
+
+
+
+    <p class="govuk-body">
+      <a href='ip-comments' class='govuk-link'>
+        Back to interested parties
+      </a>
+    </p>
+
+
+
+  </div>
+</div>
+
+{% endblock %}

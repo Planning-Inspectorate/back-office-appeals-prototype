@@ -1,0 +1,63 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set pageName="Personal list" %}
+
+{% set back = true %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+<span class="govuk-caption-l">Appeal 2114328</span>
+  <h1 class="govuk-heading-l">Interested party's details</h1>
+
+
+	  <form action="add-ip-address" method="post" class="govuk-!-margin-top-7">
+
+   
+{{ govukInput({
+  label: {
+    text: "First name"
+  },
+  id: "manual-ip-first-name",
+  name: "manual-ip-first-name",
+  autocomplete: "first-name",
+  classes: "govuk-!-width-two-thirds",
+  spellcheck: false
+}) }}
+
+{{ govukInput({
+  label: {
+    text: "Last name"
+  },
+  id: "manual-ip-last-name",
+  name: "manual-ip-last-name",
+  autocomplete: "last-name",
+  classes: "govuk-!-width-two-thirds",
+  spellcheck: false
+}) }}
+
+{{ govukInput({
+  label: {
+    text: "Email address (optional)"
+  },
+  id: "manual-ip-email",
+  name: "manual-ip-email",
+  autocomplete: "email",
+  classes: "govuk-!-width-two-thirds",
+  spellcheck: false
+}) }}
+
+
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set pageName="Decision date" %}
+
+{% set title = "Check your answers" %}
+
+{% set back = true %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Appeal 2114328</span>
+    <form action="invalid-confirm" method="post">
+
+      {{ govukTextarea({
+        name: "invalidReason",
+        id: "invalidReason",
+        hint: {
+          text: "The text you enter will be emailed to the interested party (if they supplied an email address). "
+        },
+        rows: "6",
+        label: {
+          text: "Why did you reject the comment?",
+          classes: "govuk-label--l",
+          isPageHeading: true
+        }
+
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </form>
+
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}

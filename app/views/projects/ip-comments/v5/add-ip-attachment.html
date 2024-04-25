@@ -1,0 +1,98 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName = "Upload the costs application" %}
+
+{% set title = "Upload the costs application" %}
+
+{% block content %}
+
+ <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+  <span class="govuk-caption-l">
+    Appeal 2114328
+  </span>
+ 
+
+
+<!-- </div>
+
+<div class="govuk-grid-column-two-thirds"> -->
+
+  <section class="govuk-!-margin-bottom-6">
+
+  {% set uploadHtml %}
+    {{ govukFileUpload({
+      id: 'letters-upload',
+      name: 'letters-upload',
+      classes: 'moj-multi-file-upload__input',
+      label: {
+        text: 'Upload supporting documents',
+        classes: 'govuk-label--l',
+        isPageHeading: true
+      },
+      hint: {
+        text: 'The file must be a DOC, DOCX, PDF, TIF, JPG or PNG and be smaller than 15MB'
+      }
+    }) }}
+
+    {{govukButton({
+      text: 'Upload file',
+      classes: 'govuk-button--secondary moj-multi-file-upload__button'
+    })}}
+  {% endset %}
+
+  {{ mojMultiFileUpload({
+    uploadedFiles: {
+      heading: { text: 'File added' },
+      items: []
+    },
+    uploadHtml: uploadHtml
+  }) }}
+
+<form action="add-ip-cya" method="post">
+{{ govukButton({
+  text: "Continue",
+  href: "add-ip-cya?attachment=yes"
+}) }}
+
+{% if data['manual-ip-comment'] %}
+{{ govukButton({
+  text: "No attachment",
+  href: "add-ip-cya?attachment=no",
+  classes: "govuk-button--secondary"
+}) }}
+{% endif %}
+  </form>
+
+  </div></div>
+
+  {% endblock %}
+
+{% block pageScripts %}
+  <script>
+    // Hacky hacky single file
+    $('.moj-multi-file-upload__dropzone .govuk-body').text('Drag and drop a file here or ')
+    $('.moj-multi-file-upload__dropzone .govuk-button').text('Select file')
+    $('.moj-multi-file__uploaded-files').on('fileAdded', function() {
+      $('.moj-multi-file-upload__upload').hide()
+    });
+
+    $('.moj-multi-file__uploaded-files').click(function() {
+      $('.moj-multi-file-upload__upload').show()
+    });
+
+
+
+    // I really should learn how the MOJ upload works, however, a hack to get all the files passed into data
+    $('form').submit(function(e) {
+      e.preventDefault();
+
+      $('.moj-multi-file-upload__filename').each(function() {
+        $('<input name="letters-upload" type="checkbox" value="'+ $(this).text() +'" checked="true" style="display: none">').insertBefore('.govuk-heading-l');
+      });
+
+      $(this).unbind('submit').submit();
+    })
+  </script>
+{% endblock %}

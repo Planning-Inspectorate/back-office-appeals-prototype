@@ -1,0 +1,124 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set pageName="Redact comment" %}
+
+{% set title = "Redact comment" %}
+
+{% set back = true %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <span class="govuk-caption-l">Appeal 2114328</span>
+    <h1 class="govuk-heading-l">Redact comment from
+      Ian Smith
+    </h1>
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Interested party
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Ian Smith
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Email address
+        </dt>
+        <dd class="govuk-summary-list__value">
+          ian.smith@gmail.com
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Address
+        </dt>
+        <dd class="govuk-summary-list__value">
+          6 The Grove<br>
+          Glasgow<br>
+          GS5 7TH
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Submitted
+        </dt>
+        <dd class="govuk-summary-list__value">
+          26 Nov 2023
+        </dd>
+      </div>
+    </dl>
+
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+
+  <div class="govuk-grid-column-two-thirds govuk-!-margin-bottom-0">
+    <h2 class="govuk-heading-m">
+      Making redactions
+    </h2>
+    {{ govukInsetText({
+      text: "Use the redaction box below to select the words you want to redact. Repeat until you have finished redacting, then choose continue."
+    }) }}
+  </div>
+
+  <div class="govuk-grid-column-one-half">
+    <form action="cya-redact" method="post" class="govuk-!-margin-top-2">
+
+      {{ govukTextarea({
+        name: "redactedComment",
+        id: "redactedComment",
+        rows: "6",
+        label: {
+          text: "Redacted text",
+          classes: "govuk-label--s",
+          isPageHeading: false
+        },
+
+        value: "Having reviewed the proposal I would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. All of us here at number 6 The Grove agree."
+
+      }) }}
+
+      <button type="button" class="govuk-button govuk-button--secondary" id="redactButton">Redact</button>
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </form>
+  </div>
+  <div class="govuk-grid-column-one-half">
+    <h2 class="govuk-heading-s">Original comment</h2>
+    <p>Having reviewed the proposal I would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. All of us here at number 6 The Grove agree.</p>
+  </div>
+
+</div>
+
+<script type="text/javascript">
+
+function getSel() // javascript
+{
+    // obtain the object reference for the textarea>
+    var txtarea = document.getElementById("redactedComment");
+    // obtain the index of the first selected character
+    var start = txtarea.selectionStart;
+    // obtain the index of the last selected character
+    var finish = txtarea.selectionEnd;
+    //obtain all Text
+    var allText = txtarea.value;
+
+    // obtain the selected text
+    var sel = allText.substring(start, finish);
+    //append te text;
+    var newText=allText.substring(0, start)+"(Redacted)"+allText.substring(finish, allText.length);
+
+    txtarea.value=newText;
+}
+
+document.getElementById("redactButton").addEventListener("click",getSel);
+
+</script>
+
+{% endblock %}

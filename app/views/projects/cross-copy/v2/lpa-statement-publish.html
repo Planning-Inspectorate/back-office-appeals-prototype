@@ -1,0 +1,71 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set pageName="Decision date" %}
+
+{% set title = "Publish LPA statement" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+  <span class="govuk-caption-l">
+    Appeal 2110917
+  </span>
+  <h1 class="govuk-heading-l">
+    {{ title }}
+  </h1>
+  
+  {{ govukTable({
+  firstCellIsHeader: true,
+  head: [
+    {
+      text: "Documentation"
+    },
+    {
+      text: "Status"
+    },
+    {
+      text: "Redaction"
+    },
+    {
+      text: "Action"
+    }
+  ],
+  rows: [
+    [
+      {
+        text: "LPA statement"
+      },
+      {
+        text: "Complete"
+      },
+      {
+        text: "No redaction required"
+      },
+      {
+        html: "<a href='../../lpa-statement/v1/lpa-statement-review''>View</a>"
+      }
+    ]
+  ]
+}) }}
+
+<form action="lpa-statement-confirm" method="post" class="govuk-!-margin-top-2">
+
+  {{ govukWarningText({
+    text: "You are about to publish the statement to the main parties. Please make sure you have reviewed and redacted if needed.",
+    iconFallbackText: "Warning"
+  }) }}
+
+
+	{{ govukButton({
+		text: 'Continue'
+	}) }}
+
+</form>
+
+  </div>
+  </div>
+
+{% endblock %}

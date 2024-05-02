@@ -80,6 +80,12 @@
   classes:'govuk-tag--grey'
 }) }}
 
+{% elseif caseStatus === "withdrawn" %}
+{{ govukTag({
+  text: "Withdrawn",
+  classes:'govuk-tag--grey'
+}) }}
+
 {% endif %}
 
 {% endmacro %}

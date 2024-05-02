@@ -1,0 +1,80 @@
+{% extends "layouts/PINS-admin.html" %} {% set pageName="Patterns" %} {% set
+    back = false %} {% block content %}
+    
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-one-quarter">
+        <ul class="govuk-list govuk-list-bullet">
+          <li>
+            <a
+              href="/patterns/case-heading/"
+              class="govuk-link--no-visited-state govuk-link--no-underline"
+              >Case heading</a
+            >
+          </li>
+        </ul>
+      </div>
+    
+      <div class="govuk-grid-column-three-quarters">
+        <h1 class="govuk-heading-xl govuk-!-margin-bottom-2" id="case-heading">
+          Case heading
+        </h1>
+        <p>
+          <strong class="govuk-tag govuk-!-margin-bottom-5">experimental</strong>
+        </p>
+        <p>Description.</p>
+    
+        {% set exampleHtml %} 
+        {% from "/patterns/case-heading/default.njk" import caseHeading %} 
+
+        {{
+            caseHeading (
+                caseHeading = "withdrawn"
+            ) 
+        }}
+                 
+        {% endset -%} 
+        {% set codeHtml %}
+
+
+        <pre class="code-snippet"><code>
+    {% raw -%}{% from "/patterns/case-heading/default.njk" import caseHeading %}
+    
+      {{
+        caseHeading (
+            caseStatus = "validation",
+            caseHeading = "default"
+        ) 
+    }}
+      
+      {% endraw %}
+          </code></pre>
+        {% endset -%} 
+        
+        {{ govukTabs({ 
+            items: [ { 
+                label: "Example", 
+                id: "example", 
+                panel: { html: exampleHtml } }, 
+                
+                { label: "Nunjucks", 
+                id: "nunjucks", 
+                panel:{ html: codeHtml } } ] }) }}
+    
+        <h2 class="govuk-heading-l">When to use this pattern</h2>
+    
+        <p>
+          Several areas of the service benefit from this component to help users to contextualise a set of appeals or maintain focus on a specific one.
+        </p>
+    
+        <h2 class="govuk-heading-l">How it works</h2>
+    
+        <p>You can use this component as a <a href="https://mozilla.github.io/nunjucks/">Nunjucks</a> macro.</p>
+    
+        <h3 class="govuk-heading-m">Parameters</h3>
+    
+        {{ govukSummaryList({ rows: [ { key: { text: "caseHeading" }, value: { text:
+        "default" } } ] })
+        }} {% endblock %}
+      </div>
+    </div>
+    

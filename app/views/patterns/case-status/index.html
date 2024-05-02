@@ -24,7 +24,9 @@ back = false %} {% block content %}
     <p>Use the case status component to show users the status of the appeal.</p>
 
     {% set exampleHtml %} {% from "/patterns/case-status/default.njk" import
-    caseStatus %} {{ caseStatus ( caseStatus = "validation" ) }}
+    caseStatus %} 
+    
+    {{ caseStatus ( caseStatus = "validation" ) }}
 
     <br /><br />
 

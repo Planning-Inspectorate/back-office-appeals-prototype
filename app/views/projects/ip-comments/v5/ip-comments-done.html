@@ -19,7 +19,7 @@
         </div>
         <div class="govuk-notification-banner__content">
           <p class="govuk-notification-banner__heading">
-            Comment from Ian Smith accepted and redacted
+            Comment from Ian Smith redacted and accepted
           </p>
         </div>
       </div>
@@ -51,7 +51,7 @@
     {% set reviewHtml %}
       {{ govukTable({
       caption: "Awaiting review",
-      captionClasses: "govuk-table__caption--m",
+      captionClasses: "govuk-table__caption--m govuk-visually-hidden",
       firstCellIsHeader: false,
       head: [
         {
@@ -130,9 +130,16 @@
     {% endset %}
 
     {% set validHtml %}
+
+      <p class="govuk-body">
+        <a href='#' class='govuk-link govuk-link--no-visited-state'>
+          Download all comments
+        </a>
+      </p>
+
       {{ govukTable({
-        caption: "Awaiting review",
-        captionClasses: "govuk-table__caption--m",
+        caption: "Accepted",
+        captionClasses: "govuk-table__caption--m govuk-visually-hidden",
         firstCellIsHeader: false,
         head: [
           {

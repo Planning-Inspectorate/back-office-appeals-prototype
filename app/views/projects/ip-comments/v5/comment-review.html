@@ -85,24 +85,24 @@
     items: [
      {
         value: "redactionNeeded~comment-redact",
-        text: "Yes, but needs redaction"
+        text: "Yes"
       },
      {
         value: "valid~ip-comments-done",
-        text: "Yes (no redaction needed)"
+        text: "Yes, after it has been redacted"
       },
         {
           divider: "or"
         },
       {
         value: "invalid~invalid-reason",
-        text: "Reject comment"
+        text: "No"
       }
     ]
   }) }}
 
   {{ govukButton({
-    text: "Continue"
+    text: "Confirm"
   }) }}
 
 </form>

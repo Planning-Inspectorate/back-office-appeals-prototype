@@ -12,7 +12,7 @@
 
     <span class="govuk-caption-l">Appeal 2114328</span>
     <h1 class="govuk-heading-l">
-      Send interested party comments to other parties
+      Share IP comments with main parties
     </h1>
 
   </div>
@@ -193,13 +193,13 @@
     <form action="confirm-ipcomments" method="post" class="govuk-!-margin-top-2">
 
       {{ govukWarningText({
-        html: "You are about to send all valid interested party comments to the other parties. There are still <a href='../../ip-comments/v5/ip-comments?redactedComment='>5 comments to review</a>. These will not be sent unless reviewed.",
+        html: "Confirming will share accepted IP coments with the main parties.",
         iconFallbackText: "Warning"
       }) }}
 
 
     	{{ govukButton({
-    		text: 'Continue'
+    		text: 'Confirm'
     	}) }}
 
     </form>

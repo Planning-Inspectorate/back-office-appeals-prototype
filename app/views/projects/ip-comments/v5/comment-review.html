@@ -76,7 +76,7 @@
     <section class="govuk-!-margin-bottom-9">
       <!-- site visit requested -->
       {{ govukCheckboxes({
-        name: "waste",
+        name: "siteVisit",
         fieldset: {
           legend: {
             text: "Site visit requested",
@@ -108,7 +108,7 @@
         },
         items: [
          {
-            value: "valid~ip-comments-done",
+            value: "valid~ip-comments-done?commentReview=true",
             text: "Yes"
           },
          {

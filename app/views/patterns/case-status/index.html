@@ -1,0 +1,105 @@
+{% extends "layouts/PINS-admin.html" %} {% set pageName="Patterns" %} {% set
+back = false %} {% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-quarter">
+    <ul class="govuk-list govuk-list-bullet">
+      <li>
+        <a
+          href="/patterns/case-status/"
+          class="govuk-link--no-visited-state govuk-link--no-underline"
+          >Case status</a
+        >
+      </li>
+    </ul>
+  </div>
+
+  <div class="govuk-grid-column-three-quarters">
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-2" id="personal-list">
+      Case status
+    </h1>
+    <p>
+      <strong class="govuk-tag govuk-!-margin-bottom-5">experimental</strong>
+    </p>
+    <p>Use the case status component to show users the status of the appeal.</p>
+
+    {% set exampleHtml %} {% from "/patterns/case-status/default.njk" import
+    caseStatus %} {{ caseStatus ( caseStatus = "validation" ) }}
+
+    <br /><br />
+
+    {{ caseStatus ( caseStatus = "assign" ) }}
+
+    <br /><br />
+
+    {{ caseStatus ( caseStatus = "ready" ) }}
+    <br /><br />
+
+    {{ caseStatus ( caseStatus = "questionnaire" ) }}
+
+    <br /><br />
+
+    {{ caseStatus ( caseStatus = "statements" ) }}
+
+    <br /><br />
+
+    {{ caseStatus ( caseStatus = "comments" ) }}
+
+    <br /><br />
+
+    {{ caseStatus ( caseStatus = "evidence" ) }}
+
+    <br /><br />
+
+    {{ caseStatus ( caseStatus = "finalComments" ) }}
+
+    <br /><br />
+
+    {{ caseStatus ( caseStatus = "decision" ) }}
+
+    <br /><br />
+
+    {{ caseStatus ( caseStatus = "complete" ) }}
+
+    <br /><br />
+
+    {{ caseStatus ( caseStatus = "invalid" ) }}
+
+    <br /><br />
+
+    {{ caseStatus ( caseStatus = "awaiting" ) }}
+
+    <br /><br />
+
+    {{ caseStatus ( caseStatus = "transferred" ) }} {% endset -%} {% set
+    codeHtml %}
+    <pre class="code-snippet"><code>
+{% raw -%}{% from "/patterns/case-status/default.njk" import caseStatus %}
+
+  {{caseStatus (
+        caseStatus = "validation"
+        ) 
+  }}{% endraw %}
+      </code></pre>
+    {% endset -%} {{ govukTabs({ items: [ { label: "Example", id: "example",
+    panel: { html: exampleHtml } }, { label: "Nunjucks", id: "nunjucks", panel:
+    { html: codeHtml } } ] }) }}
+
+    <h2 class="govuk-heading-l">When to use this pattern</h2>
+
+    <p>
+      Several areas of the service benefit from this component to help users to contextualise a set of appeals or maintain focus on a specific one.
+    </p>
+
+    <h2 class="govuk-heading-l">How it works</h2>
+
+    <p>You can use this component as a <a href="https://mozilla.github.io/nunjucks/">Nunjucks</a> macro.</p>
+
+    <h3 class="govuk-heading-m">Parameters</h3>
+
+    {{ govukSummaryList({ rows: [ { key: { text: "caseStatus" }, value: { text:
+    "validation, assign, ready, questionnaire, statements, comments, evidence,
+    finalComments, decision, complete, invalid, awaiting, transferred" } } ] })
+    }} {% endblock %}
+  </div>
+</div>

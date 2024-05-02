@@ -1,8 +1,7 @@
 {% extends "layouts/PINS.html" %}
 
-{% set pageName = "Upload the costs application" %}
-
-{% set title = "Upload the costs application" %}
+{% set title = "Upload the IP comment" %}
+{% set pageName = title %}
 
 {% block content %}
 
@@ -12,22 +11,16 @@
   <span class="govuk-caption-l">
     Appeal 2114328
   </span>
- 
-
-
-<!-- </div>
-
-<div class="govuk-grid-column-two-thirds"> -->
 
   <section class="govuk-!-margin-bottom-6">
 
   {% set uploadHtml %}
     {{ govukFileUpload({
-      id: 'letters-upload',
-      name: 'letters-upload',
+      id: 'ip-comment-upload',
+      name: 'ip-comment-upload',
       classes: 'moj-multi-file-upload__input',
       label: {
-        text: 'Upload supporting documents',
+        text: title,
         classes: 'govuk-label--l',
         isPageHeading: true
       },
@@ -89,7 +82,7 @@
       e.preventDefault();
 
       $('.moj-multi-file-upload__filename').each(function() {
-        $('<input name="letters-upload" type="checkbox" value="'+ $(this).text() +'" checked="true" style="display: none">').insertBefore('.govuk-heading-l');
+        $('<input name="ip-comment-upload" type="checkbox" value="'+ $(this).text() +'" checked="true" style="display: none">').insertBefore('.govuk-heading-l');
       });
 
       $(this).unbind('submit').submit();

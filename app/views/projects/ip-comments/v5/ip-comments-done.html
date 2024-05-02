@@ -23,7 +23,7 @@
           </p>
         </div>
       </div>
-    {% elseif data ['commentReview'] === 'valid' %}
+    {% elseif data ['commentReview'] %}
       <div class="govuk-notification-banner  govuk-notification-banner--success" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
         <div class="govuk-notification-banner__header">
           <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">Success</h2>
@@ -79,7 +79,7 @@
               text: "27 Nov 2023"
             },
             {
-              html: "<a href='#'>Review</a>"
+              html: "<a href='comment-review?redactedComment='>Review<span class='govuk-visually-hidden'> comment from Robyn Jenkins</span></a>"
             }
         ],
         [
@@ -93,7 +93,7 @@
               text: "29 Nov 2023"
             },
             {
-              html: "<a href='#'>Review</a>"
+              html: "<a href='comment-review'?redactedComment=>Review<span class='govuk-visually-hidden'> comment from {name}</span></a>"
             }
         ],
         [
@@ -107,7 +107,7 @@
               text: "1 Dec 2023"
             },
             {
-              html: "<a href='#'>Review</a>"
+              html: "<a href='comment-review'?redactedComment=>Review<span class='govuk-visually-hidden'> comment from {name}</span></a>"
             }
         ],
         [
@@ -121,7 +121,7 @@
               text: "3 Dec 2023"
             },
             {
-              html: "<a href='#'>Review</a>"
+              html: "<a href='comment-review'?redactedComment=>Review<span class='govuk-visually-hidden'> comment from {name}</span></a>"
             }
         ]
       ]
@@ -168,7 +168,7 @@
                 text: "26 Nov 2023"
               },
               {
-                html: "<a href='comment-view'>View</a>"
+                html: "<a href='comment-view?redactedComment='>View<span class='govuk-visually-hidden'> comment from Ian Smith</span></a>"
               }
           ],
           [
@@ -182,7 +182,7 @@
                 text: "16 Nov 2023"
               },
               {
-                html: "<a href='comment-view'>View</a>"
+                html: "<a href='comment-view?redactedComment='>View<span class='govuk-visually-hidden'> comment from Terrance Harper</span></a>"
               }
           ],
           [
@@ -196,7 +196,7 @@
                 text: "16 Nov 2023"
               },
               {
-                html: "<a href='#'>View</a>"
+                html: "<a href='comment-view?redactedComment='>View<span class='govuk-visually-hidden'> comment from Viola Richardson</span></a>"
               }
           ],
           [
@@ -210,10 +210,272 @@
                 text: "17 Nov 2023"
               },
               {
-                html: "<a href='#'>View</a>"
+                html: "<a href='comment-view?redactedComment='>View<span class='govuk-visually-hidden'> comment from Carla Fenwick</span></a>"
               }
-          ]
+            ],
+            [
+              {
+                text: "Carla Fenwick"
+              },
+              {
+                text: "carlafenwick@gmail.com"
+              },
+              {
+                text: "17 Nov 2023"
+              },
+              {
+                html: "<a href='comment-view?redactedComment='>View<span class='govuk-visually-hidden'> comment from Carla Fenwick</span></a>"
+              }
+            ],
+            [
+              {
+                text: "Carla Fenwick"
+              },
+              {
+                text: "carlafenwick@gmail.com"
+              },
+              {
+                text: "17 Nov 2023"
+              },
+              {
+                html: "<a href='comment-view?redactedComment='>View<span class='govuk-visually-hidden'> comment from Carla Fenwick</span></a>"
+              }
+            ],
+            [
+              {
+                text: "Carla Fenwick"
+              },
+              {
+                text: "carlafenwick@gmail.com"
+              },
+              {
+                text: "17 Nov 2023"
+              },
+              {
+                html: "<a href='comment-view?redactedComment='>View<span class='govuk-visually-hidden'> comment from Carla Fenwick</span></a>"
+              }
+            ],
+            [
+              {
+                text: "Carla Fenwick"
+              },
+              {
+                text: "carlafenwick@gmail.com"
+              },
+              {
+                text: "17 Nov 2023"
+              },
+              {
+                html: "<a href='comment-view?redactedComment='>View<span class='govuk-visually-hidden'> comment from Carla Fenwick</span></a>"
+              }
+            ],
+            [
+              {
+                text: "Carla Fenwick"
+              },
+              {
+                text: "carlafenwick@gmail.com"
+              },
+              {
+                text: "17 Nov 2023"
+              },
+              {
+                html: "<a href='comment-view?redactedComment='>View<span class='govuk-visually-hidden'> comment from Carla Fenwick</span></a>"
+              }
+            ],
+            [
+              {
+                text: "Carla Fenwick"
+              },
+              {
+                text: "carlafenwick@gmail.com"
+              },
+              {
+                text: "17 Nov 2023"
+              },
+              {
+                html: "<a href='comment-view?redactedComment='>View<span class='govuk-visually-hidden'> comment from Carla Fenwick</span></a>"
+              }
+            ],
+            [
+              {
+                text: "Carla Fenwick"
+              },
+              {
+                text: "carlafenwick@gmail.com"
+              },
+              {
+                text: "17 Nov 2023"
+              },
+              {
+                html: "<a href='comment-view?redactedComment='>View<span class='govuk-visually-hidden'> comment from Carla Fenwick</span></a>"
+              }
+            ],
+            [
+              {
+                text: "Carla Fenwick"
+              },
+              {
+                text: "carlafenwick@gmail.com"
+              },
+              {
+                text: "17 Nov 2023"
+              },
+              {
+                html: "<a href='comment-view?redactedComment='>View<span class='govuk-visually-hidden'> comment from Carla Fenwick</span></a>"
+              }
+            ],
+            [
+              {
+                text: "Carla Fenwick"
+              },
+              {
+                text: "carlafenwick@gmail.com"
+              },
+              {
+                text: "17 Nov 2023"
+              },
+              {
+                html: "<a href='comment-view?redactedComment='>View<span class='govuk-visually-hidden'> comment from Carla Fenwick</span></a>"
+              }
+            ],
+            [
+              {
+                text: "Carla Fenwick"
+              },
+              {
+                text: "carlafenwick@gmail.com"
+              },
+              {
+                text: "17 Nov 2023"
+              },
+              {
+                html: "<a href='comment-view?redactedComment='>View<span class='govuk-visually-hidden'> comment from Carla Fenwick</span></a>"
+              }
+            ],
+            [
+              {
+                text: "Carla Fenwick"
+              },
+              {
+                text: "carlafenwick@gmail.com"
+              },
+              {
+                text: "17 Nov 2023"
+              },
+              {
+                html: "<a href='comment-view?redactedComment='>View<span class='govuk-visually-hidden'> comment from Carla Fenwick</span></a>"
+              }
+            ],
+            [
+              {
+                text: "Carla Fenwick"
+              },
+              {
+                text: "carlafenwick@gmail.com"
+              },
+              {
+                text: "17 Nov 2023"
+              },
+              {
+                html: "<a href='comment-view?redactedComment='>View<span class='govuk-visually-hidden'> comment from Carla Fenwick</span></a>"
+              }
+            ],
+            [
+              {
+                text: "Carla Fenwick"
+              },
+              {
+                text: "carlafenwick@gmail.com"
+              },
+              {
+                text: "17 Nov 2023"
+              },
+              {
+                html: "<a href='comment-view?redactedComment='>View<span class='govuk-visually-hidden'> comment from Carla Fenwick</span></a>"
+              }
+            ],
+            [
+              {
+                text: "Carla Fenwick"
+              },
+              {
+                text: "carlafenwick@gmail.com"
+              },
+              {
+                text: "17 Nov 2023"
+              },
+              {
+                html: "<a href='comment-view?redactedComment='>View<span class='govuk-visually-hidden'> comment from Carla Fenwick</span></a>"
+              }
+            ],
+            [
+              {
+                text: "Carla Fenwick"
+              },
+              {
+                text: "carlafenwick@gmail.com"
+              },
+              {
+                text: "17 Nov 2023"
+              },
+              {
+                html: "<a href='comment-view?redactedComment='>View<span class='govuk-visually-hidden'> comment from Carla Fenwick</span></a>"
+              }
+            ],
+            [
+              {
+                text: "Carla Fenwick"
+              },
+              {
+                text: "carlafenwick@gmail.com"
+              },
+              {
+                text: "17 Nov 2023"
+              },
+              {
+                html: "<a href='comment-view?redactedComment='>View<span class='govuk-visually-hidden'> comment from Carla Fenwick</span></a>"
+              }
+            ],
+            [
+              {
+                text: "Carla Fenwick"
+              },
+              {
+                text: "carlafenwick@gmail.com"
+              },
+              {
+                text: "17 Nov 2023"
+              },
+              {
+                html: "<a href='comment-view?redactedComment='>View<span class='govuk-visually-hidden'> comment from Carla Fenwick</span></a>"
+              }
+            ]
       ]
+      }) }}
+
+      {{ govukPagination({
+        previous: {
+          href: "#"
+        },
+        next: {
+          href: "#"
+        },
+        items: [
+          {
+            number: 1,
+            current: true,
+            href: "#"
+          },
+          {
+            number: 2,
+            href: "#"
+          },
+          {
+            number: 3,
+            href: "#"
+          }
+        ]
       }) }}
 
     {% endset %}

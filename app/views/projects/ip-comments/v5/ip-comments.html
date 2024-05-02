@@ -66,7 +66,7 @@
     {% set reviewHtml %}
       {{ govukTable({
         caption: "Awaiting review",
-        captionClasses: "govuk-table__caption--m",
+        captionClasses: "govuk-table__caption--m govuk-visually-hidden",
         firstCellIsHeader: false,
         head: [
           {
@@ -159,9 +159,16 @@
     {% endset %}
 
     {% set validHtml %}
+
+      <p class="govuk-body">
+        <a href='#' class='govuk-link govuk-link--no-visited-state'>
+          Download all comments
+        </a>
+      </p>
+
       {{ govukTable({
         caption: "Accepted comments",
-        captionClasses: "govuk-table__caption--m",
+        captionClasses: "govuk-table__caption--m govuk-visually-hidden",
         firstCellIsHeader: false,
         head: [
           {

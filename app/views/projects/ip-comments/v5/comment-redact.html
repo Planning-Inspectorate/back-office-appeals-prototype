@@ -58,11 +58,14 @@
 
   <div class="govuk-grid-column-two-thirds govuk-!-margin-bottom-0">
     <h2 class="govuk-heading-m">
-      Making redactions
+      Make redactions
     </h2>
-    {{ govukInsetText({
+    <p class="govuk-body">
+      Use the ‘redact text’ box to select the words you want to redact. Repeat until you have finished redacting, then choose continue.
+    </p>
+    <!-- {{ govukInsetText({
       text: "Use the redaction box below to select the words you want to redact. Repeat until you have finished redacting, then choose continue."
-    }) }}
+    }) }} -->
   </div>
 
   <div class="govuk-grid-column-one-half">
@@ -73,7 +76,7 @@
         id: "redactedComment",
         rows: "6",
         label: {
-          text: "Redacted text",
+          text: "Redact text",
           classes: "govuk-label--s",
           isPageHeading: false
         },
@@ -84,10 +87,11 @@
 
       <button type="button" class="govuk-button govuk-button--secondary" id="redactButton">Redact</button>
 
-      {{ govukButton({
-        text: "Continue"
-      }) }}
     </form>
+    {{ govukButton({
+      href: "cya-redact",
+      text: "Continue"
+    }) }}
   </div>
   <div class="govuk-grid-column-one-half">
     <h2 class="govuk-heading-s">Original comment</h2>

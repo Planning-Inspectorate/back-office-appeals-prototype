@@ -17,7 +17,6 @@
   </div>
 </div>
 
-
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
@@ -69,43 +68,70 @@
 
 </div>
 
-<form action="" method="post" class="govuk-!-margin-top-7" id="review-comment">
 
-<!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
 
-  {{ govukRadios({
-    name: "commentReview",
-    fieldset: {
-      legend: {
-        text: "Do you accept the comment?",
-        isPageHeading: false,
-        classes: "govuk-fieldset__legend--m"
-      }
-    },
-    items: [
-     {
-        value: "redactionNeeded~comment-redact",
-        text: "Yes, but needs redaction"
-      },
-     {
-        value: "valid~ip-comments-done",
-        text: "Yes (no redaction needed)"
-      },
-        {
-          divider: "or"
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <section class="govuk-!-margin-bottom-9">
+      <!-- site visit requested -->
+      {{ govukCheckboxes({
+        name: "waste",
+        fieldset: {
+          legend: {
+            text: "Site visit requested",
+            classes: "govuk-visually-hidden"
+          }
         },
-      {
-        value: "invalid~invalid-reason",
-        text: "Reject comment"
-      }
-    ]
-  }) }}
+        items: [
+          {
+            value: "siteVisitRequest",
+            text: "A site visit has been requested"
+          }
+        ]
+      }) }}
+    </section>
 
-  {{ govukButton({
-    text: "Continue"
-  }) }}
+    <!-- accept or reject the comment -->
+    <form action="" method="post" class="govuk-!-margin-top-7" id="review-comment">
 
-</form>
+    <!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
 
+      {{ govukRadios({
+        name: "commentReview",
+        fieldset: {
+          legend: {
+            text: "Do you accept the comment?",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+         {
+            value: "valid~ip-comments-done",
+            text: "Yes"
+          },
+         {
+            value: "redactionNeeded~comment-redact",
+            text: "Yes, after it has been redacted"
+          },
+            {
+              divider: "or"
+            },
+          {
+            value: "invalid~invalid-reason",
+            text: "No"
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Confirm"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
 
 {% endblock %}

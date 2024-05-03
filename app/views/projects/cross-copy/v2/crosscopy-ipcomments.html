@@ -6,14 +6,17 @@
 
 {% block content %}
 
-
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
     <span class="govuk-caption-l">Appeal 2114328</span>
     <h1 class="govuk-heading-l">
-      Share IP comments with main parties
+      Confirm you want to share IP comments with the main parties
     </h1>
+
+    <p class="govuk-body">
+      You are about to share <a href="../../ip-comments/v5/ip-comments#valid-tab" class="govuk-body">43 accepted comments</a>.
+    </p>
 
   </div>
 </div>
@@ -21,142 +24,7 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <!---
-    {{ govukTable({
-      firstCellIsHeader: false,
-      head: [
-        {
-          text: "Interested party"
-        },
-        {
-          text: "Email address"
-        },
-        {
-          text: "Submitted"
-        },
-        {
-          text: "Action"
-        }
-      ],
-      rows: [
-        [
-            {
-              text: "Terrance Harper"
-            },
-            {
-              text: "harps@gmail.com"
-            },
-            {
-              text: "16 Nov 2023"
-            },
-            {
-              html: "<a href='comment-view'>View</a>"
-            }
-        ],
-        [
-          {
-              text: "Viola Richardson"
-            },
-            {
-              text: "vrichardson@aol.com"
-            },
-            {
-              text: "16 Nov 2023"
-            },
-            {
-              html: "<a href='#'>View</a>"
-            }
-        ],
-        [
-          {
-              text: "Carla Fenwick"
-            },
-            {
-              text: "carlafenwick@gmail.com"
-            },
-            {
-              text: "17 Nov 2023"
-            },
-            {
-              html: "<a href='#'>View</a>"
-            }
-        ],
-        [
-            {
-              text: "Ian Smith"
-            },
-            {
-              text: "ian.smith@gmail.com"
-            },
-            {
-              text: "26 Nov 2023"
-            },
-            {
-              html: "<a href='comment-review'>View</a>"
-            }
-        ],
-        [
-          {
-              text: "Robyn Jenkins"
-            },
-            {
-              text: "robyn.jenkins@hotmail.com"
-            },
-            {
-              text: "27 Nov 2023"
-            },
-            {
-              html: "<a href='#'>View</a>"
-            }
-        ],
-        [
-          {
-              text: "Cath Fairfield"
-            },
-            {
-              text: "cathyf@gmail.com"
-            },
-            {
-              text: "29 Nov 2023"
-            },
-            {
-              html: "<a href='#'>View</a>"
-            }
-        ],
-        [
-          {
-              text: "Brian Thompson"
-            },
-            {
-              text: "brian@thompsonbrothers.com"
-            },
-            {
-              text: "1 Dec 2023"
-            },
-            {
-              html: "<a href='#'>View</a>"
-            }
-        ],
-        [
-          {
-              text: "Dan Brighthouse"
-            },
-            {
-              text: "brighthousedan167@gmail.com"
-            },
-            {
-              text: "3 Dec 2023"
-            },
-            {
-              html: "<a href='#'>View</a>"
-            }
-        ]
-    ]
-    }) }}
-
-    -->
-
-    {{ govukTable({
+    <!-- {{ govukTable({
       firstCellIsHeader: true,
       head: [
         {
@@ -182,21 +50,15 @@
           }
         ]
       ]
-    }) }}
+    }) }} -->
 
-  </div>
-</div>
+    <!-- <form action="confirm-ipcomments" method="post" class="govuk-!-margin-top-2"> -->
+    <form action="/projects/ip-comments/v5/index?list=personal&ip-comments-shared=yes" method="post" class="govuk-!-margin-top-2">
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-
-    <form action="confirm-ipcomments" method="post" class="govuk-!-margin-top-2">
-
-      {{ govukWarningText({
+      <!-- {{ govukWarningText({
         html: "Confirming will share accepted IP comments with the main parties.",
         iconFallbackText: "Warning"
-      }) }}
-
+      }) }} -->
 
     	{{ govukButton({
     		text: 'Confirm'

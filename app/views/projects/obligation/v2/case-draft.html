@@ -141,6 +141,7 @@
           </div>
 
           <div id="accordion-default-content-2" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-2">
+          
             {{ govukTable({
               captionClasses: "govuk-table__caption--m",
               firstCellIsHeader: true,
@@ -247,6 +248,7 @@
             </h2>
           </div>
           <div id="accordion-default-content-3" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-3">
+            
             {{ govukTable({
               captionClasses: "govuk-table__caption--m",
               firstCellIsHeader: true,
@@ -362,6 +364,7 @@
             </h2>
           </div>
           <div id="accordion-default-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-4">
+            {% set myValue = (data['received-date-year']+ "-" + data['received-date-month'] + "-" + data['received-date-day']  )  | govukDate("truncate")  %}
             {{ govukTable({
               captionClasses: "govuk-table__caption--m",
               firstCellIsHeader: false,
@@ -475,8 +478,9 @@
                   {
                     text: "Received"
                   },
-                  {
-                    text: "22 Jul 2023"
+                   {
+                    text: myValue 
+              
                   },
                   {
                     html: "<a href='manage-folder'>Manage</a> | <a href='upload-obligation-final'>Add</a>"
@@ -486,6 +490,8 @@
               ]
             }) }}
           </div>
+         
+  
         </div>
         
         <div class="govuk-accordion__section">
@@ -598,7 +604,7 @@
   </div>
 
   {% if data['status'] == 'determination' %}
-
+ 
     <form action="" method="post" class="govuk-!-margin-top-6" novalidate>
 
       <!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->

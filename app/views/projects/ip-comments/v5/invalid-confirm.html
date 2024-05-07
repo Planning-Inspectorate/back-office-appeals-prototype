@@ -1,17 +1,27 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set pageName="Personal list" %}
+{% set title = 'Comment rejected' %}
+{% set pageName = title %}
 
-{% set back = true %}
-
+{% set back = false %}
 {% block content %}
 
+{% set prototypeLinks = [
+  {
+    href: '?no-email=yes',
+    text: 'No email provided'
+  },
+  {
+    href: '?no-email=',
+    text: 'Email provided'
+  }
+] %}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
     {{ govukPanel({
-      titleText: "Comment rejected",
+      titleText: title,
 	    html: "Appeal reference<br><strong>2114328</strong>"
     }) }}
 
@@ -27,8 +37,6 @@
         They have been given the opportunity to change their comment and resubmit. 
       </p>
     {% endif %}
-
-
 
     <p class="govuk-body">
       <a href='ip-comments' class='govuk-link'>

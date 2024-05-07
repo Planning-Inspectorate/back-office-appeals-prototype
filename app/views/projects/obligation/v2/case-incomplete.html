@@ -364,6 +364,8 @@ type: "important"
             </h2>
           </div>
           <div id="accordion-default-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-4">
+            {% set myValue = (data['received-date-year']+ "-" + data['received-date-month'] + "-" + data['received-date-day']  )  | govukDate("truncate")  %}
+
             {{ govukTable({
               captionClasses: "govuk-table__caption--m",
               firstCellIsHeader: false,
@@ -472,31 +474,17 @@ type: "important"
                 ,
                 [
                   {
-                    text: "S106 obligation draft"
+                    text: "S106 obligation"
                   },
                   {
                     text: "Received"
                   },
-                  {
-                    text: "24 Aug 2023"
+                   {
+                    text: myValue 
+              
                   },
                   {
-                    html: "<a href='#'>View</a>"
-                  }
-                ]
-                ,
-                [
-                  {
-                    text: "S106 obligation final"
-                  },
-                  {
-                    text: "Incomplete"
-                  },
-                  {
-                    text: ""
-                  },
-                  {
-                    html: "<a href='#'>View</a>"
+                    html: "<a href='manage-folder'>Manage</a> | <a href='upload-obligation-final'>Add</a>"
                   }
                 ]
 

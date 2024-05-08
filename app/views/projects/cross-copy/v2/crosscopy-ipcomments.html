@@ -1,6 +1,7 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set pageName="Personal list" %}
+{% set title = "Share IP comments" %}
+{% set pageName = title %}
 
 {% set back = true %}
 
@@ -11,11 +12,11 @@
 
     <span class="govuk-caption-l">Appeal 2114328</span>
     <h1 class="govuk-heading-l">
-      Confirm you want to share IP comments with the main parties
+      {{ title }}
     </h1>
 
     <p class="govuk-body">
-      You are about to share <a href="../../ip-comments/v5/ip-comments#valid-tab" class="govuk-body">43 accepted comments</a>.
+      Confirming will share <a href="../../ip-comments/v5/ip-comments#valid-tab" class="govuk-body">43 IP comments</a> with the main parties.
     </p>
 
   </div>

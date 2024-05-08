@@ -1,0 +1,7 @@
+// Style the footer navigation area to be used for prototype links
+.govuk-footer__heading {
+	border-bottom: 0;
+	padding-bottom: 0;
+	@include govuk-font($size: 19, $weight: bold);
+	@include govuk-responsive-margin(4, "bottom");
+}

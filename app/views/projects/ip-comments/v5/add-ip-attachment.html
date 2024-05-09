@@ -8,59 +8,72 @@
  <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-  <span class="govuk-caption-l">
-    Appeal 2114328
-  </span>
+      <span class="govuk-caption-l">
+        Appeal 2114328
+      </span>
 
-  <section class="govuk-!-margin-bottom-6">
+      <section class="govuk-!-margin-bottom-6">
+        {% set uploadHtml %}
+          {{ govukFileUpload({
+            id: 'ip-comment-upload',
+            name: 'ip-comment-upload',
+            classes: 'moj-multi-file-upload__input',
+            label: {
+              text: title,
+              classes: 'govuk-label--l',
+              isPageHeading: true
+            },
+            hint: {
+              text: 'The file must be a DOC, DOCX, PDF, TIF, JPG or PNG and be smaller than 15MB'
+            }
+          }) }}
 
-  {% set uploadHtml %}
-    {{ govukFileUpload({
-      id: 'ip-comment-upload',
-      name: 'ip-comment-upload',
-      classes: 'moj-multi-file-upload__input',
-      label: {
-        text: title,
-        classes: 'govuk-label--l',
-        isPageHeading: true
-      },
-      hint: {
-        text: 'The file must be a DOC, DOCX, PDF, TIF, JPG or PNG and be smaller than 15MB'
-      }
-    }) }}
+          {{govukButton({
+            text: 'Upload file',
+            classes: 'govuk-button--secondary moj-multi-file-upload__button'
+          })}}
 
-    {{govukButton({
-      text: 'Upload file',
-      classes: 'govuk-button--secondary moj-multi-file-upload__button'
-    })}}
-  {% endset %}
+        {% endset %}
 
-  {{ mojMultiFileUpload({
-    uploadedFiles: {
-      heading: { text: 'File added' },
-      items: []
-    },
-    uploadHtml: uploadHtml
-  }) }}
+        {{ mojMultiFileUpload({
+          uploadedFiles: {
+            heading: { text: 'File added' },
+            items: []
+          },
+          uploadHtml: uploadHtml
+        }) }}
+      </section>
 
-<form action="add-ip-cya" method="post">
-{{ govukButton({
-  text: "Continue",
-  href: "add-ip-cya?attachment=yes"
-}) }}
+      <section class="govuk-!-margin-bottom-9">
+        <!-- site visit requested -->
+        {{ govukCheckboxes({
+          name: "siteVisit",
+          fieldset: {
+            legend: {
+              text: "Site visit requested",
+              classes: "govuk-visually-hidden"
+            }
+          },
+          items: [
+            {
+              value: "siteVisitRequest",
+              text: "A site visit has been requested"
+            }
+          ]
+        }) }}
+      </section>
 
-{% if data['manual-ip-comment'] %}
-{{ govukButton({
-  text: "No attachment",
-  href: "add-ip-cya?attachment=no",
-  classes: "govuk-button--secondary"
-}) }}
-{% endif %}
-  </form>
+      <form action="add-ip-cya" method="post">
+        {{ govukButton({
+          text: "Continue",
+          href: "add-ip-cya?attachment=yes"
+        }) }}
+      </form>
 
-  </div></div>
+    </div>
+  </div>
 
-  {% endblock %}
+{% endblock %}
 
 {% block pageScripts %}
   <script>

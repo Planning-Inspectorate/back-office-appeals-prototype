@@ -5,7 +5,7 @@
 
 @import "PINS-header";
 @import "pins/pins_tables";
-
+@import "components/footer";
 
 // Add extra styles here
 
@@ -157,18 +157,4 @@ pre {
 	font-size:1.2em;
 	line-height: 1.5em;
 	margin: 0;
-}
-
-
-.govuk-text-align-right {
-	text-align: right;
-}
-
-
-.govuk-doc-upload-card__document {
-	text-align: left;
-
-}
-.govuk-doc-upload-card__metadata {
-	
 }

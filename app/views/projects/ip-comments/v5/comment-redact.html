@@ -20,9 +20,19 @@
     <h2 class="govuk-heading-m">
       Make redactions
     </h2>
-    <p class="govuk-body">
-      Use the ‘redact text’ box to select the words you want to redact. Repeat until you have finished redacting, then choose continue.
-    </p>
+
+    <ol class="govuk-list govuk-list--number">
+      <li>
+        Use the ‘redacted comment’ to select the words you want to redact.
+      </li>
+      <li>
+        Select ‘redact’ to confirm your redaction. Repeat until you have finished.
+      </li>
+      <li>
+        Select ‘continue’ when you have finished redacting.
+      </li>
+    </ol>
+
   </div>
 
   <div class="govuk-grid-column-one-half">
@@ -31,9 +41,9 @@
       {{ govukTextarea({
         name: "redactedComment",
         id: "redactedComment",
-        rows: "6",
+        rows: "9",
         label: {
-          text: "Redact text",
+          text: "Redacted comment",
           classes: "govuk-label--s",
           isPageHeading: false
         },
@@ -51,7 +61,7 @@
     }) }}
   </div>
   <div class="govuk-grid-column-one-half">
-    <h2 class="govuk-heading-s">Original comment</h2>
+    <h2 class="govuk-heading-s govuk-!-margin-bottom-3">Original comment</h2>
     <p>Having reviewed the proposal I would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. All of us here at number 6 The Grove agree.</p>
   </div>
 

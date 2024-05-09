@@ -1,4 +1,4 @@
-{% macro caseHeading(caseHeading, caseStatus) %}
+{% macro caseHeading(caseHeading, caseTag) %}
 
 <span class="govuk-caption-l">Appeal 211667</span>
 <h1 class="govuk-heading-l">Case details</h1>
@@ -9,12 +9,12 @@
 {%if caseHeading === "default"%}
 
   {{caseStatus (
-        caseStatus = "validation"
+        caseStatus = caseTag
         ) 
   }}
 
 {{ govukSummaryList ({
-  classes: "govuk-summary-list--no-border govuk-!-margin-top-7",
+  classes: "govuk-summary-list--no-border govuk-!-margin-top-5",
   rows: [
     {
       key: {
@@ -41,14 +41,14 @@
         caseStatus = "complete"
         ) 
   }}
-             <div class="govuk-inset-text govuk-!-margin-top-7">
+             <div class="govuk-inset-text govuk-!-margin-top-5">
                 <p>Appeal completed: 6 February 2024</p>
                 <p>Decision: 2 May 2024</p>
                 <p><a href="view-letter">View decision letter</a></p>
               </div>
 
     {{ govukSummaryList ({
-        classes: "govuk-summary-list--no-border govuk-!-margin-top-7",
+        classes: "govuk-summary-list--no-border govuk-!-margin-top-5",
         rows: [
         {
             key: {
@@ -75,13 +75,13 @@
         caseStatus = "withdrawn"
         ) 
   }}
-             <div class="govuk-inset-text govuk-!-margin-top-7">
+             <div class="govuk-inset-text govuk-!-margin-top-5">
                 <p>Appeal withdrawn: 2 May 2024</p>
                 <p><a href="view-letter">View withdrawal request</a></p>
               </div>
 
     {{ govukSummaryList ({
-        classes: "govuk-summary-list--no-border govuk-!-margin-top-7",
+        classes: "govuk-summary-list--no-border govuk-!-margin-top-5",
         rows: [
         {
             key: {

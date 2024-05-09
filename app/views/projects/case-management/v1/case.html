@@ -1,0 +1,134 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set pageName="Case details" %}
+
+{% set crossTeam1 = "Internal cross-team correspondence" %}
+
+{% block content %}
+
+{% from "/patterns/case-heading/default.njk" import caseHeading %}
+{% from "govuk/components/accordion/macro.njk" import govukAccordion %}
+
+
+
+<script>
+    var crossTeam = "Internal cross-team correspondence"; 
+    var inspector = "Internal inspector correspondence"
+</script>
+
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        
+    
+        {{
+          caseHeading (
+              caseTag = "questionnaire",
+              caseHeading = "default"
+          ) 
+      }}
+    
+
+      {{ govukAccordion({
+        id: "accordion-default",
+        items: [
+          {
+            heading: {
+              text: "Overview"
+            },
+            content: {
+              html: '<p class="govuk-body">This is the content for Overview.</p>'
+            }
+          },
+          {
+            heading: {
+              text: "Site"
+            },
+            content: {
+              html: '<p class="govuk-body">This is the content for Site.</p>'
+            }
+          },
+          {
+            heading: {
+              text: "Timetable"
+            },
+            content: {
+              html: '<p class="govuk-body">This is the content for Timetable.</p>'
+            }
+          },
+          {
+            heading: {
+              text: "Documentation"
+            },
+            content: {
+              html: '<p class="govuk-body">This is the content for Documentation.</p>'
+            }
+          },
+          {
+            heading: {
+              text: "Team"
+            },
+            content: {
+              html: '<p class="govuk-body">This is the content for Team.</p>'
+            }
+        },
+        {
+            heading: {
+              text: "Contacts"
+            },
+            content: {
+              html: '<p class="govuk-body">This is the content for Contacts.</p>'
+            }
+        },
+        {
+            heading: {
+              text: "Case management"
+            },
+            content: {
+              html: '<p class="govuk-body">This is the content for How people read.</p>'
+              
+            },
+            content: {
+                html: 
+                    '<ul class="govuk-list">
+                        <li>
+                            <a class="govuk-link" href="cross-team-correspondence.html">
+                              {{crossTeam1}}                        
+                            </a>
+                        </li>
+
+
+                        <li>
+                            <a class="govuk-link" id="crossTeam" href="cross-team-correspondence.html">
+                                <script>
+                                    document.getElementById("crossTeam").innerHTML = crossTeam;  
+                                </script>                           
+                            </a>
+                        </li>
+                        <li>
+                            <a class="govuk-link" id="inspector" href="#">
+                                <script>
+                                    document.getElementById("inspector").innerHTML = inspector;
+                                </script>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="govuk-link" href="#">Appeal withdrawal</a>
+                        </li>
+                        <li>
+                            <a class="govuk-link" href="#">Case history</a>
+                        </li>
+                    </ul>'
+                
+              }
+
+        }
+        ]
+      }) }} 
+    
+    
+    </div>
+</div>
+
+{% endblock %}

@@ -1,10 +1,16 @@
 {% extends "layouts/PINS.html" %}
 
-{% set pageName="IP comments shared" %}
-
-{% set title = "Check your answers" %}
+{% set title = "IP comments shared" %}
+{% set pageName = title %}
 
 {% set back = false %}
+
+{% set prototypeLinks = [
+  {
+    href: '/projects/ip-comments/v5/index?list=personal&ip-comments-shared=yes',
+    text: 'Alternative option'
+  }
+] %}
 
 {% block content %}
 

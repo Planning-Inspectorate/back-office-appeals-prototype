@@ -25,36 +25,9 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <!-- {{ govukTable({
-      firstCellIsHeader: true,
-      head: [
-        {
-          text: "Documentation"
-        },
-        {
-          text: "Status"
-        },
-        {
-          text: "Action"
-        }
-      ],
-      rows: [
-        [
-          {
-            text: "IP comments"
-          },
-          {
-            text: "9 accepted comments"
-          },
-          {
-            html: "<a href='../../ip-comments/v3/ip-comments#valid-tab'>View</a>"
-          }
-        ]
-      ]
-    }) }} -->
-
-    <!-- <form action="confirm-ipcomments" method="post" class="govuk-!-margin-top-2"> -->
-    <form action="/projects/ip-comments/v5/index?list=personal&ip-comments-shared=yes" method="post" class="govuk-!-margin-top-2">
+    <!-- two options for the result of sharing IP comments -->
+    <form action="confirm-ipcomments" method="post" class="govuk-!-margin-top-2">
+    <!-- <form action="/projects/ip-comments/v5/index?list=personal&ip-comments-shared=yes" method="post" class="govuk-!-margin-top-2"> -->
 
       <!-- {{ govukWarningText({
         html: "Confirming will share accepted IP comments with the main parties.",

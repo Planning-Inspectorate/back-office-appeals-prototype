@@ -4,9 +4,26 @@
 
 {% set back = true %}
 
+{% set prototypeLinks = [
+  {
+    href: '?no-comments=yes',
+    text: 'No comments to review'
+  } if data['no-comments'] != 'yes',
+  {
+    href: '?no-comments=',
+    text: 'Comments to review'
+  } if data['no-comments'] == 'yes',
+  {
+    href: '?comments-shared=yes',
+    text: 'Comments shared'
+  } if data['comments-shared'] != 'yes',
+  {
+    href: '?comments-shared=',
+    text: 'Comments window is open'
+  } if data['comments-shared'] == 'yes'
+] %}
+
 {% block content %}
-
-
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
@@ -68,7 +85,7 @@
       {% if data['no-comments'] %}
 
         <p class="govuk-body">
-          There are no comments to review.
+          Awaiting comments.
         </p>
 
       {% else %}
@@ -171,11 +188,13 @@
 
     {% set validHtml %}
 
-      <p class="govuk-body">
-        <a href='#' class='govuk-link govuk-link--no-visited-state'>
-          Download all comments
-        </a>
-      </p>
+      {% if data['comments-shared'] %}
+        <p class="govuk-body">
+          <a href='#' class='govuk-link govuk-link--no-visited-state'>
+            Download all comments
+          </a>
+        </p>
+      {% endif %}
 
       {{ govukTable({
         caption: "Accepted comments",

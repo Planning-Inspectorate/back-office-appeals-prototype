@@ -1,0 +1,44 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Confirm you want to withdraw this comment" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Appeal 2114328</span>
+    <h1 class="govuk-heading-l">
+      {{ title }}
+    </h1>
+
+    {{ govukWarningText({
+      text: "You will not be able to undo this action.",
+      iconFallbackText: "Warning"
+    }) }}
+
+    {% if data['comment-mode'] == 'review' %}
+      {{ govukButton({
+        href: "/projects/ip-comments/v5/ip-comments?comment-withdrawn=yes",
+        text: "Withdraw this comment",
+        classes: "govuk-button--warning"
+      }) }}
+    {% else %}
+      {{ govukButton({
+        href: "/projects/ip-comments/v5/ip-comments?comment-withdrawn=yes#valid-tab",
+        text: "Withdraw this comment",
+        classes: "govuk-button--warning"
+      }) }}
+    {% endif %}
+
+  </div>
+</div>
+
+
+
+
+
+{% endblock %}

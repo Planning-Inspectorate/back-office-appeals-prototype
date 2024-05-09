@@ -9,6 +9,21 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
+    {% set crosscopybanner %}
+      <p class="govuk-notification-banner__heading">
+        43 interested party comments for appeal 2114328
+      </p>
+    {% endset %}
+
+    {% if data['ip-comments-shared'] %}
+
+      {{ govukNotificationBanner({
+        html: crosscopybanner,
+        type: "success"
+      }) }}
+
+    {% endif %}
+
     <h1 class="govuk-heading-l">
       Cases assigned to you
     </h1>
@@ -92,7 +107,7 @@
   </thead>
   <tbody class="govuk-table__body">
     <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header"><a href="case.html?list=">2110166</a></th>
+      <th scope="row" class="govuk-table__header"><a href="case.html?list=&crosscopied=">2110166</a></th>
       <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Lead</strong></td>
       <td class="govuk-table__cell"><a href="#">View appellant case</a></td>
       <td class="govuk-table__cell">10 July 2023</td>
@@ -120,8 +135,8 @@
       <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--purple">Statements</strong></td>
     </tr>
 
-	<tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header"><a href="case.html?status=statement-review">2114328</a></th>
+	  <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header"><a href="case.html?status=statement-review&crosscopied=">2114328</a></th>
       <td class="govuk-table__cell"></td>
       <td class="govuk-table__cell">
         <a href="ip-comments?redactedComment=#review-tab">
@@ -136,7 +151,7 @@
       <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--purple">Statements</strong></td>
     </tr>
 
-<tr class="govuk-table__row">
+    <tr class="govuk-table__row">
       <th scope="row" class="govuk-table__header"><a href="case-upto-date.html?status=statement-review">2110928</a></th>
       <td class="govuk-table__cell"></td>
       <td class="govuk-table__cell">IP comments reviewed<br><a href="#">Review statement</a></td>
@@ -145,12 +160,20 @@
     </tr>
 
     <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header"><a href="../../cross-copy/v1/case-ipcomments">2110928</a></th>
+      <th scope="row" class="govuk-table__header">
+        <a href="../../cross-copy/v1/case-ipcomments">
+          2110928
+        </a>
+      </th>
       <td class="govuk-table__cell"></td>
       <td class="govuk-table__cell">
-        <a href="../../cross-copy/v2/crosscopy-ipcomments">
-          Share IP comments with main parties
-        </a><br>
+        <!-- do not show the first link if the comments are shared -->
+        {% if data['ip-comments-shared'] %}
+        {% else %}
+          <a href="../../cross-copy/v2/crosscopy-ipcomments">
+            Share IP comments with main parties
+          </a><br>
+        {% endif %}
         <a href="#">
           Share statement with main parties
         </a></td>
@@ -165,7 +188,6 @@
       <td class="govuk-table__cell">13 July 2023</td>
       <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--orange">Final comment review</strong></td>
     </tr>
-
 
   </tbody>
 </table>

@@ -28,7 +28,7 @@
 
         {{
             caseHeading (
-                caseHeading = "withdrawn"
+                caseHeading = "complete"
             ) 
         }}
                  
@@ -63,8 +63,14 @@
         <h2 class="govuk-heading-l">When to use this pattern</h2>
     
         <p>
-          Several areas of the service benefit from this component to help users to contextualise a set of appeals or maintain focus on a specific one.
+          The case heading helps the user to identify the appeal they are working on. It features some variants, depending on the appeal status. These are:
         </p>
+        <ul class="govuk-list govuk-list--bullet">
+            <li>closed</li>
+            <li>complete</li>
+            <li>transferred</li>
+            <li>withdrawn</li>
+          </ul>
     
         <h2 class="govuk-heading-l">How it works</h2>
     
@@ -73,7 +79,7 @@
         <h3 class="govuk-heading-m">Parameters</h3>
     
         {{ govukSummaryList({ rows: [ { key: { text: "caseHeading" }, value: { text:
-        "default" } } ] })
+        "default, closed, complete, transferred, withdrawn" } } ] })
         }} {% endblock %}
       </div>
     </div>

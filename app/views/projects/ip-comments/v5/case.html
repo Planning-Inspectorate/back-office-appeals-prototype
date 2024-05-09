@@ -4,34 +4,46 @@
 
 {% block content %}
 
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      {% set crosscopybanner %}
+        <p class="govuk-notification-banner__heading">
+    	    You’ve added an IP comment from Sam Fisher
+    	  </p>
+      {% endset %}
 
- {% set html %}
-      <p class="govuk-notification-banner__heading">
-  	    Interested party comments awaiting review
-  	  </p>
-  	  <p>
-        <a class="govuk-notification-banner__link" href="ip-comments">
-          Review
-        </a>
-      </p>
-    {% endset %}
-    
-    {{ govukNotificationBanner({
-	  html: html
-	}) }}
+      {% set html %}
+        <p class="govuk-notification-banner__heading">
+    	    Interested party comments awaiting review
+    	  </p>
+    	  <p>
+          <a class="govuk-notification-banner__link" href="ip-comments?crosscopied=">
+            Review interested party comments
+          </a>
+        </p>
+      {% endset %}
 
-    <span class="govuk-caption-l">Appeal 2114328</span>
-    	<h1 class="govuk-heading-l">Case details</h1>
+      {% if data['crosscopied'] %}
+
+        {{ govukNotificationBanner({
+          html: crosscopybanner,
+          type: "success"
+        }) }}
+
+      {% endif %}
+
+      {{ govukNotificationBanner({
+        html: html
+      }) }}
+
+      <span class="govuk-caption-l">Appeal 2114328</span>
+    	<h1 class="govuk-heading-l">
+        Case details
+      </h1>
       <strong class="govuk-tag govuk-tag--purple">
         Statements
       </strong>
-
-      
-      
 
       {% include "/includes/appeal-content/lpa-has-appeal-meta.html" %}
       <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
@@ -146,11 +158,11 @@
                 ]
               ]
             }) }}
-          
+
           </div>
         </div>
 
-        
+
 
         <div class="govuk-accordion__section">
           <div class="govuk-accordion__section-header">
@@ -187,7 +199,7 @@
                       Change</a>
                   </dd>
               </div>
-              
+
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
                   Potential safety risks (LPA answer)
@@ -252,7 +264,7 @@
                 </dd>
                   <dd class="govuk-summary-list__actions">
                       <a class="govuk-link" href="manage-neighbouring-sites.html">
-                      View LPAQ</a> 
+                      View LPAQ</a>
                   </dd>
               </div>
                <div class="govuk-summary-list__row">
@@ -260,19 +272,19 @@
                   Neighbouring sites (Inspector and/or third party request)
                 </dt>
                 <dd class="govuk-summary-list__value">
-                
+
                   None
-                
+
                 </dd>
-                  <dd class="govuk-summary-list__actions">
-                    <a class="govuk-link" href="additional-neighbours-address">
-                        Add</a>
-                  </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="additional-neighbours-address">
+                    Add
+                  </a>
+                </dd>
               </div>
-        </dl>
+            </dl>
           </div>
         </div>
-
 
         <div class="govuk-accordion__section">
           <div class="govuk-accordion__section-header">
@@ -337,55 +349,51 @@
           </div>
           <div id="accordion-default-content-3" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-3">
             <table class="govuk-table">
-  
-  
+
+
               <thead class="govuk-table__head">
                 <tr class="govuk-table__row">
-                
+
                   <th scope="col" class="govuk-table__header">Documentation</th>
-                
+
                   <th scope="col" class="govuk-table__header">Status</th>
-                
+
                   <th scope="col" class="govuk-table__header">Due date</th>
-                
+
                   <th scope="col" class="govuk-table__header">Action</th>
-                
+
                 </tr>
               </thead>
-              
+
               <tbody class="govuk-table__body">
-                
-                  
-                    <tr class="govuk-table__row">
 
-                      <td class="govuk-table__cell">Appellant case</td>
-                      <td class="govuk-table__cell">Complete</td>
-                      <td class="govuk-table__cell"></td>
-                      <td class="govuk-table__cell"><a href="#">Review</a></td>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Appellant case</td>
+                  <td class="govuk-table__cell">Complete</td>
+                  <td class="govuk-table__cell"></td>
+                  <td class="govuk-table__cell"><a href="#">Review</a></td>
+                </tr>
 
-                    </tr>
-                  
-                
-                  
-                    <tr class="govuk-table__row">
-      
-                      <td class="govuk-table__cell">LPA questionnaire</td>
-                      <td class="govuk-table__cell">Complete</td>
-                      <td class="govuk-table__cell"></td>
-                      <td class="govuk-table__cell"><a href="task-list">Review</a></td>
-                 
-                    </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">LPA questionnaire</td>
+                  <td class="govuk-table__cell">Complete</td>
+                  <td class="govuk-table__cell"></td>
+                  <td class="govuk-table__cell"><a href="task-list">Review</a></td>
+                </tr>
 
-                    <tr class="govuk-table__row">
-      
-                      <td class="govuk-table__cell">Interested party comments</td>
-                      <td class="govuk-table__cell">Awaiting review</td>
-                      <td class="govuk-table__cell"></td>
-                      <td class="govuk-table__cell"><a href="ip-comments">Review</a> | <a href="add-ip-email">Add</a></td>
-                 
-                    </tr>
-                  
-                
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Interested party comments</td>
+                  <td class="govuk-table__cell">Awaiting review</td>
+                  <td class="govuk-table__cell"></td>
+                  <td class="govuk-table__cell">
+                    <a href="ip-comments">
+                      Review<span class="govuk-visually-hidden"> interested party comments</span>
+                    </a><br>
+                    <a href="add-ip-email">
+                      Add<span class="govuk-visually-hidden"> interested party comments</span>
+                    </a>
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -474,7 +482,7 @@
     </div>
   </div>
 
-  
+
 
 
 {% endblock %}

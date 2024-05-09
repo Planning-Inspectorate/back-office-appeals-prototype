@@ -18,7 +18,7 @@
 </div>
 
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
+  <div class="govuk-grid-column-full">
 
     <dl class="govuk-summary-list">
       <div class="govuk-summary-list__row">
@@ -86,7 +86,7 @@
         items: [
           {
             value: "siteVisitRequest",
-            text: "A site visit has been requested"
+            text: "The comment includes a site visit request"
           }
         ]
       }) }}
@@ -109,18 +109,18 @@
         items: [
          {
             value: "valid~ip-comments-done?commentReview=true",
-            text: "Yes"
+            text: "Accept comment"
           },
          {
             value: "redactionNeeded~comment-redact",
-            text: "Yes, after it has been redacted"
+            text: "Redact comment"
           },
             {
               divider: "or"
             },
           {
-            value: "invalid~invalid-reason",
-            text: "No"
+            value: "invalid~reject-comment",
+            text: "Reject comment"
           }
         ]
       }) }}

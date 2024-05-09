@@ -63,100 +63,111 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
 
-    {% set reviewHtml %}
-      {{ govukTable({
-        caption: "Awaiting review",
-        captionClasses: "govuk-table__caption--m govuk-visually-hidden",
-        firstCellIsHeader: false,
-        head: [
-          {
-            text: "Interested party"
-          },
-          {
-            text: "Email address"
-          },
-          {
-            text: "Submitted"
-          },
-          {
-            text: "Action"
-          }
-        ],
-        rows: [
-          [
-              {
-                text: "Ian Smith"
-              },
-              {
-                text: "ian.smith@gmail.com"
-              },
-              {
-                text: "26 Nov 2023"
-              },
-              {
-                html: "<a href='comment-review'>Review<span class='govuk-visually-hidden'> comment from Ian Smith</span></a>"
-              }
-          ],
-          [
-            {
-                text: "Robyn Jenkins"
-              },
-              {
-                text: "Not provided"
-              },
-              {
-                text: "27 Nov 2023"
-              },
-              {
-                html: "<a href='comment-review'>Review<span class='govuk-visually-hidden'> comment from Robyn Jenkins</span></a>"
-              }
-          ],
-          [
-            {
-                text: "Cath Fairfield"
-              },
-              {
-                text: "cathyf@gmail.com"
-              },
-              {
-                text: "29 Nov 2023"
-              },
-              {
-                html: "<a href='comment-review'>Review<span class='govuk-visually-hidden'> comment from Cath Fairfield</span></a>"
-              }
-          ],
-          [
-            {
-                text: "Brian Thompson"
-              },
-              {
-                text: "brian@thompsonbrothers.com"
-              },
-              {
-                text: "1 Dec 2023"
-              },
-              {
-                html: "<a href='comment-review'>Review<span class='govuk-visually-hidden'> comment from Brian Thompson</span></a>"
-              }
-          ],
-          [
-            {
-                text: "Dan Brighthouse"
-              },
-              {
-                text: "brighthousedan167@gmail.com"
-              },
-              {
-                text: "3 Dec 2023"
-              },
-              {
-                html: "<a href='comment-review'>Review<span class='govuk-visually-hidden'> comment from Dan Brighthouse</span></a>"
-              }
-          ]
-        ]
-      }) }}
+      {% set reviewHtml %}
 
-    {% endset %}
+      {% if data['no-comments'] %}
+
+        <p class="govuk-body">
+          There are no comments to review.
+        </p>
+
+      {% else %}
+
+        {{ govukTable({
+          caption: "Awaiting review",
+          captionClasses: "govuk-table__caption--m govuk-visually-hidden",
+          firstCellIsHeader: false,
+          head: [
+            {
+              text: "Interested party"
+            },
+            {
+              text: "Email address"
+            },
+            {
+              text: "Submitted"
+            },
+            {
+              text: "Action"
+            }
+          ],
+          rows: [
+            [
+                {
+                  text: "Ian Smith"
+                },
+                {
+                  text: "ian.smith@gmail.com"
+                },
+                {
+                  text: "26 Nov 2023"
+                },
+                {
+                  html: "<a href='comment-review'>Review<span class='govuk-visually-hidden'> comment from Ian Smith</span></a>"
+                }
+            ],
+            [
+              {
+                  text: "Robyn Jenkins"
+                },
+                {
+                  text: "Not provided"
+                },
+                {
+                  text: "27 Nov 2023"
+                },
+                {
+                  html: "<a href='comment-review'>Review<span class='govuk-visually-hidden'> comment from Robyn Jenkins</span></a>"
+                }
+            ],
+            [
+              {
+                  text: "Cath Fairfield"
+                },
+                {
+                  text: "cathyf@gmail.com"
+                },
+                {
+                  text: "29 Nov 2023"
+                },
+                {
+                  html: "<a href='comment-review'>Review<span class='govuk-visually-hidden'> comment from Cath Fairfield</span></a>"
+                }
+            ],
+            [
+              {
+                  text: "Brian Thompson"
+                },
+                {
+                  text: "brian@thompsonbrothers.com"
+                },
+                {
+                  text: "1 Dec 2023"
+                },
+                {
+                  html: "<a href='comment-review'>Review<span class='govuk-visually-hidden'> comment from Brian Thompson</span></a>"
+                }
+            ],
+            [
+              {
+                  text: "Dan Brighthouse"
+                },
+                {
+                  text: "brighthousedan167@gmail.com"
+                },
+                {
+                  text: "3 Dec 2023"
+                },
+                {
+                  html: "<a href='comment-review'>Review<span class='govuk-visually-hidden'> comment from Dan Brighthouse</span></a>"
+                }
+            ]
+          ]
+        }) }}
+
+        {% endif %}
+
+      {% endset %}
 
     {% set validHtml %}
 
@@ -492,8 +503,7 @@
         ]
       }) }}
 
-    {% endset %}
-
+      {% endset %}
 
      {{ govukTabs({
       items: [

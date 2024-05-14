@@ -3,6 +3,7 @@
 {% set pageName="Case details" %}
 
 {% set crossTeam1 = "Internal cross-team correspondence" %}
+{% set crossTeam2 = (data ['Internal cross-team correspondence'])%}
 
 {% block content %}
 
@@ -94,9 +95,10 @@
                     '<ul class="govuk-list">
                         <li>
                             <a class="govuk-link" href="cross-team-correspondence.html">
-                              {{crossTeam1}}                        
+                                {{crossTeam2}}                  
                             </a>
                         </li>
+                        
 
 
                         <li>

@@ -1,6 +1,18 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set pageName="Personal list" %}
+{% set title = 'Comment from Ian Smith' %}
+{% set pageName = title %}
+
+{% set prototypeLinks = [
+  {
+    href: '?comments-shared=yes',
+    text: 'Comments shared'
+  } if data['comments-shared'] != 'yes',
+  {
+    href: '?comments-shared=',
+    text: 'Comments window is open'
+  } if data['comments-shared'] == 'yes'
+] %}
 
 {% block backLink %}
   {{ govukBackLink({
@@ -77,9 +89,12 @@
       </div>
     </dl>
 
-    <p class="govuk-body">
-      The appellant has decided to <a href='confirm-withdraw-comment?comment-mode=view' class='govuk-link govuk-link--no-visited-state'>withdraw this comment</a>.
-    </p>
+    {% if data['comments-shared'] != 'yes' %}
+      <p class="govuk-body">
+        The appellant has decided to <a href='withdraw-comment-upload-evidence?comment-mode=view' class='govuk-link govuk-link--no-visited-state'>withdraw this comment</a>.
+      </p>
+    {% endif %}
+
 
   </div>
 </div>

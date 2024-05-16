@@ -1,0 +1,41 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Upload the request to withdraw" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Appeal 2114328</span>
+    <h1 class="govuk-heading-l">
+      {{ title }}
+    </h1>
+
+    {{ govukFileUpload({
+      id: "file-upload-1",
+      name: "file-upload-1",
+      label: {
+        text: "Upload a file"
+      },
+      hint: {
+        text: 'The files must be a DOC, DOCX, PDF, TIF, JPG or PNG and be smaller than 15MB'
+      }
+    }) }}
+
+    {{ govukButton({
+      href: "confirm-withdraw-comment",
+      text: "Continue"
+    }) }}
+
+  </div>
+</div>
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,235 @@
+{% if data['comments-shared'] %}
+  <p class="govuk-body">
+    <a href='#' class='govuk-link govuk-link--no-visited-state'>
+      Download all comments
+    </a>
+  </p>
+{% endif %}
+
+{{ govukTable({
+  caption: "Rejected comments",
+  captionClasses: "govuk-table__caption--m govuk-visually-hidden",
+  firstCellIsHeader: false,
+  head: [
+    {
+      text: "Interested party"
+    },
+    {
+      text: "Email address"
+    },
+    {
+      text: "Submitted"
+    },
+    {
+      text: "Action"
+    }
+  ],
+  rows: [
+    [
+        {
+          text: "Davina Twinee"
+        },
+        {
+          text: "dtwins@email.com"
+        },
+        {
+          text: 12 | daysAgo
+        },
+        {
+          html: "<a href='comment-view?redactedComment='>View<span class='govuk-visually-hidden'> comment from Davina Twinee</span></a>"
+        }
+    ],
+    [
+      {
+          text: "Jambodge Twitch"
+        },
+        {
+          text: "jtwitch@email.com"
+        },
+        {
+          text: 12 | daysAgo
+        },
+        {
+          html: "<a href='comment-view?redactedComment='>View<span class='govuk-visually-hidden'> comment from Jambodge Twitch</span></a>"
+        }
+    ],
+    [
+      {
+          text: "Abrabella Deschamps"
+        },
+        {
+          text: ""
+        },
+        {
+          text: 13 | daysAgo
+        },
+        {
+          html: "<a href='comment-view?redactedComment='>View<span class='govuk-visually-hidden'> comment from Abrabella Deschamps</span></a>"
+        }
+    ],
+    [
+      {
+          text: "Jr. Pipple"
+        },
+        {
+          text: "jippo@email.com"
+        },
+        {
+          text: 13 | daysAgo
+        },
+        {
+          html: "<a href='comment-view?redactedComment='>View<span class='govuk-visually-hidden'> comment from Jr. Pipple</span></a>"
+        }
+    ],
+    [
+      {
+          text: "Caleb Graves"
+        },
+        {
+          text: "calebrules22@email.com"
+        },
+        {
+          text: 18 | daysAgo
+        },
+        {
+          html: "<a href='comment-view?redactedComment='>View<span class='govuk-visually-hidden'> comment from Caleb Graves</span></a>"
+        }
+    ],
+    [
+      {
+          text: "Zayd Morales"
+        },
+        {
+          text: ""
+        },
+        {
+          text: 22 | daysAgo
+        },
+        {
+          html: "<a href='comment-view?redactedComment='>View<span class='govuk-visually-hidden'> comment from Zayd Morales</span></a>"
+        }
+    ],
+    [
+      {
+          text: "Kai Petersen"
+        },
+        {
+          text: "kpeters1999@hotmail.com"
+        },
+        {
+          text: 22 | daysAgo
+        },
+        {
+          html: "<a href='comment-view?redactedComment='>View<span class='govuk-visually-hidden'> comment from Kai Petersen</span></a>"
+        }
+    ],
+    [
+      {
+          text: "Kellan Cline"
+        },
+        {
+          text: "kc123@email.com"
+        },
+        {
+          text: 32 | daysAgo
+        },
+        {
+          html: "<a href='comment-view?redactedComment='>View<span class='govuk-visually-hidden'> comment from Kellan Cline</span></a>"
+        }
+    ],
+    [
+      {
+          text: "Francesca Christian"
+        },
+        {
+          text: "frankie.christian@email.com"
+        },
+        {
+          text: 32 | daysAgo
+        },
+        {
+          html: "<a href='comment-view?redactedComment='>View<span class='govuk-visually-hidden'> comment from Francesca Christian</span></a>"
+        }
+    ],
+    [
+      {
+          text: "Destiny Arellano"
+        },
+        {
+          text: ""
+        },
+        {
+          text: 35 | daysAgo
+        },
+        {
+          html: "<a href='comment-view?redactedComment='>View<span class='govuk-visually-hidden'> comment from Destiny Arellano</span></a>"
+        }
+    ],
+    [
+      {
+          text: "Emmalyn Whitaker"
+        },
+        {
+          text: "emmalyn.whitaker@mymail.com"
+        },
+        {
+          text: 37 | daysAgo
+        },
+        {
+          html: "<a href='comment-view?redactedComment='>View<span class='govuk-visually-hidden'> comment from Emmalyn Whitaker</span></a>"
+        }
+    ],
+    [
+      {
+          text: "Naya Carey"
+        },
+        {
+          text: ""
+        },
+        {
+          text: 37 | daysAgo
+        },
+        {
+          html: "<a href='comment-view?redactedComment='>View<span class='govuk-visually-hidden'> comment from Naya Carey</span></a>"
+        }
+    ],
+    [
+      {
+          text: "Bowen McConnell"
+        },
+        {
+          text: ""
+        },
+        {
+          text: 38 | daysAgo
+        },
+        {
+          html: "<a href='comment-view?redactedComment='>View<span class='govuk-visually-hidden'> comment from Bowen McConnell</span></a>"
+        }
+    ]
+]
+}) }}
+
+{{ govukPagination({
+  previous: {
+    href: "#"
+  },
+  next: {
+    href: "#"
+  },
+  items: [
+    {
+      number: 1,
+      current: true,
+      href: "#"
+    },
+    {
+      number: 2,
+      href: "#"
+    },
+    {
+      number: 3,
+      href: "#"
+    }
+  ]
+}) }}

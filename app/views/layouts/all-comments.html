@@ -1,0 +1,48 @@
+{% extends '_layouts/layout-main.html' %}
+
+{# Add a body class to override things if needed #}
+{% set bodyClasses = 'internal' %}
+
+{% set serviceName = "" %}
+
+{% block beforeContent %}
+
+{% endblock %}
+
+{% from 'govuk/components/inset-text/macro.njk'          import govukInsetText %}
+
+{% block bodyEnd %}
+	<style>
+		.govuk-width-container {
+			max-width: 650px
+		}
+		a {
+			word-wrap: break-word
+		}
+		.email-header {
+			background: #00958f;
+			padding: 10px;
+			margin-bottom: 30px;
+		}
+	</style>
+{% endblock %}
+
+{% block content %}
+	{% block emailHeader %}{% endblock %}
+
+	<div class="govuk-!-margin-bottom-3">
+		<hr class="govuk-section-break govuk-section-break--visible govuk-section-break--l">
+	</div>
+
+	<!-- <div class="email-header">
+		<img src="/public/images/pins-logo-email.png" height="54">
+	</div> -->
+
+	{% block emailContent %}{% endblock %}
+
+	<p class="govuk-body">
+		The Planning Inspectorate
+		<br>
+		enquiries@planninginspectorate.gov.uk
+	</p>
+{% endblock %}

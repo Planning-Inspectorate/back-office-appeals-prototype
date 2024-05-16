@@ -1,6 +1,7 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set pageName="Personal list" %}
+{% set title = 'Comment from Ian Smith' %}
+{% set pageName = title %}
 
 {% set back = true %}
 
@@ -11,7 +12,7 @@
 
     <span class="govuk-caption-l">Appeal 2114328</span>
     <h1 class="govuk-heading-l">
-      Comment from Ian Smith
+      {{ title }}
     </h1>
 
   </div>
@@ -126,7 +127,7 @@
       }) }}
 
       <p class="govuk-body">
-        The appellant has decided to <a href='confirm-withdraw-comment?comment-mode=review' class='govuk-link govuk-link--no-visited-state'>withdraw this comment</a>.
+        The appellant has decided to <a href='withdraw-comment-upload-evidence?comment-mode=review' class='govuk-link govuk-link--no-visited-state'>withdraw this comment</a>.
       </p>
 
       {{ govukButton({

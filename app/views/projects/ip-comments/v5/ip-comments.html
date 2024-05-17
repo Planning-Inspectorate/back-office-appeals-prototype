@@ -42,21 +42,19 @@
         </div>
         <div class="govuk-notification-banner__content">
           <p class="govuk-notification-banner__heading">
-            Comment from Ian Smith redacted
+            Comment from Ian Smith redacted and accepted
           </p>
         </div>
       </div>
-    {% elseif data ['commentReview'] === 'valid' %}
+    {% elseif data ['acceptedComment'] %}
       <div class="govuk-notification-banner  govuk-notification-banner--success" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
         <div class="govuk-notification-banner__header">
-          <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
-            Success
-          </h2>
+          <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">Success</h2>
         </div>
         <div class="govuk-notification-banner__content">
           <p class="govuk-notification-banner__heading">
             Comment from Ian Smith accepted
-          </p>
+            </p>
         </div>
       </div>
   	{% elseif data ['manual-ip-comment'] %}

@@ -69,9 +69,10 @@
       </dl>
 
       {% if data['no-email'] != 'yes' %}
-        <p class="govuk-body">
-           Confirming will inform the IP why their comment has been rejected.
-         </p>
+
+        {{ govukInsetText({
+          text: "Confirming will inform the IP why their comment has been rejected."
+        }) }}
 
         <form action="comment-rejected" method="post">
           {{ govukButton({

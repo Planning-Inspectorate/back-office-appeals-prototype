@@ -168,13 +168,16 @@
       <td class="govuk-table__cell"></td>
       <td class="govuk-table__cell">
         <!-- do not show the first link if the comments are shared -->
-        {% if data['ip-comments-shared'] %}
+        {% if data['comments-shared'] %}
+          <a href="ip-comments">
+            View shared IP comments
+          </a>
         {% else %}
           <a href="../../cross-copy/v2/crosscopy-ipcomments">
             Share IP comments with main parties
-          </a><br>
+          </a>
         {% endif %}
-        <a href="#">
+        <br><a href="#">
           Share statement with main parties
         </a></td>
       <td class="govuk-table__cell">12 July 2023</td>

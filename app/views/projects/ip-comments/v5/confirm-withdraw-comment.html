@@ -15,6 +15,44 @@
       {{ title }}
     </h1>
 
+    <dl class="govuk-summary-list govuk-!-margin-bottom-0">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Interested party
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Ian Smith
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Comment
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Having reviewed the proposal I would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. All of us here at number 6 The Grove agree.
+        </dd>
+      </div>
+    </dl>
+
+    <!-- new definition list for the reason for rejection -->
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Uploaded request to withdraw
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <a href="#" class="govuk-link">
+            {{ data ['upload-withdraw-comment'] or 'appeal-2114328-request-to-withdraw.doc' }}
+          </a>
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="#">
+            Change<span class="govuk-visually-hidden"> reason for rejection</span>
+          </a>
+        </dd>
+      </div>
+    </dl>
+
     {{ govukWarningText({
       text: "You will not be able to undo this action.",
       iconFallbackText: "Warning"

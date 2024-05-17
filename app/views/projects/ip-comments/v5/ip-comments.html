@@ -70,6 +70,22 @@
           </p>
         </div>
       </div>
+    {% elseif data ['comment-rejected'] %}
+      <div class="govuk-notification-banner  govuk-notification-banner--success" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+        <div class="govuk-notification-banner__header">
+          <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+            Success
+          </h2>
+        </div>
+        <div class="govuk-notification-banner__content">
+          <p class="govuk-notification-banner__heading">
+            Comment from {{ data ['manual-ip-first-name'] or 'Ian'}} {{ data ['manual-ip-last-name'] or 'Smith'}} has been rejected
+          </p>
+          <p class="govuk-body">
+            The interested party has not been informed. No email address was provided.
+          </p>
+        </div>
+      </div>
     {% elseif data ['comment-withdrawn'] %}
       <div class="govuk-notification-banner  govuk-notification-banner--success" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
         <div class="govuk-notification-banner__header">

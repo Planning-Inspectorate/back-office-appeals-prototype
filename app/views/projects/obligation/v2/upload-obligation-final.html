@@ -12,38 +12,49 @@
 
     
     <span class="govuk-caption-l">Appeal 2110166</span>
-  
 
       <h1 class="govuk-heading-l">Upload S106 obligation</h1>
 
     
       <form action="document-details-final" method="post" class="govuk-!-margin-top-6" novalidate>
 
-      {% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
+      
+      <div class="govuk-form-group">
+      <label class="govuk-label govuk-label--m" for="application">
+        Upload a file
+      </label>
 
-      {{ govukFileUpload({
-        id: "file-upload-1",
-        name: "file-upload-1",
-        label: {
-          text: "Choose a single file to upload"
-        },
-        hint: {
-              html: 'Files must be DOC, DOCX, PPT, PPTX, XLS, XLSX, JPG, JPEG, MPEG, MP3, MP4, MOV, PNG, TIF, or TIFF.
-              <br><br>
-              The total of your uploaded files must be smaller than 1GB. '
-            }
-      }) }}
-    
-      {% from "govuk/components/button/macro.njk" import govukButton %}
-    
+      
+      <div id="application-hint" class="govuk-hint">
+        The file must be a DOC, DOCX, PDF, XLS, TIF, JPG or PNG and be smaller than 25MB
+      </div>
+     
 
+    <div class="moj-multi-file-upload moj-multi-file-upload--enhanced">
+      <div class="moj-multi-file__uploaded-files moj-hidden">
+        <h2 class="govuk-heading-m">File added</h2>
+        <div class="govuk-summary-list moj-multi-file-upload__list">
+        </div>
+      </div>
+    
+      
+        <input class="govuk-file-upload moj-multi-file-upload__input" id="application" name="application" type="file" aria-describedby="application-hint">
+        <div aria-live="polite" role="status" class="govuk-visually-hidden"></div>
+        <br><br>
+        
+        {% from "govuk/components/button/macro.njk" import govukButton %}
 
         {{ govukButton({
           text: "Continue"
         }) }}
 
-    </form>
-
+    
+    
+     
+    
+        </div>
+      </form>
+    
  
   </div>
 </div>

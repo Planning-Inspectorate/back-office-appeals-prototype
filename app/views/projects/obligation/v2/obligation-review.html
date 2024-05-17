@@ -25,31 +25,49 @@
 
       <h1 class="govuk-heading-l">S106 obligation</h1>
 
- 
-
-
-      {{ govukSummaryList({
-        classes: "govuk-!-margin-bottom-9",
-        rows: [
+          {% from "govuk/components/table/macro.njk" import govukTable %}
+          {% set myValue = (data['received-date-year']+ "-" + data['received-date-month'] + "-" + data['received-date-day']  )  | govukDate("truncate")  %}
+          {% set myValue2 = (data['redaction'] )  %}
+      {{ govukTable({
+        caption: "Uploaded documents",
+        captionClasses: "govuk-table__caption--m",
+        firstCellIsHeader: true,
+        head: [
           {
-            key: {
-              text: "Uploaded documents"
-            },
-            value: {
+            text: "Name",
+            classes: "app-custom-class"
+          },
+          {
+            text: "Received date",
+            classes: "app-custom-class"
+          },
+          {
+            text: "Redaction status",
+            classes: "app-custom-class"
+          },
+          {
+            text: "Action",
+            classes: "app-custom-class"
+          }
+        ],
+        rows: [
+          [
+            {
               text: "example.pdf"
             },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  html: "<a href='#'> Manage</a> | <a href='#'> Add</a> ",
-                  visuallyHiddenText: "statement pdf"
-                }
-              ]
+            {
+              text: myValue
+            },
+            {
+              text: myValue2
+            },
+            {
+              html: "<a href='#'> Manage</a> | <a href='#'> Add</a> "
             }
-          }
+          ] 
         ]
       }) }}
+ 
 
        
 

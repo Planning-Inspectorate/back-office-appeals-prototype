@@ -46,8 +46,22 @@
           </a>
         </dd>
         <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="#">
+          <a class="govuk-link" href="withdraw-comment-upload-evidence">
             Change<span class="govuk-visually-hidden"> reason for rejection</span>
+          </a>
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Date of withdrawal request
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ 2 | daysAgo }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="withdraw-comment-date">
+            Change<span class="govuk-visually-hidden"> date of withdrawal request</span>
           </a>
         </dd>
       </div>
@@ -61,13 +75,13 @@
     {% if data['comment-mode'] == 'review' %}
       {{ govukButton({
         href: "/projects/ip-comments/v5/ip-comments?comment-withdrawn=yes",
-        text: "Withdraw this comment",
+        text: "Confirm",
         classes: "govuk-button--warning"
       }) }}
     {% else %}
       {{ govukButton({
         href: "/projects/ip-comments/v5/ip-comments?comment-withdrawn=yes#valid-tab",
-        text: "Withdraw this comment",
+        text: "Confirm",
         classes: "govuk-button--warning"
       }) }}
     {% endif %}

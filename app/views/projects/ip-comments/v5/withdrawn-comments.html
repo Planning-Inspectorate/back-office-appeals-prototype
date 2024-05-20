@@ -1,0 +1,53 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Withdrawn IP comments" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <!-- Page heading -->
+    <span class="govuk-caption-l">Appeal 2114328</span>
+    <h1 class="govuk-heading-l">
+      {{ title }}
+    </h1>
+
+    {{ govukTable({
+      caption: "Requests to withdrawn comment",
+      captionClasses: "govuk-table__caption--m",
+      firstCellIsHeader: true,
+      head: [
+        {
+          text: "Name",
+          classes: "govuk-!-width-one-half"
+        },
+        {
+          text: "Uploaded request"
+        }
+      ],
+      rows: [
+        [
+          {
+            text: "Jan Small"
+          },
+          {
+            html: "<a href='#' class='govuk-link'>2114328-comment-withdrawal-request-May.pdf</a>"
+          }
+        ],
+        [
+          {
+            text: "Nic Fipold-Jones"
+          },
+          {
+            html: "<a href='#' class='govuk-link'>N.Fipold-Jones_remove_my_comment.doc</a>"
+          }
+        ]
+      ]
+    }) }}
+  </div>
+</div>
+
+{% endblock %}

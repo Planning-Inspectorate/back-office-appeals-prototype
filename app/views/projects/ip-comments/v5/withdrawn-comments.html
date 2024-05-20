@@ -7,25 +7,27 @@
 
 {% block content %}
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
+  <div class="govuk-grid-column-full">
 
     <!-- Page heading -->
     <span class="govuk-caption-l">Appeal 2114328</span>
-    <h1 class="govuk-heading-l">
+    <!-- <h1 class="govuk-heading-l">
       {{ title }}
-    </h1>
+    </h1> -->
 
     {{ govukTable({
-      caption: "Requests to withdrawn comment",
-      captionClasses: "govuk-table__caption--m",
+      caption: "Withdrawn IP comments",
+      captionClasses: "govuk-table__caption--l",
       firstCellIsHeader: true,
       head: [
         {
-          text: "Name",
-          classes: "govuk-!-width-one-half"
+          text: "From"
         },
         {
-          text: "Uploaded request"
+          text: "Date"
+        },
+        {
+          text: "Withdrawal request"
         }
       ],
       rows: [
@@ -34,12 +36,18 @@
             text: "Jan Small"
           },
           {
+            html: 3 | daysAgo
+          },
+          {
             html: "<a href='#' class='govuk-link'>2114328-comment-withdrawal-request-May.pdf</a>"
           }
         ],
         [
           {
             text: "Nic Fipold-Jones"
+          },
+          {
+            html: 4 | daysAgo
           },
           {
             html: "<a href='#' class='govuk-link'>N.Fipold-Jones_remove_my_comment.doc</a>"

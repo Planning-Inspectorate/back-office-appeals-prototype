@@ -10,10 +10,13 @@
     <div class="govuk-grid-column-two-thirds">
 
       <span class="govuk-caption-l">Appeal 2114328</span>
-      <h1 class="govuk-heading-l">
+      <!-- <h1 class="govuk-heading-l">
         {{ title }}
-      </h1>
+      </h1> -->
 
+      <!-- <p class="govuk-body">
+        This is the date on the withdrawal correspondence from the IP
+      </p> -->
       <!-- <dl class="govuk-summary-list govuk-!-margin-bottom-6">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
@@ -39,12 +42,12 @@
         fieldset: {
           legend: {
             text: title,
-            isPageHeading: false,
-            classes: "govuk-visually-hidden"
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l "
           }
         },
         hint: {
-          html: "For example, 15 5 2024"
+          html: "<p class='govuk-hint'>This is the date on the withdrawal correspondence from the IP</p><p class='govuk-hint'>For example, 15 5 2024.</p>"
         }
       }) }}
 

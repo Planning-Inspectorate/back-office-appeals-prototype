@@ -4,6 +4,13 @@
 
 {% set back = false %}
 
+{% set prototypeLinks = [
+  {
+    href: '?comments-shared=',
+    text: 'Reset view'
+  } if data['comments-shared'] == 'yes'
+] %}
+
 {% block content %}
 
 <div class="govuk-grid-row">

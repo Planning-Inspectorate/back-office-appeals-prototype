@@ -18,6 +18,16 @@ addFilter('daysAgoNumeric', (number) => {
 	return date
 })
 
+addFilter('lastMonthNumeric', (number) => {
+	var date = moment().subtract(number,"days").format("M")
+	return date
+})
+
+addFilter('yearsAgo', (number) => {
+	var date = moment().subtract(number,"days").format("YYYY")
+	return date
+})
+
 addFilter('daysInFuture', (number) => {
 	var date = moment().add(number,"days").format("D MMMM YYYY")
 	return date

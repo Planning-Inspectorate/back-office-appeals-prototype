@@ -8,7 +8,10 @@
   {
     href: '?comments-shared=',
     text: 'Reset view'
-  } if data['comments-shared'] == 'yes'
+  } if data['comments-shared'] == 'yes' else {
+    href: '?comments-shared=yes',
+    text: 'Comments shared'
+  }
 ] %}
 
 {% block content %}
@@ -177,16 +180,17 @@
         <!-- do not show the first link if the comments are shared -->
         {% if data['comments-shared'] %}
           <a href="ip-comments">
-            Shared IP comments
+            View IP comments
+          </a><br>
+          <a href="#">
+            View statements
           </a>
         {% else %}
           <a href="../../cross-copy/v2/crosscopy-ipcomments">
-            Share IP comments with main parties
+            Share IP comments and statements
           </a>
         {% endif %}
-        <br><a href="#">
-          Share statement with main parties
-        </a></td>
+      </td>
       <td class="govuk-table__cell">12 July 2023</td>
       <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--purple">Statements</strong></td>
     </tr>

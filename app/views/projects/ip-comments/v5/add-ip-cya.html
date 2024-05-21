@@ -117,6 +117,20 @@
         </dd>
       </div>
 
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Redaction status
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['redaction-status'] }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="#">
+            Change<span class="govuk-visually-hidden"></span>
+          </a>
+        </dd>
+      </div>
+
       </dl>
 
       <form action="case?crosscopied=yes" method="post" class="govuk-!-margin-top-6">

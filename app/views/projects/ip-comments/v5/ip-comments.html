@@ -108,6 +108,14 @@
       {{ title }}
     </h1>
 
+    {% if data['comments-shared'] != 'yes' %}
+    <p class="govuk-body govuk-!-margin-bottom-6">
+      <a href="add-ip-email" class="govuk-link">
+        Add IP comment
+      </a>
+    </p>
+    {% endif %}
+
   </div>
 </div>
 

@@ -9,7 +9,7 @@
 
       {% set html %}
 <p class="govuk-notification-banner__heading">
-  S106 obligation complete
+  Draft S106 obligation added
 </p>
 <p>
   <a class="govuk-notification-banner__link" href="../../cross-copy/v1/lpa-statement-publish">
@@ -19,14 +19,14 @@
 {% endset %}
 
 {{ govukNotificationBanner({
-html: html,
-type: "success"
+  html: html,
+  type: "success"
 }) }}
-
 </div>
 </div>
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
+ 
     <span class="govuk-caption-l">Appeal 2110166</span>
     	<h1 class="govuk-heading-l">Case details</h1>
  
@@ -362,7 +362,6 @@ type: "success"
             </h2>
           </div>
           <div id="accordion-default-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-4">
-            {% set myValue = (data['received-date-year']+ "-" + data['received-date-month'] + "-" + data['received-date-day']  )  | govukDate("truncate")  %}
             {{ govukTable({
               captionClasses: "govuk-table__caption--m",
               firstCellIsHeader: false,
@@ -429,7 +428,7 @@ type: "success"
                     text: "Comments from interested parties"
                   },
                   {
-                    text: "Not received"
+                    text: " "
                   },
                   {
                     text: ""
@@ -444,7 +443,7 @@ type: "success"
                     text: "Apellant final comments"
                   },
                   {
-                    text: "Not received"
+                    text: " "
                   },
                   {
                     text: ""
@@ -459,7 +458,7 @@ type: "success"
                     text: "LPA final comments"
                   },
                   {
-                    text: "Not receive"
+                    text: ""
                   },
                   {
                     text: ""
@@ -471,17 +470,30 @@ type: "success"
                 ,
                 [
                   {
+                    text: "Draft S106 obligation"
+                  },
+                  {
+                    text: "Received"
+                  },
+                  {
+                    text: "24 Aug 2023"
+                  },
+                  {
+                    html: "<a href='#'>View</a>"
+                  }
+                ],
+                [
+                  {
                     text: "S106 obligation"
                   },
                   {
-                    text: "Complete"
-                  },
-                   {
-                    text: myValue 
-              
+                    text: "Not received"
                   },
                   {
-                    html: "<a href='#'>View</a> "
+                    text: ""
+                  },
+                  {
+                    html: "<a href='upload-obligation-final'>Add</a>"
                   }
                 ]
 
@@ -489,7 +501,7 @@ type: "success"
             }) }}
           </div>
         </div>
- 
+        
         <div class="govuk-accordion__section">
           <div class="govuk-accordion__section-header">
             <h2 class="govuk-accordion__section-heading">
@@ -551,7 +563,8 @@ type: "success"
             }) }}
           </div>
         </div>
-          <div class="govuk-accordion__section">
+
+        <div class="govuk-accordion__section">
           <div class="govuk-accordion__section-header">
             <h2 class="govuk-accordion__section-heading">
               <span class="govuk-accordion__section-button" id="accordion-default-heading-6">

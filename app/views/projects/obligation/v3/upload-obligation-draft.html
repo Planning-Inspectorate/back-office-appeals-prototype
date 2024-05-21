@@ -1,0 +1,52 @@
+ 
+{% extends "layouts/PINS-post-mvp.html" %}
+{% set pageName="Upload redacted supporting documents" %}
+ 
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+    	 
+
+    
+    <span class="govuk-caption-l">Appeal 2110166</span>
+  
+
+      <h1 class="govuk-heading-l">Upload draft S106 obligation</h1>
+
+    
+      <form action="document-details-draft" method="post" class="govuk-!-margin-top-6" novalidate>
+
+      {% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
+
+      {{ govukFileUpload({
+        id: "file-upload-1",
+        name: "file-upload-1",
+        label: {
+          html: "Choose a single file to upload"
+        },
+        hint: {
+              text: 'Files must be DOC, DOCX, PPT, PPTX, XLS, XLSX, JPG, JPEG, MPEG, MP3, MP4, MOV, PNG, TIF, or TIFF.
+               <br><br>
+              The total of your uploaded files must be smaller than 1GB. '
+            }
+      }) }}
+    
+      {% from "govuk/components/button/macro.njk" import govukButton %}
+    
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+    </form>
+
+ 
+  </div>
+</div>
+
+
+{% endblock %}

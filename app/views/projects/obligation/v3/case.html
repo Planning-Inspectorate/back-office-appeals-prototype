@@ -5,28 +5,13 @@
 {% block content %}
 
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-full">
+ 
 
-      {% set html %}
-<p class="govuk-notification-banner__heading">
-  S106 obligation complete
-</p>
-<p>
-  <a class="govuk-notification-banner__link" href="../../cross-copy/v1/lpa-statement-publish">
+ 
      
-  </a>
-</p>
-{% endset %}
 
-{{ govukNotificationBanner({
-html: html,
-type: "success"
-}) }}
-
-</div>
-</div>
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-full">
+ 
     <span class="govuk-caption-l">Appeal 2110166</span>
     	<h1 class="govuk-heading-l">Case details</h1>
  
@@ -39,6 +24,8 @@ type: "success"
 
       {% include "/includes/appeal-content/mvp-has-appeal-meta.html" %}
       <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+     
 
       <div class="govuk-accordion govuk-!-margin-top-9" data-module="govuk-accordion" id="accordion-default">
         <div class="govuk-accordion__section">
@@ -135,7 +122,7 @@ type: "success"
           <div class="govuk-accordion__section-header">
             <h1 class="govuk-accordion__section-heading">
               <span class="govuk-accordion__section-button" id="accordion-default-heading-2">
-                Site details
+               Site details
               </span>
             </h2>
           </div>
@@ -362,7 +349,6 @@ type: "success"
             </h2>
           </div>
           <div id="accordion-default-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-4">
-            {% set myValue = (data['received-date-year']+ "-" + data['received-date-month'] + "-" + data['received-date-day']  )  | govukDate("truncate")  %}
             {{ govukTable({
               captionClasses: "govuk-table__caption--m",
               firstCellIsHeader: false,
@@ -414,13 +400,13 @@ type: "success"
                     text: "LPA statement"
                   },
                   {
-                    text: "Complete"
+                    text: "Received"
                   },
                   {
-                    text: "19 Jan 2024"
+                    text: "19 Jul 2023"
                   },
                   {
-                    html: "<a href='../../cross-copy/v1/lpa-statement-publish'>Publish</a>"
+                    html: "<a href='lpa-statement-redactions'>Review</a>"
                   }
                 ]
                 ,
@@ -429,7 +415,7 @@ type: "success"
                     text: "Comments from interested parties"
                   },
                   {
-                    text: "Not received"
+                    text: " "
                   },
                   {
                     text: ""
@@ -444,7 +430,7 @@ type: "success"
                     text: "Apellant final comments"
                   },
                   {
-                    text: "Not received"
+                    text: " "
                   },
                   {
                     text: ""
@@ -454,18 +440,19 @@ type: "success"
                   }
                 ]
                 ,
+                
                 [
                   {
-                    text: "LPA final comments"
+                    text: "Draft S106 obligation"
                   },
                   {
-                    text: "Not receive"
+                    text: " "
                   },
                   {
-                    text: ""
+                    text: " "
                   },
                   {
-                    html: "<a href='#'>Add</a>"
+                    html: " <a href='upload-obligation-draft'>Add</a>"
                   }
                 ]
                 ,
@@ -474,14 +461,13 @@ type: "success"
                     text: "S106 obligation"
                   },
                   {
-                    text: "Complete"
-                  },
-                   {
-                    text: myValue 
-              
+                    text: "Received"
                   },
                   {
-                    html: "<a href='#'>View</a> "
+                    text: "19 Jul 2023"
+                  },
+                  {
+                    html: "<a href='obligation-review'>View</a>"
                   }
                 ]
 
@@ -489,7 +475,7 @@ type: "success"
             }) }}
           </div>
         </div>
- 
+        
         <div class="govuk-accordion__section">
           <div class="govuk-accordion__section-header">
             <h2 class="govuk-accordion__section-heading">
@@ -508,7 +494,7 @@ type: "success"
                     text: "Apellant"
                   },
                   {
-                    html: "Apellant Name<br><a href='#'>apellant-names@example.co.uk</a> <br>0300 027 2189"
+                    html: "Apellant Name<br><a href='#'>apellant-names@example.co.uk</a> <br>0300 0272189"
                   },
                   {
                     html: "<a href='#'>Change</a>"
@@ -519,7 +505,7 @@ type: "success"
                     text: "Agent"
                   },
                   {
-                    html: "Agent Name<br><a href='#'>agent.name@example.co.uk</a> <br>0300 017 4492"
+                    html: "Robert Williams<br><a href='#'>robert.williams@planninginspectorate.gov.uk</a> <br>0300 027 2189"
                   },
                   {
                     html: "<a href='#'>Change</a>"
@@ -530,7 +516,7 @@ type: "success"
                     text: "LPA"
                   },
                   {
-                    html: "Local Planning Authority Name<br><a href='#'>Name@localauthority.gov.uk</a> <br>0300 027 2190"
+                    html: "Local Planning Authority Name<br><a href='#'>Name@localauthority.gov.uk</a> <br>0300 021 2189"
                   },
                   {
                     html: "<a href='#'>Change</a>"
@@ -541,7 +527,7 @@ type: "success"
                     text: "Interested parties"
                   },
                   {
-                    html: "Interested Name<br><a href='#'>interested-parties@example.co.uk</a> <br>0300 021 4493"
+                    html: "Interested Name<br><a href='#'>interested-parties@example.co.uk</a> <br>0300 027 2189"
                   },
                   {
                     html: "<a href='#'>Change</a>"
@@ -551,7 +537,8 @@ type: "success"
             }) }}
           </div>
         </div>
-          <div class="govuk-accordion__section">
+
+        <div class="govuk-accordion__section">
           <div class="govuk-accordion__section-header">
             <h2 class="govuk-accordion__section-heading">
               <span class="govuk-accordion__section-button" id="accordion-default-heading-6">
@@ -569,7 +556,7 @@ type: "success"
                     text: "Case officer"
                   },
                   {
-                    html: "Robert Williams<br><a href='#'>robert.williams@planninginspectorate.gov.uk</a> <br>0300 027 2188"
+                    html: "Robert Williams<br><a href='#'>robert.williams@planninginspectorate.gov.uk</a> <br>0300 0272189"
                   },
                   {
                     html: "<a href='#'>Change</a>"
@@ -580,7 +567,7 @@ type: "success"
                     text: "Inspector"
                   },
                   {
-                    html: "Rupi Sentil<br><a href='#'>rupi.sentil@localauthority.gov.uk</a> <br>0300 021 4494"
+                    html: "Rupi Sentil<br><a href='#'>rupi.sentil@localauthority.gov.uk</a> <br>0300 021 4492"
                   },
                   {
                     html: "<a href='#'>Change</a>"

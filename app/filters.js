@@ -13,6 +13,11 @@ addFilter('daysAgo', (number) => {
 	return date
 })
 
+addFilter('daysAgoNumeric', (number) => {
+	var date = moment().subtract(number,"days").format("D M YYYY")
+	return date
+})
+
 addFilter('daysInFuture', (number) => {
 	var date = moment().add(number,"days").format("D MMMM YYYY")
 	return date

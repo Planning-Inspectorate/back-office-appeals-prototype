@@ -44,7 +44,7 @@
         }) }}
       </section>
 
-      <section class="govuk-!-margin-bottom-9">
+      <section class="govuk-!-margin-bottom-6">
         <!-- site visit requested -->
         {{ govukCheckboxes({
           name: "siteVisit",
@@ -63,12 +63,10 @@
         }) }}
       </section>
 
-      <form action="add-ip-cya" method="post">
-        {{ govukButton({
-          text: "Continue",
-          href: "add-ip-cya?attachment=yes"
-        }) }}
-      </form>
+      {{ govukButton({
+        text: "Continue",
+        href: "add-ip-received-date?attachment=yes"
+      }) }}
 
     </div>
   </div>

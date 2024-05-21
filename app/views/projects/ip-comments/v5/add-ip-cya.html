@@ -10,15 +10,10 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-<span class="govuk-caption-l">Appeal 2114328</span>
-  <h1 class="govuk-heading-l">{{ title }}</h1>
-
-  </div>
-</div>
-
-
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
+    <span class="govuk-caption-l">Appeal 2114328</span>
+    <h1 class="govuk-heading-l">
+      {{ title }}
+    </h1>
 
     <dl class="govuk-summary-list">
       <div class="govuk-summary-list__row">
@@ -55,32 +50,18 @@
         </dt>
         <dd class="govuk-summary-list__value">
           {% if data['manual-ip-address-line-1'] %}
-            {{ data['manual-ip-address-line-1']}}<br>
-            {{ data['manual-ip-address-line-2']}}
+            {{ data['manual-ip-address-line-1'] }}<br>
+            {{ data['manual-ip-address-line-2'] or 'Donnie Close' }}
             {% if data ['manual-ip-address-line-2'] %}<br>
             {% endif %}
-            {{ data['manual-ip-address-town']}}
-            {% if data['manual-ip-address-county']%}<br>
+            {{ data['manual-ip-address-town'] or 'Brickleford'}}
+            {% if data['manual-ip-address-county'] %}<br>
             {% endif %}
-            {{ data['manual-ip-address-county']}}<br>
-            {{ data['manual-ip-address-postcode']}}
+            {{ data['manual-ip-address-county'] or 'Brickfordshire' }}<br>
+            {{ data['manual-ip-address-postcode'] or 'BF93 2NN' }}
             {% else %}
             Not provided
           {% endif %}
-        </dd>
-        <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="#">
-            Change<span class="govuk-visually-hidden"></span>
-          </a>
-        </dd>
-      </div>
-
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Submitted
-        </dt>
-        <dd class="govuk-summary-list__value">
-          21 Feb 2024
         </dd>
         <dd class="govuk-summary-list__actions">
           <a class="govuk-link" href="#">
@@ -106,14 +87,42 @@
             Change<span class="govuk-visually-hidden">  attachments</span>
           </a>
         </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Site visit requested
+        </dt>
+        <dd class="govuk-summary-list__value">
+          No
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="#">
+            Change<span class="govuk-visually-hidden"></span>
+          </a>
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Received
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ 2 | daysAgo }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="#">
+            Change<span class="govuk-visually-hidden"></span>
+          </a>
+        </dd>
+      </div>
+
       </dl>
 
-      <form action="case?crosscopied=yes" method="post" class="govuk-!-margin-top-7">
-
+      <form action="case?crosscopied=yes" method="post" class="govuk-!-margin-top-6">
         {{ govukButton({
-          text: "Add IP comment"
+          text: "Confirm"
         }) }}
-
       </form>
 
     </div>

@@ -5,70 +5,91 @@
 
 {% set back = true %}
 
+{% set prototypeLinks = [
+  {
+    href: '?no-email=yes',
+    text: 'No email provided'
+  } if data['no-email'] != 'yes',
+  {
+    href: '?no-email=',
+    text: 'Email provided'
+  } if data['no-email'] == 'yes'
+] %}
+
 {% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal 2114328</span>
+      <h1 class="govuk-heading-l">
+        {{ title }}
+      </h1>
 
-    <span class="govuk-caption-l">Appeal 2114328</span>
-    <h1 class="govuk-heading-l">
-      {{ title }}
-    </h1>
-
-    <p class="govuk-body">
-      Your reason for rejection will be emailed to the interested party (if they supplied an email address).
-    </p>
-
-  </div>
-  <div class="govuk-grid-column-full">
-
-    <dl class="govuk-summary-list govuk-!-margin-bottom-0">
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Interested party
-        </dt>
-        <dd class="govuk-summary-list__value">
-          Ian Smith
-        </dd>
-      </div>
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Comment
-        </dt>
-        <dd class="govuk-summary-list__value">
-          Having reviewed the proposal I would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. All of us here at number 6 The Grove agree.
-        </dd>
-      </div>
-    </dl>
-
-    <!-- new definition list for the reason for rejection -->
-    <dl class="govuk-summary-list">
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Reason for rejection
-        </dt>
-        <dd class="govuk-summary-list__value">
-          Your comment was not relevant.
-        </dd>
-        <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="#">
-            Change<span class="govuk-visually-hidden"> reason for rejection</span>
-          </a>
-        </dd>
-      </div>
-    </dl>
-
-    <form action="comment-rejected" method="post">
-      {{ govukButton({
-        text: "Continue"
-      }) }}
-    </form>
+      <p class="govuk-body">
+        Your reason for rejection will be emailed to the interested party (if they supplied an email address).
+      </p>
 
     </div>
-</div>
+    <div class="govuk-grid-column-full">
 
+      <dl class="govuk-summary-list govuk-!-margin-bottom-0">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Interested party
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Ian Smith
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Comment
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Having reviewed the proposal I would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. All of us here at number 6 The Grove agree.
+          </dd>
+        </div>
+      </dl>
 
+      <!-- new definition list for the reason for rejection -->
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Reason for rejection
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Your comment was not relevant.
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> reason for rejection</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
 
+      {% if data['no-email'] != 'yes' %}
 
+        {{ govukInsetText({
+          text: "Confirming will inform the IP why their comment has been rejected."
+        }) }}
 
+        <form action="comment-rejected" method="post">
+          {{ govukButton({
+            text: "Confirm"
+          }) }}
+        </form>
+
+      {% else %}
+
+        <form action="ip-comments?comment-rejected=yes" method="post">
+          {{ govukButton({
+            text: "Confirm"
+          }) }}
+        </form>
+
+      {% endif %}
+
+    </div>
+  </div>
 {% endblock %}

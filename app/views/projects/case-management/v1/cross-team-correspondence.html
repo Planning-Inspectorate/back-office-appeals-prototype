@@ -1,9 +1,10 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
+{% import "../_globals.html" as globals %}
+
 {% set pageName="Case details" %}
 
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
-
 
 {% block content %}
 
@@ -14,7 +15,7 @@
 
         <h1 class="govuk-heading-l">
             <span class="govuk-caption-l">Appeal 211667</span>
-            Internal cross-team correspondence
+            {{globals.crossTeam}}
         </h1>
 
         <p class="govuk-body">Add and view messages about this appeal that cannot be cross-copied</p>

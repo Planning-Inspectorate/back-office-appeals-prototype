@@ -1,0 +1,281 @@
+{% if data['comments-shared'] %}
+  <p class="govuk-body">
+    <a href='#' class='govuk-link govuk-link--no-visited-state'>
+      Download all comments
+    </a>
+  </p>
+{% endif %}
+
+{{ govukTable({
+  caption: "Accepted comments",
+  captionClasses: "govuk-table__caption--m govuk-visually-hidden",
+  firstCellIsHeader: false,
+  head: [
+    {
+      text: "Interested party"
+    },
+    {
+      text: "Submitted"
+    },
+    {
+      text: "Action"
+    }
+  ],
+  rows: [
+    [
+        {
+          text: "Ian Smith"
+        },
+        {
+          text: "26 Nov 2023"
+        },
+        {
+          html: "<a href='comment-view?acceptedComment=&redactedComment=&comment-withdrawn=&manual-ip-comment='>View<span class='govuk-visually-hidden'> comment from Ian Smith</span></a>"
+        }
+    ] if data['commentReview'] == 'true',
+    [
+        {
+          text: "Terrance Harper"
+        },
+        {
+          text: 1 | daysAgo
+        },
+        {
+          html: "<a href='comment-view?acceptedComment=&redactedComment=&comment-withdrawn=&manual-ip-comment='>View<span class='govuk-visually-hidden'> comment from Terrance Harper</span></a>"
+        }
+    ],
+    [
+      {
+          text: "Viola Richardson"
+        },
+        {
+          text: 1 | daysAgo
+        },
+        {
+          html: "<a href='comment-view?acceptedComment=&redactedComment=&comment-withdrawn=&manual-ip-comment='>View<span class='govuk-visually-hidden'> comment from Viola Richardson</span></a>"
+        }
+    ],
+    [
+      {
+          text: "Carla Fenwick"
+        },
+        {
+          text: 2 | daysAgo
+        },
+        {
+          html: "<a href='comment-view?acceptedComment=&redactedComment=&comment-withdrawn=&manual-ip-comment='>View<span class='govuk-visually-hidden'> comment from Carla Fenwick</span></a>"
+        }
+    ],
+    [
+      {
+          text: "Joy Yu"
+        },
+        {
+          text: 2 | daysAgo
+        },
+        {
+          html: "<a href='comment-view?acceptedComment=&redactedComment=&comment-withdrawn=&manual-ip-comment='>View<span class='govuk-visually-hidden'> comment from Joy Yu</span></a>"
+        }
+    ],
+    [
+      {
+          text: "Hadlee Franklin"
+        },
+        {
+          text: 2 | daysAgo
+        },
+        {
+          html: "<a href='comment-view?acceptedComment=&redactedComment=&comment-withdrawn=&manual-ip-comment='>View<span class='govuk-visually-hidden'> comment from Hadley Franklin</span></a>"
+        }
+    ],
+    [
+      {
+          text: "Simon Curtis"
+        },
+        {
+          text: 2 | daysAgo
+        },
+        {
+          html: "<a href='comment-view?acceptedComment=&redactedComment=&comment-withdrawn=&manual-ip-comment='>View<span class='govuk-visually-hidden'> comment from Simon Curtis</span></a>"
+        }
+    ],
+    [
+      {
+          text: "Alexis Sosa"
+        },
+        {
+          text: 2 | daysAgo
+        },
+        {
+          html: "<a href='comment-view?acceptedComment=&redactedComment=&comment-withdrawn=&manual-ip-comment='>View<span class='govuk-visually-hidden'> comment from Alexis Sosa</span></a>"
+        }
+    ],
+    [
+      {
+          text: "Emir Salazar"
+        },
+        {
+          text: 2 | daysAgo
+        },
+        {
+          html: "<a href='comment-view?acceptedComment=&redactedComment=&comment-withdrawn=&manual-ip-comment='>View<span class='govuk-visually-hidden'> comment from Emir Salazar</span></a>"
+        }
+    ],
+    [
+      {
+          text: "Freya Gutierrez"
+        },
+        {
+          text: 2 | daysAgo
+        },
+        {
+          html: "<a href='comment-view?acceptedComment=&redactedComment=&comment-withdrawn=&manual-ip-comment='>View<span class='govuk-visually-hidden'> comment from Freya Gutierrez</span></a>"
+        }
+    ],
+    [
+      {
+          text: "Luca Bond"
+        },
+        {
+          text: 2 | daysAgo
+        },
+        {
+          html: "<a href='comment-view?acceptedComment=&redactedComment=&comment-withdrawn=&manual-ip-comment='>View<span class='govuk-visually-hidden'> comment from Luca Bond</span></a>"
+        }
+    ],
+    [
+      {
+          text: "Alena Arroyo"
+        },
+        {
+          text: 2 | daysAgo
+        },
+        {
+          html: "<a href='comment-view?acceptedComment=&redactedComment=&comment-withdrawn=&manual-ip-comment='>View<span class='govuk-visually-hidden'> comment from Alena Arroyo</span></a>"
+        }
+    ],
+    [
+      {
+          text: "Remi Le"
+        },
+        {
+          text: 2 | daysAgo
+        },
+        {
+          html: "<a href='comment-view?acceptedComment=&redactedComment=&comment-withdrawn=&manual-ip-comment='>View<span class='govuk-visually-hidden'> comment from (full name)</span></a>"
+        }
+    ],
+    [
+      {
+          text: "Kayden West"
+        },
+        {
+          text: 2 | daysAgo
+        },
+        {
+          html: "<a href='comment-view?acceptedComment=&redactedComment=&comment-withdrawn=&manual-ip-comment='>View<span class='govuk-visually-hidden'> comment from (full name)</span></a>"
+        }
+    ],
+    [
+      {
+          text: "Anya Foster"
+        },
+        {
+          text: 2 | daysAgo
+        },
+        {
+          html: "<a href='comment-view?acceptedComment=&redactedComment=&comment-withdrawn=&manual-ip-comment='>View<span class='govuk-visually-hidden'> comment from (full name)</span></a>"
+        }
+    ],
+    [
+      {
+          text: "Hamza Barron"
+        },
+        {
+          text: 2 | daysAgo
+        },
+        {
+          html: "<a href='comment-view?acceptedComment=&redactedComment=&comment-withdrawn=&manual-ip-comment='>View<span class='govuk-visually-hidden'> comment from (full name)</span></a>"
+        }
+    ],
+    [
+      {
+          text: "Dior Phelps"
+        },
+        {
+          text: 2 | daysAgo
+        },
+        {
+          html: "<a href='comment-view?acceptedComment=&redactedComment=&comment-withdrawn=&manual-ip-comment='>View<span class='govuk-visually-hidden'> comment from (full name)</span></a>"
+        }
+    ],
+    [
+      {
+          text: "Garrett Frank"
+        },
+        {
+          text: 2 | daysAgo
+        },
+        {
+          html: "<a href='comment-view?acceptedComment=&redactedComment=&comment-withdrawn=&manual-ip-comment='>View<span class='govuk-visually-hidden'> comment from (full name)</span></a>"
+        }
+    ],
+    [
+      {
+          text: "Esperanza Horton"
+        },
+        {
+          text: 2 | daysAgo
+        },
+        {
+          html: "<a href='comment-view?acceptedComment=&redactedComment=&comment-withdrawn=&manual-ip-comment='>View<span class='govuk-visually-hidden'> comment from (full name)</span></a>"
+        }
+    ],
+    [
+      {
+          text: "Franklin Rasmussen"
+        },
+        {
+          text: 2 | daysAgo
+        },
+        {
+          html: "<a href='comment-view?acceptedComment=&redactedComment=&comment-withdrawn=&manual-ip-comment='>View<span class='govuk-visually-hidden'> comment from (full name)</span></a>"
+        }
+    ],
+    [
+      {
+          text: "Eleanor Griffith"
+        },
+        {
+          text: 2 | daysAgo
+        },
+        {
+          html: "<a href='comment-view?acceptedComment=&redactedComment=&comment-withdrawn=&manual-ip-comment='>View<span class='govuk-visually-hidden'> comment from (full name)</span></a>"
+        }
+    ]
+]
+}) }}
+
+{{ govukPagination({
+  previous: {
+    href: "#"
+  },
+  next: {
+    href: "#"
+  },
+  items: [
+    {
+      number: 1,
+      current: true,
+      href: "#"
+    },
+    {
+      number: 2,
+      href: "#"
+    },
+    {
+      number: 3,
+      href: "#"
+    }
+  ]
+}) }}

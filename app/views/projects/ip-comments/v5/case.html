@@ -9,7 +9,7 @@
 
       {% set crosscopybanner %}
         <p class="govuk-notification-banner__heading">
-    	    You’ve added an IP comment from Sam Fisher
+    	    IP comment from Sam Fisher added
     	  </p>
       {% endset %}
 
@@ -19,7 +19,7 @@
     	  </p>
     	  <p>
           <a class="govuk-notification-banner__link" href="ip-comments?crosscopied=">
-            Review interested party comments
+            Review
           </a>
         </p>
       {% endset %}
@@ -386,7 +386,7 @@
                   <td class="govuk-table__cell">Awaiting review</td>
                   <td class="govuk-table__cell"></td>
                   <td class="govuk-table__cell">
-                    <a href="ip-comments">
+                    <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=">
                       Review<span class="govuk-visually-hidden"> interested party comments</span>
                     </a><br>
                     <a href="add-ip-email">
@@ -394,6 +394,7 @@
                     </a>
                   </td>
                 </tr>
+
               </tbody>
             </table>
           </div>

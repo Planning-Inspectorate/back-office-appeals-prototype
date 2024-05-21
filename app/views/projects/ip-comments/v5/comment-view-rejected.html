@@ -3,7 +3,23 @@
 {% set title = 'Comment from Ian Smith' %}
 {% set pageName = title %}
 
-{% set back = true %}
+{% set prototypeLinks = [
+  {
+    href: '?comments-shared=yes',
+    text: 'Comments shared'
+  } if data['comments-shared'] != 'yes',
+  {
+    href: '?comments-shared=',
+    text: 'Comments window is open'
+  } if data['comments-shared'] == 'yes'
+] %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    html: 'Back',
+    href: 'ip-comments-done?redactedComment=&commentReview='
+  }) }}
+{% endblock %}
 
 {% block content %}
 
@@ -12,7 +28,7 @@
 
     <span class="govuk-caption-l">Appeal 2114328</span>
     <h1 class="govuk-heading-l">
-      {{ title }}
+      Comment from Ian Smith
     </h1>
 
   </div>
@@ -20,7 +36,6 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
-
     <dl class="govuk-summary-list">
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
@@ -58,84 +73,27 @@
       </div>
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          Comment
+          Original comment
         </dt>
         <dd class="govuk-summary-list__value">
           Having reviewed the proposal I would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. All of us here at number 6 The Grove agree.
         </dd>
       </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Why was the comment rejected?
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Inflammatory comments
+        </dd>
+      </div>
     </dl>
-  </div>
 
-</div>
-
-
-
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-
-    <section class="govuk-!-margin-bottom-9">
-      <!-- site visit requested -->
-      {{ govukCheckboxes({
-        name: "siteVisit",
-        fieldset: {
-          legend: {
-            text: "Site visit requested",
-            classes: "govuk-visually-hidden"
-          }
-        },
-        items: [
-          {
-            value: "siteVisitRequest",
-            text: "The comment includes a site visit request"
-          }
-        ]
-      }) }}
-    </section>
-
-    <!-- accept or reject the comment -->
-    <form action="" method="post" class="govuk-!-margin-top-7" id="review-comment">
-
-    <!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
-
-      {{ govukRadios({
-        name: "commentReview",
-        fieldset: {
-          legend: {
-            text: "Do you accept the comment?",
-            isPageHeading: false,
-            classes: "govuk-fieldset__legend--m"
-          }
-        },
-        items: [
-         {
-            value: "valid~ip-comments?acceptedComment=yes&commentReview=true",
-            text: "Accept comment"
-          },
-         {
-            value: "redactionNeeded~comment-redact",
-            text: "Redact comment"
-          },
-            {
-              divider: "or"
-            },
-          {
-            value: "invalid~reject-comment",
-            text: "Reject comment"
-          }
-        ]
-      }) }}
-
+    {% if data['comments-shared'] != 'yes' %}
       <p class="govuk-body">
         <a href='withdraw-comment-upload-evidence?comment-mode=review' class='govuk-link govuk-link--no-visited-state'>Withdraw comment</a>
       </p>
-
-      {{ govukButton({
-        text: "Confirm"
-      }) }}
-
-    </form>
-
+    {% endif %}
 
 
   </div>

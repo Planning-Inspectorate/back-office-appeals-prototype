@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Rejecting the comment" %}
+{% set title = "Upload IP’s withdrawal request" %}
 {% set pageName = title %}
 
 {% set back = true %}
@@ -15,7 +15,7 @@
       {{ title }}
     </h1>
 
-    <dl class="govuk-summary-list">
+    <!-- <dl class="govuk-summary-list govuk-!-margin-bottom-0">
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
           Interested party
@@ -32,31 +32,29 @@
           Having reviewed the proposal I would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. All of us here at number 6 The Grove agree.
         </dd>
       </div>
-    </dl>
+    </dl> -->
 
-    <form action="check-reason-for-rejection" method="post">
+    <section class="govuk-!-margin-top-6">
 
-      {{ govukTextarea({
-        name: "invalidReason",
-        id: "invalidReason",
-        hint: {
-          text: "The IP will see the text you enter if they provided an email address."
-        },
-        rows: "6",
+      {{ govukFileUpload({
+        id: "upload-withdraw-comment",
+        name: "upload-withdraw-comment",
         label: {
-          text: "Why did you reject the comment?",
-          classes: "govuk-label--m",
-          isPageHeading: false
+          text: "Upload a file"
+        },
+        hint: {
+          text: 'The files must be a DOC, DOCX, PDF, TIF, JPG or PNG and be smaller than 15MB'
         }
-
       }) }}
 
-      {{ govukButton({
-        text: "Continue"
-      }) }}
-    </form>
+    </section>
 
-    </div>
+    {{ govukButton({
+      href: "withdraw-comment-date",
+      text: "Continue"
+    }) }}
+
+  </div>
 </div>
 
 

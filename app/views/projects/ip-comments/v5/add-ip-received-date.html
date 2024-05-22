@@ -12,26 +12,73 @@
         Appeal 2114328
       </span>
 
-      {{ govukDateInput({
-        id: "IP-comment-received-date",
-        namePrefix: "IP-comment-received-date",
-        fieldset: {
-          legend: {
-            text: title,
-            isPageHeading: true,
-            classes: "govuk-fieldset__legend--l"
-          }
-        },
-        hint: {
-          html: "For example, 12 5 2007"
-        }
-      }) }}
-
       <form action="add-ip-cya" method="post">
-        {{ govukButton({
-          text: "Continue",
-          href: "redaction-status"
+
+        {{ govukDateInput({
+          id: "IP-comment-received-date",
+          namePrefix: "IP-comment-received-date",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            html: "For example, 12 5 2007"
+          },
+          items: [
+            {
+              classes: "govuk-input--width-2",
+              name: "day",
+              value: "22"
+            },
+            {
+              classes: "govuk-input--width-2",
+              name: "month",
+              value: "5"
+            },
+            {
+              classes: "govuk-input--width-4",
+              name: "year",
+              value: "2024"
+            }
+          }
         }) }}
+
+        {{ govukRadios({
+          name: "redaction-status",
+          fieldset: {
+           legend: {
+             text: "Redaction status",
+             isPageHeading: false,
+             classes: "govuk-fieldset__legend--m"
+           }
+          },
+          items: [
+           {
+             value: "Redacted",
+             text: "Redacted"
+           },
+           {
+             value: "Unredacted",
+             text: "Unredacted",
+             checked: true
+           },
+             {
+           divider: "or"
+          },
+           {
+             value: "No redaction required",
+             text: "No redaction required"
+           }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
       </form>
 
     </div>

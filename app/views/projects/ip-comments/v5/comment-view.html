@@ -112,7 +112,7 @@
             Redaction status
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['redaction-status'] }}
+            {{ data['redaction-status'] or 'Unredacted' }}
           </dd>
         </div>
       {% endif %}

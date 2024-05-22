@@ -63,6 +63,34 @@
         }) }}
       </section>
 
+      {{ govukRadios({
+        name: "commentReview",
+        fieldset: {
+          legend: {
+            text: "Do you accept the comment?",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+         {
+            value: "valid~ip-comments?acceptedComment=yes&commentReview=true",
+            text: "Accept comment"
+          },
+         {
+            value: "redactionNeeded~comment-redact",
+            text: "Redact comment"
+          },
+            {
+              divider: "or"
+            },
+          {
+            value: "invalid~reject-comment",
+            text: "Reject comment"
+          }
+        ]
+      }) }}
+
       {{ govukButton({
         text: "Continue",
         href: "add-ip-received-date?attachment=yes"

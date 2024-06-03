@@ -3,7 +3,12 @@
 {% set title = 'Comment from Ian Smith' %}
 {% set pageName = title %}
 
-{% set back = true %}
+{% block backLink %}
+  {{ govukBackLink({
+    html: 'Back',
+    href: 'ip-comments?acceptedComment=&redactedComment=&comment-withdrawn=&manual-ip-comment=&comment-rejected=&extra-document='
+  }) }}
+{% endblock %}
 
 {% block content %}
 

@@ -23,7 +23,7 @@
     text: 'Comments window is open'
   } if data['comments-shared'] == 'yes',
   {
-    href: '?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&comment-rejected=',
+    href: '?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&comment-rejected=&extra-document=',
     text: 'Clear banners'
   }
 ] %}
@@ -97,6 +97,19 @@
         <div class="govuk-notification-banner__content">
           <p class="govuk-notification-banner__heading">
             Comment from {{ data ['manual-ip-first-name'] or 'Ian'}} {{ data ['manual-ip-last-name'] or 'Smith'}} withdrawn
+          </p>
+        </div>
+      </div>
+    {% elseif data ['extra-document'] %}
+      <div class="govuk-notification-banner  govuk-notification-banner--success" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+        <div class="govuk-notification-banner__header">
+          <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+            Success
+          </h2>
+        </div>
+        <div class="govuk-notification-banner__content">
+          <p class="govuk-notification-banner__heading">
+            Supporting document uploaded for {{ data ['manual-ip-first-name'] or 'Ian'}} {{ data ['manual-ip-last-name'] or 'Smith'}}
           </p>
         </div>
       </div>

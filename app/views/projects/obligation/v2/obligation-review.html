@@ -5,107 +5,106 @@
 {% block content %}
 
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
 
-    	{% set html %}
-    	  <p class="govuk-notification-banner__heading">
-    	    The appeal is ready for review
-    	  </p>
-    	  <p>
-          <a class="govuk-notification-banner__link" href="appellant-case.html">
-            Start the review
-          </a>
-        </p>
-    	{% endset %}
+    {% set html %}
+      <p class="govuk-notification-banner__heading">
+        The appeal is ready for review
+      </p>
+      <p>
+        <a class="govuk-notification-banner__link" href="appellant-case.html">
+          Start the review
+        </a>
+      </p>
+    {% endset %}
 
-    
-    <span class="govuk-caption-l">Appeal 2110166</span>
   
+   <span class="govuk-caption-l">Appeal 2110166</span>
 
-      <h1 class="govuk-heading-l">S106 obligation</h1>
 
-          {% from "govuk/components/table/macro.njk" import govukTable %}
-          {% set myValue = (data['received-date-year']+ "-" + data['received-date-month'] + "-" + data['received-date-day']  )  | govukDate("truncate")  %}
-          {% set myValue2 = (data['redaction'] )  %}
-      {{ govukTable({
-        caption: "Uploaded documents",
-        captionClasses: "govuk-table__caption--m",
-        firstCellIsHeader: true,
-        head: [
-          {
-            text: "Name",
-            classes: "app-custom-class"
-          },
-          {
-            text: "Received date",
-            classes: "app-custom-class"
-          },
-          {
-            text: "Redaction status",
-            classes: "app-custom-class"
-          },
-          {
-            text: "Action",
-            classes: "app-custom-class"
+  <h1 class="govuk-heading-l">S106 obligation</h1>
+
+      {% from "govuk/components/table/macro.njk" import govukTable %}
+      {% set myValue = "19 Jul 2023"  %}
+      {% set myValue2 = (data['redaction'] )  %}
+  {{ govukTable({
+    caption: "Uploaded documents",
+    captionClasses: "govuk-table__caption--m",
+    firstCellIsHeader: true,
+    head: [
+      {
+        text: "Name",
+        classes: "app-custom-class"
+      },
+      {
+        text: "Received date",
+        classes: "app-custom-class"
+      },
+      {
+        text: "Redaction status",
+        classes: "app-custom-class"
+      },
+      {
+        text: "Action",
+        classes: "app-custom-class"
+      }
+    ],
+    rows: [
+      [
+        {
+          text: "example.pdf"
+        },
+        {
+          text: myValue
+        },
+        {
+          text: myValue2
+        },
+        {
+          html: "<a href='manage-folder'> Manage</a> | <a href='#'> Add</a> "
+        }
+      ] 
+    ]
+  }) }}
+
+
+   
+
+</div>
+</div>
+
+
+<form action="" method="post" class="govuk-!-margin-top-6" novalidate>
+    
+
+      {{ govukRadios({
+        name: "obligation-decision",
+        fieldset: {
+          legend: {
+            text: "What is the outcome of your review?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--m"
           }
-        ],
-        rows: [
-          [
-            {
-              text: "example.pdf"
-            },
-            {
-              text: myValue
-            },
-            {
-              text: myValue2
-            },
-            {
-              html: "<a href='#'> Manage</a> | <a href='#'> Add</a> "
-            }
-          ] 
+        },
+        items: [
+          {
+            value: "Complete~case-complete",
+            text: "Complete"
+          },
+          {
+            value: "Incomplete~why-incomplete",
+            text: "Incomplete"
+          } 
+           
         ]
       }) }}
- 
 
-       
+      {{ govukButton({
+        text: "Continue"
+      }) }}
 
-    </div>
-  </div>
- 
- 
-    <form action="" method="post" class="govuk-!-margin-top-6" novalidate>
-
-      
-
-        {{ govukRadios({
-          name: "obligation-decision",
-          fieldset: {
-            legend: {
-              text: "What is the outcome of your review?",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--m"
-            }
-          },
-          items: [
-            {
-              value: "complete~case-complete",
-              text: "Complete"
-            },
-            {
-              value: "incomplete~why-incomplete",
-              text: "Incomplete"
-            } 
-             
-          ]
-        }) }}
-
-        {{ govukButton({
-          text: "Continue"
-        }) }}
-
-    </form>
+  </form>
 
  
 

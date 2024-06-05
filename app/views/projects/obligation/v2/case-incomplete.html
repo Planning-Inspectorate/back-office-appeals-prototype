@@ -8,9 +8,13 @@
     <div class="govuk-grid-column-two-thirds">
 
       {% set html %}
-<p class="govuk-notification-banner__heading">
+  <p class="govuk-notification-banner__heading">
   S106 obligation incomplete
-</p>
+    <ul>
+      <li> {{ data['obligation-reason-incomplete'] +  "  " + data['what-reason' ] + " "  }} </li>
+       
+  </ul>
+  <a href="manage-folder">Manage</a></p>
 <p>
   <a class="govuk-notification-banner__link" href="../../cross-copy/v1/lpa-statement-publish">
      
@@ -35,7 +39,6 @@ type: "important"
           text: "Statement",
           classes: "govuk-tag--blue"
         })}}
-
 
       {% include "/includes/appeal-content/mvp-has-appeal-meta.html" %}
       <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">

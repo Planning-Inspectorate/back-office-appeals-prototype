@@ -1,0 +1,103 @@
+ 
+{% extends "layouts/PINS-post-mvp.html" %}
+{% set pageName="LPA statement review" %}
+ 
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+    	{% set html %}
+    	  <p class="govuk-notification-banner__heading">
+    	    The appeal is ready for review
+    	  </p>
+    	  <p>
+          <a class="govuk-notification-banner__link" href="appellant-case.html">
+            Start the review
+          </a>
+        </p>
+    	{% endset %}
+
+    
+    <span class="govuk-caption-l">Manage folder</span>
+  
+
+      <h1 class="govuk-heading-l">S106 obligation</h1>
+
+ 
+      {{ govukTable({
+        captionClasses: "govuk-table__caption--m",
+        firstCellIsHeader: false,
+        head: [
+            {
+              text: "Name"
+            },
+            {
+              text: "Type"
+            },
+            {
+              text: "Received date"
+            }
+            ,
+            {
+              text: "Redaction status"
+            },
+            {
+              text: "Action"
+            }
+          ],
+        rows: [
+          
+          [
+            {
+              text: "S106 planning.pdf"
+            },
+            {
+              text: "Draft"
+            },
+            {
+              text: "22 Jul 2023"
+            },
+            {
+              text: "Redacted"
+            },
+            {
+              html: "<a href='#'>View and edit</a>"
+            }
+          ]
+          ,
+          
+          [
+            {
+              text: "planning.pdf"
+            },
+            {
+              text: "Final"
+            },
+            {
+              text: "22 Jul 2023"
+            },
+            {
+              text: "Redacted"
+            },
+            {
+              html: "<a href='#'>View and edit</a>"
+            }
+          ]
+
+        ]
+      }) }}
+ 
+
+       
+
+    </div>
+  </div>
+ 
+ 
+
+    
+
+
+{% endblock %}

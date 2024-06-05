@@ -26,6 +26,35 @@
         }
       }) }}
 
+      {{ govukRadios({
+        name: "redaction-status",
+        fieldset: {
+         legend: {
+           text: "Redaction status",
+           isPageHeading: false,
+           classes: "govuk-fieldset__legend--m"
+         }
+        },
+        items: [
+         {
+           value: "Redacted",
+           text: "Redacted"
+         },
+         {
+           value: "Unredacted",
+           text: "Unredacted",
+           checked: true
+         },
+           {
+         divider: "or"
+        },
+         {
+           value: "No redaction required",
+           text: "No redaction required"
+         }
+        ]
+      }) }}
+
       {{ govukButton({
         href: "confirm-extra-document",
         text: "Continue"

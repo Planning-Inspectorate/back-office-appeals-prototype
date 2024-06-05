@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Enter date supporting documents were received" %}
+{% set title = "Enter date the supporting documents were received" %}
 {% set pageName = title %}
 
 {% set back = true %}
@@ -26,37 +26,8 @@
         }
       }) }}
 
-      {{ govukRadios({
-        name: "redaction-status",
-        fieldset: {
-         legend: {
-           text: "Redaction status",
-           isPageHeading: false,
-           classes: "govuk-fieldset__legend--m"
-         }
-        },
-        items: [
-         {
-           value: "Redacted",
-           text: "Redacted"
-         },
-         {
-           value: "Unredacted",
-           text: "Unredacted",
-           checked: true
-         },
-           {
-         divider: "or"
-        },
-         {
-           value: "No redaction required",
-           text: "No redaction required"
-         }
-        ]
-      }) }}
-
       {{ govukButton({
-        href: "confirm-extra-document",
+        href: "extra-document-redaction-status",
         text: "Continue"
       }) }}
 

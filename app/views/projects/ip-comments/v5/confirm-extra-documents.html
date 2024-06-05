@@ -19,7 +19,7 @@
     <dl class="govuk-summary-list">
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          Extra documentation
+          Extra documents
         </dt>
         <dd class="govuk-summary-list__value">
           <a href="#" class="govuk-link">
@@ -35,7 +35,7 @@
 
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          Request date
+          Received
         </dt>
         <dd class="govuk-summary-list__value">
           {{ 0 | daysAgo }}
@@ -46,6 +46,23 @@
           </a>
         </dd>
       </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Redacted versions
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <a href="#" class="govuk-link">
+            {{ data ['upload-extra-document'] or 'appeal-2114328-added-document-(redacted).doc' }}
+          </a>
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="withdraw-comment-upload-evidence">
+            Change<span class="govuk-visually-hidden"> reason for rejection</span>
+          </a>
+        </dd>
+      </div>
+
     </dl>
 
     {{ govukButton({

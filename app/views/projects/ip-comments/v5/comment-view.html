@@ -116,11 +116,19 @@
           </dd>
         </div>
       {% endif %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Supporting documents
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <a href='upload-extra-supporting-document' class='govuk-link govuk-link--no-visited-state'>Add supporting documents</a>
+        </dd>
+      </div>
     </dl>
 
-    <p class="govuk-body">
+    <!-- <p class="govuk-body">
       <a href='upload-extra-supporting-document' class='govuk-link govuk-link--no-visited-state'>Upload a supporting document to this comment</a>
-    </p>
+    </p> -->
 
 
     {% if data['comments-shared'] != 'yes' %}

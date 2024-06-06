@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Upload a supporting document" %}
+{% set title = "Upload unredacted document" %}
 {% set pageName = title %}
 
 {% set back = true %}
@@ -10,31 +10,33 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
+    <!-- Redaction status is {{ data['redaction-status'] }} -->
+
     <span class="govuk-caption-l">Appeal 2114328</span>
     <h1 class="govuk-heading-l">
       {{ title }}
     </h1>
 
-    <section class="govuk-!-margin-top-6">
+    <form method="post">
 
-      {{ govukFileUpload({
-        id: "upload-extra-document",
-        name: "upload-extra-document",
-        label: {
-          text: "Upload a file",
-          classes: "govuk-visually-hidden"
-        },
-        hint: {
-          text: 'Files must be a DOC, DOCX, PDF, TIF, JPG or PNG and be smaller than 15MB'
-        }
+      <section class="govuk-!-margin-top-6">
+        {{ govukFileUpload({
+          id: "upload-extra-document",
+          name: "upload-extra-document",
+          label: {
+            text: "Upload a file",
+            classes: "govuk-visually-hidden"
+          },
+          hint: {
+            text: 'Files must be a DOC, DOCX, PDF, TIF, JPG or PNG and be smaller than 15MB'
+          }
+        }) }}
+      </section>
+
+      {{ govukButton({
+        text: "Continue"
       }) }}
-
-    </section>
-
-    {{ govukButton({
-      href: "extra-document-received-date",
-      text: "Continue"
-    }) }}
+    </form>
 
   </div>
 </div>

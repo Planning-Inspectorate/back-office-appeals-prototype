@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Enter date the supporting document was received" %}
+{% set title = "Enter date document received" %}
 {% set pageName = title %}
 
 {% set back = true %}
@@ -10,26 +10,28 @@
     <div class="govuk-grid-column-two-thirds">
 
       <span class="govuk-caption-l">Appeal 2114328</span>
+      <form method="post">
 
-      {{ govukDateInput({
-        id: "extra-document-received",
-        namePrefix: "extra-document-received",
-        fieldset: {
-          legend: {
-            text: title,
-            isPageHeading: true,
-            classes: "govuk-fieldset__legend--l "
+        {{ govukDateInput({
+          id: "extra-document-received",
+          namePrefix: "extra-document-received",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l "
+            }
+          },
+          hint: {
+            html: "<p class='govuk-hint'>For example, 28 "+ 31 | lastMonthNumeric +" "+ 0 | yearsAgo +".</p>"
           }
-        },
-        hint: {
-          html: "<p class='govuk-hint'>For example, 28 "+ 31 | lastMonthNumeric +" "+ 0 | yearsAgo +".</p>"
-        }
-      }) }}
+        }) }}
 
-      {{ govukButton({
-        href: "extra-document-redaction-status",
-        text: "Continue"
-      }) }}
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
 
     </div>
   </div>

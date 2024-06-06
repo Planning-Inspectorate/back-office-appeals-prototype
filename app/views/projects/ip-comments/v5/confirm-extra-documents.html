@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Confirm the supporting documents" %}
+{% set title = "Confirm supporting documents" %}
 {% set pageName = title %}
 
 {% set back = true %}
@@ -50,23 +50,6 @@
         },
         {
           key: {
-            text: 'Document 1 received date'
-          },
-          value: {
-            html: 1 | daysAgo
-          },
-          actions: {
-            items: [
-              {
-                href: "#",
-                text: "Change",
-                visuallyHiddenText: 'document 1 received date'
-              }
-            ]
-          }
-        },
-        {
-          key: {
             text: 'Document 1 (redacted version)'
           },
           value: {
@@ -80,6 +63,24 @@
                 href: "#",
                 text: "Change",
                 visuallyHiddenText: 'redacted document 1'
+              }
+            ]
+          }
+        },
+
+        {
+          key: {
+            text: 'Document 1 received date'
+          },
+          value: {
+            html: 1 | daysAgo
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Change",
+                visuallyHiddenText: 'document 1 received date'
               }
             ]
           }
@@ -105,23 +106,6 @@
         } if data['anotherdocument'] == 'yes',
         {
           key: {
-            text: 'Document 2 received date'
-          },
-          value: {
-            html: 1 | daysAgo
-          },
-          actions: {
-            items: [
-              {
-                href: "#",
-                text: "Change",
-                visuallyHiddenText: 'document 2 received date'
-              }
-            ]
-          }
-        } if data['anotherdocument'] == 'yes',
-        {
-          key: {
             text: 'Document 2 (redacted version)'
           },
           value: {
@@ -138,13 +122,30 @@
               }
             ]
           }
+        } if data['anotherdocument'] == 'yes',
+        {
+          key: {
+            text: 'Document 2 received date'
+          },
+          value: {
+            html: 1 | daysAgo
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Change",
+                visuallyHiddenText: 'document 2 received date'
+              }
+            ]
+          }
         } if data['anotherdocument'] == 'yes'
 
       ]
     }) }}
 
     {{ govukButton({
-      href: "/projects/ip-comments/v5/ip-comments?extra-document=yes",
+      href: "/projects/ip-comments/v5/comment-review?documents-added=yes",
       text: "Confirm",
       classes: "govuk-button"
     }) }}

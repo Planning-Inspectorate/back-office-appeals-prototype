@@ -11,9 +11,24 @@
 {% endblock %}
 
 {% block content %}
-
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
+
+
+    {% if data['documents-added'] %}
+      <div class="govuk-notification-banner  govuk-notification-banner--success" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+        <div class="govuk-notification-banner__header">
+          <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+            Success
+          </h2>
+        </div>
+        <div class="govuk-notification-banner__content">
+          <p class="govuk-notification-banner__heading">
+            Supporting documents uploaded
+          </p>
+        </div>
+      </div>
+    {% endif %}
 
     <span class="govuk-caption-l">Appeal 2114328</span>
     <h1 class="govuk-heading-l">
@@ -74,7 +89,11 @@
           Supporting documents
         </dt>
         <dd class="govuk-summary-list__value">
-          <a href='upload-extra-supporting-document' class='govuk-link govuk-link--no-visited-state'>Add supporting documents</a>
+          {% if data['documents-added'] %}
+            <a href='#' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document-2.doc')}}</a>
+          {% else %}
+            <a href='extra-document-redaction-status' class='govuk-link govuk-link--no-visited-state'>Add supporting documents</a>
+          {% endif %}
         </dd>
       </div>
     </dl>

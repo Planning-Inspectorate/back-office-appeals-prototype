@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Does the document need a redacted version?" %}
+{% set title = "Do you have redacted version of this document?" %}
 {% set pageName = title %}
 
 {% set back = true %}
@@ -22,14 +22,17 @@
              classes: "govuk-fieldset__legend--l"
            }
           },
+          hint: {
+            text: "If ‘Yes’ you will need to upload the original and redacted versions."
+          },
           items: [
            {
-             value: "needs redaction",
-             text: "I need to upload a redacted version"
+             value: "Yes",
+             text: "Yes"
            },
            {
-             value: "No redaction needed",
-             text: "No redaction needed"
+             value: "No",
+             text: "No"
            }
           ]
         }) }}

@@ -8,11 +8,33 @@ router.get('*', function(req, res, next){
 })
 
 router.post('/extra-document-redaction-status', function (req, res) {
-  if (req.session.data['redaction-status'] == 'needs redaction') {
+  res.redirect('upload-extra-supporting-document')
+})
+
+router.post('/upload-extra-supporting-document', function (req, res) {
+  if (req.session.data['redaction-status'] == 'Yes') {
     res.redirect('upload-redacted-extra-document')
   } else {
-    res.redirect('extra-documents')
+    res.redirect('extra-document-received-date')
   }
+})
+
+// if (req.session.data['redaction-status'] == 'needs redaction') {
+//   res.redirect('upload-redacted-extra-document')
+// } else {
+//   res.redirect('extra-documents')
+// }
+
+router.post('/upload-redacted-extra-document', function (req, res) {
+  res.redirect('extra-document-received-date')
+})
+
+router.post('/extra-document-received-date', function (req, res) {
+  res.redirect('extra-supporting-documents')
+})
+
+router.post('/extra-supporting-documents', function (req, res) {
+  res.redirect('confirm-extra-documents')
 })
 
 router.post('/extra-supporting-documents', function (req, res) {

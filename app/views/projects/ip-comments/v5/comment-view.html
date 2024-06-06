@@ -19,7 +19,17 @@
   {
     href: '?comment-type=data',
     text: 'Comment is data'
-  } if data['comment-type'] == 'doc'
+  } if data['comment-type'] == 'doc',
+
+  {
+    href: '?documents-added=yes',
+    text: 'Attached documents'
+  } if data['documents-added'] != 'yes',
+  {
+    href: '?documents-added=',
+    text: 'No attached documents'
+  } if data['documents-added'] == 'yes'
+
 ] %}
 
 {% block backLink %}
@@ -121,7 +131,16 @@
           Supporting documents
         </dt>
         <dd class="govuk-summary-list__value">
-          <a href='upload-extra-supporting-document' class='govuk-link govuk-link--no-visited-state'>Add supporting documents</a>
+          {% if data['documents-added'] %}
+            <a href='#' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document.doc')}}</a><br>
+            <a href='#' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document-(redacted).doc')}}</a><br>
+            {% if data['anotherdocument'] %}
+              <a href='#' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document-2.doc')}}</a><br>
+              <a href='#' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document-2-(redacted).doc')}}</a>
+            {% endif %}
+          {% else %}
+            <a href='extra-document-redaction-status?comment-attachment=view' class='govuk-link govuk-link--no-visited-state'>Add supporting documents</a>
+          {% endif %}
         </dd>
       </div>
     </dl>

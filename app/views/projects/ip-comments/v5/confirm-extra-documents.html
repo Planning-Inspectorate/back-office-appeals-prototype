@@ -24,11 +24,9 @@
       {{ title }}
     </h1>
 
-
     {{ govukSummaryList({
       classes: 'appeal-details govuk-!-margin-bottom-6 govuk-!-margin-top-0',
       rows: [
-
         {
           key: {
             text: 'Document 1'
@@ -144,12 +142,19 @@
       ]
     }) }}
 
-    {{ govukButton({
-      href: "/projects/ip-comments/v5/comment-review?documents-added=yes",
-      text: "Confirm",
-      classes: "govuk-button"
-    }) }}
-
+    {% if data['comment-attachment'] == 'review' %}
+      {{ govukButton({
+        href: "/projects/ip-comments/v5/comment-review?documents-added=yes&comment-attachment=",
+        text: "Confirm",
+        classes: "govuk-button"
+      }) }}
+    {% else %}
+      {{ govukButton({
+        href: "/projects/ip-comments/v5/comment-view?documents-added=yes&comment-attachment=",
+        text: "Confirm",
+        classes: "govuk-button"
+      }) }}
+    {% endif %}
   </div>
 </div>
 

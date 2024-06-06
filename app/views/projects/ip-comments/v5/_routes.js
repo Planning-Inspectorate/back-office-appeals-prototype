@@ -19,12 +19,6 @@ router.post('/upload-extra-supporting-document', function (req, res) {
   }
 })
 
-// if (req.session.data['redaction-status'] == 'needs redaction') {
-//   res.redirect('upload-redacted-extra-document')
-// } else {
-//   res.redirect('extra-documents')
-// }
-
 router.post('/upload-redacted-extra-document', function (req, res) {
   res.redirect('extra-document-received-date')
 })
@@ -34,12 +28,8 @@ router.post('/extra-document-received-date', function (req, res) {
 })
 
 router.post('/extra-supporting-documents', function (req, res) {
-  res.redirect('confirm-extra-documents')
-})
-
-router.post('/extra-supporting-documents', function (req, res) {
   if (req.session.data['other-document'] == 'Yes') {
-    res.redirect('upload-extra-supporting-document?anotherdocument=yes')
+    res.redirect('extra-document-redaction-status?anotherdocument=yes')
   } else {
     res.redirect('confirm-extra-documents')
   }

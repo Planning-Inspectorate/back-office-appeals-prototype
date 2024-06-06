@@ -40,9 +40,10 @@
           actions: {
             items: [
               {
-                href: "other-appeal-reference",
+                href: "extra-document-redaction-status",
+                classes: "govuk-link govuk-link--no-visited-state",
                 text: "Remove",
-                visuallyHiddenText: 'appeal 0176256'
+                visuallyHiddenText: 'document 1'
               }
             ]
           }
@@ -58,7 +59,12 @@
           },
           actions: {
             items: [
-
+              {
+                href: "#",
+                text: "Remove",
+                classes: "govuk-link govuk-link--no-visited-state",
+                visuallyHiddenText: 'redacted document 1'
+              }
             ]
           }
         },
@@ -75,9 +81,10 @@
           actions: {
             items: [
               {
-                href: "other-appeal-reference",
+                href: "#",
                 text: "Remove",
-                visuallyHiddenText: 'appeal 0176256'
+                classes: "govuk-link govuk-link--no-visited-state",
+                visuallyHiddenText: 'document 2'
               }
             ]
           }
@@ -93,7 +100,12 @@
           },
           actions: {
             items: [
-
+              {
+                href: "#",
+                text: "Remove",
+                classes: "govuk-link govuk-link--no-visited-state",
+                visuallyHiddenText: 'redacted document 2'
+              }
             ]
           }
         } if data['anotherdocument'] == 'yes'

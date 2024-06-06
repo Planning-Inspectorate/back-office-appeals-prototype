@@ -90,9 +90,14 @@
         </dt>
         <dd class="govuk-summary-list__value">
           {% if data['documents-added'] %}
-            <a href='#' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document-2.doc')}}</a>
+            <a href='#' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document.doc')}}</a><br>
+            <a href='#' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document-(redacted).doc')}}</a><br>
+            {% if data['anotherdocument'] %}
+              <a href='#' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document-2.doc')}}</a><br>
+              <a href='#' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document-2-(redacted).doc')}}</a>
+            {% endif %}
           {% else %}
-            <a href='extra-document-redaction-status' class='govuk-link govuk-link--no-visited-state'>Add supporting documents</a>
+            <a href='extra-document-redaction-status?comment-attachment=review' class='govuk-link govuk-link--no-visited-state'>Add supporting documents</a>
           {% endif %}
         </dd>
       </div>

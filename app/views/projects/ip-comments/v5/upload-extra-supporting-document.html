@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Upload the supporting documents" %}
+{% set title = "Upload a supporting document" %}
 {% set pageName = title %}
 
 {% set back = true %}
@@ -21,10 +21,11 @@
         id: "upload-extra-document",
         name: "upload-extra-document",
         label: {
-          text: "Upload files"
+          text: "Upload a file",
+          classes: "govuk-visually-hidden"
         },
         hint: {
-          text: 'The files must be a DOC, DOCX, PDF, TIF, JPG or PNG and be smaller than 15MB'
+          text: 'Files must be a DOC, DOCX, PDF, TIF, JPG or PNG and be smaller than 15MB'
         }
       }) }}
 

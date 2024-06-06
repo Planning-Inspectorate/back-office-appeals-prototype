@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Confirm the supporting documents" %}
+{% set title = "Supporting documents" %}
 {% set pageName = title %}
 
 {% set back = true %}
@@ -24,7 +24,6 @@
       {{ title }}
     </h1>
 
-
     {{ govukSummaryList({
       classes: 'appeal-details govuk-!-margin-bottom-6 govuk-!-margin-top-0',
       rows: [
@@ -41,26 +40,9 @@
           actions: {
             items: [
               {
-                href: "#",
-                text: "Change",
-                visuallyHiddenText: 'document 1'
-              }
-            ]
-          }
-        },
-        {
-          key: {
-            text: 'Document 1 received date'
-          },
-          value: {
-            html: 1 | daysAgo
-          },
-          actions: {
-            items: [
-              {
-                href: "#",
-                text: "Change",
-                visuallyHiddenText: 'document 1 received date'
+                href: "other-appeal-reference",
+                text: "Remove",
+                visuallyHiddenText: 'appeal 0176256'
               }
             ]
           }
@@ -76,14 +58,11 @@
           },
           actions: {
             items: [
-              {
-                href: "#",
-                text: "Change",
-                visuallyHiddenText: 'redacted document 1'
-              }
+
             ]
           }
         },
+
         {
           key: {
             text: 'Document 2'
@@ -96,26 +75,9 @@
           actions: {
             items: [
               {
-                href: "#",
-                text: "Change",
-                visuallyHiddenText: 'document 2'
-              }
-            ]
-          }
-        } if data['anotherdocument'] == 'yes',
-        {
-          key: {
-            text: 'Document 2 received date'
-          },
-          value: {
-            html: 1 | daysAgo
-          },
-          actions: {
-            items: [
-              {
-                href: "#",
-                text: "Change",
-                visuallyHiddenText: 'document 2 received date'
+                href: "other-appeal-reference",
+                text: "Remove",
+                visuallyHiddenText: 'appeal 0176256'
               }
             ]
           }
@@ -131,11 +93,7 @@
           },
           actions: {
             items: [
-              {
-                href: "#",
-                text: "Change",
-                visuallyHiddenText: 'redacted document 2'
-              }
+
             ]
           }
         } if data['anotherdocument'] == 'yes'
@@ -143,17 +101,37 @@
       ]
     }) }}
 
-    {{ govukButton({
-      href: "/projects/ip-comments/v5/ip-comments?extra-document=yes",
-      text: "Confirm",
-      classes: "govuk-button"
-    }) }}
+  </div>
+
+  <div class="govuk-grid-column-two-thirds">
+    <form action="" method="post">
+      {{ govukRadios({
+        idPrefix: 'other-document',
+        name: 'other-document',
+        fieldset: {
+          legend: {
+            html: 'Upload another document?',
+            classes: 'govuk-fieldset__legend--m',
+            isPageHeading: false
+          }
+        },
+        items: [
+          {
+            html: 'Yes',
+            value: 'Yes'
+          },
+          {
+            html: 'No',
+            value: 'No'
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </form>
 
   </div>
 </div>
-
-
-
-
-
 {% endblock %}

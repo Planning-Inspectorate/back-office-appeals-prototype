@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Upload redacted versions of the supporting documents" %}
+{% set title = "Upload the redacted version for this document" %}
 {% set pageName = title %}
 
 {% set back = true %}
@@ -32,7 +32,7 @@
     </section>
 
     {{ govukButton({
-      href: "confirm-extra-documents",
+      href: "extra-supporting-documents",
       text: "Continue"
     }) }}
 

@@ -7,6 +7,58 @@ router.get('*', function(req, res, next){
   next()
 })
 
+// adding a manual comment
+
+router.post('/add-ip-name-and-email', function (req, res) {
+  res.redirect('add-ip-address-check')
+})
+
+router.post('/add-ip-address-check', function (req, res) {
+  if (req.session.data['add-ip-address-check'] == 'Yes') {
+    res.redirect('add-ip-address')
+  } else {
+    res.redirect('add-ip-comment-status')
+  }
+})
+
+router.post('/add-ip-address', function (req, res) {
+  res.redirect('add-ip-comment-status')
+})
+
+router.post('/add-ip-comment-status', function (req, res) {
+  res.redirect('add-ip-comment')
+})
+
+router.post('/add-ip-comment', function (req, res) {
+  res.redirect('add-ip-comment-received-date')
+})
+
+router.post('/add-ip-comment-received-date', function (req, res) {
+  if (req.session.data['ip-redaction-status'] == 'Yes') {
+    res.redirect('add-redacted-ip-comment')
+  } else {
+    res.redirect('add-ip-cya')
+  }
+})
+
+router.post('/add-redacted-ip-comment', function (req, res) {
+  res.redirect('add-ip-cya')
+})
+
+router.post('/add-ip-cya', function (req, res) {
+  res.redirect('add-ip-review')
+})
+
+router.post('/add-ip-review', function (req, res) {
+  if (req.session.data['add-ip-comment-review'] == 'valid') {
+    res.redirect('ip-comments?acceptedComment=yes&commentReview=true')
+  } else {
+    res.redirect('add-ip-reject-comment')
+  }
+})
+
+
+// attaching supporting documents
 router.post('/extra-document-redaction-status', function (req, res) {
   res.redirect('upload-extra-supporting-document')
 })

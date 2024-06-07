@@ -11,10 +11,10 @@
   <div class="govuk-grid-column-two-thirds">
 
     <span class="govuk-caption-l">Appeal 2114328</span>
-	  <form action="add-ip-address" method="post">
+	  <form method="post">
 
       {{ govukRadios({
-        name: "IP-address-check",
+        name: "add-ip-address-check",
         fieldset: {
           legend: {
             text: title,
@@ -24,11 +24,11 @@
         },
         items: [
           {
-            value: "Yes~/projects/ip-comments/v5/add-ip-address.html",
+            value: "Yes",
             text: "Yes"
           },
           {
-            value: "No~/projects/ip-comments/v5/add-ip-attachment.html",
+            value: "No",
             text: "No"
           }
         ]

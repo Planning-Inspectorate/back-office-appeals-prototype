@@ -12,7 +12,7 @@
         Appeal 2114328
       </span>
 
-      <form action="add-ip-cya" method="post">
+      <form method="post">
 
         {{ govukDateInput({
           id: "IP-comment-received-date",
@@ -25,7 +25,7 @@
             }
           },
           hint: {
-            html: "For example, 12 5 2007"
+            html: "<p class='govuk-hint'>For example, 28 "+ 31 | lastMonthNumeric +" "+ 0 | yearsAgo +".</p>"
           },
           items: [
             {
@@ -44,35 +44,6 @@
               value: "2024"
             }
           }
-        }) }}
-
-        {{ govukRadios({
-          name: "redaction-status",
-          fieldset: {
-           legend: {
-             text: "Redaction status",
-             isPageHeading: false,
-             classes: "govuk-fieldset__legend--m"
-           }
-          },
-          items: [
-           {
-             value: "Redacted",
-             text: "Redacted"
-           },
-           {
-             value: "Unredacted",
-             text: "Unredacted",
-             checked: true
-           },
-             {
-           divider: "or"
-          },
-           {
-             value: "No redaction required",
-             text: "No redaction required"
-           }
-          ]
         }) }}
 
         {{ govukButton({

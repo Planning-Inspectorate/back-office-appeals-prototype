@@ -67,8 +67,7 @@
               }
             ]
           }
-        },
-
+        } if data['redaction-status'] == 'Yes',
         {
           key: {
             text: 'Document 2'
@@ -108,7 +107,7 @@
               }
             ]
           }
-        } if data['anotherdocument'] == 'yes'
+        } if (data['anotherdocument'] == 'yes' and data['redaction-status'] == 'Yes')
 
       ]
     }) }}

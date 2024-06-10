@@ -131,14 +131,29 @@
         </dt>
         <dd class="govuk-summary-list__value">
           {% if data['documents-added'] %}
-            <a href='#' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document.doc')}}</a><br>
-            <a href='#' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document-(redacted).doc')}}</a><br>
-            {% if data['anotherdocument'] %}
-              <a href='#' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document-2.doc')}}</a><br>
-              <a href='#' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document-2-(redacted).doc')}}</a>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>
+                <a href='#' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document-(redacted).doc')}}</a>
+              </li>
+              {% if data['anotherdocument'] %}
+                <li>
+                  <a href='#' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document-2-(redacted).doc')}}</a>
+                </li>
+              {% endif %}
+            {% else %}
+              Not provided
             {% endif %}
+          </ul>
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          {% if data['documents-added'] %}
+            <a href='extra-documents' class='govuk-link govuk-link--no-visited-state'>
+              Manage<span class="govuk-visually-hidden"> supporting docs</span>
+            </a>
           {% else %}
-            <a href='extra-document-redaction-status?comment-attachment=review' class='govuk-link govuk-link--no-visited-state'>Add supporting documents</a>
+            <a href='extra-document-redaction-status?comment-attachment=review' class='govuk-link govuk-link--no-visited-state'>
+              Add<span class="govuk-visually-hidden"> supporting docs</span>
+            </a>
           {% endif %}
         </dd>
       </div>

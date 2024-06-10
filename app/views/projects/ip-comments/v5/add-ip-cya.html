@@ -32,7 +32,7 @@
 
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          Email address
+          Email
         </dt>
         <dd class="govuk-summary-list__value">
           {{ data ['manual-ip-email'] or 'sammy@fishers.com' }}
@@ -72,7 +72,7 @@
 
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          Received
+          Comment date
         </dt>
         <dd class="govuk-summary-list__value">
           {{ 2 | daysAgo }}
@@ -86,7 +86,7 @@
 
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          IP comment
+          Unredacted comment
         </dt>
         <dd class="govuk-summary-list__value">
           <a href="#" class="govuk-link">
@@ -101,24 +101,10 @@
         </dd>
       </div>
 
-      <!-- <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Site visit requested
-        </dt>
-        <dd class="govuk-summary-list__value">
-          No
-        </dd>
-        <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="#">
-            Change<span class="govuk-visually-hidden"></span>
-          </a>
-        </dd>
-      </div> -->
-
       {% if data['ip-redaction-status'] == 'Yes' %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Redacted IP comment
+            Redacted comment
           </dt>
           <dd class="govuk-summary-list__value">
             <a href="#" class="govuk-link">

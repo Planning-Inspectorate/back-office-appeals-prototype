@@ -189,35 +189,58 @@
     <!-- accept or reject the comment -->
     <form action="" method="post" class="govuk-!-margin-top-7" id="review-comment">
 
-    <!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
+      <!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
+      {% if data['manual-ip-comment'] %}
 
-      {{ govukRadios({
-        name: "commentReview",
-        fieldset: {
-          legend: {
-            text: "Do you accept the comment?",
-            isPageHeading: false,
-            classes: "govuk-fieldset__legend--m"
-          }
-        },
-        items: [
-         {
-            value: "valid~ip-comments?acceptedComment=yes&commentReview=true",
-            text: "Accept comment"
+        {{ govukRadios({
+          name: "commentReview",
+          fieldset: {
+            legend: {
+              text: "Do you accept the comment?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
+            }
           },
-         {
-            value: "redactionNeeded~comment-redact",
-            text: "Redact comment"
-          },
-            {
-              divider: "or"
+          items: [
+           {
+              value: "valid~ip-comments?acceptedComment=yes&commentReview=true",
+              text: "Accept comment"
             },
-          {
-            value: "invalid~reject-comment",
-            text: "Reject comment"
-          }
-        ]
-      }) }}
+            {
+              value: "invalid~reject-comment",
+              text: "Reject comment"
+            }
+          ]
+        }) }}
+      {% else %}
+        {{ govukRadios({
+          name: "commentReview",
+          fieldset: {
+            legend: {
+              text: "Do you accept the comment?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+           {
+              value: "valid~ip-comments?acceptedComment=yes&commentReview=true",
+              text: "Accept comment"
+            },
+           {
+              value: "redactionNeeded~comment-redact",
+              text: "Redact comment"
+            },
+              {
+                divider: "or"
+              },
+            {
+              value: "invalid~reject-comment",
+              text: "Reject comment"
+            }
+          ]
+        }) }}
+      {% endif %}
 
       <p class="govuk-body">
         <a href='withdraw-comment-upload-evidence?comment-mode=review' class='govuk-link govuk-link--no-visited-state'>Withdraw comment</a>

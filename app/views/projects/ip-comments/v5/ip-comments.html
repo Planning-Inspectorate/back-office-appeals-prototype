@@ -67,7 +67,7 @@
         </div>
         <div class="govuk-notification-banner__content">
           <p class="govuk-notification-banner__heading">
-            Comment from {{ data ['manual-ip-first-name']}} {{ data ['manual-ip-last-name']}} added
+            Comment from {{ data ['manual-ip-first-name'] or 'Sam'}} {{ data ['manual-ip-last-name'] or 'Fisher'}} added
           </p>
         </div>
       </div>

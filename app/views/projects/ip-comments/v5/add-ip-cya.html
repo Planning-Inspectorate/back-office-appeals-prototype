@@ -50,7 +50,7 @@
         </dt>
         <dd class="govuk-summary-list__value">
           {% if data['add-ip-address-check'] == 'Yes' %}
-            {{ data['manual-ip-address-line-1'] }}<br>
+            {{ data['manual-ip-address-line-1'] or '7 Bipple Lane' }}<br>
             {{ data['manual-ip-address-line-2'] or 'Donnie Close' }}
             {% if data ['manual-ip-address-line-2'] %}<br>
             {% endif %}
@@ -72,73 +72,6 @@
 
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          IP comment
-        </dt>
-        <dd class="govuk-summary-list__value">
-          {% if data['attachment'] === 'yes' %}
-            <a href="#" class="govuk-link">
-              2114328-IP-comment.doc
-            </a>
-          {% endif %}
-        </dd>
-
-        <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="#">
-            Change<span class="govuk-visually-hidden">  IP comment</span>
-          </a>
-        </dd>
-      </div>
-
-      {% if data['ip-redaction-status'] == 'Yes' %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Redacted IP comment
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {% if data['attachment'] === 'yes' %}
-              <a href="#" class="govuk-link">
-                2114328-IP-comment-.doc
-              </a>
-            {% endif %}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="#">
-              Change<span class="govuk-visually-hidden"> redacted IP comment</span>
-            </a>
-          </dd>
-        </div>
-      {% endif %}
-
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Site visit requested
-        </dt>
-        <dd class="govuk-summary-list__value">
-          No
-        </dd>
-        <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="#">
-            Change<span class="govuk-visually-hidden"></span>
-          </a>
-        </dd>
-      </div>
-
-      <!-- <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Comment status
-        </dt>
-        <dd class="govuk-summary-list__value">
-          {{ data['commentReview'] or 'Accepted' }}
-        </dd>
-        <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="#">
-            Change<span class="govuk-visually-hidden"></span>
-          </a>
-        </dd>
-      </div> -->
-
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
           Received
         </dt>
         <dd class="govuk-summary-list__value">
@@ -151,12 +84,29 @@
         </dd>
       </div>
 
-      <!-- <div class="govuk-summary-list__row">
+      <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          Redaction status
+          IP comment
         </dt>
         <dd class="govuk-summary-list__value">
-          {{ data['redaction-status'] or 'Unredacted' }}
+          <a href="#" class="govuk-link">
+            2114328-IP-comment.doc
+          </a>
+        </dd>
+
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="#">
+            Change<span class="govuk-visually-hidden">  IP comment</span>
+          </a>
+        </dd>
+      </div>
+
+      <!-- <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Site visit requested
+        </dt>
+        <dd class="govuk-summary-list__value">
+          No
         </dd>
         <dd class="govuk-summary-list__actions">
           <a class="govuk-link" href="#">
@@ -165,9 +115,27 @@
         </dd>
       </div> -->
 
+      {% if data['ip-redaction-status'] == 'Yes' %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Redacted IP comment
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <a href="#" class="govuk-link">
+              2114328-IP-comment-.doc
+            </a>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> redacted IP comment</span>
+            </a>
+          </dd>
+        </div>
+      {% endif %}
+
       </dl>
 
-      <form action="case?crosscopied=yes" method="post" class="govuk-!-margin-top-6">
+      <form method="post" class="govuk-!-margin-top-6">
         {{ govukButton({
           text: "Confirm"
         }) }}

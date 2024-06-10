@@ -24,13 +24,24 @@
     rows: [
       [
           {
+            text: "Sam Fisher"
+          },
+          {
+            text: 2 | daysAgo
+          },
+          {
+            html: "<a href='comment-review?acceptedComment=&redactedComment=&comment-withdrawn=&manual-ip-comment=true&comment-rejected=&extra-document=&new-comment='>Review<span class='govuk-visually-hidden'> comment from Ian Smith</span></a>"
+          }
+      ] if data['manually-added-comment'] == 'true',
+      [
+          {
             text: "Ian Smith"
           },
           {
-            text: 12 | daysAgo
+            text: 3 | daysAgo
           },
           {
-            html: "<a href='comment-review?acceptedComment=&redactedComment=&comment-withdrawn=&manual-ip-comment=&comment-rejected=&extra-document='>Review<span class='govuk-visually-hidden'> comment from Ian Smith</span></a>"
+            html: "<a href='comment-review?acceptedComment=&redactedComment=&comment-withdrawn=&manual-ip-comment=&comment-rejected=&extra-document=&new-comment='>Review<span class='govuk-visually-hidden'> comment from Ian Smith</span></a>"
           }
       ] if data['commentReview'] != 'true',
       [
@@ -38,10 +49,10 @@
             text: "Robyn Jenkins"
           },
           {
-            text: 11 | daysAgo
+            text: 3 | daysAgo
           },
           {
-            html: "<a href='comment-review?acceptedComment=&redactedComment=&comment-withdrawn=&manual-ip-comment=&comment-rejected=&extra-document='>Review<span class='govuk-visually-hidden'> comment from Robyn Jenkins</span></a>"
+            html: "<a href='comment-review?acceptedComment=&redactedComment=&comment-withdrawn=&manual-ip-comment=&comment-rejected=&extra-document=&new-comment='>Review<span class='govuk-visually-hidden'> comment from Robyn Jenkins</span></a>"
           }
       ],
       [
@@ -49,10 +60,10 @@
             text: "Cath Fairfield"
           },
           {
-            text: 8 | daysAgo
+            text: 4 | daysAgo
           },
           {
-            html: "<a href='comment-review?acceptedComment=&redactedComment=&comment-withdrawn=&manual-ip-comment=&comment-rejected=&extra-document='>Review<span class='govuk-visually-hidden'> comment from Cath Fairfield</span></a>"
+            html: "<a href='comment-review?acceptedComment=&redactedComment=&comment-withdrawn=&manual-ip-comment=&comment-rejected=&extra-document=&new-comment='>Review<span class='govuk-visually-hidden'> comment from Cath Fairfield</span></a>"
           }
       ],
       [
@@ -60,10 +71,10 @@
             text: "Brian Thompson"
           },
           {
-            text: 8 | daysAgo
+            text: 7 | daysAgo
           },
           {
-            html: "<a href='comment-review?acceptedComment=&redactedComment=&comment-withdrawn=&manual-ip-comment=&comment-rejected=&extra-document='>Review<span class='govuk-visually-hidden'> comment from Brian Thompson</span></a>"
+            html: "<a href='comment-review?acceptedComment=&redactedComment=&comment-withdrawn=&manual-ip-comment=&comment-rejected=&extra-document=&new-comment='>Review<span class='govuk-visually-hidden'> comment from Brian Thompson</span></a>"
           }
       ],
       [
@@ -74,7 +85,7 @@
             text: 8 | daysAgo
           },
           {
-            html: "<a href='comment-review?acceptedComment=&redactedComment=&comment-withdrawn=&manual-ip-comment=&comment-rejected=&extra-document='>Review<span class='govuk-visually-hidden'> comment from Dan Brighthouse</span></a>"
+            html: "<a href='comment-review?acceptedComment=&redactedComment=&comment-withdrawn=&manual-ip-comment=&comment-rejected=&extra-document=&new-comment='>Review<span class='govuk-visually-hidden'> comment from Dan Brighthouse</span></a>"
           }
       ]
     ]

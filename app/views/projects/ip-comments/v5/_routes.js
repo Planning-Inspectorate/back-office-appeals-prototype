@@ -17,11 +17,15 @@ router.post('/add-ip-address-check', function (req, res) {
   if (req.session.data['add-ip-address-check'] == 'Yes') {
     res.redirect('add-ip-address')
   } else {
-    res.redirect('add-ip-comment-status')
+    res.redirect('add-ip-comment-received-date')
   }
 })
 
 router.post('/add-ip-address', function (req, res) {
+  res.redirect('add-ip-comment-received-date')
+})
+
+router.post('/add-ip-comment-received-date', function (req, res) {
   res.redirect('add-ip-comment-status')
 })
 
@@ -30,10 +34,6 @@ router.post('/add-ip-comment-status', function (req, res) {
 })
 
 router.post('/add-ip-comment', function (req, res) {
-  res.redirect('add-ip-comment-received-date')
-})
-
-router.post('/add-ip-comment-received-date', function (req, res) {
   if (req.session.data['ip-redaction-status'] == 'Yes') {
     res.redirect('add-redacted-ip-comment')
   } else {
@@ -46,7 +46,7 @@ router.post('/add-redacted-ip-comment', function (req, res) {
 })
 
 router.post('/add-ip-cya', function (req, res) {
-  res.redirect('add-ip-review')
+  res.redirect('ip-comments?new-comment=true&manually-added-comment=true')
 })
 
 router.post('/add-ip-review', function (req, res) {

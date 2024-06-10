@@ -1,6 +1,11 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = 'Comment from Ian Smith' %}
+{% if data['manual-ip-comment'] %}
+  {% set title = 'Comment from Sam Fisher' %}
+{% else %}
+  {% set title = 'Comment from Ian Smith' %}
+{% endif %}
+
 {% set pageName = title %}
 
 {% block backLink %}
@@ -47,7 +52,11 @@
           Interested party
         </dt>
         <dd class="govuk-summary-list__value">
-          Ian Smith
+          {% if data['manual-ip-comment'] %}
+            Sam Fisher
+          {% else %}
+            Ian Smith
+          {% endif %}
         </dd>
       </div>
       <div class="govuk-summary-list__row">
@@ -55,7 +64,11 @@
           Email address
         </dt>
         <dd class="govuk-summary-list__value">
-          ian.smith@gmail.com
+          {% if data['manual-ip-comment'] %}
+            sammy@fishers.com
+          {% else %}
+            ian.smith@gmail.com
+          {% endif %}
         </dd>
       </div>
       <div class="govuk-summary-list__row">
@@ -63,9 +76,19 @@
           Address
         </dt>
         <dd class="govuk-summary-list__value">
-          6 The Grove<br>
-          Glasgow<br>
-          GS5 7TH
+          {% if data['add-ip-address-check'] == 'Yes' %}
+            {{ data['manual-ip-address-line-1'] or '7 Bipple Lane' }}<br>
+            {{ data['manual-ip-address-line-2'] or 'Donnie Close' }}
+            {% if data ['manual-ip-address-line-2'] %}<br>
+            {% endif %}
+            {{ data['manual-ip-address-town'] or 'Brickleford'}}
+            {% if data['manual-ip-address-county'] %}<br>
+            {% endif %}
+            {{ data['manual-ip-address-county'] or 'Brickfordshire' }}<br>
+            {{ data['manual-ip-address-postcode'] or 'BF93 2NN' }}
+          {% else %}
+            Not provided
+          {% endif %}
         </dd>
       </div>
       <div class="govuk-summary-list__row">
@@ -73,15 +96,33 @@
           Submitted
         </dt>
         <dd class="govuk-summary-list__value">
-          26 Nov 2023
+          {% if data['manual-ip-comment'] %}
+            {{ 2 | daysAgo }}
+          {% else %}
+            {{ 3 | daysAgo }}
+          {% endif %}
         </dd>
       </div>
+
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
           Comment
         </dt>
+        {% if data['manual-ip-comment'] %}
         <dd class="govuk-summary-list__value">
-          Having reviewed the proposal I would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. All of us here at number 6 The Grove agree.
+          <a href="#" class="govuk-link">
+            2114328-IP-comment.doc
+          </a>
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="manage-comment">
+            Manage<span class="govuk-visually-hidden"> 2114328-IP-comment.doc</span>
+          </a>
+        </dd>
+          {% else %}
+        <dd class="govuk-summary-list__value">
+            Having reviewed the proposal I would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. All of us here at number 6 The Grove agree.
+          {% endif %}
         </dd>
       </div>
       <div class="govuk-summary-list__row">

@@ -4,7 +4,6 @@
 {% set pageName = title %}
 
 {% block content %}
-
  <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
@@ -46,8 +45,8 @@
           }) }}
         </section>
 
-        <section class="govuk-!-margin-bottom-6">
-          <!-- site visit requested -->
+        <!-- site visit requested -->
+        <!-- <section class="govuk-!-margin-bottom-6">
           {{ govukCheckboxes({
             name: "siteVisit",
             fieldset: {
@@ -63,7 +62,7 @@
               }
             ]
           }) }}
-        </section>
+        </section> -->
 
         {{ govukButton({
           text: "Continue"

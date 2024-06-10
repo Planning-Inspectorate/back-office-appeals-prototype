@@ -102,9 +102,9 @@
     {% set versionHistory %}
 
       {{ govukTable({
-        caption: "Dates and amounts",
-        captionClasses: "govuk-table__caption--m",
-        firstCellIsHeader: true,
+        caption: "Version history",
+        captionClasses: "govuk-heading-l govuk-visually-hidden",
+        firstCellIsHeader: false,
         head: [
           {
             text: "Version"
@@ -119,7 +119,7 @@
             text: "Redaction status"
           },
           {
-            text: "Amount"
+            text: "Action"
           }
         ],
         rows: [

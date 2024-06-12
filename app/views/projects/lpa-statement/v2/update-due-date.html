@@ -1,71 +1,44 @@
- 
 {% extends "layouts/PINS-post-mvp.html" %}
-{% set pageName="LPA statement review" %}
+
+{% set title = "Do you want to update the statement due date?" %}
+{% set pageName = title %}
 
 {% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
 
-
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-     
     <span class="govuk-caption-l">Appeal 2110166</span>
-    
-    <div class="govuk-form-group">
-      <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
-        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-          <h1 class="govuk-fieldset__heading">
-            Do you want to update the statement due date?
-          </h1>
-        </legend>
-        <form action="" method="post" class="govuk-!-margin-top-6" novalidate> 
-        <div id="changedName-hint" class="govuk-hint">
-          Current due date is 18 July 2023.
-        </div>
-       
-    {% from "govuk/components/radios/macro.njk" import govukRadios %}
+    <form action="" method="post" novalidate>
 
-    {{ govukRadios({
-      classes: "govuk-radios",
-      name: "changedName",
-      fieldset: {
-        legend: {
-          text: "",
-          isPageHeading: true,
-          classes: "govuk-fieldset__legend--l"
-        }
-      },
-      hint: {
-        text: ""
-      },
-      items: [
-        {
-          value: "yes~update-due-date-yes",
-          text: "Yes"
+      {{ govukRadios({
+        classes: "govuk-radios",
+        name: "changedName",
+        fieldset: {
+          legend: {
+            text: title,
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
         },
-        {
-          value: "no~check-your-answers-incomplete",
-          text: "No"
-        }
-      ]
-    }) }}
-  
-   
-        
-      </fieldset>
-    </div>
+        hint: {
+          text: "Current due date is 18 July 2023"
+        },
+        items: [
+          {
+            value: "yes~update-due-date-yes",
+            text: "Yes"
+          },
+          {
+            value: "no~check-your-answers-incomplete",
+            text: "No"
+          }
+        ]
+      }) }}
 
-    {{ govukButton({
-      text: "Continue"
-    }) }}
-
-   
-
+      {{ govukButton({
+        text: "Continue"
+      }) }}
 
     </form>
 
 {% endblock %}
-
-
-
-</div>
-</div>

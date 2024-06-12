@@ -57,7 +57,6 @@ router.post('/add-ip-review', function (req, res) {
   }
 })
 
-
 // attaching supporting documents
 router.post('/extra-document-redaction-status', function (req, res) {
   res.redirect('upload-extra-supporting-document')

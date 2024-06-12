@@ -12,13 +12,6 @@
   } if data['anotherdocument'] == 'yes' else {
     href: '?anotherdocument=yes',
     text: 'A second document'
-  },
-  {
-    href: '?alternative=',
-    text: 'One table view'
-  } if data['alternative'] == 'yes' else {
-    href: '?alternative=yes',
-    text: 'Documents split out'
   }
 ] %}
 
@@ -31,23 +24,86 @@
       {{ title }}
     </h1>
 
-    {% if data['alternative'] %}
+    <!-- documents split out -->
+    {{ govukSummaryList({
+      card: {
+        title: {
+          text: "Supporting document 1"
+        }
+      },
+      rows: [
+        {
+          key: {
+            text: "Supporting document"
+          },
+          value: {
+            html: "<a href='#' class='govuk-link'>
+              "+ (data ['upload-extra-document'] or 'appeal-2114328-added-document.doc') + "
+            </a>"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Change",
+                visuallyHiddenText: "age"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Redacted version"
+          },
+          value: {
+            html: "<a href='#' class='govuk-link'>
+              "+ (data ['upload-extra-document'] or 'appeal-2114328-added-document.doc') + "
+            </a>"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Change",
+                visuallyHiddenText: "nationality"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Received"
+          },
+          value: {
+            html: 1 | daysAgo
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Change",
+                visuallyHiddenText: "working situation"
+              }
+            ]
+          }
+        }
+      ]
+      }) }}
 
-      <!-- documents split out -->
       {{ govukSummaryList({
         card: {
           title: {
-            text: "Supporting document 1"
+            text: "Supporting document 2"
           }
         },
         rows: [
           {
             key: {
-              text: "Unredacted"
+              text: "Supporting document"
             },
             value: {
               html: "<a href='#' class='govuk-link'>
-                "+ (data ['upload-extra-document'] or 'appeal-2114328-added-document.doc') + "
+                "+ (data ['upload-extra-document'] or 'appeal-2114328-added-document-2.doc') + "
               </a>"
             },
             actions: {
@@ -62,11 +118,11 @@
           },
           {
             key: {
-              text: "Redacted"
+              text: "Redacted version"
             },
             value: {
               html: "<a href='#' class='govuk-link'>
-                "+ (data ['upload-extra-document'] or 'appeal-2114328-added-document-(redacted).doc') + "
+                "+ (data ['upload-extra-document'] or 'appeal-2114328-added-document-2.doc') + "
               </a>"
             },
             actions: {
@@ -81,7 +137,7 @@
           },
           {
             key: {
-              text: "Received date"
+              text: "Received"
             },
             value: {
               html: 1 | daysAgo
@@ -96,197 +152,8 @@
               ]
             }
           }
-        ]
-        }) }}
-
-        {{ govukSummaryList({
-          card: {
-            title: {
-              text: "Supporting document 2"
-            }
-          },
-          rows: [
-            {
-              key: {
-                text: "Unredacted"
-              },
-              value: {
-                html: "<a href='#' class='govuk-link'>
-                  "+ (data ['upload-extra-document'] or 'appeal-2114328-added-document-2.doc') + "
-                </a>"
-              },
-              actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "age"
-                  }
-                ]
-              }
-            },
-            {
-              key: {
-                text: "Redacted"
-              },
-              value: {
-                html: "<a href='#' class='govuk-link'>
-                  "+ (data ['upload-extra-document'] or 'appeal-2114328-added-document-2-(redacted).doc') + "
-                </a>"
-              },
-              actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "nationality"
-                  }
-                ]
-              }
-            },
-            {
-              key: {
-                text: "Received date"
-              },
-              value: {
-                html: 1 | daysAgo
-              },
-              actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "working situation"
-                  }
-                ]
-              }
-            }
           ]
-          }) if data['anotherdocument'] == 'yes' }}
-
-
-    {% else %}
-
-      <!-- documents in a single table -->
-      {{ govukSummaryList({
-        classes: 'appeal-details govuk-!-margin-bottom-6 govuk-!-margin-top-0',
-        rows: [
-          {
-            key: {
-              text: 'Unredacted document 1'
-            },
-            value: {
-              html: "<a href='#' class='govuk-link'>
-                "+ (data ['upload-extra-document'] or 'appeal-2114328-added-document.doc') + "
-              </a>"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: 'document 1'
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: 'Redacted document 1'
-            },
-            value: {
-              html: "<a href='#' class='govuk-link'>
-                "+ (data ['upload-extra-document'] or 'appeal-2114328-added-document-(redacted).doc') + "
-              </a>"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: 'redacted document 1'
-                }
-              ]
-            }
-          },
-
-          {
-            key: {
-              text: 'Document 1 received date'
-            },
-            value: {
-              html: 1 | daysAgo
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: 'document 1 received date'
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: 'Unredacted document 2'
-            },
-            value: {
-              html: "<a href='#' class='govuk-link'>
-                "+ (data ['upload-extra-document'] or 'appeal-2114328-added-document-2.doc') + "
-              </a>"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: 'document 2'
-                }
-              ]
-            }
-          } if data['anotherdocument'] == 'yes',
-          {
-            key: {
-              text: 'Redacted document 2'
-            },
-            value: {
-              html: "<a href='#' class='govuk-link'>
-                "+ (data ['upload-extra-document'] or 'appeal-2114328-added-document-2-(redacted).doc') + "
-              </a>"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: 'redacted document 2'
-                }
-              ]
-            }
-          } if data['anotherdocument'] == 'yes',
-          {
-            key: {
-              text: 'Document 2 received date'
-            },
-            value: {
-              html: 1 | daysAgo
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: 'document 2 received date'
-                }
-              ]
-            }
-          } if data['anotherdocument'] == 'yes'
-
-        ]
-      }) }}
-
-    {% endif %}
+    }) if data['anotherdocument'] == 'yes' }}
 
     {% if data['comment-attachment'] == 'review' %}
       {{ govukButton({

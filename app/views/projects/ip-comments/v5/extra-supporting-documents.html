@@ -24,98 +24,58 @@
       {{ title }}
     </h1>
 
-    {{ govukSummaryList({
-      classes: 'appeal-details govuk-!-margin-bottom-6 govuk-!-margin-top-0',
-      rows: [
+    <dl class="govuk-summary-list govuk-!-margin-bottom-6 govuk-!-margin-top-0">
 
-        {
-          key: {
-            text: 'Document 1'
-          },
-          value: {
-            html: "<a href='#' class='govuk-link'>
-              "+ (data ['upload-extra-document'] or 'appeal-2114328-added-document.doc') + "
-            </a>"
-          },
-          actions: {
-            items: [
-              {
-                href: "extra-document-redaction-status",
-                classes: "govuk-link govuk-link--no-visited-state",
-                text: "Remove",
-                visuallyHiddenText: 'document 1'
-              }
-            ]
-          }
-        },
-        {
-          key: {
-            text: 'Document 1 (redacted version)'
-          },
-          value: {
-            html: "<a href='#' class='govuk-link'>
-              "+ (data ['upload-extra-document'] or 'appeal-2114328-added-document-(redacted).doc') + "
-            </a>"
-          },
-          actions: {
-            items: [
-              {
-                href: "#",
-                text: "Remove",
-                classes: "govuk-link govuk-link--no-visited-state",
-                visuallyHiddenText: 'redacted document 1'
-              }
-            ]
-          }
-        } if data['redaction-status'] == 'Yes',
-        {
-          key: {
-            text: 'Document 2'
-          },
-          value: {
-            html: "<a href='#' class='govuk-link'>
-              "+ (data ['upload-extra-document'] or 'appeal-2114328-added-document-2.doc') + "
-            </a>"
-          },
-          actions: {
-            items: [
-              {
-                href: "#",
-                text: "Remove",
-                classes: "govuk-link govuk-link--no-visited-state",
-                visuallyHiddenText: 'document 2'
-              }
-            ]
-          }
-        } if data['anotherdocument'] == 'yes',
-        {
-          key: {
-            text: 'Document 2 (redacted version)'
-          },
-          value: {
-            html: "<a href='#' class='govuk-link'>
-              "+ (data ['upload-extra-document'] or 'appeal-2114328-added-document-2-(redacted).doc') + "
-            </a>"
-          },
-          actions: {
-            items: [
-              {
-                href: "#",
-                text: "Remove",
-                classes: "govuk-link govuk-link--no-visited-state",
-                visuallyHiddenText: 'redacted document 2'
-              }
-            ]
-          }
-        } if (data['anotherdocument'] == 'yes' and data['redaction-status'] == 'Yes')
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key govuk-!-width-one-quarter">
+          Document 1
+        </dt>
+        <dd class="govuk-summary-list__value govuk-!-width-two-thirds">
+          <ul class="govuk-list govuk-list--bullet">
+            <li>
+              <a href='#' class='govuk-link'>
+                {{ data ['upload-extra-document'] or 'appeal-2114328-added-document.doc' }}
+              </a>
+            </li>
+            <li>
+              <a href='#' class='govuk-link'>
+                {{ data ['upload-extra-document'] or 'appeal-2114328-added-document.doc' }}
+              </a>
+            </li>
+          </ul>
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> document 1</span></a>
+        </dd>
+      </div>
 
-      ]
-    }) }}
+      {% if data['anotherdocument'] == 'yes' %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Document 2
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <ul class="govuk-list govuk-list--bullet">
+              <li>
+                <a href='#' class='govuk-link'>
+                  {{ data ['upload-extra-document'] or 'appeal-2114328-added-document-2.doc' }}
+                </a>
+              </li>
+              <li>
+                <a href='#' class='govuk-link'>
+                  {{ data ['upload-extra-document'] or 'appeal-2114328-added-document-2.doc' }}
+                </a>
+              </li>
+            </ul>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> document 2</span></a>
+          </dd>
+        </div>
+      {% endif %}
+    </dl>
 
-  </div>
-
-  <div class="govuk-grid-column-two-thirds">
-    <form action="" method="post">
+    <form method="post">
       {{ govukRadios({
         idPrefix: 'other-document',
         name: 'other-document',
@@ -141,6 +101,7 @@
       {{ govukButton({
         text: "Continue"
       }) }}
+
     </form>
 
   </div>

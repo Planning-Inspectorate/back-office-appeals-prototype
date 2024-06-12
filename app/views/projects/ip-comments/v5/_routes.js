@@ -58,29 +58,35 @@ router.post('/add-ip-review', function (req, res) {
 })
 
 // attaching supporting documents
-router.post('/extra-document-redaction-status', function (req, res) {
-  res.redirect('upload-extra-supporting-document')
-})
 
+// ask for the first document
 router.post('/upload-extra-supporting-document', function (req, res) {
-  if (req.session.data['redaction-status'] == 'Yes') {
-    res.redirect('upload-redacted-extra-document')
-  } else {
-    res.redirect('extra-document-received-date')
-  }
-})
-
-router.post('/upload-redacted-extra-document', function (req, res) {
   res.redirect('extra-document-received-date')
 })
 
+// what date was it received?
 router.post('/extra-document-received-date', function (req, res) {
+  res.redirect('extra-document-redaction-status')
+})
+
+// ask if there a redacted version
+router.post('/extra-document-redaction-status', function (req, res) {
+  if (req.session.data['redaction-status'] == 'Yes') {
+    res.redirect('upload-redacted-extra-document')
+  } else {
+    res.redirect('extra-supporting-documents')
+  }
+})
+
+// upload the redacted version
+router.post('/upload-redacted-extra-document', function (req, res) {
   res.redirect('extra-supporting-documents')
 })
 
+
 router.post('/extra-supporting-documents', function (req, res) {
   if (req.session.data['other-document'] == 'Yes') {
-    res.redirect('extra-document-redaction-status?anotherdocument=yes')
+    res.redirect('upload-extra-supporting-document?anotherdocument=yes')
   } else {
     res.redirect('confirm-extra-documents')
   }

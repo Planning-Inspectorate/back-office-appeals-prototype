@@ -1,5 +1,5 @@
 {% extends "layouts/PINS-post-mvp.html" %}
-{% set pageName="Add documents" %}
+{% set pageName="Add document details" %}
 
 {% block content %}
 
@@ -7,62 +7,45 @@
   <div class="govuk-grid-column-two-thirds">
 
 	<span class="govuk-caption-l">Appeal 2110166</span>
-	<h1 class="govuk-heading-l">Add document details</h1>
+	<h1 class="govuk-heading-l">Add document details for example2.pdf</h1>
+
+	
+    <form action="obligation-review" method="post" class="" novalidate> 
+
+	 
+	{% from "govuk/components/date-input/macro.njk" import govukDateInput %}
  
-	<span class="govuk-caption-m">File name</span>
-	<h2 class="govuk-heading-m">example2.pdf</h2>
-    <form action="" method="post" class="govuk-!-margin-top-9" novalidate></form>
+	{{ govukDateInput({
+	  id: "received-date",
+	  namePrefix: "received-date",
+	  fieldset: {
+		legend: {
+		  text: "Date received",
+		  isPageHeading: false,
+		  classes: "govuk-fieldset__legend--m"
+		}
+	  },
+	  hint: {
+		html: "<p class='govuk-hint'>For example, 28 "+ 31 | lastMonthNumeric +" "+ 0 | yearsAgo +"</p>"
+	  }
+	}) }}   
 
-	<h class="govuk-heading-m">Date received</h2>
-		{% from "govuk/components/date-input/macro.njk" import govukDateInput %}
-	   
-		{{ govukDateInput({
-		  id: "received-date",
-		  namePrefix: "received-date",
-		  fieldset: {
-			legend: {
-			  text: " ",
-			  isPageHeading: true,
-			  classes: "govuk-fieldset__legend--l"
-			}
-		  },
-		  hint: {
-			text: "For example, 31 3 1980"
-		  },
-		  items: [
-			{
-			  name: "day",
-			  classes: "govuk-input--width-2",
-			  autocomplete: "received-date-day"
-			},
-			{
-			  name: "month",
-			  classes: "govuk-input--width-2",
-			  autocomplete: "received-date-month"
-			},
-			{
-			  name: "year",
-			  classes: "govuk-input--width-4",
-			  autocomplete: "received-date-year"
-			}
-		  ]
-		}) }}	 
-
-
+	
 		{{ govukRadios({
 			name: "redaction",
 			fieldset: {
 			  legend: {
-				text: "Redaction status"
+				text: "Redaction status",
+				classes: "govuk-fieldset__legend--m"
 			  }
 			},
 			items: [
 			  {
-				value: "redacted",
+				value: "Redacted",
 				text: "Redacted"
 			  },
 			  {
-				value: "unredacted",
+				value: "Unredacted",
 				text: "Unredacted"
 			  },
 				  {
@@ -75,32 +58,15 @@
 			]
 		  }) }}
 	  
-	  {% set otherHtml %}
-	  {{ govukInput({
-		id: "contact-by-text",
-		name: "contactByText",
-		type: "tel",
-		autocomplete: "tel",
-		classes: "govuk-!-width-two-thirds",
-		label: {
-		  text: "Sender"
-		}
-	  }) }}
-	  {% endset -%}
-		
- 
- 
-
-
 	   {{ govukButton({
-        text: "Continue",
-        href: "obligation-review"
+        text: "Continue"
       }) }}
 
 	  </form>
 
 
-  </div>
-</div>
+
 
 {% endblock %}
+</div>
+</div>

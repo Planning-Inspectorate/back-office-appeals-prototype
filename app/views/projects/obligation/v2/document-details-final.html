@@ -1,5 +1,5 @@
 {% extends "layouts/PINS-post-mvp.html" %}
-{% set pageName="Add documents" %}
+{% set pageName="Add document details" %}
 
 {% block content %}
 
@@ -7,11 +7,10 @@
   <div class="govuk-grid-column-two-thirds">
 
 	<span class="govuk-caption-l">Appeal 2110166</span>
-	<h1 class="govuk-heading-l">Add document details</h1>
- 
-	<span class="govuk-caption-m">example2.pdf</span>
+	<h1 class="govuk-heading-l">Add document details for example2.pdf</h1>
+
 	
-    <form action="obligation-review" method="post" class="govuk-!-margin-top-9" novalidate> 
+    <form action="obligation-review" method="post" class="" novalidate> 
 
 	 
 	{% from "govuk/components/date-input/macro.njk" import govukDateInput %}
@@ -22,12 +21,12 @@
 	  fieldset: {
 		legend: {
 		  text: "Date received",
-		  isPageHeading: true,
+		  isPageHeading: false,
 		  classes: "govuk-fieldset__legend--m"
 		}
 	  },
 	  hint: {
-		html: "<p class='govuk-hint'>For example, 28 "+ 31 | lastMonthNumeric +" "+ 0 | yearsAgo +".</p>"
+		html: "<p class='govuk-hint'>For example, 28 "+ 31 | lastMonthNumeric +" "+ 0 | yearsAgo +"</p>"
 	  }
 	}) }}   
 
@@ -36,7 +35,8 @@
 			name: "redaction",
 			fieldset: {
 			  legend: {
-				text: "Redaction status"
+				text: "Redaction status",
+				classes: "govuk-fieldset__legend--m"
 			  }
 			},
 			items: [

@@ -1,6 +1,6 @@
 {% extends "layouts/PINS.html" %}
 
-{% set title = "Upload unredacted IP comment" %}
+{% set title = "Upload IP comment" %}
 {% set pageName = title %}
 
 {% block content %}
@@ -12,7 +12,6 @@
       </span>
 
       <form method="post">
-
         <section class="govuk-!-margin-bottom-6">
           {% set uploadHtml %}
             {{ govukFileUpload({
@@ -25,7 +24,7 @@
                 isPageHeading: true
               },
               hint: {
-                text: 'The file must be a DOC, DOCX, PDF, TIF, JPG or PNG and be smaller than 15MB'
+                html: '<p class="govuk-body">(You can add a redacted version later)</p><p class="govuk-hint">The file must be a DOC, DOCX, PDF, TIF, JPG or PNG and be smaller than 15MB</p>'
               }
             }) }}
 

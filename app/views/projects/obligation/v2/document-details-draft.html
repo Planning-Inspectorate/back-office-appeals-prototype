@@ -1,5 +1,5 @@
 {% extends "layouts/PINS-post-mvp.html" %}
-{% set pageName="Add documents" %}
+{% set pageName="Add document details" %}
 
 {% block content %}
 
@@ -10,8 +10,7 @@
 	<h1 class="govuk-heading-l">Add document details for example2.pdf</h1>
  
  
-	
-    <form action="case-draft" method="post" class="govuk-!-margin-top-9" novalidate> 
+    <form action="case-draft" method="post" novalidate> 
 
 	 
 	{% from "govuk/components/date-input/macro.njk" import govukDateInput %}
@@ -22,7 +21,7 @@
 	  fieldset: {
 		legend: {
 		  text: "Date received",
-		  isPageHeading: true,
+		  isPageHeading: false,
 		  classes: "govuk-fieldset__legend--m"
 		}
 	  },

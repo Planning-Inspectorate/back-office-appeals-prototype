@@ -1,44 +1,71 @@
+
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Do you want to update the statement due date?" %}
+{% set title = "Enter new LPA statement due date" %}
 {% set pageName = title %}
 
 {% block content %}
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
 
-    <span class="govuk-caption-l">Appeal 2110166</span>
-    <form action="" method="post" novalidate>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
-      {{ govukRadios({
-        classes: "govuk-radios",
-        name: "changedName",
-        fieldset: {
-          legend: {
-            text: title,
-            isPageHeading: true,
-            classes: "govuk-fieldset__legend--l"
-          }
-        },
-        hint: {
-          text: "Current due date is 18 July 2023"
-        },
-        items: [
-          {
-            value: "yes~update-due-date-yes",
-            text: "Yes"
-          },
-          {
-            value: "no~check-your-answers-incomplete",
-            text: "No"
-          }
-        ]
-      }) }}
+      <span class="govuk-caption-l">
+        Appeal 2110166
+      </span>
 
-      {{ govukButton({
-        text: "Continue"
-      }) }}
+      <h1 class="govuk-heading-l">
+        {{ title }}
+      </h1>
 
-    </form>
+      
+      <form action="check-your-answers-incomplete" method="post" class="govuk-!-margin-top-6" novalidate>
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="dob-hint">
+
+            
+            <div class="govuk-date-input" id="dob">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="dob-day">
+                    Day
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="dob-day" name="dob-day" type="text" autocomplete="bday-day" inputmode="numeric" value="28">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="dob-month" >
+                    Month
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="dob-month" name="dob-month" type="text" autocomplete="bday-month" inputmode="numeric" value="12">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="dob-year">
+                    Year
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="dob-year" name="dob-year" type="text" autocomplete="bday-year" inputmode="numeric" value="2024">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+        </div>
+
+        {% if dob == 'Invalid DateTime' %}
+          {% set dob='Ongoing' %}
+        {% endif %}
+
+      </form>
+
+    </div>
+  </div>
 
 {% endblock %}

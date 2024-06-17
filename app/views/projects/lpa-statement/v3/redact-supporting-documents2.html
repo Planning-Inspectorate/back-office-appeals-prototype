@@ -1,64 +1,86 @@
+ 
 {% extends "layouts/PINS-post-mvp.html" %}
-{% set pageName="Add documents" %}
+
+{% set title = "Redact supporting documents" %}
+{% set pageName = title %}
+
+{% set back = true %}
 
 {% block content %}
-
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
+  <div class="govuk-grid-column-full">
 
-	<span class="govuk-caption-l">Appeal 2110166</span>
-	<h1 class="govuk-heading-l">Which document would you like to redact</h1>
-
-	   
- 
-	{{ govukRadios({
-	  name: "redaction",
-	  fieldset: {
-	    legend: {
-	      
-	    }
-	  },
-	  items: [
-	    {
-	      value: "example1.pdf",
-	      text: "example1.pdf"
-	    },
-	    {
-	      value: "example2.pdf",
-	      text: "example2.pdf"
-	    },
-	    {
-	      value: "example3.pdf",
-	      text: "example3.pdf"
-	    }
-	  ]
-	}) }}
-
-{% set otherHtml %}
-{{ govukInput({
-  id: "contact-by-text",
-  name: "contactByText",
-  type: "tel",
-  autocomplete: "tel",
-  classes: "govuk-!-width-two-thirds",
-  label: {
-    text: "Sender"
-  }
-}) }}
-{% endset -%}
-
-<form action="" method="post" class="govuk-!-margin-top-9" novalidate>
-
-
-	   {{ govukButton({
-        text: "Continue",
-        href: "upload-supporting-document"
-      }) }}
-
-	  </form>
-
-
+    <!-- Page heading -->
+    <span class="govuk-caption-l">Appeal 2114328</span>
+    <form action="what-is-outcome-of-review" method="post" class="">
+    {{ govukTable({
+      caption: title,
+      captionClasses: "govuk-table__caption--l",
+      firstCellIsHeader: true,
+      head: [
+        {
+          text: "Name"
+        },
+        {
+          text: "Date received"
+        },
+        {
+          text: "Redaction status"
+        },
+        {
+          text: "Actions"
+        }
+      ],
+      rows: [
+        [
+          {
+            html: "<a href='#' class='govuk-link govuk-link--no-visited-state'>"+(data ['upload-extra-document'] or 'appeal-2114328-added-document.doc')+"</a>"
+          },
+          {
+            html: 2 | daysAgo
+          },
+          {
+            text: "Unredacted"
+          },
+          {
+            html: "<a href='manage-supporting-document' class='govuk-link'>View and edit</a>"
+          }
+        ],
+        [
+          {
+            html: "<a href='#' class='govuk-link govuk-link--no-visited-state'>"+(data ['upload-extra-document'] or 'appeal-2114328-added-document-2.doc')+"</a>"
+          },
+          {
+            html: 2 | daysAgo
+          },
+          {
+            text: "Unredacted"
+          },
+          {
+            html: "<a href='manage-supporting-document' class='govuk-link'>View and edit</a>"
+          }
+        ]
+        ,
+        [
+          {
+            html: "<a href='#' class='govuk-link govuk-link--no-visited-state'>"+(data ['upload-extra-document'] or 'appeal-2114328-added-document-2.doc')+"</a>"
+          },
+          {
+            html: 2 | daysAgo
+          },
+          {
+            text: "Unredacted"
+          },
+          {
+            html: "<a href='manage-supporting-document' class='govuk-link'>View and edit</a>"
+          }
+        ]
+      ]
+    }) }}
+    {{ govukButton({
+      text: "Continue"
+    }) }}
+    </form>
   </div>
 </div>
-
 {% endblock %}

@@ -1,0 +1,86 @@
+ 
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Redact supporting documents" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <!-- Page heading -->
+    <span class="govuk-caption-l">Appeal 2114328</span>
+    <form action="what-is-outcome-of-review" method="post" class="">
+    {{ govukTable({
+      caption: title,
+      captionClasses: "govuk-table__caption--l",
+      firstCellIsHeader: true,
+      head: [
+        {
+          text: "Name"
+        },
+        {
+          text: "Date received"
+        },
+        {
+          text: "Redaction status"
+        },
+        {
+          text: "Actions"
+        }
+      ],
+      rows: [
+        [
+          {
+            html: "<a href='#' class='govuk-link govuk-link--no-visited-state'>"+(data ['upload-extra-document'] or 'appeal-2114328-added-document.doc')+"</a>"
+          },
+          {
+            html: 2 | daysAgo
+          },
+          {
+            text: "Unredacted"
+          },
+          {
+            html: "<a href='manage-supporting-document' class='govuk-link'>View and edit</a>"
+          }
+        ],
+        [
+          {
+            html: "<a href='#' class='govuk-link govuk-link--no-visited-state'>"+(data ['upload-extra-document'] or 'appeal-2114328-added-document-2.doc')+"</a>"
+          },
+          {
+            html: 2 | daysAgo
+          },
+          {
+            text: "Unredacted"
+          },
+          {
+            html: "<a href='manage-supporting-document' class='govuk-link'>View and edit</a>"
+          }
+        ]
+        ,
+        [
+          {
+            html: "<a href='#' class='govuk-link govuk-link--no-visited-state'>"+(data ['upload-extra-document'] or 'appeal-2114328-added-document-2.doc')+"</a>"
+          },
+          {
+            html: 2 | daysAgo
+          },
+          {
+            text: "Unredacted"
+          },
+          {
+            html: "<a href='manage-supporting-document' class='govuk-link'>View and edit</a>"
+          }
+        ]
+      ]
+    }) }}
+    {{ govukButton({
+      text: "Continue"
+    }) }}
+    </form>
+  </div>
+</div>
+{% endblock %}

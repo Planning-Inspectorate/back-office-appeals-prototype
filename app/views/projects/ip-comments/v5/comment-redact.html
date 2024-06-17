@@ -34,62 +34,58 @@
     </ol>
 
   </div>
-
   <div class="govuk-grid-column-one-half">
-    <form action="cya-redact" method="post" class="govuk-!-margin-top-2">
-
-      {{ govukTextarea({
-        name: "redactedComment",
-        id: "redactedComment",
-        rows: "9",
-        label: {
-          text: "Redacted comment",
-          classes: "govuk-label--s",
-          isPageHeading: false
-        },
-
-        value: "Having reviewed the proposal I would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. All of us here at number 6 The Grove agree."
-
-      }) }}
-
-      <button type="button" class="govuk-button govuk-button--secondary" id="redactButton">Redact</button>
-
-    </form>
-    {{ govukButton({
-      href: "cya-redact",
-      text: "Continue"
+      
+  
+    {{ govukTextarea({
+      name: "redactedStatement",
+      id: "redactedStatement",
+      rows: "40",
+      label: {
+        html: "Redacted statement",
+        classes: "govuk-label--m",
+        isPageHeading: false
+      },
+     
+      value:  data['redactedStatement' ] or 
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus. 
+      
+      Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus. 
+      
+      Mauris nulla erat, posuere ut nisi vitae, pulvinar gravida arcu."
+      
     }) }}
-  </div>
-  <div class="govuk-grid-column-one-half">
-    <h2 class="govuk-heading-s govuk-!-margin-bottom-3">Original comment</h2>
-    <p>Having reviewed the proposal I would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. All of us here at number 6 The Grove agree.</p>
-  </div>
+
+    <a href="#" class="govuk-button govuk-button--secondary">Redact</a>
+
+    {{ govukButton({
+      text: "Save and continue"
+    }) }}
+  </form>
+</div>
+<div class="govuk-grid-column-one-half">
+  <h2 class="govuk-heading-m">Original statement</h2>
+  <p>  
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus. 
+    Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus. 
+    Mauris nulla erat, posuere ut nisi vitae, pulvinar gravida arcu.
+    <br><br>
+    Morbi ac mauris enim. Curabitur magna lacus, eleifend in euismod in, accumsan convallis velit. Quisque bibendum urna id molestie hendrerit. Cras mattis mi non lobortis eleifend. 
+    Quisque nisl purus, sollicitudin interdum convallis a, tristique vulputate mi. Mauris eget nisl in massa mollis luctus. Vestibulum consectetur maximus cursus. Integer molestie ipsum et nunc eleifend venenatis. 
+    Aliquam posuere dui et felis tempor tristique. Aenean porta vehicula imperdiet. Nunc sed egestas risus, ut fringilla orci. Proin lobortis sapien interdum nunc iaculis rutrum. Phasellus consectetur vitae dui in vulputate.
+    <br><br>
+    Ut elementum, ipsum sit amet faucibus eleifend, mi mauris feugiat leo, interdum tincidunt tortor lacus et augue. Maecenas pulvinar tellus finibus justo sagittis, eget cursus elit porta. 
+    Fusce dictum eros vitae arcu eleifend, vitae tempor risus tristique. Proin porttitor vitae turpis vel ultricies. Nullam interdum porttitor nisi sed euismod. Suspendisse ut mi at ligula consectetur aliquam. 
+    Nulla tristique laoreet pharetra. Ut ornare vulputate erat.
+    <br><br>
+    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam id diam sapien. Proin erat lorem, posuere ac elit vitae, tempor elementum justo. Vestibulum laoreet scelerisque suscipit. 
+    Nulla facilisis elit vel faucibus maximus. Donec non malesuada nisl. Sed a lorem arcu. In iaculis faucibus ultricies. Donec elementum, odio euismod feugiat ullamcorper, enim nunc varius metus, sit amet auctor mauris lacus eget augue. 
+    Maecenas sed lacus sit amet elit pretium dignissim. Suspendisse non pellentesque nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean sed facilisis sem.
+     <a href'#'>Read more</a>.</p>
 
 </div>
+</div>
 
-<script type="text/javascript">
 
-function getSel() // javascript
-{
-    // obtain the object reference for the textarea>
-    var txtarea = document.getElementById("redactedComment");
-    // obtain the index of the first selected character
-    var start = txtarea.selectionStart;
-    // obtain the index of the last selected character
-    var finish = txtarea.selectionEnd;
-    //obtain all Text
-    var allText = txtarea.value;
-
-    // obtain the selected text
-    var sel = allText.substring(start, finish);
-    //append te text;
-    var newText=allText.substring(0, start)+"(Redacted)"+allText.substring(finish, allText.length);
-
-    txtarea.value=newText;
-}
-
-document.getElementById("redactButton").addEventListener("click",getSel);
-
-</script>
 
 {% endblock %}

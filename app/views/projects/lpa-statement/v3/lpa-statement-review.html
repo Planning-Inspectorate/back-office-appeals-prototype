@@ -1,0 +1,70 @@
+ 
+{% extends "layouts/PINS-post-mvp.html" %}
+{% set pageName="LPA statement review" %}
+ 
+{% block content %}
+
+<form action="" method="post"  novalidate> 
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+  
+    <span class="govuk-caption-l">Appeal 2110166</span>
+      <h1 class="govuk-heading-l">LPA statement</h1>
+      <p class="govuk-body"> 
+
+      <h2 class="govuk-heading-m">Statement content</h2>
+       <p class="govuk-body">  
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus. 
+              Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus. 
+              Mauris nulla erat, posuere ut nisi vitae, pulvinar gravida arcu.
+              <br><br>
+              Morbi ac mauris enim. Curabitur magna lacus, eleifend in euismod in, accumsan convallis velit. Quisque bibendum urna id molestie hendrerit. Cras mattis mi non lobortis eleifend. 
+              Quisque nisl purus, sollicitudin interdum convallis a, tristique vulputate mi. Mauris eget nisl in massa mollis luctus. Vestibulum consectetur maximus cursus. Integer molestie ipsum et nunc eleifend venenatis. 
+              Aliquam posuere dui et felis tempor tristique. Aenean porta vehicula imperdiet. Nunc sed egestas risus, ut fringilla orci. Proin lobortis sapien interdum nunc iaculis rutrum. Phasellus consectetur vitae dui in vulputate.
+            </p>
+              
+                   <p><a href="#">Read more</a><br><br></p>
+          
+ 
+
+
+ 
+
+
+
+      
+
+    {{ govukRadios({
+      name: "issue-decision",
+      fieldset: {
+        legend: {
+          text: "Do you need to redact the LPA Statement?",
+          isPageHeading: false,
+          classes: "govuk-fieldset__legend--m"
+        }
+      },
+      items: [
+        {
+          value: "yes~redact-lpa-statement",
+          text: "Yes"
+        },
+        {
+          value: "No~why-incomplete",
+          text: "No"
+        } 
+         
+      ]
+    }) }}
+
+    {{ govukButton({
+      text: "Continue"
+    }) }}
+
+</form>
+
+</div>
+</div>
+
+
+{% endblock %}
+

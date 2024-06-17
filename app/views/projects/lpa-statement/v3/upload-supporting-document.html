@@ -1,0 +1,37 @@
+
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Upload redacted supporting documents" %}
+{% set pageName = title %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Appeal 2110166</span>
+      <h1 class="govuk-heading-l">
+        {{ title }}
+      </h1>
+
+      {{ govukFileUpload({
+        id: "file-upload-1",
+        name: "file-upload-1",
+        label: {
+          text: "Upload a file"
+        },
+        hint: {
+          text: 'The files must be a DOC, DOCX, PDF, TIF, JPG or PNG and be smaller than 15MB'
+        }
+      }) }}
+
+      {{ govukButton({
+        href: "redact-supporting-documents3",
+        text: "Continue"
+      }) }}
+
+  </div>
+</div>
+
+
+{% endblock %}

@@ -11,28 +11,38 @@
   <div class="govuk-grid-column-two-thirds">
 
     <span class="govuk-caption-l">Appeal 2114328</span>
-    <h1 class="govuk-heading-l">
-      {{ title }}
-    </h1>
-
-    <p>
-      (something about using the original doc?)
-    </p>
 
     <form method="post">
-      <section class="govuk-!-margin-top-6">
+
+      {% set uploadHtml %}
         {{ govukFileUpload({
-          id: "upload-extra-document",
-          name: "upload-extra-document",
+          id: 'upload-extra-document',
+          name: 'upload-extra-document',
+          classes: 'moj-multi-file-upload__input',
           label: {
-            text: "Upload a file",
-            classes: "govuk-visually-hidden"
+            text: title,
+            classes: 'govuk-label--l',
+            isPageHeading: true
           },
           hint: {
-            text: 'Files must be a DOC, DOCX, PDF, TIF, JPG or PNG and be smaller than 15MB'
+            html: '<p class="govuk-body">If you have a redacted version of the document, you can upload this later.</p><p class="govuk-hint">The file must be a DOC, DOCX, PDF, TIF, JPG or PNG and be smaller than 15MB</p>'
           }
         }) }}
-      </section>
+
+        {{govukButton({
+          text: 'Upload file',
+          classes: 'govuk-button--secondary moj-multi-file-upload__button'
+        })}}
+
+      {% endset %}
+
+      {{ mojMultiFileUpload({
+        uploadedFiles: {
+          heading: { text: 'File added' },
+          items: []
+        },
+        uploadHtml: uploadHtml
+      }) }}
 
       {{ govukButton({
         text: "Continue"

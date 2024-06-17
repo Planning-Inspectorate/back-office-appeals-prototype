@@ -1,7 +1,7 @@
 
 {% extends "layouts/PINS-post-mvp.html" %}
 {% set pageName="S106 obligation review" %}
- 
+
 {% block content %}
 
 
@@ -19,63 +19,51 @@
         </p>
     	{% endset %}
 
-    
+
       <span class="govuk-caption-l">Appeal 2110166</span>
       <h1 class="govuk-heading-l">Update S106 obligation due date</h1>
 
 
-    <form action="check-your-answers-incomplete" method="post" class="govuk-!-margin-top-6" novalidate>
+      <form action="check-your-answers-incomplete" method="post" class="govuk-!-margin-top-6" novalidate>
 
-      
-      {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
-      {{ govukInsetText({
-        html: "Current due date is 18 July 2023."
-      })
-    
-    }}  
- <p>Select skip if the due date has not changed.</p>
+        {{ govukInsetText({
+          html: "Current due date is 18 July 2023."
+        }) }}
 
- {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
- 
-      {{ govukDateInput({
-        id: "obligation-due-date",
-        namePrefix: "obligation-due-date",
-        fieldset: {
-          legend: {
-            text: "Enter new due date",
-            isPageHeading: true,
-            classes: "govuk-fieldset__legend--m"
+        <p>
+          Select skip if the due date has not changed.
+        </p>
+
+        {{ govukDateInput({
+          id: "obligation-due-date",
+          namePrefix: "obligation-due-date",
+          fieldset: {
+            legend: {
+              text: "Enter new due date",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            html: "<p class='govuk-hint'>For example, 28 "+ 1 | monthsInFutureNumeric +" "+ 0 | yearsAgo +".</p>"
           }
-        },
-        hint: {
-          html: "<p class='govuk-hint'>For example, 28 "+ 31 | lastMonthNumeric +" "+ 0 | yearsAgo +".</p>"
-        }
-      }) }}   
-     
-     
+        }) }}
 
-<div class="govuk-button-group">
-  {{ govukButton({
-    text: "Continue"
-  }) }}
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Continue"
+          }) }}
 
-  {{ govukButton({
-    text: "Skip",
-    classes: "govuk-button--secondary" 
-    
-  }) }}
-</div>
- 
+          {{ govukButton({
+            text: "Skip",
+            classes: "govuk-button--secondary"
 
-    </form>
-
-  
+          }) }}
+        </div>
 
 
-{% endblock %}
-
- 
-
-</div>
+      </form>
+    {% endblock %}
+  </div>
 </div>

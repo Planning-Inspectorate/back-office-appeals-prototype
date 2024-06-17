@@ -9,12 +9,12 @@
 	<span class="govuk-caption-l">Appeal 2110166</span>
 	<h1 class="govuk-heading-l">Add document details for example2.pdf</h1>
 
-	
-    <form action="obligation-review" method="post" class="" novalidate> 
 
-	 
+    <form action="obligation-review" method="post" class="" novalidate>
+
+
 	{% from "govuk/components/date-input/macro.njk" import govukDateInput %}
- 
+
 	{{ govukDateInput({
 	  id: "received-date",
 	  namePrefix: "received-date",
@@ -26,11 +26,11 @@
 		}
 	  },
 	  hint: {
-		html: "<p class='govuk-hint'>For example, 28 "+ 31 | lastMonthNumeric +" "+ 0 | yearsAgo +"</p>"
+		html: "<p class='govuk-hint'>For example, 28 "+ 1 | monthsInFutureNumeric +" "+ 0 | yearsAgo +"</p>"
 	  }
-	}) }}   
+	}) }}
 
-	
+
 		{{ govukRadios({
 			name: "redaction",
 			fieldset: {
@@ -57,7 +57,7 @@
 			  }
 			]
 		  }) }}
-	  
+
 	   {{ govukButton({
         text: "Continue"
       }) }}

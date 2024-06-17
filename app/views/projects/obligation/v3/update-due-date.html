@@ -1,10 +1,9 @@
- 
 {% extends "layouts/PINS-post-mvp.html" %}
-{% set pageName="S106 obligation review" %}
- 
+
+{% set title = "Update S106 obligation due date" %}
+{% set pageName = title %}
+
 {% block content %}
-
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
@@ -19,63 +18,60 @@
         </p>
     	{% endset %}
 
-    
-      <span class="govuk-caption-l">Appeal 2110166</span>
-      <h1 class="govuk-heading-l">Update S106 obligation due date</h1>
+      <span class="govuk-caption-l">
+        Appeal 2110166
+      </span>
+      <!-- <h1 class="govuk-heading-l">
+        {{ title }}
+      </h1> -->
 
+      <form action="check-your-answers-incomplete" method="post" novalidate>
 
-    <form action="check-your-answers-incomplete" method="post" class="govuk-!-margin-top-6" novalidate>
+        <!-- {{ govukInsetText({
+          html: "Current due date is "+ 6 | daysInFuture
+        }) }} -->
 
-      
-      {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+        <!-- <p>
+          Select skip if the due date has not changed.
+        </p> -->
 
-      {{ govukInsetText({
-        html: "Current due date is 18 July 2023."
-      })
-    
-    }}  
- <p>Select skip if the due date has not changed.</p>
-
- {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
- 
-      {{ govukDateInput({
-        id: "obligation-due-date",
-        namePrefix: "obligation-due-date",
-        fieldset: {
-          legend: {
-            text: "Enter new due date",
-            isPageHeading: true,
-            classes: "govuk-fieldset__legend--m"
+        {{ govukDateInput({
+          id: "obligation-due-date",
+          namePrefix: "obligation-due-date",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            html: "<p class='govuk-hint'>For example, 28 "+ 1 | monthsInFutureNumeric +" "+ 0 | yearsAgo +".</p>"
+          },
+          items: [
+            {
+              classes: "govuk-input--width-2",
+              name: "day",
+              value: "22"
+            },
+            {
+              classes: "govuk-input--width-2",
+              name: "month",
+              value: 1 | monthsInFutureNumeric
+            },
+            {
+              classes: "govuk-input--width-4",
+              name: "year",
+              value: "2024"
+            }
           }
-        },
-        hint: {
-          html: "<p class='govuk-hint'>For example, 28 "+ 31 | lastMonthNumeric +" "+ 0 | yearsAgo +".</p>"
-        }
-      }) }}   
-     
-    
+        }) }}
 
-<div class="govuk-button-group">
-  {{ govukButton({
-    text: "Continue"
-  }) }}
-
-  {{ govukButton({
-    text: "Skip",
-    classes: "govuk-button--secondary" 
-    
-  }) }}
-</div>
- 
-
-    </form>
-
-  
-
-
-{% endblock %}
-
- 
-
-</div>
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+        
+      </form>
+    {% endblock %}
+  </div>
 </div>

@@ -1,115 +1,92 @@
- 
 {% extends "layouts/PINS-post-mvp.html" %}
-{% set pageName="S106 obligation review" %}
- 
-{% block content %}
 
+{% set title = "Why is the S106 obligation incomplete?" %}
+{% set pageName = title %}
+
+{% block content %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-    
-    <span class="govuk-caption-l">Appeal 2110166</span>
-      <h1 class="govuk-heading-l">Why is the S106 obligation incomplete?</h1>
+      <span class="govuk-caption-l">Appeal 2110166</span>
+      <form action="update-due-date" method="post" novalidate>
 
-    <form action="update-due-date" method="post" class="govuk-!-margin-top-6" novalidate>
+        {% set missingHtml %}
+    			{{ govukCharacterCount({
+    			  name: "more-detail",
+    			  id: "more-detail",
+    			  maxlength: 300,
+    			  label: {
+    			    text: "List any other reasons",
+    			    classes: "govuk-label--s",
+    			    isPageHeading: false
+    			  },
+    			  hint: {
+    			    text: "Try to organise your list, for example using dashes or bullets"
+    			  }
+    			}) }}
+        {% endset -%}
 
-      
-      {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
- 
-        
-      {% set missingHtml %}
-			{{ govukCharacterCount({
-			  name: "more-detail",
-			  id: "more-detail",
-			  maxlength: 300,
-			  label: {
-			    text: "List any other reasons",
-			    classes: "govuk-label--s",
-			    isPageHeading: false
-			  },
-			  hint: {
-			    text: "Try to organise your list, for example using dashes or bullets"
-			  }
-			}) }}
+		    {% set addMore %}
 
-		{% endset -%}
-		
-		
-		
-		{% set addMore %}
-		
-	<div data-module="moj-add-another">
-		
-	    {% call govukFieldset({
-	      classes: 'moj-add-another__item',
-	      legend: {
-	        text: 'Reason',
-	        classes: 'moj-add-another__title ',
-	        isPageHeading: false
-	      }
-	    }) %}
-	    
-	    {{ govukInput({
-		  id: "what-reason",
-		  name: "what-reason",
-		  classes: "govuk-!-margin-bottom-4"
-		}) }}
-	
-	    {% endcall %}
-	
-	    <div class="moj-button-action">
-	      {{ govukButton({
-	        text: 'Add another',
-	        classes: 'govuk-button--secondary moj-add-another__add-button govuk-!-margin-bottom-4'
-	      }) }}
-	    </div>
-	
-	
-	</div>
+          <div data-module="moj-add-another">
+      	    {% call govukFieldset ({
+        	     classes: 'moj-add-another__item',
+        	     legend: {
+        	        text: 'Reason',
+        	        classes: 'moj-add-another__title ',
+        	        isPageHeading: false
+        	      }
+        	    }) %}
 
-	
+        	    {{ govukInput({
+          		  id: "what-reason",
+          		  name: "what-reason",
+          		  classes: "govuk-!-margin-bottom-4"
+          		}) }}
 
-		{% endset -%}
-		
-		
-			 
-			<p class="govuk-hint">Select all that apply</p>
-      {{ govukCheckboxes({
-        name: "obligation-reason-incomplete",
-        items: [
-          {
-            value: "Not dated",
-            text: "Not dated"
-          },
-          {
-            value: "Not signed",
-            text: "Not signed" 
-		      
-          },
-          {
-            value: "Other",
-            text: "Other",
-            conditional: {
-		        html: addMore
-		      }
-          }  
-        ]
-      }) }}
+  	        {% endcall %}
 
-      {{ govukButton({
-        text: "Continue"
-      }) }}
+  	        <div class="moj-button-action">
+      	      {{ govukButton({
+      	        text: 'Add another',
+      	        classes: 'govuk-button--secondary moj-add-another__add-button govuk-!-margin-bottom-4'
+      	      }) }}
+  	        </div>
+          </div>
+        {% endset -%}
 
+        <p class="govuk-hint">
+          Select all that apply
+        </p>
 
-    </form>
+        {{ govukCheckboxes({
+          name: "obligation-reason-incomplete",
+          items: [
+            {
+              value: "Not dated",
+              text: "Not dated"
+            },
+            {
+              value: "Not signed",
+              text: "Not signed"
 
- 
+            },
+            {
+              value: "Other",
+              text: "Other",
+              conditional: {
+              html: addMore
+            }
+            }
+          ]
+        }) }}
 
+        {{ govukButton({
+          text: "Continue"
+        }) }}
 
-{% endblock %}
-
-
-
-</div>
+      </form>
+    {% endblock %}
+  </div>
 </div>

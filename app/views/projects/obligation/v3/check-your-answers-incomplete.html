@@ -1,31 +1,32 @@
- 
 {% extends "layouts/PINS-post-mvp.html" %}
-{% set pageName="S106 obligation review" %}
- 
+
+{% set title = "Check your answers" %}
+{% set pageName = title %}
+
 {% block content %}
 
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+  	{% set html %}
+  	  <p class="govuk-notification-banner__heading">
+  	    The appeal is ready for review
+  	  </p>
+  	  <p>
+        <a class="govuk-notification-banner__link" href="appellant-case.html">
+          Start the review
+        </a>
+      </p>
+  	{% endset %}
 
-    	{% set html %}
-    	  <p class="govuk-notification-banner__heading">
-    	    The appeal is ready for review
-    	  </p>
-    	  <p>
-          <a class="govuk-notification-banner__link" href="appellant-case.html">
-            Start the review
-          </a>
-        </p>
-    	{% endset %}
-
-    
-      <span class="govuk-caption-l">Appeal 2110166</span>
-      <h1 class="govuk-heading-l">Check your answers</h1>
-
+    <span class="govuk-caption-l">
+      Appeal 2110166
+    </span>
+    <h1 class="govuk-heading-l">
+      {{ title }}
+    </h1>
 
     <form action="obligation-incomplete" method="post" class="govuk-!-margin-top-6" novalidate>
-
 
       <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
@@ -55,34 +56,20 @@
            New due date
           </dt>
           <dd class="govuk-summary-list__value">
-         
-           
-            {{ (data['obligation-due-date-year']+ "-" + data['obligation-due-date-month'] + "-" + data['obligation-due-date-day']   ) | govukDate("truncate")  or "18 Jul 2023" }} </p>
-     
+            {{ (data['obligation-due-date-year']+ "-" + data['obligation-due-date-month'] + "-" + data['obligation-due-date-day']   ) | govukDate("truncate")  or "18 Jul 2023" }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="update-due-date">Change<span class="govuk-visually-hidden"> due date</span></a>
-        
           </dd>
         </div>
       </dl>
 
-      {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+      {{ govukButton({
+        text: "Confirm"
+      }) }}
 
-      
- 
-
-{{ govukButton({
-  text: "Confirm"
-}) }}
     </form>
+  {% endblock %}
 
- 
-
-
-{% endblock %}
-
-
-
-</div>
+  </div>
 </div>

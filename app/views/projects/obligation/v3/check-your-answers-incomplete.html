@@ -72,7 +72,7 @@
            New due date
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ (data['obligation-due-date-year']+ "-" + data['obligation-due-date-month'] + "-" + data['obligation-due-date-day']   ) | govukDate("truncate")  or "18 Jul 2023" }}
+            22 {{ (data['obligation-due-date-month'] or 1 | monthsInFutureNumeric ) | formatMonth }} 2024
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="update-due-date">Change<span class="govuk-visually-hidden"> due date</span></a>

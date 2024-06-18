@@ -3,28 +3,41 @@
 {% set title = "S106 obligation review" %}
 {% set pageName = title %}
 
+{% set myValue = 3 | daysAgo  %}
+{% set myValue2 = (data['redaction'] or 'Unredacted')  %}
+
 {% block content %}
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
+    <div class="govuk-grid-column-two-thirds">
 
-    	{% set html %}
-    	  <p class="govuk-notification-banner__heading">
-    	    The appeal is ready for review
-    	  </p>
-    	  <p>
-          <a class="govuk-notification-banner__link" href="appellant-case.html">
-            Start the review
-          </a>
-        </p>
-    	{% endset %}
+      {% if data['S106status'] == 'incomplete' %}
+
+        {% set incompleteS106 %}
+          <p class="govuk-notification-banner__heading">
+            S106 obligation incomplete.
+            <ul>
+              <li>
+                {{ data['obligation-reason-incomplete'] +  "  " + data['what-reason' ] + " "  }}
+              </li>
+            </ul>
+          </p>
+        {% endset %}
+
+        {{ govukNotificationBanner({
+          html: incompleteS106,
+          type: "important"
+        }) }}
+
+      {% endif %}
 
       <span class="govuk-caption-l">Appeal 2110166</span>
       <h1 class="govuk-heading-l">
         {{ title }}
       </h1>
 
-      {% set myValue = "19 Jul 2023"  %}
-      {% set myValue2 = (data['redaction'] or 'Unredacted')  %}
+    </div>
+
+    <div class="govuk-grid-column-full">
 
       {{ govukTable({
         caption: "Uploaded documents",
@@ -48,7 +61,7 @@
         rows: [
           [
             {
-              text: "example.pdf"
+              text: "appeal-2110166-section106-agreement.pdf"
             },
             {
               text: myValue
@@ -57,7 +70,7 @@
               text: myValue2
             },
             {
-              html: "<a href='manage-folder'> Manage</a> | <a href='#'> Add</a>",
+              html: "<a href='manage-document'>Manage<span class='govuk-visually-hidden'> appeal-2110166-section106-agreement.pdf</span></a>",
               format: "numeric"
             }
           ]
@@ -71,7 +84,7 @@
 </div>
 
 
-  <form action="" method="post" class="govuk-!-margin-top-6" novalidate>
+  <form action="" method="post" class="govuk-!-margin-top-3" novalidate>
 
 
         {{ govukRadios({
@@ -85,7 +98,7 @@
           },
           items: [
             {
-              value: "Complete~case-complete",
+              value: "Complete~case?S106status=completed",
               text: "Complete"
             },
             {

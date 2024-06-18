@@ -6,29 +6,35 @@
 
 {% set back = true %}
 
+
 {% block content %}
+<form action="what-is-outcome-of-review" method="post" class="govuk-!-margin-top-0">
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
-
-    <!-- Page heading -->
-    <span class="govuk-caption-l">Appeal 2114328</span>
-    <form action="what-is-outcome-of-review" method="post" class="">
-    {{ govukTable({
-      caption: title,
-      captionClasses: "govuk-table__caption--l",
-      firstCellIsHeader: true,
-      head: [
-        {
-          text: "Name"
-        },
-        {
-          text: "Date received"
-        },
-        {
-          text: "Redaction status"
-        },
-        {
-          text: "Actions"
+  
+        <!-- Page heading -->
+        <span class="govuk-caption-l">Appeal 2114328</span>
+        <h1 class="govuk-heading-l">Redact supporting documents</h1>
+        <div id="waste-hint" class="govuk-hint">
+          View and edit a document to redact as required
+        </div>
+     
+        {% set myValue4 = (data['lpa-statement-redaction'] )  %}
+        {{ govukTable({
+    
+          firstCellIsHeader: true,
+          head: [
+            {
+              text: "Name"
+            },
+            {
+              text: "Date received"
+            },
+            {
+              text: "Redaction status"
+            },
+            {
+              text: "Actions"
         }
       ],
       rows: [
@@ -40,7 +46,9 @@
             html: 2 | daysAgo
           },
           {
-            text: "Unredacted"
+            
+              text: data['lpa-document-redaction'] 
+            
           },
           {
             html: "<a href='manage-supporting-document' class='govuk-link'>View and edit</a>"
@@ -80,7 +88,8 @@
     {{ govukButton({
       text: "Continue"
     }) }}
-    </form>
+
   </div>
 </div>
+</form>
 {% endblock %}

@@ -20,7 +20,7 @@
             Review outcome
           </dt>
           <dd class="govuk-summary-list__value">
-           Incomplete
+            {{ data['issue-decision' ]}}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> outcome</span></a>
@@ -31,7 +31,7 @@
            Reasons
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['reason-incomplete' ] + "   " + data['whats-missing' ]  + data['what-reason' ] + "  " or "Reason 1" }}
+           <li> {{ data['reason-incomplete' ] + "  " + data['whats-missing' ]  + data['what-reason' ] + " " or "Reason 1" }}</li>
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="why-incomplete">Change<span class="govuk-visually-hidden">reason</span></a>

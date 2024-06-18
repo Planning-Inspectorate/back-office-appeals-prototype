@@ -12,11 +12,14 @@
 
     <!-- Page heading -->
     <span class="govuk-caption-l">Appeal 2114328</span>
+    <h1 class="govuk-heading-l">Redact supporting documents</h1>
+    <div class="govuk-body">
+      View and edit a document to redact as required
+    </div>
     <form action="what-is-outcome-of-review" method="post" class="">
+    
     {{ govukTable({
-      caption: title,
-      captionClasses: "govuk-table__caption--l",
-       
+
       firstCellIsHeader: true,
       head: [
         {
@@ -29,7 +32,8 @@
           text: "Redaction status"
         },
         {
-          text: "Actions"
+          text: "Actions",
+          format: "numeric"
         }
       ],
       rows: [
@@ -44,7 +48,8 @@
             text: "Unredacted"
           },
           {
-            html: "<a href='manage-supporting-document' class='govuk-link'>View and edit</a>"
+            html: "<a href='manage-supporting-document' class='govuk-link'>View and edit</a>",
+            format: "numeric"
           }
         ],
         [
@@ -58,7 +63,8 @@
             text: "Unredacted"
           },
           {
-            html: "<a href='manage-supporting-document' class='govuk-link'>View and edit</a>"
+            html: "<a href='manage-supporting-document' class='govuk-link'>View and edit</a>",
+            format: "numeric"
           }
         ]
         ,
@@ -73,7 +79,8 @@
             text: "Unredacted"
           },
           {
-            html: "<a href='manage-supporting-document' class='govuk-link'>View and edit</a>"
+            html: "<a href='manage-supporting-document' class='govuk-link'>View and edit</a>",
+            format: "numeric"
           }
         ]
       ]

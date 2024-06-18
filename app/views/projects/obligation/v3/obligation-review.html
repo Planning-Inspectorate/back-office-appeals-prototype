@@ -1,10 +1,9 @@
- 
 {% extends "layouts/PINS-post-mvp.html" %}
-{% set pageName="S106 obligation review" %}
- 
+
+{% set title = "S106 obligation review" %}
+{% set pageName = title %}
+
 {% block content %}
-
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
@@ -19,64 +18,61 @@
         </p>
     	{% endset %}
 
-    
-     <span class="govuk-caption-l">Appeal 2110166</span>
-  
+      <span class="govuk-caption-l">Appeal 2110166</span>
+      <h1 class="govuk-heading-l">
+        {{ title }}
+      </h1>
 
-    <h1 class="govuk-heading-l">S106 obligation</h1>
+      {% set myValue = "19 Jul 2023"  %}
+      {% set myValue2 = (data['redaction'] or 'Unredacted')  %}
 
-        {% from "govuk/components/table/macro.njk" import govukTable %}
-        {% set myValue = "19 Jul 2023"  %}
-        {% set myValue2 = (data['redaction'] )  %}
-    {{ govukTable({
-      caption: "Uploaded documents",
-      captionClasses: "govuk-table__caption--m",
-      firstCellIsHeader: true,
-      head: [
-        {
-          text: "Name",
-          classes: "app-custom-class"
-        },
-        {
-          text: "Received date",
-          classes: "app-custom-class"
-        },
-        {
-          text: "Redaction status",
-          classes: "app-custom-class"
-        },
-        {
-          text: "Action",
-          classes: "app-custom-class"
-        }
-      ],
-      rows: [
-        [
+      {{ govukTable({
+        caption: "Uploaded documents",
+        captionClasses: "govuk-table__caption--m",
+        firstCellIsHeader: true,
+        head: [
           {
-            text: "example.pdf"
+            text: "Name"
           },
           {
-            text: myValue
+            text: "Received date"
           },
           {
-            text: myValue2
+            text: "Redaction status"
           },
           {
-            html: "<a href='manage-folder'> Manage</a> | <a href='#'> Add</a> "
+            text: "Action",
+            format: "numeric"
           }
-        ] 
-      ]
-    }) }}
+        ],
+        rows: [
+          [
+            {
+              text: "example.pdf"
+            },
+            {
+              text: myValue
+            },
+            {
+              text: myValue2
+            },
+            {
+              html: "<a href='manage-folder'> Manage</a> | <a href='#'> Add</a>",
+              format: "numeric"
+            }
+          ]
+        ]
+      }) }}
 
 
-     
+
 
   </div>
 </div>
 
 
   <form action="" method="post" class="govuk-!-margin-top-6" novalidate>
-      
+
 
         {{ govukRadios({
           name: "obligation-decision",
@@ -95,8 +91,8 @@
             {
               value: "Incomplete~why-incomplete",
               text: "Incomplete"
-            } 
-             
+            }
+
           ]
         }) }}
 
@@ -106,7 +102,7 @@
 
     </form>
 
- 
+
 
 
 {% endblock %}

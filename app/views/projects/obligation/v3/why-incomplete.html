@@ -19,8 +19,8 @@
     			  maxlength: 300,
     			  label: {
     			    text: "List any other reasons",
-    			    classes: "govuk-label--s",
-    			    isPageHeading: false
+    			    classes: "govuk-label--l",
+    			    isPageHeading: true
     			  },
     			  hint: {
     			    text: "Try to organise your list, for example using dashes or bullets"
@@ -57,12 +57,18 @@
           </div>
         {% endset -%}
 
-        <p class="govuk-hint">
-          Select all that apply
-        </p>
-
         {{ govukCheckboxes({
           name: "obligation-reason-incomplete",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "Select all that apply."
+          },
           items: [
             {
               value: "Not dated",
@@ -71,14 +77,13 @@
             {
               value: "Not signed",
               text: "Not signed"
-
             },
             {
               value: "Other",
               text: "Other",
               conditional: {
-              html: addMore
-            }
+                html: addMore
+              }
             }
           ]
         }) }}

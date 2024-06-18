@@ -11,60 +11,11 @@
     <span class="govuk-caption-l">Appeal 2110166</span>
   
 
-      <h1 class="govuk-heading-l">Select allocation specialism(s)</h1>
+      <h1 class="govuk-heading-l">Select new allocation specialism(s)</h1>
       <form action="check-your-answers" method="post" class="govuk-!-margin-top-6" novalidate>
  
-      {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
-
-      {{ govukInsetText({
-        html: "Current allocation matrix is level B and band 3, Enforcement."
-      }) }}  
-       
-    
-
-      {{ govukSummaryList({
-        classes: "govuk-!-margin-bottom-9",
-        rows: [
-           
-          {
-            key: {
-              text: "Level"
-            },
-            value: {
-              text: data['allocation-level'] or "Blank"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: " ",
-                  visuallyHiddenText: "statement pdf"
-                }
-              ]
-            }
-          },
-
-          {
-            key: {
-              text: "Band"
-            },
-            value: {
-              html: "3"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: " ",
-                  visuallyHiddenText: "statement content"
-                }
-              ]
-            }
-          } 
-        ]
-      }) }}
-      
-{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+        
+ 
 
 {{ govukCheckboxes({
   name: "specialism",

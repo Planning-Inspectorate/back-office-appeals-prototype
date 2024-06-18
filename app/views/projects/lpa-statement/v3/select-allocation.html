@@ -11,17 +11,12 @@
     <span class="govuk-caption-l">Appeal 2110166</span>
   
 
-      <h1 class="govuk-heading-l">Select allocation level</h1>
+      <h1 class="govuk-heading-l">Select new allocation level</h1>
 
 
 <form action="select-specialism" method="post" class="govuk-!-margin-top-6" novalidate>
       
-      {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
-
-      {{ govukInsetText({
-        html: "Current allocation matrix is level B and band 3, Enforcement."
-      }) }}  
-      
+  
 
         {{ govukRadios({
           name: "allocation-level",

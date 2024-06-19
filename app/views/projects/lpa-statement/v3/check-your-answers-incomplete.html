@@ -11,7 +11,10 @@
     <span class="govuk-caption-l">Appeal 2110166</span>
 
       <h1 class="govuk-heading-l">Check your answers</h1>
-
+      {{ govukInsetText({
+        html: "Confirming will inform the relevant parties
+        of the outcome"
+      }) }}  
     <form action="lpa-statement-incomplete" method="post" class="govuk-!-margin-top-6" novalidate>
  
       <dl class="govuk-summary-list">
@@ -31,7 +34,13 @@
            Reasons
           </dt>
           <dd class="govuk-summary-list__value">
-           <li> {{ data['reason-incomplete' ] + "  " + data['whats-missing' ]  + data['what-reason' ] + " " or "Reason 1" }}</li>
+            {{ data['reason-incomplete'] }}
+            {% if 'The statement contains sensitive or contentious information identified' in data['reason-incomplete'] %}
+            <li>The statement contains sensitive or contentious information identified</li>  
+            {% if 'The statement identifies individuals' in data['reason-incomplete'] %}
+            <li>The statement identifies individuals</li>  
+            {% endif %}
+            {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="why-incomplete">Change<span class="govuk-visually-hidden">reason</span></a>
@@ -53,10 +62,7 @@
         </div>
       </dl>
 
-     
-      <p>Confirming will inform the relevant parties
-        of the outcome
-      </p>
+ 
 
 {{ govukButton({
   text: "Confirm"

@@ -1,39 +1,39 @@
- 
 {% extends "layouts/PINS-post-mvp.html" %}
-{% set pageName="Case details" %}
- 
-{% block content %}
 
+{% set title = "Case details" %}
+{% set pageName = title %}
+
+{% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
       {% set html %}
-  <p class="govuk-notification-banner__heading">
-  S106 obligation incomplete
-    <ul>
-      <li> {{ data['obligation-reason-incomplete'] +  "  " + data['what-reason' ] + " "  }} </li>
-       
-  </ul>
-  <a href="manage-folder">Manage</a></p>
-<p>
-  <a class="govuk-notification-banner__link" href="../../cross-copy/v1/lpa-statement-publish">
-     
-  </a>
-</p>
-{% endset %}
+        <p class="govuk-notification-banner__heading">
+          S106 obligation incomplete
+          <ul>
+            <li>
+              {{ data['obligation-reason-incomplete'] +  "  " + data['what-reason' ] + " "  }}
+            </li>
+          </ul>
+          <a href="manage-folder">Manage</a>
+        </p>
+      {% endset %}
 
-{{ govukNotificationBanner({
-html: html,
-type: "important"
-}) }}
+      {{ govukNotificationBanner({
+        html: html,
+        type: "important"
+      }) }}
 
-</div>
-</div>
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-full">
-    <span class="govuk-caption-l">Appeal 2110166</span>
-    	<h1 class="govuk-heading-l">Case details</h1>
- 
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <span class="govuk-caption-l">Appeal 2110166</span>
+    	<h1 class="govuk-heading-l">
+        {{ title }}
+      </h1>
+
 
         {{ govukTag({
           text: "Statement",
@@ -44,7 +44,7 @@ type: "important"
       {% include "/includes/appeal-content/mvp-has-appeal-meta.html" %}
       <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
-     
+
 
       <div class="govuk-accordion govuk-!-margin-top-9" data-module="govuk-accordion" id="accordion-default">
         <div class="govuk-accordion__section">
@@ -191,7 +191,7 @@ type: "important"
                   html: "Yes. <br>Dogs on site"
                 },
                 {
-                  html: "<a href='.'>Change</a>" 
+                  html: "<a href='.'>Change</a>"
                 }
                 ],
                 [
@@ -229,7 +229,7 @@ type: "important"
                 ],[
                   {
                     text: "Neighbouring sites
-                    (Inspector and / or 
+                    (Inspector and / or
                     third party request)"
                   },
                   {
@@ -493,7 +493,7 @@ type: "important"
             }) }}
           </div>
         </div>
-        
+
         <div class="govuk-accordion__section">
           <div class="govuk-accordion__section-header">
             <h2 class="govuk-accordion__section-heading">
@@ -590,7 +590,7 @@ type: "important"
                   {
                     html: "<a href='#'>Change</a>"
                   }
-                ] 
+                ]
               ]
             }) }}
           </div>
@@ -598,7 +598,7 @@ type: "important"
 
       </div>
 
-     
+
 
     </div>
   </div>

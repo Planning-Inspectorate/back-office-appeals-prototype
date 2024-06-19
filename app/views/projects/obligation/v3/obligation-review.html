@@ -61,7 +61,7 @@
         rows: [
           [
             {
-              text: "appeal-2110166-section106-agreement.pdf"
+              html: "<a href='#' class='govuk-link'>appeal-2110166-section106-agreement.pdf</a>"
             },
             {
               text: myValue
@@ -77,45 +77,37 @@
         ]
       }) }}
 
-
-
-
+    </div>
   </div>
-</div>
-
 
   <form action="" method="post" class="govuk-!-margin-top-3" novalidate>
 
+    {{ govukRadios({
+      name: "obligation-decision",
+      fieldset: {
+        legend: {
+          text: "What is the outcome of your review?",
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--m"
+        }
+      },
+      items: [
+        {
+          value: "Complete~case?S106status=completed",
+          text: "Complete"
+        },
+        {
+          value: "Incomplete~why-incomplete",
+          text: "Incomplete"
+        }
 
-        {{ govukRadios({
-          name: "obligation-decision",
-          fieldset: {
-            legend: {
-              text: "What is the outcome of your review?",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--m"
-            }
-          },
-          items: [
-            {
-              value: "Complete~case?S106status=completed",
-              text: "Complete"
-            },
-            {
-              value: "Incomplete~why-incomplete",
-              text: "Incomplete"
-            }
+      ]
+    }) }}
 
-          ]
-        }) }}
+    {{ govukButton({
+      text: "Continue"
+    }) }}
 
-        {{ govukButton({
-          text: "Continue"
-        }) }}
-
-    </form>
-
-
-
+  </form>
 
 {% endblock %}

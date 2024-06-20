@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = 'appeal-2114328-added-document' %}
+{% set title = 'appeal-2114328-added-document.doc' %}
 {% set pageName = title %}
 
 {% set back = true %}
@@ -21,14 +21,14 @@
   <div class="govuk-grid-column-two-thirds">
 
     <dl class="govuk-summary-list">
-      <div class="govuk-summary-list__row">
+      <!--<div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
           Name
         </dt>
         <dd class="govuk-summary-list__value">
           2114328-IP-comment.doc
         </dd>
-      </div>
+      </div>-->
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
           Version
@@ -44,16 +44,18 @@
         <dd class="govuk-summary-list__value">
           {{ 2 | daysAgo }}
         </dd>
-        <dd class="govuk-summary-list__actions">
-           
-        </dd>
+        <!-- <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="manage-comment">
+            Change<span class="govuk-visually-hidden"> date received</span>
+          </a>
+        </dd> -->
       </div>
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
           Redaction status
         </dt>
         <dd class="govuk-summary-list__value">
-          {{ data['lpa-document-redaction'] }}
+          {{ data['lpa-document-redaction']or "Unredacted" }}
         </dd>
         <dd class="govuk-summary-list__actions">
           <a class="govuk-link" href="document-details">
@@ -74,13 +76,13 @@
       }) }}
     </div>
 </form>
-    <h2 class="govuk-heading-m">
+    <h2 class="govuk-heading-m govuk-visually-hidden">
       Document versions
     </h2>
 
-    <p class="govuk-body">
+    <!-- <p class="govuk-body">
       View and remove versions of this document
-    </p>
+    </p> -->
 
     {% set versionHistory %}
 

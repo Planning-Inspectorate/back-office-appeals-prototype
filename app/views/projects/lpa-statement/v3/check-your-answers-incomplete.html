@@ -15,15 +15,15 @@
         html: "Confirming will inform the relevant parties
         of the outcome"
       }) }}  
-    <form action="lpa-statement-incomplete" method="post" class="govuk-!-margin-top-6" novalidate>
+    <form action="lpa-statement-incomplete" method="post" class="govuk-!-margin-top-0" novalidate>
  
       <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Review outcome
           </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['issue-decision' ]}}
+          <dd class="govuk-summary-list__value" ">
+            {{ data['issue-decision' ]}} this is a really long sentence which doesnt fit 
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> outcome</span></a>
@@ -34,13 +34,9 @@
            Reasons
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data['reason-incomplete'] }}
-            {% if 'The statement contains sensitive or contentious information identified' in data['reason-incomplete'] %}
-            <li>The statement contains sensitive or contentious information identified</li>  
-            {% if 'The statement identifies individuals' in data['reason-incomplete'] %}
-            <li>The statement identifies individuals</li>  
-            {% endif %}
-            {% endif %}
+            <li>  {{ data['reason-incomplete'] }}  </li>
+      
+             
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="why-incomplete">Change<span class="govuk-visually-hidden">reason</span></a>

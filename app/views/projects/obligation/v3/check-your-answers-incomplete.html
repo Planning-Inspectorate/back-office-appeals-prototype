@@ -45,6 +45,7 @@
            Reasons
           </dt>
           <dd class="govuk-summary-list__value">
+            <!-- {{ data['obligation-reason-incomplete'] }} -->
             {% if 'Not dated' in data['obligation-reason-incomplete'] %}
               <li>Not dated</li>
               {% if 'Not signed' in data['obligation-reason-incomplete'] %}
@@ -56,12 +57,10 @@
             {% elseif 'Not signed' in data['obligation-reason-incomplete'] %}
               <li>Not signed</li>
               {% if 'Other' in data['obligation-reason-incomplete'] %}
-                <li>Other: {{ data['what-reason'] }}</li>
+                <li>Other: {{data['what-reason']}}</li>
               {% endif %}
             {% elseif 'Other' in data['obligation-reason-incomplete'] %}
-              <li>Other: {{ data['what-reason'] }}</li>
-            {% else %}
-              <li>Other: Missing documents</li>
+              <li>Other: {{data['what-reason']}}</li>
             {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">

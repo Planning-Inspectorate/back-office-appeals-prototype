@@ -13,13 +13,13 @@
 
       <h1 class="govuk-heading-l">Check your answers</h1>
 
-    <form action="case-complete" method="post" class="govuk-!-margin-top-6" novalidate>
+    <form action="case-complete" method="post" class="" novalidate>
 
       
  
 
       {{ govukSummaryList({
-        classes: "govuk-!-margin-bottom-9",
+        classes: "govuk-!-margin-bottom-6",
         rows: [
           {
             key: {
@@ -58,23 +58,6 @@
 
           {
             key: {
-              text: "Band"
-            },
-            value: {
-              html: "3"
-            },
-            actions: {
-              items: [
-                {
-                  href: "",
-                  text: " ",
-                  visuallyHiddenText: "Bans"
-                }
-              ]
-            }
-          },
-          {
-            key: {
               text: "Specialism"
             },
             value: {
@@ -92,12 +75,13 @@
             }
           }
         ]
-      }) }}
-
-<p>If this has changed, a different inspector may need to be assigned to the case. </p>
+      })
+    }} <p class="govuk-body" >If this has changed, a different inspector may need to be assigned to the case.</p>
 {{ govukButton({
   text: "Confirm"
 }) }}
+
+
     </form>
 
  

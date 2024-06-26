@@ -7,14 +7,27 @@
 {% set back = true %}
 
 {% block content %}
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-full">
+ 
+{% set html %}
+<p class="govuk-notification-banner__heading">
+  LPA statement redacted 
+</p>
+ 
+{% endset %}
 
+{{ govukNotificationBanner({
+html: html,
+type: "success"
+}) }}
+<div class="govuk-grid-row">
+  
+
+    <div class="govuk-grid-column-full">
     <!-- Page heading -->
     <span class="govuk-caption-l">Appeal 2114328</span>
-    <h1 class="govuk-heading-l">Redact supporting documents</h1>
+    <h1 class="govuk-heading-l">Review supporting documents</h1>
     <div class="govuk-body">
-      View and edit a document to redact as required
+      Select 'change' to add a new version of a document.  For example, a redacted version.
     </div>
     <form action="what-is-outcome-of-review" method="post" class="">
     
@@ -32,7 +45,7 @@
           text: "Redaction status"
         },
         {
-          text: "Actions",
+          text: "Action",
           format: "numeric"
         }
       ],
@@ -48,7 +61,7 @@
             text: "Unredacted"
           },
           {
-            html: "<a href='manage-supporting-document' class='govuk-link'>View and edit</a>",
+            html: "<a href='manage-supporting-document' class='govuk-link'>Change</a>",
             format: "numeric"
           }
         ],
@@ -63,7 +76,7 @@
             text: "Unredacted"
           },
           {
-            html: "<a href='#' class='govuk-link'>View and edit</a>",
+            html: "<a href='#' class='govuk-link'>Change</a>",
             format: "numeric"
           }
         ]
@@ -79,14 +92,14 @@
             text: "Unredacted"
           },
           {
-            html: "<a href='#' class='govuk-link'>View and edit</a>",
+            html: "<a href='#' class='govuk-link'>Change</a>",
             format: "numeric"
           }
         ]
       ]
     }) }}
     {{ govukButton({
-      text: "Continue"
+      text: "Confirm"
     }) }}
     </form>
   </div>

@@ -1,0 +1,113 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "S106 obligation review" %}
+{% set pageName = title %}
+
+{% set myValue = 3 | daysAgo  %}
+{% set myValue2 = (data['redaction'] or 'Unredacted')  %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% if data['S106status'] == 'incomplete' %}
+
+        {% set incompleteS106 %}
+          <p class="govuk-notification-banner__heading">
+            S106 obligation incomplete.
+            <ul>
+              <li>
+                {{ data['lpa-reason-incomplete'] +  "  " + data['what-reason' ] + " "  }}
+              </li>
+            </ul>
+          </p>
+        {% endset %}
+
+        {{ govukNotificationBanner({
+          html: incompleteS106,
+          type: "important"
+        }) }}
+
+      {% endif %}
+
+      <span class="govuk-caption-l">Appeal 2110166</span>
+      <h1 class="govuk-heading-l">
+        {{ title }}
+      </h1>
+
+    </div>
+
+    <div class="govuk-grid-column-full">
+
+      {{ govukTable({
+        caption: "Uploaded documents",
+        captionClasses: "govuk-table__caption--m",
+        firstCellIsHeader: true,
+        head: [
+          {
+            text: "Name"
+          },
+          {
+            text: "Received date"
+          },
+          {
+            text: "Redaction status"
+          },
+          {
+            text: "Action",
+            format: "numeric"
+          }
+        ],
+        rows: [
+          [
+            {
+              html: "<a href='#' class='govuk-link'>appeal-2110166-section106-agreement.pdf</a>"
+            },
+            {
+              text: myValue
+            },
+            {
+              text: myValue2
+            },
+            {
+              html: "<a href='manage-document'>Manage<span class='govuk-visually-hidden'> appeal-2110166-section106-agreement.pdf</span></a>",
+              format: "numeric"
+            }
+          ]
+        ]
+      }) }}
+
+    </div>
+  </div>
+
+  <form action="" method="post" class="govuk-!-margin-top-3" novalidate>
+
+    {{ govukRadios({
+      name: "obligation-decision",
+      fieldset: {
+        legend: {
+          text: "What is the outcome of your review?",
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--m"
+        }
+      },
+      items: [
+        {
+          value: "Complete~case?S106status=completed",
+          text: "Complete"
+        },
+        {
+          value: "Incomplete~why-incomplete",
+          text: "Incomplete"
+        }
+
+      ]
+    }) }}
+
+    {{ govukButton({
+      text: "Continue"
+    }) }}
+
+  </form>
+
+{% endblock %}

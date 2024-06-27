@@ -34,7 +34,7 @@ type: "success"
         <span class="govuk-caption-l">Appeal 2114328</span>
         <h1 class="govuk-heading-l">Redact supporting documents</h1>
         <div id="waste-hint" class="govuk-hint">
-          View and edit a document to redact as required
+          Select 'change' to add a new version of a document. For example, a redacted version.
         </div>
      
         {% set myValue4 = (data['lpa-statement-redaction'] )  %}
@@ -69,7 +69,7 @@ type: "success"
             
           },
           {
-            html: "<a href='manage-supporting-document' class='govuk-link'>View and edit</a>"
+            html: "<a href='manage-supporting-document' class='govuk-link'>Change</a>"
           }
         ],
         [
@@ -83,7 +83,7 @@ type: "success"
             text: "Unredacted"
           },
           {
-            html: "<a href='#' class='govuk-link'>View and edit</a>"
+            html: "<a href='#' class='govuk-link'>Change</a>"
           }
         ]
         ,
@@ -98,7 +98,7 @@ type: "success"
             text: "Unredacted"
           },
           {
-            html: "<a href='#' class='govuk-link'>View and edit</a>"
+            html: "<a href='#' class='govuk-link'>Change</a>"
           }
         ]
       ]

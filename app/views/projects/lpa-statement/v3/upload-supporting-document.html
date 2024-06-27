@@ -1,8 +1,8 @@
 
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Upload a new version for this document" %}
-{% set pageName = title %}
+{% set title = "Upload redacted document" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
 
 {% block content %}
 
@@ -15,40 +15,40 @@
       </h1>
       <form action="document-details" method="post" class="govuk-!-margin-top-6" novalidate>
 
-      
+
         <div class="govuk-form-group">
         <label class="govuk-label govuk-label--m" for="application">
           Upload a file
         </label>
-  
-        
+
+
         <div id="application-hint" class="govuk-hint">
           The file must be a DOC, DOCX, PDF, XLS, TIF, JPG or PNG and be smaller than 25MB
         </div>
-       
-  
+
+
       <div class="moj-multi-file-upload moj-multi-file-upload--enhanced">
         <div class="moj-multi-file__uploaded-files moj-hidden">
           <h2 class="govuk-heading-m">File added</h2>
           <div class="govuk-summary-list moj-multi-file-upload__list">
           </div>
         </div>
-      
-        
+
+
           <input class="govuk-file-upload moj-multi-file-upload__input" id="application" name="application" type="file" aria-describedby="application-hint">
           <div aria-live="polite" role="status" class="govuk-visually-hidden"></div>
           <br><br>
-          
+
           {% from "govuk/components/button/macro.njk" import govukButton %}
-  
+
           {{ govukButton({
             text: "Continue"
           }) }}
-  
-      
-      
-       
-      
+
+
+
+
+
           </div>
         </form>
   </div>

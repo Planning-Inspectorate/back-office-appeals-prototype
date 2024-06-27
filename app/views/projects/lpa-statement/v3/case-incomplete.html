@@ -1,6 +1,7 @@
  
 {% extends "layouts/PINS-post-mvp.html" %}
-{% set pageName="Case details" %}
+{% set title = "Case details" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
  
 {% block content %}
 
@@ -10,7 +11,7 @@
 
       {% set html %}
   <p class="govuk-notification-banner__heading">
-  LPA Statement incomplete
+  LPA statement incomplete
     <ul>
       <li>   {{ data['reason-incomplete' ] + "   " + data['whats-missing' ]  + data['what-reason' ] + "  " or "Reason 1" }} </li>
     
@@ -33,7 +34,7 @@ type: "important"
 </div>
 </div>
     <span class="govuk-caption-l">Appeal 2110166</span>
-    	<h1 class="govuk-heading-l">Case details</h1>
+    	<h1 class="govuk-heading-l">{{ title }}</h1>
  
 
         {{ govukTag({

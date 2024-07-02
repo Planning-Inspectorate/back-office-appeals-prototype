@@ -10,13 +10,9 @@
 
       {% set html %}
 <p class="govuk-notification-banner__heading">
-  LPA statement complete. Ready to share.
+  LPA statement complete.
 </p>
-<p>
-  <a class="govuk-notification-banner__link" href="../../cross-copy/v2/lpa-statement-publish">
-    Share
-  </a>
-</p>
+
 {% endset %}
 
 {{ govukNotificationBanner({
@@ -24,7 +20,16 @@ html: html,
 type: "success"
 }) }}
 
- 
+{% set html %}
+  <p class="govuk-notification-banner__heading">
+    IP comments and LPA statement ready to share.
+   
+  </p> <a href="../../cross-copy/v2/lpa-statement-publish">Share</a>
+{% endset %}
+
+{{ govukNotificationBanner({
+  html: html
+}) }}
     <span class="govuk-caption-l">Appeal 2110166</span>
     	<h1 class="govuk-heading-l">{{ title }}</h1>
  

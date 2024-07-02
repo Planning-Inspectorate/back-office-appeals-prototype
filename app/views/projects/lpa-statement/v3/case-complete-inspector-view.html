@@ -25,23 +25,24 @@
         rows: [
         {
           key: {
+            text: "Received date"
+          },
+          value: {
+            html: data['received-date'] or "26 Jun 2023.
+            
+             "
+          }
+        },
+        {
+          key: {
             text: "Original statement"
           },
           value: {
             html: data['original-statement'] or "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus. 
             Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus. 
             Mauris nulla erat, posuere ut nisi vitae, pulvinar gravida arcu.
-            <br><a href='#'>Read more</a> 
+             <a href='#'>Read more</a> 
              "
-          },
-          actions: {
-            items: [
-              {
-                href: "select-allocation",
-                text: "",
-                visuallyHiddenText: ""
-              }
-            ]
           }
         },
             {
@@ -51,16 +52,7 @@
               value: {
                 html: data['redacted-statement'] or " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus. 
                 Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus. 
-                Mauris nulla erat, posuere ut nisi vitae, pulvinar gravida arcu.<br><a href='#'>Read more</a> "
-              },
-              actions: {
-                items: [
-                  {
-                    href: "redact-lpa-statement",
-                    text: "Change",
-                    visuallyHiddenText: "Redacted statement"
-                  }
-                ]
+                Mauris nulla erat, posuere ut nisi vitae, pulvinar gravida arcu. <a href='#'>Read more</a> "
               }
             },
             {
@@ -72,15 +64,6 @@
                 <li><a href='#'>example2.pdf</a></li>
                 <li><a href='#'>example3.pdf</a></li>
                 "
-              },
-              actions: {
-                items: [
-                  {
-                    href: "redact-supporting-documents",
-                    text: "Change",
-                    visuallyHiddenText: "Supporting documents"
-                  }
-                ]
               }
             },{
             key: {
@@ -88,15 +71,6 @@
             },
             value: {
              text:   data['issue-decision' ]
-            },
-            actions: {
-              items: [
-                {
-                  href: "what-is-outcome-of-review",
-                  text: "Change",
-                  visuallyHiddenText: "Review outcome"
-                }
-              ]
             }
           },
           {
@@ -105,15 +79,6 @@
             },
             value: {
               text: data['allocation-level'] or "Level"
-            },
-            actions: {
-              items: [
-                {
-                  href: "select-allocation",
-                  text: "Change",
-                  visuallyHiddenText: "Level"
-                }
-              ]
             }
           },
 
@@ -124,15 +89,6 @@
             value: {
               text: data['specialism']  or
                "Not provided"
-            },
-            actions: {
-              items: [
-                {
-                  href: "select-specialism",
-                  text: "Change",
-                  visuallyHiddenText: "Specialism"
-                }
-              ]
             }
           }
         ]

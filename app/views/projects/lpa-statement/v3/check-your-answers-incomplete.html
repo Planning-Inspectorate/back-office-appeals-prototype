@@ -7,7 +7,7 @@
 
 
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-full">
 
     <span class="govuk-caption-l">Appeal 2110166</span>
 
@@ -15,49 +15,138 @@
      
     <form action="lpa-statement-incomplete" method="post" class="govuk-!-margin-top-0" novalidate>
  
-      <dl class="govuk-summary-list">
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Review outcome
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['issue-decision' ]}} 
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> outcome</span></a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-           Reasons
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <li>{{ (data['reason-incomplete'] + ":")  }} 
+
+      {{ govukSummaryList({
+        classes: "govuk-!-margin-bottom-6",
+        rows: [
+        {
+          key: {
+            text: "Original statement"
+          },
+          value: {
+            html: data['original-statement'] or "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus. 
+            Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus. 
+            Mauris nulla erat, posuere ut nisi vitae, pulvinar gravida arcu.
+            <br><a href='#'>Read more</a> 
+             "
+          },
+          actions: {
+            items: [
+              {
+                href: "select-allocation",
+                text: "",
+                visuallyHiddenText: ""
+              }
+            ]
+          }
+        },
+            {
+              key: {
+                text: "Redacted statement"
+              },
+              value: {
+                html: data['redacted-statement'] or " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus. 
+                Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus. 
+                Mauris nulla erat, posuere ut nisi vitae, pulvinar gravida arcu.<br><a href='#'>Read more</a> "
+              },
+              actions: {
+                items: [
+                  {
+                    href: "redact-lpa-statement",
+                    text: "Change",
+                    visuallyHiddenText: "Redacted statement"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Supporting documents"
+              },
+              value: {
+                html:"<li><a href='#'>example1.pdf</a></li>
+                <li><a href='#'>example2.pdf</a></li>
+                <li><a href='#'>example3.pdf</a></li>
+                "
+              },
+              actions: {
+                items: [
+                  {
+                    href: "redact-supporting-documents",
+                    text: "Change",
+                    visuallyHiddenText: "Supporting documents"
+                  }
+                ]
+              }
+            },{
+            key: {
+              text: "Review outcome"
+            },
+            value: {
+             text:   data['issue-decision' ]
+            },
+            actions: {
+              items: [
+                {
+                  href: "what-is-outcome-of-review",
+                  text: "Change",
+                  visuallyHiddenText: "Review outcome"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Reasons"
+            },
+            value: {
+              html:"<li>Other</li> 
+              <li>No list of suggested conditions</li>
+              <li>Other: Inconsistencies in statement</li>
+              "
+            },
+            actions: {
+              items: [
+                {
+                  href: "select-allocation",
+                  text: "Change",
+                  visuallyHiddenText: "Reasons"
+                }
+              ]
+            }
+          },
+
+          {
+            key: {
+              text: "Due date"
+            },
+            value: {
+              text: ( data['dob-year']+ "-" + data['dob-month'] + "-" + data['dob-day'] )  | govukDate  or
+               "18 Jul 2024"
+            },
+            actions: {
+              items: [
+                {
+                  href: "select-specialism",
+                  text: "Change",
+                  visuallyHiddenText: "Due date"
+                }
+              ]
+            }
+          }
+        ]
+      })
+    }}   
+ 
+
+
+
+<!-- 
+   {{ (data['reason-incomplete'] + ":")  }} 
             {{ data['whats-missing'] }}  
              {{ data['what-reason'] }} 
-            </li>
-             
-         
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="why-incomplete">Change<span class="govuk-visually-hidden">reason</span></a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-           Due date
-          </dt>
-          <dd class="govuk-summary-list__value">
             
-           {{  ( data['dob-year']+ "-" + data['dob-month'] + "-" + data['dob-day'] )  | govukDate   }}
-
-  
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="update-due-date">Change<span class="govuk-visually-hidden"> due date</span></a>
-          </dd>
-        </div>
-      </dl>
+    -->      
 
       {{ govukInsetText({
         html: "Confirming will inform the relevant parties

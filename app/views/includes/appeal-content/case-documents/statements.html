@@ -29,41 +29,7 @@
   </td>
 </tr>
 
-{% if data['ipcomments'] != 'received'%}
-  <tr class="govuk-table__row">
-    <td class="govuk-table__cell">
-      Interested party comments
-    </td>
-    <td class="govuk-table__cell">
-      None received
-    </td>
-    <td class="govuk-table__cell">
-    </td>
-    <td class="govuk-table__cell">
-      <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=" class="govuk-link govuk-link--no-visited-state">
-        Review<span class="govuk-visually-hidden"> interested party comments</span>
-      </a>
-    </td>
-  </tr>
-{% else %}
-  <tr class="govuk-table__row">
-    <td class="govuk-table__cell">
-      Interested party comments
-    </td>
-    <td class="govuk-table__cell">
-      Received
-    </td>
-    <td class="govuk-table__cell">
-    </td>
-    <td class="govuk-table__cell">
-      <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=" class="govuk-link govuk-link--no-visited-state">
-        Review<span class="govuk-visually-hidden"> interested party comments</span>
-      </a>
-    </td>
-  </tr>
-{% endif %}
-
-{% if data['lpa-statement'] == 'not-received' or null %}
+{% if data['lpa-statement'] == 'not-received' %}
   <tr class="govuk-table__row">
     <td class="govuk-table__cell">
       LPA statement
@@ -105,6 +71,53 @@
     <td class="govuk-table__cell">
       <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=" class="govuk-link govuk-link--no-visited-state">
         Review<span class="govuk-visually-hidden"> LPA statement</span>
+      </a>
+    </td>
+  </tr>
+{% else %}
+  <tr class="govuk-table__row">
+    <td class="govuk-table__cell">
+      LPA statement
+    </td>
+    <td class="govuk-table__cell">
+      None received
+    </td>
+    <td class="govuk-table__cell">
+    </td>
+    <td class="govuk-table__cell">
+    </td>
+  </tr>
+{% endif %}
+
+{% if data['ipcomments'] != 'received'%}
+  <tr class="govuk-table__row">
+    <td class="govuk-table__cell">
+      Interested party comments
+    </td>
+    <td class="govuk-table__cell">
+      None received
+    </td>
+    <td class="govuk-table__cell">
+    </td>
+    <td class="govuk-table__cell">
+      <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=" class="govuk-link govuk-link--no-visited-state">
+        Review<span class="govuk-visually-hidden"> interested party comments</span>
+      </a>
+    </td>
+  </tr>
+{% else %}
+  <tr class="govuk-table__row">
+    <td class="govuk-table__cell">
+      Interested party comments
+    </td>
+    <td class="govuk-table__cell">
+      Received
+    </td>
+    <td class="govuk-table__cell">
+    </td>
+    <td class="govuk-table__cell">
+      <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=" class="govuk-link govuk-link--no-visited-state">
+        Review<span class="govuk-visually-hidden"> interested party comments</span>
       </a>
     </td>
   </tr>

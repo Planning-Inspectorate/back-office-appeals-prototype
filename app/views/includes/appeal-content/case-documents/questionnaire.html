@@ -14,13 +14,13 @@
   </td>
 </tr>
 
-{% if data['questionnaire'] != 'received'%}
+{% if data['questionnaire'] == 'not-received' %}
   <tr class="govuk-table__row">
     <td class="govuk-table__cell">
       LPA questionnaire
     </td>
     <td class="govuk-table__cell">
-      Not received
+      None received
     </td>
     <td class="govuk-table__cell"></td>
     <td class="govuk-table__cell">
@@ -29,13 +29,29 @@
       </a> -->
     </td>
   </tr>
-{% elseif data['questionnaire'] != 'complete'%}
+{% elseif data['questionnaire'] == 'received'%}
   <tr class="govuk-table__row">
     <td class="govuk-table__cell">
       LPA questionnaire
     </td>
     <td class="govuk-table__cell">
       Received
+    </td>
+    <td class="govuk-table__cell"></td>
+    <td class="govuk-table__cell">
+      <a href="#" class="govuk-link govuk-link--no-visited-state">
+        Review<span class="govuk-visually-hidden"> LPA questionniare</span>
+      </a>
+    </td>
+  </tr>
+
+{% elseif data['questionnaire'] == 'complete'%}
+  <tr class="govuk-table__row">
+    <td class="govuk-table__cell">
+      LPA questionnaire
+    </td>
+    <td class="govuk-table__cell">
+      Complete
     </td>
     <td class="govuk-table__cell"></td>
     <td class="govuk-table__cell">
@@ -50,12 +66,43 @@
       LPA questionnaire
     </td>
     <td class="govuk-table__cell">
-      Received
+      None received
     </td>
     <td class="govuk-table__cell"></td>
     <td class="govuk-table__cell">
-      <a href="#" class="govuk-link govuk-link--no-visited-state">
-        Review<span class="govuk-visually-hidden"> LPA questionniare</span>
+      <!-- <a href="task-list">
+        Review
+      </a> -->
+    </td>
+  </tr>
+{% endif %}
+
+{% if data['lpa-statement'] != 'received' %}
+  <tr class="govuk-table__row">
+    <td class="govuk-table__cell">
+      LPA statement
+    </td>
+    <td class="govuk-table__cell">
+      None received
+    </td>
+    <td class="govuk-table__cell">
+    </td>
+    <td class="govuk-table__cell">
+    </td>
+  </tr>
+{% elseif data['lpa-statement'] == 'received' %}
+  <tr class="govuk-table__row">
+    <td class="govuk-table__cell">
+      LPA statement
+    </td>
+    <td class="govuk-table__cell">
+      Received
+    </td>
+    <td class="govuk-table__cell">
+    </td>
+    <td class="govuk-table__cell">
+      <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=" class="govuk-link govuk-link--no-visited-state">
+        Review<span class="govuk-visually-hidden"> LPA statement</span>
       </a>
     </td>
   </tr>
@@ -72,9 +119,9 @@
     <td class="govuk-table__cell">
     </td>
     <td class="govuk-table__cell">
-      <!-- <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=">
+      <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=&no-comments=yes" class="govuk-link govuk-link--no-visited-state">
         Review<span class="govuk-visually-hidden"> interested party comments</span>
-      </a> -->
+      </a>
     </td>
   </tr>
 {% else %}

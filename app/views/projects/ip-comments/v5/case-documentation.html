@@ -29,21 +29,21 @@
     text: 'Case closed'
   },
   {
+    href: '#',
+    text: '░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░'
+  },
+  {
     href: '?questionnaire=received',
     text: 'Questionnaire received'
-  } if data['questionnaire'] != 'received',
+  } if (data['questionnaire'] != 'received' and data['case-stage'] == 'questionnaire'),
   {
-    href: '?questionnaire=',
+    href: '?questionnaire=not-received',
     text: 'Questionnaire not received'
   } if data['questionnaire'] == 'received',
   {
-    href: '?ipcomments=received',
-    text: 'IP comments received'
-  } if data['ipcomments'] != 'received',
-  {
-    href: '?ipcomments=',
-    text: 'No IP comments'
-  } if data['ipcomments'] == 'received',
+    href: '?questionnaire=complete&case-stage=statements',
+    text: 'Questionnaire complete'
+  } if data['questionnaire'] == 'received',
   {
     href: '?lpa-statement=received',
     text: 'LPA statement received'
@@ -59,7 +59,15 @@
   {
     href: '?lpa-statement=complete',
     text: 'LPA statement complete'
-  } if data['lpa-statement'] == 'received'
+  } if data['lpa-statement'] == 'received',
+  {
+    href: '?ipcomments=received',
+    text: 'IP comments received'
+  } if data['ipcomments'] != 'received',
+  {
+    href: '?ipcomments=',
+    text: 'No IP comments'
+  } if data['ipcomments'] == 'received'
 
 ] %}
 
@@ -69,19 +77,120 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      {% if data['case-stage'] == 'questionnaire' %}
+        <!-- questionnaire -->
+        {% if data['questionnaire'] == 'received'%}
+          {% set html %}
+            <p class="govuk-notification-banner__heading">
+              The LPA questionnaire is ready for review
+            </p>
+          {% endset %}
+          {{ govukNotificationBanner({
+            html: html
+          }) }}
+        {% endif %}
+        <!-- statements -->
+        {% if data['lpa-statement'] == 'received'%}
+          {% set html %}
+            <p class="govuk-notification-banner__heading">
+              The LPA statement is ready for review
+            </p>
+          {% endset %}
+          {{ govukNotificationBanner({
+            html: html
+          }) }}
+        {% endif %}
+
+      {% elseif data['case-stage'] == 'statements' %}
+        <!-- statements -->
+        {% if data['lpa-statement'] == 'received'%}
+          {% set html %}
+            <p class="govuk-notification-banner__heading">
+              The LPA statement is ready for review
+            </p>
+          {% endset %}
+          {{ govukNotificationBanner({
+            html: html
+          }) }}
+        {% endif %}
+
+      {% elseif data['case-stage'] == 'final-comments' %}
+        <!-- final comments -->
+
+      {% elseif data['case-stage'] == 'determination' %}
+        <!-- determination -->
+
+      {% elseif data['case-stage'] == 'closed' %}
+        <!-- closed -->
+
+      {% else %}
+        <!-- new case -->
+        {% set html %}
+          <p class="govuk-notification-banner__heading">
+            The appeal is ready for review
+          </p>
+        {% endset %}
+        {{ govukNotificationBanner({
+          html: html
+        }) }}
+      {% endif %}
+
       <!--	<span class="govuk-caption-l">Appeal 2110166</span> -->
       <span class="govuk-caption-l">Appeal 2114328</span>
     	<h1 class="govuk-heading-l">
         {{ title }}
       </h1>
-      <strong class="govuk-tag govuk-tag--purple">
-       Statements
-      </strong>
 
+      <!-- case status tag -->
+      {% if data['case-stage'] == 'questionnaire' %}
+
+        <strong class="govuk-tag govuk-tag--yellow">
+          LPA questionnaire
+        </strong>
+
+      {% elseif data['case-stage'] == 'statements' %}
+
+        <strong class="govuk-tag govuk-tag--purple">
+          Statements
+        </strong>
+
+      {% elseif data['case-stage'] == 'final-comments' %}
+
+        <strong class="govuk-tag govuk-tag--orange">
+          Final comment review
+        </strong>
+
+      {% elseif data['case-stage'] == 'determination' %}
+
+        <strong class="govuk-tag govuk-tag--pink">
+          Issue decision
+        </strong>
+
+      {% elseif data['case-stage'] == 'closed' %}
+
+        <strong class="govuk-tag govuk-tag--green">
+          Complete
+        </strong>
+
+      {% else %}
+
+        <strong class="govuk-tag govuk-tag--green">
+          Ready to start
+        </strong>
+
+      {% endif %}
+
+    </div>
+
+    <div class="govuk-grid-column-full">
       {% include "/includes/appeal-content/lpa-has-appeal-meta.html" %}
       <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+    </div>
 
+    <div class="govuk-grid-column-two-thirds">
       <div class="govuk-accordion govuk-!-margin-top-9" data-module="govuk-accordion" id="accordion-default">
+
+        <!-- case overview -->
         <div class="govuk-accordion__section">
           <div class="govuk-accordion__section-header">
             <h2 class="govuk-accordion__section-heading">

@@ -3,6 +3,67 @@
 {% set title = "Case details" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
+{% set prototypeLinks = [
+  {
+    href: '?case-stage=new',
+    text: 'New appeal'
+  },
+  {
+    href: '?case-stage=questionnaire',
+    text: 'Appeal started / Questionnaire stage'
+  },
+  {
+    href: '?case-stage=statements',
+    text: 'Statements stage'
+  },
+  {
+    href: '?case-stage=final-comments',
+    text: 'Final comments stage'
+  },
+  {
+    href: '?case-stage=determination',
+    text: 'Determination stage'
+  },
+  {
+    href: '?case-stage=closed',
+    text: 'Case closed'
+  },
+  {
+    href: '?questionnaire=received',
+    text: 'Questionnaire received'
+  } if data['questionnaire'] != 'received',
+  {
+    href: '?questionnaire=',
+    text: 'Questionnaire not received'
+  } if data['questionnaire'] == 'received',
+  {
+    href: '?ipcomments=received',
+    text: 'IP comments received'
+  } if data['ipcomments'] != 'received',
+  {
+    href: '?ipcomments=',
+    text: 'No IP comments'
+  } if data['ipcomments'] == 'received',
+  {
+    href: '?lpa-statement=received',
+    text: 'LPA statement received'
+  } if (data['lpa-statement'] != 'received') and (data['lpa-statement'] != 'complete'),
+  {
+    href: '?lpa-statement=not-received',
+    text: 'LPA statement not received'
+  } if (data['lpa-statement'] == 'received') or (data['lpa-statement'] == 'complete'),
+  {
+    href: '?lpa-statement=received',
+    text: 'LPA statement not complete'
+  } if data['lpa-statement'] == 'complete',
+  {
+    href: '?lpa-statement=complete',
+    text: 'LPA statement complete'
+  } if data['lpa-statement'] == 'received'
+
+] %}
+
+
 {% block content %}
 
   <div class="govuk-grid-row">
@@ -133,8 +194,7 @@
           </div>
         </div>
 
-
-
+        <!-- site details -->
         <div class="govuk-accordion__section">
           <div class="govuk-accordion__section-header">
             <h2 class="govuk-accordion__section-heading">
@@ -153,22 +213,26 @@
                 <dd class="govuk-summary-list__value">
                   <span>No answer provided</span>
                 </dd>
-                  <dd class="govuk-summary-list__actions">
-                      <a class="govuk-link" href="/appeals-service/appeal-details/441/change-appeal-details/lpa-inspector-access/">
-                      Change</a>
-                  </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="/appeals-service/appeal-details/441/change-appeal-details/lpa-inspector-access/">
+                    Change
+                  </a>
+                </dd>
               </div>
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
                   Inspection access (appellant answer)
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  <span>No</span>
+                  <span>
+                    No
+                  </span>
                 </dd>
-                  <dd class="govuk-summary-list__actions">
-                      <a class="govuk-link" href="/appeals-service/appeal-details/441/change-appeal-details/appellant-case-inspector-access">
-                      Change</a>
-                  </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="/appeals-service/appeal-details/441/change-appeal-details/appellant-case-inspector-access">
+                    Change
+                  </a>
+                </dd>
               </div>
 
               <div class="govuk-summary-list__row">
@@ -178,10 +242,11 @@
                 <dd class="govuk-summary-list__value">
                   <span>No answer provided</span>
                 </dd>
-                  <dd class="govuk-summary-list__actions">
-                      <a class="govuk-link" href="/appeals-service/appeal-details/441/change-appeal-details/lpa-health-and-safety">
-                      Change</a>
-                  </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="/appeals-service/appeal-details/441/change-appeal-details/lpa-health-and-safety">
+                    Change
+                  </a>
+                </dd>
               </div>
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
@@ -190,10 +255,11 @@
                 <dd class="govuk-summary-list__value">
                   <span>No answer provided</span>
                 </dd>
-                  <dd class="govuk-summary-list__actions">
-                      <a class="govuk-link" href="/appeals-service/appeal-details/441/change-appeal-details/appellant-case-health-and-safety">
-                      Change</a>
-                  </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="/appeals-service/appeal-details/441/change-appeal-details/appellant-case-health-and-safety">
+                    Change
+                  </a>
+                </dd>
               </div>
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
@@ -202,10 +268,11 @@
                 <dd class="govuk-summary-list__value">
                   Unaccompanied
                 </dd>
-                  <dd class="govuk-summary-list__actions">
-                      <a class="govuk-link" href="/appeals-service/appeal-details/441/site-visit/set-visit-type">
-                      Change</a>
-                  </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="/appeals-service/appeal-details/441/site-visit/set-visit-type">
+                    Change
+                  </a>
+                </dd>
               </div>
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
@@ -214,10 +281,11 @@
                 <dd class="govuk-summary-list__value">
                   No answer provided
                 </dd>
-                  <dd class="govuk-summary-list__actions">
-                      <a class="govuk-link" href="/appeals-service/appeal-details/441/change-appeal-details/neighbouring-site-is-affected">
-                      Change</a>
-                  </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="/appeals-service/appeal-details/441/change-appeal-details/neighbouring-site-is-affected">
+                    Change
+                  </a>
+                </dd>
               </div>
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
@@ -233,30 +301,30 @@
                       BS3 4AL</li>
                   </ul>
                 </dd>
-                  <dd class="govuk-summary-list__actions">
-                      <a class="govuk-link" href="manage-neighbouring-sites.html">
-                      View LPAQ</a>
-                  </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="manage-neighbouring-sites.html">
+                    View LPAQ
+                  </a>
+                </dd>
               </div>
                <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
                   Neighbouring sites (Inspector and/or third party request)
                 </dt>
                 <dd class="govuk-summary-list__value">
-
                   None
-
                 </dd>
-                  <dd class="govuk-summary-list__actions">
-                    <a class="govuk-link" href="additional-neighbours-address">
-                        Add</a>
-                  </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="additional-neighbours-address">
+                    Add
+                  </a>
+                </dd>
               </div>
-        </dl>
+            </dl>
           </div>
         </div>
 
-
+        <!-- timetable -->
         <div class="govuk-accordion__section">
           <div class="govuk-accordion__section-header">
             <h2 class="govuk-accordion__section-heading">
@@ -268,48 +336,49 @@
 
           <div id="accordion-default-content-2" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-2">
           	{{ govukTable({
-    captionClasses: "govuk-table__caption--m",
-    firstCellIsHeader: true,
-    rows: [
-      [
-        {
-          text: "Start date"
-        },
-        {
-          text: 38 | daysAgo
-        },
-        {
-          html: ""
-        }
-      ],
-      [
-        {
-          text: "LPA questionnaire due"
-        },
-        {
-          text: 31 | daysAgo
-        },
-        {
-          html: "<a href='#'>Change</a>"
-        }
-      ],
-      [
-        {
-          text: "Site visit"
-        },
-        {
-          text: -3 | daysAgo
-        },
-        {
-          html: "<a href='site-visit.html'>Manage</a>"
-        }
-      ]
-    ]
-  }) }}
+              captionClasses: "govuk-table__caption--m",
+              firstCellIsHeader: true,
+              rows: [
+                [
+                  {
+                    text: "Start date"
+                  },
+                  {
+                    text: 38 | daysAgo
+                  },
+                  {
+                    html: ""
+                  }
+                ],
+                [
+                  {
+                    text: "LPA questionnaire due"
+                  },
+                  {
+                    text: 31 | daysAgo
+                  },
+                  {
+                    html: "<a href='#'>Change</a>"
+                  }
+                ],
+                [
+                  {
+                    text: "Site visit"
+                  },
+                  {
+                    text: -3 | daysAgo
+                  },
+                  {
+                    html: "<a href='site-visit.html'>Manage</a>"
+                  }
+                ]
+              ]
+            }) }}
 
           </div>
         </div>
 
+        <!-- case documents -->
         <div class="govuk-accordion__section">
           <div class="govuk-accordion__section-header">
             <h2 class="govuk-accordion__section-heading">
@@ -325,62 +394,39 @@
                 <tr class="govuk-table__row">
                   <th scope="col" class="govuk-table__header">Documentation</th>
                   <th scope="col" class="govuk-table__header">Status</th>
-                  <th scope="col" class="govuk-table__header">Due date</th>
+                  <th scope="col" class="govuk-table__header">Received date</th>
                   <th scope="col" class="govuk-table__header">Action</th>
                 </tr>
               </thead>
 
               <tbody class="govuk-table__body">
-                <tr class="govuk-table__row">
-                  <td class="govuk-table__cell">
-                    Appellant case
-                  </td>
-                  <td class="govuk-table__cell">
-                    Complete
-                  </td>
-                  <td class="govuk-table__cell">
-                  </td>
-                  <td class="govuk-table__cell">
-                    <a href="#">
-                      Review
-                    </a>
-                  </td>
-                </tr>
-                <tr class="govuk-table__row">
-                  <td class="govuk-table__cell">
-                    LPA questionnaire
-                  </td>
-                  <td class="govuk-table__cell">
-                    Complete
-                  </td>
-                  <td class="govuk-table__cell"></td>
-                  <td class="govuk-table__cell">
-                    <a href="task-list">
-                      Review
-                    </a>
-                  </td>
-                </tr>
-                <tr class="govuk-table__row">
-                  <td class="govuk-table__cell">
-                    Interested party comments
-                  </td>
-                  <td class="govuk-table__cell">
-                    None received
-                  </td>
-                  <td class="govuk-table__cell">
-                  </td>
-                  <td class="govuk-table__cell">
-                    <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=">
-                      Review<span class="govuk-visually-hidden"> interested party comments</span>
-                    </a>
-                  </td>
-                </tr>
+
+                {% if data['case-stage'] == 'questionnaire' %}
+                  <!-- questionnaire -->
+                  {% include "includes/appeal-content/case-documents/questionnaire.html" %}
+                {% elseif data['case-stage'] == 'statements' %}
+                  <!-- statements -->
+                  {% include "includes/appeal-content/case-documents/statements.html" %}
+                {% elseif data['case-stage'] == 'final-comments' %}
+                  <!-- final comments -->
+                  {% include "includes/appeal-content/case-documents/final-comments.html" %}
+                {% elseif data['case-stage'] == 'determination' %}
+                  <!-- determination -->
+                  {% include "includes/appeal-content/case-documents/determination.html" %}
+                {% elseif data['case-stage'] == 'closed' %}
+                  <!-- closed -->
+                  {% include "includes/appeal-content/case-documents/closed.html" %}
+                {% else %}
+                  <!-- new case -->
+                  {% include "includes/appeal-content/case-documents/new-case.html" %}
+                {% endif %}
 
               </tbody>
             </table>
           </div>
         </div>
 
+        <!-- contacts -->
         <div class="govuk-accordion__section">
           <div class="govuk-accordion__section-header">
             <h2 class="govuk-accordion__section-heading">
@@ -431,6 +477,7 @@
           </div>
         </div>
 
+        <!-- case team -->
         <div class="govuk-accordion__section">
           <div class="govuk-accordion__section-header">
             <h2 class="govuk-accordion__section-heading">
@@ -445,12 +492,15 @@
         </div>
       </div>
 
-    	<h3 class="govuk-heading-m govuk-!-margin-top-9">
-        Audit history
-      </h3>
-    	<p class="govuk-body">
-        <a href="history">View changes</a> made to this case
-      </p>
+      <!-- audit history -->
+      <section>
+      	<h3 class="govuk-heading-m govuk-!-margin-top-9">
+          Audit history
+        </h3>
+      	<p class="govuk-body">
+          <a href="history">View changes</a> made to this case
+        </p>
+      </section>
 
       <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
@@ -463,8 +513,4 @@
 
     </div>
   </div>
-
-
-
-
 {% endblock %}

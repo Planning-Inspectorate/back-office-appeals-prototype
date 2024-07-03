@@ -65,6 +65,10 @@
     text: 'IP comments received'
   } if data['ipcomments'] != 'received',
   {
+    href: '?ipcomments=complete',
+    text: 'IP comments complete'
+  } if data['ipcomments'] == 'received',
+  {
     href: '?ipcomments=',
     text: 'No IP comments'
   } if data['ipcomments'] == 'received'
@@ -86,9 +90,11 @@
             </p>
           {% endset %}
           {{ govukNotificationBanner({
-            html: html
+            html: html,
+            classes: 'govuk-!-margin-bottom-3'
           }) }}
         {% endif %}
+
         <!-- statements -->
         {% if data['lpa-statement'] == 'received'%}
           {% set html %}
@@ -97,11 +103,26 @@
             </p>
           {% endset %}
           {{ govukNotificationBanner({
-            html: html
+            html: html,
+            classes: 'govuk-!-margin-bottom-3'
+          }) }}
+        {% endif %}
+
+        <!-- ip comments -->
+        {% if data['ipcomments'] == 'received'%}
+          {% set html %}
+            <p class="govuk-notification-banner__heading">
+              IP comments are ready for review
+            </p>
+          {% endset %}
+          {{ govukNotificationBanner({
+            html: html,
+            classes: 'govuk-!-margin-bottom-3'
           }) }}
         {% endif %}
 
       {% elseif data['case-stage'] == 'statements' %}
+
         <!-- statements -->
         {% if data['lpa-statement'] == 'received'%}
           {% set html %}
@@ -110,8 +131,39 @@
             </p>
           {% endset %}
           {{ govukNotificationBanner({
-            html: html
+            html: html,
+            classes: 'govuk-!-margin-bottom-3'
           }) }}
+        {% endif %}
+
+        <!-- ip comments -->
+        {% if data['ipcomments'] == 'received'%}
+          {% set html %}
+            <p class="govuk-notification-banner__heading">
+              IP comments are ready for review
+            </p>
+          {% endset %}
+          {{ govukNotificationBanner({
+            html: html,
+            classes: 'govuk-!-margin-bottom-3'
+          }) }}
+        {% endif %}
+
+        {% if data['lpa-statement'] == 'complete'%}
+          {% if data['ipcomments'] == 'complete'%}
+            {% set html %}
+              <p class="govuk-notification-banner__heading">
+                IP comments and LPA statement are ready to share
+                <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">
+                  Share<span class="govuk-visually-hidden"> IP comments and LPA statement</span>
+                </a>
+              </p>
+            {% endset %}
+            {{ govukNotificationBanner({
+              html: html,
+              classes: 'govuk-!-margin-bottom-3'
+            }) }}
+          {% endif %}
         {% endif %}
 
       {% elseif data['case-stage'] == 'final-comments' %}
@@ -126,17 +178,18 @@
       {% else %}
         <!-- new case -->
         {% set html %}
-          <p class="govuk-notification-banner__heading">
+          <p class="govuk-notification-banner__heading govuk-!-margin-bottom-3">
             The appeal is ready for review
           </p>
         {% endset %}
         {{ govukNotificationBanner({
-          html: html
+          html: html,
+          classes: 'govuk-!-margin-bottom-3'
         }) }}
       {% endif %}
 
       <!--	<span class="govuk-caption-l">Appeal 2110166</span> -->
-      <span class="govuk-caption-l">Appeal 2114328</span>
+      <span class="govuk-caption-l govuk-!-margin-top-9">Appeal 2114328</span>
     	<h1 class="govuk-heading-l">
         {{ title }}
       </h1>

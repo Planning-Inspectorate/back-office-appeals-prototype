@@ -6,8 +6,9 @@
     Complete
   </td>
   <td class="govuk-table__cell">
+    {{ 36 | daysAgo }}
   </td>
-  <td class="govuk-table__cell">
+  <td class="govuk-table__cell govuk-!-text-align-right">
     <a href="#">
       Review
     </a>
@@ -21,8 +22,10 @@
   <td class="govuk-table__cell">
     Complete
   </td>
-  <td class="govuk-table__cell"></td>
   <td class="govuk-table__cell">
+    {{ 29 | daysAgo }}
+  </td>
+  <td class="govuk-table__cell govuk-!-text-align-right">
     <a href="task-list" class="govuk-link govuk-link--no-visited-state">
       Review
     </a>
@@ -39,7 +42,7 @@
     </td>
     <td class="govuk-table__cell">
     </td>
-    <td class="govuk-table__cell">
+    <td class="govuk-table__cell govuk-!-text-align-right">
     </td>
   </tr>
 {% elseif data['lpa-statement'] == 'complete' %}
@@ -51,8 +54,9 @@
       Complete
     </td>
     <td class="govuk-table__cell">
+      {{ 22 | daysAgo }}
     </td>
-    <td class="govuk-table__cell">
+    <td class="govuk-table__cell govuk-!-text-align-right">
       <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=" class="govuk-link govuk-link--no-visited-state">
         View<span class="govuk-visually-hidden"> LPA statement</span>
       </a>
@@ -67,8 +71,9 @@
       Received
     </td>
     <td class="govuk-table__cell">
+      {{ 22 | daysAgo }}
     </td>
-    <td class="govuk-table__cell">
+    <td class="govuk-table__cell govuk-!-text-align-right">
       <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=" class="govuk-link govuk-link--no-visited-state">
         Review<span class="govuk-visually-hidden"> LPA statement</span>
       </a>
@@ -84,12 +89,12 @@
     </td>
     <td class="govuk-table__cell">
     </td>
-    <td class="govuk-table__cell">
+    <td class="govuk-table__cell govuk-!-text-align-right">
     </td>
   </tr>
 {% endif %}
 
-{% if data['ipcomments'] != 'received'%}
+{% if data['ipcomments'] == 'not-received'%}
   <tr class="govuk-table__row">
     <td class="govuk-table__cell">
       Interested party comments
@@ -99,9 +104,43 @@
     </td>
     <td class="govuk-table__cell">
     </td>
-    <td class="govuk-table__cell">
+    <td class="govuk-table__cell govuk-!-text-align-right">
       <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=" class="govuk-link govuk-link--no-visited-state">
         Review<span class="govuk-visually-hidden"> interested party comments</span>
+      </a>
+    </td>
+  </tr>
+{% elseif data['ipcomments'] == 'received'%}
+  <tr class="govuk-table__row">
+    <td class="govuk-table__cell">
+      Interested party comments
+    </td>
+    <td class="govuk-table__cell">
+      Received
+    </td>
+    <td class="govuk-table__cell">
+      {{ 1 | daysAgo }}
+    </td>
+    <td class="govuk-table__cell govuk-!-text-align-right">
+      <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=" class="govuk-link govuk-link--no-visited-state">
+        Review<span class="govuk-visually-hidden"> interested party comments</span>
+      </a>
+    </td>
+  </tr>
+{% elseif data['ipcomments'] == 'complete'%}
+  <tr class="govuk-table__row">
+    <td class="govuk-table__cell">
+      Interested party comments
+    </td>
+    <td class="govuk-table__cell">
+      Complete
+    </td>
+    <td class="govuk-table__cell">
+      {{ 10 | daysAgo }}
+    </td>
+    <td class="govuk-table__cell govuk-!-text-align-right">
+      <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=" class="govuk-link govuk-link--no-visited-state">
+        View<span class="govuk-visually-hidden"> interested party comments</span>
       </a>
     </td>
   </tr>
@@ -111,11 +150,11 @@
       Interested party comments
     </td>
     <td class="govuk-table__cell">
-      Received
+      None received
     </td>
     <td class="govuk-table__cell">
     </td>
-    <td class="govuk-table__cell">
+    <td class="govuk-table__cell govuk-!-text-align-right">
       <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=" class="govuk-link govuk-link--no-visited-state">
         Review<span class="govuk-visually-hidden"> interested party comments</span>
       </a>
@@ -132,9 +171,9 @@
   </td>
   <td class="govuk-table__cell">
   </td>
-  <td class="govuk-table__cell">
-    <a href="#" class="govuk-link govuk-link--no-visited-state">
+  <td class="govuk-table__cell govuk-!-text-align-right">
+    <!-- <a href="#" class="govuk-link govuk-link--no-visited-state">
       Review<span class="govuk-visually-hidden"> S106 planning obligation</span>
-    </a>
+    </a> -->
   </td>
 </tr>

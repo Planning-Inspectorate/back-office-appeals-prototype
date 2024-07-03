@@ -1,89 +1,87 @@
- 
-{% extends "layouts/PINS-post-mvp.html" %}
- 
-{% set title = "Check your answers" %}
-{% set pageName = title + ' - Planning Inspectorate'%} 
-{% block content %}
 
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Check your answers" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% block content %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
-    <span class="govuk-caption-l">Appeal 2110166</span>
-
+      <span class="govuk-caption-l">Appeal 2110166</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
-     
-    <form action="lpa-statement-incomplete" method="post" class="govuk-!-margin-top-0" novalidate>
- 
 
-      {{ govukSummaryList({
-        classes: "govuk-!-margin-bottom-6",
-        rows: [
-        {
-          key: {
-            text: "Original LPA statement"
-          },
-          value: {
-            html: data['original-statement'] or "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus. 
-            Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus. 
-            Mauris nulla erat, posuere ut nisi vitae, pulvinar gravida arcu.
-            <br><a href='#'>Read more</a> 
-             "
-          },
-          actions: {
-            items: [
-              {
-                href: "select-allocation",
-                text: "",
-                visuallyHiddenText: ""
-              }
-            ]
-          }
-        },
-            {
-              key: {
-                text: "Redacted LPA statement"
-              },
-              value: {
-                html: data['redacted-statement'] or " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus. 
-                Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus. 
-                Mauris nulla erat, posuere ut nisi vitae, pulvinar gravida arcu.<br><a href='#'>Read more</a> "
-              },
-              actions: {
-                items: [
-                  {
-                    href: "redact-lpa-statement",
-                    text: "Change",
-                    visuallyHiddenText: "Redacted statement"
-                  }
-                ]
-              }
+      <form action="lpa-statement-incomplete" method="post" class="govuk-!-margin-top-0" novalidate>
+
+        {{ govukSummaryList({
+          classes: "govuk-!-margin-bottom-6",
+          rows: [
+          {
+            key: {
+              text: "Original statement"
             },
-            {
-              key: {
-                text: "Supporting documents"
-              },
-              value: {
-                html:"<li><a href='#'>example1.pdf</a></li>
-                <li><a href='#'>example2.pdf</a></li>
-                <li><a href='#'>example3.pdf</a></li>
-                "
-              },
-              actions: {
-                items: [
-                  {
-                    href: "redact-supporting-documents",
-                    text: "Change",
-                    visuallyHiddenText: "Supporting documents"
-                  }
-                ]
-              }
-            },{
+            value: {
+              html: data['original-statement'] or "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus.
+              Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus.
+              Mauris nulla erat, posuere ut nisi vitae, pulvinar gravida arcu.
+              <br><a href='#'>Read more</a>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "select-allocation",
+                  text: "",
+                  visuallyHiddenText: ""
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Redacted statement"
+            },
+            value: {
+              html: data['redacted-statement'] or " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus.
+              Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus.
+              Mauris nulla erat, posuere ut nisi vitae, pulvinar gravida arcu.<br><a href='#'>Read more</a> "
+            },
+            actions: {
+              items: [
+                {
+                  href: "redact-lpa-statement",
+                  text: "Change",
+                  visuallyHiddenText: "Redacted statement"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Supporting documents"
+            },
+            value: {
+              html:"<li><a href='#'>example1.pdf</a></li>
+              <li><a href='#'>example2.pdf</a></li>
+              <li><a href='#'>example3.pdf</a></li>
+              "
+            },
+            actions: {
+              items: [
+                {
+                  href: "redact-supporting-documents",
+                  text: "Change",
+                  visuallyHiddenText: "Supporting documents"
+                }
+              ]
+            }
+          },
+          {
             key: {
               text: "Review outcome"
             },
             value: {
-             text:   data['issue-decision' ]
+             text: 'Incomplete'
             },
             actions: {
               items: [
@@ -100,7 +98,7 @@
               text: "Reasons"
             },
             value: {
-              html: (data['reason-incomplete' ] + data['whats-missing' ]  +  data['what-reason' ]  or 'Reason 1')   
+              html: (data['reason-incomplete' ] + data['whats-missing' ]  +  data['what-reason' ]  or 'Reason 1')
             },
             actions: {
               items: [
@@ -112,55 +110,44 @@
               ]
             }
           },
-
           {
             key: {
               text: "Due date"
             },
             value: {
-              text: ( data['dob-year']+ "-" + data['dob-month'] + "-" + data['dob-day'] )  | govukDate  or
-               "18 Jul 2024"
+              html: 3 | daysInFuture
             },
             actions: {
               items: [
                 {
                   href: "update-due-date",
                   text: "Change",
-                  visuallyHiddenText: "Due date"
+                  visuallyHiddenText: "due date"
                 }
               ]
             }
           }
-        ]
-      })
-    }}   
- 
+          ]})
+        }}
 
+        <!--
+         {{ (data['reason-incomplete'] + ":")  }}
+         {{ data['whats-missing'] }}
+         {{ data['what-reason'] }}
+        -->
 
+        {{ govukInsetText({
+          html: "Confirming will inform the relevant parties
+          of the outcome"
+        }) }}
 
-<!-- 
-   {{ (data['reason-incomplete'] + ":")  }} 
-            {{ data['whats-missing'] }}  
-             {{ data['what-reason'] }} 
-            
-    -->      
+        {{ govukButton({
+          text: "Confirm"
+        }) }}
 
-      {{ govukInsetText({
-        html: "Confirming will inform the relevant parties
-        of the outcome"
-      }) }}  
+      </form>
 
-{{ govukButton({
-  text: "Confirm"
-}) }}
-    </form>
-
- 
-
+    </div>
+  </div>
 
 {% endblock %}
-
-
-
-</div>
-</div>

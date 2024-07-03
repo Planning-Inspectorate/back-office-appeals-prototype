@@ -1,23 +1,23 @@
  
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Review supporting documents" %}
+{% set title = "Confirm supporting documents" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% set back = true %}
 
-
 {% block content %}
 
-
 <div class="govuk-grid-row">
+
   <div class="govuk-grid-column-two-thirds">
+
 {% set html %}
 <p class="govuk-notification-banner__heading">
-The document has been redacted
+The document has been redacted</p>
 
-</p>
 {% endset %}
+
 <!--
 {{ govukNotificationBanner({
 html: html,
@@ -25,20 +25,21 @@ type: "success"
 }) }}
 -->
 </div>
+
 <div class="govuk-grid-column-full">
 
-<form action="what-is-outcome-of-review" method="post" class="govuk-!-margin-top-0">
+  <form action="what-is-outcome-of-review" method="post" class="govuk-!-margin-top-0">
  
 
   
         <!-- Page heading -->
         <span class="govuk-caption-l">Appeal 2114328</span>
         <h1 class="govuk-heading-l">{{title}}</h1>
-        <div id="waste-hint" class="govuk-hint">
+        <div class="govuk-body">
           Select 'change' to add a new version of a document. For example, a redacted version.
         </div>
      
-        {% set myValue4 = (data['lpa-statement-redaction'] )  %}
+        
         {{ govukTable({
     
           firstCellIsHeader: true,
@@ -47,13 +48,14 @@ type: "success"
               text: "Name"
             },
             {
-              text: "Date received"
+              text: "Received"
             },
             {
               text: "Redaction status"
             },
             {
-              text: "Actions"
+              text: "Action",
+              format: "numeric"
         }
       ],
       rows: [
@@ -70,7 +72,8 @@ type: "success"
             
           },
           {
-            html: "<a href='manage-supporting-document' class='govuk-link'>Change</a>"
+            html: "<a href='manage-supporting-document' class='govuk-link'>Change</a>",
+            format: "numeric"
           }
         ],
         [
@@ -84,7 +87,8 @@ type: "success"
             text: "Unredacted"
           },
           {
-            html: "<a href='#' class='govuk-link'>Change</a>"
+            html: "<a href='#' class='govuk-link'>Change</a>",
+            format: "numeric"
           }
         ]
         ,
@@ -99,19 +103,20 @@ type: "success"
             text: "Unredacted"
           },
           {
-            html: "<a href='#' class='govuk-link'>Change</a>"
+            html: "<a href='#' class='govuk-link'>Change</a>",
+            format: "numeric"
           }
         ]
       ]
     }) }}
 
     <p class="govuk-body">
-      <a href="upload-supporting-document" class="govuk-link">Add another document</a><br><br>
+      <a href="upload-supporting-document" class="govuk-link">Add document</a><br><br>
 
     </p>
     
     {{ govukButton({
-      text: "Continue"
+      text: "Confirm"
     }) }}
 
   </div>

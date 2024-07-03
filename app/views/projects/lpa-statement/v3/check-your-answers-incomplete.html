@@ -100,15 +100,12 @@
               text: "Reasons"
             },
             value: {
-              html:"<li>Other</li> 
-              <li>No list of suggested conditions</li>
-              <li>Other: Inconsistencies in statement</li>
-              "
+              html: (data['reason-incomplete' ] + data['whats-missing' ]  +  data['what-reason' ]  or 'Reason 1')   
             },
             actions: {
               items: [
                 {
-                  href: "select-allocation",
+                  href: "why-incomplete",
                   text: "Change",
                   visuallyHiddenText: "Reasons"
                 }
@@ -127,7 +124,7 @@
             actions: {
               items: [
                 {
-                  href: "select-specialism",
+                  href: "update-due-date",
                   text: "Change",
                   visuallyHiddenText: "Due date"
                 }

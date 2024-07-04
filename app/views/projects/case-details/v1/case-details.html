@@ -206,7 +206,7 @@
         {% if data['lpa-final-comments'] == 'received'%}
           {% set html %}
             <p class="govuk-notification-banner__heading">
-              LPA final comments are ready for review
+              LPA final comments ready for review
             </p>
           {% endset %}
           {{ govukNotificationBanner({
@@ -220,7 +220,7 @@
           {% if data['lpa-final-comments'] == 'complete'%}
             {% set html %}
               <p class="govuk-notification-banner__heading">
-                Final comments are ready to share.
+                Final comments ready to share.
                 <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">
                   Share<span class="govuk-visually-hidden"> final comments</span>
                 </a>

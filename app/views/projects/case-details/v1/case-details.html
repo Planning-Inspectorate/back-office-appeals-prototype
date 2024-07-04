@@ -30,7 +30,7 @@
   },
   {
     href: '#',
-    text: '░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░'
+    text: '________________________________________________________________________'
   },
   {
     href: '?questionnaire=received',
@@ -47,27 +47,43 @@
   {
     href: '?lpa-statement=received',
     text: 'LPA statement received'
-  } if (data['lpa-statement'] != 'received') and (data['lpa-statement'] != 'complete'),
+  } if (data['lpa-statement'] != 'received') and (data['case-stage'] == 'statements'),
   {
     href: '?lpa-statement=not-received',
     text: 'LPA statement not received'
-  } if (data['lpa-statement'] == 'received') or (data['lpa-statement'] == 'complete'),
-  {
-    href: '?lpa-statement=received',
-    text: 'LPA statement not complete'
-  } if data['lpa-statement'] == 'complete',
+  } if (data['lpa-statement'] == 'received') or (data['lpa-statement'] == 'complete') and (data['appeal-stage'] == 'statements'),
   {
     href: '?lpa-statement=complete',
     text: 'LPA statement complete'
-  } if data['lpa-statement'] == 'received',
+  } if (data['lpa-statement'] == 'received') and (data['case-stage'] == 'statements'),
+  {
+    href: '?ipcomments=',
+    text: 'IP comments not received'
+  } if (data['ipcomments'] == 'received') and (data['case-stage'] == 'statements'),
   {
     href: '?ipcomments=received',
     text: 'IP comments received'
-  } if data['ipcomments'] != 'received',
+  } if (data['ipcomments'] != 'received') and (data['case-stage'] == 'statements'),
   {
-    href: '?ipcomments=',
-    text: 'No IP comments'
-  } if data['ipcomments'] == 'received'
+    href: '?ipcomments=complete',
+    text: 'IP comments complete'
+  } if (data['ipcomments'] == 'received') and (data['case-stage'] == 'statements'),
+  {
+    href: '?appellant-final-comments=received',
+    text: 'Appellant final comments received'
+  } if (data['appellant-final-comments'] != 'received') and (data['case-stage'] == 'final-comments'),
+  {
+    href: '?appellant-final-comments=complete',
+    text: 'Appellant final comments complete'
+  } if (data['appellant-final-comments'] == 'received') and (data['case-stage'] == 'final-comments'),
+  {
+    href: '?lpa-final-comments=received',
+    text: 'LPA final comments received'
+  } if (data['lpa-final-comments'] != 'received') and (data['case-stage'] == 'final-comments'),
+  {
+    href: '?lpa-final-comments=complete',
+    text: 'LPA final comments complete'
+  } if (data['lpa-final-comments'] == 'received') and (data['case-stage'] == 'final-comments')
 
 ] %}
 
@@ -77,45 +93,145 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      <!-- <div class="govuk-inset-text">
+        Case stage is <span class="govuk-!-font-weight-bold">{{ data['case-stage'] }}</span><br>
+        Questionnaire is <span class="govuk-!-font-weight-bold">{{ data['questionnaire'] }}</span><br>
+        LPA statement is <span class="govuk-!-font-weight-bold">{{ data['lpa-statement'] }}</span><br>
+        IP comments are <span class="govuk-!-font-weight-bold">{{ data['ipcomments'] }}</span><br>
+        Appellant final comments statement are <span class="govuk-!-font-weight-bold">{{ data['appellant-final-comments'] }}</span><br>
+        LPA final comments are <span class="govuk-!-font-weight-bold">{{ data['lpa-final-comments'] }}</span>
+      </div> -->
+
       {% if data['case-stage'] == 'questionnaire' %}
         <!-- questionnaire -->
         {% if data['questionnaire'] == 'received'%}
           {% set html %}
             <p class="govuk-notification-banner__heading">
-              The LPA questionnaire is ready for review
+              LPA questionnaire ready for review
             </p>
           {% endset %}
           {{ govukNotificationBanner({
-            html: html
+            html: html,
+            classes: 'govuk-!-margin-bottom-3'
           }) }}
         {% endif %}
+
         <!-- statements -->
         {% if data['lpa-statement'] == 'received'%}
           {% set html %}
             <p class="govuk-notification-banner__heading">
-              The LPA statement is ready for review
+              LPA statement ready for review
             </p>
           {% endset %}
           {{ govukNotificationBanner({
-            html: html
+            html: html,
+            classes: 'govuk-!-margin-bottom-3'
+          }) }}
+        {% endif %}
+
+        <!-- ip comments -->
+        {% if data['ipcomments'] == 'received'%}
+          {% set html %}
+            <p class="govuk-notification-banner__heading">
+              IP comments ready for review
+            </p>
+          {% endset %}
+          {{ govukNotificationBanner({
+            html: html,
+            classes: 'govuk-!-margin-bottom-3'
           }) }}
         {% endif %}
 
       {% elseif data['case-stage'] == 'statements' %}
+
         <!-- statements -->
         {% if data['lpa-statement'] == 'received'%}
           {% set html %}
             <p class="govuk-notification-banner__heading">
-              The LPA statement is ready for review
+              LPA statement ready for review
             </p>
           {% endset %}
           {{ govukNotificationBanner({
-            html: html
+            html: html,
+            classes: 'govuk-!-margin-bottom-3'
           }) }}
         {% endif %}
 
+        <!-- ip comments -->
+        {% if data['ipcomments'] == 'received'%}
+          {% set html %}
+            <p class="govuk-notification-banner__heading">
+              IP comments ready for review
+            </p>
+          {% endset %}
+          {{ govukNotificationBanner({
+            html: html,
+            classes: 'govuk-!-margin-bottom-3'
+          }) }}
+        {% endif %}
+
+        {% if data['lpa-statement'] == 'complete'%}
+          {% if data['ipcomments'] == 'complete'%}
+            {% set html %}
+              <p class="govuk-notification-banner__heading">
+                IP comments and LPA statement ready to share.
+                <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">
+                  Share<span class="govuk-visually-hidden"> IP comments and LPA statement</span>
+                </a>
+              </p>
+            {% endset %}
+            {{ govukNotificationBanner({
+              html: html,
+              classes: 'govuk-!-margin-bottom-3'
+            }) }}
+          {% endif %}
+        {% endif %}
+
       {% elseif data['case-stage'] == 'final-comments' %}
-        <!-- final comments -->
+
+        <!-- appellant final comments -->
+        {% if data['appellant-final-comments'] == 'received'%}
+          {% set html %}
+            <p class="govuk-notification-banner__heading">
+              Appellant final comments ready for review
+            </p>
+          {% endset %}
+          {{ govukNotificationBanner({
+            html: html,
+            classes: 'govuk-!-margin-bottom-3'
+          }) }}
+        {% endif %}
+
+        <!-- LPA final comments -->
+        {% if data['lpa-final-comments'] == 'received'%}
+          {% set html %}
+            <p class="govuk-notification-banner__heading">
+              LPA final comments ready for review
+            </p>
+          {% endset %}
+          {{ govukNotificationBanner({
+            html: html,
+            classes: 'govuk-!-margin-bottom-3'
+          }) }}
+        {% endif %}
+
+        <!-- share final comments -->
+        {% if data['appellant-final-comments'] == 'complete'%}
+          {% if data['lpa-final-comments'] == 'complete'%}
+            {% set html %}
+              <p class="govuk-notification-banner__heading">
+                Final comments ready to share.
+                <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">
+                  Share<span class="govuk-visually-hidden"> final comments</span>
+                </a>
+              </p>
+            {% endset %}
+            {{ govukNotificationBanner({
+              html: html,
+              classes: 'govuk-!-margin-bottom-3'
+            }) }}
+          {% endif %}
+        {% endif %}
 
       {% elseif data['case-stage'] == 'determination' %}
         <!-- determination -->
@@ -126,17 +242,18 @@
       {% else %}
         <!-- new case -->
         {% set html %}
-          <p class="govuk-notification-banner__heading">
-            The appeal is ready for review
+          <p class="govuk-notification-banner__heading govuk-!-margin-bottom-3">
+            Appeal ready for review
           </p>
         {% endset %}
         {{ govukNotificationBanner({
-          html: html
+          html: html,
+          classes: 'govuk-!-margin-bottom-3'
         }) }}
       {% endif %}
 
       <!--	<span class="govuk-caption-l">Appeal 2110166</span> -->
-      <span class="govuk-caption-l">Appeal 2114328</span>
+      <span class="govuk-caption-l govuk-!-margin-top-9">Appeal 2114328</span>
     	<h1 class="govuk-heading-l">
         {{ title }}
       </h1>

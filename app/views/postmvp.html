@@ -1,219 +1,238 @@
 {% extends "layouts/PINS-admin-post-mvp.html" %}
 
-{% set pageName="Home" %}
+{% set title = "Post MVP" %}
+{% set pageName = title %}
 
 {% set back = false %}
 
 {% block content %}
 
-
-
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-one-quarter">
-<ul class="govuk-list govuk-list-bullet">
-      <li><a href="#progress" class="govuk-link--no-visited-state govuk-link--no-underline">Work in progress</a></li>
-      <li><a href="#spikes" class="govuk-link--no-visited-state govuk-link--no-underline">Design spikes</a></li>
-      <li><a href="#dev" class="govuk-link--no-visited-state govuk-link--no-underline">Ready for development</a></li>
-    </ul>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-quarter">
+      <ul class="govuk-list govuk-list-bullet">
+        <li><a href="#progress" class="govuk-link--no-visited-state govuk-link--no-underline">Work in progress</a></li>
+        <li><a href="#spikes" class="govuk-link--no-visited-state govuk-link--no-underline">Design spikes</a></li>
+        <li><a href="#dev" class="govuk-link--no-visited-state govuk-link--no-underline">Ready for development</a></li>
+      </ul>
     </div>
 
-<div class="govuk-grid-column-three-quarters">
+    <div class="govuk-grid-column-three-quarters">
 
-  <h1 class="govuk-heading-xl">
-    Post MVP
-  </h1>
+      <h1 class="govuk-heading-xl">
+        {{ title }}
+      </h1>
 
-    <h2 class="govuk-heading-m" id="progress">Work in progress</h2>
+      <h2 class="govuk-heading-m" id="progress">
+        Work in progress
+      </h2>
 
-    {{ govukTable({
-  firstCellIsHeader: true,
-  head: [
-    {
-      text: "Name"
-    },
-    {
-      text: "Tickets"
-    },
-    {
-      text: "Related docs"
-    }
-  ],
-  rows: [
-    [
-      {
-        html: "<a href='projects/ip-comments/'>Interested party comments</a>"
-      },
-      {
-        html: "<a href='https://pins-ds.atlassian.net.mcas.ms/browse/BDPAR-16?McasTsid=20596&McasCtx=4'>BDPAR-16</a>"
-      },
-      {
-        html: "<a href='https://app.mural.co/t/allpins6990/m/allpins6990/1702651157679/883be1da8fb088275268beebf4f42f413ce18aef'>Design thinking (Mural)</a>"
-      }
-    ],
-    [
-      {
-        html: "<a href='projects/cross-copy/'>Cross copying</a>"
-      },
-      {
-        html: "<a href='https://pins-ds.atlassian.net.mcas.ms/browse/BDPAR-27'>BDPAR-27</a>"
-      },
-      {
-        html: ""
-      }
-    ],
-    [
-      {
-        html: "<a href='projects/redaction/'>Redaction</a>"
-      },
-      {
-        html: ""
-      },
-      {
-        html: ""
-      }
-    ],
-    [
-      {
-        html: "<a href='projects/written-case-overview/'>Written case overview</a>"
-      },
-      {
-        html: "<a href='https://pins-ds.atlassian.net.mcas.ms/browse/BDPAR-11'>BDPAR-11</a>"
-      },
-      {
-        html: "<a href='https://app.mural.co/t/allpins6990/m/boatpostmvp4564/1700582094305/b35348d74846282381305f967ebbf8c646ed29bf?wid=0-1701776600627'>MVP Mural</a>"
-      }
-    ],
-    [
-      {
-        html: "<a href='projects/lpa-statement/'>LPA Statement</a>"
-      },
-      {
-        html: "<a href='https://pins-ds.atlassian.net.mcas.ms/browse/BDPAR-1'>BDPAR-1</a>"
-      },
-      {
-        html: "<a href='https://app.mural.co/t/allpins6990/m/boatpostmvp4564/1700582094305/b35348d74846282381305f967ebbf8c646ed29bf?wid=480-1705493474549'>MVP Mural</a>"
-      }
-    ],
-    [
-      {
-        html: "<a href='projects/lpa-final-comments/'>LPA Final comments</a>"
-      },
-      {
-        html: "<a href='https://pins-ds.atlassian.net.mcas.ms/browse/BDPAR-15'>BDPAR-15</a>"
-      },
-      {
-        html: "<a href='https://app.mural.co/t/allpins6990/m/boatpostmvp4564/1700582094305/b35348d74846282381305f967ebbf8c646ed29bf?wid=22-1704802353949'>MVP Mural</a>"
-      }
-    ],
-    [
-      {
-        html: "<a href='projects/inquiry-case-overview/'>Inquiry case overview</a>"
-      },
-      {
-        html: "<a href='https://pins-ds.atlassian.net.mcas.ms/browse/BDPAR-48'>BDPAR-48</a>"
-      },
-      {
-        html: "<a href='https://app.mural.co/t/allpins6990/m/boatpostmvp4564/1700582094305/b35348d74846282381305f967ebbf8c646ed29bf?wid=111-1705658244828'>MVP Mural</a>"
-      }
-    ],
-    [
-      {
-        html: "<a href='projects/inquiry-case-overview/'>Hearing case overview</a>"
-      },
-      {
-        html: "<a href='https://pins-ds.atlassian.net.mcas.ms/browse/BDPAR-47'>BDPAR-47</a>"
-      },
-      {
-        html: "<a href='https://app.mural.co/t/allpins6990/m/boatpostmvp4564/1700582094305/b35348d74846282381305f967ebbf8c646ed29bf?wid=103-1700582560005'>MVP Mural</a>"
-      }
-    ],
-    [
-      {
-        html: "<a href='projects/obligation/'>S106 obligation</a>"
-      },
-      {
-        html: "<a href='https://pins-ds.atlassian.net.mcas.ms/browse/BDPAR-18'>BDPAR-18</a>"
-      },
-      {
-        html: "<a href='https://app.mural.co/t/allpins6990/m/boatpostmvp4564/1700582094305/b35348d74846282381305f967ebbf8c646ed29bf?wid=0-1707835679282'>MVP Mural</a>"
-      }
-    ],
-    [
-      {
-        html: "<a href='projects/manage-ips/'>Add and manage interested parties</a>"
-      },
-      {
-        html: "<a href='https://pins-ds.atlassian.net.mcas.ms/browse/BDPAR-88'>BDPAR-88</a>"
-      },
-      {
-        html: "<a href='https://app.mural.co/t/allpins6990/m/allpins6990/1709639290344/1e024d30e4d7a3a2d548624555940ff997f61b7b?sender=u8c98484d53e82e2c645b5075'>Design thinking Mural</a>"
-      }
-    ]
-  ]
-}) }}
+      {{ govukTable({
+        firstCellIsHeader: true,
+        head: [
+          {
+            text: "Name"
+          },
+          {
+            text: "Tickets"
+          },
+          {
+            text: "Related docs"
+          }
+        ],
+        rows: [
 
-      
-    </ul>
+          [
+            {
+              html: "<a href='projects/LPA-s78-questionnaire'>LPA s78 questionnaire</a>"
+            },
+            {
+              html: "<a href='https://pins-ds.atlassian.net/browse/BDPAR-53'>BDPAR-53</a>"
+            },
+            {
+              html: "<a href='https://app.mural.co/t/allpins6990/m/allpins6990/1702651157679/883be1da8fb088275268beebf4f42f413ce18aef'>Design thinking (Mural)</a>"
+            }
+          ],
+          [
+            {
+              html: "<a href='projects/case-details/'>Case detail and appeal stages</a>"
+            },
+            {
+              html: ""
+            },
+            {
+              html: "<a href='https://app.mural.co/t/allpins6990/m/boatpostmvp4564/1700582094305/b35348d74846282381305f967ebbf8c646ed29bf?wid=0-1720009160581'>Screens (Mural)</a>"
+            }
+          ],
+          [
+            {
+              html: "<a href='projects/ip-comments/'>Interested party comments</a>"
+            },
+            {
+              html: "<a href='https://pins-ds.atlassian.net.mcas.ms/browse/BDPAR-16?McasTsid=20596&McasCtx=4'>BDPAR-16</a>"
+            },
+            {
+              html: "<a href='https://app.mural.co/t/allpins6990/m/allpins6990/1702651157679/883be1da8fb088275268beebf4f42f413ce18aef'>Mural board</a>"
+            }
+          ],
+          [
+            {
+              html: "<a href='projects/cross-copy/'>Cross copying</a>"
+            },
+            {
+              html: "<a href='https://pins-ds.atlassian.net.mcas.ms/browse/BDPAR-27'>BDPAR-27</a>"
+            },
+            {
+              html: ""
+            }
+          ],
+          [
+            {
+              html: "<a href='projects/redaction/'>Redaction</a>"
+            },
+            {
+              html: ""
+            },
+            {
+              html: ""
+            }
+          ],
+          [
+            {
+              html: "<a href='projects/written-case-overview/'>Written case overview</a>"
+            },
+            {
+              html: "<a href='https://pins-ds.atlassian.net.mcas.ms/browse/BDPAR-11'>BDPAR-11</a>"
+            },
+            {
+              html: "<a href='https://app.mural.co/t/allpins6990/m/boatpostmvp4564/1700582094305/b35348d74846282381305f967ebbf8c646ed29bf?wid=0-1701776600627'>MVP Mural</a>"
+            }
+          ],
+          [
+            {
+              html: "<a href='projects/lpa-statement/'>LPA Statement</a>"
+            },
+            {
+              html: "<a href='https://pins-ds.atlassian.net.mcas.ms/browse/BDPAR-1'>BDPAR-1</a>"
+            },
+            {
+              html: "<a href='https://app.mural.co/t/allpins6990/m/boatpostmvp4564/1700582094305/b35348d74846282381305f967ebbf8c646ed29bf?wid=480-1705493474549'>MVP Mural</a>"
+            }
+          ],
+          [
+            {
+              html: "<a href='projects/lpa-final-comments/'>LPA Final comments</a>"
+            },
+            {
+              html: "<a href='https://pins-ds.atlassian.net.mcas.ms/browse/BDPAR-15'>BDPAR-15</a>"
+            },
+            {
+              html: "<a href='https://app.mural.co/t/allpins6990/m/boatpostmvp4564/1700582094305/b35348d74846282381305f967ebbf8c646ed29bf?wid=22-1704802353949'>MVP Mural</a>"
+            }
+          ],
+          [
+            {
+              html: "<a href='projects/inquiry-case-overview/'>Inquiry case overview</a>"
+            },
+            {
+              html: "<a href='https://pins-ds.atlassian.net.mcas.ms/browse/BDPAR-48'>BDPAR-48</a>"
+            },
+            {
+              html: "<a href='https://app.mural.co/t/allpins6990/m/boatpostmvp4564/1700582094305/b35348d74846282381305f967ebbf8c646ed29bf?wid=111-1705658244828'>MVP Mural</a>"
+            }
+          ],
+          [
+            {
+              html: "<a href='projects/inquiry-case-overview/'>Hearing case overview</a>"
+            },
+            {
+              html: "<a href='https://pins-ds.atlassian.net.mcas.ms/browse/BDPAR-47'>BDPAR-47</a>"
+            },
+            {
+              html: "<a href='https://app.mural.co/t/allpins6990/m/boatpostmvp4564/1700582094305/b35348d74846282381305f967ebbf8c646ed29bf?wid=103-1700582560005'>MVP Mural</a>"
+            }
+          ],
+          [
+            {
+              html: "<a href='projects/obligation/'>S106 obligation</a>"
+            },
+            {
+              html: "<a href='https://pins-ds.atlassian.net.mcas.ms/browse/BDPAR-18'>BDPAR-18</a>"
+            },
+            {
+              html: "<a href='https://app.mural.co/t/allpins6990/m/boatpostmvp4564/1700582094305/b35348d74846282381305f967ebbf8c646ed29bf?wid=0-1707835679282'>MVP Mural</a>"
+            }
+          ],
+          [
+            {
+              html: "<a href='projects/manage-ips/'>Add and manage interested parties</a>"
+            },
+            {
+              html: "<a href='https://pins-ds.atlassian.net.mcas.ms/browse/BDPAR-88'>BDPAR-88</a>"
+            },
+            {
+              html: "<a href='https://app.mural.co/t/allpins6990/m/allpins6990/1709639290344/1e024d30e4d7a3a2d548624555940ff997f61b7b?sender=u8c98484d53e82e2c645b5075'>Design thinking Mural</a>"
+            }
+          ]
+        ]
+      }) }}
 
-    <h2 class="govuk-heading-m" id="spikes">Design spikes</h2>
+      <h2 class="govuk-heading-m" id="spikes">
+        Design spikes
+      </h2>
 
-        {{ govukTable({
-  firstCellIsHeader: true,
-  head: [
-    {
-      text: "Name"
-    },
-    {
-      text: "Tickets"
-    },
-    {
-      text: "Related docs"
-    }
-  ],
-  rows: [
-    [
-      {
-        html: "<a class='govuk-link' href='projects/case-details-experiment/'>Early case details exploration</a>"
-      },
-      {
-      },
-      {
-      }
-    ]
-  ]
-}) }}
+      {{ govukTable({
+        firstCellIsHeader: true,
+        head: [
+          {
+            text: "Name"
+          },
+          {
+            text: "Tickets"
+          },
+          {
+            text: "Related docs"
+          }
+        ],
+        rows: [
+          [
+            {
+              html: "<a class='govuk-link' href='projects/case-details-experiment/'>Early case details exploration</a>"
+            },
+            {
+            },
+            {
+            }
+          ]
+        ]
+      }) }}
 
+  	  <h2 class="govuk-heading-m" id="dev">
+        Ready for development
+      </h2>
 
-	  
-	  <h2 class="govuk-heading-m" id="dev">Ready for development</h2>
+      <p>
+        Features that have been refined and are ready to be developed. These prototypes should not change unless a fix is needed or the requirments change.
+      </p>
 
-    <p>Features that have been refined and are ready to be developed. These prototypes should not change unless a fix is needed or the requirments change.</p>
+      {{ govukTable({
+        firstCellIsHeader: true,
+        head: [
+          {
+            text: "Name"
+          },
+          {
+            text: "Tickets"
+          },
+          {
+            text: "Related docs"
+          }
+        ],
+        rows: [
 
-    {{ govukTable({
-  firstCellIsHeader: true,
-  head: [
-    {
-      text: "Name"
-    },
-    {
-      text: "Tickets"
-    },
-    {
-      text: "Related docs"
-    }
-  ],
-  rows: [
-    
-  ]
-}) }}
-	  
+        ]
+      }) }}
+
+    </div>
   </div>
-  
-  
-</div>
-
-
-
-  
 
 {% endblock %}

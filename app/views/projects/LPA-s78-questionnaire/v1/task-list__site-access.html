@@ -1,0 +1,84 @@
+{{ govukSummaryList({
+  classes: 'govuk-!-margin-bottom-9',
+  card: {
+    title: {
+      text: "Site access"
+    }
+  },
+  rows: [
+
+    {
+      key: {
+        html: 'Inspector access'
+      },
+      value: {
+        html: 'Yes<br>Appeal site not visible from the road'
+      },
+      actions: {
+        items: [
+          {
+            href: 'site-access/site-entry?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: 'Affected neighbouring site'
+      },
+      value: {
+        html: 'Yes<br>Loss of light'
+      },
+      actions: {
+        items: [
+          {
+            href: 'site-access/neighbours-land?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: 'Neighbours'
+      },
+      value: {
+        html: '<ul>
+                 <li>
+                   172 York Road, Bristol BS3 4AL
+                 </li>
+                 <li>
+                  170 York Road, Bristol BS3 4AL
+                </li>
+              </ul>'
+
+      },
+      actions: {
+        items: [
+          {
+            href: 'site-access/neighbours-address?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: 'Potential safety risks'
+      },
+      value: {
+        html: 'Yes<br>
+               Dogs on site'
+      },
+      actions: {
+        items: [
+          {
+            href: 'site-access/health-and-safety?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    }
+  ]
+}) }}

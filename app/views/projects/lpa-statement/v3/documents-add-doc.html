@@ -17,7 +17,7 @@
 The document has been redacted</p>
 
 {% endset %}
-
+{% set myValue4 = (data['lpa-statement-redaction'] )  %}
 <!--
 {{ govukNotificationBanner({
 html: html,
@@ -39,23 +39,23 @@ type: "success"
           Select 'change' to add a new version of a document. For example, a redacted version.
         </div>
      
-        
-        {{ govukTable({
     
-          firstCellIsHeader: true,
-          head: [
-            {
-              text: "Name"
-            },
-            {
-              text: "Received"
-            },
-            {
-              text: "Redaction status"
-            },
-            {
-              text: "Action",
-              format: "numeric"
+    {{ govukTable({
+
+      firstCellIsHeader: true,
+      head: [
+        {
+          text: "Name"
+        },
+        {
+          text: "Received"
+        },
+        {
+          text: "Redaction status"
+        },
+        {
+          text: "Action",
+          format: "numeric"
         }
       ],
       rows: [
@@ -67,18 +67,16 @@ type: "success"
             html: 2 | daysAgo
           },
           {
-            
-              text: data['lpa-document-redaction'] 
-            
+            text: "Unredacted"
           },
           {
-            html: "<a href='manage-supporting-document' class='govuk-link'>View and edit</a>",
+            html: "<a href='manage-supporting-document' class='govuk-link'>Change</a>",
             format: "numeric"
           }
         ],
         [
           {
-            html: "<a href='#' class='govuk-link govuk-link--no-visited-state'>"+(data ['upload-extra-document'] or 'appeal-2114328-added-document-2.doc')+"</a>"
+            html: "<a href='#' class='govuk-link govuk-link--no-visited-state'>"+(data ['upload-extra-document'] or 'appeal-2114328-added-document-1.doc')+"</a>"
           },
           {
             html: 2 | daysAgo
@@ -87,7 +85,7 @@ type: "success"
             text: "Unredacted"
           },
           {
-            html: "<a href='#' class='govuk-link'>View and edit</a>",
+            html: "<a href='#' class='govuk-link'>Change</a>",
             format: "numeric"
           }
         ]
@@ -103,7 +101,22 @@ type: "success"
             text: "Unredacted"
           },
           {
-            html: "<a href='#' class='govuk-link'>View and edit</a>",
+            html: "<a href='#' class='govuk-link'>Change</a>",
+            format: "numeric"
+          }
+        ],
+        [
+          {
+            html: "<a href='#' class='govuk-link govuk-link--no-visited-state'>"+(data ['upload-extra-document'] or 'example.doc')+"</a>"
+          },
+          {
+            html: 0 | daysAgo
+          },
+          {
+            html: (data['add-doc-redaction'] or 'Unredacted')
+          },
+          {
+            html: "<a href='upload-add-doc' class='govuk-link'>Change</a>",
             format: "numeric"
           }
         ]

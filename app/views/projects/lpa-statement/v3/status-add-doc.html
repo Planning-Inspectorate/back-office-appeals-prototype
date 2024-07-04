@@ -10,7 +10,7 @@
 	<h1 class="govuk-heading-l">{{title}}</h1>
 
 
-    <form action="redact-supporting-documents2" method="post" novalidate>
+    <form action="date-add-doc" method="post" novalidate>
 
 
 	{% from "govuk/components/date-input/macro.njk" import govukDateInput %}
@@ -19,7 +19,7 @@
 
 
 		{{ govukRadios({
-			name: "lpa-document-redaction",
+			name: "add-doc-redaction",
 			fieldset: {
 			  legend: {
 				text: "",

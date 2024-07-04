@@ -21,7 +21,7 @@
         rows: [
         {
           key: {
-            text: "Original LPA statement"
+            text: "Unredacted LPA statement"
           },
           value: {
             html: data['original-statement'] or "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus. 
@@ -100,7 +100,7 @@
               text: "Reasons"
             },
             value: {
-              html: (data['reason-incomplete' ] + data['whats-missing' ]  +  data['what-reason' ]  or 'Reason 1')   
+              text:  (data['reason-incomplete' ] +   data['whats-missing' ]  +  data['what-reason' ]  or "Reason 1")   
             },
             actions: {
               items: [

@@ -3,14 +3,14 @@
     Appellant case
   </td>
   <td class="govuk-table__cell">
-    Complete
+    Shared
   </td>
   <td class="govuk-table__cell">
     {{ 67 | daysAgo }}
   </td>
   <td class="govuk-table__cell govuk-!-text-align-right">
     <a href="#">
-      Review
+      View
     </a>
   </td>
 </tr>
@@ -20,14 +20,14 @@
     LPA questionnaire
   </td>
   <td class="govuk-table__cell">
-    Complete
+    Shared
   </td>
   <td class="govuk-table__cell">
     {{ 60 | daysAgo }}
   </td>
   <td class="govuk-table__cell govuk-!-text-align-right">
     <a href="task-list">
-      Review
+      View
     </a>
   </td>
 </tr>
@@ -54,13 +54,14 @@
     LPA statement
   </td>
   <td class="govuk-table__cell">
-    None received
+    Shared
   </td>
   <td class="govuk-table__cell">
+    {{ 28 | daysAgo }}
   </td>
   <td class="govuk-table__cell govuk-!-text-align-right">
     <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=">
-      Review<span class="govuk-visually-hidden"> interested party comments</span>
+      View<span class="govuk-visually-hidden"> interested party comments</span>
     </a>
   </td>
 </tr>
@@ -70,14 +71,28 @@
     Appellant final comments
   </td>
   <td class="govuk-table__cell">
-    None received
+    {% if data['appellant-final-comments'] == 'received' %}
+      Received
+    {% elseif data['appellant-final-comments'] == 'complete' %}
+      Complete
+    {% else %}
+      None received
+    {% endif %}
   </td>
   <td class="govuk-table__cell">
   </td>
   <td class="govuk-table__cell govuk-!-text-align-right">
-    <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=">
-      Review<span class="govuk-visually-hidden"> interested party comments</span>
-    </a>
+    {% if data['appellant-final-comments'] == 'received' %}
+      <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=">
+        Review<span class="govuk-visually-hidden"> appellant final comments</span>
+      </a>
+    {% elseif data['appellant-final-comments'] == 'complete' %}
+      <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=">
+        View<span class="govuk-visually-hidden"> appellant final comments</span>
+      </a>
+    {% else %}
+
+    {% endif %}
   </td>
 </tr>
 
@@ -86,14 +101,28 @@
     LPA final comments
   </td>
   <td class="govuk-table__cell">
-    None received
+    {% if data['lpa-final-comments'] == 'received' %}
+      Received
+    {% elseif data['lpa-final-comments'] == 'complete' %}
+      Complete
+    {% else %}
+      None received
+    {% endif %}
   </td>
   <td class="govuk-table__cell">
   </td>
   <td class="govuk-table__cell govuk-!-text-align-right">
-    <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=">
-      Review<span class="govuk-visually-hidden"> interested party comments</span>
-    </a>
+    {% if data['lpa-final-comments'] == 'received' %}
+      <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=">
+        Review<span class="govuk-visually-hidden"> LPA final comments</span>
+      </a>
+    {% elseif data['lpa-final-comments'] == 'complete' %}
+      <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=">
+        View<span class="govuk-visually-hidden"> LPA final comments</span>
+      </a>
+    {% else %}
+
+    {% endif %}
   </td>
 </tr>
 

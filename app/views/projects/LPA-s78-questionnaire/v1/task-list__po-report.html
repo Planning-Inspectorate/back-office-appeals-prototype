@@ -1,0 +1,146 @@
+{% set levyDate = (data['community-infrastructure-date-day'] or '1') +' '+ (data['community-infrastructure-date-month'] | formatMonth or 'July') +' '+ (data['community-infrastructure-date-year'] or '2022') %}
+{{ govukSummaryList({
+  classes: 'govuk-!-margin-bottom-9',
+  card: {
+    title: {
+      text: "Planning officer’s report and supplementary documents"
+    }
+  },
+  rows: [
+    {
+      key: {
+        html: 'Planning officer’s report'
+      },
+      value: {
+        html: '<a href="" class="govuk-body">155 York Rd PO report 2024.pdf</a>'
+      },
+      actions: {
+        items: [
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Manage<span class="govuk-visually-hidden"> planning officer’s report</span>'
+          },
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Add<span class="govuk-visually-hidden"> planning officer’s report</span>'
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: 'Policies from statutory development plan'
+      },
+      value: {
+        html: '<a href="" class="govuk-body">155 York Rd policy document 2024.pdf</a>'
+      },
+      actions: {
+        items: [
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Manage<span class="govuk-visually-hidden"> policies from statutory development plan</span>'
+          },
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Add<span class="govuk-visually-hidden"> policies from statutory development plan</span>'
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: 'Emerging plan'
+      },
+      value: {
+        html: '<a href="" class="govuk-body">155 York Rd EP 2024.pdf</a>'
+      },
+      actions: {
+        items: [
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Manage<span class="govuk-visually-hidden"> emerging plan</span>'
+          },
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Add<span class="govuk-visually-hidden"> emerging plan</span>'
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: 'Supplementary planning documents'
+      },
+      value: {
+        html: '<ul><li><a href="" class="govuk-link">Planning outline 155 York Rd 2024.pdf</a></li>
+               <li><a href="" class="govuk-link">Materials plan 155 York Rd 2024.pdf</a></li>
+               <li><a href="" class="govuk-link">Objections 155 York Rd 2024.pdf</a></li></ul>'
+      },
+      actions: {
+        items: [
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Manage<span class="govuk-visually-hidden"> supplementary planning documents</span>'
+          },
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Add<span class="govuk-visually-hidden"> supplementary planning documents</span>'
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: 'Community infrastructure levy'
+      },
+      value: {
+        html: '<a href="" class="govuk-body">155 York Rd CIL 2024.pdf</a>'
+      },
+      actions: {
+        items: [
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Manage<span class="govuk-visually-hidden"> community infrastructure levy</span>'
+          },
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Add<span class="govuk-visually-hidden"> community infrastructure levy</span>'
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: 'Community infrastructure levy formally adopted'
+      },
+      value: {
+        html: 'Yes'
+      },
+      actions: {
+        items: [
+          {
+            href: 'po-report/report-upload?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: 'Date community infrastructure levy expected to be adopted'
+      },
+      value: {
+        html: 100 | daysInFuture
+      },
+      actions: {
+        items: [
+          {
+            href: 'po-report/report-upload?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    }
+
+  ]
+}) }}

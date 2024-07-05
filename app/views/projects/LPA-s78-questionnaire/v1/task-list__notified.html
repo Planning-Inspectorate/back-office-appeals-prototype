@@ -1,0 +1,89 @@
+{{ govukSummaryList({
+  classes: 'govuk-!-margin-bottom-9',
+  card: {
+    title: {
+      text: "Notifying people about the application"
+    }
+  },
+  rows: [
+    {
+      key: {
+        html: 'Who was notified'
+      },
+      value: {
+        html: '<a href="#" class="govuk-link">York Rd - notified neighbours.odt</a><br>
+               <a href="#" class="govuk-link">Your Rd - internal consultees.odt</a>'
+      },
+      actions: {
+        items: [
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Manage<span class="govuk-visually-hidden"> who was notified</span>'
+          },
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Add<span class="govuk-visually-hidden"> who was notified</span>'
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: 'Site notice'
+      },
+      value: {
+        html: '<a href="#" class="govuk-link">155 York Rd appeal site notice 2024.pdf</a>'
+      },
+      actions: {
+        items: [
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Manage<span class="govuk-visually-hidden"> site notice</span>'
+          },
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Add<span class="govuk-visually-hidden"> site notice</span>'
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: 'Letter or email'
+      },
+      value: {
+        html: '<a href="#" class="govuk-link">155 York Rd appeal letter 2024.pdf</a><br>
+               <a href="#" class="govuk-link">155 York Rd appeal email 2024.pdf</a><br>'
+      },
+      actions: {
+        items: [
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Manage<span class="govuk-visually-hidden"> site notice</span>'
+          },
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Add<span class="govuk-visually-hidden"> site notice</span>'
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: 'Advertisement'
+      },
+      value: {
+        html: 'Not applicable'
+      },
+      actions: {
+        items: [
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Add'
+          }
+        ]
+      }
+    }
+
+  ]
+}) }}

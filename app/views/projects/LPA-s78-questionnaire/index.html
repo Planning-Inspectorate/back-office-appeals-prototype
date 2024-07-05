@@ -1,0 +1,48 @@
+{% extends "layouts/PINS-Simple.html" %}
+
+{% set title = "LPA s78 questionnaire" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back to prototypes",
+    href: 'manage-documents'
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">
+      Appeal a planning decision
+    </span>
+    <h1 class="govuk-heading-l">
+      {{ title }}
+    </h1>
+
+    <section class="govuk-!-margin-bottom-6">
+
+    	<h2 class="govuk-heading-m">Version 1
+    		{{govukTag({
+          text: "In progress",
+          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+        })}}
+    	</h2>
+
+    	<p class="govuk-body">
+        User can review the LPAs questionnaire answers and edit them.
+      </p>
+
+    	{{ govukButton({
+    	  text: "View prototype",
+    	  href: "/projects/LPA-s78-questionnaire/v1/task-list",
+    	  isStartButton: true
+    	}) }}
+
+    </section>
+
+  </div>
+
+{% endblock %}

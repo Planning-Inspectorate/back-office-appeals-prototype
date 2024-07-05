@@ -1,119 +1,117 @@
 {% extends "layouts/PINS-admin.html" %}
 
-{% set pageName="Home" %}
+{% set title = title %}
+{% set pageName = "Current work" %}
 
 {% set back = false %}
 
 {% block content %}
 
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-quarter">
 
-
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-one-quarter">
- 
-    <ul class="govuk-list govuk-list-bullet">
-      <li><a href="#progress" class="govuk-link--no-visited-state govuk-link--no-underline">Work in progress</a></li>
-      <li><a href="#review" class="govuk-link--no-visited-state govuk-link--no-underline">Ready for review</a></li>
-      <li><a href="#dev" class="govuk-link--no-visited-state govuk-link--no-underline">Ready for development</a></li>
-    </ul>
+      <ul class="govuk-list govuk-list-bullet">
+        <li><a href="#progress" class="govuk-link--no-visited-state govuk-link--no-underline">Work in progress</a></li>
+        <li><a href="#review" class="govuk-link--no-visited-state govuk-link--no-underline">Ready for review</a></li>
+        <li><a href="#dev" class="govuk-link--no-visited-state govuk-link--no-underline">Ready for development</a></li>
+      </ul>
 
     </div>
+    <div class="govuk-grid-column-three-quarters">
 
-<div class="govuk-grid-column-three-quarters">
+      <h1 class="govuk-heading-xl">
+        {{ title }}
+      </h1>
 
-  <h1 class="govuk-heading-xl">
-    Current work
-  </h1>
+      <h2 class="govuk-heading-m" id="progress">
+        Work in progress
+      </h2>
 
-    <h2 class="govuk-heading-m" id="progress">Work in progress</h2>
-
-    <ul class="govuk-list">
-      <li> 
-        <a class="govuk-link" href="projects/case-management/">Case management (admin folder)</a>
-      </li>
-    </ul>
-    
-    <h2 class="govuk-heading-m" id="review">In review</h2>
-    <ul class="govuk-list">
-      <li>
-        Currently none on this prototype
-      </li>
-    </ul>
-    
-    <h2 class="govuk-heading-m" id="dev">Ready for development</h2>
-    <ul class="govuk-list">
-      <li> 
-        <a class="govuk-link" href="projects/neighbouring-sites/">Neighbouring sites</a>
-      </li>
-      <li> 
-        <a class="govuk-link" href="projects/manage-site-visit/">Manage the site visit</a>
+      <ul class="govuk-list">
+        <li>
+          <a class="govuk-link" href="projects/case-management/">Case management (admin folder)</a>
         </li>
-      <li>
-        <a class="govuk-link" href="projects/members-transfers/">Assign members | Transfer case</a>
-      </li>
-      <li> 
-        <a class="govuk-link" href="projects/missing-evidence/">Request missing evidence</a>
-      </li>
-      <li>
-        <a class="govuk-link" href="projects/file-upload/">File upload</a>
-      </li>
-      <li>
-        <a class="govuk-link" href="projects/navigation/">Start Journey (Navigation)</a>
-      </li>
-      <li>
-        <a class="govuk-link" href="projects/linked-appeals/">Linked and related appeals</a>
-      </li>
-      <li> 
-        <a class="govuk-link" href="projects/closing-cases/">Changing appeal types and closing cases</a>
-      </li>
-      <li> 
-        <a class="govuk-link" href="projects/contact-details/">Contact details</a>
+      </ul>
+
+      <h2 class="govuk-heading-m" id="review">
+        In review
+      </h2>
+
+      <ul class="govuk-list">
+        <li>
+          Currently none on this prototype
         </li>
-      <li>
-        <a class="govuk-link" href="projects/issue-decision/">Issuing decisions and costs</a>
-      </li>
-      <li>
-        <a class="govuk-link" href="projects/personal-list/">Personal list</a>
-      </li>
-      <li> 
-        <a class="govuk-link" href="projects/redaction-archived/"><span style="text-decoration: line-through">Redaction</span></a>
-      </li>
-      <li>
-        <a class="govuk-link" href="projects/audit/">Audit - History of changes </a>
-      </li>
-	    <li>
-        <a class="govuk-link" href="projects/LPA-has-questionnaire/">LPA HAS questionnaire</a>
-      </li>
-      <li>
-        <a class="govuk-link" href="projects/quick-change-pages/">Quick change links</a>
-      </li>
-	    <li>
-        <a class="govuk-link" href="projects/appellant-case/">Appellant case review</a>
-      </li>
-<li>
-        <a class="govuk-link" href="projects/error-pages/">Error pages</a>
-      </li>
-      
-    </ul>
+      </ul>
 
-	  
-	  <h2 class="govuk-heading-m">End to end demo</h2>
+      <h2 class="govuk-heading-m" id="dev">
+        Ready for development
+      </h2>
+      <ul class="govuk-list">
+        <li>
+          <a class="govuk-link" href="projects/neighbouring-sites/">Neighbouring sites</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="projects/manage-site-visit/">Manage the site visit</a>
+          </li>
+        <li>
+          <a class="govuk-link" href="projects/members-transfers/">Assign members | Transfer case</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="projects/missing-evidence/">Request missing evidence</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="projects/file-upload/">File upload</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="projects/navigation/">Start Journey (Navigation)</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="projects/linked-appeals/">Linked and related appeals</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="projects/closing-cases/">Changing appeal types and closing cases</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="projects/contact-details/">Contact details</a>
+          </li>
+        <li>
+          <a class="govuk-link" href="projects/issue-decision/">Issuing decisions and costs</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="projects/personal-list/">Personal list</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="projects/redaction-archived/"><span style="text-decoration: line-through">Redaction</span></a>
+        </li>
+        <li>
+          <a class="govuk-link" href="projects/audit/">Audit - History of changes </a>
+        </li>
+        <li>
+          <a class="govuk-link" href="projects/LPA-has-questionnaire/">LPA HAS questionnaire</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="projects/quick-change-pages/">Quick change links</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="projects/appellant-case/">Appellant case review</a>
+        </li>
+    <li>
+          <a class="govuk-link" href="projects/error-pages/">Error pages</a>
+        </li>
 
-    <ul class="govuk-list">
-      <li>
-        <a class="govuk-link" href="projects/journey">Manage a Householder appeal from start to issuing a decision</a>
-      </li>
-    </ul>
+      </ul>
 
-	  
-	  
+      <h2 class="govuk-heading-m">
+        End to end demo
+      </h2>
+
+      <ul class="govuk-list">
+        <li>
+          <a class="govuk-link" href="projects/journey">Manage a Householder appeal from start to issuing a decision</a>
+        </li>
+      </ul>
+
+    </div>
   </div>
-  
-  
-</div>
-
-
-
-  
 
 {% endblock %}

@@ -23,16 +23,9 @@
         </div>
 
 
-      <div class="moj-multi-file-upload moj-multi-file-upload--enhanced">
-        <div class="moj-multi-file__uploaded-files moj-hidden">
-          <h2 class="govuk-heading-m">File added</h2>
-          <div class="govuk-summary-list moj-multi-file-upload__list">
-          </div>
+        <div class="govuk-form-group">
+          <input class="govuk-file-upload" id="file-upload-1" name="fileUpload1" type="file">
         </div>
-
-
-          <input class="govuk-file-upload moj-multi-file-upload__input" id="application" name="application" type="file" aria-describedby="application-hint">
-          <div aria-live="polite" role="status" class="govuk-visually-hidden"></div>
           <br><br>
 
           {% from "govuk/components/button/macro.njk" import govukButton %}
@@ -40,9 +33,6 @@
           {{ govukButton({
             text: "Continue"
           }) }}
-
-
-
 
 
           </div>

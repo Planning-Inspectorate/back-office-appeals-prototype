@@ -24,22 +24,6 @@
     },
     {
       key: {
-        html: 'Did the applicant submit an environmental statement?'
-      },
-      value: {
-        html: 'Yes'
-      },
-      actions: {
-        items: [
-          {
-            href: 'environment/schedule-type?cya=true',
-            html: 'Change'
-          }
-        ]
-      }
-    },
-    {
-      key: {
         html: 'Environmental statement and supporting information'
       },
       value: {
@@ -57,6 +41,26 @@
           }
         ]
       }
-    }
+    } if data['answers'] != 'empty',
+    {
+      key: {
+        html: 'Screening direction'
+      },
+      value: {
+        html: '<a href="#" class="govuk-link">Environmental-screening-direction-appeal-2110166.pdf</a>'
+      },
+      actions: {
+        items: [
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Manage<span class="govuk-visually-hidden"> environmental statement and supporting information</span>'
+          },
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Add<span class="govuk-visually-hidden"> environmental statement and supporting information</span>'
+          }
+        ]
+      }
+    } if data['answers'] == 'empty'
   ]
 }) }}

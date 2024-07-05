@@ -11,8 +11,7 @@
         html: 'Who was notified'
       },
       value: {
-        html: '<a href="#" class="govuk-link">York Rd - notified neighbours.odt</a><br>
-               <a href="#" class="govuk-link">Your Rd - internal consultees.odt</a>'
+        html: '<a href="#" class="govuk-link">York Rd - notified neighbours.odt</a>'
       },
       actions: {
         items: [
@@ -67,7 +66,23 @@
           }
         ]
       }
-    },
+    } if data['answers'] != 'empty',
+    {
+      key: {
+        html: 'Letter or email notification'
+      },
+      value: {
+        html: 'Not applicable'
+      },
+      actions: {
+        items: [
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Add<span class="govuk-visually-hidden"> site notice</span>'
+          }
+        ]
+      }
+    } if data['answers'] == 'empty',
     {
       key: {
         html: 'Press advert notification'

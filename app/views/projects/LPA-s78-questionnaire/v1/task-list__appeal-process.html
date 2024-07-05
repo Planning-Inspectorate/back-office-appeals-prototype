@@ -45,7 +45,24 @@
           }
         ]
       }
-    },
+    } if data['answers'] != 'empty',
+    {
+      key: {
+        html: 'Other appeals'
+      },
+      value: {
+        html: 'No'
+
+      },
+      actions: {
+        items: [
+          {
+            href: 'appeal-process/other-appeals?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    } if data['answers'] == 'empty',
     {
       key: {
         html: 'Request new conditions'
@@ -61,7 +78,23 @@
           }
         ]
       }
-    }
+    } if data['answers'] != 'empty',
+    {
+      key: {
+        html: 'Extra conditions'
+      },
+      value: {
+        html: 'Not applicable'
+      },
+      actions: {
+        items: [
+          {
+            href: 'appeal-process/extra-conditions?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    } if data['answers'] == 'empty'
 
   ]
 }) }}

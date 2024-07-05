@@ -12,9 +12,8 @@
         html: 'Statutory consultees'
       },
       value: {
-        html: 'Yes<br>
-               (text about consulted bodies)'
-      },
+        html: 'Text listing the consulted statotory bodies, parish councils and such.'
+      } if data['answers'] != 'empty' else { html: 'Not applicable' },
       actions: {
         items: [
           {
@@ -44,7 +43,23 @@
           }
         ]
       }
-    },
+    } if data['answers'] != 'empty',
+    {
+      key: {
+        html: 'Consultation and standing advice'
+      },
+      value: {
+        html: 'Not applicable'
+      },
+      actions: {
+        items: [
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Add<span class="govuk-visually-hidden"> consultation and standing advice</span>'
+          }
+        ]
+      }
+    } if data['answers'] == 'empty',
     {
       key: {
         html: 'Representations from other parties'
@@ -68,6 +83,22 @@
           }
         ]
       }
-    }
+    } if data['answers'] != 'empty',
+    {
+      key: {
+        html: 'Representations from other parties'
+      },
+      value: {
+        html: 'Not applicable'
+      },
+      actions: {
+        items: [
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Add<span class="govuk-visually-hidden"> representations from other parties</span>'
+          }
+        ]
+      }
+    } if data['answers'] == 'empty'
   ]
 }) }}

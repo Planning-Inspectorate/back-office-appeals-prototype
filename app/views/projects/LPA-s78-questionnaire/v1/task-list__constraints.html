@@ -24,44 +24,17 @@
     },
     {
       key: {
-        html: 'Changes a listed building'
+        html: 'Changed listed buildings'
       },
       value: {
-        html: 'No'
-      },
-      actions: {
-        items: [
-          {
-            href: 'constraints/changes-listed-building-check?cya=true',
-            html: 'Change'
-          }
-        ]
-      }
-    },
-    {
-      key: {
-        html: 'Affects a listed building'
-      },
-      value: {
-        html: 'Yes'
-      },
-      actions: {
-        items: [
-          {
-            href: 'constraints/affected-listed-building-check?cya=true',
-            html: 'Change'
-          }
-        ]
-      }
-    },
-    {
-      key: {
-        html: 'Listed buildings'
-      },
-      value: {
-        html: '<a href="#">1282050</a><br>
-               Grade II listed building<br>
-               155, York Road, Bedminster, Bristol, BS3 4AL'
+        html: '
+          <ul>
+            <li>
+              <a href="#">1282049</a><br>
+              Grade II listed building<br>
+              150, York Road, Bedminster, Bristol, BS3 4AL
+            </li>
+          </ul>'
       },
       actions: {
         items: [
@@ -71,7 +44,67 @@
           }
         ]
       }
-    },
+    } if data['answers'] != 'empty',
+    {
+      key: {
+        html: 'Changed listed buildings'
+      },
+      value: {
+        html: 'No'
+      },
+      actions: {
+        items: [
+          {
+            href: 'constraints/affected-listed-building-details?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    } if data['answers'] == 'empty',
+    {
+      key: {
+        html: 'Affected listed buildings'
+      },
+      value: {
+        html: '
+          <ul>
+            <li>
+              <a href="#">1282050</a><br>
+              Grade II listed building<br>
+              151, York Road, Bedminster, Bristol, BS3 4AL
+            </li>
+            <li>
+              <a href="#">1282051</a><br>
+              Grade II listed building<br>
+              152, York Road, Bedminster, Bristol, BS3 4AL
+            </li>
+          </ul>'
+      },
+      actions: {
+        items: [
+          {
+            href: 'constraints/affected-listed-building-details?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    } if data['answers'] != 'empty',
+    {
+      key: {
+        html: 'Affected listed buildings'
+      },
+      value: {
+        html: 'No'
+      },
+      actions: {
+        items: [
+          {
+            href: 'constraints/affected-listed-building-details?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    } if data['answers'] == 'empty',
     {
       key: {
         html: 'Affects a scheduled monument'
@@ -83,22 +116,6 @@
         items: [
           {
             href: 'constraints/affected-scheduled-monument-check?cya=true',
-            html: 'Change'
-          }
-        ]
-      }
-    },
-    {
-      key: {
-        html: 'Conservation area'
-      },
-      value: {
-        html: 'Yes'
-      },
-      actions: {
-        items: [
-          {
-            href: 'constraints/conservation-check?cya=true',
             html: 'Change'
           }
         ]
@@ -124,7 +141,23 @@
           }
         ]
       }
-    },
+    } if data['answers'] != 'empty',
+    {
+      key: {
+        html: 'Conservation area map and guidance'
+      },
+      value: {
+        html: 'Not applicable'
+      },
+      actions: {
+        items: [
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Add<span class="govuk-visually-hidden"> to conservation area map and guidance</span>'
+          }
+        ]
+      }
+    } if data['answers'] == 'empty',
     {
       key: {
         html: 'Protected species'

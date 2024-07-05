@@ -2,14 +2,23 @@
 
 {% set title = 'LPA questionnaire' %}
 
-{# overrides back link #}
-{# ░░░░░░░░░░░░░░░░░░░ #}
 {% block backLink %}
   {{ govukBackLink({
     html: 'Back to appeals',
     href: '#'
   }) }}
 {% endblock %}
+
+{% set prototypeLinks = [
+  {
+    href: '?answers=empty',
+    text: 'Empty LPAQ'
+  } if data['answers'] != 'empty',
+  {
+    href: '?answers=full',
+    text: 'Full LPAQ'
+  } if data['answers'] == 'empty'
+] %}
 
 {% block content %}
   <div class="govuk-grid-row">

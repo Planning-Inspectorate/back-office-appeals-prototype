@@ -174,7 +174,7 @@
           {% if data['ipcomments'] == 'complete'%}
             {% set html %}
               <p class="govuk-notification-banner__heading">
-                IP comments and LPA statement ready to share.
+                Comments and statements ready to share.
                 <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">
                   Share<span class="govuk-visually-hidden"> IP comments and LPA statement</span>
                 </a>
@@ -620,7 +620,7 @@
                 <tr class="govuk-table__row">
                   <th scope="col" class="govuk-table__header">Documentation</th>
                   <th scope="col" class="govuk-table__header">Status</th>
-                  <th scope="col" class="govuk-table__header">Received date</th>
+                  <!-- <th scope="col" class="govuk-table__header">Received date</th> -->
                   <th scope="col" class="govuk-table__header">Action</th>
                 </tr>
               </thead>
@@ -649,6 +649,20 @@
 
               </tbody>
             </table>
+          </div>
+        </div>
+
+        <!-- case team -->
+        <div class="govuk-accordion__section">
+          <div class="govuk-accordion__section-header">
+            <h2 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-4">
+                Team
+              </span>
+            </h2>
+          </div>
+          <div id="accordion-default-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-4">
+            {% include "/includes/audit/case-team-table.html" %}
           </div>
         </div>
 
@@ -703,39 +717,21 @@
           </div>
         </div>
 
-        <!-- case team -->
+        <!-- case management -->
         <div class="govuk-accordion__section">
           <div class="govuk-accordion__section-header">
             <h2 class="govuk-accordion__section-heading">
               <span class="govuk-accordion__section-button" id="accordion-default-heading-4">
-                Team
+                Case management
               </span>
             </h2>
           </div>
           <div id="accordion-default-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-4">
-            {% include "/includes/audit/case-team-table.html" %}
+            {% include "/includes/appeal-content/case-management/case-management.html" %}
           </div>
         </div>
+
       </div>
-
-      <!-- audit history -->
-      <section>
-      	<h3 class="govuk-heading-m govuk-!-margin-top-9">
-          Case management
-        </h3>
-      	<p class="govuk-body">
-          <a href="history">View changes</a> made to this case
-        </p>
-      </section>
-
-      <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-
-      <h3 class="govuk-heading-m govuk-!-margin-top-3">
-        Appeal withdrawal
-      </h3>
-    	<p class="govuk-body">
-        You can <a href="upload-withdrawal">close this appeal</a> if appellant has withdrawn case
-      </p>
 
     </div>
   </div>

@@ -2,6 +2,18 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 {% set title = "Check your answers" %}
 {% set pageName = title + ' - Planning Inspectorate'%} 
+
+{% set prototypeLinks = [
+  {
+    href: '?redacted-statement-done=yes',
+    text: 'Redacted statement'
+  } if data['redacted-statement-done'] != 'yes',
+  {
+    href: '?redacted-statement-done=',
+    text: 'No redacted statement'
+  } if data['redacted-statement-done'] == 'yes'
+] %}
+
 {% block content %}
 
  
@@ -44,7 +56,8 @@
             ]
           }
         },
-            {
+            
+           {
               key: {
                 text: "Redacted LPA statement"
               },
@@ -52,7 +65,7 @@
                 html: data['redacted-statement'] or " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus. 
                 Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus. 
                 Mauris nulla erat, posuere ut nisi vitae, pulvinar gravida arcu.<br><a href='#'>Read more</a> "
-              },
+              } ,
               actions: {
                 items: [
                   {
@@ -62,7 +75,26 @@
                   }
                 ]
               }
-            },
+            } if data ['redacted-statement-done'],
+
+            {
+              key: {
+                text: "Redacted LPA statement"
+              },
+              value: {
+                html: "Not applicable"
+              } ,
+              actions: {
+                items: [
+                  {
+                    href: "redact-lpa-statement",
+                    text: "Change",
+                    visuallyHiddenText: "Redacted statement"
+                  }
+                ]
+              }
+            } if data ['redacted-statement-done'] !='yes',
+
             {
               key: {
                 text: "Supporting documents"

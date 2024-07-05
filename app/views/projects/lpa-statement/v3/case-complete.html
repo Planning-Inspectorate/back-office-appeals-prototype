@@ -2,6 +2,19 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 {% set title = "Case details" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
+
+
+{% set prototypeLinks = [
+  {
+    href: '?date-column=yes',
+    text: 'Date column'
+  } if data['date-column'] != 'yes',
+  {
+    href: '?date-column=',
+    text: 'No date column'
+  } if data['date-column'] == 'yes'
+] %}
+
 {% block content %}
 
 
@@ -402,7 +415,7 @@ type: "success"
                   },
                   {
                     text: "Received"
-                  },
+                  } if data['date-column'],
                   {
                     text: "Action",
                     format: "numeric"
@@ -418,7 +431,7 @@ type: "success"
                   },
                   {
                     text: "22 Jul 2023"
-                  },
+                  }if data['date-column'],
                   {
                     html: "<a href='#'>View</a>",
                     format: "numeric"
@@ -433,7 +446,7 @@ type: "success"
                   },
                   {
                     text: "18 Jul 2023"
-                  },
+                  }if data['date-column'],
                   {
                     html: "<a href='#'>View</a>",
                     format: "numeric"
@@ -448,7 +461,7 @@ type: "success"
                   },
                   {
                     text: "19 Jan 2024"
-                  },
+                  } if data['date-column'],
                   {
                     html: "<a href='../../cross-copy/v2/lpa-statement-publish'>Share</a>",
                     format: "numeric"
@@ -464,7 +477,7 @@ type: "success"
                   },
                   {
                     text: ""
-                  },
+                  } if data['date-column'],
                   {
                     html: "<a href='#'>Add</a>",
                     format: "numeric"
@@ -480,7 +493,7 @@ type: "success"
                   },
                   {
                     text: ""
-                  },
+                  } if data['date-column'],
                   {
                     html: "<a href='#'>Add</a>",
                     format: "numeric"
@@ -496,7 +509,7 @@ type: "success"
                   },
                   {
                     text: ""
-                  },
+                  } if data['date-column'],
                   {
                     html: "<a href='#'>Add</a>",
                     format: "numeric"
@@ -511,8 +524,8 @@ type: "success"
                     text: " "
                   },
                   {
-                    text: ""
-                  },
+                    text: " "
+                  } if data['date-column'],
                   {
                     html: "<a href='#'>Add</a>",
                     format: "numeric"

@@ -5,9 +5,9 @@
   <td class="govuk-table__cell">
     Shared
   </td>
-  <td class="govuk-table__cell">
+  <!-- <td class="govuk-table__cell">
     {{ 67 | daysAgo }}
-  </td>
+  </td> -->
   <td class="govuk-table__cell govuk-!-text-align-right">
     <a href="#">
       View
@@ -22,9 +22,9 @@
   <td class="govuk-table__cell">
     Shared
   </td>
-  <td class="govuk-table__cell">
+  <!-- <td class="govuk-table__cell">
     {{ 60 | daysAgo }}
-  </td>
+  </td> -->
   <td class="govuk-table__cell govuk-!-text-align-right">
     <a href="task-list">
       View
@@ -39,9 +39,9 @@
   <td class="govuk-table__cell">
     Shared
   </td>
-  <td class="govuk-table__cell">
+  <!-- <td class="govuk-table__cell">
     {{ 30 | daysAgo }}
-  </td>
+  </td> -->
   <td class="govuk-table__cell govuk-!-text-align-right">
     <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=">
       View<span class="govuk-visually-hidden"> interested party comments</span>
@@ -56,9 +56,9 @@
   <td class="govuk-table__cell">
     Shared
   </td>
-  <td class="govuk-table__cell">
+  <!-- <td class="govuk-table__cell">
     {{ 28 | daysAgo }}
-  </td>
+  </td> -->
   <td class="govuk-table__cell govuk-!-text-align-right">
     <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=">
       View<span class="govuk-visually-hidden"> interested party comments</span>
@@ -76,11 +76,11 @@
     {% elseif data['appellant-final-comments'] == 'complete' %}
       Complete
     {% else %}
-      None received
+      Not received
     {% endif %}
   </td>
-  <td class="govuk-table__cell">
-  </td>
+  <!-- <td class="govuk-table__cell">
+  </td> -->
   <td class="govuk-table__cell govuk-!-text-align-right">
     {% if data['appellant-final-comments'] == 'received' %}
       <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=">
@@ -106,11 +106,11 @@
     {% elseif data['lpa-final-comments'] == 'complete' %}
       Complete
     {% else %}
-      None received
+      Not received
     {% endif %}
   </td>
-  <td class="govuk-table__cell">
-  </td>
+  <!-- <td class="govuk-table__cell">
+  </td> -->
   <td class="govuk-table__cell govuk-!-text-align-right">
     {% if data['lpa-final-comments'] == 'received' %}
       <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=">
@@ -133,9 +133,9 @@
   <td class="govuk-table__cell">
     Received
   </td>
-  <td class="govuk-table__cell">
+  <!-- <td class="govuk-table__cell">
     {{ 2 | daysAgo }}
-  </td>
+  </td> -->
   <td class="govuk-table__cell govuk-!-text-align-right">
     <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=">
       Review<span class="govuk-visually-hidden"> interested party comments</span>

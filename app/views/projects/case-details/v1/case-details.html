@@ -198,7 +198,7 @@
           {% set html %}
             <p class="govuk-notification-banner__heading">
               Appellant final comments ready for review.
-              <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">Share<span class="govuk-visually-hidden"> IP comments and LPA statement</span></a>.
+              <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">Review<span class="govuk-visually-hidden"> appellant final comments</span></a>.
             </p>
           {% endset %}
           {{ govukNotificationBanner({
@@ -211,7 +211,8 @@
         {% if data['lpa-final-comments'] == 'received'%}
           {% set html %}
             <p class="govuk-notification-banner__heading">
-              LPA final comments ready for review
+              LPA final comments ready for review.
+              <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">Review<span class="govuk-visually-hidden"> LPA final comments</span></a>.
             </p>
           {% endset %}
           {{ govukNotificationBanner({
@@ -350,7 +351,8 @@
                     text: "Section 78"
                   },
                   {
-                    html: "<a href='change-appeal-type.html'>Change</a>"
+                    html: "<a href='change-appeal-type.html'>Change</a>",
+                    format: "numeric"
                   }
                 ],
                 [
@@ -361,7 +363,8 @@
                     text: "Written"
                   },
                   {
-                    html: "<a href='#'>Change</a>"
+                    html: "<a href='#'>Change</a>",
+                    format: "numeric"
                   }
                 ],
                 [
@@ -372,7 +375,8 @@
                     text: "Fiona Shell"
                   },
                   {
-                    html: "<a href='#'>Change</a>"
+                    html: "<a href='#'>Change</a>",
+                    format: "numeric"
                   }
                 ],[
                   {
@@ -382,7 +386,8 @@
                     text: "Naomi Jonhson"
                   },
                   {
-                    html: "<a href='#'>Change</a>"
+                    html: "<a href='#'>Change</a>",
+                    format: "numeric"
                   }
                 ],[
                   {
@@ -392,7 +397,8 @@
                     html: "<a href='.'>21/725284</a>"
                   },
                   {
-                    html: "<a href='#'>Change</a>"
+                    html: "<a href='#'>Change</a>",
+                    format: "numeric"
                   }
                 ],[
                   {
@@ -402,7 +408,8 @@
                     html: "<a href='.'>21/725234</a>"
                   },
                   {
-                    html: "<a href='#'>Change</a>"
+                    html: "<a href='#'>Change</a>",
+                    format: "numeric"
                   }
                 ],[
                   {
@@ -412,7 +419,8 @@
                     text: "F / General Allocation"
                   },
                   {
-                    html: "<a href='#'>Change</a>"
+                    html: "<a href='#'>Change</a>",
+                    format: "numeric"
                   }
                 ],[
                   {
@@ -422,7 +430,8 @@
                     text: "22/00118/FULL"
                   },
                   {
-                    html: "<a href='#'>Change</a>"
+                    html: "<a href='#'>Change</a>",
+                    format: "numeric"
                   }
                 ],[
                   {
@@ -432,7 +441,8 @@
                     text: "Not issued yet"
                   },
                   {
-                    html: "<a href='.'>Change</a>"
+                    html: "<a href='.'>Change</a>",
+                    format: "numeric"
                   }
                 ]
               ]
@@ -594,7 +604,8 @@
                     text: 38 | daysAgo
                   },
                   {
-                    html: ""
+                    html: "",
+                    format: "numeric"
                   }
                 ],
                 [
@@ -605,7 +616,8 @@
                     text: 31 | daysAgo
                   },
                   {
-                    html: "<a href='#'>Change</a>"
+                    html: "<a href='#'>Change</a>",
+                    format: "numeric"
                   }
                 ],
                 [
@@ -616,7 +628,8 @@
                     text: -3 | daysAgo
                   },
                   {
-                    html: "<a href='site-visit.html'>Manage</a>"
+                    html: "<a href='site-visit.html'>Manage</a>",
+                    format: "numeric"
                   }
                 ]
               ]
@@ -642,7 +655,7 @@
                   <th scope="col" class="govuk-table__header">Documentation</th>
                   <th scope="col" class="govuk-table__header">Status</th>
                   <!-- <th scope="col" class="govuk-table__header">Received date</th> -->
-                  <th scope="col" class="govuk-table__header">Action</th>
+                  <th scope="col" class="govuk-table__header govuk-table__header--numeric">Action</th>
                 </tr>
               </thead>
 
@@ -709,7 +722,8 @@
                   html: "Fiona Shell<br><a href='fiona.shell@gmail.com'>fiona.shell@gmail.com</a>"
                 },
                 {
-                  html: "<a href='#'>Change</a>"
+                  html: "<a href='#'>Change</a>",
+                  format: "numeric"
                 }
               ],[
                 {
@@ -719,7 +733,8 @@
                   html: "Naomi Johnson<br><a href='naomi.jonhson@planningagency.co.uk'>naomi.jonhson@planningagency.co.uk</a>"
                 },
                 {
-                  html: "<a href='#'>Change</a>"
+                  html: "<a href='#'>Change</a>",
+                  format: "numeric"
                 }
               ],[
                 {
@@ -730,7 +745,8 @@
 
                 },
                 {
-                  html: "<a href='#'>Change</a>"
+                  html: "<a href='#'>Change</a>",
+                  format: "numeric"
                 }
               ]
               ]

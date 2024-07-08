@@ -107,7 +107,8 @@
         {% if data['questionnaire'] == 'received'%}
           {% set html %}
             <p class="govuk-notification-banner__heading">
-              LPA questionnaire ready for review
+              LPA questionnaire ready for review.
+              <a class="govuk-notification-banner__link" href="#">Review</a>.
             </p>
           {% endset %}
           {{ govukNotificationBanner({
@@ -120,7 +121,8 @@
         {% if data['lpa-statement'] == 'received'%}
           {% set html %}
             <p class="govuk-notification-banner__heading">
-              LPA statement ready for review
+              LPA statement ready for review.
+              <a class="govuk-notification-banner__link" href="#">Review</a>.
             </p>
           {% endset %}
           {{ govukNotificationBanner({
@@ -133,7 +135,8 @@
         {% if data['ipcomments'] == 'received'%}
           {% set html %}
             <p class="govuk-notification-banner__heading">
-              IP comments ready for review
+              IP comments ready for review.
+              <a class="govuk-notification-banner__link" href="#">Review</a>.
             </p>
           {% endset %}
           {{ govukNotificationBanner({
@@ -148,7 +151,8 @@
         {% if data['lpa-statement'] == 'received'%}
           {% set html %}
             <p class="govuk-notification-banner__heading">
-              LPA statement ready for review
+              LPA statement ready for review.
+              <a class="govuk-notification-banner__link" href="#">Review</a>.
             </p>
           {% endset %}
           {{ govukNotificationBanner({
@@ -161,7 +165,8 @@
         {% if data['ipcomments'] == 'received'%}
           {% set html %}
             <p class="govuk-notification-banner__heading">
-              IP comments ready for review
+              IP comments ready for review.
+              <a class="govuk-notification-banner__link" href="#">Review</a>.
             </p>
           {% endset %}
           {{ govukNotificationBanner({
@@ -176,8 +181,7 @@
               <p class="govuk-notification-banner__heading">
                 Comments and statements ready to share.
                 <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">
-                  Share<span class="govuk-visually-hidden"> IP comments and LPA statement</span>
-                </a>
+                  Share<span class="govuk-visually-hidden"> IP comments and LPA statement</span></a>.
               </p>
             {% endset %}
             {{ govukNotificationBanner({
@@ -193,7 +197,8 @@
         {% if data['appellant-final-comments'] == 'received'%}
           {% set html %}
             <p class="govuk-notification-banner__heading">
-              Appellant final comments ready for review
+              Appellant final comments ready for review.
+              <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">Share<span class="govuk-visually-hidden"> IP comments and LPA statement</span></a>.
             </p>
           {% endset %}
           {{ govukNotificationBanner({
@@ -243,7 +248,8 @@
         <!-- new case -->
         {% set html %}
           <p class="govuk-notification-banner__heading govuk-!-margin-bottom-3">
-            Appeal ready for review
+            Appeal ready for review.
+            <a class="govuk-notification-banner__link" href="#">Review</a>.
           </p>
         {% endset %}
         {{ govukNotificationBanner({
@@ -288,6 +294,21 @@
         <strong class="govuk-tag govuk-tag--green">
           Complete
         </strong>
+
+        {{ govukInsetText({
+          html: "
+          <p class='govuk-body'>
+            Completed "+ 1 | daysAgo + "
+          </p>
+          <p class='govuk-body'>
+            Decision: approved
+          </p>
+          <p class='govuk-body'>
+            <a href='#' class='govuk-link'>
+              View decision letter
+            </a>
+          </p>"
+        }) }}
 
       {% else %}
 

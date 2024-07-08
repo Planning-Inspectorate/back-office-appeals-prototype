@@ -296,15 +296,18 @@
         </strong>
 
         {{ govukInsetText({
-          html: "<p class='govuk-body'>
-                   Appeal completed "+ 1 | daysAgo + "
-                 </p>
-                 <p class='govuk-body'>
-                   Decision: approved
-                 </p>
-                 <p class='govuk-body'>
-                  <a href='#' class='govuk-link'>View decision letter</a>
-                 </p>"
+          html: "
+          <p class='govuk-body'>
+            Completed "+ 1 | daysAgo + "
+          </p>
+          <p class='govuk-body'>
+            Decision: approved
+          </p>
+          <p class='govuk-body'>
+            <a href='#' class='govuk-link'>
+              View decision letter
+            </a>
+          </p>"
         }) }}
 
       {% else %}

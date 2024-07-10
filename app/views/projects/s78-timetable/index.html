@@ -30,8 +30,8 @@
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
-        
-        <h1 class="govuk-heading-l">
+        <h1 class="govuk-heading-l">Timetable variants</h1>        
+        <h1 class="govuk-heading-m">
             {% if data['appeal-type'] == 'HAS' %}
               Householder appeal
             {% elseif data['appeal-type'] == 'S78written' %}
@@ -118,7 +118,7 @@
                   }
                 ]
               }
-            } if data['appeal-type'] == 'S78written' or data[appeal-type'] == S78inquiry or data[appeal-type'] == S78hearing,
+            } if data['appeal-type'] == 'S78written' or data['appeal-type'] == 'S78inquiry' or data['appeal-type'] == 'S78hearing',
             {
                 key: {
                   text: "Rule 6 statement due"
@@ -153,7 +153,7 @@
                     }
                   ]
                 }
-            } if data['appeal-type'] == S78written or data['appeal-type'] == S78inquiry or data[appeal-type'] == S78hearing,
+            } if data['appeal-type'] == 'S78written' or data['appeal-type'] == 'S78inquiry' or data['appeal-type'] == 'S78hearing',
             {
                 key: {
                   text: "Appellant final comments due"
@@ -204,7 +204,7 @@
                     }
                   ]
                 }
-            } if data['appeal-type'] == S78written or data['appeal-type'] == S78inquiry or data[appeal-type'] == S78hearing,
+            } if data['appeal-type'] == 'S78written' or data['appeal-type'] == 'S78inquiry' or data['appeal-type'] == 'S78hearing',
             {
                 key: {
                   text: "Appellant evidence"
@@ -274,7 +274,7 @@
                     }
                   ]
                 }
-            } if data['appeal-type'] == S78inquiry or data[appeal-type'] == S78hearing,
+            } if data['appeal-type'] == 'S78inquiry' or data['appeal-type'] == 'S78hearing',
 
             {
                 key: {

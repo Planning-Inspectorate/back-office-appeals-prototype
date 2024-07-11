@@ -9,14 +9,28 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-one-quarter">
- 
+
     <ul class="govuk-list govuk-list-bullet">
-      <li><a href="/patterns/personal-list/" class="govuk-link--no-visited-state govuk-link--no-underline">Personal list</a></li>
+      <li>
+        <a href="/patterns/personal-list/" class="govuk-link--no-visited-state govuk-link--no-underline govuk-!-font-weight-bold">
+          Personal list
+        </a>
+      </li>
+      <li>
+        <a href="/patterns/case-heading/" class="govuk-link--no-visited-state govuk-link--no-underline">
+          Case heading
+        </a>
+      </li>
+      <li>
+        <a href="/patterns/case-status/" class="govuk-link--no-visited-state govuk-link--no-underline">
+          Case status
+        </a>
+      </li>
     </ul>
 
-    </div>
+  </div>
 
-<div class="govuk-grid-column-three-quarters">
+  <div class="govuk-grid-column-three-quarters">
 
     <h1 class="govuk-heading-xl govuk-!-margin-bottom-2" id="personal-list">Personal list</h1>
     <p><strong class="govuk-tag govuk-!-margin-bottom-5">Experimental</strong></p>
@@ -28,9 +42,9 @@
           {{ personalList (
           appealId = "2556782",
           appealLink = "http;//www.google.com",
-          actionText = "Validate appellant case", 
-          actionLink = "#", 
-          dueBy = "10 July 2023", 
+          actionText = "Validate appellant case",
+          actionLink = "#",
+          dueBy = "10 July 2023",
           caseStatus = "Ready to start",
           exampleData = "true"
           ) }}
@@ -40,14 +54,14 @@
     <pre class="code-snippet"><code>
 {% raw -%}{% from "/patterns/personal-list/default.njk" import personalList %}
 
-  {{ 
+  {{
     personalList (
         appealId = "EXAMPLE",
         appealLink = "http;//www.google.com",
-        linked = "CHILD", 
-        actionText = "Validate appellant case", 
-        actionLink = "#", 
-        dueBy = "10 July 2023", 
+        linked = "CHILD",
+        actionText = "Validate appellant case",
+        actionLink = "#",
+        dueBy = "10 July 2023",
         caseStatus = "Ready to start",
         exampleData = "true"
     )
@@ -72,7 +86,7 @@
       }
     }
   ]
-}) }}         
+}) }}
 
 <h2 class="govuk-heading-l">When to use this pattern</h2>
 

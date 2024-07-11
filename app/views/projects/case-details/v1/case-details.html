@@ -179,9 +179,8 @@
           {% if data['ipcomments'] == 'complete'%}
             {% set html %}
               <p class="govuk-notification-banner__heading">
-                Comments and statements ready to share.
-                <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">
-                  Share<span class="govuk-visually-hidden"> IP comments and LPA statement</span></a>.
+                IP comments and statements ready to <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">
+                  share<span class="govuk-visually-hidden"> IP comments and LPA statement</span></a>
               </p>
             {% endset %}
             {{ govukNotificationBanner({

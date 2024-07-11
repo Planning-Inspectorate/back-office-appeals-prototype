@@ -39,8 +39,6 @@
 
       {% set exampleHtml %}
 
-      {% from "/patterns/case-status/default.njk" import caseStatus %}
-
       <p>
         {{ caseStatus ( caseStatus = "validation" ) }}
       </p>
@@ -137,8 +135,6 @@
       <p>
         You can use this component as a <a href="https://mozilla.github.io/nunjucks/">Nunjucks</a> macro.
       </p>
-
-      {% from "/patterns/case-status/default.njk" import caseStatus %}
 
       <table class="govuk-table">
         <caption class="govuk-table__caption govuk-table__caption--m">Parameters</caption>

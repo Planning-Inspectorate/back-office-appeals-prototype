@@ -67,7 +67,7 @@ type: "success"
             html: 2 | daysAgo
           },
           {
-            text: "Unredacted"
+            html:  (data ['lpa-document-redaction']or 'Unredacted')
           },
           {
             html: "<a href='manage-supporting-document' class='govuk-link'>Change</a>",

@@ -37,58 +37,93 @@
       </p>
 
       {% set exampleHtml %}
-
-      {{ caseHeading (caseHeading = "withdrawn") }}
-
+        {{ caseHeading (caseHeading = "withdrawn") }}
       {% endset -%}
       {% set codeHtml %}
 
 
-      <pre class="code-snippet"><code>
-  {% raw -%}{% from "/patterns/case-heading/default.njk" import caseHeading %}
+      <pre class="code-snippet"><code>{% raw -%}{% from "/patterns/case-heading/default.njk" import caseHeading %}
 
-    {{
-      caseHeading (
-          caseStatus = "validation",
-          caseHeading = "default"
-      )
-  }}
-
-    {% endraw %}
+{{
+  caseHeading (
+    caseStatus = "validation",
+    caseHeading = "default"
+  )
+}}
+{% endraw %}
         </code></pre>
       {% endset -%}
 
       {{ govukTabs({
-          items: [ {
-              label: "Example",
-              id: "example",
-              panel: { html: exampleHtml } },
+        items: [
+          {
+            label: "Example",
+            id: "example",
+            panel: {
+              html: exampleHtml
+            }
+          },
+          {
+            label: "Nunjucks",
+            id: "nunjucks",
+            panel: {
+              html: codeHtml
+            }
+          }
+        ]
+      }) }}
 
-              { label: "Nunjucks",
-              id: "nunjucks",
-              panel:{ html: codeHtml } } ] }) }}
-
-      <h2 class="govuk-heading-l">When to use this pattern</h2>
+      <h2 class="govuk-heading-l">
+        When to use this pattern
+      </h2>
 
       <p>
         The case heading helps the user to identify the appeal they are working on. It features some variants, depending on the appeal status. These are:
       </p>
+
       <ul class="govuk-list govuk-list--bullet">
-          <li>closed</li>
-          <li>complete</li>
-          <li>transferred</li>
-          <li>withdrawn</li>
-        </ul>
+        <li>
+          closed
+        </li>
+        <li>
+          complete
+        </li>
+        <li>
+          transferred
+        </li>
+        <li>
+          withdrawn
+        </li>
+      </ul>
 
-      <h2 class="govuk-heading-l">How it works</h2>
+      <h2 class="govuk-heading-l">
+        How it works
+      </h2>
 
-      <p>You can use this component as a <a href="https://mozilla.github.io/nunjucks/">Nunjucks</a> macro.</p>
+      <p>
+        You can use this component as a <a href="https://mozilla.github.io/nunjucks/">Nunjucks</a> macro.
+      </p>
 
-      <h3 class="govuk-heading-m">Parameters</h3>
+      <h3 class="govuk-heading-m">
+        Parameters
+      </h3>
 
-      {{ govukSummaryList({ rows: [ { key: { text: "caseHeading" }, value: { text:
-      "default, closed, complete, transferred, withdrawn" } } ] })
-      }}
+      {{ govukSummaryList ({
+        rows: [
+          {
+            key: {
+              text: "caseHeading"
+            },
+            value: {
+              text: "default,
+              closed, complete,
+              transferred,
+              withdrawn"
+            }
+          }
+        ]
+      }) }}
+
     </div>
   </div>
 {% endblock %}

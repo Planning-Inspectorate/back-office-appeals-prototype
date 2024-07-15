@@ -39,7 +39,7 @@
   {{ caseStatus (caseStatus = "complete")}}
   <div class="govuk-inset-text">
     <p>Appeal completed: 6 February 2024</p>
-    <p>Decision: 2 May 2024</p>
+    <p>Decision: {{ 1 | daysAgo }}</p>
     <p>
       <a href="view-letter">
         View decision letter
@@ -71,11 +71,25 @@
     ]
   }) }} #}
 
+{% elseif caseHeading === "closed"%}
+
+  {{ caseStatus (caseStatus = "closed") }}
+  <div class="govuk-inset-text">
+    <p>Appeal closed: {{ 1 | daysAgo }}</p>
+    {# <p>
+      <a href="view-letter">
+        View withdrawal request
+      </a>
+    </p> #}
+  </div>
+
+  {% include "/includes/appeal-content/lpa-has-appeal-meta.html" %}
+
 {% elseif caseHeading === "withdrawn"%}
 
   {{ caseStatus (caseStatus = "withdrawn") }}
   <div class="govuk-inset-text">
-    <p>Appeal withdrawn: 2 May 2024</p>
+    <p>Appeal withdrawn: {{ 1 | daysAgo }}</p>
     <p>
       <a href="view-letter">
         View withdrawal request
@@ -106,6 +120,14 @@
         }
       ]
     }) }} #}
+  {% elseif caseHeading === "transferred" %}
+
+    {{ caseStatus (caseStatus = "transferred")}}
+    <div class="govuk-inset-text">
+      <p>Appeal transferred: {{ 1 | daysAgo }}</p>
+    </div>
+
+    {% include "/includes/appeal-content/lpa-has-appeal-meta.html" %}
 
   {% endif %}
 

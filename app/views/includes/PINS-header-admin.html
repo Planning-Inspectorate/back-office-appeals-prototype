@@ -69,7 +69,7 @@
 
 	    <div class="hmrc-internal-header__service-name app-pi-hmrc-internal-header__service-name  govuk-!-margin-left-0 govuk-!-margin-top-5">
 	      <a href="/" class="hmrc-internal-header__link">
-	        Appeal a planning decision (back office)
+	        Casework Back Office System - Appeals
 	      </a>
 	    </div>
 
@@ -77,39 +77,27 @@
   </div>
 </header>
 
-
-<!-- Sub MENU -->
-
-
+<!-- Sub menu -->
 
 	{{ mojPrimaryNavigation({
 		label: 'Primary navigation',
 		items: [
-
-		{
-			text: 'MVP',
-			href: '/index?view=current',
-			active: data['view'] == 'current'
-		  },
-		  {
-			text: 'Post MVP',
-			href: '/postmvp?view=postmvp',
-			active: data['view'] == 'postmvp'
-		  }
-		]
+  		{
+  			text: 'MVP',
+  			href: '/index?view=current',
+  			active: data['view'] == 'current'
+  		  },
+  		  {
+  			text: 'Post MVP',
+  			href: '/postmvp?view=postmvp',
+  			active: data['view'] == 'postmvp'
+	      },
+    		  {
+    			text: 'Patterns',
+    			href: '/patterns?view=patterns',
+    			active: data['view'] == 'patterns'
+  		  }
+  		]
 	  }) }}
 
-
-	  <!-- 
-
-		,
-		  {
-			text: 'Common components',
-			href: 'common-components?view=components',
-			active: data['view'] == 'components'
-		  }
-		  
-	  -->
-
-
-<!-- END SUB MENU -->
+<!-- End of sub menu -->

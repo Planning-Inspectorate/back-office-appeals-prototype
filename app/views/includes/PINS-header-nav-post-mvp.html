@@ -69,33 +69,32 @@
 
 	    <div class="hmrc-internal-header__service-name-with-nav app-pi-hmrc-internal-header__service-name  govuk-!-margin-left-0 govuk-!-margin-top-1">
 	      <a href="index?list=personal" class="hmrc-internal-header__link">
-	        Manage appeals
+	        Casework Back Office System - Appeals
 	      </a>
-		  <span class="govuk-tag govuk-tag--grey govuk-!-margin-left-1">Post MVP</span>
+		    <span class="govuk-tag govuk-tag--grey govuk-!-margin-left-1">Post MVP</span>
 	    </div>
-
 
 	    <nav aria-label="Menu" class="govuk-header__navigation">
 	      <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide menu" hidden>Menu</button>
 	      <ul id="navigation" class="govuk-header__navigation-list">
-			{% if data ['list'] === "personal" %}
-	        	<li class="govuk-header__navigation-item govuk-header__navigation-item--active">
-			{% else %}
-				<li class="govuk-header__navigation-item">
-			{% endif %}
+    			{% if data ['list'] === "personal" %}
+        	 <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+    			{% else %}
+            <li class="govuk-header__navigation-item">
+          {% endif %}
 					<a class="govuk-header__link" href="index?list=personal">
 						Assigned to me
 					</a>
-				</li> 
+				</li>
 				{% if data ['list'] === "all" %}
-				<li class="govuk-header__navigation-item govuk-header__navigation-item--active">
-			{% else %}
-				<li class="govuk-header__navigation-item">
-			{% endif %}
+          <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+        {% else %}
+          <li class="govuk-header__navigation-item">
+        {% endif %}
 				<a class="govuk-header__link" href="all-cases?list=all">
 					All cases
 				</a>
-				</li> 
+				</li>
 	        <li class="govuk-header__navigation-item">
 	          <a class="govuk-header__link" href="#">
 	            Sign out
@@ -107,4 +106,3 @@
 	  </div>
   </div>
 </header>
-

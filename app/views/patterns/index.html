@@ -1,6 +1,7 @@
 {% extends "layouts/PINS-admin.html" %}
 
-{% set pageName="Patterns" %}
+{% set title = "Design patterns" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
 
 {% set back = false %}
 
@@ -46,8 +47,8 @@
 
   <div class="govuk-grid-column-three-quarters">
 
-    <h1 class="govuk-heading-l">
-      Design patterns
+    <h1 class="govuk-heading-xl">
+      {{ title }}
     </h1>
 
     <p class="govuk-body">Patterns are best practice design solutions for specific user-focused tasks and page types.</p>

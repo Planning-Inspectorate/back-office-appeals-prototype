@@ -1,111 +1,208 @@
-{% extends "layouts/PINS-admin.html" %} {% set pageName="Patterns" %} {% set
-back = false %} {% block content %}
+{% extends "layouts/PINS-admin.html" %}
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-one-quarter">
-    <ul class="govuk-list govuk-list-bullet">
-      <li>
-        <a
-          href="/patterns/case-status/"
-          class="govuk-link--no-visited-state govuk-link--no-underline"
-          >Case status</a
-        >
-      </li>
-    </ul>
-  </div>
+{% set title = "Patterns" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
 
-  <div class="govuk-grid-column-three-quarters">
-    <h1 class="govuk-heading-xl govuk-!-margin-bottom-2" id="personal-list">
-      Case status
-    </h1>
-    <p>
-      <strong class="govuk-tag govuk-!-margin-bottom-5">experimental</strong>
-    </p>
-    <p>Use the case status component to show users the status of the appeal.</p>
+{% set back = false %}
 
-    {% set exampleHtml %} {% from "/patterns/case-status/default.njk" import
-    caseStatus %} 
-    
-    {{ caseStatus ( caseStatus = "validation" ) }}
+{% block content %}
 
-    <br /><br />
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-quarter">
+      <ul class="govuk-list govuk-list-bullet">
+        <li>
+          <a href="/patterns/personal-list/" class="govuk-link--no-visited-state govuk-link--no-underline">
+            Personal list
+          </a>
+        </li>
+        <li>
+          <a href="/patterns/case-heading/" class="govuk-link--no-visited-state govuk-link--no-underline">
+            Case heading
+          </a>
+        </li>
+        <li>
+          <a href="/patterns/case-status/" class="govuk-link--no-visited-state govuk-link--no-underline govuk-!-font-weight-bold">
+            Case status
+          </a>
+        </li>
+      </ul>
+    </div>
 
-    {{ caseStatus ( caseStatus = "assign" ) }}
+    <div class="govuk-grid-column-three-quarters">
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-2" id="personal-list">
+        Case status
+      </h1>
+      <p>
+        <strong class="govuk-tag govuk-!-margin-bottom-5">experimental</strong>
+      </p>
 
-    <br /><br />
+      <p class="govuk-body-l">
+        Use the <a href="https://design-system.service.gov.uk/components/tag/" class="govuk-link">design system Tag component</a> to show users the status of the casework.
+      </p>
 
-    {{ caseStatus ( caseStatus = "ready" ) }}
-    <br /><br />
+      {% set exampleHtml %}
 
-    {{ caseStatus ( caseStatus = "questionnaire" ) }}
+      <p>
+        {{ caseStatus ( caseStatus = "validation" ) }}
+      </p>
 
-    <br /><br />
+      <p>
+        {{ caseStatus ( caseStatus = "assign" ) }}
+      </p>
 
-    {{ caseStatus ( caseStatus = "statements" ) }}
+      <p>
+        {{ caseStatus ( caseStatus = "ready" ) }}
+      </p>
 
-    <br /><br />
+      <p>
+        {{ caseStatus ( caseStatus = "questionnaire" ) }}
+      </p>
 
-    {{ caseStatus ( caseStatus = "comments" ) }}
+      <p>
+        {{ caseStatus ( caseStatus = "statements" ) }}
+      </p>
 
-    <br /><br />
+      <p>
+        {{ caseStatus ( caseStatus = "comments" ) }}
+      </p>
 
-    {{ caseStatus ( caseStatus = "evidence" ) }}
+      <p>
+        {{ caseStatus ( caseStatus = "evidence" ) }}
+      </p>
 
-    <br /><br />
+      <p>
+        {{ caseStatus ( caseStatus = "finalComments" ) }}
+      </p>
 
-    {{ caseStatus ( caseStatus = "finalComments" ) }}
+      <p>
+        {{ caseStatus ( caseStatus = "decision" ) }}
+      </p>
 
-    <br /><br />
-
-    {{ caseStatus ( caseStatus = "decision" ) }}
-
-    <br /><br />
-
-    {{ caseStatus ( caseStatus = "complete" ) }}
-
-    <br /><br />
-    
-    {{ caseStatus ( caseStatus = "withdrawn" ) }}
+      <p>
+        {{ caseStatus ( caseStatus = "complete" ) }}
+      </p>
 
     <br /><br />
 
     {{ caseStatus ( caseStatus = "invalid" ) }}
 
-    <br /><br />
+      <p>
+        {{ caseStatus ( caseStatus = "withdrawn" ) }}
+      </p>
 
-    {{ caseStatus ( caseStatus = "awaiting" ) }}
+      <p>
+        {{ caseStatus ( caseStatus = "awaiting" ) }}
+      </p>
 
-    <br /><br />
+      <p>
+        {{ caseStatus ( caseStatus = "transferred" ) }}
+      </p>
 
-    {{ caseStatus ( caseStatus = "transferred" ) }} {% endset -%} {% set
-    codeHtml %}
-    <pre class="code-snippet"><code>
-{% raw -%}{% from "/patterns/case-status/default.njk" import caseStatus %}
+      {% endset -%}
 
-  {{caseStatus (
-        caseStatus = "validation"
-        ) 
-  }}{% endraw %}
-      </code></pre>
-    {% endset -%} {{ govukTabs({ items: [ { label: "Example", id: "example",
-    panel: { html: exampleHtml } }, { label: "Nunjucks", id: "nunjucks", panel:
-    { html: codeHtml } } ] }) }}
+      {% set codeHtml %}
+        <pre class="code-snippet"><code>{% raw -%}{% from "/patterns/case-status/default.njk" import caseStatus %}
 
-    <h2 class="govuk-heading-l">When to use this pattern</h2>
+{{ caseStatus (caseStatus = "validation")}}{% endraw %}
+  </code></pre>
 
-    <p>
-      Several areas of the service benefit from this component to help users to contextualise a set of appeals or maintain focus on a specific one.
-    </p>
+      {% endset -%}
 
-    <h2 class="govuk-heading-l">How it works</h2>
+      {{ govukTabs({
+        items: [
+          {
+            label: "Example",
+            id: "example",
+            panel: {
+              html: exampleHtml
+            }
+          },
+          {
+            label: "Nunjucks",
+            id: "nunjucks",
+            panel: {
+              html: codeHtml
+            }
+          }
+        ]
+      }) }}
 
-    <p>You can use this component as a <a href="https://mozilla.github.io/nunjucks/">Nunjucks</a> macro.</p>
+      <h2 class="govuk-heading-l">
+        When to use this pattern
+      </h2>
 
-    <h3 class="govuk-heading-m">Parameters</h3>
+      <p>
+        Several areas of the service benefit from this component to help users to contextualise a set of appeals or maintain focus on a specific one.
+      </p>
 
-    {{ govukSummaryList({ rows: [ { key: { text: "caseStatus" }, value: { text:
-    "validation, assign, ready, questionnaire, statements, comments, evidence,
-    finalComments, decision, complete, invalid, awaiting, transferred" } } ] })
-    }} {% endblock %}
+      <h2 class="govuk-heading-l">
+        How it works
+      </h2>
+
+      <p>
+        You can use this component as a <a href="https://mozilla.github.io/nunjucks/">Nunjucks</a> macro.
+      </p>
+
+      <table class="govuk-table">
+        <caption class="govuk-table__caption govuk-table__caption--m">Parameters</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header govuk-!-font-weight-regular">validation</th>
+            <th scope="col" class="govuk-table__header">{{ caseStatus ( caseStatus = 'validation' ) }}</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header govuk-!-font-weight-regular">assign</th>
+            <th scope="col" class="govuk-table__header">{{ caseStatus ( caseStatus = 'assign' ) }}</th>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header govuk-!-font-weight-regular">ready</th>
+            <th scope="col" class="govuk-table__header">{{ caseStatus ( caseStatus = 'ready' ) }}</th>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header govuk-!-font-weight-regular">questionnaire</th>
+            <th scope="col" class="govuk-table__header">{{ caseStatus ( caseStatus = 'questionnaire' ) }}</th>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header govuk-!-font-weight-regular">statements</th>
+            <th scope="col" class="govuk-table__header">{{ caseStatus ( caseStatus = 'statements' ) }}</th>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header govuk-!-font-weight-regular">comments</th>
+            <th scope="col" class="govuk-table__header">{{ caseStatus ( caseStatus = 'comments' ) }}</th>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header govuk-!-font-weight-regular">evidence</th>
+            <th scope="col" class="govuk-table__header">{{ caseStatus ( caseStatus = 'evidence' ) }}</th>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header govuk-!-font-weight-regular">finalComments</th>
+            <th scope="col" class="govuk-table__header">{{ caseStatus ( caseStatus = 'finalComments' ) }}</th>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header govuk-!-font-weight-regular">decision</th>
+            <th scope="col" class="govuk-table__header">{{ caseStatus ( caseStatus = 'decision' ) }}</th>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header govuk-!-font-weight-regular">complete</th>
+            <th scope="col" class="govuk-table__header">{{ caseStatus ( caseStatus = 'complete' ) }}</th>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header govuk-!-font-weight-regular">invalid</th>
+            <th scope="col" class="govuk-table__header">{{ caseStatus ( caseStatus = 'invalid' ) }}</th>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header govuk-!-font-weight-regular">awaiting</th>
+            <th scope="col" class="govuk-table__header">{{ caseStatus ( caseStatus = 'awaiting' ) }}</th>
+          </tr>
+          <tr class="govuk-table__row pins-govuk-table__row--last">
+            <th scope="row" class="govuk-table__header govuk-!-font-weight-regular">transferred</th>
+            <th scope="col" class="govuk-table__header">{{ caseStatus ( caseStatus = 'transferred' ) }}</th>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
   </div>
-</div>
+{% endblock %}

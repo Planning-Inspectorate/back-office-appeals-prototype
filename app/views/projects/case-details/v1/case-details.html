@@ -107,7 +107,8 @@
         {% if data['questionnaire'] == 'received'%}
           {% set html %}
             <p class="govuk-notification-banner__heading">
-              LPA questionnaire ready for review
+              LPA questionnaire ready for review.
+              <a class="govuk-notification-banner__link" href="#">Review</a>.
             </p>
           {% endset %}
           {{ govukNotificationBanner({
@@ -120,7 +121,8 @@
         {% if data['lpa-statement'] == 'received'%}
           {% set html %}
             <p class="govuk-notification-banner__heading">
-              LPA statement ready for review
+              LPA statement ready for review.
+              <a class="govuk-notification-banner__link" href="#">Review</a>.
             </p>
           {% endset %}
           {{ govukNotificationBanner({
@@ -133,7 +135,8 @@
         {% if data['ipcomments'] == 'received'%}
           {% set html %}
             <p class="govuk-notification-banner__heading">
-              IP comments ready for review
+              IP comments ready for review.
+              <a class="govuk-notification-banner__link" href="#">Review</a>.
             </p>
           {% endset %}
           {{ govukNotificationBanner({
@@ -148,7 +151,8 @@
         {% if data['lpa-statement'] == 'received'%}
           {% set html %}
             <p class="govuk-notification-banner__heading">
-              LPA statement ready for review
+              LPA statement ready for review.
+              <a class="govuk-notification-banner__link" href="#">Review</a>.
             </p>
           {% endset %}
           {{ govukNotificationBanner({
@@ -161,7 +165,8 @@
         {% if data['ipcomments'] == 'received'%}
           {% set html %}
             <p class="govuk-notification-banner__heading">
-              IP comments ready for review
+              IP comments ready for review.
+              <a class="govuk-notification-banner__link" href="#">Review</a>.
             </p>
           {% endset %}
           {{ govukNotificationBanner({
@@ -174,10 +179,8 @@
           {% if data['ipcomments'] == 'complete'%}
             {% set html %}
               <p class="govuk-notification-banner__heading">
-                Comments and statements ready to share.
-                <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">
-                  Share<span class="govuk-visually-hidden"> IP comments and LPA statement</span>
-                </a>
+                IP comments and statements ready to <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">
+                  share<span class="govuk-visually-hidden"> IP comments and LPA statement</span></a>
               </p>
             {% endset %}
             {{ govukNotificationBanner({
@@ -193,7 +196,8 @@
         {% if data['appellant-final-comments'] == 'received'%}
           {% set html %}
             <p class="govuk-notification-banner__heading">
-              Appellant final comments ready for review
+              Appellant final comments ready for review.
+              <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">Review<span class="govuk-visually-hidden"> appellant final comments</span></a>.
             </p>
           {% endset %}
           {{ govukNotificationBanner({
@@ -206,7 +210,8 @@
         {% if data['lpa-final-comments'] == 'received'%}
           {% set html %}
             <p class="govuk-notification-banner__heading">
-              LPA final comments ready for review
+              LPA final comments ready for review.
+              <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">Review<span class="govuk-visually-hidden"> LPA final comments</span></a>.
             </p>
           {% endset %}
           {{ govukNotificationBanner({
@@ -243,7 +248,8 @@
         <!-- new case -->
         {% set html %}
           <p class="govuk-notification-banner__heading govuk-!-margin-bottom-3">
-            Appeal ready for review
+            Appeal ready for review.
+            <a class="govuk-notification-banner__link" href="#">Review</a>.
           </p>
         {% endset %}
         {{ govukNotificationBanner({
@@ -289,6 +295,21 @@
           Complete
         </strong>
 
+        {{ govukInsetText({
+          html: "
+          <p class='govuk-body'>
+            Completed "+ 1 | daysAgo + "
+          </p>
+          <p class='govuk-body'>
+            Decision: approved
+          </p>
+          <p class='govuk-body'>
+            <a href='#' class='govuk-link'>
+              View decision letter
+            </a>
+          </p>"
+        }) }}
+
       {% else %}
 
         <strong class="govuk-tag govuk-tag--green">
@@ -329,7 +350,8 @@
                     text: "Section 78"
                   },
                   {
-                    html: "<a href='change-appeal-type.html'>Change</a>"
+                    html: "<a href='change-appeal-type.html'>Change</a>",
+                    format: "numeric"
                   }
                 ],
                 [
@@ -340,7 +362,8 @@
                     text: "Written"
                   },
                   {
-                    html: "<a href='#'>Change</a>"
+                    html: "<a href='#'>Change</a>",
+                    format: "numeric"
                   }
                 ],
                 [
@@ -351,7 +374,8 @@
                     text: "Fiona Shell"
                   },
                   {
-                    html: "<a href='#'>Change</a>"
+                    html: "<a href='#'>Change</a>",
+                    format: "numeric"
                   }
                 ],[
                   {
@@ -361,7 +385,8 @@
                     text: "Naomi Jonhson"
                   },
                   {
-                    html: "<a href='#'>Change</a>"
+                    html: "<a href='#'>Change</a>",
+                    format: "numeric"
                   }
                 ],[
                   {
@@ -371,7 +396,8 @@
                     html: "<a href='.'>21/725284</a>"
                   },
                   {
-                    html: "<a href='#'>Change</a>"
+                    html: "<a href='#'>Change</a>",
+                    format: "numeric"
                   }
                 ],[
                   {
@@ -381,7 +407,8 @@
                     html: "<a href='.'>21/725234</a>"
                   },
                   {
-                    html: "<a href='#'>Change</a>"
+                    html: "<a href='#'>Change</a>",
+                    format: "numeric"
                   }
                 ],[
                   {
@@ -391,7 +418,8 @@
                     text: "F / General Allocation"
                   },
                   {
-                    html: "<a href='#'>Change</a>"
+                    html: "<a href='#'>Change</a>",
+                    format: "numeric"
                   }
                 ],[
                   {
@@ -401,7 +429,8 @@
                     text: "22/00118/FULL"
                   },
                   {
-                    html: "<a href='#'>Change</a>"
+                    html: "<a href='#'>Change</a>",
+                    format: "numeric"
                   }
                 ],[
                   {
@@ -411,7 +440,8 @@
                     text: "Not issued yet"
                   },
                   {
-                    html: "<a href='.'>Change</a>"
+                    html: "<a href='.'>Change</a>",
+                    format: "numeric"
                   }
                 ]
               ]
@@ -529,7 +559,8 @@
                 </dd>
                 <dd class="govuk-summary-list__actions">
                   <a class="govuk-link" href="manage-neighbouring-sites.html">
-                    View LPAQ
+                    Change
+                    <span class="govuk-visually-hidden"> neighbouring sites</span>
                   </a>
                 </dd>
               </div>
@@ -573,7 +604,8 @@
                     text: 38 | daysAgo
                   },
                   {
-                    html: ""
+                    html: "",
+                    format: "numeric"
                   }
                 ],
                 [
@@ -584,7 +616,8 @@
                     text: 31 | daysAgo
                   },
                   {
-                    html: "<a href='#'>Change</a>"
+                    html: "<a href='#'>Change</a>",
+                    format: "numeric"
                   }
                 ],
                 [
@@ -595,7 +628,8 @@
                     text: -3 | daysAgo
                   },
                   {
-                    html: "<a href='site-visit.html'>Manage</a>"
+                    html: "<a href='site-visit.html'>Manage</a>",
+                    format: "numeric"
                   }
                 ]
               ]
@@ -621,7 +655,7 @@
                   <th scope="col" class="govuk-table__header">Documentation</th>
                   <th scope="col" class="govuk-table__header">Status</th>
                   <!-- <th scope="col" class="govuk-table__header">Received date</th> -->
-                  <th scope="col" class="govuk-table__header">Action</th>
+                  <th scope="col" class="govuk-table__header govuk-table__header--numeric">Action</th>
                 </tr>
               </thead>
 
@@ -688,7 +722,8 @@
                   html: "Fiona Shell<br><a href='fiona.shell@gmail.com'>fiona.shell@gmail.com</a>"
                 },
                 {
-                  html: "<a href='#'>Change</a>"
+                  html: "<a href='#'>Change</a>",
+                  format: "numeric"
                 }
               ],[
                 {
@@ -698,7 +733,8 @@
                   html: "Naomi Johnson<br><a href='naomi.jonhson@planningagency.co.uk'>naomi.jonhson@planningagency.co.uk</a>"
                 },
                 {
-                  html: "<a href='#'>Change</a>"
+                  html: "<a href='#'>Change</a>",
+                  format: "numeric"
                 }
               ],[
                 {
@@ -709,7 +745,8 @@
 
                 },
                 {
-                  html: "<a href='#'>Change</a>"
+                  html: "<a href='#'>Change</a>",
+                  format: "numeric"
                 }
               ]
               ]

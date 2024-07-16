@@ -3,7 +3,7 @@ const router = govukPrototypeKit.requests.setupRouter()
 
 router.get('*', function(req, res, next){
   // Change the service name for this feature
-  res.locals['serviceName'] = 'Manage your appeals'
+  res.locals['serviceName'] = 'Casework Back Office System - Appeals'
 
   next()
 })

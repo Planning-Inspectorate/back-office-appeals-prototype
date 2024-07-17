@@ -1,0 +1,27 @@
+{% extends "layouts/PINS.html" %}
+
+{% set title = 'Appellant case' %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    html: 'Back to appeals',
+    href: '#'
+  }) }}
+{% endblock %}
+
+{% set prototypeLinks = [
+  {
+    href: '?answers=empty',
+    text: 'Empty LPAQ'
+  } if data['answers'] != 'empty',
+  {
+    href: '?answers=full',
+    text: 'Full LPAQ'
+  } if data['answers'] == 'empty'
+] %}
+
+{% block content %}
+
+
+
+{% endblock %}

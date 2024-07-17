@@ -1,0 +1,393 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+
+{% set pageName="S78 Timetable" %}
+
+{% set prototypeLinks = [
+    {
+      href: '?appeal-type=HAS',
+      text: 'Householder appeal'
+    },
+    {
+      href: '?appeal-type=S78written',
+      text: 'Full appeal, written'
+    },
+    {
+        href: '?appeal-type=S78hearing',
+        text: 'Full appeal, hearing'
+    },
+    {
+        href: '?appeal-type=S78inquiry',
+        text: 'Full appeal, inquiry'
+    },
+    {
+      href: '?appeal-type=CAS',
+      text: 'Commercial appeal'
+    }
+  ] %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-l">Timetable variants</h1>        
+        <h1 class="govuk-heading-m">
+            {% if data['appeal-type'] == 'HAS' %}
+              Householder appeal
+            {% elseif data['appeal-type'] == 'S78written' %}
+              Full appeal, written
+            {% elseif data['appeal-type'] == 'S78hearing' %}
+              Full appeal, hearing
+              {% elseif data['appeal-type'] == 'S78inquiry' %}
+              Full appeal, inquiry
+            {% elseif data['appeal-type'] == 'CAS' %}
+              Commercial appeal
+            {% else %}
+              It’s something else
+            {% endif %}
+          </h1>
+
+
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Valid date"
+              },
+              value: {
+                text: 40 | daysAgo
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "valid date"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Start date"
+              },
+              value: {
+                text: 0 | daysAgo
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "start date"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "LPA questionnaire due"
+              },
+              value: {
+                html: 7 | daysInFuture
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "LPA questionnaire due date"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "LPA statements due"
+              },
+              value: {
+                text: 35 | daysInFuture
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "LPA statements due date"
+                  }
+                ]
+              }
+            } if data['appeal-type'] == 'S78written' or data['appeal-type'] == 'S78inquiry' or data['appeal-type'] == 'S78hearing',
+            {
+                key: {
+                  text: "Rule 6 statement due"
+                },
+                value: {
+                  text: 14 | daysInFuture
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "Rule 6 due date"
+                    }
+                  ]
+                }
+              } if data['appeal-type'] == 'S78inquiry',
+
+            {
+                key: {
+                  text: "Comments from interested parties due"
+                },
+                value: {
+                  text: 35 | daysInFuture
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "Interested parties comments due date"
+                    }
+                  ]
+                }
+            } if data['appeal-type'] == 'S78written' or data['appeal-type'] == 'S78inquiry' or data['appeal-type'] == 'S78hearing',
+            {
+                key: {
+                  text: "Appellant final comments due"
+                },
+                value: {
+                  text: 49 | daysInFuture
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "Appellant final comments due date"
+                    }
+                  ]
+                }
+            } if data['appeal-type'] == 'S78written',
+            {
+                key: {
+                  text: "LPA final comments due"
+                },
+                value: {
+                  text: 49 | daysInFuture
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "LPA final comments due date"
+                    }
+                  ]
+                }
+            } if data['appeal-type'] == 'S78written',
+            {
+                key: {
+                  text: "S106 obligation due"
+                },
+                value: {
+                  text: 49 | daysInFuture
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "S106 obligation due date"
+                    }
+                  ]
+                }
+            } if data['appeal-type'] == 'S78written' or data['appeal-type'] == 'S78inquiry' or data['appeal-type'] == 'S78hearing',
+            {
+                key: {
+                  text: "Appellant evidence"
+                },
+                value: {
+                  text: 49 | daysInFuture
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "Appellant evidence due date"
+                    }
+                  ]
+                }
+            } if data['appeal-type'] == 'S78inquiry',
+            {
+                key: {
+                  text: "LPA evidence"
+                },
+                value: {
+                  text: 49 | daysInFuture
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "LPA evidence due date"
+                    }
+                  ]
+                }
+            } if data['appeal-type'] == 'S78inquiry',
+            
+            {
+                key: {
+                  text: "Rule 6 evidence"
+                },
+                value: {
+                  text: 49 | daysInFuture
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "Rule 6 evidence due date"
+                    }
+                  ]
+                }
+            } if data['appeal-type'] == 'S78inquiry',
+
+            {
+                key: {
+                  text: "Case management conference"
+                },
+                value: {
+                  text: 49 | daysInFuture
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "Case management conference date"
+                    }
+                  ]
+                }
+            } if data['appeal-type'] == 'S78inquiry' or data['appeal-type'] == 'S78hearing',
+
+            {
+                key: {
+                  text: "Hearing"
+                },
+                value: {
+                  text: 42 | daysInFuture
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "Hearing date"
+                    }
+                  ]
+                }
+            } if data['appeal-type'] == 'S78hearing',
+
+            {
+                key: {
+                  text: "Appellant rebuttal"
+                },
+                value: {
+                  text: 42 | daysInFuture
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "Appellant rebuttal due date"
+                    }
+                  ]
+                }
+            } if data['appeal-type'] == 'S78inquiry',
+
+            {
+                key: {
+                  text: "LPA rebuttal"
+                },
+                value: {
+                  text: 42 | daysInFuture
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "LPA rebuttal due date"
+                    }
+                  ]
+                }
+            } if data['appeal-type'] == 'S78inquiry',
+
+            {
+                key: {
+                  text: "Rule 6 rebuttal"
+                },
+                value: {
+                  text: 42 | daysInFuture
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "Rule 6 rebuttal due date"
+                    }
+                  ]
+                }
+            } if data['appeal-type'] == 'S78inquiry',
+
+            {
+                key: {
+                  text: "Inquiry"
+                },
+                value: {
+                  text: 42 | daysInFuture
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "Inquiry date"
+                    }
+                  ]
+                }
+            } if data['appeal-type'] == 'S78inquiry',
+            
+            {
+                key: {
+                  text: "Site visit"
+                },
+                value: {
+                  text: ""
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Arrange",
+                      visuallyHiddenText: "S106 obligation due date"
+                    }
+                  ]
+                }
+            }
+
+          ]
+        }) }}
+
+    </div>
+</div>
+
+{% endblock %}

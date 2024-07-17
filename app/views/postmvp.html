@@ -175,6 +175,38 @@
       }) }}
 
       <h2 class="govuk-heading-m" id="spikes">
+        Layouts, views, patterns
+      </h2>
+      
+      <p class="govuk-body">This section includes isolated layouts, app views or patterns. These help expand the scope of data work from HAS to S78, and they are designed upon the previous research. Therea re no new user journeys.</p>
+      {{ govukTable({
+        firstCellIsHeader: true,
+        head: [
+          {
+            text: "Name"
+          },
+          {
+            text: "Tickets"
+          },
+          {
+            text: "Related docs"
+          }
+        ],
+        rows: [
+          [
+            {
+              html: "<a class='govuk-link' href='projects/s78-timetable/'>Appeal timetable</a>"
+            },
+            {
+            },
+            {
+            }
+          ]
+        ]
+      }) }}
+
+
+      <h2 class="govuk-heading-m" id="spikes">
         Design spikes
       </h2>
 

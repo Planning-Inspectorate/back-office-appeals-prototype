@@ -161,37 +161,43 @@
         {% include "includes/ip-comments/rejected-comments.html" %}
       {% endset %}
 
-      {{ govukTabs({
-        items: [
-          {
-            label: "Awaiting review",
-            id: "review-tab",
-            panel: {
-              html: reviewHtml
-            }
-          } if data['comments-shared'] != 'yes',
-          {
-            label: "Accepted",
-            id: "valid-tab",
-            panel: {
-              html: validHtml
-            }
-          },
-          {
-            label: "Rejected",
-            id: "rejected-tab",
-            panel: {
-              html: rejectedHtml
-            }
-          }
-        ]
-      }) }}
+      {% if data['comments-shared'] != 'yes' %}
 
-      <p class="govuk-body">
-        <a href="withdrawn-comments">
-          Withdrawn IP comments
-        </a>
-      </p>
+        {{ govukTabs({
+          items: [
+            {
+              label: "Awaiting review",
+              id: "review-tab",
+              panel: {
+                html: reviewHtml
+              }
+            } if data['comments-shared'] != 'yes',
+            {
+              label: "Accepted",
+              id: "valid-tab",
+              panel: {
+                html: validHtml
+              }
+            },
+            {
+              label: "Rejected",
+              id: "rejected-tab",
+              panel: {
+                html: rejectedHtml
+              }
+            }
+          ]
+        }) }}
+
+        <p class="govuk-body">
+          <a href="withdrawn-comments">
+            Withdrawn IP comments
+          </a>
+        </p>
+
+      {% else %}
+        {% include "includes/ip-comments/valid-comments.html" %}
+      {% endif %}
 
     </div>
   </div>

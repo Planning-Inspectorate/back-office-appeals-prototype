@@ -6,103 +6,129 @@
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 {% from "/patterns/case-status/default.njk" import caseStatus %}
 
-{%if caseHeading === "default"%}
+{% if caseHeading === "default" %}
 
-  {{caseStatus (
-        caseStatus = caseTag
-        ) 
-  }}
+  {{ caseStatus (caseStatus = caseTag) }}
 
-{{ govukSummaryList ({
-  classes: "govuk-summary-list--no-border govuk-!-margin-top-5",
-  rows: [
-    {
-      key: {
-        text: "Appeal site"
+  {% include "/includes/appeal-content/lpa-has-appeal-meta.html" %}
+
+  {# {{ govukSummaryList ({
+    classes: "govuk-summary-list--no-border",
+    rows: [
+      {
+        key: {
+          text: "Appeal site"
+        },
+        value: {
+          text: "21 The Pavement, Wandsworth, SW4 0HY"
+        }
       },
-      value: {
-        text: "21 The Pavement, Wandsworth, SW4 0HY"
+      {
+        key: {
+          text: "Local planning authority (LPA)"
+        },
+        value: {
+          text: "Bradford Council"
+        }
       }
-    },
-    {
-      key: {
-        text: "Local planning authority (LPA)"
-      },
-      value: {
-        text: "Bradford Council"
+    ]
+  }) }} #}
+
+{% elseif caseHeading === "complete" %}
+
+  {{ caseStatus (caseStatus = "complete")}}
+  <div class="govuk-inset-text">
+    <p>Appeal completed: 6 February 2024</p>
+    <p>Decision: {{ 1 | daysAgo }}</p>
+    <p>
+      <a href="view-letter">
+        View decision letter
+      </a>
+    </p>
+  </div>
+
+  {% include "/includes/appeal-content/lpa-has-appeal-meta.html" %}
+
+  {# {{ govukSummaryList ({
+    classes: "govuk-summary-list--no-border",
+    rows: [
+      {
+        key: {
+            text: "Appeal site"
+        },
+        value: {
+            text: "21 The Pavement, Wandsworth, SW4 0HY"
+        }
+        },
+        {
+        key: {
+            text: "Local planning authority (LPA)"
+        },
+        value: {
+            text: "Bradford Council"
+        }
       }
-    }
-  ]
-}) }}
+    ]
+  }) }} #}
 
-{%elseif caseHeading === "complete"%}
-  
-  {{caseStatus (
-        caseStatus = "complete"
-        ) 
-  }}
-             <div class="govuk-inset-text govuk-!-margin-top-5">
-                <p>Appeal completed: 6 February 2024</p>
-                <p>Decision: 2 May 2024</p>
-                <p><a href="view-letter">View decision letter</a></p>
-              </div>
+{% elseif caseHeading === "closed"%}
 
-    {{ govukSummaryList ({
-        classes: "govuk-summary-list--no-border govuk-!-margin-top-5",
-        rows: [
+  {{ caseStatus (caseStatus = "closed") }}
+  <div class="govuk-inset-text">
+    <p>Appeal closed: {{ 1 | daysAgo }}</p>
+    {# <p>
+      <a href="view-letter">
+        View withdrawal request
+      </a>
+    </p> #}
+  </div>
+
+  {% include "/includes/appeal-content/lpa-has-appeal-meta.html" %}
+
+{% elseif caseHeading === "withdrawn"%}
+
+  {{ caseStatus (caseStatus = "withdrawn") }}
+  <div class="govuk-inset-text">
+    <p>Appeal withdrawn: {{ 1 | daysAgo }}</p>
+    <p>
+      <a href="view-letter">
+        View withdrawal request
+      </a>
+    </p>
+  </div>
+
+  {% include "/includes/appeal-content/lpa-has-appeal-meta.html" %}
+
+  {# {{ govukSummaryList ({
+    classes: "govuk-summary-list--no-border",
+      rows: [
         {
-            key: {
-                text: "Appeal site"
-            },
-            value: {
-                text: "21 The Pavement, Wandsworth, SW4 0HY"
-            }
-            },
-            {
-            key: {
-                text: "Local planning authority (LPA)"
-            },
-            value: {
-                text: "Bradford Council"
+          key: {
+              text: "Appeal site"
+          },
+          value: {
+              text: "21 The Pavement, Wandsworth, SW4 0HY"
+          }
+          },
+          {
+          key: {
+              text: "Local planning authority (LPA)"
+          },
+          value: {
+              text: "Bradford Council"
+          }
         }
-        }
-  ]
-}) }}
+      ]
+    }) }} #}
+  {% elseif caseHeading === "transferred" %}
 
-{%elseif caseHeading === "withdrawn"%}
-    
-    {{caseStatus (
-        caseStatus = "withdrawn"
-        ) 
-  }}
-             <div class="govuk-inset-text govuk-!-margin-top-5">
-                <p>Appeal withdrawn: 2 May 2024</p>
-                <p><a href="view-letter">View withdrawal request</a></p>
-              </div>
+    {{ caseStatus (caseStatus = "transferred")}}
+    <div class="govuk-inset-text">
+      <p>Appeal transferred: {{ 1 | daysAgo }}</p>
+    </div>
 
-    {{ govukSummaryList ({
-        classes: "govuk-summary-list--no-border govuk-!-margin-top-5",
-        rows: [
-        {
-            key: {
-                text: "Appeal site"
-            },
-            value: {
-                text: "21 The Pavement, Wandsworth, SW4 0HY"
-            }
-            },
-            {
-            key: {
-                text: "Local planning authority (LPA)"
-            },
-            value: {
-                text: "Bradford Council"
-        }
-        }
-  ]
-}) }}
+    {% include "/includes/appeal-content/lpa-has-appeal-meta.html" %}
 
-
-{% endif %}
+  {% endif %}
 
 {% endmacro %}

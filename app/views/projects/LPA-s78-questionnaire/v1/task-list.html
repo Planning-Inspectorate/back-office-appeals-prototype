@@ -17,7 +17,16 @@
   {
     href: '?answers=full',
     text: 'Full LPAQ'
-  } if data['answers'] == 'empty'
+  } if data['answers'] == 'empty',
+
+  {
+    href: '?environment-schedule=2',
+    text: 'Environmental Impact Assessment schedule 2'
+  } if data['environment-schedule'] != '2',
+  {
+    href: '?environment-schedule=',
+    text: 'Environmental Impact Assessment schedule 1'
+  } if data['environment-schedule'] == '2'
 ] %}
 
 {% block content %}

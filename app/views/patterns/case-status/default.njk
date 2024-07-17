@@ -1,91 +1,97 @@
 {% macro caseStatus(caseStatus) %}
 
-{%- from "govuk/components/tag/macro.njk" import govukTag -%}
+  {%- from "govuk/components/tag/macro.njk" import govukTag -%}
 
-{% if caseStatus === "validation" %}
-{{ govukTag({
-  text: "Validation",
-  classes:'govuk-tag--orange'
-}) }}
+  {% if caseStatus === "validation" %}
+    {{ govukTag({
+      text: "Validation",
+      classes:'govuk-tag--orange'
+    }) }}
 
-{% elseif caseStatus === "assign" %}
-{{ govukTag({
-  text: "Assign case officer",
-  classes:'govuk-tag--grey'
-}) }}
+  {% elseif caseStatus === "assign" %}
+    {{ govukTag({
+      text: "Assign case officer",
+      classes:'govuk-tag--grey'
+    }) }}
 
-{% elseif caseStatus === "ready" %}
-{{ govukTag({
-  text: "Ready to start",
-  classes:'govuk-tag--turquoise'
-}) }}
+  {% elseif caseStatus === "ready" %}
+    {{ govukTag({
+      text: "Ready to start",
+      classes:'govuk-tag--turquoise'
+    }) }}
 
-{% elseif caseStatus === "questionnaire" %}
-{{ govukTag({
-  text: "LPA questionnaire",
-  classes:'govuk-tag--yellow'
-}) }}
+  {% elseif caseStatus === "questionnaire" %}
+    {{ govukTag({
+      text: "LPA questionnaire",
+      classes:'govuk-tag--yellow'
+    }) }}
 
-{% elseif caseStatus === "statements" %}
-{{ govukTag({
-  text: "Statements",
-  classes:'govuk-tag--blue'
-}) }}
+  {% elseif caseStatus === "statements" %}
+    {{ govukTag({
+      text: "Statements",
+      classes:'govuk-tag--blue'
+    }) }}
 
-{% elseif caseStatus === "comments" %}
-{{ govukTag({
-  text: "IP comments",
-  classes:'govuk-tag--purple'
-}) }}
+  {% elseif caseStatus === "comments" %}
+    {{ govukTag({
+      text: "IP comments",
+      classes:'govuk-tag--purple'
+    }) }}
 
-{% elseif caseStatus === "evidence" %}
-{{ govukTag({
-  text: "Evidence",
-  classes:'govuk-tag--blue'
-}) }}
+  {% elseif caseStatus === "evidence" %}
+    {{ govukTag({
+      text: "Evidence",
+      classes:'govuk-tag--blue'
+    }) }}
 
-{% elseif caseStatus === "finalComments" %}
-{{ govukTag({
-  text: "Final comments",
-  classes:'govuk-tag--orange'
-}) }}
+  {% elseif caseStatus === "finalComments" %}
+    {{ govukTag({
+      text: "Final comments",
+      classes:'govuk-tag--orange'
+    }) }}
 
-{% elseif caseStatus === "decision" %}
-{{ govukTag({
-  text: "Issue decision",
-  classes:'govuk-tag--pink'
-}) }}
+  {% elseif caseStatus === "decision" %}
+    {{ govukTag({
+      text: "Issue decision",
+      classes:'govuk-tag--pink'
+    }) }}
 
-{% elseif caseStatus === "complete" %}
-{{ govukTag({
-  text: "Complete",
-  classes:'govuk-tag--green'
-}) }}
+  {% elseif caseStatus === "complete" %}
+    {{ govukTag({
+      text: "Complete",
+      classes:'govuk-tag--green'
+    }) }}
 
-{% elseif caseStatus === "invalid" %}
-{{ govukTag({
-  text: "Invalid",
-  classes:'govuk-tag--grey'
-}) }}
+  {% elseif caseStatus === "invalid" %}
+    {{ govukTag({
+      text: "Invalid",
+      classes:'govuk-tag--grey'
+    }) }}
 
-{% elseif caseStatus === "awaiting" %}
-{{ govukTag({
-  text: "Awaiting transfer",
-  classes:'govuk-tag--grey'
-}) }}
+  {% elseif caseStatus === "awaiting" %}
+    {{ govukTag({
+      text: "Awaiting transfer",
+      classes:'govuk-tag--grey'
+    }) }}
 
-{% elseif caseStatus === "transferred" %}
-{{ govukTag({
-  text: "Transferred",
-  classes:'govuk-tag--grey'
-}) }}
+  {% elseif caseStatus === "transferred" %}
+    {{ govukTag({
+      text: "Transferred",
+      classes:'govuk-tag--grey'
+    }) }}
 
-{% elseif caseStatus === "withdrawn" %}
-{{ govukTag({
-  text: "Withdrawn",
-  classes:'govuk-tag--grey'
-}) }}
+  {% elseif caseStatus === "withdrawn" %}
+    {{ govukTag({
+      text: "Withdrawn",
+      classes:'govuk-tag--grey'
+    }) }}
 
-{% endif %}
+  {% elseif caseStatus === "closed" %}
+    {{ govukTag({
+      text: "Closed",
+      classes:'govuk-tag--grey'
+    }) }}
+
+  {% endif %}
 
 {% endmacro %}

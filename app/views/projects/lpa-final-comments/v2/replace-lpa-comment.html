@@ -1,0 +1,58 @@
+ 
+{% extends "layouts/PINS-post-mvp.html" %}
+{% set title = "Add new LPA statement" %}
+{% set pageName = title + ' - Planning Inspectorate'%} 
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+     
+    
+    <span class="govuk-caption-l">Appeal 2110166</span>
+  
+
+    <h1 class="govuk-heading-l">{{title}}</h1>
+    <form action="lpa-comment-replaced" method="post" class="">
+    <div class="govuk-grid-row">
+
+      <div class="govuk-grid-column-two-thirds govuk-!-margin-bottom-0">
+        <p class="govuk-body">
+          Paste new LPA statement content
+        </p>
+    
+        
+    
+      
+   
+ 
+  
+        {{ govukTextarea({
+          name: "NewStatement",
+          id: "newStatement",
+          rows: "15",
+          label: {
+            html: "",
+            classes: "govuk-body",
+            isPageHeading: false
+          },
+         
+          value:  data['newStatement' ] or 
+          " "
+          
+        }) }}
+  
+       
+  
+        {{ govukButton({
+          text: "Add"
+        }) }}
+      </form>
+    </div>
+    
+  </div>
+ 
+
+
+{% endblock %}

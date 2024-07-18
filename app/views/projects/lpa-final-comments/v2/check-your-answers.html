@@ -6,11 +6,11 @@
 {% set prototypeLinks = [
   {
     href: '?redacted-statement-done=yes',
-    text: 'Redacted statement'
+    text: 'Redacted comment'
   } if data['redacted-statement-done'] != 'yes',
   {
     href: '?redacted-statement-done=',
-    text: 'No redacted statement'
+    text: 'No redacted comment'
   } if data['redacted-statement-done'] == 'yes'
 ] %}
 
@@ -37,7 +37,7 @@
         rows: [
         {
           key: {
-            text: "Unredacted LPA comment"
+            text: "Unredacted LPA final comment"
           },
           value: {
             html: data['original-statement'] or "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus. 
@@ -59,7 +59,7 @@
             
            {
               key: {
-                text: "Redacted LPA comment"
+                text: "Redacted LPA final comment"
               },
               value: {
                 html: data['redacted-statement'] or " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus. 
@@ -79,7 +79,7 @@
 
             {
               key: {
-                text: "Redacted LPA comment"
+                text: "Redacted LPA final comment"
               },
               value: {
                 html: "Not applicable"

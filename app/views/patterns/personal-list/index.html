@@ -1,6 +1,7 @@
 {% extends "layouts/PINS-admin.html" %}
 
-{% set pageName="Patterns" %}
+{% set title = "Personal list" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
 
 {% set back = false %}
 
@@ -10,6 +11,16 @@
     <div class="govuk-grid-column-one-quarter">
 
       <ul class="govuk-list govuk-list-bullet">
+        <li>
+          <a href="/patterns/important-banners/" class="govuk-link--no-visited-state govuk-link--no-underline">
+            Important banner
+          </a>
+        </li>
+        <li>
+          <a href="/patterns/success-banner/" class="govuk-link--no-visited-state govuk-link--no-underline">
+            Success banner
+          </a>
+        </li>
         <li>
           <a href="/patterns/case-heading/" class="govuk-link--no-visited-state govuk-link--no-underline">
             Case heading
@@ -32,7 +43,7 @@
     <div class="govuk-grid-column-three-quarters">
 
       <h1 class="govuk-heading-xl govuk-!-margin-bottom-2" id="personal-list">
-        Personal list
+        {{ title }}
       </h1>
 
       <p>

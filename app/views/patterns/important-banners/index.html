@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-admin.html" %}
 
-{% set title = "Case heading" %}
+{% set title = 'Important banner' %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% set back = false %}
@@ -10,7 +10,7 @@
     <div class="govuk-grid-column-one-quarter">
       <ul class="govuk-list govuk-list-bullet">
         <li>
-          <a href="/patterns/important-banners/" class="govuk-link--no-visited-state govuk-link--no-underline">
+          <a href="/patterns/important-banners/" class="govuk-link--no-visited-state govuk-link--no-underline govuk-!-font-weight-bold">
             Important banner
           </a>
         </li>
@@ -20,7 +20,7 @@
           </a>
         </li>
         <li>
-          <a href="/patterns/case-heading/" class="govuk-link--no-visited-state govuk-link--no-underline govuk-!-font-weight-bold">
+          <a href="/patterns/case-heading/" class="govuk-link--no-visited-state govuk-link--no-underline">
             Case heading
           </a>
         </li>
@@ -43,25 +43,37 @@
         {{ title }}
       </h1>
       <p>
-        <strong class="govuk-tag govuk-!-margin-bottom-5">experimental</strong>
+        {{govukTag({
+          text: "GDS core pattern",
+          classes: "govuk-tag--green"
+        })}}
       </p>
+
       <p class="govuk-body-l">
-        Showing key information about an appeal at a glance.
+        Highlighting possible case actions
+      </p>
+
+      <p class="govuk-body">
+        Important banners persist when there are actions to complete. There may be more than one importan banner when there are multiple actions.
       </p>
 
       {% set exampleHtml %}
-        {{ caseHeading (caseHeading = "withdrawn") }}
+        {{ importantBanner (
+          bannerHeadingStart = "LPA statement ready for ",
+          bannerLink = "review")
+        }}
+        {{ importantBanner (
+          bannerHeadingStart = "IP comments ready for ",
+          bannerLink = "review")
+        }}
       {% endset -%}
       {% set codeHtml %}
 
+      <pre class="code-snippet"><code>{% raw -%}{% from "/patterns/important-banners/default.njk" import importantBanner %}
 
-      <pre class="code-snippet"><code>{% raw -%}{% from "/patterns/case-heading/default.njk" import caseHeading %}
-
-{{
-  caseHeading (
-    caseStatus = "validation",
-    caseHeading = "default"
-  )
+{{ importantBanner (
+  bannerHeadingStart = "Interested party comments awaiting ",
+  bannerLink = "review")
 }}
 {% endraw %}
         </code></pre>
@@ -91,23 +103,8 @@
       </h2>
 
       <p>
-        The case heading helps the user to identify the appeal they are working on. It features some variants, depending on the appeal status. These are:
+        The banners should be used to highlight key actions a user may take on the case. There should only be a single link for each Important banner.
       </p>
-
-      <ul class="govuk-list govuk-list--bullet">
-        <li>
-          closed
-        </li>
-        <li>
-          complete
-        </li>
-        <li>
-          transferred
-        </li>
-        <li>
-          withdrawn
-        </li>
-      </ul>
 
       <h2 class="govuk-heading-l">
         How it works
@@ -125,13 +122,26 @@
         rows: [
           {
             key: {
-              text: "caseHeading"
+              text: "bannerHeadingStart"
             },
             value: {
-              text: "default,
-              closed, complete,
-              transferred,
-              withdrawn"
+              text: "Banner heading before the link"
+            }
+          },
+          {
+            key: {
+              text: "bannerLink"
+            },
+            value: {
+              text: "Text for the banner link"
+            }
+          },
+          {
+            key: {
+              text: "bannerHeadingEnd"
+            },
+            value: {
+              text: "Optional text after the link"
             }
           }
         ]

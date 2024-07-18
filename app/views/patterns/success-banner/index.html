@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-admin.html" %}
 
-{% set title = "Case heading" %}
+{% set title = 'Success banner' %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% set back = false %}
@@ -15,12 +15,12 @@
           </a>
         </li>
         <li>
-          <a href="/patterns/success-banner/" class="govuk-link--no-visited-state govuk-link--no-underline">
+          <a href="/patterns/success-banner/" class="govuk-link--no-visited-state govuk-link--no-underline govuk-!-font-weight-bold">
             Success banner
           </a>
         </li>
         <li>
-          <a href="/patterns/case-heading/" class="govuk-link--no-visited-state govuk-link--no-underline govuk-!-font-weight-bold">
+          <a href="/patterns/case-heading/" class="govuk-link--no-visited-state govuk-link--no-underline">
             Case heading
           </a>
         </li>
@@ -42,26 +42,42 @@
       <h1 class="govuk-heading-xl govuk-!-margin-bottom-2" id="case-heading">
         {{ title }}
       </h1>
+
       <p>
-        <strong class="govuk-tag govuk-!-margin-bottom-5">experimental</strong>
+        {{govukTag({
+          text: "GDS core pattern",
+          classes: "govuk-tag--green"
+        })}}
       </p>
+
       <p class="govuk-body-l">
-        Showing key information about an appeal at a glance.
+        Highlighting a recently completed action
+      </p>
+
+      <p class="govuk-body">
+        Success banners are shown when an action is complete. They disappear when the user navigates away from the page showing them. Success banners appeal above <a href="/patterns/important-banners/" class="govuk-link">Important banners</a>.
+      </p>
+
+      <p class="govuk-body">
+        GDS component guidance for <a href="https://design-system.service.gov.uk/components/notification-banner/#reacting-to-something-the-user-has-done" class="govuk-link govuk-link--no-visited-state">success banners</a>.
       </p>
 
       {% set exampleHtml %}
-        {{ caseHeading (caseHeading = "withdrawn") }}
+        {{ successBanner (
+          bannerHeading = "LPA statement complete")
+        }}
+        {{ importantBanner (
+          bannerHeadingStart = "IP comments ready for ",
+          bannerLink = "review")
+        }}
       {% endset -%}
       {% set codeHtml %}
 
+      <pre class="code-snippet"><code>{% raw -%}{% from "/patterns/success-banner/default.njk" import importantBanner %}
 
-      <pre class="code-snippet"><code>{% raw -%}{% from "/patterns/case-heading/default.njk" import caseHeading %}
-
-{{
-  caseHeading (
-    caseStatus = "validation",
-    caseHeading = "default"
-  )
+{{ successBanner (
+  bannerHeading = "LPA statement complete",
+  bannerLink = "review")
 }}
 {% endraw %}
         </code></pre>
@@ -91,23 +107,8 @@
       </h2>
 
       <p>
-        The case heading helps the user to identify the appeal they are working on. It features some variants, depending on the appeal status. These are:
+        The banners should be used to confirm completed in-service actions. There should only be a single success banner shown.
       </p>
-
-      <ul class="govuk-list govuk-list--bullet">
-        <li>
-          closed
-        </li>
-        <li>
-          complete
-        </li>
-        <li>
-          transferred
-        </li>
-        <li>
-          withdrawn
-        </li>
-      </ul>
 
       <h2 class="govuk-heading-l">
         How it works
@@ -125,13 +126,10 @@
         rows: [
           {
             key: {
-              text: "caseHeading"
+              text: "bannerHeading"
             },
             value: {
-              text: "default,
-              closed, complete,
-              transferred,
-              withdrawn"
+              text: "Banner heading text"
             }
           }
         ]

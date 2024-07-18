@@ -127,19 +127,17 @@
             IP comment
           </dt>
           <dd class="govuk-summary-list__value">
-            <a href="#" class="govuk-link">
-              4012345-IP-comment.doc
-            </a>
+            Added as document
           </dd>
         </div>
-        <div class="govuk-summary-list__row">
+        <!-- <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Redaction status
           </dt>
           <dd class="govuk-summary-list__value">
             {{ data['redaction-status'] or 'Unredacted' }}
           </dd>
-        </div>
+        </div> -->
       {% endif %}
     </dl>
 
@@ -149,19 +147,25 @@
           Supporting documents
         </dt>
         <dd class="govuk-summary-list__value">
-          {% if data['documents-added'] %}
-            <ul class="govuk-list govuk-list--bullet">
-              <li>
-                <a href='#' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document.doc')}}</a>
-              </li>
-              {% if data['anotherdocument'] %}
-                <li>
-                  <a href='#' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document-2.doc')}}</a>
-                </li>
-              {% endif %}
-            </ul>
+          {% if data['comment-type'] == 'doc' %}
+            <a href="#" class="govuk-link">
+              4012345-IP-comment.doc
+            </a>
           {% else %}
-            Not provided
+            {% if data['documents-added'] %}
+              <ul class="govuk-list govuk-list--bullet">
+                <li>
+                  <a href='#' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document.doc')}}</a>
+                </li>
+                {% if data['anotherdocument'] %}
+                  <li>
+                    <a href='#' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document-2.doc')}}</a>
+                  </li>
+                {% endif %}
+              </ul>
+            {% else %}
+              Not provided
+            {% endif %}
           {% endif %}
         </dd>
         <dd class="govuk-summary-list__actions">
@@ -170,6 +174,10 @@
               Manage<span class="govuk-visually-hidden"> supporting docs</span>
             </a>
           {% else %}
+            {% if data['comment-type'] == 'doc' %}
+              <a href='extra-documents' class='govuk-link govuk-link--no-visited-state'>
+                Manage<span class="govuk-visually-hidden"> supporting docs</span></a><span class="govuk-hint"> | </span>
+            {% endif %}
             <a href='upload-extra-supporting-document' class='govuk-link govuk-link--no-visited-state'>
               Add<span class="govuk-visually-hidden"> supporting docs</span>
             </a>

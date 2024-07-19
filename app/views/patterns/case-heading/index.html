@@ -30,6 +30,11 @@
           </a>
         </li>
         <li>
+          <a href="/patterns/meta-data/" class="govuk-link--no-visited-state govuk-link--no-underline">
+            Meta data
+          </a>
+        </li>
+        <li>
           <a href="/patterns/personal-list/" class="govuk-link--no-visited-state govuk-link--no-underline">
             Personal list
           </a>
@@ -50,7 +55,9 @@
       </p>
 
       {% set exampleHtml %}
-        {{ caseHeading (caseHeading = "withdrawn") }}
+        {{ caseHeading (
+          caseHeading = "withdrawn"
+        ) }}
       {% endset -%}
       {% set codeHtml %}
 

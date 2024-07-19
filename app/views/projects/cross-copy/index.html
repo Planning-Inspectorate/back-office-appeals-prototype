@@ -1,6 +1,7 @@
 {% extends "layouts/PINS-Simple-post-mvp.html" %}
 
-{% set pageName="Case details" %}
+{% set title = "Share evidence (cross-copy)" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
 
 {% set back = false %}
 
@@ -11,7 +12,7 @@
 
     <span class="govuk-caption-l">Appeal a planning decision</span>
     <h1 class="govuk-heading-l">
-      Cross copying
+      {{ title }}
     </h1>
 
     {{ govukTable({

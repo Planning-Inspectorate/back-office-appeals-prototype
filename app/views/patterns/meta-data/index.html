@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-admin.html" %}
 
-{% set title = 'Success banner' %}
+{% set title = "Meta data" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% set back = false %}
@@ -15,7 +15,7 @@
           </a>
         </li>
         <li>
-          <a href="/patterns/success-banner/" class="govuk-link--no-visited-state govuk-link--no-underline govuk-!-font-weight-bold">
+          <a href="/patterns/success-banner/" class="govuk-link--no-visited-state govuk-link--no-underline">
             Success banner
           </a>
         </li>
@@ -30,7 +30,7 @@
           </a>
         </li>
         <li>
-          <a href="/patterns/meta-data/" class="govuk-link--no-visited-state govuk-link--no-underline">
+          <a href="/patterns/meta-data/" class="govuk-link--no-visited-state govuk-link--no-underline govuk-!-font-weight-bold">
             Meta data
           </a>
         </li>
@@ -47,43 +47,28 @@
       <h1 class="govuk-heading-xl govuk-!-margin-bottom-2" id="case-heading">
         {{ title }}
       </h1>
-
       <p>
-        {{govukTag({
-          text: "GDS core pattern",
-          classes: "govuk-tag--green"
-        })}}
+        <strong class="govuk-tag govuk-!-margin-bottom-5">experimental</strong>
       </p>
-
       <p class="govuk-body-l">
-        Highlighting a recently completed action.
-      </p>
-
-      <p class="govuk-body">
-        Success banners are shown when an action is complete. They disappear when the user navigates away from the page showing them. Success banners appeal above <a href="/patterns/important-banners/" class="govuk-link">Important banners</a>.
-      </p>
-
-      <p class="govuk-body">
-        GDS component guidance for <a href="https://design-system.service.gov.uk/components/notification-banner/#reacting-to-something-the-user-has-done" class="govuk-link govuk-link--no-visited-state">success banners</a>.
+        Contextual information for the appeal.
       </p>
 
       {% set exampleHtml %}
-        {{ successBanner (
-          bannerHeading = "LPA statement complete")
-        }}
-        {{ importantBanner (
-          bannerHeadingStart = "IP comments ready for ",
-          bannerLink = "review")
-        }}
+        {{ metaData (
+          site = "22a The Peach Trees, Peckham, SE15 9HA",
+          lpa = "Southwark Council"
+        ) }}
       {% endset -%}
       {% set codeHtml %}
 
-      <pre class="code-snippet"><code>{% raw -%}{% from "/patterns/success-banner/default.njk" import importantBanner %}
 
-{{ successBanner (
-  bannerHeading = "LPA statement complete",
-  bannerLink = "review")
-}}
+      <pre class="code-snippet"><code>{% raw -%}{% from "/patterns/meta-data/default.njk" import metaData %}
+
+{{ metaData (
+  site = "22a The Peach Trees, Peckham, SE15 9HA",
+  lpa = "Southwark Council"
+) }}
 {% endraw %}
         </code></pre>
       {% endset -%}
@@ -112,7 +97,7 @@
       </h2>
 
       <p>
-        The banners should be used to confirm completed in-service actions. There should only be a single success banner shown.
+        This is shown at the top of the case details view and other case views and lists contextual information for the user about the view.
       </p>
 
       <h2 class="govuk-heading-l">
@@ -123,6 +108,10 @@
         You can use this component as a <a href="https://mozilla.github.io/nunjucks/">Nunjucks</a> macro.
       </p>
 
+      <p>
+        Add parameters to the component to display contextual information.
+      </p>
+
       <h3 class="govuk-heading-m">
         Parameters
       </h3>
@@ -131,10 +120,18 @@
         rows: [
           {
             key: {
-              text: "bannerHeading"
+              text: "site"
             },
             value: {
-              text: "Banner heading text"
+              text: "The appeal site address"
+            }
+          },
+          {
+            key: {
+              text: "lpa"
+            },
+            value: {
+              text: "The local planning authority"
             }
           }
         ]

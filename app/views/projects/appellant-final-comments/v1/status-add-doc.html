@@ -1,0 +1,59 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+{% set title = "Redaction status of example.doc" %}
+{% set pageName = title + ' - Planning Inspectorate'%} 
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+	<span class="govuk-caption-l">Appeal 2110166</span>
+	<h1 class="govuk-heading-l">{{title}}</h1>
+
+
+    <form action="case-incomplete-add-doc2" method="post" novalidate>
+
+
+	{% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+
+	 
+
+
+		{{ govukRadios({
+			name: "add-doc-redaction",
+			fieldset: {
+			  legend: {
+				text: "",
+				classes: "govuk-fieldset__legend--s"
+			  }
+			},
+			items: [
+			  {
+				value: "Redacted",
+				text: "Redacted"
+			  },
+			  {
+				value: "Unredacted",
+				text: "Unredacted"
+			  },
+				  {
+				divider: "or"
+			  },
+			  {
+				value: "No redaction required",
+				text: "No redaction required"
+			  }
+			]
+		  }) }}
+
+	   {{ govukButton({
+        text: "Continue"
+      }) }}
+
+	  </form>
+
+
+
+
+{% endblock %}
+</div>
+</div>

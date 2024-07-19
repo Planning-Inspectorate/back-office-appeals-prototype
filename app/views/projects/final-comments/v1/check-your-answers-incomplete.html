@@ -33,7 +33,7 @@
         rows: [
         {
           key: {
-            text: "Unredacted LPA comment"
+            html: "Unredacted" + " " + data['party'] + " " +"comment"
           },
           value: {
             html: data['original-statement'] or "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus. 
@@ -55,7 +55,7 @@
             
            {
               key: {
-                text: "Redacted LPA comment"
+                html: "Redacted" + " " + data['party'] + " " +"comment"
               },
               value: {
                 html: data['redacted-statement'] or " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus. 
@@ -75,7 +75,7 @@
 
             {
               key: {
-                text: "Redacted LPA statement"
+                html: "Redacted" + " " + data['party'] + " " +"comment"
               },
               value: {
                 html: "Not applicable"
@@ -85,7 +85,7 @@
                   {
                     href: "redact-comment",
                     text: "Change",
-                    visuallyHiddenText: "Redacted LPA final comments"
+                    visuallyHiddenText: "Redacted  final comments"
                   }
                 ]
               }

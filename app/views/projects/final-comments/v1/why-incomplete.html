@@ -1,6 +1,12 @@
+ {% extends "layouts/PINS-post-mvp.html" %}
+
+ {% if data['party'] == 'lpa' %}
+  {% set title = "Why are the LPA final comments incomplete?" %}
+{% else  %}
+  {% set title = "Why are the appellants final comments incomplete?" %}
+{% endif %}
+
  
-{% extends "layouts/PINS-post-mvp.html" %}
-{% set title = "Why are the LPA final comments incomplete?" %}
 {% set pageName = title + ' - Planning Inspectorate'%} 
 {% block content %}
 

@@ -11,7 +11,11 @@
 
     {% set html %}
   <p class="govuk-notification-banner__heading">
+    {% if data['party'] == 'lpa' %}
   LPA final comments incomplete
+  {% else  %}
+  Appellant final comments incomplete
+  {% endif %}
     <ul>
       <li> No list of suggested conditions</li>
       <li>  {{ data['reason-incomplete' ] + "   " + data['whats-missing' ]  + data['what-reason' ] + "  " or "Reason 1" }} </li>

@@ -1,91 +1,77 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
 {% set title = "Check your answers" %}
-{% set pageName = title + ' - Planning Inspectorate'%}
+{% set pageName = title + ' - Planning Inspectorate' %}
 
 {% block content %}
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
-  	{% set html %}
-  	  <p class="govuk-notification-banner__heading">
-  	    The appeal is ready for review
-  	  </p>
-  	  <p>
-        <a class="govuk-notification-banner__link" href="appellant-case.html">
-          Start the review
-        </a>
-      </p>
-  	{% endset %}
+    	{% set html %}
+    	  <p class="govuk-notification-banner__heading">
+    	    The appeal is ready for review
+    	  </p>
+    	  <p>
+          <a class="govuk-notification-banner__link" href="appellant-case.html">
+            Start the review
+          </a>
+        </p>
+    	{% endset %}
 
-    <span class="govuk-caption-l">
-      Appeal 2110166
-    </span>
-    <h1 class="govuk-heading-l">
-      {{ title }}
-    </h1>
+      <span class="govuk-caption-l">
+        Appeal 2110166
+      </span>
+      <h1 class="govuk-heading-l">
+        {{ title }}
+      </h1>
 
-    <form action="obligation-incomplete" method="post" class="govuk-!-margin-top-6" novalidate>
+      <form action="obligation-incomplete" method="post" class="govuk-!-margin-top-6" novalidate>
 
-      <dl class="govuk-summary-list">
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Review outcome
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['obligation-decision' ] or "Incomplete" }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="obligation-review">Change<span class="govuk-visually-hidden"> outcome</span></a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-           Reasons
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <!-- {{ data['obligation-reason-incomplete'] }} -->
-            {% if 'Not dated' in data['obligation-reason-incomplete'] %}
-              <li>Not dated</li>
-              {% if 'Not signed' in data['obligation-reason-incomplete'] %}
-                <li>Not signed</li>
-                {% if 'Other' in data['obligation-reason-incomplete'] %}
-                  <li>Other: {{data['what-reason']}}</li>
-                {% endif %}
-              {% endif %}
-            {% elseif 'Not signed' in data['obligation-reason-incomplete'] %}
-              <li>Not signed</li>
-              {% if 'Other' in data['obligation-reason-incomplete'] %}
-                <li>Other: {{data['what-reason']}}</li>
-              {% endif %}
-            {% elseif 'Other' in data['obligation-reason-incomplete'] %}
-              <li>Other: {{data['what-reason']}}</li>
-            {% endif %}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="why-incomplete">Change<span class="govuk-visually-hidden">reason</span></a>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-           Due date
-          </dt>
-          <dd class="govuk-summary-list__value">
-            22 {{ (data['obligation-due-date-month'] or 1 | monthsInFutureNumeric ) | formatMonth }} 2024
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="update-due-date">Change<span class="govuk-visually-hidden"> due date</span></a>
-          </dd>
-        </div>
-      </dl>
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Review outcome
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['obligation-decision' ] or "Incomplete" }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="obligation-review">Change<span class="govuk-visually-hidden"> outcome</span></a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+             Reasons
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Not dated
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="why-incomplete">Change<span class="govuk-visually-hidden">reason</span></a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+             Due date
+            </dt>
+            <dd class="govuk-summary-list__value">
+              22 {{ (data['obligation-due-date-month'] or 1 | monthsInFutureNumeric ) | formatMonth }} 2024
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="update-due-date">Change<span class="govuk-visually-hidden"> due date</span></a>
+            </dd>
+          </div>
+        </dl>
 
-      {{ govukButton({
-        text: "Confirm"
-      }) }}
+        {{ govukButton({
+          text: "Confirm"
+        }) }}
 
-    </form>
-  {% endblock %}
+      </form>
 
+
+    </div>
   </div>
-</div>
+
+{% endblock %}

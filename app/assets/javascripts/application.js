@@ -7,6 +7,46 @@ window.GOVUKPrototypeKit.documentReady(() => {
   window.MOJFrontend.initAll()
 })
 
+// Read more links
+jQuery(function() {
+
+  var shortening_text = $(".long-answers .govuk-summary-list__value, .long-answers .govuk-table__cell");
+
+  shortening_text.each(function() {
+    var txt = $(this).html();
+    if (txt.length < 250) return;
+    $(this).html(
+      txt.slice(0, 250) +
+        '<span>... </span><a href="#" class="show">Read more</a>' +
+        '<span style="display:none;">' +
+        txt.slice(250, txt.length) +
+        ' <a href="#" class="less">Close</a></span>'
+    );
+  });
+
+  $("a.show", shortening_text).click(function(event) {
+    event.preventDefault();
+    $(this)
+      .hide()
+      .prev()
+      .hide();
+    $(this)
+      .next()
+      .show();
+  });
+
+  $("a.less", shortening_text).click(function(event) {
+    event.preventDefault();
+    $(this)
+      .parent()
+      .hide()
+      .prev()
+      .show()
+      .prev()
+      .show();
+  });
+});
+
 
 // Setup the MOJ multi file upload, we've made some minor changes to get things working
 if(MOJFrontend.dragAndDropSupported() && MOJFrontend.formDataSupported() && MOJFrontend.fileApiSupported()) {
@@ -116,7 +156,7 @@ if(MOJFrontend.dragAndDropSupported() && MOJFrontend.formDataSupported() && MOJF
     html += '<span class="moj-multi-file-upload__progress">(0%)</span>';
 //    html += '<p class="moj-multi-file-upload__details"><details class="govuk-details" data-module="govuk-details"><summary class="govuk-details__summary"><span class="govuk-details__summary-text">Add file details</span></summary><div class="govuk-details__text" id="includedContent">';
 //    $(function(){
-//      $("#includedContent").load("B-test/file-info.html"); 
+//      $("#includedContent").load("B-test/file-info.html");
 //    });
 //    html += '</div>';
 //    html += '</p>';
@@ -187,42 +227,3 @@ if(typeof MOJFrontend.MultiFileUpload !== 'undefined') {
     container: $('.moj-multi-file-upload')
   });
 }
-
-// Read more links
-jQuery(function() {
-  var shortening_text = $(".long-answers .govuk-summary-list__value");
-
-  shortening_text.each(function() {
-    var txt = $(this).html();
-    if (txt.length < 500) return;
-    $(this).html(
-      txt.slice(0, 500) +
-        '<span>... </span><a href="#" class="show">Read more</a>' +
-        '<span style="display:none;">' +
-        txt.slice(800, txt.length) +
-        ' <a href="#" class="less">Close</a></span>'
-    );
-  });
-
-  $("a.show", shortening_text).click(function(event) {
-    event.preventDefault();
-    $(this)
-      .hide()
-      .prev()
-      .hide();
-    $(this)
-      .next()
-      .show();
-  });
-
-  $("a.less", shortening_text).click(function(event) {
-    event.preventDefault();
-    $(this)
-      .parent()
-      .hide()
-      .prev()
-      .show()
-      .prev()
-      .show();
-  });
-});

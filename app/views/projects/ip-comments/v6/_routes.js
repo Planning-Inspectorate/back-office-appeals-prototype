@@ -9,10 +9,12 @@ router.get('*', function(req, res, next){
 
 // adding a manual comment
 
+// IP contact details
 router.post('/add-ip-name-and-email', function (req, res) {
   res.redirect('add-ip-address-check')
 })
 
+// see if the IP gave us an address
 router.post('/add-ip-address-check', function (req, res) {
   if (req.session.data['add-ip-address-check'] == 'Yes') {
     res.redirect('add-ip-address')
@@ -21,62 +23,44 @@ router.post('/add-ip-address-check', function (req, res) {
   }
 })
 
+// add address
 router.post('/add-ip-address', function (req, res) {
   res.redirect('add-ip-comment')
 })
 
+// add IP comment
 router.post('/add-ip-comment', function (req, res) {
   res.redirect('add-ip-comment-redacted-received-date')
 })
 
+// add received date and redacted status
 router.post('/add-ip-comment-redacted-received-date', function (req, res) {
   res.redirect('add-ip-cya')
 })
 
+// check answers
 router.post('/add-ip-cya', function (req, res) {
   res.redirect('ip-comments?new-comment=true&manually-added-comment=true&comments-shared=')
 })
 
-router.post('/add-ip-review', function (req, res) {
-  if (req.session.data['add-ip-comment-review'] == 'valid') {
-    res.redirect('ip-comments?acceptedComment=yes&commentReview=true')
-  } else {
-    res.redirect('add-ip-reject-comment')
-  }
-})
-
 // attaching supporting documents
 
-// ask for the first document
+// upload the document
+// set the date and redacted status
 router.post('/upload-extra-supporting-document', function (req, res) {
-  res.redirect('extra-document-received-date')
+  res.redirect('extra-document-redacted-received-date')
 })
 
-// what date was it received?
-router.post('/extra-document-received-date', function (req, res) {
-  res.redirect('extra-document-redaction-status')
+// go to check answers
+router.post('/extra-document-redacted-received-date', function (req, res) {
+  res.redirect('extra-documents-cya')
 })
 
-// ask if there a redacted version
-router.post('/extra-document-redaction-status', function (req, res) {
-  if (req.session.data['redaction-status'] == 'Yes') {
-    res.redirect('upload-redacted-extra-document')
+router.post('/extra-documents-cya', function (req, res) {
+  if (req.session.data['comment-attachment'] == 'review') {
+    res.redirect('comment-review?documents-added=yes&comment-attachment=')
   } else {
-    res.redirect('extra-supporting-documents')
-  }
-})
-
-// upload the redacted version
-router.post('/upload-redacted-extra-document', function (req, res) {
-  res.redirect('extra-supporting-documents')
-})
-
-
-router.post('/extra-supporting-documents', function (req, res) {
-  if (req.session.data['other-document'] == 'Yes') {
-    res.redirect('upload-extra-supporting-document?anotherdocument=yes')
-  } else {
-    res.redirect('confirm-extra-documents')
+    res.redirect('comment-view?documents-added=yes&comment-attachment=')
   }
 })
 

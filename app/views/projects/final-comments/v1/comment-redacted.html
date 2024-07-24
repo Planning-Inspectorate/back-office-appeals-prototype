@@ -1,13 +1,11 @@
  
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% if data['party'] == 'lpa' %}
+{% if data['party'] == 'LPA' %}
   {% set title = "Confirm LPA's final comments" %}
 {% else  %}
   {% set title = "Confirm appellant's final comments" %}
 {% endif %}
-
-
  
 {% set pageName = title + ' - Planning Inspectorate'%} 
 {% block content %}

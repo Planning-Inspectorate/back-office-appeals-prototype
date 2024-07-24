@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Personal listio" %}
+{% set title = "Personal list" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 
@@ -118,73 +118,63 @@
     </tr>
   </thead>
   <tbody class="govuk-table__body">
+
+	  <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header"><a href="#">2114328</a></th>
+      <td class="govuk-table__cell"></td>
+      <td class="govuk-table__cell">
+        <a href="case?party=LPA">
+          Review LPA comments
+        </a>
+         
+      </td>
+      <td class="govuk-table__cell">12 July 2023</td>
+      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--orange">Final comments</strong></td>
+    </tr>
+
     <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header"><a href="case.html?list=&crosscopied=">2110166</a></th>
+      <th scope="row" class="govuk-table__header"><a href="#">2110928</a></th>
+      <td class="govuk-table__cell"></td>
+      <td class="govuk-table__cell">
+        <a href="case?party=appellant">
+          Review appellant comments
+        </a> 
+      </td>
+      <td class="govuk-table__cell">12 July 2023</td>
+      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--orange">Final comments</strong></td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header"><a href="#">2110166</a></th>
       <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Lead</strong></td>
       <td class="govuk-table__cell"><a href="#">View appellant case</a></td>
       <td class="govuk-table__cell">10 July 2023</td>
       <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Ready to start</strong></td>
     </tr>
     <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header"><a href="case.html?status=lpa-questionnaire">2110167</a></th>
+      <th scope="row" class="govuk-table__header"><a href="#">2110167</a></th>
       <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Child</strong></td>
       <td class="govuk-table__cell"><a href="#">Review LPA questionnaire</a></td>
       <td class="govuk-table__cell">11 July 2023</td>
       <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">LPA questionnaire</strong></td>
     </tr>
     <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header"><a href="case-closed.html">2936179</a></th>
+      <th scope="row" class="govuk-table__header"><a href="#">2936179</a></th>
       <td class="govuk-table__cell"></td>
       <td class="govuk-table__cell"><a href="#">Update Horizon reference</a></td>
       <td class="govuk-table__cell">11 July 2023</td>
       <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Awaiting transfer</strong></td>
     </tr>
     <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header"><a href="case-none.html?status=statement-review">2110917</a></th>
+      <th scope="row" class="govuk-table__header"><a href="#">2110917</a></th>
       <td class="govuk-table__cell"></td>
       <td class="govuk-table__cell">
         <a href="#">
           Awaiting IP comments
-        </a><br>
-        <a href="#">
-          Awaiting statement
-        </a>
+        </a> 
       </td>
       <td class="govuk-table__cell">12 July 2023</td>
       <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--orange">Final comments</strong></td>
     </tr>
-
-	  <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header"><a href="case.html?status=statement-review&crosscopied=">2114328</a></th>
-      <td class="govuk-table__cell"></td>
-      <td class="govuk-table__cell">
-        <a href="case?party=LPA">
-          Review LPA comments
-        </a>
-        <br>
-        <a href="#">
-          Review statement
-        </a>
-      </td>
-      <td class="govuk-table__cell">12 July 2023</td>
-      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--orange">Final comments</strong></td>
-    </tr>
-
-    <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header"><a href="case-upto-date.html?status=statement-review">2110928</a></th>
-      <td class="govuk-table__cell"></td>
-      <td class="govuk-table__cell">
-        <a href="case?party=appellant">
-          Review appellant comments
-        </a><br>
-        <a href="#">
-          Review statement
-        </a>
-      </td>
-      <td class="govuk-table__cell">12 July 2023</td>
-      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--orange">Final comments</strong></td>
-    </tr>
-
     <tr class="govuk-table__row">
       <th scope="row" class="govuk-table__header">
         <a href="../../cross-copy/v1/case-ipcomments">
@@ -202,7 +192,7 @@
             View statements
           </a>
         {% else %}
-          <a href="../../cross-copy/v2/crosscopy-ipcomments">
+          <a href="#">
             Share IP comments and LPA statement
           </a>
         {% endif %}
@@ -210,14 +200,7 @@
       <td class="govuk-table__cell"></td>
       <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--purple">Statements</strong></td>
     </tr>
-
-    <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header"><a href="case.html?status=statement-review">1234560</a></th>
-      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Lead</strong></td>
-      <td class="govuk-table__cell"><a href="case">Review final comments</a></td>
-      <td class="govuk-table__cell">13 July 2023</td>
-      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--orange">Final comments</strong></td>
-    </tr>
+ 
 
   </tbody>
 </table>

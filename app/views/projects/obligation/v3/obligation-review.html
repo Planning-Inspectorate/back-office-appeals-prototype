@@ -10,7 +10,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {% if data['S106status'] == 'incomplete' %}
+    <!-- {% if data['S106status'] == 'incomplete' %}
 
         {% set incompleteS106 %}
           <p class="govuk-notification-banner__heading">
@@ -29,7 +29,7 @@
         }) }}
 
       {% endif %}
-
+      --> 
       <span class="govuk-caption-l">Appeal 2110166</span>
       <h1 class="govuk-heading-l">
         {{ title }}
@@ -40,7 +40,7 @@
     <div class="govuk-grid-column-full">
 
       {{ govukTable({
-        caption: "Uploaded documents",
+        caption: "",
         captionClasses: "govuk-table__caption--m",
         firstCellIsHeader: true,
         head: [
@@ -48,7 +48,7 @@
             text: "Name"
           },
           {
-            text: "Received date"
+            text: "Received"
           },
           {
             text: "Redaction status"
@@ -80,29 +80,9 @@
     </div>
   </div>
 
-  <form action="" method="post" class="govuk-!-margin-top-3" novalidate>
+  <form action="obligation-outcome" method="post" class="govuk-!-margin-top-3" novalidate>
 
-    {{ govukRadios({
-      name: "obligation-decision",
-      fieldset: {
-        legend: {
-          text: "What is the outcome of your review?",
-          isPageHeading: true,
-          classes: "govuk-fieldset__legend--m"
-        }
-      },
-      items: [
-        {
-          value: "Complete~case?S106status=completed",
-          text: "Complete"
-        },
-        {
-          value: "Incomplete~why-incomplete",
-          text: "Incomplete"
-        }
-
-      ]
-    }) }}
+    
 
     {{ govukButton({
       text: "Continue"

@@ -1,0 +1,126 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Check IP comment information" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = true %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Appeal 2114328</span>
+      <h1 class="govuk-heading-l">
+        {{ title }}
+      </h1>
+
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Interested party
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data ['manual-ip-first-name'] or 'Sam' }} {{ data ['manual-ip-last-name'] or 'Fisher' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"></span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Email
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data ['manual-ip-email'] or 'sammy@fishers.com' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"></span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Address
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['add-ip-address-check'] == 'Yes' %}
+              {{ data['manual-ip-address-line-1'] or '7 Bipple Lane' }}<br>
+              {{ data['manual-ip-address-line-2'] or 'Donnie Close' }}
+              {% if data ['manual-ip-address-line-2'] %}<br>
+              {% endif %}
+              {{ data['manual-ip-address-town'] or 'Brickleford'}}
+              {% if data['manual-ip-address-county'] %}<br>
+              {% endif %}
+              {{ data['manual-ip-address-county'] or 'Brickfordshire' }}<br>
+              {{ data['manual-ip-address-postcode'] or 'BF93 2NN' }}
+            {% else %}
+              Not provided
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"></span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            IP comment
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <a href="#" class="govuk-link">
+              2114328-IP-comment.doc
+            </a>
+          </dd>
+
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden">  IP comment</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Comment date
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ 2 | daysAgo }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"></span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Redacted status
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['IPCommentRedactedStatus'] or 'Unredacted' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> redacted status</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+      <form method="post" class="govuk-!-margin-top-6">
+        {{ govukButton({
+          text: "Confirm"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

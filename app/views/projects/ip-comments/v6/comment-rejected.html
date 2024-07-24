@@ -1,0 +1,38 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = 'Comment rejected' %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = false %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukPanel({
+        titleText: title,
+  	    html: "Appeal reference<br><strong>2114328</strong>"
+      }) }}
+
+      {% if data['no-email'] %}
+        <p class="govuk-body">
+          The interested party has not been informed. No email address was provided.
+        </p>
+      {% else %}
+        <p class="govuk-body">
+          The interested party has been informed.
+        </p>
+        <p class="govuk-body">
+          They have been given the opportunity to change their comment and resubmit. 
+        </p>
+      {% endif %}
+
+      <p class="govuk-body">
+        <a href='ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&comment-rejected=' class='govuk-link'>
+          Back to interested party comments
+        </a>
+      </p>
+
+    </div>
+  </div>
+{% endblock %}

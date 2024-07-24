@@ -53,6 +53,77 @@
     }) }}
 
     <h2 class="govuk-heading-m">
+      Version 6 (document upload alignment)
+
+      {{govukTag({
+        text: "In progress",
+        classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+      })}}
+    </h2>
+
+    <a href="v6/index?list=personal" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
+      View prototype
+      <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+        <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+      </svg>
+    </a>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>
+        <a href="v6/ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=">
+          review an IP comment
+        </a>
+      </li>
+      <li>
+        <a href="v6/ip-comments?acceptedComment=yes&commentReview=true">
+          IP comment accepted
+        </a>
+      </li>
+      <li>
+        <a href="v6/comment-redact">
+          redact an IP comment
+        </a>
+      </li>
+      <li>
+        <a href="v6/reject-comment">
+          reject an IP comment
+        </a>
+      </li>
+      <li>
+        <a href="v6/withdraw-comment-upload-evidence?comment-mode=review">
+          withdraw an IP comment
+        </a>
+      </li>
+      <li>
+        <a href="v6/add-ip-name-and-email">
+          manually add an IP comment
+        </a>
+      </li>
+      <li>
+        <a href="v6/extra-document-redaction-status?comment-attachment=review">
+          add supporting documents to an IP comment
+        </a>
+      </li>
+      <li>
+        <a href="v6/index?list=personal">
+          sharing statements and IP comments (see link in personal list)
+        </a>
+      </li>
+      <li>
+        <a href="https://appeals-prototype.herokuapp.com/appeal/appeals/v2/ip-comments">
+          ‘Appeal a planning decision’ service shows shared IP comments to main parties (public facing service)
+        </a>
+      </li>
+      <li>
+        <a href="https://appeals-back-office-prototype.herokuapp.com/projects/ip-comments/v6/case#Site-details">
+          ‘IP addresses’ when a site visit is requested (see Site details section)
+        </a>
+      </li>
+    </ul>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <h2 class="govuk-heading-m">
       Version 5 (refinement and additions)
 
       {{govukTag({

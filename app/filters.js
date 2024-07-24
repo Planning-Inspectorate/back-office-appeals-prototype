@@ -8,6 +8,11 @@ addFilter('formatMonth', (number) => {
 	return date.format('MMMM')
 })
 
+addFilter('daysAgoDayNumeric', (number) => {
+	var date = moment().subtract(number,"days").format("D")
+	return date
+})
+
 addFilter('daysAgo', (number) => {
 	var date = moment().subtract(number,"days").format("D MMMM YYYY")
 	return date

@@ -1,0 +1,95 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set pageName="Redact comment" %}
+
+{% set title = "Redact comment" %}
+
+{% set back = true %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <span class="govuk-caption-l">Appeal 2114328</span>
+    <h1 class="govuk-heading-l">Redact comment from
+      Ian Smith
+    </h1>
+  </div>
+
+  <div class="govuk-grid-column-two-thirds govuk-!-margin-bottom-0">
+    <h2 class="govuk-heading-m">
+      Make redactions
+    </h2>
+
+    <ol class="govuk-list govuk-list--number">
+      <li>
+        Use the ‘redacted comment’ box to select the words you want to redact.
+      </li>
+      <li>
+        Select ‘redact’ to confirm your redaction. Repeat until you have finished.
+      </li>
+      <li>
+        Select ‘continue’ when you have finished redacting.
+      </li>
+    </ol>
+
+  </div>
+
+  <div class="govuk-grid-column-one-half">
+    <form action="cya-redact" method="post" class="govuk-!-margin-top-2">
+
+      {{ govukTextarea({
+        name: "redactedComment",
+        id: "redactedComment",
+        rows: "9",
+        label: {
+          text: "Redacted comment",
+          classes: "govuk-label--s",
+          isPageHeading: false
+        },
+
+        value: "Having reviewed the proposal I would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. All of us here at number 6 The Grove agree."
+
+      }) }}
+
+      <button type="button" class="govuk-button govuk-button--secondary" id="redactButton">Redact</button>
+
+    </form>
+    {{ govukButton({
+      href: "cya-redact",
+      text: "Continue"
+    }) }}
+  </div>
+  <div class="govuk-grid-column-one-half">
+    <h2 class="govuk-heading-s govuk-!-margin-bottom-3">Original comment</h2>
+    <p>Having reviewed the proposal I would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. All of us here at number 6 The Grove agree.</p>
+  </div>
+
+</div>
+
+<script type="text/javascript">
+
+function getSel() // javascript
+{
+    // obtain the object reference for the textarea>
+    var txtarea = document.getElementById("redactedComment");
+    // obtain the index of the first selected character
+    var start = txtarea.selectionStart;
+    // obtain the index of the last selected character
+    var finish = txtarea.selectionEnd;
+    //obtain all Text
+    var allText = txtarea.value;
+
+    // obtain the selected text
+    var sel = allText.substring(start, finish);
+    //append te text;
+    var newText=allText.substring(0, start)+"(Redacted)"+allText.substring(finish, allText.length);
+
+    txtarea.value=newText;
+}
+
+document.getElementById("redactButton").addEventListener("click",getSel);
+
+</script>
+
+{% endblock %}

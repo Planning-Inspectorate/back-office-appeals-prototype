@@ -299,53 +299,11 @@
           <div class="govuk-accordion__section-header">
             <h2 class="govuk-accordion__section-heading">
               <span class="govuk-accordion__section-button" id="accordion-default-heading-2">
-                Case timetable
+                Timetable
               </span>
             </h2>
           </div>
-
-          <div id="accordion-default-content-2" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-2">
-          	{{ govukTable({
-              captionClasses: "govuk-table__caption--m",
-              firstCellIsHeader: true,
-              rows: [
-                [
-                  {
-                    text: "Start date"
-                  },
-                  {
-                    text: 38 | daysAgo
-                  },
-                  {
-                    html: ""
-                  }
-                ],
-                [
-                  {
-                    text: "LPA questionnaire due"
-                  },
-                  {
-                    text: 31 | daysAgo
-                  },
-                  {
-                    html: "<a href='#'>Change</a>"
-                  }
-                ],
-                [
-                  {
-                    text: "Site visit"
-                  },
-                  {
-                    text: -3 | daysAgo
-                  },
-                  {
-                    html: "<a href='site-visit.html'>Manage</a>"
-                  }
-                ]
-              ]
-            }) }}
-
-          </div>
+          {% include "/includes/ip-comments/timetable.html" %}
         </div>
 
         <div class="govuk-accordion__section">
@@ -359,18 +317,12 @@
           <div id="accordion-default-content-3" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-3">
             <table class="govuk-table">
 
-
               <thead class="govuk-table__head">
                 <tr class="govuk-table__row">
-
                   <th scope="col" class="govuk-table__header">Documentation</th>
-
                   <th scope="col" class="govuk-table__header">Status</th>
-
                   <th scope="col" class="govuk-table__header">Received</th>
-
                   <th scope="col" class="govuk-table__header numeric">Action</th>
-
                 </tr>
               </thead>
 

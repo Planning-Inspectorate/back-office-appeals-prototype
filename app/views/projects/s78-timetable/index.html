@@ -29,8 +29,8 @@
 {% block content %}
 
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
-        <h1 class="govuk-heading-l">Timetable variants</h1>        
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">Timetable variants</h1>
         <h1 class="govuk-heading-m">
             {% if data['appeal-type'] == 'HAS' %}
               Householder appeal
@@ -53,7 +53,8 @@
           rows: [
             {
               key: {
-                text: "Valid date"
+                text: "Valid date",
+                classes: "govuk-!-width-one-third"
               },
               value: {
                 text: 40 | daysAgo
@@ -239,7 +240,7 @@
                   ]
                 }
             } if data['appeal-type'] == 'S78inquiry',
-            
+
             {
                 key: {
                   text: "Rule 6 evidence"
@@ -365,7 +366,7 @@
                   ]
                 }
             } if data['appeal-type'] == 'S78inquiry',
-            
+
             {
                 key: {
                   text: "Site visit"

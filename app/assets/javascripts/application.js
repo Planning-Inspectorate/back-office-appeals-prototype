@@ -10,7 +10,7 @@ window.GOVUKPrototypeKit.documentReady(() => {
 // Read more links
 jQuery(function() {
 
-  var shortening_text = $(".long-answers .govuk-summary-list__value, .long-answers .govuk-table__cell");
+  var shortening_text = $(".long-answers .govuk-summary-list__value, .long-answers .govuk-table__cell, .long-answers p");
 
   shortening_text.each(function() {
     var txt = $(this).html();

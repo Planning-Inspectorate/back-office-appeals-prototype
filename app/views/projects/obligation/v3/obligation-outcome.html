@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "What is the outcome of your review?" %}
+{% set title = "Confirm s106 obligation" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
  
 {% block content %}
@@ -10,14 +10,15 @@
     <div class="govuk-grid-column-two-thirds">
 
       <span class="govuk-caption-l">Appeal 2110166</span>
-      <h1 class="govuk-heading-l"> {{ title }} </h1>
+ 
  
     {{ govukRadios({
       name: "obligation-decision",
       fieldset: {
         legend: {
+          text: "Confirm s106 obligation",
           isPageHeading: true,
-          classes: "govuk-fieldset__legend--m"
+          classes: "govuk-fieldset__legend--l"
         }
       },
       items: [

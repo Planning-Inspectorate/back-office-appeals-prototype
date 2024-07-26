@@ -18,12 +18,7 @@ The document has been redacted</p>
 
 {% endset %}
 {% set myValue4 = (data['lpa-statement-redaction'] )  %}
-<!--
-{{ govukNotificationBanner({
-html: html,
-type: "success"
-}) }}
--->
+
 </div>
 
 <div class="govuk-grid-column-full">
@@ -36,7 +31,7 @@ type: "success"
         <span class="govuk-caption-l">Appeal 2114328</span>
         <h1 class="govuk-heading-l">{{title}}</h1>
         <div class="govuk-body">
-          Select 'change' to add a new version of a document. For example, a redacted version.
+         <!-- Select 'change' to add a new version of a document. For example, a redacted version. -->
         </div>
      
     
@@ -70,7 +65,7 @@ type: "success"
             text: "Unredacted"
           },
           {
-            html: "<a href='manage-supporting-document' class='govuk-link'>Change</a>",
+            html: "<a href='manage-supporting-document' class='govuk-link'>Manage</a>",
             format: "numeric"
           }
         ],
@@ -85,7 +80,7 @@ type: "success"
             text: "Unredacted"
           },
           {
-            html: "<a href='#' class='govuk-link'>Change</a>",
+            html: "<a href='#' class='govuk-link'>Manage</a>",
             format: "numeric"
           }
         ]
@@ -101,7 +96,7 @@ type: "success"
             text: "Unredacted"
           },
           {
-            html: "<a href='#' class='govuk-link'>Change</a>",
+            html: "<a href='#' class='govuk-link'>Manage</a>",
             format: "numeric"
           }
         ],
@@ -116,7 +111,7 @@ type: "success"
             html: (data['lpa-document-redaction'] or 'Unredacted')
           },
           {
-            html: "<a href='upload-add-doc' class='govuk-link'>Change</a>",
+            html: "<a href='upload-add-doc' class='govuk-link'>Manage</a>",
             format: "numeric"
           }
         ]

@@ -1,0 +1,52 @@
+{% extends "layouts/PINS.html" %}
+
+{% set title = "Update the due date for IP comments and statements" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% block content %}
+
+ <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">
+        Appeal 2114328
+      </span>
+      <h1 class="govuk-heading-l">
+        {{ title }}
+      </h1>
+
+      {{ govukDateInput({
+        id: "IP-comment-received-date",
+        namePrefix: "IP-comment-received-date",
+        hint: {
+          html: "<p class='govuk-body'>Relevant parties will be notified of this date change.</p>
+                 <p class='govuk-hint'>For example, 28 " + 1 | monthsInFutureNumeric +" "+ 0 | yearsAgo +".</p>"
+        },
+        items: [
+          {
+            classes: "govuk-input--width-2",
+            name: "day",
+            value: 0 | daysAgoDayNumeric
+          },
+          {
+            classes: "govuk-input--width-2",
+            name: "month",
+            value: 0 | monthsAgoNumeric
+          },
+          {
+            classes: "govuk-input--width-4",
+            name: "year",
+            value: 0 | yearsAgo
+          }
+        }
+      }) }}
+
+      {{ govukButton({
+        href: "update-due-date-cya",
+        text: "Continue"
+      }) }}
+
+    </div>
+  </div>
+
+{% endblock %}

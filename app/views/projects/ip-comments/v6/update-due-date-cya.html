@@ -1,0 +1,47 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Confirm due date for IP comments and statements" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = true %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Appeal 2114328</span>
+      <h1 class="govuk-heading-l">
+        {{ title }}
+      </h1>
+
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Due date"
+            },
+            value: {
+              html: 7 | daysInFuture
+            }
+          }
+        ]
+      }) }}
+
+      {{ govukInsetText({
+        text: "Confirming the date change will notify relevant parties."
+      }) }}
+
+      <form action="due-date-changed-confirmation" method="post" class="govuk-!-margin-top-2">
+        {{ govukButton({
+          text: "Confirm"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

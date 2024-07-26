@@ -1,22 +1,22 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set pageName="Personal list" %}
+{% set title = "Comment invalid" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
 
-{% set back = true %}
+{% set back = false %}
 
 {% block content %}
-
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-            
-      {{ govukPanel({
-      titleText: "Comment invalid",
-	  html: "Appeal reference<br><strong>2114328</strong>"
+    {{ govukPanel({
+      titleText: title,
+	    html: "Appeal reference<br><strong>2114328</strong>"
     }) }}
 
-    <p class="govuk-body">The interested party has not been informed because no email address was provided. 
+    <p class="govuk-body">
+      The interested party has not been informed because no email address was provided. 
     </p>
 
     <p class="govuk-body">
@@ -25,8 +25,6 @@
       </a>
     </p>
 
-
-	
   </div>
 </div>
 

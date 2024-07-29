@@ -18,7 +18,7 @@
   </div>
 
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
+    <div class="govuk-grid-column-one-half">
 
       {{ govukSummaryList({
         rows: [
@@ -28,10 +28,22 @@
             },
             value: {
               html: 7 | daysInFuture
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "due date"
+                }
+              ]
             }
           }
         ]
       }) }}
+
+    </div>
+    <div class="govuk-grid-column-two-thirds">
 
       {{ govukInsetText({
         text: "Confirming the date change will notify relevant parties."

@@ -1,92 +1,94 @@
- 
 {% extends "layouts/PINS-post-mvp.html" %}
+
 {% set title = "Redact LPA statement" %}
-{% set pageName = title + ' - Planning Inspectorate'%} 
+{% set pageName = title + ' - Planning Inspectorate'%}
+
 {% block content %}
-
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
-     
-    
-    <span class="govuk-caption-l">Appeal 2110166</span>
-  
+      <span class="govuk-caption-l">Appeal 2110166</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
 
-    <h1 class="govuk-heading-l">{{title}}</h1>
-    <form action="lpa-statement-redacted" method="post" class="">
-    <div class="govuk-grid-row">
+      <form action="lpa-statement-redacted" method="post" class="">
+        <div class="govuk-grid-row">
 
-      <div class="govuk-grid-column-full govuk-!-margin-bottom-0">
-        <h2 class="govuk-heading-m">
-          Make redactions
-        </h2>
-    
-        <ol class="govuk-list govuk-list--number">
-          <li>
-            Use the 'redacted statement' box to select the words you want to redact.
-          </li>
-          <li>
-            Select 'redact' to confirm your redaction. Repeat until you have finished.
-          </li>
-          <li>
-            Select 'continue' when you have finished redacting.
-          </li>
-        </ol>
-    
-      </div>
-    <div class="govuk-grid-column-one-half">
- 
-  
-        {{ govukTextarea({
-          name: "redactedStatement",
-          id: "redactedStatement",
-          rows: "40",
-          label: {
-            html: "Redacted statement",
-            classes: "govuk-label--m",
-            isPageHeading: false
-          },
-         
-          value:  data['redactedStatement' ] or 
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus. 
-Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus. Mauris nulla erat, posuere ut nisi vitae, pulvinar gravida arcu.
-           
-Morbi ac mauris enim. Curabitur magna lacus, eleifend in euismod in, accumsan convallis velit. Quisque bibendum urna id molestie hendrerit. Cras mattis mi non lobortis eleifend. Quisque nisl purus, sollicitudin interdum convallis a, tristique vulputate mi. Mauris eget nisl in massa mollis luctus. Vestibulum consectetur maximus cursus. Integer molestie ipsum et nunc eleifend venenatis. 
-Aliquam posuere dui et felis tempor tristique. Aenean porta vehicula imperdiet. Nunc sed egestas risus, ut fringilla orci. Proin lobortis sapien interdum nunc iaculis rutrum. Phasellus consectetur vitae dui in vulputate.
-        
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam id diam sapien. Proin erat lorem, posuere ac elit vitae, tempor elementum justo. Vestibulum laoreet scelerisque suscipit.  Nulla facilisis elit vel faucibus maximus. Donec non malesuada nisl. Sed a lorem arcu. In iaculis faucibus ultricies. Donec elementum, odio euismod feugiat ullamcorper, enim nunc varius metus, sit amet auctor mauris lacus eget augue. 
-Maecenas sed lacus sit amet elit pretium dignissim. Suspendisse non pellentesque nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean sed facilisis sem."
-          
-        }) }}
-  
-        <a href="#" class="govuk-button govuk-button--secondary">Redact</a><br>
-  
-        {{ govukButton({
-          text: "Continue"
-        }) }}
+          <div class="govuk-grid-column-full govuk-!-margin-bottom-0">
+            <h2 class="govuk-heading-m">
+              Make redactions
+            </h2>
+
+            <ol class="govuk-list govuk-list--number">
+              <li>
+                Use the ‘redacted statement’ box to select the words you want to redact.
+              </li>
+              <li>
+                Select ‘redact’ to confirm your redaction. Repeat until you have finished.
+              </li>
+              <li>
+                Select ‘continue’ when you have finished redacting.
+              </li>
+            </ol>
+          </div>
+
+          <div class="govuk-grid-column-one-half">
+
+            {{ govukTextarea({
+              name: "redactedStatement",
+              id: "redactedStatement",
+              rows: "40",
+              label: {
+                html: "Redacted statement",
+                classes: "govuk-label--m",
+                isPageHeading: false
+              },
+
+              value:  data['redactedStatement' ] or
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus.
+              Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus. Mauris nulla erat, posuere ut nisi vitae, pulvinar gravida arcu.
+
+              Morbi ac mauris enim. Curabitur magna lacus, eleifend in euismod in, accumsan convallis velit. Quisque bibendum urna id molestie hendrerit. Cras mattis mi non lobortis eleifend. Quisque nisl purus, sollicitudin interdum convallis a, tristique vulputate mi. Mauris eget nisl in massa mollis luctus. Vestibulum consectetur maximus cursus. Integer molestie ipsum et nunc eleifend venenatis.
+              Aliquam posuere dui et felis tempor tristique. Aenean porta vehicula imperdiet. Nunc sed egestas risus, ut fringilla orci. Proin lobortis sapien interdum nunc iaculis rutrum. Phasellus consectetur vitae dui in vulputate.
+
+              Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam id diam sapien. Proin erat lorem, posuere ac elit vitae, tempor elementum justo. Vestibulum laoreet scelerisque suscipit.  Nulla facilisis elit vel faucibus maximus. Donec non malesuada nisl. Sed a lorem arcu. In iaculis faucibus ultricies. Donec elementum, odio euismod feugiat ullamcorper, enim nunc varius metus, sit amet auctor mauris lacus eget augue.
+              Maecenas sed lacus sit amet elit pretium dignissim. Suspendisse non pellentesque nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean sed facilisis sem."
+            }) }}
+
+            <a href="#" class="govuk-button govuk-button--secondary">
+              Redact
+            </a>
+
+            {{ govukButton({
+              text: "Continue"
+            }) }}
+          </div>
+
+          <div class="govuk-grid-column-one-half">
+            <h2 class="govuk-heading-m">Unredacted statement</h2>
+
+            <p class="govuk-body">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus.
+              Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus.
+              Mauris nulla erat, posuere ut nisi vitae, pulvinar gravida arcu.
+            </p>
+
+            <p class="govuk-body">
+              Morbi ac mauris enim. Curabitur magna lacus, eleifend in euismod in, accumsan convallis velit. Quisque bibendum urna id molestie hendrerit. Cras mattis mi non lobortis eleifend.
+              Quisque nisl purus, sollicitudin interdum convallis a, tristique vulputate mi. Mauris eget nisl in massa mollis luctus. Vestibulum consectetur maximus cursus. Integer molestie ipsum et nunc eleifend venenatis.
+              Aliquam posuere dui et felis tempor tristique. Aenean porta vehicula imperdiet. Nunc sed egestas risus, ut fringilla orci. Proin lobortis sapien interdum nunc iaculis rutrum. Phasellus consectetur vitae dui in vulputate.
+            </p>
+
+            <p class="govuk-body">
+              Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam id diam sapien. Proin erat lorem, posuere ac elit vitae, tempor elementum justo. Vestibulum laoreet scelerisque suscipit.
+              Nulla facilisis elit vel faucibus maximus. Donec non malesuada nisl. Sed a lorem arcu. In iaculis faucibus ultricies. Donec elementum, odio euismod feugiat ullamcorper, enim nunc varius metus, sit amet auctor mauris lacus eget augue.
+              Maecenas sed lacus sit amet elit pretium dignissim. Suspendisse non pellentesque nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean sed facilisis sem.
+            </p>
+
+          </div>
+
+        </div>
       </form>
-    </div>
-    <div class="govuk-grid-column-one-half">
-      <h2 class="govuk-heading-m">Unredacted statement</h2>
-      <p class="govuk-body"> 
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus. 
-        Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus. 
-        Mauris nulla erat, posuere ut nisi vitae, pulvinar gravida arcu.
-        <br><br>
-        Morbi ac mauris enim. Curabitur magna lacus, eleifend in euismod in, accumsan convallis velit. Quisque bibendum urna id molestie hendrerit. Cras mattis mi non lobortis eleifend. 
-        Quisque nisl purus, sollicitudin interdum convallis a, tristique vulputate mi. Mauris eget nisl in massa mollis luctus. Vestibulum consectetur maximus cursus. Integer molestie ipsum et nunc eleifend venenatis. 
-        Aliquam posuere dui et felis tempor tristique. Aenean porta vehicula imperdiet. Nunc sed egestas risus, ut fringilla orci. Proin lobortis sapien interdum nunc iaculis rutrum. Phasellus consectetur vitae dui in vulputate.
-        <br><br>
-      
-        Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam id diam sapien. Proin erat lorem, posuere ac elit vitae, tempor elementum justo. Vestibulum laoreet scelerisque suscipit. 
-        Nulla facilisis elit vel faucibus maximus. Donec non malesuada nisl. Sed a lorem arcu. In iaculis faucibus ultricies. Donec elementum, odio euismod feugiat ullamcorper, enim nunc varius metus, sit amet auctor mauris lacus eget augue. 
-        Maecenas sed lacus sit amet elit pretium dignissim. Suspendisse non pellentesque nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean sed facilisis sem.
-         
-   
+
     </div>
   </div>
- 
-
-
 {% endblock %}

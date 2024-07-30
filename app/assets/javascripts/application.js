@@ -14,12 +14,12 @@ jQuery(function() {
 
   shortening_text.each(function() {
     var txt = $(this).html();
-    if (txt.length < 250) return;
+    if (txt.length < 500) return;
     $(this).html(
-      txt.slice(0, 250) +
+      txt.slice(0, 500) +
         '<span>... </span><a href="#" class="show">Read more</a>' +
         '<span style="display:none;">' +
-        txt.slice(250, txt.length) +
+        txt.slice(500, txt.length) +
         ' <a href="#" class="less">Close</a></span>'
     );
   });

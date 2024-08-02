@@ -1,9 +1,7 @@
-
 {% extends "layouts/PINS-post-mvp.html" %}
 
 {% set title = "Check your answers" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
-
 
 {% set prototypeLinks = [
   {
@@ -24,161 +22,111 @@
       <span class="govuk-caption-l">Appeal 2110166</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
 
+      <form action="lpa-statement-invalid" method="post" class="govuk-!-margin-top-0" novalidate>
 
-      <form action="lpa-statement-incomplete" method="post" class="govuk-!-margin-top-0" novalidate>
-
-       
-      {{ govukSummaryList({
-        classes: "long-answers govuk-!-margin-bottom-6",
-        rows: [
-        {
-          key: {
-            text: "Unredacted LPA statement"
-          },
-          value: {
-            html: data['original-statement'] or "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus. 
-            Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus. 
-            Mauris nulla erat, posuere ut nisi vitae, pulvinar gravida arcu."
-          },
-          actions: {
-            items: [
-              {
-                href: "select-allocation",
-                text: "",
-                visuallyHiddenText: ""
-              }
-            ]
-          }
-        },
-            
-           {
-              key: {
-                text: "Redacted LPA statement"
-              },
-              value: {
-                html: data['redacted-statement'] or " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus. 
-                Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus. 
-                Mauris nulla erat, posuere ut nisi vitae, pulvinar gravida arcu."
-              } ,
-              actions: {
-                items: [
-                  {
-                    href: "redact-lpa-statement",
-                    text: "Change",
-                    visuallyHiddenText: "Redacted statement"
-                  }
-                ]
-              }
-            } if data ['redacted-statement-done'],
-
+        {{ govukSummaryList({
+          classes: "long-answers govuk-!-margin-bottom-6",
+          rows: [
             {
               key: {
-                text: "Redacted LPA statement"
+                text: "Unredacted LPA statement"
               },
               value: {
-                html: "Not applicable"
-              } ,
+                html: data['original-statement'] or "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus.
+                Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus.
+                Mauris nulla erat, posuere ut nisi vitae, pulvinar gravida arcu."
+              },
               actions: {
                 items: [
                   {
-                    href: "redact-lpa-statement",
-                    text: "Change",
-                    visuallyHiddenText: "Redacted statement"
+                    href: "select-allocation",
+                    text: "",
+                    visuallyHiddenText: ""
                   }
                 ]
               }
-            } if data ['redacted-statement-done'] !='yes',
-
+            },
             {
               key: {
                 text: "Supporting documents"
               },
               value: {
-                html:"<li><a href='#'>example1.pdf</a></li>
-                <li><a href='#'>example2.pdf</a></li>
-                <li><a href='#'>example3.pdf</a></li>
-
-              "
+                html:"<ul class='govuk-list govuk-list--bullet'><li><a href='#'>2110166-statement-appendix-A.doc</a></li>
+                <li><a href='#'>2110166-statement-appendix-B.doc</a></li></ul>"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "redact-supporting-documents",
+                    text: "Change",
+                    visuallyHiddenText: "Supporting documents"
+                  }
+                ]
+              }
             },
-            actions: {
-              items: [
-                {
-                  href: "redact-supporting-documents",
-                  text: "Change",
-                  visuallyHiddenText: "Supporting documents"
-                }
-              ]
+            {
+              key: {
+                text: "Review outcome"
+              },
+              value: {
+               text: 'Invalid'
+              },
+              actions: {
+                items: [
+                  {
+                    href: "what-is-outcome-of-review",
+                    text: "Change",
+                    visuallyHiddenText: "Review outcome"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Reasons"
+              },
+              value: {
+                html: "<ul class='govuk-list govuk-list--bullet'><li>Attachments and/or appendices missing</li><li>Other: (Given reason text)</li></ul>"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "why-incomplete",
+                    text: "Change",
+                    visuallyHiddenText: "Reasons"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Due date"
+              },
+              value: {
+                html: 3 | daysInFuture
+              },
+              actions: {
+                items: [
+                  {
+                    href: "update-due-date",
+                    text: "Change",
+                    visuallyHiddenText: "due date"
+                  }
+                ]
+              }
             }
-          },
-          {
-            key: {
-              text: "Review outcome"
-            },
-            value: {
-             text: 'Incomplete'
-            },
-            actions: {
-              items: [
-                {
-                  href: "what-is-outcome-of-review",
-                  text: "Change",
-                  visuallyHiddenText: "Review outcome"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Reasons"
-            },
-            value: {
+          ]}
+        )
+      }}
 
-              html: "<li>Reason 1</li><li>Reason 2</li><li>Other: (Given reason text)</li>"
-            },
-            actions: {
-              items: [
-                {
-                  href: "why-incomplete",
-                  text: "Change",
-                  visuallyHiddenText: "Reasons"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Due date"
-            },
-            value: {
-              html: 3 | daysInFuture
-            },
-            actions: {
-              items: [
-                {
-                  href: "update-due-date",
-                  text: "Change",
-                  visuallyHiddenText: "due date"
-                }
-              ]
-            }
-          }
-          ]})
-        }}
+      {{ govukInsetText({
+        html: "Confirming will inform the relevant parties
+        of the outcome"
+      }) }}
 
-        <!--
-         {{ (data['reason-incomplete'] + ":")  }}
-         {{ data['whats-missing'] }}
-         {{ data['what-reason'] }}
-        -->
-
-        {{ govukInsetText({
-          html: "Confirming will inform the relevant parties
-          of the outcome"
-        }) }}
-
-        {{ govukButton({
-          text: "Confirm"
-        }) }}
+      {{ govukButton({
+        text: "Confirm"
+      }) }}
 
       </form>
 

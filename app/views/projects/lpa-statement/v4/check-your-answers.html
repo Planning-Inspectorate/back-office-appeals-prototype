@@ -46,118 +46,112 @@
               ]
             }
           },
-
-             {
-                key: {
-                  text: "Redacted LPA statement"
-                },
-                value: {
-                  html: data['redacted-statement'] or " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus.
-                  Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus.
-                  Mauris nulla erat, posuere ut nisi vitae, pulvinar gravida arcu."
-                } ,
-                actions: {
-                  items: [
-                    {
-                      href: "redact-lpa-statement",
-                      text: "Change",
-                      visuallyHiddenText: "Redacted statement"
-                    }
-                  ]
-                }
-              } if data ['redacted-statement-done'],
-
-              {
-                key: {
-                  text: "Redacted LPA statement"
-                },
-                value: {
-                  html: "Not applicable"
-                } ,
-                actions: {
-                  items: [
-                    {
-                      href: "redact-lpa-statement",
-                      text: "Change",
-                      visuallyHiddenText: "Redacted statement"
-                    }
-                  ]
-                }
-              } if data ['redacted-statement-done'] !='yes',
-
-              {
-                key: {
-                  text: "Supporting documents"
-                },
-                value: {
-                  html:"<li><a href='#'>example1.pdf</a></li>
-                  <li><a href='#'>example2.pdf</a></li>
-                  <li><a href='#'>example3.pdf</a></li>
-                  "
-                },
-                actions: {
-                  items: [
-                    {
-                      href: "redact-supporting-documents",
-                      text: "Change",
-                      visuallyHiddenText: "Supporting documents"
-                    }
-                  ]
-                }
-              },{
-              key: {
-                text: "Review outcome"
-              },
-              value: {
-               text:   data['issue-decision' ]
-              },
-              actions: {
-                items: [
-                  {
-                    href: "what-is-outcome-of-review",
-                    text: "Change",
-                    visuallyHiddenText: "Review outcome"
-                  }
-                ]
-              }
+          {
+            key: {
+              text: "Redacted LPA statement"
             },
-            {
-              key: {
-                text: "Allocation level"
-              },
-              value: {
-                text: data['allocation-level'] or "Level"
-              },
-              actions: {
-                items: [
-                  {
-                    href: "select-allocation",
-                    text: "Change",
-                    visuallyHiddenText: "Level"
-                  }
-                ]
-              }
+            value: {
+              html: data['redacted-statement'] or " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus.
+              Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus.
+              Mauris nulla erat, posuere ut nisi vitae, pulvinar gravida arcu."
+            } ,
+            actions: {
+              items: [
+                {
+                  href: "redact-lpa-statement",
+                  text: "Change",
+                  visuallyHiddenText: "Redacted statement"
+                }
+              ]
+            }
+          } if data ['redacted-statement-done'],
+          {
+            key: {
+              text: "Redacted LPA statement"
             },
-
-            {
-              key: {
-                text: "Allocation specialisms"
-              },
-              value: {
-                text: data['specialism']  or
-                 "Not provided"
-              },
-              actions: {
-                items: [
-                  {
-                    href: "select-specialism",
-                    text: "Change",
-                    visuallyHiddenText: "Specialism"
-                  }
-                ]
-              }
-            }]
-          })
+            value: {
+              html: "Not applicable"
+            } ,
+            actions: {
+              items: [
+                {
+                  href: "redact-lpa-statement",
+                  text: "Change",
+                  visuallyHiddenText: "Redacted statement"
+                }
+              ]
+            }
+          } if data ['redacted-statement-done'] !='yes',
+          {
+            key: {
+              text: "Supporting documents"
+            },
+            value: {
+              html:"<ul class='govuk-list govuk-list--bullet'><li><a href='#'>2110166-statement-appendix-A.doc</a></li>
+              <li><a href='#'>2110166-statement-appendix-B.doc</a></li></ul>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "redact-supporting-documents",
+                  text: "Change",
+                  visuallyHiddenText: "Supporting documents"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Review outcome"
+            },
+            value: {
+             text: data['review-decision']
+            },
+            actions: {
+              items: [
+                {
+                  href: "what-is-outcome-of-review",
+                  text: "Change",
+                  visuallyHiddenText: "Review outcome"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Allocation level"
+            },
+            value: {
+              text: data['allocation-level'] or "Level"
+            },
+            actions: {
+              items: [
+                {
+                  href: "select-allocation",
+                  text: "Change",
+                  visuallyHiddenText: "Level"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Allocation specialisms"
+            },
+            value: {
+              text: data['specialism']  or
+               "Not provided"
+            },
+            actions: {
+              items: [
+                {
+                  href: "select-specialism",
+                  text: "Change",
+                  visuallyHiddenText: "Specialism"
+                }
+              ]
+            }
+          }] })
         }}
 
         {{ govukButton({
@@ -169,4 +163,4 @@
     </div>
   </div>
 
-  {% endblock %}
+{% endblock %}

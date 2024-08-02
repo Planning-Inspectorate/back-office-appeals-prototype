@@ -1,67 +1,61 @@
- 
 {% extends "layouts/PINS-post-mvp.html" %}
+
 {% set title = "Case details" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
- 
-{% block content %}
 
+{% block content %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-{% set html %}
-<p class="govuk-notification-banner__heading">
-  Document added to LPA statement 
-</p>
+      {% set html %}
+      <p class="govuk-notification-banner__heading">
+        Document added to LPA statement
+      </p>
 
-{% endset %}
+      {% endset %}
 
-{{ govukNotificationBanner({
-html: html,
-type: "success"
-}) }}
+      {{ govukNotificationBanner({
+      html: html,
+      type: "success"
+      }) }}
 
+      {% set html %}
+        <p class="govuk-notification-banner__heading">
+          LPA statement incomplete
+          <ul>
+            <li> Attachments and/or appendices missing</li>
+            <!-- <li>  {{ data['reason-incomplete' ] + "   " + data['whats-missing' ]  + data['what-reason' ] + "  " or "Reason 1" }} </li> -->
 
-    {% set html %}
-  <p class="govuk-notification-banner__heading">
-  LPA statement incomplete
-    <ul>
-      <li> Attachments and/or appendices missing</li>
-      <!-- <li>  {{ data['reason-incomplete' ] + "   " + data['whats-missing' ]  + data['what-reason' ] + "  " or "Reason 1" }} </li> -->
-      
-  </ul>
-  <a href="upload-add-doc">Add document</a> | <a href="lpa-statement-review">Review</a></p>
-<p>
-  <a class="govuk-notification-banner__link" href="../../cross-copy/v1/lpa-statement-publish">
+        </ul>
+        <a href="upload-add-doc">Add document</a> | <a href="lpa-statement-review">Review</a></p>
+        <p>
+          <a class="govuk-notification-banner__link" href="../../cross-copy/v1/lpa-statement-publish"></a>
+        </p>
+        {% endset %}
 
-     
-  </a>
-</p>
-{% endset %}
- 
+        {{ govukNotificationBanner({
+          html: html,
+          type: "important"
+        }) }}
 
-{{ govukNotificationBanner({
-html: html,
-type: "important"
-}) }}
- 
-</div>
-</div>
+      </div>
+    </div>
+
     <span class="govuk-caption-l">Appeal 2110166</span>
     	<h1 class="govuk-heading-l">{{ title }}</h1>
- 
 
         {{ govukTag({
           text: "Statements",
           classes: "govuk-tag--blue"
         })}}
 
- 
+
 
       {% include "/includes/appeal-content/mvp-has-appeal-meta.html" %}
       <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
-     
+
 
       <div class="govuk-accordion govuk-!-margin-top-9" data-module="govuk-accordion" id="accordion-default">
         <div class="govuk-accordion__section">
@@ -260,7 +254,7 @@ type: "important"
                 ],[
                   {
                     text: "Neighbouring sites
-                    (Inspector and / or 
+                    (Inspector and / or
                     third party request)"
                   },
                   {
@@ -268,13 +262,13 @@ type: "important"
                   },
                   {
                     html: "<dd class='govuk-summary-list__actions'>
-              
+
                       <ul class='govuk-summary-list__actions-list'><li class='govuk-summary-list__actions-list-item'><a class='govuk-link' href='#'>
                             </a><a href='#'>Add</a><span class='govuk-visually-hidden'> access for neighbouring sites</span>
                             </li><li class='govuk-summary-list__actions-list-item'><a class='govuk-link' href='#'>
                             </a><a href='#'>Manage</a><span class='govuk-visually-hidden'> access for neighbouring sites</span>
                             </li></ul>
-                    
+
                   </dd>",
                     format: "numeric"
                   }
@@ -555,7 +549,7 @@ type: "important"
             }) }}
           </div>
         </div>
-        
+
         <div class="govuk-accordion__section">
           <div class="govuk-accordion__section-header">
             <h2 class="govuk-accordion__section-heading">
@@ -658,7 +652,7 @@ type: "important"
                     html: "<a href='#'>Change</a>",
                     format: "numeric"
                   }
-                ] 
+                ]
               ]
             }) }}
           </div>
@@ -666,7 +660,7 @@ type: "important"
 
       </div>
 
-     
+
 
     </div>
   </div>

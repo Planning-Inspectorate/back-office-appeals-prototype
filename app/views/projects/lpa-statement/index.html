@@ -1,6 +1,7 @@
 {% extends "layouts/PINS-Simple-post-mvp.html" %}
 
-{% set pageName="Case details" %}
+{% set title = "Review LPA statement" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
 
 {% set back = false %}
 
@@ -10,94 +11,135 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-<span class="govuk-caption-l">Appeal a planning decision</span>
-<h1 class="govuk-heading-l">LPA statement</h1>
+    <span class="govuk-caption-l">Appeal a planning decision</span>
+    <h1 class="govuk-heading-l">{{ title }}</h1>
 
-{{ govukTable({
-  captionClasses: "govuk-table__caption--m",
-  firstCellIsHeader: true,
+    {{ govukTable({
+      captionClasses: "govuk-table__caption--m",
+      firstCellIsHeader: true,
 
-  rows: [
-    [
-      {
-        text: "Typical user"
-      },
-      {
-        text: "Case officers"
-      }
-    ],
-    [
-      {
-        text: "User story"
-      },
-      {
-        html: "<ul class='govuk-list govuk-list--bullet'><li> As a CO I can review and issue a decision on the 'acceptability' of an LPA statement
-          So that the case can progress with all necessary evidence and without sensitive information of any kind</li></ul>"
-      }
-    ],
-    [
-      {
-        text: "Jira ticket"
-      },
-      {
-        html: 'BDPAR-1'
-      }
-    ]
-  ]
-}) }}
-  
-<h1 class="govuk-heading-m">Version 3
+      rows: [
+        [
+          {
+            text: "Typical user",
+            classes: "govuk-!-width-one-third"
+          },
+          {
+            text: "Case officers"
+          }
+        ],
+        [
+          {
+            text: "User story"
+          },
+          {
+            html: "As a CO I can review and issue a decision on the ‘acceptability’ of an LPA statement,<br>
+              So that the case can progress with all necessary evidence and without sensitive information of any kind."
+          }
+        ],
+        [
+          {
+            text: "Jira ticket"
+          },
+          {
+            html: 'BDPAR-1'
+          }
+        ]
+      ]
+    }) }}
 
-  {{govukTag({
-      text: "In progress",
-      classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-    })}}
+    <h2 class="govuk-heading-m">
+      Version 4
+      {{govukTag({
+          text: "In progress",
+          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+      })}}
+    </h2>
 
-</h1>
+    <h3 class="govuk-heading-s">Features:</h3>
+    <ul class='govuk-list govuk-list--bullet'>
+      <li>
+        More aligned with IP comments, review happens on one screen
+      </li>
+    </ul>
 
-<h2 class="govuk-heading-s">Features:</h2>
-<ul class='govuk-list govuk-list--bullet'><li> Improvements to redaction process, document upload, 
-  statement due date which brings these patterns inline with other sections.</li>
-<li>Alternative journey start from <a href="v3/index"> cases assigned to you</a> page</li>
-<li>Additional journey for adding <a href="v3/case-incomplete-add-doc"> missing documents</a>.</li></ul>
+    <a href="v4/case" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
+      View prototype
+      <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+        <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+      </svg>
+    </a>
 
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
-<a href="v3/case" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
-  View prototype
-  <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
-    <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
-  </svg></a>
+    <h2 class="govuk-heading-m">
+      Version 3
+      {{govukTag({
+          text: "In progress",
+          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+      })}}
+    </h2>
 
+    <h3 class="govuk-heading-s">Features:</h3>
+      <ul class='govuk-list govuk-list--bullet'>
+        <li>
+          Improvements to redaction process, document upload, statement due date which brings these patterns inline with other sections.
+        </li>
+        <li>
+          Alternative journey start from <a href="v3/index"> cases assigned to you</a> page
+        </li>
+        <li>
+          Additional journey for adding <a href="v3/case-incomplete-add-doc"> missing documents</a>.
+        </li>
+      </ul>
 
-  <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-  
-<h1 class="govuk-heading-m">Version 2</h1>
+      <a href="v3/case" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
+        View prototype
+        <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+          <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+        </svg>
+      </a>
 
-<h2 class="govuk-heading-s">Features:</h2>
-<ul class='govuk-list govuk-list--bullet'><li> Re-ordered screens so user selects outcome first and redaction only if complete</li></ul>
+      <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
-<a href="v2/" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
-  View prototype
-  <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
-    <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
-  </svg></a>
+      <h2 class="govuk-heading-m">
+        Version 2
+      </h2>
 
+      <h3 class="govuk-heading-s">Features:</h3>
+      <ul class='govuk-list govuk-list--bullet'>
+        <li>
+          Re-ordered screens so user selects outcome first and redaction only if complete
+        </li>
+      </ul>
 
-  <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-  <h1 class="govuk-heading-m">Version 1
+      <a href="v2/" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
+        View prototype
+        <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+          <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+        </svg>
+      </a>
 
-    
-  </h1>
-  
-  <h2 class="govuk-heading-s">Features:</h2>
-  <ul class='govuk-list govuk-list--bullet'><li> Review statement and select outcomes and select allocation level</li></ul>
-  
-  <a href="v1/" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
-    View prototype
-    <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
-      <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
-    </svg></a>
-</div>
-</div>
+      <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+      <h2 class="govuk-heading-m">
+        Version 1
+      </h2>
+
+      <h3 class="govuk-heading-s">Features:</h3>
+
+      <ul class='govuk-list govuk-list--bullet'>
+        <li>
+          Review statement and select outcomes and select allocation level
+        </li>
+      </ul>
+
+      <a href="v1/" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
+        View prototype
+        <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+          <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+        </svg>
+      </a>
+    </div>
+  </div>
 
 {% endblock %}

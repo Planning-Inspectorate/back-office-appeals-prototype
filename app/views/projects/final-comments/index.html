@@ -47,13 +47,23 @@
   ]
 }) }}
   
+ 
+  <h2 class="govuk-heading-m">
+  Version 2
+  {{govukTag({
+      text: "In progress",
+      classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+  })}}
+</h2>
 
+<h3 class="govuk-heading-s">Features:</h3>
+<ul class='govuk-list govuk-list--bullet'>
+  <li> Review final comment and select redaction options</li>
+  <li>Start from the personal list / <a href="v2/index">Cases assigned to you</a></li>
+  <li>View <a href="v2/case?party=appellant">Appellant version</a> rather than LPA</li>
+</ul>
 
-<h2 class="govuk-heading-s">Features:</h2>
-<ul class='govuk-list govuk-list--bullet'><li> Review final comment and select redaction options</li></ul>
-<p><a href="v1/index">Cases assigned to you</a></p>
-<p><a href="v1/case?party=appellant">Appellant version</a></p>
-<a href="v1/case?party=LPA" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
+<a href="v2/case?party=LPA" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
   View prototype
   <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
     <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
@@ -61,6 +71,30 @@
 
   <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
+  <h2 class="govuk-heading-m">
+    Version 1
+    {{govukTag({
+        text: "In progress",
+        classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+    })}}
+  </h2>
+  
+  <h3 class="govuk-heading-s">Features:</h3>
+  <ul class='govuk-list govuk-list--bullet'>
+    <li> Review final comment and select redaction options</li>
+    <li>Start from the personal list / <a href="v1/index">Cases assigned to you</a></li>
+    <li>View <a href="v1/case?party=appellant">Appellant version</a> rather than LPA</li>
+  </ul>
+  
+  <a href="v1/case?party=LPA" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
+    View prototype
+    <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+      <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+    </svg></a>
+  
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    
 </div>
 </div>
 

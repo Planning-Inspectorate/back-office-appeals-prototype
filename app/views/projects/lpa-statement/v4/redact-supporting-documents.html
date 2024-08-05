@@ -1,10 +1,15 @@
  
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Confirm supporting documents" %}
+{% set title = "Supporting documents" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
-{% set back = true %}
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "statement-review"
+  }) }}
+  {% endblock %}
 
 {% block content %}
 
@@ -112,11 +117,11 @@ type: "success"
       <a href="upload-supporting-document" class="govuk-link">Add document</a><br><br>
 
     </p>
-    
+    <!--
     {{ govukButton({
       text: "Confirm"
     }) }}
-
+-->
   </div>
 </div>
 </form>

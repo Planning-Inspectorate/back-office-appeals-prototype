@@ -60,60 +60,9 @@
       ]
     }) }}
 
-    <dl class="govuk-summary-list">
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Supporting documents
-        </dt>
-        <dd class="govuk-summary-list__value">
+     
 
-          {% if data['documents-added'] %}
-            <ul class="govuk-list govuk-list--bullet">
-              <li>
-                <a href='#' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document.doc')}}</a>
-              </li>
-              {% if data['anotherdocument'] %}
-                <li>
-                  <a href='#' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document-2.doc')}}</a>
-                </li>
-              {% endif %}
-            </ul>
-          {% endif %}
-
-          {% if data['documents-added'] %}
-            <ul class="govuk-list govuk-list--bullet">
-              <li>
-                <a href='#' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document.doc')}}</a>
-              </li>
-              {% if data['anotherdocument'] %}
-                <li>
-                  <a href='#' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document-2.doc')}}</a>
-                </li>
-              {% endif %}
-            </ul>
-          {% else %}
-            Not provided
-          {% endif %}
-        </dd>
-        <dd class="govuk-summary-list__actions">
-          {% if data['documents-added'] %}
-            <a href='redact-supporting-documents' class='govuk-link govuk-link--no-visited-state'>
-              Manage<span class="govuk-visually-hidden"> supporting docs</span>
-            </a>
-          {% else %}
-            {% if data['comment-type'] == 'doc' %}
-              <a href='redact-supporting-documents' class='govuk-link govuk-link--no-visited-state'>
-                Manage<span class="govuk-visually-hidden"> supporting docs</span></a> <span class="govuk-hint">|</span>
-            {% endif %}
-            <a href='upload-extra-supporting-document?comment-attachment=review' class='govuk-link govuk-link--no-visited-state'>
-              Change<span class="govuk-visually-hidden"> supporting docs</span>
-            </a>
-          {% endif %}
-        </dd>
-      </div>
-    </dl>
-
-    <form action="check-your-answers" method="post" class="govuk-!-margin-top-2">
+    <form action="check-your-answers?redacted-statement-done=yes" method="post" class="govuk-!-margin-top-6">
       {{ govukButton({
         text: "Confirm redaction and accept comments"
       }) }}

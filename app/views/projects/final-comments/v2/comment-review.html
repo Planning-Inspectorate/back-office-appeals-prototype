@@ -25,7 +25,7 @@
           <dl class="govuk-summary-list govuk-!-margin-bottom-0">
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Comment
+                Final comment
               </dt>
               <dd class="govuk-summary-list__value long-answers">
                 <p class="govuk-body">
@@ -40,7 +40,8 @@
               </dd>
             </div>
           </dl>
-    
+          <p></p>
+    <!-- remove supporting documents
           <dl class="govuk-summary-list">
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
@@ -92,9 +93,8 @@
               </dd>
             </div>
           </dl>
-    
-        </div>
-      </div>
+   remove supporting documents -->
+ 
         
 
      
@@ -114,11 +114,11 @@
       items: [
         {
           value: "Accept~check-your-answers",
-          text: "Accept comment"
+          text: "Accept LPA comment /valid comment"
         },
         {
           value: "no~redact-supporting-documents",
-          text: "Redact comment"
+          text: "Redact LPA comment"
         } 
          
       ]
@@ -138,7 +138,7 @@
       },
       items: [
         {
-          value: "Accept~check-your-answers",
+          value: "Valid~check-your-answers",
           text: "Accept comment / valid comment"
         },
         {
@@ -150,7 +150,7 @@
         },
       {
         value: "Reject~why-incomplete",
-        text: "Reject comment"
+        text: "Invalid comment"
       }
          
       ]

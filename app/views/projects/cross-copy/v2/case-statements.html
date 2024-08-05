@@ -3,47 +3,36 @@
 {% set pageName="Case details" %}
 
 {% block content %}
-
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-	{% set html %}
-      <p class="govuk-notification-banner__heading">
-  	    Cross copy statements 
-  	  </p>
-  	  <p>
-        <a class="govuk-notification-banner__link" href="crosscopy-statements.html">
-          Review
-        </a>
-      </p>
-    {% endset %}
+      {% set html %}
+        <p class="govuk-notification-banner__heading">
+          Comments and statements are ready to
+          <a class="govuk-link--no-visited-state" href="share-comments-and-statements">share</a>.
+        </p>
+      {% endset %}
 
-  {{ govukNotificationBanner({
-	  html: html
-	}) }}
+      {{ govukNotificationBanner({
+        html: html
+      }) }}
 
-    
-
-    <span class="govuk-caption-l">Appeal 2110917</span>
+      <span class="govuk-caption-l">Appeal 2110917</span>
     	<h1 class="govuk-heading-l">Case details</h1>
+
       <strong class="govuk-tag govuk-tag--blue">
         Statements
       </strong>
 
-      
-      
-
       {% include "/includes/appeal-content/lpa-has-appeal-meta.html" %}
       <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-
 
       <div class="govuk-accordion govuk-!-margin-top-9" data-module="govuk-accordion" id="accordion-default">
         <div class="govuk-accordion__section">
           <div class="govuk-accordion__section-header">
             <h2 class="govuk-accordion__section-heading">
               <span class="govuk-accordion__section-button" id="accordion-default-heading-1">
-                Case overview
+                Overview
               </span>
             </h2>
           </div>
@@ -147,11 +136,9 @@
                 ]
               ]
             }) }}
-          
+
           </div>
         </div>
-
-        
 
         <div class="govuk-accordion__section">
           <div class="govuk-accordion__section-header">
@@ -188,7 +175,7 @@
                       Change</a>
                   </dd>
               </div>
-              
+
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
                   Potential safety risks (LPA answer)
@@ -253,7 +240,7 @@
                 </dd>
                   <dd class="govuk-summary-list__actions">
                       <a class="govuk-link" href="manage-neighbouring-sites.html">
-                      View LPAQ</a> 
+                      View LPAQ</a>
                   </dd>
               </div>
                <div class="govuk-summary-list__row">
@@ -261,9 +248,9 @@
                   Neighbouring sites (Inspector and/or third party request)
                 </dt>
                 <dd class="govuk-summary-list__value">
-                
+
                   None
-                
+
                 </dd>
                   <dd class="govuk-summary-list__actions">
                     <a class="govuk-link" href="additional-neighbours-address">
@@ -274,56 +261,55 @@
           </div>
         </div>
 
-
         <div class="govuk-accordion__section">
           <div class="govuk-accordion__section-header">
             <h2 class="govuk-accordion__section-heading">
               <span class="govuk-accordion__section-button" id="accordion-default-heading-2">
-                Case timetable
+                Timetable
               </span>
             </h2>
           </div>
 
           <div id="accordion-default-content-2" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-2">
           	{{ govukTable({
-    captionClasses: "govuk-table__caption--m",
-    firstCellIsHeader: true,
-    rows: [
-      [
-        {
-          text: "Start date"
-        },
-        {
-          text: 38 | daysAgo
-        },
-        {
-          html: ""
-        }
-      ],
-      [
-        {
-          text: "LPA questionnaire due"
-        },
-        {
-          text: 31 | daysAgo
-        },
-        {
-          html: "<a href='#'>Change</a>"
-        }
-      ],
-      [
-        {
-          text: "Site visit"
-        },
-        {
-          text: -3 | daysAgo
-        },
-        {
-          html: "<a href='site-visit.html'>Manage</a>"
-        }
-      ]
-    ]
-  }) }}
+              captionClasses: "govuk-table__caption--m",
+              firstCellIsHeader: true,
+              rows: [
+                [
+                  {
+                    text: "Start date"
+                  },
+                  {
+                    text: 38 | daysAgo
+                  },
+                  {
+                    html: ""
+                  }
+                ],
+                [
+                  {
+                    text: "LPA questionnaire due"
+                  },
+                  {
+                    text: 31 | daysAgo
+                  },
+                  {
+                    html: "<a href='#'>Change</a>"
+                  }
+                ],
+                [
+                  {
+                    text: "Site visit"
+                  },
+                  {
+                    text: -3 | daysAgo
+                  },
+                  {
+                    html: "<a href='site-visit.html'>Manage</a>"
+                  }
+                ]
+              ]
+            }) }}
 
           </div>
         </div>
@@ -332,70 +318,142 @@
           <div class="govuk-accordion__section-header">
             <h2 class="govuk-accordion__section-heading">
               <span class="govuk-accordion__section-button" id="accordion-default-heading-3">
-                Case documentation
+                Documentation
               </span>
             </h2>
           </div>
           <div id="accordion-default-content-3" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-3">
             <table class="govuk-table">
-  
-  
+
               <thead class="govuk-table__head">
                 <tr class="govuk-table__row">
-                
+
                   <th scope="col" class="govuk-table__header">Documentation</th>
-                
+
                   <th scope="col" class="govuk-table__header">Status</th>
-                
-                  <th scope="col" class="govuk-table__header">Due date</th>
-                
-                  <th scope="col" class="govuk-table__header">Action</th>
-                
+
+                  <th scope="col" class="govuk-table__header govuk-!-text-align-right">Action</th>
+
                 </tr>
               </thead>
-              
-              <tbody class="govuk-table__body">
-                
-                  
-                    <tr class="govuk-table__row">
 
-                      <td class="govuk-table__cell">Appellant case</td>
-                      <td class="govuk-table__cell">Complete</td>
-                      <td class="govuk-table__cell"></td>
-                      <td class="govuk-table__cell"><a href="#">View</a></td>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">
+                  Appellant case
+                </td>
+                <td class="govuk-table__cell">
+                  Shared
+                </td>
+                <!-- <td class="govuk-table__cell">
+                  {{ 36 | daysAgo }}
+                </td> -->
+                <td class="govuk-table__cell govuk-!-text-align-right">
+                  <a href="#">
+                    View
+                  </a>
+                </td>
+              </tr>
 
-                    </tr>
-                  
-                    <tr class="govuk-table__row">
-      
-                      <td class="govuk-table__cell">LPA questionnaire</td>
-                      <td class="govuk-table__cell">Complete</td>
-                      <td class="govuk-table__cell"></td>
-                      <td class="govuk-table__cell"><a href="task-list">View</a></td>
-                 
-                    </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">
+                  LPA questionnaire
+                </td>
+                <td class="govuk-table__cell">
+                  Shared
+                </td>
+                <!-- <td class="govuk-table__cell">
+                  {{ 29 | daysAgo }}
+                </td> -->
+                <td class="govuk-table__cell govuk-!-text-align-right">
+                  <a href="task-list" class="govuk-link govuk-link--no-visited-state">
+                    View
+                  </a>
+                </td>
+              </tr>
 
-                    <tr class="govuk-table__row">
-      
-                      <td class="govuk-table__cell">LPA statement</td>
-                      <td class="govuk-table__cell">Complete</td>
-                      <td class="govuk-table__cell"></td>
-                      <td class="govuk-table__cell"><a href="task-list">Publish</a></td>
-                 
-                    </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">
+                  LPA statement
+                </td>
+                <td class="govuk-table__cell">
+                  Complete
+                </td>
+                <!-- <td class="govuk-table__cell">
+                  {{ 22 | daysAgo }}
+                </td> -->
+                <td class="govuk-table__cell govuk-!-text-align-right">
+                  <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=" class="govuk-link govuk-link--no-visited-state">
+                    View<span class="govuk-visually-hidden"> LPA statement</span>
+                  </a>
+                </td>
+              </tr>
 
-                    <tr class="govuk-table__row">
-      
-                      <td class="govuk-table__cell">Rule of 6 statement</td>
-                      <td class="govuk-table__cell">Complete</td>
-                      <td class="govuk-table__cell"></td>
-                      <td class="govuk-table__cell"><a href="task-list">Publish</a></td>
-                 
-                    </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">
+                  Interested party comments
+                </td>
+                <td class="govuk-table__cell">
+                  Complete
+                </td>
+                <!-- <td class="govuk-table__cell">
+                  {{ 10 | daysAgo }}
+                </td> -->
+                <td class="govuk-table__cell govuk-!-text-align-right">
+                  <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=" class="govuk-link govuk-link--no-visited-state">
+                    View<span class="govuk-visually-hidden"> interested party comments</span>
+                  </a>
+                </td>
+              </tr>
 
-                  
-                
-              </tbody>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">
+                  S106 planning obligation
+                </td>
+                <td class="govuk-table__cell">
+                  Not received
+                </td>
+                <!-- <td class="govuk-table__cell">
+                </td> -->
+                <td class="govuk-table__cell govuk-!-text-align-right">
+                  <!-- <a href="#" class="govuk-link govuk-link--no-visited-state">
+                    Review<span class="govuk-visually-hidden"> S106 planning obligation</span>
+                  </a> -->
+                </td>
+              </tr>
+
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">
+                  Costs (appellant)
+                </td>
+                <td class="govuk-table__cell">
+                  Not received
+                </td>
+                <!-- <td class="govuk-table__cell">
+                </td> -->
+                <td class="govuk-table__cell govuk-!-text-align-right">
+                  <a href="#">
+                    Add
+                  </a>
+                </td>
+              </tr>
+
+              <tr class="govuk-table__row pins-govuk-table__row--last">
+                <td class="govuk-table__cell">
+                  Costs (LPA)
+                </td>
+                <td class="govuk-table__cell">
+                  Not received
+                </td>
+                <!-- <td class="govuk-table__cell">
+                </td> -->
+                <td class="govuk-table__cell govuk-!-text-align-right">
+                  <a href="#">
+                    Add
+                  </a>
+                </td>
+              </tr>
+
+
             </table>
           </div>
         </div>
@@ -404,7 +462,7 @@
           <div class="govuk-accordion__section-header">
             <h2 class="govuk-accordion__section-heading">
               <span class="govuk-accordion__section-button" id="accordion-default-heading-4">
-                Case contacts
+                Contacts
               </span>
             </h2>
           </div>
@@ -482,8 +540,5 @@
 
     </div>
   </div>
-
-  
-
 
 {% endblock %}

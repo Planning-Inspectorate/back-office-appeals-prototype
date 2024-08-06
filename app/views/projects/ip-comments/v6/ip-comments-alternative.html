@@ -178,10 +178,46 @@
 
       {% endset -%}
 
-      {{ govukDetails({
-        summaryText: "Filter comments",
-        html: ipFilter
-      }) }}
+      {% if data['iteration'] %}
+
+        {{ govukRadios({
+          classes: "govuk-radios--small",
+          name: "commentsfilter",
+          fieldset: {
+            legend: {
+              text: "Filter comments",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "all",
+              text: "All"
+            },
+            {
+              value: "awaiting",
+              text: "Awaiting"
+            },
+            {
+              value: "valid",
+              text: "Valid"
+            },
+            {
+              value: "invalid",
+              text: "Invalid"
+            }
+          ]
+        }) }}
+
+      {% else %}
+
+        {{ govukDetails({
+          summaryText: "Filter comments",
+          html: ipFilter
+        }) }}
+
+      {% endif %}
 
       {% if data['comments-shared'] != 'yes' %}
         <p class="govuk-body govuk-!-margin-bottom-6">

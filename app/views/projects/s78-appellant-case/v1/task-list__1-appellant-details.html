@@ -1,0 +1,48 @@
+{{ govukSummaryList({
+    card: {
+      title: {
+        text: "1. Appeal details"
+      }
+    },
+    rows: [
+      {
+        key: {
+          html: 'Appellant'
+        },
+        value: {
+          html: 'Bert Butchers'
+        },
+        actions: {
+          items: [
+            {
+              href: '#',
+              html: 'Change'
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          html: 'Agent'
+        },
+        value: {
+          html: '<p>Bryn Thomas</p>
+                 <p>Boom Ltd</p>
+                 <p>bryn.thomas@lpaemail.com</p>
+                 <p>07765431239<br>  
+                 </p>'  
+        },
+        actions: {
+          items: [
+            {
+              href: '#',
+              html: 'Change'
+            }
+          ]
+         } if data['answers'] != 'empty'
+
+         
+      }
+    ]
+  }) }}
+  

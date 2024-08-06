@@ -1,0 +1,46 @@
+{% extends "layouts/PINS.html" %}
+
+{% set title = 'Appellant case' %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    html: 'Back to case details',
+    href: '#'
+  }) }}
+{% endblock %}
+
+{% set prototypeLinks = [
+  {
+    href: '?answers=empty',
+    text: 'Empty Appellant case'
+  } if data['answers'] != 'empty',
+  {
+    href: '?answers=full',
+    text: 'Full Appellant case'
+  } if data['answers'] == 'empty'
+] %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Appeal 2110166</span>
+    <h1 class="govuk-heading-l">
+      {{ title }}
+    </h1>
+  </div>
+
+  <div class="govuk-grid-column-full">
+    {% include "/includes/appeal-content/lpa-s78-questionnaire-meta" %}
+    {% include "./task-list__1-appellant-details.html" %}
+    {% include "./task-list__2-site-details.html" %}
+    {% include "./summary-list__5-additional-documents.html" %}
+
+  </div>
+
+
+
+
+
+{% endblock %}

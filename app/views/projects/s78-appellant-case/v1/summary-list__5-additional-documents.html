@@ -1,0 +1,43 @@
+{{ govukSummaryList({
+    card: {
+      title: {
+        text: "Additional documents"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Manage",
+            visuallyHiddenText: "addtional document"
+          },
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "additional document"
+          }
+        ]
+      }
+    },
+    rows: [
+      {
+        key: {
+            classes: 'govuk-!-font-weight-regular',
+            html: '<a href="#">late-document.pdf</a>'        
+          },
+        value: {
+            classes: "govuk-!-text-align-right",
+            html: '<strong class= "govuk-tag--red govuk-!-font-weight-regular">late entry</strong>'
+          }
+        }, 
+        {
+          key: {
+              classes: 'govuk-!-font-weight-regular',
+              html: '<a href="#">other-late-document.pdf</a>'        
+            },
+          value: {
+              classes: "govuk-!-text-align-right",
+              html: '<strong class= "govuk-tag--red govuk-!-font-weight-regular">late entry</strong>'
+            }
+          }
+    ]
+  }) }}

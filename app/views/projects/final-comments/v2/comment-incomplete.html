@@ -1,9 +1,9 @@
 {% extends "layouts/PINS.html" %}
 
 {% if data['party'] == 'lpa' %}
-  {% set title="LPA final comments incomplete" %}
+  {% set title="LPA final comments invalid" %}
 {% else  %}
-  {% set title="Appellant final comments incomplete" %}
+  {% set title="Appellant final comments invalid" %}
 {% endif %}
 
 {% set pageName = title + ' - Planning Inspectorate'%} 
@@ -15,17 +15,12 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-    {% if data['party'] == 'LPA' %} 
+     
       {{ govukPanel({
-        titleText: "LPA final comments incomplete",
+        titleText: title,
         html: "Appeal ID<br><strong>2110166</strong>"
       }) }}
-    {% else  %}
-      {{ govukPanel({
-        titleText: "Appellant final comments incomplete",
-        html: "Appeal ID<br><strong>2110166</strong>"
-      }) }}
-    {% endif %}
+   
 
       <p class="govuk-body">
         The relevant parties have been informed. We have told them what to do next.<br><br>

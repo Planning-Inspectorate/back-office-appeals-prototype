@@ -1,9 +1,9 @@
  {% extends "layouts/PINS-post-mvp.html" %}
 
 {% if data['party'] == 'LPA' %}
-  {% set title = "Confirm LPA's final comments" %}
+  {% set title = "Confirm redaction" %}
 {% else  %}
-  {% set title = "Confirm appellant's final comments" %}
+  {% set title = "Confirm redaction" %}
 {% endif %}
  
 {% set pageName = title + ' - Planning Inspectorate'%} 
@@ -64,7 +64,7 @@
 
     <form action="check-your-answers?redacted-statement-done=yes" method="post" class="govuk-!-margin-top-6">
       {{ govukButton({
-        text: "Confirm redaction and accept comments"
+        text: "Confirm redaction and accept comment"
       }) }}
     </form>
   </div>

@@ -29,7 +29,7 @@
         rows: [
         {
           key: {
-            html: "Unredacted" + " " + data['party'] + " " +"comment"
+            html: "Unredacted" + " " + (data['party'] or "LPA") + " " +"comment"
           },
           value: {
             html: data['original-statement'] or "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. 
@@ -45,44 +45,6 @@
             ]
           }
         },
-            
-           {
-              key: {
-                html: "Redacted" + " " + data['party'] + " " +"comment"
-              },
-              value: {
-                html: data['redacted-statement'] or " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus. 
-                Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus. 
-                Mauris nulla erat, posuere ut nisi vitae, pulvinar gravida arcu.<br><a href='#'>Read more</a> "
-              } ,
-              actions: {
-                items: [
-                  {
-                    href: "redact-comment",
-                    text: "Change",
-                    visuallyHiddenText: "Redacted comment"
-                  }
-                ]
-              }
-            } if data ['redacted-statement-done'],
-
-            {
-              key: {
-                html: "Redacted" + " " + data['party'] + " " +"comment"
-              },
-              value: {
-                html: "Not applicable"
-              } ,
-              actions: {
-                items: [
-                  {
-                    href: "redact-comment",
-                    text: "Change",
-                    visuallyHiddenText: "Unedacted final comments"
-                  }
-                ]
-              }
-            } if data ['redacted-statement-done'] !='yes',
 
             
             {
@@ -90,7 +52,7 @@
               text: "Review outcome"
             },
             value: {
-             text:   data['issue-decision' ]
+             text:    (data['issue-decision'] or "Valid comment")
             },
             actions: {
               items: [

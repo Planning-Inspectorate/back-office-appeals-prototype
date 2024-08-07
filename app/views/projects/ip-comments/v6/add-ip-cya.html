@@ -88,6 +88,20 @@
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
+            Redacted status
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['add-ip-comment-redacted-status'] or 'Unredacted' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> redacted status</span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
             Comment date
           </dt>
           <dd class="govuk-summary-list__value">
@@ -100,19 +114,6 @@
           </dd>
         </div>
 
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Redacted status
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{ data['IPCommentRedactedStatus'] or 'Unredacted' }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="#">
-              Change<span class="govuk-visually-hidden"> redacted status</span>
-            </a>
-          </dd>
-        </div>
       </dl>
 
       <form method="post" class="govuk-!-margin-top-6">

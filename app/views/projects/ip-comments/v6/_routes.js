@@ -30,16 +30,17 @@ router.post('/add-ip-address', function (req, res) {
 
 // add IP comment
 router.post('/add-ip-comment', function (req, res) {
+  res.redirect('add-ip-comment-redacted-status')
+
+})
+
+// add redacted status
+router.post('/add-ip-comment-redacted-status', function (req, res) {
   res.redirect('add-ip-comment-received-date')
 })
 
 // add received date
 router.post('/add-ip-comment-received-date', function (req, res) {
-  res.redirect('add-ip-comment-redacted-status')
-})
-
-// add redacted status
-router.post('/add-ip-comment-redacted-status', function (req, res) {
   res.redirect('add-ip-cya')
 })
 

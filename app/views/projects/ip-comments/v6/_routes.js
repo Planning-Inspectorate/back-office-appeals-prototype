@@ -64,5 +64,17 @@ router.post('/extra-documents-cya', function (req, res) {
   }
 })
 
+router.post('/ip-comments-alternative', function (req, res) {
+  if (req.session.data['commentsfilter'] == 'all') {
+    res.redirect('ip-comments-alternative?showncomments=all')
+  } elif (req.session.data['commentsfilter'] == 'awaiting') {
+    res.redirect('ip-comments-alternative?showncomments=awaiting')
+  } elif (req.session.data['commentsfilter'] == 'valid') {
+    res.redirect('ip-comments-alternative?showncomments=valid')
+  } elif (req.session.data['commentsfilter'] == 'invalid') {
+    res.redirect('ip-comments-alternative?showncomments=invalid')
+  }
+})
+
 // Add your routes above the module.exports line
 module.exports = router

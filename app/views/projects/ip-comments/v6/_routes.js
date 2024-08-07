@@ -75,5 +75,15 @@ router.post('/extra-document-cya', function (req, res) {
   }
 })
 
+router.post('/comment-review', function (req, res) {
+  if (req.session.data['ip-comment-review'] == 'invalid') {
+    res.redirect('reject-comment')
+  } else if (req.session.data['ip-comment-review'] == 'redact') {
+    res.redirect('comment-redact')
+  } else {
+    res.redirect('ip-comments?acceptedComment=yes&commentReview=true')
+  }
+})
+
 // Add your routes above the module.exports line
 module.exports = router

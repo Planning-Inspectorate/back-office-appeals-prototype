@@ -139,22 +139,25 @@
             Supporting documents
           </dt>
           <dd class="govuk-summary-list__value">
-            {% if data['comment-type'] == 'doc' %}
-              <a href="#" class="govuk-link">
-                2114328-IP-comment.doc
-              </a>
-              {% if data['documents-added'] %}
-                <ul class="govuk-list govuk-list--bullet">
-                  <li>
-                    <a href='#' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document.doc')}}</a>
-                  </li>
-                  {% if data['anotherdocument'] %}
+            <ul class="govuk-list govuk-list--bullet">
+              {% if data['comment-type'] == 'doc' %}
+                <li>
+                  <a href="#" class="govuk-link">
+                    2114328-IP-comment.doc
+                  </a>
+                </li>
+                {% if data['documents-added'] %}
+
                     <li>
-                      <a href='#' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document-2.doc')}}</a>
+                      <a href='#' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document.doc')}}</a>
                     </li>
-                  {% endif %}
-                </ul>
-              {% endif %}
+                    {% if data['anotherdocument'] %}
+                      <li>
+                        <a href='#' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document-2.doc')}}</a>
+                      </li>
+                    {% endif %}
+                {% endif %}
+              </ul>
             {% elseif data['documents-added'] %}
               <ul class="govuk-list govuk-list--bullet">
                 <li>
@@ -220,7 +223,7 @@
         {% if data['manual-ip-comment'] %}
 
           {{ govukRadios({
-            name: "commentReview",
+            name: "ip-comment-review",
             fieldset: {
               legend: {
                 text: "Do you accept the comment?",
@@ -230,18 +233,18 @@
             },
             items: [
              {
-                value: "valid~ip-comments?acceptedComment=yes&commentReview=true",
+                value: "valid",
                 text: "Accept comment"
               },
               {
-                value: "invalid~reject-comment",
+                value: "invalid",
                 text: "Reject comment"
               }
             ]
           }) }}
         {% else %}
           {{ govukRadios({
-            name: "commentReview",
+            name: "ip-comment-review",
             fieldset: {
               legend: {
                 text: "Do you accept the comment?",
@@ -251,25 +254,25 @@
             },
             items: [
              {
-                value: "valid~ip-comments?acceptedComment=yes&commentReview=true",
+                value: "valid",
                 text: "Accept comment"
               },
              {
-                value: "redactionNeeded~comment-redact",
+                value: "redact",
                 text: "Redact comment"
               },
-                {
-                  divider: "or"
-                },
               {
-                value: "invalid~reject-comment",
+                divider: "or"
+              },
+              {
+                value: "invalid",
                 text: "Reject comment"
               }
             ]
           }) }}
         {% endif %}
 
-        <p class="govuk-body">
+        <p class="govuk-body govuk-!-margin-bottom-6">
           <a href='withdraw-comment-upload-evidence?comment-mode=review' class='govuk-link govuk-link--no-visited-state'>Withdraw comment</a>
         </p>
 

@@ -54,15 +54,20 @@ router.post('/add-ip-cya', function (req, res) {
 // upload the document
 // set the date and redacted status
 router.post('/upload-extra-supporting-document', function (req, res) {
-  res.redirect('extra-document-redacted-received-date')
+  res.redirect('extra-document-redacted-status')
+})
+
+// set the date and redacted status
+router.post('/extra-document-redacted-status', function (req, res) {
+  res.redirect('extra-document-received-date')
 })
 
 // go to check answers
-router.post('/extra-document-redacted-received-date', function (req, res) {
-  res.redirect('extra-documents-cya')
+router.post('/extra-document-received-date', function (req, res) {
+  res.redirect('extra-document-cya')
 })
 
-router.post('/extra-documents-cya', function (req, res) {
+router.post('/extra-document-cya', function (req, res) {
   if (req.session.data['comment-attachment'] == 'review') {
     res.redirect('comment-review?documents-added=yes&comment-attachment=')
   } else {

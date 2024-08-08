@@ -13,26 +13,36 @@
       <h1 class="govuk-heading-l">
         {{ title }}
       </h1>
-      <form action="date-add-doc" method="post" class="govuk-!-margin-top-6" novalidate>
-
+      <form action="date-add-doc" method="post"   novalidate>
 
         <div class="govuk-form-group">
+          <!-- <label class="govuk-label govuk-label--m" for="application">
+            Upload a file
+          </label> -->
+    
+          
+          <div id="application-hint" class="govuk-hint">
+            The file must be a DOC, DOCX, PDF, XLS, TIF, JPG or PNG and be smaller than 15MB
+          </div>
+         
+    
+        <div class="moj-multi-file-upload moj-multi-file-upload--enhanced">
+          <div class="moj-multi-file__uploaded-files moj-hidden">
+            <h2 class="govuk-heading-m">File added</h2>
+            <div class="govuk-summary-list moj-multi-file-upload__list">
+            </div>
+          </div>
         
-        <div id="application-hint" class="govuk-hint">
-          The file must be a DOC, DOCX, PDF, XLS, TIF, JPG or PNG and be smaller than 25MB
-        </div>
-
-
-        <div class="govuk-form-group">
-          <input class="govuk-file-upload" id="file-upload-1" name="fileUpload1" type="file">
-        </div>
-          <br><br>
-
-          {% from "govuk/components/button/macro.njk" import govukButton %}
-
-          {{ govukButton({
-            text: "Continue"
-          }) }}
+          
+            <input class="govuk-file-upload moj-multi-file-upload__input" id="application" name="application" type="file" aria-describedby="application-hint">
+            <div aria-live="polite" role="status" class="govuk-visually-hidden"></div>
+            <br><br>
+            
+            {% from "govuk/components/button/macro.njk" import govukButton %}
+    
+            {{ govukButton({
+              text: "Continue"
+            }) }}
 
 
           </div>

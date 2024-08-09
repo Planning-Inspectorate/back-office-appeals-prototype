@@ -1,11 +1,9 @@
-
 {% extends "layouts/PINS-post-mvp.html" %}
 
 {% set title = "Update due date (if applicable)" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% block content %}
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
@@ -17,13 +15,11 @@
         {{ title }}
       </h1>
 
-      
-      <form action="check-your-answers-incomplete" method="post" class="govuk-!-margin-top-6" novalidate>
+      <form action="check-your-answers" method="post" class="govuk-!-margin-top-6" novalidate>
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" role="group" aria-describedby="dob-hint">
 
-            
             <div class="govuk-date-input" id="dob">
               <div class="govuk-date-input__item">
                 <div class="govuk-form-group">

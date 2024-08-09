@@ -60,8 +60,6 @@
           </dt>
           <dd class="govuk-summary-list__value">
 
-            
-
             {% if data['no-documents'] != 'yes' %}
             <ul class="govuk-list govuk-list--bullet">
               <li>
@@ -116,15 +114,19 @@
           items: [
            {
               value: "Valid~matrix-update",
-              text: "Accept statement / valid statement"
+              text: "Valid statement"
             },
            {
               value: "Valid with redaction~redact-lpa-statement",
-              text: "Redact statement before accepting"
+              text: "Valid, needs redaction"
             },
               {
                 divider: "or"
               },
+            {
+              value: "Incomplete~why-incomplete",
+              text: "Incomplete statement"
+            },
             {
               value: "Invalid~why-invalid",
               text: "Invalid statement"

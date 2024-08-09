@@ -3,17 +3,6 @@
 {% set title = "Check your answers" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
-{% set prototypeLinks = [
-  {
-    href: '?redacted-statement-done=yes',
-    text: 'Redacted statement'
-  } if data['redacted-statement-done'] != 'yes',
-  {
-    href: '?redacted-statement-done=',
-    text: 'No redacted statement'
-  } if data['redacted-statement-done'] == 'yes'
-] %}
-
 {% block content %}
 
   <div class="govuk-grid-row">
@@ -22,143 +11,201 @@
       <span class="govuk-caption-l">Appeal 2110166</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
 
-      <form action="case?validStatement=yes&bannerSeen=" method="post" class="" novalidate>
+      {% if data['review-decision'] == 'Incomplete' or data['review-decision'] == 'Invalid' %}
+        <form action="statement-confirmation" method="post" class="govuk-!-margin-top-0" novalidate>
+      {% else %}
+        <form action="case?statementReviewStatus=valid&bannerSeen=" method="post" class="" novalidate>
+      {% endif %}
+          {{ govukSummaryList({
+            classes: "long-answers govuk-!-margin-bottom-6",
+            rows: [
+            {
+              key: {
+                text: "Unredacted LPA statement"
+              },
+              value: {
+                html: data['original-statement'] or "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus.
+                Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus.
+                Mauris nulla erat, posuere ut nisi vitae, pulvinar gravida arcu."
+              },
+              actions: {
+                items: [
+                  {
+                    href: "select-allocation",
+                    text: "",
+                    visuallyHiddenText: ""
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Redacted LPA statement"
+              },
+              value: {
+                html: data['redacted-statement'] or " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus.
+                Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus.
+                Mauris nulla erat, posuere ut nisi vitae, pulvinar gravida arcu."
+              } ,
+              actions: {
+                items: [
+                  {
+                    href: "redact-lpa-statement",
+                    text: "Change",
+                    visuallyHiddenText: "Redacted statement"
+                  }
+                ]
+              }
+            } if data['review-decision'] == 'Valid with redaction' and data['review-decision'] != 'Incomplete' and data['review-decision'] != 'Invalid',
+            {
+              key: {
+                text: "Redacted LPA statement"
+              },
+              value: {
+                html: "Not applicable"
+              } ,
+              actions: {
+                items: [
+                  {
+                    href: "redact-lpa-statement",
+                    text: "Change",
+                    visuallyHiddenText: "Redacted statement"
+                  }
+                ]
+              }
+            } if data['review-decision'] != 'Valid with redaction' and data['review-decision'] != 'Incomplete' and data['review-decision'] != 'Invalid',
+            {
+              key: {
+                text: "Supporting documents"
+              },
+              value: {
+                html:"<ul class='govuk-list govuk-list--bullet'><li><a href='#'>2110166-statement-appendix-A.doc</a></li>
+                <li><a href='#'>2110166-statement-appendix-B.doc</a></li></ul>"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "redact-supporting-documents",
+                    text: "Change",
+                    visuallyHiddenText: "Supporting documents"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Review outcome"
+              },
+              value: {
+                html: data['review-decision']
+              },
+              actions: {
+                items: [
+                  {
+                    href: "what-is-outcome-of-review",
+                    text: "Change",
+                    visuallyHiddenText: "Review outcome"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Allocation level"
+              },
+              value: {
+                text: data['allocation-level'] or "B"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "select-allocation",
+                    text: "Change",
+                    visuallyHiddenText: "Level"
+                  }
+                ]
+              }
+            } if data['review-decision'] != 'Incomplete' and data['review-decision'] != 'Invalid',
+            {
+              key: {
+                text: "Allocation specialisms"
+              },
+              value: {
+                html: "<ul class='govuk-list govuk-list--bullet'>
+                         <li>Enforcement</li>
+                         <li>Housing orders</li>
+                       </ul>"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "select-specialism",
+                    text: "Change",
+                    visuallyHiddenText: "Specialism"
+                  }
+                ]
+              }
+            } if data['review-decision'] != 'Incomplete' and data['review-decision'] != 'Invalid',
+            {
+              key: {
+                text: "Reason for incomplete decision"
+              },
+              value: {
+                html: "<ul class='govuk-list govuk-list--bullet'><li>Attachments and/or appendices missing</li><li>Other: (Given reason text)</li></ul>"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "why-incomplete",
+                    text: "Change",
+                    visuallyHiddenText: "Reasons"
+                  }
+                ]
+              }
+            } if data['review-decision'] == 'Incomplete',
+            {
+              key: {
+                text: "Reason for invalid decision"
+              },
+              value: {
+                html: "<ul class='govuk-list govuk-list--bullet'><li>Attachments and/or appendices missing</li><li>Other: (Given reason text)</li></ul>"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "why-incomplete",
+                    text: "Change",
+                    visuallyHiddenText: "Reasons"
+                  }
+                ]
+              }
+            } if data['review-decision'] == 'Invalid',
+            {
+              key: {
+                text: "Due date"
+              },
+              value: {
+                html: 3 | daysInFuture
+              },
+              actions: {
+                items: [
+                  {
+                    href: "update-due-date",
+                    text: "Change",
+                    visuallyHiddenText: "due date"
+                  }
+                ]
+              }
+            } if data['review-decision'] == 'Incomplete' or data['review-decision'] == 'Invalid'
+            ] })
+          }}
 
-        {{ govukSummaryList({
-          classes: "long-answers govuk-!-margin-bottom-6",
-          rows: [
-          {
-            key: {
-              text: "Unredacted LPA statement"
-            },
-            value: {
-              html: data['original-statement'] or "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus.
-              Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus.
-              Mauris nulla erat, posuere ut nisi vitae, pulvinar gravida arcu."
-            },
-            actions: {
-              items: [
-                {
-                  href: "select-allocation",
-                  text: "",
-                  visuallyHiddenText: ""
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Redacted LPA statement"
-            },
-            value: {
-              html: data['redacted-statement'] or " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus.
-              Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus.
-              Mauris nulla erat, posuere ut nisi vitae, pulvinar gravida arcu."
-            } ,
-            actions: {
-              items: [
-                {
-                  href: "redact-lpa-statement",
-                  text: "Change",
-                  visuallyHiddenText: "Redacted statement"
-                }
-              ]
-            }
-          } if data ['redacted-statement-done'],
-          {
-            key: {
-              text: "Redacted LPA statement"
-            },
-            value: {
-              html: "Not applicable"
-            } ,
-            actions: {
-              items: [
-                {
-                  href: "redact-lpa-statement",
-                  text: "Change",
-                  visuallyHiddenText: "Redacted statement"
-                }
-              ]
-            }
-          } if data ['redacted-statement-done'] !='yes',
-          {
-            key: {
-              text: "Supporting documents"
-            },
-            value: {
-              html:"<ul class='govuk-list govuk-list--bullet'><li><a href='#'>2110166-statement-appendix-A.doc</a></li>
-              <li><a href='#'>2110166-statement-appendix-B.doc</a></li></ul>"
-            },
-            actions: {
-              items: [
-                {
-                  href: "redact-supporting-documents",
-                  text: "Change",
-                  visuallyHiddenText: "Supporting documents"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Review outcome"
-            },
-            value: {
-             text: data['review-decision']
-            },
-            actions: {
-              items: [
-                {
-                  href: "what-is-outcome-of-review",
-                  text: "Change",
-                  visuallyHiddenText: "Review outcome"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Allocation level"
-            },
-            value: {
-              text: data['allocation-level'] or "B"
-            },
-            actions: {
-              items: [
-                {
-                  href: "select-allocation",
-                  text: "Change",
-                  visuallyHiddenText: "Level"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Allocation specialisms"
-            },
-            value: {
-              text: data['specialism']  or
-               "Enforcement"
-            },
-            actions: {
-              items: [
-                {
-                  href: "select-specialism",
-                  text: "Change",
-                  visuallyHiddenText: "Specialism"
-                }
-              ]
-            }
-          }] })
-        }}
+          {{ govukButton({
+            text: "Confirm"
+          }) }}
 
-        {{ govukButton({
-          text: "Confirm"
-        }) }}
+        </form>
 
-      </form>
 
     </div>
   </div>

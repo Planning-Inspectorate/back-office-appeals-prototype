@@ -1,0 +1,41 @@
+{% extends "layouts/PINS.html" %}
+
+{% if data['review-decision'] == 'Incomplete' %}
+  {% set title = "LPA statement incomplete" %}
+{% else %}
+  {% set title = "LPA statement invalid" %}
+{% endif %}
+
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = false %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ govukPanel({
+        titleText: title,
+        html: "Appeal ID<br><strong>2110166</strong>"
+      }) }}
+
+      <p class="govuk-body">
+        The relevant parties have been informed. We have told them what to do next.
+      </p>
+
+      <p class="govuk-body">
+        They have been informed of any new due date for missing information.
+      </p>
+
+      <p class="govuk-body">
+        {% if data['review-decision'] == 'Incomplete' %}
+          <a href="case?statementReviewStatus=incomplete" class="govuk-link">Go back to case details</a>
+        {% else %}
+          <a href="case?statementReviewStatus=invalid" class="govuk-link">Go back to case details</a>
+        {% endif %}
+
+      </p>
+    </div>
+  </div>
+
+{% endblock %}

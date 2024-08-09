@@ -22,7 +22,7 @@
       <span class="govuk-caption-l">Appeal 2110166</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
 
-      <form action="lpa-statement-invalid" method="post" class="govuk-!-margin-top-0" novalidate>
+      <form action="statement-confirmation" method="post" class="govuk-!-margin-top-0" novalidate>
 
         {{ govukSummaryList({
           classes: "long-answers govuk-!-margin-bottom-6",
@@ -69,7 +69,7 @@
                 text: "Review outcome"
               },
               value: {
-               text: 'Invalid'
+                html: data['review-decision']
               },
               actions: {
                 items: [

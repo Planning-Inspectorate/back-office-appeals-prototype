@@ -16,22 +16,20 @@
 
       {% set successBanner %}
         <p class="govuk-notification-banner__heading">
-          LPA statement review complete
+          {% if data['statementReviewStatus'] == 'valid' %}
+            LPA statement valid
+          {% elseif data['statementReviewStatus'] == 'incomplete' %}
+            LPA statement incomplete
+          {% else %}
+            LPA statement invalid
+          {% endif %}
         </p>
       {% endset %}
 
-      {% if data['validStatement'] == 'yes' %}
-        <!-- show the success banner once -->
-        {% if data['bannerSeen'] != 'yes' %}
-          {{ govukNotificationBanner({
-            html: successBanner,
-            type: "success"
-          }) }}
-        {% endif %}
-      {% elseif data['validStatement'] == 'invalid' %}
-      {% else %}
+      {% if data['bannerSeen'] != 'yes' %}
         {{ govukNotificationBanner({
-          html: readyBanner
+          html: successBanner,
+          type: "success"
         }) }}
       {% endif %}
 

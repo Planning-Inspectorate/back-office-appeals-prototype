@@ -1,11 +1,12 @@
 {% extends "layouts/PINS-admin.html" %}
 
-{% set title = "Case heading" %}
+{% set title = "Upload multiple files" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% set back = false %}
 
 {% block content %}
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-one-quarter">
       <ul class="govuk-list govuk-list-bullet">
@@ -20,7 +21,7 @@
           </a>
         </li>
         <li>
-          <a href="/patterns/case-heading/" class="govuk-link--no-visited-state govuk-link--no-underline govuk-!-font-weight-bold">
+          <a href="/patterns/case-heading/" class="govuk-link--no-visited-state govuk-link--no-underline">
             Case heading
           </a>
         </li>
@@ -40,7 +41,7 @@
           </a>
         </li>
         <li>
-          <a href="/patterns/multiple-document-upload/" class="govuk-link--no-visited-state govuk-link--no-underline">
+          <a href="/patterns/document-upload/" class="govuk-link--no-visited-state govuk-link--no-underline govuk-!-font-weight-bold">
             Upload multiple files
           </a>
         </li>
@@ -48,35 +49,63 @@
     </div>
 
     <div class="govuk-grid-column-three-quarters">
-
-      <h1 class="govuk-heading-xl govuk-!-margin-bottom-2" id="case-heading">
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-2" id="personal-list">
         {{ title }}
       </h1>
+
       <p>
         <strong class="govuk-tag govuk-!-margin-bottom-5">experimental</strong>
       </p>
+
       <p class="govuk-body-l">
-        Showing key information about an appeal at a glance.
+        Use this component to show how users can upload several files. This component is based on <a href="https://design-patterns.service.justice.gov.uk/components/multi-file-upload/" target="_blank">the MOJ multi file upload component</a>.
       </p>
 
       {% set exampleHtml %}
-        {{ caseHeading (
-          caseHeading = "withdrawn"
-        ) }}
+
+        <p class="govuk-body">
+          Choose a single or multiple files to upload.
+        </p>
+
+        <p class="govuk-hint">
+          <!-- Files must be PDF, DOC, DOCX, PPT, PPTX, XLS, XLSX, JPG, JPEG, MPEG, MP3, MP4, MOV, PNG, TIF or TIFF. -->
+          The files must be a DOC, DOCX, PDF, TIF, JPG or PNG and be smaller than 25MB
+        </p>
+
+        <div id="upload-hint" class="govuk-hint">
+          <!-- The file must be a DOC, DOCX, PDF, XLS, TIF, JPG or PNG and be smaller than 25MB -->
+          The total of your uploaded files must be smaller than 1 GB.
+        </div>
+
+        {% set uploadHtml %}
+          {{ govukFileUpload({
+            id: "documents",
+            name: "documents",
+            classes: 'moj-multi-file-upload__input',
+            label: {
+              text: "Upload files",
+              classes: 'govuk-visually-hidden'
+            },
+            attributes: { multiple: '' }
+          }) }}
+
+        {% endset %}
+
+        {{ mojMultiFileUpload({
+          uploadedFiles: {
+            heading: { text: 'Files added' },
+            items: uploadedFiles
+          },
+          uploadHtml: uploadHtml
+        }) }}
+
       {% endset -%}
+
       {% set codeHtml %}
-
-
-      <pre class="code-snippet"><code>{% raw -%}{% from "/patterns/case-heading/default.njk" import caseHeading %}
-
-{{
-  caseHeading (
-    caseStatus = "validation",
-    caseHeading = "default"
-  )
-}}
+        <pre class="code-snippet"><code>{% raw -%}{{ multiDocumentUpload () }}
 {% endraw %}
-        </code></pre>
+  </code></pre>
+
       {% endset -%}
 
       {{ govukTabs({
@@ -103,23 +132,8 @@
       </h2>
 
       <p>
-        The case heading helps the user to identify the appeal they are working on. It features some variants, depending on the appeal status. These are:
+        Use the multi file upload component when you want users to be able to upload more than one file.
       </p>
-
-      <ul class="govuk-list govuk-list--bullet">
-        <li>
-          closed
-        </li>
-        <li>
-          complete
-        </li>
-        <li>
-          transferred
-        </li>
-        <li>
-          withdrawn
-        </li>
-      </ul>
 
       <h2 class="govuk-heading-l">
         How it works
@@ -128,26 +142,6 @@
       <p>
         You can use this component as a <a href="https://mozilla.github.io/nunjucks/">Nunjucks</a> macro.
       </p>
-
-      <h3 class="govuk-heading-m">
-        Parameters
-      </h3>
-
-      {{ govukSummaryList ({
-        rows: [
-          {
-            key: {
-              text: "caseHeading"
-            },
-            value: {
-              text: "default,
-              closed, complete,
-              transferred,
-              withdrawn"
-            }
-          }
-        ]
-      }) }}
 
     </div>
   </div>

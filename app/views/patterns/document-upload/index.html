@@ -1,0 +1,207 @@
+{% extends "layouts/PINS-admin.html" %}
+
+{% set title = "Document upload" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = false %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-quarter">
+      <ul class="govuk-list govuk-list-bullet">
+        <li>
+          <a href="/patterns/important-banners/" class="govuk-link--no-visited-state govuk-link--no-underline">
+            Important banner
+          </a>
+        </li>
+        <li>
+          <a href="/patterns/success-banner/" class="govuk-link--no-visited-state govuk-link--no-underline">
+            Success banner
+          </a>
+        </li>
+        <li>
+          <a href="/patterns/case-heading/" class="govuk-link--no-visited-state govuk-link--no-underline">
+            Case heading
+          </a>
+        </li>
+        <li>
+          <a href="/patterns/case-status/" class="govuk-link--no-visited-state govuk-link--no-underline">
+            Case status
+          </a>
+        </li>
+        <li>
+          <a href="/patterns/meta-data/" class="govuk-link--no-visited-state govuk-link--no-underline">
+            Meta data
+          </a>
+        </li>
+        <li>
+          <a href="/patterns/personal-list/" class="govuk-link--no-visited-state govuk-link--no-underline">
+            Personal list
+          </a>
+        </li>
+        <li>
+          <a href="/patterns/document-upload/" class="govuk-link--no-visited-state govuk-link--no-underline govuk-!-font-weight-bold">
+            Document upload
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="govuk-grid-column-three-quarters">
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-2" id="personal-list">
+        {{ title }}
+      </h1>
+      <p>
+        <strong class="govuk-tag govuk-!-margin-bottom-5">experimental</strong>
+      </p>
+
+      <p class="govuk-body-l">
+        Use the <a href="https://design-patterns.service.justice.gov.uk/components/multi-file-upload/" target="_blank">multi file upload component</a> to enable more than 1 document to be uploaded.
+      </p>
+
+      {% set exampleHtml %}
+
+      
+      <p>
+        <form action="document-details" method="post" novalidate enctype="multipart/form-data">
+          <div id="application-hint" class="govuk-hint">
+            The file must be a DOC, DOCX, PDF, XLS, TIF, JPG or PNG and be smaller than 15MB
+          </div>
+            {%- from "govuk/components/file-upload/macro.njk" import govukFileUpload -%}
+            {%- from "govuk/components/button/macro.njk" import govukButton -%}
+            {%- from "govuk/components/error-summary/macro.njk" import govukErrorSummary -%}
+            {%- from "moj/components/multi-file-upload/macro.njk" import mojMultiFileUpload -%}
+            
+                {% if errorSummary.items.length %}
+                  {{ govukErrorSummary({
+                    titleText: 'There is a problem',
+                    errorList: errorSummary.items
+                  }) }}
+                {% endif %}  
+             
+                  {% set uploadHtml %}
+                    {{ govukFileUpload({
+                      id: "documents",
+                      name: "documents",
+                      classes: 'moj-multi-file-upload__input',
+                      label: {
+                        text: "Upload a file",
+                        classes: 'govuk-label--m'
+                      },
+                      attributes: { multiple: '' },
+                      errorMessage: errorMessage
+                    }) }}
+            
+                    {{govukButton({
+                      text: 'Upload file',
+                      classes: 'govuk-button--secondary moj-multi-file-upload__button'
+                    })}}
+                  {% endset %}
+            
+                  {{ mojMultiFileUpload({
+                    uploadedFiles: {
+                      heading: { text: 'Files added' },
+                      items: uploadedFiles
+                    },
+                    uploadHtml: uploadHtml
+                  }) }}
+            
+                  {{govukButton({
+                    text: 'Continue'
+                  })}}
+                </form>
+      </p>
+
+      {% endset -%}
+
+      {% set codeHtml %}
+        <pre class="code-snippet"><code>{% raw -%}
+{%- from "govuk/components/file-upload/macro.njk" import govukFileUpload -%}
+{%- from "govuk/components/button/macro.njk" import govukButton -%}
+{%- from "govuk/components/error-summary/macro.njk" import govukErrorSummary -%}
+{%- from "moj/components/multi-file-upload/macro.njk" import mojMultiFileUpload -%}
+
+
+
+{% if errorSummary.items.length %}
+    {{ govukErrorSummary({
+    titleText: 'There is a problem',
+    errorList: errorSummary.items
+    }) }}
+{% endif %}
+
+    {% set uploadHtml %}
+    {{ govukFileUpload({
+        id: "documents",
+        name: "documents",
+        classes: 'moj-multi-file-upload__input',
+        label: {
+        text: "Upload a file",
+        classes: 'govuk-label--m'
+        },
+        attributes: { multiple: '' },
+        errorMessage: errorMessage
+    }) }}
+
+    {{govukButton({
+        text: 'Upload file',
+        classes: 'govuk-button--secondary moj-multi-file-upload__button'
+    })}}
+    {% endset %}
+
+    {{ mojMultiFileUpload({
+    uploadedFiles: {
+        heading: { text: 'Files added' },
+        items: uploadedFiles
+    },
+    uploadHtml: uploadHtml
+    }) }}
+
+    {{govukButton({
+    text: 'Continue'
+    })}}
+</form>
+{% endraw %}
+  </code></pre>
+
+      {% endset -%}
+
+      {{ govukTabs({
+        items: [
+          {
+            label: "Example",
+            id: "example",
+            panel: {
+              html: exampleHtml
+            }
+          },
+          {
+            label: "Nunjucks",
+            id: "nunjucks",
+            panel: {
+              html: codeHtml
+            }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-l">
+        When to use this pattern
+      </h2>
+
+      <p>
+        Use the multi file upload component to help users upload multiple files at the same time, on a regular basis.  
+      </p>
+
+      <h2 class="govuk-heading-l">
+        How it works
+      </h2>
+
+      <p>
+        You can use this component as a <a href="https://mozilla.github.io/nunjucks/">Nunjucks</a> macro.
+      </p>
+
+    </div>
+  </div>
+{% endblock %}

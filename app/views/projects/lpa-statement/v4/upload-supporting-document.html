@@ -1,7 +1,7 @@
 
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Upload file" %}
+{% set title = "Add supporting document" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% block content %}
@@ -13,42 +13,60 @@
       <h1 class="govuk-heading-l">
         {{ title }}
       </h1>
-      <form action="document-details" method="post" novalidate>
+      <form action="document-details" method="post" novalidate enctype="multipart/form-data">
 
-        <div class="govuk-form-group">
-         <!-- <label class="govuk-label govuk-label--m" for="application">
-            Upload a file
-          </label> --> 
-    
-          
-          <div id="application-hint" class="govuk-hint">
-            The file must be a DOC, DOCX, PDF, XLS, TIF, JPG or PNG and be smaller than 15MB
-          </div>
-         
-    
-        <div class="moj-multi-file-upload moj-multi-file-upload--enhanced">
-          <div class="moj-multi-file__uploaded-files moj-hidden">
-            <h2 class="govuk-heading-m">File added</h2>
-            <div class="govuk-summary-list moj-multi-file-upload__list">
-            </div>
-          </div>
-        
-          
-            <input class="govuk-file-upload moj-multi-file-upload__input" id="application" name="application" type="file" aria-describedby="application-hint">
-            <div aria-live="polite" role="status" class="govuk-visually-hidden"></div>
-            <br><br>
-            
-            {% from "govuk/components/button/macro.njk" import govukButton %}
-    
-            {{ govukButton({
-              text: "Continue"
-            }) }}
+{%- from "govuk/components/file-upload/macro.njk" import govukFileUpload -%}
+{%- from "govuk/components/button/macro.njk" import govukButton -%}
+{%- from "govuk/components/error-summary/macro.njk" import govukErrorSummary -%}
+{%- from "moj/components/multi-file-upload/macro.njk" import mojMultiFileUpload -%}
+
+<div id="application-hint" class="govuk-hint">
+  The file must be a DOC, DOCX, PDF, XLS, TIF, JPG or PNG and be smaller than 15MB
+</div>
+
+    {% if errorSummary.items.length %}
+      {{ govukErrorSummary({
+        titleText: 'There is a problem',
+        errorList: errorSummary.items
+      }) }}
+    {% endif %}
+
   
-  
-            </div>
-          </form>
+ 
+      {% set uploadHtml %}
+        {{ govukFileUpload({
+          id: "documents",
+          name: "documents",
+          classes: 'moj-multi-file-upload__input',
+          label: {
+            text: "Upload a file",
+            classes: 'govuk-label--m'
+          },
+          attributes: { multiple: '' },
+          errorMessage: errorMessage
+        }) }}
+
+        {{govukButton({
+          text: 'Upload file',
+          classes: 'govuk-button--secondary moj-multi-file-upload__button'
+        })}}
+      {% endset %}
+
+      {{ mojMultiFileUpload({
+        uploadedFiles: {
+          heading: { text: 'Files added' },
+          items: uploadedFiles
+        },
+        uploadHtml: uploadHtml
+      }) }}
+
+      {{govukButton({
+        text: 'Continue'
+      })}}
+    </form>
   </div>
 </div>
+ 
 
 
 {% endblock %}

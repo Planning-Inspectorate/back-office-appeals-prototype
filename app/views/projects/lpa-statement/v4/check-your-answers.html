@@ -12,9 +12,9 @@
       <h1 class="govuk-heading-l">{{title}}</h1>
 
       {% if data['review-decision'] == 'Incomplete' or data['review-decision'] == 'Invalid' %}
-        <form action="statement-confirmation" method="post" class="govuk-!-margin-top-0" novalidate>
+        <form action="statement-confirmation?review=complete" method="post" class="govuk-!-margin-top-0" novalidate>
       {% else %}
-        <form action="case?statementReviewStatus=valid&bannerSeen=" method="post" class="" novalidate>
+        <form action="case?review=complete&statementReviewStatus=valid&bannerSeen=" method="post" class="" novalidate>
       {% endif %}
           {{ govukSummaryList({
             classes: "long-answers govuk-!-margin-bottom-6",

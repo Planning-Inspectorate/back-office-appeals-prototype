@@ -8,30 +8,37 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {% set readyBanner %}
-        <p class="govuk-notification-banner__heading">
-          LPA statement ready for review. <a class="govuk-notification-banner__link" href="statement-review">Review</a>
-        </p>
-      {% endset %}
+      {% if data['review'] == 'complete'  %}
 
-      {% set successBanner %}
-        <p class="govuk-notification-banner__heading">
-          {% if data['statementReviewStatus'] == 'valid' %}
+        {% set successBanner %}
+          <p class="govuk-notification-banner__heading">
             LPA statement valid
-          {% elseif data['statementReviewStatus'] == 'incomplete' %}
-            LPA statement incomplete
-          {% else %}
-            LPA statement invalid
-          {% endif %}
-        </p>
-      {% endset %}
+          </p>
+        {% endset %}
 
-      {% if data['bannerSeen'] != 'yes' %}
+        {% if data['bannerSeen'] != 'yes' %}
+          {% if data['statementReviewStatus'] == 'valid' %}
+            {{ govukNotificationBanner({
+              html: successBanner,
+              type: "success"
+            }) }}
+          {% endif %}
+        {% endif %}
+
+      {% else %}
+
+        {% set readyBanner %}
+          <p class="govuk-notification-banner__heading">
+            LPA statement ready for review. <a class="govuk-notification-banner__link" href="statement-review">Review</a>
+          </p>
+        {% endset %}
         {{ govukNotificationBanner({
-          html: successBanner,
-          type: "success"
+          html: readyBanner
         }) }}
+
       {% endif %}
+
+
 
       <span class="govuk-caption-l">Appeal 2110166</span>
     	<h1 class="govuk-heading-l">{{ title }}</h1>

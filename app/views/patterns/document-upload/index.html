@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-admin.html" %}
 
-{% set title = "Document upload" %}
+{% set title = "Upload multiple files" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% set back = false %}
@@ -42,7 +42,7 @@
         </li>
         <li>
           <a href="/patterns/document-upload/" class="govuk-link--no-visited-state govuk-link--no-underline govuk-!-font-weight-bold">
-            Document upload
+            Upload multiple files
           </a>
         </li>
       </ul>
@@ -57,111 +57,80 @@
       </p>
 
       <p class="govuk-body-l">
-        Use the <a href="https://design-patterns.service.justice.gov.uk/components/multi-file-upload/" target="_blank">multi file upload component</a> to enable more than 1 document to be uploaded.
+        Use this component to show how users can upload several files. This component is based on <a href="https://design-patterns.service.justice.gov.uk/components/multi-file-upload/" target="_blank">the MOJ multi file upload component</a>.
       </p>
 
       {% set exampleHtml %}
 
-      
-      <p>
-        <form action="document-details" method="post" novalidate enctype="multipart/form-data">
-          <div id="application-hint" class="govuk-hint">
-            The file must be a DOC, DOCX, PDF, XLS, TIF, JPG or PNG and be smaller than 15MB
-          </div>
-            {%- from "govuk/components/file-upload/macro.njk" import govukFileUpload -%}
-            {%- from "govuk/components/button/macro.njk" import govukButton -%}
-            {%- from "govuk/components/error-summary/macro.njk" import govukErrorSummary -%}
-            {%- from "moj/components/multi-file-upload/macro.njk" import mojMultiFileUpload -%}
-            
-                {% if errorSummary.items.length %}
-                  {{ govukErrorSummary({
-                    titleText: 'There is a problem',
-                    errorList: errorSummary.items
-                  }) }}
-                {% endif %}  
-             
-                  {% set uploadHtml %}
-                    {{ govukFileUpload({
-                      id: "documents",
-                      name: "documents",
-                      classes: 'moj-multi-file-upload__input',
-                      label: {
-                        text: "Upload a file",
-                        classes: 'govuk-label--m'
-                      },
-                      attributes: { multiple: '' },
-                      errorMessage: errorMessage
-                    }) }}
-            
-                    {{govukButton({
-                      text: 'Upload file',
-                      classes: 'govuk-button--secondary moj-multi-file-upload__button'
-                    })}}
-                  {% endset %}
-            
-                  {{ mojMultiFileUpload({
-                    uploadedFiles: {
-                      heading: { text: 'Files added' },
-                      items: uploadedFiles
-                    },
-                    uploadHtml: uploadHtml
-                  }) }}
-            
-                  {{govukButton({
-                    text: 'Continue'
-                  })}}
-                </form>
-      </p>
+        <p class="govuk-body">
+          Choose a single or multiple files to upload.
+        </p>
+
+        <p class="govuk-hint">
+          <!-- Files must be PDF, DOC, DOCX, PPT, PPTX, XLS, XLSX, JPG, JPEG, MPEG, MP3, MP4, MOV, PNG, TIF or TIFF. -->
+          The files must be a DOC, DOCX, PDF, TIF, JPG or PNG and be smaller than 25MB
+        </p>
+
+        <div id="upload-hint" class="govuk-hint">
+          <!-- The file must be a DOC, DOCX, PDF, XLS, TIF, JPG or PNG and be smaller than 25MB -->
+          The total of your uploaded files must be smaller than 1 GB.
+        </div>
+
+        {% set uploadHtml %}
+          {{ govukFileUpload({
+            id: "documents",
+            name: "documents",
+            classes: 'moj-multi-file-upload__input',
+            label: {
+              text: "Upload files",
+              classes: 'govuk-visually-hidden'
+            },
+            attributes: { multiple: '' }
+          }) }}
+
+        {% endset %}
+
+        {{ mojMultiFileUpload({
+          uploadedFiles: {
+            heading: { text: 'Files added' },
+            items: uploadedFiles
+          },
+          uploadHtml: uploadHtml
+        }) }}
 
       {% endset -%}
 
       {% set codeHtml %}
         <pre class="code-snippet"><code>{% raw -%}
 {%- from "govuk/components/file-upload/macro.njk" import govukFileUpload -%}
-{%- from "govuk/components/button/macro.njk" import govukButton -%}
-{%- from "govuk/components/error-summary/macro.njk" import govukErrorSummary -%}
 {%- from "moj/components/multi-file-upload/macro.njk" import mojMultiFileUpload -%}
 
-
-
-{% if errorSummary.items.length %}
-    {{ govukErrorSummary({
-    titleText: 'There is a problem',
-    errorList: errorSummary.items
-    }) }}
-{% endif %}
-
-    {% set uploadHtml %}
-    {{ govukFileUpload({
-        id: "documents",
-        name: "documents",
-        classes: 'moj-multi-file-upload__input',
-        label: {
-        text: "Upload a file",
-        classes: 'govuk-label--m'
-        },
-        attributes: { multiple: '' },
-        errorMessage: errorMessage
-    }) }}
-
-    {{govukButton({
-        text: 'Upload file',
-        classes: 'govuk-button--secondary moj-multi-file-upload__button'
-    })}}
-    {% endset %}
-
-    {{ mojMultiFileUpload({
-    uploadedFiles: {
-        heading: { text: 'Files added' },
-        items: uploadedFiles
+{% set uploadHtml %}
+  {{ govukFileUpload({
+    id: "documents",
+    name: "documents",
+    classes: 'moj-multi-file-upload__input',
+    label: {
+    text: "Upload a file",
+    classes: 'govuk-label--m'
     },
-    uploadHtml: uploadHtml
-    }) }}
+    attributes: { multiple: '' },
+    errorMessage: errorMessage
+  }) }}
 
-    {{govukButton({
-    text: 'Continue'
-    })}}
-</form>
+  {{ govukButton({
+    text: 'Upload file',
+    classes: 'govuk-button--secondary moj-multi-file-upload__button'
+  })}}
+{% endset %}
+
+{{ mojMultiFileUpload({
+  uploadedFiles: {
+    heading: { text: 'Files added' },
+    items: uploadedFiles
+  },
+  uploadHtml: uploadHtml
+}) }}
 {% endraw %}
   </code></pre>
 
@@ -191,7 +160,7 @@
       </h2>
 
       <p>
-        Use the multi file upload component to help users upload multiple files at the same time, on a regular basis.  
+        Use the multi file upload component when you want users to be able to upload more than one file.
       </p>
 
       <h2 class="govuk-heading-l">

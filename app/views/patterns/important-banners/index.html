@@ -80,9 +80,7 @@
       {% endset -%}
       {% set codeHtml %}
 
-      <pre class="code-snippet"><code>{% raw -%}{% from "/patterns/important-banners/default.njk" import importantBanner %}
-
-{{ importantBanner (
+      <pre class="code-snippet"><code>{% raw -%}{{ importantBanner (
   bannerHeadingStart = "Interested party comments awaiting ",
   bannerLink = "review")
 }}

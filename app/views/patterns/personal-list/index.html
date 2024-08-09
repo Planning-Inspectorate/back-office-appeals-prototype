@@ -78,9 +78,7 @@
       {% endset -%}
 
       {% set codeHtml %}
-        <pre class="code-snippet"><code>{% raw -%}{% from "/patterns/personal-list/default.njk" import personalList %}
-
-{{
+        <pre class="code-snippet"><code>{% raw -%}{{
   personalList (
     appealId = "EXAMPLE",
     appealLink = "appeal-details",

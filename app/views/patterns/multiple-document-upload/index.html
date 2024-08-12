@@ -52,6 +52,7 @@
       <h1 class="govuk-heading-xl govuk-!-margin-bottom-2" id="personal-list">
         {{ title }}
       </h1>
+
       <p>
         <strong class="govuk-tag govuk-!-margin-bottom-5">experimental</strong>
       </p>
@@ -101,36 +102,7 @@
       {% endset -%}
 
       {% set codeHtml %}
-        <pre class="code-snippet"><code>{% raw -%}
-{%- from "govuk/components/file-upload/macro.njk" import govukFileUpload -%}
-{%- from "moj/components/multi-file-upload/macro.njk" import mojMultiFileUpload -%}
-
-{% set uploadHtml %}
-  {{ govukFileUpload({
-    id: "documents",
-    name: "documents",
-    classes: 'moj-multi-file-upload__input',
-    label: {
-    text: "Upload a file",
-    classes: 'govuk-label--m'
-    },
-    attributes: { multiple: '' },
-    errorMessage: errorMessage
-  }) }}
-
-  {{ govukButton({
-    text: 'Upload file',
-    classes: 'govuk-button--secondary moj-multi-file-upload__button'
-  })}}
-{% endset %}
-
-{{ mojMultiFileUpload({
-  uploadedFiles: {
-    heading: { text: 'Files added' },
-    items: uploadedFiles
-  },
-  uploadHtml: uploadHtml
-}) }}
+        <pre class="code-snippet"><code>{% raw -%}{{ multiDocumentUpload () }}
 {% endraw %}
   </code></pre>
 
@@ -169,6 +141,10 @@
 
       <p>
         You can use this component as a <a href="https://mozilla.github.io/nunjucks/">Nunjucks</a> macro.
+      </p>
+
+      <p>
+        It should be nested in a ‘two-thirds’ grid layout and an HTML form element. You will need to add a GOV.UK button after the component.
       </p>
 
     </div>

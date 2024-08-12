@@ -40,7 +40,7 @@
           </a>
         </li>
         <li>
-          <a href="/patterns/document-upload/" class="govuk-link--no-visited-state govuk-link--no-underline">
+          <a href="/patterns/multiple-document-upload/" class="govuk-link--no-visited-state govuk-link--no-underline">
             Upload multiple files
           </a>
         </li>
@@ -68,9 +68,7 @@
       {% set codeHtml %}
 
 
-      <pre class="code-snippet"><code>{% raw -%}{% from "/patterns/meta-data/default.njk" import metaData %}
-
-{{ metaData (
+      <pre class="code-snippet"><code>{% raw -%}{{ metaData (
   site = "22a The Peach Trees, Peckham, SE15 9HA",
   lpa = "Southwark Council"
 ) }}

@@ -41,7 +41,7 @@
           </a>
         </li>
         <li>
-          <a href="/patterns/document-upload/" class="govuk-link--no-visited-state govuk-link--no-underline">
+          <a href="/patterns/multiple-document-upload/" class="govuk-link--no-visited-state govuk-link--no-underline">
             Upload multiple files
           </a>
         </li>
@@ -117,9 +117,7 @@
       {% endset -%}
 
       {% set codeHtml %}
-        <pre class="code-snippet"><code>{% raw -%}{% from "/patterns/case-status/default.njk" import caseStatus %}
-
-{{ caseStatus (caseStatus = "validation")}}{% endraw %}
+        <pre class="code-snippet"><code>{% raw -%}{{ caseStatus (caseStatus = "validation")}}{% endraw %}
   </code></pre>
 
       {% endset -%}

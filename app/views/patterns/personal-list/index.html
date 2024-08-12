@@ -42,7 +42,7 @@
           </a>
         </li>
         <li>
-          <a href="/patterns/document-upload/" class="govuk-link--no-visited-state govuk-link--no-underline">
+          <a href="/patterns/multiple-document-upload/" class="govuk-link--no-visited-state govuk-link--no-underline">
             Upload multiple files
           </a>
         </li>
@@ -78,9 +78,7 @@
       {% endset -%}
 
       {% set codeHtml %}
-        <pre class="code-snippet"><code>{% raw -%}{% from "/patterns/personal-list/default.njk" import personalList %}
-
-{{
+        <pre class="code-snippet"><code>{% raw -%}{{
   personalList (
     appealId = "EXAMPLE",
     appealLink = "appeal-details",

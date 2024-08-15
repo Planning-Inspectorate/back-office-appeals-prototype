@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-admin.html" %}
 
-{% set title = "Meta data" %}
+{% set title = 'Address' %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% set back = false %}
@@ -10,7 +10,7 @@
     <div class="govuk-grid-column-one-quarter">
       <ul class="govuk-list govuk-list-bullet">
         <li>
-          <a href="/patterns/address/" class="govuk-link--no-visited-state govuk-link--no-underline">
+          <a href="/patterns/address/" class="govuk-link--no-visited-state govuk-link--no-underline govuk-!-font-weight-bold">
             Address
           </a>
         </li>
@@ -35,7 +35,7 @@
           </a>
         </li>
         <li>
-          <a href="/patterns/meta-data/" class="govuk-link--no-visited-state govuk-link--no-underline govuk-!-font-weight-bold">
+          <a href="/patterns/meta-data/" class="govuk-link--no-visited-state govuk-link--no-underline">
             Meta data
           </a>
         </li>
@@ -58,24 +58,32 @@
         {{ title }}
       </h1>
       <p>
-        <strong class="govuk-tag govuk-!-margin-bottom-5">experimental</strong>
+        {{govukTag({
+          text: "GDS core pattern",
+          classes: "govuk-tag--green"
+        })}}
       </p>
+
       <p class="govuk-body-l">
-        Contextual information for the appeal.
+        Gathering address data.
+      </p>
+
+      <p class="govuk-body govuk-!-margin-bottom-6">
+        Based on the <a href="https://design-system.service.gov.uk/patterns/addresses/">GDS address form</a>.
       </p>
 
       {% set exampleHtml %}
-        {{ metaData (
-          site = "22a The Peach Trees, Peckham, SE15 9HA",
-          lpa = "Southwark Council"
+        {{ address (
+          country = true
         ) }}
       {% endset -%}
       {% set codeHtml %}
 
+      <pre class="code-snippet"><code>{% raw -%}{{ address () }}
 
-      <pre class="code-snippet"><code>{% raw -%}{{ metaData (
-  site = "22a The Peach Trees, Peckham, SE15 9HA",
-  lpa = "Southwark Council"
+{{ address (
+  // address with an extra field for country
+  country = true
 ) }}
 {% endraw %}
         </code></pre>
@@ -105,19 +113,19 @@
       </h2>
 
       <p>
-        This is shown at the top of the case details view and other case views and lists contextual information for the user about the view.
+        Use the address form to gather address data consistently.
       </p>
 
       <h2 class="govuk-heading-l">
         How it works
       </h2>
 
-      <p>
+      <p class="govuk-body">
         You can use this component as a <a href="https://mozilla.github.io/nunjucks/">Nunjucks</a> macro.
       </p>
 
-      <p>
-        Add parameters to the component to display contextual information.
+      <p class="govuk-body">
+        There is an optional parameter for address forms with an extra field for a country.
       </p>
 
       <h3 class="govuk-heading-m">
@@ -128,18 +136,10 @@
         rows: [
           {
             key: {
-              text: "site"
+              text: "country"
             },
             value: {
-              text: "The appeal site address"
-            }
-          },
-          {
-            key: {
-              text: "lpa"
-            },
-            value: {
-              text: "The local planning authority"
+              text: "Setting to true (any not null value) adds a country field"
             }
           }
         ]

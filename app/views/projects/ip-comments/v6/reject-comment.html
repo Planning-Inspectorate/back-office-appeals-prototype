@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Invalid comment" %}
+{% set title = "Why did you reject the comment?" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% set back = true %}
@@ -23,11 +23,11 @@
   <div class="govuk-grid-column-two-thirds">
 
     <span class="govuk-caption-l">Appeal 2114328</span>
-    <h1 class="govuk-heading-l">
+    <!-- <h1 class="govuk-heading-l">
       {{ title }}
-    </h1>
+    </h1> -->
 
-    <dl class="govuk-summary-list">
+    <!-- <dl class="govuk-summary-list">
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
           Interested party
@@ -54,7 +54,7 @@
           {% endif %}
         </dd>
       </div>
-    </dl>
+    </dl> -->
 
     <form action="check-reason-for-rejection" method="post">
 
@@ -66,9 +66,9 @@
         },
         rows: "6",
         label: {
-          text: "Why did you reject the comment?",
-          classes: "govuk-label--m",
-          isPageHeading: false
+          text: title,
+          classes: "govuk-label--l",
+          isPageHeading: true
         }
 
       }) }}

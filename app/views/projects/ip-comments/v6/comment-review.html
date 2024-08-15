@@ -42,10 +42,11 @@
     </div>
   </div>
 
-  <div class="govuk-grid-row">
+  <div class="govuk-grid-row govuk-!-margin-bottom-6">
     <div class="govuk-grid-column-full">
 
       <dl class="govuk-summary-list govuk-!-margin-bottom-0">
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Interested party
@@ -57,7 +58,10 @@
               Ian Smith
             {% endif %}
           </dd>
+          <dd class="govuk-summary-list__actions">
+          </dd>
         </div>
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Email address
@@ -69,7 +73,10 @@
               ian.smith@gmail.com
             {% endif %}
           </dd>
+          <dd class="govuk-summary-list__actions">
+          </dd>
         </div>
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Address
@@ -89,7 +96,10 @@
               Not provided
             {% endif %}
           </dd>
+          <dd class="govuk-summary-list__actions">
+          </dd>
         </div>
+
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Comment date
@@ -101,10 +111,11 @@
               {{ 3 | daysAgo }}
             {% endif %}
           </dd>
+          <dd class="govuk-summary-list__actions">
+          </dd>
         </div>
-      </dl>
-      {% if data['comment-type'] != 'doc' %}
-        <dl class="govuk-summary-list govuk-!-margin-bottom-0">
+
+        {% if data['comment-type'] != 'doc' %}
           {% if data['manual-ip-comment'] %}
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
@@ -125,37 +136,36 @@
                 Comment
               </dt>
               <dd class="govuk-summary-list__value">
-                  Having reviewed the proposal I would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. All of us here at number 6 The Grove agree.
+                Having reviewed the proposal I would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. All of us here at number 6 The Grove agree.
+              </dd>
+              <dd class="govuk-summary-list__actions">
               </dd>
             </div>
           {% endif %}
 
-        </dl>
-      {% endif %}
+        {% endif %}
 
-      <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Supporting documents
           </dt>
           <dd class="govuk-summary-list__value">
-            <ul class="govuk-list govuk-list--bullet">
-              {% if data['comment-type'] == 'doc' %}
+            {% if data['comment-type'] == 'doc' %}
+              <ul class="govuk-list govuk-list--bullet">
                 <li>
                   <a href="#" class="govuk-link">
                     2114328-IP-comment.doc
                   </a>
                 </li>
                 {% if data['documents-added'] %}
-
+                  <li>
+                    <a href='#' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document.doc')}}</a>
+                  </li>
+                  {% if data['anotherdocument'] %}
                     <li>
-                      <a href='#' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document.doc')}}</a>
+                      <a href='#' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document-2.doc')}}</a>
                     </li>
-                    {% if data['anotherdocument'] %}
-                      <li>
-                        <a href='#' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document-2.doc')}}</a>
-                      </li>
-                    {% endif %}
+                  {% endif %}
                 {% endif %}
               </ul>
             {% elseif data['documents-added'] %}
@@ -189,6 +199,7 @@
             {% endif %}
           </dd>
         </div>
+
       </dl>
 
     </div>

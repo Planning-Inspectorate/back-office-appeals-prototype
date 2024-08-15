@@ -17,28 +17,15 @@
       <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Interested party
+            Interested party’s details
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ data ['manual-ip-first-name'] or 'Sam' }} {{ data ['manual-ip-last-name'] or 'Fisher' }}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="#">
-              Change<span class="govuk-visually-hidden"></span>
-            </a>
-          </dd>
-        </div>
-
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Email
-          </dt>
-          <dd class="govuk-summary-list__value">
+            {{ data ['manual-ip-first-name'] or 'Sam' }} {{ data ['manual-ip-last-name'] or 'Fisher' }}<br>
             {{ data ['manual-ip-email'] or 'sammy@fishers.com' }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="#">
-              Change<span class="govuk-visually-hidden"></span>
+              Change<span class="govuk-visually-hidden">interested party’s details</span>
             </a>
           </dd>
         </div>

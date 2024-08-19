@@ -1,11 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% if data['manual-ip-comment'] %}
-  {% set title = 'Comment from Sam Fisher' %}
-{% else %}
-  {% set title = 'Comment from Ian Smith' %}
-{% endif %}
-
+{% set title = 'Review comment' %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% block backLink %}
@@ -64,7 +59,7 @@
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Email address
+            Email
           </dt>
           <dd class="govuk-summary-list__value">
             {% if data['manual-ip-comment'] %}
@@ -102,7 +97,7 @@
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Comment date
+            Submitted
           </dt>
           <dd class="govuk-summary-list__value">
             {% if data['manual-ip-comment'] %}
@@ -125,9 +120,9 @@
                 Having reviewed the proposal I would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. David Newton at number 6 The Grove also agrees.
               </dd>
               <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="manage-comment">
+                <!-- <a class="govuk-link" href="manage-comment">
                   Manage<span class="govuk-visually-hidden"> 2114328-IP-comment.doc</span>
-                </a>
+                </a> -->
               </dd>
             </div>
           {% else %}

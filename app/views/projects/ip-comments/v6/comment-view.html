@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = 'Comment from Ian Smith' %}
+{% set title = 'Review comment' %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% set prototypeLinks = [
@@ -70,7 +70,7 @@
 
     <span class="govuk-caption-l">Appeal 2114328</span>
     <h1 class="govuk-heading-l">
-      Comment from Ian Smith
+      {{ title }}
     </h1>
 
   </div>
@@ -83,13 +83,13 @@
         <dt class="govuk-summary-list__key">
           Interested party
         </dt>
-        <dd class="govuk-summary-list__value">
+        <dd class="govuk-summary-list__value govuk-!-width-two-thirds">
           Ian Smith
         </dd>
       </div>
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          Email address
+          Email
         </dt>
         <dd class="govuk-summary-list__value">
           ian.smith@gmail.com

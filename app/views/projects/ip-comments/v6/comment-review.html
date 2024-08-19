@@ -92,6 +92,11 @@
             {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
+            {% if data['add-ip-address-check'] != 'Yes' %}
+              <a href='add-address' class='govuk-link govuk-link--no-visited-state'>
+                Add<span class="govuk-visually-hidden"> address</span>
+              </a>
+            {% endif %}
           </dd>
         </div>
 

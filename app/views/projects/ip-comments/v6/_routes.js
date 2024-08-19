@@ -85,5 +85,10 @@ router.post('/comment-review', function (req, res) {
   }
 })
 
+// add address
+router.post('/add-address', function (req, res) {
+  res.redirect('check-address')
+})
+
 // Add your routes above the module.exports line
 module.exports = router

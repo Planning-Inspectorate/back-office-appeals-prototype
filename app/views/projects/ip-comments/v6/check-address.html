@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Confirm redaction" %}
+{% set title = "Check answers" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% set back = true %}
@@ -19,40 +19,28 @@
 </div>
 
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-full">
+  <div class="govuk-grid-column-two-thirds">
 
     {{ govukSummaryList({
       classes: "govuk-!-margin-bottom-9",
       rows: [
         {
           key: {
-            text: "Interested party"
+            text: "Interested party’s address",
+            classes: "govuk-!-width-one-third"
           },
           value: {
-            text: "Ian Smith"
-          }
-        },
-        {
-          key: {
-            text: "Unredacted comment"
-          },
-          value: {
-            html: "Having reviewed the proposal I would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. David Newton at number 6 The Grove also agrees."
-          }
-        },
-        {
-          key: {
-            text: "Redacted comment"
-          },
-          value: {
-            html: "Having reviewed the proposal I would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. (Redacted)"
+            html: "4 Aubrey House<br>
+                   Aubrey Road<br>
+                   London<br>
+                   W6 2PP"
           },
           actions: {
             items: [
               {
-                href: "comment-redact",
+                href: "add-address",
                 text: "Change",
-                visuallyHiddenText: "contact details"
+                visuallyHiddenText: "name"
               }
             ]
           }
@@ -60,31 +48,9 @@
       ]
     }) }}
 
-<!-- <div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-    <h2 class="govuk-heading-s">Redacted comment</h2>
-    <p>
-      Having reviewed the proposal I would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead.
-    </p>
-  </div>
-  <div class="govuk-grid-column-one-half">
-    <h2 class="govuk-heading-s">Original comment</h2>
-    <p>
-      Having reviewed the proposal I would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. David Newton at number 6 The Grove also agrees.
-    </p>
-  </div>
-
-  <p>
-    <a href="comment-redact">
-      Go back to redact text
-    </a>
-  </p>
-
-</div> -->
-
-    <form action="ip-comments?redactedComment=true&commentReview=true#redact-tab" method="post" class="govuk-!-margin-top-2">
+    <form method="post" class="govuk-!-margin-top-2">
       {{ govukButton({
-        text: "Confirm redaction and accept comment"
+        text: "Confirm"
       }) }}
     </form>
   </div>

@@ -104,11 +104,26 @@
           Address
         </dt>
         <dd class="govuk-summary-list__value">
-          6 The Grove<br>
-          Glasgow<br>
-          GS5 7TH
+          {% if data['add-ip-address-check'] == 'Yes' %}
+            {{ data['manual-ip-address-line-1'] or '7 Bipple Lane' }}<br>
+            {{ data['manual-ip-address-line-2'] or 'Donnie Close' }}
+            {% if data ['manual-ip-address-line-2'] %}<br>
+            {% endif %}
+            {{ data['manual-ip-address-town'] or 'Brickleford'}}
+            {% if data['manual-ip-address-county'] %}<br>
+            {% endif %}
+            {{ data['manual-ip-address-county'] or 'Brickfordshire' }}<br>
+            {{ data['manual-ip-address-postcode'] or 'BF93 2NN' }}
+          {% else %}
+            Not provided
+          {% endif %}
         </dd>
         <dd class="govuk-summary-list__actions">
+          {% if data['add-ip-address-check'] != 'Yes' %}
+            <a href='add-address?address-for=review' class='govuk-link govuk-link--no-visited-state'>
+              Add<span class="govuk-visually-hidden"> address</span>
+            </a>
+          {% endif %}
         </dd>
       </div>
       <div class="govuk-summary-list__row">

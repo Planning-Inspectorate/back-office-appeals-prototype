@@ -90,5 +90,15 @@ router.post('/add-address', function (req, res) {
   res.redirect('check-address')
 })
 
+router.post('/check-address', function (req, res) {
+  if (req.session.data['address-for'] == 'review') {
+    res.redirect('comment-review?add-ip-address-check=Yes')
+  } else {
+    res.redirect('comment-view?add-ip-address-check=Yes')
+  }
+})
+
+
+
 // Add your routes above the module.exports line
 module.exports = router

@@ -27,6 +27,19 @@
             </p>
           </div>
         </div>
+      {% elseif data['address-added'] %}
+        <div class="govuk-notification-banner  govuk-notification-banner--success" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+          <div class="govuk-notification-banner__header">
+            <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+              Success
+            </h2>
+          </div>
+          <div class="govuk-notification-banner__content">
+            <p class="govuk-notification-banner__heading">
+              IP address added
+            </p>
+          </div>
+        </div>
       {% endif %}
 
       <span class="govuk-caption-l">Appeal 2114328</span>
@@ -93,7 +106,7 @@
           </dd>
           <dd class="govuk-summary-list__actions">
             {% if data['add-ip-address-check'] != 'Yes' %}
-              <a href='add-address' class='govuk-link govuk-link--no-visited-state'>
+              <a href='add-address?address-for=review' class='govuk-link govuk-link--no-visited-state'>
                 Add<span class="govuk-visually-hidden"> address</span>
               </a>
             {% endif %}

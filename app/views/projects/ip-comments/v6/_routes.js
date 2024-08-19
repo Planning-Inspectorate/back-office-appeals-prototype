@@ -77,11 +77,11 @@ router.post('/extra-document-cya', function (req, res) {
 
 router.post('/comment-review', function (req, res) {
   if (req.session.data['ip-comment-review'] == 'invalid') {
-    res.redirect('reject-comment')
+    res.redirect('reject-comment?address-added=')
   } else if (req.session.data['ip-comment-review'] == 'redact') {
-    res.redirect('comment-redact')
+    res.redirect('comment-redact?address-added=')
   } else {
-    res.redirect('ip-comments?acceptedComment=yes&commentReview=true')
+    res.redirect('ip-comments?acceptedComment=yes&commentReview=true&address-added=')
   }
 })
 
@@ -92,9 +92,9 @@ router.post('/add-address', function (req, res) {
 
 router.post('/check-address', function (req, res) {
   if (req.session.data['address-for'] == 'review') {
-    res.redirect('comment-review?add-ip-address-check=Yes')
+    res.redirect('comment-review?add-ip-address-check=Yes&address-added=success')
   } else {
-    res.redirect('comment-view?add-ip-address-check=Yes')
+    res.redirect('comment-view?add-ip-address-check=Yes&address-added=success')
   }
 })
 

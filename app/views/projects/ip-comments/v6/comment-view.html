@@ -44,7 +44,7 @@
 {% block backLink %}
   {{ govukBackLink({
     html: 'Back',
-    href: 'ip-comments-done?redactedComment=&commentReview='
+    href: 'ip-comments-done?redactedComment=&commentReview=&address-added='
   }) }}
 {% endblock %}
 
@@ -63,6 +63,19 @@
         <div class="govuk-notification-banner__content">
           <p class="govuk-notification-banner__heading">
             Supporting documents added
+          </p>
+        </div>
+      </div>
+    {% elseif data['address-added'] %}
+      <div class="govuk-notification-banner  govuk-notification-banner--success" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+        <div class="govuk-notification-banner__header">
+          <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+            Success
+          </h2>
+        </div>
+        <div class="govuk-notification-banner__content">
+          <p class="govuk-notification-banner__heading">
+            IP address added
           </p>
         </div>
       </div>
@@ -120,7 +133,7 @@
         </dd>
         <dd class="govuk-summary-list__actions">
           {% if data['add-ip-address-check'] != 'Yes' %}
-            <a href='add-address?address-for=review' class='govuk-link govuk-link--no-visited-state'>
+            <a href='add-address?address-for=review&address-added=' class='govuk-link govuk-link--no-visited-state'>
               Add<span class="govuk-visually-hidden"> address</span>
             </a>
           {% endif %}
@@ -139,7 +152,7 @@
         </dd>
         <dd class="govuk-summary-list__actions">
           {% if data['siteVisitRequest'] %}
-            <a href="#" class="govuk-link">
+            <a href="?siteVisitRequest=&address-added=" class="govuk-link">
               Remove
             </a>
           {% endif %}
@@ -197,18 +210,18 @@
         </dt>
         <dd class="govuk-summary-list__value">
           {% if data['comment-type'] == 'doc' %}
-            <a href="#" class="govuk-link">
+            <a href="?address-added=" class="govuk-link">
               4012345-IP-comment.doc
             </a>
           {% else %}
             {% if data['documents-added'] %}
               <ul class="govuk-list govuk-list--bullet">
                 <li>
-                  <a href='#' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document.doc')}}</a>
+                  <a href='?&address-added=' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document.doc')}}</a>
                 </li>
                 {% if data['anotherdocument'] %}
                   <li>
-                    <a href='#' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document-2.doc')}}</a>
+                    <a href='?address-added=' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document-2.doc')}}</a>
                   </li>
                 {% endif %}
               </ul>
@@ -220,21 +233,21 @@
         <dd class="govuk-summary-list__actions">
           <!-- if docs have been added -->
           {% if data['documents-added'] %}
-            <a href='extra-documents' class='govuk-link govuk-link--no-visited-state'>
+            <a href='extra-documents?address-added=' class='govuk-link govuk-link--no-visited-state'>
               Manage<span class="govuk-visually-hidden"> supporting docs</span></a> <span class="govuk-hint">|</span>
-            <a href='upload-extra-supporting-document' class='govuk-link govuk-link--no-visited-state'>
+            <a href='upload-extra-supporting-document?address-added=' class='govuk-link govuk-link--no-visited-state'>
               Add<span class="govuk-visually-hidden"> supporting docs</span>
             </a>
           {% else %}
 
             <!-- if the comment is a doc -->
             {% if data['comment-type'] == 'doc' %}
-              <a href='extra-documents' class='govuk-link govuk-link--no-visited-state'>
+              <a href='extra-documents?address-added=' class='govuk-link govuk-link--no-visited-state'>
                 Manage<span class="govuk-visually-hidden"> supporting docs</span></a><span class="govuk-hint"> | </span>
             {% endif %}
 
             <!-- add -->
-            <a href='upload-extra-supporting-document?comment-attachment=view' class='govuk-link govuk-link--no-visited-state'>
+            <a href='upload-extra-supporting-document?comment-attachment=view&address-added=' class='govuk-link govuk-link--no-visited-state'>
               Add<span class="govuk-visually-hidden"> supporting docs</span>
             </a>
           {% endif %}
@@ -249,7 +262,7 @@
 
     {% if data['comments-shared'] != 'yes' %}
       <p class="govuk-body">
-        <a href='withdraw-comment-upload-evidence?comment-mode=review' class='govuk-link govuk-link--no-visited-state'>Withdraw comment</a>
+        <a href='withdraw-comment-upload-evidence?comment-mode=review&address-added=' class='govuk-link govuk-link--no-visited-state'>Withdraw comment</a>
       </p>
     {% endif %}
 

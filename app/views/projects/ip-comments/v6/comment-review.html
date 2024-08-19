@@ -10,6 +10,18 @@
   }) }}
 {% endblock %}
 
+{% set prototypeLinks = [
+  {
+    href: '?add-ip-address-check=Yes',
+    text: 'Address provided'
+  } if data['add-ip-address-check'] != 'Yes',
+  {
+    href: '?add-ip-address-check=',
+    text: 'No address provided'
+  } if data['add-ip-address-check'] == 'Yes'
+] %}
+
+
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">

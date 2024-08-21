@@ -37,7 +37,16 @@
   {
     href: '?siteVisitRequest=',
     text: 'No site visit requested'
-  } if data['siteVisitRequest'] == 'yes'
+  } if data['siteVisitRequest'] == 'yes',
+
+  {
+    href: '?redactedComment=empty',
+    text: 'No redacted comment'
+  } if data['redactedComment'] != 'empty',
+  {
+    href: '?redactedComment=',
+    text: 'With redacted comment'
+  } if data['redactedComment'] == 'empty'
 
 ] %}
 
@@ -132,11 +141,7 @@
           {% endif %}
         </dd>
         <dd class="govuk-summary-list__actions">
-          {% if data['add-ip-address-check'] != 'Yes' %}
-            <a href='add-address?address-for=review&address-added=' class='govuk-link govuk-link--no-visited-state'>
-              Add<span class="govuk-visually-hidden"> address</span>
-            </a>
-          {% endif %}
+
         </dd>
       </div>
       <div class="govuk-summary-list__row">
@@ -177,14 +182,16 @@
             Having reviewed the proposal I would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. David Newton at number 6 The Grove also agrees.
           </dd>
         </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Redacted comment
-          </dt>
-          <dd class="govuk-summary-list__value">
-            Having reviewed the proposal I would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. (Redacted)
-          </dd>
-        </div>
+        {% if data['redactedComment'] != 'empty' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Redacted comment
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Having reviewed the proposal I would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. (Redacted)
+            </dd>
+          </div>
+        {% endif %}
       {% else %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">

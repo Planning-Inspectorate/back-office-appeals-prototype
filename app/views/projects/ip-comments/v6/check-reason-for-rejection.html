@@ -64,7 +64,11 @@
             Reason for rejection
           </dt>
           <dd class="govuk-summary-list__value">
-            Your comment was not relevant.
+            {% if data['invalidReason'] %}
+              {{ data['invalidReason'] }}
+            {% else %}
+              Your comment was not relevant.
+            {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="#">

@@ -79,7 +79,7 @@ router.post('/comment-review', function (req, res) {
   if (req.session.data['ip-comment-review'] == 'invalid') {
     res.redirect('reject-comment?address-added=')
   } else if (req.session.data['ip-comment-review'] == 'redact') {
-    res.redirect('comment-redact?address-added=')
+    res.redirect('comment-redact?address-added=&redactingfrom=review')
   } else {
     res.redirect('ip-comments?acceptedComment=yes&commentReview=true&address-added=')
   }

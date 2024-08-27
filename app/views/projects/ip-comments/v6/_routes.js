@@ -85,6 +85,16 @@ router.post('/comment-review', function (req, res) {
   }
 })
 
+// change address
+router.post('/change-address', function (req, res) {
+  if (req.session.data['address-for'] == 'review') {
+    res.redirect('comment-review?address-changed=true')
+  } else {
+    res.redirect('comment-view?address-changed=true')
+  }
+})
+
+
 // add address
 router.post('/add-address', function (req, res) {
   res.redirect('check-address')

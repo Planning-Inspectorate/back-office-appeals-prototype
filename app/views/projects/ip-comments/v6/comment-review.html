@@ -6,7 +6,7 @@
 {% block backLink %}
   {{ govukBackLink({
     html: 'Back',
-    href: 'ip-comments?acceptedComment=&redactedComment=&comment-withdrawn=&manual-ip-comment=&comment-rejected=&extra-document='
+    href: 'ip-comments?acceptedComment=&redactedComment=&comment-withdrawn=&manual-ip-comment=&comment-rejected=&extra-document=&address-added=&address-changed='
   }) }}
 {% endblock %}
 
@@ -48,6 +48,19 @@
           <div class="govuk-notification-banner__content">
             <p class="govuk-notification-banner__heading">
               IP address added
+            </p>
+          </div>
+        </div>
+      {% elseif data['address-changed'] %}
+        <div class="govuk-notification-banner  govuk-notification-banner--success" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+          <div class="govuk-notification-banner__header">
+            <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+              Success
+            </h2>
+          </div>
+          <div class="govuk-notification-banner__content">
+            <p class="govuk-notification-banner__heading">
+              IP address changed
             </p>
           </div>
         </div>
@@ -103,13 +116,13 @@
           <dd class="govuk-summary-list__value">
             {% if data['add-ip-address-check'] == 'Yes' %}
               {{ data['manual-ip-address-line-1'] or '7 Bipple Lane' }}<br>
-              {{ data['manual-ip-address-line-2'] or 'Donnie Close' }}
-              {% if data ['manual-ip-address-line-2'] %}<br>
+              {% if data ['manual-ip-address-line-2'] %}
+                {{ data['manual-ip-address-line-2'] or 'Donnie Close' }}<br>
               {% endif %}
-              {{ data['manual-ip-address-town'] or 'Brickleford'}}
-              {% if data['manual-ip-address-county'] %}<br>
+              {{ data['manual-ip-address-town'] or 'Brickleford'}}<br>
+              {% if data['manual-ip-address-county'] %}
+                {{ data['manual-ip-address-county'] or 'Brickfordshire' }}<br>
               {% endif %}
-              {{ data['manual-ip-address-county'] or 'Brickfordshire' }}<br>
               {{ data['manual-ip-address-postcode'] or 'BF93 2NN' }}
             {% else %}
               Not provided
@@ -117,8 +130,12 @@
           </dd>
           <dd class="govuk-summary-list__actions">
             {% if data['add-ip-address-check'] != 'Yes' %}
-              <a href='add-address?address-for=review' class='govuk-link govuk-link--no-visited-state'>
+              <a href='add-address?address-for=review&address-added=&address-changed=' class='govuk-link govuk-link--no-visited-state'>
                 Add<span class="govuk-visually-hidden"> address</span>
+              </a>
+            {% else %}
+              <a href='change-address?address-for=review&address-added&address-changed=' class='govuk-link govuk-link--no-visited-state'>
+                Change<span class="govuk-visually-hidden"> address</span>
               </a>
             {% endif %}
           </dd>
@@ -177,17 +194,17 @@
             {% if data['comment-type'] == 'doc' %}
               <ul class="govuk-list govuk-list--bullet">
                 <li>
-                  <a href="#" class="govuk-link">
+                  <a href="#?address-added=" class="govuk-link">
                     2114328-IP-comment.doc
                   </a>
                 </li>
                 {% if data['documents-added'] %}
                   <li>
-                    <a href='#' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document.doc')}}</a>
+                    <a href='#?address-added=&address-changed=' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document.doc')}}</a>
                   </li>
                   {% if data['anotherdocument'] %}
                     <li>
-                      <a href='#' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document-2.doc')}}</a>
+                      <a href='#?address-added=&address-changed=' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document-2.doc')}}</a>
                     </li>
                   {% endif %}
                 {% endif %}
@@ -195,11 +212,11 @@
             {% elseif data['documents-added'] %}
               <ul class="govuk-list govuk-list--bullet">
                 <li>
-                  <a href='#' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document.doc')}}</a>
+                  <a href='#?address-added=&address-changed=' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document.doc')}}</a>
                 </li>
                 {% if data['anotherdocument'] %}
                   <li>
-                    <a href='#' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document-2.doc')}}</a>
+                    <a href='#?address-added=&address-changed=' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document-2.doc')}}</a>
                   </li>
                 {% endif %}
               </ul>
@@ -209,15 +226,15 @@
           </dd>
           <dd class="govuk-summary-list__actions">
             {% if data['documents-added'] %}
-              <a href='extra-documents' class='govuk-link govuk-link--no-visited-state'>
+              <a href='extra-documents?address-added=&address-changed=' class='govuk-link govuk-link--no-visited-state'>
                 Manage<span class="govuk-visually-hidden"> supporting docs</span>
               </a>
             {% else %}
               {% if data['comment-type'] == 'doc' %}
-                <a href='extra-documents' class='govuk-link govuk-link--no-visited-state'>
+                <a href='extra-documents?address-added=&address-changed=' class='govuk-link govuk-link--no-visited-state'>
                   Manage<span class="govuk-visually-hidden"> supporting docs</span></a> <span class="govuk-hint">|</span>
               {% endif %}
-              <a href='upload-extra-supporting-document?comment-attachment=review' class='govuk-link govuk-link--no-visited-state'>
+              <a href='upload-extra-supporting-document?comment-attachment=review&address-added=&address-changed=' class='govuk-link govuk-link--no-visited-state'>
                 Add<span class="govuk-visually-hidden"> supporting docs</span>
               </a>
             {% endif %}
@@ -305,7 +322,7 @@
         {% endif %}
 
         <p class="govuk-body govuk-!-margin-bottom-6">
-          <a href='withdraw-comment-upload-evidence?comment-mode=review' class='govuk-link govuk-link--no-visited-state'>Withdraw comment</a>
+          <a href='withdraw-comment-upload-evidence?comment-mode=review&address-added=&address-changed=' class='govuk-link govuk-link--no-visited-state'>Withdraw comment</a>
         </p>
 
         {{ govukButton({

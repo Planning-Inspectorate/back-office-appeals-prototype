@@ -98,6 +98,13 @@ router.post('/check-address', function (req, res) {
   }
 })
 
+router.post('/check-remove-site-visit', function (req, res) {
+  if (req.session.data['confirm-remove-site-visit'] == 'yes') {
+    res.redirect('comment-view?siteVisitRequest=&address-added=yes')
+  } else {
+    res.redirect('comment-view?siteVisitRequest=yes&address-added=yes')
+  }
+})
 
 
 // Add your routes above the module.exports line

@@ -30,6 +30,16 @@
     text: 'No attached documents'
   } if data['documents-added'] == 'yes',
 
+
+  {
+    href: '?address-added=yes',
+    text: 'Address provided'
+  } if data['address-added'] != 'yes',
+  {
+    href: '?address-added=',
+    text: 'No address provided'
+  } if data['address-added'] == 'yes',
+
   {
     href: '?siteVisitRequest=yes',
     text: 'Site visit requested'
@@ -75,7 +85,7 @@
           </p>
         </div>
       </div>
-    {% elseif data['address-added'] %}
+    {% elseif data['address-added2'] %}
       <div class="govuk-notification-banner  govuk-notification-banner--success" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
         <div class="govuk-notification-banner__header">
           <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
@@ -126,7 +136,7 @@
           Address
         </dt>
         <dd class="govuk-summary-list__value">
-          {% if data['add-ip-address-check'] == 'Yes' %}
+          {% if data['address-added'] == 'yes' %}
             {{ data['manual-ip-address-line-1'] or '7 Bipple Lane' }}<br>
             {{ data['manual-ip-address-line-2'] or 'Donnie Close' }}
             {% if data ['manual-ip-address-line-2'] %}<br>
@@ -157,7 +167,7 @@
         </dd>
         <dd class="govuk-summary-list__actions">
           {% if data['siteVisitRequest'] %}
-            <a href="?siteVisitRequest=&address-added=" class="govuk-link">
+            <a href="check-remove-site-visit?siteVisitRequest=&address-added=" class="govuk-link">
               Remove
             </a>
           {% endif %}

@@ -1,0 +1,232 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Check your answers" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = true %}
+
+{% set prototypeLinks = [
+  {
+    href: '?cards=yes',
+    text: 'Card format'
+  } if data['cards'] != 'yes',
+  {
+    href: '?cards=',
+    text: 'Simple format'
+  } if data['cards'] == 'yes'
+] %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Appeal 2114328</span>
+      <h1 class="govuk-heading-l">{{ title }}</h1>
+
+      {% if not data['cards'] %}
+        <h2 class="govuk-heading-m">
+          File 1
+        </h2>
+      {% endif %}
+
+      {{ govukSummaryList({
+        classes: "govuk-!-margin-bottom-9",
+        card: {
+          title: {
+            text: "File 1"
+          }
+        } if data['cards'],
+        rows: [
+          {
+            key: {
+              text: "Name"
+            },
+            value: {
+              text: "filename.doc"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Received date"
+            },
+            value: {
+              html: 2 | daysAgo
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "received date"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Redaction status"
+            },
+            value: {
+              text: "Redacted"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "redaction status"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      {% if not data['cards']%}
+        <h2 class="govuk-heading-m">
+          File 2
+        </h2>
+      {% endif %}
+
+      {{ govukSummaryList({
+        classes: "govuk-!-margin-bottom-9",
+        card: {
+          title: {
+            text: "File 2"
+          }
+        } if data['cards'],
+        rows: [
+          {
+            key: {
+              text: "Name"
+            },
+            value: {
+              text: "filename.doc"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Received date"
+            },
+            value: {
+              html: 2 | daysAgo
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "received date"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Redaction status"
+            },
+            value: {
+              text: "Redacted"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "redaction status"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      {% if not data['cards'] %}
+        <h2 class="govuk-heading-m">
+          File 3
+        </h2>
+      {% endif %}
+
+      {{ govukSummaryList({
+        classes: "govuk-!-margin-bottom-9",
+        card: {
+          title: {
+            text: "File 3"
+          }
+        } if data['cards'],
+        rows: [
+          {
+            key: {
+              text: "Name"
+            },
+            value: {
+              text: "filename.doc"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Received date"
+            },
+            value: {
+              html: 2 | daysAgo
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "received date"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Redaction status"
+            },
+            value: {
+              text: "Redacted"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "redaction status"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+    </div>
+  </div>
+{% endblock %}

@@ -18,7 +18,74 @@
 
 {% block content %}
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+
+    <div class="govuk-grid-column-one-quarter">
+      <ul class="govuk-list govuk-list-bullet">
+        <li>
+          <a href="/patterns/address/" class="govuk-link--no-visited-state govuk-link--no-underline">
+            Address
+          </a>
+        </li>
+        <li>
+          <a href="/patterns/case-heading/" class="govuk-link--no-visited-state govuk-link--no-underline">
+            Case heading
+          </a>
+        </li>
+        <li>
+          <a href="/patterns/case-status/" class="govuk-link--no-visited-state govuk-link--no-underline">
+            Case status
+          </a>
+        </li>
+        <li>
+          <a href="/patterns/important-banners/" class="govuk-link--no-visited-state govuk-link--no-underline">
+            Banner (important)
+          </a>
+        </li>
+        <li>
+          <a href="/patterns/success-banner/" class="govuk-link--no-visited-state govuk-link--no-underline">
+            Banner (success)
+          </a>
+        </li>
+        <li>
+          <a href="/patterns/meta-data/" class="govuk-link--no-visited-state govuk-link--no-underline">
+            Meta data
+          </a>
+        </li>
+        <li>
+          <a href="/patterns/personal-list/" class="govuk-link--no-visited-state govuk-link--no-underline">
+            Personal list
+          </a>
+        </li>
+        <li>
+          <a href="/patterns/multiple-document-upload/" class="govuk-link--no-visited-state govuk-link--no-underline">
+            Upload multiple files
+          </a>
+        </li>
+      </ul>
+      <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+      <ul class="govuk-list govuk-list-bullet">
+        <li>
+          {% if not data['cards'] %}
+            <a href="/patterns/check-answers?cards=" class="govuk-link--no-visited-state govuk-link--no-underline  govuk-!-font-weight-bold">
+          {% else %}
+            <a href="/patterns/check-answers?cards=" class="govuk-link--no-visited-state govuk-link--no-underline">
+          {% endif %}
+            Check answers (simple)
+          </a>
+        </li>
+        <li>
+          {% if not data['cards'] %}
+            <a href="?cards=true" class="govuk-link--no-visited-state govuk-link--no-underline">
+          {% else %}
+            <a href="?cards=true" class="govuk-link--no-visited-state govuk-link--no-underline govuk-!-font-weight-bold">
+          {% endif %}
+            Check answers (with cards)
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="govuk-grid-column-three-quarters">
 
       <span class="govuk-caption-l">Appeal 2114328</span>
       <h1 class="govuk-heading-l">{{ title }}</h1>

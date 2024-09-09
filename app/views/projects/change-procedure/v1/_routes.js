@@ -7,19 +7,21 @@ router.get('*', function(req, res, next){
   next()
 })
 
-// adding a manual comment
-
-// IP contact details
-router.post('/add-ip-name-and-email', function (req, res) {
-  res.redirect('add-ip-address-check')
-})
-
-// see if the IP gave us an address
+// changing the appeal procedure
 router.post('/change-procedure', function (req, res) {
   if (req.session.data['change-procedure'] == 'hearing') {
     res.redirect('set-hearing-stage')
   } else {
     res.redirect('set-inquiry-stage')
+  }
+})
+
+// setting the stage for an inquiry
+router.post('/set-inquiry-stage', function (req, res) {
+  if (req.session.data['set-inquiry-stage'] == 'statements') {
+    res.redirect('set-inquiry-timetable')
+  } else {
+    res.redirect('set-inquiry-timetable')
   }
 })
 

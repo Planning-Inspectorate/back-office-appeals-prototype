@@ -1,0 +1,54 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Set the appeal stage" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = true %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Appeal 2114328</span>
+    <h1 class="govuk-heading-l">
+      {{ title }}
+    </h1>
+
+    <div class="govuk-inset-text">
+      The appeal stage is currently {{ caseStatus (caseStatus = "statements")}}
+    </div>
+
+	  <form method="post">
+      {{ govukRadios({
+        name: "set-inquiry-stage",
+        fieldset: {
+          legend: {
+            text: "Set appeal stage to:",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+          {
+            value: "statements",
+            text: "Statements",
+            checked: true
+          },
+          {
+            value: "event",
+            text: "Event"
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

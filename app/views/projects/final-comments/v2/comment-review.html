@@ -6,166 +6,101 @@
   {% set title = "Appellant final comments" %}
 {% endif %}
 
-{% set pageName = title + ' - Planning Inspectorate'%} 
-{% block content %}
+{% set pageName = title + ' - Planning Inspectorate'%}
 
+{% block content %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <form action="" method="post"  novalidate> 
-      </div>
+
+      <span class="govuk-caption-l">Appeal 2110166</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
     </div>
 
-    <span class="govuk-caption-l">Appeal 2110166</span>
-      <h1 class="govuk-heading-l">{{title}}</h1>
-      
-      <div class="govuk-grid-row">
-        <div class="govuk-grid-column-full">
-    
-          <dl class="govuk-summary-list govuk-!-margin-bottom-0">
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Final comment
-              </dt>
-              <dd class="govuk-summary-list__value long-answers">
-                <p class="govuk-body">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus.
-                  Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus.
-                  Mauris nulla erat, posuere ut nisi vitae, pulvinar gravida arcu.
-                  <br><br>
-                  Morbi ac mauris enim. Curabitur magna lacus, eleifend in euismod in, accumsan convallis velit. Quisque bibendum urna id molestie hendrerit. Cras mattis mi non lobortis eleifend.
-                  Quisque nisl purus, sollicitudin interdum convallis a, tristique vulputate mi. Mauris eget nisl in massa mollis luctus. Vestibulum consectetur maximus cursus. Integer molestie ipsum et nunc eleifend venenatis.
-                  Aliquam posuere dui et felis tempor tristique. Aenean porta vehicula imperdiet. Nunc sed egestas risus, ut fringilla orci. Proin lobortis sapien interdum nunc iaculis rutrum. Phasellus consectetur vitae dui in vulputate.
-                </p>
-              </dd>
-            </div>
-          </dl>
-          <p></p>
-    <!-- remove supporting documents
-          <dl class="govuk-summary-list">
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Supporting documents
-              </dt>
-              <dd class="govuk-summary-list__value">
-    
-                {% if data['documents-added'] %}
-                  <ul class="govuk-list govuk-list--bullet">
-                    <li>
-                      <a href='#' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or '2110166-comments-added-document1.doc')}}</a>
-                    </li>
-                    {% if data['anotherdocument'] %}
-                      <li>
-                        <a href='#' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or '2110166-comments-added-document2.doc.doc')}}</a>
-                      </li>
-                    {% endif %}
-                  </ul>
-                {% endif %}
-    
-                {% if data['no-documents'] != 'yes' %}
-                <ul class="govuk-list govuk-list--bullet">
-                  <li>
-                    <a href='#' class='govuk-link govuk-link--no-visited-state'>
-                      2110166-comments-added-document1.doc
-                    </a>
-                  </li>
-                  <li>
-                    <a href='#' class='govuk-link govuk-link--no-visited-state'>
-                      2110166-comments-added-document2.doc
-                    </a>
-                  </li>
-                  <li>
-                    <a href='#' class='govuk-link govuk-link--no-visited-state'>
-                      2110166-comments-added-document3.doc
-                    </a>
-                  </li>
-                </ul>
-                {% else %}
-                  Not provided
-                {% endif %}
-              </dd>
-              <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="redact-supporting-documents">
-                  Manage<span class="govuk-visually-hidden"> supporting documents</span></a> |
-                <a class="govuk-link" href="upload-supporting-document">
-                  Add<span class="govuk-visually-hidden"> supporting documents</span>
-                </a>
-              </dd>
-            </div>
-          </dl>
-   remove supporting documents -->
- 
-        
+    <div class="govuk-grid-column-full">
 
-     
-      {% if data['party'] == 'lpa' %}
+      <form action="" method="post"  novalidate>
 
-      
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Final comment
+            </dt>
+            <dd class="govuk-summary-list__value long-answers">
+              <p class="govuk-body">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus.
+                Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus.
+                Mauris nulla erat, posuere ut nisi vitae, pulvinar gravida arcu.
+                <br><br>
+                Morbi ac mauris enim. Curabitur magna lacus, eleifend in euismod in, accumsan convallis velit. Quisque bibendum urna id molestie hendrerit. Cras mattis mi non lobortis eleifend.
+                Quisque nisl purus, sollicitudin interdum convallis a, tristique vulputate mi. Mauris eget nisl in massa mollis luctus. Vestibulum consectetur maximus cursus. Integer molestie ipsum et nunc eleifend venenatis.
+                Aliquam posuere dui et felis tempor tristique. Aenean porta vehicula imperdiet. Nunc sed egestas risus, ut fringilla orci. Proin lobortis sapien interdum nunc iaculis rutrum. Phasellus consectetur vitae dui in vulputate.
+              </p>
+            </dd>
+          </div>
+        </dl>
 
-    {{ govukRadios({
-      name: "issue-decision",
-      fieldset: {
-        legend: {
-          text: "What is the outcome of your review?",
-          isPageHeading: false,
-          classes: "govuk-fieldset__legend--m"
-        }
-      },
-      items: [
-        {
-          value: "Accept~check-your-answers",
-          text: "Accept LPA comment /valid comment"
-        },
-        {
-          value: "no~redact-supporting-documents",
-          text: "Redact LPA comment"
-        } 
-         
-      ]
-    }) }}
+        {% if data['party'] == 'lpa' %}
 
+          {{ govukRadios({
+            name: "issue-decision",
+            fieldset: {
+              legend: {
+                text: "What is the outcome of your review?",
+                isPageHeading: false,
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            items: [
+              {
+                value: "Accept~check-your-answers",
+                text: "Final comment valid"
+              },
+              {
+                value: "no~redact-supporting-documents",
+                text: "Final comment valid but requires redaction"
+              }
 
-    {% else  %}
+            ]
+          }) }}
 
-    {{ govukRadios({
-      name: "issue-decision",
-      fieldset: {
-        legend: {
-          text: "What is the outcome of your review?",
-          isPageHeading: false,
-          classes: "govuk-fieldset__legend--m"
-        }
-      },
-      items: [
-        {
-          value: "Valid comment~check-your-answers",
-          text: "Accept comment / valid comment"
-        },
-        {
-          value: "Valid with redaction~redact-comment",
-          text: "Redact comment before accepting"
-        },
-        {
-          divider: "or"
-        },
-      {
-        value: "Reject~why-incomplete",
-        text: "Invalid comment"
-      }
-         
-      ]
-    }) }}
-    {% endif %}
+        {% else  %}
 
-    {{ govukButton({
-      text: "Continue"
-    }) }}
+          {{ govukRadios({
+            name: "issue-decision",
+            fieldset: {
+              legend: {
+                text: "What is the outcome of your review?",
+                isPageHeading: false,
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            items: [
+              {
+                value: "Valid comment~check-your-answers",
+                text: "Final comment valid"
+              },
+              {
+                value: "Valid with redaction~redact-comment",
+                text: "Final comment valid but requires redaction"
+              },
+              {
+                value: "Reject~why-incomplete",
+                text: "Final comment invalid"
+              }
 
-</form>
+            ]
+          }) }}
 
-</div>
-</div>
+        {% endif %}
 
+        {{ govukButton({
+          text: "Continue"
+        }) }}
 
+      </form>
+
+    </div>
+  </div>
 {% endblock %}
-

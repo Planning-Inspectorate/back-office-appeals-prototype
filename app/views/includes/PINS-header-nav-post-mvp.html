@@ -1,10 +1,11 @@
 {% if data['environment-banner'] %}
   {% if data['test-banner'] %}
     <div class="environment-banner environment-banner--test">
+      Test environment
   {% else %}
     <div class="environment-banner">
+      Training environment
   {% endif %}
-  Training environment
   </div>
 {% endif %}
 

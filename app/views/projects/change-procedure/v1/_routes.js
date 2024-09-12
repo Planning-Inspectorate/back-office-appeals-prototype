@@ -18,11 +18,8 @@ router.post('/change-procedure', function (req, res) {
 
 // setting the stage for an inquiry
 router.post('/set-inquiry-stage', function (req, res) {
-  if (req.session.data['set-inquiry-stage'] == 'statements') {
-    res.redirect('set-inquiry-timetable')
-  } else {
-    res.redirect('set-inquiry-timetable')
-  }
+  req.session.data['inquiry-statements-due-date-day'] = '22'
+  res.redirect('set-inquiry-timetable')
 })
 
 // Add your routes above the module.exports line

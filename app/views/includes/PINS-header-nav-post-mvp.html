@@ -1,3 +1,13 @@
+{% if data['environment-banner'] %}
+  {% if data['test-banner'] %}
+    <div class="environment-banner environment-banner--test">
+  {% else %}
+    <div class="environment-banner">
+  {% endif %}
+  Training environment
+  </div>
+{% endif %}
+
 <header role="banner" class="hmrc-internal-header app-pi-layout-header">
   <div class="govuk-width-container">
 	  <div class="pins-row--decentered">

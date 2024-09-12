@@ -1,0 +1,95 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Set the appeal timetable" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = true %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Appeal 2114328</span>
+    <h1 class="govuk-heading-l">
+      {{ title }}
+    </h1>
+
+    <!-- <p class="govuk-body">
+      Add or update the dates below.
+    </p> -->
+
+	  <form method="post">
+      {% if data['set-inquiry-stage'] == 'statements' %}
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="inquiry-statements-due-date">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+              Confirm the statements due deadline
+            </legend>
+            <div id="inquiry-statements-due-date" class="govuk-hint">
+              For example, 28 {{ 1 | monthsInFutureNumeric }} {{ 0 | yearsAgo }}.
+            </div>
+            <div class="govuk-date-input" id="expiry">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="expiry-day">
+                    Day
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="expiry-day" name="expiry-day" type="text" inputmode="numeric" value="22">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="expiry-month">
+                    Month
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="expiry-month" name="expiry-month" type="text" inputmode="numeric" value="{{ 1 | monthsAgoNumeric }}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="expiry-year">
+                    Year
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="expiry-year" name="expiry-year" type="text" inputmode="numeric" value="{{ 0 | yearsAgo }}">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+      {% endif %}
+
+      <div class="govuk-form-group govuk-!-margin-top-6">
+
+        {{ govukDateInput({
+          id: "inquiry-event-due-date",
+          namePrefix: "inquiry-event-due-date",
+          fieldset: {
+            legend: {
+              text: "Confirm the date for the inquiry",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            html: "For example, 28 "+ 1 | monthsInFutureNumeric +" "+ 0 | yearsAgo +"."
+          }
+        }) }}
+
+        <p class="govuk-body govuk-!-margin-top-3">
+          <a href="#" class="govuk-link">
+            No event date
+          </a>
+        </p>
+
+      </div>
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

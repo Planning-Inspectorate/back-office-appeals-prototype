@@ -167,3 +167,22 @@ pre {
 .govuk-text-align-right {
 	text-align: right;
 }
+
+.environment-banner {
+	min-height: 2em;
+	margin-top: 0;
+	color: white;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 1.2em;
+	line-height: 2em;
+	font-weight: 800;
+	// letter-spacing: 0.2em;
+	background-color: #00625e;
+	background-color: black;
+	text-align: center;
+	vertical-align: center;
+}
+
+.environment-banner--test {
+	background-color: #00625e;
+}

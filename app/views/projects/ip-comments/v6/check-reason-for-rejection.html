@@ -64,11 +64,27 @@
             Reason for rejection
           </dt>
           <dd class="govuk-summary-list__value">
-            {% if data['invalidReason'] %}
-              {{ data['invalidReason'] }}
+
+            {% if data['reason-format'] == 'list' %}
+              <p class="govuk-body govuk-!-margin-top-0 govuk-!-margin-bottom-0">
+                <ul class="govuk-list govuk-list--bullet govuk-!-margin-top-0 govuk-!-margin-bottom-0">
+                  <li>
+                    Personal information
+                  </li>
+                  <li>
+                    Not relevant to this appeal
+                  </li>
+                </ul>
+              </p>
+
             {% else %}
-              Your comment was not relevant.
+              {% if data['invalidReason'] %}
+                {{ data['invalidReason'] }}
+              {% else %}
+                Your comment was not relevant.
+              {% endif %}
             {% endif %}
+
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="#">

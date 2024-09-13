@@ -1,10 +1,9 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Why did you reject the comment?" %}
+{% set title = "Why is the comment invalid?" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% set back = true %}
-
 
 {% set prototypeLinks = [
   {
@@ -14,7 +13,15 @@
   {
     href: '?comment-type=data',
     text: 'Comment is data'
-  } if data['comment-type'] == 'doc'
+  } if data['comment-type'] == 'doc',
+  {
+    href: '?reason-format=list',
+    text: 'Checkbox reasons'
+  } if data['reason-format'] != 'list',
+  {
+    href: '?reason-format=text',
+    text: 'Text reason'
+  } if data['reason-format'] == 'list'
 
 ] %}
 
@@ -23,55 +30,109 @@
   <div class="govuk-grid-column-two-thirds">
 
     <span class="govuk-caption-l">Appeal 2114328</span>
-    <!-- <h1 class="govuk-heading-l">
-      {{ title }}
-    </h1> -->
-
-    <!-- <dl class="govuk-summary-list">
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Interested party
-        </dt>
-        <dd class="govuk-summary-list__value">
-          {% if data['comment-type'] == 'doc' %}
-            Sam Fisher
-          {% else %}
-            Ian Smith
-          {% endif %}
-        </dd>
-      </div>
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Comment
-        </dt>
-        <dd class="govuk-summary-list__value">
-          {% if data['comment-type'] == 'doc' %}
-            <a href="" class="govuk-link">
-              4012345-IP-comment.doc
-            </a>
-          {% else %}
-            Having reviewed the proposal I would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. David Newton at number 6 The Grove also agrees.
-          {% endif %}
-        </dd>
-      </div>
-    </dl> -->
 
     <form action="check-reason-for-rejection" method="post">
 
-      {{ govukTextarea({
-        name: "invalidReason",
-        id: "invalidReason",
-        hint: {
-          text: "The IP will see the text you enter if they provided an email address."
-        },
-        rows: "6",
-        label: {
-          text: title,
-          classes: "govuk-label--l",
-          isPageHeading: true
-        }
+      {% if data['reason-format'] == 'list' %}
 
-      }) }}
+        {% set otherReason %}
+          <div data-module="moj-add-another">
+
+            {% call govukFieldset({
+              classes: 'moj-add-another__item',
+              legend: {
+                text: 'Reason for invalid comment',
+                classes: 'moj-add-another__title ',
+                isPageHeading: false
+              }
+              }) %}
+
+              {{ govukInput({
+                id: "reason",
+                name: "reason",
+                classes: "govuk-!-margin-bottom-4"
+              }) }}
+
+            {% endcall %}
+
+            <div class="moj-button-action">
+              {{ govukButton({
+                text: 'Add another',
+                classes: 'govuk-button--secondary moj-add-another__add-button govuk-!-margin-bottom-4'
+              }) }}
+            </div>
+          </div>
+        {% endset -%}
+
+        {{ govukCheckboxes({
+          name: "reasonsInvalid",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "Select all that apply."
+          },
+          items: [
+            {
+              value: "Received after deadline",
+              text: "Received after deadline"
+            },
+            {
+              value: "Personal information",
+              text: "Personal information"
+            },
+            {
+              value: "Medical information",
+              text: "Medical information"
+            },
+            {
+              value: "Inflammatory information",
+              text: "Inflammatory information"
+            },
+            {
+              value: "Repeated comment",
+              text: "Repeated comment"
+            },
+            {
+              value: "Not relevant to this appeal",
+              text: "Not relevant to this appeal"
+            },
+            {
+              value: "Contains hyperlinks",
+              text: "Contains hyperlinks"
+            },
+            {
+              value: "Other",
+              text: "Other",
+              conditional: {
+  	            html: otherReason
+  		        }
+            }
+          ]
+        }) }}
+
+      {% else %}
+
+        {{ govukTextarea({
+          name: "invalidReason",
+          id: "invalidReason",
+          hint: {
+            text: "The IP will see the text you enter if they provided an email address."
+          },
+          rows: "6",
+          label: {
+            text: title,
+            classes: "govuk-label--l",
+            isPageHeading: true
+          }
+
+        }) }}
+
+      {% endif %}
 
       {{ govukButton({
         text: "Continue"

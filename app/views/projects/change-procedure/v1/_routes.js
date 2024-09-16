@@ -18,8 +18,17 @@ router.post('/change-procedure', function (req, res) {
 
 // setting the stage for an inquiry
 router.post('/set-inquiry-stage', function (req, res) {
-  req.session.data['inquiry-statements-due-date-day'] = '22'
+  res.redirect('check-case-management-conference')
+})
+
+// asking whether we need another CMC
+router.post('/check-case-management-conference', function (req, res) {
   res.redirect('set-inquiry-timetable')
+})
+
+// setting the stage for an inquiry
+router.post('/set-inquiry-timetable', function (req, res) {
+  res.redirect('timetable?appeal-type=S78inquiry')
 })
 
 // Add your routes above the module.exports line

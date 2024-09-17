@@ -1,0 +1,145 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Check your answers" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">{{ title }}</h1>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "New appeal procedure",
+              classes: "govuk-!-width-one-half"
+            },
+            value: {
+              text: 'Inquiry',
+              classes: "govuk-!-width-one-half"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "procedure"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "New appeal stage"
+            },
+            value: {
+              text: 'Statements'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "appeal stage"
+                }
+              ]
+            }
+          },
+
+          {
+              key: {
+                text: "New case management conference needed"
+              },
+              value: {
+                html: data['new-cmc']
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "new case management conference needed"
+                  }
+                ]
+              }
+          } if data['appeal-type'] == 'S78inquiry',
+
+          {
+            key: {
+              text: "Statements deadline"
+            },
+            value: {
+              html: '22 September 2024'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "statements deadline"
+                }
+              ]
+            }
+          },
+
+          {
+              key: {
+                text: "Case management conference"
+              },
+              value: {
+                text: 49 | daysInFuture
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "case management conference date"
+                  }
+                ]
+              }
+          } if data['appeal-type'] == 'S78inquiry' and data['new-cmc'] == 'Yes',
+
+          {
+              key: {
+                text: "Inquiry date"
+              },
+              value: {
+                text: 42 | daysInFuture
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "Inquiry date"
+                  }
+                ]
+              }
+          } if data['appeal-type'] == 'S78inquiry',
+
+          {
+              key: {
+                text: "Site visit"
+              },
+              value: {
+                text: ""
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Arrange",
+                    visuallyHiddenText: "Site visit"
+                  }
+                ]
+              }
+          }
+
+        ]
+      }) }}
+
+    </div>
+  </div>
+{% endblock %}

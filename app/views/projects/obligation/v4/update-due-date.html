@@ -1,0 +1,77 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Update due date (if applicable)" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+    	{% set html %}
+    	  <p class="govuk-notification-banner__heading">
+    	    The appeal is ready for review
+    	  </p>
+    	  <p>
+          <a class="govuk-notification-banner__link" href="appellant-case.html">
+            Start the review
+          </a>
+        </p>
+    	{% endset %}
+
+      <span class="govuk-caption-l">
+        Appeal 2110166
+      </span>
+      <!-- <h1 class="govuk-heading-l">
+        {{ title }}
+      </h1> -->
+
+      <form action="check-your-answers-incomplete" method="post" novalidate>
+
+        <!-- {{ govukInsetText({
+          html: "Current due date is "+ 6 | daysInFuture
+        }) }} -->
+
+        <!-- <p>
+          Select skip if the due date has not changed.
+        </p> -->
+
+        {{ govukDateInput({
+          id: "obligation-due-date",
+          namePrefix: "obligation-due-date",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            html: "<p class='govuk-hint'>For example, 28 "+ 1 | monthsInFutureNumeric +" "+ 0 | yearsAgo +".</p>"
+          },
+          items: [
+            {
+              classes: "govuk-input--width-2",
+              name: "day",
+              value: "22"
+            },
+            {
+              classes: "govuk-input--width-2",
+              name: "month",
+              value: 1 | monthsInFutureNumeric
+            },
+            {
+              classes: "govuk-input--width-4",
+              name: "year",
+              value: "2024"
+            }
+          }
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+    {% endblock %}
+  </div>
+</div>

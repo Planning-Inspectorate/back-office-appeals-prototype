@@ -1,0 +1,98 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Why is the S106 obligation invalid?" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Appeal 2110166</span>
+
+      <form action="update-due-date" method="post" novalidate>
+
+        {% set missingHtml %}
+    			{{ govukCharacterCount({
+    			  name: "more-detail",
+    			  id: "more-detail",
+    			  maxlength: 300,
+    			  label: {
+    			    text: "List any other reasons",
+    			    classes: "govuk-label--l",
+    			    isPageHeading: true
+    			  },
+    			  hint: {
+    			    text: "Try to organise your list, for example using dashes or bullets"
+    			  }
+    			}) }}
+        {% endset -%}
+
+		    {% set addMore %}
+
+          <div data-module="moj-add-another">
+      	    {% call govukFieldset ({
+        	     classes: 'moj-add-another__item',
+        	     legend: {
+        	        text: 'Reason',
+        	        classes: 'moj-add-another__title ',
+        	        isPageHeading: false
+        	      }
+        	    }) %}
+
+        	    {{ govukInput({
+          		  id: "what-reason",
+          		  name: "what-reason",
+          		  classes: "govuk-!-margin-bottom-4"
+          		}) }}
+
+  	        {% endcall %}
+
+  	        <div class="moj-button-action">
+      	      {{ govukButton({
+      	        text: 'Add another',
+      	        classes: 'govuk-button--secondary moj-add-another__add-button govuk-!-margin-bottom-4'
+      	      }) }}
+  	        </div>
+          </div>
+        {% endset -%}
+
+        {{ govukCheckboxes({
+          name: "obligation-reason-incomplete",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "Select all that apply."
+          },
+          items: [
+            {
+              value: "Not dated",
+              text: "Not dated"
+            },
+            {
+              value: "Not signed",
+              text: "Not signed"
+            },
+            {
+              value: "Other",
+              text: "Other",
+              conditional: {
+                html: addMore
+              }
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+    {% endblock %}
+  </div>
+</div>

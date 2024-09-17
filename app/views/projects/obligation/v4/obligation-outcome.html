@@ -1,0 +1,47 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Confirm s106 obligation" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+ 
+{% block content %}
+
+<form action="" method="post" class="govuk-!-margin-top-0" novalidate>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Appeal 2110166</span>
+ 
+ 
+    {{ govukRadios({
+      name: "obligation-decision",
+      fieldset: {
+        legend: {
+          text: "Confirm s106 obligation",
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--l"
+        }
+      },
+      items: [
+        {
+          value: "Complete~check-your-answers",
+          text: "Complete"
+        },
+        {
+          value: "Incomplete~why-incomplete",
+          text: "Incomplete"
+        }
+
+      ]
+    }) }}
+
+    {{ govukButton({
+      text: "Continue"
+    }) }}
+
+  </form>
+</div>
+
+     
+</div>
+
+{% endblock %}

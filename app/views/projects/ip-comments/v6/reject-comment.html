@@ -41,7 +41,7 @@
             {% call govukFieldset({
               classes: 'moj-add-another__item',
               legend: {
-                text: 'Reason for invalid comment',
+                text: 'Why the comment is invalid?',
                 classes: 'moj-add-another__title ',
                 isPageHeading: false
               }
@@ -57,7 +57,7 @@
 
             <div class="moj-button-action">
               {{ govukButton({
-                text: 'Add another',
+                text: 'Add another reason',
                 classes: 'govuk-button--secondary moj-add-another__add-button govuk-!-margin-bottom-4'
               }) }}
             </div>
@@ -83,31 +83,27 @@
             },
             {
               value: "Personal information",
-              text: "Personal information"
-            },
-            {
-              value: "Medical information",
-              text: "Medical information"
+              text: "Includes personal and/or medical information"
             },
             {
               value: "Inflammatory information",
-              text: "Inflammatory information"
+              text: "Includes inflammatory content"
             },
             {
-              value: "Repeated comment",
-              text: "Repeated comment"
+              value: "Duplicated comment",
+              text: "Duplicated comment"
             },
             {
               value: "Not relevant to this appeal",
               text: "Not relevant to this appeal"
             },
             {
-              value: "Contains hyperlinks",
-              text: "Contains hyperlinks"
+              value: "Contains links to web pages",
+              text: "Contains links to web pages"
             },
             {
-              value: "Other",
-              text: "Other",
+              value: "Other reason",
+              text: "Other reason",
               conditional: {
   	            html: otherReason
   		        }

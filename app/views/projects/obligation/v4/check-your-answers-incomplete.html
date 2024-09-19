@@ -34,7 +34,7 @@
              Supporting documents
             </dt>
             <dd class="govuk-summary-list__value">
-              appeal-2110166-section106-agreement.pdf
+              <a href="#" class="govuk-link">appeal-2110166-section106-agreement.pdf</a>
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="manage-document">Change<span class="govuk-visually-hidden"> supporting document</span></a>
@@ -78,7 +78,7 @@
              Due date
             </dt>
             <dd class="govuk-summary-list__value">
-              22 {{ (data['obligation-due-date-month'] or 1 | monthsInFutureNumeric ) | formatMonth }} 2024
+              {{ (data['obligation-due-date-day'] or 22 | daysInFutureNumeric ) }} {{ (data['obligation-due-date-month'] or 1 | monthsInFutureNumeric ) | formatMonth }} 2024
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="update-due-date">Change<span class="govuk-visually-hidden"> due date</span></a>

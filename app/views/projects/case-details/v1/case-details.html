@@ -83,14 +83,30 @@
   {
     href: '?lpa-final-comments=complete',
     text: 'LPA final comments complete'
-  } if (data['lpa-final-comments'] == 'received') and (data['case-stage'] == 'final-comments')
+  } if (data['lpa-final-comments'] == 'received') and (data['case-stage'] == 'final-comments'),
+
+  {
+    href: '#',
+    text: '________________________________________________________________________'
+  },
+
+  {
+    href: '?casenotes=sidebar',
+    text: 'Case notes in sidebar'
+  } if not (data['casenotes']),
+  {
+    href: '?casenotes=',
+    text: 'Hide case notes'
+  } if (data['casenotes'])
+
 
 ] %}
-
 
 {% block content %}
 
   <div class="govuk-grid-row">
+
+    <!-- header -->
     <div class="govuk-grid-column-two-thirds">
 
       <!-- <div class="govuk-inset-text">
@@ -112,8 +128,7 @@
             </p>
           {% endset %}
           {{ govukNotificationBanner({
-            html: html,
-            classes: 'govuk-!-margin-bottom-3'
+            html: html
           }) }}
         {% endif %}
 
@@ -126,8 +141,7 @@
             </p>
           {% endset %}
           {{ govukNotificationBanner({
-            html: html,
-            classes: 'govuk-!-margin-bottom-3'
+            html: html
           }) }}
         {% endif %}
 
@@ -140,8 +154,7 @@
             </p>
           {% endset %}
           {{ govukNotificationBanner({
-            html: html,
-            classes: 'govuk-!-margin-bottom-3'
+            html: html
           }) }}
         {% endif %}
 
@@ -156,8 +169,7 @@
             </p>
           {% endset %}
           {{ govukNotificationBanner({
-            html: html,
-            classes: 'govuk-!-margin-bottom-3'
+            html: html
           }) }}
         {% endif %}
 
@@ -170,8 +182,7 @@
             </p>
           {% endset %}
           {{ govukNotificationBanner({
-            html: html,
-            classes: 'govuk-!-margin-bottom-3'
+            html: html
           }) }}
         {% endif %}
 
@@ -184,8 +195,7 @@
               </p>
             {% endset %}
             {{ govukNotificationBanner({
-              html: html,
-              classes: 'govuk-!-margin-bottom-3'
+              html: html
             }) }}
           {% endif %}
         {% endif %}
@@ -201,8 +211,7 @@
             </p>
           {% endset %}
           {{ govukNotificationBanner({
-            html: html,
-            classes: 'govuk-!-margin-bottom-3'
+            html: html
           }) }}
         {% endif %}
 
@@ -215,8 +224,7 @@
             </p>
           {% endset %}
           {{ govukNotificationBanner({
-            html: html,
-            classes: 'govuk-!-margin-bottom-3'
+            html: html
           }) }}
         {% endif %}
 
@@ -232,8 +240,7 @@
               </p>
             {% endset %}
             {{ govukNotificationBanner({
-              html: html,
-              classes: 'govuk-!-margin-bottom-3'
+              html: html
             }) }}
           {% endif %}
         {% endif %}
@@ -247,19 +254,18 @@
       {% else %}
         <!-- new case -->
         {% set html %}
-          <p class="govuk-notification-banner__heading govuk-!-margin-bottom-3">
+          <p class="govuk-notification-banner__heading">
             Appeal ready for review.
             <a class="govuk-notification-banner__link" href="#">Review</a>.
           </p>
         {% endset %}
         {{ govukNotificationBanner({
-          html: html,
-          classes: 'govuk-!-margin-bottom-3'
+          html: html
         }) }}
       {% endif %}
 
       <!--	<span class="govuk-caption-l">Appeal 2110166</span> -->
-      <span class="govuk-caption-xl govuk-!-margin-top-9">Appeal 2114328</span>
+      <span class="govuk-caption-xl">Appeal 2114328</span>
     	<h1 class="govuk-heading-xl">
         {{ title }}
       </h1>
@@ -267,33 +273,23 @@
       <!-- case status tag -->
       {% if data['case-stage'] == 'questionnaire' %}
 
-        <strong class="govuk-tag govuk-tag--yellow">
-          LPA questionnaire
-        </strong>
+        {{ caseStatus (caseStatus = 'questionnaire') }}
 
       {% elseif data['case-stage'] == 'statements' %}
 
-        <strong class="govuk-tag govuk-tag--purple">
-          Statements
-        </strong>
+        {{ caseStatus (caseStatus = 'statements') }}
 
       {% elseif data['case-stage'] == 'final-comments' %}
 
-        <strong class="govuk-tag govuk-tag--orange">
-          Final comment review
-        </strong>
+        {{ caseStatus (caseStatus = 'finalComments') }}
 
       {% elseif data['case-stage'] == 'determination' %}
 
-        <strong class="govuk-tag govuk-tag--pink">
-          Issue decision
-        </strong>
+        {{ caseStatus (caseStatus = 'decision') }}
 
       {% elseif data['case-stage'] == 'closed' %}
 
-        <strong class="govuk-tag govuk-tag--green">
-          Complete
-        </strong>
+        {{ caseStatus (caseStatus = 'complete') }}
 
         {{ govukInsetText({
           html: "
@@ -312,19 +308,19 @@
 
       {% else %}
 
-        <strong class="govuk-tag govuk-tag--green">
-          Ready to start
-        </strong>
+        {{ caseStatus (caseStatus = 'ready') }}
 
       {% endif %}
 
     </div>
 
+    <!-- meta -->
     <div class="govuk-grid-column-full">
       {% include "/includes/appeal-content/lpa-has-appeal-meta.html" %}
       <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
     </div>
 
+    <!-- case sections -->
     <div class="govuk-grid-column-two-thirds">
       <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
 
@@ -771,5 +767,47 @@
       </div>
 
     </div>
+
+    {% if data['casenotes'] == 'sidebar' %}
+      <div class="govuk-grid-column-one-third">
+        <h2 class="govuk-heading-m">
+          Case notes
+        </h2>
+        <p class="govuk-body">
+          <a href="add-case-note" class="govuk-link govuk-link--no-visited-state">
+            Add a case note
+          </a>
+        </p>
+        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+        <section>
+          <h3 class="govuk-heading-s">
+            {{ 2 | daysAgo }}
+          </h3>
+          <p class="govuk-body">
+            We should use WR and review at statements stage.
+          </p>
+          <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+        </section>
+        <section>
+          <h3 class="govuk-heading-s">
+            {{ 12 | daysAgo }}
+          </h3>
+          <p class="govuk-body">
+            Contacted the agent by email and post for the missing documents.
+          </p>
+          <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+        </section>
+        <section>
+          <h3 class="govuk-heading-s">
+            {{ 17 | daysAgo }}
+          </h3>
+          <p class="govuk-body">
+            Documents missing from the case.
+          </p>
+          <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+        </section>
+      </div>
+    {% endif %}
+
   </div>
 {% endblock %}

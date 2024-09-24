@@ -1,0 +1,32 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Add a case note" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-xl">Appeal 2114328</span>
+
+      <form method="post">
+        {{ govukTextarea({
+          name: "moreDetail",
+          id: "more-detail",
+          label: {
+            text: title,
+            classes: "govuk-label--l",
+            isPageHeading: true
+          }
+        }) }}
+      </form>
+
+      {{ govukButton({
+        href: "case-details",
+        text: "Continue"
+      }) }}
+
+    </div>
+  </div>
+{% endblock %}

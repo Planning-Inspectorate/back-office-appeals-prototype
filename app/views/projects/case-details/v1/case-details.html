@@ -95,6 +95,10 @@
     text: 'Case notes in sidebar'
   } if not (data['casenotes']),
   {
+    href: '?casenotes=header',
+    text: 'Case notes in header'
+  } if (data['casenotes']) == 'sidebar',
+  {
     href: '?casenotes=',
     text: 'Hide case notes'
   } if (data['casenotes'])
@@ -319,6 +323,86 @@
       {% include "/includes/appeal-content/lpa-has-appeal-meta.html" %}
       <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
     </div>
+
+    {% if data['casenotes'] == 'header' %}
+
+      <div class="govuk-grid-column-two-thirds">
+
+        {% set casenotes %}
+
+          <form method="post">
+            {{ govukTextarea({
+              name: "moreDetail",
+              id: "more-detail",
+              label: {
+                text: 'Case notes',
+                classes: "govuk-visually-hidden",
+                isPageHeading: true
+              }
+            }) }}
+          </form>
+
+          {{ govukButton({
+            href: "case-details",
+            classes: "govuk-button--secondary govuk-!-margin-bottom-1",
+            text: "Add case note"
+          }) }}
+
+          <section>
+            <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+            <h3 class="govuk-heading-s">
+              {{ 2 | daysAgo }}
+            </h3>
+            <p class="govuk-body govuk-!-margin-bottom-1">
+              We should use WR and review at statements stage.
+            </p>
+            <p class="govuk-hint govuk-!-margin-bottom-6">
+              gem.dalgano at 4.04pm
+            </p>
+          </section>
+
+          <section>
+            <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+            <h3 class="govuk-heading-s">
+              {{ 12 | daysAgo }}
+            </h3>
+            <p class="govuk-body govuk-!-margin-bottom-1">
+              Contacted the agent by email and post for the missing documents.
+            </p>
+            <p class="govuk-hint govuk-!-margin-bottom-6">
+              Added by gem.dalgano at 11.52am
+            </p>
+            <p class="govuk-body govuk-!-margin-bottom-1">
+              Contacted the agent by email and post for the missing documents.
+            </p>
+            <p class="govuk-hint govuk-!-margin-bottom-6">
+              Added by gem.dalgano at 11.52am
+            </p>
+          </section>
+          <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+          <section>
+            <h3 class="govuk-heading-s">
+              {{ 17 | daysAgo }}
+            </h3>
+            <p class="govuk-body govuk-!-margin-bottom-1">
+              Documents missing from the case.
+            </p>
+            <p class="govuk-hint govuk-!-margin-bottom-6">
+              Added by sam.griffin at 3.33pm
+            </p>
+          </section>
+          <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+        {% endset %}
+
+        {{ govukDetails({
+          summaryText: "Case notes",
+          html: casenotes
+        }) }}
+
+      </div>
+
+    {% endif %}
 
     <!-- case sections -->
     <div class="govuk-grid-column-two-thirds">
@@ -778,43 +862,51 @@
             Add a case note
           </a>
         </p>
-        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
         <section>
+          <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
           <h3 class="govuk-heading-s">
             {{ 2 | daysAgo }}
           </h3>
-          <p class="govuk-hint">
-            Added by gem.dalgano at 4.04pm
-          </p>
-          <p class="govuk-body">
+          <p class="govuk-body govuk-!-margin-bottom-1">
             We should use WR and review at statements stage.
           </p>
-          <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+          <p class="govuk-hint govuk-!-margin-bottom-6">
+            gem.dalgano at 4.04pm
+          </p>
         </section>
+
         <section>
+          <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
           <h3 class="govuk-heading-s">
             {{ 12 | daysAgo }}
           </h3>
-          <p class="govuk-hint">
-            Added by gem.dalgano at 11.52am
-          </p>
-          <p class="govuk-body">
+          <p class="govuk-body govuk-!-margin-bottom-1">
             Contacted the agent by email and post for the missing documents.
           </p>
-          <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+          <p class="govuk-hint govuk-!-margin-bottom-6">
+            Added by gem.dalgano at 11.52am
+          </p>
+          <p class="govuk-body govuk-!-margin-bottom-1">
+            Contacted the agent by email and post for the missing documents.
+          </p>
+          <p class="govuk-hint govuk-!-margin-bottom-6">
+            Added by gem.dalgano at 11.52am
+          </p>
         </section>
+        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
         <section>
           <h3 class="govuk-heading-s">
             {{ 17 | daysAgo }}
           </h3>
-          <p class="govuk-hint">
-            Added by sam.griffin at 3.33pm
-          </p>
-          <p class="govuk-body">
+          <p class="govuk-body govuk-!-margin-bottom-1">
             Documents missing from the case.
           </p>
-          <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+          <p class="govuk-hint govuk-!-margin-bottom-6">
+            Added by sam.griffin at 3.33pm
+          </p>
+
         </section>
+        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
       </div>
     {% endif %}
 

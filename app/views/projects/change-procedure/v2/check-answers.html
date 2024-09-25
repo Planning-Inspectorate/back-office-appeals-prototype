@@ -1,0 +1,83 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Check your answers" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Appeal 2114328</span>
+      <h1 class="govuk-heading-l">{{ title }}</h1>
+
+  	  <form method="post">
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "New appeal procedure",
+                classes: "govuk-!-width-one-half"
+              },
+              value: {
+                text: 'Inquiry',
+                classes: "govuk-!-width-one-half"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "procedure"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Requesting new evidence"
+              },
+              value: {
+                html: (data ['new-evidence'] or 'No')
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "appeal stage"
+                  }
+                ]
+              }
+            },
+
+            {
+              key: {
+                text: "Statements deadline"
+              },
+              value: {
+                html: '22 September 2024'
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "statements deadline"
+                  }
+                ]
+              }
+            }
+
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

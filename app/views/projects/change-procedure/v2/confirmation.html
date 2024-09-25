@@ -1,0 +1,38 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% if data['new-evidence'] == 'Yes' %}
+  {% set title = "Appeal procedure changed and new evidence requested" %}
+{% else %}
+  {% set title = "Appeal procedure changed" %}
+{% endif %}
+
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = false %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukPanel({
+        titleText: title,
+  	    html: "Appeal reference<br><strong>2114328</strong>"
+      }) }}
+
+      <p class="govuk-body">
+        Relevant parties have been informed about the changed appeal procedure.
+      </p>
+
+      <p class="govuk-body">
+        {% if data['change-procedure'] == 'Inquiry' %}
+          <a href='case?procedure=inquiry' class='govuk-link'>
+        {% else %}
+          <a href='case?procedure=hearing' class='govuk-link'>
+        {% endif %}
+          Back to case details
+        </a>
+      </p>
+
+    </div>
+  </div>
+{% endblock %}

@@ -233,6 +233,45 @@
 
       </section>
 
+      <!-- hearings and inquiry elements -->
+      <section id="hearings">
+
+        <h2 class="govuk-heading-m">
+          Cross-appeal
+        </h2>
+
+        {{ govukTable({
+          firstCellIsHeader: true,
+          head: [
+            {
+              text: "Name",
+              classes: "govuk-!-width-one-half"
+            },
+            {
+              text: "Tickets"
+            },
+            {
+              text: "Related docs",
+              classes: "govuk-!-width-one-third"
+            }
+          ],
+          rows: [
+            [
+              {
+                html: "<a href='projects/change-procedure/'>Change appeal procedure</a>"
+              },
+              {
+                html: "<a href='https://pins-ds.atlassian.net/browse/A2-48'>A2-48</a>"
+              },
+              {
+                html: "<a href='https://app.mural.co/t/allpins6990/m/allpins6990/1722515675950/ddc8c6bb809cd3955d5602bfed1519179112a859?sender=ucdc79e79d5de0dae79845426'>MVP Mural</a>"
+              }
+            ]
+          ]
+        }) }}
+
+      </section>
+
       <!-- design spikes -->
       <h2 class="govuk-heading-m" id="spikes">
         Layouts, views, patterns
@@ -266,7 +305,6 @@
           ]
         ]
       }) }}
-
 
       <h2 class="govuk-heading-m" id="spikes">
         Design spikes

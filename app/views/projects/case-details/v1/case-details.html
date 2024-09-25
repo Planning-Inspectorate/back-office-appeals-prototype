@@ -86,18 +86,13 @@
   } if (data['lpa-final-comments'] == 'received') and (data['case-stage'] == 'final-comments'),
 
   {
-    href: '#',
-    text: '________________________________________________________________________'
-  },
-
+    href: '?casenotes=header',
+    text: 'Case notes in header'
+  } if not (data['casenotes']) or (data['casenotes']) == 'sidebar',
   {
     href: '?casenotes=sidebar',
     text: 'Case notes in sidebar'
-  } if not (data['casenotes']),
-  {
-    href: '?casenotes=header',
-    text: 'Case notes in header'
-  } if (data['casenotes']) == 'sidebar',
+  } if not (data['casenotes']) or (data['casenotes']) == 'header',
   {
     href: '?casenotes=',
     text: 'Hide case notes'
@@ -386,8 +381,9 @@
             <p class="govuk-hint govuk-!-margin-bottom-6">
               11.52am on Tuesday {{ 19 | daysAgo }} by sam.griffin
             </p>
+            <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
           </section>
-          <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
 
         {% endset %}
 

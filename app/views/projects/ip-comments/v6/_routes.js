@@ -77,7 +77,7 @@ router.post('/extra-document-cya', function (req, res) {
 
 router.post('/comment-review', function (req, res) {
   if (req.session.data['ip-comment-review'] == 'invalid') {
-    res.redirect('reject-comment?address-added=')
+    res.redirect('reject-comment?address-added=&reason-format=list')
   } else if (req.session.data['ip-comment-review'] == 'redact') {
     res.redirect('comment-redact?address-added=&redactingfrom=review')
   } else {

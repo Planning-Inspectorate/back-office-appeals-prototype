@@ -114,23 +114,25 @@
             </a>
           </dd>
         </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            IP can resubmit their comment
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {% if data['allow-resubmission'] %}
-              {{ data['allow-resubmission'] }}
-            {% else %}
-              No
-            {% endif %}
-          </dd>
-          <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="#">
-              Change<span class="govuk-visually-hidden"> IP can resubmit their comment</span>
-            </a>
-          </dd>
-        </div>
+        {% if data['no-email'] != 'yes' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              IP can resubmit their comment
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {% if data['allow-resubmission'] %}
+                {{ data['allow-resubmission'] }}
+              {% else %}
+                No
+              {% endif %}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> IP can resubmit their comment</span>
+              </a>
+            </dd>
+          </div>
+        {% endif %}
       </dl>
 
       {% if data['no-email'] != 'yes' %}

@@ -1,0 +1,50 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Do you want the IP to be able to resubmit a comment?" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = true %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Appeal 2114328</span>
+
+    <form action="check-reason-for-rejection" method="post">
+
+      {{ govukRadios({
+        classes: "govuk-radios--inline",
+        name: "allow-resubmission",
+        fieldset: {
+          legend: {
+            text: title,
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "Yes",
+            text: "Yes"
+          },
+          {
+            value: "No",
+            text: "No"
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </form>
+
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}

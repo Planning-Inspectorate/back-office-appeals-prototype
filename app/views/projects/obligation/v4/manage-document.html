@@ -6,160 +6,141 @@
 {% set back = true %}
 
 {% block content %}
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
-    <span class="govuk-caption-l">Appeal 2110166</span>
-    <h1 class="govuk-heading-l">
-      {{ title }}
-    </h1>
+      <span class="govuk-caption-l">Appeal 2110166</span>
+      <h1 class="govuk-heading-l">
+        {{ title }}
+      </h1>
 
-  </div>
-</div>
-<form action="upload-supporting-document" method="post"  novalidate>
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
+      <form action="upload-supporting-document" method="post"  novalidate>
 
-    <dl class="govuk-summary-list">
-      <!-- <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Name
-        </dt>
-        <dd class="govuk-summary-list__value">
-          appeal-2110166-section106-agreement.pdf
-        </dd>
-      </div> -->
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Version
-        </dt>
-        <dd class="govuk-summary-list__value">
-          2
-        </dd>
-      </div>
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Date received
-        </dt>
-        <dd class="govuk-summary-list__value">
-          {{ 2 | daysAgo }}
-        </dd>
-        <!-- <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="manage-comment">
-            Change<span class="govuk-visually-hidden"> date received</span>
-          </a>
-        </dd> -->
-      </div>
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Redaction status
-        </dt>
-        <dd class="govuk-summary-list__value">
-          Redacted
-        </dd>
-        <dd class="govuk-summary-list__actions">
-          <a class="govuk-link" href="document-details">
-            Change<span class="govuk-visually-hidden"> redacted status</span>
-          </a>
-        </dd>
-      </div>
-    </dl>
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Version
+            </dt>
+            <dd class="govuk-summary-list__value">
+              2
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Date received
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ 2 | daysAgo }}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Redaction status
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Redacted
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="document-details">
+                Change<span class="govuk-visually-hidden"> redacted status</span>
+              </a>
+            </dd>
+          </div>
+        </dl>
 
-    <div class="govuk-button-group">
-      {{ govukButton({
-        text: "Upload new version"
-      }) }}
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Upload new version"
+          }) }}
 
-      {{ govukButton({
-        text: "Remove current version",
-        classes: "govuk-button--secondary"
-      }) }}
-    </div>
+          {{ govukButton({
+            text: "Remove current version",
+            classes: "govuk-button--secondary"
+          }) }}
+        </div>
 
-    <h2 class="govuk-heading-m govuk-visually-hidden">
-      Document versions
-    </h2>
+      </form>
 
-    <!-- <p class="govuk-body">
-      View and remove versions of this document
-    </p> -->
+      <h2 class="govuk-heading-m govuk-visually-hidden">
+        Document versions
+      </h2>
 
-    {% set versionHistory %}
+      {% set versionHistory %}
 
-      {{ govukTable({
-        caption: "Document versions",
-        captionClasses: "govuk-heading-l govuk-visually-hidden",
-        firstCellIsHeader: false,
-        head: [
-          {
-            text: "Version"
-          },
-          {
-            text: "Name"
-          },
-          {
-            text: "Activity"
-          },
-          {
-            text: "Redaction status"
-          },
-          {
-            text: "Action"
-          }
-        ],
-        rows: [
-          [
+        {{ govukTable({
+          caption: "Document versions",
+          captionClasses: "govuk-heading-l govuk-visually-hidden",
+          firstCellIsHeader: false,
+          head: [
             {
-              text: "2"
+              text: "Version"
             },
             {
-              html: "<p class='govuk-body govuk-!-margin-bottom-2'><a href='#' class='govuk-link'>appeal-2110166-section106-agreement.pdf</a></p>
-              <p class='govuk-body'><strong class='govuk-tag'>Current version</strong></p>"
+              text: "Name"
             },
             {
-              text: ""
+              text: "Activity"
             },
             {
-              text: "Redacted"
+              text: "Redaction status"
             },
             {
-              html: "<a href='govuk-link'>Remove</a>"
+              text: "Action"
             }
           ],
-          [
-            {
-              text: "1"
-            },
-            {
-              html: "<p class='govuk-body'><a href='#' class='govuk-link'>appeal-2110166-section106-agreement.pdf</a></p>"
-            },
-            {
-              text: ""
-            },
-            {
-              text: "Unredacted"
-            },
-            {
-              html: "<a href='govuk-link'>Remove</a>"
-            }
+          rows: [
+            [
+              {
+                text: "2"
+              },
+              {
+                html: "<p class='govuk-body govuk-!-margin-bottom-2'><a href='#' class='govuk-link'>appeal-2110166-section106-agreement.pdf</a></p>
+                <p class='govuk-body'><strong class='govuk-tag'>Current version</strong></p>"
+              },
+              {
+                text: ""
+              },
+              {
+                text: "Redacted"
+              },
+              {
+                html: "<a href='govuk-link'>Remove</a>"
+              }
+            ],
+            [
+              {
+                text: "1"
+              },
+              {
+                html: "<p class='govuk-body'><a href='#' class='govuk-link'>appeal-2110166-section106-agreement.pdf</a></p>"
+              },
+              {
+                text: ""
+              },
+              {
+                text: "Unredacted"
+              },
+              {
+                html: "<a href='govuk-link'>Remove</a>"
+              }
+            ]
           ]
-        ]
-        }) }}
+          }) }}
 
-    {% endset -%}
+      {% endset -%}
 
+    </div>
   </div>
-</div>
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-full">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
 
-    {{ govukDetails({
-      summaryHtml: 'Version history',
-      html: versionHistory
-    }) }}
+      {{ govukDetails({
+        summaryHtml: 'Version history',
+        html: versionHistory
+      }) }}
 
+    </div>
   </div>
-</div>
-</form>
+
 {% endblock %}

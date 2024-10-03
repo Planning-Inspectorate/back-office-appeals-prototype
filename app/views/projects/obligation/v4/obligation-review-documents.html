@@ -1,0 +1,67 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Planning obligation documents" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "obligation-review"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Appeal 2114328</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+    </div>
+
+    <div class="govuk-grid-column-full">
+
+      {{ govukTable({
+
+        firstCellIsHeader: true,
+        head: [
+          {
+            text: "Name"
+          },
+          {
+            text: "Received"
+          },
+          {
+            text: "Redaction status"
+          },
+          {
+            text: "Action",
+            format: "numeric"
+          }
+        ],
+        rows: [
+          [
+            {
+              html: "<a href='#' class='govuk-link govuk-link--no-visited-state'>"+(data ['upload-extra-document'] or 'appeal-2110166-section106-agreement.pdf')+"</a>"
+            },
+            {
+              html: 2 | daysAgo
+            },
+            {
+              html:  (data ['lpa-document-redaction']or 'Unredacted')
+            },
+            {
+              html: "<a href='manage-document' class='govuk-link'>Manage</a>",
+              format: "numeric"
+            }
+          ]
+        ]
+      }) }}
+
+      <p class="govuk-body">
+        <a href="upload-supporting-document" class="govuk-link">Add document</a>
+      </p>
+
+    </div>
+  </div>
+{% endblock %}

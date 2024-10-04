@@ -548,7 +548,7 @@
                       text: "Valid"
                     },
                     {
-                      text: "22 Jul 2023"
+                      html: 37 | daysAgo
                     },
                     {
                       html: "<a href='#'>View</a>",
@@ -560,10 +560,10 @@
                       text: "LPA questionnaire"
                     },
                     {
-                      text: "Complete"
+                      text: "Received"
                     },
                     {
-                      text: "18 Jul 2023"
+                      html: 32 | daysAgo
                     },
                     {
                       html: "<a href='#'>View</a>",
@@ -578,47 +578,57 @@
                       text: "Received"
                     },
                     {
-                      text: "19 Jul 2023"
+                      html: 26 | daysAgo
                     },
                     {
-                      html: "<a href='#'>Review</a>",
+                      html: "<a href='#'>View</a>",
                       format: "numeric"
                     }
-                  ]
-                  ,
+                  ],
                   [
                     {
                       text: "Comments from interested parties"
                     },
                     {
-                      text: " "
+                      text: "Received"
                     },
                     {
-                      text: ""
+                      html: 25 | daysAgo
                     },
                     {
-                      html: "<a href='#'>Add</a>",
+                      html: "<a href='#'>View</a>",
                       format: "numeric"
                     }
-                  ]
-                  ,
+                  ],
                   [
                     {
                       text: "Apellant final comments"
                     },
                     {
-                      text: " "
+                      text: "Received"
                     },
                     {
-                      text: ""
+                      html: 6 | daysAgo
                     },
                     {
-                      html: "<a href='#'>Add</a>",
+                      html: "<a href='#'>View</a>",
                       format: "numeric"
                     }
-                  ]
-
-                  ,
+                  ],
+                  [
+                    {
+                      text: "S106 obligation"
+                    },
+                    {
+                      text: "Awaiting"
+                    },
+                    {
+                      html: ''
+                    },
+                    {
+                      
+                    }
+                  ] if not data['S106status'],
                   [
                     {
                       text: "S106 obligation"
@@ -627,13 +637,45 @@
                       text: "Received"
                     },
                     {
-                      text: "19 Jul 2023"
+                      html: 3 | daysAgo
                     },
                     {
                       html: "<a href='obligation-review'>Review</a>",
                       format: "numeric"
                     }
-                  ]
+                  ] if data['S106status'] == 'received',
+
+                  [
+                    {
+                      text: "S106 obligation"
+                    },
+                    {
+                      text: "Complete"
+                    },
+                    {
+                      html: 0 | daysAgo
+                    },
+                    {
+                      html: "<a href='obligation-review'>View</a>",
+                      format: "numeric"
+                    }
+                  ] if data['S106status'] == 'completed',
+
+                  [
+                    {
+                      text: "S106 obligation"
+                    },
+                    {
+                      text: "Incomplete"
+                    },
+                    {
+                      html: 0 | daysAgo
+                    },
+                    {
+                      html: "<a href='obligation-review'>View</a>",
+                      format: "numeric"
+                    }
+                  ] if data['S106status'] == 'incomplete'
 
                 ]
               }) }}

@@ -31,10 +31,12 @@
         <dl class="govuk-summary-list">
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-             Supporting documents
+              S106 obligation
             </dt>
             <dd class="govuk-summary-list__value">
-              <a href="#" class="govuk-link">appeal-2110166-section106-agreement.pdf</a>
+              <a href="#" class="govuk-link">
+                {{ data['filename'] or 'appeal-2110166-section106-agreement.pdf' }}
+              </a>
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="obligation-review-documents">Change<span class="govuk-visually-hidden"> supporting document</span></a>
@@ -78,7 +80,7 @@
              Due date
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ (data['obligation-due-date-day'] or 22 | daysInFutureNumeric ) }} {{ (data['obligation-due-date-month'] or 1 | monthsInFutureNumeric ) | formatMonth }} 2024
+              {{ (data['obligation-due-date-day'] or 9 | daysInFutureNumeric ) }} {{ (data['obligation-due-date-month'] or 1 | monthsInFutureNumeric ) | formatMonth }} 2024
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="update-due-date">Change<span class="govuk-visually-hidden"> due date</span></a>

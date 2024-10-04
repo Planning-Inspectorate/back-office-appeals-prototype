@@ -1,0 +1,44 @@
+
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Upload a new version for this document" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Appeal 2110166</span>
+      <h1 class="govuk-heading-l">
+        {{ title }}
+      </h1>
+
+      <form action="document-details" method="post" novalidate>
+        <div class="govuk-form-group">
+
+          <div id="new-file-hint" class="govuk-hint">
+            The file must be a DOC, DOCX, PDF, XLS, TIF, JPG or PNG and be smaller than 15MB
+          </div>
+
+          <div class="moj-multi-file-upload moj-multi-file-upload--enhanced">
+            <div class="moj-multi-file__uploaded-files moj-hidden">
+              <h2 class="govuk-heading-m">File added</h2>
+              <div class="govuk-summary-list moj-multi-file-upload__list">
+              </div>
+            </div>
+
+            <input class="govuk-file-upload moj-multi-file-upload__input" id="new-file" name="new-file" type="file" aria-describedby="new-file-hint">
+            <div aria-live="polite" role="status" class="govuk-visually-hidden"></div>
+
+            {{ govukButton({
+              classes: "govuk-!-margin-top-6",
+              text: "Continue"
+            }) }}
+
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

@@ -5,6 +5,22 @@
 
 {% set prototypeLinks = [
   {
+    href: '?procedure=written',
+    text: 'Procedure is written representations'
+  } if data['procedure'] != 'written',
+  {
+    href: '?procedure=hearing',
+    text: 'Procedure is hearing'
+  } if data['procedure'] != 'hearing',
+  {
+    href: '?procedure=inquiry',
+    text: 'Procedure is inquiry'
+  } if data['procedure'] != 'inquiry',
+  {
+    href: '#',
+    text: '________________________________________________________________________'
+  },
+  {
     href: '?case-stage=new',
     text: 'New appeal'
   },
@@ -17,9 +33,18 @@
     text: 'Statements stage'
   },
   {
-    href: '?case-stage=final-comments',
+    href: '?procedure=written&case-stage=final-comments',
     text: 'Final comments stage'
   },
+
+
+
+
+  <!-- add in stages for other appeal procedures -->
+
+
+
+
   {
     href: '?case-stage=determination',
     text: 'Determination stage'
@@ -112,162 +137,154 @@
     <!-- header -->
     <div class="govuk-grid-column-two-thirds">
 
-      {{ data['casenotedetail'] }}
-
-      <!-- <div class="govuk-inset-text">
-        Case stage is <span class="govuk-!-font-weight-bold">{{ data['case-stage'] }}</span><br>
-        Questionnaire is <span class="govuk-!-font-weight-bold">{{ data['questionnaire'] }}</span><br>
-        LPA statement is <span class="govuk-!-font-weight-bold">{{ data['lpa-statement'] }}</span><br>
-        IP comments are <span class="govuk-!-font-weight-bold">{{ data['ipcomments'] }}</span><br>
-        Appellant final comments statement are <span class="govuk-!-font-weight-bold">{{ data['appellant-final-comments'] }}</span><br>
-        LPA final comments are <span class="govuk-!-font-weight-bold">{{ data['lpa-final-comments'] }}</span>
-      </div> -->
-
-      {% if data['case-stage'] == 'questionnaire' %}
-        <!-- questionnaire -->
-        {% if data['questionnaire'] == 'received'%}
-          {% set html %}
-            <p class="govuk-notification-banner__heading">
-              LPA questionnaire ready for review.
-              <a class="govuk-notification-banner__link" href="#">Review</a>.
-            </p>
-          {% endset %}
-          {{ govukNotificationBanner({
-            html: html
-          }) }}
-        {% endif %}
-
-        <!-- statements -->
-        {% if data['lpa-statement'] == 'received'%}
-          {% set html %}
-            <p class="govuk-notification-banner__heading">
-              LPA statement ready for review.
-              <a class="govuk-notification-banner__link" href="#">Review</a>.
-            </p>
-          {% endset %}
-          {{ govukNotificationBanner({
-            html: html
-          }) }}
-        {% endif %}
-
-        <!-- ip comments -->
-        {% if data['ipcomments'] == 'received'%}
-          {% set html %}
-            <p class="govuk-notification-banner__heading">
-              IP comments ready for review.
-              <a class="govuk-notification-banner__link" href="#">Review</a>.
-            </p>
-          {% endset %}
-          {{ govukNotificationBanner({
-            html: html
-          }) }}
-        {% endif %}
-
-      {% elseif data['case-stage'] == 'statements' %}
-
-        <!-- statements -->
-        {% if data['lpa-statement'] == 'received'%}
-          {% set html %}
-            <p class="govuk-notification-banner__heading">
-              LPA statement ready for review.
-              <a class="govuk-notification-banner__link" href="#">Review</a>.
-            </p>
-          {% endset %}
-          {{ govukNotificationBanner({
-            html: html
-          }) }}
-        {% endif %}
-
-        <!-- ip comments -->
-        {% if data['ipcomments'] == 'received'%}
-          {% set html %}
-            <p class="govuk-notification-banner__heading">
-              IP comments ready for review.
-              <a class="govuk-notification-banner__link" href="#">Review</a>.
-            </p>
-          {% endset %}
-          {{ govukNotificationBanner({
-            html: html
-          }) }}
-        {% endif %}
-
-        {% if data['lpa-statement'] == 'complete'%}
-          {% if data['ipcomments'] == 'complete'%}
+      <!-- banners -->
+      <section>
+        {% if data['case-stage'] == 'questionnaire' %}
+          <!-- questionnaire -->
+          {% if data['questionnaire'] == 'received'%}
             {% set html %}
               <p class="govuk-notification-banner__heading">
-                IP comments and statements ready to <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">
-                  share<span class="govuk-visually-hidden"> IP comments and LPA statement</span></a>
+                LPA questionnaire ready for review.
+                <a class="govuk-notification-banner__link" href="#">Review</a>.
               </p>
             {% endset %}
             {{ govukNotificationBanner({
               html: html
             }) }}
           {% endif %}
-        {% endif %}
 
-      {% elseif data['case-stage'] == 'final-comments' %}
-
-        <!-- appellant final comments -->
-        {% if data['appellant-final-comments'] == 'received'%}
-          {% set html %}
-            <p class="govuk-notification-banner__heading">
-              Appellant final comments ready for review.
-              <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">Review<span class="govuk-visually-hidden"> appellant final comments</span></a>.
-            </p>
-          {% endset %}
-          {{ govukNotificationBanner({
-            html: html
-          }) }}
-        {% endif %}
-
-        <!-- LPA final comments -->
-        {% if data['lpa-final-comments'] == 'received'%}
-          {% set html %}
-            <p class="govuk-notification-banner__heading">
-              LPA final comments ready for review.
-              <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">Review<span class="govuk-visually-hidden"> LPA final comments</span></a>.
-            </p>
-          {% endset %}
-          {{ govukNotificationBanner({
-            html: html
-          }) }}
-        {% endif %}
-
-        <!-- share final comments -->
-        {% if data['appellant-final-comments'] == 'complete'%}
-          {% if data['lpa-final-comments'] == 'complete'%}
+          <!-- statements -->
+          {% if data['lpa-statement'] == 'received'%}
             {% set html %}
               <p class="govuk-notification-banner__heading">
-                Final comments ready to share.
-                <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">
-                  Share<span class="govuk-visually-hidden"> final comments</span>
-                </a>
+                LPA statement ready for review.
+                <a class="govuk-notification-banner__link" href="#">Review</a>.
               </p>
             {% endset %}
             {{ govukNotificationBanner({
               html: html
             }) }}
           {% endif %}
+
+          <!-- ip comments -->
+          {% if data['ipcomments'] == 'received'%}
+            {% set html %}
+              <p class="govuk-notification-banner__heading">
+                IP comments ready for review.
+                <a class="govuk-notification-banner__link" href="#">Review</a>.
+              </p>
+            {% endset %}
+            {{ govukNotificationBanner({
+              html: html
+            }) }}
+          {% endif %}
+
+        {% elseif data['case-stage'] == 'statements' %}
+
+          <!-- statements -->
+          {% if data['lpa-statement'] == 'received'%}
+            {% set html %}
+              <p class="govuk-notification-banner__heading">
+                LPA statement ready for review.
+                <a class="govuk-notification-banner__link" href="#">Review</a>.
+              </p>
+            {% endset %}
+            {{ govukNotificationBanner({
+              html: html
+            }) }}
+          {% endif %}
+
+          <!-- ip comments -->
+          {% if data['ipcomments'] == 'received'%}
+            {% set html %}
+              <p class="govuk-notification-banner__heading">
+                IP comments ready for review.
+                <a class="govuk-notification-banner__link" href="#">Review</a>.
+              </p>
+            {% endset %}
+            {{ govukNotificationBanner({
+              html: html
+            }) }}
+          {% endif %}
+
+          {% if data['lpa-statement'] == 'complete'%}
+            {% if data['ipcomments'] == 'complete'%}
+              {% set html %}
+                <p class="govuk-notification-banner__heading">
+                  IP comments and statements ready to <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">
+                    share<span class="govuk-visually-hidden"> IP comments and LPA statement</span></a>
+                </p>
+              {% endset %}
+              {{ govukNotificationBanner({
+                html: html
+              }) }}
+            {% endif %}
+          {% endif %}
+
+        {% elseif data['case-stage'] == 'final-comments' %}
+
+          <!-- appellant final comments -->
+          {% if data['appellant-final-comments'] == 'received'%}
+            {% set html %}
+              <p class="govuk-notification-banner__heading">
+                Appellant final comments ready for review.
+                <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">Review<span class="govuk-visually-hidden"> appellant final comments</span></a>.
+              </p>
+            {% endset %}
+            {{ govukNotificationBanner({
+              html: html
+            }) }}
+          {% endif %}
+
+          <!-- LPA final comments -->
+          {% if data['lpa-final-comments'] == 'received'%}
+            {% set html %}
+              <p class="govuk-notification-banner__heading">
+                LPA final comments ready for review.
+                <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">Review<span class="govuk-visually-hidden"> LPA final comments</span></a>.
+              </p>
+            {% endset %}
+            {{ govukNotificationBanner({
+              html: html
+            }) }}
+          {% endif %}
+
+          <!-- share final comments -->
+          {% if data['appellant-final-comments'] == 'complete'%}
+            {% if data['lpa-final-comments'] == 'complete'%}
+              {% set html %}
+                <p class="govuk-notification-banner__heading">
+                  Final comments ready to share.
+                  <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">
+                    Share<span class="govuk-visually-hidden"> final comments</span>
+                  </a>
+                </p>
+              {% endset %}
+              {{ govukNotificationBanner({
+                html: html
+              }) }}
+            {% endif %}
+          {% endif %}
+
+        {% elseif data['case-stage'] == 'determination' %}
+          <!-- determination -->
+
+        {% elseif data['case-stage'] == 'closed' %}
+          <!-- closed -->
+
+        {% else %}
+          <!-- new case -->
+          {% set html %}
+            <p class="govuk-notification-banner__heading">
+              Appeal ready for review.
+              <a class="govuk-notification-banner__link" href="#">Review</a>.
+            </p>
+          {% endset %}
+          {{ govukNotificationBanner({
+            html: html
+          }) }}
         {% endif %}
-
-      {% elseif data['case-stage'] == 'determination' %}
-        <!-- determination -->
-
-      {% elseif data['case-stage'] == 'closed' %}
-        <!-- closed -->
-
-      {% else %}
-        <!-- new case -->
-        {% set html %}
-          <p class="govuk-notification-banner__heading">
-            Appeal ready for review.
-            <a class="govuk-notification-banner__link" href="#">Review</a>.
-          </p>
-        {% endset %}
-        {{ govukNotificationBanner({
-          html: html
-        }) }}
-      {% endif %}
+      </section>
 
       <!--	<span class="govuk-caption-l">Appeal 2110166</span> -->
       <span class="govuk-caption-xl">Appeal 2114328</span>
@@ -276,46 +293,48 @@
       </h1>
 
       <!-- case status tag -->
-      {% if data['case-stage'] == 'questionnaire' %}
+      <section>
+        {% if data['case-stage'] == 'questionnaire' %}
 
-        {{ caseStatus (caseStatus = 'questionnaire') }}
+          {{ caseStatus (caseStatus = 'questionnaire') }}
 
-      {% elseif data['case-stage'] == 'statements' %}
+        {% elseif data['case-stage'] == 'statements' %}
 
-        {{ caseStatus (caseStatus = 'statements') }}
+          {{ caseStatus (caseStatus = 'statements') }}
 
-      {% elseif data['case-stage'] == 'final-comments' %}
+        {% elseif data['case-stage'] == 'final-comments' %}
 
-        {{ caseStatus (caseStatus = 'finalComments') }}
+          {{ caseStatus (caseStatus = 'finalComments') }}
 
-      {% elseif data['case-stage'] == 'determination' %}
+        {% elseif data['case-stage'] == 'determination' %}
 
-        {{ caseStatus (caseStatus = 'decision') }}
+          {{ caseStatus (caseStatus = 'decision') }}
 
-      {% elseif data['case-stage'] == 'closed' %}
+        {% elseif data['case-stage'] == 'closed' %}
 
-        {{ caseStatus (caseStatus = 'complete') }}
+          {{ caseStatus (caseStatus = 'complete') }}
 
-        {{ govukInsetText({
-          html: "
-          <p class='govuk-body'>
-            Completed "+ 1 | daysAgo + "
-          </p>
-          <p class='govuk-body'>
-            Decision: approved
-          </p>
-          <p class='govuk-body'>
-            <a href='#' class='govuk-link'>
-              View decision letter
-            </a>
-          </p>"
-        }) }}
+          {{ govukInsetText({
+            html: "
+            <p class='govuk-body'>
+              Completed "+ 1 | daysAgo + "
+            </p>
+            <p class='govuk-body'>
+              Decision: approved
+            </p>
+            <p class='govuk-body'>
+              <a href='#' class='govuk-link'>
+                View decision letter
+              </a>
+            </p>"
+          }) }}
 
-      {% else %}
+        {% else %}
 
-        {{ caseStatus (caseStatus = 'ready') }}
+          {{ caseStatus (caseStatus = 'ready') }}
 
-      {% endif %}
+        {% endif %}
+      </section>
 
     </div>
 
@@ -325,9 +344,9 @@
       <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
     </div>
 
-    {% if data['casenotes'] == 'header' %}
-
-      <div class="govuk-grid-column-two-thirds">
+    <!-- casenotes -->
+    <div class="govuk-grid-column-two-thirds">
+      {% if data['casenotes'] == 'header' %}
 
         {% set casenotes %}
 
@@ -393,9 +412,9 @@
           html: casenotes
         }) }}
 
-      </div>
 
-    {% endif %}
+      {% endif %}
+    </div>
 
     <!-- case sections -->
     <div class="govuk-grid-column-two-thirds">
@@ -435,10 +454,34 @@
                     text: "Written"
                   },
                   {
-                    html: "<a href='#'>Change</a>",
+                    html: "<a href='change-procedure'>Change<span class='govuk-visually-hidden'> case procedure</span></a>",
                     format: "numeric"
                   }
-                ],
+                ] if data['procedure'] == 'written',
+                [
+                  {
+                    text: "Case procedure"
+                  },
+                  {
+                    text: "Hearing"
+                  },
+                  {
+                    html: "<a href='change-procedure'>Change<span class='govuk-visually-hidden'> case procedure</span></a>",
+                    format: "numeric"
+                  }
+                ] if data['procedure'] == 'hearing',
+                [
+                  {
+                    text: "Case procedure"
+                  },
+                  {
+                    text: "Inquiry"
+                  },
+                  {
+                    html: "<a href='change-procedure'>Change<span class='govuk-visually-hidden'> case procedure</span></a>",
+                    format: "numeric"
+                  }
+                ] if data['procedure'] == 'inquiry',
                 [
                   {
                     text: "Appellant name"
@@ -664,51 +707,34 @@
             </h2>
           </div>
 
-          <div id="accordion-default-content-2" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-2">
-          	{{ govukTable({
-              captionClasses: "govuk-table__caption--m",
-              firstCellIsHeader: true,
-              rows: [
-                [
-                  {
-                    text: "Start date"
-                  },
-                  {
-                    text: 38 | daysAgo
-                  },
-                  {
-                    html: "",
-                    format: "numeric"
-                  }
-                ],
-                [
-                  {
-                    text: "LPA questionnaire due"
-                  },
-                  {
-                    text: 31 | daysAgo
-                  },
-                  {
-                    html: "<a href='#'>Change</a>",
-                    format: "numeric"
-                  }
-                ],
-                [
-                  {
-                    text: "Site visit"
-                  },
-                  {
-                    text: -3 | daysAgo
-                  },
-                  {
-                    html: "<a href='site-visit.html'>Manage</a>",
-                    format: "numeric"
-                  }
-                ]
-              ]
-            }) }}
+          {% if not data['case-stage'] %}
+            {% include "/includes/appeal-content/timetable/timetable--new-appeal.html" %}
 
-          </div>
+          {% elseif data['case-stage'] == 'questionnaire' %}
+            {% include "/includes/appeal-content/timetable/timetable--questionnaire.html" %}
+
+          {% elseif data['case-stage'] == 'statements' %}
+            {% include "/includes/appeal-content/timetable/timetable--statements.html" %}
+
+          {% elseif data['case-stage'] == 'final-comments' %}
+            {% include "/includes/appeal-content/timetable/timetable--final-comments.html" %}
+
+          {% elseif data['case-stage'] == 'hearing-event' %}
+            {% include "/includes/appeal-content/timetable/timetable--hearing-event.html" %}
+
+          {% elseif data['case-stage'] == 'proof-of-evidence' %}
+            {% include "/includes/appeal-content/timetable/timetable--proof-of-evidence.html" %}
+
+          {% elseif data['case-stage'] == 'witnesses' %}
+            {% include "/includes/appeal-content/timetable/timetable--witnesses.html" %}
+
+          {% elseif data['case-stage'] == 'determination' %}
+            {% include "/includes/appeal-content/timetable/timetable--determination.html" %}
+
+          {% elseif data['case-stage'] == 'decided' %}
+            {% include "/includes/appeal-content/timetable/timetable--decided.html" %}
+
+          {% endif %}
         </div>
 
         <!-- case documents -->
@@ -842,76 +868,7 @@
         </div>
 
       </div>
-
     </div>
-
-    {% if data['casenotes'] == 'sidebar' %}
-      <div class="govuk-grid-column-one-third">
-        <h2 class="govuk-heading-m">
-          Case notes
-        </h2>
-        <p class="govuk-body">
-          <a href="add-case-note" class="govuk-link govuk-link--no-visited-state">
-            Add a case note
-          </a>
-        </p>
-
-        {% if data['newnote'] %}
-
-          <section>
-            <p class="govuk-body govuk-!-margin-bottom-1">
-              {{ data['casenotedetail'] or 'We should use WR and review at statements stage.' }}
-            </p>
-            <p class="govuk-hint govuk-!-margin-bottom-6">
-              10.14am on Monday {{ 0 | daysAgo }} by sam.murfit
-            </p>
-            <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-          </section>
-
-        {% endif %}
-
-        <section>
-          <p class="govuk-body govuk-!-margin-bottom-1">
-            We should use WR and review at statements stage.
-          </p>
-          <p class="govuk-hint govuk-!-margin-bottom-6">
-            1.22pm on Friday {{ 22 | daysAgo }} by gem.dalgano
-          </p>
-          <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-        </section>
-
-        <section>
-          <p class="govuk-body govuk-!-margin-bottom-1">
-            Contacted the agent by email and post for the missing documents.
-          </p>
-          <p class="govuk-hint govuk-!-margin-bottom-6">
-            10:29am on Tuesday {{ 12 | daysAgo }} by gem.dalgano
-          </p>
-          <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-        </section>
-
-        <section>
-          <p class="govuk-body govuk-!-margin-bottom-1">
-            Contacted the agent by email and post for the missing documents.
-          </p>
-          <p class="govuk-hint govuk-!-margin-bottom-6">
-            9:52am on Tuesday {{ 12 | daysAgo }} by gem.dalgano
-          </p>
-          <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-        </section>
-
-        <section>
-          <p class="govuk-body govuk-!-margin-bottom-1">
-            Documents missing from the case.
-          </p>
-          <p class="govuk-hint govuk-!-margin-bottom-6">
-            11:01am on Tuesday {{ 19 | daysAgo }} by sam.griffin
-          </p>
-          <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-        </section>
-
-      </div>
-    {% endif %}
 
   </div>
 {% endblock %}

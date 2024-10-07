@@ -6,6 +6,13 @@
 const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
 
+const flash = require('connect-flash')
+router.use(flash())
+
+router.all('*', (req, res, next) => {
+  res.locals.flash = req.flash('success')
+  next()
+})
 
 //added for simple branching ++ https://github.com/abbott567/radio-button-redirect ++
 
@@ -148,3 +155,6 @@ router.get("/projects/closing-cases/v1/change-appeal-resubmit-process", (req, re
 		res.redirect(req.originalUrl.replace("change-appeal-resubmit-process","case-closed"))
 	}
 })
+
+
+

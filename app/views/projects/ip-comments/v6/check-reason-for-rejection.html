@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Check your reason for rejection" %}
+{% set title = "Check your answers" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% set back = true %}
@@ -42,7 +42,7 @@
           <dt class="govuk-summary-list__key">
             Interested party
           </dt>
-          <dd class="govuk-summary-list__value">
+          <dd class="govuk-summary-list__value govuk-!-width-one-half">
             {% if data['comment-type'] == 'doc' %}
               Sam Fisher
             {% else %}
@@ -74,16 +74,25 @@
             </dd>
           </div>
         {% endif %}
-      </dl>
-
-      <!-- new definition list for the reason for rejection -->
-      <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Reason for rejection
+            Do you accept the comment?
           </dt>
-          <dd class="govuk-summary-list__value govuk-!-width-one-half">
+          <dd class="govuk-summary-list__value">
+            Comment invalid
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"> do you accept the comment?</span>
+            </a>
+          </dd>
+        </div>
 
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Why is the comment invalid?
+          </dt>
+          <dd class="govuk-summary-list__value">
             {% if data['reason-format'] == 'list' %}
               <p class="govuk-body govuk-!-margin-top-0 govuk-!-margin-bottom-0">
                 <ul class="govuk-list govuk-list--bullet govuk-!-margin-top-0 govuk-!-margin-bottom-0">
@@ -117,7 +126,7 @@
         {% if data['no-email'] != 'yes' %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              IP can resubmit their comment
+              Do you want the IP to be able to resubmit a comment?
             </dt>
             <dd class="govuk-summary-list__value">
               {% if data['allow-resubmission'] %}
@@ -151,6 +160,7 @@
 
         <form action="ip-comments?comment-rejected=yes" method="post">
           {{ govukButton({
+            classes: "govuk-!-margin-top-6",
             text: "Confirm"
           }) }}
         </form>

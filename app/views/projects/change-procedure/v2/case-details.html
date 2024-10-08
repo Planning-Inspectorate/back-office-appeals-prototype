@@ -36,15 +36,18 @@
     href: '?procedure=written&case-stage=final-comments',
     text: 'Final comments stage'
   },
-
-
-
-
-  <!-- add in stages for other appeal procedures -->
-
-
-
-
+  {
+    href: '?procedure=hearing&case-stage=event',
+    text: 'Hearing event stage'
+  },
+  {
+    href: '?procedure=inquiry&case-stage=proofs',
+    text: 'Proof of evidence stage'
+  },
+  {
+    href: '?procedure=inquiry&case-stage=event',
+    text: 'Inquiry event stage'
+  },
   {
     href: '?case-stage=determination',
     text: 'Determination stage'
@@ -266,6 +269,13 @@
             {% endif %}
           {% endif %}
 
+        {% elseif data['case-stage'] == 'proofs' %}
+          <!-- inquiry proofs, witnesses and timings -->
+
+        {% elseif data['case-stage'] == 'event' %}
+          <!-- event hearing / inquiry -->
+
+
         {% elseif data['case-stage'] == 'determination' %}
           <!-- determination -->
 
@@ -305,6 +315,14 @@
         {% elseif data['case-stage'] == 'final-comments' %}
 
           {{ caseStatus (caseStatus = 'finalComments') }}
+
+        {% elseif data['case-stage'] == 'proofs' %}
+
+          {{ caseStatus (caseStatus = 'proofs') }}
+
+        {% elseif data['case-stage'] == 'event' %}
+
+          {{ caseStatus (caseStatus = 'event') }}
 
         {% elseif data['case-stage'] == 'determination' %}
 

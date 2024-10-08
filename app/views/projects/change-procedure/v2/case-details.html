@@ -130,7 +130,6 @@
     text: 'Clear new case note'
   }
 
-
 ] %}
 
 {% block content %}
@@ -139,6 +138,11 @@
 
     <!-- header -->
     <div class="govuk-grid-column-two-thirds">
+
+      {{ govukNotificationBanner({
+        type: "success",
+        text: "Case procedure updated"
+      }) if flash.length}}
 
       <!-- banners -->
       <section>
@@ -469,7 +473,7 @@
                     text: "Case procedure"
                   },
                   {
-                    text: "Written"
+                    text: "Written representations"
                   },
                   {
                     html: "<a href='change-procedure'>Change<span class='govuk-visually-hidden'> case procedure</span></a>",

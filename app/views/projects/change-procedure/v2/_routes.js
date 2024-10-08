@@ -9,27 +9,13 @@ router.get('*', function(req, res, next){
 
 // changing the appeal procedure
 router.post('/change-procedure', function (req, res) {
-  res.redirect('check-new-evidence')
-})
-
-// setting the stage for an inquiry
-router.post('/set-inquiry-stage', function (req, res) {
-  res.redirect('check-case-management-conference')
-})
-
-// asking whether we need another CMC
-router.post('/check-new-evidence', function (req, res) {
-  res.redirect('timetable')
-})
-
-// setting the stage for an inquiry
-router.post('/timetable', function (req, res) {
   res.redirect('check-answers')
 })
 
 // changing the appeal procedure
 router.post('/check-answers', function (req, res) {
-  res.redirect('confirmation')
+  req.flash('success', 'Case procedure updated')
+  res.redirect('case-details')
 })
 
 // Add your routes above the module.exports line

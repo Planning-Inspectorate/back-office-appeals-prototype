@@ -14,7 +14,7 @@
 	  <form method="post">
 
       {{ govukRadios({
-        name: "change-procedure",
+        name: "procedure",
         fieldset: {
           legend: {
             text: title,
@@ -24,13 +24,17 @@
         },
         items: [
           {
-            value: "Hearing",
-            text: "Hearing"
-          },
+            value: "written",
+            text: "Written representations"
+          } if data['procedure'] != 'written',
           {
-            value: "Inquiry",
+            value: "hearing",
+            text: "Hearing"
+          } if data['procedure'] != 'hearing',
+          {
+            value: "inquiry",
             text: "Inquiry"
-          }
+          } if data['procedure'] != 'inquiry'
         ]
       }) }}
 

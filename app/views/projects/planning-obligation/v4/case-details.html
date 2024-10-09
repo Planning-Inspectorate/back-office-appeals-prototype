@@ -10,7 +10,7 @@
       {% set reviewS106 %}
         <p class="govuk-notification-banner__heading">
           Review planning obligation.
-          <a class="govuk-notification-banner__link" href="obligation-review">
+          <a class="govuk-notification-banner__link" href="planning-obligation-review">
             Review
           </a>
         </p>
@@ -18,17 +18,15 @@
 
       {% set completedS106 %}
         <p class="govuk-notification-banner__heading">
-          S106 obligation complete
+          Planning obligation valid
         </p>
       {% endset %}
 
-      {% set incompleteS106 %}
+      {% set invalidS106 %}
         <p class="govuk-notification-banner__heading">
-          S106 obligation incomplete.
-          <a class="govuk-notification-banner__link" href="obligation-review">
-            Review</a>
+          Planning obligation invalid
         </p>
-      {% endset %}
+      {% endset%}
 
       {% if data['S106status'] == 'received' %}
 
@@ -37,18 +35,18 @@
           type: "important"
         }) }}
 
-      {% elseif data['S106status'] == 'completed' %}
+      {% elseif data['S106status'] == 'valid' %}
 
         {{ govukNotificationBanner({
           html: completedS106,
           type: "success"
         }) }}
 
-      {% elseif data['S106status'] == 'incomplete' %}
+      {% elseif data['S106status'] == 'invalid' %}
 
         {{ govukNotificationBanner({
-          html: incompleteS106,
-          type: "important"
+          html: invalidS106,
+          type: "success"
         }) }}
 
       {% endif %}
@@ -60,7 +58,6 @@
         text: "Statement",
         classes: "govuk-tag--blue"
       })}}
-
 
       {% include "/includes/appeal-content/mvp-has-appeal-meta.html" %}
     </div>

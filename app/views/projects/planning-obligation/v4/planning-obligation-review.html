@@ -55,10 +55,10 @@
     </div>
   </div>
 
-  <form action="" method="post" class="govuk-!-margin-top-3" novalidate>
+  <form method="post">
 
     {{ govukRadios({
-      name: "obligation-decision",
+      name: "planning-obligation-review-decision",
       fieldset: {
         legend: {
           text: "Do you accept the planning obligation?",
@@ -68,11 +68,11 @@
       },
       items: [
         {
-          value: "Valid~check-your-answers",
+          value: "Valid",
           text: "Planning obligation valid"
         },
         {
-          value: "Invalid~why-incomplete",
+          value: "Invalid",
           text: "Planning obligation invalid"
         }
 

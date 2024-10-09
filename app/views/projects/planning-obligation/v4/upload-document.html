@@ -1,0 +1,54 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Upload planning obligation" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Appeal 2110166</span>
+      <h1 class="govuk-heading-l">
+        {{ title }}
+      </h1>
+
+      <form action="document-details" method="post" novalidate>
+        <div class="govuk-form-group">
+
+          <h2 class="govuk-heading-m">
+            Upload a file
+          </h2>
+
+          <p class="govuk-body">
+            Choose a single file to upload.
+          </p>
+
+          <div id="new-file-hint" class="govuk-hint">
+            The file must be a PDF, DOC, DOCX, PPT, PPTX, XLS, XLSX, JPG, JPEG, MPEG, MP3, MP4, MOV, PNG, TIF or TIFF.
+          </div>
+
+          <div id="new-file-hint" class="govuk-hint">
+            The file must be smaller than 25MB.
+          </div>
+
+          {{ govukFileUpload({
+            id: "file-upload-1",
+            name: "fileUpload1",
+            label: {
+              text: "Upload a file"
+            }
+          }) }}
+
+          {{ govukButton({
+            classes: "govuk-!-margin-top-6",
+            text: "Continue"
+          }) }}
+
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

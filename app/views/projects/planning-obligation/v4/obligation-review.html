@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "S106 obligation review" %}
+{% set title = "Planning obligation review" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% block beforeContent %}
@@ -27,7 +27,7 @@
         rows: [
           {
             key: {
-              text: "S106 planning obligation"
+              text: "Planning obligation"
             },
             value: {
               html: "<ul class='govuk-list govuk-list--bullet'>
@@ -61,7 +61,7 @@
       name: "obligation-decision",
       fieldset: {
         legend: {
-          text: "What is the outcome of your review?",
+          text: "Do you accept the planning obligation?",
           isPageHeading: true,
           classes: "govuk-fieldset__legend--m"
         }
@@ -69,11 +69,11 @@
       items: [
         {
           value: "Valid~check-your-answers",
-          text: "Valid"
+          text: "Planning obligation valid"
         },
         {
           value: "Invalid~why-incomplete",
-          text: "Invalid"
+          text: "Planning obligation invalid"
         }
 
       ]

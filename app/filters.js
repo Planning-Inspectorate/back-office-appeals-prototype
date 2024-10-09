@@ -58,6 +58,46 @@ addFilter('daysInPastShort', (number) => {
 	return date
 })
 
+addFilter('whichDay',function (value) {
+  const options = { weekday: 'long' }; // Format such as 'Monday', 'Tuesday', etc.
+  const formatter = new Intl.DateTimeFormat('en-GB', options); // Localised datetime formatter
+  const currentDate = new Date();
+
+  let targetDate;
+
+  switch (value) {
+	  case 'today':
+      targetDate = currentDate;
+      break;
+	  case 'tomorrow':
+      targetDate = new Date(currentDate);
+      targetDate.setDate(currentDate.getDate() + 1);
+      break;
+	  case 'yesterday':
+      targetDate = new Date(currentDate);
+      targetDate.setDate(currentDate.getDate() - 1);
+      break;
+	  default:
+	    const offset = parseInt(value, 10); // Convert the input to a base-10 integer
+	    if (!isNaN(offset)) {
+        targetDate = new Date(currentDate);
+        targetDate.setDate(currentDate.getDate() + offset); // Apply the offset
+	    } else {
+        return 'Error';
+	    }
+	}
+
+	// {{ 'today' | whichDay }}
+	// {{ 'tomorrow' | whichDay }}
+	// {{ 'yesterday' | whichDay }}
+	// {{ '-2' | whichDay }}
+	// {{ '+3' | whichDay }}
+
+  return formatter.format(targetDate);
+})
+
+
+
 addFilter('push', (array, item) => {
 	array.push(item)
 	return array

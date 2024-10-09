@@ -38,16 +38,22 @@
       classes:'govuk-tag--purple'
     }) }}
 
-  {% elseif caseStatus === "evidence" %}
-    {{ govukTag({
-      text: "Evidence",
-      classes:'govuk-tag--blue'
-    }) }}
-
   {% elseif caseStatus === "finalComments" %}
     {{ govukTag({
       text: "Final comments",
       classes:'govuk-tag--orange'
+    }) }}
+
+  {% elseif caseStatus === "proofs" %}
+    {{ govukTag({
+      text: "Evidence",
+      classes:'govuk-tag--purple'
+    }) }}
+
+  {% elseif caseStatus === "event" %}
+    {{ govukTag({
+      text: "Event",
+      classes:'govuk-tag--yellow'
     }) }}
 
   {% elseif caseStatus === "decision" %}

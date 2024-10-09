@@ -1,0 +1,153 @@
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Valid date"
+      },
+      value: {
+        text: 11 | daysAgo,
+        classes: "govuk-!-width-one-half"
+      }
+    },
+    {
+      key: {
+        text: "Start date"
+      },
+      value: {
+        text: 10 | daysAgo
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "LPA questionnaire due"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "LPA questionnaire due"
+      },
+      value: {
+        text: 6 | daysAgo
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "LPA questionnaire due"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Statements due"
+      },
+      value: {
+        text: 8 | daysInFuture
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "statements due"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Final comments due"
+      },
+      value: {
+        text: 22 | daysInFuture
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "statements due"
+          }
+        ]
+      }
+    } if data['procedure'] == 'written',
+    {
+      classes: "pins-summary-list__row--last",
+      key: {
+        text: "Site visit"
+      },
+      value: {
+        text: 'Not added'
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "site visit"
+          }
+        ]
+      }
+    } if data['procedure'] == 'written',
+    {
+      key: {
+        text: "Site visit"
+      },
+      value: {
+        text: 'Not added'
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "site visit"
+          }
+        ]
+      }
+    } if data['procedure'] != 'written',
+    {
+      classes: "pins-summary-list__row--last",
+      key: {
+        text: "Hearing event date"
+      },
+      value: {
+        text: 42 | daysInFuture
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "hearing event date"
+          }
+        ]
+      }
+    } if data['procedure'] == 'hearing',
+    {
+      classes: "pins-summary-list__row--last",
+      key: {
+        text: "Inquiry event date"
+      },
+      value: {
+        text: 52 | daysInFuture
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "inquiry event date"
+          }
+        ]
+      }
+    } if data['procedure'] == 'inquiry'
+
+  ]
+}) }}

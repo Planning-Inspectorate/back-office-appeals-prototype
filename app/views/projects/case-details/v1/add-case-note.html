@@ -10,22 +10,23 @@
 
       <span class="govuk-caption-xl">Appeal 2114328</span>
 
-      <form method="post">
+      <form method="post" action="case-details?newnote=true&casenotes=sidebar">
+
         {{ govukTextarea({
-          name: "moreDetail",
-          id: "more-detail",
+          name: "casenotedetail",
+          id: "casenotedetail",
           label: {
             text: title,
             classes: "govuk-label--l",
             isPageHeading: true
           }
         }) }}
-      </form>
 
-      {{ govukButton({
-        href: "case-details",
-        text: "Continue"
-      }) }}
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
 
     </div>
   </div>

@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = data['filename'] or 'appeal-2110166-section106-agreement.pdf' %}
+{% set title = data['filename'] or 'appeal-2110166-section106-agreement_part1.pdf' %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% set back = true %}
@@ -32,7 +32,7 @@
               Name
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['filename'] or 'appeal-2110166-section106-agreement.pdf' }}
+              {{ data['filename'] or 'appeal-2110166-section106-agreement_part1.pdf' }}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="name-change">
@@ -50,7 +50,7 @@
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Date received
+              Submitted
             </dt>
             <dd class="govuk-summary-list__value">
               {{ 2 | daysAgo }}

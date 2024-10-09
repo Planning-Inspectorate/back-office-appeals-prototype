@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Change the appeal procedure" %}
+{% set title = "Appeal procedure" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% set back = true %}
@@ -14,7 +14,7 @@
 	  <form method="post">
 
       {{ govukRadios({
-        name: "change-procedure",
+        name: "procedure",
         fieldset: {
           legend: {
             text: title,
@@ -24,13 +24,32 @@
         },
         items: [
           {
-            value: "Hearing",
-            text: "Hearing"
-          },
+            value: "written",
+            text: "Written representations",
+            checked: true
+          } if data['procedure'] == 'written',
           {
-            value: "Inquiry",
+            value: "written",
+            text: "Written representations"
+          } if data['procedure'] != 'written',
+          {
+            value: "hearing",
+            text: "Hearing",
+            checked: true
+          } if data['procedure'] == 'hearing',
+          {
+            value: "hearing",
+            text: "Hearing"
+          } if data['procedure'] != 'hearing',
+          {
+            value: "inquiry",
+            text: "Inquiry",
+            checked: true
+          } if data['procedure'] == 'inquiry',
+          {
+            value: "inquiry",
             text: "Inquiry"
-          }
+          } if data['procedure'] != 'inquiry'
         ]
       }) }}
 

@@ -29,7 +29,7 @@
             text: "Name"
           },
           {
-            text: "Received"
+            text: "Submitted"
           },
           {
             text: "Redaction status"
@@ -42,7 +42,7 @@
         rows: [
           [
             {
-              html: "<a href='#' class='govuk-link govuk-link--no-visited-state'>"+(data['filename'] or 'appeal-2110166-section106-agreement.pdf')+"</a>"
+              html: "<a href='#' class='govuk-link govuk-link--no-visited-state'>appeal-2110166-section106-agreement_part1.pdf</a>"
             },
             {
               html: 2 | daysAgo
@@ -51,7 +51,22 @@
               html:  (data ['lpa-document-redaction']or 'Unredacted')
             },
             {
-              html: "<a href='manage-document' class='govuk-link'>Manage</a>",
+              html: "<a href='manage-document' class='govuk-link'>View and edit</a>",
+              format: "numeric"
+            }
+          ],
+          [
+            {
+              html: "<a href='#' class='govuk-link govuk-link--no-visited-state'>appeal-2110166-section106-agreement_part2.pdf</a>"
+            },
+            {
+              html: 2 | daysAgo
+            },
+            {
+              html:  (data ['lpa-document-redaction']or 'Unredacted')
+            },
+            {
+              html: "<a href='manage-document' class='govuk-link'>View and edit</a>",
               format: "numeric"
             }
           ]

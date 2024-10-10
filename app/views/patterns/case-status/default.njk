@@ -8,6 +8,18 @@
       classes:'govuk-tag--orange'
     }) }}
 
+  {% elseif caseStatus === "awaitingTransfer" %}
+    {{ govukTag({
+      text: "Awaiting transfer",
+      classes:'govuk-tag--red'
+    }) }}
+
+  {% elseif caseStatus === "transferred" %}
+    {{ govukTag({
+      text: "Transferred",
+      classes:'govuk-tag--grey'
+    }) }}
+
   {% elseif caseStatus === "assign" %}
     {{ govukTag({
       text: "Assign case officer",

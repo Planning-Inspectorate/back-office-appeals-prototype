@@ -1,0 +1,49 @@
+{% extends "layouts/PINS-Simple.html" %}
+
+{% set title = "Check details and start case" %}
+{% set pageName = title + 'Start case - Planning Inspectorate'%}
+
+{% set back = true %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal 2114328</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Appeal procedure"
+            },
+            value: {
+              text: data.appealProcedure
+            },
+            actions: {
+              items: [
+                {
+                  href: "./",
+                  text: "Change",
+                  visuallyHiddenText: "Appeal procedure"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      {{ govukWarningText({
+        text: "We’ll start the timetable on 7 October 2024 and send start letters to the relevant parties.",
+        iconFallbackText: "Fallback text"
+      }) }}
+
+
+      <form method="post">
+        {{ govukButton({
+          text: "Start case"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

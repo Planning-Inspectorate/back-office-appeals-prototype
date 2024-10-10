@@ -9,6 +9,14 @@
     text: 'New appeal'
   },
   {
+    href: '?case-stage=awaitingTransfer',
+    text: 'Awaiting transfer'
+  },
+  {
+    href: '?case-stage=transferred',
+    text: 'Transferred'
+  },
+  {
     href: '?case-stage=questionnaire',
     text: 'Appeal started / Questionnaire stage'
   },
@@ -102,10 +110,6 @@
 ] %}
 
 {% block content %}
-
-
-
-
   <div class="govuk-grid-row">
 
     <!-- header -->
@@ -116,14 +120,6 @@
         text: flash
       }) if flash.length}}
 
-      <!-- <div class="govuk-inset-text">
-        Case stage is <span class="govuk-!-font-weight-bold">{{ data['case-stage'] }}</span><br>
-        Questionnaire is <span class="govuk-!-font-weight-bold">{{ data['questionnaire'] }}</span><br>
-        LPA statement is <span class="govuk-!-font-weight-bold">{{ data['lpa-statement'] }}</span><br>
-        IP comments are <span class="govuk-!-font-weight-bold">{{ data['ipcomments'] }}</span><br>
-        Appellant final comments statement are <span class="govuk-!-font-weight-bold">{{ data['appellant-final-comments'] }}</span><br>
-        LPA final comments are <span class="govuk-!-font-weight-bold">{{ data['lpa-final-comments'] }}</span>
-      </div> -->
 
       {% if data['case-stage'] == 'questionnaire' %}
         <!-- questionnaire -->
@@ -164,6 +160,30 @@
             html: html
           }) }}
         {% endif %}
+
+      {% elseif data['case-stage'] == 'transferred' %}
+
+        <!-- show nothing -->
+
+      {% elseif data['case-stage'] == 'awaitingTransfer' %}
+
+        {% if data.appealProcedure == 'Hearing' %}
+          {% set procedureType = 'hearings' %}
+        {% else %}
+          {% set procedureType = 'enquiries' %}
+        {% endif %}
+
+        {% set html %}
+          <h2 class="govuk-notification-banner__heading">
+            {# You need to transfer the appeal to Horizon, then add the reference number to this case. #}
+            You need to transfer the appeal to Horizon, then mark the case as transferred.
+          </h2>
+          {# <p><a class="govuk-notification-banner__link" href="edit-horizon-reference">Add Horizon case number</a></p> #}
+          <p><a class="govuk-notification-banner__link" href="edit-horizon-reference">Mark as transferred</a></p>
+        {% endset %}
+        {{ govukNotificationBanner({
+          html: html
+        }) }}
 
       {% elseif data['case-stage'] == 'statements' %}
 
@@ -261,11 +281,7 @@
       {% else %}
         <!-- new case -->
         {% set html %}
-          <h2 class="govuk-notification-banner__heading">
-            Appeal valid
-          </h2>
-          <p><a href="start-case/" class="govuk-notification-banner__link">Start case</a>
-
+          <h2 class="govuk-notification-banner__heading"><a href="start-case/" class="govuk-notification-banner__link">Start case</a></h2>
         {% endset %}
         {{ govukNotificationBanner({
           html: html
@@ -282,6 +298,14 @@
       {% if data['case-stage'] == 'questionnaire' %}
 
         {{ caseStatus (caseStatus = 'questionnaire') }}
+
+      {% elseif data['case-stage'] == 'awaitingTransfer' %}
+
+        {{ caseStatus (caseStatus = 'awaitingTransfer') }}
+
+      {% elseif data['case-stage'] == 'transferred' %}
+
+        {{ caseStatus (caseStatus = 'transferred') }}
 
       {% elseif data['case-stage'] == 'statements' %}
 

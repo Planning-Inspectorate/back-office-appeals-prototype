@@ -1,0 +1,33 @@
+{% extends "layouts/PINS-Simple.html" %}
+
+{% set title = "Horizon reference" %}
+{% set pageName = title + 'Start case - Planning Inspectorate'%}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form method="post">
+        <span class="govuk-caption-l">Appeal 2114328</span>
+        {{ govukInput({
+          id: "horizonReference",
+          name: "horizonReference",
+          label: {
+            text: "Horizon reference",
+            isPageHeading: true,
+            classes: "govuk-label--l"
+          },
+          value: data.horizonReference,
+          classes: 'govuk-input--width-10'
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

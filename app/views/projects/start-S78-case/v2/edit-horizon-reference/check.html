@@ -1,0 +1,47 @@
+{% extends "layouts/PINS-Simple.html" %}
+
+{% set title = "Check details and add Horizon reference" %}
+{% set title = "Check details and mark case as transferred" %}
+{% set pageName = title + 'Start case - Planning Inspectorate'%}
+
+{% set back = true %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal 2114328</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Horizon reference"
+            },
+            value: {
+              text: data.horizonReference
+            },
+            actions: {
+              items: [
+                {
+                  href: "/projects/start-s78-case/v2/edit-horizon-reference",
+                  text: "Change",
+                  visuallyHiddenText: "Appeal procedure"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <form method="post">
+        {# {{ govukButton({
+          text: "Add Horizon reference"
+        }) }} #}
+        {{ govukButton({
+          text: "Mark case as transferred"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

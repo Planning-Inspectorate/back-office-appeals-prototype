@@ -16,6 +16,11 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      {{ govukNotificationBanner({
+        type: "success",
+        text: "File name changed"
+      }) if flash.length}}
+
       <span class="govuk-caption-l">Appeal 2110166</span>
       <h1 class="govuk-heading-l">
         {{ title }}

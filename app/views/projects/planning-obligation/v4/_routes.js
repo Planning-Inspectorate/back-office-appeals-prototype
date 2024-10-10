@@ -32,5 +32,11 @@ router.post('/check-your-answers', function (req, res) {
   }
 })
 
+// changing the appeal procedure
+router.post('/name-change', function (req, res) {
+  req.flash('success', 'File name changed')
+  res.redirect('manage-document')
+})
+
 // Add your routes above the module.exports line
 module.exports = router

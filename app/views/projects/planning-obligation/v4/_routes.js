@@ -34,7 +34,7 @@ router.post('/check-your-answers', function (req, res) {
 
 // changing the appeal procedure
 router.post('/name-change', function (req, res) {
-  req.flash('success', 'File name changed')
+  req.flash('success', 'File name updated')
   res.redirect('manage-document')
 })
 

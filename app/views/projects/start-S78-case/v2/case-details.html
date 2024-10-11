@@ -174,11 +174,9 @@
         {% endif %}
 
         {% set html %}
-          <h2 class="govuk-notification-banner__heading">
-            {# You need to transfer the appeal to Horizon, then add the reference number to this case. #}
-            You need to transfer the appeal to Horizon, then mark the case as transferred.
-          </h2>
-          {# <p><a class="govuk-notification-banner__link" href="edit-horizon-reference">Add Horizon case number</a></p> #}
+          {# <h2 class="govuk-notification-banner__heading"> You need to transfer the appeal to Horizon, then add the reference number to this case. </h2>
+          <p><a class="govuk-notification-banner__link" href="edit-horizon-reference">Add Horizon case number</a></p> #}
+          <h2 class="govuk-notification-banner__heading"> You need to transfer the appeal to Horizon, then mark the case as transferred. </h2>
           <p><a class="govuk-notification-banner__link" href="edit-horizon-reference">Mark as transferred</a></p>
         {% endset %}
         {{ govukNotificationBanner({

@@ -1,7 +1,7 @@
 {% extends "layouts/PINS-Simple.html" %}
 
-{% set title = "Check details and add Horizon reference" %}
-{# {% set title = "Check details and mark case as transferred" %} #}
+{% set title = "Check details and mark case as transferred" %}
+{# {% set title = "Check details and add Horizon reference" %} #}
 {% set pageName = title + 'Start case - Planning Inspectorate'%}
 
 {% set back = true %}
@@ -34,12 +34,12 @@
       }) }}
 
       <form method="post">
-        {{ govukButton({
-          text: "Add Horizon reference"
-        }) }}
         {# {{ govukButton({
-          text: "Mark case as transferred"
+          text: "Add Horizon reference"
         }) }} #}
+        {{ govukButton({
+          text: "Mark case as transferred"
+        }) }}
       </form>
 
     </div>

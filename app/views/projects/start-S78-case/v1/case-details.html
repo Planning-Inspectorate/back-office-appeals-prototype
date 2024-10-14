@@ -261,11 +261,7 @@
       {% else %}
         <!-- new case -->
         {% set html %}
-          <h2 class="govuk-notification-banner__heading">
-            Appeal valid
-          </h2>
-          <p><a href="start-case/" class="govuk-notification-banner__link">Start case</a>
-
+          <h2 class="govuk-notification-banner__heading"><a href="start-case/" class="govuk-notification-banner__link">Start case</a></h2>
         {% endset %}
         {{ govukNotificationBanner({
           html: html

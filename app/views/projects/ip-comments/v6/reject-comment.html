@@ -41,7 +41,7 @@
     <span class="govuk-caption-l">Appeal 2114328</span>
 
     {% if data['no-email'] != 'yes' %}
-      <form action="allow-resubmission" method="post">
+      <form action="allow-resubmission" method="get">
     {% else %}
       <form action="check-reason-for-rejection" method="post">
     {% endif %}

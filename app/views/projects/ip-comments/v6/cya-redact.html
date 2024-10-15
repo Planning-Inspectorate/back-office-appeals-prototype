@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Confirm redaction" %}
+{% set title = "Check details and redact comment" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% set back = true %}
@@ -64,7 +64,7 @@
 
       <form action="ip-comments?redactedComment=true&commentReview=true#redact-tab" method="post" class="govuk-!-margin-top-2">
         {{ govukButton({
-          text: "Confirm redaction and accept comment"
+          text: "Redact and accept comment"
         }) }}
       </form>
 

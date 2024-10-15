@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Check your answers" %}
+{% set title = "Check details and reject comment" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% set back = true %}
@@ -76,7 +76,7 @@
         {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Do you accept the comment?
+            Review decision
           </dt>
           <dd class="govuk-summary-list__value">
             Comment invalid
@@ -90,7 +90,7 @@
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Why is the comment invalid?
+            Why are you rejecting the comment?
           </dt>
           <dd class="govuk-summary-list__value">
             {% if data['reason-format'] == 'list' %}
@@ -126,7 +126,7 @@
         {% if data['no-email'] != 'yes' %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Do you want the IP to be able to resubmit a comment?
+              Do you want to allow the interested party to resubmit a comment?
             </dt>
             <dd class="govuk-summary-list__value">
               {% if data['allow-resubmission'] %}
@@ -147,12 +147,12 @@
       {% if data['no-email'] != 'yes' %}
 
         {{ govukInsetText({
-          text: "Confirming will inform the IP why their comment is invalid."
+          text: "We’ll send an email to the interested party to explain why you rejected their comment."
         }) }}
 
-        <form action="comment-rejected" method="post">
+        <form method="post">
           {{ govukButton({
-            text: "Confirm"
+            text: "Reject comment"
           }) }}
         </form>
 

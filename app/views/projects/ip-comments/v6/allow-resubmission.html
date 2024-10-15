@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Do you want the IP to be able to resubmit a comment?" %}
+{% set title = "Do you want to allow the interested party to resubmit a comment?" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% set back = true %}
@@ -11,7 +11,7 @@
 
     <span class="govuk-caption-l">Appeal 2114328</span>
 
-    <form action="check-reason-for-rejection" method="post">
+    <form method="post">
 
       {{ govukRadios({
         classes: "govuk-radios",

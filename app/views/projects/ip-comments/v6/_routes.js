@@ -116,6 +116,19 @@ router.post('/check-remove-site-visit', function (req, res) {
   }
 })
 
+router.post('/allow-resubmission', function (req, res) {
+  res.redirect('check-reason-for-rejection')
+})
+
+
+router.post('/check-reason-for-rejection', function (req, res) {
+  req.flash('success', 'Comment rejected')
+  res.redirect('ip-comments')
+})
+
+
+
+
 
 // Add your routes above the module.exports line
 module.exports = router

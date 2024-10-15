@@ -324,83 +324,6 @@
       <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
     </div>
 
-    {% if data['casenotes'] == 'header' %}
-
-      <div class="govuk-grid-column-two-thirds">
-
-        {% set casenotes %}
-
-          <form method="post">
-            {{ govukTextarea({
-              name: "moreDetail",
-              id: "more-detail",
-              label: {
-                text: 'Case notes',
-                classes: "govuk-visually-hidden",
-                isPageHeading: true
-              }
-            }) }}
-          </form>
-
-          {{ govukButton({
-            href: "case-details",
-            classes: "govuk-button--secondary govuk-!-margin-bottom-1",
-            text: "Add case note"
-          }) }}
-
-          <section>
-            <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-            <p class="govuk-body govuk-!-margin-bottom-1">
-              We should use WR and review at statements stage.
-            </p>
-            <p class="govuk-hint govuk-!-margin-bottom-6">
-              3.33pm on Friday {{ 2 | daysAgo }} by gem.dalgano
-            </p>
-          </section>
-
-          <section>
-            <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-            <p class="govuk-body govuk-!-margin-bottom-1">
-              Contacted the agent by email and post for the missing documents.
-            </p>
-            <p class="govuk-hint govuk-!-margin-bottom-6">
-              11.52am on Tuesday {{ 12 | daysAgo }} by gem.dalgano
-            </p>
-            <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-          </section>
-
-          <section>
-            <p class="govuk-body govuk-!-margin-bottom-1">
-              Contacted the agent by email and post for the missing documents.
-            </p>
-            <p class="govuk-hint govuk-!-margin-bottom-6">
-              11.04am on Tuesday {{ 12 | daysAgo }} by gem.dalgano
-            </p>
-            <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-          </section>
-
-          <section>
-            <p class="govuk-body govuk-!-margin-bottom-1">
-              Documents missing from the case.
-            </p>
-            <p class="govuk-hint govuk-!-margin-bottom-6">
-              11.52am on Tuesday {{ 19 | daysAgo }} by sam.griffin
-            </p>
-            <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-          </section>
-
-
-        {% endset %}
-
-        {{ govukDetails({
-          summaryText: "Case notes",
-          html: casenotes
-        }) }}
-
-      </div>
-
-    {% endif %}
-
     <!-- case sections -->
     <div class="govuk-grid-column-two-thirds">
       <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
@@ -658,6 +581,176 @@
           </div>
         </div>
 
+        <!-- Hearing details -->
+        <div class="govuk-accordion__section">
+          <div class="govuk-accordion__section-header">
+            <h2 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-4">
+                Hearing
+              </span>
+            </h2>
+          </div>
+          <div id="accordion-default-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-4">
+            {{ govukSummaryList({
+              rows: [
+                {
+                  key: {
+                    text: "Why do you prefer a hearing? (Appellant answer)"
+                  },
+                  value: {
+                    text: " Incididunt ipsum occaecat nostrud dolor pariatur non veniam."
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "Item URL",
+                        text: "Change",
+                        visuallyHiddenText: "why the appellant prefers a hearing"
+                      }
+                    ]
+                  }
+                },
+                {
+                  key: {
+                    text: "Why do you prefer a hearing? (LPA answer)"
+                  },
+                  value: {
+                    text: "Reprehenderit veniam consectetur nulla id."
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "Item URL",
+                        text: "Change",
+                        visuallyHiddenText: "why the LPA prefers a hearing"
+                      }
+                    ]
+                  }
+                },
+                {
+                  key: {
+                    text: "Proof of evidence and witnesses (Appellant answer)"
+                  },
+                  value: {
+                    html: '<a href="#">evidence.pdf</a>'
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "Item URL",
+                        text: "Change",
+                        visuallyHiddenText: "the appellant’s proof of evidence and witnesses"
+                      }
+                    ]
+                  }
+                },
+                {
+                  key: {
+                    text: "Proof of evidence and witnesses (LPA answer)"
+                  },
+                  value: {
+                    html: '<a href="#">evidence.pdf</a>'
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "Item URL",
+                        text: "Change",
+                        visuallyHiddenText: "the LPA’s proof of evidence and witnesses"
+                      }
+                    ]
+                  }
+                },
+                {
+                  key: {
+                    text: "Date and time"
+                  },
+                  value: {
+                    html: -10 | daysAgo + ' at 9pm'
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "Item URL",
+                        text: "Change",
+                        visuallyHiddenText: "Date and time"
+                      }
+                    ]
+                  }
+                },
+                {
+                  key: {
+                    text: "Address"
+                  },
+                  value: {
+                    html: '9 The Avenue, WD6 4TT'
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "Item URL",
+                        text: "Change",
+                        visuallyHiddenText: "address"
+                      }
+                    ]
+                  }
+                },
+                {
+                  key: {
+                    text: "Estimated preparation time"
+                  },
+                  value: {
+                    html: '60 minutes'
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "Item URL",
+                        text: "Change",
+                        visuallyHiddenText: "Estimated preparation time"
+                      }
+                    ]
+                  }
+                },
+                {
+                  key: {
+                    text: "Estimated hearing time"
+                  },
+                  value: {
+                    html: '3 hours'
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "Item URL",
+                        text: "Change",
+                        visuallyHiddenText: "Estimated preparation time"
+                      }
+                    ]
+                  }
+                },
+                {
+                  key: {
+                    text: "Estimated reporting time"
+                  },
+                  value: {
+                    html: '4 hours'
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "Item URL",
+                        text: "Change",
+                        visuallyHiddenText: "Estimated reporting time"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }) }}
+          </div>
+        </div>
+
         <!-- timetable -->
         <div class="govuk-accordion__section">
           <div class="govuk-accordion__section-header">
@@ -675,13 +768,25 @@
               rows: [
                 [
                   {
+                    text: "Valid date"
+                  },
+                  {
+                    text: 38 | daysAgo
+                  },
+                  {
+                    html: "<a href='#'>Change</a>",
+                    format: "numeric"
+                  }
+                ],
+                [
+                  {
                     text: "Start date"
                   },
                   {
                     text: 38 | daysAgo
                   },
                   {
-                    html: "",
+                    html: "<a href='#'>Change</a>",
                     format: "numeric"
                   }
                 ],
@@ -705,7 +810,19 @@
                     text: -3 | daysAgo
                   },
                   {
-                    html: "<a href='site-visit.html'>Manage</a>",
+                    html: "<a href='site-visit.html'>Change</a>",
+                    format: "numeric"
+                  }
+                ],
+                [
+                  {
+                    text: "Hearing"
+                  },
+                  {
+                    text: -10 | daysAgo + ' at 9pm'
+                  },
+                  {
+                    html: "<a href='#'>Change</a>",
                     format: "numeric"
                   }
                 ]
@@ -848,60 +965,6 @@
       </div>
 
     </div>
-
-    {% if data['casenotes'] == 'sidebar' %}
-      <div class="govuk-grid-column-one-third">
-        <h2 class="govuk-heading-m">
-          Case notes
-        </h2>
-        <p class="govuk-body">
-          <a href="add-case-note" class="govuk-link govuk-link--no-visited-state">
-            Add a case note
-          </a>
-        </p>
-
-        <section>
-          <p class="govuk-body govuk-!-margin-bottom-1">
-            We should use WR and review at statements stage.
-          </p>
-          <p class="govuk-hint govuk-!-margin-bottom-6">
-            10:29am on Friday {{ 22 | daysAgo }} by gem.dalgano
-          </p>
-          <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-        </section>
-
-        <section>
-          <p class="govuk-body govuk-!-margin-bottom-1">
-            Contacted the agent by email and post for the missing documents.
-          </p>
-          <p class="govuk-hint govuk-!-margin-bottom-6">
-            10:29am on Tuesday {{ 12 | daysAgo }} by gem.dalgano
-          </p>
-          <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-        </section>
-
-        <section>
-          <p class="govuk-body govuk-!-margin-bottom-1">
-            Contacted the agent by email and post for the missing documents.
-          </p>
-          <p class="govuk-hint govuk-!-margin-bottom-6">
-            9:52am on Tuesday {{ 12 | daysAgo }} by gem.dalgano
-          </p>
-          <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-        </section>
-
-        <section>
-          <p class="govuk-body govuk-!-margin-bottom-1">
-            Documents missing from the case.
-          </p>
-          <p class="govuk-hint govuk-!-margin-bottom-6">
-            11:01am on Tuesday {{ 19 | daysAgo }} by sam.griffin
-          </p>
-          <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-        </section>
-
-      </div>
-    {% endif %}
 
   </div>
 {% endblock %}

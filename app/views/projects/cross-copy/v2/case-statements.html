@@ -6,6 +6,12 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      {{ govukNotificationBanner({
+        type: "success",
+        text: flash
+      }) if flash.length}}
+
+
       {% set html %}
         <p class="govuk-notification-banner__heading">
           Comments and statements are ready to
@@ -15,7 +21,7 @@
 
       {{ govukNotificationBanner({
         html: html
-      }) }}
+      }) if not flash.length }}
 
       <span class="govuk-caption-l">Appeal 2110917</span>
     	<h1 class="govuk-heading-l">Case details</h1>

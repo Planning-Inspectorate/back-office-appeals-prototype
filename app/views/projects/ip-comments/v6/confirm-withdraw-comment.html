@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Confirm comment withdrawal" %}
+{% set title = "Check details and withdraw comment" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% set back = true %}
@@ -59,18 +59,20 @@
     </dl>
 
     <!-- warning before the button -->
-    {{ govukWarningText({
+    {# {{ govukWarningText({
       text: "This comment will be withdrawn and deleted",
       iconFallbackText: "Warning"
-    }) }}
+    }) }} #}
 
 
     {% if data['no-email'] != 'yes' %}
     <!-- if there is an email, we show a confirmation page/panel -->
 
-      {{ govukInsetText({
+      {# {{ govukInsetText({
         text: "Confirming will inform the IP that their comment has been withdrawn."
-      }) }}
+      }) }} #}
+
+      <p>We’ll send an email to the interested party to explain that we’ve withdrawn and deleted their comment.</p>
 
 
 
@@ -83,28 +85,37 @@
 
 
 
-      {{ govukButton({
-        href: "/projects/ip-comments/v5/comment-withdrawn?comment-withdrawn=",
-        text: "Confirm",
-        classes: "govuk-button--warning"
-      }) }}
+
+      <form method="post">
+          {{ govukButton({
+          hrefx: "/projects/ip-comments/v5/comment-withdrawn?comment-withdrawn=",
+          text: "Withdraw comment",
+          classes: "govuk-button--warning"
+        }) }}
+      </form>
 
     {% else %}
     <!-- no email given, user goes back to the list -->
 
       <!-- if you are reviewing -->
-      {% if data['comment-mode'] == 'review' %}
-        {{ govukButton({
-          href: "/projects/ip-comments/v5/ip-comments?comment-withdrawn=yes",
-          text: "Confirm",
-          classes: "govuk-button--warning"
-        }) }}
+      {% if data['comment-mode'] == 'Review' %}
+
+        <form method="post">
+            {{ govukButton({
+            hrefx: "/projects/ip-comments/v5/ip-comments?comment-withdrawn=yes",
+            text: "Withdraw comment",
+            classes: "govuk-button--warning"
+          }) }}
+        </form>
       {% else %}
-        {{ govukButton({
-          href: "/projects/ip-comments/v5/ip-comments?comment-withdrawn=yes#valid-tab",
-          text: "Confirm",
-          classes: "govuk-button--warning"
-        }) }}
+
+        <form method="post">
+            {{ govukButton({
+            hrefx: "/projects/ip-comments/v5/ip-comments?comment-withdrawn=yes#valid-tab",
+            text: "Withdraw comment",
+            classes: "govuk-button--warning"
+          }) }}
+        </form>
       {% endif %}
 
     {% endif %}

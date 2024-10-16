@@ -126,7 +126,10 @@ router.post('/check-reason-for-rejection', function (req, res) {
   res.redirect('ip-comments')
 })
 
-
+router.post('/confirm-withdraw-comment', function (req, res) {
+  req.flash('success', 'Comment withdrawn')
+  res.redirect('ip-comments')
+})
 
 
 

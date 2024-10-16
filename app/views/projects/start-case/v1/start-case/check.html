@@ -13,6 +13,11 @@
 
       <p>We’ll start the timetable on 7 October 2024 and send start letters to the relevant parties.</p>
 
+      {{ govukWarningText({
+        text: "Do not start the case until you have reviewed all of the case documents and redacted any sensitive information.",
+        iconFallbackText: "Fallback text"
+      }) }}
+
 
       <form method="post">
         {{ govukButton({

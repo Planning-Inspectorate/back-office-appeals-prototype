@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Share IP comments and statements" %}
+{% set title = "Check details and share interested party comments and statements" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% set back = true %}
@@ -15,8 +15,11 @@
       {{ title }}
     </h1>
 
-    {{ govukInsetText({
-      html: "Confirming will share <a href='../../ip-comments/v5/ip-comments?no-comments=yes#valid-tab' class='govuk-body'>43 interested party comments</a> and <a href='#' class='govuk-body'>2 statements</a> with the relevant parties."
+    <p>We’ll share <a href='../../ip-comments/v5/ip-comments?no-comments=yes#valid-tab' class='govuk-body'>43 interested party comments</a> and <a href='#' class='govuk-body'>2 statements</a> with the relevant parties.</p>
+
+    {{ govukWarningText({
+      text: "Do not share until you have reviewed all of the supporting documents and redacted any sensitive information.",
+      iconFallbackText: "Fallback text"
     }) }}
 
   </div>
@@ -35,7 +38,7 @@
       }) }} -->
 
     	{{ govukButton({
-    		text: 'Confirm'
+    		text: 'Share interested party comments and statements'
     	}) }}
 
     </form>

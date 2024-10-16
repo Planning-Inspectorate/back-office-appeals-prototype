@@ -1,0 +1,828 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Case details" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set prototypeLinks = [
+  {
+    href: '?case-stage=new',
+    text: 'New appeal'
+  },
+  {
+    href: '?case-stage=questionnaire',
+    text: 'Appeal started / Questionnaire stage'
+  },
+  {
+    href: '?case-stage=statements',
+    text: 'Statements stage'
+  },
+  {
+    href: '?case-stage=final-comments',
+    text: 'Final comments stage'
+  },
+  {
+    href: '?case-stage=determination',
+    text: 'Determination stage'
+  },
+  {
+    href: '?case-stage=closed',
+    text: 'Case closed'
+  },
+  {
+    href: '#',
+    text: '________________________________________________________________________'
+  },
+  {
+    href: '?questionnaire=received',
+    text: 'Questionnaire received'
+  } if (data['questionnaire'] != 'received' and data['case-stage'] == 'questionnaire'),
+  {
+    href: '?questionnaire=not-received',
+    text: 'Questionnaire not received'
+  } if data['questionnaire'] == 'received',
+  {
+    href: '?questionnaire=complete&case-stage=statements',
+    text: 'Questionnaire complete'
+  } if data['questionnaire'] == 'received',
+  {
+    href: '?lpa-statement=received',
+    text: 'LPA statement received'
+  } if (data['lpa-statement'] != 'received') and (data['case-stage'] == 'statements'),
+  {
+    href: '?lpa-statement=not-received',
+    text: 'LPA statement not received'
+  } if (data['lpa-statement'] == 'received') or (data['lpa-statement'] == 'complete') and (data['appeal-stage'] == 'statements'),
+  {
+    href: '?lpa-statement=complete',
+    text: 'LPA statement complete'
+  } if (data['lpa-statement'] == 'received') and (data['case-stage'] == 'statements'),
+  {
+    href: '?ipcomments=',
+    text: 'IP comments not received'
+  } if (data['ipcomments'] == 'received') and (data['case-stage'] == 'statements'),
+  {
+    href: '?ipcomments=received',
+    text: 'IP comments received'
+  } if (data['ipcomments'] != 'received') and (data['case-stage'] == 'statements'),
+  {
+    href: '?ipcomments=complete',
+    text: 'IP comments complete'
+  } if (data['ipcomments'] == 'received') and (data['case-stage'] == 'statements'),
+  {
+    href: '?appellant-final-comments=received',
+    text: 'Appellant final comments received'
+  } if (data['appellant-final-comments'] != 'received') and (data['case-stage'] == 'final-comments'),
+  {
+    href: '?appellant-final-comments=complete',
+    text: 'Appellant final comments complete'
+  } if (data['appellant-final-comments'] == 'received') and (data['case-stage'] == 'final-comments'),
+  {
+    href: '?lpa-final-comments=received',
+    text: 'LPA final comments received'
+  } if (data['lpa-final-comments'] != 'received') and (data['case-stage'] == 'final-comments'),
+  {
+    href: '?lpa-final-comments=complete',
+    text: 'LPA final comments complete'
+  } if (data['lpa-final-comments'] == 'received') and (data['case-stage'] == 'final-comments'),
+
+  {
+    href: '?casenotes=header',
+    text: 'Case notes in header'
+  } if not (data['casenotes']) or (data['casenotes']) == 'sidebar',
+  {
+    href: '?casenotes=sidebar',
+    text: 'Case notes in sidebar'
+  } if not (data['casenotes']) or (data['casenotes']) == 'header',
+  {
+    href: '?casenotes=',
+    text: 'Hide case notes'
+  } if (data['casenotes'])
+
+
+] %}
+
+{% block content %}
+
+
+
+
+  <div class="govuk-grid-row">
+
+    <!-- header -->
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukNotificationBanner({
+        type: "success",
+        text: flash
+      }) if flash.length}}
+
+      <!-- <div class="govuk-inset-text">
+        Case stage is <span class="govuk-!-font-weight-bold">{{ data['case-stage'] }}</span><br>
+        Questionnaire is <span class="govuk-!-font-weight-bold">{{ data['questionnaire'] }}</span><br>
+        LPA statement is <span class="govuk-!-font-weight-bold">{{ data['lpa-statement'] }}</span><br>
+        IP comments are <span class="govuk-!-font-weight-bold">{{ data['ipcomments'] }}</span><br>
+        Appellant final comments statement are <span class="govuk-!-font-weight-bold">{{ data['appellant-final-comments'] }}</span><br>
+        LPA final comments are <span class="govuk-!-font-weight-bold">{{ data['lpa-final-comments'] }}</span>
+      </div> -->
+
+      {% if data['case-stage'] == 'questionnaire' %}
+        <!-- questionnaire -->
+        {% if data['questionnaire'] == 'received'%}
+          {% set html %}
+            <p class="govuk-notification-banner__heading">
+              LPA questionnaire ready for review.
+              <a class="govuk-notification-banner__link" href="#">Review</a>.
+            </p>
+          {% endset %}
+          {{ govukNotificationBanner({
+            html: html
+          }) }}
+        {% endif %}
+
+        <!-- statements -->
+        {% if data['lpa-statement'] == 'received'%}
+          {% set html %}
+            <p class="govuk-notification-banner__heading">
+              LPA statement ready for review.
+              <a class="govuk-notification-banner__link" href="#">Review</a>.
+            </p>
+          {% endset %}
+          {{ govukNotificationBanner({
+            html: html
+          }) }}
+        {% endif %}
+
+        <!-- ip comments -->
+        {% if data['ipcomments'] == 'received'%}
+          {% set html %}
+            <p class="govuk-notification-banner__heading">
+              IP comments ready for review.
+              <a class="govuk-notification-banner__link" href="#">Review</a>.
+            </p>
+          {% endset %}
+          {{ govukNotificationBanner({
+            html: html
+          }) }}
+        {% endif %}
+
+      {% elseif data['case-stage'] == 'statements' %}
+
+        <!-- statements -->
+        {% if data['lpa-statement'] == 'received'%}
+          {% set html %}
+            <p class="govuk-notification-banner__heading">
+              LPA statement ready for review.
+              <a class="govuk-notification-banner__link" href="#">Review</a>.
+            </p>
+          {% endset %}
+          {{ govukNotificationBanner({
+            html: html
+          }) }}
+        {% endif %}
+
+        <!-- ip comments -->
+        {% if data['ipcomments'] == 'received'%}
+          {% set html %}
+            <p class="govuk-notification-banner__heading">
+              IP comments ready for review.
+              <a class="govuk-notification-banner__link" href="#">Review</a>.
+            </p>
+          {% endset %}
+          {{ govukNotificationBanner({
+            html: html
+          }) }}
+        {% endif %}
+
+        {% if data['lpa-statement'] == 'complete'%}
+          {% if data['ipcomments'] == 'complete'%}
+            {% set html %}
+              <p class="govuk-notification-banner__heading">
+                IP comments and statements ready to <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">
+                  share<span class="govuk-visually-hidden"> IP comments and LPA statement</span></a>
+              </p>
+            {% endset %}
+            {{ govukNotificationBanner({
+              html: html
+            }) }}
+          {% endif %}
+        {% endif %}
+
+      {% elseif data['case-stage'] == 'final-comments' %}
+
+        <!-- appellant final comments -->
+        {% if data['appellant-final-comments'] == 'received'%}
+          {% set html %}
+            <p class="govuk-notification-banner__heading">
+              Appellant final comments ready for review.
+              <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">Review<span class="govuk-visually-hidden"> appellant final comments</span></a>.
+            </p>
+          {% endset %}
+          {{ govukNotificationBanner({
+            html: html
+          }) }}
+        {% endif %}
+
+        <!-- LPA final comments -->
+        {% if data['lpa-final-comments'] == 'received'%}
+          {% set html %}
+            <p class="govuk-notification-banner__heading">
+              LPA final comments ready for review.
+              <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">Review<span class="govuk-visually-hidden"> LPA final comments</span></a>.
+            </p>
+          {% endset %}
+          {{ govukNotificationBanner({
+            html: html
+          }) }}
+        {% endif %}
+
+        <!-- share final comments -->
+        {% if data['appellant-final-comments'] == 'complete'%}
+          {% if data['lpa-final-comments'] == 'complete'%}
+            {% set html %}
+              <p class="govuk-notification-banner__heading">
+                Final comments ready to share.
+                <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">
+                  Share<span class="govuk-visually-hidden"> final comments</span>
+                </a>
+              </p>
+            {% endset %}
+            {{ govukNotificationBanner({
+              html: html
+            }) }}
+          {% endif %}
+        {% endif %}
+
+      {% elseif data['case-stage'] == 'determination' %}
+        <!-- determination -->
+
+      {% elseif data['case-stage'] == 'closed' %}
+        <!-- closed -->
+
+      {% else %}
+        <!-- new case -->
+        {% set html %}
+          <h2 class="govuk-notification-banner__heading"><a href="start-case/check" class="govuk-notification-banner__link">Start case</a></h2>
+        {% endset %}
+        {{ govukNotificationBanner({
+          html: html
+        }) }}
+      {% endif %}
+
+      <!--	<span class="govuk-caption-l">Appeal 2110166</span> -->
+      <span class="govuk-caption-xl">Appeal 2114328</span>
+    	<h1 class="govuk-heading-xl">
+        {{ title }}
+      </h1>
+
+      <!-- case status tag -->
+      {% if data['case-stage'] == 'questionnaire' %}
+
+        {{ caseStatus (caseStatus = 'questionnaire') }}
+
+      {% elseif data['case-stage'] == 'statements' %}
+
+        {{ caseStatus (caseStatus = 'statements') }}
+
+      {% elseif data['case-stage'] == 'final-comments' %}
+
+        {{ caseStatus (caseStatus = 'finalComments') }}
+
+      {% elseif data['case-stage'] == 'determination' %}
+
+        {{ caseStatus (caseStatus = 'decision') }}
+
+      {% elseif data['case-stage'] == 'closed' %}
+
+        {{ caseStatus (caseStatus = 'complete') }}
+
+        {{ govukInsetText({
+          html: "
+          <p class='govuk-body'>
+            Completed "+ 1 | daysAgo + "
+          </p>
+          <p class='govuk-body'>
+            Decision: approved
+          </p>
+          <p class='govuk-body'>
+            <a href='#' class='govuk-link'>
+              View decision letter
+            </a>
+          </p>"
+        }) }}
+
+      {% else %}
+
+        {{ caseStatus (caseStatus = 'ready') }}
+
+      {% endif %}
+
+    </div>
+
+    <!-- meta -->
+    <div class="govuk-grid-column-full">
+      {% include "/includes/appeal-content/lpa-has-appeal-meta.html" %}
+      <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+    </div>
+
+    <!-- case sections -->
+    <div class="govuk-grid-column-two-thirds">
+      <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
+
+        <!-- case overview -->
+        <div class="govuk-accordion__section">
+          <div class="govuk-accordion__section-header">
+            <h2 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-1">
+                Overview
+              </span>
+            </h2>
+          </div>
+          <div id="accordion-default-content-1" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-1">
+            {{ govukTable({
+              captionClasses: "govuk-table__caption--m",
+              firstCellIsHeader: true,
+              rows: [
+                [
+                  {
+                    text: "Appeal type"
+                  },
+                  {
+                    text: "Section 78"
+                  },
+                  {
+                    html: "<a href='change-appeal-type.html'>Change</a>",
+                    format: "numeric"
+                  }
+                ],
+                [
+                  {
+                    text: "Case procedure"
+                  },
+                  {
+                    text: "Written"
+                  },
+                  {
+                    html: "<a href='#'>Change</a>",
+                    format: "numeric"
+                  }
+                ],
+                [
+                  {
+                    text: "Appellant name"
+                  },
+                  {
+                    text: "Fiona Shell"
+                  },
+                  {
+                    html: "<a href='#'>Change</a>",
+                    format: "numeric"
+                  }
+                ],[
+                  {
+                    text: "Agent name"
+                  },
+                  {
+                    text: "Naomi Jonhson"
+                  },
+                  {
+                    html: "<a href='#'>Change</a>",
+                    format: "numeric"
+                  }
+                ],[
+                  {
+                    text: "Linked appeals"
+                  },
+                  {
+                    html: "<a href='.'>21/725284</a>"
+                  },
+                  {
+                    html: "<a href='#'>Change</a>",
+                    format: "numeric"
+                  }
+                ],[
+                  {
+                    text: "Related appeals"
+                  },
+                  {
+                    html: "<a href='.'>21/725234</a>"
+                  },
+                  {
+                    html: "<a href='#'>Change</a>",
+                    format: "numeric"
+                  }
+                ],[
+                  {
+                    text: "Allocation details"
+                  },
+                  {
+                    text: "F / General Allocation"
+                  },
+                  {
+                    html: "<a href='#'>Change</a>",
+                    format: "numeric"
+                  }
+                ],[
+                  {
+                    text: "LPA reference"
+                  },
+                  {
+                    text: "22/00118/FULL"
+                  },
+                  {
+                    html: "<a href='#'>Change</a>",
+                    format: "numeric"
+                  }
+                ],[
+                  {
+                    text: "Decision"
+                  },
+                  {
+                    text: "Not issued yet"
+                  },
+                  {
+                    html: "<a href='.'>Change</a>",
+                    format: "numeric"
+                  }
+                ]
+              ]
+            }) }}
+
+          </div>
+        </div>
+
+        <!-- site details -->
+        <div class="govuk-accordion__section">
+          <div class="govuk-accordion__section-header">
+            <h2 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-5">
+                Site
+              </span>
+            </h2>
+          </div>
+
+          <div id="accordion-default-content-5" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-5">
+          	<dl class="govuk-summary-list">
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Inspection access (LPA answer)
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  <span>No answer provided</span>
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="/appeals-service/appeal-details/441/change-appeal-details/lpa-inspector-access/">
+                    Change
+                  </a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Inspection access (appellant answer)
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  <span>
+                    No
+                  </span>
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="/appeals-service/appeal-details/441/change-appeal-details/appellant-case-inspector-access">
+                    Change
+                  </a>
+                </dd>
+              </div>
+
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Potential safety risks (LPA answer)
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  <span>No answer provided</span>
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="/appeals-service/appeal-details/441/change-appeal-details/lpa-health-and-safety">
+                    Change
+                  </a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Potential safety risks (apellant answer)
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  <span>No answer provided</span>
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="/appeals-service/appeal-details/441/change-appeal-details/appellant-case-health-and-safety">
+                    Change
+                  </a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Visit type
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  Unaccompanied
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="/appeals-service/appeal-details/441/site-visit/set-visit-type">
+                    Change
+                  </a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Neighbouring site affected
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  No answer provided
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="/appeals-service/appeal-details/441/change-appeal-details/neighbouring-site-is-affected">
+                    Change
+                  </a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Neighbouring sites (LPA answer)
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  <ul class="govuk-list govuk-list--bullet">
+                    <li>172 York Road<br>
+                      Bristol<br>
+                      BS3 4AL</li>
+                    <li>170, York Road<br>
+                      Bristol<br>
+                      BS3 4AL</li>
+                  </ul>
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="manage-neighbouring-sites.html">
+                    Change
+                    <span class="govuk-visually-hidden"> neighbouring sites</span>
+                  </a>
+                </dd>
+              </div>
+               <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Neighbouring sites (Inspector and/or third party request)
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  None
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="additional-neighbours-address">
+                    Add
+                  </a>
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+
+        <!-- timetable -->
+        <div class="govuk-accordion__section">
+          <div class="govuk-accordion__section-header">
+            <h2 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-2">
+                Timetable
+              </span>
+            </h2>
+          </div>
+
+          <div id="accordion-default-content-2" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-2">
+          	{{ govukTable({
+              captionClasses: "govuk-table__caption--m",
+              firstCellIsHeader: true,
+              rows: [
+                [
+                  {
+                    text: "Valid date"
+                  },
+                  {
+                    text: 38 | daysAgo
+                  },
+                  {
+                    html: "<a href='#'>Change</a>",
+                    format: "numeric"
+                  }
+                ],
+                [
+                  {
+                    text: "Start date"
+                  },
+                  {
+                    text: 38 | daysAgo
+                  },
+                  {
+                    html: "<a href='#'>Change</a>",
+                    format: "numeric"
+                  }
+                ],
+                [
+                  {
+                    text: "LPA questionnaire due"
+                  },
+                  {
+                    text: 31 | daysAgo
+                  },
+                  {
+                    html: "<a href='#'>Change</a>",
+                    format: "numeric"
+                  }
+                ],
+                [
+                  {
+                    text: "Site visit"
+                  },
+                  {
+                    text: -3 | daysAgo
+                  },
+                  {
+                    html: "<a href='site-visit.html'>Change</a>",
+                    format: "numeric"
+                  }
+                ]
+              ]
+            }) }}
+
+          </div>
+        </div>
+
+        <!-- case documents -->
+        <div class="govuk-accordion__section">
+          <div class="govuk-accordion__section-header">
+            <h2 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-3">
+                Documentation
+              </span>
+            </h2>
+          </div>
+          <div id="accordion-default-content-3" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-3">
+            {{ govukTable({
+              firstCellIsHeader: true,
+              head: [
+                {
+                  text: "Documentation"
+                },
+                {
+                  text: "Status"
+                },
+                {
+                  text: "Received"
+                },
+                {
+                  text: "Action"
+                }
+              ],
+              rows: [
+                [
+                  {
+                    html: "Appellant case"
+                  },
+                  {
+                    html: "Received"
+                  },
+                  {
+                    html: 10 | daysAgo
+                  },
+                  {
+                    html: '<a href="#">View</a>'
+                  }
+                ],
+                [
+                  {
+                    html: "LPA questionnaire"
+                  },
+                  {
+                    html: "Received"
+                  },
+                  {
+                    html: 5 | daysAgo
+                  },
+                  {
+                    html: '<a href="#">View</a>'
+                  }
+                ],
+                [
+                  {
+                    html: "Appellant proof of evidence and witnesses"
+                  },
+                  {
+                    html: "Received"
+                  },
+                  {
+                    html: 3 | daysAgo
+                  },
+                  {
+                    html: '<a href="#">View</a>'
+                  }
+                ],
+                [
+                  {
+                    html: "LPA proof of evidence and witnesses"
+                  },
+                  {
+                    html: "Received"
+                  },
+                  {
+                    html: 1 | daysAgo
+                  },
+                  {
+                    html: '<a href="#">View</a>'
+                  }
+                ]
+              ]
+            }) }}
+          </div>
+        </div>
+
+        <!-- case team -->
+        <div class="govuk-accordion__section">
+          <div class="govuk-accordion__section-header">
+            <h2 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-4">
+                Team
+              </span>
+            </h2>
+          </div>
+          <div id="accordion-default-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-4">
+            {% include "/includes/audit/case-team-table.html" %}
+          </div>
+        </div>
+
+        <!-- contacts -->
+        <div class="govuk-accordion__section">
+          <div class="govuk-accordion__section-header">
+            <h2 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-4">
+                Contacts
+              </span>
+            </h2>
+          </div>
+          <div id="accordion-default-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-4">
+            {{ govukTable({
+              captionClasses: "govuk-table__caption--m",
+              firstCellIsHeader: true,
+              rows: [
+                [
+                {
+                  text: "Appellant"
+                },
+                {
+                  html: "Fiona Shell<br><a href='fiona.shell@gmail.com'>fiona.shell@gmail.com</a>"
+                },
+                {
+                  html: "<a href='#'>Change</a>",
+                  format: "numeric"
+                }
+              ],[
+                {
+                  text: "Agent"
+                },
+                {
+                  html: "Naomi Johnson<br><a href='naomi.jonhson@planningagency.co.uk'>naomi.jonhson@planningagency.co.uk</a>"
+                },
+                {
+                  html: "<a href='#'>Change</a>",
+                  format: "numeric"
+                }
+              ],[
+                {
+                  text: "Planning authority"
+                },
+                {
+                  html: "Tim Cooper<br><a href='name@localauthority.gov.uk'>tim.cooper@localauthority.gov.uk</a>"
+
+                },
+                {
+                  html: "<a href='#'>Change</a>",
+                  format: "numeric"
+                }
+              ]
+              ]
+            }) }}
+          </div>
+        </div>
+
+        <!-- case management -->
+        <div class="govuk-accordion__section">
+          <div class="govuk-accordion__section-header">
+            <h2 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-4">
+                Case management
+              </span>
+            </h2>
+          </div>
+          <div id="accordion-default-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-4">
+            {% include "/includes/appeal-content/case-management/case-management.html" %}
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+{% endblock %}

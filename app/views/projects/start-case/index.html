@@ -1,0 +1,37 @@
+{% extends "layouts/PINS-Simple.html" %}
+
+{% set title = "Start case (HAS)" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">{{ title }}</h1>
+
+      <p>
+        Starting a case
+      </p>
+
+      <h2 class="govuk-heading-m">Version 1
+        {{govukTag({
+          text: "In progress",
+          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+        })}}
+      </h2>
+
+      <p>If we don’t handle hearings and inquiries, we’ll get users to transfer the case to Horizon.</p>
+
+      {{ govukButton({
+        text: "View prototype",
+        isStartButton: true,
+        href: '/projects/start-case/v1/case-details.html'
+      }) }}
+
+
+    </div>
+  </div>
+{% endblock %}

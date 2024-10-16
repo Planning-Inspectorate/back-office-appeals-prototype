@@ -591,11 +591,27 @@
             </h2>
           </div>
           <div id="accordion-default-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-4">
+
+            {% set evidence %}
+              <ul class="govuk-list govuk-list--bullet">
+                <li>
+                  <a href="#">evidence.pdf</a>
+                </li>
+                <li>
+                  <a href="#">another-piece.pdf</a>
+                </li>
+                <li>
+                  <a href="#">another-piece.pdf</a>
+                </li>
+              </ul>
+            {% endset %}
+
+
             {{ govukSummaryList({
               rows: [
                 {
                   key: {
-                    text: "Why do you prefer a hearing? (Appellant answer)"
+                    text: "Why the appellant prefers a hearing"
                   },
                   value: {
                     text: " Incididunt ipsum occaecat nostrud dolor pariatur non veniam."
@@ -612,7 +628,7 @@
                 },
                 {
                   key: {
-                    text: "Why do you prefer a hearing? (LPA answer)"
+                    text: "Why the LPA prefers a hearing"
                   },
                   value: {
                     text: "Reprehenderit veniam consectetur nulla id."
@@ -629,16 +645,16 @@
                 },
                 {
                   key: {
-                    text: "Proof of evidence and witnesses (Appellant answer)"
+                    text: "Appellant proof of evidence and witnesses"
                   },
                   value: {
-                    html: '<a href="#">evidence.pdf</a>'
+                    html: evidence
                   },
                   actions: {
                     items: [
                       {
                         href: "Item URL",
-                        text: "Change",
+                        text: "Manage",
                         visuallyHiddenText: "the appellant’s proof of evidence and witnesses"
                       }
                     ]
@@ -646,16 +662,16 @@
                 },
                 {
                   key: {
-                    text: "Proof of evidence and witnesses (LPA answer)"
+                    text: "LPA proof of evidence and witnesses"
                   },
                   value: {
-                    html: '<a href="#">evidence.pdf</a>'
+                    html: evidence
                   },
                   actions: {
                     items: [
                       {
                         href: "Item URL",
-                        text: "Change",
+                        text: "Manage",
                         visuallyHiddenText: "the LPA’s proof of evidence and witnesses"
                       }
                     ]
@@ -842,41 +858,81 @@
             </h2>
           </div>
           <div id="accordion-default-content-3" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-3">
-            <table class="govuk-table">
-
-              <thead class="govuk-table__head">
-                <tr class="govuk-table__row">
-                  <th scope="col" class="govuk-table__header">Documentation</th>
-                  <th scope="col" class="govuk-table__header">Status</th>
-                  <!-- <th scope="col" class="govuk-table__header">Received date</th> -->
-                  <th scope="col" class="govuk-table__header govuk-table__header--numeric">Action</th>
-                </tr>
-              </thead>
-
-              <tbody class="govuk-table__body">
-
-                {% if data['case-stage'] == 'questionnaire' %}
-                  <!-- questionnaire -->
-                  {% include "includes/appeal-content/case-documents/questionnaire.html" %}
-                {% elseif data['case-stage'] == 'statements' %}
-                  <!-- statements -->
-                  {% include "includes/appeal-content/case-documents/statements.html" %}
-                {% elseif data['case-stage'] == 'final-comments' %}
-                  <!-- final comments -->
-                  {% include "includes/appeal-content/case-documents/final-comments.html" %}
-                {% elseif data['case-stage'] == 'determination' %}
-                  <!-- determination -->
-                  {% include "includes/appeal-content/case-documents/determination.html" %}
-                {% elseif data['case-stage'] == 'closed' %}
-                  <!-- closed -->
-                  {% include "includes/appeal-content/case-documents/closed.html" %}
-                {% else %}
-                  <!-- new case -->
-                  {% include "includes/appeal-content/case-documents/new-case.html" %}
-                {% endif %}
-
-              </tbody>
-            </table>
+            {{ govukTable({
+              firstCellIsHeader: true,
+              head: [
+                {
+                  text: "Documentation"
+                },
+                {
+                  text: "Status"
+                },
+                {
+                  text: "Received"
+                },
+                {
+                  text: "Action"
+                }
+              ],
+              rows: [
+                [
+                  {
+                    html: "Appellant case"
+                  },
+                  {
+                    html: "Received"
+                  },
+                  {
+                    html: 10 | daysAgo
+                  },
+                  {
+                    html: '<a href="#">View</a>'
+                  }
+                ],
+                [
+                  {
+                    html: "LPA questionnaire"
+                  },
+                  {
+                    html: "Received"
+                  },
+                  {
+                    html: 5 | daysAgo
+                  },
+                  {
+                    html: '<a href="#">View</a>'
+                  }
+                ],
+                [
+                  {
+                    html: "Appellant proof of evidence and witnesses"
+                  },
+                  {
+                    html: "Received"
+                  },
+                  {
+                    html: 3 | daysAgo
+                  },
+                  {
+                    html: '<a href="#">View</a>'
+                  }
+                ],
+                [
+                  {
+                    html: "LPA proof of evidence and witnesses"
+                  },
+                  {
+                    html: "Received"
+                  },
+                  {
+                    html: 1 | daysAgo
+                  },
+                  {
+                    html: '<a href="#">View</a>'
+                  }
+                ]
+              ]
+            }) }}
           </div>
         </div>
 

@@ -356,16 +356,16 @@
                 ],
                 [
                   {
-                    text: "Case procedure"
+                    text: "Appeal procedure"
                   },
                   {
-                    text: "Written"
+                    text: data.appealProcedure or 'Written representations'
                   },
                   {
                     html: "<a href='#'>Change</a>",
                     format: "numeric"
                   }
-                ],
+                ] if data.appealProcedure,
                 [
                   {
                     text: "Appellant name"

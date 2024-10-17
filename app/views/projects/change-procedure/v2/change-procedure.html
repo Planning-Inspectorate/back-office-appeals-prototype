@@ -14,7 +14,7 @@
 	  <form method="post">
 
       {{ govukRadios({
-        name: "procedure",
+        name: "appealProcedure",
         fieldset: {
           legend: {
             text: title,
@@ -22,34 +22,20 @@
             classes: "govuk-fieldset__legend--l"
           }
         },
+        value: data.appealProcedure,
         items: [
           {
-            value: "written",
-            text: "Written representations",
-            checked: true
-          } if data['procedure'] == 'written',
-          {
-            value: "written",
+            value: "Written representations",
             text: "Written representations"
-          } if data['procedure'] != 'written',
+          },
           {
-            value: "hearing",
-            text: "Hearing",
-            checked: true
-          } if data['procedure'] == 'hearing',
-          {
-            value: "hearing",
+            value: "Hearing",
             text: "Hearing"
-          } if data['procedure'] != 'hearing',
+          },
           {
-            value: "inquiry",
-            text: "Inquiry",
-            checked: true
-          } if data['procedure'] == 'inquiry',
-          {
-            value: "inquiry",
+            value: "Inquiry",
             text: "Inquiry"
-          } if data['procedure'] != 'inquiry'
+          }
         ]
       }) }}
 

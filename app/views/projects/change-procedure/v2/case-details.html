@@ -470,16 +470,16 @@
                 ],
                 [
                   {
-                    text: "Case procedure"
+                    text: "Appeal procedure"
                   },
                   {
-                    text: "Written representations"
+                    text: data.appealProcedure or 'Written representations'
                   },
                   {
                     html: "<a href='change-procedure'>Change<span class='govuk-visually-hidden'> case procedure</span></a>",
                     format: "numeric"
                   }
-                ] if data['procedure'] == 'written',
+                ],
                 [
                   {
                     text: "Case procedure"

@@ -79,7 +79,7 @@
             Review decision
           </dt>
           <dd class="govuk-summary-list__value">
-            Comment invalid
+            Comment rejected
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="#">
@@ -158,8 +158,7 @@
 
         <form action="ip-comments?comment-rejected=yes" method="post">
           {{ govukButton({
-            classes: "govuk-!-margin-top-6",
-            text: "Confirm"
+            text: "Reject comment"
           }) }}
         </form>
 

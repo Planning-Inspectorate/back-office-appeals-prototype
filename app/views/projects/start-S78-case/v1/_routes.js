@@ -4,7 +4,6 @@ const router = govukPrototypeKit.requests.setupRouter()
 router.post('/start-case/check', function (req, res) {
   req.flash('success', 'Case started')
   req.session.data['case-stage'] = 'questionnaire'
-  delete req.session.data.appealProcedure
   res.redirect('../case-details')
 })
 

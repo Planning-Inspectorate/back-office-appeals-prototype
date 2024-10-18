@@ -581,191 +581,333 @@
           </div>
         </div>
 
-        <!-- Hearing details -->
-        <div class="govuk-accordion__section">
-          <div class="govuk-accordion__section-header">
-            <h2 class="govuk-accordion__section-heading">
-              <span class="govuk-accordion__section-button" id="accordion-default-heading-4">
-                Hearing
-              </span>
-            </h2>
+        {% if data.appealProcedure == 'Hearing' %}
+          <div class="govuk-accordion__section">
+            <div class="govuk-accordion__section-header">
+              <h2 class="govuk-accordion__section-heading">
+                <span class="govuk-accordion__section-button" id="accordion-default-heading-4">
+                  Hearing
+                </span>
+              </h2>
+            </div>
+            <div id="accordion-default-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-4">
+
+
+
+
+              {{ govukSummaryList({
+                rows: [
+                  {
+                    key: {
+                      text: "Why the appellant prefers a hearing"
+                    },
+                    value: {
+                      text: " Incididunt ipsum occaecat nostrud dolor pariatur non veniam."
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "Item URL",
+                          text: "Change",
+                          visuallyHiddenText: "why the appellant prefers a hearing"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    key: {
+                      text: "Why the LPA prefers a hearing"
+                    },
+                    value: {
+                      text: "Reprehenderit veniam consectetur nulla id."
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "Item URL",
+                          text: "Change",
+                          visuallyHiddenText: "why the LPA prefers a hearing"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    key: {
+                      text: "Date and time"
+                    },
+                    value: {
+                      html: -10 | daysAgo + ' at 9pm'
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "Item URL",
+                          text: "Change",
+                          visuallyHiddenText: "Date and time"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    key: {
+                      text: "Address"
+                    },
+                    value: {
+                      html: '9 The Avenue, WD6 4TT'
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "Item URL",
+                          text: "Change",
+                          visuallyHiddenText: "address"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    key: {
+                      text: "Estimated preparation time"
+                    },
+                    value: {
+                      html: '60 minutes'
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "Item URL",
+                          text: "Change",
+                          visuallyHiddenText: "Estimated preparation time"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    key: {
+                      text: "Estimated hearing time"
+                    },
+                    value: {
+                      html: '3 hours'
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "Item URL",
+                          text: "Change",
+                          visuallyHiddenText: "Estimated preparation time"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    key: {
+                      text: "Estimated reporting time"
+                    },
+                    value: {
+                      html: '4 hours'
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "Item URL",
+                          text: "Change",
+                          visuallyHiddenText: "Estimated reporting time"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }) }}
+            </div>
           </div>
-          <div id="accordion-default-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-4">
+        {% endif %}
 
-            {% set evidence %}
-              <ul class="govuk-list govuk-list--bullet">
-                <li>
-                  <a href="#">evidence.pdf</a>
-                </li>
-                <li>
-                  <a href="#">another-piece.pdf</a>
-                </li>
-                <li>
-                  <a href="#">another-piece.pdf</a>
-                </li>
-              </ul>
-            {% endset %}
+        {% if data.appealProcedure == 'Inquiry' %}
+          <div class="govuk-accordion__section">
+            <div class="govuk-accordion__section-header">
+              <h2 class="govuk-accordion__section-heading">
+                <span class="govuk-accordion__section-button" id="accordion-default-heading-4">
+                  Inquiry
+                </span>
+              </h2>
+            </div>
+            <div id="accordion-default-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-4">
+
+              {% set evidence %}
+                <ul class="govuk-list govuk-list--bullet">
+                  <li>
+                    <a href="#">evidence.pdf</a>
+                  </li>
+                  <li>
+                    <a href="#">another-piece.pdf</a>
+                  </li>
+                  <li>
+                    <a href="#">another-piece.pdf</a>
+                  </li>
+                </ul>
+              {% endset %}
 
 
-            {{ govukSummaryList({
-              rows: [
-                {
-                  key: {
-                    text: "Why the appellant prefers a hearing"
+              {{ govukSummaryList({
+                rows: [
+                  {
+                    key: {
+                      text: "Why the appellant prefers a hearing"
+                    },
+                    value: {
+                      text: " Incididunt ipsum occaecat nostrud dolor pariatur non veniam."
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "Item URL",
+                          text: "Change",
+                          visuallyHiddenText: "why the appellant prefers a hearing"
+                        }
+                      ]
+                    }
                   },
-                  value: {
-                    text: " Incididunt ipsum occaecat nostrud dolor pariatur non veniam."
+                  {
+                    key: {
+                      text: "Why the LPA prefers a hearing"
+                    },
+                    value: {
+                      text: "Reprehenderit veniam consectetur nulla id."
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "Item URL",
+                          text: "Change",
+                          visuallyHiddenText: "why the LPA prefers a hearing"
+                        }
+                      ]
+                    }
                   },
-                  actions: {
-                    items: [
-                      {
-                        href: "Item URL",
-                        text: "Change",
-                        visuallyHiddenText: "why the appellant prefers a hearing"
-                      }
-                    ]
+                  {
+                    key: {
+                      text: "Appellant proof of evidence and witnesses"
+                    },
+                    value: {
+                      html: evidence
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "Item URL",
+                          text: "Manage",
+                          visuallyHiddenText: "the appellant’s proof of evidence and witnesses"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    key: {
+                      text: "LPA proof of evidence and witnesses"
+                    },
+                    value: {
+                      html: evidence
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "Item URL",
+                          text: "Manage",
+                          visuallyHiddenText: "the LPA’s proof of evidence and witnesses"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    key: {
+                      text: "Date and time"
+                    },
+                    value: {
+                      html: -10 | daysAgo + ' at 9pm'
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "Item URL",
+                          text: "Change",
+                          visuallyHiddenText: "Date and time"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    key: {
+                      text: "Address"
+                    },
+                    value: {
+                      html: '9 The Avenue, WD6 4TT'
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "Item URL",
+                          text: "Change",
+                          visuallyHiddenText: "address"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    key: {
+                      text: "Estimated preparation time"
+                    },
+                    value: {
+                      html: '60 minutes'
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "Item URL",
+                          text: "Change",
+                          visuallyHiddenText: "Estimated preparation time"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    key: {
+                      text: "Estimated inquiry time"
+                    },
+                    value: {
+                      html: '3 hours'
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "Item URL",
+                          text: "Change",
+                          visuallyHiddenText: "Estimated preparation time"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    key: {
+                      text: "Estimated reporting time"
+                    },
+                    value: {
+                      html: '4 hours'
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "Item URL",
+                          text: "Change",
+                          visuallyHiddenText: "Estimated reporting time"
+                        }
+                      ]
+                    }
                   }
-                },
-                {
-                  key: {
-                    text: "Why the LPA prefers a hearing"
-                  },
-                  value: {
-                    text: "Reprehenderit veniam consectetur nulla id."
-                  },
-                  actions: {
-                    items: [
-                      {
-                        href: "Item URL",
-                        text: "Change",
-                        visuallyHiddenText: "why the LPA prefers a hearing"
-                      }
-                    ]
-                  }
-                },
-                {
-                  key: {
-                    text: "Appellant proof of evidence and witnesses"
-                  },
-                  value: {
-                    html: evidence
-                  },
-                  actions: {
-                    items: [
-                      {
-                        href: "Item URL",
-                        text: "Manage",
-                        visuallyHiddenText: "the appellant’s proof of evidence and witnesses"
-                      }
-                    ]
-                  }
-                } if 1==2,
-                {
-                  key: {
-                    text: "LPA proof of evidence and witnesses"
-                  },
-                  value: {
-                    html: evidence
-                  },
-                  actions: {
-                    items: [
-                      {
-                        href: "Item URL",
-                        text: "Manage",
-                        visuallyHiddenText: "the LPA’s proof of evidence and witnesses"
-                      }
-                    ]
-                  }
-                } if 1==2,
-                {
-                  key: {
-                    text: "Date and time"
-                  },
-                  value: {
-                    html: -10 | daysAgo + ' at 9pm'
-                  },
-                  actions: {
-                    items: [
-                      {
-                        href: "Item URL",
-                        text: "Change",
-                        visuallyHiddenText: "Date and time"
-                      }
-                    ]
-                  }
-                },
-                {
-                  key: {
-                    text: "Address"
-                  },
-                  value: {
-                    html: '9 The Avenue, WD6 4TT'
-                  },
-                  actions: {
-                    items: [
-                      {
-                        href: "Item URL",
-                        text: "Change",
-                        visuallyHiddenText: "address"
-                      }
-                    ]
-                  }
-                },
-                {
-                  key: {
-                    text: "Estimated preparation time"
-                  },
-                  value: {
-                    html: '60 minutes'
-                  },
-                  actions: {
-                    items: [
-                      {
-                        href: "Item URL",
-                        text: "Change",
-                        visuallyHiddenText: "Estimated preparation time"
-                      }
-                    ]
-                  }
-                },
-                {
-                  key: {
-                    text: "Estimated hearing time"
-                  },
-                  value: {
-                    html: '3 hours'
-                  },
-                  actions: {
-                    items: [
-                      {
-                        href: "Item URL",
-                        text: "Change",
-                        visuallyHiddenText: "Estimated preparation time"
-                      }
-                    ]
-                  }
-                },
-                {
-                  key: {
-                    text: "Estimated reporting time"
-                  },
-                  value: {
-                    html: '4 hours'
-                  },
-                  actions: {
-                    items: [
-                      {
-                        href: "Item URL",
-                        text: "Change",
-                        visuallyHiddenText: "Estimated reporting time"
-                      }
-                    ]
-                  }
-                }
-              ]
-            }) }}
+                ]
+              }) }}
+            </div>
           </div>
-        </div>
+        {% endif %}
 
         <!-- timetable -->
         <div class="govuk-accordion__section">
@@ -829,7 +971,7 @@
                     html: "<a href='site-visit.html'>Change</a>",
                     format: "numeric"
                   }
-                ],
+                ] if 1==2,
                 [
                   {
                     text: "Hearing"
@@ -841,7 +983,19 @@
                     html: "<a href='#'>Change</a>",
                     format: "numeric"
                   }
-                ]
+                ] if data.appealProcedure == 'Hearing',
+                [
+                  {
+                    text: "Inquiry"
+                  },
+                  {
+                    text: -10 | daysAgo + ' at 9pm'
+                  },
+                  {
+                    html: "<a href='#'>Change</a>",
+                    format: "numeric"
+                  }
+                ] if data.appealProcedure == 'Inquiry'
               ]
             }) }}
 

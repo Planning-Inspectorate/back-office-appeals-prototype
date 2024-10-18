@@ -107,6 +107,26 @@
 
 {% block content %}
 
+
+
+{{ govukServiceNavigation({
+  navigation: [
+    {
+      href: "#",
+      text: "Navigation item 1"
+    },
+    {
+      href: "#",
+      text: "Navigation item 2",
+      active: true
+    },
+    {
+      href: "#",
+      text: "Navigation item 3"
+    }
+  ]
+}) }}
+
   <div class="govuk-grid-row">
 
     <!-- header -->

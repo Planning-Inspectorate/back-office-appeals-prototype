@@ -85,19 +85,19 @@
     text: 'LPA final comments complete'
   } if (data['lpa-final-comments'] == 'received') and (data['case-stage'] == 'final-comments'),
 
-  {
-    href: '?casenotes=header',
-    text: 'Case notes in header'
-  } if not (data['casenotes']) or (data['casenotes']) == 'sidebar',
-  {
-    href: '?casenotes=sidebar',
-    text: 'Case notes in sidebar'
-  } if not (data['casenotes']) or (data['casenotes']) == 'header',
-  {
-    href: '?casenotes=',
-    text: 'Hide case notes'
-  } if (data['casenotes'])
 
+  {
+    href: '?appealProcedure=Written representations',
+    text: 'Written reps'
+  },
+  {
+    href: '?appealProcedure=Hearing',
+    text: 'Hearing'
+  },
+  {
+    href: '?appealProcedure=Inquiry',
+    text: 'Inquiry'
+  }
 
 ] %}
 

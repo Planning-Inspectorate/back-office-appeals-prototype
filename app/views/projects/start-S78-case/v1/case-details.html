@@ -592,8 +592,10 @@
             </div>
             <div id="accordion-default-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-4">
 
-
-
+              {{ govukButton({
+                text: 'Add hearing details',
+                classes: 'govuk-button--secondary'
+              }) if not data.hearing }}
 
               {{ govukSummaryList({
                 rows: [
@@ -647,7 +649,7 @@
                         }
                       ]
                     }
-                  },
+                  } if data.hearing.date,
                   {
                     key: {
                       text: "Address"
@@ -664,7 +666,7 @@
                         }
                       ]
                     }
-                  },
+                  } if data.hearing.address,
                   {
                     key: {
                       text: "Estimated preparation time"
@@ -681,7 +683,7 @@
                         }
                       ]
                     }
-                  },
+                  } if data.hearing.estimatedPreparationTime,
                   {
                     key: {
                       text: "Estimated hearing time"
@@ -694,11 +696,11 @@
                         {
                           href: "Item URL",
                           text: "Change",
-                          visuallyHiddenText: "Estimated preparation time"
+                          visuallyHiddenText: "Estimated hearing time"
                         }
                       ]
                     }
-                  },
+                  } if data.hearing.estimatedHearingTime,
                   {
                     key: {
                       text: "Estimated reporting time"
@@ -715,7 +717,7 @@
                         }
                       ]
                     }
-                  }
+                  } if data.hearing.estimatedReportingTime
                 ]
               }) }}
             </div>

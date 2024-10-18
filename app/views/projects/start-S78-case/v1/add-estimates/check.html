@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-Simple.html" %}
 
-{% set title = "Check details and add hearing details" %}
+{% set title = "Check details and add hearing estimates" %}
 {% set pageName = title %}
 
 {% set back = true %}
@@ -12,57 +12,6 @@
       <h1 class="govuk-heading-l">{{title}}</h1>
       {{ govukSummaryList({
         rows: [
-          {
-            key: {
-              text: "Date"
-            },
-            value: {
-              html: -10 | daysAgo
-            },
-            actions: {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Change",
-                  visuallyHiddenText: "Date"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Time"
-            },
-            value: {
-              html: '9am'
-            },
-            actions: {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Change",
-                  visuallyHiddenText: "Time"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Address"
-            },
-            value: {
-              html: '9 The Avenue, WD6 4TT'
-            },
-            actions: {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Change",
-                  visuallyHiddenText: "address"
-                }
-              ]
-            }
-          },
           {
             key: {
               text: "Estimated preparation time"
@@ -79,7 +28,7 @@
                 }
               ]
             }
-          } if 1==2,
+          },
           {
             key: {
               text: "Estimated hearing time"
@@ -96,7 +45,7 @@
                 }
               ]
             }
-          } if 1==2,
+          },
           {
             key: {
               text: "Estimated reporting time"
@@ -113,7 +62,7 @@
                 }
               ]
             }
-          } if 1==2
+          }
         ]
       }) }}
 
@@ -121,7 +70,7 @@
 
       <form method="post">
         {{ govukButton({
-          text: "Add hearing details"
+          text: "Add hearing estimates"
         }) }}
       </form>
 

@@ -122,48 +122,6 @@
 
         {% endcall %}
 
-        {{ govukInput({
-          id: "estimatedPreparationTime",
-          name: "hearing.estimatedPreparationTime",
-          label: {
-            text: "Estimated preparation time",
-            classes: 'govuk-label--m'
-          },
-          value: data.hearing.estimatedPreparationTime,
-          classes: "govuk-input--width-4",
-          suffix: {
-            text: "days"
-          }
-        }) }}
-
-        {{ govukInput({
-          id: "estimatedHearingTime",
-          name: "hearing.estimatedHearingTime",
-          label: {
-            text: "Estimated hearing time",
-            classes: 'govuk-label--m'
-          },
-          value: data.hearing.estimatedHearingTime,
-          classes: "govuk-input--width-4",
-          suffix: {
-            text: "days"
-          }
-        }) }}
-
-        {{ govukInput({
-          id: "estimatedReportingTime",
-          name: "hearing.estimatedReportingTime",
-          label: {
-            text: "Estimated reporting time",
-            classes: 'govuk-label--m'
-          },
-          value: data.hearing.estimatedReportingTime,
-          classes: "govuk-input--width-4",
-          suffix: {
-            text: "days"
-          }
-        }) }}
-
 
         {{ govukButton({
           text: "Continue"

@@ -592,11 +592,21 @@
             </div>
             <div id="accordion-default-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-4">
 
-              {{ govukButton({
-                text: 'Add hearing details',
-                classes: 'govuk-button--secondary',
-                href: 'add-hearing-details'
-              }) if not data.hearing }}
+              <div class="govuk-button-group">
+                {{ govukButton({
+                  text: 'Add hearing details',
+                  classes: 'govuk-button--secondary',
+                  href: 'add-hearing-details'
+                }) if not data.hearing }}
+
+                {{ govukButton({
+                  text: 'Add hearing estimates',
+                  classes: 'govuk-button--secondary',
+                  href: 'add-estimates'
+                }) if not data.estimates }}
+              </div>
+
+
 
               {{ govukSummaryList({
                 rows: [
@@ -636,21 +646,38 @@
                   },
                   {
                     key: {
-                      text: "Date and time"
+                      text: "Date"
                     },
                     value: {
-                      html: -10 | daysAgo + ' at 9pm'
+                      html: -10 | daysAgo
                     },
                     actions: {
                       items: [
                         {
                           href: "Item URL",
                           text: "Change",
-                          visuallyHiddenText: "Date and time"
+                          visuallyHiddenText: "Date"
                         }
                       ]
                     }
                   } if data.hearing.date,
+                  {
+                    key: {
+                      text: "Time"
+                    },
+                    value: {
+                      html: '9am'
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "Item URL",
+                          text: "Change",
+                          visuallyHiddenText: "Date"
+                        }
+                      ]
+                    }
+                  } if data.hearing.time,
                   {
                     key: {
                       text: "Address"
@@ -673,7 +700,7 @@
                       text: "Estimated preparation time"
                     },
                     value: {
-                      html: '60 minutes'
+                      html: '1 day'
                     },
                     actions: {
                       items: [
@@ -684,13 +711,13 @@
                         }
                       ]
                     }
-                  } if data.hearing.estimatedPreparationTime,
+                  } if data.estimates.estimatedPreparationTime,
                   {
                     key: {
                       text: "Estimated hearing time"
                     },
                     value: {
-                      html: '3 hours'
+                      html: '2 days'
                     },
                     actions: {
                       items: [
@@ -701,13 +728,13 @@
                         }
                       ]
                     }
-                  } if data.hearing.estimatedHearingTime,
+                  } if data.estimates.estimatedHearingTime,
                   {
                     key: {
                       text: "Estimated reporting time"
                     },
                     value: {
-                      html: '4 hours'
+                      html: '3 days'
                     },
                     actions: {
                       items: [
@@ -718,9 +745,10 @@
                         }
                       ]
                     }
-                  } if data.hearing.estimatedReportingTime
+                  } if data.estimates.estimatedReportingTime
                 ]
               }) }}
+              {{data | log}}
             </div>
           </div>
         {% endif %}

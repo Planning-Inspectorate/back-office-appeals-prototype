@@ -1,0 +1,113 @@
+{% extends "layouts/PINS-Simple.html" %}
+
+{% set title = "Check details and add hearing details" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal 2114328</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Date and time"
+            },
+            value: {
+              html: -10 | daysAgo + ' at 9pm'
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Date and time"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Address"
+            },
+            value: {
+              html: '9 The Avenue, WD6 4TT'
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "address"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Estimated preparation time"
+            },
+            value: {
+              html: '60 minutes'
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Estimated preparation time"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Estimated hearing time"
+            },
+            value: {
+              html: '3 hours'
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Estimated hearing time"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Estimated reporting time"
+            },
+            value: {
+              html: '4 hours'
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Estimated reporting time"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <p>We’ll blah blah blah.</p>
+
+      <form method="post">
+        {{ govukButton({
+          text: "Add hearing details"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

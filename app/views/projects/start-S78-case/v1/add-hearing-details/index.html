@@ -1,0 +1,175 @@
+{% extends "layouts/PINS-Simple.html" %}
+
+{% set title = "Hearing details" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+        <span class="govuk-caption-l">Appeal 2114328</span>
+        <h1 class="govuk-heading-l">Hearing details</h1>
+
+        {{ govukDateInput({
+          id: "whatever",
+          fieldset: {
+            legend: {
+              text: "Date",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 31 3 2025"
+          },
+          items: [
+            {
+              name: "[hearing][date][day]",
+              label: "Day",
+              value: data.hearing.date.day,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "[hearing][date][month]",
+              label: "Month",
+              value: data.hearing.date.month,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "[hearing][date][year]",
+              label: "Year",
+              value: data.hearing.date.year,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+        {{ govukInput({
+          id: "hearing[time]",
+          name: "hearing[time]",
+          label: {
+            text: "Time",
+            classes: 'govuk-label--m'
+          },
+          hint: {
+            text: "For example, 9am or 2:30pm - enter 12pm for midday"
+          },
+          value: data.hearing.time,
+          classes: "govuk-input--width-4"
+        }) }}
+
+        {% call govukFieldset({
+          legend: {
+            text: "Address",
+            classes: "govuk-fieldset__legend--m"
+          }
+        }) %}
+
+          {{ govukInput({
+            id: "address-line-1",
+            name: "hearing[address][line1]",
+            label: {
+              text: "Address line 1"
+            },
+            value: data.hearing.address.line1,
+            autocomplete: "address-line1"
+          }) }}
+
+          {{ govukInput({
+            id: "address-line-2",
+            name: "hearing[address][line2]",
+            label: {
+              text: "Address line 2 (optional)"
+            },
+            value: data.hearing.address.line2,
+            autocomplete: "address-line2"
+          }) }}
+
+          {{ govukInput({
+            id: "address-town",
+            name: "hearing[address][town]",
+            label: {
+              text: "Town or city"
+            },
+            value: data.hearing.address.town,
+            autocomplete: "address-level2",
+            classes: "govuk-!-width-two-thirds"
+          }) }}
+
+          {{ govukInput({
+            id: "address-county",
+            name: "hearing[address][county]",
+            label: {
+              text: "County (optional)"
+            },
+            value: data.hearing.address.county,
+            classes: "govuk-!-width-two-thirds"
+          }) }}
+
+          {{ govukInput({
+            id: "address-postcode",
+            name: "hearing[address][postcode]",
+            label: {
+              text: "Postcode"
+            },
+            value: data.hearing.address.postcode,
+            autocomplete: "postal-code",
+            classes: "govuk-input--width-10"
+          }) }}
+
+        {% endcall %}
+
+        {{ govukInput({
+          id: "estimatedPreparationTime",
+          name: "hearing.estimatedPreparationTime",
+          label: {
+            text: "Estimated preparation time",
+            classes: 'govuk-label--m'
+          },
+          value: data.hearing.estimatedPreparationTime,
+          classes: "govuk-input--width-4",
+          suffix: {
+            text: "days"
+          }
+        }) }}
+
+        {{ govukInput({
+          id: "estimatedHearingTime",
+          name: "hearing.estimatedHearingTime",
+          label: {
+            text: "Estimated hearing time",
+            classes: 'govuk-label--m'
+          },
+          value: data.hearing.estimatedHearingTime,
+          classes: "govuk-input--width-4",
+          suffix: {
+            text: "days"
+          }
+        }) }}
+
+        {{ govukInput({
+          id: "estimatedReportingTime",
+          name: "hearing.estimatedReportingTime",
+          label: {
+            text: "Estimated reporting time",
+            classes: 'govuk-label--m'
+          },
+          value: data.hearing.estimatedReportingTime,
+          classes: "govuk-input--width-4",
+          suffix: {
+            text: "days"
+          }
+        }) }}
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

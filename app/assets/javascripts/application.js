@@ -67,6 +67,9 @@ if(MOJFrontend.dragAndDropSupported() && MOJFrontend.formDataSupported() && MOJF
 
     this.feedbackContainer = this.params.container.find('.moj-multi-file__uploaded-files');
     this.setupFileInput();
+    if(!this.fileInput[0]) {
+      return;
+    }
     this.setupDropzone();
     this.setupLabel();
     this.setupStatusBox();

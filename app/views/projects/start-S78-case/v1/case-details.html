@@ -592,109 +592,113 @@
             </div>
             <div id="accordion-default-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-4">
 
-              <div class="govuk-button-group">
-                {{ govukButton({
-                  text: 'Add hearing details',
-                  classes: 'govuk-button--secondary',
-                  href: 'add-hearing-details'
-                }) if not data.hearing }}
+              {% if not data.hearing or not data.estimates %}
+                <div class="govuk-button-group">
+                  {{ govukButton({
+                    text: 'Add hearing details',
+                    classes: 'govuk-button--secondary',
+                    href: 'add-hearing-details'
+                  }) if not data.hearing }}
 
-                {{ govukButton({
-                  text: 'Add hearing estimates',
-                  classes: 'govuk-button--secondary',
-                  href: 'add-estimates'
-                }) if not data.estimates }}
-              </div>
+                  {{ govukButton({
+                    text: 'Add hearing estimates',
+                    classes: 'govuk-button--secondary',
+                    href: 'add-estimates'
+                  }) if not data.estimates }}
+                </div>
+              {% endif %}
 
-
+              {% set address %}
+                {{appAddress({ address: data.hearing.address })}}
+              {% endset %}
 
               {{ govukSummaryList({
                 rows: [
                   {
                     key: {
-                      text: "Why the appellant prefers a hearing"
+                      text: "Hearing date"
                     },
                     value: {
-                      text: " Incididunt ipsum occaecat nostrud dolor pariatur non veniam."
+                      html: data.hearing.date | isoDateFromDateInput | govukDate
                     },
                     actions: {
                       items: [
                         {
-                          href: "Item URL",
+                          href: "/projects/start-s78-case/v1/edit-hearing-details",
                           text: "Change",
-                          visuallyHiddenText: "why the appellant prefers a hearing"
-                        }
-                      ]
-                    }
-                  },
-                  {
-                    key: {
-                      text: "Why the LPA prefers a hearing"
-                    },
-                    value: {
-                      text: "Reprehenderit veniam consectetur nulla id."
-                    },
-                    actions: {
-                      items: [
-                        {
-                          href: "Item URL",
-                          text: "Change",
-                          visuallyHiddenText: "why the LPA prefers a hearing"
-                        }
-                      ]
-                    }
-                  },
-                  {
-                    key: {
-                      text: "Date"
-                    },
-                    value: {
-                      html: -10 | daysAgo
-                    },
-                    actions: {
-                      items: [
-                        {
-                          href: "Item URL",
-                          text: "Change",
-                          visuallyHiddenText: "Date"
+                          visuallyHiddenText: "Hearing date"
                         }
                       ]
                     }
                   } if data.hearing.date,
                   {
                     key: {
-                      text: "Time"
+                      text: "Do you know the hearing time?"
                     },
                     value: {
-                      html: '9am'
+                      html: data.hearing.hasTime
                     },
                     actions: {
                       items: [
                         {
-                          href: "Item URL",
+                          href: "/projects/start-s78-case/v1/edit-hearing-details/has-time",
                           text: "Change",
-                          visuallyHiddenText: "Date"
+                          visuallyHiddenText: "whether you know the hearing time"
                         }
                       ]
                     }
-                  } if data.hearing.time,
+                  } if data.hearing.hasTime,
                   {
                     key: {
-                      text: "Address"
+                      text: "Hearing time"
                     },
                     value: {
-                      html: '9 The Avenue, WD6 4TT'
+                      html: data.hearing.time
                     },
                     actions: {
                       items: [
                         {
-                          href: "Item URL",
+                          href: "/projects/start-s78-case/v1/add-hearing-details/time",
                           text: "Change",
-                          visuallyHiddenText: "address"
+                          visuallyHiddenText: "Hearing time"
                         }
                       ]
                     }
-                  } if data.hearing.address,
+                  } if data.hearing.hasTime == 'Yes',
+                  {
+                    key: {
+                      text: "Do you know the hearing address?"
+                    },
+                    value: {
+                      html: data.hearing.hasAddress
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "/projects/start-s78-case/v1/edit-hearing-details/has-address",
+                          text: "Change",
+                          visuallyHiddenText: "whether you know the hearing address"
+                        }
+                      ]
+                    }
+                  } if data.hearing.hasAddress,
+                  {
+                    key: {
+                      text: "Hearing address"
+                    },
+                    value: {
+                      html: address
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "/projects/start-s78-case/v1/edit-hearing-details/address",
+                          text: "Change",
+                          visuallyHiddenText: "Hearing address"
+                        }
+                      ]
+                    }
+                  } if data.hearing.hasAddress == 'Yes',
                   {
                     key: {
                       text: "Estimated preparation time"
@@ -748,7 +752,6 @@
                   } if data.estimates.estimatedReportingTime
                 ]
               }) }}
-              {{data | log}}
             </div>
           </div>
         {% endif %}

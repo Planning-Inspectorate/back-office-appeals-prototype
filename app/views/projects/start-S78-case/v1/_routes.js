@@ -8,8 +8,33 @@ router.post('/start-case/check', function (req, res) {
 })
 
 router.post('/add-hearing-details', function (req, res) {
-  res.redirect('./add-hearing-details/check')
+  res.redirect('/projects/start-s78-case/v1/add-hearing-details/has-time')
 })
+
+router.post('/add-hearing-details/has-time', function (req, res) {
+  if(req.session.data.hearing.hasTime == 'Yes') {
+    res.redirect('/projects/start-s78-case/v1/add-hearing-details/time')
+  } else {
+    res.redirect('/projects/start-s78-case/v1/add-hearing-details/has-address')
+  }
+})
+
+router.post('/add-hearing-details/time', function (req, res) {
+  res.redirect('/projects/start-s78-case/v1/add-hearing-details/has-address')
+})
+
+router.post('/add-hearing-details/has-address', function (req, res) {
+  if(req.session.data.hearing.hasAddress == 'Yes') {
+    res.redirect('/projects/start-s78-case/v1/add-hearing-details/address')
+  } else {
+    res.redirect('/projects/start-s78-case/v1/add-hearing-details/check')
+  }
+})
+
+router.post('/add-hearing-details/address', function (req, res) {
+  res.redirect('/projects/start-s78-case/v1/add-hearing-details/check')
+})
+
 
 router.post('/add-hearing-details/check', function (req, res) {
   req.flash('success', 'Hearing details added')

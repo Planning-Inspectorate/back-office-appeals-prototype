@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-Simple.html" %}
 
-{% set title = "Estimates" %}
+{% set title = "Hearing estimates" %}
 {% set pageName = title %}
 
 {% set back = true %}
@@ -18,7 +18,7 @@
           id: "estimatedPreparationTime",
           name: "estimates[estimatedPreparationTime]",
           label: {
-            text: "Estimated preparation time",
+            text: "Estimated time needed to prepare for the hearing",
             classes: 'govuk-label--m'
           },
           value: data.estimates.estimatedPreparationTime,
@@ -32,7 +32,7 @@
           id: "estimatedHearingTime",
           name: "estimates[estimatedHearingTime]",
           label: {
-            text: "Estimated hearing time",
+            text: "Estimated time needed for the hearing",
             classes: 'govuk-label--m'
           },
           value: data.estimates.estimatedHearingTime,
@@ -46,7 +46,7 @@
           id: "estimatedReportingTime",
           name: "estimates[estimatedReportingTime]",
           label: {
-            text: "Estimated reporting time",
+            text: "Estimated time needed to create the hearing report",
             classes: 'govuk-label--m'
           },
           value: data.estimates.estimatedReportingTime,

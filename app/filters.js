@@ -108,3 +108,12 @@ addFilter('cleanArray', (array) => {
 		return (item && (item !==""))
 	})
 })
+
+addFilter('days', (value) => {
+	let val = parseInt(value, 10)
+	if(val == 1) {
+		return val + ' day'
+	} else {
+		return val + ' days'
+	}
+})

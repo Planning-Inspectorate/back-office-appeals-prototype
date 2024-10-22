@@ -14,51 +14,51 @@
         rows: [
           {
             key: {
-              text: "Estimated preparation time"
+              text: "Estimated time needed to prepare for the hearing"
             },
             value: {
-              html: '60 minutes'
+              html: data.estimates.estimatedPreparationTime | days
             },
             actions: {
               items: [
                 {
                   href: "Item URL",
                   text: "Change",
-                  visuallyHiddenText: "Estimated preparation time"
+                  visuallyHiddenText: "Estimated time needed to prepare for the hearing"
                 }
               ]
             }
           },
           {
             key: {
-              text: "Estimated hearing time"
+              text: "Estimated time needed for the hearing"
             },
             value: {
-              html: '3 hours'
+              html: data.estimates.estimatedHearingTime | days
             },
             actions: {
               items: [
                 {
                   href: "Item URL",
                   text: "Change",
-                  visuallyHiddenText: "Estimated hearing time"
+                  visuallyHiddenText: "Estimated time needed for the hearing"
                 }
               ]
             }
           },
           {
             key: {
-              text: "Estimated reporting time"
+              text: "Estimated time needed to create the hearing report"
             },
             value: {
-              html: '4 hours'
+              html: data.estimates.estimatedReportingTime | days
             },
             actions: {
               items: [
                 {
                   href: "Item URL",
                   text: "Change",
-                  visuallyHiddenText: "Estimated reporting time"
+                  visuallyHiddenText: "Estimated time needed to create the hearing report"
                 }
               ]
             }

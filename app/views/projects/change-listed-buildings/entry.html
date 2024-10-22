@@ -1,4 +1,4 @@
-{% extends "layouts/PINS-Simple.html" %}
+{% extends "layouts/PINS-post-mvp.html" %}
 
 {% set title = "Affected listed building entry number" %}
 {% set pageName = title %}
@@ -12,30 +12,34 @@
 
       <form action="check">
         <span class="govuk-caption-l">Appeal 2114328</span>
-        {{ govukRadios({
-          name: "appealProcedure",
-          fieldset: {
-            legend: {
-              text: title,
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
-            }
+        {{ govukInput({
+          id: "blah",
+          name: "blah",
+          label: {
+            text: "Historic England entry number for the listed building",
+            isPageHeading: true,
+            classes: "govuk-label--l"
           },
-          value: data.appealProcedure,
-          items: [
-            {
-              value: "Written representations",
-              text: "Written representations"
-            },
-            {
-              value: "Hearing",
-              text: "Hearing"
-            },
-            {
-              value: "Inquiry",
-              text: "Inquiry"
-            }
-          ]
+          hint: {
+            text: "For example, 1234567"
+          },
+          value: data.blah,
+          classes: "govuk-input--width-10"
+        }) }}
+
+        {{ govukInput({
+          id: "blah",
+          name: "blah",
+          label: {
+            text: "Listed building entry number",
+            isPageHeading: true,
+            classes: "govuk-label--l"
+          },
+          hint: {
+            text: "This is a seven digit number from Historic England"
+          },
+          value: data.blah,
+          classes: "govuk-input--width-10"
         }) }}
 
         {{ govukButton({

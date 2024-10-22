@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/PINS-post-mvp.html" %}
 
 {% set title = "Listed buildings that will be affected" %}
 {% set pageName = title %}
@@ -34,7 +34,7 @@
               <p>Grade II listed building 155<br>York Road<br>Bedminster<br> Bristol<br> BS3 4AL</p>
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="/report/evidence/{{id}}/delete">
+              <a class="govuk-link" href="delete">
                 Remove<span class="govuk-visually-hidden"> {{file.filename}}</span>
               </a>
             </dd>
@@ -63,7 +63,8 @@
         }) }}
 
         {{ govukButton({
-          text: "Continue"
+          text: "Continue",
+          href: 'entry'
         }) }}
       </form>
     </div>

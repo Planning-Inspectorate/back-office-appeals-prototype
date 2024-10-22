@@ -34,22 +34,12 @@
               <p>Grade II listed building 155<br>York Road<br>Bedminster<br> Bristol<br> BS3 4AL</p>
             </dd>
             <dd class="govuk-summary-list__actions">
-              <ul class="govuk-summary-list__actions-list">
-                <li class="govuk-summary-list__actions-list-item">
-                  <a class="govuk-link" href="entry">
-                    Change<span class="govuk-visually-hidden"> {{file.filename}}</span>
-                  </a>
-                </li>
-                <li class="govuk-summary-list__actions-list-item">
-                  <a class="govuk-link" href="delete">
-                    Remove<span class="govuk-visually-hidden"> {{file.filename}}</span>
-                  </a>
-                </li>
-              </ul>
+              <a class="govuk-link" href="delete">
+                Remove<span class="govuk-visually-hidden"> {{file.filename}}</span>
+              </a>
             </dd>
           </div>
         </dl>
-
 
         {{ govukRadios({
           idPrefix: "[report][evidence][addMore]",

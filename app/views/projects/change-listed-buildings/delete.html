@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Confirm that you want to remove the affected listed building 1234567"  %}
+{% set title = "Confirm that you want to remove the affected listed building"  %}
 {% set pageName = title %}
 
 {% block beforeContent %}
@@ -17,6 +17,9 @@
       <h1 class="govuk-heading-l">
         {{title}}
       </h1>
+
+      <p>1234567</p>
+      <p>Grade II listed building 155<br>York Road<br>Bedminster<br> Bristol<br> BS3 4AL</p>
 
       <form method="post">
         {{ govukButton({

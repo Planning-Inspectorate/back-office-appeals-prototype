@@ -302,22 +302,19 @@
 
       {% elseif data['case-stage'] == 'closed' %}
 
-        {{ caseStatus (caseStatus = 'complete') }}
-
-        {{ govukInsetText({
-          html: "
-          <p class='govuk-body'>
-            Completed "+ 1 | daysAgo + "
-          </p>
-          <p class='govuk-body'>
-            Decision: approved
-          </p>
-          <p class='govuk-body'>
-            <a href='#' class='govuk-link'>
-              View decision letter
-            </a>
-          </p>"
-        }) }}
+        <p class='govuk-body'>
+          {{ govukTag({
+            text: "Approved"
+          }) }}
+        </p>
+        <p class='govuk-body'>
+          Approved {{ 1 | daysAgo }}
+        </p>
+        <p class='govuk-body'>
+          <a href='#' class='govuk-link'>
+            View decision letter
+          </a>
+        </p>
 
       {% else %}
 
@@ -615,7 +612,20 @@
               html: "<a href='#'>Review</a>",
               format: "numeric"
             }
-          ]
+          ] if data['case-stage'] == 'questionnaire',
+          [
+            {
+              text: "Questionnaire"
+            },
+            {
+              text: "Accepted"
+            },
+            {
+              html: "<a href='#'>View</a>",
+              format: "numeric"
+            }
+          ] if data['case-stage'] == 'statements' or data['case-stage'] == 'final-comments' or data['case-stage'] == 'determination' or data['case-stage'] == 'closed'
+
         ]
       }) }}
 
@@ -648,7 +658,7 @@
               text: -3 | daysAgo
             },
             {
-              html: "<a href='site-visit.html'>Manage</a>",
+              html: "<a href='site-visit.html'>Change</a>",
               format: "numeric"
             }
           ]
@@ -696,7 +706,7 @@
               text: -3 | daysAgo
             },
             {
-              html: "<a href='site-visit.html'>Manage</a>",
+              html: "<a href='site-visit.html'>Change</a>",
               format: "numeric"
             }
           ]
@@ -707,7 +717,36 @@
         Team
       </h2>
 
-      {% include "/includes/audit/case-team-table.html" %}
+      {{ govukTable({
+    	  captionClasses: "govuk-table__caption--m",
+    	  firstCellIsHeader: true,
+    	  rows: [
+    	    [
+    	      {
+    	        text: "Case officer"
+    	      },
+    	      {
+    	        html: "Robert Williams<br>robert.williams@planninginspectorate.gov.uk</a> "
+    	      },
+    	      {
+    	        html: "<a href='#'>Change</a>",
+    					format: "numeric"
+    	      }
+    	    ],
+    	    [
+    	      {
+    	        text: "Inspector"
+    	      },
+    	      {
+    	        text: ""
+    	      },
+    	      {
+    	        html: "<a href='#'>Add</a>",
+    					format: "numeric"
+    	      }
+    	    ]
+    	  ]
+    	}) }}
 
       <h2 class="govuk-heading-m govuk-!-margin-top-9">
         Case management

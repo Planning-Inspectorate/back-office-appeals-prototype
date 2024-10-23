@@ -26,9 +26,6 @@
         {{ title }}
       </h1>
 
-    </div>
-    <div class="govuk-grid-column-full">
-
       <form action="upload-supporting-document" method="post"  novalidate>
 
         <dl class="govuk-summary-list">
@@ -37,7 +34,7 @@
               Name
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['filename'] or 'appeal-2110166-section106-agreement_part1.pdf' }}
+              <a href="#">{{ data['filename'] or 'appeal-2110166-section106-agreement_part1.pdf' }}</a> 
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="name-change">

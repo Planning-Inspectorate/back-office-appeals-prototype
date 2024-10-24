@@ -7,130 +7,38 @@ router.get('*', function(req, res, next){
   next()
 })
 
-// adding a manual comment
-
-// IP contact details
-router.post('/add-ip-name-and-email', function (req, res) {
-  res.redirect('add-ip-address-check')
+router.post('/reopen-reason', function (req, res) {
+  res.redirect('upload-documents')
 })
 
-// see if the IP gave us an address
-router.post('/add-ip-address-check', function (req, res) {
-  if (req.session.data['add-ip-address-check'] == 'Yes') {
-    res.redirect('add-ip-address')
+router.post('/upload-documents', function (req, res) {
+  res.redirect('documents-received-date')
+})
+
+router.post('/documents-received-date', function (req, res) {
+  res.redirect('matrix-update')
+})
+
+router.post('/matrix-update', function (req, res) {
+  if (req.session.data['matrix-update'] == 'Yes') {
+    res.redirect('select-allocation')
   } else {
-    res.redirect('add-ip-comment')
+    res.redirect('check-your-answers')
   }
 })
 
-// add address
-router.post('/add-ip-address', function (req, res) {
-  res.redirect('add-ip-comment')
+router.post('/select-allocation', function (req, res) {
+  res.redirect('select-specialism')
 })
 
-// add IP comment
-router.post('/add-ip-comment', function (req, res) {
-  res.redirect('add-ip-comment-redacted-status')
-
+router.post('/select-specialism', function (req, res) {
+  res.redirect('check-your-answers')
 })
 
-// add redacted status
-router.post('/add-ip-comment-redacted-status', function (req, res) {
-  res.redirect('add-ip-comment-received-date')
+router.post('/check-your-answers', function (req, res) {
+  req.flash('success', 'Case reopened')
+  res.redirect('case-details?case-stage=statements')
 })
-
-// add received date
-router.post('/add-ip-comment-received-date', function (req, res) {
-  res.redirect('add-ip-cya')
-})
-
-// check answers
-router.post('/add-ip-cya', function (req, res) {
-  res.redirect('ip-comments?new-comment=true&manually-added-comment=true&comments-shared=')
-})
-
-// attaching supporting documents
-
-// upload the document
-// set the date and redacted status
-router.post('/upload-extra-supporting-document', function (req, res) {
-  res.redirect('extra-document-redacted-status')
-})
-
-// set the date and redacted status
-router.post('/extra-document-redacted-status', function (req, res) {
-  res.redirect('extra-document-received-date')
-})
-
-// go to check answers
-router.post('/extra-document-received-date', function (req, res) {
-  res.redirect('extra-document-cya')
-})
-
-router.post('/extra-document-cya', function (req, res) {
-  if (req.session.data['comment-attachment'] == 'review') {
-    res.redirect('comment-review?documents-added=yes&comment-attachment=')
-  } else {
-    res.redirect('comment-view?documents-added=yes&comment-attachment=')
-  }
-})
-
-router.post('/comment-review', function (req, res) {
-  if (req.session.data['ip-comment-review'] == 'invalid') {
-    res.redirect('reject-comment?address-added=&reason-format=list')
-  } else if (req.session.data['ip-comment-review'] == 'redact') {
-    res.redirect('comment-redact?address-added=&redactingfrom=review')
-  } else {
-    res.redirect('ip-comments?acceptedComment=yes&commentReview=true&address-added=')
-  }
-})
-
-// change address
-router.post('/change-address', function (req, res) {
-  if (req.session.data['address-for'] == 'review') {
-    res.redirect('comment-review?address-changed=true')
-  } else {
-    res.redirect('comment-view?address-changed=true')
-  }
-})
-
-
-// add address
-router.post('/add-address', function (req, res) {
-  res.redirect('check-address')
-})
-
-router.post('/check-address', function (req, res) {
-  if (req.session.data['address-for'] == 'review') {
-    res.redirect('comment-review?add-ip-address-check=Yes&address-added=success')
-  } else {
-    res.redirect('comment-view?add-ip-address-check=Yes&address-added=success')
-  }
-})
-
-router.post('/check-remove-site-visit', function (req, res) {
-  if (req.session.data['confirm-remove-site-visit'] == 'yes') {
-    res.redirect('comment-view?siteVisitRequest=&address-added=yes')
-  } else {
-    res.redirect('comment-view?siteVisitRequest=yes&address-added=yes')
-  }
-})
-
-router.post('/allow-resubmission', function (req, res) {
-  res.redirect('check-reason-for-rejection')
-})
-
-
-router.post('/check-reason-for-rejection', function (req, res) {
-  req.flash('success', 'Comment rejected')
-  res.redirect('ip-comments')
-})
-
-router.post('/confirm-withdraw-comment', function (req, res) {
-  req.flash('success', 'Comment withdrawn')
-  res.redirect('ip-comments')
-})
-
 
 
 // Add your routes above the module.exports line

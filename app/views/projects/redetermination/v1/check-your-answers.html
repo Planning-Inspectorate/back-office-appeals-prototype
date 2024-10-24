@@ -1,0 +1,147 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% if data['reopen-reason'] == 'High court case' %}
+  {% set title = "Check retermination details and reopen case" %}
+{% else %}
+  {% set title = "Check your answers and reopen the case" %}
+{% endif %}
+
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <span class="govuk-caption-l">Appeal 2110166</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      <form method="post">
+
+        <div class="pins-panel">
+          {{ govukSummaryList({
+            classes: "govuk-!-margin-bottom-9",
+            rows: [
+              {
+                key: {
+                  text: "Reason for reopening the case"
+                },
+                value: {
+                  text: data['reopen-reason']
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "name"
+                    }
+                  ]
+                }
+              },
+              {
+                key: {
+                  text: "Uploaded documents"
+                },
+                value: {
+                  html: data['reason-documents'] or '<a href="#" class="govuk-link">Appeal-2110166-high-court-documents.doc</a>'
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "name"
+                    }
+                  ]
+                }
+              },
+              {
+                key: {
+                  text: "Documents received"
+                },
+                value: {
+                  text: 1 | daysAgo
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "date of birth"
+                    }
+                  ]
+                }
+              } if data['reopen-reason'] == 'High court case',
+              {
+                key: {
+                  text: "Allocation matrix updated"
+                },
+                value: {
+                  text: data['matrix-update']
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "date of birth"
+                    }
+                  ]
+                }
+              } if data['reopen-reason'] == 'High court case',
+              {
+                key: {
+                  text: "Allocation level"
+                },
+                value: {
+                  text: data['allocation-level']
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "date of birth"
+                    }
+                  ]
+                }
+              } if data['matrix-update'] == 'Yes',
+              {
+                key: {
+                  text: "Specialism"
+                },
+                value: {
+                  html: '
+                  <ul class="govuk-list govuk-list--bullet">
+                    <li>Housing</li>
+                    <li>General allocation</li>
+                  </ul>'
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "date of birth"
+                    }
+                  ]
+                }
+              } if data['matrix-update'] == 'Yes'
+
+            ]
+          }) }}
+
+        </div>
+
+        {{ govukButton({
+          text: "Reopen the case"
+        }) }}
+
+      </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

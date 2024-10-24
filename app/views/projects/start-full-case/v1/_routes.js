@@ -1,9 +1,22 @@
 const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
 
+//
+// START CASE
+//
+
 router.post('/start-case/check', function (req, res) {
   req.flash('success', 'Case started')
   req.session.data['case-stage'] = 'questionnaire'
+  res.redirect('../case-details')
+})
+
+//
+// APPEAL PROCEDURE: EDIT
+//
+
+router.post('/edit-appeal-procedure/check', function (req, res) {
+  req.flash('success', 'Appeal procedure updated')
   res.redirect('../case-details')
 })
 

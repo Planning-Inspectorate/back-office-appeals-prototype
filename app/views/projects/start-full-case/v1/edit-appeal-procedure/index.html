@@ -1,7 +1,7 @@
 {% extends "layouts/PINS-Simple.html" %}
 
 {% set title = "Appeal procedure" %}
-{% set pageName = title %}
+{% set pageName = title + 'Start case - Planning Inspectorate'%}
 
 {% set back = true %}
 
@@ -10,7 +10,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form action="check">
+      <form action="/projects/start-full-case/v1/edit-appeal-procedure/check">
         <span class="govuk-caption-l">Appeal 2114328</span>
         {{ govukRadios({
           name: "appealProcedure",

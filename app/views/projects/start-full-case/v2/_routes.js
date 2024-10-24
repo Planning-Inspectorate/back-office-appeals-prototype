@@ -24,7 +24,7 @@ router.post('/start-case/transfer', function (req, res) {
 })
 
 router.post('/edit-horizon-reference', function (req, res) {
-  res.redirect('/projects/start-s78-case/v2/edit-horizon-reference/check')
+  res.redirect('/projects/start-full-case/v2/edit-horizon-reference/check')
 })
 
 router.post('/edit-horizon-reference/check', function (req, res) {

@@ -592,7 +592,7 @@
             </div>
             <div id="accordion-default-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-4">
 
-              {% if not data.hearing or not data.estimates %}
+              {% if not data.hearing or not data.hearingEstimates %}
                 <div class="govuk-button-group">
                   {{ govukButton({
                     text: 'Add hearing details',
@@ -603,8 +603,8 @@
                   {{ govukButton({
                     text: 'Add hearing estimates',
                     classes: 'govuk-button--secondary',
-                    href: 'add-estimates'
-                  }) if not data.estimates }}
+                    href: 'add-hearing-estimates'
+                  }) if not data.hearingEstimates }}
                 </div>
               {% endif %}
 
@@ -705,59 +705,59 @@
                       text: "Estimated time to prepare for the hearing"
                     },
                     value: {
-                      html: data.estimates.estimatedPreparationTime | days
+                      html: data.hearingEstimates.estimatedPreparationTime | days
                     },
                     actions: {
                       items: [
                         {
-                          href: "Item URL",
+                          href: "/projects/start-full-case/v1/edit-hearing-estimates",
                           text: "Change",
                           visuallyHiddenText: "Estimated time to prepare for the hearing"
                         }
                       ]
                     }
-                  } if data.estimates.estimatedPreparationTime,
+                  } if data.hearingEstimates.estimatedPreparationTime,
                   {
                     key: {
                       text: "Estimated sitting time for the hearing"
                     },
                     value: {
-                      html: data.estimates.estimatedHearingTime | days
+                      html: data.hearingEstimates.estimatedHearingTime | days
                     },
                     actions: {
                       items: [
                         {
-                          href: "Item URL",
+                          href: "/projects/start-full-case/v1/edit-hearing-estimates",
                           text: "Change",
                           visuallyHiddenText: "Estimated sitting time for the hearing"
                         }
                       ]
                     }
-                  } if data.estimates.estimatedHearingTime,
+                  } if data.hearingEstimates.estimatedHearingTime,
                   {
                     key: {
                       text: "Estimated time to decide the hearing"
                     },
                     value: {
-                      html: data.estimates.estimatedReportingTime | days
+                      html: data.hearingEstimates.estimatedReportingTime | days
                     },
                     actions: {
                       items: [
                         {
-                          href: "Item URL",
+                          href: "/projects/start-full-case/v1/edit-hearing-estimates",
                           text: "Change",
                           visuallyHiddenText: "Estimated time to decide the hearing"
                         }
                       ]
                     }
-                  } if data.estimates.estimatedReportingTime
+                  } if data.hearingEstimates.estimatedReportingTime
                 ]
               }) }}
             </div>
           </div>
         {% endif %}
 
-        {% if data.appealProcedure == 'Inquiry' %}
+         {% if data.appealProcedure == 'Inquiry' %}
           <div class="govuk-accordion__section">
             <div class="govuk-accordion__section-header">
               <h2 class="govuk-accordion__section-heading">
@@ -768,176 +768,165 @@
             </div>
             <div id="accordion-default-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-4">
 
-              {% set evidence %}
-                <ul class="govuk-list govuk-list--bullet">
-                  <li>
-                    <a href="#">evidence.pdf</a>
-                  </li>
-                  <li>
-                    <a href="#">another-piece.pdf</a>
-                  </li>
-                  <li>
-                    <a href="#">another-piece.pdf</a>
-                  </li>
-                </ul>
-              {% endset %}
+              {% if not data.inquiry or not data.inquiryEstimates %}
+                <div class="govuk-button-group">
+                  {{ govukButton({
+                    text: 'Add inquiry details',
+                    classes: 'govuk-button--secondary',
+                    href: 'add-inquiry-details'
+                  }) if not data.inquiry }}
 
+                  {{ govukButton({
+                    text: 'Add inquiry estimates',
+                    classes: 'govuk-button--secondary',
+                    href: 'add-inquiry-estimates'
+                  }) if not data.inquiryEstimates }}
+                </div>
+              {% endif %}
+
+              {% set address %}
+                {{appAddress({ address: data.inquiry.address })}}
+              {% endset %}
 
               {{ govukSummaryList({
                 rows: [
                   {
                     key: {
-                      text: "Why the appellant prefers a hearing"
+                      text: "Inquiry date"
                     },
                     value: {
-                      text: " Incididunt ipsum occaecat nostrud dolor pariatur non veniam."
+                      html: data.inquiry.date | isoDateFromDateInput | govukDate
                     },
                     actions: {
                       items: [
                         {
-                          href: "Item URL",
+                          href: "/projects/start-full-case/v1/edit-inquiry-details",
                           text: "Change",
-                          visuallyHiddenText: "why the appellant prefers a hearing"
+                          visuallyHiddenText: "Inquiry date"
                         }
                       ]
                     }
-                  },
+                  } if data.inquiry.date,
                   {
                     key: {
-                      text: "Why the LPA prefers a hearing"
+                      text: "Do you know the time of the inquiry?"
                     },
                     value: {
-                      text: "Reprehenderit veniam consectetur nulla id."
+                      html: data.inquiry.hasTime
                     },
                     actions: {
                       items: [
                         {
-                          href: "Item URL",
+                          href: "/projects/start-full-case/v1/edit-inquiry-details/has-time",
                           text: "Change",
-                          visuallyHiddenText: "why the LPA prefers a hearing"
+                          visuallyHiddenText: "whether you know the inquiry time"
                         }
                       ]
                     }
-                  },
+                  } if data.inquiry.hasTime,
                   {
                     key: {
-                      text: "Appellant proof of evidence and witnesses"
+                      text: "Inquiry time"
                     },
                     value: {
-                      html: evidence
+                      html: data.inquiry.time
                     },
                     actions: {
                       items: [
                         {
-                          href: "Item URL",
-                          text: "Manage",
-                          visuallyHiddenText: "the appellant’s proof of evidence and witnesses"
-                        }
-                      ]
-                    }
-                  },
-                  {
-                    key: {
-                      text: "LPA proof of evidence and witnesses"
-                    },
-                    value: {
-                      html: evidence
-                    },
-                    actions: {
-                      items: [
-                        {
-                          href: "Item URL",
-                          text: "Manage",
-                          visuallyHiddenText: "the LPA’s proof of evidence and witnesses"
-                        }
-                      ]
-                    }
-                  },
-                  {
-                    key: {
-                      text: "Date and time"
-                    },
-                    value: {
-                      html: -10 | daysAgo + ' at 9pm'
-                    },
-                    actions: {
-                      items: [
-                        {
-                          href: "Item URL",
+                          href: "/projects/start-full-case/v1/add-inquiry-details/time",
                           text: "Change",
-                          visuallyHiddenText: "Date and time"
+                          visuallyHiddenText: "Inquiry time"
                         }
                       ]
                     }
-                  },
+                  } if data.inquiry.hasTime == 'Yes',
                   {
                     key: {
-                      text: "Address"
+                      text: "Do you know the address of where the inquiry will take place?
+"
                     },
                     value: {
-                      html: '9 The Avenue, WD6 4TT'
+                      html: data.inquiry.hasAddress
                     },
                     actions: {
                       items: [
                         {
-                          href: "Item URL",
+                          href: "/projects/start-full-case/v1/edit-inquiry-details/has-address",
                           text: "Change",
-                          visuallyHiddenText: "address"
+                          visuallyHiddenText: "whether you know the inquiry address"
                         }
                       ]
                     }
-                  },
+                  } if data.inquiry.hasAddress,
                   {
                     key: {
-                      text: "Estimated preparation time"
+                      text: "Inquiry address"
                     },
                     value: {
-                      html: '60 minutes'
+                      html: address
                     },
                     actions: {
                       items: [
                         {
-                          href: "Item URL",
+                          href: "/projects/start-full-case/v1/edit-inquiry-details/address",
                           text: "Change",
-                          visuallyHiddenText: "Estimated preparation time"
+                          visuallyHiddenText: "Inquiry address"
                         }
                       ]
                     }
-                  },
+                  } if data.inquiry.hasAddress == 'Yes',
                   {
                     key: {
-                      text: "Estimated inquiry time"
+                      text: "Estimated time to prepare for the inquiry"
                     },
                     value: {
-                      html: '3 hours'
+                      html: data.inquiryEstimates.estimatedPreparationTime | days
                     },
                     actions: {
                       items: [
                         {
-                          href: "Item URL",
+                          href: "/projects/start-full-case/v1/edit-inquiry-estimates",
                           text: "Change",
-                          visuallyHiddenText: "Estimated preparation time"
+                          visuallyHiddenText: "Estimated time to prepare for the inquiry"
                         }
                       ]
                     }
-                  },
+                  } if data.inquiryEstimates.estimatedPreparationTime,
                   {
                     key: {
-                      text: "Estimated reporting time"
+                      text: "Estimated sitting time for the inquiry"
                     },
                     value: {
-                      html: '4 hours'
+                      html: data.inquiryEstimates.estimatedInquiryTime | days
                     },
                     actions: {
                       items: [
                         {
-                          href: "Item URL",
+                          href: "/projects/start-full-case/v1/edit-inquiry-estimates",
                           text: "Change",
-                          visuallyHiddenText: "Estimated reporting time"
+                          visuallyHiddenText: "Estimated sitting time for the inquiry"
                         }
                       ]
                     }
-                  }
+                  } if data.inquiryEstimates.estimatedInquiryTime,
+                  {
+                    key: {
+                      text: "Estimated time to decide the inquiry"
+                    },
+                    value: {
+                      html: data.inquiryEstimates.estimatedReportingTime | days
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "/projects/start-full-case/v1/edit-inquiry-estimates",
+                          text: "Change",
+                          visuallyHiddenText: "Estimated time to decide the inquiry"
+                        }
+                      ]
+                    }
+                  } if data.inquiryEstimates.estimatedReportingTime
                 ]
               }) }}
             </div>

@@ -1,0 +1,67 @@
+{% extends "layouts/PINS-Simple.html" %}
+
+{% set title = "Hearing estimates" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+        <span class="govuk-caption-l">Appeal 2114328</span>
+        <h1 class="govuk-heading-l">{{title}}</h1>
+
+        {{ govukInput({
+          id: "estimatedPreparationTime",
+          name: "hearingEstimates[estimatedPreparationTime]",
+          label: {
+            text: "Estimated time to prepare for the hearing",
+            classes: 'govuk-label--m'
+          },
+          value: data.estimates.estimatedPreparationTime,
+          classes: "govuk-input--width-4",
+          suffix: {
+            text: "days"
+          }
+        }) }}
+
+        {{ govukInput({
+          id: "estimatedHearingTime",
+          name: "hearingEstimates[estimatedHearingTime]",
+          label: {
+            text: "Estimated sitting time for the hearing",
+            classes: 'govuk-label--m'
+          },
+          value: data.estimates.estimatedHearingTime,
+          classes: "govuk-input--width-4",
+          suffix: {
+            text: "days"
+          }
+        }) }}
+
+        {{ govukInput({
+          id: "estimatedReportingTime",
+          name: "hearingEstimates[estimatedReportingTime]",
+          label: {
+            text: "Estimated time to decide the hearing",
+            classes: 'govuk-label--m'
+          },
+          value: data.estimates.estimatedReportingTime,
+          classes: "govuk-input--width-4",
+          suffix: {
+            text: "days"
+          }
+        }) }}
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

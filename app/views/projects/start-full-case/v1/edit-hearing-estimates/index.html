@@ -16,12 +16,12 @@
 
         {{ govukInput({
           id: "estimatedPreparationTime",
-          name: "estimates[estimatedPreparationTime]",
+          name: "hearingEstimates[estimatedPreparationTime]",
           label: {
             text: "Estimated time to prepare for the hearing",
             classes: 'govuk-label--m'
           },
-          value: data.estimates.estimatedPreparationTime,
+          value: data.hearingEstimates.estimatedPreparationTime,
           classes: "govuk-input--width-4",
           suffix: {
             text: "days"
@@ -30,12 +30,12 @@
 
         {{ govukInput({
           id: "estimatedHearingTime",
-          name: "estimates[estimatedHearingTime]",
+          name: "hearingEstimates[estimatedHearingTime]",
           label: {
             text: "Estimated sitting time for the hearing",
             classes: 'govuk-label--m'
           },
-          value: data.estimates.estimatedHearingTime,
+          value: data.hearingEstimates.estimatedHearingTime,
           classes: "govuk-input--width-4",
           suffix: {
             text: "days"
@@ -44,12 +44,12 @@
 
         {{ govukInput({
           id: "estimatedReportingTime",
-          name: "estimates[estimatedReportingTime]",
+          name: "hearingEstimates[estimatedReportingTime]",
           label: {
             text: "Estimated time to decide the hearing",
             classes: 'govuk-label--m'
           },
-          value: data.estimates.estimatedReportingTime,
+          value: data.hearingEstimates.estimatedReportingTime,
           classes: "govuk-input--width-4",
           suffix: {
             text: "days"

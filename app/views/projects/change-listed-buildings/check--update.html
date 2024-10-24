@@ -1,0 +1,52 @@
+{% extends "layouts/PINS-Simple.html" %}
+
+{% set title = "Check details and update affected listed buildings" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal 2114328</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Affected listed buildings
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+              <ul class="govuk-list govuk-list--bullet">
+                <li>
+                  <p>1234567</p>
+                  <p>Grade II listed building 155<br>York Road<br>Bedminster<br> Bristol<br> BS3 4AL</p>
+                </li>
+                <li>
+                  <p>1234568</p>
+                  <p>Grade II listed building 155<br>York Road<br>Bedminster<br> Bristol<br> BS3 4AL</p>
+                </li>
+                <li>
+                  <p>2234567</p>
+                  <p>Grade II listed building 155<br>York Road<br>Bedminster<br> Bristol<br> BS3 4AL</p>
+                </li>
+              </ul>
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="delete">
+                Change<span class="govuk-visually-hidden"> {{file.filename}}</span>
+              </a>
+            </dd>
+          </div>
+        </dl>
+
+      <form method="post">
+        {{ govukButton({
+          text: "Update affected listed buildings"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

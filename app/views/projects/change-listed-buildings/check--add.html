@@ -1,0 +1,72 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Listed buildings that will be affected" %}
+{% set pageName = title %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:history.back();"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  {{ govukNotificationBanner({
+    html: "<h2 class=\"govuk-heading-m\">"+flash+"</h2>",
+    type: "success",
+    icon: false
+  }) if flash and flash.length }}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form method="post">
+        <span class="govuk-caption-l">Appeal 2114328</span>
+        <h1 class="govuk-heading-l">{{ title }}</h1>
+
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Listed building 1
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <p>1234567</p>
+              <p>Grade II listed building 155<br>York Road<br>Bedminster<br> Bristol<br> BS3 4AL</p>
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="delete">
+                Remove<span class="govuk-visually-hidden"> {{file.filename}}</span>
+              </a>
+            </dd>
+          </div>
+        </dl>
+
+        {{ govukRadios({
+          idPrefix: "[report][evidence][addMore]",
+          name: "[report][evidence][addMore]",
+          fieldset: {
+            legend: {
+              text: "Do you want to add another affected listing building?",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue",
+          href: 'entry'
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

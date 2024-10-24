@@ -1,0 +1,52 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Affected listed building entry number" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="check">
+        <span class="govuk-caption-l">Appeal 2114328</span>
+        {{ govukInput({
+          id: "blah",
+          name: "blah",
+          label: {
+            text: "Historic England entry number for the listed building",
+            isPageHeading: true,
+            classes: "govuk-label--l"
+          },
+          hint: {
+            text: "For example, 1234567"
+          },
+          value: data.blah,
+          classes: "govuk-input--width-10"
+        }) if 1==2}}
+
+        {{ govukInput({
+          id: "blah",
+          name: "blah",
+          label: {
+            text: "Affected listed building entry number",
+            isPageHeading: true,
+            classes: "govuk-label--l"
+          },
+          hint: {
+            text: "This is a seven digit number from Historic England"
+          },
+          value: data.blah,
+          classes: "govuk-input--width-10"
+        }) if 1==1}}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

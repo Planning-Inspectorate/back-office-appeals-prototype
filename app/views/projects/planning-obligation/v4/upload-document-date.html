@@ -1,6 +1,6 @@
 {% extends "layouts/PINS.html" %}
 
-{% set title = "Add date received" %}
+{% set title = "When was the document received?" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% block content %}
@@ -11,21 +11,26 @@
       <span class="govuk-caption-l">
         Appeal 2114328
       </span>
+      <h1 class="govuk-heading-l">
+        {{ title }}
+      </h1>
+
+      <h2 class="govuk-heading-m">
+        (filename)
+      </h2>
 
       <form method="post">
 
         {{ govukDateInput({
-          id: "documents-received-date",
-          namePrefix: "documents-received-date",
+          id: "IP-comment-received-date",
+          namePrefix: "IP-comment-received-date",
           fieldset: {
             legend: {
-              text: title,
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
+              text: "Date received"
             }
           },
           hint: {
-            html: "<p class='govuk-hint'>For example, 28 "+ 1 | monthsAgoNumeric +" "+ 0 | yearsAgo +".</p>"
+            html: "<p class='govuk-hint'>For example, 28 "+ 32 | monthsAgoNumeric +" "+ 0 | yearsAgo +".</p>"
           },
           items: [
             {

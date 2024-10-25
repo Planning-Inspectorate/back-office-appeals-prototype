@@ -1,0 +1,137 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Select new allocation specialisms" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Appeal 2110166</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      <form method="post">
+
+        {{ govukCheckboxes({
+          name: "specialism",
+          classes: "govuk-checkboxes--small",
+          fieldset: {
+            legend: {
+              text: "",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "Select all that apply"
+          },
+          items: [
+            {
+              value: "Schedule 1",
+              text: "Schedule 1"
+            },
+            {
+              value: "Schedule 2",
+              text: "Schedule 2"
+            },
+            {
+              value: "Enforcement",
+              text: "Enforcement"
+            },
+            {
+              value: "General allocation",
+              text: "General allocation",
+              checked: "checked"
+            },
+            {
+              value: "Housing-orders",
+              text: "Housing orders"
+            },
+            {
+              value: "Rights-of-way",
+              text: "Rights of way"
+            },
+            {
+              value: "Shopping",
+              text: "Shopping"
+            },
+            {
+              value: "Gypsy",
+              text: "Gypsy"
+            },
+            {
+              value: "Housing",
+              text: "Housing",
+              checked: "checked"
+            },
+            {
+              value: "Access",
+              text: "Access"
+            },
+            {
+              value: "Advertisements",
+              text: "Advertisements"
+            },
+            {
+              value: "Appearance-design",
+              text: "Appearance design"
+            },
+            {
+              value: "Architecture-design",
+              text: "Architecture design"
+            },
+            {
+              value: "High-hedges",
+              text: "High hedges"
+            },
+            {
+              value: "Historic-heritage",
+              text: "Historic heritage"
+            },
+            {
+              value: "Listed",
+              text: "Listed building and enforcement"
+            },
+            {
+              value: "Natura-heritage",
+              text: "Natural heritage"
+            },
+            {
+              value: "Renewable",
+              text: "Renewable energy/wind farms"
+            },
+            {
+              value: "Roads",
+              text: "Roads and traffics"
+            },
+            {
+              value: "Transport",
+              text: "Transport"
+            },
+            {
+              value: "TPO",
+              text: "Tree preservation order"
+            },
+            {
+              value: "Waste",
+              text: "Waste"
+            }
+            ,
+            {
+              value: "Water",
+              text: "Water"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

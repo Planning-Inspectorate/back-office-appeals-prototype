@@ -1,0 +1,102 @@
+{% extends "layouts/PINS-Simple-post-mvp.html" %}
+
+
+{% set title = "Redetermination" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = false %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">
+      Casework Back Office Service
+    </span>
+    <h1 class="govuk-heading-l">
+      {{ title }}
+    </h1>
+
+    {{ govukTable({
+      captionClasses: "govuk-table__caption--m",
+      firstCellIsHeader: true,
+
+      rows: [
+        [
+          {
+            text: "Typical user",
+            classes: "govuk-!-width-one-third"
+          },
+          {
+            text: "Case officers and Inspectors"
+          }
+        ],
+        [
+          {
+            text: "User story"
+          },
+          {
+            html: "<ul class='govuk-list govuk-list--bullet'>
+                     <li>
+                       As a case officer,<br>
+                       I need to re-open a case to be a redetermination,<br>
+                       So that new evidence can be gathered and the case can be redetermined.<br>
+                     </li>
+                     <li>
+                       As a case officer,<br>
+                       I need to be able to receive new evidence, set the case procedure, change the Inspector and choose whether to ask for final comments,<br>
+                       So that the case can be made ready for redetermination.
+                     </li>
+                     <li>
+                       As a case officer,<br>
+                       I need to be able to easily see the extra evidence in a redetermination case,<br>
+                       So that I can know how far along the case is and so that I can prepare the case for an updated decision.
+                     </li>
+                     <li>
+                       As an inspector,<br>
+                       I need to be able to easily see the extra evidence in a redetermination case,<br>
+                       So that it can differentiate it from the initial evidence and so that I can issue a new decision.
+                     </li>
+                   </ul>"
+          }
+        ],
+        [
+          {
+            text: "Jira ticket"
+          },
+          {
+            html: '<a href="https://pins-ds.atlassian.net/browse/A2-121">A2-121: As a Case Officer, I need to reopen a case</a>'
+          }
+        ],
+        [
+          {
+            text: "Mural board"
+          },
+          {
+            html: '<a href="https://app.mural.co/t/allpins6990/m/allpins6990/1723732219973/3294b86c2d55ea974e1d6a817cb267347000ed05?sender=ucdc79e79d5de0dae79845426">S78 - Redetermination journey</a>'
+          }
+        ]
+      ]
+    }) }}
+
+    <h2 class="govuk-heading-m">
+      Version 1
+
+      {{govukTag({
+        text: "In progress",
+        classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+      })}}
+    </h2>
+
+    <a href="v1/index?list=personal" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
+      View prototype
+      <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+        <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+      </svg>
+    </a>
+
+  </div>
+</div>
+
+{% endblock %}

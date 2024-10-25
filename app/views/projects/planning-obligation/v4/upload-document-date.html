@@ -1,6 +1,6 @@
 {% extends "layouts/PINS.html" %}
 
-{% set title = "What date were the documents received?" %}
+{% set title = "Received date" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% block content %}
@@ -13,7 +13,6 @@
       </span>
 
       <form method="post">
-
         {{ govukDateInput({
           id: "IP-comment-received-date",
           namePrefix: "IP-comment-received-date",
@@ -25,23 +24,23 @@
             }
           },
           hint: {
-            html: "<p class='govuk-hint'>For example, 28 "+ 1 | monthsAgoNumeric +" "+ 0 | yearsAgo +".</p>"
+            html: "<p class='govuk-hint'>For example, 28 "+ 32 | monthsAgoNumeric +" "+ 0 | yearsAgo +".</p>"
           },
           items: [
             {
               classes: "govuk-input--width-2",
               name: "day",
-              value: "22"
+              value: 0 | daysAgoDayNumeric
             },
             {
               classes: "govuk-input--width-2",
               name: "month",
-              value: "5"
+              value: 0 | monthsAgoNumeric
             },
             {
               classes: "govuk-input--width-4",
               name: "year",
-              value: "2024"
+              value: 0 | yearsAgo
             }
           }
         }) }}

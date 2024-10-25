@@ -7,46 +7,25 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      {{ govukNotificationBanner({
+        type: "success",
+        text: flash
+      }) if flash.length}}
+
       {% set reviewS106 %}
         <p class="govuk-notification-banner__heading">
-          Review planning obligation.
+          Planning obligation awaiting review.
           <a class="govuk-notification-banner__link" href="planning-obligation-review">
             Review
           </a>
         </p>
       {% endset %}
 
-      {% set completedS106 %}
-        <p class="govuk-notification-banner__heading">
-          Planning obligation valid
-        </p>
-      {% endset %}
-
-      {% set invalidS106 %}
-        <p class="govuk-notification-banner__heading">
-          Planning obligation invalid
-        </p>
-      {% endset%}
-
       {% if data['S106status'] == 'received' %}
 
         {{ govukNotificationBanner({
           html: reviewS106,
           type: "important"
-        }) }}
-
-      {% elseif data['S106status'] == 'valid' %}
-
-        {{ govukNotificationBanner({
-          html: completedS106,
-          type: "success"
-        }) }}
-
-      {% elseif data['S106status'] == 'invalid' %}
-
-        {{ govukNotificationBanner({
-          html: invalidS106,
-          type: "success"
         }) }}
 
       {% endif %}

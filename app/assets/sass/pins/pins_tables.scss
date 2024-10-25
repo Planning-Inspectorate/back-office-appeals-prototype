@@ -3,15 +3,22 @@
 	border-bottom: 0;
 }
 
+.pins-summary-list--bottomless {
+	border-bottom: 0;
+}
+
 .pins-govuk-table__row--last td,
 .pins-govuk-table__row--last th {
 	border-bottom: none;
 }
 
-.pins-summary-list--bottomless {
-	border-bottom: 0;
+// put a div around a summary list
+// make the div have the 'pins-panel' class
+// this means the last row of the summary list will be borderless
+.pins-panel .govuk-summary-list__row:last-child,
+.pins-panel .govukTable:last-child {
+	border-bottom: none;
 }
-
 
 //
 // .pins-table-divider {

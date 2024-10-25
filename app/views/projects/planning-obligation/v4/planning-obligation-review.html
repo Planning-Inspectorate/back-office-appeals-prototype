@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Planning obligation review" %}
+{% set title = "Review planning obligation" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% block beforeContent %}
@@ -61,7 +61,7 @@
       name: "planning-obligation-review-decision",
       fieldset: {
         legend: {
-          text: "Do you accept the planning obligation?",
+          text: "Review decision",
           isPageHeading: true,
           classes: "govuk-fieldset__legend--m"
         }
@@ -69,11 +69,11 @@
       items: [
         {
           value: "Valid",
-          text: "Planning obligation valid"
+          text: "Accept planning obligation"
         },
         {
           value: "Invalid",
-          text: "Planning obligation invalid"
+          text: "Reject planning obligation"
         }
 
       ]

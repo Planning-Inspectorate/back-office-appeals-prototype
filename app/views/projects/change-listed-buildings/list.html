@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Listed buildings that will be affected" %}
+{% set title = "Affected listed buildings" %}
 {% set pageName = title %}
 
 {% block beforeContent %}
@@ -12,6 +12,8 @@
 
 {% block content %}
 
+
+
   {{ govukNotificationBanner({
     html: "<h2 class=\"govuk-heading-m\">"+flash+"</h2>",
     type: "success",
@@ -20,6 +22,12 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      {# {{ govukNotificationBanner({
+    html: "<h2 class=\"govuk-heading-m\">Affected listed building removed</h2>",
+    type: "success",
+    icon: false
+  }) }} #}
       <form method="post">
         <span class="govuk-caption-l">Appeal 2114328</span>
         <h1 class="govuk-heading-l">{{ title }}</h1>
@@ -30,19 +38,19 @@
               Listed building 1
             </dt>
             <dd class="govuk-summary-list__value">
-              <p>1234567</p>
+              <p><a href="#">1234567</a></p>
               <p>Grade II listed building 155<br>York Road<br>Bedminster<br> Bristol<br> BS3 4AL</p>
             </dd>
             <dd class="govuk-summary-list__actions">
               <ul class="govuk-summary-list__actions-list">
                 {# <li class="govuk-summary-list__actions-list-item">
                   <a class="govuk-link" href="entry">
-                    Change<span class="govuk-visually-hidden"> {{file.filename}}</span>
+                    Change<span class="govuk-visually-hidden"> affected listed building 1</span>
                   </a>
                 </li> #}
                 <li class="govuk-summary-list__actions-list-item">
                   <a class="govuk-link" href="delete">
-                    Remove<span class="govuk-visually-hidden"> {{file.filename}}</span>
+                    Remove<span class="govuk-visually-hidden"> affected listed building 1</span>
                   </a>
                 </li>
               </ul>
@@ -51,12 +59,12 @@
         </dl>
 
 
-        {{ govukRadios({
+        {# {{ govukRadios({
           idPrefix: "[report][evidence][addMore]",
           name: "[report][evidence][addMore]",
           fieldset: {
             legend: {
-              text: "Do you want to add another affected listing building?",
+              text: "Do you want to add another affected listed building?",
               classes: "govuk-fieldset__legend--m"
             }
           },
@@ -75,7 +83,7 @@
         {{ govukButton({
           text: "Continue",
           href: 'entry'
-        }) }}
+        }) }} #}
       </form>
     </div>
   </div>

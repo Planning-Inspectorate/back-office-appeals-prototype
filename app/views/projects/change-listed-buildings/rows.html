@@ -1,0 +1,117 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Listed buildings rows" %}
+{% set pageName = title %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:history.back();"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  {{ govukNotificationBanner({
+    html: "<h2 class=\"govuk-heading-m\">"+flash+"</h2>",
+    type: "success",
+    icon: false
+  }) if flash and flash.length }}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <span class="govuk-caption-l">Appeal 2114328</span>
+      <h1 class="govuk-heading-l">{{ title }}</h1>
+
+      <h2 class="govuk-heading-m">None</h2>
+
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Affected listed buildings
+          </dt>
+          <dd class="govuk-summary-list__value">
+            None provided
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="entry">
+                  Add<span class="govuk-visually-hidden"> affected listed building</span>
+                </a>
+              </li>
+            </ul>
+          </dd>
+        </div>
+      </dl>
+
+      <h2 class="govuk-heading-m">Only 1</h2>
+
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Affected listed buildings
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <ul class="govuk-list govuk-list--bullet">
+              <li>
+                <p><a href="#">1234567</a></p>
+                <p>Grade II listed building 155<br>York Road<br>Bedminster<br> Bristol<br> BS3 4AL</p>
+              </li>
+            </ul>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="entry">
+                  Change<span class="govuk-visually-hidden"> affected listed building</span>
+                </a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="entry">
+                  Add<span class="govuk-visually-hidden"> affected listed building</span>
+                </a>
+              </li>
+            </ul>
+          </dd>
+        </div>
+      </dl>
+
+      <h2 class="govuk-heading-m">More than one</h2>
+
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Affected listed buildings
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <ul class="govuk-list govuk-list--bullet">
+              <li>
+                <p><a href="#">1234567</a></p>
+                <p>Grade II listed building 155<br>York Road<br>Bedminster<br> Bristol<br> BS3 4AL</p>
+              </li>
+              <li>
+                <p><a href="#">2234567</a></p>
+                <p>Grade II listed building 165<br>York Road<br>Bedminster<br> Bristol<br> BS4 5AP</p>
+              </li>
+            </ul>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="entry">
+                  Change<span class="govuk-visually-hidden"> affected listed building</span>
+                </a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="entry">
+                  Add<span class="govuk-visually-hidden"> affected listed building</span>
+                </a>
+              </li>
+            </ul>
+          </dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+{% endblock %}

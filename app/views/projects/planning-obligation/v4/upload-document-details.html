@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "What is the redaction status for appeal-2110166-updated-section106-agreement.pdf?" %}
+{% set title = "Redaction status" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% block content %}
@@ -8,7 +8,7 @@
     <div class="govuk-grid-column-two-thirds">
 
 	     <span class="govuk-caption-l">Appeal 2110166</span>
-       <form action="upload-document-date" method="post" novalidate>
+       <form method="post">
 
          {{ govukRadios({
       	    name: "obligation-document-redaction",

@@ -8,25 +8,12 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {% if data['review'] == 'complete'  %}
+      {{ govukNotificationBanner({
+        type: "success",
+        text: flash
+      }) if flash.length}}
 
-        {% set successBanner %}
-          <p class="govuk-notification-banner__heading">
-            LPA statement valid
-          </p>
-        {% endset %}
-
-        {% if data['bannerSeen'] != 'yes' %}
-          {% if data['statementReviewStatus'] == 'valid' %}
-            {{ govukNotificationBanner({
-              html: successBanner,
-              type: "success"
-            }) }}
-          {% endif %}
-        {% endif %}
-
-      {% else %}
-
+      {% if data['statement-review-done'] != 'Yes' %}
         {% set readyBanner %}
           <p class="govuk-notification-banner__heading">
             LPA statement ready for review. <a class="govuk-notification-banner__link" href="statement-review">Review</a>
@@ -35,10 +22,7 @@
         {{ govukNotificationBanner({
           html: readyBanner
         }) }}
-
       {% endif %}
-
-
 
       <span class="govuk-caption-l">Appeal 2110166</span>
     	<h1 class="govuk-heading-l">{{ title }}</h1>

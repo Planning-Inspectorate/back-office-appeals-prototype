@@ -99,11 +99,11 @@
     <div class="govuk-grid-column-two-thirds">
 
       <!-- accept or reject the statement -->
-      <form action="" method="post" class="govuk-!-margin-top-6" id="review-statement">
+      <form method="post" class="govuk-!-margin-top-6" id="review-statement">
 
         <!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
         {{ govukRadios({
-          name: "review-decision",
+          name: "review-outcome",
           fieldset: {
             legend: {
               text: "What is the outcome of your review?",
@@ -113,19 +113,19 @@
           },
           items: [
            {
-              value: "Valid~matrix-update",
+              value: "Valid",
               text: "Statement valid"
             },
            {
-              value: "Valid with redaction~redact-lpa-statement",
+              value: "Valid with redaction",
               text: "Statement valid but requires redaction"
             },
             {
-              value: "Incomplete~why-incomplete",
+              value: "Incomplete",
               text: "Statement incomplete"
             },
             {
-              value: "Invalid~why-invalid",
+              value: "Invalid",
               text: "Statement invalid"
             }
           ]

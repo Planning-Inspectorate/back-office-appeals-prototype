@@ -11,11 +11,9 @@
       <span class="govuk-caption-l">Appeal 2110166</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
 
-      {% if data['review-decision'] == 'Incomplete' or data['review-decision'] == 'Invalid' %}
-        <form action="statement-confirmation?review=complete" method="post" class="govuk-!-margin-top-0" novalidate>
-      {% else %}
-        <form action="case?review=complete&statementReviewStatus=valid&bannerSeen=" method="post" class="" novalidate>
-      {% endif %}
+      <form method="post">
+
+        <div class="pins-panel">
           {{ govukSummaryList({
             classes: "long-answers govuk-!-margin-bottom-6",
             rows: [
@@ -56,7 +54,7 @@
                   }
                 ]
               }
-            } if data['review-decision'] == 'Valid with redaction' and data['review-decision'] != 'Incomplete' and data['review-decision'] != 'Invalid',
+            } if data['review-outcome'] == 'Valid with redaction' and data['review-outcome'] != 'Incomplete' and data['review-outcome'] != 'Invalid',
             {
               key: {
                 text: "Redacted LPA statement"
@@ -73,7 +71,7 @@
                   }
                 ]
               }
-            } if data['review-decision'] != 'Valid with redaction' and data['review-decision'] != 'Incomplete' and data['review-decision'] != 'Invalid',
+            } if data['review-outcome'] != 'Valid with redaction' and data['review-outcome'] != 'Incomplete' and data['review-outcome'] != 'Invalid',
             {
               key: {
                 text: "Supporting documents"
@@ -97,7 +95,7 @@
                 text: "Review outcome"
               },
               value: {
-                html: data['review-decision']
+                html: data['review-outcome'] or 'Valid'
               },
               actions: {
                 items: [
@@ -109,6 +107,23 @@
                 ]
               }
             },
+            {
+              key: {
+                text: "Update allocation matrix"
+              },
+              value: {
+                html: data['matrix-update'] or 'Yes'
+              },
+              actions: {
+                items: [
+                  {
+                    href: "what-is-outcome-of-review",
+                    text: "Change",
+                    visuallyHiddenText: "Review outcome"
+                  }
+                ]
+              }
+            } if data['review-outcome'] != 'Incomplete' and data['review-outcome'] != 'Invalid',
             {
               key: {
                 text: "Allocation level"
@@ -125,7 +140,7 @@
                   }
                 ]
               }
-            } if data['review-decision'] != 'Incomplete' and data['review-decision'] != 'Invalid',
+            } if data['review-outcome'] != 'Incomplete' and data['review-outcome'] != 'Invalid' and data['matrix-update'] != 'No',
             {
               key: {
                 text: "Allocation specialisms"
@@ -145,7 +160,7 @@
                   }
                 ]
               }
-            } if data['review-decision'] != 'Incomplete' and data['review-decision'] != 'Invalid',
+            } if data['review-outcome'] != 'Incomplete' and data['review-outcome'] != 'Invalid' and data['matrix-update'] != 'No',
             {
               key: {
                 text: "Reason for incomplete decision"
@@ -162,7 +177,7 @@
                   }
                 ]
               }
-            } if data['review-decision'] == 'Incomplete',
+            } if data['review-outcome'] == 'Incomplete',
             {
               key: {
                 text: "Reason for invalid decision"
@@ -179,13 +194,13 @@
                   }
                 ]
               }
-            } if data['review-decision'] == 'Invalid',
+            } if data['review-outcome'] == 'Invalid',
             {
               key: {
                 text: "Due date"
               },
               value: {
-                html: 3 | daysInFuture
+                html: 7 | daysInFuture
               },
               actions: {
                 items: [
@@ -196,15 +211,17 @@
                   }
                 ]
               }
-            } if data['review-decision'] == 'Incomplete' or data['review-decision'] == 'Invalid'
+            } if data['review-outcome'] == 'Incomplete' or data['review-outcome'] == 'Invalid'
             ] })
           }}
 
-          {{ govukButton({
-            text: "Confirm"
-          }) }}
+        </div>
 
-        </form>
+        {{ govukButton({
+          text: "Confirm"
+        }) }}
+
+      </form>
 
 
     </div>

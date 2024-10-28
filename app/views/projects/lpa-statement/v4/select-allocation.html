@@ -1,22 +1,17 @@
- 
 {% extends "layouts/PINS-post-mvp.html" %}
-{% set title = "Select new allocation level" %}
-{% set pageName = title + ' - Planning Inspectorate'%} 
-{% block content %}
 
+{% set title = "Select new allocation level" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% block content %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-    <span class="govuk-caption-l">Appeal 2110166</span>
-  
-
+      <span class="govuk-caption-l">Appeal 2110166</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
 
-
-<form action="select-specialism" method="post" class="govuk-!-margin-top-6" novalidate>
-      
-  
+      <form method="post">
 
         {{ govukRadios({
           name: "allocation-level",
@@ -35,7 +30,7 @@
             {
               value: "B",
               text: "B",
-              checked:"checked" 
+              checked:"checked"
             },
             {
               value: "C",
@@ -61,7 +56,7 @@
               value: "H",
               text: "H"
             }
-             
+
           ]
         }) }}
 
@@ -69,12 +64,9 @@
           text: "Continue"
         }) }}
 
-    </form>
+      </form>
 
+    </div>
+  </div>
 
 {% endblock %}
-
-
-
-</div>
-</div>

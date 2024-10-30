@@ -11,3 +11,11 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
 {% block header %}
 	{% include "includes/PINS-header-simple.html" %}
 {% endblock %}
+
+{% block pageScripts %}
+  {{ super() }}
+  <script>
+    var App = {}
+  </script>
+  <script src="/public/javascripts/components/add-another.js"></script>
+{% endblock %}

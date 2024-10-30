@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-Simple.html" %}
 
-{% set title = "Check details and add hearing details" %}
+{% set title = "Check details and set up hearing" %}
 {% set pageName = title %}
 
 {% set back = true %}
@@ -22,11 +22,11 @@
             <li>
               <p class="govuk-!-margin-bottom-0">
                 {{day.date | isoDateFromDateInput | govukDate}}
-                {% if day.startTime %}
-                  <br>{{day.startTime}}
+                {% if day.startTime and not day.endTime %}
+                  at {{day.startTime}}
                 {% endif %}
-                {% if day.endTime %}
-                  to {{day.endTime}}
+                {% if day.startTime and day.endTime %}
+                  between {{day.startTime}} and {{day.endTime}}
                 {% endif %}
               </p>
             </li>
@@ -77,7 +77,7 @@
 
       <form method="post">
         {{ govukButton({
-          text: "Add hearing details"
+          text: "Set up hearing"
         }) }}
       </form>
 

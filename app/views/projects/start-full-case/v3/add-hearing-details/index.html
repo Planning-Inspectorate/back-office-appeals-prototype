@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-Simple.html" %}
 
-{% set title = "Hearing details" %}
+{% set title = "Hearing dates" %}
 {% set pageName = title %}
 
 {% set back = true %}
@@ -11,7 +11,7 @@
     <div class="govuk-grid-column-two-thirds">
       <div class="app-add-another">
         <span class="govuk-caption-l">Appeal 2114328</span>
-        <h1 class="govuk-heading-l app-add-another__heading" tabindex="-1">Hearing dates and times</h1>
+        <h1 class="govuk-heading-l app-add-another__heading" tabindex="-1">{{title}}</h1>
         <form method="post">
 
           {% if data.hearing.days.length %}

@@ -20,14 +20,13 @@
 
         <div class="pins-panel">
           {{ govukSummaryList({
-            classes: "govuk-!-margin-bottom-9",
             rows: [
               {
                 key: {
                   text: "Reason for reopening the case"
                 },
                 value: {
-                  text: data['reopen-reason']
+                  text: data['reopen-reason'] or 'High court case'
                 },
                 actions: {
                   items: [
@@ -127,12 +126,33 @@
                     }
                   ]
                 }
-              } if data['matrix-update'] == 'Yes'
+              } if data['matrix-update'] == 'Yes',
+              {
+                key: {
+                  text: "Assigned inspector"
+                },
+                value: {
+                  html: data['inspector-name'] or 'Jan Fisher'
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "date of birth"
+                    }
+                  ]
+                }
+              }
 
             ]
           }) }}
 
         </div>
+
+        <p class="govuk-body">
+          We’ll give the relevant parties an opportunity to submit new evidence by {{ 7 | daysInFuture }}.
+        </p>
 
         {{ govukButton({
           text: "Reopen the case"

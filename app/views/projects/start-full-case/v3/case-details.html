@@ -590,7 +590,13 @@
                     text: 'Set up hearing',
                     classes: 'govuk-button--secondary',
                     href: 'add-hearing-details'
-                  }) if not data.hearingx }}
+                  }) if not data.hearing }}
+
+                  {{ govukButton({
+                    text: 'Cancel hearing',
+                    classes: 'govuk-button--secondary',
+                    href: 'cancel-hearing'
+                  }) if data.hearing }}
 
                   {{ govukButton({
                     text: 'Add hearing estimates',
@@ -606,11 +612,11 @@
                     <li>
                       <p class="govuk-!-margin-bottom-0">
                         {{day.date | isoDateFromDateInput | govukDate}}
-                        {% if day.startTime %}
-                          <br>{{day.startTime}}
+                        {% if day.startTime and not day.endTime %}
+                          at {{day.startTime}}
                         {% endif %}
-                        {% if day.endTime %}
-                          to {{day.endTime}}
+                        {% if day.startTime and day.endTime %}
+                          between {{day.startTime}} and {{day.endTime}}
                         {% endif %}
                       </p>
                     </li>
@@ -633,7 +639,7 @@
                 rows: [
                   {
                     key: {
-                      text: "Hearing dates"
+                      text: "Hearing date and time"
                     },
                     value: {
                       html: hearingDates

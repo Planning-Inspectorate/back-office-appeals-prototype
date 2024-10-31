@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-Simple.html" %}
 
-{% set title = "Hearing dates" %}
+{% set title = "Hearing date and time" %}
 {% set pageName = title %}
 
 {% set back = true %}
@@ -192,8 +192,10 @@
               classes: "govuk-input--width-4",
               attributes: {
                 'data-name': 'hearing[days][%index%][startTime]',
-                'data-id': 'hearing[days][%index%][startTime]'
-              }
+                'data-id': 'hearing[days][%index%][startTime]',
+                'data-reset': 'false'
+              },
+              value: '10am'
             }) }}
 
             {{ govukInput({
@@ -209,8 +211,10 @@
               classes: "govuk-input--width-4",
               attributes: {
                 'data-name': 'hearing[days][%index%][endTime]',
-                'data-id': 'hearing[days][%index%][endTime]'
-              }
+                'data-id': 'hearing[days][%index%][endTime]',
+                'data-reset': 'false'
+              },
+              value: '4pm'
             }) }}
 
             {% endcall %}

@@ -1,0 +1,37 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Share new evidence with main parties" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = true %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Appeal 2114328</span>
+    <h1 class="govuk-heading-l">
+      {{ title }}
+    </h1>
+
+    <p>We’ll share <a href='view-evidence' class='govuk-body'>appellant evidence</a> and <a href='view-lpa-evidence' class='govuk-body'>LPA evidence</a> with the relevant parties.</p>
+
+    {{ govukWarningText({
+      text: "Do not share until you have reviewed all of the supporting documents and redacted any sensitive information.",
+      iconFallbackText: "Fallback text"
+    }) }}
+
+    <!-- two options for the result of sharing IP comments -->
+    <form method="post">
+
+    	{{ govukButton({
+    		text: 'Continue'
+    	}) }}
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

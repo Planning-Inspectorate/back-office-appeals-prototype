@@ -3,7 +3,6 @@
 {% set title = "Cases assigned to you" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
-
 {% set back = false %}
 
 {% set prototypeLinks = [
@@ -13,6 +12,37 @@
   } if data['comments-shared'] == 'yes' else {
     href: '?comments-shared=yes',
     text: 'Comments shared'
+  }
+] %}
+
+{% set prototypeLinks = [
+  {
+    href: '?evidence-review-done=Yes&new-evidence-shared=',
+    text: 'Evidence review done'
+  } if data['evidence-review-done'] != 'Yes',
+  {
+    href: '?evidence-review-done=&new-evidence-shared=',
+    text: 'Evidence review not done'
+  } if data['evidence-review-done'] == 'Yes',
+  {
+    href: '?lpa-evidence-review-done=Yes&new-evidence-shared=',
+    text: 'LPA evidence review done'
+  } if data['lpa-evidence-review-done'] != 'Yes',
+  {
+    href: '?lpa-evidence-review-done=&new-evidence-shared=',
+    text: 'LPA evidence review not done'
+  } if data['lpa-evidence-review-done'] == 'Yes',
+  {
+    href: '?evidence-review-done=Yes&lpa-evidence-review-done=Yes&new-evidence-shared=',
+    text: 'Evidence reviewed (ready to share)'
+  },
+  {
+    href: '?evidence-review-done=Yes&lpa-evidence-review-done=Yes&new-evidence-shared=Yes',
+    text: 'Evidence shared'
+  },
+  {
+    href: '?evidence-review-done=&lpa-evidence-review-done=',
+    text: 'Reset'
   }
 ] %}
 
@@ -119,11 +149,33 @@
   </thead>
   <tbody class="govuk-table__body">
     <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header"><a href="case-details?case-stage=complete">2110166</a></th>
+      <th scope="row" class="govuk-table__header"><a href="case-details?case-stage=new-evidence">2110166</a></th>
       <td class="govuk-table__cell"></td>
+      <td class="govuk-table__cell">
+
+        <!-- new evidence from appellant -->
+        {% if data['evidence-review-done'] != 'Yes' %}
+          <a href="review-evidence">Review evidence from appellant</a>
+          {% if data['lpa-evidence-review-done'] != 'Yes' %}
+            <br>
+          {% endif %}
+        {% endif %}
+
+        <!-- new evidence from LPA -->
+        {% if data['lpa-evidence-review-done'] != 'Yes' %}
+          <a href="review-evidence">Review evidence from LPA</a>
+        {% endif %}
+
+        <!-- both evidence done -->
+        {% if data['evidence-review-done'] == 'Yes' and data['lpa-evidence-review-done'] == 'Yes' %}
+          {% if data ['new-evidence-shared'] != 'Yes' %}
+            <a href="review-evidence">Share new evidence</a>
+          {% endif %}
+        {% endif %}
+
+      </td>
       <td class="govuk-table__cell"></td>
-      <td class="govuk-table__cell"></td>
-      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Complete</strong></td>
+      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--purple">Statements</strong></td>
     </tr>
     <tr class="govuk-table__row">
       <th scope="row" class="govuk-table__header"><a href="case.html?status=lpa-questionnaire">2110167</a></th>

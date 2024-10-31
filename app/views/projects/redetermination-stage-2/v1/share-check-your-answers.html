@@ -1,0 +1,50 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Check details and share new evidence" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Appeal 2110166</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      <form method="post">
+
+        {{ govukSummaryList({
+          classes: "long-answers govuk-!-margin-bottom-6",
+          rows: [
+
+            {
+              key: {
+                text: "Request final comments"
+              },
+              value: {
+                html: data['final-comments-requested'] or 'No'
+              },
+              actions: {
+                items: [
+                  {
+                    href: "share-new-evidence",
+                    text: "Change",
+                    visuallyHiddenText: " final comments"
+                  }
+                ]
+              }
+            }
+          ] })
+        }}
+
+        {{ govukButton({
+          text: "Share new evidence"
+        }) }}
+
+      </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

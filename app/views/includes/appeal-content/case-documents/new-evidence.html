@@ -1,0 +1,75 @@
+<tr class="govuk-table__row">
+  <td class="govuk-table__cell">
+    High court documents
+  </td>
+  <td class="govuk-table__cell">
+    <a href="#" class="govuk-link">
+      Appeal-2110166-high-court-documents.doc
+    </a>
+  </td>
+  <!-- <td class="govuk-table__cell">
+  </td> -->
+  <td class="govuk-table__cell govuk-!-text-align-right">
+    <a href="#">
+      Review
+    </a>
+  </td>
+</tr>
+
+<tr class="govuk-table__row">
+  <td class="govuk-table__cell">
+    Appellant evidence
+  </td>
+  <td class="govuk-table__cell">
+    {% if data['evidence-review-done'] != 'Yes' %}
+      Received
+    {% else %}
+      {% if data['new-evidence-shared'] != 'Yes' %}
+        Complete
+      {% else %}
+        Shared
+      {% endif %}
+    {% endif %}
+  </td>
+  <!-- <td class="govuk-table__cell"></td> -->
+  <td class="govuk-table__cell govuk-!-text-align-right">
+    {% if data['evidence-review-done'] != 'Yes' %}
+      <a href="review-evidence">
+        Review
+      </a>
+    {% else %}
+      <a href="view-evidence">
+        View
+      </a>
+    {% endif %}
+  </td>
+</tr>
+
+<tr class="govuk-table__row pins-govuk-table__row--last">
+  <td class="govuk-table__cell">
+    LPA evidence
+  </td>
+  <td class="govuk-table__cell">
+    {% if data['lpa-evidence-review-done'] != 'Yes' %}
+      Received
+    {% else %}
+      {% if data['new-evidence-shared'] != 'Yes' %}
+        Complete
+      {% else %}
+        Shared
+      {% endif %}
+    {% endif %}
+  </td>
+  <!-- <td class="govuk-table__cell"></td> -->
+  <td class="govuk-table__cell govuk-!-text-align-right">
+    {% if data['lpa-evidence-review-done'] != 'Yes' %}
+      <a href="review-evidence">
+        Review
+      </a>
+    {% else %}
+      <a href="view-lpa-evidence">
+        View
+      </a>
+    {% endif %}
+  </td>
+</tr>

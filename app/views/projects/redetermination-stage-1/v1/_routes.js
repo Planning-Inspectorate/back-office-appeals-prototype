@@ -23,7 +23,7 @@ router.post('/matrix-update', function (req, res) {
   if (req.session.data['matrix-update'] == 'Yes') {
     res.redirect('select-allocation')
   } else {
-    res.redirect('check-your-answers')
+    res.redirect('find-inspector')
   }
 })
 
@@ -32,6 +32,10 @@ router.post('/select-allocation', function (req, res) {
 })
 
 router.post('/select-specialism', function (req, res) {
+  res.redirect('find-inspector')
+})
+
+router.post('/confirm-inspector', function (req, res) {
   res.redirect('check-your-answers')
 })
 

@@ -1,0 +1,97 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Find an inspector" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Appeal 2114328</span>
+
+      <form method="post">
+
+        {{ govukInput({
+          label: {
+            text: title,
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          hint: {
+            text: "Search by name or email address"
+          },
+          id: "find-inspector",
+          name: "find-inspector"
+        }) }}
+
+        {{ govukButton({
+          href: "?inspector-search=true",
+          text: "Search"
+        }) }}
+
+      </form>
+
+      {% if data['inspector-search'] %}
+        <h2 class="govuk-heading-m">
+          Results
+        </h2>
+
+        <p class="govuk-body">
+          Matches for <span class="govuk-!-font-weight-bold">{{ data['find-inspector'] or '(search phrase)' }}</span>
+        </p>
+
+      </div>
+      <div class="govuk-grid-column-full">
+
+        <div class="pins-panel">
+
+          {{ govukSummaryList({
+            rows: [
+              {
+                key: {
+                  text: "Jan Fisher"
+                },
+                value: {
+                  text: "jan.fisher@planninginspectorate.gov.uk"
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "confirm-inspector?inspector-name=Jan%20Fisher&inspector=jan.fisher@planninginspectorate.gov.uk",
+                      text: "Choose",
+                      visuallyHiddenText: "Jan Fisher"
+                    }
+                  ]
+                }
+              },
+              {
+                key: {
+                  text: "Jambo Twitch"
+                },
+                value: {
+                  text: "jambo.twitch@planninginspectorate.gov.uk"
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "confirm-inspector?inspector-name=Jambo%20Twitch&inspector=jambo.twitch@planninginspectorate.gov.uk",
+                      text: "Choose",
+                      visuallyHiddenText: "Jambo Twitch"
+                    }
+                  ]
+                }
+              }
+            ]
+          }) }}
+
+        </div>
+
+      {% endif %}
+
+    </div>
+  </div>
+
+{% endblock %}

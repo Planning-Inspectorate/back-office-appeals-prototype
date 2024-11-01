@@ -3,22 +3,20 @@
     High court documents
   </td>
   <td class="govuk-table__cell">
-    <a href="#" class="govuk-link">
-      Appeal-2110166-high-court-documents.doc
-    </a>
+    Received
   </td>
   <!-- <td class="govuk-table__cell">
   </td> -->
   <td class="govuk-table__cell govuk-!-text-align-right">
     <a href="#">
-      Review
+      View
     </a>
   </td>
 </tr>
 
 <tr class="govuk-table__row">
   <td class="govuk-table__cell">
-    Appellant evidence
+    Appellant new evidence
   </td>
   <td class="govuk-table__cell">
     {% if data['evidence-review-done'] != 'Yes' %}
@@ -45,9 +43,13 @@
   </td>
 </tr>
 
-<tr class="govuk-table__row pins-govuk-table__row--last">
+{% if data['new-evidence-shared'] == 'Yes' %}
+  <tr class="govuk-table__row">
+{% else %}
+  <tr class="govuk-table__row pins-govuk-table__row--last">
+{% endif %}
   <td class="govuk-table__cell">
-    LPA evidence
+    LPA new evidence
   </td>
   <td class="govuk-table__cell">
     {% if data['lpa-evidence-review-done'] != 'Yes' %}
@@ -73,3 +75,28 @@
     {% endif %}
   </td>
 </tr>
+
+{% if data['new-evidence-shared'] == 'Yes' %}
+  {% if data['case-stage'] == 'new-final-comments' %}
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell">
+        Appellant final comments
+      </td>
+      <td class="govuk-table__cell">
+        Awaiting
+      </td>
+      <td class="govuk-table__cell govuk-!-text-align-right">
+      </td>
+    </tr>
+    <tr class="govuk-table__row pins-govuk-table__row--last">
+      <td class="govuk-table__cell">
+        Appellant new evidence
+      </td>
+      <td class="govuk-table__cell">
+        Awaiting
+      </td>
+      <td class="govuk-table__cell govuk-!-text-align-right">
+      </td>
+    </tr>
+  {% endif %}
+{% endif %}

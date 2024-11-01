@@ -1,21 +1,20 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Do you want to allow the interested party to resubmit a comment?" %}
+{% set title = "Appeal procedure" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% set back = true %}
 
 {% block content %}
+
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
     <span class="govuk-caption-l">Appeal 2114328</span>
-
-    <form method="post">
+	  <form method="post">
 
       {{ govukRadios({
-        classes: "govuk-radios",
-        name: "allow-resubmission",
+        name: "appeal-procedure",
         fieldset: {
           legend: {
             text: title,
@@ -23,17 +22,20 @@
             classes: "govuk-fieldset__legend--l"
           }
         },
-        hint: {
-          html: "The interested party can resubmit their comment by "+ 7 | daysInFuture + "."
-        },
+        value: data.appealProcedure,
         items: [
           {
-            value: "Yes",
-            text: "Yes"
+            value: "Written representations",
+            text: "Written representations"
           },
           {
-            value: "No",
-            text: "No"
+            value: "Hearing",
+            text: "Hearing",
+            checked: "checked"
+          },
+          {
+            value: "Inquiry",
+            text: "Inquiry"
           }
         ]
       }) }}
@@ -41,13 +43,10 @@
       {{ govukButton({
         text: "Continue"
       }) }}
+
     </form>
 
-    </div>
+  </div>
 </div>
-
-
-
-
 
 {% endblock %}

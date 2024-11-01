@@ -9,18 +9,17 @@
     <div class="govuk-grid-column-two-thirds">
 
       <span class="govuk-caption-l">Appeal 2110166</span>
-      <h1 class="govuk-heading-l">{{title}}</h1>
 
       <form method="post">
 
         {{ govukCheckboxes({
           name: "specialism",
-          classes: "govuk-checkboxes--small",
+          classes: "govuk-checkboxes",
           fieldset: {
             legend: {
-              text: "",
+              text: title,
               isPageHeading: true,
-              classes: "govuk-fieldset__legend--m"
+              classes: "govuk-fieldset__legend--l"
             }
           },
           hint: {

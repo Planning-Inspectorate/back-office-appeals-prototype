@@ -13,29 +13,59 @@
 
       <form method="post">
 
-        {{ govukSummaryList({
-          classes: "long-answers govuk-!-margin-bottom-6",
-          rows: [
+        <div class="pins-panel">
 
-            {
-              key: {
-                text: "Request final comments"
+          {{ govukSummaryList({
+            classes: "long-answers govuk-!-margin-bottom-6",
+            rows: [
+
+              {
+                key: {
+                  text: "Appeal procedure"
+                },
+                value: {
+                  html: data['appeal-procedure'] or 'Hearing'
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "share-new-evidence",
+                      text: "Change",
+                      visuallyHiddenText: " appeal procedure"
+                    }
+                  ]
+                }
               },
-              value: {
-                html: data['final-comments-requested'] or 'No'
-              },
-              actions: {
-                items: [
-                  {
-                    href: "share-new-evidence",
-                    text: "Change",
-                    visuallyHiddenText: " final comments"
-                  }
-                ]
-              }
-            }
-          ] })
-        }}
+              {
+                key: {
+                  text: "Request final comments"
+                },
+                value: {
+                  html: data['final-comments-requested'] or 'No'
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "share-new-evidence",
+                      text: "Change",
+                      visuallyHiddenText: " final comments"
+                    }
+                  ]
+                }
+              } if data['appeal-procedure'] != 'Written representations'
+            ] })
+          }}
+
+        </div>
+
+
+        <p class="govuk-body">
+          {% if data['appeal-procedure'] == 'Written representations' and data['final-comments-requested'] == 'Yes' %}
+            We’ll share this evidence with the relevant parties and invite them to provide final comments.
+          {% else %}
+            We’ll share new evidence with the relevant parties.
+          {% endif %}
+        </p>
 
         {{ govukButton({
           text: "Share new evidence"

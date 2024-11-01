@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Assign this inspector" %}
+{% set title = "New inspector" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% set back = true %}
@@ -11,35 +11,32 @@
     <div class="govuk-grid-column-two-thirds">
 
       <span class="govuk-caption-l">Appeal 2114328</span>
-      <h1 class="govuk-heading-l">
-        Assign this Inspector
-      </h1>
 
       <form method="post">
 
         {{ govukRadios({
-          name: "confirm-inspector",
+          name: "inspector",
           fieldset: {
             legend: {
-              text: data['inspector'],
-              isPageHeading: false,
-              classes: "govuk-fieldset__legend--m"
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
             }
           },
           items: [
             {
-              value: "Yes",
-              text: "Yes"
+              value: "Jan Fisher",
+              text: "Jan Fisher"
             },
             {
-              value: "No",
-              text: "No"
+              value: "Jambo Twitch",
+              text: "Jambo Twitch"
             }
           ]
         }) }}
 
         {{ govukButton({
-          text: "Search"
+          text: "Continue"
         }) }}
 
       </form>

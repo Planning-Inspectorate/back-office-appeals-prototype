@@ -1,110 +1,102 @@
 {% extends "layouts/PINS-Simple-post-mvp.html" %}
 
-
-{% set title = "Redetermination - stage 2" %}
+{% set title = "Redetermination stage 2 - review new evidence" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% set back = false %}
 
 {% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">
+        Casework Back Office Service
+      </span>
+      <h1 class="govuk-heading-l">
+        {{ title }}
+      </h1>
 
-    <span class="govuk-caption-l">
-      Casework Back Office Service
-    </span>
-    <h1 class="govuk-heading-l">
-      {{ title }}
-    </h1>
+    </div>
+    <div class="govuk-grid-column-full">
 
-  </div>
-  <div class="govuk-grid-column-full">
+      {{ govukTable({
+        captionClasses: "govuk-table__caption--m",
+        firstCellIsHeader: true,
 
-    {{ govukTable({
-      captionClasses: "govuk-table__caption--m",
-      firstCellIsHeader: true,
-
-      rows: [
-        [
-          {
-            text: "Typical user",
-            classes: "govuk-!-width-one-quarter"
-          },
-          {
-            text: "Case officers and Inspectors"
-          }
-        ],
-        [
-          {
-            text: "User story"
-          },
-          {
-            html: "<ul class='govuk-list govuk-list--bullet'>
-                     <li>
-                       As a case officer,<br>
-                       I need to review updated evidence for a redetermination appeal,<br>
-                       So that I can check that it can be shared with other parties.
-                     </li>
-                     <li>
-                       As a case officer,<br>
-                       I need to be able to request final comments,<br>
-                       So that the case has enough evidence for the redetermination appeal.
-                     </li>
-                     <li>
-                       As a case officer,<br>
-                       I need to be able to review final comments for a redtermination appeal,<br>
-                       So that they can be shared with other parties.
-                     </li>
-                     <li>
-                       As a case officer,<br>
-                       I need to review final comments for a redetermination appeal,<br>
-                       So that I can check that they can be shared with other parties.
-                     </li>
-                     <li>
-                       As an inspector,<br>
-                       I need to be able to easily see the extra evidence in a redetermination case,<br>
-                       So that it can differentiate it from the initial evidence and so that I can issue a new decision.
-                     </li>
-                   </ul>"
-          }
-        ],
-        [
-          {
-            text: "Jira ticket"
-          },
-          {
-            html: '<a href="https://pins-ds.atlassian.net/browse/A2-121">A2-121: As a Case Officer, I need to reopen a case</a>'
-          }
-        ],
-        [
-          {
-            text: "Mural board"
-          },
-          {
-            html: '<a href="https://app.mural.co/t/allpins6990/m/allpins6990/1723732219973/3294b86c2d55ea974e1d6a817cb267347000ed05?sender=ucdc79e79d5de0dae79845426">S78 - Redetermination journey</a>'
-          }
+        rows: [
+          [
+            {
+              text: "Typical user",
+              classes: "govuk-!-width-one-quarter"
+            },
+            {
+              text: "Case officers and Inspectors"
+            }
+          ],
+          [
+            {
+              text: "User story"
+            },
+            {
+              html: "<ul class='govuk-list govuk-list--bullet'>
+                       <li>
+                         As a case officer or an inspector,<br>
+                         I need to be able to identify a redetermination case,<br>
+                         So that I can prioritise the case.
+                       </li>
+                       <li>
+                         As a case officer,<br>
+                         I need to review updated evidence for a redetermination appeal,<br>
+                         So that I can check that it can be shared with other parties.
+                       </li>
+                       <li>
+                         As a case officer,<br>
+                         I need to be able to request final comments for hearings and inquiries,<br>
+                         So that the case has enough evidence for the redetermination appeal.
+                       </li>
+                       <li>
+                         As an inspector,<br>
+                         I need to be able to easily see the evidence in a redetermination case,<br>
+                         So that it can differentiate it from the initial evidence and so that I can issue a new decision.
+                       </li>
+                     </ul>"
+            }
+          ],
+          [
+            {
+              text: "Jira ticket"
+            },
+            {
+              html: '<a href="https://pins-ds.atlassian.net/browse/A2-121">A2-121: As a Case Officer, I need to reopen a case</a>'
+            }
+          ],
+          [
+            {
+              text: "Mural board"
+            },
+            {
+              html: '<a href="https://app.mural.co/t/allpins6990/m/allpins6990/1723732219973/3294b86c2d55ea974e1d6a817cb267347000ed05?sender=ucdc79e79d5de0dae79845426">S78 - Redetermination journey</a>'
+            }
+          ]
         ]
-      ]
-    }) }}
+      }) }}
 
-    <h2 class="govuk-heading-m">
-      Version 1
+      <h2 class="govuk-heading-m">
+        Version 1
 
-      {{govukTag({
-        text: "In progress",
-        classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-      })}}
-    </h2>
+        {{govukTag({
+          text: "In progress",
+          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+        })}}
+      </h2>
 
-    <a href="/projects/redetermination-stage-2/v1/index?list=personal" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
-      View prototype
-      <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
-        <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
-      </svg>
-    </a>
+      <a href="/projects/redetermination-stage-2/v1/index?list=personal" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
+        View prototype
+        <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+          <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+        </svg>
+      </a>
 
+    </div>
   </div>
-</div>
-
 {% endblock %}

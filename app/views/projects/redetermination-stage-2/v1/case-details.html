@@ -126,10 +126,78 @@
 
       {% elseif data['case-stage'] == 'new-evidence' %}
 
-      {{govukTag({
-        text: "New evidence",
-        classes: "govuk-tag--blue"
-      })}}
+        {{govukTag({
+          text: "New statements",
+          classes: "govuk-tag--blue"
+        })}}
+
+        <div class="govuk-!-margin-top-5">
+          {{ govukDetails({
+            summaryText: "Previous decision",
+            html: "
+            <p class='govuk-body'>
+              Completed "+ 1 | daysAgo + "
+            </p>
+            <p class='govuk-body'>
+              Decision: approved
+            </p>
+            <p class='govuk-body'>
+              <a href='#' class='govuk-link'>
+                View decision letter
+              </a>
+            </p>"
+          }) }}
+        </div>
+
+      {% elseif data['case-stage'] == 'new-final-comments' %}
+
+        {{govukTag({
+          text: "New final comments",
+          classes: "govuk-tag--orange"
+        })}}
+
+        <div class="govuk-!-margin-top-5">
+          {{ govukDetails({
+            summaryText: "Previous decision",
+            html: "
+            <p class='govuk-body'>
+              Completed "+ 1 | daysAgo + "
+            </p>
+            <p class='govuk-body'>
+              Decision: approved
+            </p>
+            <p class='govuk-body'>
+              <a href='#' class='govuk-link'>
+                View decision letter
+              </a>
+            </p>"
+          }) }}
+        </div>
+
+      {% elseif data['case-stage'] == 'redetermination' %}
+
+        {{govukTag({
+          text: "Issue new decision",
+          classes: "govuk-tag--pink"
+        })}}
+
+        <div class="govuk-!-margin-top-5">
+          {{ govukDetails({
+            summaryText: "Previous decision",
+            html: "
+            <p class='govuk-body'>
+              Completed "+ 1 | daysAgo + "
+            </p>
+            <p class='govuk-body'>
+              Decision: approved
+            </p>
+            <p class='govuk-body'>
+              <a href='#' class='govuk-link'>
+                View decision letter
+              </a>
+            </p>"
+          }) }}
+        </div>
 
       {% else %}
 
@@ -252,7 +320,7 @@
                     text: "Case procedure"
                   },
                   {
-                    text: "Written"
+                    text: data['appeal-procedure']
                   },
                   {
                     html: "<a href='#'>Change</a>",

@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Find an inspector" %}
+{% set title = "Find a new inspector" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% set back = true %}
@@ -28,68 +28,10 @@
         }) }}
 
         {{ govukButton({
-          href: "?inspector-search=true",
           text: "Search"
         }) }}
 
       </form>
-
-      {% if data['inspector-search'] %}
-        <h2 class="govuk-heading-m">
-          Results
-        </h2>
-
-        <p class="govuk-body">
-          Matches for <span class="govuk-!-font-weight-bold">{{ data['find-inspector'] or '(search phrase)' }}</span>
-        </p>
-
-      </div>
-      <div class="govuk-grid-column-full">
-
-        <div class="pins-panel">
-
-          {{ govukSummaryList({
-            rows: [
-              {
-                key: {
-                  text: "Jan Fisher"
-                },
-                value: {
-                  text: "jan.fisher@planninginspectorate.gov.uk"
-                },
-                actions: {
-                  items: [
-                    {
-                      href: "confirm-inspector?inspector-name=Jan%20Fisher&inspector=jan.fisher@planninginspectorate.gov.uk",
-                      text: "Choose",
-                      visuallyHiddenText: "Jan Fisher"
-                    }
-                  ]
-                }
-              },
-              {
-                key: {
-                  text: "Jambo Twitch"
-                },
-                value: {
-                  text: "jambo.twitch@planninginspectorate.gov.uk"
-                },
-                actions: {
-                  items: [
-                    {
-                      href: "confirm-inspector?inspector-name=Jambo%20Twitch&inspector=jambo.twitch@planninginspectorate.gov.uk",
-                      text: "Choose",
-                      visuallyHiddenText: "Jambo Twitch"
-                    }
-                  ]
-                }
-              }
-            ]
-          }) }}
-
-        </div>
-
-      {% endif %}
 
     </div>
   </div>

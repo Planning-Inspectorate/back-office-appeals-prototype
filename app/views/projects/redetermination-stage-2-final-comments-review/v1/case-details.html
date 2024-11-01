@@ -3,6 +3,37 @@
 {% set title = "Case details" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
+{% set prototypeLinks = [
+  {
+    href: '?appellant-fc-review-done=Yes&final-comments-shared=',
+    text: 'Appellant final comments reviewed'
+  } if data['appellant-fc-review-done'] != 'Yes',
+  {
+    href: '?appellant-fc-review-done=&final-comments-shared=',
+    text: 'Appellant final comments to review'
+  } if data['appellant-fc-review-done'] == 'Yes',
+  {
+    href: '?lpa-fc-review-done=Yes&final-comments-shared=',
+    text: 'LPA final comments reviewed'
+  } if data['lpa-fc-review-done'] != 'Yes',
+  {
+    href: '?lpa-fc-review-done=&final-comments-shared=',
+    text: 'LPA final comments to review'
+  } if data['lpa-fc-review-done'] == 'Yes',
+  {
+    href: '?appellant-fc-review-done=Yes&lpa-fc-review-done=Yes&final-comments-shared=',
+    text: 'Final comments reviewed (ready to share)'
+  },
+  {
+    href: '?appellant-fc-review-done=Yes&lpa-fc-review-done=Yes&final-comments-shared=Yes',
+    text: 'Final comments shared'
+  },
+  {
+    href: '?appellant-fc-review-done=&lpa-fc-review-done=',
+    text: 'Reset'
+  }
+] %}
+
 {% block content %}
 
   <div class="govuk-grid-row">
@@ -10,19 +41,46 @@
     <!-- header -->
     <div class="govuk-grid-column-two-thirds">
 
-      <!-- <div class="govuk-inset-text">
-        Case stage is <span class="govuk-!-font-weight-bold">{{ data['case-stage'] }}</span><br>
-        Questionnaire is <span class="govuk-!-font-weight-bold">{{ data['questionnaire'] }}</span><br>
-        LPA statement is <span class="govuk-!-font-weight-bold">{{ data['lpa-statement'] }}</span><br>
-        IP comments are <span class="govuk-!-font-weight-bold">{{ data['ipcomments'] }}</span><br>
-        Appellant final comments statement are <span class="govuk-!-font-weight-bold">{{ data['appellant-final-comments'] }}</span><br>
-        LPA final comments are <span class="govuk-!-font-weight-bold">{{ data['lpa-final-comments'] }}</span>
-      </div> -->
-
       {{ govukNotificationBanner({
         type: "success",
+        classes: "govuk-!-margin-bottom-5",
         text: flash
       }) if flash.length }}
+
+      {% if data['appellant-fc-review-done'] == 'Yes' and data['lpa-fc-review-done'] == 'Yes' and data['final-comments-shared'] != 'Yes' %}
+        {% set readyBanner %}
+          <p class="govuk-notification-banner__heading">
+            Final comments ready to share. <a class="govuk-notification-banner__link" href="share-final-comments">Share</a>
+          </p>
+        {% endset %}
+        {{ govukNotificationBanner({
+          html: readyBanner,
+          classes: "govuk-!-margin-bottom-5"
+        }) }}
+      {% endif %}
+
+      {% if data['appellant-fc-review-done'] != 'Yes' %}
+        {% set readyBanner %}
+          <p class="govuk-notification-banner__heading">
+            Appellant final comments ready for review. <a class="govuk-notification-banner__link" href="review-final-comments">Review</a>
+          </p>
+        {% endset %}
+        {{ govukNotificationBanner({
+          html: readyBanner,
+          classes: "govuk-!-margin-bottom-5"
+        }) }}
+      {% endif %}
+
+      {% if data['lpa-fc-review-done'] != 'Yes' %}
+        {% set readyBannerLPA %}
+          <p class="govuk-notification-banner__heading">
+            LPA final comments ready for review. <a class="govuk-notification-banner__link" href="review-final-comments">Review</a>
+          </p>
+        {% endset %}
+        {{ govukNotificationBanner({
+          html: readyBannerLPA
+        }) }}
+      {% endif %}
 
       <!--	<span class="govuk-caption-l">Appeal 2110166</span> -->
       <span class="govuk-caption-xl">Appeal 2114328</span>
@@ -66,12 +124,62 @@
           </p>"
         }) }}
 
-      {% elseif data['case-stage'] == 'new-statements' %}
+      {% elseif data['case-stage'] == 'new-evidence' %}
 
-        {{ govukTag({
-          text: "New statements",
-          classes: "govuk-tag--purple"
-        }) }}
+        {{govukTag({
+          text: "New evidence",
+          classes: "govuk-tag--blue"
+        })}}
+
+        <div class="govuk-!-margin-top-5">
+          {{ govukDetails({
+            summaryText: "Previous decision",
+            html: "
+            <p class='govuk-body'>
+              Completed "+ 1 | daysAgo + "
+            </p>
+            <p class='govuk-body'>
+              Decision: approved
+            </p>
+            <p class='govuk-body'>
+              <a href='#' class='govuk-link'>
+                View decision letter
+              </a>
+            </p>"
+          }) }}
+        </div>
+
+      {% elseif data['case-stage'] == 'new-final-comments' %}
+
+        {{govukTag({
+          text: "New final comments",
+          classes: "govuk-tag--orange"
+        })}}
+
+        <div class="govuk-!-margin-top-5">
+          {{ govukDetails({
+            summaryText: "Previous decision",
+            html: "
+            <p class='govuk-body'>
+              Completed "+ 1 | daysAgo + "
+            </p>
+            <p class='govuk-body'>
+              Decision: approved
+            </p>
+            <p class='govuk-body'>
+              <a href='#' class='govuk-link'>
+                View decision letter
+              </a>
+            </p>"
+          }) }}
+        </div>
+
+      {% elseif data['case-stage'] == 'redetermination' %}
+
+        {{govukTag({
+          text: "Issue new decision",
+          classes: "govuk-tag--pink"
+        })}}
 
         <div class="govuk-!-margin-top-5">
           {{ govukDetails({
@@ -529,6 +637,9 @@
                 {% elseif data['case-stage'] == 'closed' %}
                   <!-- closed -->
                   {% include "includes/appeal-content/case-documents/closed.html" %}
+                {% elseif data['case-stage'] == 'new-evidence' %}
+                  <!-- redetermination / new evidence -->
+                  {% include "includes/appeal-content/case-documents/closed.html" %}
                 {% else %}
                   <!-- new case -->
                   {% include "includes/appeal-content/case-documents/new-case.html" %}
@@ -539,78 +650,136 @@
           </div>
         </div>
 
-        {% if data['case-stage'] == 'new-statements' %}
-          <!-- redetrmination -->
-          <div class="govuk-accordion__section">
-            <div class="govuk-accordion__section-header">
-              <h2 class="govuk-accordion__section-heading">
-                <span class="govuk-accordion__section-button" id="accordion-default-heading-3">
-                  Redetermination
-                </span>
-              </h2>
-            </div>
-            <div id="accordion-default-content-3" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-3">
-              <table class="govuk-table">
+        <!-- redetrmination -->
+        <div class="govuk-accordion__section">
+          <div class="govuk-accordion__section-header">
+            <h2 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-3">
+                Redetermination
+              </span>
+            </h2>
+          </div>
+          <div id="accordion-default-content-3" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-3">
+            <table class="govuk-table">
 
-                <thead class="govuk-table__head">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header">Documentation</th>
+                  <th scope="col" class="govuk-table__header">Status</th>
+                  <!-- <th scope="col" class="govuk-table__header">Received date</th> -->
+                  <th scope="col" class="govuk-table__header govuk-table__header--numeric">Action</th>
+                </tr>
+              </thead>
+
+              <tbody class="govuk-table__body">
+
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">
+                    High court documents
+                  </td>
+                  <td class="govuk-table__cell">
+                    Received
+                  </td>
+                  <!-- <td class="govuk-table__cell">
+                  </td> -->
+                  <td class="govuk-table__cell govuk-!-text-align-right">
+                    <a href="#">
+                      View
+                    </a>
+                  </td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">
+                    Appellant new evidence
+                  </td>
+                  <td class="govuk-table__cell">
+                    Shared
+                  </td>
+                  <!-- <td class="govuk-table__cell"></td> -->
+                  <td class="govuk-table__cell govuk-!-text-align-right">
+                    <a href="view-evidence">
+                      View
+                    </a>
+                  </td>
+                </tr>
+
+                {% if data['new-evidence-shared'] == 'Yes' %}
                   <tr class="govuk-table__row">
-                    <th scope="col" class="govuk-table__header">Documentation</th>
-                    <th scope="col" class="govuk-table__header">Status</th>
-                    <!-- <th scope="col" class="govuk-table__header">Received date</th> -->
-                    <th scope="col" class="govuk-table__header govuk-table__header--numeric">Action</th>
-                  </tr>
-                </thead>
-
-                <tbody class="govuk-table__body">
-
+                {% else %}
                   <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                      High court documents
-                    </td>
-                    <td class="govuk-table__cell">
+                {% endif %}
+                  <td class="govuk-table__cell">
+                    LPA new evidence
+                  </td>
+                  <td class="govuk-table__cell">
+                    Shared
+                  </td>
+                  <!-- <td class="govuk-table__cell"></td> -->
+                  <td class="govuk-table__cell govuk-!-text-align-right">
+                    <a href="view-lpa-evidence">
+                      View
+                    </a>
+                  </td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">
+                    Appellant final comments
+                  </td>
+                  <td class="govuk-table__cell">
+                    {% if data['final-comments-shared'] == 'Yes' %}
+                      Shared
+                    {% elseif data['appellant-fc-review-done'] != 'Yes' %}
                       Received
-                    </td>
-                    <!-- <td class="govuk-table__cell">
-                    </td> -->
-                    <td class="govuk-table__cell govuk-!-text-align-right">
-                      <a href="#">
+                    {% else %}
+                      Complete
+                    {% endif %}
+                  </td>
+                  <td class="govuk-table__cell govuk-!-text-align-right">
+                    {% if data['appellant-fc-review-done'] != 'Yes' %}
+                      <a href="review-final-commments">
+                        Review
+                      </a>
+                    {% else %}
+                      <a href="view-final-comments">
                         View
                       </a>
-                    </td>
-                  </tr>
+                    {% endif %}
+                  </td>
+                </tr>
+                <tr class="govuk-table__row pins-govuk-table__row--last">
+                  <td class="govuk-table__cell">
+                    LPA final comments
+                  </td>
+                  <td class="govuk-table__cell">
+                    {% if data['final-comments-shared'] == 'Yes' %}
+                      Shared
+                    {% elseif data['lpa-fc-review-done'] != 'Yes' %}
+                      Received
+                    {% else %}
+                      Complete
+                    {% endif %}
+                  </td>
+                  <td class="govuk-table__cell govuk-!-text-align-right">
+                    {% if data['appellant-fc-review-done'] != 'Yes' %}
+                      <a href="review-final-commments">
+                        Review
+                      </a>
+                    {% else %}
+                      <a href="view-final-comments">
+                        View
+                      </a>
+                    {% endif %}
+                  </td>
+                </tr>
 
-                  <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                      Appellant new evidence
-                    </td>
-                    <td class="govuk-table__cell">
-                      Awaiting
-                    </td>
-                    <!-- <td class="govuk-table__cell"></td> -->
-                    <td class="govuk-table__cell govuk-!-text-align-right">
-
-                    </td>
-                  </tr>
-
-                  <tr class="govuk-table__row pins-govuk-table__row--last">
-                    <td class="govuk-table__cell">
-                      LPA new evidence
-                    </td>
-                    <td class="govuk-table__cell">
-                      Awaiting
-                    </td>
-                    <!-- <td class="govuk-table__cell"></td> -->
-                    <td class="govuk-table__cell govuk-!-text-align-right">
-
-                    </td>
-                  </tr>
 
 
-                </tbody>
-              </table>
-            </div>
+              </tbody>
+            </table>
           </div>
-        {% endif %}
+        </div>
 
         <!-- case team -->
         <div class="govuk-accordion__section">

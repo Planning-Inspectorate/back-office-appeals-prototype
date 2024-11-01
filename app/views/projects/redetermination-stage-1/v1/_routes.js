@@ -16,10 +16,10 @@ router.post('/upload-documents', function (req, res) {
 })
 
 router.post('/documents-received-date', function (req, res) {
-  res.redirect('matrix-update')
+  res.redirect('check-allocation-update')
 })
 
-router.post('/matrix-update', function (req, res) {
+router.post('/check-allocation-update', function (req, res) {
   if (req.session.data['matrix-update'] == 'Yes') {
     res.redirect('select-allocation')
   } else {
@@ -35,13 +35,17 @@ router.post('/select-specialism', function (req, res) {
   res.redirect('find-inspector')
 })
 
+router.post('/find-inspector', function (req, res) {
+  res.redirect('confirm-inspector')
+})
+
 router.post('/confirm-inspector', function (req, res) {
   res.redirect('check-your-answers')
 })
 
 router.post('/check-your-answers', function (req, res) {
   req.flash('success', 'Case reopened')
-  res.redirect('case-details?case-stage=statements')
+  res.redirect('case-details?case-stage=new-statements')
 })
 
 

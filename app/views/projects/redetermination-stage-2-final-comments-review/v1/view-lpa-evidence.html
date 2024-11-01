@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Review evidence" %}
+{% set title = "New evidence from the appellant" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% block content %}
@@ -50,11 +50,10 @@
               Aliquam posuere dui et felis tempor tristique. Aenean porta vehicula imperdiet. Nunc sed egestas risus, ut fringilla orci. Proin lobortis sapien interdum nunc iaculis rutrum. Phasellus consectetur vitae dui in vulputate.
             </p>
           </dd>
-          <dd class="govuk-summary-list__actions">
-
-          </dd>
         </div>
+      </dl>
 
+      <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Supporting documents
@@ -95,47 +94,5 @@
 
     </div>
   </div>
-
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-
-      <!-- accept or reject the statement -->
-      <form method="post" class="govuk-!-margin-top-6">
-
-        <!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
-        {{ govukRadios({
-          name: "review-outcome",
-          fieldset: {
-            legend: {
-              text: "What is the outcome of your review?",
-              isPageHeading: false,
-              classes: "govuk-fieldset__legend--m"
-            }
-          },
-          items: [
-           {
-              value: "Accepted",
-              text: "Accept evidence"
-            },
-           {
-              value: "Accepted with redaction",
-              text: "Redact and accept new evidence"
-            },
-            {
-              value: "Rejected",
-              text: "Reject evidence"
-            }
-          ]
-        }) }}
-
-        {{ govukButton({
-          text: "Continue"
-        }) }}
-
-      </form>
-
-    </div>
-  </div>
-
 
 {% endblock %}

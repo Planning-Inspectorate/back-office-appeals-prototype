@@ -38,7 +38,16 @@ router.post('/why-rejected', function (req, res) {
 // sharing new evidence
 
 router.post('/share-new-evidence', function (req, res) {
-  res.redirect('request-final-comments')
+  res.redirect('confirm-procedure')
+})
+
+router.post('/confirm-procedure', function (req, res) {
+  // skip the final comments question if the procedure is written reps
+  if (req.session.data['appeal-procedure'] == 'Written representations') {
+    res.redirect('share-check-your-answers')
+  } else {
+    res.redirect('request-final-comments')
+  }
 })
 
 router.post('/request-final-comments', function (req, res) {
@@ -46,8 +55,18 @@ router.post('/request-final-comments', function (req, res) {
 })
 
 router.post('/share-check-your-answers', function (req, res) {
-  req.flash('success', 'New evidence shared')
-  res.redirect('case-details?new-evidence-shared=Yes')
+  // if it’s written reps, we go to final comments
+  // if not written reps, we go to final comments if final comments is Yes / default
+  if (req.session.data['appeal-procedure'] == 'Written representations') {
+    req.flash('success', 'New evidence shared')
+    res.redirect('case-details?new-evidence-shared=Yes&case-stage=new-final-comments')
+  } else if (req.session.data['final-comments-requested'] == 'Yes') {
+    req.flash('success', 'New evidence shared')
+    res.redirect('case-details?new-evidence-shared=Yes&case-stage=new-final-comments')
+  } else {
+    req.flash('success', 'New evidence shared')
+    res.redirect('case-details?new-evidence-shared=Yes&case-stage=redetermination')
+  }
 })
 
 // Add your routes above the module.exports line

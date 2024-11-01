@@ -96,7 +96,8 @@
                 classes: "govuk-input--width-4",
                 attributes: {
                   'data-name': 'hearing[days][%index%][startTime]',
-                  'data-id': 'hearing[days][%index%][startTime]'
+                  'data-id': 'hearing[days][%index%][startTime]',
+                  'data-reset': 'false'
                 },
                 value: data.hearing.days[loop.index0].startTime
               }) }}
@@ -114,7 +115,8 @@
                 classes: "govuk-input--width-4",
                 attributes: {
                   'data-name': 'hearing[days][%index%][endTime]',
-                  'data-id': 'hearing[days][%index%][endTime]'
+                  'data-id': 'hearing[days][%index%][endTime]',
+                  'data-reset': 'false'
                 },
                 value: data.hearing.days[loop.index0].endTime
               }) }}

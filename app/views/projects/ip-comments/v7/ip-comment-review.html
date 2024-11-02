@@ -1,0 +1,55 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "IP comment" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = true %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Appeal 2114328</span>
+
+    <form method="post">
+
+      {{ govukRadios({
+        name: "comment-review",
+        fieldset: {
+          legend: {
+            text: title,
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "valid",
+            text: "Accept"
+          },
+          {
+            value: "redact",
+            text: "Redact before accepting"
+          },
+          {
+            divider: "or"
+          },
+          {
+            value: "invalid",
+            text: "Reject comment"
+          }
+
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

@@ -141,7 +141,7 @@
               {% endif %}
 
               <!-- new evidence from LPA -->
-              {% if data['lpa-appellant-fc-review-done'] != 'Yes' %}
+              {% if data['lpa-fc-review-done'] != 'Yes' %}
                 <a href="/projects/redetermination-stage-2-final-comments-review/v1/review-final-comments">
                   Review LPA final comments
                 </a>
@@ -150,7 +150,7 @@
               <!-- both evidence done -->
               {% if data['appellant-fc-review-done'] == 'Yes' and data['lpa-fc-review-done'] == 'Yes' %}
                 {% if data ['final-comments-shared'] != 'Yes' %}
-                  <a href="review-evidence">
+                  <a href="share-final-comments" class="govuk-link govuk-link--no-visited-state">
                     Share final comments
                   </a>
                 {% endif %}
@@ -190,7 +190,7 @@
           </tr>
 
       	  <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header"><a href="case.html?status=statement-review&crosscopied=">2114328</a></th>
+            <th scope="row" class="govuk-table__header"><a href="case.html?status=statement-review&crosscopied=">2110166</a></th>
             <td class="govuk-table__cell"></td>
             <td class="govuk-table__cell">
               <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=">

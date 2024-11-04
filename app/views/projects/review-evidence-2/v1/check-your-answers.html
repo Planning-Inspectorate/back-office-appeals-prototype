@@ -1,0 +1,127 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Check details and complete the review" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set evidenceContent = "Morbi ac mauris enim. Curabitur magna lacus, eleifend in euismod in, accumsan convallis velit. Quisque bibendum urna id molestie hendrerit. Cras mattis mi non lobortis eleifend. Quisque nisl purus, sollicitudin interdum convallis a, tristique vulputate mi. Mauris eget nisl in massa mollis luctus. Vestibulum consectetur maximus cursus. Integer molestie ipsum et nunc eleifend venenatis. Aliquam posuere dui et felis tempor tristique. Aenean porta vehicula imperdiet. Nunc sed egestas risus, ut fringilla orci. Proin lobortis sapien interdum nunc iaculis rutrum. Phasellus consectetur vitae dui in vulputate." %}
+
+{% set evidenceRedactedContent = "Morbi ac mauris enim. Curabitur magna lacus, eleifend in euismod in, accumsan convallis velit. Quisque bibendum urna id molestie hendrerit. Cras mattis mi non lobortis eleifend. Quisque nisl purus, sollicitudin interdum convallis a, tristique vulputate mi. Mauris eget nisl in massa mollis luctus. Vestibulum consectetur maximus cursus. Integer molestie ipsum et nunc eleifend venenatis. Aliquam posuere dui et felis tempor tristique. Aenean porta vehicula imperdiet. Nunc sed egestas risus, ut fringilla orci. Proin lobortis sapien interdum nunc iaculis rutrum. (Redacted)" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <span class="govuk-caption-l">Appeal 2110166</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      <form method="post">
+
+        <div class="pins-panel">
+          {{ govukSummaryList({
+            classes: "long-answers govuk-!-margin-bottom-6",
+            rows: [
+            {
+              key: {
+                text: "Unredacted evidence"
+              },
+              value: {
+                html: evidenceContent
+              },
+              actions: {
+                items: [
+                  {
+                    href: "select-allocation",
+                    text: "",
+                    visuallyHiddenText: ""
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Redacted evidence"
+              },
+              value: {
+                html: evidenceRedactedContent
+              },
+              actions: {
+                items: [
+                  {
+                    href: "redact-lpa-statement",
+                    text: "Change",
+                    visuallyHiddenText: "Redacted statement"
+                  }
+                ]
+              }
+            } if data['review-outcome'] == 'Accepted with redaction',
+            {
+              key: {
+                text: "Supporting documents"
+              },
+              value: {
+                html:"<ul class='govuk-list govuk-list--bullet'><li><a href='#'>2110166-added-document.doc</a></li>
+                <li><a href='#'>2110166-added-document-1.doc</a></li><li><a href='#'>2110166-added-document-2.doc</a></li></ul>"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "redact-supporting-documents",
+                    text: "Change",
+                    visuallyHiddenText: "Supporting documents"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Review outcome"
+              },
+              value: {
+                html: data['review-outcome'] or 'Accepted'
+              },
+              actions: {
+                items: [
+                  {
+                    href: "what-is-outcome-of-review",
+                    text: "Change",
+                    visuallyHiddenText: "Review outcome"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Reason for rejection"
+              },
+              value: {
+                html: "<ul class='govuk-list govuk-list--bullet'>
+                         <li>Reason A</li>
+                         <li>Other: Reasons</li>
+                       </ul>"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "why-rejected",
+                    text: "Change",
+                    visuallyHiddenText: " reasons"
+                  }
+                ]
+              }
+            } if data['review-outcome'] == 'Rejected'
+          ] }) }}
+
+        </div>
+
+        {{ govukButton({
+          text: "Complete the review"
+        }) }}
+
+      </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

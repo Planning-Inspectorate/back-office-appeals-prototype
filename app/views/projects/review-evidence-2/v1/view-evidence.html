@@ -1,0 +1,100 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "New evidence from the appellant" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% if data['documents-added'] %}
+        <div class="govuk-notification-banner  govuk-notification-banner--success" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+          <div class="govuk-notification-banner__header">
+            <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+              Success
+            </h2>
+          </div>
+          <div class="govuk-notification-banner__content">
+            <p class="govuk-notification-banner__heading">
+              Supporting documents uploaded
+            </p>
+          </div>
+        </div>
+      {% endif %}
+
+      <span class="govuk-caption-l">Appeal 2110166</span>
+      <h1 class="govuk-heading-l">
+        {{ title }}
+      </h1>
+
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <div class="pins-panel">
+        <dl class="govuk-summary-list govuk-!-margin-bottom-0">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-width-one-quarter">
+              New evidence
+            </dt>
+            <dd class="govuk-summary-list__value long-answers govuk-!-width-two-thirds">
+              <p class="govuk-body">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus.
+                Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus.
+                Mauris nulla erat, posuere ut nisi vitae, pulvinar gravida arcu.
+                <br><br>
+                Morbi ac mauris enim. Curabitur magna lacus, eleifend in euismod in, accumsan convallis velit. Quisque bibendum urna id molestie hendrerit. Cras mattis mi non lobortis eleifend.
+                Quisque nisl purus, sollicitudin interdum convallis a, tristique vulputate mi. Mauris eget nisl in massa mollis luctus. Vestibulum consectetur maximus cursus. Integer molestie ipsum et nunc eleifend venenatis.
+                Aliquam posuere dui et felis tempor tristique. Aenean porta vehicula imperdiet. Nunc sed egestas risus, ut fringilla orci. Proin lobortis sapien interdum nunc iaculis rutrum. Phasellus consectetur vitae dui in vulputate.
+              </p>
+            </dd>
+            <dd class="govuk-summary-list__actions">
+
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Supporting documents
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+              {% if data['no-documents'] != 'yes' %}
+              <ul class="govuk-list govuk-list--bullet">
+                <li>
+                  <a href='#' class='govuk-link govuk-link--no-visited-state'>
+                    {{(data ['upload-extra-document'] or 'appeal-2110166-added-document.doc')}}
+                  </a>
+                </li>
+                <li>
+                  <a href='#' class='govuk-link govuk-link--no-visited-state'>
+                    {{(data ['upload-extra-document'] or 'appeal-2110166-added-document-1.doc')}}
+                  </a>
+                </li>
+                <li>
+                  <a href='#' class='govuk-link govuk-link--no-visited-state'>
+                    {{(data ['upload-extra-document'] or 'appeal-2110166-added-document-2.doc')}}
+                  </a>
+                </li>
+              </ul>
+              {% else %}
+                Not provided
+              {% endif %}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="redact-supporting-documents">
+                Manage<span class="govuk-visually-hidden"> supporting documents</span></a> |
+              <a class="govuk-link" href="upload-add-doc">
+                Add<span class="govuk-visually-hidden"> supporting documents</span>
+              </a>
+            </dd>
+          </div>
+        </dl>
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}

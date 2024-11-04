@@ -31,8 +31,13 @@
   {
     href: '?evidence-review-done=&lpa-evidence-review-done=',
     text: 'Reset'
-  }
-] %}
+  },
+  {
+    href: '/projects/redetermination-stage-2-final-comments-review/v1/index?list=personal',
+    text: 'Review final comments'
+  } if data['new-evidence-shared'] == 'Yes' and data['case-stage'] == 'new-final-comments'
+]
+%}
 
 {% block content %}
 

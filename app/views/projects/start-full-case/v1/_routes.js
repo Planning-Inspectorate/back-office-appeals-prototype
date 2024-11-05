@@ -54,7 +54,7 @@ router.post('/add-hearing-details/address', function (req, res) {
 
 
 router.post('/add-hearing-details/check', function (req, res) {
-  req.flash('success', 'Hearing details added')
+  req.flash('success', 'Hearing set up')
   res.redirect('../case-details')
 })
 

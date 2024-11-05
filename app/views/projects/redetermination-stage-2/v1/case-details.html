@@ -31,8 +31,13 @@
   {
     href: '?evidence-review-done=&lpa-evidence-review-done=',
     text: 'Reset'
-  }
-] %}
+  },
+  {
+    href: '/projects/redetermination-stage-2-final-comments-review/v1/index?list=personal',
+    text: 'Review final comments'
+  } if data['new-evidence-shared'] == 'Yes' and data['case-stage'] == 'new-final-comments'
+]
+%}
 
 {% block content %}
 
@@ -83,7 +88,7 @@
       {% endif %}
 
       <!--	<span class="govuk-caption-l">Appeal 2110166</span> -->
-      <span class="govuk-caption-xl">Appeal 2114328</span>
+      <span class="govuk-caption-xl">Appeal 2110166</span>
     	<h1 class="govuk-heading-xl">
         {{ title }}
       </h1>

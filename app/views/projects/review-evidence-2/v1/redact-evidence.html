@@ -1,9 +1,11 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Redact LPA statement" %}
+{% set subject = "evidence from Rule 6 party" %}
+
+{% set title = "Redact "+subject %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
-{% set statementContent = "Morbi ac mauris enim. Curabitur magna lacus, eleifend in euismod in, accumsan convallis velit. Quisque bibendum urna id molestie hendrerit. Cras mattis mi non lobortis eleifend. Quisque nisl purus, sollicitudin interdum convallis a, tristique vulputate mi. Mauris eget nisl in massa mollis luctus. Vestibulum consectetur maximus cursus. Integer molestie ipsum et nunc eleifend venenatis. Aliquam posuere dui et felis tempor tristique. Aenean porta vehicula imperdiet. Nunc sed egestas risus, ut fringilla orci. Proin lobortis sapien interdum nunc iaculis rutrum. Phasellus consectetur vitae dui in vulputate." %}
+{% set evidenceContent = "Morbi ac mauris enim. Curabitur magna lacus, eleifend in euismod in, accumsan convallis velit. Quisque bibendum urna id molestie hendrerit. Cras mattis mi non lobortis eleifend. Quisque nisl purus, sollicitudin interdum convallis a, tristique vulputate mi. Mauris eget nisl in massa mollis luctus. Vestibulum consectetur maximus cursus. Integer molestie ipsum et nunc eleifend venenatis. Aliquam posuere dui et felis tempor tristique. Aenean porta vehicula imperdiet. Nunc sed egestas risus, ut fringilla orci. Proin lobortis sapien interdum nunc iaculis rutrum. Phasellus consectetur vitae dui in vulputate." %}
 
 {% block content %}
   <div class="govuk-grid-row">
@@ -36,15 +38,15 @@
           <div class="govuk-grid-column-one-half">
 
             {{ govukTextarea({
-              name: "redactedStatement",
-              id: "redactedStatement",
+              name: "redactedEvidence",
+              id: "redactedEvidence",
               rows: "12",
               label: {
-                html: "Redacted statement",
+                html: "Redacted evidence",
                 classes: "govuk-label--m",
                 isPageHeading: false
               },
-              value: statementContent
+              value: evidenceContent
             }) }}
 
             <p class="govuk-body">
@@ -52,17 +54,17 @@
                 Redact
               </a>
             </p>
-            
+
             {{ govukButton({
               text: "Continue"
             }) }}
           </div>
 
           <div class="govuk-grid-column-one-half">
-            <h2 class="govuk-heading-m">Unredacted statement</h2>
+            <h2 class="govuk-heading-m">Unredacted evidence</h2>
 
             <p class="govuk-body">
-              {{ statementContent }}
+              {{ evidenceContent }}
             </p>
 
           </div>

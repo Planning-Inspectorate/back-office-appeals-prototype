@@ -3,45 +3,15 @@
 {% set title = "Cases assigned to you" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
+{% set subject = "evidence from Rule 6 party" %}
+{% set duebydate = 2 | daysInFuture %}
+{% set casestage = "New evidence" %}
+
 {% set back = false %}
 
-{% set prototypeLinks = [
-  {
-    href: '?appellant-fc-review-done=Yes&new-evidence-shared=',
-    text: 'Final comments review done'
-  } if data['appellant-fc-review-done'] != 'Yes',
-  {
-    href: '?appellant-fc-review-done=&new-evidence-shared=',
-    text: 'Final comments review not done'
-  } if data['appellant-fc-review-done'] == 'Yes',
-  {
-    href: '?lpa-fc-review-done=Yes&new-evidence-shared=',
-    text: 'LPA evidence review done'
-  } if data['lpa-fc-review-done'] != 'Yes',
-  {
-    href: '?lpa-fc-review-done=&new-evidence-shared=',
-    text: 'LPA evidence review not done'
-  } if data['lpa-fc-review-done'] == 'Yes',
-  {
-    href: '?appellant-fc-review-done=Yes&lpa-fc-review-done=Yes&new-evidence-shared=',
-    text: 'Final comments reviewed (ready to share)'
-  },
-  {
-    href: '?appellant-fc-review-done=Yes&lpa-fc-review-done=Yes&new-evidence-shared=Yes',
-    text: 'Final comments shared'
-  },
-  {
-    href: '?appellant-fc-review-done=&lpa-fc-review-done=',
-    text: 'Reset'
-  }
-] %}
-
 {% block content %}
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
-      <!-- banner ? -->
 
       <h1 class="govuk-heading-l">
         {{ title }}
@@ -62,62 +32,62 @@
   		  <div class="govuk-details__text">
 
   		    {{ govukSelect({
-    			  id: "sort",
-    			  name: "sort",
-    			  label: {
-    			    text: "Show cases with status"
-    			  },
-    			  items: [
-    			    {
-    			      value: "all",
-    			      text: "All",
-    			      selected: true
-    			    },
-    			    {
-    			      value: "ready to start",
-    			      text: "Ready to start"
-    			    },
-    			    {
-    			      value: "LPA questionnaire",
-    			      text: "LPA questionnaire"
-    			    },
-    			    {
-    			      value: "final comment review",
-    			      text: "Final comment review"
-    			    },
-    			    {
-    			      value: "ready final review",
-    			      text: "Ready for final review"
-    			    },
-    			    {
-    			      value: "arrange site visit",
-    			      text: "Arrange site visit"
-    			    },
-    			    {
-    			      value: "completed",
-    			      text: "Completed"
-    			    }
-    			  ]
-    			}) }}
+  			  id: "sort",
+  			  name: "sort",
+  			  label: {
+  			    text: "Show cases with status"
+  			  },
+  			  items: [
+  			    {
+  			      value: "all",
+  			      text: "All",
+  			      selected: true
+  			    },
+  			    {
+  			      value: "ready to start",
+  			      text: "Ready to start"
+  			    },
+  			    {
+  			      value: "LPA questionnaire",
+  			      text: "LPA questionnaire"
+  			    },
+  			    {
+  			      value: "final comment review",
+  			      text: "Final comment review"
+  			    },
+  			    {
+  			      value: "ready final review",
+  			      text: "Ready for final review"
+  			    },
+  			    {
+  			      value: "arrange site visit",
+  			      text: "Arrange site visit"
+  			    },
+  			    {
+  			      value: "completed",
+  			      text: "Completed"
+  			    }
+  			  ]
+  			}) }}
 
-    			<div class="govuk-button-group">
+  			<div class="govuk-button-group">
 
-    			{{ govukButton({
-    				  text: "Apply",
-    				  classes: "govuk-button--secondary"
-    				}) }}
+  			{{ govukButton({
+  				  text: "Apply",
+  				  classes: "govuk-button--secondary"
+  				}) }}
 
-    				<a class="govuk-link" href="#">Clear filter</a>
+  				<a class="govuk-link" href="#">Clear filter</a>
 
-    			</div>
+  			</div>
+
   		  </div>
-
   		</details>
 
   	  <table class="govuk-table">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
-            <th scope="col" class="govuk-table__header">Appeal</th>
+            <th scope="col" class="govuk-table__header">Appeal ID</th>
             <th scope="col" class="govuk-table__header"></th>
             <th scope="col" class="govuk-table__header">Action required</th>
             <th scope="col" class="govuk-table__header">Due by</th>
@@ -126,40 +96,26 @@
         </thead>
         <tbody class="govuk-table__body">
           <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header"><a href="case-details?case-stage=new-final-comments">2110166</a></th>
+            <th scope="row" class="govuk-table__header"><a href="case-details?case-stage=new-evidence">2110122</a></th>
             <td class="govuk-table__cell"></td>
             <td class="govuk-table__cell">
-
-              <!-- new evidence from appellant -->
-              {% if data['appellant-fc-review-done'] != 'Yes' %}
-                <a href="/projects/redetermination-stage-2-final-comments-review/v1/review-final-comments">
-                  Review appellant final comments
-                </a>
-                {% if data['lpa-fc-review-done'] != 'Yes' %}
-                  <br>
+              <!-- not yet reviewed -->
+              {% if data['evidence-review-done'] != 'Yes' %}
+                <a href="review-evidence">Review {{ subject }}</a>
+              {% else %}
+                {% if data ['new-evidence-shared'] != 'Yes' %}
+                  <!-- not yet shared -->
+                  <a href="review-evidence">Share new evidence</a>
                 {% endif %}
               {% endif %}
-
-              <!-- new evidence from LPA -->
-              {% if data['lpa-fc-review-done'] != 'Yes' %}
-                <a href="/projects/redetermination-stage-2-final-comments-review/v1/review-final-comments">
-                  Review LPA final comments
-                </a>
-              {% endif %}
-
-              <!-- both evidence done -->
-              {% if data['appellant-fc-review-done'] == 'Yes' and data['lpa-fc-review-done'] == 'Yes' %}
-                {% if data ['final-comments-shared'] != 'Yes' %}
-                  <a href="share-final-comments" class="govuk-link govuk-link--no-visited-state">
-                    Share final comments
-                  </a>
-                {% endif %}
-              {% endif %}
-
             </td>
-            <td class="govuk-table__cell"></td>
-            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--orange">New final comments</strong></td>
+            <td class="govuk-table__cell">{{ duebydate }}</td>
+            <td class="govuk-table__cell">
+              <strong class="govuk-tag govuk-tag--purple">{{ casestage }}</strong>
+            </td>
           </tr>
+
+          <!-- following dummy appeals -->
           <tr class="govuk-table__row">
             <th scope="row" class="govuk-table__header"><a href="case.html?status=lpa-questionnaire">2110167</a></th>
             <td class="govuk-table__cell"></td>
@@ -251,7 +207,7 @@
             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Lead</strong></td>
             <td class="govuk-table__cell"><a href="#">Review final comments</a></td>
             <td class="govuk-table__cell">13 July 2023</td>
-            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--orange">Final comments review</strong></td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--orange">Final comment review</strong></td>
           </tr>
 
         </tbody>

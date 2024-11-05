@@ -1,6 +1,10 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Why are you rejecting the final comments?" %}
+{% set reasonA = "Reason A" %}
+{% set reasonB = "Reason B" %}
+{% set reasonC = "Reason C" %}
+
+{% set title = "Why are you rejecting the evidence?" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% block content %}
@@ -28,7 +32,7 @@
   				{{ govukInput({
   				  id: "what-reason",
   				  name: "what-reason",
-  				  classes: "govuk-!-margin-bottom-3"
+  				  classes: "govuk-!-margin-bottom-4"
   				}) }}
 
         {% endcall %}
@@ -50,22 +54,26 @@
             name: "reason-incomplete",
             items: [
               {
-                value: "Libellous comments",
-                text: "Libellous comments"
-              } ,
-            {
-              value: "Sensitive information",
-              text: "Sensitive information"
-            } ,
-            {
-              value: "Other",
-              text: "Other",
-              conditional: {
-                html: addReason
-              }
-            }]
-          })
-        }}
+                value: reasonA,
+                text: reasonA
+              },
+              {
+                value: reasonB,
+                text: reasonB
+              },
+              {
+                value: reasonC,
+                text: reasonC
+              },
+              {
+                value: "Other",
+                text: "Other",
+                conditional: {
+                  html: addReason
+                }
+              }]
+            })
+          }}
 
         {{ govukButton({
           text: "Continue"

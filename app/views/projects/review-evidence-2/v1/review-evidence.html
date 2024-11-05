@@ -1,6 +1,10 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "New evidence from the appellant" %}
+{% set subject = "evidence from Rule 6 party" %}
+{% set duebydate = 2 | daysInFuture %}
+{% set casestage = "New evidence" %}
+
+{% set title = 'Review '+subject %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% block content %}
@@ -37,7 +41,7 @@
       <dl class="govuk-summary-list govuk-!-margin-bottom-0">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            New evidence
+            Evidence
           </dt>
           <dd class="govuk-summary-list__value long-answers">
             <p class="govuk-body">
@@ -51,12 +55,10 @@
             </p>
           </dd>
           <dd class="govuk-summary-list__actions">
-            
+
           </dd>
         </div>
-      </dl>
 
-      <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Supporting documents
@@ -97,5 +99,47 @@
 
     </div>
   </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <!-- accept or reject the statement -->
+      <form method="post" class="govuk-!-margin-top-6">
+
+        <!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
+        {{ govukRadios({
+          name: "review-outcome",
+          fieldset: {
+            legend: {
+              text: "What is the outcome of your review?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+           {
+              value: "Accepted",
+              text: "Accept evidence"
+            },
+           {
+              value: "Accepted with redaction",
+              text: "Redact and accept evidence"
+            },
+            {
+              value: "Rejected",
+              text: "Reject evidence"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
 
 {% endblock %}

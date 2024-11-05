@@ -9,10 +9,10 @@ router.get('*', function(req, res, next){
 
 // see if the IP gave us an address
 router.post('/planning-obligation-review', function (req, res) {
-  if (req.session.data['planning-obligation-review-decision'] == 'Valid') {
-    res.redirect('check-your-answers')
-  } else {
+  if (req.session.data['planning-obligation-review-decision'] == 'Reject planning obligation') {
     res.redirect('why-invalid')
+  } else {
+    res.redirect('check-your-answers')
   }
 })
 

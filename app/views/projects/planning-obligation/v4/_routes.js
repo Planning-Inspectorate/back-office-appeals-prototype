@@ -17,6 +17,10 @@ router.post('/planning-obligation-review', function (req, res) {
 })
 
 // uploading a new planning obligation
+router.post('/upload-document', function (req, res) {
+  res.redirect('upload-document-details')
+})
+
 router.post('/upload-document-details', function (req, res) {
   res.redirect('upload-document-date')
 })
@@ -27,7 +31,7 @@ router.post('/upload-document-date', function (req, res) {
 })
 
 router.post('/upload-document-check-your-answers', function (req, res) {
-  req.flash('success', 'Document added')
+  req.flash('success', 'Planning obligation added')
   res.redirect('obligation-review-documents')
 })
 

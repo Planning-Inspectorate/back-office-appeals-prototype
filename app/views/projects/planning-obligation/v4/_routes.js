@@ -9,14 +9,18 @@ router.get('*', function(req, res, next){
 
 // see if the IP gave us an address
 router.post('/planning-obligation-review', function (req, res) {
-  if (req.session.data['planning-obligation-review-decision'] == 'Valid') {
-    res.redirect('check-your-answers')
-  } else {
+  if (req.session.data['planning-obligation-review-decision'] == 'Reject planning obligation') {
     res.redirect('why-invalid')
+  } else {
+    res.redirect('check-your-answers')
   }
 })
 
 // uploading a new planning obligation
+router.post('/upload-document', function (req, res) {
+  res.redirect('upload-document-details')
+})
+
 router.post('/upload-document-details', function (req, res) {
   res.redirect('upload-document-date')
 })
@@ -27,7 +31,7 @@ router.post('/upload-document-date', function (req, res) {
 })
 
 router.post('/upload-document-check-your-answers', function (req, res) {
-  req.flash('success', 'Document added')
+  req.flash('success', 'Planning obligation added')
   res.redirect('obligation-review-documents')
 })
 

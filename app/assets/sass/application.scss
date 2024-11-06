@@ -11,6 +11,10 @@
 @import "components/upload";
 @import "components/add-another";
 
+// styles for the document library project
+@import "PINS-header--internal"; // dark green internal pins header
+@import "pins/library-subnav"; // extra styles for library subnav
+
 // Add extra styles here
 
 $govuk-font-family: Helvetica, Arial, sans-serif;

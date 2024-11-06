@@ -1,0 +1,227 @@
+{% extends "layouts/PINS-document-library-service.html" %}
+
+{% set title = "Advertisement appeals" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = false %}
+
+{% block content %}
+
+  {% if not data['sidenav'] %}
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full">
+
+        <section class="govuk-!-margin-bottom-6 library-subnav">
+
+          {{ mojPrimaryNavigation({
+            label: 'Primary navigation',
+            items: [
+              {
+                text: 'ITM',
+                href: '#'
+              },
+              {
+                text: 'PINS notes',
+                href: '#'
+              },
+              {
+                text: 'NPPF',
+                href: '#'
+              },
+              {
+                text: 'PPG',
+                href: '#'
+              },
+              {
+                text: 'TCPA 1990',
+                href: '#'
+              },
+              {
+                text: 'GDPO',
+                href: '#'
+              },
+              {
+                text: 'UCO',
+                href: '#'
+              },
+              {
+                text: 'DMPO',
+                href: '#'
+              },
+              {
+                text: 'PA 2008',
+                href: '#'
+              }
+            ]
+          }) }}
+
+        </section>
+
+        {% include "/includes/document-library/breadcrumbs.html" %}
+
+      </div>
+    </div>
+  {% endif %}
+
+  <div class="govuk-grid-row">
+
+    {% if data['sidenav'] %}
+    <div class="govuk-grid-column-one-quarter">
+      <ul class="govuk-list govuk-list-bullet">
+        <li>
+          <a href="#common" class="govuk-link--no-visited-state govuk-link--no-underline">
+            ITM
+          </a>
+        </li>
+        <li>
+          <a href="#written-reps" class="govuk-link--no-visited-state govuk-link--no-underline">
+            PINS notes
+          </a>
+        </li>
+        <li>
+          <a href="#hearings" class="govuk-link--no-visited-state govuk-link--no-underline">
+            NPPF
+          </a>
+        </li>
+        <li>
+          <a href="#spikes" class="govuk-link--no-visited-state govuk-link--no-underline">
+            PPG
+          </a>
+        </li>
+        <li>
+          <a href="#spikes" class="govuk-link--no-visited-state govuk-link--no-underline">
+            TCPA 1990
+          </a>
+        </li>
+        <li>
+          <a href="#spikes" class="govuk-link--no-visited-state govuk-link--no-underline">
+            GDPO
+          </a>
+        </li>
+        <li>
+          <a href="#spikes" class="govuk-link--no-visited-state govuk-link--no-underline">
+            UCO
+          </a>
+        </li>
+        <li>
+          <a href="#spikes" class="govuk-link--no-visited-state govuk-link--no-underline">
+            DMPO
+          </a>
+        </li>
+        <li>
+          <a href="#spikes" class="govuk-link--no-visited-state govuk-link--no-underline">
+            PA 2008
+          </a>
+        </li>
+
+      </ul>
+    </div>
+
+    <!-- main content in 3/4 width -->
+    <div class="govuk-grid-column-three-quarters">
+      {% include "/includes/document-library/breadcrumbs.html" %}
+
+  {% else %}
+
+    <!-- with no nav main content in 2/3 width -->
+    <div class="govuk-grid-column-two-thirds">
+  {% endif %}
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      <p class="govuk-body-l">
+        <a href="#">
+          advertisement-appeals.doc
+        </a>
+      </p>
+
+      <section>
+
+        <style>
+          .appeal-details .govuk-summary-list__key,
+          .appeal-details .govuk-summary-list__value,
+          .appeal-details .govuk-summary-list__actions {
+            padding-top: .2rem;
+            padding-bottom: 0;
+          }
+        </style>
+
+        <dl class="govuk-summary-list appeal-details govuk-summary-list--no-border govuk-!-margin-top-6">
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-width-one-third">
+              Alternative name
+            </dt>
+            <dd class="govuk-summary-list__value">
+              ITM - Themed Chapter
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Publication date
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ 3 | daysAgo }}
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Authors
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <a href="#" class="govuk-link">
+                The Planning Inspectorate
+              </a>
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Series
+            </dt>
+            <a href="#" class="govuk-link">
+              Inspector training manual
+            </a>
+          </div>
+
+        </dl>
+
+      </section>
+
+      <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+      <h2 class="govuk-heading-m">
+        Classification
+      </h2>
+
+      <ul class="govuk-list">
+        <li>
+          <a href="#" class="govuk-link">
+            Offshore
+          </a>
+        </li>
+        <li>
+          <a href="#" class="govuk-link">
+            Online training resources
+          </a>
+        </li>
+        <li>
+          <a href="#" class="govuk-link">
+            Inspector training manual
+          </a>
+        </li>
+        <li>
+          <a href="#" class="govuk-link">
+            PINS advice
+          </a>
+        </li>
+        <li>
+          <a href="#" class="govuk-link">
+            Adverts
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,54 @@
+.pins-internal-header {
+	padding: 1rem 0;
+	display: table;
+  width: 100%;
+  min-height: 35px;
+	background-color: #0b4f42;
+}
+
+.pins-internal-service-name {
+	line-height: 3.3rem;
+}
+
+.pins-internal-service-name__link,
+.pins-internal-service-name__link:active,
+.pins-internal-service-name__link:visited {
+	font-size: 24px;
+	font-weight: 800;
+	font-family: "GDS Transport", arial, sans-serif;
+	color: white;
+	text-decoration: none;
+}
+
+.pins-internal-header-logo {
+	width: 30%;
+	float: left;
+	margin-bottom: 0;
+	border-left: 2px solid #008670;
+}
+
+.pins-internal-header-logo--white {
+	border-left: 2px solid white;
+}
+
+.pins-internal-header-logo__link,
+.pins-internal-header-logo__link:active,
+.pins-internal-header-logo__link:visited,
+.pins-internal-header-logo__link:focus {
+	color: white;
+	text-decoration: none;
+	background-color: none !important;
+}
+
+.pins-internal-header-logo__text {
+	width: 50%;
+	font-size: 1.125rem;
+	font-weight: 400;
+	display: flex;
+  vertical-align: top;
+  margin: 0 0 0 0;
+	margin-top: 5px !important;
+	margin-left: 10px !important;
+	line-height: 22px !important;
+	text-underline-offset: 0.1578em;
+}

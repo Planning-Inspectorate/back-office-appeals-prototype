@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-Simple.html" %}
 
-{% set title = "Hearing details" %}
+{% set title = "Hearing date and time" %}
 {% set pageName = title %}
 
 {% set back = true %}
@@ -12,7 +12,7 @@
 
       <form method="post">
         <span class="govuk-caption-l">Appeal 2114328</span>
-        <h1 class="govuk-heading-l">Hearing date and time</h1>
+        <h1 class="govuk-heading-l">{{title}}</h1>
 
         {{ govukDateInput({
           id: "whatever",

@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-Simple.html" %}
 
-{% set title = "Check details and update inquiry details" %}
+{% set title = "Check details and set up inquiry" %}
 {% set pageName = title %}
 
 {% set back = true %}
@@ -8,7 +8,7 @@
 {% block content %}
 
   {% set address %}
-    {{appAddress({ address: data.inquiry.address })}}
+    {{appAddress({ address: data.hearing.address })}}
   {% endset %}
 
   <div class="govuk-grid-row">
@@ -27,26 +27,9 @@
             actions: {
               items: [
                 {
-                  href: "/projects/start-full-case/v4/edit-inquiry-details",
+                  href: "/projects/start-full-case/v4/add-inquiry",
                   text: "Change",
                   visuallyHiddenText: "Inquiry date"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Do you know the time of the inquiry?"
-            },
-            value: {
-              html: data.inquiry.hasTime
-            },
-            actions: {
-              items: [
-                {
-                  href: "/projects/start-full-case/v4/edit-inquiry-details/has-time",
-                  text: "Change",
-                  visuallyHiddenText: "whether you know the inquiry time"
                 }
               ]
             }
@@ -61,16 +44,17 @@
             actions: {
               items: [
                 {
-                  href: "/projects/start-full-case/v4/edit-inquiry-details/time",
+                  href: "/projects/start-full-case/v4/add-inquiry",
                   text: "Change",
                   visuallyHiddenText: "Inquiry time"
                 }
               ]
             }
-          } if data.inquiry.hasTime == 'Yes',
+          },
           {
             key: {
-              text: "Do you know the address of where the inquiry will take place?"
+              text: "Do you know the address of where the inquiry will take place?
+"
             },
             value: {
               html: data.inquiry.hasAddress
@@ -78,16 +62,16 @@
             actions: {
               items: [
                 {
-                  href: "/projects/start-full-case/v4/edit-inquiry-details/has-address",
+                  href: "/projects/start-full-case/v4/add-inquiry/has-address",
                   text: "Change",
-                  visuallyHiddenText: "whether you know the inquiry address"
+                  visuallyHiddenText: "if you know the inquiry address"
                 }
               ]
             }
           },
           {
             key: {
-              text: "Inquiry address"
+              text: "INquiry address"
             },
             value: {
               html: address
@@ -95,13 +79,13 @@
             actions: {
               items: [
                 {
-                  href: "/projects/start-full-case/v4/edit-inquiry-details/address",
+                  href: "/projects/start-full-case/v4/add-inquiry/address",
                   text: "Change",
                   visuallyHiddenText: "Inquiry address"
                 }
               ]
             }
-          } if data.inquiry.hasAddress == 'Yes'
+          } if data.hearing.hasAddress == 'Yes'
         ]
       }) }}
 
@@ -109,7 +93,7 @@
 
       <form method="post">
         {{ govukButton({
-          text: "Update inquiry details"
+          text: "Set up inquiry"
         }) }}
       </form>
 

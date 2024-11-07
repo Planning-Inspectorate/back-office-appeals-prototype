@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-Simple.html" %}
 
-{% set title = "Inquiry date" %}
+{% set title = "Inquiry date and time" %}
 {% set pageName = title %}
 
 {% set back = true %}
@@ -12,13 +12,15 @@
 
       <form method="post">
         <span class="govuk-caption-l">Appeal 2114328</span>
+        <h1 class="govuk-heading-l">{{title}}</h1>
+
         {{ govukDateInput({
           id: "whatever",
           fieldset: {
             legend: {
-              text: title,
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
+              text: "Inquiry date",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
             }
           },
           hint: {
@@ -44,6 +46,21 @@
               classes: "govuk-input--width-4"
             }
           ]
+        }) }}
+
+        {{ govukInput({
+          id: "inquiry[time]",
+          name: "inquiry[time]",
+          label: {
+            text: "Inquiry time",
+            isPageHeading: true,
+            classes: 'govuk-label--m'
+          },
+          hint: {
+            text: "For example, 9am or 2:30pm - enter 12pm for midday"
+          },
+          value: data.inquiry.time or '10am',
+          classes: "govuk-input--width-4"
         }) }}
 
         {{ govukButton({

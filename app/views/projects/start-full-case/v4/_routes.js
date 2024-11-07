@@ -15,7 +15,7 @@ router.post('/start-case/check', function (req, res) {
 // APPEAL PROCEDURE: EDIT
 //
 
-router.post('/edit-appeal-procedure/check', function (req, res) {
+router.post('/edit-procedure/check', function (req, res) {
   req.flash('success', 'Appeal procedure updated')
   res.redirect('../case-details')
 })
@@ -24,24 +24,24 @@ router.post('/edit-appeal-procedure/check', function (req, res) {
 // HEARING: ADD
 //
 
-router.post('/add-hearing-details', function (req, res) {
-  res.redirect('/projects/start-full-case/v4/add-hearing-details/has-address')
+router.post('/add-hearing', function (req, res) {
+  res.redirect('/projects/start-full-case/v4/add-hearing/has-address')
 })
 
-router.post('/add-hearing-details/has-address', function (req, res) {
+router.post('/add-hearing/has-address', function (req, res) {
   if(req.session.data.hearing.hasAddress == 'Yes') {
-    res.redirect('/projects/start-full-case/v4/add-hearing-details/address')
+    res.redirect('/projects/start-full-case/v4/add-hearing/address')
   } else {
-    res.redirect('/projects/start-full-case/v4/add-hearing-details/check')
+    res.redirect('/projects/start-full-case/v4/add-hearing/check')
   }
 })
 
-router.post('/add-hearing-details/address', function (req, res) {
-  res.redirect('/projects/start-full-case/v4/add-hearing-details/check')
+router.post('/add-hearing/address', function (req, res) {
+  res.redirect('/projects/start-full-case/v4/add-hearing/check')
 })
 
 
-router.post('/add-hearing-details/check', function (req, res) {
+router.post('/add-hearing/check', function (req, res) {
   req.flash('success', 'Hearing set up')
   res.redirect('../case-details')
 })
@@ -50,23 +50,23 @@ router.post('/add-hearing-details/check', function (req, res) {
 // HEARING: EDIT
 //
 
-router.post('/edit-hearing-details', function (req, res) {
-  res.redirect('/projects/start-full-case/v4/edit-hearing-details/has-address')
+router.post('/edit-hearing', function (req, res) {
+  res.redirect('/projects/start-full-case/v4/edit-hearing/has-address')
 })
 
-router.post('/edit-hearing-details/has-address', function (req, res) {
+router.post('/edit-hearing/has-address', function (req, res) {
   if(req.session.data.hearing.hasAddress == 'Yes') {
-    res.redirect('/projects/start-full-case/v4/edit-hearing-details/address')
+    res.redirect('/projects/start-full-case/v4/edit-hearing/address')
   } else {
-    res.redirect('/projects/start-full-case/v4/edit-hearing-details/check')
+    res.redirect('/projects/start-full-case/v4/edit-hearing/check')
   }
 })
 
-router.post('/edit-hearing-details/address', function (req, res) {
-  res.redirect('/projects/start-full-case/v4/edit-hearing-details/check')
+router.post('/edit-hearing/address', function (req, res) {
+  res.redirect('/projects/start-full-case/v4/edit-hearing/check')
 })
 
-router.post('/edit-hearing-details/check', function (req, res) {
+router.post('/edit-hearing/check', function (req, res) {
   req.flash('success', 'Hearing updated')
   res.redirect('../case-details')
 })
@@ -111,37 +111,26 @@ router.post('/edit-hearing-estimates/check', function (req, res) {
 // INQUIRY: ADD
 //
 
-router.post('/add-inquiry-details', function (req, res) {
-  res.redirect('/projects/start-full-case/v4/add-inquiry-details/has-time')
+router.post('/add-inquiry', function (req, res) {
+  res.redirect('/projects/start-full-case/v4/add-inquiry/has-address')
 })
 
-router.post('/add-inquiry-details/has-time', function (req, res) {
-  if(req.session.data.inquiry.hasTime == 'Yes') {
-    res.redirect('/projects/start-full-case/v4/add-inquiry-details/time')
-  } else {
-    res.redirect('/projects/start-full-case/v4/add-inquiry-details/has-address')
-  }
-})
 
-router.post('/add-inquiry-details/time', function (req, res) {
-  res.redirect('/projects/start-full-case/v4/add-inquiry-details/has-address')
-})
-
-router.post('/add-inquiry-details/has-address', function (req, res) {
+router.post('/add-inquiry/has-address', function (req, res) {
   if(req.session.data.inquiry.hasAddress == 'Yes') {
-    res.redirect('/projects/start-full-case/v4/add-inquiry-details/address')
+    res.redirect('/projects/start-full-case/v4/add-inquiry/address')
   } else {
-    res.redirect('/projects/start-full-case/v4/add-inquiry-details/check')
+    res.redirect('/projects/start-full-case/v4/add-inquiry/check')
   }
 })
 
-router.post('/add-inquiry-details/address', function (req, res) {
-  res.redirect('/projects/start-full-case/v4/add-inquiry-details/check')
+router.post('/add-inquiry/address', function (req, res) {
+  res.redirect('/projects/start-full-case/v4/add-inquiry/check')
 })
 
 
-router.post('/add-inquiry-details/check', function (req, res) {
-  req.flash('success', 'Inquiry details added')
+router.post('/add-inquiry/check', function (req, res) {
+  req.flash('success', 'Inquiry set up')
   res.redirect('../case-details')
 })
 
@@ -149,37 +138,36 @@ router.post('/add-inquiry-details/check', function (req, res) {
 // INQUIRY: EDIT
 //
 
-router.post('/edit-inquiry-details', function (req, res) {
-  res.redirect('/projects/start-full-case/v4/edit-inquiry-details/has-time')
+router.post('/edit-inquiry', function (req, res) {
+  res.redirect('/projects/start-full-case/v4/edit-inquiry/has-address')
 })
 
-router.post('/edit-inquiry-details/has-time', function (req, res) {
-  if(req.session.data.inquiry.hasTime == 'Yes') {
-    res.redirect('/projects/start-full-case/v4/edit-inquiry-details/time')
-  } else {
-    res.redirect('/projects/start-full-case/v4/edit-inquiry-details/has-address')
-  }
-})
-
-router.post('/edit-inquiry-details/time', function (req, res) {
-  res.redirect('/projects/start-full-case/v4/edit-inquiry-details/has-address')
-})
-
-router.post('/edit-inquiry-details/has-address', function (req, res) {
+router.post('/edit-inquiry/has-address', function (req, res) {
   if(req.session.data.inquiry.hasAddress == 'Yes') {
-    res.redirect('/projects/start-full-case/v4/edit-inquiry-details/address')
+    res.redirect('/projects/start-full-case/v4/edit-inquiry/address')
   } else {
-    res.redirect('/projects/start-full-case/v4/edit-inquiry-details/check')
+    res.redirect('/projects/start-full-case/v4/edit-inquiry/check')
   }
 })
 
-router.post('/edit-inquiry-details/address', function (req, res) {
-  res.redirect('/projects/start-full-case/v4/edit-inquiry-details/check')
+router.post('/edit-inquiry/address', function (req, res) {
+  res.redirect('/projects/start-full-case/v4/edit-inquiry/check')
 })
 
-router.post('/edit-inquiry-details/check', function (req, res) {
-  req.flash('success', 'Inquiry details updated')
+router.post('/edit-inquiry/check', function (req, res) {
+  req.flash('success', 'Inquiry updated')
   res.redirect('../case-details')
+})
+
+
+//
+// INQUIRY: CANCEL
+//
+
+router.post('/cancel-inquiry/', function (req, res) {
+  req.flash('success', 'Inquiry cancelled')
+  delete req.session.data.inquiry
+  res.redirect('/projects/start-full-case/v4/case-details')
 })
 
 //

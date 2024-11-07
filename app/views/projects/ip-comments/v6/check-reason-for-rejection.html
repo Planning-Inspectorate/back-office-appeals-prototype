@@ -90,7 +90,7 @@
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Why are you rejecting the comment?
+            Why was the comment rejected?
           </dt>
           <dd class="govuk-summary-list__value">
             {% if data['reason-format'] == 'list' %}
@@ -155,6 +155,10 @@
         </form>
 
       {% else %}
+
+        <p>
+          We will not send an email to explain why you rejected the comment, as the interested party did not give their email address.
+        </p>
 
         <form action="ip-comments?comment-rejected=yes" method="post">
           {{ govukButton({

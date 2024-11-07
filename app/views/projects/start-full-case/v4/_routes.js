@@ -17,6 +17,24 @@ router.post('/start-case/check', function (req, res) {
 
 router.post('/edit-procedure/check', function (req, res) {
   req.flash('success', 'Appeal procedure updated')
+
+  if(req.session.data.appealProcedure == 'Written representations') {
+    delete req.session.data.hearing
+    delete req.session.data.hearingEstimates
+    delete req.session.data.inquiry
+    delete req.session.data.inquiryEstimates
+  }
+
+  if(req.session.data.appealProcedure == 'Hearing') {
+    delete req.session.data.inquiry
+    delete req.session.data.inquiryEstimates
+  }
+
+  if(req.session.data.appealProcedure == 'Inquiry') {
+    delete req.session.data.hearing
+    delete req.session.data.hearingEstimates
+  }
+
   res.redirect('../case-details')
 })
 

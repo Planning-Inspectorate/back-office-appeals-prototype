@@ -24,10 +24,31 @@
 
     <section class="govuk-!-margin-bottom-6">
 
-    	<h2 class="govuk-heading-m">Version 1
-    		{{govukTag({
+      <h2 class="govuk-heading-m">Version 2
+        {{govukTag({
           text: "In progress",
           classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+        })}}
+      </h2>
+
+      <p class="govuk-body">
+        User can review the LPAs questionnaire answers and edit them.
+      </p>
+
+      {{ govukButton({
+        text: "View prototype",
+        href: "/projects/LPA-s78-questionnaire/v2/case-details?case-stage=questionnaire&questionnaire=received",
+        isStartButton: true
+      }) }}
+
+    </section>
+
+    <section class="govuk-!-margin-bottom-6">
+
+    	<h2 class="govuk-heading-m">Version 1
+    		{{govukTag({
+          text: "Ready for research",
+          classes: "govuk-!-margin-left-2 govuk-tag--blue"
         })}}
     	</h2>
 

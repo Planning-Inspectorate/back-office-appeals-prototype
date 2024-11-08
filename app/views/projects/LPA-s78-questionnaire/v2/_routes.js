@@ -8,7 +8,7 @@ const router = govukPrototypeKit.requests.setupRouter()
 router.get('*', function(req, res, next){
 
   // Change the service name for this feature
-  res.locals['serviceName'] = 'Manage my appeals'
+  res.locals['serviceName'] = 'Casework Back Office System - Appeals'
 
   // Add return to task list
   res.locals['return'] = false
@@ -233,33 +233,20 @@ router.post('/appeal-process/extra-conditions', function (req, res) {
 })
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-// SAVE AND RETURN
-// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-
-router.get('/save-and-return/', function (req, res) {
-  if (req.session.data['applicant-email']) {
-    req.session.data['save-email'] = req.session.data['applicant-email']
-  } else {
-    req.session.data['save-email'] = 'email@example.com'
-  }
-
-  if (req.session.data['save-email-confirmed']) {
-    res.redirect('saved')
-  } else {
-    res.redirect('confirm')
-  }
-})
-
-// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 // REVIEW OUTCOME
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
-router.post('task-list', function (req, res) {
+router.post('/task-list', function (req, res) {
   if (req.session.data['lpaq-outcome'] == 'LPA questionnaire is incomplete') {
-    res.redirect('questionnaire-incomplete');
+    res.redirect('incomplete-lpaq')
   } else {
     res.redirect('check-environmental-statement')
   }
+})
+
+router.post('/check-environmental-statement', function (req, res) {
+  req.flash('success', 'LPA questionnaire complete')
+  res.redirect('case-details?case-stage=statements');
 })
 
 // Add your routes above the module.exports line

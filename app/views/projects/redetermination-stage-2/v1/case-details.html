@@ -67,7 +67,7 @@
       {% if data['evidence-review-done'] != 'Yes' %}
         {% set readyBanner %}
           <p class="govuk-notification-banner__heading">
-            New appellant evidence ready for review. <a class="govuk-notification-banner__link" href="review-evidence">Review</a>
+            New appellant evidence awaiting review. <a class="govuk-notification-banner__link" href="review-evidence">Review</a>
           </p>
         {% endset %}
         {{ govukNotificationBanner({
@@ -79,7 +79,7 @@
       {% if data['lpa-evidence-review-done'] != 'Yes' %}
         {% set readyBannerLPA %}
           <p class="govuk-notification-banner__heading">
-            New LPA evidence ready for review. <a class="govuk-notification-banner__link" href="review-evidence">Review</a>
+            New LPA evidence awaiting review. <a class="govuk-notification-banner__link" href="review-evidence">Review</a>
           </p>
         {% endset %}
         {{ govukNotificationBanner({

@@ -19,7 +19,13 @@ router.post('/review-final-comments', function (req, res) {
 })
 
 router.post('/check-your-answers', function (req, res) {
-  req.flash('success', 'Final comment review complete')
+  if (req.session.data['review-outcome'] == 'Rejected') {
+    req.flash('success', 'Appellant final comments accepted')
+  } else if (req.session.data['review-outcome'] == 'Accepted with redaction') {
+    req.flash('success', 'Appellant final comments redacted and accepted')
+  } else {
+    req.flash('success', 'Appellant final comments accepted')
+  }
   res.redirect('case-details?appellant-fc-review-done=Yes')
 })
 

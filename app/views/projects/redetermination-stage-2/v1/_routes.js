@@ -19,7 +19,13 @@ router.post('/review-evidence', function (req, res) {
 })
 
 router.post('/check-your-answers', function (req, res) {
-  req.flash('success', 'New evidence review complete')
+  if (req.session.data['review-outcome'] == 'Rejected') {
+    req.flash('success', 'Appellant new evidence rejected')
+  } else if (req.session.data['review-outcome'] == 'Accepted with redaction') {
+    req.flash('success', 'Appellant new evidence redacted and accepted')
+  } else {
+    req.flash('success', 'Appellant new evidence accepted')
+  }
   res.redirect('case-details?evidence-review-done=Yes')
 })
 

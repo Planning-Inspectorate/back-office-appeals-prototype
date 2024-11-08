@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% if data['reopen-reason'] == 'High court case' %}
+{% if data['reopen-reason'] == 'Redetermination' %}
   {% set title = "Upload high court documents" %}
 {% else %}
   {% set title = "Upload other documents" %}
@@ -27,6 +27,9 @@
             text: title,
             classes: 'govuk-label--l',
             isPageHeading: true
+          },
+          hint: {
+            text: "The file must be a DOC, DOCX, PDF, TIF, JPG or PNG and be smaller than 25MB"
           }
         }) }}
 

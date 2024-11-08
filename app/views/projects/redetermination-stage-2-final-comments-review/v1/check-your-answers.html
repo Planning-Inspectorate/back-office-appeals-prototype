@@ -1,6 +1,13 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Check your answers and complete the review" %}
+{% if data['review-outcome'] == 'Rejected' %}
+  {% set title = "Check details and reject final comments" %}
+{% elseif data['review-outcome'] == 'Accepted with redaction' %}
+  {% set title = "Check details and redact final comments" %}
+{% else %}
+  {% set title = "Check details and accept final comments" %}
+{% endif %}
+
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% block content %}
@@ -19,7 +26,7 @@
             rows: [
             {
               key: {
-                text: "Unredacted final comments"
+                text: "Unredacted comment"
               },
               value: {
                 html: data['original-statement'] or "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus.
@@ -38,7 +45,7 @@
             },
             {
               key: {
-                text: "Redacted final comments"
+                text: "Redacted comment"
               },
               value: {
                 html: data['redacted-statement'] or " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus.
@@ -74,7 +81,7 @@
             },
             {
               key: {
-                text: "Review outcome"
+                text: "Review decision"
               },
               value: {
                 html: data['review-outcome'] or 'Accepted'

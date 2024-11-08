@@ -1,0 +1,104 @@
+{{ govukSummaryList({
+  classes: 'govuk-!-margin-bottom-9',
+  card: {
+    title: {
+      text: "Consultation responses and representations"
+    }
+  },
+  rows: [
+
+    {
+      key: {
+        html: 'Statutory consultees'
+      },
+      value: {
+        html: 'Text listing the consulted statotory bodies, parish councils and such.'
+      } if data['answers'] != 'empty' else { html: 'Not applicable' },
+      actions: {
+        items: [
+          {
+            href: 'consultation/other-parties-check?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: 'Consultation and standing advice'
+      },
+      value: {
+        html: '<ul><li><a href="" class="govuk-link">Consultation for 155 York Rd 2024.pdf</a></li>
+               <li><a href="" class="govuk-link">Standing advice for 155 York Rd 2024.pdf</a></li></ul>'
+      },
+      actions: {
+        items: [
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Manage<span class="govuk-visually-hidden"> consultation and standing advice</span>'
+          },
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Add<span class="govuk-visually-hidden"> consultation and standing advice</span>'
+          }
+        ]
+      }
+    } if data['answers'] != 'empty',
+    {
+      key: {
+        html: 'Consultation and standing advice'
+      },
+      value: {
+        html: 'Not applicable'
+      },
+      actions: {
+        items: [
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Add<span class="govuk-visually-hidden"> consultation and standing advice</span>'
+          }
+        ]
+      }
+    } if data['answers'] == 'empty',
+    {
+      key: {
+        html: 'Representations from other parties'
+      },
+      value: {
+        html: '<ul><li><a href="" class="govuk-link">Representation A for 155 York Rd 2024.pdf</a></li>
+               <li><a href="" class="govuk-link">Representation B for 155 York Rd 2024.pdf</a></li>
+               <li><a href="" class="govuk-link">Representation C for 155 York Rd 2024.pdf</a></li>
+               <li><a href="" class="govuk-link">Representation D for 155 York Rd 2024.pdf</a></li>
+               <li><a href="" class="govuk-link">Representation E for 155 York Rd 2024.pdf</a></li></ul>'
+      },
+      actions: {
+        items: [
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Manage<span class="govuk-visually-hidden"> representations from other parties</span>'
+          },
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Add<span class="govuk-visually-hidden"> representations from other parties</span>'
+          }
+        ]
+      }
+    } if data['answers'] != 'empty',
+    {
+      key: {
+        html: 'Representations from other parties'
+      },
+      value: {
+        html: 'Not applicable'
+      },
+      actions: {
+        items: [
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Add<span class="govuk-visually-hidden"> representations from other parties</span>'
+          }
+        ]
+      }
+    } if data['answers'] == 'empty'
+  ]
+}) }}

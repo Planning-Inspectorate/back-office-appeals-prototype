@@ -53,6 +53,23 @@
           },
           {
             key: {
+              text: "Estimated number of days needed to carry out the inquiry"
+            },
+            value: {
+              html: data.inquiry.days | days
+            },
+            actions: {
+              items: [
+                {
+                  href: "/projects/start-full-case/v4/add-inquiry/days",
+                  text: "Change",
+                  visuallyHiddenText: "Estimated number of days needed to carry out the inquiry"
+                }
+              ]
+            }
+          },
+          {
+            key: {
               text: "Do you know the address of where the inquiry will take place?
 "
             },

@@ -130,9 +130,12 @@ router.post('/edit-hearing-estimates/check', function (req, res) {
 //
 
 router.post('/add-inquiry', function (req, res) {
-  res.redirect('/projects/start-full-case/v4/add-inquiry/has-address')
+  res.redirect('/projects/start-full-case/v4/add-inquiry/days')
 })
 
+router.post('/add-inquiry/days', function (req, res) {
+  res.redirect('/projects/start-full-case/v4/add-inquiry/has-address')
+})
 
 router.post('/add-inquiry/has-address', function (req, res) {
   if(req.session.data.inquiry.hasAddress == 'Yes') {
@@ -157,6 +160,10 @@ router.post('/add-inquiry/check', function (req, res) {
 //
 
 router.post('/edit-inquiry', function (req, res) {
+  res.redirect('/projects/start-full-case/v4/edit-inquiry/days')
+})
+
+router.post('/edit-inquiry/days', function (req, res) {
   res.redirect('/projects/start-full-case/v4/edit-inquiry/has-address')
 })
 

@@ -796,7 +796,7 @@
                     actions: {
                       items: [
                         {
-                          href: "/projects/start-full-case/v4/add-inquiry/time",
+                          href: "/projects/start-full-case/v4/add-inquiry",
                           text: "Change",
                           visuallyHiddenText: "Inquiry time"
                         }
@@ -867,6 +867,23 @@
                       items: [
                         {
                           href: "/projects/start-full-case/v4/add-inquiry/time",
+                          text: "Change",
+                          visuallyHiddenText: "Inquiry time"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    key: {
+                      text: "Estimated number of days needed to carry out the inquiry"
+                    },
+                    value: {
+                      html: data.inquiry.days
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "/projects/start-full-case/v4/edit-inquiry/days",
                           text: "Change",
                           visuallyHiddenText: "Inquiry time"
                         }

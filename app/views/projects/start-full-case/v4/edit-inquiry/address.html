@@ -20,6 +20,15 @@
         }) %}
 
           {{ govukInput({
+            id: "address-line-0",
+            name: "inquiry[address][name]",
+            label: {
+              text: "Name of venue (optional)"
+            },
+            value: data.inquiry.address.name
+          }) }}
+
+          {{ govukInput({
             id: "address-line-1",
             name: "inquiry[address][line1]",
             label: {

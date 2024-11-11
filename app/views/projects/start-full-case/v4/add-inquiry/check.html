@@ -8,7 +8,7 @@
 {% block content %}
 
   {% set address %}
-    {{appAddress({ address: data.hearing.address })}}
+    {{appAddress({ address: data.inquiry.address })}}
   {% endset %}
 
   <div class="govuk-grid-row">
@@ -71,7 +71,7 @@
           },
           {
             key: {
-              text: "INquiry address"
+              text: "Inquiry address"
             },
             value: {
               html: address
@@ -85,7 +85,7 @@
                 }
               ]
             }
-          } if data.hearing.hasAddress == 'Yes'
+          } if data.inquiry.hasAddress == 'Yes'
         ]
       }) }}
 

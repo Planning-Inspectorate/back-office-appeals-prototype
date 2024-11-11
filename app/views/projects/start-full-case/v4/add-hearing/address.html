@@ -20,6 +20,15 @@
         }) %}
 
           {{ govukInput({
+            id: "address-line-0",
+            name: "hearing[address][name]",
+            label: {
+              text: "Name of venue (optional)"
+            },
+            value: data.hearing.address.name
+          }) }}
+
+          {{ govukInput({
             id: "address-line-1",
             name: "hearing[address][line1]",
             label: {

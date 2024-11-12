@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Select new allocation specialisms" %}
+{% set title = "Allocation specialisms" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% block content %}
@@ -9,24 +9,28 @@
     <div class="govuk-grid-column-two-thirds">
 
       <span class="govuk-caption-l">Appeal 2110166</span>
-      <h1 class="govuk-heading-l">{{title}}</h1>
 
       <form method="post">
 
         {{ govukCheckboxes({
           name: "specialism",
-          classes: "govuk-checkboxes--small",
+          classes: "govuk-checkboxes",
           fieldset: {
             legend: {
-              text: "",
+              text: title,
               isPageHeading: true,
-              classes: "govuk-fieldset__legend--m"
+              classes: "govuk-fieldset__legend--l"
             }
           },
           hint: {
             text: "Select all that apply"
           },
           items: [
+            {
+              value: "General allocation",
+              text: "General allocation",
+              checked: "checked"
+            },
             {
               value: "Schedule 1",
               text: "Schedule 1"
@@ -37,12 +41,7 @@
             },
             {
               value: "Enforcement",
-              text: "Enforcement",
-              checked: "checked"
-            },
-            {
-              value: "General allocation",
-              text: "General allocation"
+              text: "Enforcement"
             },
             {
               value: "Housing-orders",
@@ -62,7 +61,8 @@
             },
             {
               value: "Housing",
-              text: "Housing"
+              text: "Housing",
+              checked: "checked"
             },
             {
               value: "Access",

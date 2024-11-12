@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Select new allocation level" %}
+{% set title = "Allocation level" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% block content %}
@@ -9,7 +9,6 @@
     <div class="govuk-grid-column-two-thirds">
 
       <span class="govuk-caption-l">Appeal 2110166</span>
-      <h1 class="govuk-heading-l">{{title}}</h1>
 
       <form method="post">
 
@@ -17,9 +16,9 @@
           name: "allocation-level",
           fieldset: {
             legend: {
-              text: " ",
+              text: title,
               isPageHeading: true,
-              classes: "govuk-fieldset__legend--m"
+              classes: "govuk-fieldset__legend--l"
             }
           },
           items: [
@@ -29,8 +28,7 @@
             },
             {
               value: "B",
-              text: "B",
-              checked:"checked"
+              text: "B"
             },
             {
               value: "C",
@@ -38,7 +36,8 @@
             },
             {
               value: "D",
-              text: "D"
+              text: "D",
+              checked:"checked"
             },
             {
               value: "E",

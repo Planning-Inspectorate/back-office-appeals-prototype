@@ -30,10 +30,6 @@ router.post('/check-your-answers', function (req, res) {
 })
 
 router.post('/redact-final-comments', function (req, res) {
-  res.redirect('check-redaction')
-})
-
-router.post('/check-redaction', function (req, res) {
   res.redirect('check-your-answers')
 })
 

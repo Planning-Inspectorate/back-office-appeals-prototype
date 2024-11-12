@@ -21,7 +21,7 @@
     text: 'LPA evidence review not done'
   } if data['lpa-evidence-review-done'] == 'Yes',
   {
-    href: '?evidence-review-done=Yes&lpa-evidence-review-done=Yes&new-evidence-shared=',
+    href: '?evidence-review-done=Yes&lpa-evidence-review-done=Yes&new-evidence-shared=&case-stage=new-evidence',
     text: 'Evidence reviewed (ready to share)'
   },
   {
@@ -133,7 +133,7 @@
 
         {{govukTag({
           text: "New statements",
-          classes: "govuk-tag--blue"
+          classes: "govuk-tag--purple"
         })}}
 
         <div class="govuk-!-margin-top-5">

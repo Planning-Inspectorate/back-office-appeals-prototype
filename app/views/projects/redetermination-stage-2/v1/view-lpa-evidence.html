@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "New evidence from the appellant" %}
+{% set title = "New evidence from the LPA" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% block content %}
@@ -50,6 +50,9 @@
               Aliquam posuere dui et felis tempor tristique. Aenean porta vehicula imperdiet. Nunc sed egestas risus, ut fringilla orci. Proin lobortis sapien interdum nunc iaculis rutrum. Phasellus consectetur vitae dui in vulputate.
             </p>
           </dd>
+          <dd class="govuk-summary-list__actions">
+
+          </dd>
         </div>
       </dl>
 
@@ -65,16 +68,6 @@
               <li>
                 <a href='#' class='govuk-link govuk-link--no-visited-state'>
                   {{(data ['upload-extra-document'] or 'appeal-2110166-added-document.doc')}}
-                </a>
-              </li>
-              <li>
-                <a href='#' class='govuk-link govuk-link--no-visited-state'>
-                  {{(data ['upload-extra-document'] or 'appeal-2110166-added-document-1.doc')}}
-                </a>
-              </li>
-              <li>
-                <a href='#' class='govuk-link govuk-link--no-visited-state'>
-                  {{(data ['upload-extra-document'] or 'appeal-2110166-added-document-2.doc')}}
                 </a>
               </li>
             </ul>

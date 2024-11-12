@@ -19,6 +19,25 @@
             rows: [
             {
               key: {
+                text: "New evidence"
+              },
+              value: {
+                html: data['original-statement'] or "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus.
+                Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus.
+                Mauris nulla erat, posuere ut nisi vitae, pulvinar gravida arcu."
+              },
+              actions: {
+                items: [
+                  {
+                    href: "select-allocation",
+                    text: "",
+                    visuallyHiddenText: ""
+                  }
+                ]
+              }
+            } if data['review-outcome'] != 'Accepted with redaction',
+            {
+              key: {
                 text: "Unredacted new evidence"
               },
               value: {
@@ -35,7 +54,7 @@
                   }
                 ]
               }
-            },
+            } if data['review-outcome'] == 'Accepted with redaction',
             {
               key: {
                 text: "Redacted new evidence"
@@ -54,7 +73,7 @@
                   }
                 ]
               }
-            } if data['review-outcome'] == 'Valid with redaction' and data['review-outcome'] != 'Rejected',
+            } if data['review-outcome'] == 'Accepted with redaction',
             {
               key: {
                 text: "Supporting documents"

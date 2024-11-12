@@ -86,13 +86,13 @@
       txtarea.focus();
     }
 
-    {# $('#replaceHint').addClass('app-hidden')
+    $('#replaceHint').addClass('app-hidden')
     $('.govuk-button-group').removeClass('app-hidden')
     $('#redactButton')
       .on('click', getSel)
     $('#undoButton').on('click', function(e) {
       $('#redactedComment')[0].value = $('#redactedComment')[0].defaultValue
-    }) #}
+    })
 
   </script>
 {% endblock %}

@@ -1,0 +1,45 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Is there a redacted version of the IP comment?" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = true %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Appeal 2114328</span>
+
+      <form method="post">
+
+        {{ govukRadios({
+          name: "ip-redaction-status",
+          fieldset: {
+           legend: {
+             text: title,
+             isPageHeading: true,
+             classes: "govuk-fieldset__legend--l"
+           }
+          },
+          items: [
+           {
+             value: "Yes",
+             text: "Yes"
+           },
+           {
+             value: "No",
+             text: "No"
+           }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

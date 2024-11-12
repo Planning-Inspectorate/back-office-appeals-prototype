@@ -1,0 +1,61 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Check answers" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = true %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Appeal 2114328</span>
+    <h1 class="govuk-heading-l">
+      {{ title }}
+    </h1>
+
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {{ govukSummaryList({
+      classes: "govuk-!-margin-bottom-9",
+      rows: [
+        {
+          key: {
+            text: "Interested party’s address",
+            classes: "govuk-!-width-one-third"
+          },
+          value: {
+            html: "4 Aubrey House<br>
+                   Aubrey Road<br>
+                   London<br>
+                   W6 2PP"
+          },
+          actions: {
+            items: [
+              {
+                href: "add-address",
+                text: "Change",
+                visuallyHiddenText: "name"
+              }
+            ]
+          }
+        }
+      ]
+    }) }}
+
+    <form method="post" class="govuk-!-margin-top-2">
+      {{ govukButton({
+        text: "Confirm"
+      }) }}
+    </form>
+  </div>
+</div>
+
+
+
+{% endblock %}

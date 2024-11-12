@@ -1,0 +1,105 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set pageName="Decision date" %}
+
+{% set title = "Check your answers" %}
+
+{% set back = true %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <span class="govuk-caption-l">Appeal 2110166</span>
+    <h1 class="govuk-heading-l">Redact comment from 
+      {{ data ['manual-ip-first-name'] }} {{ data ['manual-ip-last-name'] }}     
+      </h1>
+    <dl class="govuk-summary-list">
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Interested party
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data ['manual-ip-first-name'] }} {{ data ['manual-ip-last-name'] }}
+                </dd>
+              </div>
+              
+              {% if data['manual-ip-email'] %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Email address
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data ['manual-ip-email'] }}
+                </dd>
+              </div>
+              {% endif %}
+
+              {% if data['manual-ip-address-line-1'] %}
+                <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Address
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{ data['manual-ip-address-line-1']}}<br>
+                    {{ data['manual-ip-address-line-2']}}
+                    {% if data ['manual-ip-address-line-2'] %}<br>
+                    {% endif %}
+                    {{ data['manual-ip-address-town']}} 
+                    {% if data['manual-ip-address-county']%}<br>
+                    {% endif %}
+                    {{ data['manual-ip-address-county']}}<br>
+                    {{ data['manual-ip-address-postcode']}}
+                </dd>
+              </div>
+              {% endif %}
+
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Submitted
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  21 Feb 2024
+                </dd>
+              </div>
+           </dl>   
+    </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-half">
+    <h2 class="govuk-heading-m">Original comment</h2>
+    <p>{{ data ['manual-ip-comment'] }}</p>
+ 
+  </div>
+  <div class="govuk-grid-column-one-half">
+    <form action="add-redact-cya" method="post" class="govuk-!-margin-top-2">
+
+      {{ govukTextarea({
+        name: "manual-ip-redactedComment",
+        id: "manual-ip-redactedComment",
+        hint: {
+          html: "Use the box to select the words you want to redact. Repeat until you have finished redacting, then choose continue. "
+        },
+        rows: "6",
+        label: {
+          text: "Make redactions",
+          classes: "govuk-label--m",
+          isPageHeading: false
+        },
+       
+        value: data['manual-ip-comment']
+        
+      }) }}
+
+      <a href="#" class="govuk-button govuk-button--secondary">Redact</a>
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+  </div>
+</div>
+
+{% endblock %}

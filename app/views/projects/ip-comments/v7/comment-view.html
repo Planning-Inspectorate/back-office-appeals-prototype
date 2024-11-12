@@ -1,0 +1,295 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = 'View comment' %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set prototypeLinks = [
+  {
+    href: '?comments-shared=yes',
+    text: 'Comments shared'
+  } if data['comments-shared'] != 'yes',
+  {
+    href: '?comments-shared=',
+    text: 'Comments window is open'
+  } if data['comments-shared'] == 'yes',
+  {
+    href: '?comment-type=doc',
+    text: 'Comment is document'
+  } if data['comment-type'] != 'doc',
+  {
+    href: '?comment-type=data',
+    text: 'Comment is data'
+  } if data['comment-type'] == 'doc',
+
+  {
+    href: '?documents-added=yes',
+    text: 'Attached documents'
+  } if data['documents-added'] != 'yes',
+  {
+    href: '?documents-added=',
+    text: 'No attached documents'
+  } if data['documents-added'] == 'yes',
+
+
+  {
+    href: '?address-added=yes',
+    text: 'Address provided'
+  } if data['address-added'] != 'yes',
+  {
+    href: '?address-added=',
+    text: 'No address provided'
+  } if data['address-added'] == 'yes',
+
+  {
+    href: '?siteVisitRequest=yes',
+    text: 'Site visit requested'
+  } if data['siteVisitRequest'] != 'yes',
+  {
+    href: '?siteVisitRequest=',
+    text: 'No site visit requested'
+  } if data['siteVisitRequest'] == 'yes',
+
+  {
+    href: '?redactedComment=empty',
+    text: 'No redacted comment'
+  } if data['redactedComment'] != 'empty',
+  {
+    href: '?redactedComment=',
+    text: 'With redacted comment'
+  } if data['redactedComment'] == 'empty'
+
+] %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    html: 'Back',
+    href: 'ip-comments-done?redactedComment=&commentReview=&address-added=&&redactedCommentSuccess='
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% if data['documents-added'] %}
+      <div class="govuk-notification-banner  govuk-notification-banner--success" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+        <div class="govuk-notification-banner__header">
+          <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+            Success
+          </h2>
+        </div>
+        <div class="govuk-notification-banner__content">
+          <p class="govuk-notification-banner__heading">
+            Supporting documents added
+          </p>
+        </div>
+      </div>
+    {% elseif data['redactedCommentSuccess'] %}
+      <div class="govuk-notification-banner  govuk-notification-banner--success" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+        <div class="govuk-notification-banner__header">
+          <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+            Success
+          </h2>
+        </div>
+        <div class="govuk-notification-banner__content">
+          <p class="govuk-notification-banner__heading">
+            IP comment redacted
+          </p>
+        </div>
+      </div>
+    {% endif %}
+
+    <span class="govuk-caption-l">Appeal 2114328</span>
+    <h1 class="govuk-heading-l">
+      {{ title }}
+    </h1>
+
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Interested party
+        </dt>
+        <dd class="govuk-summary-list__value govuk-!-width-two-thirds">
+          Ian Smith
+        </dd>
+        <dd class="govuk-summary-list__actions">
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Email
+        </dt>
+        <dd class="govuk-summary-list__value">
+          ian.smith@gmail.com
+        </dd>
+        <dd class="govuk-summary-list__actions">
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Address
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {% if data['address-added'] == 'yes' %}
+            {{ data['manual-ip-address-line-1'] or '7 Bipple Lane' }}<br>
+            {{ data['manual-ip-address-line-2'] or 'Donnie Close' }}
+            {% if data ['manual-ip-address-line-2'] %}<br>
+            {% endif %}
+            {{ data['manual-ip-address-town'] or 'Brickleford'}}
+            {% if data['manual-ip-address-county'] %}<br>
+            {% endif %}
+            {{ data['manual-ip-address-county'] or 'Brickfordshire' }}<br>
+            {{ data['manual-ip-address-postcode'] or 'BF93 2NN' }}
+          {% else %}
+            Not provided
+          {% endif %}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Site visit requested
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {% if data['siteVisitRequest'] %}
+            Yes
+          {% else %}
+            No
+          {% endif %}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          {% if data['siteVisitRequest'] %}
+            <a href="check-remove-site-visit?siteVisitRequest=&address-added=&redactedCommentSuccess=" class="govuk-link">
+              Remove
+            </a>
+          {% endif %}
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Submitted
+        </dt>
+        <dd class="govuk-summary-list__value">
+          26 Nov 2023
+        </dd>
+        <dd class="govuk-summary-list__actions">
+        </dd>
+      </div>
+      {% if data['comment-type'] != 'doc' %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Original comment
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Having reviewed the proposal I would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. David Newton at number 6 The Grove also agrees.
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="comment-redact?redactingfrom=view&redactedCommentSuccess=" class="govuk-link govuk-link--no-visited-state">
+              Redact
+            </a>
+          </dd>
+        </div>
+        {% if data['redactedComment'] != 'empty' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Redacted comment
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Having reviewed the proposal I would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. (Redacted)
+            </dd>
+          </div>
+        {% endif %}
+      {% else %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            IP comment
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Added as document
+          </dd>
+        </div>
+        <!-- <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Redaction status
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['redaction-status'] or 'Unredacted' }}
+          </dd>
+        </div> -->
+      {% endif %}
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Supporting documents
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {% if data['comment-type'] == 'doc' %}
+            <a href="?address-added=&redactedCommentSuccess=" class="govuk-link">
+              4012345-IP-comment.doc
+            </a>
+          {% else %}
+            {% if data['documents-added'] %}
+              <ul class="govuk-list govuk-list--bullet">
+                <li>
+                  <a href='?&address-added=&redactedCommentSuccess=' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document.doc')}}</a>
+                </li>
+                {% if data['anotherdocument'] %}
+                  <li>
+                    <a href='?address-added=&redactedCommentSuccess=' class='govuk-link govuk-link--no-visited-state'>{{(data ['upload-extra-document'] or 'appeal-2114328-added-document-2.doc')}}</a>
+                  </li>
+                {% endif %}
+              </ul>
+            {% else %}
+              Not provided
+            {% endif %}
+          {% endif %}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <!-- if docs have been added -->
+          {% if data['documents-added'] %}
+            <a href='extra-documents?address-added=&redactedCommentSuccess=' class='govuk-link govuk-link--no-visited-state'>
+              Manage<span class="govuk-visually-hidden"> supporting docs</span></a> <span class="govuk-hint">|</span>
+            <a href='upload-extra-supporting-document?address-added=&redactedCommentSuccess=' class='govuk-link govuk-link--no-visited-state'>
+              Add<span class="govuk-visually-hidden"> supporting docs</span>
+            </a>
+          {% else %}
+
+            <!-- if the comment is a doc -->
+            {% if data['comment-type'] == 'doc' %}
+              <a href='extra-documents?address-added=&redactedCommentSuccess=' class='govuk-link govuk-link--no-visited-state'>
+                Manage<span class="govuk-visually-hidden"> supporting docs</span></a><span class="govuk-hint"> | </span>
+            {% endif %}
+
+            <!-- add -->
+            <a href='upload-extra-supporting-document?comment-attachment=view&address-added=&redactedCommentSuccess=' class='govuk-link govuk-link--no-visited-state'>
+              Add<span class="govuk-visually-hidden"> supporting docs</span>
+            </a>
+          {% endif %}
+        </dd>
+      </div>
+    </dl>
+
+    <!-- <p class="govuk-body">
+      <a href='upload-extra-supporting-document' class='govuk-link govuk-link--no-visited-state'>Upload a supporting document to this comment</a>
+    </p> -->
+
+
+    {% if data['comments-shared'] != 'yes' %}
+      <p class="govuk-body">
+        <a href='withdraw-comment-upload-evidence?comment-mode=review&address-added=&redactedCommentSuccess=' class='govuk-link govuk-link--no-visited-state'>Withdraw comment</a>
+      </p>
+    {% endif %}
+
+
+  </div>
+</div>
+
+{% endblock %}

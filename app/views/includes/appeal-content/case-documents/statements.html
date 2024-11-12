@@ -178,6 +178,37 @@
   </td>
 </tr>
 
+{% if data['check-environmental-statement'] == 'Yes' %}
+  <tr class="govuk-table__row">
+    <td class="govuk-table__cell">
+      Environmental statement
+    </td>
+    <td class="govuk-table__cell">
+      {% if data['environmental-statement-added'] == 'Yes' %}
+        <ul class="govuk-list govuk-list--bullet">
+          <li>
+            <a href="#" class="govuk-link">Appeal-2114328-environmental-statement.doc</a>
+          </li>
+        </ul>
+      {% else %}
+        Not received
+      {% endif %}
+    </td>
+    <!-- <td class="govuk-table__cell">
+    </td> -->
+    <td class="govuk-table__cell govuk-!-text-align-right">
+      <a href="#" class="govuk-link govuk-link--no-visited-state">
+        {% if data['environmental-statement-added'] == 'Yes' %}
+          View<span class="govuk-visually-hidden"> environmental statement</span>
+        {% else %}
+          Add<span class="govuk-visually-hidden"> environmental statement</span>
+        {% endif %}
+
+      </a>
+    </td>
+  </tr>
+{% endif %}
+
 <tr class="govuk-table__row">
   <td class="govuk-table__cell">
     Costs (appellant)

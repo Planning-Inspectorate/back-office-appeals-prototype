@@ -1,27 +1,55 @@
 {% extends "layouts/PINS-Simple.html" %}
 
-{% set title = "Expected number of days to carry out the inquiry" %}
+{% set title = "Do you know the expected number of days to carry out the inquiry" %}
 {% set pageName = title %}
 {% set back = true %}
 
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <form method="post">
-        <span class="govuk-caption-l">Appeal 2114328</span>
+
+      {% set daysHtml %}
         {{ govukInput({
           id: "inquiry[days]",
           name: "inquiry[days]",
           label: {
-            text: title,
+            text: 'Expected number of days to carry out the inquiry',
             isPageHeading: true,
-            classes: 'govuk-label--l'
+            classes: 'govuk-label--s'
           },
           value: data.inquiry.days,
-          classes: "govuk-input--width-4",
+          classes: "govuk-input--width-2",
           suffix: {
             text: "days"
           }
+        }) }}
+      {% endset %}
+
+      <form method="post">
+        <span class="govuk-caption-l">Appeal 2114328</span>
+        {{ govukRadios({
+          name: "inquiry[hasDays]",
+          fieldset: {
+            legend: {
+              text: "Do you know the expected number of days to carry out the inquiry?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          value: data.inquiry.hasDays,
+          items: [
+            {
+              value: "Yes",
+              text: "Yes",
+              conditional: {
+                html: daysHtml
+              }
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ]
         }) }}
 
         {{ govukButton({

@@ -37,11 +37,23 @@ router.post('/select-specialism', function (req, res) {
 })
 
 router.post('/redact-statement', function (req, res) {
-  res.redirect('check-redaction')
+  res.redirect('check-allocation-update')
 })
 
-router.post('/check-redaction', function (req, res) {
-  res.redirect('matrix-update')
+router.post('/check-allocation-update', function (req, res) {
+  if (req.session.data['matrix-update'] == 'Yes') {
+    res.redirect('select-allocation')
+  } else {
+    res.redirect('check-your-answers')
+  }
+})
+
+router.post('/select-allocation', function (req, res) {
+  res.redirect('select-specialism')
+})
+
+router.post('/select-specialism', function (req, res) {
+  res.redirect('check-your-answers')
 })
 
 router.post('/why-incomplete', function (req, res) {

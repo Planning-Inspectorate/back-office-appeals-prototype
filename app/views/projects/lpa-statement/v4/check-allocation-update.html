@@ -1,0 +1,55 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Allocation and specialism" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Appeal 2110166</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      <form action="" method="post" class="" novalidate>
+
+        {{ govukInsetText({
+          html: "
+          <p class='govuk-body'>Current status:</p>
+          <ul class='govuk-list govuk-list--bullet'>
+            <li>Level D</li>
+            <li>Housing</li>
+            <li>General allocation</li>
+          </ul>"
+        }) }}
+
+        {{ govukRadios({
+          name: "matrix-update",
+          fieldset: {
+            legend: {
+              text: "Do you need to update the allocation and specialism?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

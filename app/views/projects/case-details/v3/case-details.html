@@ -351,15 +351,6 @@
           </a>
         </li>
         <li>
-          {% if data['section'] == 'site' %}
-            <a href="?section=site" class="govuk-link--no-visited-state govuk-link--no-underline govuk-!-font-weight-bold">
-          {% else %}
-            <a href="?section=site" class="govuk-link--no-visited-state govuk-link--no-underline">
-          {% endif %}
-            Site visit
-          </a>
-        </li>
-        <li>
           {% if data['section'] == 'questionnaire' %}
             <a href="?section=questionnaire" class="govuk-link--no-visited-state govuk-link--no-underline govuk-!-font-weight-bold">
           {% else %}
@@ -375,6 +366,15 @@
             <a href="?section=timetable" class="govuk-link--no-visited-state govuk-link--no-underline">
           {% endif %}
             Timetable
+          </a>
+        </li>
+        <li>
+          {% if data['section'] == 'site' %}
+            <a href="?section=site" class="govuk-link--no-visited-state govuk-link--no-underline govuk-!-font-weight-bold">
+          {% else %}
+            <a href="?section=site" class="govuk-link--no-visited-state govuk-link--no-underline">
+          {% endif %}
+            Site visit
           </a>
         </li>
         <li>

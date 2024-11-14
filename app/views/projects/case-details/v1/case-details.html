@@ -112,15 +112,6 @@
     <!-- header -->
     <div class="govuk-grid-column-two-thirds">
 
-      <!-- <div class="govuk-inset-text">
-        Case stage is <span class="govuk-!-font-weight-bold">{{ data['case-stage'] }}</span><br>
-        Questionnaire is <span class="govuk-!-font-weight-bold">{{ data['questionnaire'] }}</span><br>
-        LPA statement is <span class="govuk-!-font-weight-bold">{{ data['lpa-statement'] }}</span><br>
-        IP comments are <span class="govuk-!-font-weight-bold">{{ data['ipcomments'] }}</span><br>
-        Appellant final comments statement are <span class="govuk-!-font-weight-bold">{{ data['appellant-final-comments'] }}</span><br>
-        LPA final comments are <span class="govuk-!-font-weight-bold">{{ data['lpa-final-comments'] }}</span>
-      </div> -->
-
       {% if data['case-stage'] == 'questionnaire' %}
         <!-- questionnaire -->
         {% if data['questionnaire'] == 'received'%}
@@ -323,7 +314,7 @@
 
       <p class="govuk-body">
         <a href="#" class="govuk-link govuk-link--no-visited-state">
-          Download the case
+          Download case (ZIP, 25MB)
         </a>
       </p>
 

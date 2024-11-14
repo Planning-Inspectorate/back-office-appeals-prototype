@@ -1,0 +1,83 @@
+<h2 class="govuk-visually-hidden">
+  Case overview
+</h2>
+
+{{ govukTable({
+  captionClasses: "govuk-table__caption--m pins-summary-list--bottomless",
+  firstCellIsHeader: true,
+  rows: [
+
+    [
+      {
+        text: "Site address"
+      },
+      {
+        text: "Salubrious Place, Saint Ives TR26 1HL"
+      },
+      {
+        html: "<a href='change-appeal-type.html'>Change</a>",
+        format: "numeric"
+      }
+    ],
+    [
+      {
+        text: "Appeal type"
+      },
+      {
+        text: "Section 78"
+      },
+      {
+        html: "<a href='change-appeal-type.html'>Change</a>",
+        format: "numeric"
+      }
+    ],
+    [
+      {
+        text: "Case procedure"
+      },
+      {
+        text: "Written"
+      },
+      {
+        html: "<a href='#'>Change</a>",
+        format: "numeric"
+      }
+    ],
+    [
+      {
+        text: "Allocation details"
+      },
+      {
+        text: "F / General Allocation"
+      },
+      {
+        html: "<a href='#'>Change</a>",
+        format: "numeric"
+      }
+    ],
+    [
+      {
+        text: "Linked appeals"
+      },
+      {
+        html: "<a href='.'>21/725284</a>"
+      },
+      {
+        html: "<a href='#'>Change</a>",
+        format: "numeric"
+      }
+    ],
+    [
+      {
+        text: "Related appeals"
+      },
+      {
+        html: "<a href='.'>21/725234</a>"
+      },
+      {
+        html: "<a href='#'>Change</a>",
+        format: "numeric"
+      }
+    ]
+  ]
+}) }}

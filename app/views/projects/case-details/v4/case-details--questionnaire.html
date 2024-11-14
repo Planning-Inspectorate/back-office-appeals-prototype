@@ -1,0 +1,53 @@
+<h2 class="govuk-visually-hidden">
+  Local planning authority
+</h2>
+
+{# Tweak the summary list to be smaller #}
+<style>
+  .appeal-details .govuk-summary-list__key,
+  .appeal-details .govuk-summary-list__value,
+  .appeal-details .govuk-summary-list__actions {
+    padding-top: .2rem;
+    padding-bottom: 0;
+  }
+  /* Give some space for the tag being inline now */
+  .app-task-list__section {
+    padding-right: 140px
+  }
+</style>
+
+<dl class="govuk-summary-list appeal-details govuk-summary-list--no-border">
+
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Appeal site
+    </dt>
+    <dd class="govuk-summary-list__value">
+      Salubrious Place, Saint Ives TR26 1HL
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Local planning authority
+    </dt>
+    <dd class="govuk-summary-list__value">
+      Cornwall Council
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Application reference
+    </dt>
+    <dd class="govuk-summary-list__value">
+      22/00118/FULL
+    </dd>
+  </div>
+</dl>
+
+{% include "./task-list__constraints.html" %}
+{% include "./task-list__environmental-impact-assessment.html" %}
+{% include "./task-list__notified.html" %}
+{% include "./task-list__consultation.html" %}
+{% include "./task-list__po-report.html" %}
+{% include "./task-list__site-access.html" %}
+{% include "./task-list__appeal-process.html" %}

@@ -1,0 +1,47 @@
+<h2 class="govuk-visually-hidden">
+  Site
+</h2>
+
+{{ govukTable({
+  captionClasses: "govuk-table__caption--m",
+  firstCellIsHeader: true,
+  rows: [
+    [
+      {
+        text: "Address"
+      },
+      {
+        text: "Salubrious Place, Saint Ives TR26 1HL"
+      },
+      {
+        html: "<a href='change-appeal-type.html'>Change</a>",
+        format: "numeric"
+      }
+    ],
+    [
+      {
+        text: "Visit type",
+        classes: "govuk-!-width-one-third"
+      },
+      {
+        text: "Unaccompanied"
+      },
+      {
+        html: "<a href='site-visit.html'>Change</a>",
+        format: "numeric"
+      }
+    ],
+    [
+      {
+        text: "Site visit"
+      },
+      {
+        text: -3 | daysAgo
+      },
+      {
+        html: "<a href='site-visit.html'>Change</a>",
+        format: "numeric"
+      }
+    ]
+  ]
+}) }}

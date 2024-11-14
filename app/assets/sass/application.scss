@@ -10,6 +10,8 @@
 // extra styles for the footer component
 @import "components/upload";
 @import "components/add-another";
+@import "components/identity-bar";
+@import "components/button-menu";
 
 // styles for the document library project
 @import "PINS-header--internal"; // dark green internal pins header
@@ -18,6 +20,11 @@
 // Add extra styles here
 
 $govuk-font-family: Helvetica, Arial, sans-serif;
+
+h1 .govuk-tag {
+  position: relative;
+  top: -7px;
+}
 
 .app-hidden {
 	display: none;

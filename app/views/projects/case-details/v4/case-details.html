@@ -1,0 +1,111 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Case details" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+
+
+
+{% block beforeContent %}
+
+
+
+{% set identityTitle %}
+    <span class="govuk-!-margin-right-1">Appeal 123456</span>
+    {# <b class="govuk-!-margin-right-1">{{name}}</b> #}
+    {{ govukTag({ text: "Ready for review", classes: 'govuk-tag--green' }) }}
+  {% endset %}
+
+
+  {{ appIdentityBar({
+    title: {
+      html: identityTitle
+    },
+    menus: [{
+      items: [{
+        text: 'Review',
+        action: '#'
+      }]
+    }]
+  }) if 1==2 }}
+{% endblock %}
+{% block content %}
+
+
+
+  {% set html %}
+      <p class="govuk-notification-banner__heading">
+        <a class="govuk-notification-banner__link" href="#">Review LPA questionnaire</a>
+      </p>
+    {% endset %}
+    {{ govukNotificationBanner({
+      html: html
+    }) }}
+
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">Appeal 123456 {{ govukTag({
+      text: "Ready to review"
+    }) }}</h1>
+
+    {{ xGovukSecondaryNavigation({
+    visuallyHiddenTitle: "Secondary menu",
+    classes: 'govuk-!-margin-bottom-6',
+    items: [{
+      text: "Overview",
+      href: "#",
+      current: true
+    }, {
+      text: "Contacts",
+      href: "#"
+    }, {
+      text: "Notes",
+      href: "#"
+    }, {
+      text: "Appellant",
+      href: "#"
+    }, {
+      text: "LPA questionnaire",
+      href: "#"
+    }, {
+      text: "Timetable",
+      href: "#"
+    },
+    {
+      text: "Team",
+      href: "#"
+    },
+    {
+      text: "Case management",
+      href: "#"
+    }]
+  }) }}
+
+  <h1 class="govuk-heading-l">
+    Overview
+  </h1>
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% if data['section'] == 'contacts' %}
+        {% include "/projects/case-details/v3/case-details--contacts.html" %}
+      {% elseif data['section'] == 'casenotes' %}
+        {% include "/projects/case-details/v3/case-details--case-notes.html" %}
+      {% elseif data['section'] == 'appellantcase' %}
+        {% include "/projects/case-details/v3/case-details--appellantcase.html" %}
+      {% elseif data['section'] == 'site' %}
+        {% include "/projects/case-details/v3/case-details--site.html" %}
+      {% elseif data['section'] == 'questionnaire' %}
+        {% include "/projects/case-details/v3/case-details--questionnaire.html" %}
+      {% elseif data['section'] == 'timetable' %}
+        {% include "/projects/case-details/v3/case-details--timetable.html" %}
+      {% elseif data['section'] == 'team' %}
+        {% include "/projects/case-details/v3/case-details--team.html" %}
+      {% elseif data['section'] == 'casemanagement' %}
+        {% include "/projects/case-details/v3/case-details--casemanagement.html" %}
+      {% else %}
+        {% include "/projects/case-details/v3/case-details--overview.html" %}
+      {% endif %}
+    </div>
+  </div>
+
+{% endblock %}

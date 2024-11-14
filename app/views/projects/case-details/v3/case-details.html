@@ -315,7 +315,7 @@
     <div class="govuk-grid-column-one-quarter">
       <ul class="govuk-list govuk-list-bullet">
         <li>
-          {% if data['section'] == 'overview' %}
+          {% if data['section'] == 'overview' or not data['section'] %}
             <a href="?section=overview" class="govuk-link--no-visited-state govuk-link--no-underline govuk-!-font-weight-bold">
           {% else %}
             <a href="?section=overview" class="govuk-link--no-visited-state govuk-link--no-underline">

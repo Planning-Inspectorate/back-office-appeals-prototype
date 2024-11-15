@@ -5,13 +5,25 @@
 
 {% set prototypeLinks = [
   {
+    href: '?case-stage=questionnaire&questionnaire=received&environmental-statement-added=',
+    text: 'Review questionnaire'
+  },
+  {
+    href: '?case-stage=statements&environmental-statement-added=',
+    text: 'Questionnaire done, statements stage'
+  },
+  {
     href: '?environmental-statement-added=Yes',
     text: 'Environmental statement added'
   } if data['environmental-statement-added'] != 'Yes',
   {
     href: '?environmental-statement-added=',
     text: 'No environmental statement'
-  } if data['environmental-statement-added'] == 'Yes'
+  } if data['environmental-statement-added'] == 'Yes',
+  {
+    href: '?case-stage=final-comments',
+    text: 'Final comments stage'
+  }
 ] %}
 
 {% block content %}
@@ -109,6 +121,21 @@
         {% endif %}
 
       {% elseif data['case-stage'] == 'final-comments' %}
+
+        <!-- environmental statement warning -->
+        {% if data['check-environmental-statement'] == 'Yes' %}
+          {% if data['environmental-statement-added'] != 'Yes' %}
+            {% set environmentalStatementWarning %}
+              <p class="govuk-notification-banner__heading">
+                <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">
+                  Add environmental statement</a>
+              </p>
+            {% endset %}
+            {{ govukNotificationBanner({
+              html: environmentalStatementWarning
+            }) }}
+          {% endif %}
+        {% endif %}
 
         <!-- appellant final comments -->
         {% if data['appellant-final-comments'] == 'received'%}

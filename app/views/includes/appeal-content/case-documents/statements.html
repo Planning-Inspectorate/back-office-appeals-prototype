@@ -94,6 +94,78 @@
   </tr>
 {% endif %}
 
+{% if data['procedure'] == 'inquiry'%}
+
+  {% if data['r6statements'] == 'not-received'%}
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell">
+        Rule 6 statements
+      </td>
+      <td class="govuk-table__cell">
+        Not received
+      </td>
+      <!-- <td class="govuk-table__cell">
+      </td> -->
+      <td class="govuk-table__cell govuk-!-text-align-right">
+        <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=" class="govuk-link govuk-link--no-visited-state">
+          Review<span class="govuk-visually-hidden"> interested party comments</span>
+        </a>
+      </td>
+    </tr>
+  {% elseif data['r6statements'] == 'received'%}
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell">
+        Rule 6 statements
+      </td>
+      <td class="govuk-table__cell">
+        Received
+      </td>
+      <!-- <td class="govuk-table__cell">
+        {{ 1 | daysAgo }}
+      </td> -->
+      <td class="govuk-table__cell govuk-!-text-align-right">
+        <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=" class="govuk-link govuk-link--no-visited-state">
+          Review<span class="govuk-visually-hidden"> interested party comments</span>
+        </a>
+      </td>
+    </tr>
+  {% elseif data['r6statements'] == 'complete'%}
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell">
+        Rule 6 statements
+      </td>
+      <td class="govuk-table__cell">
+        Complete
+      </td>
+      <!-- <td class="govuk-table__cell">
+        {{ 10 | daysAgo }}
+      </td> -->
+      <td class="govuk-table__cell govuk-!-text-align-right">
+        <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=" class="govuk-link govuk-link--no-visited-state">
+          View<span class="govuk-visually-hidden"> interested party comments</span>
+        </a>
+      </td>
+    </tr>
+  {% else %}
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell">
+        Rule 6 statements
+      </td>
+      <td class="govuk-table__cell">
+        Not received
+      </td>
+      <!-- <td class="govuk-table__cell">
+      </td> -->
+      <td class="govuk-table__cell govuk-!-text-align-right">
+        <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=" class="govuk-link govuk-link--no-visited-state">
+          Review<span class="govuk-visually-hidden"> interested party comments</span>
+        </a>
+      </td>
+    </tr>
+  {% endif %}
+
+{% endif %}
+
 {% if data['ipcomments'] == 'not-received'%}
   <tr class="govuk-table__row">
     <td class="govuk-table__cell">

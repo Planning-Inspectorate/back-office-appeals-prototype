@@ -27,12 +27,9 @@
         action: '#'
       }]
     }]
-  }) if 1==2 }}
+  }) if 1==2}}
 {% endblock %}
 {% block content %}
-
-
-
   {% set html %}
       <p class="govuk-notification-banner__heading">
         <a class="govuk-notification-banner__link" href="#">Review LPA questionnaire</a>
@@ -57,31 +54,37 @@
       text: "Contacts",
       href: "#"
     }, {
+      text: "Appeal",
+      href: "#"
+    }, {
+      text: "Questionnaire",
+      href: "#"
+    }, {
+      text: "Statements and comments",
+      href: "#"
+    },
+    {
+      text: "Inquiry",
+      href: "#"
+    },
+    {
       text: "Notes",
       href: "#"
-    }, {
-      text: "Appellant",
-      href: "#"
-    }, {
-      text: "LPA questionnaire",
-      href: "#"
-    }, {
-      text: "Timetable",
-      href: "#"
     },
     {
-      text: "Team",
+      text: "Activity",
       href: "#"
-    },
-    {
-      text: "Case management",
+    }, {
+      text: "Other",
       href: "#"
     }]
   }) }}
 
   <h1 class="govuk-heading-l">
     Overview
-  </h1>
+</h1>
+
+  <p><a href="#">Withdraw</a></p>
 
 
   <div class="govuk-grid-row">
@@ -105,6 +108,75 @@
       {% else %}
         {% include "/projects/case-details/v3/case-details--overview.html" %}
       {% endif %}
+
+      <h1 class="govuk-heading-m">Recent case notes</h1>
+
+      <p><a href="#">View notes</a></p>
+
+      <p>Sint non mollit eu in occaecat sit ut anim. Ut ipsum consectetur consequat. Incididunt nostrud laborum id commodo nisi do occaecat commodo non dolore pariatur consequat sint in. Magna dolore sunt non consectetur commodo occaecat.</p>
+
+
+
+
+      <h2 class="govuk-heading-m">Timetable</h2>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Item label"
+            },
+            value: {
+              text: "Item value"
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Item label"
+            },
+            value: {
+              text: "Item value"
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Item label"
+            },
+            value: {
+              text: "Item value"
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+
     </div>
   </div>
 

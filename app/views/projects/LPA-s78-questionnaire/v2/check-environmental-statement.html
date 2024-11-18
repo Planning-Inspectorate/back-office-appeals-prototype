@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Does the case need to be assessed for an environmental statement?" %}
+{% set title = "Does the case need an environmental assessment?" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% set back = true %}
@@ -11,6 +11,18 @@
   <div class="govuk-grid-column-two-thirds">
     <span class="govuk-caption-l">Appeal 2114328</span>
 
+    <h1 class="govuk-heading-l">
+      {{ title }}
+    </h1>
+
+    <p class="govuk-body">
+      If you select yes, email <a href="environmentalservices@planninginspectorate.gov.uk">environmentalservices@planninginspectorate.gov.uk</a> to request an assessment.
+    </p>
+
+    <p class="govuk-body">
+      The deadline for the assessment is {{ 45 | daysInFuture }}.
+    </p>
+
     <form method="post">
 
       {{ govukRadios({
@@ -18,8 +30,8 @@
         fieldset: {
         legend: {
           text: title,
-          isPageHeading: true,
-          classes: "govuk-fieldset__legend--l"
+          isPageHeading: false,
+          classes: "govuk-visually-hidden"
           }
         },
         items: [

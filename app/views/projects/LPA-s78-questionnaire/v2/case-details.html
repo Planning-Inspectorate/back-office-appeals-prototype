@@ -14,11 +14,11 @@
   },
   {
     href: '?environmental-statement-added=Yes',
-    text: 'Environmental statement added'
+    text: 'Environmental assessment added'
   } if data['environmental-statement-added'] != 'Yes',
   {
     href: '?environmental-statement-added=',
-    text: 'No environmental statement'
+    text: 'No Environmental assessment'
   } if data['environmental-statement-added'] == 'Yes',
   {
     href: '?case-stage=final-comments',
@@ -122,13 +122,13 @@
 
       {% elseif data['case-stage'] == 'final-comments' %}
 
-        <!-- environmental statement warning -->
+        <!-- Environmental assessment warning -->
         {% if data['check-environmental-statement'] == 'Yes' %}
           {% if data['environmental-statement-added'] != 'Yes' %}
             {% set environmentalStatementWarning %}
               <p class="govuk-notification-banner__heading">
                 <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">
-                  Add environmental statement</a>
+                  Add environmental assessment</a>
               </p>
             {% endset %}
             {{ govukNotificationBanner({

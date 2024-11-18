@@ -21,6 +21,27 @@
 
 $govuk-font-family: Helvetica, Arial, sans-serif;
 
+.app-break-word {
+	word-break: break-word;
+}
+
+.app-no-wrap {
+	white-space: nowrap;
+}
+
+.app-history {
+  border-top: 1px solid govuk-colour('mid-grey');
+	margin-bottom: govuk-spacing(6);
+}
+
+.app-history__item {
+  border-bottom: 1px solid govuk-colour('mid-grey');
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+
+
 h1 .govuk-tag {
   position: relative;
   top: -7px;

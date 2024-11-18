@@ -1,0 +1,75 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Case history" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal 2110166</span>
+      <h1 class="govuk-heading-l">Case history</h1>
+
+      <div class="app-history">
+        <div class="app-history__item">
+          <p class="govuk-!-margin-bottom-1">The case has progressed to <strong class="govuk-tag govuk-tag--yellow single-line">Withdrawn</strong></p>
+          <p class="govuk-!-font-size-16 govuk-!-margin-bottom-1">15 November 2024 at 3:56pm</p>
+          <p class="govuk-!-font-size-16 govuk-hint govuk-!-margin-bottom-0">adam.silver@planninginspectorate.gov.uk</p>
+        </div>
+        <div class="app-history__item">
+          <p class="govuk-!-margin-bottom-1">Document <a class="govuk-link" href="/appeals-service/appeal-details/4813/appellant-case/manage-documents/144608/1491015d-9de7-4936-8fb8-ecdc8e246408">sample-file.doc</a> uploaded (version 1)</p>
+          <p class="govuk-!-font-size-16 govuk-!-margin-bottom-1">14 September 2024 at 9am</p>
+          <p class="govuk-!-font-size-16 govuk-hint govuk-!-margin-bottom-0">adam.silver@planninginspectorate.gov.uk</p>
+        </div>
+        <div class="app-history__item">
+          <p class="govuk-!-margin-bottom-1">The case has progressed to <strong class="govuk-tag govuk-tag--yellow single-line">LPA questionnaire</strong></p>
+          <p class="govuk-!-font-size-16 govuk-!-margin-bottom-1">1 August 2024 at 9am</p>
+          <p class="govuk-!-font-size-16 govuk-hint govuk-!-margin-bottom-0">Appellant</p>
+        </div>
+        <div class="app-history__item">
+          <p class="govuk-!-margin-bottom-1">The case has progressed to <strong class="govuk-tag govuk-tag--turquoise single-line">Ready to start</strong></p>
+          <p class="govuk-!-font-size-16 govuk-!-margin-bottom-1">12 September 2024 at 10:17am</p>
+          <p class="govuk-!-font-size-16 govuk-hint govuk-!-margin-bottom-0">adam.silver@planninginspectorate.gov.uk</p>
+        </div>
+        <div class="app-history__item">
+          <p class="govuk-!-margin-bottom-1">The case has progressed to <strong class="govuk-tag govuk-tag--orange single-line govuk-!-margin-bottom-">Validation</strong></p>
+          <p class="govuk-!-font-size-16 govuk-!-margin-bottom-1">11 September 2024 at 10:17am</p>
+          <p class="govuk-!-font-size-16 govuk-hint govuk-!-margin-bottom-0">adam.silver@planninginspectorate.gov.uk</p>
+        </div>
+        <div class="app-history__item">
+          <p class="govuk-!-margin-bottom-1">The case officer caseteamofficer.test@planninginspectorate.gov.uk was added to the team</p>
+          <p class="govuk-!-font-size-16 govuk-!-margin-bottom-1">10 September 2024 at 9am</p>
+          <p class="govuk-!-font-size-16 govuk-hint govuk-!-margin-bottom-0">adam.silver@planninginspectorate.gov.uk</p>
+        </div>
+        <div class="app-history__item">
+          <p class="govuk-!-margin-bottom-1">The appellant case was received	</p>
+          <p class="govuk-!-font-size-16 govuk-!-margin-bottom-1">1 August 2024 at 9am</p>
+          <p class="govuk-!-font-size-16 govuk-hint govuk-!-margin-bottom-0">Appellant</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{ govukPagination({
+    next: {
+      href: "#"
+    },
+    items: [
+      {
+        number: 1,
+        current: true,
+        href: "#"
+      },
+      {
+        number: 2,
+        href: "#"
+      },
+      {
+        number: 3,
+        href: "#"
+      }
+    ]
+  }) }}
+
+
+
+{% endblock %}

@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Check IP comment information" %}
+{% set title = "Check details and add interested party comment" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% set back = true %}
@@ -32,7 +32,25 @@
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Address
+            Did the interested party provide an address?
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['add-ip-address-check'] == 'Yes' %}
+              Yes
+            {% else %}
+              No
+            {% endif %}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="#">
+              Change<span class="govuk-visually-hidden"></span>
+            </a>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Interested party’s address
           </dt>
           <dd class="govuk-summary-list__value">
             {% if data['add-ip-address-check'] == 'Yes' %}
@@ -58,7 +76,7 @@
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            IP comment
+            Interested party comment
           </dt>
           <dd class="govuk-summary-list__value">
             <a href="#" class="govuk-link">
@@ -75,7 +93,7 @@
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Redacted status
+            Redaction status
           </dt>
           <dd class="govuk-summary-list__value">
             {{ data['add-ip-comment-redacted-status'] or 'Unredacted' }}
@@ -89,7 +107,7 @@
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Comment date
+            When did you receive the comment?
           </dt>
           <dd class="govuk-summary-list__value">
             {{ 2 | daysAgo }}
@@ -105,7 +123,7 @@
 
       <form method="post" class="govuk-!-margin-top-6">
         {{ govukButton({
-          text: "Confirm"
+          text: "Add comment"
         }) }}
       </form>
 

@@ -1,0 +1,58 @@
+{% extends "layouts/PINS-Simple.html" %}
+
+{% set title = "Hearing details" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+        <span class="govuk-caption-l">Appeal 2114328</span>
+        {# <h1 class="govuk-heading-l">Hearing details</h1> #}
+
+        {{ govukDateInput({
+          id: "whatever",
+          fieldset: {
+            legend: {
+              text: "Hearing date",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "For example, 31 3 2025"
+          },
+          items: [
+            {
+              name: "hearing[date][day]",
+              label: "Day",
+              value: data.hearing.date.day,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "hearing[date][month]",
+              label: "Month",
+              value: data.hearing.date.month,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "hearing[date][year]",
+              label: "Year",
+              value: data.hearing.date.year,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

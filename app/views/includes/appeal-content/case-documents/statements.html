@@ -253,17 +253,19 @@
 {% if data['check-environmental-statement'] == 'Yes' %}
   <tr class="govuk-table__row">
     <td class="govuk-table__cell">
-      Environmental statement
+      Environmental assessment
     </td>
     <td class="govuk-table__cell">
       {% if data['environmental-statement-added'] == 'Yes' %}
-        <ul class="govuk-list govuk-list--bullet">
-          <li>
-            <a href="#" class="govuk-link">Appeal-2114328-environmental-statement.doc</a>
-          </li>
-        </ul>
+        <a href="#" class="govuk-link govuk-link--no-visited-state">
+          Manage<span class="govuk-visually-hidden"> Environmental assessment</span></a> <span style="color:#b1b4b6;font-weight: 100"> |</span>
+        <a href="#" class="govuk-link govuk-link--no-visited-state">
+          Add<span class="govuk-visually-hidden"> Environmental assessment</span>
+        </a>
       {% else %}
-        Not received
+        <a href="#" class="govuk-link govuk-link--no-visited-state">
+          Add<span class="govuk-visually-hidden"> Environmental assessment</span>
+        </a>
       {% endif %}
     </td>
     <!-- <td class="govuk-table__cell">
@@ -271,9 +273,9 @@
     <td class="govuk-table__cell govuk-!-text-align-right">
       <a href="#" class="govuk-link govuk-link--no-visited-state">
         {% if data['environmental-statement-added'] == 'Yes' %}
-          View<span class="govuk-visually-hidden"> environmental statement</span>
+          Manage<span class="govuk-visually-hidden"> Environmental assessment</span>
         {% else %}
-          Add<span class="govuk-visually-hidden"> environmental statement</span>
+          Add<span class="govuk-visually-hidden"> Environmental assessment</span>
         {% endif %}
 
       </a>

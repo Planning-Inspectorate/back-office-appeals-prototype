@@ -1,0 +1,31 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Confirm redacted LPA statement" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Appeal 2110166</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      <section class="long-answers govuk-!-margin-bottom-6" >
+        <p class="govuk-inset-text">
+          Having reviewed the proposal I would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead.
+         </p>
+      </section>
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          href: "cya-redact",
+          text: "Confirm"
+        }) }}
+
+        <a href="redact-lpa-statement" class="govuk-button govuk-button--secondary">
+          Redact again
+        </a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

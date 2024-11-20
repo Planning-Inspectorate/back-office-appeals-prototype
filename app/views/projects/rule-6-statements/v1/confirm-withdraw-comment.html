@@ -1,0 +1,130 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Check details and withdraw comment" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = true %}
+
+{% set prototypeLinks = [
+  {
+    href: '?no-email=yes',
+    text: 'No email provided'
+  } if data['no-email'] != 'yes',
+  {
+    href: '?no-email=',
+    text: 'Email provided'
+  } if data['no-email'] == 'yes'
+] %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Appeal 2114328</span>
+    <h1 class="govuk-heading-l">
+      {{ title }}
+    </h1>
+
+    <!-- new definition list for the reason for rejection -->
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Withdrawal request
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <a href="#" class="govuk-link">
+            {{ data ['upload-withdraw-comment'] or 'appeal-2114328-request-to-withdraw.doc' }}
+          </a>
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="withdraw-comment-upload-evidence">
+            Change<span class="govuk-visually-hidden"> reason for rejection</span>
+          </a>
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Request date
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ 2 | daysAgo }}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="withdraw-comment-date">
+            Change<span class="govuk-visually-hidden"> date of withdrawal request</span>
+          </a>
+        </dd>
+      </div>
+    </dl>
+
+    <!-- warning before the button -->
+    {# {{ govukWarningText({
+      text: "This comment will be withdrawn and deleted",
+      iconFallbackText: "Warning"
+    }) }} #}
+
+
+    {% if data['no-email'] != 'yes' %}
+    <!-- if there is an email, we show a confirmation page/panel -->
+
+      {# {{ govukInsetText({
+        text: "Confirming will inform the IP that their comment has been withdrawn."
+      }) }} #}
+
+      <p>We’ll send an email to the interested party to explain that we’ve withdrawn and deleted their comment.</p>
+
+
+
+  <!-- if there is an email, we show a confirmation page/panel -->
+  <!-- if there is an email, we show a confirmation page/panel -->
+  <!-- if there is an email, we show a confirmation page/panel -->
+  <!-- if there is an email, we show a confirmation page/panel -->
+  <!-- if there is an email, we show a confirmation page/panel -->
+  <!-- if there is an email, we show a confirmation page/panel -->
+
+
+
+
+      <form method="post">
+          {{ govukButton({
+          hrefx: "/projects/ip-comments/v5/comment-withdrawn?comment-withdrawn=",
+          text: "Withdraw comment",
+          classes: "govuk-button--warning"
+        }) }}
+      </form>
+
+    {% else %}
+    <!-- no email given, user goes back to the list -->
+
+      <!-- if you are reviewing -->
+      {% if data['comment-mode'] == 'Review' %}
+
+        <form method="post">
+            {{ govukButton({
+            hrefx: "/projects/ip-comments/v5/ip-comments?comment-withdrawn=yes",
+            text: "Withdraw comment",
+            classes: "govuk-button--warning"
+          }) }}
+        </form>
+      {% else %}
+
+        <form method="post">
+            {{ govukButton({
+            hrefx: "/projects/ip-comments/v5/ip-comments?comment-withdrawn=yes#valid-tab",
+            text: "Withdraw comment",
+            classes: "govuk-button--warning"
+          }) }}
+        </form>
+      {% endif %}
+
+    {% endif %}
+
+  </div>
+</div>
+
+
+
+
+
+{% endblock %}

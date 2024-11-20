@@ -1,0 +1,38 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Enter date document received" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = true %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Appeal 2114328</span>
+      <form method="post">
+
+        {{ govukDateInput({
+          id: "extra-document-received",
+          namePrefix: "extra-document-received",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l "
+            }
+          },
+          hint: {
+            html: "<p class='govuk-hint'>For example, 28 "+ 1 | monthsInFutureNumeric +" "+ 0 | yearsAgo +".</p>"
+          }
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

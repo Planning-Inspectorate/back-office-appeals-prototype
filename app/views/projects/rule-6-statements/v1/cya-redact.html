@@ -1,0 +1,85 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Check details and redact comment" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = true %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Appeal 2114328</span>
+    <h1 class="govuk-heading-l">
+      {{ title }}
+    </h1>
+
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "Rule 6 party"
+          },
+          value: {
+            text: "Saint Rita’s Community Association"
+          }
+        },
+        {
+          key: {
+            text: "Unredacted statement"
+          },
+          value: {
+            html: "Having reviewed the proposal we would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. David Newton at number 6 The Grove also agrees."
+          }
+        },
+        {
+          key: {
+            text: "Redacted statement"
+          },
+          value: {
+            html: "Having reviewed the proposal we would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. (Redacted)"
+          },
+          actions: {
+            items: [
+              {
+                href: "comment-redact",
+                text: "Change",
+                visuallyHiddenText: "redaction"
+              }
+            ]
+          }
+        }
+      ]
+    }) }}
+
+    {% if data['redactingfrom'] == 'review' %}
+
+      <form action="rule-6-statements?redactedStatement=true&commentReview=true#redact-tab" method="post" class="govuk-!-margin-top-2">
+        {{ govukButton({
+          text: "Redact and accept statement"
+        }) }}
+      </form>
+
+    {% else %}
+
+      <form action="comment-view?redactedStatement=&redactedStatementSuccess=true" method="post" class="govuk-!-margin-top-2">
+        {{ govukButton({
+          text: "Confirm redaction"
+        }) }}
+      </form>
+
+    {% endif %}
+
+  </div>
+</div>
+
+
+
+{% endblock %}

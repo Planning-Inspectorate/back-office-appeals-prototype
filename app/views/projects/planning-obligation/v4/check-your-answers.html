@@ -54,7 +54,7 @@
               <a class="govuk-link" href="obligation-review">Change<span class="govuk-visually-hidden"> review decision</span></a>
             </dd>
           </div>
-          {% if data['planning-obligation-review-decision'] == 'Invalid' %}
+          {% if data['planning-obligation-review-decision'] == 'Reject planning obligation' %}
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
                 Reasons
@@ -72,7 +72,7 @@
       </div>
       <div class="govuk-grid-column-two-thirds">
 
-        {% if data['planning-obligation-review-decision'] == 'Invalid' %}
+        {% if data['planning-obligation-review-decision'] == 'Reject planning obligation' %}
           <p class="govuk-body">
             We’ll send an email to the appellant to explain why you rejected their planning obligation.
           </p>

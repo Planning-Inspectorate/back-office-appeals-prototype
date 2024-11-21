@@ -191,11 +191,16 @@
         {% if data['check-environmental-statement'] == 'Yes' %}
           {% if data['environmental-statement-added'] != 'Yes' %}
             {% set environmentalStatementWarning %}
-            
+
               {{ govukWarningText({
-                text: "The case should have an environmental statement.",
+                text: "The case should have an environmental assessment.",
+                classes: " govuk-!-margin-bottom-1",
                 iconFallbackText: "Warning"
               }) }}
+
+              <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">
+                Add environmental assessment
+              </a>
 
             {% endset %}
             {{ govukNotificationBanner({

@@ -3,8 +3,12 @@
 {% set title = "Rule 6 statements" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
-{% set back = true %}
-
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Appeal 2114328",
+    href: "case"
+  }) }}
+{% endblock %}
 
 {% set prototypeLinks = [
   {

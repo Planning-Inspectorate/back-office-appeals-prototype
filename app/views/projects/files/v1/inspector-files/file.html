@@ -1,0 +1,203 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "document-name.pdf" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+{% set back = false %}
+
+{% block beforeContent %}
+  {{ govukBreadcrumbs({
+    classes: 'govuk-!-margin-top-4 govuk-!-margin-bottom-0',
+      items: [
+        {
+          text: "Appeal 12345",
+          href: "/projects/files/v1/case-details"
+        },
+        {
+          text: "Inspector correspondence",
+          href: "/projects/files/v1/inspector-files"
+        },
+        {
+          text: title
+        }
+      ]
+    }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">{{title}} (latest version)</h1>
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Upload new version",
+          classes: 'govuk-button--secondary'
+        }) }}
+        {# <a class="govuk-link" href="#">Upload new version</a> #}
+        <a class="govuk-link" href="#">Download (74KB)</a>
+        <a class="govuk-link" href="#">Remove</a>
+      </div>
+
+      {% set version %}
+        1 &nbsp; {{ govukTag({
+          text: "Current "
+        }) }}
+      {% endset %}
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Name"
+            },
+            value: {
+              html: title
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "File name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Size"
+            },
+            value: {
+              html: '74KB'
+            }
+          } if 1==2,
+          {
+            key: {
+              text: "Download"
+            },
+            value: {
+              html: '<a href="#">'+title+'.pdf (74KB)</a>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "File name"
+                }
+              ]
+            } if 1==2
+          } if 1==2,
+          {
+            key: {
+              text: "Version"
+            },
+            value: {
+              html: version
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Version"
+                }
+              ]
+            }
+          } if 1==2,
+          {
+            key: {
+              text: "Date received"
+            },
+            value: {
+              text: "18 November 2024"
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Date received"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Redaction status"
+            },
+            value: {
+              text: "No redaction reqiuired"
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Redaction status"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Created by"
+            },
+            value: {
+              text: "Adam Silver"
+            }
+          }
+        ]
+      }) }}
+
+
+      {% set item %}
+        <h2 class="govuk-heading-s govuk-!-margin-bottom-1"><a href="./inspector-files/file">name-of-the-document.pdf</a></h2>
+        {{ govukSummaryList({
+          classes: 'govuk-summary-list--no-border app-summary-list--compact app-summary-list--small-text',
+          rows: [
+            {
+              key: {
+                text: "Redaction status"
+              },
+              value: {
+                text: "Not required"
+              }
+            },
+
+            {
+              key: {
+                text: "Date received"
+              },
+              value: {
+                text: "19 November 2024"
+              }
+            },
+            {
+              key: {
+                text: "Version"
+              },
+              value: {
+                html: 1
+              }
+            }
+          ]
+        }) }}
+        <p class="govuk-!-font-size-16 govuk-!-margin-top-2 govuk-!-margin-bottom-0"><a class="govuk-link" href="./inspector-files/file">Remove</a></p>
+      {% endset %}
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">Other versions</h2>
+
+      <div class="app-file-list">
+        {% for boom in [1,2,3] %}
+          <div class="app-file-list__item">
+            {{item | safe}}
+          </div>
+        {% endfor %}
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}

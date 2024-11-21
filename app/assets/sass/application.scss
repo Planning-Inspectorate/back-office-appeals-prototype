@@ -42,6 +42,44 @@ $govuk-font-family: Helvetica, Arial, sans-serif;
 
 
 
+.app-file-list {
+  border-top: 1px solid govuk-colour('mid-grey');
+	margin-bottom: govuk-spacing(6);
+}
+
+.app-file-list__item {
+  border-bottom: 1px solid govuk-colour('mid-grey');
+  padding-top: 10px;
+  padding-bottom: 10px;
+	position: relative;
+
+	.app-file-list__action {
+		position: absolute;
+		right: 5px;
+		top: 5px;
+	}
+
+}
+
+.app-summary-list--compact {
+  margin-bottom: 0;
+
+  .govuk-summary-list__key, .govuk-summary-list__value {
+    padding-bottom: govuk-spacing(0);
+  }
+
+  @include govuk-media-query($from: tablet) {
+    .govuk-summary-list__key {
+      width: 37%;
+    }
+  }
+}
+
+.app-summary-list--small-text {
+	@include govuk-font(16);
+}
+
+
 h1 .govuk-tag {
   position: relative;
   top: -7px;

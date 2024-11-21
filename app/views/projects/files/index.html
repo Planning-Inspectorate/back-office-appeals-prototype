@@ -1,0 +1,30 @@
+{% extends "layouts/PINS-Simple.html" %}
+
+{% set title = "Displaying and managing files" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">{{ title }}</h1>
+
+      <h2 class="govuk-heading-m">Version 1
+        {{govukTag({
+          text: "In progress",
+          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+        })}}
+      </h2>
+
+      {{ govukButton({
+        text: "View prototype",
+        isStartButton: true,
+        href: '/projects/files/v1/case-details.html'
+      }) }}
+
+    </div>
+  </div>
+{% endblock %}

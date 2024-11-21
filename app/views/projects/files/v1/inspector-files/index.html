@@ -1,0 +1,134 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Inspector correspondence" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+{% set back = false %}
+
+{% block beforeContent %}
+  {{ govukBreadcrumbs({
+    classes: 'govuk-!-margin-top-4 govuk-!-margin-bottom-0',
+      items: [
+        {
+          text: "Appeal 12345",
+          href: "/projects/files/v1/case-details"
+        },
+        {
+          text: title
+        }
+      ]
+    }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">{{title}} (8 documents)</h1>
+
+      {{ govukButton({
+        text: "Upload document",
+        classes: 'govuk-button--secondary'
+      }) }}
+
+      {% set item1 %}
+        <p class="govuk-!-margin-bottom-1"><a href="#">the-name-of-the-document (PDF, 74KB, version 1)</a></p>
+          {# <p class="govuk-!-font-size-16 govuk-!-margin-bottom-1">Version 1</p> #}
+          <p class="govuk-!-font-size-16 govuk-!-margin-bottom-1">No redaction required</p>
+          <p class="govuk-!-font-size-16 govuk-hint govuk-!-margin-bottom-0">Created 18 November 2024</p>
+          <p class="govuk-!-margin-bottom-0 app-file-list__action"><a href="./inspector-files/file">Change</a></p>
+      {% endset %}
+
+      {% set item2 %}
+        <h2 class="govuk-heading-s govuk-!-margin-bottom-1"><a href="#">the-name-of-the-document.pdf</a></h2>
+
+        {# <p class="app-file-list__action"><a href="./inspector-files/file">View and change</a></p> #}
+
+        {{ govukSummaryList({
+          classes: 'govuk-summary-list--no-border app-summary-list--compact app-summary-list--small-text',
+          rows: [
+            {
+              key: {
+                text: "Redaction status"
+              },
+              value: {
+                text: "Not required"
+              }
+            },
+            {
+              key: {
+                text: "Date received"
+              },
+              value: {
+                text: "19 November 2024"
+              }
+            },
+            {
+              key: {
+                text: "Version"
+              },
+              value: {
+                html: 1 + ' - <a href="./inspector-files/file">Manage versions</a>'
+              }
+            } if 1==2
+          ]
+        }) }}
+
+        <p class="govuk-!-font-size-16 govuk-!-margin-top-2 govuk-!-margin-bottom-0"><a class="govuk-link" href="./inspector-files/file">Manage versions</a></p>
+      {% endset %}
+
+
+       <div class="app-file-list">
+        <div class="app-file-list__item">
+          {{item2 | safe}}
+        </div>
+        <div class="app-file-list__item">
+          {{item2 | safe}}
+        </div>
+        <div class="app-file-list__item">
+          {{item2 | safe}}
+        </div>
+        <div class="app-file-list__item">
+          {{item2 | safe}}
+        </div>
+        <div class="app-file-list__item">
+          {{item2 | safe}}
+        </div>
+        <div class="app-file-list__item">
+          {{item2 | safe}}
+        </div>
+        <div class="app-file-list__item">
+          {{item2 | safe}}
+        </div>
+        <div class="app-file-list__item">
+          {{item2 | safe}}
+        </div>
+        <div class="app-file-list__item">
+          {{item2 | safe}}
+        </div>
+      </div>
+
+
+      {{ govukPagination({
+        next: {
+          href: "#"
+        },
+        items: [
+          {
+            number: 1,
+            current: true,
+            href: "#"
+          },
+          {
+            number: 2,
+            href: "#"
+          },
+          {
+            number: 3,
+            href: "#"
+          }
+        ]
+      }) }}
+    </div>
+  </div>
+
+{% endblock %}

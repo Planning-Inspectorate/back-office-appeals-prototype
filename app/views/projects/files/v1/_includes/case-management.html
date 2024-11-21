@@ -1,0 +1,57 @@
+<div class="pins-panel">
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          text: "Cross-team correspondence"
+        },
+        value: {
+          text: "No documents"
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Add",
+              visuallyHiddenText: "Cross-team correspondence"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Inspector correspondence	"
+        },
+        value: {
+          text: "8 documents"
+        },
+        actions: {
+          items: [
+            {
+              href: "inspector-files",
+              text: "Change",
+              visuallyHiddenText: "Inspector correspondence	"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Another thing"
+        },
+        value: {
+          text: "1 document"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Change",
+              visuallyHiddenText: "Another thing"
+            }
+          ]
+        }
+      }
+    ]
+  }) }}
+</div>

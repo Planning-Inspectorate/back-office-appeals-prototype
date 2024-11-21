@@ -51,20 +51,17 @@
       href: "#",
       current: true
     }, {
-      text: "Contacts",
-      href: "#"
-    }, {
       text: "Appeal",
       href: "#"
     }, {
       text: "Questionnaire",
       href: "#"
     }, {
-      text: "Statements and comments",
+      text: "Representations",
       href: "#"
     },
     {
-      text: "Inquiry",
+      text: "Site visit",
       href: "#"
     },
     {
@@ -75,7 +72,7 @@
       text: "Activity",
       href: "#"
     }, {
-      text: "Other",
+      text: "Documents",
       href: "#"
     }]
   }) }}
@@ -83,8 +80,6 @@
   <h1 class="govuk-heading-l">
     Overview
 </h1>
-
-  <p><a href="#">Withdraw</a></p>
 
 
   <div class="govuk-grid-row">
@@ -108,15 +103,6 @@
       {% else %}
         {% include "/projects/case-details/v3/case-details--overview.html" %}
       {% endif %}
-
-      <h1 class="govuk-heading-m">Recent case notes</h1>
-
-      <p><a href="#">View notes</a></p>
-
-      <p>Sint non mollit eu in occaecat sit ut anim. Ut ipsum consectetur consequat. Incididunt nostrud laborum id commodo nisi do occaecat commodo non dolore pariatur consequat sint in. Magna dolore sunt non consectetur commodo occaecat.</p>
-
-
-
 
       <h2 class="govuk-heading-m">Timetable</h2>
 
@@ -176,6 +162,126 @@
         ]
       }) }}
 
+      <h2 class="govuk-heading-m">Contacts</h2>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Item label"
+            },
+            value: {
+              text: "Item value"
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Item label"
+            },
+            value: {
+              text: "Item value"
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Item label"
+            },
+            value: {
+              text: "Item value"
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">Team members</h2>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Item label"
+            },
+            value: {
+              text: "Item value"
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Item label"
+            },
+            value: {
+              text: "Item value"
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Item label"
+            },
+            value: {
+              text: "Item value"
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">Withdraw appeal</h2>
+
+
+      <p><a href="#">Withdraw</a></p>
 
     </div>
   </div>

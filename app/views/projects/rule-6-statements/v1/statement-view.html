@@ -1,0 +1,144 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = 'View statement' %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% block backLink %}
+  {{ govukBackLink({
+    html: 'Back',
+    href: 'rule-6-statements'
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Appeal 2114328</span>
+    <h1 class="govuk-heading-l">
+      {{ title }}
+    </h1>
+
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Rule 6 party
+        </dt>
+        <dd class="govuk-summary-list__value govuk-!-width-two-thirds">
+          Saint Rita’s Community Association
+        </dd>
+        <dd class="govuk-summary-list__actions">
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Email
+        </dt>
+        <dd class="govuk-summary-list__value">
+          st-ritas-community-association@live.com
+        </dd>
+        <dd class="govuk-summary-list__actions">
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Address
+        </dt>
+        <dd class="govuk-summary-list__value">
+          11 Market Pl<br>
+          London<br>
+          SE16 3UQ
+        </dd>
+        <dd class="govuk-summary-list__actions">
+
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Site visit requested
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {% if data['siteVisitRequest'] %}
+            Yes
+          {% else %}
+            No
+          {% endif %}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          {% if data['siteVisitRequest'] %}
+            <a href="check-remove-site-visit?siteVisitRequest=&address-added=&redactedStatementSuccess=" class="govuk-link">
+              Remove
+            </a>
+          {% endif %}
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Submitted
+        </dt>
+        <dd class="govuk-summary-list__value">
+          26 Nov 2023
+        </dd>
+        <dd class="govuk-summary-list__actions">
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Original statement
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Having reviewed the proposal we would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. David Newton at number 6 The Grove also agrees.
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a href="statement-redact?redactingfrom=view&redactedStatementSuccess=" class="govuk-link govuk-link--no-visited-state">
+            Redact
+          </a>
+        </dd>
+      </div>
+      {% if data['redactedStatement'] != 'empty' %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Redacted statement
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Having reviewed the proposal we would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. (Redacted)
+          </dd>
+        </div>
+      {% endif %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Supporting documents
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <a href="?address-added=&redactedStatementSuccess=" class="govuk-link">
+            St.Ritas_Community_Association_statement_for_appeal_4012345.doc
+          </a>
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a href='extra-documents?address-added=&redactedStatementSuccess=' class='govuk-link govuk-link--no-visited-state'>
+            Manage<span class="govuk-visually-hidden"> supporting docs</span></a> <span class="govuk-hint">|</span>
+          <a href='upload-extra-supporting-document?address-added=&redactedStatementSuccess=' class='govuk-link govuk-link--no-visited-state'>
+            Add<span class="govuk-visually-hidden"> supporting docs</span>
+          </a>
+        </dd>
+      </div>
+    </dl>
+
+    {% if data['statement-shared'] != 'yes' %}
+      <p class="govuk-body">
+        <a href='withdraw-statement-upload-evidence?statement-mode=review&address-added=&redactedStatementSuccess=' class='govuk-link govuk-link--no-visited-state'>Withdraw statement</a>
+      </p>
+    {% endif %}
+
+
+  </div>
+</div>
+
+{% endblock %}

@@ -94,6 +94,68 @@
   </tr>
 {% endif %}
 
+{% if data['rule6-statement'] == 'not-received' %}
+  <tr class="govuk-table__row">
+    <td class="govuk-table__cell">
+      Rule 6 statements
+    </td>
+    <td class="govuk-table__cell">
+      Not received
+    </td>
+    <!-- <td class="govuk-table__cell">
+    </td> -->
+    <td class="govuk-table__cell govuk-!-text-align-right">
+    </td>
+  </tr>
+{% elseif data['rule6-statement'] == 'complete' %}
+  <tr class="govuk-table__row">
+    <td class="govuk-table__cell">
+      Rule 6 statements
+    </td>
+    <td class="govuk-table__cell">
+      Complete
+    </td>
+    <!-- <td class="govuk-table__cell">
+      {{ 22 | daysAgo }}
+    </td> -->
+    <td class="govuk-table__cell govuk-!-text-align-right">
+      <a href="/projects/rule-6-statements/v1/rule-6-statements" class="govuk-link govuk-link--no-visited-state">
+        View<span class="govuk-visually-hidden"> Rule 6 statements</span>
+      </a>
+    </td>
+  </tr>
+{% elseif data['rule6-statement'] == 'received' %}
+  <tr class="govuk-table__row">
+    <td class="govuk-table__cell">
+      Rule 6 statements
+    </td>
+    <td class="govuk-table__cell">
+      Received
+    </td>
+    <!-- <td class="govuk-table__cell">
+      {{ 22 | daysAgo }}
+    </td> -->
+    <td class="govuk-table__cell govuk-!-text-align-right">
+      <a href="/projects/rule-6-statements/v1/rule-6-statements" class="govuk-link govuk-link--no-visited-state">
+        Review<span class="govuk-visually-hidden"> Rule 6 statements</span>
+      </a>
+    </td>
+  </tr>
+{% else %}
+  <tr class="govuk-table__row">
+    <td class="govuk-table__cell">
+      Rule 6 statements
+    </td>
+    <td class="govuk-table__cell">
+      Not received
+    </td>
+    <!-- <td class="govuk-table__cell">
+    </td> -->
+    <td class="govuk-table__cell govuk-!-text-align-right">
+    </td>
+  </tr>
+{% endif %}
+
 {% if data['procedure'] == 'inquiry'%}
 
   {% if data['r6statements'] == 'not-received'%}

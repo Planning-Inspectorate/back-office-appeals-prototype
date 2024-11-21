@@ -158,6 +158,42 @@
   </td>
 </tr>
 
+<tr class="govuk-table__row">
+  <td class="govuk-table__cell">
+    Environmental assessment
+  </td>
+  <td class="govuk-table__cell">
+    {% if data['environmental-statement-added'] == 'Yes' %}
+    <ul class="govuk-list govuk-list--number">
+      <li>
+        <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=">
+          Appeal environmental assessment matrix {{ 7 | daysAgoDayNumeric }}.{{ 0 | monthsAgoNumeric }}.{{ 0 | yearsAgo }}
+        </a>
+      </li>
+      <li>
+        <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=">
+          Environmental considerations letter to LPA {{ 6 | daysAgoDayNumeric }}.{{ 0 | monthsAgoNumeric }}.{{ 0 | yearsAgo }}
+        </a>
+      </li>
+    </ul>
+
+    {% else %}
+      No documents
+    {% endif %}
+  </td>
+  <!-- <td class="govuk-table__cell">
+  </td> -->
+  <td class="govuk-table__cell govuk-!-text-align-right">
+    <a href="#" class="govuk-link govuk-link--no-visited-state">
+      {% if data['environmental-statement-added'] == 'Yes' %}
+        Change<span class="govuk-visually-hidden"> Environmental assessment</span>
+      {% else %}
+        Add<span class="govuk-visually-hidden"> Environmental assessment</span>
+      {% endif %}
+
+    </a>
+  </td>
+</tr>
 
 <tr class="govuk-table__row">
   <td class="govuk-table__cell">

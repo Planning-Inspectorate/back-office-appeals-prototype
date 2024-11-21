@@ -1,0 +1,103 @@
+{% extends "layouts/PINS-Simple-post-mvp.html" %}
+
+{% set title = "Review proof of evidence and witnesses" %}
+{% set pageName = title + ' - Planning Inspectorate' %}
+
+{% set back = false %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Appeal a planning decision</span>
+    <h1 class="govuk-heading-l">
+      {{ title }}
+    </h1>
+
+  </div>
+  <div class="govuk-grid-column-full">
+
+    {{ govukTable({
+      captionClasses: "govuk-table__caption--m",
+      firstCellIsHeader: true,
+      rows: [
+        [
+          {
+            text: "Typical user",
+            classes: "govuk-!-width-one-quarter"
+          },
+          {
+            html: "Case officers<br>Inspectors"
+          }
+        ],
+        [
+          {
+            text: "User story"
+          },
+          {
+            html: "
+            <ul class='govuk-list govuk-list--bullet'>
+              <li>
+                As a Case Officer,<br>
+                I can review proof of evidence and witnesses (including timings) submitted using the public service,<br>
+                So that the appeal can receive them and share them with other parties.
+              </li>
+              <li>
+                As an Inspector,<br>
+                I can review proof of evidence and witnesses (including timings) received from the public service and checked by Case Officers,<br>
+                So that I have the proper evidence for determination.
+              </li>
+            </ul>"
+          }
+        ],
+        [
+          {
+            text: "Jira ticket"
+          },
+          {
+            html: "
+            <ul class='govuk-list govuk-list--bullet'>
+              <li>
+                <a href='https://pins-ds.atlassian.net/browse/A2-1691'>As a Case Officer I need to see all rule 6 POE, Witnesses and Timings in a list, A2-1691</a>
+              </li>
+              <li>
+                <a href='https://pins-ds.atlassian.net/browse/A2-688'>As a Case Officer I may need to upload the POE, Witnesses & Timings, A2-688</a>
+              </li>
+              <li>
+                <a href='https://pins-ds.atlassian.net/browse/A2-689'>As a Case Officer I need to accept the POE, Witnesses & Timings, A2-689</a>
+              </li>
+              <li>
+                <a href='https://pins-ds.atlassian.net/browse/A2-690'>As a Case Officer, I may need to request changes to POE, Witnesses & Timings, A2-690</a>
+              </li>
+              <li>
+                <a href='https://pins-ds.atlassian.net/browse/A2-691'>As a Case Officer, I may need to update POE, Witnesses & Timings, A2-691</a>
+              </li>
+            </ul>
+            "
+          }
+        ]
+      ]
+    }) }}
+
+    <h2 class="govuk-heading-m">Version 1
+      {{govukTag({
+          text: "In progress",
+          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+        })
+      }}
+    </h2>
+
+    <a href="/projects/review-evidence-1/v1/case-details?documentReview=" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
+      View prototype
+      <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+        <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+      </svg></a>
+
+      <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    </div>
+  </div>
+
+{% endblock %}

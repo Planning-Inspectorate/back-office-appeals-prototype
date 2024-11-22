@@ -1,0 +1,39 @@
+{% if data['rule6ProofsReview'] == 'completed' and data['rule6ProofsReviewStatus'] == 'accepted' %}
+
+  {{ govukTable({
+    caption: "Accepted statements",
+    captionClasses: "govuk-table__caption--m govuk-visually-hidden",
+    firstCellIsHeader: false,
+    head: [
+      {
+        text: "Rule 6 party"
+      },
+      {
+        text: "Submitted"
+      },
+      {
+        text: "Action"
+      }
+    ],
+    rows: [
+      [
+          {
+            text: "Saint Rita’s Community Association"
+          },
+          {
+            html: 3 | daysAgo
+          },
+          {
+            html: "<a href='statement-view?acceptedStatement=&address-added=yes&redactedStatement=&statement-withdrawn=&manual-ip-statement=&statement-rejected=&extra-document='>View<span class='govuk-visually-hidden'> statement from Saint Rita’s Community Association</span></a>"
+          }
+      ]
+    ]
+  }) }}
+
+{% else %}
+
+  <p class="govuk-body">
+    Awaiting statements
+  </p>
+
+{% endif %}

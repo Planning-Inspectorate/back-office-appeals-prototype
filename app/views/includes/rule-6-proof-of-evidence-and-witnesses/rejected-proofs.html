@@ -1,0 +1,37 @@
+{% if data['rule6ProofsReview'] == 'completed' and data['rule6ProofsReviewStatus'] == 'rejected' %}
+
+  {{ govukTable({
+    caption: "Rejected statements",
+    captionClasses: "govuk-table__caption--m govuk-visually-hidden",
+    firstCellIsHeader: false,
+    head: [
+      {
+        text: "Rule 6 party"
+      },
+      {
+        text: "Submitted"
+      },
+      {
+        text: "Action"
+      }
+    ],
+    rows: [
+      [
+          {
+            text: "Saint Rita’s Community Association"
+          },
+          {
+            text: 3 | daysAgo
+          },
+          {
+            html: "<a href='comment-view-rejected?acceptedComment=&redactedComment=&comment-withdrawn=&manual-ip-comment=&comment-rejected=&extra-document='>View<span class='govuk-visually-hidden'> comment from Davina Twinee</span></a>"
+          }
+      ]
+  ]
+  }) }}
+
+{% else %}
+  <p class="govuk-body">
+    Awaiting statements
+  </p>
+{% endif %}

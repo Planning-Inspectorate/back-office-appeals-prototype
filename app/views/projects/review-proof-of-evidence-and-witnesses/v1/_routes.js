@@ -44,10 +44,18 @@ router.post('/reject-documents', function (req, res) {
 router.post('/check-your-answers', function (req, res) {
   if (req.session.data['document-review-decision'] == 'Accept proof of evidence and witnesses') {
     req.flash('success', 'Proof of evidence and witnesses accepted')
-    res.redirect('case-details?documentReview=completed')
+    if (req.session.data['party'] == 'rule6') {
+      res.redirect('rule-6-proofs-and-witnesses?rule6ProofsReview=completed&rule6ProofsReviewStatus=accepted')
+    } else {
+      res.redirect('case-details?appellantProofsReview=completed')
+    }
   } else {
     req.flash('success', 'Proof of evidence and witnesses rejected')
-    res.redirect('case-details?documentReview=completed')
+    if (req.session.data['party'] == 'rule6') {
+      res.redirect('rule-6-proofs-and-witnesses?rule6ProofsReview=completed&rule6ProofsReviewStatus=rejected')
+    } else {
+      res.redirect('case-details?appellantProofsReview=completed')
+    }
   }
 })
 

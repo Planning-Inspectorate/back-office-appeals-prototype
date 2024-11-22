@@ -1,0 +1,50 @@
+{% if data['no-proofs'] %}
+
+  <p class="govuk-body">
+    Awaiting statements
+  </p>
+
+{% else %}
+
+  {{ govukTable({
+    caption: "Awaiting review",
+    captionClasses: "govuk-table__caption--m govuk-visually-hidden",
+    firstCellIsHeader: false,
+    head: [
+      {
+        text: "Rule 6 party"
+      },
+      {
+        text: "Submitted"
+      },
+      {
+        text: "Action"
+      }
+    ],
+    rows: [
+      [
+          {
+            text: "Saint Rita’s Community Association"
+          },
+          {
+            text: 3 | daysAgo
+          },
+          {
+            html: "<a href='document-review?party=rule6&acceptedComment=&redactedStatement=&statement-withdrawn=&manual-ip-statement=&statement-rejected=&extra-document=&new-statement=&documents-added='>Review<span class='govuk-visually-hidden'> statement from Saint Rita’s Community Association</span></a>"
+          }
+      ] if data['rule6ProofsReview'] != 'completed',
+      [
+        {
+            text: "Natural Southwark"
+          },
+          {
+            text: 3 | daysAgo
+          },
+          {
+            html: "<a href='document-review?party=rule6&acceptedComment=&redactedStatement=&statement-withdrawn=&manual-ip-statement=&statement-rejected=&extra-document=&new-statement=&documents-added='>Review<span class='govuk-visually-hidden'> statement from Natural Southwark</span></a>"
+          }
+      ]
+    ]
+  }) }}
+
+{% endif %}

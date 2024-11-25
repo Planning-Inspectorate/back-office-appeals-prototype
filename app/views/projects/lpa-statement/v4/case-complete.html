@@ -435,7 +435,7 @@ type: "success"
                     text: "Appellant case"
                   },
                   {
-                    text: "Valid"
+                    text: "Accept statement"
                   },
                   {
                     text: "22 Jul 2023"
@@ -662,7 +662,7 @@ type: "success"
 
   {% if data['status'] == 'determination' %}
 
-    <form action="" method="post" class="govuk-!-margin-top-6" novalidate>
+    <form action="" method="post" class="govuk-!-margin-top-6" noAccept statementate>
 
       <!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
 
@@ -689,8 +689,8 @@ type: "success"
               text: "Split-decision"
             },
             {
-              value: "invalid~../../issue-decision/v1/decision-date",
-              text: "Invalid"
+              value: "Reject statement~../../issue-decision/v1/decision-date",
+              text: "Reject statement"
             }
           ]
         }) }}

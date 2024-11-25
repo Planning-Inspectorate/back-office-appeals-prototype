@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Why is the statement incomplete?" %}
+{% set title = "Why is the statement Statement incomplete?" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% block content %}
@@ -68,7 +68,7 @@
   				{% call govukFieldset({
   				  classes: 'moj-add-another__item',
   				  legend: {
-  					text: 'What reason?',
+  					text: 'Enter a reason',
   					classes: 'moj-add-another__title ',
   					isPageHeading: false
   				  }
@@ -96,11 +96,11 @@
           <p class="govuk-hint">Select all that apply</p>
 
           {{ govukCheckboxes({
-            name: "reason-incomplete",
+            name: "reason-Statement incomplete",
             items: [
               {
-                value: "Attachments and/or appendices missing",
-                text: "Attachments and/or appendices missing",
+                value: "Supporting documents missing",
+                text: "Supporting documents missing",
                 conditional: {
     		        html: addMore
     		      }

@@ -10,15 +10,20 @@ router.get('*', function(req, res, next){
 // changing the appeal procedure
 router.post('/statement-review', function (req, res) {
   if (req.session.data['review-outcome'] == 'Invalid') {
-    res.redirect('why-rejected')
+    res.redirect('reject-statement')
   } else if (req.session.data['review-outcome'] == 'Incomplete') {
     res.redirect('why-incomplete')
   } else if (req.session.data['review-outcome'] == 'Valid with redaction') {
     res.redirect('redact-statement')
   } else {
-    res.redirect('matrix-update')
+    res.redirect('check-allocation-update')
   }
 })
+
+router.post('/redact-statement', function (req, res) {
+  res.redirect('check-allocation-update')
+})
+
 
 router.post('/matrix-update', function (req, res) {
   if (req.session.data['matrix-update'] == 'No') {
@@ -53,14 +58,18 @@ router.post('/select-allocation', function (req, res) {
 })
 
 router.post('/select-specialism', function (req, res) {
-  res.redirect('check-your-answers')
+  res.redirect('allow-resubmission')
 })
 
 router.post('/why-incomplete', function (req, res) {
   res.redirect('check-your-answers')
 })
 
-router.post('/why-rejected', function (req, res) {
+router.post('/reject-statement', function (req, res) {
+  res.redirect('allow-resubmission')
+})
+
+router.post('/allow-resubmission', function (req, res) {
   res.redirect('check-your-answers')
 })
 

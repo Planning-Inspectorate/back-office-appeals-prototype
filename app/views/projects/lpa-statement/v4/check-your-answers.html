@@ -29,7 +29,6 @@
               actions: {
                 items: [
                   {
-                    href: "select-allocation",
                     text: "",
                     visuallyHiddenText: ""
                   }
@@ -95,7 +94,7 @@
                 text: "Review outcome"
               },
               value: {
-                html: data['review-outcome'] or 'Valid'
+                html: data['review-outcome'] or 'Accepted'
               },
               actions: {
                 items: [
@@ -109,7 +108,7 @@
             },
             {
               key: {
-                text: "Does the allocation matrix need to be updated?"
+                text: "Does the allocation and specialism need to be updated?"
               },
               value: {
                 html: data['matrix-update'] or 'Yes'
@@ -197,6 +196,23 @@
             } if data['review-outcome'] == 'Invalid',
             {
               key: {
+                text: "Allow resubmission"
+              },
+              value: {
+                html: data['allow-resubmission']
+              },
+              actions: {
+                items: [
+                  {
+                    href: "update-due-date",
+                    text: "Change",
+                    visuallyHiddenText: "allow resubmission"
+                  }
+                ]
+              }
+            } if data['review-outcome'] == 'Incomplete' or data['review-outcome'] == 'Invalid',
+            {
+              key: {
                 text: "Due date"
               },
               value: {
@@ -211,7 +227,7 @@
                   }
                 ]
               }
-            } if data['review-outcome'] == 'Incomplete' or data['review-outcome'] == 'Invalid'
+            } if (data['review-outcome'] == 'Incomplete' or data['review-outcome'] == 'Invalid') and data['allow-resubmission'] == 'Yes'
             ] })
           }}
 

@@ -1,8 +1,8 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
 {% set title = "Cases assigned to you" %}
-{% set pageName = title + ' - Planning Inspectorate'%} 
- 
+{% set pageName = title + ' - Planning Inspectorate'%}
+
 
 {% set back = false %}
 
@@ -27,7 +27,7 @@
 		    </span>
 		  </summary>
 		  <div class="govuk-details__text">
-		    
+
 		    {{ govukSelect({
 			  id: "sort",
 			  name: "sort",
@@ -66,18 +66,18 @@
 			    }
 			  ]
 			}) }}
-			
+
 			<div class="govuk-button-group">
-			
+
 			{{ govukButton({
 				  text: "Apply",
 				  classes: "govuk-button--secondary"
 				}) }}
-				
+
 				<a class="govuk-link" href="#">Clear filter</a>
-				
+
 			</div>
-		    
+
 		  </div>
 		</details>
 
@@ -93,26 +93,27 @@
   </thead>
   <tbody class="govuk-table__body">
     <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header"><a href="case.html?list=">2110166</a></th>
+      <th scope="row" class="govuk-table__header"><a href="case-details.html?list=">2110166</a></th>
       <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Lead</strong></td>
-      <td class="govuk-table__cell"><a href="lpa-statement-review">Review LPA Statement</a></td>
+      <td class="govuk-table__cell"><a href="statement-review">Review LPA Statement</a></td>
       <td class="govuk-table__cell">10 July 2023</td>
-      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue">Statement</strong></td>
+      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue">Statements</strong></td>
     </tr>
     <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header"><a href="case.html?status=lpa-questionnaire">2110167</a></th>
+      <th scope="row" class="govuk-table__header"><a href="case-details.html?status=lpa-questionnaire">2110167</a></th>
       <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Child</strong></td>
       <td class="govuk-table__cell"><a href="#">Review LPA Questionnaire</a></td>
       <td class="govuk-table__cell">11 July 2023</td>
       <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">LPA questionnaire</strong></td>
     </tr>
-    <th scope="row" class="govuk-table__header"><a href="case-closed.html">2936179</a></th>
-    <td class="govuk-table__cell"></td>
-    <td class="govuk-table__cell"><a href="#">Update Horizon reference</a></td>
-    <td class="govuk-table__cell">11 July 2023</td>
-    <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Awaiting transfer</strong></td>
-  </tr>
-  <tr class="govuk-table__row">
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header"><a href="case-closed.html">2936179</a></th>
+      <td class="govuk-table__cell"></td>
+      <td class="govuk-table__cell"><a href="#">Update Horizon reference</a></td>
+      <td class="govuk-table__cell">11 July 2023</td>
+      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Awaiting transfer</strong></td>
+    </tr>
+    <tr class="govuk-table__row">
       <th scope="row" class="govuk-table__header"><a href="case-none.html?status=statement-review">2110917</a></th>
       <td class="govuk-table__cell"></td>
       <td class="govuk-table__cell">Awaiting IP commnents</td>
@@ -125,8 +126,9 @@
       <td class="govuk-table__cell"></td>
       <td class="govuk-table__cell">Not received</td>
       <td class="govuk-table__cell">12 July 2023</td>
-      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue">Statement</strong></td>
+      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue">Statements</strong></td>
     </tr>
+
     <tr class="govuk-table__row">
       <th scope="row" class="govuk-table__header"><a href="case.html?status=statement-review">1234560</a></th>
       <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Lead</strong></td>
@@ -135,7 +137,6 @@
       <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--orange">Final comment review</strong></td>
     </tr>
 
-    
   </tbody>
 </table>
 

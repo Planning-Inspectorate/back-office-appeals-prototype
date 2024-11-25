@@ -62,7 +62,7 @@ router.post('/select-specialism', function (req, res) {
 })
 
 router.post('/why-incomplete', function (req, res) {
-  res.redirect('check-your-answers')
+  res.redirect('allow-resubmission')
 })
 
 router.post('/reject-statement', function (req, res) {
@@ -76,16 +76,16 @@ router.post('/allow-resubmission', function (req, res) {
 router.post('/check-your-answers', function (req, res) {
   if (req.session.data['review-outcome'] == 'Valid with redaction') {
     req.flash('success', 'Statement review complete')
-    res.redirect('case?statement-review-done=Yes')
+    res.redirect('case-details?statement-review-done=Yes')
   } else if (req.session.data['review-outcome'] == 'Incomplete') {
     req.flash('success', 'Statement review complete')
-    res.redirect('case?statement-review-done=Yes')
+    res.redirect('case-details?statement-review-done=Yes')
   } else if (req.session.data['review-outcome'] == 'Invalid') {
     req.flash('success', 'Statement review complete')
-    res.redirect('case?statement-review-done=Yes')
+    res.redirect('case-details?statement-review-done=Yes')
   } else {
     req.flash('success', 'LPA statement accepted')
-    res.redirect('case?statement-review-done=Yes')
+    res.redirect('case-details?statement-review-done=Yes')
   }
 })
 

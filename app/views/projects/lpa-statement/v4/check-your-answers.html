@@ -210,25 +210,8 @@
                   }
                 ]
               }
-            } if data['review-outcome'] == 'Incomplete' or data['review-outcome'] == 'Invalid',
-            {
-              key: {
-                text: "Due date"
-              },
-              value: {
-                html: 7 | daysInFuture
-              },
-              actions: {
-                items: [
-                  {
-                    href: "update-due-date",
-                    text: "Change",
-                    visuallyHiddenText: "due date"
-                  }
-                ]
-              }
-            } if (data['review-outcome'] == 'Incomplete' or data['review-outcome'] == 'Invalid') and data['allow-resubmission'] == 'Yes'
-            ] })
+            } if data['review-outcome'] == 'Incomplete' or data['review-outcome'] == 'Invalid'
+          ] })
           }}
 
         </div>

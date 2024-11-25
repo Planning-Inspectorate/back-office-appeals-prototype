@@ -1,4 +1,4 @@
-{% if data['rule6ProofsReview'] == 'completed' and data['rule6ProofsReviewStatus'] == 'accepted' %}
+{% if data['rule6ProofsReview'] == 'completed' and data['rule6ProofsReviewStatus'] == 'accepted' or data['allRule6ProofsReview'] == 'completed' %}
 
   {{ govukTable({
     caption: "Accepted statements",
@@ -24,16 +24,27 @@
             html: 3 | daysAgo
           },
           {
-            html: "<a href='statement-view?acceptedStatement=&address-added=yes&redactedStatement=&statement-withdrawn=&manual-ip-statement=&statement-rejected=&extra-document='>View<span class='govuk-visually-hidden'> statement from Saint Rita’s Community Association</span></a>"
+            html: "<a href='accepted-proofs-of-evidence-and-witness-timings?acceptedStatement=&address-added=yes&redactedStatement=&statement-withdrawn=&manual-ip-statement=&statement-rejected=&extra-document='>View<span class='govuk-visually-hidden'> statement from Saint Rita’s Community Association</span></a>"
           }
-      ]
+      ],
+      [
+        {
+          text: "Natural Southwark"
+        },
+        {
+          text: 3 | daysAgo
+        },
+        {
+          html: "<a href='document-review?party=rule6&acceptedComment=&redactedStatement=&statement-withdrawn=&manual-ip-statement=&statement-rejected=&extra-document=&new-statement=&documents-added='>Review<span class='govuk-visually-hidden'> statement from Natural Southwark</span></a>"
+        }
+      ] if data['allRule6ProofsReview'] == 'completed'
     ]
   }) }}
 
 {% else %}
 
   <p class="govuk-body">
-    Awaiting statements
+    Awaiting proofs of evidence and witness timings
   </p>
 
 {% endif %}

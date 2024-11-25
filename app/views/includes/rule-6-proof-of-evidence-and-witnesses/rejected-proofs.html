@@ -1,4 +1,4 @@
-{% if data['rule6ProofsReview'] == 'completed' and data['rule6ProofsReviewStatus'] == 'rejected' %}
+{% if data['rule6ProofsReview'] == 'completed' and data['rule6ProofsReviewStatus'] == 'rejected' and not data['no-proofs'] %}
 
   {{ govukTable({
     caption: "Rejected statements",
@@ -24,14 +24,16 @@
             text: 3 | daysAgo
           },
           {
-            html: "<a href='comment-view-rejected?acceptedComment=&redactedComment=&comment-withdrawn=&manual-ip-comment=&comment-rejected=&extra-document='>View<span class='govuk-visually-hidden'> comment from Davina Twinee</span></a>"
+            html: "<a href='rejected-proofs-of-evidence-and-witness-timings?acceptedComment=&redactedComment=&comment-withdrawn=&manual-ip-comment=&comment-rejected=&extra-document='>View<span class='govuk-visually-hidden'> comment from Davina Twinee</span></a>"
           }
       ]
   ]
   }) }}
 
 {% else %}
+
   <p class="govuk-body">
-    Awaiting statements
+    Awaiting proofs of evidence and witness timings
   </p>
+
 {% endif %}

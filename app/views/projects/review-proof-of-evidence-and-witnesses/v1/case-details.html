@@ -6,8 +6,12 @@
 {% set prototypeLinks = [
   {
     href: '?appellantProofsReview=completed',
-    text: 'Completed review'
+    text: 'Completed appellant POE review'
   } if data['appellantProofsReview'] != 'completed',
+  {
+    href: '?Rule6ProofsReview=completed',
+    text: 'Completed rule 6 POE review'
+  } if data['Rule6ProofsReview'] != 'completed',
   {
     href: '?appellantProofsReview=',
     text: 'Reset review'
@@ -46,7 +50,7 @@
       {% set reviewRule6Proofs %}
         <p class="govuk-notification-banner__heading">
           Rule 6 proofs of evidence and witness timings awaiting review.
-          <a class="govuk-notification-banner__link" href="document-review">
+          <a class="govuk-notification-banner__link" href="rule-6-proofs-and-witnesses">
             Review
           </a>
         </p>
@@ -709,14 +713,14 @@
                     },
                     {
                       text: "Received"
-                    },
+                    } if data['Rule6ProofsReview'] != 'completed' else { text: "Completed" },
                     {
                       html: 1 | daysAgo
                     },
                     {
                       html: "<a href='rule-6-proofs-and-witnesses'>Review</a>",
                       format: "numeric"
-                    }
+                    } if data['Rule6ProofsReview'] != 'completed' else { html: "<a href='rule-6-proofs-and-witnesses'>View</a>", format: "numeric" }
                   ]
 
                 ]

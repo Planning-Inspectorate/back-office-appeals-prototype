@@ -12,8 +12,24 @@
 
 {% set prototypeLinks = [
   {
-    href: '?redactedStatement=&commentReview=#review-tab',
+    href: '?no-proofs=true',
+    text: 'No proofs'
+  },
+  {
+    href: '?Rule6ProofsReview=&rule6ProofsReview=&redactedStatement=&commentReview=&no-proofs=&allRule6ProofsReview=#review-tab',
     text: 'Reset view'
+  },
+  {
+    href: '?rule6ProofsReview=completed&rule6ProofsReviewStatus=accepted',
+    text: 'Accept Rule 6 proofs'
+  },
+  {
+    href: '?rule6ProofsReview=completed&rule6ProofsReviewStatus=rejected',
+    text: 'Reject Rule 6 proofs'
+  },
+  {
+    href: '?rule6ProofsReview=completed&rule6ProofsReviewStatus=accepted&allRule6ProofsReview=completed',
+    text: 'Rule 6 proofs done'
   }
 ] %}
 

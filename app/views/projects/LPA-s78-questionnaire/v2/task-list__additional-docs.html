@@ -1,0 +1,56 @@
+{% set levyDate = (data['community-infrastructure-date-day'] or '1') +' '+ (data['community-infrastructure-date-month'] | formatMonth or 'July') +' '+ (data['community-infrastructure-date-year'] or '2022') %}
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "7. Additional documents"
+    }
+  },
+  rows: [
+    {
+      key: {
+        html: 'Supplementary documents'
+      },
+      value: {
+        html: 'No documents'
+      },
+      actions: {
+        items: [
+          {
+            href: '#',
+            html: 'Add<span class="govuk-visually-hidden"> supplementary documents</span>'
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: 'Late entry documents'
+      },
+      value: {
+        html: '<ol class="govuk-list govuk-list--number">
+                <li>
+                  <a href="" class="govuk-link">Planning outline 155 York Rd 2024.pdf</a>
+                </li>
+                <li>
+                  <a href="" class="govuk-link">Materials plan 155 York Rd 2024.pdf</a>
+                </li>
+                <li>
+                  <a href="" class="govuk-link">Objections 155 York Rd 2024.pdf</a>
+                </li>
+              </ol>'
+      },
+      actions: {
+        items: [
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Manage<span class="govuk-visually-hidden"> late entry documents</span>'
+          },
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Add<span class="govuk-visually-hidden"> late entry documents</span>'
+          }
+        ]
+      }
+    }
+  ]
+}) }}

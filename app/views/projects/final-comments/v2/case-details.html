@@ -1,59 +1,69 @@
- 
-{% extends "layouts/PINS-post-mvp.html" %}
+ {% extends "layouts/PINS-post-mvp.html" %}
+
 {% set title = "Case details" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
- 
+
+{% set prototypeLinks = [
+  {
+    href: '?finalcommentreview=&allfinalcommentreview=',
+    text: 'No final comments completed / reset view'
+  } if data['allfinalcommentreview'] == 'completed',
+  {
+    href: '?finalcommentreview=completed&allfinalcommentreview=completed',
+    text: 'Final comment reviews done'
+  } if data['allfinalcommentreview'] != 'completed'
+] %}
+
 {% block content %}
-
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-    {% set html %}
-  <p class="govuk-notification-banner__heading">
-    {% if data['party'] == 'LPA' %}
-  LPA final comments incomplete
-  {% else  %}
-  Appellant final comments incomplete
-  {% endif %}
-    <ul>
-      <li> No list of suggested conditions</li>
-      <li>  {{ data['reason-incomplete' ] + "   " + data['whats-missing' ]  + data['what-reason' ] + "  " or "Reason 1" }} </li>
-      
-  </ul>
-  <a href="comment-review">Review</a></p>
-<p>
-  <a class="govuk-notification-banner__link" href="../../cross-copy/v1/statement-publish">
-     
-  </a>
-</p>
-{% endset %}
- 
+      {{ govukNotificationBanner({
+        type: "success",
+        text: flash
+      }) if flash.length }}
 
-{{ govukNotificationBanner({
-html: html,
-type: "important"
-}) }}
- 
-</div>
-</div>
-    <span class="govuk-caption-l">Appeal 2110166</span>
+      {% if not data['finalcommentreview'] %}
+        {% set reviewfinalcommentsbanner %}
+          <p class="govuk-notification-banner__heading">
+            LPA final comments ready for review<br>
+            <a class="govuk-notification-banner__link" href="comment-review">
+              Review
+            </a>
+          </p>
+        {% endset %}
+
+        {{ govukNotificationBanner({
+          html: reviewfinalcommentsbanner
+        }) }}
+      {% endif %}
+
+      {% if data['allfinalcommentreview'] == 'completed' %}
+        {% set sharefinalcommentsbanner %}
+          <p class="govuk-notification-banner__heading">
+            <a class="govuk-notification-banner__link" href="share-final-comments">
+              Share final comments
+            </a>
+          </p>
+        {% endset %}
+
+        {{ govukNotificationBanner({
+          html: sharefinalcommentsbanner
+        }) }}
+      {% endif %}
+
+      <span class="govuk-caption-l">Appeal 2110166</span>
     	<h1 class="govuk-heading-l">{{ title }}</h1>
- 
 
-        {{ govukTag({
-          text: "Statement",
-          classes: "govuk-tag--blue"
-        })}}
-
- 
+      {{ govukTag({
+        text: "Final comments",
+        classes: "govuk-tag--orange"
+      })}}
 
       {% include "/includes/appeal-content/mvp-has-appeal-meta.html" %}
       <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
-     
-
-      <div class="govuk-accordion govuk-!-margin-top-9" data-module="govuk-accordion" id="accordion-default">
+      <div class="govuk-accordion " data-module="govuk-accordion" id="accordion-default">
         <div class="govuk-accordion__section">
           <div class="govuk-accordion__section-header">
             <h2 class="govuk-accordion__section-heading">
@@ -118,7 +128,7 @@ type: "important"
                     text: "Allocation details"
                   },
                   {
-                    text: "F / General Allocation"
+                    text: "B / Enforcement"
                   },
                   {
                     html: "<a href='#'>Change</a>",
@@ -153,9 +163,9 @@ type: "important"
         </div>
         <div class="govuk-accordion__section">
           <div class="govuk-accordion__section-header">
-            <h1 class="govuk-accordion__section-heading">
+            <h2 class="govuk-accordion__section-heading">
               <span class="govuk-accordion__section-button" id="accordion-default-heading-2">
-                Site details
+               Site details
               </span>
             </h2>
           </div>
@@ -250,7 +260,7 @@ type: "important"
                 ],[
                   {
                     text: "Neighbouring sites
-                    (Inspector and / or 
+                    (Inspector and / or
                     third party request)"
                   },
                   {
@@ -258,13 +268,17 @@ type: "important"
                   },
                   {
                     html: "<dd class='govuk-summary-list__actions'>
-              
-                      <ul class='govuk-summary-list__actions-list'><li class='govuk-summary-list__actions-list-item'><a class='govuk-link' href='#'>
-                            </a><a href='#'>Add</a><span class='govuk-visually-hidden'> access for neighbouring sites</span>
-                            </li><li class='govuk-summary-list__actions-list-item'><a class='govuk-link' href='#'>
-                            </a><a href='#'>Manage</a><span class='govuk-visually-hidden'> access for neighbouring sites</span>
-                            </li></ul>
-                    
+
+                      <ul class='govuk-summary-list__actions-list'><li class='govuk-summary-list__actions-list-item'>
+                        <a class='govuk-link' href='#'></a>
+                        <a href='#'>Add</a><span class='govuk-visually-hidden'> access for neighbouring sites</span>
+                      </li>
+                      <li class='govuk-summary-list__actions-list-item'>
+                        <a class='govuk-link' href='#'>
+                        </a>
+                        <a href='#'>Manage</a><span class='govuk-visually-hidden'> access for neighbouring sites</span>
+                      </li>
+                    </ul>
                   </dd>",
                     format: "numeric"
                   }
@@ -407,140 +421,188 @@ type: "important"
             </h2>
           </div>
           <div id="accordion-default-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-4">
-            {{ govukTable({
-              captionClasses: "govuk-table__caption--m",
-              firstCellIsHeader: false,
-              head: [
-                  {
-                    text: "Documentation"
-                  },
-                  {
-                    text: "Status"
-                  },
-                  {
-                    text: "Received"
-                  },
-                  {
-                    text: "Action",
-                    format: "numeric"
-                  }
-                ],
-              rows: [
-                [
-                  {
-                    text: "Appellant case"
-                  },
-                  {
-                    text: "Valid"
-                  },
-                  {
-                    text: "22 Jul 2023"
-                  },
-                  {
-                    html: "<a href='#'>View</a>",
-                    format: "numeric"
-                  }
-                ],
-                [
-                  {
-                    text: "LPA questionnaire"
-                  },
-                  {
-                    text: "Complete"
-                  },
-                  {
-                    text: "18 Jul 2023"
-                  },
-                  {
-                    html: "<a href='#'>View</a>",
-                    format: "numeric"
-                  }
-                ],
-                [
-                  {
-                    text: "LPA statement"
-                  },
-                  {
-                    text: "Incomplete"
-                  },
-                  {
-                    text: "19 Jan 2024"
-                  },
-                  {
-                    html: "<a href='#'>Review</a>",
-                    format: "numeric"
-                  }
-                ]
-                ,
-                [
-                  {
-                    text: "Interested party comments"
-                  },
-                  {
-                    text: " "
-                  },
-                  {
-                    text: ""
-                  },
-                  {
-                    html: "<a href='#'>Add</a>",
-                    format: "numeric"
-                  }
-                ]
-                ,
-                [
-                  {
-                    text: "Apellant final comments"
-                  },
-                  {
-                    text: " "
-                  },
-                  {
-                    text: ""
-                  },
-                  {
-                    html: "<a href='#'>Add</a>",
-                    format: "numeric"
-                  }
-                ]
-                ,
-                [
-                  {
-                    text: "LPA final comments"
-                  },
-                  {
-                    text: "Incomplete"
-                  },
-                  {
-                    text: "12 Jul 2023"
-                  },
-                  {
-                    html: "<a href='comment-review'>Review</a>",
-                    format: "numeric"
-                  }
-                ]
-                ,
-                [
-                  {
-                    text: "S106 obligation"
-                  },
-                  {
-                    text: " "
-                  },
-                  {
-                    text: ""
-                  },
-                  {
-                    html: "<a href='#'>Add</a>",
-                    format: "numeric"
-                  }
-                ]
 
-              ]
-            }) }}
+            <div class="pins-panel">
+              {{ govukTable({
+                captionClasses: "govuk-table__caption--m",
+                firstCellIsHeader: false,
+                head: [
+                    {
+                      text: "Documentation"
+                    },
+                    {
+                      text: "Status"
+                    },
+                    {
+                      text: "Received"
+                    },
+                    {
+                      text: "Action",
+                      format: "numeric"
+                    }
+                  ],
+                rows: [
+                  [
+                    {
+                      text: "Appellant case"
+                    },
+                    {
+                      text: "Shared"
+                    },
+                    {
+                      text: 45 | daysAgo
+                    },
+                    {
+                      html: "<a href='#'>View</a>",
+                      format: "numeric"
+                    }
+                  ],
+                  [
+                    {
+                      text: "LPA questionnaire"
+                    },
+                    {
+                      text: "Shared"
+                    },
+                    {
+                      text: 39 | daysAgo
+                    },
+                    {
+                      html: "<a href='#'>View</a>",
+                      format: "numeric"
+                    }
+                  ],
+                  [
+                    {
+                      text: "LPA statement"
+                    },
+                    {
+                      text: "Shared"
+                    },
+                    {
+                      text: 37 | daysAgo
+                    },
+                    {
+                      html: "<a href='#'>View</a>",
+                      format: "numeric"
+                    }
+                  ]
+                  ,
+                  [
+                    {
+                      text: "Interested party comments"
+                    },
+                    {
+                      text: "Shared"
+                    },
+                    {
+                      text: 32 | daysAgo
+                    },
+                    {
+                      html: "<a href='#'>Add</a>",
+                      format: "numeric"
+                    }
+                  ],
+                  [
+                    {
+                      text: "Appellant final comments"
+                    },
+                    {
+                      text: "Received"
+                    },
+                    {
+                      text: 4 | daysAgo
+                    },
+                    {
+                      html: "<a href='comment-review'>Review</a>",
+                      format: "numeric"
+                    }
+                  ] if not data['finalcommentreview'],
+                  [
+                    {
+                      text: "Appellant final comments"
+                    },
+                    {
+                      text: "Completed"
+                    },
+                    {
+                      text: 4 | daysAgo
+                    },
+                    {
+                      html: "<a href='comment-review'>View</a>",
+                      format: "numeric"
+                    }
+                  ] if data['finalcommentreview'] == 'completed',
+                  [
+                    {
+                      text: "LPA final comments"
+                    },
+                    {
+                      text: "Received "
+                    },
+                    {
+                      text: 2 | daysAgo
+                    },
+                    {
+                      html: "<a href='comment-review'>Review</a>",
+                      format: "numeric"
+                    }
+                  ] if data['allfinalcommentreview'] != 'completed' and data['finalcommentreview'] != 'shared',
+                  [
+                    {
+                      text: "LPA final comments"
+                    },
+                    {
+                      text: "Completed "
+                    },
+                    {
+                      text: 2 | daysAgo
+                    },
+                    {
+                      html: "<a href='comment-review'>View</a>",
+                      format: "numeric"
+                    }
+                  ] if data['allfinalcommentreview'] == 'completed',
+
+                  [
+                    {
+                      text: "Appellant final comments"
+                    },
+                    {
+                      text: "Shared"
+                    },
+                    {
+                      text: 3 | daysAgo
+                    },
+                    {
+                      html: "<a href='comment-review'>View</a>",
+                      format: "numeric"
+                    }
+                  ] if data['finalcommentreview'] == 'shared',
+                  [
+                    {
+                      text: "LPA final comments"
+                    },
+                    {
+                      text: "Shared"
+                    },
+                    {
+                      text: 2 | daysAgo
+                    },
+                    {
+                      html: "<a href='comment-review'>View</a>",
+                      format: "numeric"
+                    }
+                  ] if data['finalcommentreview'] == 'shared'
+
+                ]
+              }) }}
+            </div>
+
           </div>
         </div>
-        
+
+        <!-- case contacts -->
         <div class="govuk-accordion__section">
           <div class="govuk-accordion__section-header">
             <h2 class="govuk-accordion__section-heading">
@@ -592,7 +654,7 @@ type: "important"
                 ],
                 [
                   {
-                    text: "Insterested parties"
+                    text: "Interested parties"
                   },
                   {
                     html: "Interested Name<br><a href='#'>interested-parties@example.co.uk</a> <br>0300 027 2189"
@@ -607,6 +669,7 @@ type: "important"
           </div>
         </div>
 
+        <!-- case team -->
         <div class="govuk-accordion__section">
           <div class="govuk-accordion__section-header">
             <h2 class="govuk-accordion__section-heading">
@@ -643,7 +706,7 @@ type: "important"
                     html: "<a href='#'>Change</a>",
                     format: "numeric"
                   }
-                ] 
+                ]
               ]
             }) }}
           </div>
@@ -651,53 +714,7 @@ type: "important"
 
       </div>
 
-     
-
     </div>
   </div>
-
-  {% if data['status'] == 'determination' %}
-
-    <form action="" method="post" class="govuk-!-margin-top-6" novalidate>
-
-      <!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
-
-        {{ govukRadios({
-          name: "issue-decision",
-          fieldset: {
-            legend: {
-              text: "Issue your decision",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--m"
-            }
-          },
-          items: [
-            {
-              value: "allowed~../../issue-decision/v1/decision-date",
-              text: "Allowed"
-            },
-            {
-              value: "dismissed~../../issue-decision/v1/decision-date",
-              text: "Dismissed"
-            },
-            {
-              value: "split~../../issue-decision/v1/decision-date",
-              text: "Split-decision"
-            },
-            {
-              value: "invalid~../../issue-decision/v1/decision-date",
-              text: "Invalid"
-            }
-          ]
-        }) }}
-
-        {{ govukButton({
-          text: "Continue"
-        }) }}
-
-    </form>
-
-  {% endif %}
-
 
 {% endblock %}

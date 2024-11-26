@@ -1,85 +1,135 @@
- {% extends "layouts/PINS-post-mvp.html" %}
-{% set title = "Check your answers" %}
-{% set pageName = title + ' - Planning Inspectorate'%} 
+{% extends "layouts/PINS-post-mvp.html" %}
 
-{% set prototypeLinks = [
-  {
-    href: '?redacted-statement-done=yes',
-    text: 'Redacted comment'
-  } if data['redacted-statement-done'] != 'yes',
-  {
-    href: '?redacted-statement-done=',
-    text: 'No redacted comment'
-  } if data['redacted-statement-done'] == 'yes'
-] %}
+{% if data['review-outcome'] == 'Redact and accept final comment' %}
+  {% set title = "Check details and accept final comment" %}
+{% elseif data['review-outcome'] == 'Reject final comment' %}
+  {% set title = "Check details and reject final comment" %}
+{% else %}
+  {% set title = "Check details and accept final comment" %}
+{% endif %}
+
+{% set pageName = title + ' - Planning Inspectorate'%}
 
 {% block content %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
-    <span class="govuk-caption-l">Appeal 2110166</span>
+      <span class="govuk-caption-l">Appeal 2110166</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
 
-    <form action="case-complete" method="post" class="" novalidate>
-      
+      <form method="post">
 
-      {{ govukSummaryList({
-        classes: "long-answers govuk-!-margin-bottom-6",
-        rows: [
-        {
-          key: {
-            html: "Unredacted" + " " + (data['party'] or "LPA") + " " +"comment"
-          },
-          value: {
-            html: data['original-statement'] or "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. 
-            Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus."
-          },
-          actions: {
-            items: [
-              {
-                href: "select-allocation",
-                text: "",
-                visuallyHiddenText: ""
-              }
-            ]
-          }
-        },
-
-            
+        <div class="pins-panel">
+          {{ govukSummaryList({
+            classes: "long-answers govuk-!-margin-bottom-6",
+            rows: [
             {
-            key: {
-              text: "Review outcome"
+              key: {
+                text: "Final comment"
+              } if data['review-outcome'] != 'Redact and accept statement' else { text: "Original statement" },
+              value: {
+                html: data['original-statement'] or "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus.
+                Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus.
+                Mauris nulla erat, posuere ut nisi vitae, pulvinar gravida arcu."
+              },
+              actions: {
+              }
             },
-            value: {
-             text:    (data['issue-decision'] or "Valid comment")
+            {
+              key: {
+                text: "Redacted comment"
+              },
+              value: {
+                html: data['redacted-statement'] or " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus.
+                Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus.
+                Mauris nulla erat, posuere ut nisi vitae, pulvinar gravida arcu."
+              },
+              actions: {
+                items: [
+                  {
+                    href: "redact-comment",
+                    text: "Change",
+                    visuallyHiddenText: "redacted comment"
+                  }
+                ]
+              }
+            } if data['review-outcome'] == 'Redact and accept comment',
+            {
+              key: {
+                text: "Supporting documents"
+              },
+              value: {
+                html:"<ul class='govuk-list govuk-list--bullet'><li><a href='#'>2110166-statement-appendix-A.doc</a></li>
+                <li><a href='#'>2110166-statement-appendix-B.doc</a></li></ul>"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "redact-supporting-documents",
+                    text: "Change",
+                    visuallyHiddenText: "Supporting documents"
+                  }
+                ]
+              }
             },
-            actions: {
-              items: [
-                {
-                  href: "comment-review",
-                  text: "Change",
-                  visuallyHiddenText: "Review outcome"
-                }
-              ]
-            }
-          }  
-        ]
-      })
-    }}   
-{{ govukButton({
-  text: "Confirm"
-}) }}
+            {
+              key: {
+                text: "Review decision"
+              },
+              value: {
+                html: data['review-outcome'] or 'Accept statement'
+              },
+              actions: {
+                items: [
+                  {
+                    href: "comment-review",
+                    text: "Change",
+                    visuallyHiddenText: "Review outcome"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Reason for Reject statement decision"
+              },
+              value: {
+                html: "<ul class='govuk-list govuk-list--number'><li>Supporting documents missing</li><li>Other: (Given reason text)</li></ul>"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "why-rejected",
+                    text: "Change",
+                    visuallyHiddenText: "why comment is rejected"
+                  }
+                ]
+              }
+            } if data['review-outcome'] == 'Reject comment'
 
+          ] })
+          }}
 
-    </form>
+        </div>
 
- 
+        {% if data['review-outcome'] == 'Redact and accept final comment' %}
+          {{ govukButton({
+            text: "Redact and accept final comment"
+          }) }}
+        {% elseif data['review-outcome'] == 'Reject final comment' %}
+          {{ govukButton({
+            text: "Reject final comment"
+          }) }}
+        {% else %}
+          {{ govukButton({
+            text: "Accept final comment"
+          }) }}
+        {% endif %}
 
+      </form>
+
+    </div>
+  </div>
 
 {% endblock %}
-
-
-
-</div>
-</div>

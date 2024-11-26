@@ -221,5 +221,57 @@ router.post('/edit-inquiry-estimates/check', function (req, res) {
   res.redirect('../case-details')
 })
 
+//
+// HEARING ESTIMATES: ADD
+//
+
+router.post('/add-hearing-estimates', function (req, res) {
+  res.redirect('./add-hearing-estimates/check')
+})
+
+router.post('/add-hearing-estimates/check', function (req, res) {
+  req.flash('success', 'Hearing estimates added')
+  res.redirect('../case-details')
+})
+
+//
+// HEARING ESTIMATES: EDIT
+//
+
+router.post('/edit-hearing-estimates', function (req, res) {
+  res.redirect('./edit-hearing-estimates/check')
+})
+
+router.post('/edit-hearing-estimates/check', function (req, res) {
+  req.flash('success', 'Hearing estimates updated')
+  res.redirect('../case-details')
+})
+
+//
+// INQUIRY ESTIMATES: ADD
+//
+
+router.post('/add-inquiry-estimates', function (req, res) {
+  res.redirect('./add-inquiry-estimates/check')
+})
+
+router.post('/add-inquiry-estimates/check', function (req, res) {
+  req.flash('success', 'Inquiry estimates added')
+  res.redirect('../case-details')
+})
+
+//
+// INQUIRY ESTIMATES: EDIT
+//
+
+router.post('/edit-inquiry-estimates', function (req, res) {
+  res.redirect('./edit-inquiry-estimates/check')
+})
+
+router.post('/edit-inquiry-estimates/check', function (req, res) {
+  req.flash('success', 'Inquiry estimates updated')
+  res.redirect('../case-details')
+})
+
 // Add your routes above the module.exports line
 module.exports = router

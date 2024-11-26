@@ -604,7 +604,9 @@
                 }) }}
               {% endif %}
 
-              <a class="govuk-link" href="#">Add hearing estimates</a>
+              {% if not data.hearingEstimates %}
+                <a class="govuk-link" href="add-hearing-estimates">Add hearing estimates</a>
+              {% endif %}
             </div>
 
 
@@ -737,7 +739,7 @@
                     }
                   } if data.hearingEstimates.estimatedReportingTime
                 ]
-              }) if data.hearing }}
+              }) if data.hearing or data.hearingEstimates }}
             </div>
           </div>
         {% endif %}
@@ -830,7 +832,9 @@
                   }) }}
                 {% endif %}
 
-                <a class="govuk-link" href="#">Add inquiry estimates</a>
+                {% if not data.inquiryEstimates %}
+                  <a class="govuk-link" href="add-inquiry-estimates">Add inquiry estimates</a>
+                {% endif %}
               </div>
 
               {% set address %}
@@ -994,7 +998,7 @@
                     }
                   } if data.inquiryEstimates.estimatedReportingTime
                 ]
-              }) if data.inquiry }}
+              }) if data.inquiry or data.inquiryEstimates }}
             </div>
           </div>
         {% endif %}

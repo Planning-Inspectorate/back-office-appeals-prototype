@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Why is the statement invalid?" %}
+{% set title = "Why is the statement Reject statement?" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% set back = true %}
@@ -13,8 +13,8 @@
       <form method="post">
 
         {{ govukTextarea({
-          name: "invalidReason",
-          id: "invalidReason",
+          name: "Reject statementReason",
+          id: "Reject statementReason",
           hint: {
             text: "The IP will see the text you enter if they provided an email address."
           },

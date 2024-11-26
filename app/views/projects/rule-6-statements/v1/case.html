@@ -3,6 +3,24 @@
 {% set title = "Case details" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Your appeals",
+    href: "index"
+  }) }}
+{% endblock %}
+
+{% set prototypeLinks = [
+  {
+    href: '?statementReview=#review-tab',
+    text: 'Reset view'
+  },
+  {
+    href: '?statementReview=done#review-tab',
+    text: 'Rule 6 statement review done'
+  }
+] %}
+
 {% block content %}
 
   <div class="govuk-grid-row">
@@ -55,10 +73,12 @@
         classes: "govuk-!-margin-bottom-5"
       }) }}
 
-      {{ govukNotificationBanner({
-        html: rule6banner,
-        classes: "govuk-!-margin-bottom-5"
-      }) }}
+      {% if data['statementReview'] != 'done' %}
+        {{ govukNotificationBanner({
+          html: rule6banner,
+          classes: "govuk-!-margin-bottom-5"
+        }) }}
+      {% endif %}
 
       {{ govukNotificationBanner({
         html: ipcommentsbanner
@@ -76,6 +96,7 @@
       <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
       <div class="govuk-accordion govuk-!-margin-top-9" data-module="govuk-accordion" id="accordion-default">
+
         <div class="govuk-accordion__section">
           <div class="govuk-accordion__section-header">
             <h2 class="govuk-accordion__section-heading">
@@ -358,7 +379,7 @@
                   <th scope="col" class="govuk-table__header">Documentation</th>
                   <th scope="col" class="govuk-table__header">Status</th>
                   <th scope="col" class="govuk-table__header">Received</th>
-                  <th scope="col" class="govuk-table__header numeric">Action</th>
+                  <th scope="col" class="govuk-table__header numeric  govuk-!-text-align-right">Action</th>
                 </tr>
               </thead>
 
@@ -368,21 +389,21 @@
                   <td class="govuk-table__cell">Appellant case</td>
                   <td class="govuk-table__cell">Complete</td>
                   <td class="govuk-table__cell">{{ 40 | daysAgo }}</td>
-                  <td class="govuk-table__cell"><a href="#">Review</a></td>
+                  <td class="govuk-table__cell govuk-!-text-align-right"><a href="#">Review</a></td>
                 </tr>
 
                 <tr class="govuk-table__row">
                   <td class="govuk-table__cell">LPA questionnaire</td>
                   <td class="govuk-table__cell">Complete</td>
                   <td class="govuk-table__cell">{{ 11 | daysAgo }}</td>
-                  <td class="govuk-table__cell"><a href="task-list">Review</a></td>
+                  <td class="govuk-table__cell govuk-!-text-align-right"><a href="task-list">Review</a></td>
                 </tr>
 
                 <tr class="govuk-table__row">
                   <td class="govuk-table__cell">LPA statement</td>
                   <td class="govuk-table__cell">Received</td>
                   <td class="govuk-table__cell">Not applicable</td>
-                  <td class="govuk-table__cell">
+                  <td class="govuk-table__cell govuk-!-text-align-right">
                     <a href="#">
                       Review<span class="govuk-visually-hidden"> LPA statement</span>
                     </a>
@@ -391,12 +412,24 @@
 
                 <tr class="govuk-table__row">
                   <td class="govuk-table__cell">Rule 6 statements</td>
-                  <td class="govuk-table__cell">Received</td>
-                  <td class="govuk-table__cell">Not applicable</td>
                   <td class="govuk-table__cell">
-                    <a href="rule-6-statements?redactedStatement=&statementReview=&statement-withdrawn=&manual-r6-statement=&new-comment=">
-                      Review<span class="govuk-visually-hidden"> Rule 6 statements</span>
-                    </a>
+                    {% if data['statementReview'] == 'done' %}
+                      Completed
+                    {% else %}
+                      Received
+                    {% endif %}
+                  </td>
+                  <td class="govuk-table__cell">Not applicable</td>
+                  <td class="govuk-table__cell govuk-!-text-align-right">
+                    {% if data['statementReview'] == 'done' %}
+                      <a href="rule-6-statements?redactedStatement=&statementReview=&statement-withdrawn=&manual-r6-statement=&new-comment=">
+                        View<span class="govuk-visually-hidden"> Rule 6 statements</span>
+                      </a>
+                    {% else %}
+                      <a href="rule-6-statements?redactedStatement=&statementReview=&statement-withdrawn=&manual-r6-statement=&new-comment=">
+                        Review<span class="govuk-visually-hidden"> Rule 6 statements</span>
+                      </a>
+                    {% endif %}
                   </td>
                 </tr>
 
@@ -404,7 +437,7 @@
                   <td class="govuk-table__cell">Interested party comments</td>
                   <td class="govuk-table__cell">Received</td>
                   <td class="govuk-table__cell">Not applicable</td>
-                  <td class="govuk-table__cell">
+                  <td class="govuk-table__cell govuk-!-text-align-right">
                     <a href="#">
                       Review<span class="govuk-visually-hidden"> interested party comments</span>
                     </a>

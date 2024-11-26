@@ -22,10 +22,10 @@
 
       {% set html %}
         <p class="govuk-notification-banner__heading">
-          LPA statement incomplete
+          LPA statement Statement incomplete
           <ul>
             <li> Attachments and/or appendices missing</li>
-            <!-- <li>  {{ data['reason-incomplete' ] + "   " + data['whats-missing' ]  + data['what-reason' ] + "  " or "Reason 1" }} </li> -->
+            <!-- <li>  {{ data['reason-Statement incomplete' ] + "   " + data['whats-missing' ]  + data['what-reason' ] + "  " or "Reason 1" }} </li> -->
 
         </ul>
         <a href="upload-add-doc">Add document</a> | <a href="statement-review">Review</a></p>
@@ -434,7 +434,7 @@
                     text: "Appellant case"
                   },
                   {
-                    text: "Valid"
+                    text: "Accept statement"
                   },
                   {
                     text: "22 Jul 2023"
@@ -464,7 +464,7 @@
                     text: "LPA statement"
                   },
                   {
-                    text: "Incomplete"
+                    text: "Statement incomplete"
                   },
                   {
                     text: "19 Jan 2024"
@@ -667,7 +667,7 @@
 
   {% if data['status'] == 'determination' %}
 
-    <form action="" method="post" class="govuk-!-margin-top-6" novalidate>
+    <form action="" method="post" class="govuk-!-margin-top-6" noAccept statementate>
 
       <!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
 
@@ -694,8 +694,8 @@
               text: "Split-decision"
             },
             {
-              value: "invalid~../../issue-decision/v1/decision-date",
-              text: "Invalid"
+              value: "Reject statement~../../issue-decision/v1/decision-date",
+              text: "Reject statement"
             }
           ]
         }) }}

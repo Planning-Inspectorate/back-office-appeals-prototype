@@ -215,39 +215,42 @@
   </td>
 </tr>
 
-{% if data['check-environmental-statement'] == 'Yes' %}
-  <tr class="govuk-table__row">
-    <td class="govuk-table__cell">
-      Environmental assessment
-    </td>
-    <td class="govuk-table__cell">
-      {% if data['environmental-statement-added'] == 'Yes' %}
-        <ul class="govuk-list govuk-list--bullet">
-          <li>
-            <a href="#" class="govuk-link">Appeal-2114328-environmental-statement.doc</a>
-          </li>
-        </ul>
-      {% else %}
-        Not received
-      {% endif %}
-    </td>
-    <!-- <td class="govuk-table__cell">
-    </td> -->
-    <td class="govuk-table__cell govuk-!-text-align-right">
-      {% if data['environmental-statement-added'] == 'Yes' %}
-        <a href="#" class="govuk-link govuk-link--no-visited-state">
-          Manage<span class="govuk-visually-hidden"> Environmental assessment</span></a> <span style="color:#b1b4b6;font-weight: 100"> |</span>
-        <a href="#" class="govuk-link govuk-link--no-visited-state">
-          Add<span class="govuk-visually-hidden"> Environmental assessment</span>
+<tr class="govuk-table__row">
+  <td class="govuk-table__cell">
+    Environmental assessment
+  </td>
+  <td class="govuk-table__cell">
+    {% if data['environmental-statement-added'] == 'Yes' %}
+    <ul class="govuk-list govuk-list--number">
+      <li>
+        <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=">
+          Appeal environmental assessment matrix {{ 7 | daysAgoDayNumeric }}.{{ 0 | monthsAgoNumeric }}.{{ 0 | yearsAgo }}
         </a>
-      {% else %}
-        <a href="#" class="govuk-link govuk-link--no-visited-state">
-          Add<span class="govuk-visually-hidden"> Environmental assessment</span>
+      </li>
+      <li>
+        <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=">
+          Environmental considerations letter to LPA {{ 6 | daysAgoDayNumeric }}.{{ 0 | monthsAgoNumeric }}.{{ 0 | yearsAgo }}
         </a>
+      </li>
+    </ul>
+
+    {% else %}
+      No documents
+    {% endif %}
+  </td>
+  <!-- <td class="govuk-table__cell">
+  </td> -->
+  <td class="govuk-table__cell govuk-!-text-align-right">
+    <a href="#" class="govuk-link govuk-link--no-visited-state">
+      {% if data['environmental-statement-added'] == 'Yes' %}
+        Change<span class="govuk-visually-hidden"> Environmental assessment</span>
+      {% else %}
+        Add<span class="govuk-visually-hidden"> Environmental assessment</span>
       {% endif %}
-    </td>
-  </tr>
-{% endif %}
+
+    </a>
+  </td>
+</tr>
 
 <tr class="govuk-table__row">
   <td class="govuk-table__cell">

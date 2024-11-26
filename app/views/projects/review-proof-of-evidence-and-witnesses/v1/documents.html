@@ -1,0 +1,94 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Proof of evidence and witnesses documents" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% block beforeContent %}
+  {% if data['from'] == 'case' %}
+    {{ govukBackLink({
+      text: "Back",
+      href: "case-details"
+    }) }}
+  {% else %}
+    {{ govukBackLink({
+      text: "Back",
+      href: "document-review"
+    }) }}
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukNotificationBanner({
+        type: "success",
+        text: flash
+      }) if flash.length}}
+
+      <span class="govuk-caption-l">Appeal 2114328</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+    </div>
+
+    <div class="govuk-grid-column-full">
+
+      <p class="govuk-body">
+        <a href="upload-document" class="govuk-link">Add document</a>
+      </p>
+
+      {{ govukTable({
+
+        firstCellIsHeader: true,
+        head: [
+          {
+            text: "Name"
+          },
+          {
+            text: "Submitted"
+          },
+          {
+            text: "Redaction status"
+          },
+          {
+            text: "Action",
+            format: "numeric"
+          }
+        ],
+        rows: [
+          [
+            {
+              html: "<a href='#' class='govuk-link'>appeal_2110166_proofs_and_witnesses_part1.pdf</a>"
+            },
+            {
+              html: 2 | daysAgo
+            },
+            {
+              html:  (data ['lpa-document-redaction']or 'Unredacted')
+            },
+            {
+              html: "<a href='manage-document' class='govuk-link'>View and edit</a>",
+              format: "numeric"
+            }
+          ],
+          [
+            {
+              html: "<a href='#' class='govuk-link'>appeal_2110166_proofs_and_witnesses_part2.pdf</a>"
+            },
+            {
+              html: 2 | daysAgo
+            },
+            {
+              html:  (data ['lpa-document-redaction']or 'Unredacted')
+            },
+            {
+              html: "<a href='manage-document' class='govuk-link'>View and edit</a>",
+              format: "numeric"
+            }
+          ]
+        ]
+      }) }}
+
+    </div>
+  </div>
+{% endblock %}

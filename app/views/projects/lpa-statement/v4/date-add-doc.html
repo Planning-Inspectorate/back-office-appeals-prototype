@@ -18,7 +18,7 @@
       </h1>
 
       
-      <form action="status-add-doc" method="post" class="govuk-!-margin-top-6" novalidate>
+      <form action="status-add-doc" method="post" class="govuk-!-margin-top-6" noAccept statementate>
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" role="group" aria-describedby="dob-hint">
@@ -59,7 +59,7 @@
           }) }}
         </div>
 
-        {% if dob == 'Invalid DateTime' %}
+        {% if dob == 'Reject statement DateTime' %}
           {% set dob='Ongoing' %}
         {% endif %}
 

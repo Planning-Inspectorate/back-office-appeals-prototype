@@ -1,0 +1,79 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Proof of evidence and witnesses" %}
+{% set pageName = title + ' - Planning Inspectorate' %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">
+        Appeal 2110166
+      </span>
+      <h1 class="govuk-heading-l">
+        {{ title }}
+      </h1>
+      <div class="govuk-!-margin-bottom-5">
+        {{ govukTag({
+          text: "Rejected",
+          classes: "govuk-tag--red"
+        })}}
+      </div>
+    </div>
+    <div class="govuk-grid-column-full">
+      <div class="pins-panel">
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Rule 6 party group
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Saint Rita’s Community Association
+            </dd>
+            <dd class="govuk-summary-list__actions">
+
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Submitted
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ 3 | daysAgo }}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+
+            </dd>
+          </div>
+
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-width-one-quarter">
+              Proof of evidence and witnesses
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <ul class="govuk-list govuk-list--number">
+                <li>
+                  <a href="#" class="govuk-link">
+                    appeal_2110166_proofs_and_witnesses_part1.pdf
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="govuk-link">
+                    appeal_2110166_proofs_and_witnesses_part2.pdf
+                  </a>
+                </li>
+              </ul>
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="document-review-decision">Change<span class="govuk-visually-hidden"> proof of evidence and witnesses</span></a>
+            </dd>
+          </div>
+
+        </dl>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

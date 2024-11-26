@@ -1,9 +1,9 @@
 {% extends "layouts/PINS.html" %}
 
-{% if data['review-decision'] == 'Incomplete' %}
-  {% set title = "LPA statement incomplete" %}
+{% if data['review-decision'] == 'Statement incomplete' %}
+  {% set title = "LPA statement Statement incomplete" %}
 {% else %}
-  {% set title = "LPA statement invalid" %}
+  {% set title = "LPA statement Reject statement" %}
 {% endif %}
 
 {% set pageName = title + ' - Planning Inspectorate'%}
@@ -28,10 +28,10 @@
       </p>
 
       <p class="govuk-body">
-        {% if data['review-decision'] == 'Incomplete' %}
-          <a href="case?statementReviewStatus=incomplete" class="govuk-link">Go back to case details</a>
+        {% if data['review-decision'] == 'Statement incomplete' %}
+          <a href="case?statementReviewStatus=Statement incomplete" class="govuk-link">Go back to case details</a>
         {% else %}
-          <a href="case?statementReviewStatus=invalid" class="govuk-link">Go back to case details</a>
+          <a href="case?statementReviewStatus=Reject statement" class="govuk-link">Go back to case details</a>
         {% endif %}
 
       </p>

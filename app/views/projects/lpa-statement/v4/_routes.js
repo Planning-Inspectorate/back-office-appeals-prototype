@@ -9,16 +9,21 @@ router.get('*', function(req, res, next){
 
 // changing the appeal procedure
 router.post('/statement-review', function (req, res) {
-  if (req.session.data['review-outcome'] == 'Invalid') {
-    res.redirect('why-rejected')
-  } else if (req.session.data['review-outcome'] == 'Incomplete') {
+  if (req.session.data['review-outcome'] == 'Reject statement') {
+    res.redirect('reject-statement')
+  } else if (req.session.data['review-outcome'] == 'Statement incomplete') {
     res.redirect('why-incomplete')
-  } else if (req.session.data['review-outcome'] == 'Valid with redaction') {
+  } else if (req.session.data['review-outcome'] == 'Redact and accept statement') {
     res.redirect('redact-statement')
   } else {
-    res.redirect('matrix-update')
+    res.redirect('check-allocation-update')
   }
 })
+
+router.post('/redact-statement', function (req, res) {
+  res.redirect('check-allocation-update')
+})
+
 
 router.post('/matrix-update', function (req, res) {
   if (req.session.data['matrix-update'] == 'No') {
@@ -53,30 +58,34 @@ router.post('/select-allocation', function (req, res) {
 })
 
 router.post('/select-specialism', function (req, res) {
-  res.redirect('check-your-answers')
+  res.redirect('allow-resubmission')
 })
 
 router.post('/why-incomplete', function (req, res) {
-  res.redirect('check-your-answers')
+  res.redirect('allow-resubmission')
 })
 
-router.post('/why-rejected', function (req, res) {
+router.post('/reject-statement', function (req, res) {
+  res.redirect('allow-resubmission')
+})
+
+router.post('/allow-resubmission', function (req, res) {
   res.redirect('check-your-answers')
 })
 
 router.post('/check-your-answers', function (req, res) {
-  if (req.session.data['review-outcome'] == 'Valid with redaction') {
-    req.flash('success', 'Statement review complete')
-    res.redirect('case?statement-review-done=Yes')
-  } else if (req.session.data['review-outcome'] == 'Incomplete') {
-    req.flash('success', 'Statement review complete')
-    res.redirect('case?statement-review-done=Yes')
-  } else if (req.session.data['review-outcome'] == 'Invalid') {
-    req.flash('success', 'Statement review complete')
-    res.redirect('case?statement-review-done=Yes')
+  if (req.session.data['review-outcome'] == 'Redact and accept statement') {
+    req.flash('success', 'Statement redacted and accepted')
+    res.redirect('case-details?statement-review-done=Yes')
+  } else if (req.session.data['review-outcome'] == 'Statement incomplete') {
+    req.flash('success', 'Statement incomplete')
+    res.redirect('case-details?statement-review-done=Yes')
+  } else if (req.session.data['review-outcome'] == 'Reject statement') {
+    req.flash('success', 'Statement rejected')
+    res.redirect('case-details?statement-review-done=Yes')
   } else {
-    req.flash('success', 'LPA statement accepted')
-    res.redirect('case?statement-review-done=Yes')
+    req.flash('success', 'Statement accepted')
+    res.redirect('case-details?statement-review-done=Yes')
   }
 })
 

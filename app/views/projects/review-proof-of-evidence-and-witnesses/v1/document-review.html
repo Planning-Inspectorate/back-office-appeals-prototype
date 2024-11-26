@@ -1,0 +1,89 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Review proof of evidence and witnesses" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "case"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Appeal 2110166</span>
+      <h1 class="govuk-heading-l">
+        {{ title }}
+      </h1>
+
+    </div>
+
+    <div class="govuk-grid-column-full">
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Proof of evidence and witnesses",
+              classes: "govuk-!-width-one-quarter"
+            },
+            value: {
+              html: "<ul class='govuk-list govuk-list--number'>
+                <li>
+                  <a href='#' class='govuk-link'>appeal_2110166_proofs_and_witnesses_part1.pdf</a>
+                </li>
+                <li>
+                  <a href='#' class='govuk-link'>appeal_2110166_proofs_and_witnesses_part2.pdf</a>
+                </li>
+              </ul>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "documents",
+                  text: "Change",
+                  visuallyHiddenText: "documents"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+    </div>
+  </div>
+
+  <form method="post">
+
+    {{ govukRadios({
+      name: "document-review-decision",
+      fieldset: {
+        legend: {
+          text: "Review decision",
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--m"
+        }
+      },
+      items: [
+        {
+          value: "Accept proof of evidence and witnesses",
+          text: "Accept proof of evidence and witnesses"
+        },
+        {
+          value: "Reject proof of evidence and witnesses",
+          text: "Reject proof of evidence and witnesses"
+        }
+
+      ]
+    }) }}
+
+    {{ govukButton({
+      text: "Continue"
+    }) }}
+
+  </form>
+
+{% endblock %}

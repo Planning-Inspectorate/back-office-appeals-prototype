@@ -23,6 +23,10 @@
   {
     href: '?case-stage=final-comments',
     text: 'Final comments stage'
+  },
+  {
+    href: '?case-stage=determination',
+    text: 'Determination stage'
   }
 ] %}
 
@@ -182,6 +186,28 @@
 
       {% elseif data['case-stage'] == 'determination' %}
         <!-- determination -->
+
+        <!-- Environmental assessment warning -->
+        {% if data['check-environmental-statement'] == 'Yes' %}
+          {% if data['environmental-statement-added'] != 'Yes' %}
+            {% set environmentalStatementWarning %}
+
+              {{ govukWarningText({
+                text: "The case should have an environmental assessment.",
+                classes: " govuk-!-margin-bottom-1",
+                iconFallbackText: "Warning"
+              }) }}
+
+              <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">
+                Add environmental assessment
+              </a>
+
+            {% endset %}
+            {{ govukNotificationBanner({
+              html: environmentalStatementWarning
+            }) }}
+          {% endif %}
+        {% endif %}
 
       {% elseif data['case-stage'] == 'closed' %}
         <!-- closed -->

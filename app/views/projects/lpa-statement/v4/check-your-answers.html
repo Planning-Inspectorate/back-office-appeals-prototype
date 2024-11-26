@@ -1,6 +1,15 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Check your answers" %}
+{% if data['review-outcome'] == 'Redact and accept statement' %}
+  {% set title = "Check details and redact statement" %}
+{% elseif data['review-outcome'] == 'Statement incomplete' %}
+  {% set title = "Check details and confirm statement is incomplete" %}
+{% elseif data['review-outcome'] == 'Reject statement' %}
+  {% set title = "Check details and reject statement" %}
+{% else %}
+  {% set title = "Check details and accept statement" %}
+{% endif %}
+
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% block content %}
@@ -19,8 +28,8 @@
             rows: [
             {
               key: {
-                text: "Unredacted LPA statement"
-              },
+                text: "Statement"
+              } if data['review-outcome'] != 'Redact and accept statement' else { text: "Original statement" },
               value: {
                 html: data['original-statement'] or "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus.
                 Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus.
@@ -29,7 +38,6 @@
               actions: {
                 items: [
                   {
-                    href: "select-allocation",
                     text: "",
                     visuallyHiddenText: ""
                   }
@@ -38,7 +46,7 @@
             },
             {
               key: {
-                text: "Redacted LPA statement"
+                text: "Redacted statement"
               },
               value: {
                 html: data['redacted-statement'] or " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus.
@@ -54,24 +62,7 @@
                   }
                 ]
               }
-            } if data['review-outcome'] == 'Valid with redaction' and data['review-outcome'] != 'Incomplete' and data['review-outcome'] != 'Invalid',
-            {
-              key: {
-                text: "Redacted LPA statement"
-              },
-              value: {
-                html: "Not applicable"
-              } ,
-              actions: {
-                items: [
-                  {
-                    href: "redact-lpa-statement",
-                    text: "Change",
-                    visuallyHiddenText: "Redacted statement"
-                  }
-                ]
-              }
-            } if data['review-outcome'] != 'Valid with redaction' and data['review-outcome'] != 'Incomplete' and data['review-outcome'] != 'Invalid',
+            } if data['review-outcome'] == 'Redact and accept statement',
             {
               key: {
                 text: "Supporting documents"
@@ -92,10 +83,10 @@
             },
             {
               key: {
-                text: "Review outcome"
+                text: "Review decision"
               },
               value: {
-                html: data['review-outcome'] or 'Valid'
+                html: data['review-outcome'] or 'Accept statement'
               },
               actions: {
                 items: [
@@ -109,7 +100,7 @@
             },
             {
               key: {
-                text: "Does the allocation matrix need to be updated?"
+                text: "Do you need to update the allocation level and specialisms?"
               },
               value: {
                 html: data['matrix-update'] or 'Yes'
@@ -123,7 +114,7 @@
                   }
                 ]
               }
-            } if data['review-outcome'] != 'Incomplete' and data['review-outcome'] != 'Invalid',
+            } if data['review-outcome'] != 'Statement incomplete' and data['review-outcome'] != 'Reject statement',
             {
               key: {
                 text: "Allocation level"
@@ -140,10 +131,10 @@
                   }
                 ]
               }
-            } if data['review-outcome'] != 'Incomplete' and data['review-outcome'] != 'Invalid' and data['matrix-update'] != 'No',
+            } if data['review-outcome'] != 'Statement incomplete' and data['review-outcome'] != 'Reject statement' and data['matrix-update'] != 'No',
             {
               key: {
-                text: "Specialism"
+                text: "Allocation specialisms"
               },
               value: {
                 html: "<ul class='govuk-list govuk-list--bullet'>
@@ -160,10 +151,10 @@
                   }
                 ]
               }
-            } if data['review-outcome'] != 'Incomplete' and data['review-outcome'] != 'Invalid' and data['matrix-update'] != 'No',
+            } if data['review-outcome'] != 'Statement incomplete' and data['review-outcome'] != 'Reject statement' and data['matrix-update'] != 'No',
             {
               key: {
-                text: "Reason for incomplete decision"
+                text: "Reason for Statement incomplete decision"
               },
               value: {
                 html: "<ul class='govuk-list govuk-list--bullet'><li>Attachments and/or appendices missing</li><li>Other: (Given reason text)</li></ul>"
@@ -171,16 +162,16 @@
               actions: {
                 items: [
                   {
-                    href: "why-incomplete",
+                    href: "why-Statement incomplete",
                     text: "Change",
                     visuallyHiddenText: "Reasons"
                   }
                 ]
               }
-            } if data['review-outcome'] == 'Incomplete',
+            } if data['review-outcome'] == 'Statement incomplete',
             {
               key: {
-                text: "Reason for invalid decision"
+                text: "Reason for Reject statement decision"
               },
               value: {
                 html: "<ul class='govuk-list govuk-list--bullet'><li>Attachments and/or appendices missing</li><li>Other: (Given reason text)</li></ul>"
@@ -188,41 +179,60 @@
               actions: {
                 items: [
                   {
-                    href: "why-incomplete",
+                    href: "why-Statement incomplete",
                     text: "Change",
                     visuallyHiddenText: "Reasons"
                   }
                 ]
               }
-            } if data['review-outcome'] == 'Invalid',
+            } if data['review-outcome'] == 'Reject statement',
             {
               key: {
-                text: "Due date"
+                text: "Allow resubmission"
               },
               value: {
-                html: 7 | daysInFuture
+                html: data['allow-resubmission']
               },
               actions: {
                 items: [
                   {
                     href: "update-due-date",
                     text: "Change",
-                    visuallyHiddenText: "due date"
+                    visuallyHiddenText: "allow resubmission"
                   }
                 ]
               }
-            } if data['review-outcome'] == 'Incomplete' or data['review-outcome'] == 'Invalid'
-            ] })
+            } if data['review-outcome'] == 'Statement incomplete' or data['review-outcome'] == 'Reject statement'
+          ] })
           }}
 
         </div>
 
-        {{ govukButton({
-          text: "Confirm"
-        }) }}
+        {% if data['review-outcome'] == 'Statement incomplete' %}
+          <p class="govuk-body">
+            We’ll send an email to the LPA to explain why their statement is incomplete.
+          </p>
+        {% endif %}
+
+        {% if data['review-outcome'] == 'Redact and accept statement' %}
+          {{ govukButton({
+            text: "Redact and accept statement"
+          }) }}
+        {% elseif data['review-outcome'] == 'Statement incomplete' %}
+          {{ govukButton({
+            text: "Confirm statement is incomplete"
+          }) }}
+        {% elseif data['review-outcome'] == 'Reject statement' %}
+          {{ govukButton({
+            text: "Reject statement"
+          }) }}
+        {% else %}
+          {{ govukButton({
+            text: "Accept"
+          }) }}
+        {% endif %}
 
       </form>
-
 
     </div>
   </div>

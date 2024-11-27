@@ -110,7 +110,7 @@ addFilter('cleanArray', (array) => {
 })
 
 addFilter('days', (value) => {
-	let val = parseInt(value, 10)
+	let val = parseFloat(value, 10)
 	if(val == 1) {
 		return val + ' day'
 	} else {

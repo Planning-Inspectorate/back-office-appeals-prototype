@@ -1,0 +1,133 @@
+{% extends "layouts/PINS-Simple.html" %}
+
+{% set title = "Check details and add Rule 6 application" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  {% set address %}
+    {{appAddress({ address: data.hearing.address })}}
+  {% endset %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal 2114328</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Email address"
+            },
+            value: {
+              html: data.rule6application.emailAddress
+            },
+            actions: {
+              items: [
+                {
+                  href: "/projects/start-full-case/v4/rule-6-applications/new",
+                  text: "Change",
+                  visuallyHiddenText: "Email address"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Name"
+            },
+            value: {
+              text: data.rule6application.firstName + ' ' + data.rule6application.lastName
+            },
+            actions: {
+              items: [
+                {
+                  href: "/projects/start-full-case/v4/rule-6-applications/new/name",
+                  text: "Change",
+                  visuallyHiddenText: "Name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Does the Rule 6 party represent an organisation?"
+            },
+            value: {
+              text: data.rule6application.hasOrganisation
+            },
+            actions: {
+              items: [
+                {
+                  href: "/projects/start-full-case/v4/rule-6-applications/new/organisation",
+                  text: "Change",
+                  visuallyHiddenText: "if the Rule 6 party represents an organisation"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Organisation"
+            },
+            value: {
+              text: data.rule6application.organisationName
+            },
+            actions: {
+              items: [
+                {
+                  href: "/projects/start-full-case/v4/rule-6-applications/new/organisation",
+                  text: "Change",
+                  visuallyHiddenText: "Organisation"
+                }
+              ]
+            }
+          } if data.rule6application.hasOrganisation == 'Yes',
+          {
+            key: {
+              text: "Phone number"
+            },
+            value: {
+              text: data.rule6application.phone
+            },
+            actions: {
+              items: [
+                {
+                  href: "/projects/start-full-case/v4/rule-6-applications/new/phone",
+                  text: "Change",
+                  visuallyHiddenText: "Phone number"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Application form"
+            },
+            value: {
+              html: '<a href="#">Application form (PDF, 12MB)</a>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "/projects/start-full-case/v4/rule-6-applications/new/phone",
+                  text: "Change",
+                  visuallyHiddenText: "Application form"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <form method="post">
+        {{ govukButton({
+          text: "Add Rule 6 application"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

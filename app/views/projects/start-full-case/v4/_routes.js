@@ -1,5 +1,6 @@
 const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
+const { v4: uuidv4 } = require('uuid')
 
 //
 // START CASE
@@ -271,6 +272,46 @@ router.post('/edit-inquiry-estimates', function (req, res) {
 router.post('/edit-inquiry-estimates/check', function (req, res) {
   req.flash('success', 'Inquiry estimates updated')
   res.redirect('../case-details')
+})
+
+//
+// Rule 6 APPLICATIONS: ADD
+//
+
+router.post('/rule-6-applications/new', function (req, res) {
+  res.redirect('./new/name')
+})
+
+router.post('/rule-6-applications/new/name', function (req, res) {
+  res.redirect('./organisation')
+})
+
+router.post('/rule-6-applications/new/organisation', function (req, res) {
+  res.redirect('./phone')
+})
+
+router.post('/rule-6-applications/new/phone', function (req, res) {
+  res.redirect('./form')
+})
+
+router.post('/rule-6-applications/new/form', function (req, res) {
+  res.redirect('./check')
+})
+
+router.post('/rule-6-applications/new/check', function (req, res) {
+  console.log(req.session.data.rule6applications.length)
+  let application = req.session.data.rule6application
+  req.flash('success', 'Rule 6 application added')
+  req.session.data.rule6applications.push({
+    id: uuidv4(),
+    emailAddress: application.emailAddress,
+    firstName: application.firstName,
+    lastName: application.lastName,
+    hasOrganisation: application.hasOrganisation,
+    organisationName: application.organisationName,
+    phone: application.phone
+  })
+  res.redirect('/projects/start-full-case/v4/case-details')
 })
 
 // Add your routes above the module.exports line

@@ -265,8 +265,10 @@
         {% endset %}
         {{ govukNotificationBanner({
           html: html
-        }) }}
+        }) if not data.appealProcedure}}
       {% endif %}
+
+      {{data.appealProcedure | log}}
 
       <!--	<span class="govuk-caption-l">Appeal 2110166</span> -->
       <span class="govuk-caption-xl">Appeal 2114328</span>
@@ -798,7 +800,7 @@
                     actions: {
                       items: [
                         {
-                          href: "/projects/start-full-case/v4/add-inquiry",
+                          href: "/projects/start-full-case/v4/edit-inquiry-estimates",
                           text: "Change",
                           visuallyHiddenText: "Inquiry time"
                         }
@@ -870,13 +872,13 @@
                     actions: {
                       items: [
                         {
-                          href: "/projects/start-full-case/v4/add-inquiry/time",
+                          href: "/projects/start-full-case/v4/edit-inquiry/time",
                           text: "Change",
                           visuallyHiddenText: "Inquiry time"
                         }
                       ]
                     }
-                  },
+                  } if data.inquiry.time,
                   {
                     key: {
                       text: "Do you know the estimated number of days needed to carry out the inquiry"
@@ -893,7 +895,7 @@
                         }
                       ]
                     }
-                  },
+                  } if data.inquiry.hasDays,
                   {
                     key: {
                       text: "Estimated number of days needed to carry out the inquiry"
@@ -1179,6 +1181,44 @@
                     html: '<a href="#">View</a>'
                   }
                 ]
+              ]
+            }) }}
+          </div>
+        </div>
+
+        <div class="govuk-accordion__section">
+          <div class="govuk-accordion__section-header">
+            <h2 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-rule-6">
+                Rule 6 applications
+              </span>
+            </h2>
+          </div>
+          <div id="accordion-default-content-3" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-rule-6">
+            {{ govukSummaryList({
+              rows: [
+                {
+                  key: {
+                    text: "Rule 6 applications"
+                  },
+                  value: {
+                    text: data.rule6applications.length + " applications"
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "/projects/start-full-case/v4/rule-6-applications/new",
+                        text: "Add",
+                        visuallyHiddenText: "Rule 6 party applications"
+                      },
+                      {
+                        href: "/projects/start-full-case/v4/rule-6-applications",
+                        text: "Review",
+                        visuallyHiddenText: "Rule 6 party applications"
+                      }
+                    ]
+                  }
+                }
               ]
             }) }}
           </div>

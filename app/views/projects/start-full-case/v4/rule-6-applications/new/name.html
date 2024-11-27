@@ -1,0 +1,52 @@
+{% extends "layouts/PINS-Simple.html" %}
+
+{% set title = "Rule 6 party name" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+        <span class="govuk-caption-l">Appeal 2114328</span>
+        <h1 class="govuk-heading-l">{{title}}</h1>
+
+        {{ govukInput({
+          id: "rule6application[firstName]",
+          name: "rule6application[firstName]",
+          label: {
+            text: "First name",
+            isPageHeading: false,
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: "Or given name"
+          },
+          value: data.rule6application.firstName
+        }) }}
+
+        {{ govukInput({
+          id: "rule6application[lastName]",
+          name: "rule6application[lastName]",
+          label: {
+            text: "Last name",
+            isPageHeading: false,
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: "Or family name"
+          },
+          value: data.rule6application.lastName
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

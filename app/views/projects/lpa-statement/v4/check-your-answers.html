@@ -1,7 +1,7 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
 {% if data['review-outcome'] == 'Redact and accept statement' %}
-  {% set title = "Check details and redact statement" %}
+  {% set title = "Check details and accept statement" %}
 {% elseif data['review-outcome'] == 'Statement incomplete' %}
   {% set title = "Check details and confirm statement is incomplete" %}
 {% elseif data['review-outcome'] == 'Reject statement' %}
@@ -174,12 +174,12 @@
                 text: "Reason for Reject statement decision"
               },
               value: {
-                html: "<ul class='govuk-list govuk-list--bullet'><li>Attachments and/or appendices missing</li><li>Other: (Given reason text)</li></ul>"
+                html: "<ul class='govuk-list govuk-list--bullet'><li>Supporting documents missing</li><li>Other: (Given reason text)</li></ul>"
               },
               actions: {
                 items: [
                   {
-                    href: "why-Statement incomplete",
+                    href: "why-rejected",
                     text: "Change",
                     visuallyHiddenText: "Reasons"
                   }

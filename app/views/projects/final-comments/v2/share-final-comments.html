@@ -1,0 +1,42 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Check details and share final comments" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = true %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Appeal 2114328</span>
+    <h1 class="govuk-heading-l">
+      {{ title }}
+    </h1>
+
+    <p>We’ll share <a href="#" class="govuk-link">appellant final comments</a> and <a href="#" class="govuk-link">LPA final comments</a> with the relevant parties.</p>
+
+    {{ govukWarningText({
+      text: "Do not share until you have reviewed all of the supporting documents and redacted any sensitive information.",
+      iconFallbackText: "Fallback text"
+    }) }}
+
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form method="post">
+
+    	{{ govukButton({
+    		text: 'Share final comments'
+    	}) }}
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

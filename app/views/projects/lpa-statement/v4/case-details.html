@@ -452,7 +452,22 @@
                     html: "<a href='statement-review'>Review</a>",
                     format: "numeric"
                   }
-                ],
+                ] if data['statement-review-done'] != "Yes",
+                [
+                  {
+                    text: "LPA statement"
+                  },
+                  {
+                    text: "Completed"
+                  },
+                  {
+                    text: "19 Jul 2023"
+                  },
+                  {
+                    html: "<a href='statement-review'>View</a>",
+                    format: "numeric"
+                  }
+                ] if data['statement-review-done'] == "Yes",
                 [
                   {
                     text: "Interested party comments"

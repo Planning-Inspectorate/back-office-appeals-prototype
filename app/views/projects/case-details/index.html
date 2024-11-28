@@ -16,6 +16,23 @@
         A look at how the Case details view changes throughout the different stages of an appeal.
       </p>
 
+      <h2 class="govuk-heading-m">Version 4
+        {{govukTag({
+          text: "In progress",
+          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+        })}}
+      </h2>
+
+      <p class="govuk-body">
+        Horizontal nav to allow maximum width for content within the pages.
+      </p>
+
+      {{ govukButton({
+        text: "View prototype",
+        href: "/projects/case-details/v4/case-details.html",
+        isStartButton: true
+      }) }}
+
       <h2 class="govuk-heading-m">Version 3
         {{govukTag({
           text: "In progress",

@@ -1,0 +1,139 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% if data['review-outcome'] == 'Reject statement' %}
+  {% set title = "Check details and reject comment" %}
+{% else %}
+  {% set title = "Check details and accept comment" %}
+{% endif %}
+
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Appeal 2114328</span>
+      <h1 class="govuk-heading-l">
+        {{ title }}
+      </h1>
+
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <div class="pins-panel">
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Rule 6 party"
+              },
+              value: {
+                text: "Saint Rita’s Community Association"
+              }
+            },
+            {
+              key: {
+                text: "Unredacted statement"
+              } if data['review-outcome'] == 'Redact and accept statement' else { text: "Statement" },
+              value: {
+                html: "Having reviewed the proposal we would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. David Newton at number 6 The Grove also agrees."
+              }
+            },
+            {
+              key: {
+                text: "Redacted statement"
+              },
+              value: {
+                html: "Having reviewed the proposal we would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. █████████████████████████████████████████████."
+              },
+              actions: {
+                items: [
+                  {
+                    href: "statement-redact",
+                    text: "Change",
+                    visuallyHiddenText: "redaction"
+                  }
+                ]
+              }
+            } if data['review-outcome'] == 'Redact and accept statement',
+            {
+              key: {
+                text: "Review decision"
+              },
+              value: {
+                html: data['review-outcome' ] or 'Accept statement'
+              },
+              actions: {
+                items: [
+                  {
+                    href: "statement-review",
+                    text: "Change",
+                    visuallyHiddenText: "review decision"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Why are you rejecting the statement?"
+              },
+              value: {
+                html: 'Includes personal or medical information'
+              },
+              actions: {
+                items: [
+                  {
+                    href: "why-rejected",
+                    text: "Change",
+                    visuallyHiddenText: "reasons for rejecting the statement"
+                  }
+                ]
+              }
+            } if data['review-outcome'] == "Reject statement",
+            {
+              key: {
+                text: "Allow resubmission"
+              },
+              value: {
+                html: data['allow-resubmission'] or 'Yes'
+              },
+              actions: {
+                items: [
+                  {
+                    href: "allow-resubmission",
+                    text: "Change",
+                    visuallyHiddenText: "allow resubmission"
+                  }
+                ]
+              }
+            } if data['review-outcome'] == "Reject statement"
+
+          ]
+        }) }}
+
+      </div>
+
+      {% if data['review-outcome'] == 'Reject statement' %}
+        <form method="post">
+          {{ govukButton({
+            text: "Reject statement"
+          }) }}
+        </form>
+      {% else %}
+        <form method="post">
+          {{ govukButton({
+            text: "Accept statement"
+          }) }}
+        </form>
+      {% endif %}
+
+    </div>
+  </div>
+
+{% endblock %}

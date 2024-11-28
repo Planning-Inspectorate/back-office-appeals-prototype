@@ -12,7 +12,7 @@
 
 {% set prototypeLinks = [
   {
-    href: '?redactedStatement=&commentReview=#review-tab',
+    href: '?statement-reviewed=',
     text: 'Reset view'
   }
 ] %}
@@ -25,91 +25,6 @@
         type: "success",
         text: flash
       }) if flash.length}}
-
-     <!-- Notification banners -->
-      {% if data['statements-shared'] != 'yes' %}
-        {% if data ['redactedStatement'] and data['new-comment'] != 'true' %}
-          <div class="govuk-notification-banner  govuk-notification-banner--success" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
-            <div class="govuk-notification-banner__header">
-              <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
-                Success
-              </h2>
-            </div>
-            <div class="govuk-notification-banner__content">
-              <p class="govuk-notification-banner__heading">
-                Statement redacted and accepted
-              </p>
-            </div>
-          </div>
-        {% elseif data ['acceptedStatement'] %}
-          <div class="govuk-notification-banner  govuk-notification-banner--success" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
-            <div class="govuk-notification-banner__header">
-              <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">Success</h2>
-            </div>
-            <div class="govuk-notification-banner__content">
-              <p class="govuk-notification-banner__heading">
-                Statement accepted
-                </p>
-            </div>
-          </div>
-      	{% elseif data ['manual-ip-comment'] %}
-          <div class="govuk-notification-banner  govuk-notification-banner--success" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
-            <div class="govuk-notification-banner__header">
-              <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
-                Success
-              </h2>
-            </div>
-            <div class="govuk-notification-banner__content">
-              <p class="govuk-notification-banner__heading">
-                Statement added
-              </p>
-            </div>
-          </div>
-        {% elseif data ['comment-rejected'] %}
-          <div class="govuk-notification-banner  govuk-notification-banner--success" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
-            <div class="govuk-notification-banner__header">
-              <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
-                Success
-              </h2>
-            </div>
-            <div class="govuk-notification-banner__content">
-              <p class="govuk-notification-banner__heading">
-                Statement rejected
-              </p>
-              <p class="govuk-body">
-                The IP has not been informed. No email address was provided.
-              </p>
-            </div>
-          </div>
-        {% elseif data ['extra-document'] %}
-          <div class="govuk-notification-banner  govuk-notification-banner--success" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
-            <div class="govuk-notification-banner__header">
-              <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
-                Success
-              </h2>
-            </div>
-            <div class="govuk-notification-banner__content">
-              <p class="govuk-notification-banner__heading">
-                Supporting documents uploaded
-              </p>
-            </div>
-          </div>
-
-        {% elseif data ['new-comment'] %}
-          <div class="govuk-notification-banner  govuk-notification-banner--success" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
-            <div class="govuk-notification-banner__header">
-              <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
-                Success
-              </h2>
-            </div>
-            <div class="govuk-notification-banner__content">
-              <p class="govuk-notification-banner__heading">
-                Interested party comment added
-              </p>
-            </div>
-          </div>
-      	{% endif %}
-      {% endif %}
 
       <!-- Page heading -->
       <span class="govuk-caption-l">Appeal 2114328</span>

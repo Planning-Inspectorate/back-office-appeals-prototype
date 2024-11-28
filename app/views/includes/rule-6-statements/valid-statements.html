@@ -1,4 +1,4 @@
-{% if data['acceptedstatement'] == 'yes' or data['redactedStatement'] == 'true' %}
+{% if data['statement-reviewed'] == 'yes' and data['review-outcome'] != 'Reject statement'  %}
 
   {{ govukTable({
     caption: "Accepted statements",

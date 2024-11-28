@@ -1,4 +1,4 @@
-{% if data['statementReview'] == 'true' and data['r6-statement-review'] == 'invalid' %}
+{% if data['statement-reviewed'] == 'yes' and data['review-outcome'] == 'Reject statement'  %}
 
   {{ govukTable({
     caption: "Rejected statements",
@@ -17,15 +17,15 @@
     ],
     rows: [
       [
-          {
-            text: "Saint Rita’s Community Association"
-          },
-          {
-            text: 3 | daysAgo
-          },
-          {
-            html: "<a href='comment-view-rejected?acceptedComment=&redactedComment=&comment-withdrawn=&manual-ip-comment=&comment-rejected=&extra-document='>View<span class='govuk-visually-hidden'> comment from Davina Twinee</span></a>"
-          }
+        {
+          text: "Saint Rita’s Community Association"
+        },
+        {
+          text: 3 | daysAgo
+        },
+        {
+          html: "<a href='comment-view-rejected?acceptedComment=&redactedComment=&comment-withdrawn=&manual-ip-comment=&comment-rejected=&extra-document='>View<span class='govuk-visually-hidden'> comment from Davina Twinee</span></a>"
+        }
       ]
   ]
   }) }}

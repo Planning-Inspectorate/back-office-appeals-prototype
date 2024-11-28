@@ -60,7 +60,7 @@
           <dd class="govuk-summary-list__value">
 
             {% if data['no-documents'] != 'yes' %}
-            <ul class="govuk-list govuk-list--bullet">
+            <ul class="govuk-list govuk-list--number">
               <li>
                 <a href='#' class='govuk-link govuk-link--no-visited-state'>
                   {{(data ['upload-extra-document'] or 'appeal-2114328-added-document.doc')}}
@@ -83,9 +83,7 @@
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="redact-supporting-documents">
-              Manage<span class="govuk-visually-hidden"> supporting documents</span></a> |
-            <a class="govuk-link" href="upload-add-doc">
-              Add<span class="govuk-visually-hidden"> supporting documents</span>
+              Change<span class="govuk-visually-hidden"> supporting documents</span>
             </a>
           </dd>
         </div>

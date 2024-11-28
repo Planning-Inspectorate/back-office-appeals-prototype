@@ -154,7 +154,7 @@
             } if data['review-outcome'] != 'Statement incomplete' and data['review-outcome'] != 'Reject statement' and data['matrix-update'] != 'No',
             {
               key: {
-                text: "Reason for Statement incomplete decision"
+                text: "Why is the statement incomplete?"
               },
               value: {
                 html: "<ul class='govuk-list govuk-list--bullet'><li>Attachments and/or appendices missing</li><li>Other: (Given reason text)</li></ul>"
@@ -171,7 +171,7 @@
             } if data['review-outcome'] == 'Statement incomplete',
             {
               key: {
-                text: "Reason for Reject statement decision"
+                text: "Why are you rejecting the statement?"
               },
               value: {
                 html: "<ul class='govuk-list govuk-list--bullet'><li>Supporting documents missing</li><li>Other: (Given reason text)</li></ul>"
@@ -188,7 +188,7 @@
             } if data['review-outcome'] == 'Reject statement',
             {
               key: {
-                text: "Allow resubmission"
+                text: "Do you want to allow the LPA to resubmit their statement?"
               },
               value: {
                 html: data['allow-resubmission']

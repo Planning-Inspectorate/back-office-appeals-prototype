@@ -25,47 +25,6 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {% if data['documents-added'] %}
-        <div class="govuk-notification-banner  govuk-notification-banner--success" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
-          <div class="govuk-notification-banner__header">
-            <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
-              Success
-            </h2>
-          </div>
-          <div class="govuk-notification-banner__content">
-            <p class="govuk-notification-banner__heading">
-              Supporting documents uploaded
-            </p>
-          </div>
-        </div>
-      {% elseif data['address-added'] %}
-        <div class="govuk-notification-banner  govuk-notification-banner--success" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
-          <div class="govuk-notification-banner__header">
-            <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
-              Success
-            </h2>
-          </div>
-          <div class="govuk-notification-banner__content">
-            <p class="govuk-notification-banner__heading">
-              IP address added
-            </p>
-          </div>
-        </div>
-      {% elseif data['address-changed'] %}
-        <div class="govuk-notification-banner  govuk-notification-banner--success" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
-          <div class="govuk-notification-banner__header">
-            <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
-              Success
-            </h2>
-          </div>
-          <div class="govuk-notification-banner__content">
-            <p class="govuk-notification-banner__heading">
-              IP address changed
-            </p>
-          </div>
-        </div>
-      {% endif %}
-
       <span class="govuk-caption-l">Appeal 2114328</span>
       <h1 class="govuk-heading-l">
         {{ title }}
@@ -239,65 +198,36 @@
         }) }}
       </section>
 
-      <!-- accept or reject the statement -->
-      <form action="" method="post" class="govuk-!-margin-top-7" id="review-statement">
+      <form method="post">
 
-        <!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
-        {% if data['manual-r6-statement'] %}
+        {{ govukRadios({
+          name: "review-outcome",
+          fieldset: {
+            legend: {
+              text: "Review decision",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+               value: "Accept statement",
+               text: "Accept statement"
+             },
+            {
 
-          {{ govukRadios({
-            name: "r6-statement-review",
-            fieldset: {
-              legend: {
-                text: "Review decision",
-                isPageHeading: false,
-                classes: "govuk-fieldset__legend--m"
-              }
-            },
-            items: [
+               value: "Redact and accept statement",
+               text: "Redact and accept statement"
+             },
              {
-                value: "valid",
-                text: "Accept statement"
-              },
-              {
-                value: "invalid",
-                text: "Reject statement"
-              }
-            ]
-          }) }}
-        {% else %}
-          {{ govukRadios({
-            name: "r6-statement-review",
-            fieldset: {
-              legend: {
-                text: "Review decision",
-                isPageHeading: false,
-                classes: "govuk-fieldset__legend--m"
-              }
-            },
-            items: [
-             {
-                value: "Accept statement",
-                text: "Accept statement"
-              },
-             {
-                value: "Redact and accept statement",
-                text: "Redact and accept statement"
-              },
-              {
-                value: "Reject statement",
-                text: "Reject statement"
-              }
-            ]
-          }) }}
-        {% endif %}
-
-        <p class="govuk-body govuk-!-margin-bottom-6">
-          <a href='withdraw-statement-upload-evidence?statement-mode=review&address-added=&address-changed=' class='govuk-link govuk-link--no-visited-state'>Withdraw statement</a>
-        </p>
+               value: "Reject statement",
+               text: "Reject statement"
+             }
+          ]
+        }) }}
 
         {{ govukButton({
-          text: "Confirm"
+          text: "Continue"
         }) }}
 
       </form>

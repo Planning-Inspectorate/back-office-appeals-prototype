@@ -9,11 +9,20 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
 
-    <!-- Page heading -->
     <span class="govuk-caption-l">Appeal 2114328</span>
+    <h1 class="govuk-heading-l">
+      {{ title }}
+    </h1>
+
+    <p class="govuk-body">
+      <a href="" class="govuk-link govuk-link--no-visited-state">
+        Add a document
+      </a>
+    </p>
+
     {{ govukTable({
-      caption: title,
-      captionClasses: "govuk-table__caption--l",
+      caption: "Documents",
+      captionClasses: "govuk-visually-hidden",
       firstCellIsHeader: false,
       head: [
         {
@@ -62,12 +71,6 @@
         ]
       ]
     }) }}
-
-    <p class="govuk-body">
-      <a href="" class="govuk-link govuk-link--no-visited-state">
-        Add a document
-      </a>
-    </p>
 
   </div>
 </div>

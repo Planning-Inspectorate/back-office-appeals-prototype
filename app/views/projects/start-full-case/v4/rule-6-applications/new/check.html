@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-Simple.html" %}
 
-{% set title = "Check details and add Rule 6 application" %}
+{% set title = "Check details and add Rule 6 party application" %}
 {% set pageName = title %}
 
 {% set back = true %}
@@ -53,7 +53,7 @@
           },
           {
             key: {
-              text: "Does the Rule 6 party represent an organisation?"
+              text: "Do they represent an organisation?"
             },
             value: {
               text: data.rule6application.hasOrganisation
@@ -124,7 +124,7 @@
 
       <form method="post">
         {{ govukButton({
-          text: "Add Rule 6 application"
+          text: "Add Rule 6 party application"
         }) }}
       </form>
 

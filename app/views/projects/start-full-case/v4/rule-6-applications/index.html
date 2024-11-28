@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-Simple.html" %}
 
-{% set title = "Rule 6 applications" %}
+{% set title = "Rule 6 party applications" %}
 {% set pageName = title %}
 
 {% block beforeContent %}
@@ -27,22 +27,22 @@
       <span class="govuk-caption-l">Appeal 2114328</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
 
-      <p class="govuk-!-margin-bottom-6"><a class="govuk-link" href="/projects/start-full-case/v4/rule-6-applications/new">Add Rule 6 application</a></p>
+      <p class="govuk-!-margin-bottom-6"><a class="govuk-link" href="/projects/start-full-case/v4/rule-6-applications/new">Add Rule 6 party application</a></p>
 
       {% set tab1Html %}
          {% include "../_includes/rule6-applications/awaiting-review.html" %}
       {% endset %}
 
       {% set tab2Html %}
-        {% include "../_includes/rule6-applications/awaiting-review.html" %}
+        {% include "../_includes/rule6-applications/invited.html" %}
       {% endset %}
 
       {% set tab3Html %}
-        {% include "../_includes/rule6-applications/awaiting-review.html" %}
+        {% include "../_includes/rule6-applications/accepted.html" %}
       {% endset %}
 
       {% set tab4Html %}
-        {% include "../_includes/rule6-applications/awaiting-review.html" %}
+        {% include "../_includes/rule6-applications/rejected.html" %}
       {% endset %}
 
       {{ govukTabs({
@@ -55,7 +55,7 @@
             }
           },
           {
-            label: "Invite sent",
+            label: "Invited",
             id: "tab-2",
             panel: {
               html: tab2Html
@@ -78,7 +78,7 @@
         ]
       }) }}
 
-      <p><a class="govuk-link" href="#">Withdrawn Rule 6 applications</a></p>
+      <p><a class="govuk-link" href="#">Withdrawn Rule 6 party applications</a></p>
 
     </div>
   </div>

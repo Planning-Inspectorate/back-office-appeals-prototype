@@ -275,6 +275,24 @@ router.post('/edit-inquiry-estimates/check', function (req, res) {
 })
 
 //
+// Rule 6 APPLICATIONS
+//
+
+router.get('/rule-6-applications', function (req, res) {
+  let awaitingReview = req.session.data.rule6applications.filter((item) => item.status == 'Awaiting review')
+  let invited = req.session.data.rule6applications.filter((item) => item.status == 'Invited')
+  let accepted = req.session.data.rule6applications.filter((item) => item.status == 'Accepted')
+  let rejected = req.session.data.rule6applications.filter((item) => item.status == 'Rejected')
+
+  res.render('/projects/start-full-case/v4/rule-6-applications/index', {
+    awaitingReview,
+    invited,
+    accepted,
+    rejected
+  })
+})
+
+//
 // Rule 6 APPLICATIONS: ADD
 //
 

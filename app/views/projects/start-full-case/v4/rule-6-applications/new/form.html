@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-Simple.html" %}
 
-{% set title = "Rule 6 application form" %}
+{% set title = "Application form" %}
 {% set pageName = title %}
 
 {% set back = true %}
@@ -11,8 +11,8 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form method="post">
-        <span class="govuk-caption-l">Appeal 2114328</span>
-        <h1 class="govuk-heading-l">Rule 6 application form</h1>
+        <span class="govuk-caption-l">Appeal 2114328 - Add Rule 6 party application</span>
+        <h1 class="govuk-heading-l">{{title}}</h1>
 
         <p>You can upload multiple files.</p>
 
@@ -26,7 +26,7 @@
             name: 'upload',
             classes: 'moj-multi-file-upload__input',
             label: {
-              text: 'Upload Rule 6 application form',
+              text: 'Upload application form',
               classes: 'govuk-label--m'
             }
           }) }}

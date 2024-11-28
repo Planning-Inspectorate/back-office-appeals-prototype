@@ -757,8 +757,6 @@
               </h2>
             </div>
             <div id="accordion-default-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-cmc">
-
-
                 {% if data.cmc %}
                   <a class="govuk-link" href="cancel-cmc">Cancel pre-inquiry meeting</a>
                 {% else %}
@@ -832,10 +830,6 @@
                     classes: 'govuk-button--secondar',
                     href: 'add-inquiry'
                   }) }}
-                {% endif %}
-
-                {% if not data.inquiryEstimates %}
-                  <a class="govuk-link" href="add-inquiry-estimates">Add inquiry estimates</a>
                 {% endif %}
               </div>
 
@@ -948,6 +942,69 @@
                       ]
                     }
                   } if data.inquiry.hasAddress == 'Yes',
+                  {
+                    key: {
+                      text: "Estimated time to prepare for the inquiry"
+                    },
+                    value: {
+                      html: data.inquiryEstimates.estimatedPreparationTime | days
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "/projects/start-full-case/v4/edit-inquiry-estimates",
+                          text: "Change",
+                          visuallyHiddenText: "Estimated time to prepare for the inquiry"
+                        }
+                      ]
+                    }
+                  } if data.inquiryEstimates.estimatedPreparationTime and 1==2,
+                  {
+                    key: {
+                      text: "Estimated sitting time for the inquiry"
+                    },
+                    value: {
+                      html: data.inquiryEstimates.estimatedInquiryTime | days
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "/projects/start-full-case/v4/edit-inquiry-estimates",
+                          text: "Change",
+                          visuallyHiddenText: "Estimated sitting time for the inquiry"
+                        }
+                      ]
+                    }
+                  } if data.inquiryEstimates.estimatedInquiryTime and 1==2,
+                  {
+                    key: {
+                      text: "Estimated time to decide the inquiry"
+                    },
+                    value: {
+                      html: data.inquiryEstimates.estimatedReportingTime | days
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "/projects/start-full-case/v4/edit-inquiry-estimates",
+                          text: "Change",
+                          visuallyHiddenText: "Estimated time to decide the inquiry"
+                        }
+                      ]
+                    }
+                  } if data.inquiryEstimates.estimatedReportingTime and 1==2
+                ]
+              }) if data.inquiry }}
+
+              <h3 class="govuk-heading-m">Inquiry estimates</h3>
+
+              {% if not data.inquiryEstimates %}
+                <p><a class="govuk-link" href="add-inquiry-estimates">Add inquiry estimates</a></p>
+              {% endif %}
+
+
+              {{ govukSummaryList({
+                rows: [
                   {
                     key: {
                       text: "Estimated time to prepare for the inquiry"
@@ -1082,6 +1139,18 @@
                 ] if data.hearing.date,
                 [
                   {
+                    text: "Hearing date"
+                  },
+                  {
+                    html: data.hearing.date | isoDateFromDateInput | govukDate
+                  },
+                  {
+                    html: "<a href='/projects/start-full-case/v4/edit-hearing'>Change</a>",
+                    format: "numeric"
+                  }
+                ] if data.hearing.date,
+                [
+                  {
                     text: "Inquiry"
                   },
                   {
@@ -1190,7 +1259,7 @@
           <div class="govuk-accordion__section-header">
             <h2 class="govuk-accordion__section-heading">
               <span class="govuk-accordion__section-button" id="accordion-default-heading-rule-6">
-                Rule 6 applications
+                Rule 6 party applications
               </span>
             </h2>
           </div>
@@ -1199,7 +1268,7 @@
               rows: [
                 {
                   key: {
-                    text: "Rule 6 applications"
+                    text: "Rule 6 party applications"
                   },
                   value: {
                     text: data.rule6applications.length + " applications"

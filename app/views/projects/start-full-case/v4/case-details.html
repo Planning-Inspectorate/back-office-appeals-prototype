@@ -622,7 +622,7 @@
                 rows: [
                   {
                     key: {
-                      text: "Hearing date"
+                      text: "Date"
                     },
                     value: {
                       html: data.hearing.date | isoDateFromDateInput | govukDate
@@ -632,14 +632,14 @@
                         {
                           href: "/projects/start-full-case/v4/edit-hearing",
                           text: "Change",
-                          visuallyHiddenText: "Hearing date"
+                          visuallyHiddenText: "Date"
                         }
                       ]
                     }
                   } if data.hearing.date,
                   {
                     key: {
-                      text: "Hearing time"
+                      text: "Time"
                     },
                     value: {
                       html: data.hearing.time
@@ -649,7 +649,7 @@
                         {
                           href: "/projects/start-full-case/v4/add-hearing",
                           text: "Change",
-                          visuallyHiddenText: "Hearing time"
+                          visuallyHiddenText: "Time"
                         }
                       ]
                     }
@@ -667,14 +667,14 @@
                         {
                           href: "/projects/start-full-case/v4/edit-hearing/has-address",
                           text: "Change",
-                          visuallyHiddenText: "whether you know the hearing address"
+                          visuallyHiddenText: "whether you know the Address"
                         }
                       ]
                     }
                   } if data.hearing.hasAddress,
                   {
                     key: {
-                      text: "Hearing address"
+                      text: "Address"
                     },
                     value: {
                       html: address
@@ -684,7 +684,7 @@
                         {
                           href: "/projects/start-full-case/v4/edit-hearing/address",
                           text: "Change",
-                          visuallyHiddenText: "Hearing address"
+                          visuallyHiddenText: "Address"
                         }
                       ]
                     }
@@ -783,7 +783,7 @@
                         {
                           href: "/projects/start-full-case/v4/edit-inquiry",
                           text: "Change",
-                          visuallyHiddenText: "Inquiry date"
+                          visuallyHiddenText: "Date"
                         }
                       ]
                     }
@@ -800,7 +800,7 @@
                         {
                           href: "/projects/start-full-case/v4/edit-inquiry-estimates",
                           text: "Change",
-                          visuallyHiddenText: "Inquiry time"
+                          visuallyHiddenText: "Time"
                         }
                       ]
                     }
@@ -831,8 +831,9 @@
                     href: 'add-inquiry'
                   }) }}
                 {% endif %}
-
-                <a class="govuk-link" href="add-inquiry-estimates">Add inquiry estimates</a>
+                {% if not data.inquiryEstimates %}
+                  <a class="govuk-link" href="add-inquiry-estimates">Add inquiry estimates</a>
+                {% endif %}
               </div>
 
               {% set address %}
@@ -843,7 +844,7 @@
                 rows: [
                   {
                     key: {
-                      text: "Inquiry date"
+                      text: "Date"
                     },
                     value: {
                       html: data.inquiry.date | isoDateFromDateInput | govukDate
@@ -853,14 +854,14 @@
                         {
                           href: "/projects/start-full-case/v4/edit-inquiry",
                           text: "Change",
-                          visuallyHiddenText: "Inquiry date"
+                          visuallyHiddenText: "Date"
                         }
                       ]
                     }
                   } if data.inquiry.date,
                   {
                     key: {
-                      text: "Inquiry time"
+                      text: "Time"
                     },
                     value: {
                       html: data.inquiry.time
@@ -870,7 +871,7 @@
                         {
                           href: "/projects/start-full-case/v4/edit-inquiry/time",
                           text: "Change",
-                          visuallyHiddenText: "Inquiry time"
+                          visuallyHiddenText: "Time"
                         }
                       ]
                     }
@@ -929,7 +930,7 @@
                   } if data.inquiry.hasAddress,
                   {
                     key: {
-                      text: "Inquiry address"
+                      text: "Address"
                     },
                     value: {
                       html: address
@@ -996,7 +997,7 @@
                     }
                   } if data.inquiryEstimates.estimatedReportingTime
                 ]
-              }) if data.inquiry }}
+              }) if data.inquiry or data.inquiryEstimates }}
             </div>
           </div>
         {% endif %}
@@ -1066,7 +1067,7 @@
                 ] if 1==2,
                 [
                   {
-                    text: "Hearing date"
+                    text: "Date"
                   },
                   {
                     html: data.hearing.date | isoDateFromDateInput | govukDate
@@ -1078,7 +1079,7 @@
                 ] if data.hearing.date,
                 [
                   {
-                    text: "Hearing date"
+                    text: "Date"
                   },
                   {
                     html: data.hearing.date | isoDateFromDateInput | govukDate

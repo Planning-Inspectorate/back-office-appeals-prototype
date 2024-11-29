@@ -19,7 +19,7 @@
         rows: [
           {
             key: {
-              text: "Inquiry date"
+              text: "Date"
             },
             value: {
               html: data.inquiry.date | isoDateFromDateInput | govukDate
@@ -29,14 +29,14 @@
                 {
                   href: "/projects/start-full-case/v4/add-inquiry",
                   text: "Change",
-                  visuallyHiddenText: "Inquiry date"
+                  visuallyHiddenText: "Date"
                 }
               ]
             }
           },
           {
             key: {
-              text: "Inquiry time"
+              text: "Time"
             },
             value: {
               html: data.inquiry.time
@@ -46,7 +46,7 @@
                 {
                   href: "/projects/start-full-case/v4/add-inquiry",
                   text: "Change",
-                  visuallyHiddenText: "Inquiry time"
+                  visuallyHiddenText: "Time"
                 }
               ]
             }
@@ -87,8 +87,7 @@
           } if data.inquiry.hasDays == 'Yes',
           {
             key: {
-              text: "Do you know the address of where the inquiry will take place?
-"
+              text: "Do you know the address of where the inquiry will take place?"
             },
             value: {
               html: data.inquiry.hasAddress
@@ -105,7 +104,7 @@
           },
           {
             key: {
-              text: "Inquiry address"
+              text: "Address"
             },
             value: {
               html: address

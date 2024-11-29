@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-Simple.html" %}
 
-{% set title = "Hearing details" %}
+{% set title = "Do you know the address of where the hearing will take place?" %}
 {% set pageName = title %}
 
 {% set back = true %}
@@ -11,13 +11,12 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form method="post">
-        <span class="govuk-caption-l">Appeal 2114328</span>
+        <span class="govuk-caption-l">Appeal 2114328 - set up hearing</span>
         {{ govukRadios({
           name: "hearing[hasAddress]",
           fieldset: {
             legend: {
-              text: "Do you know the address of where the hearing will take place?
-",
+              text: title,
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }

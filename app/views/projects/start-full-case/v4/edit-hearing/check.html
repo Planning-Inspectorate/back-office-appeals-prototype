@@ -19,7 +19,7 @@
         rows: [
           {
             key: {
-              text: "Hearing date"
+              text: "Date"
             },
             value: {
               html: data.hearing.date | isoDateFromDateInput | govukDate
@@ -29,14 +29,14 @@
                 {
                   href: "/projects/start-full-case/v4/edit-hearing",
                   text: "Change",
-                  visuallyHiddenText: "Hearing date"
+                  visuallyHiddenText: "Date"
                 }
               ]
             }
           },
           {
             key: {
-              text: "Hearing time"
+              text: "Time"
             },
             value: {
               html: data.hearing.time
@@ -46,7 +46,7 @@
                 {
                   href: "/projects/start-full-case/v4/edit-hearing",
                   text: "Change",
-                  visuallyHiddenText: "Hearing time"
+                  visuallyHiddenText: "Time"
                 }
               ]
             }
@@ -70,7 +70,7 @@
           },
           {
             key: {
-              text: "Hearing address"
+              text: "Address"
             },
             value: {
               html: address
@@ -80,7 +80,7 @@
                 {
                   href: "/projects/start-full-case/v4/edit-hearing/address",
                   text: "Change",
-                  visuallyHiddenText: "Hearing address"
+                  visuallyHiddenText: "Address"
                 }
               ]
             }

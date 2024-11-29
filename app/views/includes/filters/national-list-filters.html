@@ -1,0 +1,239 @@
+<details class="govuk-details" data-module="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      Filters
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+
+    <h2 class="govuk-heading-m">
+      Filter
+    </h2>
+
+    <form method="post">
+
+      <div class="govuk-button-group">
+
+        {{ govukButton({
+          text: "Apply filters",
+          classes: "govuk-button"
+        }) }}
+
+        <a class="govuk-link" href="#">Clear filters</a>
+
+      </div>
+
+      {{ govukSelect({
+        id: "status",
+        name: "status",
+        label: {
+          text: "Case status",
+          classes: "govuk-!-font-weight-bold"
+        },
+        items: [
+          {
+            value: "all",
+            text: "All",
+            selected: true
+          },
+          {
+            value: "ready to start",
+            text: "Ready to start"
+          },
+          {
+            value: "LPA questionnaire",
+            text: "LPA questionnaire"
+          },
+          {
+            value: "final comment review",
+            text: "Final comment review"
+          },
+          {
+            value: "ready final review",
+            text: "Ready for final review"
+          },
+          {
+            value: "arrange site visit",
+            text: "Arrange site visit"
+          },
+          {
+            value: "completed",
+            text: "Completed"
+          }
+        ]
+      }) }}
+
+      {{ govukSelect({
+        id: "inspectorstatus",
+        name: "inspectorstatus",
+        label: {
+          text: "Inspector status",
+          classes: "govuk-!-font-weight-bold"
+        },
+        items: [
+          {
+            value: "all",
+            text: "All",
+            selected: true
+          },
+          {
+            value: "ready to start",
+            text: "Ready to start"
+          },
+          {
+            value: "LPA questionnaire",
+            text: "LPA questionnaire"
+          },
+          {
+            value: "final comment review",
+            text: "Final comment review"
+          },
+          {
+            value: "ready final review",
+            text: "Ready for final review"
+          },
+          {
+            value: "arrange site visit",
+            text: "Arrange site visit"
+          },
+          {
+            value: "completed",
+            text: "Completed"
+          }
+        ]
+      }) }}
+
+      {{ govukSelect({
+        id: "lpa",
+        name: "lpa",
+        label: {
+          text: "Local planning authority",
+          classes: "govuk-!-font-weight-bold"
+        },
+        items: [
+          {
+            value: "all",
+            text: "All",
+            selected: true
+          },
+          {
+            value: "Barnet",
+            text: "Barnet"
+          },
+          {
+            value: "Bromley",
+            text: "Bromley"
+          },
+          {
+            value: "Greenwhich",
+            text: "Greenwich"
+          },
+          {
+            value: "Havering",
+            text: "Havering"
+          },
+          {
+            value: "Richmond-Apon-Thames",
+            text: "Richmond-Apon-Thames"
+          }
+
+        ]
+      }) }}
+
+      {{ govukSelect({
+        id: "caseofficer",
+        name: "caseofficer",
+        label: {
+          text: "Case officer",
+          classes: "govuk-!-font-weight-bold"
+        },
+        items: [
+          {
+            value: "all",
+            text: "All",
+            selected: true
+          },
+          {
+            value: "Abby Bale",
+            text: "Abby Bale"
+          },
+          {
+            value: "Ben Surgison",
+            text: "Ben Surgison"
+          },
+          {
+            value: "Oliver Rose",
+            text: "Oliver Rose"
+          },
+          {
+            value: "Steve Murphy",
+            text: "Steve Murphy"
+          }
+        ]
+      }) }}
+
+      {{ govukSelect({
+        id: "inspector",
+        name: "inspector",
+        label: {
+          text: "Inspector",
+          classes: "govuk-!-font-weight-bold"
+        },
+        items: [
+          {
+            value: "all",
+            text: "All",
+            selected: true
+          },
+          {
+            value: "Abby Bale",
+            text: "Abby Bale"
+          },
+          {
+            value: "Ben Surgison",
+            text: "Ben Surgison"
+          },
+          {
+            value: "Oliver Rose",
+            text: "Oliver Rose"
+          },
+          {
+            value: "Steve Murphy",
+            text: "Steve Murphy"
+          }
+        ]
+      }) }}
+
+      {{ govukCheckboxes({
+        name: "greenbelt",
+        classes: "govuk-checkboxes--small",
+        fieldset: {
+          legend: {
+            text: "Green belt",
+            isPageHeading: false,
+            classes: "govuk-visually-hidden govuk-!-font-weight-bold"
+          }
+        },
+        items: [
+          {
+            value: "Green belt",
+            text: "Green belt"
+          }
+        ]
+      }) }}
+
+    <!-- <div class="govuk-button-group">
+
+      {{ govukButton({
+        text: "Apply filters",
+        classes: "govuk-button"
+      }) }}
+
+      <a class="govuk-link" href="#">Clear filters</a>
+
+    </div> -->
+
+    </form>
+
+  </div>
+</details>

@@ -32,7 +32,7 @@
 	    Search
 	  </button>
 	</div>
-		
+
 	<details class="govuk-details" data-module="govuk-details">
 		<summary class="govuk-details__summary">
 		  <span class="govuk-details__summary-text">
@@ -40,7 +40,7 @@
 		  </span>
 		</summary>
 		<div class="govuk-details__text">
-		  
+
 		  {{ govukSelect({
 			id: "sort",
 			name: "sort",
@@ -79,18 +79,18 @@
 			  }
 			]
 		  }) }}
-		  
+
 		  <div class="govuk-button-group">
-		  
+
 		  {{ govukButton({
 				text: "Apply",
 				classes: "govuk-button--secondary"
 			  }) }}
-			  
+
 			  <a class="govuk-link" href="#">Clear filter</a>
-			  
+
 		  </div>
-		  
+
 		</div>
 	  </details>
 
@@ -102,8 +102,6 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
 	
-	  
-	  
 	  <h2 class="govuk-heading-m">All cases</h2>
 
 	  {% include "projects/closing-cases/v1/includes/national-list-table.html" %}

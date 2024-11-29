@@ -92,7 +92,7 @@
             },
             {
               key: {
-                text: "Reason for Reject statement decision"
+                text: "Reason for rejecting the comment"
               },
               value: {
                 html: "<ul class='govuk-list govuk-list--number'><li>Supporting documents missing</li><li>Other: (Given reason text)</li></ul>"
@@ -117,7 +117,7 @@
           {{ govukButton({
             text: "Redact and accept final comment"
           }) }}
-        {% elseif data['review-outcome'] == 'Reject final comment' %}
+        {% elseif data['review-outcome'] == 'Reject comment' %}
           {{ govukButton({
             text: "Reject final comment"
           }) }}

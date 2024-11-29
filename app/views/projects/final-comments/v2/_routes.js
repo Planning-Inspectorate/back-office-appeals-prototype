@@ -12,12 +12,18 @@ router.get('*', function(req, res, next){
 router.post('/comment-review', function (req, res) {
   if (req.session.data['review-outcome'] == 'Redact and accept comment') {
     res.redirect('redact-comment')
+  } else if (req.session.data['review-outcome'] == 'Reject comment') {
+    res.redirect('why-rejected')
   } else {
     res.redirect('check-your-answers')
   }
 })
 
 router.post('/redact-comment', function (req, res) {
+  res.redirect('check-your-answers')
+})
+
+router.post('/why-rejected', function (req, res) {
   res.redirect('check-your-answers')
 })
 

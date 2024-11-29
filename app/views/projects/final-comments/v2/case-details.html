@@ -26,7 +26,7 @@
       {% if not data['finalcommentreview'] %}
         {% set reviewfinalcommentsbanner %}
           <p class="govuk-notification-banner__heading">
-            LPA final comments ready for review<br>
+            Appellant final comments ready for review<br>
             <a class="govuk-notification-banner__link" href="comment-review">
               Review
             </a>
@@ -503,6 +503,11 @@
                       format: "numeric"
                     }
                   ],
+
+
+
+
+
                   [
                     {
                       text: "Appellant final comments"
@@ -511,7 +516,7 @@
                       text: "Received"
                     },
                     {
-                      text: 4 | daysAgo
+                      text: 3 | daysAgo
                     },
                     {
                       html: "<a href='comment-review'>Review</a>",
@@ -526,44 +531,13 @@
                       text: "Completed"
                     },
                     {
-                      text: 4 | daysAgo
+                      text: 3 | daysAgo
                     },
                     {
                       html: "<a href='comment-review'>View</a>",
                       format: "numeric"
                     }
                   ] if data['finalcommentreview'] == 'completed',
-                  [
-                    {
-                      text: "LPA final comments"
-                    },
-                    {
-                      text: "Received "
-                    },
-                    {
-                      text: 2 | daysAgo
-                    },
-                    {
-                      html: "<a href='comment-review'>Review</a>",
-                      format: "numeric"
-                    }
-                  ] if data['allfinalcommentreview'] != 'completed' and data['finalcommentreview'] != 'shared',
-                  [
-                    {
-                      text: "LPA final comments"
-                    },
-                    {
-                      text: "Completed "
-                    },
-                    {
-                      text: 2 | daysAgo
-                    },
-                    {
-                      html: "<a href='comment-review'>View</a>",
-                      format: "numeric"
-                    }
-                  ] if data['allfinalcommentreview'] == 'completed',
-
                   [
                     {
                       text: "Appellant final comments"
@@ -584,10 +558,40 @@
                       text: "LPA final comments"
                     },
                     {
+                      text: "Received "
+                    },
+                    {
+                      text: 4 | daysAgo
+                    },
+                    {
+                      html: "<a href='comment-review'>Review</a>",
+                      format: "numeric"
+                    }
+                  ] if data['finalcommentreview'] != 'shared' and not data['allfinalcommentreview'],
+                  [
+                    {
+                      text: "LPA final comments"
+                    },
+                    {
+                      text: "Completed"
+                    },
+                    {
+                      text: 4 | daysAgo
+                    },
+                    {
+                      html: "<a href='comment-review'>Review</a>",
+                      format: "numeric"
+                    }
+                  ] if data['finalcommentreview'] != 'shared' and data['allfinalcommentreview'],
+                  [
+                    {
+                      text: "LPA final comments"
+                    },
+                    {
                       text: "Shared"
                     },
                     {
-                      text: 2 | daysAgo
+                      text: 4 | daysAgo
                     },
                     {
                       html: "<a href='comment-review'>View</a>",

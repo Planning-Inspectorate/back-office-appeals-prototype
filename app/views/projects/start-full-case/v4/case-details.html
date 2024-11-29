@@ -831,6 +831,8 @@
                     href: 'add-inquiry'
                   }) }}
                 {% endif %}
+
+                <a class="govuk-link" href="add-inquiry-estimates">Add inquiry estimates</a>
               </div>
 
               {% set address %}
@@ -958,69 +960,6 @@
                         }
                       ]
                     }
-                  } if data.inquiryEstimates.estimatedPreparationTime and 1==2,
-                  {
-                    key: {
-                      text: "Estimated sitting time"
-                    },
-                    value: {
-                      html: data.inquiryEstimates.estimatedInquiryTime | days
-                    },
-                    actions: {
-                      items: [
-                        {
-                          href: "/projects/start-full-case/v4/edit-inquiry-estimates",
-                          text: "Change",
-                          visuallyHiddenText: "Estimated sitting time"
-                        }
-                      ]
-                    }
-                  } if data.inquiryEstimates.estimatedInquiryTime and 1==2,
-                  {
-                    key: {
-                      text: "Estimated reporting time"
-                    },
-                    value: {
-                      html: data.inquiryEstimates.estimatedReportingTime | days
-                    },
-                    actions: {
-                      items: [
-                        {
-                          href: "/projects/start-full-case/v4/edit-inquiry-estimates",
-                          text: "Change",
-                          visuallyHiddenText: "Estimated reporting time"
-                        }
-                      ]
-                    }
-                  } if data.inquiryEstimates.estimatedReportingTime and 1==2
-                ]
-              }) if data.inquiry }}
-
-              <h3 class="govuk-heading-m">Inquiry estimates</h3>
-
-              {% if not data.inquiryEstimates %}
-                <p><a class="govuk-link" href="add-inquiry-estimates">Add inquiry estimates</a></p>
-              {% endif %}
-
-
-              {{ govukSummaryList({
-                rows: [
-                  {
-                    key: {
-                      text: "Estimated preparation time"
-                    },
-                    value: {
-                      html: data.inquiryEstimates.estimatedPreparationTime | days
-                    },
-                    actions: {
-                      items: [
-                        {
-                          href: "/projects/start-full-case/v4/edit-inquiry-estimates",
-                          text: "Change",
-                          visuallyHiddenText: "Estimated preparation time"
-                        }
-                      ]
-                    }
                   } if data.inquiryEstimates.estimatedPreparationTime,
                   {
                     key: {
@@ -1057,7 +996,7 @@
                     }
                   } if data.inquiryEstimates.estimatedReportingTime
                 ]
-              }) if data.inquiry or data.inquiryEstimates }}
+              }) if data.inquiry }}
             </div>
           </div>
         {% endif %}

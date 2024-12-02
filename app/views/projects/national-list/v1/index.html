@@ -1,0 +1,332 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "All cases" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = false %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-visually-hidden">{{title}}</h1>
+
+      {{ govukInput({
+        label: {
+          text: "Search all cases",
+          classes: "govuk-label--l",
+          isPageHeading: true
+        },
+        hint: {
+          text: "Enter appeal reference or postcode (include spaces)"
+        },
+        id: "searchbox",
+        name: "searchbox"
+      }) }}
+
+      {{ govukButton({
+        text: "Search",
+        classes: "govuk-button"
+      }) }}
+
+      <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible govuk-!-margin-top-2">
+
+      {% include "/includes/filters/national-list-filters.html" %}
+
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      {{ govukTable({
+        caption: "Cases",
+        captionClasses: "govuk-visually-hidden",
+        firstCellIsHeader: false,
+        head: [
+
+          {
+            text: "Appeal reference",
+            classes: "app-custom-class"
+          },
+          {
+            text: "Site address",
+            classes: "app-custom-class"
+          },
+          {
+            text: "Local planning authority",
+            classes: "app-custom-class"
+          },
+          {
+            text: "Appeal type",
+            classes: "app-custom-class"
+          },
+          {
+            text: "Status",
+            classes: "app-custom-class"
+          }
+        ],
+        rows: [
+          [
+            {
+              text: "3052765"
+            },
+            {
+              text: "3 Frampton Court Road, Braffligton, Chibbings, Fexford FX11 3PT"
+            },
+            {
+              text: "Fexford County Council"
+            },
+            {
+              text: "Householder"
+            },
+            {
+              html: "<strong class='govuk-tag govuk-tag--blue'>Statements</strong>"
+            }
+          ],
+          [
+            {
+              text: "3052772"
+            },
+            {
+              text: "171a Chipple Road, Baldonsfield, Fexford FX2 1HY"
+            },
+            {
+              text: "Fexford County Council"
+            },
+            {
+              text: "Householder"
+            },
+            {
+              html: "<strong class='govuk-tag govuk-tag--yellow'>Validation</strong>"
+            }
+          ],
+          [
+            {
+              text: "3147261"
+            },
+            {
+              text: "106 Grassmere Grove, Jampston, Shamfyre, Fexford FX9 3EE"
+            },
+            {
+              text: "Fexford County Council"
+            },
+            {
+              text: "Householder"
+            },
+            {
+              html: "<strong class='govuk-tag govuk-tag--green'>Ready to start</strong>"
+            }
+          ] if data['greenbelt'] == 'Green belt',
+          [
+            {
+              text: "3220187"
+            },
+            {
+              text: "2 Grove Street, Halford, Grimmlington GR3 1DD"
+            },
+            {
+              text: "Grimlington"
+            },
+            {
+              text: "Householder"
+            },
+            {
+              html: "<strong class='govuk-tag govuk-tag--green'>Ready to start</strong>"
+            }
+          ],
+          [
+            {
+              text: "3239817"
+            },
+            {
+              text: "9 Parish Park Lane, Grippingsdale, Gropple Park, Fexford FE1 0BB"
+            },
+            {
+              text: "Fexford County Council"
+            },
+            {
+              text: "Householder"
+            },
+            {
+              html: "<strong class='govuk-tag govuk-tag--grey'>Assign case officer</strong>"
+            }
+          ],
+          [
+            {
+              text: "3051162"
+            },
+            {
+              text: "Charn House, Chaplestone, Gruippings Avenue, Jupford FX14 4GG"
+            },
+            {
+              text: "Fexford County Council"
+            },
+            {
+              text: "Householder"
+            },
+            {
+              html: "<strong class='govuk-tag govuk-tag--grey'>Assign case officer</strong>"
+            }
+          ],
+          [
+            {
+              text: "3220187"
+            },
+            {
+              text: "32d Jimford Rd (Basement Flat), Brauwton, Grimmlington GR3 1DD"
+            },
+            {
+              text: "Grimlington"
+            },
+            {
+              text: "Householder"
+            },
+            {
+              html: "<strong class='govuk-tag govuk-tag--blue'>Statements</strong>"
+            }
+          ],
+          [
+            {
+              text: "3440192"
+            },
+            {
+              text: "27 Hampton Road, Grumling, Fexford FA3 6UP"
+            },
+            {
+              text: "Fexford County Council"
+            },
+            {
+              text: "Householder"
+            },
+            {
+              html: "<strong class='govuk-tag govuk-tag--grey'>Assign case officer</strong>"
+            }
+          ],
+          [
+            {
+              text: "3092726"
+            },
+            {
+              text: "10 Jupiter House, Fallow Down, Giffleton, Fexford FX2 2TT"
+            },
+            {
+              text: "Fexford County Council"
+            },
+            {
+              text: "Householder"
+            },
+            {
+              html: "<strong class='govuk-tag govuk-tag--yellow'>Assign case officer</strong>"
+            }
+          ],
+          [
+            {
+              text: "3065142"
+            },
+            {
+              text: "10c Osterley Court, Brups, Chibbings, Fexford FX5 7UV"
+            },
+            {
+              text: "Fexford County Council"
+            },
+            {
+              text: "Householder"
+            },
+            {
+              html: "<strong class='govuk-tag govuk-tag--pink'>Issue decision</strong>"
+            }
+          ],
+          [
+            {
+              text: "3018763"
+            },
+            {
+              text: "121 Jaffle Avenue, Chibbings, Fexford FX10 2RX"
+            },
+            {
+              text: "Fexford County Council"
+            },
+            {
+              text: "Householder"
+            },
+            {
+              html: "<strong class='govuk-tag govuk-tag--red'>Validation</strong>"
+            }
+          ],
+          [
+            {
+              text: "3220187"
+            },
+            {
+              text: "12 The Gatehouse, Jibbings Park, Chumpton, Fexford FX1 8GE"
+            },
+            {
+              text: "Fexford County Council"
+            },
+            {
+              text: "Householder"
+            },
+            {
+              html: "<strong class='govuk-tag govuk-tag--green'>Ready to start</strong>"
+            }
+          ],
+          [
+            {
+              text: "3220187"
+            },
+            {
+              text: "44 Jingo Road, Halford, Grimmlington GR2 8DT"
+            },
+            {
+              text: "Grimlington"
+            },
+            {
+              text: "Householder"
+            },
+            {
+              html: "<strong class='govuk-tag govuk-tag--green'>Ready to start</strong>"
+            }
+          ],
+          [
+            {
+              text: "3258871"
+            },
+            {
+              text: "33 Gumbo Road, Inckleston, Raleigh, Fexford FX9 5HH"
+            },
+            {
+              text: "Fexford County Council"
+            },
+            {
+              text: "Householder"
+            },
+            {
+              html: "<strong class='govuk-tag govuk-tag--green'>Ready to start</strong>"
+            }
+          ],
+          [
+            {
+              text: "3001287"
+            },
+            {
+              text: "50 Bricklestick Road, Jumpholm, Fexford FX8 8PP"
+            },
+            {
+              text: "Fexford County Council"
+            },
+            {
+              text: "Householder"
+            },
+            {
+              html: "<strong class='govuk-tag govuk-tag--purple'>Final comments</strong>"
+            }
+          ]
+
+
+        ]
+      }) }}
+
+    </div>
+  </div>
+
+{% endblock %}

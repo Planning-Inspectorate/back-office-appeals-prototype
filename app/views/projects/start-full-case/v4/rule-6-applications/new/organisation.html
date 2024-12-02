@@ -1,9 +1,6 @@
 {% extends "layouts/PINS-Simple.html" %}
 
-{% set title = "Does the Rule 6 party represent an organisation?" %}
-{% if data.rule6application.firstName %}
-  {% set title  = title | replace('the Rule 6 party', data.rule6application.firstName + ' ' + data.rule6application.lastName) %}
-{% endif %}
+{% set title = "Is the Rule 6 party an organisation?" %}
 {% set pageName = title %}
 
 {% set back = true %}

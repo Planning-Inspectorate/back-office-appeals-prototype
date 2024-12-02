@@ -3,7 +3,7 @@
   <thead class="govuk-table__head">
     <tr class="govuk-table__row">
       <th scope="col" class="govuk-table__header">Rule 6 party</th>
-      <th scope="col" class="govuk-table__header">Submitted</th>
+      <th scope="col" class="govuk-table__header">Date added</th>
       <th scope="col" class="govuk-table__header">Action</th>
     </tr>
   </thead>
@@ -13,7 +13,7 @@
         <td class="govuk-table__cell">{{item.firstName}} {{item.lastName}}
           {% if item.hasOrganisation %}<br><span class="govuk-!-font-size-16 govuk-hint">{{item.organisationName}}</span>{% endif %}
         </td>
-        <td class="govuk-table__cell">{{2 | daysAgo}}</td>
+        <td class="govuk-table__cell">{{item.dateAdded | govukDate}}</td>
         <td class="govuk-table__cell"><a href="/projects/start-full-case/v4/rule-6-applications/show">View<span class="govuk-visually-hidden"> application from {{item.firstName}} {{item.lastName}}</span></a></td>
       </tr>
     {% endfor %}

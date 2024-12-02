@@ -1,9 +1,11 @@
 const { v4: uuidv4 } = require('uuid')
+const faker =  require('@faker-js/faker').faker
 
 module.exports = {
   rule6applications: [
     {
       id: uuidv4(),
+      dateAdded: faker.date.recent({ days: 2 }),
       status: 'Awaiting review',
       emailAddress: 'sam@example.com',
       firstName: 'Sam',
@@ -14,6 +16,7 @@ module.exports = {
     },
     {
       id: uuidv4(),
+      dateAdded: faker.date.recent({ days: 2 }),
       status: 'Awaiting review',
       emailAddress: 'ian@example.com',
       firstName: 'Ian',
@@ -24,6 +27,7 @@ module.exports = {
     },
     {
       id: uuidv4(),
+      dateAdded: faker.date.recent({ days: 2 }),
       status: 'Awaiting review',
       emailAddress: 'jane@example.com',
       firstName: 'Jane',
@@ -33,6 +37,7 @@ module.exports = {
     },
     {
       id: uuidv4(),
+      dateAdded: faker.date.recent({ days: 2 }),
       status: 'Invited',
       emailAddress: 'ian@example.com',
       firstName: 'Ian',
@@ -43,6 +48,7 @@ module.exports = {
     },
     {
       id: uuidv4(),
+      dateAdded: faker.date.recent({ days: 2 }),
       status: 'Accepted',
       emailAddress: 'adam@example.com',
       firstName: 'Adam',
@@ -53,6 +59,7 @@ module.exports = {
     },
     {
       id: uuidv4(),
+      dateAdded: faker.date.recent({ days: 2 }),
       status: 'Rejected',
       emailAddress: 'ryan@example.com',
       firstName: 'Ryan',
@@ -63,6 +70,7 @@ module.exports = {
     },
     {
       id: uuidv4(),
+      dateAdded: faker.date.recent({ days: 2 }),
       status: 'Withdrawn',
       emailAddress: 'william@example.com',
       firstName: 'William',

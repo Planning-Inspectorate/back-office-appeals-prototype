@@ -278,11 +278,28 @@ router.post('/edit-inquiry-estimates/check', function (req, res) {
 // Rule 6 APPLICATIONS
 //
 
+
 router.get('/rule-6-applications', function (req, res) {
-  let awaitingReview = req.session.data.rule6applications.filter((item) => item.status == 'Awaiting review')
-  let invited = req.session.data.rule6applications.filter((item) => item.status == 'Invited')
-  let accepted = req.session.data.rule6applications.filter((item) => item.status == 'Accepted')
-  let rejected = req.session.data.rule6applications.filter((item) => item.status == 'Rejected')
+  let awaitingReview = req.session.data.rule6applications
+    .filter((item) => item.status == 'Awaiting review')
+    .sort((a, b) => {
+      return new Date(b.dateAdded) - new Date(a.dateAdded)
+    })
+  let invited = req.session.data.rule6applications
+    .filter((item) => item.status == 'Invited')
+    .sort((a, b) => {
+      return new Date(b.dateAdded) - new Date(a.dateAdded)
+    })
+  let accepted = req.session.data.rule6applications
+    .filter((item) => item.status == 'Accepted')
+    .sort((a, b) => {
+      return new Date(b.dateAdded) - new Date(a.dateAdded)
+    })
+  let rejected = req.session.data.rule6applications
+    .filter((item) => item.status == 'Rejected')
+    .sort((a, b) => {
+      return new Date(b.dateAdded) - new Date(a.dateAdded)
+    })
 
   res.render('/projects/start-full-case/v4/rule-6-applications/index', {
     awaitingReview,
@@ -319,17 +336,19 @@ router.post('/rule-6-applications/new/form', function (req, res) {
 router.post('/rule-6-applications/new/check', function (req, res) {
   console.log(req.session.data.rule6applications.length)
   let application = req.session.data.rule6application
-  req.flash('success', 'Rule 6 application added')
+  req.flash('success', 'Rule 6 status application added')
   req.session.data.rule6applications.push({
     id: uuidv4(),
+    dateAdded: new Date(),
     emailAddress: application.emailAddress,
     firstName: application.firstName,
     lastName: application.lastName,
     hasOrganisation: application.hasOrganisation,
     organisationName: application.organisationName,
-    phone: application.phone
+    phone: application.phone,
+    status: 'Awaiting review'
   })
-  res.redirect('/projects/start-full-case/v4/case-details')
+  res.redirect('/projects/start-full-case/v4/rule-6-applications')
 })
 
 // Add your routes above the module.exports line

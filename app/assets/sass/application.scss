@@ -41,6 +41,37 @@ $govuk-font-family: Helvetica, Arial, sans-serif;
 }
 
 
+.app-list {
+  border-top: 1px solid govuk-colour('mid-grey');
+	margin-bottom: govuk-spacing(6);
+}
+
+.app-list__item {
+  border-bottom: 1px solid govuk-colour('mid-grey');
+  padding-top: 10px;
+  padding-bottom: 10px;
+	position: relative;
+
+	h2 {
+		margin-bottom: 0 !important;
+	}
+
+	.app-list__tag {
+		position: absolute;
+		right: 5px;
+		top: 10px;
+	}
+
+	.app-list__org {
+		font-weight: normal;
+		display: inline-block;
+		margin-left: 5px;
+	}
+
+}
+
+
+
 
 .app-file-list {
   border-top: 1px solid govuk-colour('mid-grey');

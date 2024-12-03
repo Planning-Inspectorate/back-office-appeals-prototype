@@ -1,0 +1,32 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = 'Confirm that you want to approve the Rule 6 status request'  %}
+{% set pageName = title %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: 'javascript:history.back()'
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <span class="govuk-caption-l">{{party.firstName}} {{party.lastName}}</span>
+      <h1 class="govuk-heading-l">
+        {{title}}
+      </h1>
+
+      <p>We’ll send an email to the Rule 6 party inviting them to create an account.</p>
+
+      <form method="post">
+        {{ govukButton({
+          text: "Approve"
+        }) }}
+
+        <p><a href="javascript:history.back()'">Cancel</a></p>
+      </form>
+    </div>
+  </div>
+{% endblock %}

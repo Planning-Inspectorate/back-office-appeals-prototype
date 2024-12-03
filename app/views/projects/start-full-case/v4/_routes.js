@@ -278,7 +278,6 @@ router.post('/edit-inquiry-estimates/check', function (req, res) {
 // Rule 6 APPLICATIONS
 //
 
-
 router.get('/rule-6-applications', function (req, res) {
   let awaitingReview = req.session.data.rule6applications
     .filter((item) => item.status == 'Awaiting review')
@@ -300,8 +299,16 @@ router.get('/rule-6-applications', function (req, res) {
     .sort((a, b) => {
       return new Date(b.dateAdded) - new Date(a.dateAdded)
     })
+  let withdrawn = req.session.data.rule6applications
+    .filter((item) => item.status == 'Withdrawn')
+    .sort((a, b) => {
+      return new Date(b.dateAdded) - new Date(a.dateAdded)
+    })
+
+  let allParties = awaitingReview.concat(accepted).concat(invited).concat(rejected).concat(withdrawn)
 
   res.render('/projects/start-full-case/v4/rule-6-applications/index', {
+    allParties,
     awaitingReview,
     invited,
     accepted,
@@ -313,24 +320,48 @@ router.get('/rule-6-applications', function (req, res) {
 // Rule 6 APPLICATIONS: ADD
 //
 
+router.get('/rule-6-applications/new', function (req, res) {
+  res.render('/projects/start-full-case/v4/rule-6-applications/new/index')
+})
+
 router.post('/rule-6-applications/new', function (req, res) {
   res.redirect('./new/name')
+})
+
+router.get('/rule-6-applications/new/name', function (req, res) {
+  res.render('/projects/start-full-case/v4/rule-6-applications/new/name')
 })
 
 router.post('/rule-6-applications/new/name', function (req, res) {
   res.redirect('./organisation')
 })
 
+router.get('/rule-6-applications/new/organisation', function (req, res) {
+  res.render('/projects/start-full-case/v4/rule-6-applications/new/organisation')
+})
+
 router.post('/rule-6-applications/new/organisation', function (req, res) {
   res.redirect('./phone')
+})
+
+router.get('/rule-6-applications/new/phone', function (req, res) {
+  res.render('/projects/start-full-case/v4/rule-6-applications/new/phone')
 })
 
 router.post('/rule-6-applications/new/phone', function (req, res) {
   res.redirect('./form')
 })
 
+router.get('/rule-6-applications/new/form', function (req, res) {
+  res.render('/projects/start-full-case/v4/rule-6-applications/new/form')
+})
+
 router.post('/rule-6-applications/new/form', function (req, res) {
   res.redirect('./check')
+})
+
+router.get('/rule-6-applications/new/check', function (req, res) {
+  res.render('/projects/start-full-case/v4/rule-6-applications/new/check')
 })
 
 router.post('/rule-6-applications/new/check', function (req, res) {
@@ -348,6 +379,29 @@ router.post('/rule-6-applications/new/check', function (req, res) {
     phone: application.phone,
     status: 'Awaiting review'
   })
+  res.redirect('/projects/start-full-case/v4/rule-6-applications')
+})
+
+router.get('/rule-6-applications/:id', function (req, res) {
+  let party = req.session.data.rule6applications.filter(party => party.id == req.params.id)[0]
+
+  res.render('/projects/start-full-case/v4/rule-6-applications/show', {
+    party
+  })
+})
+
+router.get('/rule-6-applications/:id/approve', function (req, res) {
+  let party = req.session.data.rule6applications.filter(party => party.id == req.params.id)[0]
+
+  res.render('/projects/start-full-case/v4/rule-6-applications/approve/index', {
+    party
+  })
+})
+
+router.post('/rule-6-applications/:id/approve', function (req, res) {
+  let party = req.session.data.rule6applications.filter(party => party.id == req.params.id)[0]
+  party.status = 'Invited'
+  req.flash('success', 'Rule 6 party invited')
   res.redirect('/projects/start-full-case/v4/rule-6-applications')
 })
 

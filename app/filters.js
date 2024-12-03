@@ -117,3 +117,19 @@ addFilter('days', (value) => {
 		return val + ' days'
 	}
 })
+
+// Add your filters here
+addFilter('rule6StatusColour', status => {
+  switch(status) {
+    case 'Awaiting review':
+      return 'govuk-tag--blue'
+    case 'Rejected':
+      return 'govuk-tag--red'
+    case 'Accepted':
+      return 'govuk-tag--green'
+		case 'Invited':
+      return 'govuk-tag--yellow'
+		case 'Withdrawn':
+      return 'govuk-tag--pink'
+  }
+})

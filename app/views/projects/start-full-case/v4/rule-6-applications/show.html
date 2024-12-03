@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-Simple.html" %}
 
-{% set title = "Sam Fisher" %}
+{% set title = party.firstName + ' ' + party.lastName %}
 {% set pageName = title %}
 
 {% block beforeContent %}
@@ -28,20 +28,33 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-l">{{title}}</h1>
+      <h1 class="govuk-heading-l">
+        {{title}}
+        {{ govukTag({
+          text: party.status,
+          classes: party.status | rule6StatusColour
+        }) }}
+      </h1>
 
       <div class="govuk-button-group">
         {{ govukButton({
-          text: "Approve"
-        }) }}
+          text: "Approve",
+          href: '/projects/start-full-case/v4/rule-6-applications/'+party.id+'/approve'
+        }) if party.status != 'Accepted' and party.status != 'Invited'}}
+
         {{ govukButton({
           text: "Reject",
           classes: 'govuk-button--secondary'
-        }) }}
-        {{ govukButton({
-          text: "Withdraw",
-          classes: 'govuk-button--secondary'
-        }) }}
+        }) if party.status != 'Accepted' and party.status != 'Invited' and party.status != 'Rejected'}}
+
+        {% if party.status == 'Invited' and party.status != 'Withdrawn'%}
+          <a class="govuk-link" href="#">Resend invite</a>
+        {% endif %}
+
+        {% if party.status != 'Rejected' and party.status != 'Withdrawn'%}
+          <a class="govuk-link" href="#">Withdraw</a>
+        {% endif %}
+
       </div>
 
       {{ govukSummaryList({
@@ -51,7 +64,7 @@
               text: "Email address"
             },
             value: {
-              text: "sam@organisation.com"
+              text: party.emailAddress
             },
             actions: {
               items: [
@@ -68,7 +81,7 @@
               text: "Name of representative"
             },
             value: {
-              text: "Sam Fisher"
+              text: title
             },
             actions: {
               items: [
@@ -85,7 +98,7 @@
               text: "Is the Rule 6 party an organisation?"
             },
             value: {
-              text: "Yes"
+              text: party.hasOrganisation
             },
             actions: {
               items: [
@@ -102,7 +115,7 @@
               text: "Organisation name"
             },
             value: {
-              text: "Saint Rita’s Community Association"
+              text: party.organisationName
             },
             actions: {
               items: [
@@ -113,13 +126,13 @@
                 }
               ]
             }
-          },
+          } if party.organisationName,
           {
             key: {
               text: "Phone number"
             },
             value: {
-              text: "07714564789"
+              text: party.phone
             },
             actions: {
               items: [
@@ -133,7 +146,7 @@
           },
           {
             key: {
-              text: "Request for Rule 6 status"
+              text: "Rule 6 request"
             },
             value: {
               html: '<a href="#">Screenshot (JPG, 12MB)</a>'

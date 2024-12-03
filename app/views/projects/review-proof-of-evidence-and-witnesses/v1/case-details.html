@@ -9,13 +9,21 @@
     text: 'Completed appellant POE review'
   } if data['appellantProofsReview'] != 'completed',
   {
+    href: '?LPAProofsReview=completed',
+    text: 'Completed LPA POE review'
+  } if data['LPAProofsReview'] != 'completed',
+  {
     href: '?Rule6ProofsReview=completed',
     text: 'Completed rule 6 POE review'
   } if data['Rule6ProofsReview'] != 'completed',
   {
-    href: '?appellantProofsReview=',
+    href: '?appellantProofsReview=completed&LPAProofsReview=completed&Rule6ProofsReview=completed',
+    text: 'All POEs reviewed'
+  } if data['appellantProofsReview'] != 'completed' or data['Rule6ProofsReview'] != 'completed' or data['Rule6ProofsReview'] != 'completed',
+  {
+    href: '?appellantProofsReview=&LPAProofsReview=&Rule6ProofsReview=&proofs-shared=',
     text: 'Reset review'
-  } if data['appellantProofsReview'] == 'completed'
+  } if data['appellantProofsReview'] == 'completed' or data['LPAProofsReview'] == 'completed' or data['Rule6ProofsReview'] == 'completed'
 ] %}
 
 {% block content %}
@@ -47,6 +55,25 @@
 
       {% endif %}
 
+      {% set reviewLPAProofs %}
+        <p class="govuk-notification-banner__heading">
+          LPA proofs of evidence and witness timings awaiting review.
+          <a class="govuk-notification-banner__link" href="document-review">
+            Review
+          </a>
+        </p>
+      {% endset %}
+
+      {% if data['LPAProofsReview'] != 'completed' %}
+
+        {{ govukNotificationBanner({
+          html: reviewLPAProofs,
+          classes: "govuk-!-margin-bottom-5",
+          type: "important"
+        }) }}
+
+      {% endif %}
+
       {% set reviewRule6Proofs %}
         <p class="govuk-notification-banner__heading">
           Rule 6 proofs of evidence and witness timings awaiting review.
@@ -65,6 +92,24 @@
 
       {% endif %}
 
+      {% set shareProofs %}
+        <p class="govuk-notification-banner__heading">
+          <a class="govuk-notification-banner__link" href="share-proofs-and-witnesses">
+            Share proof of evidence and witnesses
+          </a>
+        </p>
+      {% endset %}
+
+      <!-- if all proof reviews are done we can show a share banner -->
+      {% if data['appellantProofsReview'] == 'completed' and data['LPAProofsReview'] == 'completed' and data['Rule6ProofsReview'] == 'completed'%}
+
+        {% if data['proofs-shared'] != 'yes' %}
+          {{ govukNotificationBanner({
+            html: shareProofs,
+            type: "important"
+          }) }}
+        {% endif %}
+      {% endif %}
 
       <span class="govuk-caption-l">Appeal 2110166</span>
     	<h1 class="govuk-heading-l">{{ title }}</h1>
@@ -697,15 +742,15 @@
                       text: "LPA proof of evidence and witnesses"
                     },
                     {
-                      text: "Awaiting"
+                      text: "Received"
+                    } if data['LPAProofsReview'] != 'completed' else { html: "Completed" },
+                    {
+                      html: 2 | daysAgo
                     },
                     {
-                      html: ""
-                    },
-                    {
-                      html: "<a href='#'>View</a>",
+                      html: "<a href='#'>Review</a>",
                       format: "numeric"
-                    }
+                    } if data['LPAProofsReview'] != 'completed' else { html: "<a href='#'>View</a>", format: "numeric" }
                   ],
                   [
                     {
@@ -720,7 +765,7 @@
                     {
                       html: "<a href='rule-6-proofs-and-witnesses'>Review</a>",
                       format: "numeric"
-                    } if data['Rule6ProofsReview'] != 'completed' else { html: "<a href='rule-6-proofs-and-witnesses'>View</a>", format: "numeric" }
+                    } if data['Rule6ProofsReview'] != 'completed' else { html: "<a href='rule-6-proofs-and-witnesses?rule6ProofsReview=completed&rule6ProofsReviewStatus=accepted&allRule6ProofsReview=completed#valid-tab'>View</a>", format: "numeric" }
                   ]
 
                 ]

@@ -59,10 +59,10 @@ router.post('/check-your-answers', function (req, res) {
   }
 })
 
-// changing the appeal procedure
-router.post('/name-change', function (req, res) {
-  req.flash('success', 'File name updated')
-  res.redirect('manage-document')
+// sharing proof of evidence and witnesses
+router.post('/share-proofs-and-witnesses', function (req, res) {
+  req.flash('success', 'Proof of evidence and witnesses shared')
+  res.redirect('case-details?proofs-shared=yes')
 })
 
 // Add your routes above the module.exports line

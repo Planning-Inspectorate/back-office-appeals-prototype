@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Rule 6 proofs of evidence and witnesses" %}
+{% set title = "Rule 6 proof of evidence and witnesses" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% block backLink %}
@@ -12,24 +12,24 @@
 
 {% set prototypeLinks = [
   {
-    href: '?no-proofs=true',
-    text: 'No proofs'
+    href: '?no-proof=true',
+    text: 'No proof'
   },
   {
-    href: '?Rule6ProofsReview=&rule6ProofsReview=&redactedStatement=&commentReview=&no-proofs=&allRule6ProofsReview=#review-tab',
+    href: '?Rule6proofReview=&rule6proofReview=&redactedStatement=&commentReview=&no-proof=&allRule6proofReview=#review-tab',
     text: 'Reset view'
   },
   {
-    href: '?rule6ProofsReview=completed&rule6ProofsReviewStatus=accepted',
-    text: 'Accept Rule 6 proofs'
+    href: '?rule6proofReview=completed&rule6proofReviewStatus=accepted',
+    text: 'Accept Rule 6 proof'
   },
   {
-    href: '?rule6ProofsReview=completed&rule6ProofsReviewStatus=rejected',
-    text: 'Reject Rule 6 proofs'
+    href: '?rule6proofReview=completed&rule6proofReviewStatus=rejected',
+    text: 'Reject Rule 6 proof'
   },
   {
-    href: '?rule6ProofsReview=completed&rule6ProofsReviewStatus=accepted&allRule6ProofsReview=completed',
-    text: 'Rule 6 proofs done'
+    href: '?rule6proofReview=completed&rule6proofReviewStatus=accepted&allRule6proofReview=completed',
+    text: 'Rule 6 proof done'
   }
 ] %}
 
@@ -140,15 +140,15 @@
     <div class="govuk-grid-column-two-thirds">
 
       {% set reviewHtml %}
-        {% include "includes/rule-6-proof-of-evidence-and-witnesses/waiting-proofs.html" %}
+        {% include "includes/rule-6-proof-of-evidence-and-witnesses/waiting-proof.html" %}
       {% endset %}
 
       {% set validHtml %}
-        {% include "includes/rule-6-proof-of-evidence-and-witnesses/valid-proofs.html" %}
+        {% include "includes/rule-6-proof-of-evidence-and-witnesses/valid-proof.html" %}
       {% endset %}
 
       {% set rejectedHtml %}
-        {% include "includes/rule-6-proof-of-evidence-and-witnesses/rejected-proofs.html" %}
+        {% include "includes/rule-6-proof-of-evidence-and-witnesses/rejected-proof.html" %}
       {% endset %}
 
       {{ govukTabs({

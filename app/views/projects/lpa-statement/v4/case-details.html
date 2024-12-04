@@ -3,6 +3,34 @@
 {% set title = "Case details" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
+{% set prototypeLinks = [
+  {
+    href: '?statement-review-done=Yes',
+    text: 'Statement review is done'
+  } if data['statement-review-done'] != 'Yes',
+  {
+    href: '?statement-review-done=&statementsDeadline=open',
+    text: 'LPA statement to review'
+  } if data['statement-review-done'] == 'Yes',
+  {
+    href: '?statement-review-done=Yes&review-outcome=Statement%20complete',
+    text: 'LPA statement is complete'
+  } if data['review-outcome'] == 'Statement incomplete',
+  {
+    href: '?statement-review-done=Yes&review-outcome=Statement%20incomplete',
+    text: 'LPA statement incomplete'
+  } if data['review-outcome'] != 'Statement incomplete',
+  {
+    href: '?statementsDeadline=closed',
+    text: 'Statements window is closed'
+  } if data['statement-review-done'] == 'Yes' and data['statementsDeadline'] != 'closed',
+  {
+    href: '?statementsDeadline=open',
+    text: 'Statements window is open'
+  } if data['statementsDeadline'] == 'closed'
+
+] %}
+
 {% block content %}
 
   <div class="govuk-grid-row">
@@ -14,6 +42,8 @@
       }) if flash.length}}
 
       {% if data['statement-review-done'] != 'Yes' %}
+
+        <!-- review statement -->
         {% set readyBanner %}
           <p class="govuk-notification-banner__heading">
             LPA statement awaiting review<br><a class="govuk-notification-banner__link" href="statement-review">Review</a>
@@ -22,6 +52,47 @@
         {{ govukNotificationBanner({
           html: readyBanner
         }) }}
+
+      {% elseif data['review-outcome'] == 'Statement incomplete' %}
+
+        <!-- statement incomplete -->
+        {% set incompleteBanner %}
+          <p class="govuk-notification-banner__heading">
+            LPA statement incomplete.
+          </p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>
+              Supporting documents missing
+            </li>
+            <li>
+              Other: Some other reason
+            </li>
+          </ul>
+          <p class="govuk-body">
+            Resubmisstion is due before {{ 7 | daysInFuture }}.<br>
+            <a class="govuk-notification-banner__link" href="statement-review">Update LPA statement</a>
+          </p>
+        {% endset %}
+        {{ govukNotificationBanner({
+          classes: "govuk-!-margin-bottom-5",
+          html: incompleteBanner
+        }) }}
+
+      {% endif %}
+
+      {% if data['statementsDeadline'] == 'closed' %}
+
+        <!-- share statements -->
+        {% set shareBanner %}
+          <p class="govuk-notification-banner__heading">
+            <a class="govuk-link--no-visited-state" href="share-comments-and-statements">Share comments and statements</a>
+          </p>
+        {% endset %}
+
+        {{ govukNotificationBanner({
+          html: shareBanner
+        }) }}
+
       {% endif %}
 
       <span class="govuk-caption-l">Appeal 2110166</span>
@@ -135,7 +206,7 @@
         </div>
         <div class="govuk-accordion__section">
           <div class="govuk-accordion__section-header">
-            <h1 class="govuk-accordion__section-heading">
+            <h2 class="govuk-accordion__section-heading">
               <span class="govuk-accordion__section-button" id="accordion-default-heading-2">
                Site details
               </span>
@@ -384,7 +455,7 @@
           <div class="govuk-accordion__section-header">
             <h2 class="govuk-accordion__section-heading">
               <span class="govuk-accordion__section-button" id="accordion-default-heading-4">
-                Case documentation
+                Documentation
               </span>
             </h2>
           </div>
@@ -459,14 +530,14 @@
                   },
                   {
                     text: "Completed"
-                  },
+                  } if data['review-outcome'] != 'Statement incomplete' else { text: "Incomplete" },
                   {
                     text: "19 Jul 2023"
                   },
                   {
-                    html: "<a href='statement-review'>View</a>",
+                    html: "<a href='view-statement'>View</a>",
                     format: "numeric"
-                  }
+                  } if data['review-outcome'] != 'Statement incomplete' else { html: "<a href='statement-review'>Review</a>", format: "numeric" }
                 ] if data['statement-review-done'] == "Yes",
                 [
                   {

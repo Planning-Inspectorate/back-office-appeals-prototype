@@ -25,13 +25,13 @@ router.post('/upload-document-details', function (req, res) {
   res.redirect('upload-document-date')
 })
 
-// uploading a new planning obligation
+// uploading a new document
 router.post('/upload-document-date', function (req, res) {
   res.redirect('upload-document-check-your-answers')
 })
 
 router.post('/upload-document-check-your-answers', function (req, res) {
-  req.flash('success', 'Proof of evidence and witnesses document added')
+  req.flash('success', 'Proof of evidence and witnesses added')
   res.redirect('documents')
 })
 
@@ -43,14 +43,14 @@ router.post('/reject-documents', function (req, res) {
 // changing the appeal procedure
 router.post('/check-your-answers', function (req, res) {
   if (req.session.data['document-review-decision'] == 'Accept proof of evidence and witnesses') {
-    req.flash('success', 'Proof of evidence and witnesses accepted')
+    req.flash('success', 'Appellant proof of evidence and witnesses accepted')
     if (req.session.data['party'] == 'rule6') {
       res.redirect('rule-6-proofs-and-witnesses?rule6ProofsReview=completed&rule6ProofsReviewStatus=accepted')
     } else {
       res.redirect('case-details?appellantProofsReview=completed')
     }
   } else {
-    req.flash('success', 'Proof of evidence and witnesses rejected')
+    req.flash('success', 'Appellant proof of evidence and witnesses rejected')
     if (req.session.data['party'] == 'rule6') {
       res.redirect('rule-6-proofs-and-witnesses?rule6ProofsReview=completed&rule6ProofsReviewStatus=rejected')
     } else {

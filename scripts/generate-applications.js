@@ -79,6 +79,7 @@ const generateApplication = () => {
 
   for(let i = 0; i < 100; i++) {
     let party = {}
+    party.id = uuidv4()
     party.status = faker.helpers.arrayElement([
       'Awaiting review',
       'Accepted',
@@ -90,7 +91,7 @@ const generateApplication = () => {
     party.firstName = faker.person.firstName()
     party.lastName = faker.person.lastName()
     party.emailAddress = `${party.firstName.toLowerCase()}.${party.lastName.toLowerCase()}@gmail.com`
-    party.phoneNumber = '079## ### ###'.replace(/#+/g, (m) => faker.string.numeric(m.length));
+    party.phone = '079## ### ###'.replace(/#+/g, (m) => faker.string.numeric(m.length));
     party.hasOrganisation = faker.helpers.arrayElement([
       'Yes',
       'Yes',

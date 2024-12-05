@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-Simple.html" %}
 
-{% set title = "Check details and add Rule 6 status application" %}
+{% set title = "Check details and add Rule 6 party" %}
 {% set pageName = title %}
 
 {% set back = true %}
@@ -27,7 +27,7 @@
             actions: {
               items: [
                 {
-                  href: "/projects/start-full-case/v4/rule-6-applications/new",
+                  href: "/projects/start-full-case/v4/rule-6-parties/new",
                   text: "Change",
                   visuallyHiddenText: "Email address"
                 }
@@ -44,7 +44,7 @@
             actions: {
               items: [
                 {
-                  href: "/projects/start-full-case/v4/rule-6-applications/new/name",
+                  href: "/projects/start-full-case/v4/rule-6-parties/new/name",
                   text: "Change",
                   visuallyHiddenText: "Name"
                 }
@@ -61,7 +61,7 @@
             actions: {
               items: [
                 {
-                  href: "/projects/start-full-case/v4/rule-6-applications/new/organisation",
+                  href: "/projects/start-full-case/v4/rule-6-parties/new/organisation",
                   text: "Change",
                   visuallyHiddenText: "if the Rule 6 party represents an organisation"
                 }
@@ -78,7 +78,7 @@
             actions: {
               items: [
                 {
-                  href: "/projects/start-full-case/v4/rule-6-applications/new/organisation",
+                  href: "/projects/start-full-case/v4/rule-6-parties/new/organisation",
                   text: "Change",
                   visuallyHiddenText: "Organisation name"
                 }
@@ -95,7 +95,7 @@
             actions: {
               items: [
                 {
-                  href: "/projects/start-full-case/v4/rule-6-applications/new/phone",
+                  href: "/projects/start-full-case/v4/rule-6-parties/new/phone",
                   text: "Change",
                   visuallyHiddenText: "Phone number"
                 }
@@ -112,7 +112,7 @@
             actions: {
               items: [
                 {
-                  href: "/projects/start-full-case/v4/rule-6-applications/new/phone",
+                  href: "/projects/start-full-case/v4/rule-6-parties/new/phone",
                   text: "Change",
                   visuallyHiddenText: "Request for Rule 6 status"
                 }
@@ -122,9 +122,11 @@
         ]
       }) }}
 
+      {# <p class="govuk-body">We’ll send an email to the Rule 6 party inviting them to create an account.</p> #}
+
       <form method="post">
         {{ govukButton({
-          text: "Add Rule 6 status application"
+          text: "Add Rule 6 party"
         }) }}
       </form>
 

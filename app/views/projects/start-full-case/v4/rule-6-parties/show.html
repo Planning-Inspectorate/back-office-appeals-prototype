@@ -13,7 +13,7 @@
         },
         {
           text: "Rule 6 applications",
-          href: "/projects/start-full-case/v4/rule-6-applications"
+          href: "/projects/start-full-case/v4/rule-6-parties"
         },
         {
           text: title
@@ -39,12 +39,13 @@
       <div class="govuk-button-group">
         {{ govukButton({
           text: "Approve",
-          href: '/projects/start-full-case/v4/rule-6-applications/'+party.id+'/approve'
+          href: '/projects/start-full-case/v4/rule-6-parties/'+party.id+'/approve'
         }) if party.status != 'Accepted' and party.status != 'Invited'}}
 
         {{ govukButton({
           text: "Reject",
-          classes: 'govuk-button--secondary'
+          classes: 'govuk-button--secondary',
+          href: '/projects/start-full-case/v4/rule-6-parties/'+party.id+'/reject'
         }) if party.status != 'Accepted' and party.status != 'Invited' and party.status != 'Rejected'}}
 
         {% if party.status == 'Invited' and party.status != 'Withdrawn'%}
@@ -52,7 +53,7 @@
         {% endif %}
 
         {% if party.status != 'Rejected' and party.status != 'Withdrawn'%}
-          <a class="govuk-link" href="#">Withdraw</a>
+          <a class="govuk-link" href="/projects/start-full-case/v4/rule-6-parties/}{{party.id}}/withdraw">Withdraw</a>
         {% endif %}
 
       </div>
@@ -163,6 +164,10 @@
           }
         ]
       }) }}
+
+      <h2 class="govuk-heading-m">Statement</h2>
+
+      <p class="govuk-body">Fugiat sunt labore in laborum do ullamco mollit anim. Tempor ad dolor qui. Consequat labore velit tempor dolore aute. Amet id incididunt ex elit sint ex sunt sit et. Ad consequat proident quis in ad aute mollit officia occaecat et incididunt ex exercitation duis quis.</p>
 
 
     </div>

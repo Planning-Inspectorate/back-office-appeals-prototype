@@ -520,7 +520,7 @@ router.post('/rule-6-parties/:id/withdraw', function (req, res) {
   let party = application.rule6Parties.find(party => party.id == req.params.id)
   party.status = 'Withdrawn'
   req.flash('success', 'Rule 6 party withdrawn')
-  res.redirect('/projects/start-full-case/v4/rule-6-parties')
+  res.redirect('/projects/start-full-case/v4/rule-6-parties/'+req.params.id)
 })
 
 // Add your routes above the module.exports line

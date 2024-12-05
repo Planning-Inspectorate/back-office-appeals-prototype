@@ -1,6 +1,8 @@
 const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
 const { v4: uuidv4 } = require('uuid')
+const _ = require('lodash')
+const Pagination = require('../../../../helpers/pagination')
 
 //
 // START CASE
@@ -279,41 +281,91 @@ router.post('/edit-inquiry-estimates/check', function (req, res) {
 //
 
 router.get('/rule-6-applications', function (req, res) {
-  let awaitingReview = req.session.data.rule6applications
+  let application = req.session.data.applications[0]
+
+
+  let awaitingReview = application.rule6Parties
     .filter((item) => item.status == 'Awaiting review')
     .sort((a, b) => {
       return new Date(b.dateAdded) - new Date(a.dateAdded)
     })
-  let invited = req.session.data.rule6applications
+  let invited = application.rule6Parties
     .filter((item) => item.status == 'Invited')
     .sort((a, b) => {
       return new Date(b.dateAdded) - new Date(a.dateAdded)
     })
-  let accepted = req.session.data.rule6applications
+  let accepted = application.rule6Parties
     .filter((item) => item.status == 'Accepted')
     .sort((a, b) => {
       return new Date(b.dateAdded) - new Date(a.dateAdded)
     })
-  let rejected = req.session.data.rule6applications
+  let rejected = application.rule6Parties
     .filter((item) => item.status == 'Rejected')
     .sort((a, b) => {
       return new Date(b.dateAdded) - new Date(a.dateAdded)
     })
-  let withdrawn = req.session.data.rule6applications
+  let withdrawn = application.rule6Parties
     .filter((item) => item.status == 'Withdrawn')
     .sort((a, b) => {
       return new Date(b.dateAdded) - new Date(a.dateAdded)
     })
 
-  let allParties = awaitingReview.concat(accepted).concat(invited).concat(rejected).concat(withdrawn)
+  let parties = awaitingReview.concat(accepted).concat(invited).concat(rejected).concat(withdrawn)
+
+  let selectedStatusFilters = _.get(req.session.data.filters, 'statuses')
+  let hasFilters = _.get(selectedStatusFilters, 'length')
+  let selectedFilters = {
+    categories: []
+  }
+
+  // the user has selected a status filter
+  if(hasFilters) {
+    parties = parties.filter(party => {
+      let matchesStatus = true
+
+      if(_.get(selectedStatusFilters, 'length')) {
+        matchesStatus = selectedStatusFilters.includes(party.status);
+      }
+
+      return matchesStatus
+    })
+  }
+
+  if(_.get(selectedStatusFilters, 'length')) {
+    selectedFilters.categories.push({
+      heading: { text: 'Status' },
+      items: selectedStatusFilters.map(label => {
+        return {
+          text: label,
+          href: `/projects/start-full-case/v4/rule-6-applications/remove-status/${label}`
+        }
+      })
+    })
+  }
+
+  let pageSize = 25
+  let pagination = new Pagination(parties, req.query.page, pageSize)
+  parties = pagination.getData()
 
   res.render('/projects/start-full-case/v4/rule-6-applications/index', {
-    allParties,
+    parties,
+    selectedFilters,
+    pagination,
     awaitingReview,
     invited,
     accepted,
     rejected
   })
+})
+
+router.get('/rule-6-applications/remove-status/:status', (req, res) => {
+  _.set(req, 'session.data.filters.statuses', _.pull(req.session.data.filters.statuses, req.params.status))
+  res.redirect('/projects/start-full-case/v4/rule-6-applications/')
+})
+
+router.get('/rule-6-applications/clear-filters', (req, res) => {
+  _.set(req, 'session.data.filters.statuses', null)
+  res.redirect('/projects/start-full-case/v4/rule-6-applications')
 })
 
 //
@@ -365,25 +417,26 @@ router.get('/rule-6-applications/new/check', function (req, res) {
 })
 
 router.post('/rule-6-applications/new/check', function (req, res) {
-  console.log(req.session.data.rule6applications.length)
-  let application = req.session.data.rule6application
+  let application = req.session.data.applications[0]
+  let party = req.session.data.rule6application
   req.flash('success', 'Rule 6 status application added')
-  req.session.data.rule6applications.push({
+  application.rule6Parties.push({
     id: uuidv4(),
     dateAdded: new Date(),
-    emailAddress: application.emailAddress,
-    firstName: application.firstName,
-    lastName: application.lastName,
-    hasOrganisation: application.hasOrganisation,
-    organisationName: application.organisationName,
-    phone: application.phone,
+    emailAddress: party.emailAddress,
+    firstName: party.firstName,
+    lastName: party.lastName,
+    hasOrganisation: party.hasOrganisation,
+    organisationName: party.organisationName,
+    phone: party.phone,
     status: 'Awaiting review'
   })
   res.redirect('/projects/start-full-case/v4/rule-6-applications')
 })
 
 router.get('/rule-6-applications/:id', function (req, res) {
-  let party = req.session.data.rule6applications.filter(party => party.id == req.params.id)[0]
+  let application = req.session.data.applications[0]
+  let party = application.rule6Parties.find(party => party.id == req.params.id)
 
   res.render('/projects/start-full-case/v4/rule-6-applications/show', {
     party
@@ -391,7 +444,8 @@ router.get('/rule-6-applications/:id', function (req, res) {
 })
 
 router.get('/rule-6-applications/:id/approve', function (req, res) {
-  let party = req.session.data.rule6applications.filter(party => party.id == req.params.id)[0]
+  let application = req.session.data.applications[0]
+  let party = application.rule6Parties.find(party => party.id == req.params.id)
 
   res.render('/projects/start-full-case/v4/rule-6-applications/approve/index', {
     party
@@ -399,7 +453,8 @@ router.get('/rule-6-applications/:id/approve', function (req, res) {
 })
 
 router.post('/rule-6-applications/:id/approve', function (req, res) {
-  let party = req.session.data.rule6applications.filter(party => party.id == req.params.id)[0]
+  let application = req.session.data.applications[0]
+  let party = application.rule6Parties.find(party => party.id == req.params.id)
   party.status = 'Invited'
   req.flash('success', 'Rule 6 party invited')
   res.redirect('/projects/start-full-case/v4/rule-6-applications')

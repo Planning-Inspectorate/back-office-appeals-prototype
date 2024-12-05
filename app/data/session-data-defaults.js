@@ -1,7 +1,10 @@
+const applications = require('./applications.json')
+
 const { v4: uuidv4 } = require('uuid')
 const faker =  require('@faker-js/faker').faker
 
 module.exports = {
+  applications,
   rule6applications: [
     {
       id: uuidv4(),

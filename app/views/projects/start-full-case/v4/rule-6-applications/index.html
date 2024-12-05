@@ -22,17 +22,62 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
       {{ govukNotificationBanner({
         type: "success",
         text: flash
       }) if flash.length }}
+    </div>
+  </div>
 
-      <span class="govuk-caption-l">Appeal 2114328</span>
-      <h1 class="govuk-heading-l">{{title}}</h1>
+  <span class="govuk-caption-l">Appeal 2114328</span>
+  <h1 class="govuk-heading-l">{{title}}</h1>
+
+  <p class="govuk-!-margin-bottom-6"><a class="govuk-link" href="/projects/start-full-case/v4/rule-6-applications/new">Add Rule 6 party</a></p>
+
+  <div class="app-filter-layout">
+    <div class="app-filter-layout__filter">
+      {% include "includes/filter-panel.njk" %}
+    </div>
+    <div class="app-filter-layout__content">
+
+      <div class="app-action-bar">
+        <div class="app-action-bar__filter"></div>
+      </div>
+
+      {{parties | log}}
+
+      {% if parties.length %}
+         <div class="app-list">
+          {% for item in parties %}
+            <div class="app-list__item">
+              <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                <a class="govuk-link--no-visited-state" href="/projects/start-full-case/v4/rule-6-applications/{{item.id}}">{{item.firstName}} {{item.lastName}}
+                </a>
+                {% if item.hasOrganisation %}<span class="app-list__org govuk-!-font-size-16 govuk-hint govuk-!-margin-bottom-0">{{item.organisationName}}</span>{% endif %}
+              </h2>
+
+              {{ govukTag({
+                text: item.status,
+                classes: "app-list__tag " + (item.status | rule6StatusColour)
+              }) }}
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p>There are no results.</p>
+      {% endif %}
+
+      {% include "includes/pagination.njk" %}
+    </div>
+  </div>
+
+
+
+
+
 
       {# <p class="govuk-!-margin-bottom-6"><a class="govuk-link" href="/projects/start-full-case/v4/rule-6-applications/new">Add Rule 6 status application</a></p> #}
-      <p class="govuk-!-margin-bottom-6"><a class="govuk-link" href="/projects/start-full-case/v4/rule-6-applications/new">Add Rule 6 party</a></p>
+
 
       {% set tab1Html %}
          {% include "../_includes/rule6-applications/awaiting-review.html" %}
@@ -83,26 +128,32 @@
         ]
       }) if 1==2}}
 
-      <div class="app-list">
-        {% for item in allParties %}
-          <div class="app-list__item">
-            <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
-              <a class="govuk-link--no-visited-state" href="/projects/start-full-case/v4/rule-6-applications/{{item.id}}">{{item.firstName}} {{item.lastName}}
-              </a>
-              {% if item.hasOrganisation %}<span class="app-list__org govuk-!-font-size-16 govuk-hint govuk-!-margin-bottom-0">{{item.organisationName}}</span>{% endif %}
-            </h2>
-
-            {{ govukTag({
-              text: item.status,
-              classes: "app-list__tag " + (item.status | rule6StatusColour)
-            }) }}
-          </div>
-        {% endfor %}
-      </div>
-
 
       {# <p><a class="govuk-link" href="#">Withdrawn Rule 6 status applications</a></p> #}
 
     </div>
   </div>
+{% endblock %}
+
+{% block scripts %}
+  {{super()}}
+  <script>
+    new App.FilterToggleButton({
+      bigModeMediaQuery: '(min-width: 48.063em)',
+      startHidden: false,
+      toggleButton: {
+        container: $('.app-action-bar__filter'),
+        showText: 'Show filter',
+        hideText: 'Hide filter',
+        classes: 'govuk-button--secondary govuk-!-margin-bottom-3'
+      },
+      closeButton: {
+        container: $('.app-filter__header-action'),
+        text: 'Close'
+      },
+      filter: {
+        container: $('.app-filter-layout__filter')
+      }
+    })
+  </script>
 {% endblock %}

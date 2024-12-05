@@ -465,7 +465,7 @@ router.post('/rule-6-parties/:id/approve', function (req, res) {
   let party = application.rule6Parties.find(party => party.id == req.params.id)
   party.status = 'Invited'
   req.flash('success', 'Rule 6 party approved')
-  res.redirect('/projects/start-full-case/v4/rule-6-parties')
+  res.redirect('/projects/start-full-case/v4/rule-6-parties/'+req.params.id)
 })
 
 //
@@ -482,11 +482,24 @@ router.get('/rule-6-parties/:id/reject', function (req, res) {
 })
 
 router.post('/rule-6-parties/:id/reject', function (req, res) {
+  res.redirect('/projects/start-full-case/v4/rule-6-parties/'+req.params.id+'/reject/check')
+})
+
+router.get('/rule-6-parties/:id/reject/check', function (req, res) {
+  let application = req.session.data.applications[0]
+  let party = application.rule6Parties.find(party => party.id == req.params.id)
+
+  res.render('/projects/start-full-case/v4/rule-6-parties/reject/check', {
+    party
+  })
+})
+
+router.post('/rule-6-parties/:id/reject/check', function (req, res) {
   let application = req.session.data.applications[0]
   let party = application.rule6Parties.find(party => party.id == req.params.id)
   party.status = 'Rejected'
-  req.flash('success', 'Rule 6 party rejected')
-  res.redirect('/projects/start-full-case/v4/rule-6-parties')
+  req.flash('success', 'Rule 6 status rejected')
+  res.redirect('/projects/start-full-case/v4/rule-6-parties/'+req.params.id)
 })
 
 //

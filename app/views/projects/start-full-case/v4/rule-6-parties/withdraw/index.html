@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = 'Confirm that you want to reject the Rule 6 status request'  %}
+{% set title = 'Confirm that you want to withdraw the request for Rule 6 status'  %}
 {% set pageName = title %}
 
 {% block beforeContent %}
@@ -18,11 +18,11 @@
         {{title}}
       </h1>
 
-      <p>We’ll send an email to the Rule 6 party inviting them to create an account.</p>
+      <p>We’ll send an email to the Rule 6 party confirming that their request for Rule 6 status has been withdrawn.</p>
 
       <form method="post">
         {{ govukButton({
-          text: "Approve"
+          text: "Withdraw request for Rule 6 status"
         }) }}
 
         <p><a href="javascript:history.back()">Cancel</a></p>

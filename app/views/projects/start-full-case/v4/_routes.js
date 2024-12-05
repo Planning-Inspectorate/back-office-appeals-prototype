@@ -503,7 +503,7 @@ router.post('/rule-6-parties/:id/reject/check', function (req, res) {
 })
 
 //
-// Rule 6 APPLICATIONS: APPROVE
+// Rule 6 APPLICATIONS: WITHDRAW
 //
 
 router.get('/rule-6-parties/:id/withdraw', function (req, res) {

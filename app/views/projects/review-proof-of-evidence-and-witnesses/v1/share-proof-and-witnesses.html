@@ -1,0 +1,62 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Check details and share proof of evidence and witnesses" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = true %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Appeal 2114328</span>
+    <h1 class="govuk-heading-l">
+      {{ title }}
+    </h1>
+
+    <p>
+      We'll share proof of evidence and witnesses with the relevant parties from:
+    </p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>
+        <a href="#" class="govuk-link">
+          the appellant <span class="govuk-visually-hidden">proof of evidence and witnesses</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="govuk-link">
+          the local planning authority <span class="govuk-visually-hidden">proof of evidence and witnesses</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="govuk-link">
+          Rule 6 parties <span class="govuk-visually-hidden">proof of evidence and witnesses</span>
+        </a>
+      </li>
+    </ul>
+
+    {{ govukWarningText({
+      text: "Do not share until you have reviewed all of the supporting documents and redacted any sensitive information.",
+      iconFallbackText: "Fallback text"
+    }) }}
+
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form method="post">
+
+    	{{ govukButton({
+    		text: 'Share proof of evidence and witnesses'
+    	}) }}
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

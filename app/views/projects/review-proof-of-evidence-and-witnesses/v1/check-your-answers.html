@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Check details and accept proof of evidence and witnesses" %}
+{% set title = "Check details and accept appellant proof of evidence and witnesses" %}
 {% set pageName = title + ' - Planning Inspectorate' %}
 
 {% block content %}
@@ -23,18 +23,45 @@
         <dl class="govuk-summary-list">
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key govuk-!-width-one-quarter">
-              Proof of evidence and witnesses
+              Proof of evidence and summary
             </dt>
             <dd class="govuk-summary-list__value">
               <ul class="<ul class="govuk-list govuk-list--bullet">
                 <li>
                   <a href="#" class="govuk-link">
-                    appeal_2110166_proofs_and_witnesses_part1.pdf
+                    appeal_2110166_inquiry_evidence_summary.pdf
                   </a>
                 </li>
                 <li>
                   <a href="#" class="govuk-link">
-                    appeal_2110166_proofs_and_witnesses_part2.pdf
+                    appeal_2110166_inquiry_evidence.pdf
+                  </a>
+                </li>
+              </ul>
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="document-review-decision">Change<span class="govuk-visually-hidden"> proof of evidence and witnesses</span></a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-width-one-quarter">
+              Witnesses and their evidence
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <ul class="<ul class="govuk-list govuk-list--bullet">
+                <li>
+                  <a href="#" class="govuk-link">
+                    appeal_2110166_witnesses_part1.pdf
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="govuk-link">
+                    appeal_2110166_witnesses_part2.pdf
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="govuk-link">
+                    appeal_2110166_witnesses_part3.pdf
                   </a>
                 </li>
               </ul>
@@ -48,13 +75,13 @@
               Review decision
             </dt>
             <dd class="govuk-summary-list__value">
-              {{ data['document-review-decision' ] or 'Accept proof of evidence and witnesses'}}
+              {{ data['document-review-decision' ] or 'Accept appellant proof of evidence and witnesses'}}
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="document-review">Change<span class="govuk-visually-hidden"> review decision</span></a>
             </dd>
           </div>
-          {% if data['document-review-decision'] == 'Reject proof of evidence and witnesses' %}
+          {% if data['document-review-decision'] == 'Reject appellant proof of evidence and witnesses' %}
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
                 Reasons
@@ -74,7 +101,7 @@
 
       <form method="post">
 
-        {% if data['document-review-decision'] == 'Reject proof of evidence and witnesses' %}
+        {% if data['document-review-decision'] == 'Reject appellant proof of evidence and witnesses' %}
           <p class="govuk-body">
             We’ll send an email to the appellant to explain why you rejected their proof of evidence and witnesses.
           </p>
@@ -86,7 +113,7 @@
         {% else %}
 
           {{ govukButton({
-            text: "Accept proof of evidence and witnesses"
+            text: "Accept appellant proof of evidence and witnesses"
           }) }}
 
         {% endif %}

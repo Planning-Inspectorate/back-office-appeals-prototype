@@ -1,12 +1,12 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Review proof of evidence and witnesses" %}
+{% set title = "Review appellant proof of evidence and witnesses" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% block beforeContent %}
   {{ govukBackLink({
-    text: "Back",
-    href: "case"
+    text: "Back to case details",
+    href: "case-details"
   }) }}
 {% endblock %}
 
@@ -27,16 +27,44 @@
         rows: [
           {
             key: {
-              text: "Proof of evidence and witnesses",
+              text: "Proof of evidence and summary",
               classes: "govuk-!-width-one-quarter"
             },
             value: {
               html: "<ul class='govuk-list govuk-list--number'>
                 <li>
-                  <a href='#' class='govuk-link'>appeal_2110166_proofs_and_witnesses_part1.pdf</a>
+                  <a href='#' class='govuk-link'>appeal_2110166_inquiry_evidence_summary.pdf</a>
                 </li>
                 <li>
-                  <a href='#' class='govuk-link'>appeal_2110166_proofs_and_witnesses_part2.pdf</a>
+                  <a href='#' class='govuk-link'>appeal_2110166_inquiry_evidence.pdf</a>
+                </li>
+              </ul>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "documents",
+                  text: "Change",
+                  visuallyHiddenText: "documents"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Witnesses and their evidence",
+              classes: "govuk-!-width-one-quarter"
+            },
+            value: {
+              html: "<ul class='govuk-list govuk-list--number'>
+                <li>
+                  <a href='#' class='govuk-link'>appeal_2110166_witnesses_part1.pdf</a>
+                </li>
+                <li>
+                  <a href='#' class='govuk-link'>appeal_2110166_witnesses_part2.pdf</a>
+                </li>
+                <li>
+                  <a href='#' class='govuk-link'>appeal_2110166_witnesses_part3.pdf</a>
                 </li>
               </ul>"
             },
@@ -69,12 +97,12 @@
       },
       items: [
         {
-          value: "Accept proof of evidence and witnesses",
-          text: "Accept proof of evidence and witnesses"
+          value: "Accept appellant proof of evidence and witnesses",
+          text: "Accept appellant proof of evidence and witnesses"
         },
         {
-          value: "Reject proof of evidence and witnesses",
-          text: "Reject proof of evidence and witnesses"
+          value: "Reject appellant proof of evidence and witnesses",
+          text: "Reject appellant proof of evidence and witnesses"
         }
 
       ]

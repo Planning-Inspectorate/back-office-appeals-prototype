@@ -9,7 +9,7 @@ router.get('*', function(req, res, next){
 
 // see if the IP gave us an address
 router.post('/document-review', function (req, res) {
-  if (req.session.data['document-review-decision'] == 'Reject proof of evidence and witnesses') {
+  if (req.session.data['document-review-decision'] == 'Reject appellant proof of evidence and witnesses') {
     res.redirect('reject-documents')
   } else {
     res.redirect('check-your-answers')
@@ -25,13 +25,13 @@ router.post('/upload-document-details', function (req, res) {
   res.redirect('upload-document-date')
 })
 
-// uploading a new planning obligation
+// uploading a new document
 router.post('/upload-document-date', function (req, res) {
   res.redirect('upload-document-check-your-answers')
 })
 
 router.post('/upload-document-check-your-answers', function (req, res) {
-  req.flash('success', 'Proof of evidence and witnesses document added')
+  req.flash('success', 'Proof of evidence and witnesses added')
   res.redirect('documents')
 })
 
@@ -42,27 +42,27 @@ router.post('/reject-documents', function (req, res) {
 
 // changing the appeal procedure
 router.post('/check-your-answers', function (req, res) {
-  if (req.session.data['document-review-decision'] == 'Accept proof of evidence and witnesses') {
-    req.flash('success', 'Proof of evidence and witnesses accepted')
+  if (req.session.data['document-review-decision'] == 'Accept appellant proof of evidence and witnesses') {
+    req.flash('success', 'Appellant proof of evidence and witnesses accepted')
     if (req.session.data['party'] == 'rule6') {
-      res.redirect('rule-6-proofs-and-witnesses?rule6ProofsReview=completed&rule6ProofsReviewStatus=accepted')
+      res.redirect('rule-6-proof-and-witnesses?rule6proofReview=completed&rule6proofReviewStatus=accepted')
     } else {
-      res.redirect('case-details?appellantProofsReview=completed')
+      res.redirect('case-details?appellantproofReview=completed')
     }
   } else {
-    req.flash('success', 'Proof of evidence and witnesses rejected')
+    req.flash('success', 'Appellant proof of evidence and witnesses rejected')
     if (req.session.data['party'] == 'rule6') {
-      res.redirect('rule-6-proofs-and-witnesses?rule6ProofsReview=completed&rule6ProofsReviewStatus=rejected')
+      res.redirect('rule-6-proof-and-witnesses?rule6proofReview=completed&rule6proofReviewStatus=rejected')
     } else {
-      res.redirect('case-details?appellantProofsReview=completed')
+      res.redirect('case-details?appellantproofReview=completed')
     }
   }
 })
 
-// changing the appeal procedure
-router.post('/name-change', function (req, res) {
-  req.flash('success', 'File name updated')
-  res.redirect('manage-document')
+// sharing proof of evidence and witnesses
+router.post('/share-proof-and-witnesses', function (req, res) {
+  req.flash('success', 'Proof of evidence and witnesses shared')
+  res.redirect('case-details?proof-shared=yes')
 })
 
 // Add your routes above the module.exports line

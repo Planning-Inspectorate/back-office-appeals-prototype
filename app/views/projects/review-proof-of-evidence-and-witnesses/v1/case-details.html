@@ -5,17 +5,25 @@
 
 {% set prototypeLinks = [
   {
-    href: '?appellantProofsReview=completed',
+    href: '?appellantproofReview=completed',
     text: 'Completed appellant POE review'
-  } if data['appellantProofsReview'] != 'completed',
+  } if data['appellantproofReview'] != 'completed',
   {
-    href: '?Rule6ProofsReview=completed',
+    href: '?LPAproofReview=completed',
+    text: 'Completed LPA POE review'
+  } if data['LPAproofReview'] != 'completed',
+  {
+    href: '?Rule6proofReview=completed',
     text: 'Completed rule 6 POE review'
-  } if data['Rule6ProofsReview'] != 'completed',
+  } if data['Rule6proofReview'] != 'completed',
   {
-    href: '?appellantProofsReview=',
+    href: '?appellantproofReview=completed&LPAproofReview=completed&Rule6proofReview=completed',
+    text: 'All POEs reviewed'
+  } if data['appellantproofReview'] != 'completed' or data['Rule6proofReview'] != 'completed' or data['Rule6proofReview'] != 'completed',
+  {
+    href: '?appellantproofReview=&LPAproofReview=&Rule6proofReview=&proof-shared=',
     text: 'Reset review'
-  } if data['appellantProofsReview'] == 'completed'
+  } if data['appellantproofReview'] == 'completed' or data['LPAproofReview'] == 'completed' or data['Rule6proofReview'] == 'completed'
 ] %}
 
 {% block content %}
@@ -28,43 +36,77 @@
         text: flash
       }) if flash.length}}
 
-      {% set reviewAppellantProofs %}
+      {% set reviewAppellantproof %}
         <p class="govuk-notification-banner__heading">
-          Appellant proofs of evidence and witness timings awaiting review.
           <a class="govuk-notification-banner__link" href="document-review">
-            Review
+            Review appellant proof of evidence and witnesses
           </a>
         </p>
       {% endset %}
 
-      {% if data['appellantProofsReview'] != 'completed' %}
+      {% if data['appellantproofReview'] != 'completed' %}
 
         {{ govukNotificationBanner({
-          html: reviewAppellantProofs,
+          html: reviewAppellantproof,
           classes: "govuk-!-margin-bottom-5",
           type: "important"
         }) }}
 
       {% endif %}
 
-      {% set reviewRule6Proofs %}
+      {% set reviewLPAproof %}
         <p class="govuk-notification-banner__heading">
-          Rule 6 proofs of evidence and witness timings awaiting review.
-          <a class="govuk-notification-banner__link" href="rule-6-proofs-and-witnesses">
-            Review
+          <a class="govuk-notification-banner__link" href="document-review">
+            Review LPA proof of evidence and witnesses
           </a>
         </p>
       {% endset %}
 
-      {% if data['Rule6ProofsReview'] != 'completed' %}
+      {% if data['LPAproofReview'] != 'completed' %}
 
         {{ govukNotificationBanner({
-          html: reviewRule6Proofs,
+          html: reviewLPAproof,
+          classes: "govuk-!-margin-bottom-5",
           type: "important"
         }) }}
 
       {% endif %}
 
+      {% set reviewRule6proof %}
+        <p class="govuk-notification-banner__heading">
+          <a class="govuk-notification-banner__link" href="rule-6-proof-and-witnesses">
+            Review Rule 6 proof of evidence and witnesses
+          </a>
+        </p>
+      {% endset %}
+
+      {% if data['Rule6proofReview'] != 'completed' %}
+
+        {{ govukNotificationBanner({
+          html: reviewRule6proof,
+          type: "important"
+        }) }}
+
+      {% endif %}
+
+      {% set shareproof %}
+        <p class="govuk-notification-banner__heading">
+          <a class="govuk-notification-banner__link" href="share-proof-and-witnesses">
+            Share proof of evidence and witnesses
+          </a>
+        </p>
+      {% endset %}
+
+      <!-- if all proof reviews are done we can show a share banner -->
+      {% if data['appellantproofReview'] == 'completed' and data['LPAproofReview'] == 'completed' and data['Rule6proofReview'] == 'completed'%}
+
+        {% if data['proof-shared'] != 'yes' %}
+          {{ govukNotificationBanner({
+            html: shareproof,
+            type: "important"
+          }) }}
+        {% endif %}
+      {% endif %}
 
       <span class="govuk-caption-l">Appeal 2110166</span>
     	<h1 class="govuk-heading-l">{{ title }}</h1>
@@ -678,7 +720,7 @@
                     },
                     {
                       text: "Received"
-                    } if data['appellantProofsReview'] != 'completed' else {
+                    } if data['appellantproofReview'] != 'completed' else {
                       text: "Completed"
                     },
                     {
@@ -687,7 +729,7 @@
                     {
                       html: "<a href='document-review'>Review</a>",
                       format: "numeric"
-                    } if data['appellantProofsReview'] != 'completed' else {
+                    } if data['appellantproofReview'] != 'completed' else {
                       html: "<a href='documents?from=case'>View</a>",
                       format: "numeric"
                     }
@@ -697,15 +739,15 @@
                       text: "LPA proof of evidence and witnesses"
                     },
                     {
-                      text: "Awaiting"
+                      text: "Received"
+                    } if data['LPAproofReview'] != 'completed' else { html: "Completed" },
+                    {
+                      html: 2 | daysAgo
                     },
                     {
-                      html: ""
-                    },
-                    {
-                      html: "<a href='#'>View</a>",
+                      html: "<a href='#'>Review</a>",
                       format: "numeric"
-                    }
+                    } if data['LPAproofReview'] != 'completed' else { html: "<a href='#'>View</a>", format: "numeric" }
                   ],
                   [
                     {
@@ -713,14 +755,14 @@
                     },
                     {
                       text: "Received"
-                    } if data['Rule6ProofsReview'] != 'completed' else { text: "Completed" },
+                    } if data['Rule6proofReview'] != 'completed' else { text: "Completed" },
                     {
                       html: 1 | daysAgo
                     },
                     {
-                      html: "<a href='rule-6-proofs-and-witnesses'>Review</a>",
+                      html: "<a href='rule-6-proof-and-witnesses#review-tab'>Review</a>",
                       format: "numeric"
-                    } if data['Rule6ProofsReview'] != 'completed' else { html: "<a href='rule-6-proofs-and-witnesses'>View</a>", format: "numeric" }
+                    } if data['Rule6proofReview'] != 'completed' else { html: "<a href='rule-6-proof-and-witnesses?rule6proofReview=completed&rule6proofReviewStatus=accepted&allRule6proofReview=completed#valid-tab'>View</a>", format: "numeric" }
                   ]
 
                 ]

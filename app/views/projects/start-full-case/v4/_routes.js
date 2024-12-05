@@ -282,32 +282,34 @@ router.post('/edit-inquiry-estimates/check', function (req, res) {
 
 router.get('/rule-6-parties', function (req, res) {
   let application = req.session.data.applications[0]
+  let rule6Parties = application.rule6Parties
 
+  console.log(rule6Parties)
 
   let awaitingReview = application.rule6Parties
     .filter((item) => item.status == 'Awaiting review')
     .sort((a, b) => {
-      return new Date(b.dateAdded) - new Date(a.dateAdded)
+      return new Date(b.dateReceived) - new Date(a.dateReceived)
     })
   let invited = application.rule6Parties
     .filter((item) => item.status == 'Invited')
     .sort((a, b) => {
-      return new Date(b.dateAdded) - new Date(a.dateAdded)
+      return new Date(b.dateReceived) - new Date(a.dateReceived)
     })
   let accepted = application.rule6Parties
     .filter((item) => item.status == 'Accepted')
     .sort((a, b) => {
-      return new Date(b.dateAdded) - new Date(a.dateAdded)
+      return new Date(b.dateReceived) - new Date(a.dateReceived)
     })
   let rejected = application.rule6Parties
     .filter((item) => item.status == 'Rejected')
     .sort((a, b) => {
-      return new Date(b.dateAdded) - new Date(a.dateAdded)
+      return new Date(b.dateReceived) - new Date(a.dateReceived)
     })
   let withdrawn = application.rule6Parties
     .filter((item) => item.status == 'Withdrawn')
     .sort((a, b) => {
-      return new Date(b.dateAdded) - new Date(a.dateAdded)
+      return new Date(b.dateReceived) - new Date(a.dateReceived)
     })
 
   let parties = awaitingReview.concat(accepted).concat(invited).concat(rejected).concat(withdrawn)
@@ -419,10 +421,10 @@ router.get('/rule-6-parties/new/check', function (req, res) {
 router.post('/rule-6-parties/new/check', function (req, res) {
   let application = req.session.data.applications[0]
   let party = req.session.data.rule6application
-  req.flash('success', 'Rule 6 status application added')
+  req.flash('success', 'Rule 6 party added')
   application.rule6Parties.push({
     id: uuidv4(),
-    dateAdded: new Date(),
+    dateReceived: new Date(),
     emailAddress: party.emailAddress,
     firstName: party.firstName,
     lastName: party.lastName,

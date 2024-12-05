@@ -41,32 +41,50 @@
         }) }}
       </h1>
 
-      <div class="govuk-button-group">
-
-        {% if party.status == 'Awaiting review' or party.status == 'Rejected' or party.status == 'Withdawn' %}
-          {{ govukButton({
-            text: "Approve",
-            href: '/projects/start-full-case/v4/rule-6-parties/'+party.id+'/approve'
-          })}}
-        {% endif %}
-
+      {% set promptHtml %}
         {% if party.status == 'Awaiting review' %}
-          {{ govukButton({
-            text: "Reject",
-            classes: 'govuk-button--secondary',
-            href: '/projects/start-full-case/v4/rule-6-parties/'+party.id+'/reject'
-          })}}
+          <p>Rule 6 status was requested on {{party.dateReceived | govukDateTime}}.</p>
+        {% elseif party.status == 'Invited' %}
+          <p>Rule 6 status was approved on {{party.dateInvited | govukDateTime }}.</p>
+        {% elseif party.status == 'Accepted' %}
+          <p>The Rule 6 party created their account on {{party.dateAccepted | govukDateTime }}.</p>
+        {% elseif party.status == 'Rejected' %}
+          <p>Rule 6 status was rejected on {{party.dateRejected | govukDateTime }}.</p>
+        {% elseif party.status == 'Withdrawn' %}
+          <p>The Rule 6 party withdrew their request for Rule 6 status on {{party.dateWithdrawn | govukDateTime }}.</p>
         {% endif %}
+        <div class="govuk-button-group">
 
-        {% if party.status == 'Invited' %}
-          <a class="govuk-link" href="#">Resend invite</a>
-        {% endif %}
+          {% if party.status == 'Awaiting review' or party.status == 'Withdawn' %}
+            {{ govukButton({
+              text: "Approve",
+              href: '/projects/start-full-case/v4/rule-6-parties/'+party.id+'/approve'
+            })}}
+          {% endif %}
 
-        {% if party.status == 'Awaiting review' or party.status == 'Invited' or party.status == 'Accepted' %}
-          <a class="govuk-link" href="/projects/start-full-case/v4/rule-6-parties/{{party.id}}/withdraw">Withdraw</a>
-        {% endif %}
+          {% if party.status == 'Awaiting review' %}
+            {{ govukButton({
+              text: "Reject",
+              classes: 'govuk-button--secondary',
+              href: '/projects/start-full-case/v4/rule-6-parties/'+party.id+'/reject'
+            })}}
+          {% endif %}
 
-      </div>
+          {% if party.status == 'Invited' %}
+            <a class="govuk-link" href="#">Resend invite</a>
+          {% endif %}
+
+          {% if party.status == 'Awaiting review' or party.status == 'Invited' or party.status == 'Accepted' %}
+            <a class="govuk-link" href="/projects/start-full-case/v4/rule-6-parties/{{party.id}}/withdraw">Withdraw</a>
+          {% endif %}
+
+        </div>
+      {% endset %}
+
+      {{ govukInsetText({
+        html: promptHtml,
+        classes: 'govuk-!-padding-bottom-0'
+      }) }}
 
       {{ govukSummaryList({
         rows: [

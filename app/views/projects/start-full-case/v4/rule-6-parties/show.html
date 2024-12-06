@@ -56,7 +56,15 @@
         {% elseif party.status == 'Withdrawn' %}
           <p>The Rule 6 party was withdrawn on {{party.dateWithdrawn | govukDateTime }}.</p>
         {% endif %}
-        <div class="govuk-button-group">
+      {% endset %}
+
+      {{ govukInsetText({
+        html: promptHtml
+      }) if 1==2}}
+
+      {# {{promptHtml | safe}} #}
+
+      <div class="govuk-button-group">
 
           {% if party.status == 'Awaiting review' or party.status == 'Withdawn' %}
             {{ govukButton({
@@ -82,15 +90,41 @@
           {% endif %}
 
         </div>
-      {% endset %}
-
-      {{ govukInsetText({
-        html: promptHtml,
-        classes: 'govuk-!-padding-bottom-0'
-      }) }}
 
       {{ govukSummaryList({
         rows: [
+          {
+            key: {
+              text: "Rule 6 status requested date"
+            },
+            value: {
+              text: party.dateReceived | govukDateTime
+            }
+          } if 1==2,
+          {
+            key: {
+              text: "Rule 6 status approved date"
+            },
+            value: {
+              text: party.dateApproved | govukDateTime
+            }
+          } if party.dateApproved and 1==2,
+          {
+            key: {
+              text: "Rule 6 status rejected date"
+            },
+            value: {
+              text: party.dateRejected | govukDateTime
+            }
+          } if party.dateRejected and 1==2,
+          {
+            key: {
+              text: "Rule 6 status withdrawn date"
+            },
+            value: {
+              text: party.dateWithdrawn | govukDateTime
+            }
+          } if party.dateWithdrawn and 1==2,
           {
             key: {
               text: "Is the Rule 6 party an organisation?"
@@ -195,6 +229,36 @@
           }
         ]
       }) }}
+
+      <h2 class="govuk-heading-m">Timeline</h2>
+
+      <div class="app-list">
+        {% if party.dateWithdrawn %}
+          <div class="app-list__item">
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-1 govuk-!-font-weight-regular">Rule 6 status withdrawn</h3>
+            <p class="govuk-!-margin-bottom-0 govuk-hint govuk-!-font-size-16">{{party.dateWithdrawn | govukDateTime }}</p>
+          </div>
+        {% endif %}
+        {% if party.dateApproved %}
+          <div class="app-list__item">
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-1 govuk-!-font-weight-regular">Rule 6 status approved</h3>
+            <p class="govuk-!-margin-bottom-0 govuk-hint govuk-!-font-size-16">{{party.dateApproved | govukDateTime }}</p>
+          </div>
+        {% endif %}
+        {% if party.dateRejected %}
+          <div class="app-list__item">
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-1 govuk-!-font-weight-regular">Rule 6 status rejected</h3>
+            <p class="govuk-!-margin-bottom-0 govuk-hint govuk-!-font-size-16">{{party.dateRejected | govukDateTime }}</p>
+          </div>
+        {% endif %}
+        {% if party.dateReceived %}
+          <div class="app-list__item">
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-1 govuk-!-font-weight-regular">Rule 6 status requested</h3>
+            <p class="govuk-!-margin-bottom-0 govuk-hint govuk-!-font-size-16">{{party.dateReceived | govukDateTime}}</p>
+          </div>
+        {% endif %}
+      </div>
+
 
       {# <h2 class="govuk-heading-m">Statement</h2>
 

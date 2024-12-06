@@ -1,6 +1,11 @@
 {% extends "layouts/PINS-Simple.html" %}
 
-{% set title = party.firstName + ' ' + party.lastName %}
+
+{% if party.organisationName  %}
+  {% set title = party.organisationName %}
+{% else %}
+  {% set title = party.firstName + ' ' + party.lastName %}
+{% endif %}
 {% set pageName = title %}
 
 {% block beforeContent %}
@@ -44,14 +49,12 @@
       {% set promptHtml %}
         {% if party.status == 'Awaiting review' %}
           <p>Rule 6 status was requested on {{party.dateReceived | govukDateTime}}.</p>
-        {% elseif party.status == 'Invited' %}
-          <p>Rule 6 status was approved on {{party.dateInvited | govukDateTime }}.</p>
-        {% elseif party.status == 'Accepted' %}
-          <p>The Rule 6 party created their account on {{party.dateAccepted | govukDateTime }}.</p>
+        {% elseif party.status == 'Approved' %}
+          <p>The Rule 6 party was approved on {{party.dateApproved | govukDateTime }}.</p>
         {% elseif party.status == 'Rejected' %}
           <p>Rule 6 status was rejected on {{party.dateRejected | govukDateTime }}.</p>
         {% elseif party.status == 'Withdrawn' %}
-          <p>The Rule 6 party withdrew their request for Rule 6 status on {{party.dateWithdrawn | govukDateTime }}.</p>
+          <p>The Rule 6 party was withdrawn on {{party.dateWithdrawn | govukDateTime }}.</p>
         {% endif %}
         <div class="govuk-button-group">
 
@@ -74,7 +77,7 @@
             <a class="govuk-link" href="#">Resend invite</a>
           {% endif %}
 
-          {% if party.status == 'Awaiting review' or party.status == 'Invited' or party.status == 'Accepted' %}
+          {% if party.status == 'Awaiting review' or party.status == 'Invited' or party.status == 'Approved' %}
             <a class="govuk-link" href="/projects/start-full-case/v4/rule-6-parties/{{party.id}}/withdraw">Withdraw</a>
           {% endif %}
 
@@ -88,40 +91,6 @@
 
       {{ govukSummaryList({
         rows: [
-          {
-            key: {
-              text: "Email address"
-            },
-            value: {
-              text: party.emailAddress
-            },
-            actions: {
-              items: [
-                {
-                  href: "edit",
-                  text: "Change",
-                  visuallyHiddenText: "Email address"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Name of representative"
-            },
-            value: {
-              text: title
-            },
-            actions: {
-              items: [
-                {
-                  href: "edit/name",
-                  text: "Change",
-                  visuallyHiddenText: "Name of representative"
-                }
-              ]
-            }
-          },
           {
             key: {
               text: "Is the Rule 6 party an organisation?"
@@ -156,6 +125,40 @@
               ]
             }
           } if party.organisationName,
+          {
+            key: {
+              text: "Name of representative"
+            },
+            value: {
+              text: party.firstName + ' ' + party.lastName
+            },
+            actions: {
+              items: [
+                {
+                  href: "edit/name",
+                  text: "Change",
+                  visuallyHiddenText: "Name of representative"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Email address"
+            },
+            value: {
+              text: party.emailAddress
+            },
+            actions: {
+              items: [
+                {
+                  href: "edit",
+                  text: "Change",
+                  visuallyHiddenText: "Email address"
+                }
+              ]
+            }
+          },
           {
             key: {
               text: "Phone number"
@@ -193,9 +196,9 @@
         ]
       }) }}
 
-      <h2 class="govuk-heading-m">Statement</h2>
+      {# <h2 class="govuk-heading-m">Statement</h2>
 
-      <p class="govuk-body">Fugiat sunt labore in laborum do ullamco mollit anim. Tempor ad dolor qui. Consequat labore velit tempor dolore aute. Amet id incididunt ex elit sint ex sunt sit et. Ad consequat proident quis in ad aute mollit officia occaecat et incididunt ex exercitation duis quis.</p>
+      <p class="govuk-body">Fugiat sunt labore in laborum do ullamco mollit anim. Tempor ad dolor qui. Consequat labore velit tempor dolore aute. Amet id incididunt ex elit sint ex sunt sit et. Ad consequat proident quis in ad aute mollit officia occaecat et incididunt ex exercitation duis quis.</p> #}
 
 
     </div>

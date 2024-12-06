@@ -125,10 +125,8 @@ addFilter('rule6StatusColour', status => {
       return 'govuk-tag--blue'
     case 'Rejected':
       return 'govuk-tag--red'
-    case 'Accepted':
+    case 'Approved':
       return 'govuk-tag--green'
-		case 'Invited':
-      return 'govuk-tag--yellow'
 		case 'Withdrawn':
       return 'govuk-tag--pink'
   }

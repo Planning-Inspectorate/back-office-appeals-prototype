@@ -8,29 +8,22 @@ let now = new Date().toISOString()
 const generateRule6Party = (params) => {
   let party = {}
   party.id = uuidv4()
-  party.status = faker.helpers.arrayElement([
+  party.status = params.status || faker.helpers.arrayElement([
     'Awaiting review',
-    'Accepted',
-    'Invited',
+    'Approved',
     'Rejected',
     'Withdrawn'
   ])
-  party.dateReceived = faker.date.recent({ days: 2 })
+  party.dateReceived = params.dateReceived || faker.date.recent({ days: 2 })
 
-  if(party.status == 'Invited') {
-    party.dateInvited = faker.date.between({
-      from: party.dateReceived,
-      to: now
-    })
-  }
   if(party.status == 'Rejected') {
     party.dateRejected = faker.date.between({
       from: party.dateReceived,
       to: now
     })
   }
-  if(party.status == 'Accepted') {
-    party.dateAccepted = faker.date.between({
+  if(party.status == 'Approved') {
+    party.dateApproved = faker.date.between({
       from: party.dateReceived,
       to: now
     })
@@ -43,11 +36,11 @@ const generateRule6Party = (params) => {
   }
 
 
-  party.firstName = faker.person.firstName()
-  party.lastName = faker.person.lastName()
+  party.firstName = params.firstName || faker.person.firstName()
+  party.lastName = params.lastName || faker.person.lastName()
   party.emailAddress = `${party.firstName.toLowerCase()}.${party.lastName.toLowerCase()}@gmail.com`
-  party.phone = '079## ### ###'.replace(/#+/g, (m) => faker.string.numeric(m.length));
-  party.hasOrganisation = faker.helpers.arrayElement([
+  party.phone = params.phone || '079## ### ###'.replace(/#+/g, (m) => faker.string.numeric(m.length));
+  party.hasOrganisation = params.hasOrganisation || faker.helpers.arrayElement([
     'Yes',
     'Yes',
     'Yes',
@@ -59,7 +52,7 @@ const generateRule6Party = (params) => {
     'No'
   ])
   if(party.hasOrganisation == 'Yes') {
-    party.organisationName = faker.company.name()
+    party.organisationName = params.organisationName || faker.company.name()
   }
   return party
 }
@@ -70,9 +63,9 @@ const generateApplication = () => {
   // Application ID
   application.id = "" + faker.number.int({ min: 123456, max: 999999 })
 
-  application.rule6Parties = [{
-    id: uuidv4(),
-    dateReceived: faker.date.recent({ days: 2 }),
+  application.rule6Parties = []
+
+  application.rule6Parties.push(generateRule6Party({
     status: 'Awaiting review',
     emailAddress: 'tony@starkindustries.com',
     firstName: 'Tony',
@@ -80,10 +73,9 @@ const generateApplication = () => {
     hasOrganisation: 'Yes',
     organisationName: 'Stark Industries',
     phone: '07714545545'
-  },
-  {
-    id: uuidv4(),
-    dateReceived: faker.date.recent({ days: 2 }),
+  }))
+
+  application.rule6Parties.push(generateRule6Party({
     status: 'Awaiting review',
     emailAddress: 'natasha@shield.com',
     firstName: 'Natasha',
@@ -91,31 +83,28 @@ const generateApplication = () => {
     hasOrganisation: 'Yes',
     organisationName: 'S.H.I.E.L.D',
     phone: '07714545546'
-  },
-  {
-    id: uuidv4(),
-    dateReceived: faker.date.recent({ days: 2 }),
-    status: 'Invited',
+  }))
+
+  application.rule6Parties.push(generateRule6Party({
+    status: 'Awaiting review',
     emailAddress: 'peter@example.com',
     firstName: 'Peter',
     lastName: 'Parker',
     hasOrganisation: 'No',
     phone: '07714545546'
-  },
-  {
-    id: uuidv4(),
-    dateReceived: faker.date.recent({ days: 2 }),
-    status: 'Accepted',
+  }))
+
+  application.rule6Parties.push(generateRule6Party({
+    status: 'Approved',
     emailAddress: 'bruce@avengers.com',
     firstName: 'Bruce',
     lastName: 'Banner',
     hasOrganisation: 'Yes',
     organisationName: 'Avengers',
     phone: '07714545546'
-  },
-  {
-    id: uuidv4(),
-    dateReceived: faker.date.recent({ days: 2 }),
+  }))
+
+  application.rule6Parties.push(generateRule6Party({
     status: 'Rejected',
     emailAddress: 'scott@pymtech.com',
     firstName: 'Scott',
@@ -123,10 +112,9 @@ const generateApplication = () => {
     hasOrganisation: 'Yes',
     organisationName: 'Pym Technologies',
     phone: '07714545546'
-  },
-  {
-    id: uuidv4(),
-    dateReceived: faker.date.recent({ days: 2 }),
+  }))
+
+  application.rule6Parties.push(generateRule6Party({
     status: 'Withdrawn',
     emailAddress: 'carol@starfoce.com',
     firstName: 'Carol',
@@ -134,14 +122,11 @@ const generateApplication = () => {
     hasOrganisation: 'Yes',
     organisationName: 'Starforce',
     phone: '07714545546'
-  }]
+  }))
 
   for(let i = 0; i < 100; i++) {
-    application.rule6Parties.push(generateRule6Party())
+    // application.rule6Parties.push(generateRule6Party())
   }
-
-
-
 
   return application
 }

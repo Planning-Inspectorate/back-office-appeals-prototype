@@ -291,13 +291,8 @@ router.get('/rule-6-parties', function (req, res) {
     .sort((a, b) => {
       return new Date(b.dateReceived) - new Date(a.dateReceived)
     })
-  let invited = application.rule6Parties
-    .filter((item) => item.status == 'Invited')
-    .sort((a, b) => {
-      return new Date(b.dateReceived) - new Date(a.dateReceived)
-    })
-  let accepted = application.rule6Parties
-    .filter((item) => item.status == 'Accepted')
+  let approved = application.rule6Parties
+    .filter((item) => item.status == 'Approved')
     .sort((a, b) => {
       return new Date(b.dateReceived) - new Date(a.dateReceived)
     })
@@ -312,7 +307,7 @@ router.get('/rule-6-parties', function (req, res) {
       return new Date(b.dateReceived) - new Date(a.dateReceived)
     })
 
-  let parties = awaitingReview.concat(accepted).concat(invited).concat(rejected).concat(withdrawn)
+  let parties = awaitingReview.concat(approved).concat(rejected).concat(withdrawn)
 
   let selectedStatusFilters = _.get(req.session.data.filters, 'statuses')
   let hasFilters = _.get(selectedStatusFilters, 'length')
@@ -352,11 +347,7 @@ router.get('/rule-6-parties', function (req, res) {
   res.render('/projects/start-full-case/v4/rule-6-parties/index', {
     parties,
     selectedFilters,
-    pagination,
-    awaitingReview,
-    invited,
-    accepted,
-    rejected
+    pagination
   })
 })
 
@@ -375,7 +366,7 @@ router.get('/rule-6-parties/clear-filters', (req, res) => {
 //
 
 router.get('/rule-6-parties/new', function (req, res) {
-  res.render('/projects/start-full-case/v4/rule-6-parties/new/index')
+  res.render('/projects/start-full-case/v4/rule-6-parties/new/organisation')
 })
 
 router.post('/rule-6-parties/new', function (req, res) {
@@ -387,14 +378,14 @@ router.get('/rule-6-parties/new/name', function (req, res) {
 })
 
 router.post('/rule-6-parties/new/name', function (req, res) {
-  res.redirect('./organisation')
+  res.redirect('./email-address')
 })
 
-router.get('/rule-6-parties/new/organisation', function (req, res) {
-  res.render('/projects/start-full-case/v4/rule-6-parties/new/organisation')
+router.get('/rule-6-parties/new/email-address', function (req, res) {
+  res.render('/projects/start-full-case/v4/rule-6-parties/new/email-address')
 })
 
-router.post('/rule-6-parties/new/organisation', function (req, res) {
+router.post('/rule-6-parties/new/email-address', function (req, res) {
   res.redirect('./phone')
 })
 
@@ -465,13 +456,14 @@ router.get('/rule-6-parties/:id/approve', function (req, res) {
 router.post('/rule-6-parties/:id/approve', function (req, res) {
   let application = req.session.data.applications[0]
   let party = application.rule6Parties.find(party => party.id == req.params.id)
-  party.status = 'Invited'
+  party.status = 'Approved'
+  party.dateApproved = new Date()
   req.flash('success', 'Rule 6 party approved')
   res.redirect('/projects/start-full-case/v4/rule-6-parties/'+req.params.id)
 })
 
 //
-// Rule 6 APPLICATIONS: APPROVE
+// Rule 6 APPLICATIONS: REJECT
 //
 
 router.get('/rule-6-parties/:id/reject', function (req, res) {
@@ -500,6 +492,7 @@ router.post('/rule-6-parties/:id/reject/check', function (req, res) {
   let application = req.session.data.applications[0]
   let party = application.rule6Parties.find(party => party.id == req.params.id)
   party.status = 'Rejected'
+  party.dateRejected = new Date()
   req.flash('success', 'Rule 6 status rejected')
   res.redirect('/projects/start-full-case/v4/rule-6-parties/'+req.params.id)
 })
@@ -521,6 +514,7 @@ router.post('/rule-6-parties/:id/withdraw', function (req, res) {
   let application = req.session.data.applications[0]
   let party = application.rule6Parties.find(party => party.id == req.params.id)
   party.status = 'Withdrawn'
+  party.dateWithdrawn = new Date()
   req.flash('success', 'Rule 6 party withdrawn')
   res.redirect('/projects/start-full-case/v4/rule-6-parties/'+req.params.id)
 })

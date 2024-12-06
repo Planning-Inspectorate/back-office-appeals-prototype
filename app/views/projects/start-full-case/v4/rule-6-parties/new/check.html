@@ -19,21 +19,38 @@
         rows: [
           {
             key: {
-              text: "Email address"
+              text: "Is the Rule 6 party an organisation?"
             },
             value: {
-              html: data.rule6application.emailAddress
+              text: data.rule6application.hasOrganisation
             },
             actions: {
               items: [
                 {
                   href: "/projects/start-full-case/v4/rule-6-parties/new",
                   text: "Change",
-                  visuallyHiddenText: "Email address"
+                  visuallyHiddenText: "if the Rule 6 party represents an organisation"
                 }
               ]
             }
           },
+          {
+            key: {
+              text: "Organisation name"
+            },
+            value: {
+              text: data.rule6application.organisationName
+            },
+            actions: {
+              items: [
+                {
+                  href: "/projects/start-full-case/v4/rule-6-parties/new",
+                  text: "Change",
+                  visuallyHiddenText: "Organisation name"
+                }
+              ]
+            }
+          } if data.rule6application.hasOrganisation == 'Yes',
           {
             key: {
               text: "Name of representative"
@@ -53,38 +70,21 @@
           },
           {
             key: {
-              text: "Is the Rule 6 party an organisation?"
+              text: "Email address"
             },
             value: {
-              text: data.rule6application.hasOrganisation
+              html: data.rule6application.emailAddress
             },
             actions: {
               items: [
                 {
-                  href: "/projects/start-full-case/v4/rule-6-parties/new/organisation",
+                  href: "/projects/start-full-case/v4/rule-6-parties/new/email-addresss",
                   text: "Change",
-                  visuallyHiddenText: "if the Rule 6 party represents an organisation"
+                  visuallyHiddenText: "Email address"
                 }
               ]
             }
           },
-          {
-            key: {
-              text: "Organisation name"
-            },
-            value: {
-              text: data.rule6application.organisationName
-            },
-            actions: {
-              items: [
-                {
-                  href: "/projects/start-full-case/v4/rule-6-parties/new/organisation",
-                  text: "Change",
-                  visuallyHiddenText: "Organisation name"
-                }
-              ]
-            }
-          } if data.rule6application.hasOrganisation == 'Yes',
           {
             key: {
               text: "Phone number"

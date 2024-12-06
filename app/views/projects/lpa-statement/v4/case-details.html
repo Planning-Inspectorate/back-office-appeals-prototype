@@ -38,6 +38,7 @@
 
       {{ govukNotificationBanner({
         type: "success",
+        classes: "govuk-!-margin-bottom-5",
         text: flash
       }) if flash.length}}
 
@@ -58,18 +59,7 @@
         <!-- statement incomplete -->
         {% set incompleteBanner %}
           <p class="govuk-notification-banner__heading">
-            LPA statement incomplete.
-          </p>
-          <ul class="govuk-list govuk-list--bullet">
-            <li>
-              Supporting documents missing
-            </li>
-            <li>
-              Other: Some other reason
-            </li>
-          </ul>
-          <p class="govuk-body">
-            Resubmisstion is due before {{ 7 | daysInFuture }}.<br>
+            LPA statement incomplete<br>
             <a class="govuk-notification-banner__link" href="statement-review">Update LPA statement</a>
           </p>
         {% endset %}

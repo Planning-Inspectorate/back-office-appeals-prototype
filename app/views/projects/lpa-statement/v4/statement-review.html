@@ -1,6 +1,10 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "LPA statement" %}
+{% if data['statement-review-done'] == 'Yes' and data['review-outcome'] == 'Statement incomplete' %}
+  {% set title = "Incomplete LPA statement" %}
+{% else %}
+  {% set title = "LPA statement" %}
+{% endif %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% block content %}
@@ -87,6 +91,48 @@
             </a>
           </dd>
         </div>
+
+        {% if data['statement-review-done'] == 'Yes' and data['review-outcome'] == 'Statement incomplete' %}
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Reasons statement was incomplete
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <ul class="govuk-list govuk-list--bullet">
+                <li>
+                  Supporting documents missing
+                </li>
+                <li>
+                  Other: Some other reason
+                </li>
+              </ul>
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="redact-supporting-documents">
+                Change<span class="govuk-visually-hidden"> reasons statement was incomplete</span>
+              </a>
+            </dd>
+          </div>
+
+          {% if data['allow-resubmission'] == 'Yes' %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Resubmission due by
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ 7 | daysInFuture }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="redact-supporting-documents">
+                  Change<span class="govuk-visually-hidden"> reasons statement was incomplete</span>
+                </a>
+              </dd>
+            </div>
+          {% endif %}
+
+        {% endif %}
+
       </dl>
 
     </div>

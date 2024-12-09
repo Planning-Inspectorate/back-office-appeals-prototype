@@ -5,6 +5,22 @@ const _ = require('lodash')
 const Pagination = require('../../../../helpers/pagination')
 
 //
+// SETTING
+//
+
+router.get('/changeSetting', function (req, res) {
+  if(req.query.procedure == 'Inquiry') {
+    req.session.data.appealProcedure = 'Inquiry'
+    req.session.data['case-stage'] = 'questionnaire'
+  } else {
+    req.session.data.appealProcedure = ''
+    req.session.data['case-stage'] = ''
+  }
+  res.redirect('/projects/start-full-case/v4/case-details')
+})
+
+
+//
 // START CASE
 //
 
@@ -283,8 +299,6 @@ router.post('/edit-inquiry-estimates/check', function (req, res) {
 router.get('/rule-6-parties', function (req, res) {
   let application = req.session.data.applications[0]
   let rule6Parties = application.rule6Parties
-
-  console.log(rule6Parties)
 
   let awaitingReview = application.rule6Parties
     .filter((item) => item.status == 'Awaiting review')

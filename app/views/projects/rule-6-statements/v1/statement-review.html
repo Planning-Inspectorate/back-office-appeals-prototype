@@ -162,12 +162,9 @@
               </a>
             </dd>
             <dd class="govuk-summary-list__actions">
-
-                <a href='extra-documents?address-added=&address-changed=' class='govuk-link govuk-link--no-visited-state'>
-                  Manage<span class="govuk-visually-hidden"> supporting docs</span></a><span style="color: #999;"> | </span>
-                <a href='upload-extra-supporting-document?statement-attachment=review&address-added=&address-changed=' class='govuk-link govuk-link--no-visited-state'>
-                  Add<span class="govuk-visually-hidden"> supporting docs</span>
-                </a>
+              <a class="govuk-link" href="redact-supporting-documents">
+                Change<span class="govuk-visually-hidden"> supporting documents</span>
+              </a>
             </dd>
           </div>
         </dl>
@@ -178,25 +175,6 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
-      <section class="govuk-!-margin-bottom-9">
-        <!-- site visit requested -->
-        {{ govukCheckboxes({
-          name: "siteVisit",
-          fieldset: {
-            legend: {
-              text: "Site visit requested",
-              classes: "govuk-visually-hidden"
-            }
-          },
-          items: [
-            {
-              value: "siteVisitRequest",
-              text: "The statement includes a site visit request"
-            }
-          ]
-        }) }}
-      </section>
 
       <form method="post">
 

@@ -1,0 +1,234 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Personal list" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+
+{% set back = false %}
+
+{% set prototypeLinks = [
+  {
+    href: '?comments-shared=',
+    text: 'Reset view'
+  } if data['comments-shared'] == 'yes' else {
+    href: '?comments-shared=yes',
+    text: 'Comments shared'
+  }
+] %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+    <h1 class="govuk-heading-l">
+      Cases assigned to you
+    </h1>
+
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <details class="govuk-details" data-module="govuk-details">
+		  <summary class="govuk-details__summary">
+		    <span class="govuk-details__summary-text">
+		      Filters
+		    </span>
+		  </summary>
+		  <div class="govuk-details__text">
+
+		    {{ govukSelect({
+			  id: "sort",
+			  name: "sort",
+			  label: {
+			    text: "Show cases with status"
+			  },
+			  items: [
+			    {
+			      value: "all",
+			      text: "All",
+			      selected: true
+			    },
+			    {
+			      value: "ready to start",
+			      text: "Ready to start"
+			    },
+			    {
+			      value: "LPA questionnaire",
+			      text: "LPA questionnaire"
+			    },
+			    {
+			      value: "final comment review",
+			      text: "Final comment review"
+			    },
+			    {
+			      value: "ready final review",
+			      text: "Ready for final review"
+			    },
+			    {
+			      value: "arrange site visit",
+			      text: "Arrange site visit"
+			    },
+			    {
+			      value: "completed",
+			      text: "Completed"
+			    }
+			  ]
+			}) }}
+
+			<div class="govuk-button-group">
+
+			{{ govukButton({
+				  text: "Apply",
+				  classes: "govuk-button--secondary"
+				}) }}
+
+				<a class="govuk-link" href="#">Clear filter</a>
+
+			</div>
+
+		  </div>
+		</details>
+
+	  <table class="govuk-table">
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Appeal ID</th>
+      <th scope="col" class="govuk-table__header">Action required</th>
+      <th scope="col" class="govuk-table__header">Due by</th>
+      <th scope="col" class="govuk-table__header">Case status</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">
+        <a href="case-details">2110166</a>
+      </th>
+      <td class="govuk-table__cell">
+        <a href="#">Set up inquiry</a>
+      </td>
+      <td class="govuk-table__cell"></td>
+      <td class="govuk-table__cell">{{ govukTag({ text: "Awaiting inquiry", classes: 'govuk-tag--purple' }) }}</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">
+        <a href="case-details">2110166</a>
+      </th>
+      <td class="govuk-table__cell">
+        [It’s happening next week]
+      </td>
+      <td class="govuk-table__cell"></td>
+      <td class="govuk-table__cell">{{ govukTag({ text: "Awaiting inquiry", classes: 'govuk-tag--purple' }) }}</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">
+        <a href="case-details">2110166</a>
+      </th>
+      <td class="govuk-table__cell">
+        [It’s happening today]
+      </td>
+      <td class="govuk-table__cell"></td>
+      <td class="govuk-table__cell">{{ govukTag({ text: "Awaiting inquiry", classes: 'govuk-tag--purple' }) }}</td>
+    </tr>
+
+
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">
+        <a href="case-details">2110166</a>
+      </th>
+      <td class="govuk-table__cell">
+        <a href="#">Set up inquiry</a>
+      </td>
+      <td class="govuk-table__cell"></td>
+      <td class="govuk-table__cell">{{ govukTag({ text: "Inquiry", classes: 'govuk-tag--purple' }) }}</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">
+        <a href="case-details">2110166</a>
+      </th>
+      <td class="govuk-table__cell">
+        Awaiting inquiry on 19 January 2025
+      </td>
+      <td class="govuk-table__cell"></td>
+      <td class="govuk-table__cell">{{ govukTag({ text: "Inquiry", classes: 'govuk-tag--purple' }) }}</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">
+        <a href="case-details">2110166</a>
+      </th>
+      <td class="govuk-table__cell">
+        Inquiry in progress
+      </td>
+      <td class="govuk-table__cell"></td>
+      <td class="govuk-table__cell">{{ govukTag({ text: "Inquiry", classes: 'govuk-tag--purple' }) }}</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">
+        <a href="case-details">2110166</a>
+      </th>
+      <td class="govuk-table__cell">
+        <a href="#">Set up hearing</a>
+      </td>
+      <td class="govuk-table__cell"></td>
+      <td class="govuk-table__cell">{{ govukTag({ text: "Hearing", classes: 'govuk-tag--orange' }) }}</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">
+        <a href="case-details">2110166</a>
+      </th>
+      <td class="govuk-table__cell">
+        Awaiting hearing on 19 January 2025
+      </td>
+      <td class="govuk-table__cell"></td>
+      <td class="govuk-table__cell">{{ govukTag({ text: "Hearing", classes: 'govuk-tag--orange' }) }}</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">
+        <a href="case-details">2110166</a>
+      </th>
+      <td class="govuk-table__cell">
+        Hearing in progress
+      </td>
+      <td class="govuk-table__cell"></td>
+      <td class="govuk-table__cell">{{ govukTag({ text: "Hearing", classes: 'govuk-tag--orange' }) }}</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">
+        <a href="case-details">2110166</a>
+      </th>
+      <td class="govuk-table__cell">
+        <a href="#">Set up site visit</a>
+      </td>
+      <td class="govuk-table__cell"></td>
+      <td class="govuk-table__cell">{{ govukTag({ text: "Site visit", classes: 'govuk-tag--light-blue' }) }}</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">
+        <a href="case-details">2110166</a>
+      </th>
+      <td class="govuk-table__cell">
+        Awaiting site visit on 19 January 2025
+      </td>
+      <td class="govuk-table__cell"></td>
+      <td class="govuk-table__cell">{{ govukTag({ text: "Site visit", classes: 'govuk-tag--light-blue' }) }}</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">
+        <a href="case-details">2110166</a>
+      </th>
+      <td class="govuk-table__cell">
+        Site visit in progress
+      </td>
+      <td class="govuk-table__cell"></td>
+      <td class="govuk-table__cell">{{ govukTag({ text: "Site visit", classes: 'govuk-tag--light-blue' }) }}</td>
+    </tr>
+
+  </tbody>
+</table>
+
+
+  </div>
+</div>
+
+{% endblock %}

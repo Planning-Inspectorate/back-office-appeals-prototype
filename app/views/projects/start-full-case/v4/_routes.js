@@ -145,6 +145,42 @@ router.post('/edit-hearing-estimates/check', function (req, res) {
 })
 
 //
+// CMC: ADD
+//
+
+router.post('/add-cmc', function (req, res) {
+  res.redirect('/projects/start-full-case/v4/add-cmc/check')
+})
+
+router.post('/add-cmc/check', function (req, res) {
+  req.flash('success', 'Pre-inquiry meeting set up')
+  res.redirect('../case-details')
+})
+
+//
+// CMC: EDIT
+//
+
+router.post('/edit-cmc', function (req, res) {
+  res.redirect('/projects/start-full-case/v4/edit-cmc/check')
+})
+
+router.post('/edit-cmc/check', function (req, res) {
+  req.flash('success', 'Pre-inquiry meeting updated')
+  res.redirect('../case-details')
+})
+
+//
+// CMC: CANCEL
+//
+
+router.post('/cancel-cmc/', function (req, res) {
+  req.flash('success', 'Pre-inquiry meeting cancelled')
+  delete req.session.data.cmc
+  res.redirect('/projects/start-full-case/v4/case-details')
+})
+
+//
 // INQUIRY: ADD
 //
 
@@ -167,7 +203,6 @@ router.post('/add-inquiry/has-address', function (req, res) {
 router.post('/add-inquiry/address', function (req, res) {
   res.redirect('/projects/start-full-case/v4/add-inquiry/check')
 })
-
 
 router.post('/add-inquiry/check', function (req, res) {
   req.flash('success', 'Inquiry set up')

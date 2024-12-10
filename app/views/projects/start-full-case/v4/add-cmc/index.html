@@ -1,0 +1,85 @@
+{% extends "layouts/PINS-Simple.html" %}
+
+{% set title = "Meeting details" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+        <span class="govuk-caption-l">Appeal 2114328 - set up pre-inquiry meeting</span>
+        <h1 class="govuk-heading-l">{{title}}</h1>
+
+        {{ govukDateInput({
+          fieldset: {
+            legend: {
+              text: "Date",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 31 3 2025"
+          },
+          items: [
+            {
+              name: "cmc[date][day]",
+              label: "Day",
+              value: data.cmc.date.day,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "cmc[date][month]",
+              label: "Month",
+              value: data.cmc.date.month,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "cmc[date][year]",
+              label: "Year",
+              value: data.cmc.date.year,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+        {{ govukInput({
+          id: "cmc[time]",
+          name: "cmc[time]",
+          label: {
+            text: "Time",
+            isPageHeading: true,
+            classes: 'govuk-label--m'
+          },
+          hint: {
+            text: "For example, 9am or 2:30pm - enter 12pm for midday"
+          },
+          value: data.cmc.time,
+          classes: "govuk-input--width-4"
+        }) }}
+
+        {{ govukInput({
+          id: "cmc[location]",
+          name: "cmc[location]",
+          label: {
+            text: "Location",
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: 'For example, a link to the Teams meeting'
+          },
+          value: data.cmc.location
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

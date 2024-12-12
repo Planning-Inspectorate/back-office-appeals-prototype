@@ -100,14 +100,19 @@
       </thead>
       <tbody class="govuk-table__body">
         <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" colspan=4>
+            Applicable to all types of cases
+          </th>
+        </tr>
+        <tr class="govuk-table__row">
           <th scope="row" class="govuk-table__header">
             <a href="case-details">11111101</a>
           </th>
           <td class="govuk-table__cell">
-            <a href="#">Assign case</a>
+            <a href="#">Assign case officer</a>
           </td>
           <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "Ready to assign", classes: 'govuk-tag--grey' }) }}</td>
+          <td class="govuk-table__cell">{{ govukTag({ text: "Ready to assign case officer", classes: 'govuk-tag--grey' }) }}</td>
         </tr>
         <tr class="govuk-table__row">
           <th scope="row" class="govuk-table__header">
@@ -118,6 +123,16 @@
           </td>
           <td class="govuk-table__cell"></td>
           <td class="govuk-table__cell">{{ govukTag({ text: "Ready to validate", classes: 'govuk-tag--orange' }) }}</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">
+            <a href="case-details">11111102</a>
+          </th>
+          <td class="govuk-table__cell">
+            <a href="#">Start case</a>
+          </td>
+          <td class="govuk-table__cell"></td>
+          <td class="govuk-table__cell">{{ govukTag({ text: "Ready to start", classes: 'govuk-tag--turquoise' }) }}</td>
         </tr>
         <tr class="govuk-table__row">
           <th scope="row" class="govuk-table__header">
@@ -137,6 +152,11 @@
           </td>
           <td class="govuk-table__cell"></td>
           <td class="govuk-table__cell">{{ govukTag({ text: "LPAQ", classes: 'govuk-tag--yellow' }) }}</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" colspan=4>
+            Applicable to all S78 cases
+          </th>
         </tr>
         <tr class="govuk-table__row">
           <th scope="row" class="govuk-table__header">
@@ -171,7 +191,7 @@
         </tr>
         <tr class="govuk-table__row">
           <th scope="row" class="govuk-table__header" colspan=4>
-            Written representations
+            Applicable to S78 written representations
           </th>
         </tr>
         <tr class="govuk-table__row">
@@ -224,7 +244,7 @@
         </tr>
         <tr class="govuk-table__row">
           <th scope="row" class="govuk-table__header" colspan=4>
-            Hearings
+            Applicable to hearings
           </th>
         </tr>
         <tr class="govuk-table__row">
@@ -248,7 +268,7 @@
         </tr>
         <tr class="govuk-table__row">
           <th scope="row" class="govuk-table__header" colspan=4>
-            Inquiries
+            Applicable to inquiries
           </th>
         </tr>
         <tr class="govuk-table__row">
@@ -301,7 +321,7 @@
         </tr>
         <tr class="govuk-table__row">
           <th scope="row" class="govuk-table__header" colspan=4>
-            All
+            Applicable to all types of cases
           </th>
         </tr>
          <tr class="govuk-table__row">
@@ -321,7 +341,7 @@
           <td class="govuk-table__cell">
           </td>
           <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "Complete", classes: 'govuk-tag--green' }) }}</td>
+          <td class="govuk-table__cell">{{ govukTag({ text: "Decision issued", classes: 'govuk-tag--green' }) }}</td>
         </tr>
       </tbody>
     </table>

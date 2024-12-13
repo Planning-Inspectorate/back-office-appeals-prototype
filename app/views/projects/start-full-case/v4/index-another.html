@@ -27,6 +27,7 @@
 		    </span>
 		  </summary>
 		  <div class="govuk-details__text">
+
 		    {{ govukSelect({
           id: "sort",
           name: "sort",
@@ -38,22 +39,15 @@
             { value: 'Ready to assign case officer', text: 'Ready to assign case officer' },
             { value: 'Ready to validate', text: 'Ready to validate' },
             { value: 'Ready to start', text: 'Ready to start' },
-            { value: 'Awaiting LPAQ', text: 'Awaiting LPAQ' },
-            { value: 'LPAQ ready to review', text: 'LPAQ ready to review' },
-            { value: 'Awaiting statements and IP comments', text: 'Awaiting statements and IP comments' },
-            { value: 'Statements and IP comments ready for review', text: 'Statements and IP comments ready for review' },
-            { value: 'Statements and IP comments ready to share', text: 'Statements and IP comments ready to share' },
-            { value: 'Awaiting final comments', text: 'Awaiting final comments' },
-            { value: 'Final comments ready for review', text: 'Final comments ready for review' },
-            { value: 'Final comments ready to share', text: 'Final comments ready to share' },
+            { value: 'LPAQ', text: 'LPAQ' },
+            { value: 'Statements and IP comments', text: 'Statements and IP comments' },
+            { value: 'Final comments', text: 'Final comments' },
             { value: 'Site visit ready to set up', text: 'Site visit ready to set up' },
             { value: 'Awaiting site visit', text: 'Awaiting site visit' },
             { value: 'Hearing ready to set up', text: 'Hearing ready to set up' },
             { value: 'Awaiting hearing', text: 'Awaiting hearing' },
             { value: 'Inquiry ready to set up', text: 'Inquiry ready to set up' },
-            { value: 'Awaiting proof of evidence and witnesses', text: 'Awaiting proof of evidence and witnesses' },
-            { value: 'Proof of evidence and witnesses ready for review', text: 'Proof of evidence and witnesses ready for review' },
-            { value: 'Proof of evidence and witnesses ready to share', text: 'Proof of evidence and witnesses ready to share' },
+            { value: 'Proof of evidence and witnesses', text: 'Proof of evidence and witnesses' },
             { value: 'Awaiting inquiry', text: 'Awaiting inquiry' },
             { value: "Decision issued", text: 'Decision issued' }
           ]
@@ -94,7 +88,7 @@
             <a href="#">Assign case officer</a>
           </td>
           <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "Ready to assign case officer", classes: 'govuk-tag--blue' }) }}</td>
+          <td class="govuk-table__cell">{{ govukTag({ text: "Ready to assign case officer", classes: 'govuk-tag--grey' }) }}</td>
         </tr>
         <tr class="govuk-table__row">
           <th scope="row" class="govuk-table__header">
@@ -104,7 +98,7 @@
             <a href="#">Validate case</a>
           </td>
           <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "Ready to validate", classes: 'govuk-tag--blue' }) }}</td>
+          <td class="govuk-table__cell">{{ govukTag({ text: "Ready to validate", classes: 'govuk-tag--orange' }) }}</td>
         </tr>
         <tr class="govuk-table__row">
           <th scope="row" class="govuk-table__header">
@@ -114,16 +108,17 @@
             <a href="#">Start case</a>
           </td>
           <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "Ready to start", classes: 'govuk-tag--blue' }) }}</td>
+          <td class="govuk-table__cell">{{ govukTag({ text: "Ready to start", classes: 'govuk-tag--turquoise' }) }}</td>
         </tr>
         <tr class="govuk-table__row">
           <th scope="row" class="govuk-table__header">
             <a href="case-details">11111103</a>
           </th>
           <td class="govuk-table__cell">
+            Awaiting LPAQ
           </td>
           <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "Awaiting LPAQ", classes: 'govuk-tag--yellow' }) }}</td>
+          <td class="govuk-table__cell">{{ govukTag({ text: "LPAQ", classes: 'govuk-tag--yellow' }) }}</td>
         </tr>
         <tr class="govuk-table__row">
           <th scope="row" class="govuk-table__header">
@@ -133,7 +128,7 @@
             <a href="#">Review LPAQ</a>
           </td>
           <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "LPAQ ready to review", classes: 'govuk-tag--blue' }) }}</td>
+          <td class="govuk-table__cell">{{ govukTag({ text: "LPAQ", classes: 'govuk-tag--yellow' }) }}</td>
         </tr>
         <tr class="govuk-table__row">
           <th scope="row" class="govuk-table__header" colspan=4>
@@ -145,9 +140,10 @@
             <a href="case-details">11111105</a>
           </th>
           <td class="govuk-table__cell">
+            Awaiting statements and IP comments
           </td>
           <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "Awaiting statements and IP comments", classes: 'govuk-tag--yellow' }) }}</td>
+          <td class="govuk-table__cell">{{ govukTag({ text: "Statements and IP comments", classes: 'govuk-tag--blue' }) }}</td>
         </tr>
         <tr class="govuk-table__row">
           <th scope="row" class="govuk-table__header">
@@ -158,7 +154,7 @@
             <a href="#">Review IP comments</a>
           </td>
           <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "Statements and IP comments ready for review", classes: 'govuk-tag--blue' }) }}</td>
+          <td class="govuk-table__cell">{{ govukTag({ text: "Statements and IP comments", classes: 'govuk-tag--blue' }) }}</td>
         </tr>
         <tr class="govuk-table__row">
           <th scope="row" class="govuk-table__header">
@@ -169,7 +165,7 @@
             <a href="#">Share IP comments</a>
           </td>
           <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "Statements and IP comments ready to share", classes: 'govuk-tag--blue' }) }}</td>
+          <td class="govuk-table__cell">{{ govukTag({ text: "Statements and IP comments", classes: 'govuk-tag--blue' }) }}</td>
         </tr>
         <tr class="govuk-table__row">
           <th scope="row" class="govuk-table__header" colspan=4>
@@ -181,9 +177,10 @@
             <a href="case-details">11111108</a>
           </th>
           <td class="govuk-table__cell">
+            Awaiting final comments
           </td>
           <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "Awaiting final comments", classes: 'govuk-tag--yellow' }) }}</td>
+          <td class="govuk-table__cell">{{ govukTag({ text: "Final comments", classes: 'govuk-tag--pink' }) }}</td>
         </tr>
         <tr class="govuk-table__row">
           <th scope="row" class="govuk-table__header">
@@ -193,7 +190,7 @@
             <a href="#">Review final comments</a>
           </td>
           <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "Final comments ready for review", classes: 'govuk-tag--blue' }) }}</td>
+          <td class="govuk-table__cell">{{ govukTag({ text: "Final comments", classes: 'govuk-tag--pink' }) }}</td>
         </tr>
         <tr class="govuk-table__row">
           <th scope="row" class="govuk-table__header">
@@ -203,7 +200,7 @@
             <a href="#">Share final comments</a>
           </td>
           <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "Final comments ready to share", classes: 'govuk-tag--blue' }) }}</td>
+          <td class="govuk-table__cell">{{ govukTag({ text: "Final comments", classes: 'govuk-tag--pink' }) }}</td>
         </tr>
         <tr class="govuk-table__row">
           <th scope="row" class="govuk-table__header">
@@ -213,7 +210,7 @@
             <a href="#">Set up site visit</a>
           </td>
           <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "Site visit ready to set up", classes: 'govuk-tag--blue' }) }}</td>
+          <td class="govuk-table__cell">{{ govukTag({ text: "Site visit ready to set up", classes: 'govuk-tag--light-blue' }) }}</td>
         </tr>
         <tr class="govuk-table__row">
           <th scope="row" class="govuk-table__header">
@@ -222,7 +219,7 @@
           <td class="govuk-table__cell">
           </td>
           <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "Awaiting site visit", classes: 'govuk-tag--yellow' }) }}</td>
+          <td class="govuk-table__cell">{{ govukTag({ text: "Awaiting site visit", classes: 'govuk-tag--light-blue' }) }}</td>
         </tr>
         <tr class="govuk-table__row">
           <th scope="row" class="govuk-table__header" colspan=4>
@@ -237,7 +234,7 @@
             <a href="#">Set up hearing</a>
           </td>
           <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "Hearing ready to set up", classes: 'govuk-tag--blue' }) }}</td>
+          <td class="govuk-table__cell">{{ govukTag({ text: "Hearing ready to set up", classes: 'govuk-tag--light-blue' }) }}</td>
         </tr>
         <tr class="govuk-table__row">
           <th scope="row" class="govuk-table__header">
@@ -246,11 +243,11 @@
           <td class="govuk-table__cell">
           </td>
           <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "Awaiting hearing", classes: 'govuk-tag--yellow' }) }}</td>
+          <td class="govuk-table__cell">{{ govukTag({ text: "Awaiting hearing", classes: 'govuk-tag--light-blue' }) }}</td>
         </tr>
         <tr class="govuk-table__row">
           <th scope="row" class="govuk-table__header" colspan=4>
-           Applicable to inquiries
+            Applicable to inquiries
           </th>
         </tr>
         <tr class="govuk-table__row">
@@ -261,16 +258,17 @@
             <a href="#">Set up inquiry</a>
           </td>
           <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "Inquiry ready to set up", classes: 'govuk-tag--blue' }) }}</td>
+          <td class="govuk-table__cell">{{ govukTag({ text: "Inquiry ready to set up", classes: 'govuk-tag--light-blue' }) }}</td>
         </tr>
         <tr class="govuk-table__row">
           <th scope="row" class="govuk-table__header">
             <a href="case-details">11111115</a>
           </th>
           <td class="govuk-table__cell">
+            Awaiting proof of evidence and witnesses
           </td>
           <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "Awaiting proof of evidence and witnesses", classes: 'govuk-tag--yellow' }) }}</td>
+          <td class="govuk-table__cell">{{ govukTag({ text: "Proof of evidence and witnesses", classes: 'govuk-tag--purple' }) }}</td>
         </tr>
         <tr class="govuk-table__row">
           <th scope="row" class="govuk-table__header">
@@ -280,7 +278,7 @@
             <a href="#">Review proof of evidence and witnesses</a>
           </td>
           <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "Proof of evidence and witnesses ready for review", classes: 'govuk-tag--blue' }) }}</td>
+          <td class="govuk-table__cell">{{ govukTag({ text: "Proof of evidence and witnesses", classes: 'govuk-tag--purple' }) }}</td>
         </tr>
         <tr class="govuk-table__row">
           <th scope="row" class="govuk-table__header">
@@ -290,7 +288,7 @@
             <a href="#">Share proof of evidence and witnesses</a>
           </td>
           <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "Proof of evidence and witnesses ready to share", classes: 'govuk-tag--blue' }) }}</td>
+          <td class="govuk-table__cell">{{ govukTag({ text: "Proof of evidence and witnesses", classes: 'govuk-tag--purple' }) }}</td>
         </tr>
         <tr class="govuk-table__row">
           <th scope="row" class="govuk-table__header">
@@ -299,7 +297,7 @@
           <td class="govuk-table__cell">
           </td>
           <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "Awaiting inquiry", classes: 'govuk-tag--yellow' }) }}</td>
+          <td class="govuk-table__cell">{{ govukTag({ text: "Awaiting inquiry", classes: 'govuk-tag--light-blue' }) }}</td>
         </tr>
         <tr class="govuk-table__row">
           <th scope="row" class="govuk-table__header" colspan=4>
@@ -314,7 +312,7 @@
             <a href="#">Issue decision</a>
           </td>
           <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "Awaiting decision", classes: 'govuk-tag--yellow' }) }}</td>
+          <td class="govuk-table__cell">{{ govukTag({ text: "Awaiting decision", classes: 'govuk-tag--red' }) }}</td>
         </tr>
         <tr class="govuk-table__row">
           <th scope="row" class="govuk-table__header">

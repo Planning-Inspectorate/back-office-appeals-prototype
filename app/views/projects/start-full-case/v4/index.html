@@ -5,17 +5,6 @@
 
 
 {% set back = false %}
-
-{% set prototypeLinks = [
-  {
-    href: '?comments-shared=',
-    text: 'Reset view'
-  } if data['comments-shared'] == 'yes' else {
-    href: '?comments-shared=yes',
-    text: 'Comments shared'
-  }
-] %}
-
 {% block content %}
 
 <div class="govuk-grid-row">
@@ -39,43 +28,29 @@
 		  <div class="govuk-details__text">
 
 		    {{ govukSelect({
-			  id: "sort",
-			  name: "sort",
-			  label: {
-			    text: "Show cases with status"
-			  },
-			  items: [
-			    {
-			      value: "all",
-			      text: "All",
-			      selected: true
-			    },
-			    {
-			      value: "ready to start",
-			      text: "Ready to start"
-			    },
-			    {
-			      value: "LPA questionnaire",
-			      text: "LPA questionnaire"
-			    },
-			    {
-			      value: "final comment review",
-			      text: "Final comment review"
-			    },
-			    {
-			      value: "ready final review",
-			      text: "Ready for final review"
-			    },
-			    {
-			      value: "arrange site visit",
-			      text: "Arrange site visit"
-			    },
-			    {
-			      value: "completed",
-			      text: "Completed"
-			    }
-			  ]
-			}) }}
+          id: "sort",
+          name: "sort",
+          label: {
+            text: "Show cases with status"
+          },
+          items: [
+            { value: 'All', text: 'All' },
+            { value: 'Ready to assign case officer', text: 'Ready to assign case officer' },
+            { value: 'Ready to validate', text: 'Ready to validate' },
+            { value: 'Ready to start', text: 'Ready to start' },
+            { value: 'LPAQ', text: 'LPAQ' },
+            { value: 'Statements and IP comments', text: 'Statements and IP comments' },
+            { value: 'Final comments', text: 'Final comments' },
+            { value: 'Site visit ready to set up', text: 'Site visit ready to set up' },
+            { value: 'Awaiting site visit', text: 'Awaiting site visit' },
+            { value: 'Hearing ready to set up', text: 'Hearing ready to set up' },
+            { value: 'Awaiting hearing', text: 'Awaiting hearing' },
+            { value: 'Inquiry ready to set up', text: 'Inquiry ready to set up' },
+            { value: 'Proof of evidence and witnesses', text: 'Proof of evidence and witnesses' },
+            { value: 'Awaiting inquiry', text: 'Awaiting inquiry' },
+            { value: "Decision issued", text: 'Decision issued' }
+          ]
+        }) }}
 
 			<div class="govuk-button-group">
 			  {{ govukButton({

@@ -19,6 +19,43 @@ router.get('/changeSetting', function (req, res) {
   res.redirect('/projects/start-full-case/v4/case-details')
 })
 
+//
+// CASE LIST
+//
+
+router.get('/', function (req, res) {
+
+  let appeals = [
+    { "id": "11111101", "status": "Ready to assign case officer", "actions": ["Assign case officer"], "firstName": "Alice", "lastName": "Johnson" },
+    { "id": "11111102", "status": "Ready to validate", "actions": ["Validate case"], "firstName": "James", "lastName": "Smith" },
+    { "id": "11111102", "status": "Ready to start", "actions": ["Start case"], "firstName": "Laura", "lastName": "Brown" },
+    { "id": "11111103", "status": "Awaiting LPAQ", "actions": [], "firstName": "Robert", "lastName": "Davis" },
+    { "id": "11111104", "status": "LPAQ ready for review", "actions": ["Review LPAQ"], "firstName": "Emily", "lastName": "Garcia" },
+    { "id": "11111105", "status": "Awaiting statements and IP comments", "actions": [], "firstName": "Michael", "lastName": "Martinez" },
+    { "id": "11111106", "status": "Statements and IP comments ready for review", "actions": ["Review statements", "Review IP comments"], "firstName": "Sarah", "lastName": "Rodriguez" },
+    { "id": "11111107", "status": "Statements and IP comments ready to share", "actions": ["Share statements", "Share IP comments"], "firstName": "William", "lastName": "Wilson" },
+    { "id": "11111108", "status": "Awaiting final comments", "actions": [], "firstName": "Jessica", "lastName": "Moore" },
+    { "id": "11111109", "status": "Final comments ready for review", "actions": ["Review final comments"], "firstName": "Daniel", "lastName": "Taylor" },
+    { "id": "11111109", "status": "Final comments ready to share", "actions": ["Share final comments"], "firstName": "Ashley", "lastName": "Anderson" },
+    { "id": "11111110", "status": "Site visit ready to set up", "actions": ["Set up site visit"], "firstName": "Joseph", "lastName": "Thomas" },
+    { "id": "11111111", "status": "Awaiting site visit", "actions": [], "firstName": "Sophia", "lastName": "Jackson" },
+    { "id": "11111112", "status": "Hearing ready to set up", "actions": ["Set up hearing"], "firstName": "Andrew", "lastName": "White" },
+    { "id": "11111113", "status": "Awaiting hearing", "actions": [], "firstName": "Olivia", "lastName": "Harris" },
+    { "id": "11111114", "status": "Inquiry ready to set up", "actions": ["Set up inquiry"], "firstName": "Ethan", "lastName": "Martin" },
+    { "id": "11111115", "status": "Awaiting proof of evidence and witnesses", "actions": [], "firstName": "Mia", "lastName": "Thompson" },
+    { "id": "11111116", "status": "Proof of evidence and witnesses ready for review", "actions": ["Review proof of evidence and witnesses"], "firstName": "Benjamin", "lastName": "Garcia" },
+    { "id": "11111117", "status": "Proof of evidence and witnesses ready to share", "actions": ["Share proof of evidence and witnesses"], "firstName": "Amelia", "lastName": "Martinez" },
+    { "id": "11111118", "status": "Awaiting inquiry", "actions": [], "firstName": "Matthew", "lastName": "Clark" },
+    { "id": "11111119", "status": "Awaiting decision", "actions": ["Issue decision"], "firstName": "Charlotte", "lastName": "Lewis" },
+    { "id": "11111120", "status": "Decision issued", "actions": [], "firstName": "Lucas", "lastName": "Walker" }
+  ]
+
+  res.render('/projects/start-full-case/v4/index', {
+    appeals
+  })
+})
+
+
 
 //
 // START CASE

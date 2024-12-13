@@ -1,0 +1,133 @@
+{% set filterOptionsHtml %}
+
+  {{ govukCheckboxes({
+    idPrefix: "filters[caseofficer]",
+    name: "filters[caseofficer]",
+    classes: "govuk-checkboxes--small",
+    fieldset: {
+      legend: {
+        text: "Case officer",
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: [
+      { value: 'Unassigned', text: 'Unassigned' },
+      { value: 'Tony Stark (you)', text: 'Tony Stark (you)' },
+      { value: 'Natasha Romanoff', text: 'Natasha Romanoff' },
+      { value: 'Peter Parker', text: 'Peter Parker' }
+    ],
+    values: data.filters.caseofficer
+  }) }}
+
+  {{ govukCheckboxes({
+    idPrefix: "filters[inspector]",
+    name: "filters[inspector]",
+    classes: "govuk-checkboxes--small",
+    fieldset: {
+      legend: {
+        text: "Inspector",
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: [
+      { value: 'Unassigned', text: 'Unassigned' },
+      { value: 'Tony Stark (you)', text: 'Tony Stark (you)' },
+      { value: 'Natasha Romanoff', text: 'Natasha Romanoff' },
+      { value: 'Peter Parker', text: 'Peter Parker' }
+    ],
+    values: data.filters.inspector
+  }) }}
+
+  {{ govukCheckboxes({
+    idPrefix: "filters[green]",
+    name: "filters[green]",
+    classes: "govuk-checkboxes--small",
+    fieldset: {
+      legend: {
+        text: "Green belt",
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: [
+      { value: 'Is green belt', text: 'Is green belt' },
+      { value: 'Is not green belt', text: 'Is not green belt' }
+    ],
+    values: data.filters.green
+  }) }}
+
+  {{ govukCheckboxes({
+    idPrefix: "filters[statuses]",
+    name: "filters[statuses]",
+    classes: "govuk-checkboxes--small",
+    fieldset: {
+      legend: {
+        text: "Status",
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: [
+      { value: 'Ready to assign case officer', text: 'Ready to assign case officer' },
+      { value: 'Ready to validate', text: 'Ready to validate' },
+      { value: 'Ready to start', text: 'Ready to start' },
+      { value: 'Awaiting LPAQ', text: 'Awaiting LPAQ' },
+      { value: 'LPAQ ready for review', text: 'LPAQ ready for review' },
+      { value: 'Awaiting statements and IP comments', text: 'Awaiting statements and IP comments' },
+      { value: 'Statements and IP comments ready for review', text: 'Statements and IP comments ready for review' },
+      { value: 'Statements and IP comments ready to share', text: 'Statements and IP comments ready to share' },
+      { value: 'Awaiting final comments', text: 'Awaiting final comments' },
+      { value: 'Final comments ready for review', text: 'Final comments ready for review' },
+      { value: 'Final comments ready to share', text: 'Final comments ready to share' },
+      { value: 'Site visit ready to set up', text: 'Site visit ready to set up' },
+      { value: 'Awaiting site visit', text: 'Awaiting site visit' },
+      { value: 'Hearing ready to set up', text: 'Hearing ready to set up' },
+      { value: 'Awaiting hearing', text: 'Awaiting hearing' },
+      { value: 'Inquiry ready to set up', text: 'Inquiry ready to set up' },
+      { value: 'Awaiting proof of evidence and witnesses', text: 'Awaiting proof of evidence and witnesses' },
+      { value: 'Proof of evidence and witnesses ready for review', text: 'Proof of evidence and witnesses ready for review' },
+      { value: 'Proof of evidence and witnesses ready to share', text: 'Proof of evidence and witnesses ready to share' },
+      { value: 'Awaiting inquiry', text: 'Awaiting inquiry' },
+      { value: "Decision issued", text: 'Decision issued' }
+    ],
+    values: data.filters.statuses
+  }) }}
+
+{% endset %}
+
+<div class="app-filter">
+  <div class="app-filter__header">
+    <div class="app-filter__header-title">
+      <h2 class="govuk-heading-m">Filter</h2>
+    </div>
+    <div class="app-filter__header-action">
+
+    </div>
+  </div>
+  <div class="app-filter__content">
+    {% if selectedFilters.categories.length %}
+      <div class="app-filter__selected">
+        <div class="app-filter__selected-heading">
+          <div class="app-filter__heading-title">
+            <h2 class="govuk-heading-m govuk-!-margin-bottom-1">Selected filters</h2>
+            <p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href="/projects/start-full-case/v4/rule-6-parties/clear-filters">Clear filters</a></p>
+          </div>
+        </div>
+        {% for category in selectedFilters.categories %}
+          <h3 class="govuk-heading-s govuk-!-margin-bottom-0">{{ category.heading.text }}</h3>
+          <ul class="app-filter-tags">
+            {% for item in category.items %}
+              <li><a class="app-filter__tag" href="{{item.href}}"><span class="govuk-visually-hidden">Remove this filter</span> {{item.text}}</a></li>
+            {% endfor %}
+          </ul>
+        {% endfor %}
+      </div>
+    {% endif %}
+    <div class="app-filter__options">
+      <form method="get" novalidate>
+        <button class="govuk-button" data-module="govuk-button">
+          Apply filters
+        </button>
+        {{filterOptionsHtml | safe}}
+      </form>
+    </div>
+  </div>
+</div>

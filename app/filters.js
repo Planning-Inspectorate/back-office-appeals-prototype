@@ -131,3 +131,14 @@ addFilter('rule6StatusColour', status => {
       return 'govuk-tag--pink'
   }
 })
+
+// Add your filters here
+addFilter('appealStatusColour', status => {
+	if(status.indexOf('Awaiting') > -1) {
+		return 'govuk-tag--yellow'
+	}
+	if(status == 'Decision issued') {
+		return 'govuk-tag--green'
+	}
+})
+

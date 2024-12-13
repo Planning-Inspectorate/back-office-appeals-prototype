@@ -58,12 +58,24 @@ $govuk-font-family: Helvetica, Arial, sans-serif;
 
 	h2 {
 		// margin-bottom: 0 !important;
+
+		.govuk-tag {
+			margin-left: 5px;
+			display: inline-block;
+		}
 	}
 
-	.app-list__tag {
+	.govuk-tag {
+		white-space: nowrap;
+		max-width: 100%;
+	}
+
+	.app-list__tag--top-right {
 		position: absolute;
 		right: 5px;
 		top: 10px;
+		white-space: nowrap;
+		max-width: 100%;
 	}
 
 	.app-list__org {

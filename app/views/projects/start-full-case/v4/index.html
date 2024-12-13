@@ -5,322 +5,76 @@
 
 
 {% set back = false %}
+
 {% block content %}
+  <h1 class="govuk-heading-l">Appeals ({{appeals.length}})</h1>
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds-from-desktop">
-    <h1 class="govuk-heading-l">
-      Cases assigned to you
-    </h1>
+  <div class="app-filter-layout">
+    <div class="app-filter-layout__filter">
+      {% include "includes/case-filter-panel.njk" %}
+    </div>
+    <div class="app-filter-layout__content">
 
+      <div class="app-action-bar">
+        <div class="app-action-bar__filter"></div>
+      </div>
+
+      {% if appeals.length %}
+         <div class="app-list">
+          {% for item in appeals %}
+            <div class="app-list__item">
+              <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                <a href="case-details">{{item.firstName}} {{item.lastName}}</a>
+                {# <a href="case-details">{{item.id}}</a> #}
+                {# <span class="govuk-hint govuk-!-font-size-1">{{item.id}}</span> #}
+                <span class="govuk-hin govuk-!-font-size-1 govuk-!-font-weight-regular">{{item.id}}</span>
+                {{ govukTag({ text: item.status, classes: item.status | appealStatusColour + ' app-list__tag--top-right' }) }}
+              </h2>
+              {# <p class="govuk-!-margin-bottom-1">{{item.id}}</p> #}
+              <p class="govuk-!-margin-bottom-1">{{['Householder', 'Planning appeal'] | random}}</p>
+              <p class="govuk-!-margin-bottom-1">1 The Avenue, London, BL4 4AH</p>
+              <p class="govuk-!-margin-bottom-1">Barnet Council</p>
+              <p class="govuk-!-margin-bottom-1">Due on 19 Jan 2024</p>
+
+              {{ govukSummaryList({
+                classes: 'govuk-summary-list--no-border app-summary-list--compact app-summary-list--small-text',
+                rows: [
+                  {
+                    key: {
+                      html: 'Appeal type'
+                    },
+                    value: {
+                      html: 'Householder'
+                    }
+                  },
+                  {
+                    key: {
+                      html: 'Address'
+                    },
+                    value: {
+                      html: '1 The Avenue, London, BLH AHH'
+                    }
+                  },
+                  {
+                    key: {
+                      html: 'Due date'
+                    },
+                    value: {
+                      html: '4 January 2024'
+                    }
+                  }
+                ]
+              }) if 1==2}}
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        {# <p>There are no results.</p> #}
+      {% endif %}
+
+      {% include "includes/pagination.njk" %}
+    </div>
   </div>
-</div>
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-full">
-
-    <details class="govuk-details" data-module="govuk-details">
-		  <summary class="govuk-details__summary">
-		    <span class="govuk-details__summary-text">
-		      Filters
-		    </span>
-		  </summary>
-		  <div class="govuk-details__text">
-
-		    {{ govukSelect({
-          id: "sort",
-          name: "sort",
-          label: {
-            text: "Show cases with status"
-          },
-          items: [
-            { value: 'All', text: 'All' },
-            { value: 'Ready to assign case officer', text: 'Ready to assign case officer' },
-            { value: 'Ready to validate', text: 'Ready to validate' },
-            { value: 'Ready to start', text: 'Ready to start' },
-            { value: 'LPAQ', text: 'LPAQ' },
-            { value: 'Statements and IP comments', text: 'Statements and IP comments' },
-            { value: 'Final comments', text: 'Final comments' },
-            { value: 'Site visit ready to set up', text: 'Site visit ready to set up' },
-            { value: 'Awaiting site visit', text: 'Awaiting site visit' },
-            { value: 'Hearing ready to set up', text: 'Hearing ready to set up' },
-            { value: 'Awaiting hearing', text: 'Awaiting hearing' },
-            { value: 'Inquiry ready to set up', text: 'Inquiry ready to set up' },
-            { value: 'Proof of evidence and witnesses', text: 'Proof of evidence and witnesses' },
-            { value: 'Awaiting inquiry', text: 'Awaiting inquiry' },
-            { value: "Decision issued", text: 'Decision issued' }
-          ]
-        }) }}
-
-			<div class="govuk-button-group">
-			  {{ govukButton({
-				  text: "Apply",
-				  classes: "govuk-button--secondary"
-				}) }}
-
-				<a class="govuk-link" href="#">Clear filter</a>
-
-			</div>
-		  </div>
-		</details>
-
-	  <table class="govuk-table">
-      <thead class="govuk-table__head">
-        <tr class="govuk-table__row">
-          <th scope="col" class="govuk-table__header">ID</th>
-          <th scope="col" class="govuk-table__header">Action</th>
-          <th scope="col" class="govuk-table__header">Due date</th>
-          <th scope="col" class="govuk-table__header">Case status</th>
-        </tr>
-      </thead>
-      <tbody class="govuk-table__body">
-        <tr class="govuk-table__row">
-          <th scope="row" class="govuk-table__header" colspan=4>
-            Applicable to all types of cases
-          </th>
-        </tr>
-        <tr class="govuk-table__row">
-          <th scope="row" class="govuk-table__header">
-            <a href="case-details">11111101</a>
-          </th>
-          <td class="govuk-table__cell">
-            <a href="#">Assign case officer</a>
-          </td>
-          <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "Ready to assign case officer", classes: 'govuk-tag--grey' }) }}</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <th scope="row" class="govuk-table__header">
-            <a href="case-details">11111102</a>
-          </th>
-          <td class="govuk-table__cell">
-            <a href="#">Validate case</a>
-          </td>
-          <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "Ready to validate", classes: 'govuk-tag--orange' }) }}</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <th scope="row" class="govuk-table__header">
-            <a href="case-details">11111102</a>
-          </th>
-          <td class="govuk-table__cell">
-            <a href="#">Start case</a>
-          </td>
-          <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "Ready to start", classes: 'govuk-tag--turquoise' }) }}</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <th scope="row" class="govuk-table__header">
-            <a href="case-details">11111103</a>
-          </th>
-          <td class="govuk-table__cell">
-          </td>
-          <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "LPAQ", classes: 'govuk-tag--yellow' }) }}</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <th scope="row" class="govuk-table__header">
-            <a href="case-details">11111104</a>
-          </th>
-          <td class="govuk-table__cell">
-            <a href="#">Review LPAQ</a>
-          </td>
-          <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "LPAQ", classes: 'govuk-tag--yellow' }) }}</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <th scope="row" class="govuk-table__header" colspan=4>
-            Applicable to all S78 cases
-          </th>
-        </tr>
-        <tr class="govuk-table__row">
-          <th scope="row" class="govuk-table__header">
-            <a href="case-details">11111105</a>
-          </th>
-          <td class="govuk-table__cell">
-          </td>
-          <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "Statements and IP comments", classes: 'govuk-tag--blue' }) }}</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <th scope="row" class="govuk-table__header">
-            <a href="case-details">11111106</a>
-          </th>
-          <td class="govuk-table__cell">
-            <a href="#">Review statements</a><br>
-            <a href="#">Review IP comments</a>
-          </td>
-          <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "Statements and IP comments", classes: 'govuk-tag--blue' }) }}</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <th scope="row" class="govuk-table__header">
-            <a href="case-details">11111107</a>
-          </th>
-          <td class="govuk-table__cell">
-            <a href="#">Share statements</a><br>
-            <a href="#">Share IP comments</a>
-          </td>
-          <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "Statements and IP comments", classes: 'govuk-tag--blue' }) }}</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <th scope="row" class="govuk-table__header" colspan=4>
-            Applicable to S78 written representations
-          </th>
-        </tr>
-        <tr class="govuk-table__row">
-          <th scope="row" class="govuk-table__header">
-            <a href="case-details">11111108</a>
-          </th>
-          <td class="govuk-table__cell">
-          </td>
-          <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "Final comments", classes: 'govuk-tag--pink' }) }}</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <th scope="row" class="govuk-table__header">
-            <a href="case-details">11111109</a>
-          </th>
-          <td class="govuk-table__cell">
-            <a href="#">Review final comments</a>
-          </td>
-          <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "Final comments", classes: 'govuk-tag--pink' }) }}</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <th scope="row" class="govuk-table__header">
-            <a href="case-details">11111109</a>
-          </th>
-          <td class="govuk-table__cell">
-            <a href="#">Share final comments</a>
-          </td>
-          <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "Final comments", classes: 'govuk-tag--pink' }) }}</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <th scope="row" class="govuk-table__header">
-            <a href="case-details">11111110</a>
-          </th>
-          <td class="govuk-table__cell">
-            <a href="#">Set up site visit</a>
-          </td>
-          <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "Site visit ready to set up", classes: 'govuk-tag--light-blue' }) }}</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <th scope="row" class="govuk-table__header">
-            <a href="case-details">11111111</a>
-          </th>
-          <td class="govuk-table__cell">
-          </td>
-          <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "Awaiting site visit", classes: 'govuk-tag--light-blue' }) }}</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <th scope="row" class="govuk-table__header" colspan=4>
-            Applicable to hearings
-          </th>
-        </tr>
-        <tr class="govuk-table__row">
-          <th scope="row" class="govuk-table__header">
-            <a href="case-details">11111112</a>
-          </th>
-          <td class="govuk-table__cell">
-            <a href="#">Set up hearing</a>
-          </td>
-          <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "Hearing ready to set up", classes: 'govuk-tag--light-blue' }) }}</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <th scope="row" class="govuk-table__header">
-            <a href="case-details">11111113</a>
-          </th>
-          <td class="govuk-table__cell">
-          </td>
-          <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "Awaiting hearing", classes: 'govuk-tag--light-blue' }) }}</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <th scope="row" class="govuk-table__header" colspan=4>
-            Applicable to inquiries
-          </th>
-        </tr>
-        <tr class="govuk-table__row">
-          <th scope="row" class="govuk-table__header">
-            <a href="case-details">11111114</a>
-          </th>
-          <td class="govuk-table__cell">
-            <a href="#">Set up inquiry</a>
-          </td>
-          <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "Inquiry ready to set up", classes: 'govuk-tag--light-blue' }) }}</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <th scope="row" class="govuk-table__header">
-            <a href="case-details">11111115</a>
-          </th>
-          <td class="govuk-table__cell">
-          </td>
-          <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "Proof of evidence and witnesses", classes: 'govuk-tag--purple' }) }}</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <th scope="row" class="govuk-table__header">
-            <a href="case-details">11111116</a>
-          </th>
-          <td class="govuk-table__cell">
-            <a href="#">Review proof of evidence and witnesses</a>
-          </td>
-          <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "Proof of evidence and witnesses", classes: 'govuk-tag--purple' }) }}</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <th scope="row" class="govuk-table__header">
-            <a href="case-details">11111117</a>
-          </th>
-          <td class="govuk-table__cell">
-            <a href="#">Share proof of evidence and witnesses</a>
-          </td>
-          <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "Proof of evidence and witnesses", classes: 'govuk-tag--purple' }) }}</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <th scope="row" class="govuk-table__header">
-            <a href="case-details">11111118</a>
-          </th>
-          <td class="govuk-table__cell">
-          </td>
-          <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "Awaiting inquiry", classes: 'govuk-tag--light-blue' }) }}</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <th scope="row" class="govuk-table__header" colspan=4>
-            Applicable to all types of cases
-          </th>
-        </tr>
-         <tr class="govuk-table__row">
-          <th scope="row" class="govuk-table__header">
-            <a href="case-details">11111119</a>
-          </th>
-          <td class="govuk-table__cell">
-            <a href="#">Issue decision</a>
-          </td>
-          <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "Awaiting decision", classes: 'govuk-tag--red' }) }}</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <th scope="row" class="govuk-table__header">
-            <a href="case-details">11111120</a>
-          </th>
-          <td class="govuk-table__cell">
-          </td>
-          <td class="govuk-table__cell"></td>
-          <td class="govuk-table__cell">{{ govukTag({ text: "Decision issued", classes: 'govuk-tag--green' }) }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
 
 {% endblock %}

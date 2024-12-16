@@ -9,7 +9,7 @@ router.get('*', function(req, res, next){
 
 // see if the IP gave us an address
 router.post('/document-review', function (req, res) {
-  if (req.session.data['document-review-decision'] == 'Reject appellant proof of evidence and witnesses') {
+  if (req.session.data['document-review-decision'] == 'Reject proof of evidence and witnesses') {
     res.redirect('reject-documents')
   } else {
     res.redirect('check-your-answers')
@@ -31,7 +31,7 @@ router.post('/upload-document-date', function (req, res) {
 })
 
 router.post('/upload-document-check-your-answers', function (req, res) {
-  req.flash('success', 'Proof of evidence and witnesses added')
+  req.flash('success', 'Appellant proof of evidence and witnesses added')
   res.redirect('documents')
 })
 
@@ -42,7 +42,7 @@ router.post('/reject-documents', function (req, res) {
 
 // changing the appeal procedure
 router.post('/check-your-answers', function (req, res) {
-  if (req.session.data['document-review-decision'] == 'Accept appellant proof of evidence and witnesses') {
+  if (req.session.data['document-review-decision'] == 'Accept proof of evidence and witnesses') {
     req.flash('success', 'Appellant proof of evidence and witnesses accepted')
     if (req.session.data['party'] == 'rule6') {
       res.redirect('rule-6-proof-and-witnesses?rule6proofReview=completed&rule6proofReviewStatus=accepted')

@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Proof of evidence and witnesses" %}
+{% set title = "Appellant proof of evidence and witness documents" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% block beforeContent %}
@@ -58,7 +58,7 @@
         rows: [
           [
             {
-              html: "<a href='#' class='govuk-link'>appeal_2110166_proof_and_witnesses_part1.pdf</a>"
+              html: "<a href='#' class='govuk-link'>appeal_2110166_inquiry_evidence_summary.pdf</a>"
             },
             {
               html: 2 | daysAgo
@@ -73,7 +73,22 @@
           ],
           [
             {
-              html: "<a href='#' class='govuk-link'>appeal_2110166_proof_and_witnesses_part2.pdf</a>"
+              html: "<a href='#' class='govuk-link'>appeal_2110166_inquiry_evidence.pdf</a>"
+            },
+            {
+              html: 2 | daysAgo
+            },
+            {
+              html:  (data ['lpa-document-redaction']or 'Unredacted')
+            },
+            {
+              html: "<a href='manage-document' class='govuk-link'>View and edit</a>",
+              format: "numeric"
+            }
+          ],
+          [
+            {
+              html: "<a href='#' class='govuk-link'>appeal_2110166_witnesses_and_evidence.pdf</a>"
             },
             {
               html: 2 | daysAgo

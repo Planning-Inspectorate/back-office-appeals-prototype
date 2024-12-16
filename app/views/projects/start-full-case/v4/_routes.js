@@ -46,7 +46,7 @@ router.get('/', function (req, res) {
     { "id": "11111116", "status": "Proof of evidence and witnesses ready for review", "actions": ["Review proof of evidence and witnesses"], "firstName": "Benjamin", "lastName": "Garcia" },
     { "id": "11111117", "status": "Proof of evidence and witnesses ready to share", "actions": ["Share proof of evidence and witnesses"], "firstName": "Amelia", "lastName": "Martinez" },
     { "id": "11111118", "status": "Awaiting inquiry", "actions": [], "firstName": "Matthew", "lastName": "Clark" },
-    { "id": "11111119", "status": "Awaiting decision", "actions": ["Issue decision"], "firstName": "Charlotte", "lastName": "Lewis" },
+    { "id": "11111119", "status": "Decision ready to issue", "actions": ["Issue decision"], "firstName": "Charlotte", "lastName": "Lewis" },
     { "id": "11111120", "status": "Decision issued", "actions": [], "firstName": "Lucas", "lastName": "Walker" }
   ]
 

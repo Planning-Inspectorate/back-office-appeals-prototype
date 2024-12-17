@@ -15,6 +15,8 @@
     </div>
     <div class="app-filter-layout__content">
 
+      {% include "includes/search-form.njk" %}
+
       <div class="app-action-bar">
         <div class="app-action-bar__filter"></div>
       </div>
@@ -24,14 +26,14 @@
           {% for item in applications %}
             <div class="app-list__item">
               <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
-                <a href="case-details">{{item.appellant.firstName}} {{item.appellant.lastName}}</a>
+                <a href="case-details" class="govuk-link--no-visited-state">{{item.appellant.firstName}} {{item.appellant.lastName}}</a>
                 {{ govukTag({ text: item.status, classes: item.status | appealStatusColour + ' app-list__tag--top-right' }) }}
               </h2>
               <p class="govuk-!-margin-bottom-1">{{item.id}}</p>
 
               <p class="govuk-!-margin-bottom-1">{{item.type}}</p>
-              {% if item.type == 'Full planning appeal' %}
-                <p class="govuk-!-margin-bottom-1">{{['Written representations', 'Hearing', 'Inquiry'] | random}}</p>
+              {% if item.type == 'Full planning appeal' and item.procedure %}
+                <p class="govuk-!-margin-bottom-1">{{item.procedure}}</p>
               {% endif %}
               <p class="govuk-!-margin-bottom-1">{{appAddress({address: item.site.address, delimiter: ',' })}}</p>
               <p class="govuk-!-margin-bottom-1">{{item.lpa.name}}</p>

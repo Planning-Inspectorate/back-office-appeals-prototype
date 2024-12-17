@@ -124,6 +124,10 @@ const generateApplication = (params = {}) => {
 
   application.status = params.status || faker.helpers.arrayElement(statuses)
 
+  if(application.status == 'Ready to assign case officer' || application.status == 'Ready to validate' || application.status == 'Ready to start') {
+    application.procedure = null
+  }
+
   application.appellant = params.appellant || {}
   application.appellant.firstName = params.appellant?.firstName || faker.person.firstName()
   application.appellant.lastName = params.appellant?.lastName || faker.person.lastName()

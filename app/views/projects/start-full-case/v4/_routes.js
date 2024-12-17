@@ -27,6 +27,17 @@ router.get('/', function (req, res) {
 
   let applications = req.session.data.applications
 
+  let keywords = _.get(req.session.data.search, 'keywords')
+
+  if(keywords) {
+    applications = applications.filter(application => {
+      let reference = application.id
+      let appellantName = (application.appellant.firstName + ' ' + application.appellant.lastName).toLowerCase()
+      return appellantName.indexOf(keywords) > -1 || reference.indexOf(keywords) > -1
+    })
+  }
+
+
   let selectedStatusFilters = _.get(req.session.data.filters, 'statuses')
   let hasFilters = _.get(selectedStatusFilters, 'length')
 
@@ -59,9 +70,14 @@ router.get('/', function (req, res) {
     })
   }
 
+  let pageSize = 25
+  let pagination = new Pagination(applications, req.query.page, pageSize)
+  applications = pagination.getData()
+
   res.render('/projects/start-full-case/v4/index', {
     applications,
-    selectedFilters
+    selectedFilters,
+    pagination
   })
 })
 
@@ -70,6 +86,10 @@ router.get('/remove-status/:status', (req, res) => {
   res.redirect('/projects/start-full-case/v4/')
 })
 
+router.get('/clear-search', (req, res) => {
+  _.set(req, 'session.data.search.keywords', '')
+  res.redirect('/projects/start-full-case/v4/')
+})
 
 
 //

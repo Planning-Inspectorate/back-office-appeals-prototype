@@ -7,7 +7,7 @@
 {% set back = false %}
 
 {% block content %}
-  <h1 class="govuk-heading-l">Appeals ({{appeals.length}})</h1>
+  <h1 class="govuk-heading-l">Appeals ({{applications.length}})</h1>
 
   <div class="app-filter-layout">
     <div class="app-filter-layout__filter">
@@ -19,9 +19,9 @@
         <div class="app-action-bar__filter"></div>
       </div>
 
-      {% if appeals.length %}
+      {% if applications.length %}
          <div class="app-list">
-          {% for item in appeals %}
+          {% for item in applications %}
             <div class="app-list__item">
               <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
                 <a href="case-details">{{item.appellant.firstName}} {{item.appellant.lastName}}</a>

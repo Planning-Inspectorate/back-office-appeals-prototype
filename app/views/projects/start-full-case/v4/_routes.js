@@ -25,11 +25,49 @@ router.get('/changeSetting', function (req, res) {
 
 router.get('/', function (req, res) {
 
-  let appeals = req.session.data.applications
+  let applications = req.session.data.applications
+
+  let selectedStatusFilters = _.get(req.session.data.filters, 'statuses')
+  let hasFilters = _.get(selectedStatusFilters, 'length')
+
+  let selectedFilters = {
+    categories: []
+  }
+
+  // the user has selected a status filter
+  if(hasFilters) {
+    applications = applications.filter(application => {
+      let matchesStatus = true
+
+      if(_.get(selectedStatusFilters, 'length')) {
+        matchesStatus = selectedStatusFilters.includes(application.status);
+      }
+
+      return matchesStatus
+    })
+  }
+
+  if(_.get(selectedStatusFilters, 'length')) {
+    selectedFilters.categories.push({
+      heading: { text: 'Status' },
+      items: selectedStatusFilters.map(label => {
+        return {
+          text: label,
+          href: `/projects/start-full-case/v4/remove-status/${label}`
+        }
+      })
+    })
+  }
 
   res.render('/projects/start-full-case/v4/index', {
-    appeals
+    applications,
+    selectedFilters
   })
+})
+
+router.get('/remove-status/:status', (req, res) => {
+  _.set(req, 'session.data.filters.statuses', _.pull(req.session.data.filters.statuses, req.params.status))
+  res.redirect('/projects/start-full-case/v4/')
 })
 
 

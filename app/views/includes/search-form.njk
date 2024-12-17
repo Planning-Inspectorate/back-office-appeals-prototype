@@ -4,7 +4,7 @@
       id: "search[keywords]",
       name: "search[keywords]",
       label: {
-        text: "Search by reference or appellant name",
+        text: "Search by reference, site postcode or appellant name",
         classes: "govuk-label--s app-search-form__label"
       },
       value: data.search.keywords
@@ -17,6 +17,6 @@
   </form>
 
   {% if data.search.keywords %}
-    <p class="govuk-!-margin-top-2 govuk-!-margin-bottom-0"><a class="govuk-link--no-visited-state" href="clear-search">Clear search</a></p>
+    <p class="govuk-!-margin-top-2 govuk-!-margin-bottom-0"><a class="govuk-link--no-visited-state" href="/projects/start-full-case/v4/clear-search">Clear search</a></p>
   {% endif %}
 </div>

@@ -149,7 +149,7 @@ const generateApplication = (params = {}) => {
   application.site.address = params.site?.address || {
     line1: '1 The Avenue',
     town: 'London',
-    postcode: 'W9 1ST'
+    postcode: faker.location.zipCode('WD# #JT')
   }
 
   application.rule6Parties = []

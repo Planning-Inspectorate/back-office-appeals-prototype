@@ -27,13 +27,14 @@ router.get('/', function (req, res) {
 
   let applications = req.session.data.applications
 
-  let keywords = _.get(req.session.data.search, 'keywords')
+  let keywords = _.get(req.session.data.search, 'keywords').toLowerCase()
 
   if(keywords) {
     applications = applications.filter(application => {
       let reference = application.id
-      let appellantName = (application.appellant.firstName + ' ' + application.appellant.lastName).toLowerCase()
-      return appellantName.indexOf(keywords) > -1 || reference.indexOf(keywords) > -1
+      let name = (application.appellant.firstName + ' ' + application.appellant.lastName).toLowerCase()
+      let postcode = application.site.address.postcode.toLowerCase()
+      return postcode.indexOf(keywords) > -1 || reference.indexOf(keywords) > -1 || name.indexOf(keywords) > -1
     })
   }
 
@@ -70,6 +71,7 @@ router.get('/', function (req, res) {
     })
   }
 
+  let totalApplications = applications.length
   let pageSize = 25
   let pagination = new Pagination(applications, req.query.page, pageSize)
   applications = pagination.getData()
@@ -77,8 +79,14 @@ router.get('/', function (req, res) {
   res.render('/projects/start-full-case/v4/index', {
     applications,
     selectedFilters,
-    pagination
+    pagination,
+    totalApplications
   })
+})
+
+router.get('/clear-filters', (req, res) => {
+  _.set(req, 'session.data.filters.statuses', null)
+  res.redirect('/projects/start-full-case/v4')
 })
 
 router.get('/remove-status/:status', (req, res) => {

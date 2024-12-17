@@ -1,13 +1,12 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Personal list" %}
+{% set title = "Appeals (" + totalApplications +")" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
-
 
 {% set back = false %}
 
 {% block content %}
-  <h1 class="govuk-heading-l">Appeals ({{applications.length}})</h1>
+  <h1 class="govuk-heading-l">{{title}}</h1>
 
   <div class="app-filter-layout">
     <div class="app-filter-layout__filter">

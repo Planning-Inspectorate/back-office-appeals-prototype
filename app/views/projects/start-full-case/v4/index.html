@@ -24,16 +24,17 @@
           {% for item in appeals %}
             <div class="app-list__item">
               <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
-                <a href="case-details">{{item.firstName}} {{item.lastName}}</a>
-                {# <a href="case-details">{{item.id}}</a> #}
-                {# <span class="govuk-hint govuk-!-font-size-1">{{item.id}}</span> #}
-                <span class="govuk-hin govuk-!-font-size-1 govuk-!-font-weight-regular">{{item.id}}</span>
+                <a href="case-details">{{item.appellant.firstName}} {{item.appellant.lastName}}</a>
                 {{ govukTag({ text: item.status, classes: item.status | appealStatusColour + ' app-list__tag--top-right' }) }}
               </h2>
-              {# <p class="govuk-!-margin-bottom-1">{{item.id}}</p> #}
-              <p class="govuk-!-margin-bottom-1">{{['Householder', 'Planning appeal'] | random}}</p>
-              <p class="govuk-!-margin-bottom-1">1 The Avenue, London, BL4 4AH</p>
-              <p class="govuk-!-margin-bottom-1">Barnet Council</p>
+              <p class="govuk-!-margin-bottom-1">{{item.id}}</p>
+
+              <p class="govuk-!-margin-bottom-1">{{item.type}}</p>
+              {% if item.type == 'Full planning appeal' %}
+                <p class="govuk-!-margin-bottom-1">{{['Written representations', 'Hearing', 'Inquiry'] | random}}</p>
+              {% endif %}
+              <p class="govuk-!-margin-bottom-1">{{appAddress({address: item.site.address, delimiter: ',' })}}</p>
+              <p class="govuk-!-margin-bottom-1">{{item.lpa.name}}</p>
               <p class="govuk-!-margin-bottom-1">Due on 19 Jan 2024</p>
 
               {{ govukSummaryList({

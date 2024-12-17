@@ -57,11 +57,96 @@ const generateRule6Party = (params) => {
   return party
 }
 
-const generateApplication = () => {
+const baseStatuses = [
+  'Ready to assign case officer',
+  'Ready to validate',
+  'Ready to start',
+  'Awaiting LPAQ',
+  'LPAQ ready to review',
+  'Decision ready to issue',
+  'Decision issued'
+]
+
+const s78Statuses = [
+  'Awaiting statements and IP comments',
+  'Statements and IP comments ready to review',
+  'Statements and IP comments ready to share'
+]
+
+const s78WrittenStatuses = [
+  'Awaiting final comments',
+  'Final comments ready to review',
+  'Final comments ready to share',
+  'Site visit ready to set up',
+  'Awaiting site visit'
+]
+
+const s78HearingStatuses = [
+  'Hearing ready to set up',
+  'Awaiting hearing'
+]
+
+const s78InquiryStatuses = [
+  'Inquiry ready to set up',
+  'Awaiting proof of evidence and witnesses',
+  'Proof of evidence and witnesses ready to review',
+  'Proof of evidence and witnesses ready to share',
+  'Awaiting inquiry'
+]
+
+const generateApplication = (params = {}) => {
   let application = {}
 
-  // Application ID
   application.id = "" + faker.number.int({ min: 123456, max: 999999 })
+  application.type = params.type || faker.helpers.arrayElement(['Householder appeal', 'Full planning appeal'])
+
+  let statuses = baseStatuses
+
+  if(application.type == 'Full planning appeal') {
+    statuses = statuses.concat(s78Statuses)
+
+    application.procedure = params.procedure || faker.helpers.arrayElement([
+      'Written representations',
+      'Hearing',
+      'Inquiry'
+    ])
+
+    if(application.procedure == 'Written representations') {
+      statuses = statuses.concat(s78WrittenStatuses)
+    }
+    if(application.procedure == 'Hearing') {
+      statuses = statuses.concat(s78HearingStatuses)
+    }
+    if(application.procedure == 'Inquiry') {
+      statuses = statuses.concat(s78InquiryStatuses)
+    }
+  }
+
+  application.status = params.status || faker.helpers.arrayElement(statuses)
+
+  application.appellant = params.appellant || {}
+  application.appellant.firstName = params.appellant?.firstName || faker.person.firstName()
+  application.appellant.lastName = params.appellant?.lastName || faker.person.lastName()
+  application.appellant.emailAddress = params.appellant?.emailAddress || `${application.appellant.firstName.toLowerCase()}.${application.appellant.lastName.toLowerCase()}@gmail.com`
+  application.appellant.phone = params.appellant?.phone || '079## ### ###'.replace(/#+/g, (m) => faker.string.numeric(m.length));
+  application.appellant.address = params.appellant?.address || {
+    line1: '1 The Avenue',
+    town: 'London',
+    postcode: 'W9 1ST'
+  }
+
+  application.lpa = params.lpa || {}
+  application.lpa.name = params.lpa?.name || faker.helpers.arrayElement([
+    'Barnet Council',
+    'Hertfordshire Council'
+  ])
+
+  application.site = params.site || {}
+  application.site.address = params.site?.address || {
+    line1: '1 The Avenue',
+    town: 'London',
+    postcode: 'W9 1ST'
+  }
 
   application.rule6Parties = []
 
@@ -133,6 +218,114 @@ const generateApplication = () => {
 
 const generateApplications = () => {
   const applications = []
+
+  applications.push(generateApplication({
+    type: 'Full planning appeal',
+    status: "Ready to assign case officer"
+  }))
+  applications.push(generateApplication({
+    type: 'Full planning appeal',
+    status: "Ready to validate"
+  }))
+  applications.push(generateApplication({
+    type: 'Full planning appeal',
+    status: "Ready to start"
+  }))
+  applications.push(generateApplication({
+    type: 'Full planning appeal',
+    status: "Awaiting LPAQ"
+  }))
+  applications.push(generateApplication({
+    type: 'Full planning appeal',
+    status: "LPAQ ready to review"
+  }))
+
+  applications.push(generateApplication({
+    type: 'Full planning appeal',
+    status: "Awaiting statements and IP comments"
+  }))
+  applications.push(generateApplication({
+    type: 'Full planning appeal',
+    status: "Statements and IP comments ready to review"
+  }))
+  applications.push(generateApplication({
+    type: 'Full planning appeal',
+    status: "Statements and IP comments ready to share"
+  }))
+
+  applications.push(generateApplication({
+    type: 'Full planning appeal',
+    procedure: 'Written representations',
+    status: "Awaiting final comments"
+  }))
+  applications.push(generateApplication({
+    type: 'Full planning appeal',
+    procedure: 'Written representations',
+    status: "Final comments ready to review"
+  }))
+  applications.push(generateApplication({
+    type: 'Full planning appeal',
+    procedure: 'Written representations',
+    status: "Final comments ready to share"
+  }))
+  applications.push(generateApplication({
+    type: 'Full planning appeal',
+    procedure: 'Written representations',
+    status: "Site visit ready to set up"
+  }))
+  applications.push(generateApplication({
+    type: 'Full planning appeal',
+    procedure: 'Written representations',
+    status: "Awaiting site visit"
+  }))
+
+  applications.push(generateApplication({
+    type: 'Full planning appeal',
+    procedure: 'Hearing',
+    status: "Hearing ready to set up"
+  }))
+  applications.push(generateApplication({
+    type: 'Full planning appeal',
+    procedure: 'Hearing',
+    status: "Awaiting hearing"
+  }))
+
+  applications.push(generateApplication({
+    type: 'Full planning appeal',
+    procedure: 'Inquiry',
+    status: "Inquiry ready to set up"
+  }))
+  applications.push(generateApplication({
+    type: 'Full planning appeal',
+    procedure: 'Inquiry',
+    status: "Awaiting proof of evidence and witnesses"
+  }))
+  applications.push(generateApplication({
+    type: 'Full planning appeal',
+    procedure: 'Inquiry',
+    status: "Proof of evidence and witnesses ready to review"
+  }))
+  applications.push(generateApplication({
+    type: 'Full planning appeal',
+    procedure: 'Inquiry',
+    status: "Proof of evidence and witnesses ready to share"
+  }))
+  applications.push(generateApplication({
+    type: 'Full planning appeal',
+    procedure: 'Inquiry',
+    status: "Awaiting inquiry"
+  }))
+
+  applications.push(generateApplication({
+    type: 'Full planning appeal',
+    type: 'Full planning appeal',
+    status: "Decision ready to issue"
+  }))
+  applications.push(generateApplication({
+    type: 'Full planning appeal',
+    type: 'Full planning appeal',
+    status: "Decision issued"
+  }))
 
   for(let i = 0; i < 10; i++) {
     applications.push(generateApplication())

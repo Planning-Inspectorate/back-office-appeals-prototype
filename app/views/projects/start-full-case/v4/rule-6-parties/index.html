@@ -54,7 +54,7 @@
 
               {{ govukTag({
                 text: item.status,
-                classes: "app-list__tag " + (item.status | rule6StatusColour)
+                classes: "app-list__tag app-list__tag--top-right " + (item.status | rule6StatusColour)
               }) }}
             </div>
           {% endfor %}

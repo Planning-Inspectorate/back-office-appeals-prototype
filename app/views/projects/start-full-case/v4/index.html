@@ -25,18 +25,24 @@
           {% for item in applications %}
             <div class="app-list__item">
               <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
-                <a href="case-details" class="govuk-link--no-visited-state">{{item.appellant.firstName}} {{item.appellant.lastName}}</a>
+                <a href="case-details" class="govuk-link--no-visited-state">{{item.id}}</a>
                 {{ govukTag({ text: item.status, classes: item.status | appealStatusColour + ' app-list__tag--top-right' }) }}
               </h2>
-              <p class="govuk-!-margin-bottom-1">{{item.id}}</p>
+              {# <p class="govuk-!-margin-bottom-1">{{item.appellant.firstName}} {{item.appellant.lastName}}</p> #}
 
-              <p class="govuk-!-margin-bottom-1">{{item.type}}</p>
-              {% if item.type == 'Full planning appeal' and item.procedure %}
-                <p class="govuk-!-margin-bottom-1">{{item.procedure}}</p>
+              <p class="govuk-!-margin-bottom-1">
+                {{item.type}}
+                {% if item.type == 'Full planning appeal' and item.procedure %}
+                  ({{item.procedure}})
+                {% endif %}
+              </p>
+              <p class="govuk-!-margin-bottom-1">{{appAddress({address: item.site.address, delimiter: ',' })}} ({{item.lpa.name}})</p>
+              {% if item.status == 'Awaiting LPAQ'
+                or item.status == 'Awaiting statements and IP comments'
+                or item.status == 'Awaiting final comments'
+              %}
+                <p class="govuk-!-margin-bottom-1">Due on 19 Jan 2024</p>
               {% endif %}
-              <p class="govuk-!-margin-bottom-1">{{appAddress({address: item.site.address, delimiter: ',' })}}</p>
-              <p class="govuk-!-margin-bottom-1">{{item.lpa.name}}</p>
-              <p class="govuk-!-margin-bottom-1">Due on 19 Jan 2024</p>
 
               {{ govukSummaryList({
                 classes: 'govuk-summary-list--no-border app-summary-list--compact app-summary-list--small-text',

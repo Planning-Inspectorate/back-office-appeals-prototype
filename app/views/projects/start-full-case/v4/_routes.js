@@ -27,9 +27,10 @@ router.get('/', function (req, res) {
 
   let applications = req.session.data.applications
 
-  let keywords = _.get(req.session.data.search, 'keywords').toLowerCase()
+  let keywords = _.get(req.session.data.search, 'keywords')
 
   if(keywords) {
+    keywords = keywords.toLowerCase()
     applications = applications.filter(application => {
       let reference = application.id
       let name = (application.appellant.firstName + ' ' + application.appellant.lastName).toLowerCase()

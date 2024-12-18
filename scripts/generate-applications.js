@@ -5,6 +5,43 @@ const { v4: uuidv4 } = require('uuid')
 
 let now = new Date().toISOString()
 
+const baseStatuses = [
+  'Ready to assign case officer',
+  'Ready to validate',
+  'Ready to start',
+  'Awaiting LPAQ',
+  'LPAQ ready to review',
+  'Decision ready to issue',
+  'Decision issued'
+]
+
+const s78Statuses = [
+  'Awaiting statements and IP comments',
+  'Statements and IP comments ready to review',
+  'Statements and IP comments ready to share'
+]
+
+const s78WrittenStatuses = [
+  'Awaiting final comments',
+  'Final comments ready to review',
+  'Final comments ready to share',
+  'Site visit ready to set up',
+  'Awaiting site visit'
+]
+
+const s78HearingStatuses = [
+  'Hearing ready to set up',
+  'Awaiting hearing'
+]
+
+const s78InquiryStatuses = [
+  'Inquiry ready to set up',
+  'Awaiting proof of evidence and witnesses',
+  'Proof of evidence and witnesses ready to review',
+  'Proof of evidence and witnesses ready to share',
+  'Awaiting inquiry'
+]
+
 const generateRule6Party = (params) => {
   let party = {}
   party.id = uuidv4()
@@ -54,50 +91,31 @@ const generateRule6Party = (params) => {
   if(party.hasOrganisation == 'Yes') {
     party.organisationName = params.organisationName || faker.company.name()
   }
+
+  switch(params.application.status) {
+    case "Statements and IP comments ready to review":
+    case "Statements and IP comments ready to share":
+    case "Inquiry ready to set up":
+    case "Proof of evidence and witnesses ready to review":
+    case "Proof of evidence and witnesses ready to share":
+    case "Awaiting inquiry":
+    case "Decision ready to issue":
+    case "Decision issued":
+      party.statement = {}
+      party.statement.dateReceived = faker.date.recent({ days: 2 })
+      party.statement.status = 'Awaiting review'
+      party.statement.statement = faker.lorem.paragraph()
+      party.statement.documents = [{}]
+      break
+  }
+
   return party
 }
-
-const baseStatuses = [
-  'Ready to assign case officer',
-  'Ready to validate',
-  'Ready to start',
-  'Awaiting LPAQ',
-  'LPAQ ready to review',
-  'Decision ready to issue',
-  'Decision issued'
-]
-
-const s78Statuses = [
-  'Awaiting statements and IP comments',
-  'Statements and IP comments ready to review',
-  'Statements and IP comments ready to share'
-]
-
-const s78WrittenStatuses = [
-  'Awaiting final comments',
-  'Final comments ready to review',
-  'Final comments ready to share',
-  'Site visit ready to set up',
-  'Awaiting site visit'
-]
-
-const s78HearingStatuses = [
-  'Hearing ready to set up',
-  'Awaiting hearing'
-]
-
-const s78InquiryStatuses = [
-  'Inquiry ready to set up',
-  'Awaiting proof of evidence and witnesses',
-  'Proof of evidence and witnesses ready to review',
-  'Proof of evidence and witnesses ready to share',
-  'Awaiting inquiry'
-]
 
 const generateApplication = (params = {}) => {
   let application = {}
 
-  application.id = "" + faker.number.int({ min: 123456, max: 999999 })
+  application.id = params.id || "" + faker.number.int({ min: 123456, max: 999999 })
   application.type = params.type || faker.helpers.arrayElement(['Householder appeal', 'Full planning appeal'])
 
   let statuses = baseStatuses
@@ -152,69 +170,74 @@ const generateApplication = (params = {}) => {
     postcode: faker.location.zipCode('WD# #JT')
   }
 
-  application.rule6Parties = []
+  // Generate Rule 6 Parties based on this
+  if(application.procedure == 'Inquiry') {
+    application.rule6Parties = []
 
-  application.rule6Parties.push(generateRule6Party({
-    status: 'Awaiting review',
-    emailAddress: 'tony@starkindustries.com',
-    firstName: 'Tony',
-    lastName: 'Stark',
-    hasOrganisation: 'Yes',
-    organisationName: 'Stark Industries',
-    phone: '07714545545'
-  }))
+    application.rule6Parties.push(generateRule6Party({
+      application,
+      status: 'Awaiting review',
+      emailAddress: 'tony@starkindustries.com',
+      firstName: 'Tony',
+      lastName: 'Stark',
+      hasOrganisation: 'Yes',
+      organisationName: 'Stark Industries',
+      phone: '07714545545'
+    }))
 
-  application.rule6Parties.push(generateRule6Party({
-    status: 'Awaiting review',
-    emailAddress: 'natasha@shield.com',
-    firstName: 'Natasha',
-    lastName: 'Romanoff',
-    hasOrganisation: 'Yes',
-    organisationName: 'S.H.I.E.L.D',
-    phone: '07714545546'
-  }))
+    application.rule6Parties.push(generateRule6Party({
+      application,
+      status: 'Awaiting review',
+      emailAddress: 'natasha@shield.com',
+      firstName: 'Natasha',
+      lastName: 'Romanoff',
+      hasOrganisation: 'Yes',
+      organisationName: 'S.H.I.E.L.D',
+      phone: '07714545546'
+    }))
 
-  application.rule6Parties.push(generateRule6Party({
-    status: 'Awaiting review',
-    emailAddress: 'peter@example.com',
-    firstName: 'Peter',
-    lastName: 'Parker',
-    hasOrganisation: 'No',
-    phone: '07714545546'
-  }))
+    application.rule6Parties.push(generateRule6Party({
+      application,
+      status: 'Awaiting review',
+      emailAddress: 'peter@example.com',
+      firstName: 'Peter',
+      lastName: 'Parker',
+      hasOrganisation: 'No',
+      phone: '07714545546'
+    }))
 
-  application.rule6Parties.push(generateRule6Party({
-    status: 'Approved',
-    emailAddress: 'bruce@avengers.com',
-    firstName: 'Bruce',
-    lastName: 'Banner',
-    hasOrganisation: 'Yes',
-    organisationName: 'Avengers',
-    phone: '07714545546'
-  }))
+    application.rule6Parties.push(generateRule6Party({
+      application,
+      status: 'Approved',
+      emailAddress: 'bruce@avengers.com',
+      firstName: 'Bruce',
+      lastName: 'Banner',
+      hasOrganisation: 'Yes',
+      organisationName: 'Avengers',
+      phone: '07714545546'
+    }))
 
-  application.rule6Parties.push(generateRule6Party({
-    status: 'Rejected',
-    emailAddress: 'scott@pymtech.com',
-    firstName: 'Scott',
-    lastName: 'Lang',
-    hasOrganisation: 'Yes',
-    organisationName: 'Pym Technologies',
-    phone: '07714545546'
-  }))
+    application.rule6Parties.push(generateRule6Party({
+      application,
+      status: 'Rejected',
+      emailAddress: 'scott@pymtech.com',
+      firstName: 'Scott',
+      lastName: 'Lang',
+      hasOrganisation: 'Yes',
+      organisationName: 'Pym Technologies',
+      phone: '07714545546'
+    }))
 
-  application.rule6Parties.push(generateRule6Party({
-    status: 'Withdrawn',
-    emailAddress: 'carol@starfoce.com',
-    firstName: 'Carol',
-    lastName: 'Danvers',
-    hasOrganisation: 'Yes',
-    organisationName: 'Starforce',
-    phone: '07714545546'
-  }))
-
-  for(let i = 0; i < 100; i++) {
-    // application.rule6Parties.push(generateRule6Party())
+    application.rule6Parties.push(generateRule6Party({
+      application,
+      status: 'Withdrawn',
+      emailAddress: 'carol@starfoce.com',
+      firstName: 'Carol',
+      lastName: 'Danvers',
+      hasOrganisation: 'Yes',
+      organisationName: 'Starforce',
+      phone: '07714545546'
+    }))
   }
 
   return application
@@ -249,7 +272,9 @@ const generateApplications = () => {
     status: "Awaiting statements and IP comments"
   }))
   applications.push(generateApplication({
+    id: '00182182',
     type: 'Full planning appeal',
+    procedure: 'Inquiry',
     status: "Statements and IP comments ready to review"
   }))
   applications.push(generateApplication({
@@ -322,12 +347,12 @@ const generateApplications = () => {
 
   applications.push(generateApplication({
     type: 'Full planning appeal',
-    type: 'Full planning appeal',
+    procedure: 'Inquiry',
     status: "Decision ready to issue"
   }))
   applications.push(generateApplication({
     type: 'Full planning appeal',
-    type: 'Full planning appeal',
+    procedure: 'Inquiry',
     status: "Decision issued"
   }))
 

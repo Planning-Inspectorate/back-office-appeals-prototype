@@ -118,10 +118,9 @@ addFilter('days', (value) => {
 	}
 })
 
-// Add your filters here
 addFilter('rule6StatusColour', status => {
   switch(status) {
-    case 'Awaiting review':
+    case 'Ready to review':
       return 'govuk-tag--blue'
     case 'Rejected':
       return 'govuk-tag--red'
@@ -132,7 +131,17 @@ addFilter('rule6StatusColour', status => {
   }
 })
 
-// Add your filters here
+addFilter('rule6StatementStatusColour', status => {
+  switch(status) {
+    case 'Ready to review':
+      return 'govuk-tag--blue'
+    case 'Rejected':
+      return 'govuk-tag--red'
+    case 'Accepted':
+      return 'govuk-tag--green'
+  }
+})
+
 addFilter('appealStatusColour', status => {
 	if(status.indexOf('Awaiting') > -1) {
 		return 'govuk-tag--yellow'

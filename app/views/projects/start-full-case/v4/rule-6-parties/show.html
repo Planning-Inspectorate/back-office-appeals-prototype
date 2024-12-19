@@ -47,7 +47,7 @@
       </h1>
 
       {% set promptHtml %}
-        {% if party.status == 'Awaiting review' %}
+        {% if party.status == 'Ready to review' %}
           <p>Rule 6 status was requested on {{party.dateReceived | govukDateTime}}.</p>
         {% elseif party.status == 'Approved' %}
           <p>The Rule 6 party was approved on {{party.dateApproved | govukDateTime }}.</p>
@@ -66,14 +66,14 @@
 
       <div class="govuk-button-group">
 
-          {% if party.status == 'Awaiting review' or party.status == 'Withdawn' %}
+          {% if party.status == 'Ready to review' or party.status == 'Withdawn' %}
             {{ govukButton({
               text: "Approve",
               href: '/projects/start-full-case/v4/rule-6-parties/'+party.id+'/approve'
             })}}
           {% endif %}
 
-          {% if party.status == 'Awaiting review' %}
+          {% if party.status == 'Ready to review' %}
             {{ govukButton({
               text: "Reject",
               classes: 'govuk-button--secondary',
@@ -85,7 +85,7 @@
             <a class="govuk-link" href="#">Resend invite</a>
           {% endif %}
 
-          {% if party.status == 'Awaiting review' or party.status == 'Invited' or party.status == 'Approved' %}
+          {% if party.status == 'Ready to review' or party.status == 'Invited' or party.status == 'Approved' %}
             <a class="govuk-link" href="/projects/start-full-case/v4/rule-6-parties/{{party.id}}/withdraw">Withdraw</a>
           {% endif %}
 

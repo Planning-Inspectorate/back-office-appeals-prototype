@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = 'Check details and reject Rule 6 statement'  %}
+{% set title = 'Check details and accept Rule 6 statement'  %}
 {% set pageName = title %}
 
 {% block beforeContent %}
@@ -35,32 +35,23 @@
         rows: [
           {
             key: {
-              text: "Reason for rejecting the Rule 6 statement"
+              text: "Original statement"
             },
             value: {
-              html: reasonsHtml
-            },
-            actions: {
-              items: [
-                {
-                  href: "/projects/start-full-case/v4/rule-6-parties/"+party.id+"/reject",
-                  text: "Change",
-                  visuallyHiddenText: "Item label"
-                }
-              ]
+              html: 'Having reviewed the proposal we would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. David Newton at number 6 The Grove also agrees.'
             }
           },
           {
             key: {
-              text: "Do you want to allow the Rule 6 party to submit a new statement?"
+              text: "Redacted statement"
             },
             value: {
-              html: data.rejectRule6Party.canResubmit
+              html: 'Having reviewed the proposal we would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. █████████████████████████████████████████████'
             },
             actions: {
               items: [
                 {
-                  href: "/projects/start-full-case/v4/rule-6-parties/"+party.id+"/reject/can-resubmit",
+                  href: "/projects/start-full-case/v4/rule-6-parties/"+party.id+"/redact",
                   text: "Change",
                   visuallyHiddenText: "Item label"
                 }
@@ -70,12 +61,11 @@
         ]
       }) }}
 
-
-      <p>We’ll send an email to the Rule 6 party to explain why you rejected their statement.</p>
+      {# <p>We’ll send an email to the Rule 6 party telling them that their statement was rejected and why.</p> #}
 
       <form method="post">
         {{ govukButton({
-          text: "Reject Rule 6 statement"
+          text: "Accept Rule 6 statement"
         }) }}
 
         {# <p><a href="javascript:history.back()">Cancel</a></p> #}

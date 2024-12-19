@@ -46,7 +46,7 @@ const generateRule6Party = (params) => {
   let party = {}
   party.id = uuidv4()
   party.status = params.status || faker.helpers.arrayElement([
-    'Awaiting review',
+    'Ready to review',
     'Approved',
     'Rejected',
     'Withdrawn'
@@ -103,9 +103,12 @@ const generateRule6Party = (params) => {
     case "Decision issued":
       party.statement = {}
       party.statement.dateReceived = faker.date.recent({ days: 2 })
-      party.statement.status = 'Awaiting review'
-      party.statement.statement = faker.lorem.paragraph()
-      party.statement.documents = [{}]
+      party.statement.status = 'Ready to review'
+      party.statement.statement = 'Having reviewed the proposal we would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. David Newton at number 6 The Grove also agrees.'
+      party.statement.documents = [{
+        name: 'St.Ritas_Community_Association_statement_for_appeal_4012345.doc',
+        size: '5MB'
+      }]
       break
   }
 
@@ -176,7 +179,7 @@ const generateApplication = (params = {}) => {
 
     application.rule6Parties.push(generateRule6Party({
       application,
-      status: 'Awaiting review',
+      status: 'Ready to review',
       emailAddress: 'tony@starkindustries.com',
       firstName: 'Tony',
       lastName: 'Stark',
@@ -187,7 +190,7 @@ const generateApplication = (params = {}) => {
 
     application.rule6Parties.push(generateRule6Party({
       application,
-      status: 'Awaiting review',
+      status: 'Ready to review',
       emailAddress: 'natasha@shield.com',
       firstName: 'Natasha',
       lastName: 'Romanoff',
@@ -198,7 +201,7 @@ const generateApplication = (params = {}) => {
 
     application.rule6Parties.push(generateRule6Party({
       application,
-      status: 'Awaiting review',
+      status: 'Ready to review',
       emailAddress: 'peter@example.com',
       firstName: 'Peter',
       lastName: 'Parker',

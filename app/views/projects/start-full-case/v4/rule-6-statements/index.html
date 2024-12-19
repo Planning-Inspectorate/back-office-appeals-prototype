@@ -26,7 +26,6 @@
         text: flash
       }) if flash.length }}
 
-
       <span class="govuk-caption-l">Appeal 2114328</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
 
@@ -53,7 +52,7 @@
 
               {{ govukTag({
                 text: item.statement.status,
-                classes: "app-list__tag app-list__tag--top-right " + (item.statement.status | rule6StatusColour)
+                classes: "app-list__tag app-list__tag--top-right " + (item.statement.status | rule6StatementStatusColour)
               }) }}
             </div>
           {% endfor %}

@@ -19,6 +19,13 @@ router.get('/changeSetting', function (req, res) {
   res.redirect('/projects/start-full-case/v4/case-details')
 })
 
+router.get('/case-details', function (req, res) {
+  let application = req.session.data.applications.find(application => application.id == '00182182')
+  res.render('/projects/start-full-case/v4/case-details', {
+    application
+  })
+})
+
 //
 // CASE LIST
 //
@@ -757,9 +764,28 @@ router.get('/rule-6-parties/:id/withdraw', function (req, res) {
 router.post('/rule-6-parties/:id/withdraw', function (req, res) {
   let application = req.session.data.applications.find(application => application.id == '00182182')
   let party = application.rule6Parties.find(party => party.id == req.params.id)
+  res.redirect('/projects/start-full-case/v4/rule-6-parties/'+req.params.id+'/withdraw/check')
+})
+
+router.get('/rule-6-parties/:id/withdraw/check', function (req, res) {
+  let application = req.session.data.applications.find(application => application.id == '00182182')
+  let party = application.rule6Parties.find(party => party.id == req.params.id)
+
+  res.render('/projects/start-full-case/v4/rule-6-parties/withdraw/check', {
+    party
+  })
+})
+
+router.post('/rule-6-parties/:id/withdraw/check', function (req, res) {
+  let application = req.session.data.applications.find(application => application.id == '00182182')
+  let party = application.rule6Parties.find(party => party.id == req.params.id)
+  if(party.status == 'Ready to review') {
+    req.flash('success', 'Request for Rule 6 status withdrawn')
+  } else {
+    req.flash('success', 'Rule 6 party withdrawn')
+  }
   party.status = 'Withdrawn'
   party.dateWithdrawn = new Date()
-  req.flash('success', 'Rule 6 party withdrawn')
   res.redirect('/projects/start-full-case/v4/rule-6-parties/'+req.params.id)
 })
 

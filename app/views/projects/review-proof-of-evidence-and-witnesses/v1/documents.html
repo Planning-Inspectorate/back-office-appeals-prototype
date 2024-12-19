@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Appellant proof of evidence and witness documents" %}
+{% set title = "Appellant proof of evidence and witnesses documents" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% block beforeContent %}
@@ -33,9 +33,14 @@
 
     <div class="govuk-grid-column-full">
 
-      <p class="govuk-body">
+      <!-- <p class="govuk-body">
         <a href="upload-document" class="govuk-link">Add document</a>
-      </p>
+      </p> -->
+
+      {{ govukButton({
+        text: "Add document",
+        classes: "govuk-button--secondary"
+      }) }}
 
       {{ govukTable({
 

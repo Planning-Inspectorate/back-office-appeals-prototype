@@ -709,7 +709,7 @@ router.post('/rule-6-parties/:id/approve', function (req, res) {
   let party = application.rule6Parties.find(party => party.id == req.params.id)
   party.status = 'Approved'
   party.dateApproved = new Date()
-  req.flash('success', 'Rule 6 party approved')
+  req.flash('success', 'Rule 6 status approved')
   res.redirect('/projects/start-full-case/v4/rule-6-parties/'+req.params.id)
 })
 
@@ -782,7 +782,7 @@ router.post('/rule-6-parties/:id/withdraw/check', function (req, res) {
   if(party.status == 'Ready to review') {
     req.flash('success', 'Request for Rule 6 status withdrawn')
   } else {
-    req.flash('success', 'Rule 6 party withdrawn')
+    req.flash('success', 'Rule 6 status withdrawn')
   }
   party.status = 'Withdrawn'
   party.dateWithdrawn = new Date()
@@ -1138,7 +1138,7 @@ router.post('/rule-6-statements/:id/withdraw', function (req, res) {
   let party = application.rule6Parties.find(party => party.id == req.params.id)
   party.status = 'Withdrawn'
   party.dateWithdrawn = new Date()
-  req.flash('success', 'Rule 6 party withdrawn')
+  req.flash('success', 'Rule 6 status withdrawn')
   res.redirect('/projects/start-full-case/v4/rule-6-statements/'+req.params.id)
 })
 

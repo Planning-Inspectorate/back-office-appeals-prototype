@@ -1,0 +1,379 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Case details" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+
+
+
+{% block beforeContent %}
+
+
+
+{% set identityTitle %}
+    <span class="govuk-!-margin-right-1">Appeal 123456</span>
+    {# <b class="govuk-!-margin-right-1">{{name}}</b> #}
+    {{ govukTag({ text: application.status, classes: application.status | appealStatusColour }) }}
+  {% endset %}
+
+
+  {{ appIdentityBar({
+    title: {
+      html: identityTitle
+    },
+    menus: [{
+      items: [{
+        text: 'Review',
+        action: '#'
+      }]
+    }]
+  }) if 1==2}}
+{% endblock %}
+{% block content %}
+  {% set html %}
+      <p class="govuk-notification-banner__heading">
+        <a class="govuk-notification-banner__link" href="#">Review LPA questionnaire</a>
+      </p>
+    {% endset %}
+    {{ govukNotificationBanner({
+      html: html
+    }) }}
+
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">Appeal {{application.id}} {{ govukTag({
+      text: application.status,
+      classes: application.status | appealStatusColour
+    }) }}</h1>
+
+    {{ xGovukSecondaryNavigation({
+    visuallyHiddenTitle: "Secondary menu",
+    classes: 'govuk-!-margin-bottom-6',
+    items: [{
+      text: "Overview",
+      href: "#",
+      current: true
+    }, {
+      text: "Appeal",
+      href: "#"
+    }, {
+      text: "Questionnaire",
+      href: "#"
+    }, {
+      text: "Representations",
+      href: "#"
+    },
+    {
+      text: "Site visit",
+      href: "#"
+    },
+    {
+      text: "Notes",
+      href: "#"
+    },
+    {
+      text: "Activity",
+      href: "#"
+    }, {
+      text: "Documents",
+      href: "#"
+    }]
+  }) }}
+
+  <h1 class="govuk-heading-l">
+    Overview
+</h1>
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h2 class="govuk-visually-hidden"> Case overview </h2>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Site address"
+            },
+            value: {
+              text: application.site.address.line1
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Site address"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Type"
+            },
+            value: {
+              text: application.type
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Procedure"
+            },
+            value: {
+              text: application.procedure
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Allocation"
+            },
+            value: {
+              text: 'F / General allocation'
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Linked appeals"
+            },
+            value: {
+              html: '<a href="#">21/725284</a>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Related appeals"
+            },
+            value: {
+              html: '<a href="#">21/725284</a>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">Timetable</h2>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Item label"
+            },
+            value: {
+              text: "Item value"
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Item label"
+            },
+            value: {
+              text: "Item value"
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Item label"
+            },
+            value: {
+              text: "Item value"
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">Contacts</h2>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Item label"
+            },
+            value: {
+              text: "Item value"
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Item label"
+            },
+            value: {
+              text: "Item value"
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Item label"
+            },
+            value: {
+              text: "Item value"
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">Team members</h2>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Item label"
+            },
+            value: {
+              text: "Item value"
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Item label"
+            },
+            value: {
+              text: "Item value"
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Item label"
+            },
+            value: {
+              text: "Item value"
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">Withdraw appeal</h2>
+
+
+      <p><a href="#">Withdraw</a></p>
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -26,6 +26,13 @@ router.get('/case-details', function (req, res) {
   })
 })
 
+router.get('/appeals/:appealId', function (req, res) {
+  let application = req.session.data.applications.find(application => application.id == req.params.appealId)
+  res.render('/projects/start-full-case/v4/show/index', {
+    application
+  })
+})
+
 //
 // CASE LIST
 //

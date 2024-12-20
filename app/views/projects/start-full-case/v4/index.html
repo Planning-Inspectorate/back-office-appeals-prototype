@@ -25,7 +25,7 @@
           {% for item in applications %}
             <div class="app-list__item">
               <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
-                <a href="case-details" class="govuk-link--no-visited-state">{{item.id}}</a>
+                <a href="/projects/start-full-case/v4/appeals/{{item.id}}" class="govuk-link--no-visited-state">{{item.id}}</a>
                 {{ govukTag({ text: item.status, classes: item.status | appealStatusColour + ' app-list__tag--top-right' }) }}
               </h2>
               {# <p class="govuk-!-margin-bottom-1">{{item.appellant.firstName}} {{item.appellant.lastName}}</p> #}

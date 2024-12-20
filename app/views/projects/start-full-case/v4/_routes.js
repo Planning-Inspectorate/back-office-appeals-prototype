@@ -33,6 +33,62 @@ router.get('/appeals/:appealId', function (req, res) {
   })
 })
 
+router.get('/appeals/:appealId/appeal', function (req, res) {
+  let application = req.session.data.applications.find(application => application.id == req.params.appealId)
+  res.render('/projects/start-full-case/v4/show/appeal', {
+    application
+  })
+})
+
+router.get('/appeals/:appealId/questionnaire', function (req, res) {
+  let application = req.session.data.applications.find(application => application.id == req.params.appealId)
+  res.render('/projects/start-full-case/v4/show/questionnaire', {
+    application
+  })
+})
+
+router.get('/appeals/:appealId/representations', function (req, res) {
+  let application = req.session.data.applications.find(application => application.id == req.params.appealId)
+  res.render('/projects/start-full-case/v4/show/representations', {
+    application
+  })
+})
+
+router.get('/appeals/:appealId/site-visit', function (req, res) {
+  let application = req.session.data.applications.find(application => application.id == req.params.appealId)
+  res.render('/projects/start-full-case/v4/show/site-visit', {
+    application
+  })
+})
+
+router.get('/appeals/:appealId/notes', function (req, res) {
+  let application = req.session.data.applications.find(application => application.id == req.params.appealId)
+  res.render('/projects/start-full-case/v4/show/notes', {
+    application
+  })
+})
+
+router.get('/appeals/:appealId/activity', function (req, res) {
+  let application = req.session.data.applications.find(application => application.id == req.params.appealId)
+  res.render('/projects/start-full-case/v4/show/activity', {
+    application
+  })
+})
+
+router.get('/appeals/:appealId/documents', function (req, res) {
+  let application = req.session.data.applications.find(application => application.id == req.params.appealId)
+  res.render('/projects/start-full-case/v4/show/documents', {
+    application
+  })
+})
+
+router.get('/appeals/:appealId/inquiry', function (req, res) {
+  let application = req.session.data.applications.find(application => application.id == req.params.appealId)
+  res.render('/projects/start-full-case/v4/show/inquiry', {
+    application
+  })
+})
+
 //
 // CASE LIST
 //

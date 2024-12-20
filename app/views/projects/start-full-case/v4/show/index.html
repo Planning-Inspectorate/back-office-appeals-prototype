@@ -1,7 +1,8 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Case details" %}
-{% set pageName = title + ' - Planning Inspectorate'%}
+{% set title = "Overview" %}
+{% set pageName = title %}
+{% set navId = 'overview' %}
 
 
 
@@ -30,57 +31,18 @@
   }) if 1==2}}
 {% endblock %}
 {% block content %}
-  {% set html %}
-      <p class="govuk-notification-banner__heading">
-        <a class="govuk-notification-banner__link" href="#">Review LPA questionnaire</a>
-      </p>
-    {% endset %}
-    {{ govukNotificationBanner({
-      html: html
-    }) }}
+  {% include "/projects/start-full-case/v4/_includes/prompt.html" %}
 
-    <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">Appeal {{application.id}} {{ govukTag({
-      text: application.status,
-      classes: application.status | appealStatusColour
-    }) }}</h1>
+  <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">Appeal {{application.id}} {{ govukTag({
+    text: application.status,
+    classes: application.status | appealStatusColour
+  }) }}</h1>
 
-    {{ xGovukSecondaryNavigation({
-    visuallyHiddenTitle: "Secondary menu",
-    classes: 'govuk-!-margin-bottom-6',
-    items: [{
-      text: "Overview",
-      href: "#",
-      current: true
-    }, {
-      text: "Appeal",
-      href: "#"
-    }, {
-      text: "Questionnaire",
-      href: "#"
-    }, {
-      text: "Representations",
-      href: "#"
-    },
-    {
-      text: "Site visit",
-      href: "#"
-    },
-    {
-      text: "Notes",
-      href: "#"
-    },
-    {
-      text: "Activity",
-      href: "#"
-    }, {
-      text: "Documents",
-      href: "#"
-    }]
-  }) }}
+  {% include "/projects/start-full-case/v4/_includes/nav.html" %}
 
   <h1 class="govuk-heading-l">
     Overview
-</h1>
+  </h1>
 
 
   <div class="govuk-grid-row">

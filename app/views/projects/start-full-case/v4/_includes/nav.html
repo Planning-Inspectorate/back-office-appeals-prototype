@@ -22,7 +22,7 @@
         text: "Site visit",
         href: '/projects/start-full-case/v4/appeals/:id/site-visit' | replace(':id', application.id),
         current: navId == 'siteVisit'
-      },
+      } if application.procedure == 'Written representations',
       {
         text: "Inquiry",
         href: '/projects/start-full-case/v4/appeals/:id/inquiry' | replace(':id', application.id),

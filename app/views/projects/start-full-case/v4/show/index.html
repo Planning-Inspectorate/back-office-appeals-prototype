@@ -5,45 +5,14 @@
 {% set navId = 'overview' %}
 
 
-
-
-{% block beforeContent %}
-
-
-
-{% set identityTitle %}
-    <span class="govuk-!-margin-right-1">Appeal 123456</span>
-    {# <b class="govuk-!-margin-right-1">{{name}}</b> #}
-    {{ govukTag({ text: application.status, classes: application.status | appealStatusColour }) }}
-  {% endset %}
-
-
-  {{ appIdentityBar({
-    title: {
-      html: identityTitle
-    },
-    menus: [{
-      items: [{
-        text: 'Review',
-        action: '#'
-      }]
-    }]
-  }) if 1==2}}
-{% endblock %}
 {% block content %}
   {% include "/projects/start-full-case/v4/_includes/prompt.html" %}
-
-  <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">Appeal {{application.id}} {{ govukTag({
-    text: application.status,
-    classes: application.status | appealStatusColour
-  }) }}</h1>
-
+  {% include "/projects/start-full-case/v4/_includes/h1.html" %}
   {% include "/projects/start-full-case/v4/_includes/nav.html" %}
 
   <h1 class="govuk-heading-l">
     Overview
   </h1>
-
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">

@@ -66,6 +66,13 @@
   {% endif %}
 {% endset %}
 
-{{ govukNotificationBanner({
-  html: html
-}) if showBanner }}
+{% if showBanner %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ govukNotificationBanner({
+        html: html
+      }) }}
+    </div>
+  </div>
+{% endif %}
+

@@ -26,6 +26,12 @@
 
     <div class="govuk-grid-column-full">
 
+      {{ govukButton({
+        text: "Add document",
+        href: "upload-document",
+        classes: "govuk-button--secondary"
+      }) }}
+
       {{ govukTable({
 
         firstCellIsHeader: true,
@@ -77,10 +83,6 @@
           ]
         ]
       }) }}
-
-      <p class="govuk-body">
-        <a href="upload-document" class="govuk-link">Add document</a>
-      </p>
 
     </div>
   </div>

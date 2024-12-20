@@ -11,9 +11,20 @@
 
     <!-- Page heading -->
     <span class="govuk-caption-l">Appeal 2114328</span>
+    <h1 class="govuk-heading-l">
+      {{ title }}
+    </h1>
+
+    {{ govukButton({
+      text: "Add a document",
+      href: "upload-document",
+      classes: "govuk-button--secondary"
+    }) }}
+
+
     {{ govukTable({
       caption: title,
-      captionClasses: "govuk-table__caption--l",
+      captionClasses: "govuk-visually-hidden",
       firstCellIsHeader: false,
       head: [
         {
@@ -62,12 +73,6 @@
         ]
       ]
     }) }}
-
-    <p class="govuk-body">
-      <a href="" class="govuk-link govuk-link--no-visited-state">
-        Add a document
-      </a>
-    </p>
 
   </div>
 </div>

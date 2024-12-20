@@ -14,11 +14,11 @@
       {{ title }}
     </h1>
 
-    <p class="govuk-body">
-      <a href="" class="govuk-link govuk-link--no-visited-state">
-        Add a document
-      </a>
-    </p>
+    {{ govukButton({
+      text: "Add a document",
+      href: "upload-document",
+      classes: "govuk-button--secondary"
+    }) }}
 
     {{ govukTable({
       caption: "Documents",

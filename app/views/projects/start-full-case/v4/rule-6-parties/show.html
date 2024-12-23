@@ -38,13 +38,14 @@
         text: flash
       }) if flash.length }}
 
-      <h1 class="govuk-heading-l">
+      <h1 class="govuk-heading-l govuk-!-margin-bottom-3">
         {{title}}
-        {{ govukTag({
-          text: party.status,
-          classes: party.status | rule6StatusColour
-        }) }}
+
       </h1>
+      {{ govukTag({
+        text: party.status,
+        classes: 'govuk-!-margin-bottom-6 '+ party.status | rule6StatusColour
+      }) }}
 
       {% set promptHtml %}
         {% if party.status == 'Ready to review' %}

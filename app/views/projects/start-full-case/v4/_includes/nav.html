@@ -17,7 +17,22 @@
         text: "Representations",
         href: '/projects/start-full-case/v4/appeals/:id/representations' | replace(':id', application.id),
         current: navId == 'representations'
+      } if 1==2,
+      {
+        text: "Statements",
+        href: '/projects/start-full-case/v4/appeals/:id/representations' | replace(':id', application.id),
+        current: navId == 'statements'
       },
+      {
+        text: "IP comments",
+        href: '/projects/start-full-case/v4/appeals/:id/representations' | replace(':id', application.id),
+        current: navId == 'ipComments'
+      },
+      {
+        text: "Final comments",
+        href: '/projects/start-full-case/v4/appeals/:id/representations' | replace(':id', application.id),
+        current: navId == 'finalComments'
+      } if application.procedure == 'Written representations',
       {
         text: "Site visit",
         href: '/projects/start-full-case/v4/appeals/:id/site-visit' | replace(':id', application.id),
@@ -29,6 +44,11 @@
         current: navId == 'inquiry'
       } if application.procedure == 'Inquiry',
       {
+        text: "Documents",
+        href: '/projects/start-full-case/v4/appeals/:id/documents' | replace(':id', application.id),
+        current: navId == 'documents'
+      },
+      {
         text: "Notes",
         href: '/projects/start-full-case/v4/appeals/:id/notes' | replace(':id', application.id),
         current: navId == 'notes'
@@ -37,9 +57,5 @@
         text: "Activity",
         href: '/projects/start-full-case/v4/appeals/:id/activity' | replace(':id', application.id),
         current: navId == 'activity'
-      }, {
-        text: "Documents",
-        href: '/projects/start-full-case/v4/appeals/:id/documents' | replace(':id', application.id),
-        current: navId == 'documents'
       }]
     }) }}

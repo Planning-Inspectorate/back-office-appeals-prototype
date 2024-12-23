@@ -3,14 +3,14 @@
 {% set title = "Appeal" %}
 {% set pageName = title %}
 {% set navId = 'appeal' %}
-
+{% set back = false %}
 {% block content %}
   {% include "/projects/start-full-case/v4/_includes/prompt.html" %}
   {% include "/projects/start-full-case/v4/_includes/h1.html" %}
   {% include "/projects/start-full-case/v4/_includes/nav.html" %}
 
   <h1 class="govuk-heading-l"> {{title}} </h1>
-<div class="govuk-grid-row">
+  <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 {# <p class="govuk-body">
   Appellant case received {{ 7 | daysAgo }} <br><a href="#" class="govuk-link">Change</a>

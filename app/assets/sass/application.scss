@@ -3,7 +3,7 @@
 // https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images
 //
 
-$govuk-page-width: 1220px;
+
 
 @import "PINS-header";
 @import "pins/pins_tables";
@@ -27,6 +27,10 @@ $govuk-page-width: 1220px;
 // Add extra styles here
 
 $govuk-font-family: Helvetica, Arial, sans-serif;
+
+.x-govuk-secondary-navigation__list-item {
+	margin-right: 15px;
+}
 
 .app-break-word {
 	word-break: break-word;

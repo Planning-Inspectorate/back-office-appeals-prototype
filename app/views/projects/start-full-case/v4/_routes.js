@@ -47,9 +47,23 @@ router.get('/appeals/:appealId/questionnaire', function (req, res) {
   })
 })
 
-router.get('/appeals/:appealId/representations', function (req, res) {
+router.get('/appeals/:appealId/statements', function (req, res) {
   let application = req.session.data.applications.find(application => application.id == req.params.appealId)
-  res.render('/projects/start-full-case/v4/show/representations', {
+  res.render('/projects/start-full-case/v4/show/statements', {
+    application
+  })
+})
+
+router.get('/appeals/:appealId/ip-comments', function (req, res) {
+  let application = req.session.data.applications.find(application => application.id == req.params.appealId)
+  res.render('/projects/start-full-case/v4/show/ip-comments', {
+    application
+  })
+})
+
+router.get('/appeals/:appealId/final-comments', function (req, res) {
+  let application = req.session.data.applications.find(application => application.id == req.params.appealId)
+  res.render('/projects/start-full-case/v4/show/final-comments', {
     application
   })
 })
@@ -78,6 +92,13 @@ router.get('/appeals/:appealId/activity', function (req, res) {
 router.get('/appeals/:appealId/documents', function (req, res) {
   let application = req.session.data.applications.find(application => application.id == req.params.appealId)
   res.render('/projects/start-full-case/v4/show/documents', {
+    application
+  })
+})
+
+router.get('/appeals/:appealId/hearing', function (req, res) {
+  let application = req.session.data.applications.find(application => application.id == req.params.appealId)
+  res.render('/projects/start-full-case/v4/show/hearing', {
     application
   })
 })

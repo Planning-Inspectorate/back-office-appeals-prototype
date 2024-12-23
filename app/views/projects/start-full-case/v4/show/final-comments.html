@@ -1,8 +1,8 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Documents" %}
+{% set title = "Final comments" %}
 {% set pageName = title %}
-{% set navId = 'documents' %}
+{% set navId = 'finalComments' %}
 {% set back = false %}
 
 {% block content %}
@@ -20,16 +20,16 @@
         rows: [
           {
             key: {
-              text: "Cross-team correspondence"
+              text: "Appellant final comments"
             },
             value: {
-              html: '0 documents'
+              html: govukTag({ text: "Ready to review" })
             },
             actions: {
               items: [
                 {
                   href: "#",
-                  text: "Change",
+                  text: "Review",
                   visuallyHiddenText: "LPA"
                 }
               ]
@@ -37,50 +37,16 @@
           },
           {
             key: {
-              text: "Inspector correspondence"
+              text: "LPA final comments"
             },
             value: {
-              text: "3 documents"
+              html: govukTag({ text: "Ready to review" })
             },
             actions: {
               items: [
                 {
                   href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "Item label"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Costs"
-            },
-            value: {
-              text: "1 documents"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "Item label"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Supporting documents"
-            },
-            value: {
-              text: "3 documents"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
+                  text: "Review",
                   visuallyHiddenText: "Item label"
                 }
               ]

@@ -3,7 +3,7 @@
 {% set title = "Site visit" %}
 {% set pageName = title %}
 {% set navId = 'siteVisit' %}
-
+{% set back = false %}
 
 {% block content %}
   {% include "/projects/start-full-case/v4/_includes/prompt.html" %}
@@ -15,6 +15,16 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: 'Set up site visit',
+          classes: 'govuk-button--secondar',
+          href: '/projects/start-full-case/v4/add-inquiry'
+        }) }}
+      </div>
+
+      {# <p class="govuk-body">Need a way to show site details together with details of the visit. Does this become “Site”?</p> #}
 
 
 

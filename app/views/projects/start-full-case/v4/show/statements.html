@@ -1,8 +1,8 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Documents" %}
+{% set title = "Statements" %}
 {% set pageName = title %}
-{% set navId = 'documents' %}
+{% set navId = 'statements' %}
 {% set back = false %}
 
 {% block content %}
@@ -12,24 +12,22 @@
 
   <h1 class="govuk-heading-l"> {{title}} </h1>
 
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
       {{ govukSummaryList({
         rows: [
           {
             key: {
-              text: "Cross-team correspondence"
+              text: "LPA statement"
             },
             value: {
-              html: '0 documents'
+              html: govukTag({ text: "Ready to review" })
             },
             actions: {
               items: [
                 {
                   href: "#",
-                  text: "Change",
+                  text: "Review",
                   visuallyHiddenText: "LPA"
                 }
               ]
@@ -37,55 +35,21 @@
           },
           {
             key: {
-              text: "Inspector correspondence"
+              text: "Rule 6 statements"
             },
             value: {
-              text: "3 documents"
+              text: "2 Rule 6 statements"
             },
             actions: {
               items: [
                 {
                   href: "#",
-                  text: "Change",
+                  text: "Review",
                   visuallyHiddenText: "Item label"
                 }
               ]
             }
-          },
-          {
-            key: {
-              text: "Costs"
-            },
-            value: {
-              text: "1 documents"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "Item label"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Supporting documents"
-            },
-            value: {
-              text: "3 documents"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "Item label"
-                }
-              ]
-            }
-          }
+          } if application.procedure == 'Inquiry'
         ]
       }) }}
 

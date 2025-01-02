@@ -1,7 +1,6 @@
 {% extends "layouts/PINS-Simple.html" %}
 
-{% set title = "Start S78 case" %}
-{% set pageName = title + ' - Planning Inspectorate'%}
+{% set title = "S78 case, procedure type, new nav" %}
 
 {% set back = true %}
 
@@ -16,10 +15,29 @@
         S78 appeals have 3 different appeal procedures: written reps, hearings and inquiries. This is about asking users to specific which one it is when they start a case.
       </p>
 
-      <h2 class="govuk-heading-m">Version 4
+      <h2 class="govuk-heading-m">Version 5
         {{govukTag({
           text: "In progress",
           classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+        })}}
+      </h2>
+
+      <p>Nav</p>
+
+      {{ govukButton({
+        text: "View prototype",
+        isStartButton: true,
+        href: '/projects/start-full-case/v4/'
+      }) }}
+
+      <p><a href="/projects/start-full-case/v4/index-mvp" class="govuk-link">Consolidated statuses</a></p>
+      <p><a href="/projects/start-full-case/v4/index-ideal" class="govuk-link">Granular statuses</a></p>
+      <p><a href="/projects/start-full-case/v4/index-another" class="govuk-link">Consolidated with action statuses</a></p>
+
+      <h2 class="govuk-heading-m">Version 4
+        {{govukTag({
+          text: "Done",
+          classes: "govuk-!-margin-left-2 govuk-tag--yello"
         })}}
       </h2>
 
@@ -31,7 +49,7 @@
         href: '/projects/start-full-case/v4/case-details.html'
       }) }}
 
-      <p><a href="/projects/start-full-case/v4/" class="govuk-link">Case details</a></p>
+
 
       <h2 class="govuk-heading-m">Version 3
         {{govukTag({

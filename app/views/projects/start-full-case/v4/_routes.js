@@ -49,8 +49,10 @@ router.get('/appeals/:appealId/questionnaire', function (req, res) {
 
 router.get('/appeals/:appealId/statements', function (req, res) {
   let application = req.session.data.applications.find(application => application.id == req.params.appealId)
+  let rule6Statements = application.rule6Parties.filter(party => party.statement)
   res.render('/projects/start-full-case/v4/show/statements', {
-    application
+    application,
+    rule6Statements
   })
 })
 

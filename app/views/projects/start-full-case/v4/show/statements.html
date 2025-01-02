@@ -14,6 +14,17 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
+      {{rule6Statements | log}}
+
+      {% if rule6Statements.length == 1 %}
+        {% set statementText = rule6Statements.length + ' statement' %}
+      {% elseif rule6Statements.length > 1 %}
+        {% set statementText = rule6Statements.length + ' statements' %}
+      {% else %}
+        {% set statementText = 'No statements' %}
+      {% endif %}
+
       {{ govukSummaryList({
         rows: [
           {
@@ -21,7 +32,7 @@
               text: "LPA statement"
             },
             value: {
-              html: govukTag({ text: "Ready to review" })
+              html: 'Ready to review'
             },
             actions: {
               items: [
@@ -38,12 +49,12 @@
               text: "Rule 6 statements"
             },
             value: {
-              text: "2 Rule 6 statements"
+              text: statementText
             },
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "/projects/start-full-case/v4/rule-6-statements",
                   text: "Review",
                   visuallyHiddenText: "Item label"
                 }

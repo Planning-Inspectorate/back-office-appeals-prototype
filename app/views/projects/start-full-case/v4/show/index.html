@@ -124,24 +124,79 @@
           },
           {
             key: {
-              text: "Does this appeal have costs?"
+              text: "Costs"
             },
             value: {
-              text: 'Yes'
+              html: '<a href="#">Appellant costs application</a><br><a href="#">LPA costs application</a>'
+            }
+          }
+        ]
+      }) }}
+      <h2 class="govuk-heading-m govuk-!-margin-top-7">Timetable</h2>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Start date"
+            },
+            value: {
+              text: "19 December 2024"
             },
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "Item URL",
                   text: "Change",
-                  visuallyHiddenText: "Site address"
+                  visuallyHiddenText: "Item label"
                 }
               ]
             }
           },
           {
             key: {
-              text: "Team email address"
+              text: "LPAQ due date"
+            },
+            value: {
+              text: "1 January 2025"
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "IP comments due date"
+            },
+            value: {
+              text: "31 December 2024"
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-7">Team</h2>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Email address"
             },
             value: {
               html: 'sharedmailbox@thing.com'
@@ -193,7 +248,7 @@
         ]
       }) }}
 
-      <h2 class="govuk-heading-m">Appellant</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-7">Appellant</h2>
 
       {{ govukSummaryList({
         rows: [
@@ -251,7 +306,7 @@
         ]
       }) }}
 
-      <h2 class="govuk-heading-m">Agent</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-7">Agent</h2>
 
       {{ govukSummaryList({
         rows: [
@@ -311,7 +366,7 @@
 
       {% if application.procedure == 'Inquiry' %}
 
-        <h2 class="govuk-heading-m">Rule 6 parties</h2>
+        <h2 class="govuk-heading-m govuk-!-margin-top-7">Rule 6 parties</h2>
 
         {{ govukSummaryList({
           rows: [
@@ -320,7 +375,7 @@
                 text: "Rule 6 parties"
               },
               value: {
-                text: "2 Rule 6 parties"
+                text: "6 parties"
               },
               actions: {
                 items: [
@@ -336,65 +391,7 @@
         }) }}
       {% endif %}
 
-      <h2 class="govuk-heading-m">Timetable (Billie: make separate page, highlight next important date above the nav)</h2>
-
-      {{ govukSummaryList({
-        rows: [
-          {
-            key: {
-              text: "Start date"
-            },
-            value: {
-              text: "19 December 2024"
-            },
-            actions: {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Change",
-                  visuallyHiddenText: "Item label"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "LPAQ due date"
-            },
-            value: {
-              text: "1 January 2025"
-            },
-            actions: {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Change",
-                  visuallyHiddenText: "Item label"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "IP comments due date"
-            },
-            value: {
-              text: "31 December 2024"
-            },
-            actions: {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Change",
-                  visuallyHiddenText: "Item label"
-                }
-              ]
-            }
-          }
-        ]
-      }) }}
-
-      <h2 class="govuk-heading-m">Withdraw appeal</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-7">Withdraw appeal</h2>
 
 
       <p><a href="#">Withdraw</a></p>

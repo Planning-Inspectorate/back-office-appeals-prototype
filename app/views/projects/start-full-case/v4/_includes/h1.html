@@ -1,12 +1,15 @@
 
 
-<span class="govuk-caption-xl">{{application.site.address.line1}} - {{application.lpa.name}}</span>
+<span class="govuk-caption-xl">
+  {{appAddress({address: application.site.address, delimiter: ','})}}
+   {# - {{application.lpa.name }} #}
+</span>
 
-<h1 class="govuk-heading-xl govuk-!-margin-bottom-3">Appeal {{application.id}}</h1>
-  {{ govukTag({
+<h1 class="govuk-heading-xl govuk-!-margin-bottom-3">Appeal {{application.id}} {{ govukTag({
     text: application.status,
     classes: 'govuk-!-margin-bottom-6 ' + application.status | appealStatusColour
-  }) }}
+  }) }}</h1>
+
 
 {# <p>Billie says potentch put tag next to h1</p> #}
 

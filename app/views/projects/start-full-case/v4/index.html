@@ -36,7 +36,7 @@
                   ({{item.procedure}})
                 {% endif %}
               </p>
-              <p class="govuk-!-margin-bottom-1">{{appAddress({address: item.site.address, delimiter: ',' })}} ({{item.lpa.name}})</p>
+              <p class="govuk-!-margin-bottom-1">{{appAddress({address: item.site.address, delimiter: ',' })}}</p>
               {% if item.status == 'Awaiting LPAQ'
                 or item.status == 'Awaiting statements and IP comments'
                 or item.status == 'Awaiting final comments'

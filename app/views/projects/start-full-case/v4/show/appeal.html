@@ -10,353 +10,336 @@
   {% include "/projects/start-full-case/v4/_includes/nav.html" %}
 
   <h1 class="govuk-heading-l"> {{title}} </h1>
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-{# <p class="govuk-body">
-  Appellant case received {{ 7 | daysAgo }} <br><a href="#" class="govuk-link">Change</a>
-</p> #}
+      {# <p class="govuk-body">
+        Appellant case received {{ 7 | daysAgo }} <br><a href="#" class="govuk-link">Change</a>
+      </p> #}
 
-{{ govukSummaryList({
-  card: {
-    title: {
-      text: "1. The appellant"
-    }
-  },
-  rows: [
-    {
-      key: {
-        text: "Name"
-      },
-      value: {
-        html: "Jane Doe"
-      },
-      actions: {
-          items: [
-            {
-              href: "#",
-              text: "Change",
-              visuallyHiddenText: "name"
-            }
-          ]
-        }
-    },
-    {
-      key: {
-        text: "Another individual"
-      },
-      value: {
-        html: "UK national resident in UK"
-      },
-      actions: {
-          items: [
-            {
-              href: "#",
-              text: "Change",
-              visuallyHiddenText: "Another individual"
-            }
-          ]
-        }
-    },
-    {
-      key: {
-        text: "Application reference"
-      },
-      value: {
-        html: "ABC123456"
-      },
-      actions: {
-          items: [
-            {
-              href: "#",
-              text: "Change",
-              visuallyHiddenText: "Application reference"
-            }
-          ]
-        }
-    }
-  ]
-}) }}
+      <h2 class="govuk-heading-m govuk-!-margin-top-4">1. The appellant</h2>
 
-{{ govukSummaryList({
-  card: {
-    title: {
-      text: "2. The appeal site"
-    }
-  },
-  rows: [
-    {
-      key: {
-        text: "Site address"
-      },
-      value: {
-        html: "21 The pavement, Wandsworth, SW4 0HY"
-      },
-      actions: {
-          items: [
-            {
-              href: "#",
-              text: "Change",
-              visuallyHiddenText: "Another individual"
-            }
-          ]
-        }
-    },
-    {
-      key: {
-        text: "Site fully owned"
-      },
-      value: {
-        html: "No"
-      },
-      actions: {
-          items: [
-            {
-              href: "#",
-              text: "Change",
-              visuallyHiddenText: "Another individual"
-            }
-          ]
-        }
-    },
-    {
-      key: {
-        text: "Site partially owned"
-      },
-      value: {
-        html: "Yes"
-      },
-      actions: {
-          items: [
-            {
-              href: "#",
-              text: "Change",
-              visuallyHiddenText: "Another individual"
-            }
-          ]
-        }
-    },
-    {
-      key: {
-        text: "All owners known"
-      },
-      value: {
-        html: "No"
-      },
-      actions: {
-          items: [
-            {
-              href: "#",
-              text: "Change",
-              visuallyHiddenText: "Another individual"
-            }
-          ]
-        }
-    },
-    {
-      key: {
-        text: "Attempted to identify owners"
-      },
-      value: {
-        html: "Yes"
-      },
-      actions: {
-          items: [
-            {
-              href: "#",
-              text: "Change",
-              visuallyHiddenText: "Another individual"
-            }
-          ]
-        }
-    },
-    {
-      key: {
-        text: "Advertised appeal"
-      },
-      value: {
-        html: "No"
-      },
-      actions: {
-          items: [
-            {
-              href: "#",
-              text: "Change",
-              visuallyHiddenText: "Another individual"
-            }
-          ]
-        }
-    },
-    {
-      key: {
-        text: "Visibility"
-      },
-      value: {
-        html: "No"
-      },
-      actions: {
-          items: [
-            {
-              href: "#",
-              text: "Change",
-              visuallyHiddenText: "Another individual"
-            }
-          ]
-        }
-    },
-    {
-      key: {
-        text: "Site health and safety issuer"
-      },
-      value: {
-        html: "Yes"
-      },
-      actions: {
-          items: [
-            {
-              href: "#",
-              text: "Change",
-              visuallyHiddenText: "Another individual"
-            }
-          ]
-        }
-    }
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Name"
+            },
+            value: {
+              html: "Jane Doe"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "name"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Another individual"
+            },
+            value: {
+              html: "UK national resident in UK"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "Another individual"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Application reference"
+            },
+            value: {
+              html: "ABC123456"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "Application reference"
+                  }
+                ]
+              }
+          }
+        ]
+      }) }}
 
-  ]
-}) }}
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">2. The appeal site</h2>
 
-{{ govukSummaryList({
-  card: {
-    title: {
-      text: "3. The appeal"
-    }
-  },
-  rows: [
-    {
-      key: {
-        text: "Application form known"
-      },
-      value: {
-        html: "<a href='#'>application-form.pdf</a>"
-      },
-      actions: {
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Site address"
+            },
+            value: {
+              html: "21 The pavement, Wandsworth, SW4 0HY"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "Another individual"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Site fully owned"
+            },
+            value: {
+              html: "No"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "Another individual"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Site partially owned"
+            },
+            value: {
+              html: "Yes"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "Another individual"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "All owners known"
+            },
+            value: {
+              html: "No"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "Another individual"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Attempted to identify owners"
+            },
+            value: {
+              html: "Yes"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "Another individual"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Advertised appeal"
+            },
+            value: {
+              html: "No"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "Another individual"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Visibility"
+            },
+            value: {
+              html: "No"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "Another individual"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Site health and safety issuer"
+            },
+            value: {
+              html: "Yes"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "Another individual"
+                  }
+                ]
+              }
+          }
+
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">3. The appeal</h2>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Application form known"
+            },
+            value: {
+              html: "<a href='#'>application-form.pdf</a>"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "Another individual"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Decision letter"
+            },
+            value: {
+              html: "<a href='#'>decision-letter.pdf</a>"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "Another individual"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Appeal statement"
+            },
+            value: {
+              html: "<a href='#'>application-statement.pdf</a>"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "Another individual"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Add new supporting documents"
+            },
+            value: {
+              html: "Yes"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "Another individual"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "New supporting documents"
+            },
+            value: {
+              html: "<a href='#'>other.pdf</a>"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "Another individual"
+                  }
+                ]
+              }
+          }
+        ]
+      }) }}
+
+      <form action="/appellant-outcome" method="post" class="govuk-!-margin-top-9" novalidate>
+        {{ govukRadios({
+          name: "appelant-outcome",
+          fieldset: {
+            legend: {
+              text: "What is the outcome of your review?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
           items: [
             {
-              href: "#",
-              text: "Change",
-              visuallyHiddenText: "Another individual"
-            }
-          ]
-        }
-    },
-    {
-      key: {
-        text: "Decision letter"
-      },
-      value: {
-        html: "<a href='#'>decision-letter.pdf</a>"
-      },
-      actions: {
-          items: [
+              value: "valid~/projects/appellant-case/valid/",
+              text: "Valid"
+            },
             {
-              href: "#",
-              text: "Change",
-              visuallyHiddenText: "Another individual"
-            }
-          ]
-        }
-    },
-    {
-      key: {
-        text: "Appeal statement"
-      },
-      value: {
-        html: "<a href='#'>application-statement.pdf</a>"
-      },
-      actions: {
-          items: [
+              value: "invalid~/projects/appellant-case/invalid",
+              text: "Invalid"
+            },
             {
-              href: "#",
-              text: "Change",
-              visuallyHiddenText: "Another individual"
+              value: "complete~/projects/appellant-case/incomplete",
+              text: "Incomplete"
             }
           ]
-        }
-    },
-    {
-      key: {
-        text: "Add new supporting documents"
-      },
-      value: {
-        html: "Yes"
-      },
-      actions: {
-          items: [
-            {
-              href: "#",
-              text: "Change",
-              visuallyHiddenText: "Another individual"
-            }
-          ]
-        }
-    },
-    {
-      key: {
-        text: "New supporting documents"
-      },
-      value: {
-        html: "<a href='#'>other.pdf</a>"
-      },
-      actions: {
-          items: [
-            {
-              href: "#",
-              text: "Change",
-              visuallyHiddenText: "Another individual"
-            }
-          ]
-        }
-    }
-  ]
-}) }}
-
-<form action="/appellant-outcome" method="post" class="govuk-!-margin-top-9" novalidate>
-
-  <!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
-
-    {{ govukRadios({
-      name: "appelant-outcome",
-      fieldset: {
-        legend: {
-          text: "What is the outcome of your review?",
-          isPageHeading: true,
-          classes: "govuk-fieldset__legend--m"
-        }
-      },
-      items: [
-        {
-          value: "valid~/projects/appellant-case/valid/",
-          text: "Valid"
-        },
-        {
-          value: "invalid~/projects/appellant-case/invalid",
-          text: "Invalid"
-        },
-        {
-          value: "complete~/projects/appellant-case/incomplete",
-          text: "Incomplete"
-        }
-      ]
-    }) }}
-
-    {{ govukButton({
-      text: "Continue"
-    }) }}
-
-</form>
-
-
-
+        }) }}
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
     </div>
   </div>
-
 {% endblock %}

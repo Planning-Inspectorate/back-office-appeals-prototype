@@ -151,3 +151,50 @@ addFilter('appealStatusColour', status => {
 	}
 })
 
+addFilter('appealStatusColourAlternative', status => {
+	if(status.indexOf('Awaiting') > -1) {
+		return 'govuk-tag--yellow'
+	}
+	if(status == 'Decision issued') {
+		return 'govuk-tag--green'
+	}
+})
+
+addFilter('appealStatusText', status => {
+	if(status == 'Awaiting LPAQ') {
+		return 'LPAQ'
+	}
+	if(status == 'LPAQ ready to review') {
+		return 'LPAQ'
+	}
+	if(status == 'Awaiting statements and IP comments') {
+		return 'Statements and IP comments'
+	}
+	if(status == 'Statements and IP comments ready to review') {
+		return 'Statements and IP comments'
+	}
+	if(status == 'Statements and IP comments ready to share') {
+		return 'Statements and IP comments'
+	}
+	if(status == 'Awaiting final comments') {
+		return 'Final comments'
+	}
+	if(status == 'Final comments ready to review') {
+		return 'Final comments'
+	}
+	if(status == 'Final comments ready to share') {
+		return 'Final comments'
+	}
+	if(status == 'Awaiting proof of evidence and witnesses') {
+		return 'Proof of evidence and witnesses'
+	}
+	if(status == 'Proof of evidence and witnesses ready to review') {
+		return 'Proof of evidence and witnesses'
+	}
+	if(status == 'Proof of evidence and witnesses ready to share') {
+		return 'Proof of evidence and witnesses'
+	}
+	return status
+
+})
+

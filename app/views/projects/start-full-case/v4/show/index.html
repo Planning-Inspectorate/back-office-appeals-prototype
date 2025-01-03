@@ -25,7 +25,7 @@
               text: "Site address"
             },
             value: {
-              text: application.site.address.line1
+              text: appAddress({address: application.site.address})
             },
             actions: {
               items: [
@@ -70,7 +70,7 @@
                 }
               ]
             }
-          },
+          } if application.procedure,
           {
             key: {
               text: "Allocation"
@@ -132,7 +132,7 @@
           }
         ]
       }) }}
-      <h2 class="govuk-heading-m govuk-!-margin-top-7">Timetable</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">Timetable</h2>
 
       {{ govukSummaryList({
         rows: [
@@ -190,7 +190,7 @@
         ]
       }) }}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-7">Team</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">Team</h2>
 
       {{ govukSummaryList({
         rows: [
@@ -248,7 +248,7 @@
         ]
       }) }}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-7">Appellant</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">Appellant</h2>
 
       {{ govukSummaryList({
         rows: [
@@ -306,7 +306,7 @@
         ]
       }) }}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-7">Agent</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">Agent</h2>
 
       {{ govukSummaryList({
         rows: [
@@ -366,7 +366,7 @@
 
       {% if application.procedure == 'Inquiry' %}
 
-        <h2 class="govuk-heading-m govuk-!-margin-top-7">Rule 6 parties</h2>
+        <h2 class="govuk-heading-m govuk-!-margin-top-8">Rule 6 parties</h2>
 
         {{ govukSummaryList({
           rows: [
@@ -391,7 +391,7 @@
         }) }}
       {% endif %}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-7">Withdraw appeal</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">Withdraw appeal</h2>
 
 
       <p><a href="#">Withdraw</a></p>

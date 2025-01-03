@@ -131,9 +131,10 @@
           {% if data['environmental-statement-added'] != 'Yes' %}
             {% set environmentalStatementWarning %}
               <p class="govuk-notification-banner__heading">
-                <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">
-                  Add environmental assessment</a>
+                The environmental services team needs to review the case.
               </p>
+              <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">
+                Add environmental statement or environmental screening</a>
             {% endset %}
             {{ govukNotificationBanner({
               html: environmentalStatementWarning
@@ -190,14 +191,13 @@
         <!-- Environmental assessment warning -->
         {% if data['check-environmental-statement'] == 'Yes' %}
           {% if data['environmental-statement-added'] != 'Yes' %}
-          
+
             {% set environmentalStatementWarning %}
               <p class="govuk-notification-banner__heading">
-                The case should have an environmental assessment.
-                <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">
-                  Add environmental assessment
-                </a>
+                The environmental services team needs to review the case.
               </p>
+              <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">
+                Add environmental statement or environmental screening</a>
             {% endset %}
 
             {{ govukNotificationBanner({

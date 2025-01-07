@@ -5,7 +5,7 @@
    {# - {{application.lpa.name }} #}
 </span>
 
-<h1 class="govuk-heading-xl govuk-!-margin-bottom-3">Appeal {{application.id}} {{ govukTag({
+<h1 class="govuk-heading-xl govuk-!-margin-bottom-3">{{application.id}} {{ govukTag({
     text: application.status,
     classes: 'govuk-!-margin-bottom-6 ' + application.status | appealStatusColour
   }) }}</h1>

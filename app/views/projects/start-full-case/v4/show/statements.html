@@ -15,14 +15,28 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {{rule6Statements | log}}
-
       {% if rule6Statements.length == 1 %}
         {% set statementText = rule6Statements.length + ' statement' %}
       {% elseif rule6Statements.length > 1 %}
         {% set statementText = rule6Statements.length + ' statements' %}
       {% else %}
         {% set statementText = 'No statements' %}
+      {% endif %}
+
+      {% if rule6Statements.length %}
+        {% set statementAction = {
+            href: "/projects/start-full-case/v4/rule-6-statements",
+            text: "Review",
+            visuallyHiddenText: "Item label"
+          }
+        %}
+      {% else %}
+        {% set statementAction = {
+            href: "/projects/start-full-case/v4/rule-6-statements",
+            text: "Add",
+            visuallyHiddenText: "Item label"
+          }
+        %}
       {% endif %}
 
       {{ govukSummaryList({
@@ -53,11 +67,7 @@
             },
             actions: {
               items: [
-                {
-                  href: "/projects/start-full-case/v4/rule-6-statements",
-                  text: "Review",
-                  visuallyHiddenText: "Item label"
-                }
+                statementAction
               ]
             }
           } if application.procedure == 'Inquiry'

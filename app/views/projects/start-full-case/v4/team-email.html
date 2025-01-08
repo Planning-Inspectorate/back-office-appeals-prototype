@@ -1,0 +1,63 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Case teams" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = true %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Manage case teams</span>
+	  <form method="post">
+
+      {{ govukRadios({
+        name: "caseTeam",
+        fieldset: {
+          legend: {
+            text: title,
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        value: data.caseTeam,
+        items: [
+          {
+            value: "South East",
+            text: "South East"
+          },
+          {
+            value: "Central England",
+            text: "Central England"
+          },
+          {
+            value: "North East",
+            text: "North East"
+          },
+          {
+            value: "North West",
+            text: "North West"
+          },
+          {
+            value: "Wales",
+            text: "Wales"
+          },
+          {
+            value: "South West",
+            text: "South West"
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

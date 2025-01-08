@@ -1233,5 +1233,13 @@ router.post('/rule-6-statements/:id/withdraw', function (req, res) {
   res.redirect('/projects/start-full-case/v4/rule-6-statements/'+req.params.id)
 })
 
+//
+// Manage case teams
+//
+
+router.post('/team-email', function (req, res) {
+  res.redirect('/projects/start-full-case/v4/team-email-case-officers')
+})
+
 // Add your routes above the module.exports line
 module.exports = router

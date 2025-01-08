@@ -45,11 +45,6 @@
         current: navId == 'inquiry'
       } if application.procedure == 'Inquiry',
       {
-        text: "Documents",
-        href: '/projects/start-full-case/v4/appeals/:id/documents' | replace(':id', application.id),
-        current: navId == 'documents'
-      },
-      {
         text: "Notes",
         href: '/projects/start-full-case/v4/appeals/:id/notes' | replace(':id', application.id),
         current: navId == 'notes'
@@ -58,5 +53,9 @@
         text: "Activity",
         href: '/projects/start-full-case/v4/appeals/:id/activity' | replace(':id', application.id),
         current: navId == 'activity'
+      }, {
+        text: "Other",
+        href: '/projects/start-full-case/v4/appeals/:id/documents' | replace(':id', application.id),
+        current: navId == 'documents'
       }]
     }) }}

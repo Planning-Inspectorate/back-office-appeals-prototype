@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Documents" %}
+{% set title = "Other" %}
 {% set pageName = title %}
 {% set navId = 'documents' %}
 {% set back = false %}
@@ -16,95 +16,36 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {{ govukSummaryList({
-        rows: [
-          {
-            key: {
-              text: "Cross-team correspondence"
-            },
-            value: {
-              html: '0 documents'
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "LPA"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Inspector correspondence"
-            },
-            value: {
-              text: "3 documents"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "Item label"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Appellant costs application"
-            },
-            value: {
-              text: "1 documents"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "Item label"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "LPA costs application"
-            },
-            value: {
-              text: "1 documents"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "Item label"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Supporting documents"
-            },
-            value: {
-              text: "3 documents"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "Item label"
-                }
-              ]
-            }
-          }
-        ]
-      }) }}
+      <h2 class="govuk-heading-m govuk-!-margin-top-4">Correspondence</h2>
+
+      <ul class="govuk-list govuk-list--spaced govuk-!-margin-bottom-0">
+        <li>
+          <a href="#">Cross-team correspondence (0 documents)</a>
+        </li>
+        <li>
+          <a href="#">Inspector correspondence (3 documents)</a>
+        </li>
+      </ul>
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">Supporting documents</h2>
+
+      <ul class="govuk-list govuk-list--spaced govuk-!-margin-bottom-0">
+        <li>
+          <a href="#">Supporting documents (3 documents)</a>
+        </li>
+      </ul>
+
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">Costs</h2>
+
+      <ul class="govuk-list govuk-list--spaced">
+        <li>
+          <a href="#">Appellant costs application (0 documents)</a>
+        </li>
+        <li>
+          <a href="#">LPA costs application (3 documents)</a>
+        </li>
+      </ul>
 
     </div>
   </div>

@@ -1,0 +1,127 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = (data.caseTeam or 'South West')+' case team' %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = true %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Manage case teams</span>
+    <h1 class="govuk-heading-l">{{ title }}</h1>
+  </div>
+
+  <div class="govuk-grid-column-one-half">
+
+    {{ govukButton({
+      text: "Add a Case officer",
+      classes: "govuk-button--secondary"
+    }) }}
+
+	  <form method="post">
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Jan Evans",
+              classes: "govuk-!-width-two-thirds"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Remove",
+                  visuallyHiddenText: "date of birth"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Sam Fryer"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Remove",
+                  visuallyHiddenText: "date of birth"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "George Simpson"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Remove",
+                  visuallyHiddenText: "date of birth"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Venka Lassinen"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Remove",
+                  visuallyHiddenText: "date of birth"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Drew Longhouse"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Remove",
+                  visuallyHiddenText: "date of birth"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Cameron McGriffin"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Remove",
+                  visuallyHiddenText: "date of birth"
+                }
+              ]
+            }
+          }
+
+
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

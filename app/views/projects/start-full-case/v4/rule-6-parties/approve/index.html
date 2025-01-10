@@ -18,7 +18,40 @@
         {{title}}
       </h1>
 
-      <p>We’ll send an email to the Rule 6 party inviting them to create an account.</p>
+      {# <p>We’ll send an email to the Rule 6 party inviting them to create an account.</p> #}
+
+
+      <p>We’ll send an email to tell the Rule 6 party:</p>
+
+
+      <!-- if the rule 6 status was approved in time to submit their statements/proofs along with the other parties -->
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          that they’ve been given Rule 6 status
+        </li>
+        <li>
+          the deadline to send their statement
+        </li>
+        <li>
+          the deadline to send their proofs of evidence and witnesses
+        </li>
+        <li>
+          how to create an account
+        </li>
+      </ul>
+
+      {# <ul class="govuk-list govuk-list--bullet">
+        <li>
+          that they’ve been given Rule 6 status
+        </li>
+        <li>
+          how to create an account
+        </li>
+      </ul>
+
+      <p>You’ll need to tell the Rule 6 party the deadline for sending their statement and proofs of evidence and witnesses.</p> #}
+
+
 
       <form method="post">
         {{ govukButton({

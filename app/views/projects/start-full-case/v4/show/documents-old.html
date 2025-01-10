@@ -1,0 +1,53 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Other" %}
+{% set pageName = title %}
+{% set navId = 'documents' %}
+{% set back = false %}
+
+{% block content %}
+  {% include "/projects/start-full-case/v4/_includes/prompt.html" %}
+  {% include "/projects/start-full-case/v4/_includes/h1.html" %}
+  {% include "/projects/start-full-case/v4/_includes/nav.html" %}
+
+  <h1 class="govuk-heading-l"> {{title}} </h1>
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-4">Correspondence</h2>
+
+      <ul class="govuk-list govuk-list--spaced govuk-!-margin-bottom-0">
+        <li>
+          <a href="#">Cross-team correspondence (0 documents)</a>
+        </li>
+        <li>
+          <a href="#">Inspector correspondence (3 documents)</a>
+        </li>
+      </ul>
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">Supporting documents</h2>
+
+      <ul class="govuk-list govuk-list--spaced govuk-!-margin-bottom-0">
+        <li>
+          <a href="#">Supporting documents (3 documents)</a>
+        </li>
+      </ul>
+
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">Costs</h2>
+
+      <ul class="govuk-list govuk-list--spaced">
+        <li>
+          <a href="#">Appellant costs application (0 documents)</a>
+        </li>
+        <li>
+          <a href="#">LPA costs application (3 documents)</a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+
+{% endblock %}

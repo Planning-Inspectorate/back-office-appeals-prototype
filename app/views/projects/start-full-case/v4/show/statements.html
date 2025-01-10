@@ -26,7 +26,7 @@
       {% if rule6Statements.length %}
         {% set statementAction = {
             href: "/projects/start-full-case/v4/rule-6-statements",
-            text: "Management",
+            text: "Manage",
             visuallyHiddenText: "Item label"
           }
         %}
@@ -38,18 +38,6 @@
           }
         %}
       {% endif %}
-
-      <ul class="govuk-list govuk-list--spaced govuk-!-margin-bottom-0">
-        <li>
-          <a href="#">LPA statement (Ready to review)</a>
-        </li>
-        {% if application.procedure == 'Inquiry' %}
-        <li>
-          <a href="{{statementAction.href}}">Rule 6 statements (Reviewed)</a>
-        </li>
-        {% endif %}
-      </ul>
-
 
       {{ govukSummaryList({
         rows: [
@@ -64,7 +52,7 @@
               items: [
                 {
                   href: "#",
-                  text: "Manage",
+                  text: "Review",
                   visuallyHiddenText: "LPA"
                 }
               ]
@@ -75,7 +63,7 @@
               text: "Rule 6 statements"
             },
             value: {
-              text: statementText
+              html: statementText
             },
             actions: {
               items: [
@@ -84,7 +72,7 @@
             }
           } if application.procedure == 'Inquiry'
         ]
-      }) if 1==2}}
+      }) if 1==1}}
 
     </div>
   </div>

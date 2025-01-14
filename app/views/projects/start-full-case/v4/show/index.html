@@ -16,7 +16,12 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h2 class="govuk-visually-hidden"> Case overview </h2>
+      {# <h2 class="govuk-visually-hidden"> Case overview </h2> #}
+
+    <div class="govuk-button-group">
+      <a href="#" class="govuk-link">Issue decision</a>
+      <a href="#" class="govuk-link">Withdraw</a>
+    </div>
 
       {{ govukSummaryList({
         rows: [
@@ -59,12 +64,12 @@
               text: "Procedure"
             },
             value: {
-              text: application.procedure
+              text: data.appealProcedure
             },
             actions: {
               items: [
                 {
-                  href: "Item URL",
+                  href: "<a href='/projects/start-full-case/v4/edit-procedure'>Change</a>",
                   text: "Change",
                   visuallyHiddenText: "Item label"
                 }
@@ -124,6 +129,14 @@
           },
           {
             key: {
+              text: "LPA application reference"
+            },
+            value: {
+              html: '14012025HAS'
+            }
+          },
+          {
+            key: {
               text: "Costs"
             },
             value: {
@@ -132,6 +145,7 @@
           }
         ]
       }) }}
+
       <h2 class="govuk-heading-m govuk-!-margin-top-8">Timetable</h2>
 
       {{ govukSummaryList({

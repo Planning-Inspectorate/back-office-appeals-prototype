@@ -1,0 +1,54 @@
+{% extends "layouts/PINS.html" %}
+
+{% set title = "What is the redaction status?" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% block content %}
+
+ <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">
+        Appeal 2114328
+      </span>
+
+      <form action="add-ip-cya" method="post">
+
+        {{ govukRadios({
+          name: "redaction-status",
+          fieldset: {
+           legend: {
+             text: title,
+             isPageHeading: true,
+             classes: "govuk-fieldset__legend--l"
+           }
+          },
+          items: [
+           {
+             value: "Redacted",
+             text: "Redacted"
+           },
+           {
+             value: "Unredacted",
+             text: "Unredacted"
+           },
+             {
+           divider: "or"
+          },
+           {
+             value: "No redaction required",
+             text: "No redaction required"
+           }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

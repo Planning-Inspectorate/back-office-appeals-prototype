@@ -1,0 +1,79 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Supporting documents" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = true %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <!-- Page heading -->
+    <span class="govuk-caption-l">Appeal 2114328</span>
+    <h1 class="govuk-heading-l">
+      {{ title }}
+    </h1>
+
+    {{ govukButton({
+      text: "Add a document",
+      href: "upload-document",
+      classes: "govuk-button--secondary"
+    }) }}
+
+
+    {{ govukTable({
+      caption: title,
+      captionClasses: "govuk-visually-hidden",
+      firstCellIsHeader: false,
+      head: [
+        {
+          text: "Name"
+        },
+        {
+          text: "Date received"
+        },
+        {
+          text: "Redaction status"
+        },
+        {
+          text: "Actions"
+        }
+      ],
+      rows: [
+        [
+          {
+            html: "<a href='#' class='govuk-link govuk-link--no-visited-state'>"+(data ['upload-extra-document'] or 'appeal-2114328-added-document.doc')+"</a><br>
+                   <p class='govuk-body'>File type and size: PNG, 125 KB</p>"
+          },
+          {
+            html: 2 | daysAgo
+          },
+          {
+            text: "Redacted"
+          },
+          {
+            html: "<a href='manage-supporting-document' class='govuk-link'>View and edit</a>"
+          }
+        ],
+        [
+          {
+            html: "<a href='#' class='govuk-link govuk-link--no-visited-state'>"+(data ['upload-extra-document'] or 'appeal-2114328-added-document-2.doc')+"</a><br>
+            <p class='govuk-body'>File type and size: PNG, 125 KB</p>"
+          },
+          {
+            html: 2 | daysAgo
+          },
+          {
+            text: "Redacted"
+          },
+          {
+            html: "<a href='manage-supporting-document' class='govuk-link'>View and edit</a>"
+          }
+        ]
+      ]
+    }) }}
+
+  </div>
+</div>
+{% endblock %}

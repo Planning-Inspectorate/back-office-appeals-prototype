@@ -1,0 +1,58 @@
+{% extends "layouts/PINS.html" %}
+
+{% set title = "When did you receive the comment?" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% block content %}
+
+ <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">
+        Appeal 2114328
+      </span>
+
+      <form method="post">
+
+        {{ govukDateInput({
+          id: "IP-comment-received-date",
+          namePrefix: "IP-comment-received-date",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            html: "<p class='govuk-hint'>For example, 28 "+ 1 | monthsAgoNumeric +" "+ 0 | yearsAgo +".</p>"
+          },
+          items: [
+            {
+              classes: "govuk-input--width-2",
+              name: "day",
+              value: "22"
+            },
+            {
+              classes: "govuk-input--width-2",
+              name: "month",
+              value: "5"
+            },
+            {
+              classes: "govuk-input--width-4",
+              name: "year",
+              value: "2024"
+            }
+          }
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

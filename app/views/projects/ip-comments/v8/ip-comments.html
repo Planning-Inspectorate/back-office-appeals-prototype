@@ -1,0 +1,202 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Interested party comments" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = true %}
+
+{% set prototypeLinks = [
+  {
+    href: '?no-comments=yes',
+    text: 'No comments to review'
+  } if data['no-comments'] != 'yes',
+  {
+    href: '?no-comments=',
+    text: 'Comments to review'
+  } if data['no-comments'] == 'yes',
+  {
+    href: '?comments-shared=yes',
+    text: 'Comments shared'
+  } if data['comments-shared'] != 'yes',
+  {
+    href: '?comments-shared=',
+    text: 'Comments window is open'
+  } if data['comments-shared'] == 'yes',
+  {
+    href: '?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&comment-rejected=&extra-document=&new-comment=',
+    text: 'Clear banners'
+  }
+] %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukNotificationBanner({
+        type: "success",
+        text: flash
+      }) if flash.length}}
+
+     <!-- Notification banners -->
+      {% if data['comments-shared'] != 'yes' %}
+        {% if data ['redactedComment'] and data['new-comment'] != 'true' %}
+          <div class="govuk-notification-banner  govuk-notification-banner--success" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+            <div class="govuk-notification-banner__header">
+              <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+                Success
+              </h2>
+            </div>
+            <div class="govuk-notification-banner__content">
+              <p class="govuk-notification-banner__heading">
+                Comment redacted and accepted
+              </p>
+            </div>
+          </div>
+        {% elseif data ['acceptedComment'] %}
+          <div class="govuk-notification-banner  govuk-notification-banner--success" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+            <div class="govuk-notification-banner__header">
+              <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">Success</h2>
+            </div>
+            <div class="govuk-notification-banner__content">
+              <p class="govuk-notification-banner__heading">
+                Comment accepted
+                </p>
+            </div>
+          </div>
+      	{% elseif data ['manual-ip-comment'] %}
+          <div class="govuk-notification-banner  govuk-notification-banner--success" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+            <div class="govuk-notification-banner__header">
+              <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+                Success
+              </h2>
+            </div>
+            <div class="govuk-notification-banner__content">
+              <p class="govuk-notification-banner__heading">
+                Comment added
+              </p>
+            </div>
+          </div>
+        {% elseif data ['comment-rejected'] %}
+          <div class="govuk-notification-banner  govuk-notification-banner--success" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+            <div class="govuk-notification-banner__header">
+              <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+                Success
+              </h2>
+            </div>
+            <div class="govuk-notification-banner__content">
+              <p class="govuk-notification-banner__heading">
+                Comment rejected
+              </p>
+              <p class="govuk-body">
+                The IP has not been informed. No email address was provided.
+              </p>
+            </div>
+          </div>
+        {% elseif data ['extra-document'] %}
+          <div class="govuk-notification-banner  govuk-notification-banner--success" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+            <div class="govuk-notification-banner__header">
+              <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+                Success
+              </h2>
+            </div>
+            <div class="govuk-notification-banner__content">
+              <p class="govuk-notification-banner__heading">
+                Supporting documents uploaded
+              </p>
+            </div>
+          </div>
+
+        {% elseif data ['new-comment'] %}
+          <div class="govuk-notification-banner  govuk-notification-banner--success" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+            <div class="govuk-notification-banner__header">
+              <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+                Success
+              </h2>
+            </div>
+            <div class="govuk-notification-banner__content">
+              <p class="govuk-notification-banner__heading">
+                Interested party comment added
+              </p>
+            </div>
+          </div>
+      	{% endif %}
+      {% endif %}
+
+      <!-- Page heading -->
+      <span class="govuk-caption-l">Appeal 2114328</span>
+      <h1 class="govuk-heading-l">
+        {{ title }}
+      </h1>
+
+      {% if data['comments-shared'] != 'yes' %}
+      <p class="govuk-body govuk-!-margin-bottom-6">
+        <a href="add-ip-name-and-email" class="govuk-link">
+          Add interested party comment
+        </a>
+      </p>
+      {% endif %}
+
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% set reviewHtml %}
+        {% include "includes/ip-comments/waiting-comments.html" %}
+      {% endset %}
+
+      {% set validHtml %}
+        {% include "includes/ip-comments/valid-comments.html" %}
+      {% endset %}
+
+      {% set rejectedHtml %}
+        {% include "includes/ip-comments/rejected-comments.html" %}
+      {% endset %}
+
+      {% if data['comments-shared'] != 'yes' %}
+
+        {{ govukTabs({
+          items: [
+            {
+              label: "Awaiting review",
+              id: "review-tab",
+              panel: {
+                html: reviewHtml
+              }
+            } if data['comments-shared'] != 'yes',
+            {
+              label: "Accepted",
+              id: "valid-tab",
+              panel: {
+                html: validHtml
+              }
+            },
+            {
+              label: "Rejected",
+              id: "rejected-tab",
+              panel: {
+                html: rejectedHtml
+              }
+            }
+          ]
+        }) }}
+
+        <p class="govuk-body">
+          <a href="withdrawn-comments">
+            Withdrawn interested party comments
+          </a>
+        </p>
+
+      {% else %}
+          </div>
+        </div>
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-full">
+            {% include "includes/ip-comments/shared-comments.html" %}
+      {% endif %}
+
+    </div>
+  </div>
+
+{% endblock %}

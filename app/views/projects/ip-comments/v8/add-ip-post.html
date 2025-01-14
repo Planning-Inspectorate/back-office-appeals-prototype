@@ -1,0 +1,100 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set pageName="Personal list" %}
+
+{% set back = true %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+<span class="govuk-caption-l">Appeal 2114328</span>
+  <h1 class="govuk-heading-l">About the commenter</h1>
+
+
+	  <form action="add-ip-comment" method="post" class="govuk-!-margin-top-7">
+
+   
+{{ govukInput({
+  label: {
+    text: "First name"
+  },
+  id: "manual-ip-first-name",
+  name: "manual-ip-first-name",
+  autocomplete: "first-name",
+  classes: "govuk-!-width-two-thirds",
+  spellcheck: false
+}) }}
+
+{{ govukInput({
+  label: {
+    text: "Last name"
+  },
+  id: "manual-ip-last-name",
+  name: "manual-ip-last-name",
+  autocomplete: "last-name",
+  classes: "govuk-!-width-two-thirds",
+  spellcheck: false
+}) }}
+
+{{ govukInput({
+    id: 'manual-ip-address-line-1',
+    name: 'manual-ip-address-line-1',
+    value: data['manual-ip-address-line-1'],
+    label: {
+      html: 'Address line 1'
+    }
+  }) }}
+
+  {{ govukInput({
+    id: 'manual-ip-address-line-2',
+    name: 'manual-ip-address-line-2',
+    value: data['manual-ip-address-line-2'],
+    label: {
+      html: 'Address line 2 (optional)'
+    }
+  }) }}
+
+  {{ govukInput({
+    id: 'manual-ip-address-town',
+    name: 'manual-ip-address-town',
+    value: data['manual-ip-address-town'],
+    classes: 'govuk-!-width-two-thirds',
+    label: {
+      html: 'Town or city'
+    }
+  }) }}
+
+  {{ govukInput({
+    id: 'manual-ip-address-county',
+    name: 'manual-ip-address-county',
+    value: data['manual-ip-address-county'],
+    classes: 'govuk-!-width-two-thirds',
+    label: {
+      html: 'County (optional)'
+    }
+  }) }}
+
+  {{ govukInput({
+    id: 'manual-ip-address-postcode',
+    name: 'manual-ip-address-postcode',
+    value: data['manual-ip-address-postcode'],
+    classes: 'govuk-input--width-10',
+    label: {
+      html: 'Postcode'
+    }
+  }) }}
+
+
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

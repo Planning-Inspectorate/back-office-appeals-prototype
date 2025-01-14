@@ -17,16 +17,34 @@
         Appellant case received {{ 7 | daysAgo }} <br><a href="#" class="govuk-link">Change</a>
       </p> #}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-4">1. The appellant</h2>
+      <!--Prepare appeal-->
+      <h2 class="govuk-heading-m govuk-!-margin-top-4">1. Prepare appeal</h2>
 
       {{ govukSummaryList({
         rows: [
-          {
+        {
+          key: {
+            text: "Was the application made in your name?"
+          },
+          value: {
+            html: "No"
+          },
+          actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Was the application made in your name?"
+                }
+              ]
+            }
+        },  
+        {
             key: {
-              text: "Name"
+              text: "What is the applicant's name?"
             },
             value: {
-              html: "Jane Doe"
+              html: "Jane Doe<br>Applicant Ltd."
             },
             actions: {
                 items: [
@@ -40,51 +58,469 @@
           },
           {
             key: {
-              text: "Another individual"
+              text: "Agent's contact details"
             },
             value: {
-              html: "UK national resident in UK"
+              html: "Agent Name<br>Agent Ltd."
             },
             actions: {
                 items: [
                   {
                     href: "#",
                     text: "Change",
-                    visuallyHiddenText: "Another individual"
+                    visuallyHiddenText: "name"
                   }
                 ]
               }
           },
           {
             key: {
-              text: "Application reference"
+              text: "What is your phone number?"
             },
             value: {
-              html: "ABC123456"
+              html: "07123456789"
             },
             actions: {
                 items: [
                   {
                     href: "#",
                     text: "Change",
-                    visuallyHiddenText: "Application reference"
+                    visuallyHiddenText: "name"
                   }
                 ]
               }
+          },
+          {
+            key: {
+              text: "What is the address of the appeal site?"
+            },
+            value: {
+              html: "1 Aubrey Road<br>London<br>SE1 1AA"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "name"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "What is the area of the appeal site?"
+            },
+            value: {
+              html: "22 m²"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "name"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Is the appeal site in a green belt?"
+            },
+            value: {
+              html: "Yes"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "name"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Does the appellant own all of the land involved in the appeal?"
+            },
+            value: {
+              html: "Some of the land"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "name"
+                  }
+                ]
+              }
+          },
+          
+          {
+            key: {
+              text: "Does the appellant know who owns the land involved in the appeal?"
+            },
+            value: {
+              html: "Some of the land"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "name"
+                  }
+                ]
+              }
+          },
+          
+          {
+            key: {
+              text: "Is the appeal site part of an agricultural holding?"
+            },
+            value: {
+              html: "Yes"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "name"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Are you a tenant of the agricultural holding?"
+            },
+            value: {
+              html: "Yes"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "name"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Are there any other tenants?"
+            },
+            value: {
+              html: "Yes"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "name"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Have the tenants been told about the appeal?"
+            },
+            value: {
+              html: "Yes"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "name"
+                  }
+                ]
+              }
+          },
+    
+          {
+            key: {
+              text: "Will an inspector need to access your land or property?"
+            },
+            value: {
+              html: "Yes<br>The development is not visible from a public road."
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "name"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Are there any health and safety issues on the appeal site?"
+            },
+            value: {
+              html: "Yes<br>Construction works."
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "name"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Which local planning authority (LPA) do you want to appeal against?"
+            },
+            value: {
+              html: "System Test Borough"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "name"
+                  }
+                ]
+              }
+          },
+
+          
+          {
+            key: {
+              text: "What is the application reference number?"
+            },
+            value: {
+              html: "123456789"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "name"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "What date did you submit your application?"
+            },
+            value: {
+              html: "1 January 2025"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "name"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Enter the description of development that you submitted in your application"
+            },
+            value: {
+              html: "2 storey extension to the rear of the property."
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "name"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Did the local planning authority change the description of development?"
+            },
+            value: {
+              html: "Yes"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "name"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "How would you prefer us to decide your appeal?"
+            },
+            value: {
+              html: "Inquiry"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "name"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Why would you prefer this appeal procedure?	"
+            },
+            value: {
+              html: "Needs a thorough investigation"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "name"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "How many days would you expect the inquiry to last?"
+            },
+            value: {
+              html: "3"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "name"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "How many witnesses would you expect to give evidence at the inquiry?"
+            },
+            value: {
+              html: "3"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "name"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Are there other appeals linked to your development?"
+            },
+            value: {
+              html: "Yes"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "name"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "What’s the date on the decision letter from the local planning authority?​"
+            },
+            value: {
+              html: "22 November 2024"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "name"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Appeal type​"
+            },
+            value: {
+              html: "Full planning"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "name"
+                  }
+                ]
+              }
+          },
+         
+          {    
+              key: {
+                text: "Enter the appeal reference number"
+              },
+              value: {
+                html: "0221532"
+              },
+              actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "Application reference"
+                    }
+                  ]
+                }
+              
+
           }
         ]
       }) }}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-8">2. The appeal site</h2>
+      <!--Your documents-->
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">2. Upload documents</h2>
 
       {{ govukSummaryList({
         rows: [
           {
             key: {
-              text: "Site address"
+              text: "Application form"
             },
             value: {
-              html: "21 The pavement, Wandsworth, SW4 0HY"
+              html: "<a href='#'>example-file.pdf</a>"
             },
             actions: {
                 items: [
@@ -98,10 +534,10 @@
           },
           {
             key: {
-              text: "Site fully owned"
+              text: "Agreement to change the description of development"
             },
             value: {
-              html: "No"
+              html: "<a href='#'>example-file.pdf</a>"
             },
             actions: {
                 items: [
@@ -115,7 +551,41 @@
           },
           {
             key: {
-              text: "Site partially owned"
+              text: "Decision letter from the local planning authority"
+            },
+            value: {
+              html: "<a href='#'>example-file.pdf</a>"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "Another individual"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Was your application granted or refused?"
+            },
+            value: {
+              html: "Refused"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "Another individual"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Do you plan to submit a planning obligation to support your appeal?"
             },
             value: {
               html: "Yes"
@@ -132,10 +602,10 @@
           },
           {
             key: {
-              text: "All owners known"
+              text: "What is the status of your planning obligation?"
             },
             value: {
-              html: "No"
+              html: "Finalised and ready to submit"
             },
             actions: {
                 items: [
@@ -149,10 +619,10 @@
           },
           {
             key: {
-              text: "Attempted to identify owners"
+              text: "Planning obligation"
             },
             value: {
-              html: "Yes"
+              html: "<a href='#'>example-file.pdf</a>"
             },
             actions: {
                 items: [
@@ -164,88 +634,13 @@
                 ]
               }
           },
+          
           {
             key: {
-              text: "Advertised appeal"
+              text: "Separate ownership certificate and agricultural land declaration"
             },
             value: {
-              html: "No"
-            },
-            actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "Another individual"
-                  }
-                ]
-              }
-          },
-          {
-            key: {
-              text: "Visibility"
-            },
-            value: {
-              html: "No"
-            },
-            actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "Another individual"
-                  }
-                ]
-              }
-          },
-          {
-            key: {
-              text: "Site health and safety issuer"
-            },
-            value: {
-              html: "Yes"
-            },
-            actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "Another individual"
-                  }
-                ]
-              }
-          }
-
-        ]
-      }) }}
-
-      <h2 class="govuk-heading-m govuk-!-margin-top-8">3. The appeal</h2>
-
-      {{ govukSummaryList({
-        rows: [
-          {
-            key: {
-              text: "Application form known"
-            },
-            value: {
-              html: "<a href='#'>application-form.pdf</a>"
-            },
-            actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "Another individual"
-                  }
-                ]
-              }
-          },
-          {
-            key: {
-              text: "Decision letter"
-            },
-            value: {
-              html: "<a href='#'>decision-letter.pdf</a>"
+              html: "<a href='#'>example-file.pdf</a>"
             },
             actions: {
                 items: [
@@ -262,7 +657,7 @@
               text: "Appeal statement"
             },
             value: {
-              html: "<a href='#'>application-statement.pdf</a>"
+              html: "<a href='#'>example-file.pdf</a>"
             },
             actions: {
                 items: [
@@ -276,10 +671,46 @@
           },
           {
             key: {
-              text: "Add new supporting documents"
+              text: "Draft statement of common ground"
             },
             value: {
-              html: "Yes"
+              html: "<a href='#'>example-file.pdf</a>"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "Another individual"
+                  }
+                ]
+              }
+          },
+          
+          {
+            key: {
+              text: "Application for an award of appeal costs"
+            },
+            value: {
+              html: "<a href='#'>example-file.pdf</a>"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "Another individual"
+                  }
+                ]
+              }
+          },
+         
+          {
+            key: {
+              text: "Design and access statement"
+            },
+            value: {
+              html: "<a href='#'>example-file.pdf</a>"
             },
             actions: {
                 items: [
@@ -293,10 +724,46 @@
           },
           {
             key: {
-              text: "New supporting documents"
+              text: "Plans, drawings and supporting documents"
             },
             value: {
-              html: "<a href='#'>other.pdf</a>"
+              html: "<a href='#'>example-file.pdf</a>"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "Another individual"
+                  }
+                ]
+              }
+          },
+          
+          {
+            key: {
+              text: "New plans or drawings"
+            },
+            value: {
+              html: "<a href='#'>example-file.pdf</a>"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "Another individual"
+                  }
+                ]
+              }
+          },
+          
+          {
+            key: {
+              text: "Other new supporting documents"
+            },
+            value: {
+              html: "<a href='#'>example-file.pdf</a>"
             },
             actions: {
                 items: [
@@ -308,15 +775,18 @@
                 ]
               }
           }
+
         ]
       }) }}
+
+      
 
       <form action="/appellant-outcome" method="post" class="govuk-!-margin-top-9" novalidate>
         {{ govukRadios({
           name: "appelant-outcome",
           fieldset: {
             legend: {
-              text: "What is the outcome of your review?",
+              text: "Review decision",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--m"
             }

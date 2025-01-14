@@ -1,0 +1,71 @@
+{% set showBanner = true %}
+{% set html %}
+
+  {% if application.status == 'Ready to assign case officer' %}
+     <p class="govuk-notification-banner__heading">
+      <a class="govuk-notification-banner__link" href="#">Assign case officer</a>
+    </p>
+  {% elseif application.status == 'Ready to validate' %}
+    <p class="govuk-notification-banner__heading">
+      <a class="govuk-notification-banner__link" href="#">Validate case</a>
+    </p>
+  {% elseif application.status == 'Ready to start' %}
+    <p class="govuk-notification-banner__heading">
+      <a class="govuk-notification-banner__link" href="#">Start case</a>
+    </p>
+  {% elseif application.status == 'LPAQ ready to review' %}
+    <p class="govuk-notification-banner__heading">
+      <a class="govuk-notification-banner__link" href="#">Review LPAQ</a>
+    </p>
+  {% elseif application.status == 'Statements and IP comments ready to review' %}
+    <p class="govuk-notification-banner__heading">
+      <a class="govuk-notification-banner__link" href="#">Review statements and IP comments</a>
+    </p>
+  {% elseif application.status == 'Statements and IP comments ready to share' %}
+    <p class="govuk-notification-banner__heading">
+      <a class="govuk-notification-banner__link" href="#">Share statements and IP comments</a>
+    </p>
+  {% elseif application.status == 'Final comments ready to review' %}
+    <p class="govuk-notification-banner__heading">
+      <a class="govuk-notification-banner__link" href="#">Review final comments</a>
+    </p>
+  {% elseif application.status == 'Final comments ready to share' %}
+    <p class="govuk-notification-banner__heading">
+      <a class="govuk-notification-banner__link" href="#">Share final comments</a>
+    </p>
+  {% elseif application.status == 'Hearing ready to set up' %}
+    <p class="govuk-notification-banner__heading">
+      <a class="govuk-notification-banner__link" href="#">Set up hearing</a>
+    </p>
+  {% elseif application.status == 'Inquiry ready to set up' %}
+    <p class="govuk-notification-banner__heading">
+      <a class="govuk-notification-banner__link" href="#">Set up inquiry</a>
+    </p>
+  {% elseif application.status == 'Proof of evidence and witnesses ready to review' %}
+    <p class="govuk-notification-banner__heading">
+      <a class="govuk-notification-banner__link" href="#">Review proof of evidence and witnesses</a>
+    </p>
+  {% elseif application.status == 'Proof of evidence and witnesses ready to share' %}
+    <p class="govuk-notification-banner__heading">
+      <a class="govuk-notification-banner__link" href="#">Share proof of evidence and witnesses</a>
+    </p>
+  {% elseif application.status == 'Decision ready to issue' %}
+    <p class="govuk-notification-banner__heading">
+      <a class="govuk-notification-banner__link" href="#">Issue decision</a>
+    </p>
+  {% elseif application.status == 'Decision issued' %}
+  {% else %}
+    {% set showBanner = false %}
+  {% endif %}
+{% endset %}
+
+{% if showBanner %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ govukNotificationBanner({
+        html: html
+      }) }}
+    </div>
+  </div>
+{% endif %}
+

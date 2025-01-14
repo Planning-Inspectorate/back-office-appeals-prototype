@@ -1,0 +1,41 @@
+<div class="app-panel">
+  <h2 class="govuk-heading-l">Costs</h2>
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          text: "Appellant costs application"
+        },
+        value: {
+          text: "1 documents"
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Manage",
+              visuallyHiddenText: "Item label"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "LPA costs application"
+        },
+        value: {
+          text: "1 documents"
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Manage",
+              visuallyHiddenText: "Item label"
+            }
+          ]
+        }
+      }
+    ]
+  }) }}
+</div>

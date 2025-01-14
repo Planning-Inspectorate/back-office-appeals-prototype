@@ -1,0 +1,157 @@
+
+<div class="app-panel">
+  <h2 class="govuk-heading-l">Hearing</h2>
+  <div class="govuk-button-group">
+    {% if data.hearing %}
+      <a class="govuk-link" href="cancel-hearing">Cancel hearing</a>
+    {% else %}
+      {{ govukButton({
+        text: 'Set up hearing',
+        classes: 'govuk-button--secondar',
+        href: 'add-hearing'
+      }) }}
+    {% endif %}
+
+
+  </div>
+
+  {% set address %}
+    {{appAddress({ address: data.hearing.address })}}
+  {% endset %}
+
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          text: "Date"
+        },
+        value: {
+          html: data.hearing.date | isoDateFromDateInput | govukDate
+        },
+        actions: {
+          items: [
+            {
+              href: "/projects/start-full-case/v4/edit-hearing",
+              text: "Change",
+              visuallyHiddenText: "Date"
+            }
+          ]
+        }
+      } if data.hearing.date,
+      {
+        key: {
+          text: "Time"
+        },
+        value: {
+          html: data.hearing.time
+        },
+        actions: {
+          items: [
+            {
+              href: "/projects/start-full-case/v4/add-hearing",
+              text: "Change",
+              visuallyHiddenText: "Time"
+            }
+          ]
+        }
+      } if data.hearing.time,
+      {
+        key: {
+          text: "Do you know the address of where the hearing will take place?"
+        },
+        value: {
+          html: data.hearing.hasAddress
+        },
+        actions: {
+          items: [
+            {
+              href: "/projects/start-full-case/v4/edit-hearing/has-address",
+              text: "Change",
+              visuallyHiddenText: "whether you know the Address"
+            }
+          ]
+        }
+      } if data.hearing.hasAddress,
+      {
+        key: {
+          text: "Address"
+        },
+        value: {
+          html: address
+        },
+        actions: {
+          items: [
+            {
+              href: "/projects/start-full-case/v4/edit-hearing/address",
+              text: "Change",
+              visuallyHiddenText: "Address"
+            }
+          ]
+        }
+      } if data.hearing.hasAddress == 'Yes'
+    ]
+  }) if data.hearing }}
+
+  <h3 class="govuk-heading-m">Hearing estimates</h3>
+
+  {% if not data.hearingEstimates %}
+    <p><a class="govuk-link" href="add-hearing-estimates">Add hearing estimates</a></p>
+  {% endif %}
+
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          text: "Estimated preparation time"
+        },
+        value: {
+          html: data.hearingEstimates.estimatedPreparationTime | days
+        },
+        actions: {
+          items: [
+            {
+              href: "/projects/start-full-case/v4/edit-hearing-estimates",
+              text: "Change",
+              visuallyHiddenText: "Estimated preparation time"
+            }
+          ]
+        }
+      } if data.hearingEstimates.estimatedPreparationTime,
+      {
+        key: {
+          text: "Estimated sitting time"
+        },
+        value: {
+          html: data.hearingEstimates.estimatedHearingTime | days
+        },
+        actions: {
+          items: [
+            {
+              href: "/projects/start-full-case/v4/edit-hearing-estimates",
+              text: "Change",
+              visuallyHiddenText: "Estimated sitting time"
+            }
+          ]
+        }
+      } if data.hearingEstimates.estimatedHearingTime,
+      {
+        key: {
+          text: "Estimated reporting time"
+        },
+        value: {
+          html: data.hearingEstimates.estimatedReportingTime | days
+        },
+        actions: {
+          items: [
+            {
+              href: "/projects/start-full-case/v4/edit-hearing-estimates",
+              text: "Change",
+              visuallyHiddenText: "Estimated reporting time"
+            }
+          ]
+        }
+      } if data.hearingEstimates.estimatedReportingTime
+    ]
+  }) if data.hearingEstimates }}
+
+</div>

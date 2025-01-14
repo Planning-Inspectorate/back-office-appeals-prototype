@@ -1,0 +1,93 @@
+<div class="app-panel">
+  <h2 class="govuk-heading-l">Timetable</h2>
+  {{ govukTable({
+    captionClasses: "govuk-table__caption--m",
+    firstCellIsHeader: true,
+    rows: [
+      [
+        {
+          text: "Valid date"
+        },
+        {
+          text: 38 | daysAgo
+        },
+        {
+          html: "<a href='#'>Change</a>",
+          format: "numeric"
+        }
+      ],
+      [
+        {
+          text: "Start date"
+        },
+        {
+          text: 38 | daysAgo
+        },
+        {
+          html: "<a href='#'>Change</a>",
+          format: "numeric"
+        }
+      ],
+      [
+        {
+          text: "LPA questionnaire due"
+        },
+        {
+          text: 31 | daysAgo
+        },
+        {
+          html: "<a href='#'>Change</a>",
+          format: "numeric"
+        }
+      ],
+      [
+        {
+          text: "Site visit"
+        },
+        {
+          text: -3 | daysAgo
+        },
+        {
+          html: "<a href='site-visit.html'>Change</a>",
+          format: "numeric"
+        }
+      ] if 1==2,
+      [
+        {
+          text: "Date"
+        },
+        {
+          html: data.hearing.date | isoDateFromDateInput | govukDate
+        },
+        {
+          html: "<a href='/projects/start-full-case/v4/edit-hearing'>Change</a>",
+          format: "numeric"
+        }
+      ] if data.hearing.date,
+      [
+        {
+          text: "Date"
+        },
+        {
+          html: data.hearing.date | isoDateFromDateInput | govukDate
+        },
+        {
+          html: "<a href='/projects/start-full-case/v4/edit-hearing'>Change</a>",
+          format: "numeric"
+        }
+      ] if data.hearing.date,
+      [
+        {
+          text: "Inquiry"
+        },
+        {
+          text: -10 | daysAgo + ' at 9pm'
+        },
+        {
+          html: "<a href='#'>Change</a>",
+          format: "numeric"
+        }
+      ] if data.appealProcedure == 'Inquiry'
+    ]
+  }) }}
+</div>

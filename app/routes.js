@@ -14,6 +14,9 @@ router.all('*', (req, res, next) => {
   next()
 })
 
+require('./routes/case-list')(router)
+require('./routes/case-details')(router)
+
 //added for simple branching ++ https://github.com/abbott567/radio-button-redirect ++
 
 // const radioButtonRedirect = require('radio-button-redirect')

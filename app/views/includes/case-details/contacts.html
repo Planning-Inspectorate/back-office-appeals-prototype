@@ -1,0 +1,44 @@
+<div class="app-panel">
+  <h2 class="govuk-heading-l">Contacts</h2>
+  {{ govukTable({
+    captionClasses: "govuk-table__caption--m",
+    firstCellIsHeader: true,
+    rows: [
+      [
+      {
+        text: "Appellant"
+      },
+      {
+        html: "Fiona Shell<br><a href='fiona.shell@gmail.com'>fiona.shell@gmail.com</a>"
+      },
+      {
+        html: "<a href='#'>Change</a>",
+        format: "numeric"
+      }
+    ],[
+      {
+        text: "Agent"
+      },
+      {
+        html: "Naomi Johnson<br><a href='naomi.jonhson@planningagency.co.uk'>naomi.jonhson@planningagency.co.uk</a>"
+      },
+      {
+        html: "<a href='#'>Change</a>",
+        format: "numeric"
+      }
+    ],[
+      {
+        text: "LPA"
+      },
+      {
+        html: "Tim Cooper<br><a href='name@localauthority.gov.uk'>tim.cooper@localauthority.gov.uk</a>"
+
+      },
+      {
+        html: "<a href='#'>Change</a>",
+        format: "numeric"
+      }
+    ]
+    ]
+  }) }}
+</div>

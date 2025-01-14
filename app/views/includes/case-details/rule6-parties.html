@@ -1,0 +1,24 @@
+<div class="app-panel">
+  <h2 class="govuk-heading-l">Rule 6 parties</h2>
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          text: "Rule 6 parties"
+        },
+        value: {
+          text: application.rule6Parties.length + " parties"
+        },
+        actions: {
+          items: [
+            {
+              href: "/projects/start-full-case/v4/rule-6-parties",
+              text: "Manage",
+              visuallyHiddenText: "Rule 6 party"
+            }
+          ]
+        }
+      }
+    ]
+  }) }}
+</div>

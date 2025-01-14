@@ -1,0 +1,42 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Overview" %}
+{% set pageName = title %}
+{% set navId = 'overview' %}
+{% set back = false %}
+
+{% block content %}
+  {% include "includes/case-details/prompt.njk" %}
+  {% include "includes/case-details/h1.njk" %}
+
+  <div class="govuk-button-group">
+    <a href="#" class="govuk-link">Download case</a>
+  </div>
+
+  {{ govukDetails({
+    summaryText: "Notes (1)",
+    text: "Note stuff here"
+  }) }}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% include "includes/case-details/overview.html" %}
+      {% include "includes/case-details/site.html" %}
+      {% include "includes/case-details/timetable.html" %}
+      {% if data.appealProcedure == 'Hearing' %}
+        {% include "includes/case-details/hearing.html" %}
+      {% endif %}
+      {% if data.appealProcedure == 'Inquiry' %}
+        {% include "includes/case-details/cmc.html" %}
+        {% include "includes/case-details/inquiry.html" %}
+        {% include "includes/case-details/rule6-parties.html" %}
+      {% endif %}
+      {% include "includes/case-details/documentation.html" %}
+      {% include "includes/case-details/costs.html" %}
+      {% include "includes/case-details/contacts.html" %}
+      {% include "includes/case-details/team.html" %}
+      {% include "includes/case-details/case-management.html" %}
+
+    </div>
+  </div>
+{% endblock %}

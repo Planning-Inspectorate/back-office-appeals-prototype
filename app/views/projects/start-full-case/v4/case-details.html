@@ -63,7 +63,7 @@
             },
             {
               key: {
-                text: "Type"
+                text: "Appeal type"
               },
               value: {
                 text: application.type
@@ -80,7 +80,7 @@
             },
             {
               key: {
-                text: "Procedure"
+                text: "Appeal procedure"
               },
               value: {
                 text: data.appealProcedure
@@ -97,7 +97,7 @@
             } if application.procedure,
             {
               key: {
-                text: "Allocation"
+                text: "Allocation level"
               },
               value: {
                 text: 'F / General allocation'
@@ -148,10 +148,27 @@
             },
             {
               key: {
-                text: "LPA application reference"
+                text: "Planning application reference"
               },
               value: {
                 html: '14012025HAS'
+              }
+            },
+            {
+              key: {
+                text: "Decision"
+              },
+              value: {
+                html: 'Not issued yet'
+              },
+              actions: {
+                items: [
+                  {
+                    href: "Item URL",
+                    text: "Issue",
+                    visuallyHiddenText: "Item label"
+                  }
+                ]
               }
             }
           ]
@@ -164,10 +181,10 @@
         <dl class="govuk-summary-list">
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Inspection access (LPA answer)
+              Might the inspector need access to the appellant’s land or property?
             </dt>
             <dd class="govuk-summary-list__value">
-              <span>No answer provided</span>
+              Yes
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="/appeals-service/appeal-details/441/change-appeal-details/lpa-inspector-access/">
@@ -177,12 +194,10 @@
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Inspection access (appellant answer)
+              Will an inspector need to access your land or property?
             </dt>
             <dd class="govuk-summary-list__value">
-              <span>
-                No
-              </span>
+              No
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="/appeals-service/appeal-details/441/change-appeal-details/appellant-case-inspector-access">
@@ -193,10 +208,10 @@
 
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Potential safety risks (LPA answer)
+              Might the inspector need to enter a neighbour’s land or property?
             </dt>
             <dd class="govuk-summary-list__value">
-              <span>No answer provided</span>
+              Yes
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="/appeals-service/appeal-details/441/change-appeal-details/lpa-health-and-safety">
@@ -206,10 +221,10 @@
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Potential safety risks (apellant answer)
+              Are there any potential safety risks?
             </dt>
             <dd class="govuk-summary-list__value">
-              <span>No answer provided</span>
+              Yes
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="/appeals-service/appeal-details/441/change-appeal-details/appellant-case-health-and-safety">
@@ -232,10 +247,10 @@
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Neighbouring site affected
+              Tell us the address of the neighbour’s land or property
             </dt>
             <dd class="govuk-summary-list__value">
-              No answer provided
+              Some addresss goes here
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="/appeals-service/appeal-details/441/change-appeal-details/neighbouring-site-is-affected">
@@ -245,9 +260,10 @@
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Neighbouring sites (LPA answer)
+              Might the inspector need to enter a neighbour’s land or property?
             </dt>
             <dd class="govuk-summary-list__value">
+              <p>Yes</p>
               <ul class="govuk-list govuk-list--bullet">
                 <li>172 York Road<br>
                   Bristol<br>
@@ -261,19 +277,6 @@
               <a class="govuk-link" href="manage-neighbouring-sites.html">
                 Change
                 <span class="govuk-visually-hidden"> neighbouring sites</span>
-              </a>
-            </dd>
-          </div>
-            <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Neighbouring sites (Inspector and/or third party request)
-            </dt>
-            <dd class="govuk-summary-list__value">
-              None
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="additional-neighbours-address">
-                Add
               </a>
             </dd>
           </div>
@@ -846,7 +849,7 @@
           rows: [
             [
               {
-                html: "Appellant case"
+                html: "Appeal"
               },
               {
                 html: "Received"
@@ -920,7 +923,44 @@
 
       <div class="app-panel">
         <h2 class="govuk-heading-l">Costs</h2>
-        <p class="govuk-body">Costs go here</p>
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Appellant costs application"
+              },
+              value: {
+                text: "1 documents"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Manage",
+                    visuallyHiddenText: "Item label"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "LPA costs application"
+              },
+              value: {
+                text: "1 documents"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Manage",
+                    visuallyHiddenText: "Item label"
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
       </div>
 
       <div class="app-panel">
@@ -953,7 +993,7 @@
             }
           ],[
             {
-              text: "Planning authority"
+              text: "LPA"
             },
             {
               html: "Tim Cooper<br><a href='name@localauthority.gov.uk'>tim.cooper@localauthority.gov.uk</a>"
@@ -970,13 +1010,13 @@
 
       <div class="app-panel">
         <h2 class="govuk-heading-l">Team</h2>
-        {% include "/includes/audit/case-team-table.html" %}
+        {% include "/projects/start-full-case/v4/_includes/team.html" %}
       </div>
 
 
       <div class="app-panel">
         <h2 class="govuk-heading-l">Case management</h2>
-        {% include "/includes/appeal-content/case-management/case-management.html" %}
+        {% include "/projects/start-full-case/v4/_includes/case-management.html" %}
       </div>
 
     </div>

@@ -55,7 +55,7 @@
               actions: {
                 items: [
                   {
-                    href: "/projects/start-full-case/v4/edit-procedure",
+                    href: "/main/cases/:id/edit-procedure" | replace(':id', application.id),
                     text: "Change",
                     visuallyHiddenText: "Item label"
                   }

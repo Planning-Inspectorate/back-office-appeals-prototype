@@ -42,6 +42,18 @@ const s78InquiryStatuses = [
   'Awaiting inquiry'
 ]
 
+function capitalizeFirstLetter(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+const generateAddress = () => {
+  return {
+    line1: faker.number.int({ max: 100 }) + ' ' + capitalizeFirstLetter(faker.food.fruit()) + ' ' + faker.helpers.arrayElement(['Road', 'Avenue', 'Lane', 'Walk']),
+    town: faker.helpers.arrayElement(['London', 'Manchester', 'Birmingham', 'Bristol']),
+    postcode: faker.location.zipCode('WD# #JT')
+  }
+}
+
 const generateRule6Party = (params) => {
   let party = {}
   party.id = uuidv4()
@@ -154,11 +166,7 @@ const generateApplication = (params = {}) => {
   application.appellant.lastName = params.appellant?.lastName || faker.person.lastName()
   application.appellant.emailAddress = params.appellant?.emailAddress || `${application.appellant.firstName.toLowerCase()}.${application.appellant.lastName.toLowerCase()}@gmail.com`
   application.appellant.phone = params.appellant?.phone || '079## ### ###'.replace(/#+/g, (m) => faker.string.numeric(m.length));
-  application.appellant.address = params.appellant?.address || {
-    line1: '1 The Avenue',
-    town: 'London',
-    postcode: 'W9 1ST'
-  }
+  application.appellant.address = params.appellant?.address || generateAddress()
 
   application.lpa = params.lpa || {}
   application.lpa.name = params.lpa?.name || faker.helpers.arrayElement([
@@ -167,11 +175,7 @@ const generateApplication = (params = {}) => {
   ])
 
   application.site = params.site || {}
-  application.site.address = params.site?.address || {
-    line1: '1 The Avenue',
-    town: 'London',
-    postcode: faker.location.zipCode('WD# #JT')
-  }
+  application.site.address = params.site?.address || generateAddress()
 
   // Generate Rule 6 Parties based on this
   if(application.procedure == 'Inquiry') {

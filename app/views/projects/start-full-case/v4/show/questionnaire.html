@@ -16,13 +16,13 @@
 
         {# <p class="govuk-body">Hard to know how to validate the LPAQ (Billie)</p> #}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-4">Constraints, designations and other issues</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-4">1. Constraints, designations and other issues</h2>
 
       {{ govukSummaryList({
         rows: [
           {
             key: {
-              html: 'Is the appeal type appropriate?'
+              html: 'Is this the correct type of appeal?'
             },
             value: {
               html: 'Yes'
@@ -38,12 +38,12 @@
           },
           {
             key: {
-              html: 'Changed listed buildings'
+              html: 'Does the development change a listed building?'
             },
             value: {
               html: '
                 <ul class="govuk-list govuk-list--bullet">
-                  <li>
+                  <li>Yes<br>
                     <a href="#">1282049</a><br>
                     Grade II listed building<br>
                     150, York Road, Bedminster, Bristol, BS3 4AL
@@ -61,10 +61,12 @@
           } if data['answers'] != 'empty',
           {
             key: {
-              html: 'Changed listed buildings'
+              html: ''
             },
             value: {
-              html: 'No'
+              html: ''
+              
+              
             },
             actions: {
               items: [
@@ -77,10 +79,10 @@
           } if data['answers'] == 'empty',
           {
             key: {
-              html: 'Affected listed buildings'
+              html: 'Does the development affect the setting of listed buildings?'
             },
             value: {
-              html: '
+              html: 'Yes<br>
                 <ul class="govuk-list govuk-list--bullet">
                   <li>
                     <a href="#">1282050</a><br>
@@ -121,10 +123,10 @@
           } if data['answers'] == 'empty',
           {
             key: {
-              html: 'Affects a scheduled monument'
+              html: 'Would the development affect a scheduled monument?'
             },
             value: {
-              html: 'No'
+              html: 'Yes'
             },
             actions: {
               items: [
@@ -140,25 +142,22 @@
               html: 'Conservation area map and guidance'
             },
             value: {
-              html: '<ol class="govuk-list govuk-list--number">
+              html: '<ul class="govuk-list govuk-list--bullet">
                       <li>
                         <a href="#" class="govuk-link">BS3 4AL Conservation-map.pdf</a>
                       </li>
                       <li>
                         <a href="#" class="govuk-link">BS3 4AL Conservation-guidance.doc</a>
                       </li>
-                    </ol>'
+                    </ul>'
             },
             actions: {
               items: [
                 {
                   href: 'notified/notified-who?cya=true',
-                  html: 'Manage<span class="govuk-visually-hidden"> conservation area map and guidance</span>'
-                },
-                {
-                  href: 'notified/notified-who?cya=true',
-                  html: 'Add<span class="govuk-visually-hidden"> to conservation area map and guidance</span>'
+                  html: 'Change<span class="govuk-visually-hidden"> conservation area map and guidance</span>'
                 }
+               
               ]
             }
           } if data['answers'] != 'empty',
@@ -180,7 +179,7 @@
           } if data['answers'] == 'empty',
           {
             key: {
-              html: 'Protected species'
+              html: 'Would the development affect a protected species?'
             },
             value: {
               html: 'Yes'
@@ -196,7 +195,7 @@
           },
           {
             key: {
-              html: 'Green belt'
+              html: 'Is the site in a green belt?'
             },
             value: {
               html: 'No'
@@ -212,7 +211,7 @@
           },
           {
             key: {
-              html: 'Area of outstanding nautural beauty'
+              html: 'Is the site in an area of outstanding natural beauty?'
             },
             value: {
               html: 'No'
@@ -228,7 +227,7 @@
           },
           {
             key: {
-              html: 'Designated sites'
+              html: 'Is the development in, near or likely to affect any designated sites?'
             },
             value: {
               html: 'No'
@@ -244,7 +243,7 @@
           },
           {
             key: {
-              html: 'Tree preservation order'
+              html: 'Tree Preservation Order'
             },
             value: {
               html: 'No'
@@ -260,7 +259,7 @@
           },
           {
             key: {
-              html: 'Gypsy or traveller'
+              html: 'Does the development relate to anyone claiming to be a Gypsy or Traveller?'
             },
             value: {
               html: 'No'
@@ -276,7 +275,7 @@
           },
           {
             key: {
-              html: 'Public right of way'
+              html: 'Definitive map and statement extract'
             },
             value: {
               html: 'No'
@@ -294,13 +293,13 @@
         ]
       }) }}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-8">Environmental impact assessment</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">2. Environmental impact assessment</h2>
 
       {{ govukSummaryList({
         rows: [
           {
             key: {
-              html: 'Schedule type'
+              html: 'What is the development category?'
             },
             value: {
               html: 'Schedule '+ (data['environment-schedule'] or '1')
@@ -316,160 +315,147 @@
           },
           {
             key: {
-              html: 'Description of development'
+              html: 'Environmental statement and supporting information'
             },
             value: {
-              html: 'Tourism and leisure'
+              html: '<a href="#">example-file.pdf</a>'
             },
             actions: {
               items: [
                 {
-                  href: 'environment/schedule-type?cya=true',
                   html: 'Change'
                 }
               ]
             }
-          } if data['environment-schedule'] == '2',
-          {
-            key: {
-              html: 'Affects a sensitive area'
-            },
-            value: {
-              html: 'No'
-            },
-            actions: {
-              items: [
-                {
-                  href: 'environment/schedule-type?cya=true',
-                  html: 'Change'
-                }
-              ]
-            }
-          } if data['answers'] == 'empty' and data['environment-schedule'] == '2',
-          {
-            key: {
-              html: 'Affects a sensitive area'
-            },
-            value: {
-              html: 'Yes<br>(text about the sensitive area)'
-            },
-            actions: {
-              items: [
-                {
-                  href: 'environment/schedule-type?cya=true',
-                  html: 'Change'
-                }
-              ]
-            }
-          } if data['answers'] != 'empty' and data['environment-schedule'] == '2',
-          {
-            key: {
-              html: 'Meets or exceeds the threshold or criteria in column 2?'
-            },
-            value: {
-              html: 'No'
-            },
-            actions: {
-              items: [
-                {
-                  href: 'environment/schedule-type?cya=true',
-                  html: 'Change'
-                }
-              ]
-            }
-          } if data['environment-schedule'] == '2',
-          {
-            key: {
-              html: 'Screening opinion and correspondence'
-            },
-            value: {
-              html: 'No'
-            },
-            actions: {
-              items: [
-                {
-                  href: 'environment/schedule-type?cya=true',
-                  html: 'Add'
-                }
-              ]
-            }
-          } if data['answers'] == 'empty' and data['environment-schedule'] == '2',
-          {
-            key: {
-              html: 'Screening opinion and correspondence'
-            },
-            value: {
-              html: '<ul>
-                      <li>
-                        <a href="#" class="govuk-link">screening-opinion-appeal-2110166.pdf</a>
-                      </li>
-                    </ul>'
-            },
-            actions: {
-              items: [
-                {
-                  href: 'environment/schedule-type?cya=true',
-                  html: 'Manage'
-                },
-                {
-                  href: 'environment/schedule-type?cya=true',
-                  html: 'Add'
-                }
-              ]
-            }
-          } if data['answers'] != 'empty' and data['environment-schedule'] == '2',
-          {
-            key: {
-              html: 'Environmental assessment and supporting information'
-            },
-            value: {
-              html: '<ul>
-                      <li>
-                        <a href="#" class="govuk-link">Environmental-statement-appeal-2110166.pdf</a>
-                      </li>
-                    </ul>'
-            },
-            actions: {
-              items: [
-                {
-                  href: 'notified/notified-who?cya=true',
-                  html: 'Manage<span class="govuk-visually-hidden"> Environmental assessment and supporting information</span>'
-                },
-                {
-                  href: 'notified/notified-who?cya=true',
-                  html: 'Add<span class="govuk-visually-hidden"> Environmental assessment and supporting information</span>'
-                }
-              ]
-            }
-          } if data['answers'] != 'empty',
+          },
           {
             key: {
               html: 'Screening direction'
             },
             value: {
-              html: '<ul>
-                      <li>
-                        <a href="#" class="govuk-link">Environmental-screening-direction-appeal-2110166.pdf</a>
-                      </li>
-                    </ul>'
+              html: '<a href="#">example-file.pdf</a>'
             },
             actions: {
               items: [
                 {
-                  href: '#',
-                  html: 'Manage<span class="govuk-visually-hidden"> screening direction</span>'
-                },
-                {
-                  href: '#',
-                  html: 'Add<span class="govuk-visually-hidden"> screening direction</span>'
+                  html: 'Change'
                 }
               ]
             }
-          } if data['answers'] == 'empty'
+          },
+          {
+            key: {
+              html: 'Description of development'
+            },
+            value: {
+              html: 'Test description'
+            },
+            actions: {
+              items: [
+                {
+                  html: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              html: 'Is the development in, partly in, or likely to affect a sensitive area?'
+            },
+            value: {
+              html: 'Yes'
+            },
+            actions: {
+              items: [
+                {
+                  html: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              html: 'Does the development meet or exceed the threshold or criteria in column 2?'
+            },
+            value: {
+              html: 'Yes'
+            },
+            actions: {
+              items: [
+                {
+                  html: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              html: 'What is the development category?'
+            },
+            value: {
+              html: 'Schedule '+ (data['environment-schedule'] or '1')
+            },
+            actions: {
+              items: [
+                {
+                  href: 'environment/schedule-type?cya=true',
+                  html: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              html: 'Have you issued a screening opinion?'
+            },
+            value: {
+              html: 'Yes'
+            },
+            actions: {
+              items: [
+                {
+                  html: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              html: 'Screening opinion'
+            },
+            value: {
+              html: 'Schedule '+ (data['environment-schedule'] or '1')
+            },
+            actions: {
+              items: [
+                {
+                  href: 'environment/schedule-type?cya=true',
+                  html: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              html: 'What is the development category?'
+            },
+            value: {
+              html: 'Schedule '+ (data['environment-schedule'] or '1')
+            },
+            actions: {
+              items: [
+                {
+                  href: 'environment/schedule-type?cya=true',
+                  html: 'Change'
+                }
+              ]
+            }
+          }
+          
         ]
       }) }}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-8">Etc</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">3. Notifying relevant parties</h2>
 
     </div>
   </div>

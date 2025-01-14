@@ -6,9 +6,9 @@
 {% set back = false %}
 
 {% block content %}
-  {% include "includes/case-details/success-banner.njk" %}
-  {% include "includes/case-details/prompt.njk" %}
-  {% include "includes/case-details/h1.njk" %}
+  {% include "includes/case/success-banner.njk" %}
+  {% include "includes/case/prompt.njk" %}
+  {% include "includes/case/h1.njk" %}
 
   <div class="govuk-button-group">
     <a href="#" class="govuk-link">Download case</a>
@@ -21,22 +21,22 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {% include "includes/case-details/overview.html" %}
-      {% include "includes/case-details/site.html" %}
-      {% include "includes/case-details/timetable.html" %}
+      {% include "includes/case/overview.html" %}
+      {% include "includes/case/site.html" %}
+      {% include "includes/case/timetable.html" %}
       {% if data.appealProcedure == 'Hearing' %}
-        {% include "includes/case-details/hearing.html" %}
+        {% include "includes/case/hearing.html" %}
       {% endif %}
       {% if data.appealProcedure == 'Inquiry' %}
-        {% include "includes/case-details/cmc.html" %}
-        {% include "includes/case-details/inquiry.html" %}
-        {% include "includes/case-details/rule6-parties.html" %}
+        {% include "includes/case/cmc.html" %}
+        {% include "includes/case/inquiry.html" %}
+        {% include "includes/case/rule6-parties.html" %}
       {% endif %}
-      {% include "includes/case-details/documentation.html" %}
-      {% include "includes/case-details/costs.html" %}
-      {% include "includes/case-details/contacts.html" %}
-      {% include "includes/case-details/team.html" %}
-      {% include "includes/case-details/case-management.html" %}
+      {% include "includes/case/documentation.html" %}
+      {% include "includes/case/costs.html" %}
+      {% include "includes/case/contacts.html" %}
+      {% include "includes/case/team.html" %}
+      {% include "includes/case/case-management.html" %}
 
     </div>
   </div>

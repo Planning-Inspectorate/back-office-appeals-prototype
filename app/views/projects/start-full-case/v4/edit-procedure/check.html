@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-Simple.html" %}
 
-{% set title = "Check details and update appeal procedure" %}
+{% set title = "Check details and update procedure" %}
 {% set pageName = title %}
 
 {% set back = true %}
@@ -14,7 +14,7 @@
         rows: [
           {
             key: {
-              text: "Appeal procedure"
+              text: "Procedure"
             },
             value: {
               text: data.appealProcedure
@@ -24,7 +24,7 @@
                 {
                   href: "./",
                   text: "Change",
-                  visuallyHiddenText: "Appeal procedure"
+                  visuallyHiddenText: "Procedure"
                 }
               ]
             }
@@ -36,18 +36,18 @@
 
       <!-- When it’s being changed from a hearing -->
       {% if data.hearing and data.appealProcedure != 'Hearing' %}
-        <p>We’ll send an email to the appellant and LPA to tell them that we’ve changed the appeal procedure and cancelled the hearing.</p>
+        <p>We’ll send an email to the appellant and LPA to tell them that we’ve changed the procedure and cancelled the hearing.</p>
       {% elseif data.inquiry and data.appealProcedure != 'Inquiry' %}
-        <p>We’ll send an email to the appellant and LPA to tell them that we’ve changed the appeal procedure and cancelled the inquiry.</p>
+        <p>We’ll send an email to the appellant and LPA to tell them that we’ve changed the procedure and cancelled the inquiry.</p>
       {% else %}
-        <p>We’ll send an email to the appellant and LPA to tell them that we’ve changed the appeal procedure.</p>
+        <p>We’ll send an email to the appellant and LPA to tell them that we’ve changed the procedure.</p>
       {% endif %}
 
 
 
       <form method="post">
         {{ govukButton({
-          text: "Update appeal procedure"
+          text: "Update procedure"
         }) }}
       </form>
 

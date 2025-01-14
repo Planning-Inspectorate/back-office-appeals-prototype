@@ -1,0 +1,7 @@
+<h1 class="govuk-heading-xl govuk-!-margin-bottom-3">{{application.id}} {{ govukTag({
+  text: application.status,
+  classes: application.status | appealStatusColour
+}) }} {{ govukTag({
+  text: 'Child',
+  classes: 'govuk-tag--grey'
+}) }}</h1>

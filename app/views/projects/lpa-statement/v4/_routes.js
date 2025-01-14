@@ -22,7 +22,7 @@ router.post('/statement-review', function (req, res) {
 
 router.post('/redact-statement', function (req, res) {
   if (req.session.data['from'] == 'view') {
-    res.redirect('view-Statement')
+    res.redirect('view-statement')
   } else {
     res.redirect('check-allocation-update')
   }

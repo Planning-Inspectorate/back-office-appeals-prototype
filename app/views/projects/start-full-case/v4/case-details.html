@@ -7,6 +7,16 @@
 
 {% block content %}
 
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukNotificationBanner({
+        type: "success",
+        text: flash
+      }) if flash.length }}
+    </div>
+  </div>
+
   {% include "/projects/start-full-case/v4/_includes/prompt.html" %}
   {% include "/projects/start-full-case/v4/_includes/h1.html" %}
 

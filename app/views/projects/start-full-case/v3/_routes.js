@@ -16,7 +16,7 @@ router.post('/start-case/check', function (req, res) {
 //
 
 router.post('/edit-appeal-procedure/check', function (req, res) {
-  req.flash('success', 'Appeal procedure updated')
+  req.flash('success', 'Procedure updated')
   res.redirect('../case-details')
 })
 

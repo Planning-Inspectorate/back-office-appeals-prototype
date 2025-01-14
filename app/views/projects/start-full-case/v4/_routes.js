@@ -214,7 +214,7 @@ router.post('/start-case/check', function (req, res) {
 //
 
 router.post('/edit-procedure/check', function (req, res) {
-  req.flash('success', 'Appeal procedure updated')
+  req.flash('success', 'Procedure updated')
 
   if(req.session.data.appealProcedure == 'Written representations') {
     delete req.session.data.hearing

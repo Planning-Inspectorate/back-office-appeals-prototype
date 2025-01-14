@@ -21,9 +21,12 @@ router.post('/statement-review', function (req, res) {
 })
 
 router.post('/redact-statement', function (req, res) {
-  res.redirect('check-allocation-update')
+  if (req.session.data['from'] == 'view') {
+    res.redirect('view-statement')
+  } else {
+    res.redirect('check-allocation-update')
+  }
 })
-
 
 router.post('/matrix-update', function (req, res) {
   if (req.session.data['matrix-update'] == 'No') {

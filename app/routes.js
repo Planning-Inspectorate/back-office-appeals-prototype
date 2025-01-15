@@ -23,6 +23,10 @@ require('./routes/case--edit-hearing')(router)
 require('./routes/case--cancel-hearing')(router)
 require('./routes/case--add-hearing-estimates')(router)
 require('./routes/case--edit-hearing-estimates')(router)
+require('./routes/case--add-inquiry')(router)
+require('./routes/case--edit-inquiry')(router)
+require('./routes/case--cancel-inquiry')(router)
+
 
 //added for simple branching ++ https://github.com/abbott567/radio-button-redirect ++
 

@@ -2,19 +2,18 @@
   <h2 class="govuk-heading-l">Inquiry</h2>
 
   <div class="govuk-button-group">
-    {% if data.inquiry %}
-      <a class="govuk-link" href="cancel-inquiry">Cancel inquiry</a>
+    {% if application.inquiry %}
+      <a class="govuk-link" href="/main/cases/{{application.id}}/cancel-inquiry">Cancel inquiry</a>
     {% else %}
       {{ govukButton({
         text: 'Set up inquiry',
-        classes: 'govuk-button--secondar',
-        href: 'add-inquiry'
+        href: '/main/cases/:id/add-inquiry' | replace(':id', application.id)
       }) }}
     {% endif %}
   </div>
 
   {% set address %}
-    {{appAddress({ address: data.inquiry.address })}}
+    {{appAddress({ address: application.inquiry.address })}}
   {% endset %}
 
   {{ govukSummaryList({
@@ -24,86 +23,86 @@
           text: "Date"
         },
         value: {
-          html: data.inquiry.date | isoDateFromDateInput | govukDate
+          html: application.inquiry.date | isoDateFromDateInput | govukDate
         },
         actions: {
           items: [
             {
-              href: "/projects/start-full-case/v4/edit-inquiry",
+              href: '/main/cases/:id/edit-inquiry' | replace(':id', application.id),
               text: "Change",
               visuallyHiddenText: "Date"
             }
           ]
         }
-      } if data.inquiry.date,
+      } if application.inquiry.date,
       {
         key: {
           text: "Time"
         },
         value: {
-          html: data.inquiry.time
+          html: application.inquiry.time
         },
         actions: {
           items: [
             {
-              href: "/projects/start-full-case/v4/edit-inquiry/time",
+              href: '/main/cases/:id/edit-inquiry' | replace(':id', application.id),
               text: "Change",
               visuallyHiddenText: "Time"
             }
           ]
         }
-      } if data.inquiry.time,
+      } if application.inquiry.time,
       {
         key: {
           text: "Do you know the estimated number of days needed to carry out the inquiry"
         },
         value: {
-          html: data.inquiry.hasDays
+          html: application.inquiry.hasDays
         },
         actions: {
           items: [
             {
-              href: "/projects/start-full-case/v4/edit-inquiry/days",
+              href: '/main/cases/:id/edit-inquiry/days' | replace(':id', application.id),
               text: "Change",
               visuallyHiddenText: "if you know the expected number of days to carry out the inquiry"
             }
           ]
         }
-      } if data.inquiry.hasDays,
+      } if application.inquiry.hasDays,
       {
         key: {
           text: "Estimated number of days needed to carry out the inquiry"
         },
         value: {
-          html: data.inquiry.days
+          html: application.inquiry.days
         },
         actions: {
           items: [
             {
-              href: "/projects/start-full-case/v4/edit-inquiry/days",
+              href: '/main/cases/:id/edit-inquiry/days' | replace(':id', application.id),
               text: "Change",
               visuallyHiddenText: "Expected number of days to carry out the inquiry"
             }
           ]
         }
-      } if data.inquiry.hasDays == 'Yes',
+      } if application.inquiry.hasDays == 'Yes',
       {
         key: {
           text: "Do you know the address of where the inquiry will take place?"
         },
         value: {
-          html: data.inquiry.hasAddress
+          html: application.inquiry.hasAddress
         },
         actions: {
           items: [
             {
-              href: "/projects/start-full-case/v4/edit-inquiry/has-address",
+              href: '/main/cases/:id/edit-inquiry/has-address' | replace(':id', application.id),
               text: "Change",
               visuallyHiddenText: "whether you know the inquiry address"
             }
           ]
         }
-      } if data.inquiry.hasAddress,
+      } if application.inquiry.hasAddress,
       {
         key: {
           text: "Address"
@@ -114,19 +113,19 @@
         actions: {
           items: [
             {
-              href: "/projects/start-full-case/v4/edit-inquiry/address",
+              href: '/main/cases/:id/edit-inquiry/address' | replace(':id', application.id),
               text: "Change",
               visuallyHiddenText: "Inquiry address"
             }
           ]
         }
-      } if data.inquiry.hasAddress == 'Yes'
+      } if application.inquiry.hasAddress == 'Yes'
     ]
-  }) if data.inquiry }}
+  }) if application.inquiry }}
 
   <h3 class="govuk-heading-m">Inquiry estimates</h3>
 
-  {% if not data.inquiryEstimates %}
+  {% if not application.inquiryEstimates %}
     <p><a class="govuk-link" href="add-inquiry-estimates">Add inquiry estimates</a></p>
   {% endif %}
 
@@ -137,53 +136,53 @@
           text: "Estimated preparation time"
         },
         value: {
-          html: data.inquiryEstimates.estimatedPreparationTime | days
+          html: application.inquiryEstimates.estimatedPreparationTime | days
         },
         actions: {
           items: [
             {
-              href: "/projects/start-full-case/v4/edit-inquiry-estimates",
+              href: '/main/cases/:id/edit-inquiry-estimates' | replace(':id', application.id),
               text: "Change",
               visuallyHiddenText: "Estimated preparation time"
             }
           ]
         }
-      } if data.inquiryEstimates.estimatedPreparationTime,
+      } if application.inquiryEstimates.estimatedPreparationTime,
       {
         key: {
           text: "Estimated sitting time"
         },
         value: {
-          html: data.inquiryEstimates.estimatedInquiryTime | days
+          html: application.inquiryEstimates.estimatedInquiryTime | days
         },
         actions: {
           items: [
             {
-              href: "/projects/start-full-case/v4/edit-inquiry-estimates",
+              href: '/main/cases/:id/edit-inquiry-estimates' | replace(':id', application.id),
               text: "Change",
               visuallyHiddenText: "Estimated sitting time"
             }
           ]
         }
-      } if data.inquiryEstimates.estimatedInquiryTime,
+      } if application.inquiryEstimates.estimatedInquiryTime,
       {
         key: {
           text: "Estimated reporting time"
         },
         value: {
-          html: data.inquiryEstimates.estimatedReportingTime | days
+          html: application.inquiryEstimates.estimatedReportingTime | days
         },
         actions: {
           items: [
             {
-              href: "/projects/start-full-case/v4/edit-inquiry-estimates",
+              href: '/main/cases/:id/edit-inquiry-estimates' | replace(':id', application.id),
               text: "Change",
               visuallyHiddenText: "Estimated reporting time"
             }
           ]
         }
-      } if data.inquiryEstimates.estimatedReportingTime
+      } if application.inquiryEstimates.estimatedReportingTime
     ]
-  }) if data.inquiryEstimates }}
+  }) if application.inquiryEstimates }}
 
 </div>

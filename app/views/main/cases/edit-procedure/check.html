@@ -17,7 +17,7 @@
               text: "Procedure"
             },
             value: {
-              text: data.appealProcedure
+              text: data.editAppealProcedure.procedure
             },
             actions: {
               items: [
@@ -35,9 +35,9 @@
 
 
       <!-- When it’s being changed from a hearing -->
-      {% if data.hearing and data.appealProcedure != 'Hearing' %}
+      {% if data.hearing and data.editAppealProcedure.procedure != 'Hearing' %}
         <p>We’ll send an email to the appellant and LPA to tell them that we’ve changed the procedure and cancelled the hearing.</p>
-      {% elseif data.inquiry and data.appealProcedure != 'Inquiry' %}
+      {% elseif data.inquiry and data.editAppealProcedure.procedure != 'Inquiry' %}
         <p>We’ll send an email to the appellant and LPA to tell them that we’ve changed the procedure and cancelled the inquiry.</p>
       {% else %}
         <p>We’ll send an email to the appellant and LPA to tell them that we’ve changed the procedure.</p>

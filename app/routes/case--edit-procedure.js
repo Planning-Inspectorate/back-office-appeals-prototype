@@ -20,6 +20,7 @@ module.exports = router => {
 
   router.post('/main/cases/:appealId/edit-procedure/check', function (req, res) {
     let application = req.session.data.applications.find(application => application.id == req.params.appealId)
+    application.procedure = req.session.data.editAppealProcedure.procedure
     req.flash('success', 'Appeal procedure updated')
     res.redirect(`/main/cases/${req.params.appealId}`)
   })

@@ -42,12 +42,11 @@ module.exports = router => {
   router.get('/main/cases/:appealId/edit-hearing/address', function (req, res) {
     let application = req.session.data.applications.find(application => application.id == req.params.appealId)
 
-
-    let address = _.get(req, 'session.data.editHearing.address') || application.hearing.address
+    let hearingAddress = _.get(req, 'session.data.editHearing.address') || application.hearing.address
 
     res.render('/main/cases/edit-hearing/address', {
       application,
-      address
+      hearingAddress
     })
   })
 

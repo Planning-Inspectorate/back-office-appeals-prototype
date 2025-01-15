@@ -1,0 +1,62 @@
+{% extends "layouts/PINS-Simple.html" %}
+
+{% set title = "Do you know the expected number of days to carry out the inquiry" %}
+{% set pageName = title %}
+{% set back = true %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% set daysHtml %}
+        {{ govukInput({
+          id: "editInquiry[days]",
+          name: "editInquiry[days]",
+          label: {
+            text: 'Expected number of days to carry out the inquiry',
+            isPageHeading: true,
+            classes: 'govuk-label--s'
+          },
+          value: days,
+          classes: "govuk-input--width-2",
+          suffix: {
+            text: "days"
+          }
+        }) }}
+      {% endset %}
+
+      <form method="post">
+        <span class="govuk-caption-l">Appeal 2114328 - update inquiry</span>
+        {{ govukRadios({
+          name: "editInquiry[hasDays]",
+          fieldset: {
+            legend: {
+              text: "Do you know the expected number of days to carry out the inquiry?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          value: hasDays,
+          items: [
+            {
+              value: "Yes",
+              text: "Yes",
+              conditional: {
+                html: daysHtml
+              }
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

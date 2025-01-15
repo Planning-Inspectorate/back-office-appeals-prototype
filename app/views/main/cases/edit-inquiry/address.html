@@ -2,16 +2,14 @@
 
 {% set title = "Address" %}
 {% set pageName = title %}
-
 {% set back = true %}
 
 {% block content %}
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
       <form method="post">
-        <span class="govuk-caption-l">Appeal 2114328 - update hearing</span>
+        <span class="govuk-caption-l">Appeal 2114328 - update inquiry</span>
         {% call govukFieldset({
           legend: {
             text: title,
@@ -21,52 +19,52 @@
 
           {{ govukInput({
             id: "address-line-1",
-            name: "editHearing[address][line1]",
+            name: "editInquiry[address][line1]",
             label: {
               text: "Address line 1"
             },
-            value: hearingAddress.line1,
+            value: inquiryAddress.line1,
             autocomplete: "address-line1"
           }) }}
 
           {{ govukInput({
             id: "address-line-2",
-            name: "editHearing[address][line2]",
+            name: "editInquiry[address][line2]",
             label: {
               text: "Address line 2 (optional)"
             },
-            value: hearingAddress.line2,
+            value: inquiryAddress.line2,
             autocomplete: "address-line2"
           }) }}
 
           {{ govukInput({
             id: "address-town",
-            name: "editHearing[address][town]",
+            name: "editInquiry[address][town]",
             label: {
               text: "Town or city"
             },
-            value: hearingAddress.town,
+            value: inquiryAddress.town,
             autocomplete: "address-level2",
             classes: "govuk-!-width-two-thirds"
           }) }}
 
           {{ govukInput({
             id: "address-county",
-            name: "editHearing[address][county]",
+            name: "editInquiry[address][county]",
             label: {
               text: "County (optional)"
             },
-            value: hearingAddress.county,
+            value: inquiryAddress.county,
             classes: "govuk-!-width-two-thirds"
           }) }}
 
           {{ govukInput({
             id: "address-postcode",
-            name: "editHearing[address][postcode]",
+            name: "editInquiry[address][postcode]",
             label: {
               text: "Postcode"
             },
-            value: hearingAddress.postcode,
+            value: inquiryAddress.postcode,
             autocomplete: "postal-code",
             classes: "govuk-input--width-10"
           }) }}

@@ -126,7 +126,7 @@
   <h3 class="govuk-heading-m">Inquiry estimates</h3>
 
   {% if not application.inquiryEstimates %}
-    <p><a class="govuk-link" href="add-inquiry-estimates">Add inquiry estimates</a></p>
+    <p><a class="govuk-link" href="/main/cases/{{application.id}}/add-inquiry-estimates">Add inquiry estimates</a></p>
   {% endif %}
 
   {{ govukSummaryList({

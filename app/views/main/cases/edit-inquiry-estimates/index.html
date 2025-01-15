@@ -16,12 +16,12 @@
 
         {{ govukInput({
           id: "estimatedPreparationTime",
-          name: "inquiryEstimates[estimatedPreparationTime]",
+          name: "editInquiryEstimates[estimatedPreparationTime]",
           label: {
             text: "Estimated preparation time",
             classes: 'govuk-label--m'
           },
-          value: data.inquiryEstimates.estimatedPreparationTime,
+          value: estimatedPreparationTime,
           classes: "govuk-input--width-4",
           suffix: {
             text: "days"
@@ -30,12 +30,12 @@
 
         {{ govukInput({
           id: "estimatedInquiryTime",
-          name: "inquiryEstimates[estimatedInquiryTime]",
+          name: "editInquiryEstimates[estimatedInquiryTime]",
           label: {
             text: "Estimated sitting time",
             classes: 'govuk-label--m'
           },
-          value: data.inquiryEstimates.estimatedInquiryTime,
+          value: estimatedInquiryTime,
           classes: "govuk-input--width-4",
           suffix: {
             text: "days"
@@ -44,12 +44,12 @@
 
         {{ govukInput({
           id: "estimatedReportingTime",
-          name: "inquiryEstimates[estimatedReportingTime]",
+          name: "editInquiryEstimates[estimatedReportingTime]",
           label: {
             text: "Estimated reporting time",
             classes: 'govuk-label--m'
           },
-          value: data.inquiryEstimates.estimatedReportingTime,
+          value: estimatedReportingTime,
           classes: "govuk-input--width-4",
           suffix: {
             text: "days"

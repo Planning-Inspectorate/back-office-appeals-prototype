@@ -1,16 +1,16 @@
 module.exports = router => {
 
-  router.get('/main/cases/:appealId/cancel-hearing', function (req, res) {
+  router.get('/main/cases/:appealId/cancel-inquiry', function (req, res) {
     let application = req.session.data.applications.find(application => application.id == req.params.appealId)
-    res.render('/main/cases/cancel-hearing/index', {
+    res.render('/main/cases/cancel-inquiry/index', {
       application
     })
   })
 
-  router.post('/main/cases/:appealId/cancel-hearing', function (req, res) {
+  router.post('/main/cases/:appealId/cancel-inquiry', function (req, res) {
     let application = req.session.data.applications.find(application => application.id == req.params.appealId)
-    delete application.hearing
-    req.flash('success', 'Hearing cancelled')
+    delete application.inquiry
+    req.flash('success', 'Inquiry cancelled')
     res.redirect(`/main/cases/${req.params.appealId}`)
   })
 

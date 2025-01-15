@@ -1,0 +1,44 @@
+{% extends "layouts/PINS-Simple.html" %}
+
+{% set title = "Hearing details" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+        <span class="govuk-caption-l">Appeal 2114328 - update hearing</span>
+        {{ govukRadios({
+          name: "editHearing[hasAddress]",
+          fieldset: {
+            legend: {
+              text: "Do you know the address of where the hearing will take place?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          value: hasAddress,
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

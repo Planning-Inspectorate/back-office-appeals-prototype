@@ -24,10 +24,10 @@
       {% include "includes/case/overview.html" %}
       {% include "includes/case/site.html" %}
       {% include "includes/case/timetable.html" %}
-      {% if data.appealProcedure == 'Hearing' %}
+      {% if application.procedure == 'Hearing' %}
         {% include "includes/case/hearing.html" %}
       {% endif %}
-      {% if data.appealProcedure == 'Inquiry' %}
+      {% if application.procedure == 'Inquiry' %}
         {% include "includes/case/cmc.html" %}
         {% include "includes/case/inquiry.html" %}
         {% include "includes/case/rule6-parties.html" %}

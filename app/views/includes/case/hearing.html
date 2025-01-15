@@ -92,8 +92,8 @@
 
   <h3 class="govuk-heading-m">Hearing estimates</h3>
 
-  {% if not data.hearingEstimates %}
-    <p><a class="govuk-link" href="add-hearing-estimates">Add hearing estimates</a></p>
+  {% if not application.hearingEstimates %}
+    <p><a class="govuk-link" href="/main/cases/{{application.id}}/add-hearing-estimates">Add hearing estimates</a></p>
   {% endif %}
 
   {{ govukSummaryList({
@@ -103,53 +103,53 @@
           text: "Estimated preparation time"
         },
         value: {
-          html: data.hearingEstimates.estimatedPreparationTime | days
+          html: application.hearingEstimates.estimatedPreparationTime | days
         },
         actions: {
           items: [
             {
-              href: "/projects/start-full-case/v4/edit-hearing-estimates",
+              href: '/main/cases/:id/edit-hearing-estimates' | replace(':id', application.id),
               text: "Change",
               visuallyHiddenText: "Estimated preparation time"
             }
           ]
         }
-      } if data.hearingEstimates.estimatedPreparationTime,
+      } if application.hearingEstimates.estimatedPreparationTime,
       {
         key: {
           text: "Estimated sitting time"
         },
         value: {
-          html: data.hearingEstimates.estimatedHearingTime | days
+          html: application.hearingEstimates.estimatedHearingTime | days
         },
         actions: {
           items: [
             {
-              href: "/projects/start-full-case/v4/edit-hearing-estimates",
+              href: '/main/cases/:id/edit-hearing-estimates' | replace(':id', application.id),
               text: "Change",
               visuallyHiddenText: "Estimated sitting time"
             }
           ]
         }
-      } if data.hearingEstimates.estimatedHearingTime,
+      } if application.hearingEstimates.estimatedHearingTime,
       {
         key: {
           text: "Estimated reporting time"
         },
         value: {
-          html: data.hearingEstimates.estimatedReportingTime | days
+          html: application.hearingEstimates.estimatedReportingTime | days
         },
         actions: {
           items: [
             {
-              href: "/projects/start-full-case/v4/edit-hearing-estimates",
+              href: '/main/cases/:id/edit-hearing-estimates' | replace(':id', application.id),
               text: "Change",
               visuallyHiddenText: "Estimated reporting time"
             }
           ]
         }
-      } if data.hearingEstimates.estimatedReportingTime
+      } if application.hearingEstimates.estimatedReportingTime
     ]
-  }) if data.hearingEstimates }}
+  }) if application.hearingEstimates }}
 
 </div>

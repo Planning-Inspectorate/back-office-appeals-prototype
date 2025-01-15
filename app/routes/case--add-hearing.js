@@ -48,7 +48,7 @@ module.exports = router => {
     let application = req.session.data.applications.find(application => application.id == req.params.appealId)
     application.hearing = req.session.data.addHearing
     application.status = 'Awaiting hearing'
-    delete req.session.data.hearing
+    delete req.session.data.addHearing
     req.flash('success', 'Hearing set up')
     res.redirect(`/main/cases/${req.params.appealId}`)
   })

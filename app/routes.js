@@ -39,7 +39,6 @@ require('./routes/rule-6-statements')(router)
 require('./routes/rule-6-statement')(router)
 require('./routes/rule-6-statement--approve')(router)
 require('./routes/rule-6-statement--reject')(router)
-require('./routes/rule-6-statement--withdraw')(router)
 require('./routes/rule-6-statement--redact')(router)
 
 //added for simple branching ++ https://github.com/abbott567/radio-button-redirect ++

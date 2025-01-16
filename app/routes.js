@@ -28,6 +28,12 @@ require('./routes/case--edit-inquiry')(router)
 require('./routes/case--cancel-inquiry')(router)
 require('./routes/case--add-inquiry-estimates')(router)
 require('./routes/case--edit-inquiry-estimates')(router)
+require('./routes/rule-6-parties')(router)
+require('./routes/rule-6-party')(router)
+// require('./routes/rule-6-party--edit')(router)
+require('./routes/rule-6-party--approve')(router)
+require('./routes/rule-6-party--reject')(router)
+require('./routes/rule-6-party--withdraw')(router)
 
 //added for simple branching ++ https://github.com/abbott567/radio-button-redirect ++
 

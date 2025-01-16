@@ -2,14 +2,9 @@
 
 {% set title = "Check details and add Rule 6 party" %}
 {% set pageName = title %}
-
 {% set back = true %}
 
 {% block content %}
-
-  {% set address %}
-    {{appAddress({ address: data.hearing.address })}}
-  {% endset %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -22,12 +17,12 @@
               text: "Is the Rule 6 party an organisation?"
             },
             value: {
-              text: data.rule6application.hasOrganisation
+              text: data.addRule6Party.hasOrganisation
             },
             actions: {
               items: [
                 {
-                  href: "/projects/start-full-case/v4/rule-6-parties/new",
+                  href: '/main/cases/:id/rule-6-parties/new' | replace(':id', application.id),
                   text: "Change",
                   visuallyHiddenText: "if the Rule 6 party represents an organisation"
                 }
@@ -39,29 +34,29 @@
               text: "Organisation name"
             },
             value: {
-              text: data.rule6application.organisationName
+              text: data.addRule6Party.organisationName
             },
             actions: {
               items: [
                 {
-                  href: "/projects/start-full-case/v4/rule-6-parties/new",
+                  href: '/main/cases/:id/rule-6-parties/new' | replace(':id', application.id),
                   text: "Change",
                   visuallyHiddenText: "Organisation name"
                 }
               ]
             }
-          } if data.rule6application.hasOrganisation == 'Yes',
+          } if data.addRule6Party.hasOrganisation == 'Yes',
           {
             key: {
               text: "Name of representative"
             },
             value: {
-              text: data.rule6application.firstName + ' ' + data.rule6application.lastName
+              text: data.addRule6Party.firstName + ' ' + data.addRule6Party.lastName
             },
             actions: {
               items: [
                 {
-                  href: "/projects/start-full-case/v4/rule-6-parties/new/name",
+                  href: '/main/cases/:id/rule-6-parties/new/name' | replace(':id', application.id),
                   text: "Change",
                   visuallyHiddenText: "Name"
                 }
@@ -73,12 +68,12 @@
               text: "Email address"
             },
             value: {
-              html: data.rule6application.emailAddress
+              html: data.addRule6Party.emailAddress
             },
             actions: {
               items: [
                 {
-                  href: "/projects/start-full-case/v4/rule-6-parties/new/email-addresss",
+                  href: '/main/cases/:id/rule-6-parties/new/email-address' | replace(':id', application.id),
                   text: "Change",
                   visuallyHiddenText: "Email address"
                 }
@@ -90,12 +85,12 @@
               text: "Phone number"
             },
             value: {
-              text: data.rule6application.phone
+              text: data.addRule6Party.phone
             },
             actions: {
               items: [
                 {
-                  href: "/projects/start-full-case/v4/rule-6-parties/new/phone",
+                  href: '/main/cases/:id/rule-6-parties/new/phone' | replace(':id', application.id),
                   text: "Change",
                   visuallyHiddenText: "Phone number"
                 }
@@ -112,7 +107,7 @@
             actions: {
               items: [
                 {
-                  href: "/projects/start-full-case/v4/rule-6-parties/new/phone",
+                 href: '/main/cases/:id/rule-6-parties/new/form' | replace(':id', application.id),
                   text: "Change",
                   visuallyHiddenText: "Request for Rule 6 status"
                 }
@@ -121,8 +116,6 @@
           }
         ]
       }) }}
-
-      {# <p class="govuk-body">We’ll send an email to the Rule 6 party inviting them to create an account.</p> #}
 
       <form method="post">
         {{ govukButton({

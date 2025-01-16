@@ -15,8 +15,8 @@
         <h1 class="govuk-heading-l">{{title}}</h1>
 
         {{ govukInput({
-          id: "rule6application[firstName]",
-          name: "rule6application[firstName]",
+          id: "addRule6Party[firstName]",
+          name: "addRule6Party[firstName]",
           label: {
             text: "First name",
             isPageHeading: false,
@@ -25,12 +25,12 @@
           hint: {
             text: "Or given name"
           },
-          value: data.rule6application.firstName
+          value: data.addRule6Party.firstName
         }) }}
 
         {{ govukInput({
-          id: "rule6application[lastName]",
-          name: "rule6application[lastName]",
+          id: "addRule6Party[lastName]",
+          name: "addRule6Party[lastName]",
           label: {
             text: "Last name",
             isPageHeading: false,
@@ -39,7 +39,7 @@
           hint: {
             text: "Or family name"
           },
-          value: data.rule6application.lastName
+          value: data.addRule6Party.lastName
         }) }}
 
         {{ govukButton({

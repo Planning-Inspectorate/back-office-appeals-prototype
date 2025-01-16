@@ -11,21 +11,21 @@
     <div class="govuk-grid-column-two-thirds">
       {% set organisationNameHtml %}
         {{ govukInput({
-          id: "rule6application[organisationName]",
-          name: "rule6application[organisationName]",
+          id: "addRule6Party[organisationName]",
+          name: "addRule6Party[organisationName]",
           label: {
             text: "Organisation name",
             isPageHeading: true,
             classes: "govuk-label--s"
           },
-          value: data.rule6application.organisationName
+          value: data.addRule6Party.organisationName
         }) }}
       {% endset %}
 
       <form method="post">
         <span class="govuk-caption-l">Appeal 2114328 - Add Rule 6 party</span>
         {{ govukRadios({
-          name: "rule6application[hasOrganisation]",
+          name: "addRule6Party[hasOrganisation]",
           fieldset: {
             legend: {
               text: title,
@@ -33,7 +33,7 @@
               classes: "govuk-fieldset__legend--l"
             }
           },
-          value: data.rule6application.hasOrganisation,
+          value: data.addRule6Party.hasOrganisation,
           items: [
             {
               value: "Yes",

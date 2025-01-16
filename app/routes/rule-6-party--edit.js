@@ -93,7 +93,7 @@ module.exports = router => {
   router.post('/main/cases/:appealId/rule-6-parties/:partyId/edit/check', function (req, res) {
     let application = req.session.data.applications.find(application => application.id == req.params.appealId)
     let party = application.rule6Parties.find(party => party.id === req.params.partyId)
-    req.flash('success', 'Rule 6 party added')
+    req.flash('success', 'Rule 6 party updated')
 
     // Update party
     party.hasOrganisation = req.session.data.editRule6Party.hasOrganisation

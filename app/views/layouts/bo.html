@@ -1,0 +1,14 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+	{% include "includes/header.njk" %}
+{% endblock %}
+
+{% block pageScripts %}
+  {{ super() }}
+  <script>
+    var App = {}
+  </script>
+  <script src="/public/javascripts/components/add-another.js"></script>
+  <script src="/public/javascripts/components/filter-toggle-button.js"></script>
+{% endblock %}

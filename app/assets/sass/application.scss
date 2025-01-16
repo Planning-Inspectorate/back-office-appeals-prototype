@@ -24,9 +24,20 @@
 @import "PINS-header--internal"; // dark green internal pins header
 @import "pins/library-subnav"; // extra styles for library subnav
 
+
+
 // Add extra styles here
 
 $govuk-font-family: Helvetica, Arial, sans-serif;
+
+
+.app-header {
+	border-bottom: 10px solid govuk-colour('turquoise');
+	display: table;
+	width: 100%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
 
 .x-govuk-secondary-navigation__list-item {
 	margin-right: 15px;

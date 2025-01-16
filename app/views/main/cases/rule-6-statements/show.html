@@ -1,0 +1,120 @@
+{% extends "layouts/PINS-Simple.html" %}
+
+{% if party.organisationName  %}
+  {% set title = party.organisationName %}
+{% else %}
+  {% set title = party.firstName + ' ' + party.lastName %}
+{% endif %}
+{% set pageName = title %}
+
+{% block beforeContent %}
+  {{ govukBreadcrumbs({
+    classes: 'govuk-!-margin-top-4 govuk-!-margin-bottom-0',
+      items: [
+        {
+          text: application.id,
+          href: "/main/cases/:appealId" | replace(':appealId', application.id)
+        },
+        {
+          text: "Rule 6 statements",
+          href: "/main/cases/:appealId/rule-6-statements" | replace(':appealId', application.id)
+        },
+        {
+          text: title
+        }
+      ]
+    }) }}
+{% endblock %}
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukNotificationBanner({
+        type: "success",
+        text: flash
+      }) if flash.length }}
+
+      <h1 class="govuk-heading-l">
+        {{title}}
+        {{ govukTag({
+          text: party.statement.status,
+          classes: party.statement.status | rule6StatementStatusColour
+        }) }}
+      </h1>
+
+      {% if party.statement.status == 'Ready to review' %}
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Accept",
+            href: '/main/cases/:appealId/rule-6-statements/:partyId/approve' | replace(':appealId', application.id) | replace(':partyId', party.id)
+          })}}
+          {{ govukButton({
+            text: "Redact and accept",
+            classes: 'govuk-button--secondary',
+            href: '/main/cases/:appealId/rule-6-statements/:partyId/redact' | replace(':appealId', application.id) | replace(':partyId', party.id)
+          })}}
+          {{ govukButton({
+              text: "Reject",
+              classes: 'govuk-button--secondary',
+              href: '/main/cases/:appealId/rule-6-statements/:partyId/reject' | replace(':appealId', application.id) | replace(':partyId', party.id)
+            })}}
+          </div>
+        {% else %}
+          <p class="govuk-!-margin-bottom-6"><a class="govuk-link" href="/main/cases/{{application.id}}/rule-6-statements/{{party.id}}/new">Add new Rule 6 statement</a></p>
+        {% endif %}
+
+        {% set docs %}
+          {% if party.statement.documents %}
+
+            {% if party.statement.documents.length > 1 %}
+              <ol class="govuk-list govuk-list--number">
+                {% for document in party.statement.documents %}
+                  <li>
+                    <a href="#">{{document.name}}</a>
+                  </li>
+                {% endfor %}
+              </ol>
+            {% else %}
+              <a href="#">{{party.statement.documents[0].name}}</a>
+            {% endif %}
+          {% else %}
+            No documents
+          {% endif %}
+        {% endset %}
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: 'Statement'
+            },
+            value: {
+              html: party.statement.statement
+            }
+          },
+          {
+            key: {
+              text: 'Supporting documents'
+            },
+            value: {
+              html: docs
+            },
+            actions: {
+              items: [
+                {
+                  href: '#',
+                  text: "Change",
+                  visuallyHiddenText: "Supporting documents"
+                }
+              ]
+            } if 1==2
+          }
+        ]
+      }) }}
+
+    </div>
+  </div>
+{% endblock %}

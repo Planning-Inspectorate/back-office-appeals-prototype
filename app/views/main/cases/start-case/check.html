@@ -1,4 +1,4 @@
-{% extends "layouts/PINS-Simple.html" %}
+{% extends "layouts/bo.html" %}
 
 {% set title = "Check details and start case" %}
 {% set pageName = title + 'Start case - Planning Inspectorate'%}
@@ -22,7 +22,7 @@
             actions: {
               items: [
                 {
-                  href: "/main/cases/:id/start" | replace(':id', application.id),
+                  href: "/main/cases/:appealId/start" | replace(':appealId', application.id),
                   text: "Change",
                   visuallyHiddenText: "Appeal procedure"
                 }

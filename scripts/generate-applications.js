@@ -48,7 +48,7 @@ function capitalizeFirstLetter(str) {
 
 const generateAddress = () => {
   return {
-    line1: faker.number.int({ max: 100 }) + ' ' + capitalizeFirstLetter(faker.food.fruit()) + ' ' + faker.helpers.arrayElement(['Road', 'Avenue', 'Lane', 'Walk']),
+    line1: faker.number.int({ min: 1, max: 100 }) + ' ' + capitalizeFirstLetter(faker.food.fruit()) + ' ' + faker.helpers.arrayElement(['Road', 'Avenue', 'Lane', 'Walk']),
     town: faker.helpers.arrayElement(['London', 'Manchester', 'Birmingham', 'Bristol']),
     postcode: faker.location.zipCode('WD# #JT')
   }

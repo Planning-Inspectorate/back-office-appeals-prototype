@@ -1,4 +1,4 @@
-{% extends "layouts/PINS-Simple.html" %}
+{% extends "layouts/bo.html" %}
 
 {% set title = "Check details and update hearing estimates" %}
 {% set pageName = title %}
@@ -22,7 +22,7 @@
             actions: {
               items: [
                 {
-                  href: "/main/cases/:id/edit-hearing-estimates" | replace(':id', application.id),
+                  href: "/main/cases/:appealId/edit-hearing-estimates" | replace(':appealId', application.id),
                   text: "Change",
                   visuallyHiddenText: "Estimated preparation time"
                 }
@@ -39,7 +39,7 @@
             actions: {
               items: [
                 {
-                  href: "/main/cases/:id/edit-hearing-estimates" | replace(':id', application.id),
+                  href: "/main/cases/:appealId/edit-hearing-estimates" | replace(':appealId', application.id),
                   text: "Change",
                   visuallyHiddenText: "Estimated sitting time"
                 }
@@ -56,7 +56,7 @@
             actions: {
               items: [
                 {
-                  href: "/main/cases/:id/edit-hearing-estimates" | replace(':id', application.id),
+                  href: "/main/cases/:appealId/edit-hearing-estimates" | replace(':appealId', application.id),
                   text: "Change",
                   visuallyHiddenText: "Estimated reporting time"
                 }

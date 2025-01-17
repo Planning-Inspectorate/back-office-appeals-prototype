@@ -35,11 +35,11 @@
     </p>
   {% elseif application.status == 'Hearing ready to set up' %}
     <p class="govuk-notification-banner__heading">
-      <a class="govuk-notification-banner__link" href="#">Set up hearing</a>
+      <a class="govuk-notification-banner__link" href="/main/cases/{{application.id}}/add-hearing">Set up hearing</a>
     </p>
   {% elseif application.status == 'Inquiry ready to set up' %}
     <p class="govuk-notification-banner__heading">
-      <a class="govuk-notification-banner__link" href="#">Set up inquiry</a>
+      <a class="govuk-notification-banner__link" href="/main/cases/{{application.id}}/add-inquiry">Set up inquiry</a>
     </p>
   {% elseif application.status == 'Proof of evidence and witnesses ready to review' %}
     <p class="govuk-notification-banner__heading">

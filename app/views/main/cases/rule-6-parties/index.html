@@ -1,4 +1,4 @@
-{% extends "layouts/PINS-Simple.html" %}
+{% extends "layouts/bo.html" %}
 
 {% set title = "Rule 6 parties" %}
 {% set pageName = title %}
@@ -8,8 +8,8 @@
     classes: 'govuk-!-margin-top-4 govuk-!-margin-bottom-0',
       items: [
         {
-          text: "21114328",
-          href: "/main/cases/:id" | replace(':id', application.id)
+          text: application.id,
+          href: "/main/cases/:appealId" | replace(':appealId', application.id)
         },
         {
           text: title

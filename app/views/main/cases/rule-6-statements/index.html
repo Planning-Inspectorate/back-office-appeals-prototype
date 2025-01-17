@@ -1,4 +1,4 @@
-{% extends "layouts/PINS-Simple.html" %}
+{% extends "layouts/bo.html" %}
 
 {% set title = "Rule 6 statements" %}
 {% set pageName = title %}
@@ -9,11 +9,7 @@
       items: [
         {
           text: application.id,
-          href: "/projects/start-full-case/v4/appeals/839838"
-        },
-        {
-          text: "Statements",
-          href: "/projects/start-full-case/v4/appeals/839838/statements"
+          href: "/main/cases/:appealId" | replace(':appealId', application.id)
         },
         {
           text: title

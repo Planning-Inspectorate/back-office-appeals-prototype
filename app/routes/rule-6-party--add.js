@@ -87,6 +87,10 @@ module.exports = router => {
       status: 'Ready to review'
     }
 
+    if(!application.rule6Parties) {
+      application.rule6Parties = []
+    }
+
     application.rule6Parties.push(newParty)
     res.redirect(`/main/cases/${req.params.appealId}/rule-6-parties`)
   })

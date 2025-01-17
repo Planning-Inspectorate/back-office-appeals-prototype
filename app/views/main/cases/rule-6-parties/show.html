@@ -1,4 +1,4 @@
-{% extends "layouts/PINS-Simple.html" %}
+{% extends "layouts/bo.html" %}
 
 
 {% if party.organisationName  %}
@@ -14,11 +14,11 @@
       items: [
         {
           text: application.id,
-          href: "/main/cases/:id" | replace(':id', application.id)
+          href: "/main/cases/:appealId" | replace(':appealId', application.id)
         },
         {
           text: "Rule 6 parties",
-          href: "/main/cases/:id/rule-6-parties" | replace(':id', application.id)
+          href: "/main/cases/:appealId/rule-6-parties" | replace(':appealId', application.id)
         },
         {
           text: title

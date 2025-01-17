@@ -1,4 +1,4 @@
-{% extends "layouts/PINS-Simple.html" %}
+{% extends "layouts/bo.html" %}
 
 {% set title = "Check details and set up inquiry" %}
 {% set pageName = title %}
@@ -27,7 +27,7 @@
             actions: {
               items: [
                 {
-                  href: "/main/cases/:id/add-inquiry" | replace(':id', application.id),
+                  href: "/main/cases/:appealId/add-inquiry" | replace(':appealId', application.id),
                   text: "Change",
                   visuallyHiddenText: "Date"
                 }
@@ -44,7 +44,7 @@
             actions: {
               items: [
                 {
-                  href: "/main/cases/:id/add-inquiry" | replace(':id', application.id),
+                  href: "/main/cases/:appealId/add-inquiry" | replace(':appealId', application.id),
                   text: "Change",
                   visuallyHiddenText: "Time"
                 }
@@ -61,7 +61,7 @@
             actions: {
               items: [
                 {
-                  href: "/main/cases/:id/add-inquiry/days" | replace(':id', application.id),
+                  href: "/main/cases/:appealId/add-inquiry/days" | replace(':appealId', application.id),
                   text: "Change",
                   visuallyHiddenText: "if you know the expected number of days to carry out the inquiry"
                 }
@@ -78,7 +78,7 @@
             actions: {
               items: [
                 {
-                  href: "/main/cases/:id/add-inquiry/days" | replace(':id', application.id),
+                  href: "/main/cases/:appealId/add-inquiry/days" | replace(':appealId', application.id),
                   text: "Change",
                   visuallyHiddenText: "Expected number of days to carry out the inquiry"
                 }
@@ -95,7 +95,7 @@
             actions: {
               items: [
                 {
-                  href: "/main/cases/:id/add-inquiry/has-address" | replace(':id', application.id),
+                  href: "/main/cases/:appealId/add-inquiry/has-address" | replace(':appealId', application.id),
                   text: "Change",
                   visuallyHiddenText: "if you know the inquiry address"
                 }
@@ -112,7 +112,7 @@
             actions: {
               items: [
                 {
-                  href: "/main/cases/:id/add-inquiry/address" | replace(':id', application.id),
+                  href: "/main/cases/:appealId/add-inquiry/address" | replace(':appealId', application.id),
                   text: "Change",
                   visuallyHiddenText: "Inquiry address"
                 }

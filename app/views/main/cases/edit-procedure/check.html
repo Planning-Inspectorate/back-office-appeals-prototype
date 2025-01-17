@@ -1,4 +1,4 @@
-{% extends "layouts/PINS-Simple.html" %}
+{% extends "layouts/bo.html" %}
 
 {% set title = "Check details and update procedure" %}
 {% set pageName = title %}
@@ -22,7 +22,7 @@
             actions: {
               items: [
                 {
-                  href: "/main/cases/:id/edit-procedure" | replace(':id', application.id),
+                  href: "/main/cases/:appealId/edit-procedure" | replace(':appealId', application.id),
                   text: "Change",
                   visuallyHiddenText: "Procedure"
                 }

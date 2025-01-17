@@ -1,4 +1,4 @@
-{% extends "layouts/PINS-Simple.html" %}
+{% extends "layouts/bo.html" %}
 
 {% set title = "Check details and update hearing" %}
 {% set pageName = title %}
@@ -27,7 +27,7 @@
             actions: {
               items: [
                 {
-                  href: "/main/cases/:id/edit-hearing" | replace(':id', application.id),
+                  href: "/main/cases/:appealId/edit-hearing" | replace(':appealId', application.id),
                   text: "Change",
                   visuallyHiddenText: "Date"
                 }
@@ -44,7 +44,7 @@
             actions: {
               items: [
                 {
-                  href: "/main/cases/:id/edit-hearing" | replace(':id', application.id),
+                  href: "/main/cases/:appealId/edit-hearing" | replace(':appealId', application.id),
                   text: "Change",
                   visuallyHiddenText: "Time"
                 }
@@ -61,7 +61,7 @@
             actions: {
               items: [
                 {
-                  href: "/main/cases/:id/edit-hearing/has-address" | replace(':id', application.id),
+                  href: "/main/cases/:appealId/edit-hearing/has-address" | replace(':appealId', application.id),
                   text: "Change",
                   visuallyHiddenText: "whether you know the hearing address"
                 }
@@ -78,7 +78,7 @@
             actions: {
               items: [
                 {
-                  href: "/main/cases/:id/edit-hearing/address" | replace(':id', application.id),
+                  href: "/main/cases/:appealId/edit-hearing/address" | replace(':appealId', application.id),
                   text: "Change",
                   visuallyHiddenText: "Address"
                 }

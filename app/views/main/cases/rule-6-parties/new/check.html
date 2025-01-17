@@ -1,4 +1,4 @@
-{% extends "layouts/PINS-Simple.html" %}
+{% extends "layouts/bo.html" %}
 
 {% set title = "Check details and add Rule 6 party" %}
 {% set pageName = title %}
@@ -22,7 +22,7 @@
             actions: {
               items: [
                 {
-                  href: '/main/cases/:id/rule-6-parties/new' | replace(':id', application.id),
+                  href: '/main/cases/:appealId/rule-6-parties/new' | replace(':appealId', application.id),
                   text: "Change",
                   visuallyHiddenText: "if the Rule 6 party represents an organisation"
                 }
@@ -39,7 +39,7 @@
             actions: {
               items: [
                 {
-                  href: '/main/cases/:id/rule-6-parties/new' | replace(':id', application.id),
+                  href: '/main/cases/:appealId/rule-6-parties/new' | replace(':appealId', application.id),
                   text: "Change",
                   visuallyHiddenText: "Organisation name"
                 }
@@ -56,7 +56,7 @@
             actions: {
               items: [
                 {
-                  href: '/main/cases/:id/rule-6-parties/new/name' | replace(':id', application.id),
+                  href: '/main/cases/:appealId/rule-6-parties/new/name' | replace(':appealId', application.id),
                   text: "Change",
                   visuallyHiddenText: "Name"
                 }
@@ -73,7 +73,7 @@
             actions: {
               items: [
                 {
-                  href: '/main/cases/:id/rule-6-parties/new/email-address' | replace(':id', application.id),
+                  href: '/main/cases/:appealId/rule-6-parties/new/email-address' | replace(':appealId', application.id),
                   text: "Change",
                   visuallyHiddenText: "Email address"
                 }
@@ -90,7 +90,7 @@
             actions: {
               items: [
                 {
-                  href: '/main/cases/:id/rule-6-parties/new/phone' | replace(':id', application.id),
+                  href: '/main/cases/:appealId/rule-6-parties/new/phone' | replace(':appealId', application.id),
                   text: "Change",
                   visuallyHiddenText: "Phone number"
                 }
@@ -107,7 +107,7 @@
             actions: {
               items: [
                 {
-                  href: '/main/cases/:id/rule-6-parties/new/form' | replace(':id', application.id),
+                  href: '/main/cases/:appealId/rule-6-parties/new/form' | replace(':appealId', application.id),
                   text: "Change",
                   visuallyHiddenText: "Request for Rule 6 status"
                 }

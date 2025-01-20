@@ -204,6 +204,7 @@ router.get('/', function (req, res) {
 
 router.get('/clear-filters', (req, res) => {
   _.set(req, 'session.data.filters.statuses', null)
+  _.set(req, 'session.data.filters.caseOfficers', null)
   res.redirect('/projects/start-full-case/v4')
 })
 

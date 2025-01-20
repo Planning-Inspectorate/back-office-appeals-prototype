@@ -318,12 +318,14 @@ const generateApplications = () => {
     status: "Site visit ready to set up"
   }))
   applications.push(generateApplication({
+    id: '00000001',
     type: 'Full planning appeal',
     procedure: 'Written representations',
     status: "Awaiting site visit"
   }))
 
   applications.push(generateApplication({
+    id: '00000002',
     type: 'Full planning appeal',
     procedure: 'Hearing',
     status: "Hearing ready to set up"
@@ -335,6 +337,7 @@ const generateApplications = () => {
   }))
 
   applications.push(generateApplication({
+    id: '00000003',
     type: 'Full planning appeal',
     procedure: 'Inquiry',
     status: "Inquiry ready to set up"

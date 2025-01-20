@@ -33,6 +33,10 @@
     <p class="govuk-notification-banner__heading">
       <a class="govuk-notification-banner__link" href="#">Share final comments</a>
     </p>
+  {% elseif application.status == 'Site visit ready to set up' %}
+    <p class="govuk-notification-banner__heading">
+      <a class="govuk-notification-banner__link" href="#">Site visit ready to set up</a>
+    </p>
   {% elseif application.status == 'Hearing ready to set up' %}
     <p class="govuk-notification-banner__heading">
       <a class="govuk-notification-banner__link" href="#">Set up hearing</a>

@@ -20,7 +20,7 @@ router.get('/changeSetting', function (req, res) {
 })
 
 router.get('/case-details', function (req, res) {
-  let application = req.session.data.applications.find(application => application.id == '00182182')
+  let application = req.session.data.applications.find(application => application.id == '00000005')
   res.render('/projects/start-full-case/v4/case-details', {
     application
   })
@@ -230,7 +230,8 @@ router.get('/clear-search', (req, res) => {
 
 router.post('/start-case/check', function (req, res) {
   req.flash('success', 'Case started')
-  req.session.data['case-stage'] = 'questionnaire'
+  let application = req.session.data.applications.find(application => application.id == '00000005')
+  application.status = 'Awaiting LPAQ'
   res.redirect('../case-details')
 })
 

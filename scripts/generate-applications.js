@@ -270,6 +270,7 @@ const generateApplications = () => {
     status: "Ready to validate"
   }))
   applications.push(generateApplication({
+    id: '00000005',
     type: 'Full planning appeal',
     status: "Ready to start"
   }))

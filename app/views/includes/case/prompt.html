@@ -18,9 +18,10 @@
       <a class="govuk-notification-banner__link" href="#">Review LPAQ</a>
     </p>
   {% elseif application.status == 'Statements and IP comments ready to review' %}
-    <p class="govuk-notification-banner__heading">
+    {# <p class="govuk-notification-banner__heading">
       <a class="govuk-notification-banner__link" href="#">Review statements and IP comments</a>
-    </p>
+    </p> #}
+
   {% elseif application.status == 'Statements and IP comments ready to share' %}
     <p class="govuk-notification-banner__heading">
       <a class="govuk-notification-banner__link" href="#">Share statements and IP comments</a>

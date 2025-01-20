@@ -18,9 +18,11 @@
     <div class="govuk-grid-column-two-thirds">
       {# <h2 class="govuk-visually-hidden"> Case overview </h2> #}
 
-      <div class="govuk-button-group">
-        <a href="#" class="govuk-link">Issue decision</a>
-      </div>
+      {% if application.status == 'Decision ready to issue' %}
+        <div class="govuk-button-group">
+          <a href="#" class="govuk-link">Issue decision</a>
+        </div>
+      {% endif %}
 
       {{ govukSummaryList({
         rows: [
@@ -417,8 +419,7 @@
         }) if 1==1}}
       {% endif %}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-8">Withdraw appeal</h2>
-
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">Withdraw</h2>
 
       <p><a href="#">Withdraw</a></p>
 

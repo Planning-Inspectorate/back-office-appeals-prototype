@@ -20,7 +20,9 @@
 
       {% if application.status == 'Decision ready to issue' %}
         <div class="govuk-button-group">
-          <a href="#" class="govuk-link">Issue decision</a>
+          {{ govukButton({
+            text: "Issue decision"
+          }) }}
         </div>
       {% endif %}
 

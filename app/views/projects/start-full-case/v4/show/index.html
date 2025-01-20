@@ -6,8 +6,10 @@
 {% set back = false %}
 
 {% block content %}
-  {% include "/projects/start-full-case/v4/_includes/prompt.html" %}
+
+  {# {% include "/projects/start-full-case/v4/_includes/prompt.html" %} #}
   {% include "/projects/start-full-case/v4/_includes/h1.html" %}
+  {% include "/projects/start-full-case/v4/_includes/inset.html" %}
   {% include "/projects/start-full-case/v4/_includes/nav.html" %}
 
   <h1 class="govuk-heading-l">
@@ -18,13 +20,13 @@
     <div class="govuk-grid-column-two-thirds">
       {# <h2 class="govuk-visually-hidden"> Case overview </h2> #}
 
-      {% if application.status == 'Decision ready to issue' %}
+      {# {% if application.status == 'Decision ready to issue' %}
         <div class="govuk-button-group">
           {{ govukButton({
             text: "Issue decision"
           }) }}
         </div>
-      {% endif %}
+      {% endif %} #}
 
       {{ govukSummaryList({
         rows: [

@@ -1,0 +1,92 @@
+{% set showPrompt = true %}
+{% set html %}
+
+  {% if application.status == 'Ready to assign case officer' %}
+    <h2 class="govuk-heading-m">{{application.status}}</h2>
+    {{ govukButton({
+      text: "Assign case officer"
+    }) }}
+  {% elseif application.status == 'Ready to validate' %}
+    <h2 class="govuk-heading-m">{{application.status}}</h2>
+    {{ govukButton({
+      text: "Validate case"
+    }) }}
+  {% elseif application.status == 'Ready to start' %}
+    <h2 class="govuk-heading-m">{{application.status}}</h2>
+    {{ govukButton({
+      text: "Start case"
+    }) }}
+  {% elseif application.status == 'LPAQ ready to review' %}
+    <h2 class="govuk-heading-m">{{application.status}}</h2>
+    {{ govukButton({
+      text: "Review LPAQ"
+    }) }}
+  {% elseif application.status == 'Statements and IP comments ready to review' %}
+    <h2 class="govuk-heading-m">{{application.status}}</h2>
+    {{ govukButton({
+      text: "Review statements and IP comments"
+    }) }}
+  {% elseif application.status == 'Statements and IP comments ready to share' %}
+    <h2 class="govuk-heading-m">{{application.status}}</h2>
+    {{ govukButton({
+      text: "Share statements and IP comments"
+    }) }}
+  {% elseif application.status == 'Final comments ready to review' %}
+    <h2 class="govuk-heading-m">{{application.status}}</h2>
+    {{ govukButton({
+      text: "Review final comments"
+    }) }}
+    </p>
+  {% elseif application.status == 'Final comments ready to share' %}
+    <h2 class="govuk-heading-m">{{application.status}}</h2>
+    {{ govukButton({
+      text: "Share final comments"
+    }) }}
+  {% elseif application.status == 'Site visit ready to set up' %}
+    <h2 class="govuk-heading-m">{{application.status}}</h2>
+    {{ govukButton({
+      text: "Site visit ready to set up"
+    }) }}
+  {% elseif application.status == 'Hearing ready to set up' %}
+    <h2 class="govuk-heading-m">{{application.status}}</h2>
+    {{ govukButton({
+      text: "Set up hearing"
+    }) }}
+  {% elseif application.status == 'Inquiry ready to set up' %}
+    <h2 class="govuk-heading-m">{{application.status}}</h2>
+    {{ govukButton({
+      text: "Set up inquiry"
+    }) }}
+  {% elseif application.status == 'Proof of evidence and witnesses ready to review' %}
+    <h2 class="govuk-heading-m">{{application.status}}</h2>
+    {{ govukButton({
+      text: "Review proof of evidence and witnesses"
+    }) }}
+  {% elseif application.status == 'Proof of evidence and witnesses ready to share' %}
+    <h2 class="govuk-heading-m">{{application.status}}</h2>
+    {{ govukButton({
+      text: "Share proof of evidence and witnesses"
+    }) }}
+  {% elseif application.status == 'Decision ready to issue' %}
+    <h2 class="govuk-heading-m">{{application.status}}</h2>
+    {{ govukButton({
+      text: "Issue decision"
+    }) }}
+  {% elseif application.status == 'Decision issued' %}
+  {% else %}
+    {% set showPrompt = false %}
+  {% endif %}
+{% endset %}
+
+{% if showPrompt %}
+  {# <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds"> #}
+
+      {{ govukInsetText({
+        classes: 'govuk-!-margin-top-4',
+        html: html
+      }) }}
+    {# </div>
+  </div> #}
+{% endif %}
+

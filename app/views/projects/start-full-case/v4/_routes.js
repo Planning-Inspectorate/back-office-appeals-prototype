@@ -139,7 +139,8 @@ router.get('/', function (req, res) {
 
 
   let selectedStatusFilters = _.get(req.session.data.filters, 'statuses')
-  let hasFilters = _.get(selectedStatusFilters, 'length')
+  let selectedCaseOfficerFilters = _.get(req.session.data.filters, 'caseOfficers')
+  let hasFilters = _.get(selectedStatusFilters, 'length') || _.get(selectedCaseOfficerFilters, 'length')
 
   let selectedFilters = {
     categories: []
@@ -149,12 +150,18 @@ router.get('/', function (req, res) {
   if(hasFilters) {
     applications = applications.filter(application => {
       let matchesStatus = true
+      let matchesCaseOfficer = true
 
       if(_.get(selectedStatusFilters, 'length')) {
         matchesStatus = selectedStatusFilters.includes(application.status);
       }
 
-      return matchesStatus
+      if(_.get(selectedCaseOfficerFilters, 'length')) {
+        matchesCaseOfficer = selectedCaseOfficerFilters.includes(application.caseOfficer);
+      }
+
+
+      return matchesStatus && matchesCaseOfficer
     })
   }
 
@@ -165,6 +172,18 @@ router.get('/', function (req, res) {
         return {
           text: label,
           href: `/projects/start-full-case/v4/remove-status/${label}`
+        }
+      })
+    })
+  }
+
+  if(_.get(selectedCaseOfficerFilters, 'length')) {
+    selectedFilters.categories.push({
+      heading: { text: 'Case officer' },
+      items: selectedCaseOfficerFilters.map(label => {
+        return {
+          text: label,
+          href: `/projects/start-full-case/v4/remove-case-officer/${label}`
         }
       })
     })
@@ -190,6 +209,11 @@ router.get('/clear-filters', (req, res) => {
 
 router.get('/remove-status/:status', (req, res) => {
   _.set(req, 'session.data.filters.statuses', _.pull(req.session.data.filters.statuses, req.params.status))
+  res.redirect('/projects/start-full-case/v4/')
+})
+
+router.get('/remove-case-officer/:caseOfficer', (req, res) => {
+  _.set(req, 'session.data.filters.caseOfficers', _.pull(req.session.data.filters.caseOfficers, req.params.caseOfficer))
   res.redirect('/projects/start-full-case/v4/')
 })
 

@@ -157,6 +157,14 @@ const generateApplication = (params = {}) => {
 
   application.status = params.status || faker.helpers.arrayElement(statuses)
 
+  if(application.status !== 'Ready to assign case officer') {
+    application.caseOfficer = faker.helpers.arrayElement([
+      'Tony Stark',
+      'Natasha Romanoff',
+      'Peter Parker'
+    ])
+  }
+
   if(application.status == 'Ready to assign case officer' || application.status == 'Ready to validate' || application.status == 'Ready to start') {
     application.procedure = null
   }

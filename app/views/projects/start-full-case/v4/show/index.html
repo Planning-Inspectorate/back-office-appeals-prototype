@@ -18,10 +18,10 @@
     <div class="govuk-grid-column-two-thirds">
       {# <h2 class="govuk-visually-hidden"> Case overview </h2> #}
 
-    <div class="govuk-button-group">
-      <a href="#" class="govuk-link">Issue decision</a>
-      <a href="#" class="govuk-link">Withdraw</a>
-    </div>
+      <div class="govuk-button-group">
+        <a href="#" class="govuk-link">Issue decision</a>
+        <a href="#" class="govuk-link">Withdraw</a>
+      </div>
 
       {{ govukSummaryList({
         rows: [
@@ -230,7 +230,7 @@
               text: "Case officer"
             },
             value: {
-              html: 'Billie Moore'
+              html: application.caseOfficer or 'Unassigned'
             },
             actions: {
               items: [
@@ -247,7 +247,7 @@
               text: "Inspector"
             },
             value: {
-              html: 'Not assigned'
+              html: 'Unassigned'
             },
             actions: {
               items: [
@@ -418,10 +418,10 @@
         }) if 1==1}}
       {% endif %}
 
-      {# <h2 class="govuk-heading-m govuk-!-margin-top-8">Withdraw appeal</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">Withdraw appeal</h2>
 
 
-      <p><a href="#">Withdraw</a></p> #}
+      <p><a href="#">Withdraw</a></p>
 
     </div>
   </div>

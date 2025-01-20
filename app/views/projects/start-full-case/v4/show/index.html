@@ -7,9 +7,9 @@
 
 {% block content %}
 
-  {# {% include "/projects/start-full-case/v4/_includes/prompt.html" %} #}
+  {% include "/projects/start-full-case/v4/_includes/prompt.html" %}
   {% include "/projects/start-full-case/v4/_includes/h1.html" %}
-  {% include "/projects/start-full-case/v4/_includes/inset.html" %}
+  {# {% include "/projects/start-full-case/v4/_includes/inset.html" %} #}
   {% include "/projects/start-full-case/v4/_includes/nav.html" %}
 
   <h1 class="govuk-heading-l">
@@ -147,7 +147,24 @@
             value: {
               html: '<a href="#">Appellant costs application</a><br><a href="#">LPA costs application</a>'
             }
-          }
+          },
+          {
+            key: {
+              text: "Decision"
+            },
+            value: {
+              html: 'Not issued yet'
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Issue",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
+          } if application.status == 'Decision ready to issue'
         ]
       }) }}
 

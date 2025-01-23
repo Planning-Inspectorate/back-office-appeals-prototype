@@ -14,12 +14,6 @@
     <a href="#" class="govuk-link">Download case</a>
   </div>
 
-  <div class="govuk-button-group">
-    {{ govukButton({
-      text: "Issue decision"
-    }) }}
-  </div>
-
   {{ govukDetails({
     summaryText: "Notes (1)",
     text: "Note stuff here"
@@ -27,22 +21,149 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {% include "includes/case/overview.html" %}
-      {% include "includes/case/site.html" %}
-      {% include "includes/case/timetable.html" %}
+      {% set overviewHtml %}
+        {% include "includes/case/overview.html" %}
+      {% endset%}
+      {% set siteHtml %}
+        {% include "includes/case/site.html" %}
+      {% endset%}
+      {% set timetableHtml %}
+        {% include "includes/case/timetable.html" %}
+      {% endset%}
       {% if application.procedure == 'Hearing' %}
-        {% include "includes/case/hearing.html" %}
+        {% set hearingHtml %}
+          {% include "includes/case/hearing.html" %}
+        {% endset%}
       {% endif %}
       {% if application.procedure == 'Inquiry' %}
-        {% include "includes/case/cmc.html" %}
-        {% include "includes/case/inquiry.html" %}
-        {% include "includes/case/rule6-parties.html" %}
+        {% set cmcHtml %}
+          {% include "includes/case/cmc.html" %}
+        {% endset%}
+        {% set inquiryHtml %}
+          {% include "includes/case/inquiry.html" %}
+        {% endset%}
+        {% set rule6PartiesHtml %}
+          {% include "includes/case/rule6-parties.html" %}
+        {% endset%}
       {% endif %}
-      {% include "includes/case/documentation.html" %}
-      {% include "includes/case/costs.html" %}
-      {% include "includes/case/contacts.html" %}
-      {% include "includes/case/team.html" %}
-      {% include "includes/case/case-management.html" %}
+      {% set documentationHtml %}
+        {% include "includes/case/documentation.html" %}
+      {% endset%}
+      {% set costsHtml %}
+        {% include "includes/case/costs.html" %}
+      {% endset%}
+      {% set contactsHtml %}
+        {% include "includes/case/contacts.html" %}
+      {% endset%}
+      {% set teamHtml %}
+        {% include "includes/case/team.html" %}
+      {% endset%}
+      {% set caseManagementHtml %}
+        {% include "includes/case/case-management.html" %}
+      {% endset%}
+
+      {{ govukAccordion({
+        id: 'caseDetails',
+        classes: 'govuk-!-margin-top-4',
+        items: [
+          {
+            heading: {
+              text: "Overview"
+            },
+            content: {
+              html: overviewHtml
+            }
+          },
+          {
+            heading: {
+              text: "Site"
+            },
+            content: {
+              html: siteHtml
+            }
+          },
+          {
+            heading: {
+              text: "Timetable"
+            },
+            content: {
+              html: timetableHtml
+            }
+          },
+          {
+            heading: {
+              text: "Hearing"
+            },
+            content: {
+              html: hearingHtml
+            }
+          } if hearingHtml,
+          {
+            heading: {
+              text: "CMC"
+            },
+            content: {
+              html: cmcHtml
+            }
+          } if cmcHtml,
+          {
+            heading: {
+              text: "Inquiry"
+            },
+            content: {
+              html: inquiryHtml
+            }
+          } if inquiryHtml,
+          {
+            heading: {
+              text: "Rule 6 parties"
+            },
+            content: {
+              html: rule6PartiesHtml
+            }
+          } if rule6PartiesHtml,
+          {
+            heading: {
+              text: "Documentation"
+            },
+            content: {
+              html: documentationHtml
+            }
+          },
+          {
+            heading: {
+              text: "Costs"
+            },
+            content: {
+              html: costsHtml
+            }
+          },
+          {
+            heading: {
+              text: "Contacts"
+            },
+            content: {
+              html: contactsHtml
+            }
+          },
+          {
+            heading: {
+              text: "Team"
+            },
+            content: {
+              html: teamHtml
+            }
+          },
+          {
+            heading: {
+              text: "Case management"
+            },
+            content: {
+              html: caseManagementHtml
+            }
+          }
+        ]
+      }) }}
 
     </div>
   </div>

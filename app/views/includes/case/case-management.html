@@ -1,6 +1,7 @@
 <div class="app-panel">
   <h2 class="govuk-heading-l">Case management</h2>
   {{ govukSummaryList({
+    classes: 'app-summary-list--wider-actions',
     rows: [
       {
         key: {
@@ -28,6 +29,11 @@
         },
         actions: {
           items: [
+            {
+              href: "#",
+              text: "Add",
+              visuallyHiddenText: "Item label"
+            },
             {
               href: "#",
               text: "Manage",

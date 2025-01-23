@@ -1,44 +1,342 @@
 <div class="app-panel">
   <h2 class="govuk-heading-l">Contacts</h2>
-  {{ govukTable({
-    captionClasses: "govuk-table__caption--m",
-    firstCellIsHeader: true,
-    rows: [
-      [
-      {
-        text: "Appellant"
-      },
-      {
-        html: "Fiona Shell<br><a href='fiona.shell@gmail.com'>fiona.shell@gmail.com</a>"
-      },
-      {
-        html: "<a href='#'>Change</a>",
-        format: "numeric"
-      }
-    ],[
-      {
-        text: "Agent"
-      },
-      {
-        html: "Naomi Johnson<br><a href='naomi.jonhson@planningagency.co.uk'>naomi.jonhson@planningagency.co.uk</a>"
-      },
-      {
-        html: "<a href='#'>Change</a>",
-        format: "numeric"
-      }
-    ],[
-      {
-        text: "LPA"
-      },
-      {
-        html: "Tim Cooper<br><a href='name@localauthority.gov.uk'>tim.cooper@localauthority.gov.uk</a>"
 
+  {% set appellant %}
+    {{application.appellant.firstName}} {{application.appellant.lastName}}<br>
+    {{application.appellant.emailAddress}}<br>
+    {{application.appellant.phone}}
+  {% endset %}
+
+  {% set agent %}
+    {{application.appellant.firstName}} {{application.appellant.lastName}}<br>
+    {{application.appellant.emailAddress}}<br>
+    {{application.appellant.phone}}
+  {% endset %}
+
+  {{ govukSummaryList({
+    classes: 'app-summary-list--wider-actions',
+    rows: [
+      {
+        key: {
+          text: "Appellant"
+        },
+        value: {
+          html: appellant
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Change",
+              visuallyHiddenText: "Appellant"
+            }
+          ]
+        }
       },
       {
-        html: "<a href='#'>Change</a>",
-        format: "numeric"
+        key: {
+          text: "Agent"
+        },
+        value: {
+          html: agent
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Change",
+              visuallyHiddenText: "Agent"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "LPA"
+        },
+        value: {
+          html: application.lpa.name
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Change",
+              visuallyHiddenText: "LPA"
+            }
+          ]
+        }
       }
     ]
+  }) }}
+
+</div>
+{#
+<div class="app-panel" style="display: block">
+  <h2 class="govuk-heading-l">Contacts</h2>
+
+  {{ govukSummaryList({
+    classes: 'app-summary-list--wider-actions',
+    rows: [
+      {
+        key: {
+          text: "Appellant"
+        },
+        value: {
+          html: "Fiona Shell"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "View",
+              visuallyHiddenText: "Appellant"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Agent"
+        },
+        value: {
+          html: "Naomi Johnson"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "View",
+              visuallyHiddenText: "Agent"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "LPA"
+        },
+        value: {
+          html: "Tim Cooper"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "View",
+              visuallyHiddenText: "LPA"
+            }
+          ]
+        }
+      }
+    ]
+  }) }}
+
+</div>
+
+<div class="app-panel" style="display: block">
+  <h2 class="govuk-heading-l">Appellant</h2>
+
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          text: "First name"
+        },
+        value: {
+          text: "Ryan"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Change",
+              visuallyHiddenText: "First name"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Last name"
+        },
+        value: {
+          text: "Marshall"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Change",
+              visuallyHiddenText: "Last name"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Organisation name"
+        },
+        value: {
+          text: "Boom Ltd"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Change",
+              visuallyHiddenText: "Organisation name"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Email address"
+        },
+        value: {
+          text: "ryan@example.com"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Change",
+              visuallyHiddenText: "Organisation name"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Phone number"
+        },
+        value: {
+          text: "Not provided"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Change",
+              visuallyHiddenText: "Organisation name"
+            }
+          ]
+        }
+      }
     ]
   }) }}
 </div>
+
+<div class="app-panel" style="display: block">
+  <h2 class="govuk-heading-l">Agent</h2>
+
+  <p class="govuk-body"><a href="#" class="govuk-link">Remove agent</a></p>
+
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          text: "First name"
+        },
+        value: {
+          text: "Ryan"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Change",
+              visuallyHiddenText: "First name"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Last name"
+        },
+        value: {
+          text: "Marshall"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Change",
+              visuallyHiddenText: "Last name"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Organisation name"
+        },
+        value: {
+          text: "Boom Ltd"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Change",
+              visuallyHiddenText: "Organisation name"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Email address"
+        },
+        value: {
+          text: "ryan@example.com"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Change",
+              visuallyHiddenText: "Organisation name"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Phone number"
+        },
+        value: {
+          text: "Not provided"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Change",
+              visuallyHiddenText: "Organisation name"
+            }
+          ]
+        }
+      }
+    ]
+  }) }}
+</div>
+
+<div class="app-panel" style="display: block">
+  <h2 class="govuk-heading-l">LPA</h2>
+
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          text: "Name"
+        },
+        value: {
+          text: "Barnet Borough Council"
+        }
+      }
+    ]
+  }) }}
+</div> #}

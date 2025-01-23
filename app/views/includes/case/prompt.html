@@ -58,6 +58,7 @@
       <a class="govuk-notification-banner__link" href="#">Issue decision</a>
     </p>
   {% elseif application.status == 'Decision issued' %}
+    {% set showBanner = false %}
   {% else %}
     {% set showBanner = false %}
   {% endif %}

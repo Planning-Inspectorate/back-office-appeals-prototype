@@ -1,8 +1,8 @@
 {% set filterOptionsHtml %}
 
   {{ govukCheckboxes({
-    idPrefix: "filters[caseofficer]",
-    name: "filters[caseofficer]",
+    idPrefix: "filters[caseOfficers]",
+    name: "filters[caseOfficers]",
     classes: "govuk-checkboxes--small",
     fieldset: {
       legend: {
@@ -12,47 +12,29 @@
     },
     items: [
       { value: 'Unassigned', text: 'Unassigned' },
-      { value: 'Tony Stark (you)', text: 'Tony Stark (you)' },
+      { value: 'Tony Stark', text: 'Tony Stark (you)' },
       { value: 'Natasha Romanoff', text: 'Natasha Romanoff' },
       { value: 'Peter Parker', text: 'Peter Parker' }
     ],
-    values: data.filters.caseofficer
+    values: data.filters.caseOfficers
   }) }}
 
   {{ govukCheckboxes({
-    idPrefix: "filters[inspector]",
-    name: "filters[inspector]",
+    idPrefix: "filters[procedures]",
+    name: "filters[procedures]",
     classes: "govuk-checkboxes--small",
     fieldset: {
       legend: {
-        text: "Inspector",
+        text: "Procedure",
         classes: "govuk-fieldset__legend--s"
       }
     },
     items: [
-      { value: 'Unassigned', text: 'Unassigned' },
-      { value: 'Tony Stark (you)', text: 'Tony Stark (you)' },
-      { value: 'Natasha Romanoff', text: 'Natasha Romanoff' },
-      { value: 'Peter Parker', text: 'Peter Parker' }
+      { value: 'Written representations', text: 'Written representations' },
+      { value: 'Hearing', text: 'Hearing' },
+      { value: 'Inquiry', text: 'Inquiry' }
     ],
-    values: data.filters.inspector
-  }) }}
-
-  {{ govukCheckboxes({
-    idPrefix: "filters[green]",
-    name: "filters[green]",
-    classes: "govuk-checkboxes--small",
-    fieldset: {
-      legend: {
-        text: "Green belt",
-        classes: "govuk-fieldset__legend--s"
-      }
-    },
-    items: [
-      { value: 'Is green belt', text: 'Is green belt' },
-      { value: 'Is not green belt', text: 'Is not green belt' }
-    ],
-    values: data.filters.green
+    values: data.filters.procedures
   }) }}
 
   {{ govukCheckboxes({
@@ -89,6 +71,43 @@
       { value: "Decision issued", text: 'Decision issued' }
     ],
     values: data.filters.statuses
+  }) }}
+
+
+  {{ govukCheckboxes({
+    idPrefix: "filters[inspector]",
+    name: "filters[inspector]",
+    classes: "govuk-checkboxes--small",
+    fieldset: {
+      legend: {
+        text: "Inspector",
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: [
+      { value: 'Unassigned', text: 'Unassigned' },
+      { value: 'Tony Stark (you)', text: 'Tony Stark (you)' },
+      { value: 'Natasha Romanoff', text: 'Natasha Romanoff' },
+      { value: 'Peter Parker', text: 'Peter Parker' }
+    ],
+    values: data.filters.inspector
+  }) }}
+
+  {{ govukCheckboxes({
+    idPrefix: "filters[green]",
+    name: "filters[green]",
+    classes: "govuk-checkboxes--small",
+    fieldset: {
+      legend: {
+        text: "Green belt",
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: [
+      { value: 'Is green belt', text: 'Is green belt' },
+      { value: 'Is not green belt', text: 'Is not green belt' }
+    ],
+    values: data.filters.green
   }) }}
 
 {% endset %}

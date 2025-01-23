@@ -21,7 +21,9 @@ module.exports = router => {
 
 
     let selectedStatusFilters = _.get(req.session.data.filters, 'statuses')
-    let hasFilters = _.get(selectedStatusFilters, 'length')
+    let selectedCaseOfficerFilters = _.get(req.session.data.filters, 'caseOfficers')
+    let selectedProcedureFilters = _.get(req.session.data.filters, 'procedures')
+    let hasFilters = _.get(selectedStatusFilters, 'length') || _.get(selectedCaseOfficerFilters, 'length') || _.get(selectedProcedureFilters, 'length')
 
     let selectedFilters = {
       categories: []
@@ -31,12 +33,22 @@ module.exports = router => {
     if(hasFilters) {
       applications = applications.filter(application => {
         let matchesStatus = true
+        let matchesCaseOfficer = true
+        let matchesProcedure = true
 
         if(_.get(selectedStatusFilters, 'length')) {
           matchesStatus = selectedStatusFilters.includes(application.status);
         }
 
-        return matchesStatus
+        if(_.get(selectedCaseOfficerFilters, 'length')) {
+          matchesCaseOfficer = selectedCaseOfficerFilters.includes(application.caseOfficer);
+        }
+
+        if(_.get(selectedProcedureFilters, 'length')) {
+          matchesProcedure = selectedProcedureFilters.includes(application.procedure);
+        }
+
+        return matchesStatus && matchesCaseOfficer && matchesProcedure
       })
     }
 
@@ -47,6 +59,30 @@ module.exports = router => {
           return {
             text: label,
             href: `/main/cases/remove-status/${label}`
+          }
+        })
+      })
+    }
+
+    if(_.get(selectedCaseOfficerFilters, 'length')) {
+      selectedFilters.categories.push({
+        heading: { text: 'Case officer' },
+        items: selectedCaseOfficerFilters.map(label => {
+          return {
+            text: label,
+            href: `/main/cases/remove-case-officer/${label}`
+          }
+        })
+      })
+    }
+
+    if(_.get(selectedProcedureFilters, 'length')) {
+      selectedFilters.categories.push({
+        heading: { text: 'Procedure' },
+        items: selectedProcedureFilters.map(label => {
+          return {
+            text: label,
+            href: `/main/cases/remove-procedure/${label}`
           }
         })
       })
@@ -67,11 +103,23 @@ module.exports = router => {
 
   router.get('/main/cases/clear-filters', (req, res) => {
     _.set(req, 'session.data.filters.statuses', null)
+    _.set(req, 'session.data.filters.caseOfficers', null)
+    _.set(req, 'session.data.filters.procedures', null)
     res.redirect('/main/cases')
   })
 
   router.get('/main/cases/remove-status/:status', (req, res) => {
     _.set(req, 'session.data.filters.statuses', _.pull(req.session.data.filters.statuses, req.params.status))
+    res.redirect('/main/cases')
+  })
+
+  router.get('/main/cases/remove-case-officer/:caseOfficer', (req, res) => {
+    _.set(req, 'session.data.filters.caseOfficers', _.pull(req.session.data.filters.caseOfficers, req.params.caseOfficer))
+    res.redirect('/main/cases')
+  })
+
+  router.get('/main/cases/remove-procedure/:procedure', (req, res) => {
+    _.set(req, 'session.data.filters.procedures', _.pull(req.session.data.filters.procedures, req.params.procedure))
     res.redirect('/main/cases')
   })
 

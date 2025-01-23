@@ -78,27 +78,27 @@
   </div>
 </header>
 
-<!-- Sub menu -->
-
 {{ mojPrimaryNavigation({
 	label: 'Primary navigation',
 	items: [
 		{
+			text: 'Main',
+			href: '/',
+			active: pageId == 'main'
+		}, {
 			text: 'HAS',
-			href: '/index',
+			href: '/has',
 			active: pageId == 'has'
-		  },
-		  {
+		},
+		{
 			text: 'S78',
 			href: '/postmvp',
 			active: pageId == 's78'
-      },
-  		  {
-  			text: 'Patterns',
-  			href: '/patterns',
-  			active: pageId == 'patterns'
-		  }
-		]
-  }) }}
-
-<!-- End of sub menu -->
+    },
+  	{
+			text: 'Patterns',
+			href: '/patterns',
+			active: pageId == 'patterns'
+		}
+	]
+}) }}

@@ -30,46 +30,44 @@ module.exports = router => {
 
     let parties = awaitingReview.concat(approved).concat(rejected).concat(withdrawn)
 
-    let selectedStatusFilters = _.get(req.session.data.filters, 'statuses')
-    let hasFilters = _.get(selectedStatusFilters, 'length')
-    let selectedFilters = {
-      categories: []
-    }
+    // let selectedStatusFilters = _.get(req.session.data.filters, 'statuses')
+    // let hasFilters = _.get(selectedStatusFilters, 'length')
+    // let selectedFilters = {
+    //   categories: []
+    // }
 
-    // the user has selected a status filter
-    if(hasFilters) {
-      parties = parties.filter(party => {
-        let matchesStatus = true
+    // // the user has selected a status filter
+    // if(hasFilters) {
+    //   parties = parties.filter(party => {
+    //     let matchesStatus = true
 
-        if(_.get(selectedStatusFilters, 'length')) {
-          matchesStatus = selectedStatusFilters.includes(party.status);
-        }
+    //     if(_.get(selectedStatusFilters, 'length')) {
+    //       matchesStatus = selectedStatusFilters.includes(party.status);
+    //     }
 
-        return matchesStatus
-      })
-    }
+    //     return matchesStatus
+    //   })
+    // }
 
-    if(_.get(selectedStatusFilters, 'length')) {
-      selectedFilters.categories.push({
-        heading: { text: 'Status' },
-        items: selectedStatusFilters.map(label => {
-          return {
-            text: label,
-            href: `/main/cases/${application.id}/rule-6-parties/remove-status/${label}`
-          }
-        })
-      })
-    }
+    // if(_.get(selectedStatusFilters, 'length')) {
+    //   selectedFilters.categories.push({
+    //     heading: { text: 'Status' },
+    //     items: selectedStatusFilters.map(label => {
+    //       return {
+    //         text: label,
+    //         href: `/main/cases/${application.id}/rule-6-parties/remove-status/${label}`
+    //       }
+    //     })
+    //   })
+    // }
 
-    let pageSize = 25
-    let pagination = new Pagination(parties, req.query.page, pageSize)
-    parties = pagination.getData()
+    // let pageSize = 25
+    // let pagination = new Pagination(parties, req.query.page, pageSize)
+    // parties = pagination.getData()
 
     res.render('/main/cases/rule-6-parties/index', {
       application,
-      parties,
-      selectedFilters,
-      pagination
+      parties
     })
   })
 

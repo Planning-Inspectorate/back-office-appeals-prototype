@@ -1,93 +1,88 @@
 <div class="app-panel">
   <h2 class="govuk-heading-l">Timetable</h2>
-  {{ govukTable({
-    captionClasses: "govuk-table__caption--m",
-    firstCellIsHeader: true,
+
+  {% if application.validDate %}
+    {% set validDateActions = [{
+      href: "Item URL",
+      text: "Change",
+      visuallyHiddenText: "Item label"
+    }] %}
+  {% else %}
+    {% set validDateActions = [{
+      href: "Item URL",
+      text: "Validate",
+      visuallyHiddenText: "Item label"
+    }] %}
+  {% endif %}
+
+  {% if application.startDate %}
+    {% set startDateActions = [{
+      href: "Item URL",
+      text: "Change",
+      visuallyHiddenText: "Item label"
+    }] %}
+  {% else %}
+    {% set startDateActions = [{
+      href: "Item URL",
+      text: "Start",
+      visuallyHiddenText: "Item label"
+    }] %}
+  {% endif %}
+
+  {{ govukSummaryList({
     rows: [
-      [
-        {
+      {
+        key: {
           text: "Valid date"
         },
-        {
-          text: 38 | daysAgo
+        value: {
+          text: application.validDate | govukDate or 'Awaiting validation'
         },
-        {
-          html: "<a href='#'>Change</a>",
-          format: "numeric"
+        actions: {
+          items: validDateActions
         }
-      ],
-      [
-        {
+      },
+      {
+        key: {
           text: "Start date"
         },
-        {
-          text: 38 | daysAgo
+        value: {
+          text: application.startDate | govukDate or 'Awaiting start'
         },
-        {
-          html: "<a href='#'>Change</a>",
-          format: "numeric"
+        actions: {
+          items: startDateActions
         }
-      ],
-      [
-        {
-          text: "LPA questionnaire due"
+      } if application.validDate,
+      {
+        key: {
+          text: "LPAQ due date"
         },
-        {
-          text: 31 | daysAgo
+        value: {
+          text: application.LPAQDueDate | govukDate
         },
-        {
-          html: "<a href='#'>Change</a>",
-          format: "numeric"
+        actions: {
+          items: [{
+            href: "Item URL",
+            text: "Change",
+            visuallyHiddenText: "Item label"
+          }]
         }
-      ],
-      [
-        {
+      } if application.LPAQDueDate,
+      {
+        key: {
           text: "Site visit"
         },
-        {
-          text: -3 | daysAgo
+        value: {
+          text: application.siteVisitDate | govukDate
         },
-        {
-          html: "<a href='site-visit.html'>Change</a>",
-          format: "numeric"
+        actions: {
+          items: [{
+            href: "Item URL",
+            text: "Change",
+            visuallyHiddenText: "Item label"
+          }]
         }
-      ] if 1==2,
-      [
-        {
-          text: "Date"
-        },
-        {
-          html: data.hearing.date | isoDateFromDateInput | govukDate
-        },
-        {
-          html: "<a href='/projects/start-full-case/v4/edit-hearing'>Change</a>",
-          format: "numeric"
-        }
-      ] if data.hearing.date,
-      [
-        {
-          text: "Date"
-        },
-        {
-          html: data.hearing.date | isoDateFromDateInput | govukDate
-        },
-        {
-          html: "<a href='/projects/start-full-case/v4/edit-hearing'>Change</a>",
-          format: "numeric"
-        }
-      ] if data.hearing.date,
-      [
-        {
-          text: "Inquiry"
-        },
-        {
-          text: -10 | daysAgo + ' at 9pm'
-        },
-        {
-          html: "<a href='#'>Change</a>",
-          format: "numeric"
-        }
-      ] if data.appealProcedure == 'Inquiry'
+      } if application.siteVisitDate
     ]
   }) }}
 </div>

@@ -16,6 +16,8 @@ router.all('*', (req, res, next) => {
 
 require('./routes/cases')(router)
 require('./routes/case')(router)
+require('./routes/agent--edit')(router)
+require('./routes/agent--remove')(router)
 require('./routes/case--start-case')(router)
 require('./routes/case--edit-procedure')(router)
 require('./routes/case--add-hearing')(router)

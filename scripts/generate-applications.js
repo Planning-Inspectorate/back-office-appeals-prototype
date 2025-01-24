@@ -54,6 +54,17 @@ const generateAddress = () => {
   }
 }
 
+const generateAgent = (params = {}) => {
+  let agent = {}
+  agent.id = uuidv4()
+  agent.firstName = params.firstName || faker.person.firstName()
+  agent.lastName = params.lastName || faker.person.lastName()
+  agent.phone = params.phone || '079## ### ###'.replace(/#+/g, (m) => faker.string.numeric(m.length));
+  agent.organisationName = params.organisationName || faker.company.name()
+  agent.emailAddress = `${agent.firstName.toLowerCase()}.${agent.lastName.toLowerCase()}@example.com`
+  return agent
+}
+
 const generateRule6Party = (params) => {
   let party = {}
   party.id = uuidv4()
@@ -193,6 +204,8 @@ const generateApplication = (params = {}) => {
   application.appellant.emailAddress = params.appellant?.emailAddress || `${application.appellant.firstName.toLowerCase()}.${application.appellant.lastName.toLowerCase()}@gmail.com`
   application.appellant.phone = params.appellant?.phone || '079## ### ###'.replace(/#+/g, (m) => faker.string.numeric(m.length));
   application.appellant.address = params.appellant?.address || generateAddress()
+
+  application.agent = generateAgent()
 
   application.lpa = params.lpa || {}
   application.lpa.name = params.lpa?.name || faker.helpers.arrayElement([

@@ -7,11 +7,27 @@
     {{application.appellant.phone}}
   {% endset %}
 
-  {% set agent %}
-    {{application.appellant.firstName}} {{application.appellant.lastName}}<br>
-    {{application.appellant.emailAddress}}<br>
-    {{application.appellant.phone}}
-  {% endset %}
+  {% if application.agent %}
+    {% set agent %}
+      {{application.agent.firstName}} {{application.agent.lastName}}<br>
+      {{application.agent.emailAddress}}<br>
+      {{application.agent.phone}}
+    {% endset %}
+    {% set agentActions = [{
+      href: '/main/cases/:appealId/edit-agent' | replace(':appealId', application.id),
+      text: "Change",
+      visuallyHiddenText: "Agent details"
+    }] %}
+  {% else %}
+    {% set agent %}
+      No agent
+    {% endset %}
+    {% set agentActions = [{
+      href: '/main/cases/:appealId/edit-agent' | replace(':appealId', application.id),
+      text: "Add",
+      visuallyHiddenText: "Agent details"
+    }] %}
+  {% endif %}
 
   {{ govukSummaryList({
     classes: 'app-summary-list--wider-actions',
@@ -41,13 +57,7 @@
           html: agent
         },
         actions: {
-          items: [
-            {
-              href: "Item URL",
-              text: "Change",
-              visuallyHiddenText: "Agent"
-            }
-          ]
+          items: agentActions
         }
       },
       {

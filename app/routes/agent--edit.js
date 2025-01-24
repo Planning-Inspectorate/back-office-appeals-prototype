@@ -35,7 +35,7 @@ module.exports = router => {
     // Clear temporary form data
     delete req.session.data.editAgent
 
-    req.flash('success', 'Agent contact details changed')
+    req.flash('success', 'Agent contact details updated')
     res.redirect(`/main/cases/${req.params.appealId}`)
   })
 

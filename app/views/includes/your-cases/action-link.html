@@ -1,0 +1,29 @@
+{% if application.status == 'Ready to assign case officer' %}
+  <a class="govuk-link" href="#">Assign case officer</a>
+{% elseif application.status == 'Ready to validate' %}
+  <a class="govuk-link" href="#">Validate case</a>
+{% elseif application.status == 'Ready to start' %}
+  <a class="govuk-link" href="/main/cases/{{application.id}}/start-case">Start case</a>
+{% elseif application.status == 'LPAQ ready to review' %}
+  <a class="govuk-link" href="#">Review LPAQ</a>
+{% elseif application.status == 'Statements and IP comments ready to review' %}
+  <a class="govuk-link" href="#">Review statements and IP comments</a>
+{% elseif application.status == 'Statements and IP comments ready to share' %}
+  <a class="govuk-link" href="#">Share statements and IP comments</a>
+{% elseif application.status == 'Final comments ready to review' %}
+  <a class="govuk-link" href="#">Review final comments</a>
+{% elseif application.status == 'Final comments ready to share' %}
+  <a class="govuk-link" href="#">Share final comments</a>
+{% elseif application.status == 'Site visit ready to set up' %}
+  <a class="govuk-link" href="#">Set up site visit</a>
+{% elseif application.status == 'Hearing ready to set up' %}
+  <a class="govuk-link" href="/main/cases/{{application.id}}/add-hearing">Set up hearing</a>
+{% elseif application.status == 'Inquiry ready to set up' %}
+  <a class="govuk-link" href="/main/cases/{{application.id}}/add-inquiry">Set up inquiry</a>
+{% elseif application.status == 'Proof of evidence and witnesses ready to review' %}
+  <a class="govuk-link" href="#">Review proof of evidence and witnesses</a>
+{% elseif application.status == 'Proof of evidence and witnesses ready to share' %}
+  <a class="govuk-link" href="#">Share proof of evidence and witnesses</a>
+{% elseif application.status == 'Decision ready to issue' %}
+  <a class="govuk-link" href="#">Issue decision</a>
+{% endif %}

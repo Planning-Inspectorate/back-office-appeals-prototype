@@ -93,7 +93,7 @@ module.exports = router => {
     let pagination = new Pagination(applications, req.query.page, pageSize)
     applications = pagination.getData()
 
-    res.render('main/cases/index', {
+    res.render('main/cases/all', {
       applications,
       selectedFilters,
       pagination,
@@ -126,6 +126,86 @@ module.exports = router => {
   router.get('/main/cases/clear-search', (req, res) => {
     _.set(req, 'session.data.search.keywords', '')
     res.redirect('/main/cases')
+  })
+
+
+  router.get('/main/your-cases', function (req, res) {
+
+    let applications = req.session.data.applications.filter(application => application.caseOfficer == 'Tony Stark')
+
+    let keywords = _.get(req.session.data.search, 'keywords')
+
+    if(keywords) {
+      keywords = keywords.toLowerCase()
+      applications = applications.filter(application => {
+        let reference = application.id
+        let name = (application.appellant.firstName + ' ' + application.appellant.lastName).toLowerCase()
+        let postcode = application.site.address.postcode.toLowerCase()
+        return postcode.indexOf(keywords) > -1 || reference.indexOf(keywords) > -1 || name.indexOf(keywords) > -1
+      })
+    }
+
+    let selectedStatusFilters = _.get(req.session.data.filters, 'statuses')
+    let selectedProcedureFilters = _.get(req.session.data.filters, 'procedures')
+    let hasFilters = _.get(selectedStatusFilters, 'length') || _.get(selectedProcedureFilters, 'length')
+
+    let selectedFilters = {
+      categories: []
+    }
+
+    // the user has selected a status filter
+    if(hasFilters) {
+      applications = applications.filter(application => {
+        let matchesStatus = true
+        let matchesProcedure = true
+
+        if(_.get(selectedStatusFilters, 'length')) {
+          matchesStatus = selectedStatusFilters.includes(application.status);
+        }
+
+        if(_.get(selectedProcedureFilters, 'length')) {
+          matchesProcedure = selectedProcedureFilters.includes(application.procedure);
+        }
+
+        return matchesStatus && matchesProcedure
+      })
+    }
+
+    if(_.get(selectedStatusFilters, 'length')) {
+      selectedFilters.categories.push({
+        heading: { text: 'Status' },
+        items: selectedStatusFilters.map(label => {
+          return {
+            text: label,
+            href: `/main/cases/remove-status/${label}`
+          }
+        })
+      })
+    }
+
+    if(_.get(selectedProcedureFilters, 'length')) {
+      selectedFilters.categories.push({
+        heading: { text: 'Procedure' },
+        items: selectedProcedureFilters.map(label => {
+          return {
+            text: label,
+            href: `/main/cases/remove-procedure/${label}`
+          }
+        })
+      })
+    }
+
+    let totalApplications = applications.length
+    let pageSize = 25
+    let pagination = new Pagination(applications, req.query.page, pageSize)
+    applications = pagination.getData()
+
+    res.render('main/cases/index', {
+      applications,
+      selectedFilters,
+      pagination,
+      totalApplications
+    })
   })
 
 }

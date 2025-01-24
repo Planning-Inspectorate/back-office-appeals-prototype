@@ -22,7 +22,7 @@
     </div>
     <div class="app-filter-layout__content">
 
-      {% include "includes/your-cases/search-form.njk" %}
+      {# {% include "includes/your-cases/search-form.njk" %} #}
 
       <div class="app-action-bar">
         <div class="app-action-bar__filter"></div>
@@ -36,7 +36,34 @@
                 <a href="/main/cases/{{application.id}}" class="govuk-link--no-visited-state">{{application.id}}</a>
                 {{ govukTag({ text: application.status, classes: application.status | appealStatusColour + ' app-list__tag--top-right' }) }}
               </h2>
-              <p class="govuk-!-margin-top-2 govuk-!-margin-bottom-1">{% include "includes/your-cases/action-link.njk" %}</p>
+
+              {% set action %}
+                {% include "includes/your-cases/action-link.njk" %}
+              {% endset %}
+
+              {{ govukSummaryList({
+                classes: 'govuk-summary-list--no-border app-summary-list--compact app-summary-list--small-text',
+                rows: [
+                  {
+                    key: {
+                      html: 'Action'
+                    },
+                    value: {
+                      html: action
+                    }
+                  },
+                  {
+                    key: {
+                      html: 'Due date'
+                    },
+                    value: {
+                      html: 'Not applicable'
+                    }
+                  }
+                ]
+              })}}
+
+
             </div>
           {% endfor %}
         </div>

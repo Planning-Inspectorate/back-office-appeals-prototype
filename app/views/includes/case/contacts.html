@@ -23,7 +23,7 @@
       No agent
     {% endset %}
     {% set agentActions = [{
-      href: '/main/cases/:appealId/edit-agent' | replace(':appealId', application.id),
+      href: '/main/cases/:appealId/add-agent' | replace(':appealId', application.id),
       text: "Add",
       visuallyHiddenText: "Agent details"
     }] %}

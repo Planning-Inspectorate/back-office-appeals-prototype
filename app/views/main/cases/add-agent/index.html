@@ -14,66 +14,57 @@
         <h1 class="govuk-heading-l">{{title}}</h1>
 
         {{ govukInput({
-          id: "editAgent[firstName]",
-          name: "editAgent[firstName]",
+          id: "addAgent[firstName]",
+          name: "addAgent[firstName]",
           label: {
             text: "First name",
             classes: "govuk-label--m"
-          },
-          value: firstName
+          }
         }) }}
 
         {{ govukInput({
-          id: "editAgent[lastName]",
-          name: "editAgent[lastName]",
+          id: "addAgent[lastName]",
+          name: "addAgent[lastName]",
           label: {
             text: "Last name",
             classes: "govuk-label--m"
-          },
-          value: lastName
+          }
         }) }}
 
         {{ govukInput({
-          id: "editAgent[organisationName]",
-          name: "editAgent[organisationName]",
+          id: "addAgent[organisationName]",
+          name: "addAgent[organisationName]",
           label: {
             text: "Organisation name",
             classes: "govuk-label--m"
-          },
-          value: organisationName
+          }
         }) }}
 
         {{ govukInput({
-          id: "editAgent[emailAddress]",
-          name: "editAgent[emailAddress]",
+          id: "addAgent[emailAddress]",
+          name: "addAgent[emailAddress]",
           label: {
             text: "Email address",
             classes: "govuk-label--m"
           },
-          value: emailAddress,
           type: "email",
           autocomplete: "email",
           spellcheck: false
         }) }}
 
         {{ govukInput({
-          id: "editAgent[phone]",
-          name: "editAgent[phone]",
+          id: "addAgent[phone]",
+          name: "addAgent[phone]",
           label: {
             text: "Phone number",
             classes: "govuk-label--m"
-          },
-          value: phone
+          }
         }) }}
 
         {{ govukButton({
-          text: "Update agent contact details"
+          text: "Add agent contact details"
         }) }}
       </form>
-
-      {% if application.agent %}
-        <p class="govuk-body"><a href="/main/cases/{{application.id}}/remove-agent" class="govuk-link">Remove agent</a></p>
-      {% endif %}
 
     </div>
   </div>

@@ -97,6 +97,21 @@
       } if timetable.interestedPartyCommentsDueDate,
       {
         key: {
+          text: "Final comments due"
+        },
+        value: {
+          text: timetable.finalCommentsDueDate | govukDate
+        },
+        actions: {
+          items: [{
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "Final comments due"
+          }]
+        }
+      } if timetable.finalCommentsDueDate,
+      {
+        key: {
           text: "Statement of common ground due"
         },
         value: {

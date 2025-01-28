@@ -19,6 +19,7 @@ const generateTimetableBeforeProcedure = (application) => {
       timetable.siteVisitDate = 'Not set up'
       break
     case 'Awaiting site visit':
+    case 'Decision ready to issue':
       timetable.validDate = new Date().toISOString()
       timetable.startDate = new Date().toISOString()
       timetable.LPAQDueDate = new Date().toISOString()
@@ -53,15 +54,17 @@ const generateTimetableWritten = (application) => {
       timetable.LPAQDueDate = new Date().toISOString()
       timetable.LPAStatementDueDate = new Date().toISOString()
       timetable.interestedPartyCommentsDueDate = new Date().toISOString()
+      timetable.finalCommentsDueDate = new Date().toISOString()
       timetable.siteVisitDate = 'Not set up'
-      console.log(5858585)
       break
     case 'Awaiting site visit':
+    case 'Decision ready to issue':
       timetable.validDate = new Date().toISOString()
       timetable.startDate = new Date().toISOString()
       timetable.LPAQDueDate = new Date().toISOString()
       timetable.LPAStatementDueDate = new Date().toISOString()
       timetable.interestedPartyCommentsDueDate = new Date().toISOString()
+      timetable.finalCommentsDueDate = new Date().toISOString()
       timetable.siteVisitDate = new Date().toISOString()
       break
   }
@@ -96,6 +99,7 @@ const generateTimetableHearing = (application) => {
       timetable.hearingDate = 'Not set up'
       break
     case 'Awaiting hearing':
+    case 'Decision ready to issue':
       timetable.validDate = new Date().toISOString()
       timetable.startDate = new Date().toISOString()
       timetable.LPAQDueDate = new Date().toISOString()
@@ -144,6 +148,7 @@ const generateTimetableInquiry = (application) => {
     case 'Proof of evidence and witnesses ready to review':
     case 'Proof of evidence and witnesses ready to share':
     case 'Awaiting inquiry':
+    case 'Decision ready to issue':
       timetable.validDate = new Date().toISOString()
       timetable.startDate = new Date().toISOString()
       timetable.LPAQDueDate = new Date().toISOString()

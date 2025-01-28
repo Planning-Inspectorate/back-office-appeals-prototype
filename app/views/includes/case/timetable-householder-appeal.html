@@ -1,0 +1,64 @@
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Valid date"
+      },
+      value: {
+        text: timetable.validDate | govukDate
+      },
+      actions: {
+        items: [{
+          href: "#",
+          text: "Change",
+          visuallyHiddenText: "Valid date"
+        }]
+      }
+    } if timetable.validDate,
+    {
+      key: {
+        text: "Start date"
+      },
+      value: {
+        text: timetable.startDate if timetable.startDate == 'Not started' else timetable.startDate | govukDate
+      },
+      actions: {
+        items: [{
+          href: "#",
+          text: "Start" if timetable.startDate == 'Not started' else 'Change',
+          visuallyHiddenText: "Valid date"
+        }]
+      }
+    } if timetable.startDate,
+    {
+      key: {
+        text: "LPA questionnaire due"
+      },
+      value: {
+        text: timetable.LPAQDueDate | govukDate
+      },
+      actions: {
+        items: [{
+          href: "#",
+          text: "Change",
+          visuallyHiddenText: "Valid date"
+        }]
+      }
+    } if timetable.LPAQDueDate,
+    {
+      key: {
+        text: "Site visit"
+      },
+      value: {
+        text: '1 February 2025 at 10am'
+      },
+      actions: {
+        items: [{
+          href: "#",
+          text: "Change",
+          visuallyHiddenText: "Valid date"
+        }]
+      }
+    } if timetable.siteVisitDate
+  ]
+}) }}

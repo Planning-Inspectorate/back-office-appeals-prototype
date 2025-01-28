@@ -215,19 +215,4 @@
     } if timetable.hearingDate
   ]
 }) }}
-
-
-  {# {% if application.type == 'Householder appeal' %}
-    {% include "includes/case/timetable-householder-appeal.njk" %}
-  {% else %}
-    {% if application.procedure == 'Written representations' %}
-      {% include "includes/case/timetable-full-planning-appeal-written.njk" %}
-    {% elseif application.procedure == 'Hearing' %}
-      {% include "includes/case/timetable-full-planning-appeal-hearing.njk" %}
-    {% elseif application.procedure == 'Inquiry' %}
-      {% include "includes/case/timetable-full-planning-appeal-inquiry.njk" %}
-    {% else %}
-    {% include "includes/case/timetable-full-planning-appeal.njk" %}
-    {% endif %}
-  {% endif %} #}
 </div>

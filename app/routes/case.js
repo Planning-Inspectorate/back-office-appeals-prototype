@@ -52,10 +52,9 @@ const generateTimetableWritten = (application) => {
       timetable.startDate = new Date().toISOString()
       timetable.LPAQDueDate = new Date().toISOString()
       timetable.LPAStatementDueDate = new Date().toISOString()
-      timetable.LPAStatementDueDate = new Date().toISOString()
       timetable.interestedPartyCommentsDueDate = new Date().toISOString()
-      // timetable.planningObligationDueDate = 'Awaiting hearing date'
       timetable.siteVisitDate = 'Not set up'
+      console.log(5858585)
       break
     case 'Awaiting site visit':
       timetable.validDate = new Date().toISOString()
@@ -63,7 +62,6 @@ const generateTimetableWritten = (application) => {
       timetable.LPAQDueDate = new Date().toISOString()
       timetable.LPAStatementDueDate = new Date().toISOString()
       timetable.interestedPartyCommentsDueDate = new Date().toISOString()
-      // timetable.planningObligationDueDate = new Date().toISOString()
       timetable.siteVisitDate = new Date().toISOString()
       break
   }
@@ -94,7 +92,7 @@ const generateTimetableHearing = (application) => {
       timetable.LPAStatementDueDate = new Date().toISOString()
       timetable.interestedPartyCommentsDueDate = new Date().toISOString()
       timetable.statementOfCommonGroundDueDate = new Date().toISOString()
-      // timetable.planningObligationDueDate = 'Awaiting hearing date'
+      timetable.planningObligationDueDate = 'Awaiting hearing date'
       timetable.hearingDate = 'Not set up'
       break
     case 'Awaiting hearing':
@@ -104,7 +102,7 @@ const generateTimetableHearing = (application) => {
       timetable.LPAStatementDueDate = new Date().toISOString()
       timetable.interestedPartyCommentsDueDate = new Date().toISOString()
       timetable.statementOfCommonGroundDueDate = new Date().toISOString()
-      // timetable.planningObligationDueDate = new Date().toISOString()
+      timetable.planningObligationDueDate = new Date().toISOString()
       timetable.hearingDate = new Date().toISOString()
       break
   }
@@ -139,7 +137,7 @@ const generateTimetableInquiry = (application) => {
       timetable.appellantEvidenceDueDate = 'Awaiting inquiry date'
       timetable.lpaEvidenceDueDate = 'Awaiting inquiry date'
       timetable.rule6EvidenceDueDate = 'Awaiting inquiry date'
-      // timetable.planningObligationDueDate = 'Awaiting inquiry date'
+      timetable.planningObligationDueDate = 'Awaiting inquiry date'
       timetable.inquiryDate = 'Not set up'
       break
     case 'Awaiting proof of evidence and witnesses':
@@ -157,7 +155,7 @@ const generateTimetableInquiry = (application) => {
       timetable.appellantEvidenceDueDate = new Date().toISOString()
       timetable.lpaEvidenceDueDate = new Date().toISOString()
       timetable.rule6EvidenceDueDate = new Date().toISOString()
-      // timetable.planningObligationDueDate = new Date().toISOString()
+      timetable.planningObligationDueDate = new Date().toISOString()
       timetable.inquiryDate = new Date().toISOString()
       break
   }
@@ -171,10 +169,9 @@ const generateTimetable = (application) => {
   if(application.procedure == 'Hearing') {
     return generateTimetableHearing(application)
   }
-  if(application.procedure == 'Written') {
+  if(application.procedure == 'Written representations') {
     return generateTimetableWritten(application)
   }
-
   return generateTimetableBeforeProcedure(application)
 }
 

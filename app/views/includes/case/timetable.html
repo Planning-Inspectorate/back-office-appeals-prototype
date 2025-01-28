@@ -1,6 +1,8 @@
 <div class="app-panel">
   <h2 class="govuk-heading-l">Timetable</h2>
 
+  {{timetable | log}}
+
   {{ govukSummaryList({
     rows: [
       {
@@ -63,21 +65,6 @@
           }]
         }
       } if timetable.LPAStatementDueDate,
-      {
-        key: {
-          text: "Site visit"
-        },
-        value: {
-          text: timetable.siteVisitDate if timetable.siteVisitDate == 'Not set up' else timetable.siteVisitDate | govukDate
-        },
-        actions: {
-          items: [{
-            href: "#",
-            text: "Set up" if timetable.siteVisitDate == 'Not set up' else 'Change',
-            visuallyHiddenText: "Valid date"
-          }]
-        }
-      } if timetable.siteVisitDate,
       {
         key: {
           text: "Rule 6 statements due"
@@ -185,6 +172,21 @@
       } if timetable.rule6EvidenceDueDate,
       {
         key: {
+          text: "Planning obligation due"
+        },
+        value: {
+          text: timetable.planningObligationDueDate if timetable.planningObligationDueDate == 'Awaiting inquiry date' or timetable.planningObligationDueDate == 'Awaiting hearing date' else timetable.planningObligationDueDate | govukDate
+        },
+        actions: {
+          items: [{
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "Planning obligation due"
+          }]
+        } if timetable.planningObligationDueDate != 'Awaiting inquiry date' and timetable.planningObligationDueDate != 'Awaiting hearing date'
+      } if timetable.planningObligationDueDate,
+      {
+        key: {
           text: "Inquiry"
         },
         value: {
@@ -212,7 +214,22 @@
             visuallyHiddenText: "Inquiry date"
           }]
         }
-      } if timetable.hearingDate
+      } if timetable.hearingDate,
+      {
+        key: {
+          text: "Site visit"
+        },
+        value: {
+          text: timetable.siteVisitDate if timetable.siteVisitDate == 'Not set up' else timetable.siteVisitDate | govukDate
+        },
+        actions: {
+          items: [{
+            href: "#",
+            text: "Set up" if timetable.siteVisitDate == 'Not set up' else 'Change',
+            visuallyHiddenText: "Valid date"
+          }]
+        }
+      } if timetable.siteVisitDate
     ]
   }) }}
 </div>

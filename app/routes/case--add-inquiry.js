@@ -58,7 +58,7 @@ module.exports = router => {
   router.post('/main/cases/:appealId/add-inquiry/check', function (req, res) {
     let application = req.session.data.applications.find(application => application.id == req.params.appealId)
     application.inquiry = req.session.data.addInquiry
-    application.status = 'Awaiting proof of evidence and witnesess'
+    application.status = 'Awaiting proof of evidence and witnesses'
     delete req.session.data.addInquiry
     req.flash('success', 'Inquiry set up')
     res.redirect(`/main/cases/${req.params.appealId}`)

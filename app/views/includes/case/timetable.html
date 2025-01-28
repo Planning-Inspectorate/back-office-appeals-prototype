@@ -2,217 +2,217 @@
   <h2 class="govuk-heading-l">Timetable</h2>
 
   {{ govukSummaryList({
-  rows: [
-    {
-      key: {
-        text: "Valid date"
-      },
-      value: {
-        text: timetable.validDate if timetable.validDate == 'Not validated' else timetable.validDate | govukDate
-      },
-      actions: {
-        items: [{
-          href: "#",
-          text: "Validate" if timetable.validDate == 'Not validated' else 'Change',
-          visuallyHiddenText: "Valid date"
-        }]
-      }
-    } if timetable.validDate,
-    {
-      key: {
-        text: "Start date"
-      },
-      value: {
-        text: timetable.startDate if timetable.startDate == 'Not started' else timetable.startDate | govukDate
-      },
-      actions: {
-        items: [{
-          href: "#",
-          text: "Start" if timetable.startDate == 'Not started' else 'Change',
-          visuallyHiddenText: "Valid date"
-        }]
-      }
-    } if timetable.startDate,
-    {
-      key: {
-        text: "LPA questionnaire due"
-      },
-      value: {
-        text: timetable.LPAQDueDate | govukDate
-      },
-      actions: {
-        items: [{
-          href: "#",
-          text: "Change",
-          visuallyHiddenText: "Valid date"
-        }]
-      }
-    } if timetable.LPAQDueDate,
-    {
-      key: {
-        text: "LPA statement due"
-      },
-      value: {
-        text: timetable.LPAStatementDueDate | govukDate
-      },
-      actions: {
-        items: [{
-          href: "#",
-          text: "Change",
-          visuallyHiddenText: "LPA statement date"
-        }]
-      }
-    } if timetable.LPAStatementDueDate,
-    {
-      key: {
-        text: "Site visit"
-      },
-      value: {
-        text: timetable.siteVisitDate if timetable.siteVisitDate == 'Not set up' else timetable.siteVisitDate | govukDate
-      },
-      actions: {
-        items: [{
-          href: "#",
-          text: "Set up" if timetable.siteVisitDate == 'Not set up' else 'Change',
-          visuallyHiddenText: "Valid date"
-        }]
-      }
-    } if timetable.siteVisitDate,
-    {
-      key: {
-        text: "Rule 6 statements due"
-      },
-      value: {
-        text: timetable.rule6StatementsDueDate | govukDate
-      },
-      actions: {
-        items: [{
-          href: "#",
-          text: "Change",
-          visuallyHiddenText: "LPA statement date"
-        }]
-      }
-    } if timetable.rule6StatementsDueDate,
-    {
-      key: {
-        text: "Interested party comments due"
-      },
-      value: {
-        text: timetable.interestedPartyCommentsDueDate | govukDate
-      },
-      actions: {
-        items: [{
-          href: "#",
-          text: "Change",
-          visuallyHiddenText: "Interested party comments due"
-        }]
-      }
-    } if timetable.interestedPartyCommentsDueDate,
-    {
-      key: {
-        text: "Statement of common ground due"
-      },
-      value: {
-        text: timetable.statementOfCommonGroundDueDate | govukDate
-      },
-      actions: {
-        items: [{
-          href: "#",
-          text: "Change",
-          visuallyHiddenText: "Statement of common ground due"
-        }]
-      }
-    } if timetable.statementOfCommonGroundDueDate,
-    {
-      key: {
-        text: "Case management conference"
-      },
-      value: {
-        text: timetable.cmcDate if timetable.cmcDate == 'Not set up' else timetable.cmcDate | govukDate
-      },
-      actions: {
-        items: [{
-          href: "#",
-          text: "Set up" if timetable.cmcDate == 'Not set up' else 'Change',
-          visuallyHiddenText: "Case management conference date"
-        }]
-      }
-    } if timetable.cmcDate,
-    {
-      key: {
-        text: "Appellant proof of evidence and witnesses due"
-      },
-      value: {
-        text: timetable.appellantEvidenceDueDate if timetable.appellantEvidenceDueDate == 'Awaiting inquiry date' else timetable.appellantEvidenceDueDate | govukDate
-      },
-      actions: {
-        items: [{
-          href: "#",
-          text: "Change",
-          visuallyHiddenText: "Appellant proof of evidence and witnesses due"
-        }]
-      } if timetable.appellantEvidenceDueDate != 'Awaiting inquiry date'
-    } if timetable.appellantEvidenceDueDate,
-    {
-      key: {
-        text: "LPA proof of evidence and witnesses due"
-      },
-      value: {
-        text: timetable.lpaEvidenceDueDate if timetable.lpaEvidenceDueDate == 'Awaiting inquiry date' else timetable.lpaEvidenceDueDate | govukDate
-      },
-      actions: {
-        items: [{
-          href: "#",
-          text: "Change",
-          visuallyHiddenText: "LPA proof of evidence and witnesses due"
-        }]
-      } if timetable.appellantEvidenceDueDate != 'Awaiting inquiry date'
-    } if timetable.appellantEvidenceDueDate,
-    {
-      key: {
-        text: "Rule 6 proof of evidence and witnesses due"
-      },
-      value: {
-        text: timetable.rule6EvidenceDueDate if timetable.rule6EvidenceDueDate == 'Awaiting inquiry date' else timetable.rule6EvidenceDueDate | govukDate
-      },
-      actions: {
-        items: [{
-          href: "#",
-          text: "Change",
-          visuallyHiddenText: "LPA proof of evidence and witnesses due"
-        }]
-      } if timetable.rule6EvidenceDueDate != 'Awaiting inquiry date'
-    } if timetable.rule6EvidenceDueDate,
-    {
-      key: {
-        text: "Inquiry"
-      },
-      value: {
-        text: timetable.inquiryDate if timetable.inquiryDate == 'Not set up' else timetable.inquiryDate | govukDate
-      },
-      actions: {
-        items: [{
-          href: "#",
-          text: "Set up" if timetable.inquiryDate == 'Not set up' else 'Change',
-          visuallyHiddenText: "Inquiry date"
-        }]
-      }
-    } if timetable.inquiryDate,
-    {
-      key: {
-        text: "Hearing"
-      },
-      value: {
-        text: timetable.hearingDate if timetable.hearingDate == 'Not set up' else timetable.hearingDate | govukDate
-      },
-      actions: {
-        items: [{
-          href: "#",
-          text: "Set up" if timetable.hearingDate == 'Not set up' else 'Change',
-          visuallyHiddenText: "Inquiry date"
-        }]
-      }
-    } if timetable.hearingDate
-  ]
-}) }}
+    rows: [
+      {
+        key: {
+          text: "Valid date"
+        },
+        value: {
+          text: timetable.validDate if timetable.validDate == 'Not validated' else timetable.validDate | govukDate
+        },
+        actions: {
+          items: [{
+            href: "#",
+            text: "Validate" if timetable.validDate == 'Not validated' else 'Change',
+            visuallyHiddenText: "Valid date"
+          }]
+        }
+      } if timetable.validDate,
+      {
+        key: {
+          text: "Start date"
+        },
+        value: {
+          text: timetable.startDate if timetable.startDate == 'Not started' else timetable.startDate | govukDate
+        },
+        actions: {
+          items: [{
+            href: "#",
+            text: "Start" if timetable.startDate == 'Not started' else 'Change',
+            visuallyHiddenText: "Valid date"
+          }]
+        }
+      } if timetable.startDate,
+      {
+        key: {
+          text: "LPA questionnaire due"
+        },
+        value: {
+          text: timetable.LPAQDueDate | govukDate
+        },
+        actions: {
+          items: [{
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "Valid date"
+          }]
+        }
+      } if timetable.LPAQDueDate,
+      {
+        key: {
+          text: "LPA statement due"
+        },
+        value: {
+          text: timetable.LPAStatementDueDate | govukDate
+        },
+        actions: {
+          items: [{
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "LPA statement date"
+          }]
+        }
+      } if timetable.LPAStatementDueDate,
+      {
+        key: {
+          text: "Site visit"
+        },
+        value: {
+          text: timetable.siteVisitDate if timetable.siteVisitDate == 'Not set up' else timetable.siteVisitDate | govukDate
+        },
+        actions: {
+          items: [{
+            href: "#",
+            text: "Set up" if timetable.siteVisitDate == 'Not set up' else 'Change',
+            visuallyHiddenText: "Valid date"
+          }]
+        }
+      } if timetable.siteVisitDate,
+      {
+        key: {
+          text: "Rule 6 statements due"
+        },
+        value: {
+          text: timetable.rule6StatementsDueDate | govukDate
+        },
+        actions: {
+          items: [{
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "LPA statement date"
+          }]
+        }
+      } if timetable.rule6StatementsDueDate,
+      {
+        key: {
+          text: "Interested party comments due"
+        },
+        value: {
+          text: timetable.interestedPartyCommentsDueDate | govukDate
+        },
+        actions: {
+          items: [{
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "Interested party comments due"
+          }]
+        }
+      } if timetable.interestedPartyCommentsDueDate,
+      {
+        key: {
+          text: "Statement of common ground due"
+        },
+        value: {
+          text: timetable.statementOfCommonGroundDueDate | govukDate
+        },
+        actions: {
+          items: [{
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "Statement of common ground due"
+          }]
+        }
+      } if timetable.statementOfCommonGroundDueDate,
+      {
+        key: {
+          text: "Case management conference"
+        },
+        value: {
+          text: timetable.cmcDate if timetable.cmcDate == 'Not set up' else timetable.cmcDate | govukDate
+        },
+        actions: {
+          items: [{
+            href: "#",
+            text: "Set up" if timetable.cmcDate == 'Not set up' else 'Change',
+            visuallyHiddenText: "Case management conference date"
+          }]
+        }
+      } if timetable.cmcDate,
+      {
+        key: {
+          text: "Appellant proof of evidence and witnesses due"
+        },
+        value: {
+          text: timetable.appellantEvidenceDueDate if timetable.appellantEvidenceDueDate == 'Awaiting inquiry date' else timetable.appellantEvidenceDueDate | govukDate
+        },
+        actions: {
+          items: [{
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "Appellant proof of evidence and witnesses due"
+          }]
+        } if timetable.appellantEvidenceDueDate != 'Awaiting inquiry date'
+      } if timetable.appellantEvidenceDueDate,
+      {
+        key: {
+          text: "LPA proof of evidence and witnesses due"
+        },
+        value: {
+          text: timetable.lpaEvidenceDueDate if timetable.lpaEvidenceDueDate == 'Awaiting inquiry date' else timetable.lpaEvidenceDueDate | govukDate
+        },
+        actions: {
+          items: [{
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "LPA proof of evidence and witnesses due"
+          }]
+        } if timetable.appellantEvidenceDueDate != 'Awaiting inquiry date'
+      } if timetable.appellantEvidenceDueDate,
+      {
+        key: {
+          text: "Rule 6 proof of evidence and witnesses due"
+        },
+        value: {
+          text: timetable.rule6EvidenceDueDate if timetable.rule6EvidenceDueDate == 'Awaiting inquiry date' else timetable.rule6EvidenceDueDate | govukDate
+        },
+        actions: {
+          items: [{
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "LPA proof of evidence and witnesses due"
+          }]
+        } if timetable.rule6EvidenceDueDate != 'Awaiting inquiry date'
+      } if timetable.rule6EvidenceDueDate,
+      {
+        key: {
+          text: "Inquiry"
+        },
+        value: {
+          text: timetable.inquiryDate if timetable.inquiryDate == 'Not set up' else timetable.inquiryDate | govukDate
+        },
+        actions: {
+          items: [{
+            href: "#",
+            text: "Set up" if timetable.inquiryDate == 'Not set up' else 'Change',
+            visuallyHiddenText: "Inquiry date"
+          }]
+        }
+      } if timetable.inquiryDate,
+      {
+        key: {
+          text: "Hearing"
+        },
+        value: {
+          text: timetable.hearingDate if timetable.hearingDate == 'Not set up' else timetable.hearingDate | govukDate
+        },
+        actions: {
+          items: [{
+            href: "#",
+            text: "Set up" if timetable.hearingDate == 'Not set up' else 'Change',
+            visuallyHiddenText: "Inquiry date"
+          }]
+        }
+      } if timetable.hearingDate
+    ]
+  }) }}
 </div>

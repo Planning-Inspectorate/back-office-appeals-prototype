@@ -50,18 +50,18 @@
           text: "Appeal procedure"
         },
         value: {
-          text: application.procedure
+          text: application.procedure or 'No procedure'
         },
         actions: {
           items: [
             {
               href: "/main/cases/:appealId/edit-procedure" | replace(':appealId', application.id),
-              text: "Change",
+              text: "Change" if application.procedure else "Add",
               visuallyHiddenText: "Item label"
             }
           ]
         }
-      } if application.procedure,
+      },
       {
         key: {
           text: "Allocation level"

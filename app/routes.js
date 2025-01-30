@@ -3,6 +3,8 @@
 // https://prototype-kit.service.gov.uk/docs/create-routes
 //
 
+const applications = require('./data/applications.json')
+
 const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
 
@@ -10,9 +12,23 @@ const flash = require('connect-flash')
 router.use(flash())
 
 router.all('*', (req, res, next) => {
+	res.locals.referrer = req.query.referrer
+  res.locals.path = req.path
+  res.locals.protocol = req.protocol
+  res.locals.hostname = req.hostname
+  res.locals.query = req.query
   res.locals.flash = req.flash('success')[0]
   next()
 })
+
+router.get('/clear-data', function (req, res) {
+	req.session.data.applications = applications
+
+	const redirectUrl = req.query.returnUrl || '/main/cases'
+
+	res.redirect(redirectUrl)
+})
+
 
 require('./routes/cases')(router)
 require('./routes/case')(router)

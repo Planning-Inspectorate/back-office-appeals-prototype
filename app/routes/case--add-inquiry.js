@@ -58,7 +58,12 @@ module.exports = router => {
   router.post('/main/cases/:appealId/add-inquiry/check', function (req, res) {
     let application = req.session.data.applications.find(application => application.id == req.params.appealId)
     application.inquiry = req.session.data.addInquiry
-    application.status = 'Awaiting proof of evidence and witnesses'
+
+    // if it's not this, then it's ready to start so leave it alone
+    if(application.status == 'Inquiry ready to set up') {
+      application.status = 'Awaiting proof of evidence and witnesses'
+    }
+
     delete req.session.data.addInquiry
     req.flash('success', 'Inquiry set up')
     res.redirect(`/main/cases/${req.params.appealId}`)

@@ -3,10 +3,10 @@
 
   <div class="govuk-button-group">
     {% if data.cmc %}
-      <a class="govuk-link" href="cancel-cmc">Cancel pre-inquiry meeting</a>
+      <a class="govuk-link" href="cancel-cmc">Cancel case management conference</a>
     {% else %}
       {{ govukButton({
-        text: 'Set up pre-inquiry meeting',
+        text: 'Set up case management conference',
         classes: 'govuk-button--secondar',
         href: 'add-cmc'
       }) }}
@@ -25,7 +25,7 @@
         actions: {
           items: [
             {
-              href: "/projects/start-full-case/v4/edit-cmc",
+              href: "#",
               text: "Change",
               visuallyHiddenText: "Date"
             }
@@ -42,7 +42,7 @@
         actions: {
           items: [
             {
-              href: "/projects/start-full-case/v4/edit-cmc",
+              href: "#",
               text: "Change",
               visuallyHiddenText: "Time"
             }
@@ -59,7 +59,7 @@
         actions: {
           items: [
             {
-              href: "/projects/start-full-case/v4/edit-cmc",
+              href: "#",
               text: "Change",
               visuallyHiddenText: "Location"
             }
@@ -67,5 +67,5 @@
         }
       }
     ]
-  }) if data.cmc }}
+  }) if application.cmc }}
 </div>

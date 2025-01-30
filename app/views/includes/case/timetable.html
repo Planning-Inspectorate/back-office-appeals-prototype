@@ -1,9 +1,7 @@
 <div class="app-panel">
   <h2 class="govuk-heading-l">Timetable</h2>
 
-  {{timetable | log}}
-
-  {{ govukSummaryList({
+  {# {{ govukSummaryList({
     rows: [
       {
         key: {
@@ -40,12 +38,12 @@
           text: "LPA questionnaire due"
         },
         value: {
-          text: timetable.LPAQDueDate | govukDate
+          text: timetable.LPAQDueDate if timetable.LPAQDueDate == 'Awaiting start' else timetable.startDate | govukDate
         },
         actions: {
           items: [{
             href: "#",
-            text: "Change",
+            text: "" if timetable.LPAQDueDate == 'Awaiting start' else 'Change',
             visuallyHiddenText: "Valid date"
           }]
         }
@@ -246,5 +244,12 @@
         }
       } if timetable.siteVisitDate
     ]
+  }) }} #}
+
+  {{ govukSummaryList({
+    rows: timetable
   }) }}
+
+
+
 </div>

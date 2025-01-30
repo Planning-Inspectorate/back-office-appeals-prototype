@@ -4,6 +4,10 @@
 	{% include "includes/header.njk" %}
 {% endblock %}
 
+{% block footer %}
+  {% include "includes/footer.njk" %}
+{% endblock %}
+
 {% block pageScripts %}
   {{ super() }}
   <script>

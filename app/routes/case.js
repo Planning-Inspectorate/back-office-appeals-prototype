@@ -1,120 +1,6 @@
 
 const moment = require('moment')
 
-const generateTimetableBeforeProcedure = (application) => {
-  let timetable = []
-  switch(application.status) {
-    case 'Ready to assign case officer':
-    case 'Ready to validate':
-      timetable.push(row({ key: 'Valid date', value: 'Not validated', action: { href: `/main/cases/${application.id}/validate`, text: 'Validate' }}))
-      break
-    case 'Ready to start':
-      timetable.push(row({ key: 'Valid date', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
-      timetable.push(row({ key: 'Start date', value: 'Not started', action: { href: `/main/cases/${application.id}/start-case`, text: 'Start' }}))
-      break
-    case 'Awaiting LPAQ':
-    case 'LPAQ ready to review':
-    case 'Site visit ready to set up':
-      timetable.validDate = new Date().toISOString()
-      timetable.startDate = new Date().toISOString()
-      timetable.LPAQDueDate = new Date().toISOString()
-      timetable.siteVisitDate = 'Not set up'
-      break
-    case 'Awaiting site visit':
-    case 'Decision ready to issue':
-      timetable.validDate = new Date().toISOString()
-      timetable.startDate = new Date().toISOString()
-      timetable.LPAQDueDate = new Date().toISOString()
-      timetable.siteVisitDate = new Date().toISOString()
-      break
-  }
-  return timetable
-}
-
-const generateTimetableWritten = (application) => {
-  let timetable = {}
-  switch(application.status) {
-    case 'Ready to assign case officer':
-    case 'Ready to validate':
-      timetable.validDate = 'Not validated'
-      break
-    case 'Ready to start':
-      timetable.validDate = new Date().toISOString()
-      timetable.startDate = 'Not started'
-      break
-    case 'Awaiting LPAQ':
-    case 'LPAQ ready to review':
-    case 'Awaiting statements and IP comments':
-    case 'Statements and IP comments ready to review':
-    case 'Statements and IP comments ready to review':
-    case 'Awaiting final comments':
-    case 'Final comments ready to review':
-    case 'Final comments ready to share':
-    case 'Site visit ready to set up':
-      timetable.validDate = new Date().toISOString()
-      timetable.startDate = new Date().toISOString()
-      timetable.LPAQDueDate = new Date().toISOString()
-      timetable.LPAStatementDueDate = new Date().toISOString()
-      timetable.interestedPartyCommentsDueDate = new Date().toISOString()
-      timetable.finalCommentsDueDate = new Date().toISOString()
-      timetable.siteVisitDate = 'Not set up'
-      break
-    case 'Awaiting site visit':
-    case 'Decision ready to issue':
-      timetable.validDate = new Date().toISOString()
-      timetable.startDate = new Date().toISOString()
-      timetable.LPAQDueDate = new Date().toISOString()
-      timetable.LPAStatementDueDate = new Date().toISOString()
-      timetable.interestedPartyCommentsDueDate = new Date().toISOString()
-      timetable.finalCommentsDueDate = new Date().toISOString()
-      timetable.siteVisitDate = new Date().toISOString()
-      break
-  }
-  return timetable
-}
-
-const generateTimetableHearing = (application) => {
-  let timetable = {}
-  switch(application.status) {
-    case 'Ready to assign case officer':
-    case 'Ready to validate':
-      timetable.validDate = 'Not validated'
-      break
-    case 'Ready to start':
-      timetable.validDate = new Date().toISOString()
-      timetable.startDate = 'Not started'
-      break
-    case 'Awaiting LPAQ':
-    case 'LPAQ ready to review':
-    case 'Awaiting statements and IP comments':
-    case 'Statements and IP comments ready to review':
-    case 'Statements and IP comments ready to share':
-    case 'Hearing ready to set up':
-      timetable.validDate = new Date().toISOString()
-      timetable.startDate = new Date().toISOString()
-      timetable.LPAQDueDate = new Date().toISOString()
-      timetable.LPAStatementDueDate = new Date().toISOString()
-      timetable.LPAStatementDueDate = new Date().toISOString()
-      timetable.interestedPartyCommentsDueDate = new Date().toISOString()
-      timetable.statementOfCommonGroundDueDate = new Date().toISOString()
-      timetable.planningObligationDueDate = 'Awaiting hearing date'
-      timetable.hearingDate = 'Not set up'
-      break
-    case 'Awaiting hearing':
-    case 'Decision ready to issue':
-      timetable.validDate = new Date().toISOString()
-      timetable.startDate = new Date().toISOString()
-      timetable.LPAQDueDate = new Date().toISOString()
-      timetable.LPAStatementDueDate = new Date().toISOString()
-      timetable.interestedPartyCommentsDueDate = new Date().toISOString()
-      timetable.statementOfCommonGroundDueDate = new Date().toISOString()
-      timetable.planningObligationDueDate = new Date().toISOString()
-      timetable.hearingDate = new Date().toISOString()
-      break
-  }
-  return timetable
-}
-
 const row = params => {
   let row = {}
   row.key = { html: params.key }
@@ -130,6 +16,104 @@ const row = params => {
   }
 
   return row
+}
+
+const generateTimetableBeforeProcedure = (application) => {
+  let timetable = []
+  switch(application.status) {
+    case 'Ready to assign case officer':
+    case 'Ready to validate':
+      timetable.push(row({ key: 'Valid date', value: 'Not validated', action: { href: `/main/cases/${application.id}/validate`, text: 'Validate' }}))
+      break
+    case 'Ready to start':
+      timetable.push(row({ key: 'Valid date', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Start date', value: 'Not started', action: { href: `/main/cases/${application.id}/start-case`, text: 'Start' }}))
+      break
+  }
+  return timetable
+}
+
+const generateTimetableWritten = (application) => {
+  let timetable = []
+  switch(application.status) {
+    case 'Ready to assign case officer':
+    case 'Ready to validate':
+      timetable.push(row({ key: 'Valid date', value: 'Not validated', action: { href: `/main/cases/${application.id}/validate`, text: 'Validate' }}))
+      break
+    case 'Ready to start':
+      timetable.push(row({ key: 'Valid date', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Start date', value: 'Not started', action: { href: `/main/cases/${application.id}/start-case`, text: 'Start' }}))
+      break
+    case 'Awaiting LPAQ':
+    case 'LPAQ ready to review':
+    case 'Awaiting statements and IP comments':
+    case 'Statements and IP comments ready to review':
+    case 'Statements and IP comments ready to review':
+    case 'Awaiting final comments':
+    case 'Final comments ready to review':
+    case 'Final comments ready to share':
+    case 'Site visit ready to set up':
+      timetable.push(row({ key: 'Valid date', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Start date', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${application.id}/start-case`, text: 'Change' }}))
+      timetable.push(row({ key: 'LPA questionnaire due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Statements due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Interested party comments due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Final comments due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Site visit', value: 'Not set up',  action: { href: `/main/cases/${application.id}/xyz`, text: 'Set up' }}))
+      break
+    case 'Awaiting site visit':
+    case 'Decision ready to issue':
+      timetable.push(row({ key: 'Valid date', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Start date', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${application.id}/start-case`, text: 'Change' }}))
+      timetable.push(row({ key: 'LPA questionnaire due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Statements due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Interested party comments due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Final comments due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Site visit', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
+      break
+  }
+  return timetable
+}
+
+const generateTimetableHearing = (application) => {
+  let timetable = []
+  switch(application.status) {
+    case 'Ready to assign case officer':
+    case 'Ready to validate':
+      timetable.push(row({ key: 'Valid date', value: 'Not validated', action: { href: `/main/cases/${application.id}/validate`, text: 'Validate' }}))
+      break
+    case 'Ready to start':
+      timetable.push(row({ key: 'Valid date', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Start date', value: 'Not started', action: { href: `/main/cases/${application.id}/start-case`, text: 'Start' }}))
+      break
+    case 'Awaiting LPAQ':
+    case 'LPAQ ready to review':
+    case 'Awaiting statements and IP comments':
+    case 'Statements and IP comments ready to review':
+    case 'Statements and IP comments ready to share':
+    case 'Hearing ready to set up':
+      timetable.push(row({ key: 'Valid date', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Start date', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${application.id}/start-case`, text: 'Change' }}))
+      timetable.push(row({ key: 'LPA questionnaire due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Statements due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Interested party comments due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Statement of common ground due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Planning obligation due', value: 'Awaiting hearing date',  action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Hearing', value: 'Not set up',  action: { href: `/main/cases/${application.id}/add-hearing`, text: 'Set up' }}))
+      break
+    case 'Awaiting hearing':
+    case 'Decision ready to issue':
+      timetable.push(row({ key: 'Valid date', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Start date', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${application.id}/start-case`, text: 'Change' }}))
+      timetable.push(row({ key: 'LPA questionnaire due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Statements due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Interested party comments due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Statement of common ground due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Planning obligation due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Hearing', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${application.id}/add-hearing`, text: 'Set up' }}))
+      break
+  }
+  return timetable
 }
 
 const generateTimetableInquiry = (application) => {
@@ -172,7 +156,7 @@ const generateTimetableInquiry = (application) => {
     case 'Statements and IP comments ready to review':
     case 'Inquiry ready to set up':
       timetable.push(row({ key: 'Valid date', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
-      timetable.push(row({ key: 'Start date', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${application.id}/start-case`, text: 'Start' }}))
+      timetable.push(row({ key: 'Start date', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${application.id}/start-case`, text: 'Change' }}))
       timetable.push(row({ key: 'LPA questionnaire due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
       timetable.push(row({ key: 'Statements due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
       timetable.push(row({ key: 'Interested party comments due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))

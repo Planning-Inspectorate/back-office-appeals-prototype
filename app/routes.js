@@ -22,6 +22,8 @@ router.all('*', (req, res, next) => {
 })
 
 router.get('/clear-data', function (req, res) {
+	delete req.session.data
+	req.session.data = {}
 	req.session.data.applications = applications
 
 	const redirectUrl = req.query.returnUrl || '/main/cases'

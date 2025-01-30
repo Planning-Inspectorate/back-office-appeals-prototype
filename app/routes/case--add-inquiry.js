@@ -59,7 +59,7 @@ module.exports = router => {
     let application = req.session.data.applications.find(application => application.id == req.params.appealId)
     application.inquiry = req.session.data.addInquiry
 
-    // if it's not this, then it's ready to start so leave it alone
+    // if the status is not this then it's ‘ready to start’ so leave the status as that
     if(application.status == 'Inquiry ready to set up') {
       application.status = 'Awaiting proof of evidence and witnesses'
     }

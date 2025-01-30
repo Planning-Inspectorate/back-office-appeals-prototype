@@ -1,6 +1,6 @@
 {% extends "layouts/bo.html" %}
 
-{% set title = "Check details and update procedure" %}
+{% set title = "Check details and update appeal procedure" %}
 {% set pageName = title %}
 
 {% set back = true %}
@@ -35,12 +35,12 @@
 
 
       <!-- When it’s being changed from a hearing -->
-      {% if data.hearing and data.editAppealProcedure.procedure != 'Hearing' %}
+      {% if application.hearing and data.editAppealProcedure.procedure != 'Hearing' %}
         <p>We’ll send an email to the appellant and LPA to tell them that we’ve changed the procedure and cancelled the hearing.</p>
-      {% elseif data.inquiry and data.editAppealProcedure.procedure != 'Inquiry' %}
+      {% elseif application.inquiry and data.editAppealProcedure.procedure != 'Inquiry' %}
         <p>We’ll send an email to the appellant and LPA to tell them that we’ve changed the procedure and cancelled the inquiry.</p>
       {% else %}
-        <p>We’ll send an email to the appellant and LPA to tell them that we’ve changed the procedure.</p>
+        <p>We’ll send an email to the appellant and LPA to tell them that we’ve changed the appeal procedure.</p>
       {% endif %}
 
 

@@ -185,19 +185,6 @@ const generateTimetableInquiry = (application) => {
     case 'Proof of evidence and witnesses ready to share':
     case 'Awaiting inquiry':
     case 'Decision ready to issue':
-      timetable.validDate = new Date().toISOString()
-      timetable.startDate = new Date().toISOString()
-      timetable.LPAQDueDate = new Date().toISOString()
-      timetable.LPAStatementDueDate = new Date().toISOString()
-      timetable.rule6StatementsDueDate = new Date().toISOString()
-      timetable.interestedPartyCommentsDueDate = new Date().toISOString()
-      timetable.statementOfCommonGroundDueDate = new Date().toISOString()
-      timetable.cmcDate = new Date().toISOString()
-      timetable.appellantEvidenceDueDate = new Date().toISOString()
-      timetable.lpaEvidenceDueDate = new Date().toISOString()
-      timetable.rule6EvidenceDueDate = new Date().toISOString()
-      timetable.planningObligationDueDate = new Date().toISOString()
-      timetable.inquiryDate = new Date().toISOString()
       break
   }
   return timetable

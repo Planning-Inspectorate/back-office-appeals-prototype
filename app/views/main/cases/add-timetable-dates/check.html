@@ -65,7 +65,9 @@
         ]
       }) }}
 
-      <p>We’ll send an email to the appellant and LPA to tell them about the new timetable.</p>
+      {% if application.status != 'Ready to start' and application.status != 'Ready to validate' %}
+        <p>We’ll send an email to the appellant and LPA to tell them about the new timetable.</p>
+      {% endif %}
 
       <form method="post">
         {{ govukButton({

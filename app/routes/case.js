@@ -18,7 +18,7 @@ const row = params => {
   return row
 }
 
-const generateTimetableBeforeProcedure = (application) => {
+const generateTimetableHouseholder = (application) => {
   let timetable = []
   switch(application.status) {
     case 'Ready to assign case officer':
@@ -29,6 +29,21 @@ const generateTimetableBeforeProcedure = (application) => {
       timetable.push(row({ key: 'Valid date', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
       timetable.push(row({ key: 'Start date', value: 'Not started', action: { href: `/main/cases/${application.id}/start-case`, text: 'Start' }}))
       break
+      case 'Awaiting LPAQ':
+      case 'LPAQ ready to review':
+      case 'Site visit ready to set up':
+        timetable.push(row({ key: 'Valid date', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
+        timetable.push(row({ key: 'Start date', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${application.id}/start-case`, text: 'Change' }}))
+        timetable.push(row({ key: 'LPA questionnaire due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
+        timetable.push(row({ key: 'Site visit', value: 'Not set up',  action: { href: `/main/cases/${application.id}/xyz`, text: 'Set up' }}))
+        break
+      case 'Awaiting site visit':
+      case 'Decision ready to issue':
+        timetable.push(row({ key: 'Valid date', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
+        timetable.push(row({ key: 'Start date', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${application.id}/start-case`, text: 'Change' }}))
+        timetable.push(row({ key: 'LPA questionnaire due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
+        timetable.push(row({ key: 'Site visit', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
+        break
   }
   return timetable
 }
@@ -200,7 +215,7 @@ const generateTimetable = (application) => {
   if(application.procedure == 'Written representations') {
     return generateTimetableWritten(application)
   }
-  return generateTimetableBeforeProcedure(application)
+  return generateTimetableHouseholder(application)
 }
 
 module.exports = router => {

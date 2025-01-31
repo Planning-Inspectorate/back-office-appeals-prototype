@@ -1,0 +1,56 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Planning obligation due date" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+        <span class="govuk-caption-l">Appeal 2114328 - add timetable due dates</span>
+        {{ govukDateInput({
+          id: "whatever",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "For example, 31 3 2025"
+          },
+          items: [
+            {
+              name: "addTimetableDates[planningObligationDueDate][day]",
+              label: "Day",
+              value: data.addTimetableDates.planningObligationDueDate.day,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "addTimetableDates[planningObligationDueDate][month]",
+              label: "Month",
+              value: data.addTimetableDates.planningObligationDueDate.month,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "addTimetableDates[planningObligationDueDate][year]",
+              label: "Year",
+              value: data.addTimetableDates.planningObligationDueDate.year,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

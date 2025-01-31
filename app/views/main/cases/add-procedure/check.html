@@ -1,0 +1,43 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Check details and add appeal procedure" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal 2114328</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Procedure"
+            },
+            value: {
+              text: data.addAppealProcedure.procedure
+            },
+            actions: {
+              items: [
+                {
+                  href: "/main/cases/:appealId/add-procedure" | replace(':appealId', application.id),
+                  text: "Change",
+                  visuallyHiddenText: "Procedure"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <form method="post">
+        {{ govukButton({
+          text: "Add appeal procedure"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

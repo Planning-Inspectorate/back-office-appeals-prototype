@@ -55,7 +55,7 @@
         actions: {
           items: [
             {
-              href: "/main/cases/:appealId/edit-procedure" | replace(':appealId', application.id),
+              href: "/main/cases/:appealId/edit-procedure" if application.procedure else "/main/cases/:appealId/add-procedure" | replace(':appealId', application.id),
               text: "Change" if application.procedure else "Add",
               visuallyHiddenText: "Item label"
             }

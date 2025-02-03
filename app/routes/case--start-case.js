@@ -22,6 +22,13 @@ module.exports = router => {
     let application = req.session.data.applications.find(application => application.id == req.params.appealId)
     application.status = 'Awaiting LPAQ'
     application.procedure = req.session.data.procedure
+
+    application.startDate = new Date()
+
+    if(application.inquiry && application.statementOfCommonGroundDueDate && application.proofOfEvidenceAndWitnessesDueDate && application.planningObligationDueDate) {
+      application.timetableShared = true
+    }
+
     req.flash('success', 'Case started')
     res.redirect(`/main/cases/${req.params.appealId}`)
   })

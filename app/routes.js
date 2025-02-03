@@ -68,6 +68,7 @@ require('./routes/rule-6-statement--redact')(router)
 require('./routes/case--edit-statement-of-common-ground-due-date')(router)
 require('./routes/case--edit-proof-of-evidence-and-witnesses-due-date')(router)
 require('./routes/case--edit-planning-obligation-due-date')(router)
+require('./routes/case--share-timetable')(router)
 
 //added for simple branching ++ https://github.com/abbott567/radio-button-redirect ++
 

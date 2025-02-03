@@ -71,26 +71,7 @@
   {% endif  %}
 {%- endset -%}
 
-{# {% set hasBanners = false %}
-
 {% if application.procedure == 'Inquiry' and not application.inquiry %}
-  {% set hasBanners = true %}
-{% endif %}
-
-{% if application.procedure == 'Inquiry' and not application.statementOfCommonGroundDueDate or not application.proofOfEvidenceAndWitnessesDueDate or not application.planningObligationDueDate %}
-  {% set hasBanners = true %}
-{% endif %}
-
-{% if application.procedure == 'Inquiry' and application.status == 'Ready to start' and application.statementOfCommonGroundDueDate and application.proofOfEvidenceAndWitnessesDueDate and application.planningObligationDueDate %}
-  {% set hasBanners = true %}
-{% endif %}
-
-{% if html | trim | length %}
-  {% set hasBanners = true %}
-{% endif %} #}
-
-
-{% if application.procedure == 'Inquiry' and not application.inquiry%}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       {% set inquiryBannerHtml %}
@@ -100,7 +81,6 @@
       {% endset %}
 
       {{ govukNotificationBanner({
-        classes: 'govuk-!-margin-bottom-5',
         html: inquiryBannerHtml
       }) }}
     </div>
@@ -119,7 +99,6 @@
         {% endset %}
 
         {{ govukNotificationBanner({
-          classes: 'govuk-!-margin-bottom-5',
           html: timetableBannerHtml
         }) }}
       </div>
@@ -127,20 +106,16 @@
   {% endif %}
 {% endif %}
 
-
-{# Show ‘Share timetable’ banner when we have all four dates and the case has already been started and they have not already been shared #}
-
-{% if isCaseStarted and application.inquiry and application.statementOfCommonGroundDueDate and application.proofOfEvidenceAndWitnessesDueDate and application.planningObligationDueDate %}
+{% if not application.timetableShared and application.startDate and application.inquiry and application.statementOfCommonGroundDueDate and application.proofOfEvidenceAndWitnessesDueDate and application.planningObligationDueDate %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       {% set shareTimetableHtml %}
         <p class="govuk-notification-banner__heading">
-          <a class="govuk-notification-banner__link" href="/main/cases/{{application.id}}/share-timetable-dates">Share timetable due dates</a>
+          <a class="govuk-notification-banner__link" href="/main/cases/{{application.id}}/share-timetable">Share timetable</a>
         </p>
       {% endset %}
 
       {{ govukNotificationBanner({
-        classes: 'govuk-!-margin-bottom-5',
         html: shareTimetableHtml
       }) }}
     </div>

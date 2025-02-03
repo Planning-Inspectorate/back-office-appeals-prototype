@@ -151,12 +151,20 @@ const generateTimetableInquiry = (application) => {
     case 'Awaiting inquiry':
     case 'Decision ready to issue':
       timetable.push(row({ key: 'Valid date', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
-      timetable.push(row({ key: 'Start date', value: 'Not started', action: { href: `/main/cases/${application.id}/start-case`, text: 'Start' }}))
 
-      if(application.procedure) {
+      if(application.startDate) {
+        timetable.push(row({ key: 'Start date', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${application.id}/start-case`, text: 'Change' }}))
+        timetable.push(row({ key: 'LPA questionnaire due', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
+        timetable.push(row({ key: 'Statements due', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
+        timetable.push(row({ key: 'Interested party comments due', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
+      } else {
+        timetable.push(row({ key: 'Start date', value: 'Not started', action: { href: `/main/cases/${application.id}/start-case`, text: 'Start' }}))
         timetable.push(row({ key: 'LPA questionnaire due', value: 'Awaiting start date' }))
         timetable.push(row({ key: 'Statements due', value: 'Awaiting start date' }))
         timetable.push(row({ key: 'Interested party comments due', value: 'Awaiting start date' }))
+      }
+
+      if(application.procedure) {
         if(application.statementOfCommonGroundDueDate) {
           timetable.push(row({ key: 'Statement of common ground due', value: moment(application.statementOfCommonGroundDueDate).format('D MMMM YYYY'), action: { href: `/main/cases/${application.id}/edit-statement-of-common-ground-due-date`, text: 'Change' }}))
         } else {

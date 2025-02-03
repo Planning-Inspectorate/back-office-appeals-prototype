@@ -178,12 +178,12 @@ const generateApplication = (params = {}) => {
 
   // set up timetable dates based on status and procedure
   // Timetable dates
-  if(application.type == 'Householder appeal') {
+  // if(application.type == 'Householder appeal') {
     // application.validDate = faker.date.recent({ days: 1 })
     // application.startDate = faker.date.recent({ days: 1 })
     // application.LPAQDueDate = faker.date.recent({ days: 1 })
     // application.siteVisitDate = faker.date.recent({ days: 1 })
-  } else if(application.procedure) {
+  // } else if(application.procedure) {
     // application.validDate = faker.date.recent({ days: 1 })
     // application.startDate = faker.date.recent({ days: 1 })
     // application.LPAQDueDate = faker.date.recent({ days: 1 })
@@ -192,7 +192,7 @@ const generateApplication = (params = {}) => {
     // application.planningObligationDueDate = faker.date.recent({ days: 1 })
     // application.statementOfCommonGroundDueDate = faker.date.recent({ days: 1 })
     // application.siteVisitDate = faker.date.recent({ days: 1 })
-  }
+  // }
 
   if(application.status == 'Ready to assign case officer' || application.status == 'Ready to validate' || application.status == 'Ready to start') {
     application.procedure = null

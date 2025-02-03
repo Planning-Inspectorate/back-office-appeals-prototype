@@ -1,11 +1,16 @@
 {
   "scripts": {
+    "build-database": "npm run migrate && npm run seed",
+    "migrate": "npx sequelize db:migrate --migrations-path ./app/migrations --config ./app/config/config.json",
+    "seed": "npx sequelize db:seed:all --seeders-path ./app/seeders --config ./app/config/config.json",
+    "postinstall": "npm run build-database",
     "dev": "govuk-prototype-kit dev",
     "serve": "govuk-prototype-kit serve",
     "start": "govuk-prototype-kit start",
     "generate-data": "node ./scripts/generate-applications.js"
   },
   "dependencies": {
+    "@faker-js/faker": "^9.2.0",
     "@govuk-prototype-kit/common-templates": "2.0.1",
     "@govuk-prototype-kit/step-by-step": "2.2.2",
     "@govuk-prototype-kit/task-list": "2.0.0",
@@ -17,10 +22,12 @@
     "govuk-prototype-kit": "13.16.2",
     "hmrc-frontend": "6.35.0",
     "jquery": "^3.7.0",
+    "lodash": "^4.17.21",
     "notifications-node-client": "8.0.0",
     "radio-button-redirect": "^1.2.0",
-    "uuid": "^8.3.2",
-    "@faker-js/faker": "^9.2.0",
-    "lodash": "^4.17.21"
+    "sequelize": "^6.37.5",
+    "sequelize-cli": "^6.6.2",
+    "sqlite3": "^5.1.7",
+    "uuid": "^8.3.2"
   }
 }

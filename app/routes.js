@@ -65,6 +65,9 @@ require('./routes/rule-6-statement--reject')(router)
 require('./routes/rule-6-statement--redact')(router)
 
 // Timetable
+require('./routes/case--add-statement-of-common-ground-due-date')(router)
+require('./routes/case--add-proof-of-evidence-and-witnesses-due-date')(router)
+require('./routes/case--add-planning-obligation-due-date')(router)
 require('./routes/case--edit-statement-of-common-ground-due-date')(router)
 require('./routes/case--edit-proof-of-evidence-and-witnesses-due-date')(router)
 require('./routes/case--edit-planning-obligation-due-date')(router)

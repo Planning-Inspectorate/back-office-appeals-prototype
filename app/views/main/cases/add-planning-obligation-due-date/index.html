@@ -1,0 +1,56 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Planning obligation due date" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+        <span class="govuk-caption-l">Appeal 2114328</span>
+        {{ govukDateInput({
+          id: "whatever",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "For example, 31 3 2025"
+          },
+          items: [
+            {
+              name: "addPlanningObligationDueDate[planningObligationDueDate][day]",
+              label: "Day",
+              value: data.addPlanningObligationDueDate.planningObligationDueDate.day,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "addPlanningObligationDueDate[planningObligationDueDate][month]",
+              label: "Month",
+              value: data.addPlanningObligationDueDate.planningObligationDueDate.month,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "addPlanningObligationDueDate[planningObligationDueDate][year]",
+              label: "Year",
+              value: data.addPlanningObligationDueDate.planningObligationDueDate.year,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: 'Add planning obligation due date'
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

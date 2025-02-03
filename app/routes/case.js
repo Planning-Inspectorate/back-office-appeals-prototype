@@ -112,7 +112,7 @@ const generateTimetableHearing = (application) => {
       timetable.push(row({ key: 'LPA questionnaire due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
       timetable.push(row({ key: 'Statements due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
       timetable.push(row({ key: 'Interested party comments due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
-      timetable.push(row({ key: 'Statement of common ground due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Statement of common ground due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${application.id}/edit-statement-of-common-ground-due-date`, text: 'Change' }}))
       timetable.push(row({ key: 'Planning obligation due', value: 'Awaiting hearing date',  action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
       timetable.push(row({ key: 'Hearing', value: 'Not set up',  action: { href: `/main/cases/${application.id}/add-hearing`, text: 'Set up' }}))
       break
@@ -158,21 +158,21 @@ const generateTimetableInquiry = (application) => {
         timetable.push(row({ key: 'Statements due', value: 'Awaiting start date' }))
         timetable.push(row({ key: 'Interested party comments due', value: 'Awaiting start date' }))
         if(application.statementOfCommonGroundDueDate) {
-          timetable.push(row({ key: 'Statement of common ground due', value: moment(application.statementOfCommonGroundDueDate).format('D MMMM YYYY'), action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
+          timetable.push(row({ key: 'Statement of common ground due', value: moment(application.statementOfCommonGroundDueDate).format('D MMMM YYYY'), action: { href: `/main/cases/${application.id}/edit-statement-of-common-ground-due-date`, text: 'Change' }}))
         } else {
-          timetable.push(row({ key: 'Statement of common ground due', value: 'Not added', action: { href: `/main/cases/${application.id}/xyz`, text: 'Add' }}))
+          timetable.push(row({ key: 'Statement of common ground due', value: 'Not added', action: { href: `/main/cases/${application.id}/edit-statement-of-common-ground-due-date`, text: 'Add' }}))
         }
 
         if(application.proofOfEvidenceAndWitnessesDueDate) {
-          timetable.push(row({ key: 'Proof of evidence and witnesses due', value: moment(application.proofOfEvidenceAndWitnessesDueDate).format('D MMMM YYYY'), action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
+          timetable.push(row({ key: 'Proof of evidence and witnesses due', value: moment(application.proofOfEvidenceAndWitnessesDueDate).format('D MMMM YYYY'), action: { href: `/main/cases/${application.id}/edit-proof-of-evidence-and-witnesses-due-date`, text: 'Change' }}))
         } else {
-          timetable.push(row({ key: 'Proof of evidence and witnesses due', value: 'Not added', action: { href: `/main/cases/${application.id}/xyz`, text: 'Add' }}))
+          timetable.push(row({ key: 'Proof of evidence and witnesses due', value: 'Not added', action: { href: `/main/cases/${application.id}/edit-proof-of-evidence-and-witnesses-due-date`, text: 'Add' }}))
         }
 
         if(application.planningObligationDueDate) {
-          timetable.push(row({ key: 'Planning obligation due', value: moment(application.planningObligationDueDate).format('D MMMM YYYY'), action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
+          timetable.push(row({ key: 'Planning obligation due', value: moment(application.planningObligationDueDate).format('D MMMM YYYY'), action: { href: `/main/cases/${application.id}/edit-planning-obligation-due-date`, text: 'Change' }}))
         } else {
-          timetable.push(row({ key: 'Planning obligation due', value: 'Not added', action: { href: `/main/cases/${application.id}/xyz`, text: 'Add' }}))
+          timetable.push(row({ key: 'Planning obligation due', value: 'Not added', action: { href: `/main/cases/${application.id}/edit-planning-obligation-due-date`, text: 'Add' }}))
         }
 
         timetable.push(row({ key: 'Case management conference', value: 'Not set up', action: { href: `/main/cases/${application.id}/add-cmc`, text: 'Set up' }}))
@@ -214,9 +214,12 @@ module.exports = router => {
 
     let timetable = generateTimetable(application)
 
+    const isCaseStarted = application.status !== 'Ready to assign case officer' && application.status !== 'Ready to validate' && application.status !== 'Ready to start'
+
     res.render('/main/cases/show', {
       application,
-      timetable
+      timetable,
+      isCaseStarted
     })
   })
 

@@ -71,42 +71,47 @@
   {% endif  %}
 {%- endset -%}
 
-{% set hasBanners = false %}
+{# {% set hasBanners = false %}
 
 {% if application.procedure == 'Inquiry' and not application.inquiry %}
   {% set hasBanners = true %}
 {% endif %}
 
-{% if application.procedure == 'Inquiry' and 1==1 %}
+{% if application.procedure == 'Inquiry' and not application.statementOfCommonGroundDueDate or not application.proofOfEvidenceAndWitnessesDueDate or not application.planningObligationDueDate %}
+  {% set hasBanners = true %}
+{% endif %}
+
+{% if application.procedure == 'Inquiry' and application.status == 'Ready to start' and application.statementOfCommonGroundDueDate and application.proofOfEvidenceAndWitnessesDueDate and application.planningObligationDueDate %}
   {% set hasBanners = true %}
 {% endif %}
 
 {% if html | trim | length %}
   {% set hasBanners = true %}
-{% endif %}
+{% endif %} #}
 
-{% if hasBanners %}
+
+{% if application.procedure == 'Inquiry' and not application.inquiry%}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {% if application.procedure == 'Inquiry' and not application.inquiry%}
-        {% set inquiryBannerHtml %}
-          <p class="govuk-notification-banner__heading">
-            <a class="govuk-notification-banner__link" href="/main/cases/{{application.id}}/add-inquiry">Set up inquiry</a>
-          </p>
-        {% endset %}
+      {% set inquiryBannerHtml %}
+        <p class="govuk-notification-banner__heading">
+          <a class="govuk-notification-banner__link" href="/main/cases/{{application.id}}/add-inquiry">Set up inquiry</a>
+        </p>
+      {% endset %}
 
-        {{ govukNotificationBanner({
-          classes: 'govuk-!-margin-bottom-5',
-          html: inquiryBannerHtml
-        }) }}
-      {% endif %}
+      {{ govukNotificationBanner({
+        classes: 'govuk-!-margin-bottom-5',
+        html: inquiryBannerHtml
+      }) }}
+    </div>
+  </div>
+{% endif %}
 
 
-      {{application.statementOfCommonGroundDueDate | log}}
-      {{application.proofOfEvidenceAndWitnessesDueDate | log}}
-      {{application.planningObligationDueDate | log}}
-
-      {% if application.procedure == 'Inquiry' and not application.statementOfCommonGroundDueDate and not application.proofOfEvidenceAndWitnessesDueDate and not application.planningObligationDueDate %}
+{% if application.procedure == 'Inquiry' %}
+  {% if not application.statementOfCommonGroundDueDate or not application.proofOfEvidenceAndWitnessesDueDate or not application.planningObligationDueDate %}
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
         {% set timetableBannerHtml %}
           <p class="govuk-notification-banner__heading">
             <a class="govuk-notification-banner__link" href="/main/cases/{{application.id}}/add-timetable-dates">Add timetable due dates</a>
@@ -117,14 +122,37 @@
           classes: 'govuk-!-margin-bottom-5',
           html: timetableBannerHtml
         }) }}
-      {% endif %}
+      </div>
+    </div>
+  {% endif %}
+{% endif %}
 
-      {% if html | trim | length %}
-        {{ govukNotificationBanner({
-          html: html
-        }) }}
-      {% endif %}
+
+{# Show ‘Share timetable’ banner when we have all four dates and the case has already been started and they have not already been shared #}
+
+{% if isCaseStarted and application.inquiry and application.statementOfCommonGroundDueDate and application.proofOfEvidenceAndWitnessesDueDate and application.planningObligationDueDate %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% set shareTimetableHtml %}
+        <p class="govuk-notification-banner__heading">
+          <a class="govuk-notification-banner__link" href="/main/cases/{{application.id}}/share-timetable-dates">Share timetable due dates</a>
+        </p>
+      {% endset %}
+
+      {{ govukNotificationBanner({
+        classes: 'govuk-!-margin-bottom-5',
+        html: shareTimetableHtml
+      }) }}
     </div>
   </div>
 {% endif %}
 
+{% if html | trim | length %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ govukNotificationBanner({
+        html: html
+      }) }}
+    </div>
+  </div>
+{% endif %}

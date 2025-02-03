@@ -64,6 +64,11 @@ require('./routes/rule-6-statement--approve')(router)
 require('./routes/rule-6-statement--reject')(router)
 require('./routes/rule-6-statement--redact')(router)
 
+// Timetable
+require('./routes/case--edit-statement-of-common-ground-due-date')(router)
+require('./routes/case--edit-proof-of-evidence-and-witnesses-due-date')(router)
+require('./routes/case--edit-planning-obligation-due-date')(router)
+
 //added for simple branching ++ https://github.com/abbott567/radio-button-redirect ++
 
 // const radioButtonRedirect = require('radio-button-redirect')

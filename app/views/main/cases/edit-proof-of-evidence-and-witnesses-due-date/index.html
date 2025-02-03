@@ -1,0 +1,56 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Proof of evidence and witnesses due date" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+        <span class="govuk-caption-l">Appeal 2114328</span>
+        {{ govukDateInput({
+          id: "whatever",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "For example, 31 3 2025"
+          },
+          items: [
+            {
+              name: "editProofOfEvidenceAndWitnessesDueDate[proofOfEvidenceAndWitnessesDueDate][day]",
+              label: "Day",
+              value: data.editProofOfEvidenceAndWitnessesDueDate.proofOfEvidenceAndWitnessesDueDate.day,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "editProofOfEvidenceAndWitnessesDueDate[proofOfEvidenceAndWitnessesDueDate][month]",
+              label: "Month",
+              value: data.editProofOfEvidenceAndWitnessesDueDate.proofOfEvidenceAndWitnessesDueDate.month,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "editProofOfEvidenceAndWitnessesDueDate[proofOfEvidenceAndWitnessesDueDate][year]",
+              label: "Year",
+              value: data.editProofOfEvidenceAndWitnessesDueDate.proofOfEvidenceAndWitnessesDueDate.year,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: 'Update proof of evidence and witnesses due date'
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

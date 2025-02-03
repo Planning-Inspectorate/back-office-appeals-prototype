@@ -354,3 +354,9 @@ pre {
 .govuk-accordion .app-panel h2 {
 	display: none;
 }
+
+.app-prompt-container {
+	.govuk-notification-banner:not(last-child) {
+		@include govuk-responsive-margin(5, "bottom");
+	}
+}

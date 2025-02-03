@@ -6,8 +6,10 @@
 {% set back = false %}
 
 {% block content %}
-  {% include "includes/case/success-banner.njk" %}
-  {% include "includes/case/prompt.njk" %}
+  <div class="app-prompt-container">
+    {% include "includes/case/success-banner.njk" %}
+    {% include "includes/case/prompt.njk" %}
+  </div>
   {% include "includes/case/h1.njk" %}
 
   <div class="govuk-button-group">

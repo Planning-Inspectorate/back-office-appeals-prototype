@@ -17,7 +17,6 @@ module.exports = (sequelize, DataTypes) => {
     firstName: {
       type: DataTypes.STRING,
       allowNull: false,
-      field: 'first_name',
       validate: {
         notEmpty: true
       }
@@ -25,7 +24,6 @@ module.exports = (sequelize, DataTypes) => {
     lastName: {
       type: DataTypes.STRING,
       allowNull: false,
-      field: 'last_name',
       validate: {
         notEmpty: true
       }
@@ -37,6 +35,14 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notEmpty: true,
         isEmail: true
+      }
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate: {
+        notEmpty: true
       }
     }
   }, {

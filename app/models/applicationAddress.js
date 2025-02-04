@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
 
       ApplicationAddress.belongsTo(models.Application, {
-        foreignKey: 'application_id',
+        foreignKey: 'applicationId',
         as: 'application'
       })
     }

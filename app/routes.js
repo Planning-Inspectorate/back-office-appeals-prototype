@@ -21,6 +21,24 @@ router.all('*', (req, res, next) => {
   next()
 })
 
+const { User } = require('./models')
+
+router.get('/', async function (req, res) {
+	const users = await User.findAll()
+
+	await User.create({
+		id: 2,
+    firstName: 'Adam',
+		lastName: 'Silver',
+		email: 'adam@example.com',
+		password: 'war1',
+		createdAt: new Date(),
+		updatedAt: new Date(),
+  })
+
+  res.render('index', { users })
+})
+
 router.get('/clear-data', function (req, res) {
 	delete req.session.data
 	req.session.data = {}

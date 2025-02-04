@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Application.hasOne(models.ApplicationAddress, {
-        foreignKey: 'application_id',
+        foreignKey: 'applicationId',
         as: 'address'
       })
     }

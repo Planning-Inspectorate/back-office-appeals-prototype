@@ -1,0 +1,220 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Timetable due dates" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal {{application.id}}</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+      <form method="post">
+        {{ govukDateInput({
+          id: "whatever",
+          fieldset: {
+            legend: {
+              text: 'LPA questionnaire due (optional)',
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 31 3 2025"
+          },
+          items: [
+            {
+              name: "addTimetableDueDates[LPAQuestionnaireDueDate][day]",
+              label: "Day",
+              value: data.addTimetableDueDates.LPAQuestionnaireDueDate.day,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "addTimetableDueDates[LPAQuestionnaireDueDate][month]",
+              label: "Month",
+              value: data.addTimetableDueDates.LPAQuestionnaireDueDate.month,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "addTimetableDueDates[LPAQuestionnaireDueDate][year]",
+              label: "Year",
+              value: data.addTimetableDueDates.LPAQuestionnaireDueDate.year,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+        {{ govukDateInput({
+          id: "whatever",
+          fieldset: {
+            legend: {
+              text: 'Statements due (optional)',
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 31 3 2025"
+          },
+          items: [
+            {
+              name: "addTimetableDueDates[statementsDueDate][day]",
+              label: "Day",
+              value: data.addTimetableDueDates.statementsDueDate.day,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "addTimetableDueDates[statementsDueDate][month]",
+              label: "Month",
+              value: data.addTimetableDueDates.statementsDueDate.month,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "addTimetableDueDates[statementsDueDate][year]",
+              label: "Year",
+              value: data.addTimetableDueDates.statementsDueDate.year,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+        {{ govukDateInput({
+          id: "whatever",
+          fieldset: {
+            legend: {
+              text: 'Interested party comments due (optional)',
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 31 3 2025"
+          },
+          items: [
+            {
+              name: "addTimetableDueDates[interestedPartyCommentsDueDate][day]",
+              label: "Day",
+              value: data.addTimetableDueDates.interestedPartyCommentsDueDate.day,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "addTimetableDueDates[interestedPartyCommentsDueDate][month]",
+              label: "Month",
+              value: data.addTimetableDueDates.interestedPartyCommentsDueDate.month,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "addTimetableDueDates[interestedPartyCommentsDueDate][year]",
+              label: "Year",
+              value: data.addTimetableDueDates.interestedPartyCommentsDueDate.year,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+        {{ govukDateInput({
+          id: "whatever",
+          fieldset: {
+            legend: {
+              text: 'Statement of common ground due (optional)',
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 31 3 2025"
+          },
+          items: [
+            {
+              name: "addTimetableDueDates[statementOfCommonGroundDueDate][day]",
+              label: "Day",
+              value: data.addTimetableDueDates.statementOfCommonGroundDueDate.day,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "addTimetableDueDates[statementOfCommonGroundDueDate][month]",
+              label: "Month",
+              value: data.addTimetableDueDates.statementOfCommonGroundDueDate.month,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "addTimetableDueDates[statementOfCommonGroundDueDate][year]",
+              label: "Year",
+              value: data.addTimetableDueDates.statementOfCommonGroundDueDate.year,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+        {{ govukDateInput({
+          id: "whatever",
+          fieldset: {
+            legend: {
+              text: 'Proof of evidence and witnesses due (optional)',
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 31 3 2025"
+          },
+          items: [
+            {
+              name: "addTimetableDueDates[proofOfEvidenceAndWitnessesDueDate][day]",
+              label: "Day",
+              value: data.addTimetableDueDates.proofOfEvidenceAndWitnessesDueDate.day,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "addTimetableDueDates[proofOfEvidenceAndWitnessesDueDate][month]",
+              label: "Month",
+              value: data.addTimetableDueDates.proofOfEvidenceAndWitnessesDueDate.month,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "addTimetableDueDates[proofOfEvidenceAndWitnessesDueDate][year]",
+              label: "Year",
+              value: data.addTimetableDueDates.proofOfEvidenceAndWitnessesDueDate.year,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+        {{ govukDateInput({
+          id: "whatever",
+          fieldset: {
+            legend: {
+              text: 'Planning obligation due (optional)',
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 31 3 2025"
+          },
+          items: [
+            {
+              name: "addTimetableDueDates[planningObligationDueDate][day]",
+              label: "Day",
+              value: data.addTimetableDueDates.planningObligationDueDate.day,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "addTimetableDueDates[planningObligationDueDate][month]",
+              label: "Month",
+              value: data.addTimetableDueDates.planningObligationDueDate.month,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "addTimetableDueDates[planningObligationDueDate][year]",
+              label: "Year",
+              value: data.addTimetableDueDates.planningObligationDueDate.year,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: 'Add timetable due dates'
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

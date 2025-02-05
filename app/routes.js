@@ -64,6 +64,10 @@ require('./routes/rule-6-statement--approve')(router)
 require('./routes/rule-6-statement--reject')(router)
 require('./routes/rule-6-statement--redact')(router)
 
+// Timetable new
+
+require('./routes/add-timetable-due-dates')(router)
+
 // Timetable
 require('./routes/case--add-statement-of-common-ground-due-date')(router)
 require('./routes/case--add-proof-of-evidence-and-witnesses-due-date')(router)

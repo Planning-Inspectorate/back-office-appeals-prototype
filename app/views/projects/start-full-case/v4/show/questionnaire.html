@@ -388,12 +388,14 @@
               ]
             }
           },
+         
+          
           {
             key: {
-              html: 'What is the development category?'
+              html: 'Screening opinion'
             },
             value: {
-              html: 'Schedule '+ (data['environment-schedule'] or '1')
+              html: '<a href="#">example-file.pdf</a>'
             },
             actions: {
               items: [
@@ -406,7 +408,7 @@
           },
           {
             key: {
-              html: 'Have you issued a screening opinion?'
+              html: 'Did your screening opinion say the development needed an environmental statement?'
             },
             value: {
               html: 'Yes'
@@ -414,21 +416,6 @@
             actions: {
               items: [
                 {
-                  html: 'Change'
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              html: 'Screening opinion'
-            },
-            value: {
-              html: 'Schedule '+ (data['environment-schedule'] or '1')
-            },
-            actions: {
-              items: [
-                {
                   href: 'environment/schedule-type?cya=true',
                   html: 'Change'
                 }
@@ -437,10 +424,10 @@
           },
           {
             key: {
-              html: 'What is the development category?'
+              html: 'Environmental statement and supporting information'
             },
             value: {
-              html: 'Schedule '+ (data['environment-schedule'] or '1')
+              html: '<a href="#">example-file.pdf</a>'
             },
             actions: {
               items: [
@@ -456,6 +443,441 @@
       }) }}
 
       <h2 class="govuk-heading-m govuk-!-margin-top-8">3. Notifying relevant parties</h2>
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              html: 'Who did you notify about this application?'
+            },
+            value: {
+              html: '<a href="#">example-file.pdf</a>'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'environment/schedule-type?cya=true',
+                  html: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              html: 'How did you notify relevant parties about the application?'
+            },
+            value: {
+              html: 'A site notice<br>Letters or emails to interested parties<br>An advert in the local press'
+            },
+            actions: {
+              items: [
+                {
+                  html: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              html: 'Site notice'
+            },
+            value: {
+              html: '<a href="#">example-file.pdf</a>'
+            },
+            actions: {
+              items: [
+                {
+                  html: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              html: 'Letters or emails sent to interested parties with their addresses'
+            },
+            value: {
+              html: '<a href="#">example-file.pdf</a>'
+            },
+            actions: {
+              items: [
+                {
+                  html: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              html: 'Press advertisement'
+            },
+            value: {
+              html: '<a href="#">example-file.pdf</a>'
+            },
+            actions: {
+              items: [
+                {
+                  html: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              html: 'Appeal notification letter'
+            },
+            value: {
+              html: '<a href="#">example-file.pdf</a>'
+            },
+            actions: {
+              items: [
+                {
+                  html: 'Change'
+                }
+              ]
+            }
+          }
+
+          
+          
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">4. Consultation responses and representations</h2>
+      {{ govukSummaryList({
+        rows: [
+          
+            
+          {
+            key: {
+              html: 'Did you consult all the relevant statutory consultees about the development?'
+            },
+            value: {
+              html: 'Yes<br>List of bodies'
+            },
+            actions: {
+              items: [
+                {
+                  html: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              html: 'Consultation responses and standing advice'
+            },
+            value: {
+              html: '<a href="#">example-file.pdf</a>'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'environment/schedule-type?cya=true',
+                  html: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              html: 'Representations from members of the public or other parties'
+            },
+            value: {
+              html: '<a href="#">example-file.pdf</a>'
+            },
+            actions: {
+              items: [
+                {
+                  html: 'Change'
+                }
+              ]
+            }
+          }          
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">5. Planning officer’s report and supporting documents</h2>
+      {{ govukSummaryList({
+        rows: [
+          
+            
+          {
+            key: {
+              html: 'Planning officer’s report'
+            },
+            value: {
+              html: '<a href="#">example-file.pdf</a>'
+            },
+            actions: {
+              items: [
+                {
+                  html: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              html: 'Relevant policies from your statutory development plan'
+            },
+            value: {
+              html: '<a href="#">example-file.pdf</a>'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'environment/schedule-type?cya=true',
+                  html: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              html: 'Emerging plan and supporting information'
+            },
+            value: {
+              html: '<a href="#">example-file.pdf</a>'
+            },
+            actions: {
+              items: [
+                {
+                  html: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              html: 'Other relevant policies'
+            },
+            value: {
+              html: '<a href="#">example-file.pdf</a>'
+            },
+            actions: {
+              items: [
+                {
+                  html: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              html: 'Relevant policy extracts and supplementary planning documents'
+            },
+            value: {
+              html: '<a href="#">example-file.pdf</a>'
+            },
+            actions: {
+              items: [
+                {
+                  html: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              html: 'Community infrastructure levy'
+            },
+            value: {
+              html: '<a href="#">example-file.pdf</a>'
+            },
+            actions: {
+              items: [
+                {
+                  html: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              html: 'Is the community infrastructure levy formally adopted?'
+            },
+            value: {
+              html: 'Yes'
+            },
+            actions: {
+              items: [
+                {
+                  html: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              html: 'When was the community infrastructure levy formally adopted?'
+            },
+            value: {
+              html: '16 January 2025'
+            },
+            actions: {
+              items: [
+                {
+                  html: 'Change'
+                }
+              ]
+            }
+          }            
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">6. Site access</h2>
+      {{ govukSummaryList({
+        rows: [
+          
+            
+          {
+            key: {
+              html: 'Might the inspector need access to the appellant’s land or property?'
+            },
+            value: {
+              html: 'Yes<br>Terraced property'
+            },
+            actions: {
+              items: [
+                {
+                  html: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              html: 'Might the inspector need to enter a neighbour’s land or property?'
+            },
+            value: {
+              html: 'Yes<br>To check the restricted view'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'environment/schedule-type?cya=true',
+                  html: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              html: 'Address of the neighbour’s land or property'
+            },
+            value: {
+              html: '10 Example Street<br>London<br>A1 1AA'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'environment/schedule-type?cya=true',
+                  html: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              html: 'Are there any potential safety risks?'
+            },
+            value: {
+              html: 'Yes<br>Hostile neighbours'
+            },
+            actions: {
+              items: [
+                {
+                  html: 'Change'
+                }
+              ]
+            }
+          }          
+        ]
+      }) }}
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">7. Appeal process</h2>
+      {{ govukSummaryList({
+        rows: [
+          
+            
+          {
+            key: {
+              html: 'Which procedure do you think is most appropriate for this appeal?'
+            },
+            value: {
+              html: 'Inquiry'
+            },
+            actions: {
+              items: [
+                {
+                  html: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              html: 'How many days would you expect the inquiry to last?'
+            },
+            value: {
+              html: '10'
+            },
+            actions: {
+              items: [
+                {
+                  href: 'environment/schedule-type?cya=true',
+                  html: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              html: 'Why would you prefer this procedure?'
+            },
+            value: {
+              html: 'Complex case'
+            },
+            actions: {
+              items: [
+                {
+                  html: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              html: 'Are there any other ongoing appeals next to, or close to the site?'
+            },
+            value: {
+              html: 'Yes<br>1234567'
+            },
+            actions: {
+              items: [
+                {
+                  html: 'Change'
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              html: 'Are there any new conditions?'
+            },
+            value: {
+              html: 'Yes<br>Must include community garden'
+            },
+            actions: {
+              items: [
+                {
+                  html: 'Change'
+                }
+              ]
+            }
+          }            
+        ]
+      }) }}
+
 
     </div>
   </div>

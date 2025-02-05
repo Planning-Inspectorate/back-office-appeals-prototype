@@ -152,49 +152,105 @@ const generateTimetableInquiry = (application) => {
     case 'Decision ready to issue':
       timetable.push(row({ key: 'Valid date', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${application.id}/xyz`, text: 'Change' }}))
 
+
+      var key = 'Start date'
       if(application.startDate) {
-        timetable.push(row({ key: 'Start date', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${application.id}/start-case`, text: 'Change' }}))
-        timetable.push(row({ key: 'LPA questionnaire due', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${application.id}/add-timetable-due-dates`, text: 'Change' }}))
-        timetable.push(row({ key: 'Statements due', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${application.id}/add-timetable-due-dates`, text: 'Change' }}))
-        timetable.push(row({ key: 'Interested party comments due', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${application.id}/add-timetable-due-dates`, text: 'Change' }}))
+        var value = DateTime.fromISO(application.startDate).toFormat("d MMMM yyyy")
+        var url = `/main/cases/${application.id}/edit-start-date`
+        var cta = 'Change'
       } else {
-        timetable.push(row({ key: 'Start date', value: 'Not started', action: { href: `/main/cases/${application.id}/start-case`, text: 'Start' }}))
-        timetable.push(row({ key: 'LPA questionnaire due', value: 'Not added', action: { href: `/main/cases/${application.id}/add-timetable-due-dates`, text: 'Add' } }))
-        timetable.push(row({ key: 'Statements due', value: 'Not added', action: { href: `/main/cases/${application.id}/add-timetable-due-dates`, text: 'Add' } }))
-        timetable.push(row({ key: 'Interested party comments due', value: 'Not added', action: { href: `/main/cases/${application.id}/add-timetable-due-dates`, text: 'Add' } }))
+        var value = 'Not started'
+        var url = `/main/cases/${application.id}/start-case`
+        var cta = 'Start'
       }
+      timetable.push(row({ key, value, action: { href: url, text: cta }}))
 
       if(application.procedure) {
+
+        var key = 'LPA questionnaire due'
+        var url = `/main/cases/${application.id}/edit-timetable-due-dates`
+        if(application.LPAQuestionnaireDueDate) {
+          var value = DateTime.fromISO(application.LPAQuestionnaireDueDate).toFormat("d MMMM yyyy")
+          var cta = 'Change'
+        } else {
+          var value = 'Not added'
+          var cta = 'Add'
+        }
+        timetable.push(row({ key, value, action: { href: url, text: cta }}))
+
+        var key = 'Statements due'
+        var url = `/main/cases/${application.id}/edit-timetable-due-dates`
+        if(application.statementsDueDate) {
+          var value = DateTime.fromISO(application.statementsDueDate).toFormat("d MMMM yyyy")
+          var cta = 'Change'
+        } else {
+          var value = 'Not added'
+          var cta = 'Add'
+        }
+        timetable.push(row({ key, value, action: { href: url, text: cta }}))
+
+        var key = 'Interested party comments due'
+        var url = `/main/cases/${application.id}/edit-timetable-due-dates`
+        if(application.interestedPartyCommentsDueDate) {
+          var value = DateTime.fromISO(application.interestedPartyCommentsDueDate).toFormat("d MMMM yyyy")
+          var cta = 'Change'
+        } else {
+          var value = 'Not added'
+          var cta = 'Add'
+        }
+        timetable.push(row({ key, value, action: { href: url, text: cta }}))
+
+        var key = 'Statement of common ground due'
+        var url = `/main/cases/${application.id}/edit-timetable-due-dates`
         if(application.statementOfCommonGroundDueDate) {
-          timetable.push(row({ key: 'Statement of common ground due', value: DateTime.fromISO(application.statementOfCommonGroundDueDate).toFormat("d MMMM yyyy"), action: { href: `/main/cases/${application.id}/add-timetable-due-dates`, text: 'Change' }}))
+          var value = DateTime.fromISO(application.statementOfCommonGroundDueDate).toFormat("d MMMM yyyy")
+          var cta = 'Change'
         } else {
-          timetable.push(row({ key: 'Statement of common ground due', value: 'Not added', action: { href: `/main/cases/${application.id}/add-timetable-due-dates`, text: 'Add' }}))
+          var value = 'Not added'
+          var cta = 'Add'
         }
+        timetable.push(row({ key, value, action: { href: url, text: cta }}))
 
+        var key = 'Proof of evidence and witnesses due'
+        var url = `/main/cases/${application.id}/edit-timetable-due-dates`
         if(application.proofOfEvidenceAndWitnessesDueDate) {
-          timetable.push(row({ key: 'Proof of evidence and witnesses due', value: moment(application.proofOfEvidenceAndWitnessesDueDate).format('D MMMM YYYY'), action: { href: `/main/cases/${application.id}/add-timetable-due-dates`, text: 'Change' }}))
+          var value = DateTime.fromISO(application.proofOfEvidenceAndWitnessesDueDate).toFormat("d MMMM yyyy")
+          var cta = 'Change'
         } else {
-          timetable.push(row({ key: 'Proof of evidence and witnesses due', value: 'Not added', action: { href: `/main/cases/${application.id}/add-timetable-due-dates`, text: 'Add' }}))
+          var value = 'Not added'
+          var cta = 'Add'
         }
+        timetable.push(row({ key, value, action: { href: url, text: cta }}))
 
+        var key = 'Planning obligation due'
+        var url = `/main/cases/${application.id}/edit-timetable-due-dates`
         if(application.planningObligationDueDate) {
-          timetable.push(row({ key: 'Planning obligation due', value: DateTime.fromISO(application.planningObligationDueDate).toFormat("d MMMM yyyy"), action: { href: `/main/cases/${application.id}/add-timetable-due-dates`, text: 'Change' }}))
+          var value = DateTime.fromISO(application.planningObligationDueDate).toFormat("d MMMM yyyy")
+          var cta = 'Change'
         } else {
-          timetable.push(row({ key: 'Planning obligation due', value: 'Not added', action: { href: `/main/cases/${application.id}/add-timetable-due-dates`, text: 'Add' }}))
+          var value = 'Not added'
+          var cta = 'Add'
         }
+        timetable.push(row({ key, value, action: { href: url, text: cta }}))
 
         timetable.push(row({ key: 'Case management conference', value: 'Not set up', action: { href: `/main/cases/${application.id}/add-cmc`, text: 'Set up' }}))
 
+
+        var key = 'Inquiry'
         if(application.inquiry) {
-          let inquiryDate = moment({
+          var url = `/main/cases/${application.id}/edit-inquiry`
+          var value = moment({
             year: application.inquiry.date.year,
             month: application.inquiry.date.month - 1,
             day: application.inquiry.day}
           ).format('D MMMM YYYY')
-          timetable.push(row({ key: 'Inquiry', value: inquiryDate, action: { href: `/main/cases/${application.id}/edit-inquiry`, text: 'Change' }}))
+          var cta = 'Change'
         } else {
-          timetable.push(row({ key: 'Inquiry', value: 'Not set up', action: { href: `/main/cases/${application.id}/add-inquiry`, text: 'Set up' }}))
+          var url = `/main/cases/${application.id}/add-inquiry`
+          var value = 'Not set up'
+          var cta = 'Set up'
         }
+        timetable.push(row({ key, value, action: { href: url, text: cta }}))
       }
 
       break

@@ -66,7 +66,7 @@ require('./routes/rule-6-statement--redact')(router)
 
 // Timetable new
 
-require('./routes/add-timetable-due-dates')(router)
+require('./routes/edit-timetable-due-dates')(router)
 
 // Timetable
 require('./routes/case--add-statement-of-common-ground-due-date')(router)

@@ -84,7 +84,7 @@
           text: "Linked appeals"
         },
         value: {
-          html: '<a href="#">21/725284</a>'
+          html: application.linkedAppeal if application.linkedAppeal == 'No appeals' else '<a href="#">'+application.linkedAppeal+'</a>'
         },
         actions: {
           items: [

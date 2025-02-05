@@ -144,6 +144,8 @@ const generateApplication = (params = {}) => {
   application.id = params.id || "" + faker.number.int({ min: 123456, max: 999999 })
   application.type = params.type || faker.helpers.arrayElement(['Householder appeal', 'Full planning appeal'])
 
+  application.linkedAppeal = params.linkedAppeal || faker.helpers.arrayElement(['No appeals', '1234567', ])
+
   let statuses = baseStatuses
 
   if(application.type == 'Full planning appeal') {
@@ -291,6 +293,33 @@ const generateApplication = (params = {}) => {
 
 const generateApplications = () => {
   const applications = []
+
+  // This will be when everything is completely filled in (Written)
+  applications.push(generateApplication({
+    id: '00000009',
+    type: 'Full planning appeal',
+    procedure: 'Written representations',
+    status: "Ready to start",
+    linkedAppeal: '1234567'
+  }))
+
+  // This will be when everything is not filled in (Written)
+  applications.push(generateApplication({
+    id: '00000010',
+    type: 'Full planning appeal',
+    procedure: 'Written representations',
+    linkedAppeal: 'No appeals',
+    status: "Ready to start"
+  }))
+
+
+
+
+
+
+
+
+
 
   applications.push(generateApplication({
     type: 'Full planning appeal',

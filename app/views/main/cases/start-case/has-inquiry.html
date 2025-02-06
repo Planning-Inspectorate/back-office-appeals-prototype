@@ -1,6 +1,6 @@
 {% extends "layouts/bo.html" %}
 
-{% set title = "Appeal procedure" %}
+{% set title = "Do you want to set up the inquiry?" %}
 {% set pageName = title %}
 
 {% set back = true %}
@@ -13,7 +13,7 @@
       <form method="post">
         <span class="govuk-caption-l">Appeal {{application.id}} - start case</span>
         {{ govukRadios({
-          name: "startCase[procedure]",
+          name: "startCase[hasInquiry]",
           fieldset: {
             legend: {
               text: title,
@@ -21,19 +21,15 @@
               classes: "govuk-fieldset__legend--l"
             }
           },
-          value: data.startCase.procedure or application.procedure,
+          value: data.startCase.hasInquiry,
           items: [
             {
-              value: "Written representations",
-              text: "Written representations"
+              value: "Yes",
+              text: "Yes"
             },
             {
-              value: "Hearing",
-              text: "Hearing"
-            },
-            {
-              value: "Inquiry",
-              text: "Inquiry"
+              value: "No, I will set up the inquiry after starting the case",
+              text: "No, I will set up the inquiry after starting the case"
             }
           ]
         }) }}

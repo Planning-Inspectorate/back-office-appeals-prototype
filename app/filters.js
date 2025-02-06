@@ -1,6 +1,7 @@
 const govukPrototypeKit = require('govuk-prototype-kit')
 const addFilter = govukPrototypeKit.views.addFilter
 
+const { DateTime } = require("luxon");
 const moment = require('moment')
 
 addFilter('formatMonth', (number) => {
@@ -198,3 +199,22 @@ addFilter('appealStatusText', status => {
 
 })
 
+addFilter('isoDateToDateObject', (isoDateString, part) => {
+	if(!isoDateString) {
+		return isoDateString
+	}
+	let luxonDate = DateTime.fromISO(isoDateString)
+
+	let dateObject = {
+		day: luxonDate.day,
+		month: luxonDate.month,
+		year: luxonDate.year
+	}
+
+	if(part) {
+		return dateObject[part]
+	} else {
+		return dateObject
+	}
+
+})

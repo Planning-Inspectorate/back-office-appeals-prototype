@@ -1,11 +1,12 @@
 const _ = require('lodash')
+const { DateTime } = require("luxon");
 
 module.exports = router => {
 
   router.get('/main/cases/:appealId/edit-inquiry', function (req, res) {
     let application = req.session.data.applications.find(application => application.id == req.params.appealId)
 
-    let date = _.get(req, 'session.data.editInquiry.date') || application.inquiry.date
+    let date = _.get(req, 'session.data.editInquiry.date') || DateTime.fromISO(application.inquiry.date).toObject();
     let time = _.get(req, 'session.data.editInquiry.time')  || application.inquiry.time
 
     res.render('/main/cases/edit-inquiry/index', {
@@ -81,7 +82,14 @@ module.exports = router => {
   router.post('/main/cases/:appealId/edit-inquiry/check', function (req, res) {
     let application = req.session.data.applications.find(application => application.id == req.params.appealId)
     application.inquiry = req.session.data.editInquiry
-    req.flash('success', 'Hearing updated')
+
+    application.inquiry.date = DateTime.fromObject({
+      day: req.session.data.editInquiry.date.day,
+      month: req.session.data.editInquiry.date.month,
+      year: req.session.data.editInquiry.date.year
+    }).toISO()
+
+    req.flash('success', 'Inquiry updated')
     res.redirect(`/main/cases/${req.params.appealId}`)
   })
 

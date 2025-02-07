@@ -1,3 +1,5 @@
+const { DateTime } = require("luxon");
+
 module.exports = router => {
 
   router.get('/main/cases/:appealId/add-inquiry', function (req, res) {
@@ -58,6 +60,12 @@ module.exports = router => {
   router.post('/main/cases/:appealId/add-inquiry/check', function (req, res) {
     let application = req.session.data.applications.find(application => application.id == req.params.appealId)
     application.inquiry = req.session.data.addInquiry
+
+    application.inquiry.date = DateTime.fromObject({
+      day: req.session.data.addInquiry.date.day,
+      month: req.session.data.addInquiry.date.month,
+      year: req.session.data.addInquiry.date.year
+    }).toISO()
 
     // if the status is not this then it's ‘ready to start’ so leave the status as that
     if(application.status == 'Inquiry ready to set up') {

@@ -13,6 +13,130 @@
         {{title}}
       </h1>
 
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "LPA questionnaire due"
+            },
+            value: {
+              text: application.LPAQuestionnaireDueDate | govukDate
+            },
+            actions: {
+              items: [
+                {
+                  href: "/main/cases/:appealId/start-case/timetable-due-dates" | replace(':appealId', application.id),
+                  text: "Change",
+                  visuallyHiddenText: "LPA questionnaire due"
+                }
+              ]
+            } if 1==2
+          },
+          {
+            key: {
+              text: "Statements due"
+            },
+            value: {
+              text: application.statementsDueDate | govukDate
+            },
+            actions: {
+              items: [
+                {
+                  href: "/main/cases/:appealId/start-case/timetable-due-dates" | replace(':appealId', application.id),
+                  text: "Change",
+                  visuallyHiddenText: "Statements due"
+                }
+              ]
+            } if 1==2
+          },
+          {
+            key: {
+              text: "Interested party comments due"
+            },
+            value: {
+              text: application.interestedPartyCommentsDueDate | govukDate
+            },
+            actions: {
+              items: [
+                {
+                  href: "/main/cases/:appealId/start-case/timetable-due-dates" | replace(':appealId', application.id),
+                  text: "Change",
+                  visuallyHiddenText: "Interested party comments due"
+                }
+              ]
+            } if 1==2
+          },
+          {
+            key: {
+              text: "Statement of common ground due"
+            },
+            value: {
+              text: application.statementOfCommonGroundDueDate | govukDate
+            },
+            actions: {
+              items: [
+                {
+                  href: "/main/cases/:appealId/start-case/timetable-due-dates" | replace(':appealId', application.id),
+                  text: "Change",
+                  visuallyHiddenText: "Statement of common ground due"
+                }
+              ]
+            } if 1==2
+          },
+          {
+            key: {
+              text: "Proof of evidence and witnesses due"
+            },
+            value: {
+              text: application.proofOfEvidenceAndWitnessesDueDate | govukDate
+            },
+            actions: {
+              items: [
+                {
+                  href: "/main/cases/:appealId/start-case/timetable-due-dates" | replace(':appealId', application.id),
+                  text: "Change",
+                  visuallyHiddenText: "Proof of evidence and witnesses due"
+                }
+              ]
+            } if 1==2
+          },
+          {
+            key: {
+              text: "Planning obligation due"
+            },
+            value: {
+              text: application.planningObligationDueDate | govukDate
+            },
+            actions: {
+              items: [
+                {
+                  href: "/main/cases/:appealId/start-case/timetable-due-dates" | replace(':appealId', application.id),
+                  text: "Change",
+                  visuallyHiddenText: "Planning obligation due"
+                }
+              ]
+            } if 1==2
+          },
+          {
+            key: {
+              text: "Inquiry time"
+            },
+            value: {
+              html: application.inquiry.date | govukDate
+            },
+            actions: {
+              items: [
+                {
+                  href: "/main/cases/:appealId/start-case/inquiry-date" | replace(':appealId', application.id),
+                  text: "Change",
+                  visuallyHiddenText: "Inquiry time"
+                }
+              ]
+            }if 1==2
+          }
+        ]
+      }) }}
+
       <p>We’ll send an email with details about the timetable to the appellant and LPA.</p>
 
       <form method="post">

@@ -3,31 +3,40 @@
 
   {{ govukSummaryList({
     rows: [
-      {
+    {
+      key: {
+        text: "Site address"
+      },
+      value: {
+        text: appAddress({address: application.site.address})
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "Site address"
+          }
+        ]
+      }
+    },  
+    {
         key: {
           text: "LPA"
         },
         value: {
-          text: 'Barnet Council'
+          html: 'Barnet Council'
         }
       },
       {
         key: {
-          text: "Site address"
+          text: "Planning application reference"
         },
         value: {
-          text: appAddress({address: application.site.address})
-        },
-        actions: {
-          items: [
-            {
-              href: "#",
-              text: "Change",
-              visuallyHiddenText: "Site address"
-            }
-          ]
+          html: '14012025HAS'
         }
       },
+      
       {
         key: {
           text: "Appeal type"
@@ -84,9 +93,20 @@
           text: "Linked appeals"
         },
         value: {
+          html: 'No appeals'
+        } if data['empty'] else {
           html: '<a href="#">21/725284</a>'
         },
         actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Add",
+              visuallyHiddenText: "Item label"
+            }
+          ]
+        }if data['empty'] else 
+        {
           items: [
             {
               href: "Item URL",
@@ -101,9 +121,20 @@
           text: "Related appeals"
         },
         value: {
-          html: '<a href="#">21/725284</a>'
+          html: 'No appeals'
+        } if data['empty'] else {
+          html: '<a href="#">21/725293</a>'
         },
         actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Add",
+              visuallyHiddenText: "Item label"
+            }
+          ]
+        }if data['empty'] else 
+        {
           items: [
             {
               href: "Item URL",
@@ -113,14 +144,7 @@
           ]
         }
       },
-      {
-        key: {
-          text: "Planning application reference"
-        },
-        value: {
-          html: '14012025HAS'
-        }
-      },
+      
       {
         key: {
           text: "Decision"

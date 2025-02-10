@@ -11,7 +11,7 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form method="post">
-        <span class="govuk-caption-l">Appeal {{application.id}} - start case</span>
+        <span class="govuk-caption-l">Appeal {{_case.id}} - start case</span>
         {{ govukRadios({
           name: "startCase[hasInquiryAddress]",
           fieldset: {
@@ -21,7 +21,7 @@
               classes: "govuk-fieldset__legend--l"
             }
           },
-          value: data.startCase.hasInquiryAddress or application.inquiry.hasAddress,
+          value: data.startCase.hasInquiryAddress or _case.inquiry.hasAddress,
           items: [
             {
               value: "Yes",

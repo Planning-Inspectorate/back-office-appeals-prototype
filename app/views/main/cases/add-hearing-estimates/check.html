@@ -22,7 +22,7 @@
             actions: {
               items: [
                 {
-                  href: "/main/cases/:appealId/add-hearing-estimates" | replace(':appealId', application.id),
+                  href: "/main/cases/:caseId/add-hearing-estimates" | replace(':caseId', _case.id),
                   text: "Change",
                   visuallyHiddenText: "Estimated preparation time"
                 }
@@ -39,7 +39,7 @@
             actions: {
               items: [
                 {
-                  href: "/main/cases/:appealId/add-hearing-estimates" | replace(':appealId', application.id),
+                  href: "/main/cases/:caseId/add-hearing-estimates" | replace(':caseId', _case.id),
                   text: "Change",
                   visuallyHiddenText: "Estimated sitting time"
                 }
@@ -56,7 +56,7 @@
             actions: {
               items: [
                 {
-                  href: "/main/cases/:appealId/add-hearing-estimates" | replace(':appealId', application.id),
+                  href: "/main/cases/:caseId/add-hearing-estimates" | replace(':caseId', _case.id),
                   text: "Change",
                   visuallyHiddenText: "Estimated reporting time"
                 }

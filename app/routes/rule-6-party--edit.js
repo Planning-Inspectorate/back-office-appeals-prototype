@@ -2,9 +2,9 @@ const _ = require('lodash')
 
 module.exports = router => {
 
-  router.get('/main/cases/:appealId/rule-6-parties/:partyId/edit', function (req, res) {
-    let application = req.session.data.applications.find(application => application.id == req.params.appealId)
-    let party = application.rule6Parties.find(party => party.id === req.params.partyId)
+  router.get('/main/cases/:caseId/rule-6-parties/:partyId/edit', function (req, res) {
+    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let party = _case.rule6Parties.find(party => party.id === req.params.partyId)
 
     let hasOrganisation = _.get(req, 'session.data.editRule6Party.hasOrganisation') || party.hasOrganisation
     let organisationName = _.get(req, 'session.data.editRule6Party.organisationName')  || party.organisationName
@@ -15,83 +15,83 @@ module.exports = router => {
     })
   })
 
-  router.post('/main/cases/:appealId/rule-6-parties/:partyId/edit', function (req, res) {
-    res.redirect(`/main/cases/${req.params.appealId}/rule-6-parties/${req.params.partyId}/edit/name`)
+  router.post('/main/cases/:caseId/rule-6-parties/:partyId/edit', function (req, res) {
+    res.redirect(`/main/cases/${req.params.caseId}/rule-6-parties/${req.params.partyId}/edit/name`)
   })
 
-  router.get('/main/cases/:appealId/rule-6-parties/:partyId/edit/name', function (req, res) {
-    let application = req.session.data.applications.find(application => application.id == req.params.appealId)
-    let party = application.rule6Parties.find(party => party.id === req.params.partyId)
+  router.get('/main/cases/:caseId/rule-6-parties/:partyId/edit/name', function (req, res) {
+    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let party = _case.rule6Parties.find(party => party.id === req.params.partyId)
 
     let firstName = _.get(req, 'session.data.editRule6Party.firstName') || party.firstName
     let lastName = _.get(req, 'session.data.editRule6Party.lastName')  || party.lastName
 
     res.render('/main/cases/rule-6-parties/edit/name', {
-      application,
+      _case,
       firstName,
       lastName
     })
   })
 
-  router.post('/main/cases/:appealId/rule-6-parties/:partyId/edit/name', function (req, res) {
-    res.redirect(`/main/cases/${req.params.appealId}/rule-6-parties/${req.params.partyId}/edit/email-address`)
+  router.post('/main/cases/:caseId/rule-6-parties/:partyId/edit/name', function (req, res) {
+    res.redirect(`/main/cases/${req.params.caseId}/rule-6-parties/${req.params.partyId}/edit/email-address`)
   })
 
-  router.get('/main/cases/:appealId/rule-6-parties/:partyId/edit/email-address', function (req, res) {
-    let application = req.session.data.applications.find(application => application.id == req.params.appealId)
-    let party = application.rule6Parties.find(party => party.id === req.params.partyId)
+  router.get('/main/cases/:caseId/rule-6-parties/:partyId/edit/email-address', function (req, res) {
+    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let party = _case.rule6Parties.find(party => party.id === req.params.partyId)
 
     let emailAddress = _.get(req, 'session.data.editRule6Party.emailAddress')  || party.emailAddress
 
     res.render('/main/cases/rule-6-parties/edit/email-address', {
-      application,
+      _case,
       emailAddress
     })
   })
 
-  router.post('/main/cases/:appealId/rule-6-parties/:partyId/edit/email-address', function (req, res) {
-    res.redirect(`/main/cases/${req.params.appealId}/rule-6-parties/${req.params.partyId}/edit/phone`)
+  router.post('/main/cases/:caseId/rule-6-parties/:partyId/edit/email-address', function (req, res) {
+    res.redirect(`/main/cases/${req.params.caseId}/rule-6-parties/${req.params.partyId}/edit/phone`)
   })
 
-  router.get('/main/cases/:appealId/rule-6-parties/:partyId/edit/phone', function (req, res) {
-    let application = req.session.data.applications.find(application => application.id == req.params.appealId)
-    let party = application.rule6Parties.find(party => party.id === req.params.partyId)
+  router.get('/main/cases/:caseId/rule-6-parties/:partyId/edit/phone', function (req, res) {
+    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let party = _case.rule6Parties.find(party => party.id === req.params.partyId)
 
     let phone = _.get(req, 'session.data.editRule6Party.phone')  || party.phone
 
     res.render('/main/cases/rule-6-parties/edit/phone', {
-      application,
+      _case,
       phone
     })
   })
 
-  router.post('/main/cases/:appealId/rule-6-parties/:partyId/edit/phone', function (req, res) {
-    res.redirect(`/main/cases/${req.params.appealId}/rule-6-parties/${req.params.partyId}/edit/form`)
+  router.post('/main/cases/:caseId/rule-6-parties/:partyId/edit/phone', function (req, res) {
+    res.redirect(`/main/cases/${req.params.caseId}/rule-6-parties/${req.params.partyId}/edit/form`)
   })
 
-  router.get('/main/cases/:appealId/rule-6-parties/:partyId/edit/form', function (req, res) {
-    let application = req.session.data.applications.find(application => application.id == req.params.appealId)
+  router.get('/main/cases/:caseId/rule-6-parties/:partyId/edit/form', function (req, res) {
+    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
     res.render('/main/cases/rule-6-parties/edit/form', {
-      application
+      _case
     })
   })
 
-  router.post('/main/cases/:appealId/rule-6-parties/:partyId/edit/form', function (req, res) {
-    res.redirect(`/main/cases/${req.params.appealId}/rule-6-parties/${req.params.partyId}/edit/check`)
+  router.post('/main/cases/:caseId/rule-6-parties/:partyId/edit/form', function (req, res) {
+    res.redirect(`/main/cases/${req.params.caseId}/rule-6-parties/${req.params.partyId}/edit/check`)
   })
 
-  router.get('/main/cases/:appealId/rule-6-parties/:partyId/edit/check', function (req, res) {
-    let application = req.session.data.applications.find(application => application.id == req.params.appealId)
-    let party = application.rule6Parties.find(party => party.id === req.params.partyId)
+  router.get('/main/cases/:caseId/rule-6-parties/:partyId/edit/check', function (req, res) {
+    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let party = _case.rule6Parties.find(party => party.id === req.params.partyId)
     res.render('/main/cases/rule-6-parties/edit/check', {
-      application,
+      _case,
       party
     })
   })
 
-  router.post('/main/cases/:appealId/rule-6-parties/:partyId/edit/check', function (req, res) {
-    let application = req.session.data.applications.find(application => application.id == req.params.appealId)
-    let party = application.rule6Parties.find(party => party.id === req.params.partyId)
+  router.post('/main/cases/:caseId/rule-6-parties/:partyId/edit/check', function (req, res) {
+    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let party = _case.rule6Parties.find(party => party.id === req.params.partyId)
     req.flash('success', 'Rule 6 party updated')
 
     // Update party
@@ -108,7 +108,7 @@ module.exports = router => {
     // Clear temporary form data
     delete req.session.data.editRule6Party
 
-    res.redirect(`/main/cases/${req.params.appealId}/rule-6-parties/${req.params.partyId}`)
+    res.redirect(`/main/cases/${req.params.caseId}/rule-6-parties/${req.params.partyId}`)
   })
 
 }

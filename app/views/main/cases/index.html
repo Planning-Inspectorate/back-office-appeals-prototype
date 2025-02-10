@@ -1,6 +1,6 @@
 {% extends "layouts/bo.html" %}
 
-{% set title = "Your cases (" + totalApplications +")" %}
+{% set title = "Your cases (" + totalCases +")" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 {% set pageId = 'yourCases' %}
 
@@ -28,13 +28,13 @@
         <div class="app-action-bar__filter"></div>
       </div>
 
-      {% if applications.length %}
+      {% if cases.length %}
          <div class="app-list">
-          {% for application in applications %}
+          {% for _case in cases %}
             <div class="app-list__item">
               <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
-                <a href="/main/cases/{{application.id}}" class="govuk-link--no-visited-state">{{application.id}}</a>
-                {{ govukTag({ text: application.status, classes: application.status | appealStatusColour + ' app-list__tag--top-right' }) }}
+                <a href="/main/cases/{{_case.id}}" class="govuk-link--no-visited-state">{{_case.id}}</a>
+                {{ govukTag({ text: _case.status, classes: _case.status | appealStatusColour + ' app-list__tag--top-right' }) }}
               </h2>
 
               {% set action %}
@@ -49,7 +49,7 @@
                       html: 'Type'
                     },
                     value: {
-                      html: application.type
+                      html: _case.type
                     }
                   },
                   {

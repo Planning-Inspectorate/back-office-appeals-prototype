@@ -71,8 +71,8 @@
         }) }}
       </form>
 
-      {% if application.agent %}
-        <p class="govuk-body"><a href="/main/cases/{{application.id}}/remove-agent" class="govuk-link">Remove agent</a></p>
+      {% if _case.agent %}
+        <p class="govuk-body"><a href="/main/cases/{{_case.id}}/remove-agent" class="govuk-link">Remove agent</a></p>
       {% endif %}
 
     </div>

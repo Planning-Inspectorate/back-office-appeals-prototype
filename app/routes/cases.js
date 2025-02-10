@@ -5,16 +5,16 @@ module.exports = router => {
 
   router.get('/main/cases', function (req, res) {
 
-    let applications = req.session.data.applications
+    let cases = req.session.data.cases
 
     let keywords = _.get(req.session.data.search, 'keywords')
 
     if(keywords) {
       keywords = keywords.toLowerCase()
-      applications = applications.filter(application => {
-        let reference = application.id
-        let name = (application.appellant.firstName + ' ' + application.appellant.lastName).toLowerCase()
-        let postcode = application.site.address.postcode.toLowerCase()
+      cases = cases.filter(_case => {
+        let reference = _case.id
+        let name = (_case.appellant.firstName + ' ' + _case.appellant.lastName).toLowerCase()
+        let postcode = _case.site.address.postcode.toLowerCase()
         return postcode.indexOf(keywords) > -1 || reference.indexOf(keywords) > -1 || name.indexOf(keywords) > -1
       })
     }
@@ -31,21 +31,21 @@ module.exports = router => {
 
     // the user has selected a status filter
     if(hasFilters) {
-      applications = applications.filter(application => {
+      cases = cases.filter(_case => {
         let matchesStatus = true
         let matchesCaseOfficer = true
         let matchesProcedure = true
 
         if(_.get(selectedStatusFilters, 'length')) {
-          matchesStatus = selectedStatusFilters.includes(application.status);
+          matchesStatus = selectedStatusFilters.includes(_case.status);
         }
 
         if(_.get(selectedCaseOfficerFilters, 'length')) {
-          matchesCaseOfficer = selectedCaseOfficerFilters.includes(application.caseOfficer);
+          matchesCaseOfficer = selectedCaseOfficerFilters.includes(_case.caseOfficer);
         }
 
         if(_.get(selectedProcedureFilters, 'length')) {
-          matchesProcedure = selectedProcedureFilters.includes(application.procedure);
+          matchesProcedure = selectedProcedureFilters.includes(_case.procedure);
         }
 
         return matchesStatus && matchesCaseOfficer && matchesProcedure
@@ -88,16 +88,16 @@ module.exports = router => {
       })
     }
 
-    let totalApplications = applications.length
+    let totalCases = cases.length
     let pageSize = 25
-    let pagination = new Pagination(applications, req.query.page, pageSize)
-    applications = pagination.getData()
+    let pagination = new Pagination(cases, req.query.page, pageSize)
+    cases = pagination.getData()
 
     res.render('main/cases/all', {
-      applications,
+      cases,
       selectedFilters,
       pagination,
-      totalApplications
+      totalCases
     })
   })
 
@@ -131,16 +131,16 @@ module.exports = router => {
 
   router.get('/main/your-cases', function (req, res) {
 
-    let applications = req.session.data.applications.filter(application => application.caseOfficer == 'Tony Stark')
+    let cases = req.session.data.cases.filter(_case => _case.caseOfficer == 'Tony Stark')
 
     let keywords = _.get(req.session.data.search, 'keywords')
 
     if(keywords) {
       keywords = keywords.toLowerCase()
-      applications = applications.filter(application => {
-        let reference = application.id
-        let name = (application.appellant.firstName + ' ' + application.appellant.lastName).toLowerCase()
-        let postcode = application.site.address.postcode.toLowerCase()
+      cases = cases.filter(_case => {
+        let reference = _case.id
+        let name = (_case.appellant.firstName + ' ' + _case.appellant.lastName).toLowerCase()
+        let postcode = _case.site.address.postcode.toLowerCase()
         return postcode.indexOf(keywords) > -1 || reference.indexOf(keywords) > -1 || name.indexOf(keywords) > -1
       })
     }
@@ -155,16 +155,16 @@ module.exports = router => {
 
     // the user has selected a status filter
     if(hasFilters) {
-      applications = applications.filter(application => {
+      cases = cases.filter(_case => {
         let matchesStatus = true
         let matchesProcedure = true
 
         if(_.get(selectedStatusFilters, 'length')) {
-          matchesStatus = selectedStatusFilters.includes(application.status);
+          matchesStatus = selectedStatusFilters.includes(_case.status);
         }
 
         if(_.get(selectedProcedureFilters, 'length')) {
-          matchesProcedure = selectedProcedureFilters.includes(application.procedure);
+          matchesProcedure = selectedProcedureFilters.includes(_case.procedure);
         }
 
         return matchesStatus && matchesProcedure
@@ -195,16 +195,16 @@ module.exports = router => {
       })
     }
 
-    let totalApplications = applications.length
+    let totalCases = cases.length
     let pageSize = 25
-    let pagination = new Pagination(applications, req.query.page, pageSize)
-    applications = pagination.getData()
+    let pagination = new Pagination(cases, req.query.page, pageSize)
+    cases = pagination.getData()
 
     res.render('main/cases/index', {
-      applications,
+      cases,
       selectedFilters,
       pagination,
-      totalApplications
+      totalCases
     })
   })
 

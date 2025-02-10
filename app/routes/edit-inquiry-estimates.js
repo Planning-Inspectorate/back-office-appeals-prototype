@@ -2,37 +2,37 @@ const _ = require('lodash')
 
 module.exports = router => {
 
-  router.get('/main/cases/:appealId/edit-inquiry-estimates', function (req, res) {
-    let application = req.session.data.applications.find(application => application.id == req.params.appealId)
+  router.get('/main/cases/:caseId/edit-inquiry-estimates', function (req, res) {
+    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
 
-    let estimatedPreparationTime = _.get(req, 'session.data.editInquiryEstimates.estimatedPreparationTime')  || application.inquiryEstimates.estimatedPreparationTime
-    let estimatedInquiryTime = _.get(req, 'session.data.editInquiryEstimates.estimatedInquiryTime')  || application.inquiryEstimates.estimatedInquiryTime
-    let estimatedReportingTime = _.get(req, 'session.data.editInquiryEstimates.estimatedReportingTime')  || application.inquiryEstimates.estimatedReportingTime
+    let estimatedPreparationTime = _.get(req, 'session.data.editInquiryEstimates.estimatedPreparationTime')  || _case.inquiryEstimates.estimatedPreparationTime
+    let estimatedInquiryTime = _.get(req, 'session.data.editInquiryEstimates.estimatedInquiryTime')  || _case.inquiryEstimates.estimatedInquiryTime
+    let estimatedReportingTime = _.get(req, 'session.data.editInquiryEstimates.estimatedReportingTime')  || _case.inquiryEstimates.estimatedReportingTime
 
     res.render('/main/cases/edit-inquiry-estimates/index', {
-      application,
+      _case,
       estimatedPreparationTime,
       estimatedInquiryTime,
       estimatedReportingTime
     })
   })
 
-  router.post('/main/cases/:appealId/edit-inquiry-estimates', function (req, res) {
-    res.redirect(`/main/cases/${req.params.appealId}/edit-inquiry-estimates/check`)
+  router.post('/main/cases/:caseId/edit-inquiry-estimates', function (req, res) {
+    res.redirect(`/main/cases/${req.params.caseId}/edit-inquiry-estimates/check`)
   })
 
-  router.get('/main/cases/:appealId/edit-inquiry-estimates/check', function (req, res) {
-    let application = req.session.data.applications.find(application => application.id == req.params.appealId)
+  router.get('/main/cases/:caseId/edit-inquiry-estimates/check', function (req, res) {
+    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
     res.render('/main/cases/edit-inquiry-estimates/check', {
-      application
+      _case
     })
   })
 
-  router.post('/main/cases/:appealId/edit-inquiry-estimates/check', function (req, res) {
-    let application = req.session.data.applications.find(application => application.id == req.params.appealId)
-    application.inquiryEstimates = req.session.data.editInquiryEstimates
+  router.post('/main/cases/:caseId/edit-inquiry-estimates/check', function (req, res) {
+    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    _case.inquiryEstimates = req.session.data.editInquiryEstimates
     req.flash('success', 'Inquiry estimates updated')
-    res.redirect(`/main/cases/${req.params.appealId}`)
+    res.redirect(`/main/cases/${req.params.caseId}`)
   })
 
 }

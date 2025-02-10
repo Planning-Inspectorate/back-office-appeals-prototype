@@ -93,9 +93,7 @@
           text: "Linked appeals"
         },
         value: {
-          html: 'No appeals'
-        } if data['empty'] else {
-          html: '<a href="#">21/725284</a>'
+          html: application.linkedAppeal if application.linkedAppeal == 'No appeals' else '<a href="#">'+application.linkedAppeal+'</a>'
         },
         actions: {
           items: [

@@ -20,12 +20,12 @@
               text: "LPA questionnaire due"
             },
             value: {
-              text: application.LPAQuestionnaireDueDate | govukDate
+              text: _case.LPAQuestionnaireDueDate | govukDate
             },
             actions: {
               items: [
                 {
-                  href: "/main/cases/:appealId/start-case/timetable-due-dates" | replace(':appealId', application.id),
+                  href: "/main/cases/:caseId/start-case/timetable-due-dates" | replace(':caseId', _case.id),
                   text: "Change",
                   visuallyHiddenText: "LPA questionnaire due"
                 }
@@ -37,12 +37,12 @@
               text: "Statements due"
             },
             value: {
-              text: application.statementsDueDate | govukDate
+              text: _case.statementsDueDate | govukDate
             },
             actions: {
               items: [
                 {
-                  href: "/main/cases/:appealId/start-case/timetable-due-dates" | replace(':appealId', application.id),
+                  href: "/main/cases/:caseId/start-case/timetable-due-dates" | replace(':caseId', _case.id),
                   text: "Change",
                   visuallyHiddenText: "Statements due"
                 }
@@ -54,12 +54,12 @@
               text: "Interested party comments due"
             },
             value: {
-              text: application.interestedPartyCommentsDueDate | govukDate
+              text: _case.interestedPartyCommentsDueDate | govukDate
             },
             actions: {
               items: [
                 {
-                  href: "/main/cases/:appealId/start-case/timetable-due-dates" | replace(':appealId', application.id),
+                  href: "/main/cases/:caseId/start-case/timetable-due-dates" | replace(':caseId', _case.id),
                   text: "Change",
                   visuallyHiddenText: "Interested party comments due"
                 }
@@ -71,12 +71,12 @@
               text: "Statement of common ground due"
             },
             value: {
-              text: application.statementOfCommonGroundDueDate | govukDate
+              text: _case.statementOfCommonGroundDueDate | govukDate
             },
             actions: {
               items: [
                 {
-                  href: "/main/cases/:appealId/start-case/timetable-due-dates" | replace(':appealId', application.id),
+                  href: "/main/cases/:caseId/start-case/timetable-due-dates" | replace(':caseId', _case.id),
                   text: "Change",
                   visuallyHiddenText: "Statement of common ground due"
                 }
@@ -88,12 +88,12 @@
               text: "Proof of evidence and witnesses due"
             },
             value: {
-              text: application.proofOfEvidenceAndWitnessesDueDate | govukDate
+              text: _case.proofOfEvidenceAndWitnessesDueDate | govukDate
             },
             actions: {
               items: [
                 {
-                  href: "/main/cases/:appealId/start-case/timetable-due-dates" | replace(':appealId', application.id),
+                  href: "/main/cases/:caseId/start-case/timetable-due-dates" | replace(':caseId', _case.id),
                   text: "Change",
                   visuallyHiddenText: "Proof of evidence and witnesses due"
                 }
@@ -105,12 +105,12 @@
               text: "Planning obligation due"
             },
             value: {
-              text: application.planningObligationDueDate | govukDate
+              text: _case.planningObligationDueDate | govukDate
             },
             actions: {
               items: [
                 {
-                  href: "/main/cases/:appealId/start-case/timetable-due-dates" | replace(':appealId', application.id),
+                  href: "/main/cases/:caseId/start-case/timetable-due-dates" | replace(':caseId', _case.id),
                   text: "Change",
                   visuallyHiddenText: "Planning obligation due"
                 }
@@ -122,12 +122,12 @@
               text: "Inquiry time"
             },
             value: {
-              html: application.inquiry.date | govukDate
+              html: _case.inquiry.date | govukDate
             },
             actions: {
               items: [
                 {
-                  href: "/main/cases/:appealId/start-case/inquiry-date" | replace(':appealId', application.id),
+                  href: "/main/cases/:caseId/start-case/inquiry-date" | replace(':caseId', _case.id),
                   text: "Change",
                   visuallyHiddenText: "Inquiry time"
                 }

@@ -8,8 +8,8 @@
     classes: 'govuk-!-margin-top-4 govuk-!-margin-bottom-0',
       items: [
         {
-          text: application.id,
-          href: "/main/cases/:appealId" | replace(':appealId', application.id)
+          text: _case.id,
+          href: "/main/cases/:caseId" | replace(':caseId', _case.id)
         },
         {
           text: title
@@ -35,7 +35,7 @@
             <div class="app-list__item">
               {% if item.organisationName %}
                 <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
-                  <a class="govuk-link--no-visited-state" href="/main/cases/{{application.id}}/rule-6-statements/{{item.id}}">
+                  <a class="govuk-link--no-visited-state" href="/main/cases/{{_case.id}}/rule-6-statements/{{item.id}}">
                     {{item.organisationName}}
                   </a>
                 </h2>

@@ -2,22 +2,22 @@ const _ = require('lodash')
 
 module.exports = router => {
 
-  router.get('/main/cases/:appealId/remove-agent', function (req, res) {
-    let application = req.session.data.applications.find(application => application.id == req.params.appealId)
+  router.get('/main/cases/:caseId/remove-agent', function (req, res) {
+    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
 
 
     res.render('/main/cases/remove-agent/index', {
-      application
+      _case
     })
   })
 
-  router.post('/main/cases/:appealId/remove-agent', function (req, res) {
+  router.post('/main/cases/:caseId/remove-agent', function (req, res) {
 
-    let application = req.session.data.applications.find(application => application.id == req.params.appealId)
-    application.agent = null
+    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    _case.agent = null
 
     req.flash('success', 'Agent removed')
-    res.redirect(`/main/cases/${req.params.appealId}`)
+    res.redirect(`/main/cases/${req.params.caseId}`)
   })
 
 }

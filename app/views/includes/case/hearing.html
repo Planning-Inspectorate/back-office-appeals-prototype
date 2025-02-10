@@ -2,19 +2,19 @@
 <div class="app-panel">
   <h2 class="govuk-heading-l">Hearing</h2>
   <div class="govuk-button-group">
-    {% if application.hearing %}
-      <a class="govuk-link" href="/main/cases/{{application.id}}/cancel-hearing">Cancel hearing</a>
+    {% if _case.hearing %}
+      <a class="govuk-link" href="/main/cases/{{_case.id}}/cancel-hearing">Cancel hearing</a>
     {% else %}
       {{ govukButton({
         text: 'Set up hearing',
         classes: 'govuk-button--secondar',
-        href: '/main/cases/:appealId/add-hearing' | replace(':appealId', application.id)
+        href: '/main/cases/:caseId/add-hearing' | replace(':caseId', _case.id)
       }) }}
     {% endif %}
   </div>
 
   {% set address %}
-    {{appAddress({ address: application.hearing.address })}}
+    {{appAddress({ address: _case.hearing.address })}}
   {% endset %}
 
   {{ govukSummaryList({
@@ -24,52 +24,52 @@
           text: "Date"
         },
         value: {
-          html: application.hearing.date | isoDateFromDateInput | govukDate
+          html: _case.hearing.date | isoDateFromDateInput | govukDate
         },
         actions: {
           items: [
             {
-              href: '/main/cases/:appealId/edit-hearing' | replace(':appealId', application.id),
+              href: '/main/cases/:caseId/edit-hearing' | replace(':caseId', _case.id),
               text: "Change",
               visuallyHiddenText: "Date"
             }
           ]
         }
-      } if application.hearing.date,
+      } if _case.hearing.date,
       {
         key: {
           text: "Time"
         },
         value: {
-          html: application.hearing.time
+          html: _case.hearing.time
         },
         actions: {
           items: [
             {
-              href: '/main/cases/:appealId/edit-hearing' | replace(':appealId', application.id),
+              href: '/main/cases/:caseId/edit-hearing' | replace(':caseId', _case.id),
               text: "Change",
               visuallyHiddenText: "Time"
             }
           ]
         }
-      } if application.hearing.time,
+      } if _case.hearing.time,
       {
         key: {
           text: "Do you know the address of where the hearing will take place?"
         },
         value: {
-          html: application.hearing.hasAddress
+          html: _case.hearing.hasAddress
         },
         actions: {
           items: [
             {
-              href: '/main/cases/:appealId/edit-hearing/has-address' | replace(':appealId', application.id),
+              href: '/main/cases/:caseId/edit-hearing/has-address' | replace(':caseId', _case.id),
               text: "Change",
               visuallyHiddenText: "whether you know the Address"
             }
           ]
         }
-      } if application.hearing.hasAddress,
+      } if _case.hearing.hasAddress,
       {
         key: {
           text: "Address"
@@ -80,20 +80,20 @@
         actions: {
           items: [
             {
-              href: '/main/cases/:appealId/edit-hearing/address' | replace(':appealId', application.id),
+              href: '/main/cases/:caseId/edit-hearing/address' | replace(':caseId', _case.id),
               text: "Change",
               visuallyHiddenText: "Address"
             }
           ]
         }
-      } if application.hearing.hasAddress == 'Yes'
+      } if _case.hearing.hasAddress == 'Yes'
     ]
-  }) if application.hearing }}
+  }) if _case.hearing }}
 
   <h3 class="govuk-heading-m">Hearing estimates</h3>
 
-  {% if not application.hearingEstimates %}
-    <p><a class="govuk-link" href="/main/cases/{{application.id}}/add-hearing-estimates">Add hearing estimates</a></p>
+  {% if not _case.hearingEstimates %}
+    <p><a class="govuk-link" href="/main/cases/{{_case.id}}/add-hearing-estimates">Add hearing estimates</a></p>
   {% endif %}
 
   {{ govukSummaryList({
@@ -103,53 +103,53 @@
           text: "Estimated preparation time"
         },
         value: {
-          html: application.hearingEstimates.estimatedPreparationTime | days
+          html: _case.hearingEstimates.estimatedPreparationTime | days
         },
         actions: {
           items: [
             {
-              href: '/main/cases/:appealId/edit-hearing-estimates' | replace(':appealId', application.id),
+              href: '/main/cases/:caseId/edit-hearing-estimates' | replace(':caseId', _case.id),
               text: "Change",
               visuallyHiddenText: "Estimated preparation time"
             }
           ]
         }
-      } if application.hearingEstimates.estimatedPreparationTime,
+      } if _case.hearingEstimates.estimatedPreparationTime,
       {
         key: {
           text: "Estimated sitting time"
         },
         value: {
-          html: application.hearingEstimates.estimatedHearingTime | days
+          html: _case.hearingEstimates.estimatedHearingTime | days
         },
         actions: {
           items: [
             {
-              href: '/main/cases/:appealId/edit-hearing-estimates' | replace(':appealId', application.id),
+              href: '/main/cases/:caseId/edit-hearing-estimates' | replace(':caseId', _case.id),
               text: "Change",
               visuallyHiddenText: "Estimated sitting time"
             }
           ]
         }
-      } if application.hearingEstimates.estimatedHearingTime,
+      } if _case.hearingEstimates.estimatedHearingTime,
       {
         key: {
           text: "Estimated reporting time"
         },
         value: {
-          html: application.hearingEstimates.estimatedReportingTime | days
+          html: _case.hearingEstimates.estimatedReportingTime | days
         },
         actions: {
           items: [
             {
-              href: '/main/cases/:appealId/edit-hearing-estimates' | replace(':appealId', application.id),
+              href: '/main/cases/:caseId/edit-hearing-estimates' | replace(':caseId', _case.id),
               text: "Change",
               visuallyHiddenText: "Estimated reporting time"
             }
           ]
         }
-      } if application.hearingEstimates.estimatedReportingTime
+      } if _case.hearingEstimates.estimatedReportingTime
     ]
-  }) if application.hearingEstimates }}
+  }) if _case.hearingEstimates }}
 
 </div>

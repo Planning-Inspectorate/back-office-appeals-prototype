@@ -2,9 +2,9 @@ const _ = require('lodash')
 
 module.exports = router => {
 
-  router.get('/main/cases/:appealId/rule-6-statements', function (req, res) {
-    let application = req.session.data.applications.find(application => application.id == req.params.appealId)
-    let rule6Statements = application.rule6Parties.filter((rule6Party) => rule6Party.statement)
+  router.get('/main/cases/:caseId/rule-6-statements', function (req, res) {
+    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let rule6Statements = _case.rule6Parties.filter((rule6Party) => rule6Party.statement)
 
      // Desired status order
     const statusOrder = ["Ready to review", "Accepted", "Rejected"];
@@ -17,7 +17,7 @@ module.exports = router => {
     });
 
     res.render('/main/cases/rule-6-statements/index', {
-      application,
+      _case,
       rule6Statements
     })
   })

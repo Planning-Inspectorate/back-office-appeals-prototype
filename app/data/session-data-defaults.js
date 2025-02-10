@@ -1,5 +1,5 @@
-const applications = require('./cases.json')
+const cases = require('./cases.json')
 
 module.exports = {
-  applications
+  cases
 }

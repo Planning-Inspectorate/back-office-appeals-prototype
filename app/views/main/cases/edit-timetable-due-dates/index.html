@@ -9,7 +9,7 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-l">Appeal {{application.id}}</span>
+      <span class="govuk-caption-l">Appeal {{_case.id}}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
       <form method="post">
         {{ govukDateInput({
@@ -210,7 +210,7 @@
           ]
         }) }}
 
-        {% if application.LPAQuestionnaireDueDate or application.statementsDueDate or application.interestedPartyCommentsDueDate or application.statementOfCommonGroundDueDate or applicaiton.proofOfEvidenceAndWitnessesDueDate or application.planningObligationDueDate %}
+        {% if _case.LPAQuestionnaireDueDate or _case.statementsDueDate or _case.interestedPartyCommentsDueDate or _case.statementOfCommonGroundDueDate or applicaiton.proofOfEvidenceAndWitnessesDueDate or _case.planningObligationDueDate %}
           {{ govukButton({
             text: 'Update timetable due dates'
           }) }}

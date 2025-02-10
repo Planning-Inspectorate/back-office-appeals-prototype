@@ -16,7 +16,7 @@
           text: "Site address"
         },
         value: {
-          text: appAddress({address: application.site.address})
+          text: appAddress({address: _case.site.address})
         },
         actions: {
           items: [
@@ -33,7 +33,7 @@
           text: "Appeal type"
         },
         value: {
-          text: application.type
+          text: _case.type
         },
         actions: {
           items: [
@@ -50,13 +50,13 @@
           text: "Appeal procedure"
         },
         value: {
-          text: application.procedure or 'No procedure'
+          text: _case.procedure or 'No procedure'
         },
         actions: {
           items: [
             {
-              href: "/main/cases/:appealId/edit-procedure" | replace(':appealId', application.id) if application.procedure else "/main/cases/:appealId/add-procedure" | replace(':appealId', application.id),
-              text: "Change" if application.procedure else "Add",
+              href: "/main/cases/:caseId/edit-procedure" | replace(':caseId', _case.id) if _case.procedure else "/main/cases/:caseId/add-procedure" | replace(':caseId', _case.id),
+              text: "Change" if _case.procedure else "Add",
               visuallyHiddenText: "Item label"
             }
           ]
@@ -84,7 +84,7 @@
           text: "Linked appeals"
         },
         value: {
-          html: application.linkedAppeal if application.linkedAppeal == 'No appeals' else '<a href="#">'+application.linkedAppeal+'</a>'
+          html: _case.linkedAppeal if _case.linkedAppeal == 'No appeals' else '<a href="#">'+_case.linkedAppeal+'</a>'
         },
         actions: {
           items: [

@@ -2,9 +2,9 @@ const _ = require('lodash')
 
 module.exports = router => {
 
-  router.get('/main/cases/:appealId/edit-agent', function (req, res) {
-    let application = req.session.data.applications.find(application => application.id == req.params.appealId)
-    let agent = application.agent
+  router.get('/main/cases/:caseId/edit-agent', function (req, res) {
+    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let agent = _case.agent
     let firstName = _.get(req, 'session.data.editAgent.firstName') || _.get(agent, 'firstName')
     let lastName = _.get(req, 'session.data.editAgent.lastName')  || _.get(agent, 'lastName')
     let organisationName = _.get(req, 'session.data.editAgent.organisationName')  || _.get(agent, 'organisationName')
@@ -12,7 +12,7 @@ module.exports = router => {
     let phone = _.get(req, 'session.data.editAgent.phone')  || _.get(agent, 'phone')
 
     res.render('/main/cases/edit-agent/index', {
-      application,
+      _case,
       firstName,
       lastName,
       organisationName,
@@ -21,10 +21,10 @@ module.exports = router => {
     })
   })
 
-  router.post('/main/cases/:appealId/edit-agent', function (req, res) {
+  router.post('/main/cases/:caseId/edit-agent', function (req, res) {
 
-    let application = req.session.data.applications.find(application => application.id == req.params.appealId)
-    let agent = application.agent
+    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let agent = _case.agent
     agent.organisationName = req.session.data.editAgent.organisationName
     agent.firstName = req.session.data.editAgent.firstName
     agent.lastName = req.session.data.editAgent.lastName
@@ -36,7 +36,7 @@ module.exports = router => {
     delete req.session.data.editAgent
 
     req.flash('success', 'Agent contact details updated')
-    res.redirect(`/main/cases/${req.params.appealId}`)
+    res.redirect(`/main/cases/${req.params.caseId}`)
   })
 
 }

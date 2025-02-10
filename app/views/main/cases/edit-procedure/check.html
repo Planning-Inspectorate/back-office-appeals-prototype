@@ -22,7 +22,7 @@
             actions: {
               items: [
                 {
-                  href: "/main/cases/:appealId/edit-procedure" | replace(':appealId', application.id),
+                  href: "/main/cases/:caseId/edit-procedure" | replace(':caseId', _case.id),
                   text: "Change",
                   visuallyHiddenText: "Procedure"
                 }
@@ -35,9 +35,9 @@
 
 
       <!-- When it’s being changed from a hearing -->
-      {% if application.hearing and data.editAppealProcedure.procedure != 'Hearing' %}
+      {% if _case.hearing and data.editAppealProcedure.procedure != 'Hearing' %}
         <p>We’ll send an email to the appellant and LPA to tell them that we’ve changed the procedure and cancelled the hearing.</p>
-      {% elseif application.inquiry and data.editAppealProcedure.procedure != 'Inquiry' %}
+      {% elseif _case.inquiry and data.editAppealProcedure.procedure != 'Inquiry' %}
         <p>We’ll send an email to the appellant and LPA to tell them that we’ve changed the procedure and cancelled the inquiry.</p>
       {% else %}
         <p>We’ll send an email to the appellant and LPA to tell them that we’ve changed the appeal procedure.</p>

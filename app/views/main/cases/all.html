@@ -1,6 +1,6 @@
 {% extends "layouts/bo.html" %}
 
-{% set title = "All cases (" + totalApplications +")" %}
+{% set title = "All cases (" + totalCases +")" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 {% set pageId = 'allCases' %}
 
@@ -28,9 +28,9 @@
         <div class="app-action-bar__filter"></div>
       </div>
 
-      {% if applications.length %}
+      {% if cases.length %}
          <div class="app-list">
-          {% for item in applications %}
+          {% for item in cases %}
             <div class="app-list__item">
               <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
                 <a href="/main/cases/{{item.id}}" class="govuk-link--no-visited-state">{{item.id}}</a>

@@ -2,17 +2,17 @@ const _ = require('lodash')
 
 module.exports = router => {
 
-  router.get('/main/cases/:appealId/add-agent', function (req, res) {
-    let application = req.session.data.applications.find(application => application.id == req.params.appealId)
+  router.get('/main/cases/:caseId/add-agent', function (req, res) {
+    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
 
     res.render('/main/cases/add-agent/index', {
-      application
+      _case
     })
   })
 
-  router.post('/main/cases/:appealId/add-agent', function (req, res) {
+  router.post('/main/cases/:caseId/add-agent', function (req, res) {
 
-    let application = req.session.data.applications.find(application => application.id == req.params.appealId)
+    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
     agent = {}
     agent.organisationName = req.session.data.addAgent.organisationName
     agent.firstName = req.session.data.addAgent.firstName
@@ -21,10 +21,10 @@ module.exports = router => {
     agent.emailAddress = req.session.data.addAgent.emailAddress
     agent.phone = req.session.data.addAgent.phone
 
-    application.agent = agent
+    _case.agent = agent
 
     req.flash('success', 'Agent contact details added')
-    res.redirect(`/main/cases/${req.params.appealId}`)
+    res.redirect(`/main/cases/${req.params.caseId}`)
   })
 
 }

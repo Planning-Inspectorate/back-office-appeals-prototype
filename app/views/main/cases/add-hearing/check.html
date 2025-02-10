@@ -27,7 +27,7 @@
             actions: {
               items: [
                 {
-                  href: "/main/cases/:appealId/add-hearing" | replace(':appealId', application.id),
+                  href: "/main/cases/:caseId/add-hearing" | replace(':caseId', _case.id),
                   text: "Change",
                   visuallyHiddenText: "Date"
                 }
@@ -44,7 +44,7 @@
             actions: {
               items: [
                 {
-                  href: "/main/cases/:appealId/add-hearing" | replace(':appealId', application.id),
+                  href: "/main/cases/:caseId/add-hearing" | replace(':caseId', _case.id),
                   text: "Change",
                   visuallyHiddenText: "Time"
                 }
@@ -61,7 +61,7 @@
             actions: {
               items: [
                 {
-                  href: "/main/cases/:appealId/add-hearing/has-address" | replace(':appealId', application.id),
+                  href: "/main/cases/:caseId/add-hearing/has-address" | replace(':caseId', _case.id),
                   text: "Change",
                   visuallyHiddenText: "if you know the hearing address"
                 }
@@ -78,7 +78,7 @@
             actions: {
               items: [
                 {
-                  href: "/main/cases/:appealId/add-hearing/address" | replace(':appealId', application.id),
+                  href: "/main/cases/:caseId/add-hearing/address" | replace(':caseId', _case.id),
                   text: "Change",
                   visuallyHiddenText: "Address"
                 }

@@ -199,22 +199,26 @@ addFilter('appealStatusText', status => {
 
 })
 
-addFilter('isoDateToDateObject', (isoDateString, part) => {
+addFilter('day', (isoDateString, part) => {
 	if(!isoDateString) {
 		return isoDateString
 	}
-	let luxonDate = DateTime.fromISO(isoDateString)
 
-	let dateObject = {
-		day: luxonDate.day,
-		month: luxonDate.month,
-		year: luxonDate.year
+	return DateTime.fromISO(isoDateString).day
+})
+
+addFilter('month', (isoDateString, part) => {
+	if(!isoDateString) {
+		return isoDateString
 	}
 
-	if(part) {
-		return dateObject[part]
-	} else {
-		return dateObject
+	return DateTime.fromISO(isoDateString).month
+})
+
+addFilter('year', (isoDateString, part) => {
+	if(!isoDateString) {
+		return isoDateString
 	}
 
+	return DateTime.fromISO(isoDateString).year
 })

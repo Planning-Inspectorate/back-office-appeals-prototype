@@ -30,19 +30,19 @@
             {
               name: "startCase[inquiryDate][day]",
               label: "Day",
-              value: data.startCase.inquiryDate.day or application.inquiry.date.day,
+              value: data.startCase.inquiryDate.day or application.inquiry.date | day,
               classes: "govuk-input--width-2"
             },
             {
               name: "startCase[inquiryDate][month]",
               label: "Month",
-              value: data.startCase.inquiryDate.month or application.inquiry.date.month,
+              value: data.startCase.inquiryDate.month or application.inquiry.date | month,
               classes: "govuk-input--width-2"
             },
             {
               name: "startCase[inquiryDate][year]",
               label: "Year",
-              value: data.startCase.inquiryDate.year or application.inquiry.date.year,
+              value: data.startCase.inquiryDate.year or application.inquiry.date | year,
               classes: "govuk-input--width-4"
             }
           ]

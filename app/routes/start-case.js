@@ -115,7 +115,11 @@ router.get('/main/cases/:appealId/start-case/has-inquiry-address', function (req
     // Save inquiry
     if(data.inquiryDate) {
       application.inquiry = {}
-      application.inquiry.date = data.inquiryDate
+      application.inquiry.date = DateTime.fromObject({
+        day: data.inquiryDate.day,
+        month: data.inquiryDate.month,
+        year: data.inquiryDate.year
+      }).toISO()
       application.inquiry.time = data.inquiryTime
       application.inquiry.hasDays = data.hasInquiryDays
       application.inquiry.days = data.inquiryDays

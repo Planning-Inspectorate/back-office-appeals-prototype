@@ -237,18 +237,15 @@ const generateTimetableInquiry = (application) => {
 
 
         var key = 'Inquiry'
+        var url = `/main/cases/${application.id}/edit-timetable-due-dates`
         if(application.inquiry) {
           var url = `/main/cases/${application.id}/edit-inquiry`
-          var value = moment({
-            year: application.inquiry.date.year,
-            month: application.inquiry.date.month - 1,
-            day: application.inquiry.day}
-          ).format('D MMMM YYYY')
+          var value = DateTime.fromISO(application.inquiry.date).toFormat("d MMMM yyyy")
           var cta = 'Change'
         } else {
           var url = `/main/cases/${application.id}/add-inquiry`
-          var value = 'Not set up'
-          var cta = 'Set up'
+          var value = 'Not added'
+          var cta = 'Add'
         }
         timetable.push(row({ key, value, action: { href: url, text: cta }}))
       }

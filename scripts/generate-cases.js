@@ -115,7 +115,7 @@ const generateRule6Party = (params) => {
     party.organisationName = params.organisationName || faker.company.name()
   }
 
-  switch(params.application.status) {
+  switch(params._case.status) {
     case "Statements and IP comments ready to review":
     case "Statements and IP comments ready to share":
     case "Inquiry ready to set up":
@@ -138,92 +138,75 @@ const generateRule6Party = (params) => {
   return party
 }
 
-const generateApplication = (params = {}) => {
-  let application = {}
+const generateCase = (params = {}) => {
+  let _case = {}
 
-  application.id = params.id || "" + faker.number.int({ min: 123456, max: 999999 })
-  application.type = params.type || faker.helpers.arrayElement(['Householder appeal', 'Full planning appeal'])
+  _case.id = params.id || "" + faker.number.int({ min: 123456, max: 999999 })
+  _case.type = params.type || faker.helpers.arrayElement(['Householder appeal', 'Full planning appeal'])
 
-  application.linkedAppeal = params.linkedAppeal || faker.helpers.arrayElement(['No appeals', '1234567', ])
+  _case.linkedAppeal = params.linkedAppeal || faker.helpers.arrayElement(['No appeals', '1234567', ])
 
   let statuses = baseStatuses
 
-  if(application.type == 'Full planning appeal') {
+  if(_case.type == 'Full planning appeal') {
     statuses = statuses.concat(s78Statuses)
 
-    application.procedure = params.procedure || faker.helpers.arrayElement([
+    _case.procedure = params.procedure || faker.helpers.arrayElement([
       'Written representations',
       'Hearing',
       'Inquiry'
     ])
 
-    if(application.procedure == 'Written representations') {
+    if(_case.procedure == 'Written representations') {
       statuses = statuses.concat(s78WrittenStatuses)
     }
-    if(application.procedure == 'Hearing') {
+    if(_case.procedure == 'Hearing') {
       statuses = statuses.concat(s78HearingStatuses)
     }
-    if(application.procedure == 'Inquiry') {
+    if(_case.procedure == 'Inquiry') {
       statuses = statuses.concat(s78InquiryStatuses)
     }
   }
 
-  application.status = params.status || faker.helpers.arrayElement(statuses)
+  _case.status = params.status || faker.helpers.arrayElement(statuses)
 
-  if(application.status !== 'Ready to assign case officer') {
-    application.caseOfficer = faker.helpers.arrayElement([
+  if(_case.status !== 'Ready to assign case officer') {
+    _case.caseOfficer = faker.helpers.arrayElement([
       'Tony Stark',
       'Natasha Romanoff',
       'Peter Parker'
     ])
   }
 
-  // set up timetable dates based on status and procedure
-  // Timetable dates
-  // if(application.type == 'Householder appeal') {
-    // application.validDate = faker.date.recent({ days: 1 })
-    // application.startDate = faker.date.recent({ days: 1 })
-    // application.LPAQDueDate = faker.date.recent({ days: 1 })
-    // application.siteVisitDate = faker.date.recent({ days: 1 })
-  // } else if(application.procedure) {
-    // application.validDate = faker.date.recent({ days: 1 })
-    // application.startDate = faker.date.recent({ days: 1 })
-    // application.LPAQDueDate = faker.date.recent({ days: 1 })
-    // application.LPAStatementDueDate = faker.date.recent({ days: 1 })
-    // application.IPcommentsDueDate = faker.date.recent({ days: 1 })
-    // application.planningObligationDueDate = faker.date.recent({ days: 1 })
-    // application.statementOfCommonGroundDueDate = faker.date.recent({ days: 1 })
-    // application.siteVisitDate = faker.date.recent({ days: 1 })
-  // }
-
-  if(application.status == 'Ready to assign case officer' || application.status == 'Ready to validate' || application.status == 'Ready to start') {
-    application.procedure = null
+  if(_case.status == 'Ready to assign case officer' || _case.status == 'Ready to validate' || _case.status == 'Ready to start') {
+    _case.procedure = null
   }
 
-  application.appellant = params.appellant || {}
-  application.appellant.firstName = params.appellant?.firstName || faker.person.firstName()
-  application.appellant.lastName = params.appellant?.lastName || faker.person.lastName()
-  application.appellant.emailAddress = params.appellant?.emailAddress || `${application.appellant.firstName.toLowerCase()}.${application.appellant.lastName.toLowerCase()}@gmail.com`
-  application.appellant.phone = params.appellant?.phone || '079## ### ###'.replace(/#+/g, (m) => faker.string.numeric(m.length));
-  application.appellant.address = params.appellant?.address || generateAddress()
+  _case.appellant = params.appellant || {}
+  _case.appellant.firstName = params.appellant?.firstName || faker.person.firstName()
+  _case.appellant.lastName = params.appellant?.lastName || faker.person.lastName()
+  _case.appellant.emailAddress = params.appellant?.emailAddress || `${_case.appellant.firstName.toLowerCase()}.${_case.appellant.lastName.toLowerCase()}@gmail.com`
+  _case.appellant.phone = params.appellant?.phone || '079## ### ###'.replace(/#+/g, (m) => faker.string.numeric(m.length));
+  _case.appellant.address = params.appellant?.address || generateAddress()
 
-  application.agent = generateAgent()
+  _case.agent = generateAgent()
 
-  application.lpa = params.lpa || {}
-  application.lpa.name = params.lpa?.name || faker.helpers.arrayElement([
+  _case.lpa = params.lpa || {}
+  _case.lpa.name = params.lpa?.name || faker.helpers.arrayElement([
     'Barnet Council',
     'Hertfordshire Council'
   ])
 
-  application.site = params.site || {}
-  application.site.address = params.site?.address || generateAddress()
+  _case.site = params.site || {}
+  _case.site.address = params.site?.address || generateAddress()
 
   // Generate Rule 6 Parties based on this
-  if(application.procedure == 'Inquiry') {
-    application.rule6Parties = []
+  if(_case.procedure == 'Inquiry') {
+    _case.rule6Parties = []
 
-    application.rule6Parties.push(generateRule6Party({
-      application,
+
+    _case.rule6Parties.push(generateRule6Party({
+      _case,
       status: 'Ready to review',
       emailAddress: 'tony@starkindustries.com',
       firstName: 'Tony',
@@ -233,8 +216,9 @@ const generateApplication = (params = {}) => {
       phone: '07714545545'
     }))
 
-    application.rule6Parties.push(generateRule6Party({
-      application,
+
+    _case.rule6Parties.push(generateRule6Party({
+      _case,
       status: 'Ready to review',
       emailAddress: 'natasha@shield.com',
       firstName: 'Natasha',
@@ -244,8 +228,9 @@ const generateApplication = (params = {}) => {
       phone: '07714545546'
     }))
 
-    application.rule6Parties.push(generateRule6Party({
-      application,
+
+    _case.rule6Parties.push(generateRule6Party({
+      _case,
       status: 'Ready to review',
       emailAddress: 'peter@example.com',
       firstName: 'Peter',
@@ -254,8 +239,9 @@ const generateApplication = (params = {}) => {
       phone: '07714545546'
     }))
 
-    application.rule6Parties.push(generateRule6Party({
-      application,
+
+    _case.rule6Parties.push(generateRule6Party({
+      _case,
       status: 'Approved',
       emailAddress: 'bruce@avengers.com',
       firstName: 'Bruce',
@@ -265,8 +251,9 @@ const generateApplication = (params = {}) => {
       phone: '07714545546'
     }))
 
-    application.rule6Parties.push(generateRule6Party({
-      application,
+
+    _case.rule6Parties.push(generateRule6Party({
+      _case,
       status: 'Rejected',
       emailAddress: 'scott@pymtech.com',
       firstName: 'Scott',
@@ -276,8 +263,8 @@ const generateApplication = (params = {}) => {
       phone: '07714545546'
     }))
 
-    application.rule6Parties.push(generateRule6Party({
-      application,
+    _case.rule6Parties.push(generateRule6Party({
+      _case,
       status: 'Withdrawn',
       emailAddress: 'carol@starfoce.com',
       firstName: 'Carol',
@@ -288,14 +275,14 @@ const generateApplication = (params = {}) => {
     }))
   }
 
-  return application
+  return _case
 }
 
-const generateApplications = () => {
-  const applications = []
+const generateCases = () => {
+  const cases = []
 
   // This will be when everything is completely filled in (Written)
-  applications.push(generateApplication({
+  cases.push(generateCase({
     id: '00000009',
     type: 'Full planning appeal',
     procedure: 'Written representations',
@@ -304,7 +291,7 @@ const generateApplications = () => {
   }))
 
   // This will be when everything is not filled in (Written)
-  applications.push(generateApplication({
+  cases.push(generateCase({
     id: '00000010',
     type: 'Full planning appeal',
     procedure: 'Written representations',
@@ -312,140 +299,131 @@ const generateApplications = () => {
     status: "Ready to start"
   }))
 
-
-
-
-
-
-
-
-
-
-  applications.push(generateApplication({
+  cases.push(generateCase({
     type: 'Full planning appeal',
     status: "Ready to assign case officer"
   }))
-  applications.push(generateApplication({
+  cases.push(generateCase({
     type: 'Full planning appeal',
     status: "Ready to validate"
   }))
-  applications.push(generateApplication({
+  cases.push(generateCase({
     id: '00000005',
     type: 'Full planning appeal',
     status: "Ready to start"
   }))
-  applications.push(generateApplication({
+  cases.push(generateCase({
     type: 'Full planning appeal',
     status: "Awaiting LPAQ"
   }))
-  applications.push(generateApplication({
+  cases.push(generateCase({
     type: 'Full planning appeal',
     status: "LPAQ ready to review"
   }))
 
-  applications.push(generateApplication({
+  cases.push(generateCase({
     type: 'Full planning appeal',
     status: "Awaiting statements and IP comments"
   }))
-  applications.push(generateApplication({
+  cases.push(generateCase({
     id: '00182182',
     type: 'Full planning appeal',
     procedure: 'Inquiry',
     status: "Statements and IP comments ready to review"
   }))
-  applications.push(generateApplication({
+  cases.push(generateCase({
     type: 'Full planning appeal',
     status: "Statements and IP comments ready to share"
   }))
 
-  applications.push(generateApplication({
+  cases.push(generateCase({
     type: 'Full planning appeal',
     procedure: 'Written representations',
     status: "Awaiting final comments"
   }))
-  applications.push(generateApplication({
+  cases.push(generateCase({
     type: 'Full planning appeal',
     procedure: 'Written representations',
     status: "Final comments ready to review"
   }))
-  applications.push(generateApplication({
+  cases.push(generateCase({
     type: 'Full planning appeal',
     procedure: 'Written representations',
     status: "Final comments ready to share"
   }))
-  applications.push(generateApplication({
+  cases.push(generateCase({
     id: '00000001',
     type: 'Full planning appeal',
     procedure: 'Written representations',
     status: "Site visit ready to set up"
   }))
-  applications.push(generateApplication({
+  cases.push(generateCase({
     type: 'Full planning appeal',
     procedure: 'Written representations',
     status: "Awaiting site visit"
   }))
 
-  applications.push(generateApplication({
+  cases.push(generateCase({
     id: '00000002',
     type: 'Full planning appeal',
     procedure: 'Hearing',
     status: "Hearing ready to set up"
   }))
-  applications.push(generateApplication({
+  cases.push(generateCase({
     type: 'Full planning appeal',
     procedure: 'Hearing',
     status: "Awaiting hearing"
   }))
 
-  applications.push(generateApplication({
+  cases.push(generateCase({
     id: '00000003',
     type: 'Full planning appeal',
     procedure: 'Inquiry',
     status: "Inquiry ready to set up"
   }))
-  applications.push(generateApplication({
+  cases.push(generateCase({
     type: 'Full planning appeal',
     procedure: 'Inquiry',
     status: "Awaiting proof of evidence and witnesses"
   }))
-  applications.push(generateApplication({
+  cases.push(generateCase({
     type: 'Full planning appeal',
     procedure: 'Inquiry',
     status: "Proof of evidence and witnesses ready to review"
   }))
-  applications.push(generateApplication({
+  cases.push(generateCase({
     type: 'Full planning appeal',
     procedure: 'Inquiry',
     status: "Proof of evidence and witnesses ready to share"
   }))
-  applications.push(generateApplication({
+  cases.push(generateCase({
     type: 'Full planning appeal',
     procedure: 'Inquiry',
     status: "Awaiting inquiry"
   }))
 
-  applications.push(generateApplication({
+  cases.push(generateCase({
     id: '00000004',
     type: 'Full planning appeal',
     procedure: 'Inquiry',
     status: "Decision ready to issue"
   }))
-  applications.push(generateApplication({
+  cases.push(generateCase({
     type: 'Full planning appeal',
     procedure: 'Inquiry',
     status: "Decision issued"
   }))
 
   for(let i = 0; i < 50; i++) {
-    applications.push(generateApplication())
+    cases.push(generateCase())
   }
 
-  return applications
+  return cases
 }
 
-const generateApplicationsFile = (filePath) => {
-  const applications = generateApplications()
-  const filedata = JSON.stringify(applications, null, 2)
+const generateCasesFile = (filePath) => {
+  const cases = generateCases()
+  const filedata = JSON.stringify(cases, null, 2)
   fs.writeFile(
     filePath,
     filedata,
@@ -453,9 +431,9 @@ const generateApplicationsFile = (filePath) => {
       if (error) {
         console.error(error)
       }
-      console.log(`Applications generated: ${filePath}`)
+      console.log(`Cases generated: ${filePath}`)
     }
   )
 }
 
-generateApplicationsFile(path.join(__dirname, '../app/data/applications.json'))
+generateCasesFile(path.join(__dirname, '../app/data/cases.json'))

@@ -3,7 +3,7 @@
 // https://prototype-kit.service.gov.uk/docs/create-routes
 //
 
-const applications = require('./data/applications.json')
+const applications = require('./data/cases.json')
 
 const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()

@@ -22,30 +22,15 @@
 
       {{ govukSummaryList({
         rows: [
-        {
-          key: {
-            text: "Was the application made in your name?"
-          },
-          value: {
-            html: "No"
-          },
-          actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "Was the application made in your name?"
-                }
-              ]
-            }
-        },
+       
         {
             key: {
-              text: "What is the applicant's name?"
+              text: "Appellant’s contact details"
             },
             value: {
               html: "Jane Doe<br>Applicant Ltd."
             },
+            
             actions: {
                 items: [
                   {
@@ -61,7 +46,10 @@
               text: "Agent's contact details"
             },
             value: {
-              html: "Agent Name<br>Agent Ltd."
+              html: "No agent"
+            } if data['empty'] else
+            {
+              html: "Jane Doe<br>Applicant Ltd."
             },
             actions: {
                 items: [
@@ -73,23 +61,7 @@
                 ]
               }
           },
-          {
-            key: {
-              text: "What is your phone number?"
-            },
-            value: {
-              html: "07123456789"
-            },
-            actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "name"
-                  }
-                ]
-              }
-          },
+         
           {
             key: {
               text: "What is the address of the appeal site?"
@@ -129,6 +101,9 @@
               text: "Is the appeal site in a green belt?"
             },
             value: {
+              html: "No"
+            } if data['empty'] else
+            {
               html: "Yes"
             },
             actions: {
@@ -164,6 +139,9 @@
               text: "Does the appellant know who owns the land involved in the appeal?"
             },
             value: {
+              html: "Not applicable"
+            } if data['empty'] else
+            {
               html: "Some of the land"
             },
             actions: {
@@ -175,6 +153,7 @@
                   }
                 ]
               }
+           
           },
 
           {
@@ -182,6 +161,9 @@
               text: "Is the appeal site part of an agricultural holding?"
             },
             value: {
+              html: "No"
+            } if data['empty'] else
+            {
               html: "Yes"
             },
             actions: {
@@ -199,6 +181,9 @@
               text: "Are you a tenant of the agricultural holding?"
             },
             value: {
+              html: "Not applicable"
+            } if data['empty'] else
+            {
               html: "Yes"
             },
             actions: {
@@ -216,6 +201,9 @@
               text: "Are there any other tenants?"
             },
             value: {
+              html: "Not applicable"
+            } if data['empty'] else
+            {
               html: "Yes"
             },
             actions: {
@@ -228,29 +216,16 @@
                 ]
               }
           },
-          {
-            key: {
-              text: "Have the tenants been told about the appeal?"
-            },
-            value: {
-              html: "Yes"
-            },
-            actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "name"
-                  }
-                ]
-              }
-          },
+         
 
           {
             key: {
               text: "Will an inspector need to access your land or property?"
             },
             value: {
+              html: "No"
+            } if data['empty'] else
+            {
               html: "Yes<br>The development is not visible from a public road."
             },
             actions: {
@@ -268,7 +243,10 @@
               text: "Are there any health and safety issues on the appeal site?"
             },
             value: {
-              html: "Yes<br>Construction works."
+              html: "No"
+            } if data['empty'] else
+            {
+              html: "Yes<br>Construction works"
             },
             actions: {
                 items: [
@@ -355,75 +333,10 @@
               text: "Did the local planning authority change the description of development?"
             },
             value: {
+              html: "No"
+            } if data['empty'] else
+            {
               html: "Yes"
-            },
-            actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "name"
-                  }
-                ]
-              }
-          },
-          {
-            key: {
-              text: "How would you prefer us to decide your appeal?"
-            },
-            value: {
-              html: "Inquiry"
-            },
-            actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "name"
-                  }
-                ]
-              }
-          },
-          {
-            key: {
-              text: "Why would you prefer this appeal procedure?	"
-            },
-            value: {
-              html: "Needs a thorough investigation"
-            },
-            actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "name"
-                  }
-                ]
-              }
-          },
-          {
-            key: {
-              text: "How many days would you expect the inquiry to last?"
-            },
-            value: {
-              html: "3"
-            },
-            actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "name"
-                  }
-                ]
-              }
-          },
-          {
-            key: {
-              text: "How many witnesses would you expect to give evidence at the inquiry?"
-            },
-            value: {
-              html: "3"
             },
             actions: {
                 items: [
@@ -440,14 +353,44 @@
               text: "Are there other appeals linked to your development?"
             },
             value: {
-              html: "Yes"
+              html: "No"
+            } if data['empty'] else
+            {
+              html: "Yes<br>123456789"
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }if data['empty'] else 
+            {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
+          },
+         
+          {
+            key: {
+              text: "Was your application granted or refused?"
+            },
+            value: {
+              html: "Refused"
             },
             actions: {
                 items: [
                   {
                     href: "#",
                     text: "Change",
-                    visuallyHiddenText: "name"
+                    visuallyHiddenText: "Another individual"
                   }
                 ]
               }
@@ -457,21 +400,33 @@
               text: "What’s the date on the decision letter from the local planning authority?​"
             },
             value: {
-              html: "22 November 2024"
+              html: "Not applicable"
+            } if data['empty'] else
+            {
+              html: "13 November 2024"
             },
             actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "name"
-                  }
-                ]
-              }
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }if data['empty'] else 
+            {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
           },
           {
             key: {
-              text: "Appeal type​"
+              text: "What type of application is your appeal about?​"
             },
             value: {
               html: "Full planning"
@@ -487,25 +442,112 @@
               }
           },
 
+          
           {
-              key: {
-                text: "Enter the appeal reference number"
-              },
-              value: {
-                html: "0221532"
-              },
-              actions: {
-                  items: [
-                    {
-                      href: "#",
-                      text: "Change",
-                      visuallyHiddenText: "Application reference"
-                    }
-                  ]
+            key: {
+              text: "How would you prefer us to decide your appeal?"
+            },
+            value: {
+              html: "Written representations"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "name"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Why would you prefer this appeal procedure?	"
+            },
+            value: {
+              html: "Not applicable"
+            } if data['empty'] else
+            {
+              html: "Needs a thorough investigation"
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Item label"
                 }
-
-
+              ]
+            }if data['empty'] else 
+            {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "How many days would you expect the inquiry to last?"
+            },
+            value: {
+              html: "Not applicable"
+            } if data['empty'] else
+            {
+              html: "3"
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }if data['empty'] else 
+            {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "How many witnesses would you expect to give evidence at the inquiry?"
+            },
+            value: {
+              html: "Not applicable"
+            } if data['empty'] else
+            {
+              html: "3"
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }if data['empty'] else 
+            {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
           }
+         
         ]
       }) }}
 
@@ -537,17 +579,29 @@
               text: "Agreement to change the description of development"
             },
             value: {
+              html: "No documents"
+            } if data['empty'] else
+            {
               html: "<a href='#'>example-file.pdf</a>"
             },
             actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "Another individual"
-                  }
-                ]
-              }
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }if data['empty'] else 
+            {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
           },
           {
             key: {
@@ -566,73 +620,99 @@
                 ]
               }
           },
-          {
-            key: {
-              text: "Was your application granted or refused?"
-            },
-            value: {
-              html: "Refused"
-            },
-            actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "Another individual"
-                  }
-                ]
-              }
-          },
+          
           {
             key: {
               text: "Do you plan to submit a planning obligation to support your appeal?"
             },
             value: {
+              html: "No"
+            } if data['empty'] else
+            {
               html: "Yes"
             },
             actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "Another individual"
-                  }
-                ]
-              }
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }if data['empty'] else 
+            {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
           },
+
+
           {
             key: {
               text: "What is the status of your planning obligation?"
             },
+            
             value: {
+              html: "Not applicable"
+            } if data['empty'] else
+            {
               html: "Finalised and ready to submit"
             },
             actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "Another individual"
-                  }
-                ]
-              }
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }if data['empty'] else 
+            {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
           },
+
+
+
           {
             key: {
               text: "Planning obligation"
             },
             value: {
+              html: "No documents"
+            } if data['empty'] else
+            {
               html: "<a href='#'>example-file.pdf</a>"
             },
             actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "Another individual"
-                  }
-                ]
-              }
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }if data['empty'] else 
+            {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
           },
 
           {
@@ -640,17 +720,29 @@
               text: "Separate ownership certificate and agricultural land declaration"
             },
             value: {
+              html: "No documents"
+            } if data['empty'] else
+            {
               html: "<a href='#'>example-file.pdf</a>"
             },
             actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "Another individual"
-                  }
-                ]
-              }
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }if data['empty'] else 
+            {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
           },
           {
             key: {
@@ -674,17 +766,29 @@
               text: "Draft statement of common ground"
             },
             value: {
+              html: "No documents"
+            } if data['empty'] else
+            {
               html: "<a href='#'>example-file.pdf</a>"
             },
             actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "Another individual"
-                  }
-                ]
-              }
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }if data['empty'] else 
+            {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
           },
 
           {
@@ -692,17 +796,29 @@
               text: "Application for an award of appeal costs"
             },
             value: {
+              html: "No documents"
+            } if data['empty'] else
+            {
               html: "<a href='#'>example-file.pdf</a>"
             },
             actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "Another individual"
-                  }
-                ]
-              }
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }if data['empty'] else 
+            {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
           },
 
           {
@@ -710,34 +826,58 @@
               text: "Design and access statement"
             },
             value: {
+              html: "No documents"
+            } if data['empty'] else
+            {
               html: "<a href='#'>example-file.pdf</a>"
             },
             actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "Another individual"
-                  }
-                ]
-              }
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }if data['empty'] else 
+            {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
           },
           {
             key: {
               text: "Plans, drawings and supporting documents"
             },
             value: {
+              html: "No documents"
+            } if data['empty'] else
+            {
               html: "<a href='#'>example-file.pdf</a>"
             },
             actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "Another individual"
-                  }
-                ]
-              }
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Add plans, drawings and supporting documents"
+                }
+              ]
+            }if data['empty'] else 
+            {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "Change plans, drawings and supporting documents"
+                }
+              ]
+            }
           },
 
           {
@@ -745,17 +885,34 @@
               text: "New plans or drawings"
             },
             value: {
+              html: "No documents"
+            } if data['empty'] else
+            {
               html: "<a href='#'>example-file.pdf</a>"
             },
             actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "Another individual"
-                  }
-                ]
-              }
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }if data['empty'] else 
+            {
+              items: [
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "contact details"
+          },
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "contact details"
+          }
+        ]
+            }
           },
 
           {
@@ -763,18 +920,30 @@
               text: "Other new supporting documents"
             },
             value: {
+              html: "No documents"
+            } if data['empty'] else
+            {
               html: "<a href='#'>example-file.pdf</a>"
             },
             actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "Another individual"
-                  }
-                ]
-              }
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Add other new supporting documents"
+                }, 
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Change other new supporting documents"
+                } if not data['empty']
+              ]
+            }              
+      
           }
+
+
+          
 
         ]
       }) }}

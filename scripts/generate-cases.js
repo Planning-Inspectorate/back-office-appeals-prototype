@@ -193,11 +193,11 @@ const generateCase = (params = {}) => {
 
   _case.lpa = params.lpa || {}
   _case.lpa.name = params.lpa?.name || faker.helpers.arrayElement([
-    'Barnet',
-    'Hertfordshire'
+    'Barnet Council',
+    'Hertfordshire Council'
   ])
 
-  _case.lpa.emailAddress = params.lpa?.emailAddress || 'example@'+_case.lpa.name+'.com'
+  _case.lpa.emailAddress = params.lpa?.emailAddress || 'example@blah.com'
 
   _case.site = params.site || {}
   _case.site.address = params.site?.address || generateAddress()

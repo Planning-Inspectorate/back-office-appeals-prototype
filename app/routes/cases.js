@@ -1,5 +1,6 @@
 const _ = require('lodash')
 const Pagination = require('../helpers/pagination')
+const { getActions } = require('../helpers/actions')
 
 module.exports = router => {
 
@@ -92,6 +93,11 @@ module.exports = router => {
     let pageSize = 25
     let pagination = new Pagination(cases, req.query.page, pageSize)
     cases = pagination.getData()
+
+    cases = cases.map(_case => ({
+      ..._case,
+      actions: getActions(_case)
+    }));
 
     res.render('main/cases/all', {
       cases,
@@ -199,6 +205,11 @@ module.exports = router => {
     let pageSize = 25
     let pagination = new Pagination(cases, req.query.page, pageSize)
     cases = pagination.getData()
+
+    cases = cases.map(_case => ({
+      ..._case,
+      actions: getActions(_case)
+    }));
 
     res.render('main/cases/index', {
       cases,

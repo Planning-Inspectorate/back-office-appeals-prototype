@@ -1,29 +1,3 @@
-{% if _case.status == 'Ready to assign case officer' %}
-  <a class="govuk-link" href="#">Assign case officer</a>
-{% elseif _case.status == 'Ready to validate' %}
-  <a class="govuk-link" href="#">Validate case</a>
-{% elseif _case.status == 'Ready to start' %}
-  <a class="govuk-link" href="/main/cases/{{_case.id}}/start-case">Start case</a>
-{% elseif _case.status == 'LPAQ ready to review' %}
-  <a class="govuk-link" href="#">Review LPAQ</a>
-{% elseif _case.status == 'Statements and IP comments ready to review' %}
-  <a class="govuk-link" href="#">Review statements and IP comments</a>
-{% elseif _case.status == 'Statements and IP comments ready to share' %}
-  <a class="govuk-link" href="#">Share statements and IP comments</a>
-{% elseif _case.status == 'Final comments ready to review' %}
-  <a class="govuk-link" href="#">Review final comments</a>
-{% elseif _case.status == 'Final comments ready to share' %}
-  <a class="govuk-link" href="#">Share final comments</a>
-{% elseif _case.status == 'Site visit ready to set up' %}
-  <a class="govuk-link" href="#">Set up site visit</a>
-{% elseif _case.status == 'Hearing ready to set up' %}
-  <a class="govuk-link" href="/main/cases/{{_case.id}}/add-hearing">Set up hearing</a>
-{% elseif _case.status == 'Inquiry ready to set up' %}
-  <a class="govuk-link" href="/main/cases/{{_case.id}}/add-inquiry">Set up inquiry</a>
-{% elseif _case.status == 'Proof of evidence and witnesses ready to review' %}
-  <a class="govuk-link" href="#">Review proof of evidence and witnesses</a>
-{% elseif _case.status == 'Proof of evidence and witnesses ready to share' %}
-  <a class="govuk-link" href="#">Share proof of evidence and witnesses</a>
-{% elseif _case.status == 'Decision ready to issue' %}
-  <a class="govuk-link" href="#">Issue decision</a>
-{% endif %}
+{% for action in _case.actions %}
+  <a class="govuk-notification-banner__link" href="{{action.href}}">{{action.text}}</a><br>
+{% endfor %}

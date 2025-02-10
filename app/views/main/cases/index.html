@@ -38,7 +38,9 @@
               </h2>
 
               {% set action %}
-                {% include "includes/your-cases/action-link.njk" %}
+                {% for action in _case.actions %}
+                  <a class="govuk-link" href="{{action.href}}">{{action.text}}</a><br>
+                {% endfor %}
               {% endset %}
 
               {{ govukSummaryList({
@@ -54,12 +56,20 @@
                   },
                   {
                     key: {
+                      html: 'Procedure'
+                    },
+                    value: {
+                      html: _case.procedure
+                    }
+                  } if _case.procedure,
+                  {
+                    key: {
                       html: 'Action'
                     },
                     value: {
                       html: action
                     }
-                  },
+                  } if _case.actions.length,
                   {
                     key: {
                       html: 'Due date'

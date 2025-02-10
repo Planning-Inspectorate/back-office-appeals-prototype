@@ -130,7 +130,7 @@ router.get('/main/cases/:caseId/start-case/has-inquiry-address', function (req, 
 
 
     // Save timetable dates
-    if(data.LPAQuestionnaireDueDate.day.length) {
+    if(data.LPAQuestionnaireDueDate?.day.length) {
       _case.LPAQuestionnaireDueDate = DateTime.fromObject({
         day: data.LPAQuestionnaireDueDate.day,
         month: data.LPAQuestionnaireDueDate.month,
@@ -140,7 +140,7 @@ router.get('/main/cases/:caseId/start-case/has-inquiry-address', function (req, 
       _case.LPAQuestionnaireDueDate = null
     }
 
-    if(data.statementsDueDate.day.length) {
+    if(data.statementsDueDate?.day.length) {
       _case.statementsDueDate = DateTime.fromObject({
         day: data.statementsDueDate.day,
         month: data.statementsDueDate.month,
@@ -150,7 +150,7 @@ router.get('/main/cases/:caseId/start-case/has-inquiry-address', function (req, 
       _case.statementsDueDate = null
     }
 
-    if(data.interestedPartyCommentsDueDate.day.length) {
+    if(data.interestedPartyCommentsDueDate?.day.length) {
       _case.interestedPartyCommentsDueDate = DateTime.fromObject({
         day: data.interestedPartyCommentsDueDate.day,
         month: data.interestedPartyCommentsDueDate.month,
@@ -160,7 +160,7 @@ router.get('/main/cases/:caseId/start-case/has-inquiry-address', function (req, 
       _case.interestedPartyCommentsDueDate = null
     }
 
-    if(data.statementOfCommonGroundDueDate.day.length) {
+    if(data.statementOfCommonGroundDueDate?.day.length) {
       _case.statementOfCommonGroundDueDate = DateTime.fromObject({
         day: data.statementOfCommonGroundDueDate.day,
         month: data.statementOfCommonGroundDueDate.month,
@@ -170,7 +170,7 @@ router.get('/main/cases/:caseId/start-case/has-inquiry-address', function (req, 
       _case.statementOfCommonGroundDueDate = null
     }
 
-    if(data.proofOfEvidenceAndWitnessesDueDate.day.length) {
+    if(data.proofOfEvidenceAndWitnessesDueDate?.day.length) {
       _case.proofOfEvidenceAndWitnessesDueDate = DateTime.fromObject({
         day: data.proofOfEvidenceAndWitnessesDueDate.day,
         month: data.proofOfEvidenceAndWitnessesDueDate.month,
@@ -180,7 +180,7 @@ router.get('/main/cases/:caseId/start-case/has-inquiry-address', function (req, 
       _case.proofOfEvidenceAndWitnessesDueDate = null
     }
 
-    if(data.planningObligationDueDate.day.length) {
+    if(data.planningObligationDueDate?.day.length) {
       _case.planningObligationDueDate = DateTime.fromObject({
         day: data.planningObligationDueDate.day,
         month: data.planningObligationDueDate.month,

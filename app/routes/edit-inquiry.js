@@ -3,94 +3,94 @@ const { DateTime } = require("luxon");
 
 module.exports = router => {
 
-  router.get('/main/cases/:appealId/edit-inquiry', function (req, res) {
-    let application = req.session.data.applications.find(application => application.id == req.params.appealId)
+  router.get('/main/cases/:caseId/edit-inquiry', function (req, res) {
+    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
 
-    let date = _.get(req, 'session.data.editInquiry.date') || DateTime.fromISO(application.inquiry.date).toObject();
-    let time = _.get(req, 'session.data.editInquiry.time')  || application.inquiry.time
+    let date = _.get(req, 'session.data.editInquiry.date') || DateTime.fromISO(_case.inquiry.date).toObject();
+    let time = _.get(req, 'session.data.editInquiry.time')  || _case.inquiry.time
 
     res.render('/main/cases/edit-inquiry/index', {
-      application,
+      _case,
       date,
       time
     })
   })
 
-  router.post('/main/cases/:appealId/edit-inquiry', function (req, res) {
-    res.redirect(`/main/cases/${req.params.appealId}/edit-inquiry/days`)
+  router.post('/main/cases/:caseId/edit-inquiry', function (req, res) {
+    res.redirect(`/main/cases/${req.params.caseId}/edit-inquiry/days`)
   })
 
-  router.get('/main/cases/:appealId/edit-inquiry/days', function (req, res) {
-    let application = req.session.data.applications.find(application => application.id == req.params.appealId)
+  router.get('/main/cases/:caseId/edit-inquiry/days', function (req, res) {
+    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
 
-    let hasDays = _.get(req, 'session.data.editInquiry.hasDays') || application.inquiry.hasDays
-    let days = _.get(req, 'session.data.editInquiry.days') || application.inquiry.days
+    let hasDays = _.get(req, 'session.data.editInquiry.hasDays') || _case.inquiry.hasDays
+    let days = _.get(req, 'session.data.editInquiry.days') || _case.inquiry.days
 
     res.render('/main/cases/edit-inquiry/days', {
-      application,
+      _case,
       hasDays,
       days
     })
   })
 
-  router.post('/main/cases/:appealId/edit-inquiry/days', function (req, res) {
-    res.redirect(`/main/cases/${req.params.appealId}/edit-inquiry/has-address`)
+  router.post('/main/cases/:caseId/edit-inquiry/days', function (req, res) {
+    res.redirect(`/main/cases/${req.params.caseId}/edit-inquiry/has-address`)
   })
 
-  router.get('/main/cases/:appealId/edit-inquiry/has-address', function (req, res) {
-    let application = req.session.data.applications.find(application => application.id == req.params.appealId)
+  router.get('/main/cases/:caseId/edit-inquiry/has-address', function (req, res) {
+    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
 
-    let hasAddress = _.get(req, 'session.data.editInquiry.hasAddress') || application.inquiry.hasAddress
+    let hasAddress = _.get(req, 'session.data.editInquiry.hasAddress') || _case.inquiry.hasAddress
 
     res.render('/main/cases/edit-inquiry/has-address', {
-      application,
+      _case,
       hasAddress
     })
   })
 
-  router.post('/main/cases/:appealId/edit-inquiry/has-address', function (req, res) {
+  router.post('/main/cases/:caseId/edit-inquiry/has-address', function (req, res) {
     if(req.session.data.editInquiry.hasAddress == 'Yes') {
-      res.redirect(`/main/cases/${req.params.appealId}/edit-inquiry/address`)
+      res.redirect(`/main/cases/${req.params.caseId}/edit-inquiry/address`)
     } else {
-      res.redirect(`/main/cases/${req.params.appealId}/edit-inquiry/check`)
+      res.redirect(`/main/cases/${req.params.caseId}/edit-inquiry/check`)
     }
   })
 
-  router.get('/main/cases/:appealId/edit-inquiry/address', function (req, res) {
-    let application = req.session.data.applications.find(application => application.id == req.params.appealId)
+  router.get('/main/cases/:caseId/edit-inquiry/address', function (req, res) {
+    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
 
-    let inquiryAddress = _.get(req, 'session.data.editInquiry.address') || application.inquiry.address
+    let inquiryAddress = _.get(req, 'session.data.editInquiry.address') || _case.inquiry.address
 
     res.render('/main/cases/edit-inquiry/address', {
-      application,
+      _case,
       inquiryAddress
     })
   })
 
-  router.post('/main/cases/:appealId/edit-inquiry/address', function (req, res) {
-    res.redirect(`/main/cases/${req.params.appealId}/edit-inquiry/check`)
+  router.post('/main/cases/:caseId/edit-inquiry/address', function (req, res) {
+    res.redirect(`/main/cases/${req.params.caseId}/edit-inquiry/check`)
   })
 
-  router.get('/main/cases/:appealId/edit-inquiry/check', function (req, res) {
-    let application = req.session.data.applications.find(application => application.id == req.params.appealId)
+  router.get('/main/cases/:caseId/edit-inquiry/check', function (req, res) {
+    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
 
     res.render('/main/cases/edit-inquiry/check', {
-      application
+      _case
     })
   })
 
-  router.post('/main/cases/:appealId/edit-inquiry/check', function (req, res) {
-    let application = req.session.data.applications.find(application => application.id == req.params.appealId)
-    application.inquiry = req.session.data.editInquiry
+  router.post('/main/cases/:caseId/edit-inquiry/check', function (req, res) {
+    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    _case.inquiry = req.session.data.editInquiry
 
-    application.inquiry.date = DateTime.fromObject({
+    _case.inquiry.date = DateTime.fromObject({
       day: req.session.data.editInquiry.date.day,
       month: req.session.data.editInquiry.date.month,
       year: req.session.data.editInquiry.date.year
     }).toISO()
 
     req.flash('success', 'Inquiry updated')
-    res.redirect(`/main/cases/${req.params.appealId}`)
+    res.redirect(`/main/cases/${req.params.caseId}`)
   })
 
 }

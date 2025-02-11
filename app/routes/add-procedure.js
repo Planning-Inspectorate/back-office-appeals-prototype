@@ -1,28 +1,28 @@
 module.exports = router => {
 
-  router.get('/main/cases/:appealId/add-procedure', function (req, res) {
-    let application = req.session.data.applications.find(application => application.id == req.params.appealId)
+  router.get('/main/cases/:caseId/add-procedure', function (req, res) {
+    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
     res.render('/main/cases/add-procedure/index', {
-      application
+      _case
     })
   })
 
-  router.post('/main/cases/:appealId/add-procedure', function (req, res) {
-    res.redirect(`/main/cases/${req.params.appealId}/add-procedure/check`)
+  router.post('/main/cases/:caseId/add-procedure', function (req, res) {
+    res.redirect(`/main/cases/${req.params.caseId}/add-procedure/check`)
   })
 
-  router.get('/main/cases/:appealId/add-procedure/check', function (req, res) {
-    let application = req.session.data.applications.find(application => application.id == req.params.appealId)
+  router.get('/main/cases/:caseId/add-procedure/check', function (req, res) {
+    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
     res.render('/main/cases/add-procedure/check', {
-      application
+      _case
     })
   })
 
-  router.post('/main/cases/:appealId/add-procedure/check', function (req, res) {
-    let application = req.session.data.applications.find(application => application.id == req.params.appealId)
-    application.procedure = req.session.data.addAppealProcedure.procedure
+  router.post('/main/cases/:caseId/add-procedure/check', function (req, res) {
+    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    _case.procedure = req.session.data.addAppealProcedure.procedure
     req.flash('success', 'Appeal procedure added')
-    res.redirect(`/main/cases/${req.params.appealId}`)
+    res.redirect(`/main/cases/${req.params.caseId}`)
   })
 
 }

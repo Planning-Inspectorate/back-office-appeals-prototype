@@ -1,18 +1,20 @@
 
 const { generateTimetable } = require('../helpers/timetable')
+const { getActions } = require('../helpers/actions')
 
 module.exports = router => {
 
-  router.get('/main/cases/:appealId', function (req, res) {
-    let application = req.session.data.applications.find(application => application.id == req.params.appealId)
+  router.get('/main/cases/:caseId', function (req, res) {
+    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
 
-    let timetable = generateTimetable(application)
-
-    const isCaseStarted = application.status !== 'Ready to assign case officer' && application.status !== 'Ready to validate' && application.status !== 'Ready to start'
+    let timetable = generateTimetable(_case)
+    let actions = getActions(_case)
+    const isCaseStarted = _case.status !== 'Ready to assign case officer' && _case.status !== 'Ready to validate' && _case.status !== 'Ready to start'
 
     res.render('/main/cases/show', {
-      application,
+      _case,
       timetable,
+      actions,
       isCaseStarted
     })
   })

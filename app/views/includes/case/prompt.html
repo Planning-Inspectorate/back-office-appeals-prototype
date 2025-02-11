@@ -1,132 +1,14 @@
-{%- set html -%}
-  {% if application.status == 'Ready to assign case officer' %}
-     <p class="govuk-notification-banner__heading">
-      <a class="govuk-notification-banner__link" href="#">Assign case officer</a>
-    </p>
-  {% endif %}
-  {% if application.status == 'Ready to validate' %}
-    <p class="govuk-notification-banner__heading">
-      <a class="govuk-notification-banner__link" href="#">Validate case</a>
-    </p>
-  {% endif %}
-  {% if application.status == 'Ready to start' %}
-    <p class="govuk-notification-banner__heading">
-      <a class="govuk-notification-banner__link" href="/main/cases/{{application.id}}/start-case">Start case</a>
-    </p>
-  {% endif %}
-  {% if application.status == 'LPAQ ready to review' %}
-    <p class="govuk-notification-banner__heading">
-      <a class="govuk-notification-banner__link" href="#">Review LPAQ</a>
-    </p>
-  {% endif %}
-  {% if application.status == 'Statements and IP comments ready to review' %}
-    <p class="govuk-notification-banner__heading">
-      <a class="govuk-notification-banner__link" href="#">Review statements and IP comments</a>
-    </p>
-  {% endif %}
-  {% if application.status == 'Statements and IP comments ready to share' %}
-    <p class="govuk-notification-banner__heading">
-      <a class="govuk-notification-banner__link" href="#">Share statements and IP comments</a>
-    </p>
-  {% endif %}
-  {% if application.status == 'Final comments ready to review' %}
-    <p class="govuk-notification-banner__heading">
-      <a class="govuk-notification-banner__link" href="#">Review final comments</a>
-    </p>
-  {% endif %}
-  {% if application.status == 'Final comments ready to share' %}
-    <p class="govuk-notification-banner__heading">
-      <a class="govuk-notification-banner__link" href="#">Share final comments</a>
-    </p>
-  {% endif %}
-  {% if application.status == 'Site visit ready to set up' %}
-    <p class="govuk-notification-banner__heading">
-      <a class="govuk-notification-banner__link" href="#">Set up site visit</a>
-    </p>
-  {% endif %}
-  {% if application.status == 'Hearing ready to set up' %}
-    <p class="govuk-notification-banner__heading">
-      <a class="govuk-notification-banner__link" href="/main/cases/{{application.id}}/add-hearing">Set up hearing</a>
-    </p>
-  {% endif %}
-  {% if application.status == 'Inquiry ready to set up' %}
-    <p class="govuk-notification-banner__heading">
-      <a class="govuk-notification-banner__link" href="/main/cases/{{application.id}}/add-inquiry">Set up inquiry</a>
-    </p>
-  {% endif %}
-  {% if application.status == 'Proof of evidence and witnesses ready to review' %}
-    <p class="govuk-notification-banner__heading">
-      <a class="govuk-notification-banner__link" href="#">Review proof of evidence and witnesses</a>
-    </p>
-  {% endif %}
-  {% if application.status == 'Proof of evidence and witnesses ready to share' %}
-    <p class="govuk-notification-banner__heading">
-      <a class="govuk-notification-banner__link" href="#">Share proof of evidence and witnesses</a>
-    </p>
-  {% endif %}
-  {% if application.status == 'Decision ready to issue' %}
-    <p class="govuk-notification-banner__heading">
-      <a class="govuk-notification-banner__link" href="#">Issue decision</a>
-    </p>
-  {% endif  %}
-{%- endset -%}
-
-{% if application.procedure == 'Inquiry' and not application.inquiry %}
+{% for action in actions %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {% set inquiryBannerHtml %}
+      {% set html %}
         <p class="govuk-notification-banner__heading">
-          <a class="govuk-notification-banner__link" href="/main/cases/{{application.id}}/add-inquiry">Set up inquiry</a>
+          <a class="govuk-notification-banner__link" href="{{action.href}}">{{action.text}}</a>
         </p>
       {% endset %}
-
-      {{ govukNotificationBanner({
-        html: inquiryBannerHtml
-      }) }}
-    </div>
-  </div>
-{% endif %}
-
-{% if application.procedure == 'Inquiry' %}
-  {% if not application.statementOfCommonGroundDueDate or not application.proofOfEvidenceAndWitnessesDueDate or not application.planningObligationDueDate %}
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
-        {% set timetableBannerHtml %}
-          <p class="govuk-notification-banner__heading">
-            <a class="govuk-notification-banner__link" href="/main/cases/{{application.id}}/edit-timetable-due-dates">Add timetable due dates</a>
-          </p>
-        {% endset %}
-
-        {{ govukNotificationBanner({
-          html: timetableBannerHtml
-        }) }}
-      </div>
-    </div>
-  {% endif %}
-{% endif %}
-
-{% if not application.timetableShared and application.startDate and application.inquiry and application.statementOfCommonGroundDueDate and application.proofOfEvidenceAndWitnessesDueDate and application.planningObligationDueDate %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      {% set shareTimetableHtml %}
-        <p class="govuk-notification-banner__heading">
-          <a class="govuk-notification-banner__link" href="/main/cases/{{application.id}}/share-timetable">Share timetable</a>
-        </p>
-      {% endset %}
-
-      {{ govukNotificationBanner({
-        html: shareTimetableHtml
-      }) }}
-    </div>
-  </div>
-{% endif %}
-
-{% if html | trim | length %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
       {{ govukNotificationBanner({
         html: html
       }) }}
     </div>
   </div>
-{% endif %}
+{% endfor %}

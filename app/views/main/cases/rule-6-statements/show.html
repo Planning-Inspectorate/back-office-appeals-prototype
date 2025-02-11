@@ -12,12 +12,12 @@
     classes: 'govuk-!-margin-top-4 govuk-!-margin-bottom-0',
       items: [
         {
-          text: application.id,
-          href: "/main/cases/:appealId" | replace(':appealId', application.id)
+          text: _case.id,
+          href: "/main/cases/:caseId" | replace(':caseId', _case.id)
         },
         {
           text: "Rule 6 statements",
-          href: "/main/cases/:appealId/rule-6-statements" | replace(':appealId', application.id)
+          href: "/main/cases/:caseId/rule-6-statements" | replace(':caseId', _case.id)
         },
         {
           text: title
@@ -49,21 +49,21 @@
         <div class="govuk-button-group">
           {{ govukButton({
             text: "Accept",
-            href: '/main/cases/:appealId/rule-6-statements/:partyId/approve' | replace(':appealId', application.id) | replace(':partyId', party.id)
+            href: '/main/cases/:caseId/rule-6-statements/:partyId/approve' | replace(':caseId', _case.id) | replace(':partyId', party.id)
           })}}
           {{ govukButton({
             text: "Redact and accept",
             classes: 'govuk-button--secondary',
-            href: '/main/cases/:appealId/rule-6-statements/:partyId/redact' | replace(':appealId', application.id) | replace(':partyId', party.id)
+            href: '/main/cases/:caseId/rule-6-statements/:partyId/redact' | replace(':caseId', _case.id) | replace(':partyId', party.id)
           })}}
           {{ govukButton({
               text: "Reject",
               classes: 'govuk-button--secondary',
-              href: '/main/cases/:appealId/rule-6-statements/:partyId/reject' | replace(':appealId', application.id) | replace(':partyId', party.id)
+              href: '/main/cases/:caseId/rule-6-statements/:partyId/reject' | replace(':caseId', _case.id) | replace(':partyId', party.id)
             })}}
           </div>
         {% else %}
-          <p class="govuk-!-margin-bottom-6"><a class="govuk-link" href="/main/cases/{{application.id}}/rule-6-statements/{{party.id}}/new">Add new Rule 6 statement</a></p>
+          <p class="govuk-!-margin-bottom-6"><a class="govuk-link" href="/main/cases/{{_case.id}}/rule-6-statements/{{party.id}}/new">Add new Rule 6 statement</a></p>
         {% endif %}
 
         {% set docs %}

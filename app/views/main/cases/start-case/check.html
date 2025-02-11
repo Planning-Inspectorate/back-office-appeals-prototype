@@ -1,7 +1,7 @@
 {% extends "layouts/bo.html" %}
 
 {% set title = "Check details and start case" %}
-{% set pageName = title + 'Start case - Planning Inspectorate'%}
+{% set pageName = title %}
 
 {% set back = true %}
 
@@ -27,7 +27,7 @@
             actions: {
               items: [
                 {
-                  href: "/main/cases/:appealId/start-case" | replace(':appealId', application.id),
+                  href: "/main/cases/:caseId/start-case" | replace(':caseId', _case.id),
                   text: "Change",
                   visuallyHiddenText: "Appeal procedure"
                 }
@@ -37,241 +37,242 @@
         ]
       }) }}
 
+      {% if _case.procedure == 'Inquiry '%}
+        <h2 class="govuk-heading-m">Inquiry details</h2>
 
-      <h2 class="govuk-heading-m">Inquiry details</h2>
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Do you want to set up the inquiry?"
+              },
+              value: {
+                text: data.startCase.hasInquiry
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/cases/:caseId/start-case/has-inquiry" | replace(':caseId', _case.id),
+                    text: "Change",
+                    visuallyHiddenText: "if you want to set up the inquiry"
+                  }
+                ]
+              }
+            } if data.startCase.hasInquiry,
+            {
+              key: {
+                text: "Inquiry date"
+              },
+              value: {
+                html: data.startCase.inquiryDate | isoDateFromDateInput | govukDate
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/cases/:caseId/start-case/inquiry-date" | replace(':caseId', _case.id),
+                    text: "Change",
+                    visuallyHiddenText: "Inquiry date"
+                  }
+                ]
+              }
+            } if data.startCase.inquiryDate,
+            {
+              key: {
+                text: "Inquiry time"
+              },
+              value: {
+                html: data.startCase.inquiryTime
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/cases/:caseId/start-case/inquiry-date" | replace(':caseId', _case.id),
+                    text: "Change",
+                    visuallyHiddenText: "Inquiry time"
+                  }
+                ]
+              }
+            } if data.startCase.inquiryTime,
+            {
+              key: {
+                text: "Do you know the expected number of days to carry out the inquiry?"
+              },
+              value: {
+                html: data.startCase.hasInquiryDays
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/cases/:caseId/start-case/inquiry-days" | replace(':caseId', _case.id),
+                    text: "Change",
+                    visuallyHiddenText: "if you know the expected number of days to carry out the inquiry"
+                  }
+                ]
+              }
+            } if data.startCase.hasInquiryDays,
+            {
+              key: {
+                text: "Expected number of days to carry out the inquiry"
+              },
+              value: {
+                html: data.startCase.inquiryDays | days
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/cases/:caseId/start-case/inquiry-days" | replace(':caseId', _case.id),
+                    text: "Change",
+                    visuallyHiddenText: "Expected number of days to carry out the inquiry"
+                  }
+                ]
+              }
+            } if data.startCase.hasInquiryDays == 'Yes',
+            {
+              key: {
+                text: "Do you know the address of where the inquiry will take place?"
+              },
+              value: {
+                html: data.startCase.hasInquiryAddress
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/cases/:caseId/start-case/has-inquiry-address" | replace(':caseId', _case.id),
+                    text: "Change",
+                    visuallyHiddenText: "if you know the inquiry address"
+                  }
+                ]
+              }
+            } if data.startCase.hasInquiryAddress == 'Yes',
+            {
+              key: {
+                text: "Inquiry address"
+              },
+              value: {
+                html: address
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/cases/:caseId/start-case/inquiry-address" | replace(':caseId', _case.id),
+                    text: "Change",
+                    visuallyHiddenText: "Inquiry address"
+                  }
+                ]
+              }
+            } if data.startCase.hasInquiryAddress == 'Yes'
+          ]
+        }) }}
 
-      {{ govukSummaryList({
-        rows: [
-          {
-            key: {
-              text: "Do you want to set up the inquiry?"
-            },
-            value: {
-              text: data.startCase.hasInquiry
-            },
-            actions: {
-              items: [
-                {
-                  href: "/main/cases/:appealId/start-case/has-inquiry" | replace(':appealId', application.id),
-                  text: "Change",
-                  visuallyHiddenText: "if you want to set up the inquiry"
-                }
-              ]
-            }
-          } if data.startCase.hasInquiry,
-          {
-            key: {
-              text: "Inquiry date"
-            },
-            value: {
-              html: data.startCase.inquiryDate | isoDateFromDateInput | govukDate
-            },
-            actions: {
-              items: [
-                {
-                  href: "/main/cases/:appealId/start-case/inquiry-date" | replace(':appealId', application.id),
-                  text: "Change",
-                  visuallyHiddenText: "Inquiry date"
-                }
-              ]
-            }
-          } if data.startCase.inquiryDate,
-          {
-            key: {
-              text: "Inquiry time"
-            },
-            value: {
-              html: data.startCase.inquiryTime
-            },
-            actions: {
-              items: [
-                {
-                  href: "/main/cases/:appealId/start-case/inquiry-date" | replace(':appealId', application.id),
-                  text: "Change",
-                  visuallyHiddenText: "Inquiry time"
-                }
-              ]
-            }
-          } if data.startCase.inquiryTime,
-          {
-            key: {
-              text: "Do you know the expected number of days to carry out the inquiry?"
-            },
-            value: {
-              html: data.startCase.hasInquiryDays
-            },
-            actions: {
-              items: [
-                {
-                  href: "/main/cases/:appealId/start-case/inquiry-days" | replace(':appealId', application.id),
-                  text: "Change",
-                  visuallyHiddenText: "if you know the expected number of days to carry out the inquiry"
-                }
-              ]
-            }
-          } if data.startCase.hasInquiryDays,
-          {
-            key: {
-              text: "Expected number of days to carry out the inquiry"
-            },
-            value: {
-              html: data.startCase.inquiryDays | days
-            },
-            actions: {
-              items: [
-                {
-                  href: "/main/cases/:appealId/start-case/inquiry-days" | replace(':appealId', application.id),
-                  text: "Change",
-                  visuallyHiddenText: "Expected number of days to carry out the inquiry"
-                }
-              ]
-            }
-          } if data.startCase.hasInquiryDays == 'Yes',
-          {
-            key: {
-              text: "Do you know the address of where the inquiry will take place?"
-            },
-            value: {
-              html: data.startCase.hasInquiryAddress
-            },
-            actions: {
-              items: [
-                {
-                  href: "/main/cases/:appealId/start-case/has-inquiry-address" | replace(':appealId', application.id),
-                  text: "Change",
-                  visuallyHiddenText: "if you know the inquiry address"
-                }
-              ]
-            }
-          } if data.startCase.hasInquiryAddress == 'Yes',
-          {
-            key: {
-              text: "Inquiry address"
-            },
-            value: {
-              html: address
-            },
-            actions: {
-              items: [
-                {
-                  href: "/main/cases/:appealId/start-case/inquiry-address" | replace(':appealId', application.id),
-                  text: "Change",
-                  visuallyHiddenText: "Inquiry address"
-                }
-              ]
-            }
-          } if data.startCase.hasInquiryAddress == 'Yes'
-        ]
-      }) }}
+        <h2 class="govuk-heading-m">Timetable due dates</h2>
 
-      <h2 class="govuk-heading-m">Timetable due dates</h2>
-
-      {{ govukSummaryList({
-        rows: [
-          {
-            key: {
-              text: "LPA questionnaire due"
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "LPA questionnaire due"
+              },
+              value: {
+                text: data.startCase.LPAQuestionnaireDueDate | isoDateFromDateInput | govukDate if data.startCase.LPAQuestionnaireDueDate.day else 'Not added'
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/cases/:caseId/start-case/timetable-due-dates" | replace(':caseId', _case.id),
+                    text: "Change",
+                    visuallyHiddenText: "LPA questionnaire due"
+                  }
+                ]
+              }
             },
-            value: {
-              text: data.startCase.LPAQuestionnaireDueDate | isoDateFromDateInput | govukDate if data.startCase.LPAQuestionnaireDueDate.day else 'Not added'
+            {
+              key: {
+                text: "Statements due"
+              },
+              value: {
+                text: data.startCase.statementsDueDate | isoDateFromDateInput | govukDate if data.startCase.statementsDueDate.day else 'Not added'
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/cases/:caseId/start-case/timetable-due-dates" | replace(':caseId', _case.id),
+                    text: "Change",
+                    visuallyHiddenText: "Statements due"
+                  }
+                ]
+              }
             },
-            actions: {
-              items: [
-                {
-                  href: "/main/cases/:appealId/start-case/timetable-due-dates" | replace(':appealId', application.id),
-                  text: "Change",
-                  visuallyHiddenText: "LPA questionnaire due"
-                }
-              ]
+            {
+              key: {
+                text: "Interested party comments due"
+              },
+              value: {
+                text: data.startCase.interestedPartyCommentsDueDate | isoDateFromDateInput | govukDate if data.startCase.interestedPartyCommentsDueDate.day else 'Not added'
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/cases/:caseId/start-case/timetable-due-dates" | replace(':caseId', _case.id),
+                    text: "Change",
+                    visuallyHiddenText: "Interested party comments due"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Statement of common ground due"
+              },
+              value: {
+                text: data.startCase.statementOfCommonGroundDueDate | isoDateFromDateInput | govukDate if data.startCase.statementOfCommonGroundDueDate.day else 'Not added'
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/cases/:caseId/start-case/timetable-due-dates" | replace(':caseId', _case.id),
+                    text: "Change",
+                    visuallyHiddenText: "Statement of common ground due"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Proof of evidence and witnesses due"
+              },
+              value: {
+                text: data.startCase.proofOfEvidenceAndWitnessesDueDate | isoDateFromDateInput | govukDate if data.startCase.proofOfEvidenceAndWitnessesDueDate.day else 'Not added'
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/cases/:caseId/start-case/timetable-due-dates" | replace(':caseId', _case.id),
+                    text: "Change",
+                    visuallyHiddenText: "Proof of evidence and witnesses due"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Planning obligation due"
+              },
+              value: {
+                text: data.startCase.planningObligationDueDate | isoDateFromDateInput | govukDate if data.startCase.planningObligationDueDate.day else 'Not added'
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/cases/:caseId/start-case/timetable-due-dates" | replace(':caseId', _case.id),
+                    text: "Change",
+                    visuallyHiddenText: "Planning obligation due"
+                  }
+                ]
+              }
             }
-          },
-          {
-            key: {
-              text: "Statements due"
-            },
-            value: {
-              text: data.startCase.statementsDueDate | isoDateFromDateInput | govukDate if data.startCase.statementsDueDate.day else 'Not added'
-            },
-            actions: {
-              items: [
-                {
-                  href: "/main/cases/:appealId/start-case/timetable-due-dates" | replace(':appealId', application.id),
-                  text: "Change",
-                  visuallyHiddenText: "Statements due"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Interested party comments due"
-            },
-            value: {
-              text: data.startCase.interestedPartyCommentsDueDate | isoDateFromDateInput | govukDate if data.startCase.interestedPartyCommentsDueDate.day else 'Not added'
-            },
-            actions: {
-              items: [
-                {
-                  href: "/main/cases/:appealId/start-case/timetable-due-dates" | replace(':appealId', application.id),
-                  text: "Change",
-                  visuallyHiddenText: "Interested party comments due"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Statement of common ground due"
-            },
-            value: {
-              text: data.startCase.statementOfCommonGroundDueDate | isoDateFromDateInput | govukDate if data.startCase.statementOfCommonGroundDueDate.day else 'Not added'
-            },
-            actions: {
-              items: [
-                {
-                  href: "/main/cases/:appealId/start-case/timetable-due-dates" | replace(':appealId', application.id),
-                  text: "Change",
-                  visuallyHiddenText: "Statement of common ground due"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Proof of evidence and witnesses due"
-            },
-            value: {
-              text: data.startCase.proofOfEvidenceAndWitnessesDueDate | isoDateFromDateInput | govukDate if data.startCase.proofOfEvidenceAndWitnessesDueDate.day else 'Not added'
-            },
-            actions: {
-              items: [
-                {
-                  href: "/main/cases/:appealId/start-case/timetable-due-dates" | replace(':appealId', application.id),
-                  text: "Change",
-                  visuallyHiddenText: "Proof of evidence and witnesses due"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Planning obligation due"
-            },
-            value: {
-              text: data.startCase.planningObligationDueDate | isoDateFromDateInput | govukDate if data.startCase.planningObligationDueDate.day else 'Not added'
-            },
-            actions: {
-              items: [
-                {
-                  href: "/main/cases/:appealId/start-case/timetable-due-dates" | replace(':appealId', application.id),
-                  text: "Change",
-                  visuallyHiddenText: "Planning obligation due"
-                }
-              ]
-            }
-          }
-        ]
-      }) }}
+          ]
+        }) }}
+      {% endif %}
 
       <p>We’ll start the timetable on 7 October 2024 and send start letters to the relevant parties.</p>
 

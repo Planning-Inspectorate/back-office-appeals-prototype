@@ -2,22 +2,22 @@ const moment = require('moment')
 
 module.exports = router => {
 
-  router.get('/main/cases/:appealId/edit-proof-of-evidence-and-witnesses-due-date', function (req, res) {
-    let application = req.session.data.applications.find(application => application.id == req.params.appealId)
+  router.get('/main/cases/:caseId/edit-proof-of-evidence-and-witnesses-due-date', function (req, res) {
+    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
     res.render('/main/cases/edit-proof-of-evidence-and-witnesses-due-date/index', {
-      application
+      _case
     })
   })
 
-  router.post('/main/cases/:appealId/edit-proof-of-evidence-and-witnesses-due-date', function (req, res) {
-    let application = req.session.data.applications.find(application => application.id == req.params.appealId)
-    application.proofOfEvidenceAndWitnessesDueDate = moment({
+  router.post('/main/cases/:caseId/edit-proof-of-evidence-and-witnesses-due-date', function (req, res) {
+    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    _case.proofOfEvidenceAndWitnessesDueDate = moment({
       year: req.session.data.editProofOfEvidenceAndWitnessesDueDate.proofOfEvidenceAndWitnessesDueDate.year,
       month: req.session.data.editProofOfEvidenceAndWitnessesDueDate.proofOfEvidenceAndWitnessesDueDate.month - 1,
       day: req.session.data.editProofOfEvidenceAndWitnessesDueDate.proofOfEvidenceAndWitnessesDueDate.day}
     ).toISOString()
     req.flash('success', 'Proof of evidence and witnesses due date updated')
-    res.redirect(`/main/cases/${req.params.appealId}`)
+    res.redirect(`/main/cases/${req.params.caseId}`)
   })
 
 }

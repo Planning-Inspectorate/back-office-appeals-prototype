@@ -197,6 +197,8 @@ const generateCase = (params = {}) => {
     'Hertfordshire Council'
   ])
 
+  _case.lpa.emailAddress = params.lpa?.emailAddress || 'example@blah.com'
+
   _case.site = params.site || {}
   _case.site.address = params.site?.address || generateAddress()
 

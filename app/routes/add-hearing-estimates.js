@@ -1,29 +1,29 @@
 module.exports = router => {
 
-  router.get('/main/cases/:appealId/add-hearing-estimates', function (req, res) {
-    let application = req.session.data.applications.find(application => application.id == req.params.appealId)
+  router.get('/main/cases/:caseId/add-hearing-estimates', function (req, res) {
+    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
     res.render('/main/cases/add-hearing-estimates/index', {
-      application
+      _case
     })
   })
 
-  router.post('/main/cases/:appealId/add-hearing-estimates', function (req, res) {
-    res.redirect(`/main/cases/${req.params.appealId}/add-hearing-estimates/check`)
+  router.post('/main/cases/:caseId/add-hearing-estimates', function (req, res) {
+    res.redirect(`/main/cases/${req.params.caseId}/add-hearing-estimates/check`)
   })
 
-  router.get('/main/cases/:appealId/add-hearing-estimates/check', function (req, res) {
-    let application = req.session.data.applications.find(application => application.id == req.params.appealId)
+  router.get('/main/cases/:caseId/add-hearing-estimates/check', function (req, res) {
+    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
     res.render('/main/cases/add-hearing-estimates/check', {
-      application
+      _case
     })
   })
 
-  router.post('/main/cases/:appealId/add-hearing-estimates/check', function (req, res) {
-    let application = req.session.data.applications.find(application => application.id == req.params.appealId)
-    application.hearingEstimates = req.session.data.addHearingEstimates
+  router.post('/main/cases/:caseId/add-hearing-estimates/check', function (req, res) {
+    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    _case.hearingEstimates = req.session.data.addHearingEstimates
     delete req.session.data.addHearingEstimates
     req.flash('success', 'Hearing estimates added')
-    res.redirect(`/main/cases/${req.params.appealId}`)
+    res.redirect(`/main/cases/${req.params.caseId}`)
   })
 
 }

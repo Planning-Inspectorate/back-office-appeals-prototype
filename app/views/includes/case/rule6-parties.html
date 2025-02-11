@@ -1,22 +1,22 @@
 <div class="app-panel">
   <h2 class="govuk-heading-l">Rule 6 parties</h2>
 
-  {% if application.rule6Parties %}
-    {% set rule6Value = application.rule6Parties.length + " parties" %}
+  {% if _case.rule6Parties %}
+    {% set rule6Value = _case.rule6Parties.length + " parties" %}
     {% set rule6Actions = [{
-        href: "/main/cases/:appealId/rule-6-parties/new" | replace(':appealId', application.id),
+        href: "/main/cases/:caseId/rule-6-parties/new" | replace(':caseId', _case.id),
         text: "Add",
         visuallyHiddenText: "Rule 6 party"
       }, {
-        href: "/main/cases/:appealId/rule-6-parties" | replace(':appealId', application.id),
-        text: "Manage",
+        href: "/main/cases/:caseId/rule-6-parties" | replace(':caseId', _case.id),
+        text: "Change",
         visuallyHiddenText: "Rule 6 party"
       }]
     %}
   {% else %}
     {% set rule6Value = "No parties"%}
     {% set rule6Actions = [{
-        href: "/main/cases/:appealId/rule-6-parties/new" | replace(':appealId', application.id),
+        href: "/main/cases/:caseId/rule-6-parties/new" | replace(':caseId', _case.id),
         text: "Add",
         visuallyHiddenText: "Rule 6 party"
       }]

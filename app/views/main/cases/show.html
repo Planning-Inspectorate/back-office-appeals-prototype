@@ -32,12 +32,12 @@
       {% set timetableHtml %}
         {% include "includes/case/timetable.html" %}
       {% endset%}
-      {% if application.procedure == 'Hearing' %}
+      {% if _case.procedure == 'Hearing' %}
         {% set hearingHtml %}
           {% include "includes/case/hearing.html" %}
         {% endset%}
       {% endif %}
-      {% if application.procedure == 'Inquiry' %}
+      {% if _case.procedure == 'Inquiry' %}
         {% set cmcHtml %}
           {% include "includes/case/cmc.html" %}
         {% endset%}

@@ -40,7 +40,7 @@
             actions: {
               items: [
                 {
-                  href: '/main/cases/:appealId/rule-6-parties/:partyId/withdraw' | replace(':appealId', application.id) | replace(':partyId', party.id),
+                  href: '/main/cases/:caseId/rule-6-parties/:partyId/withdraw' | replace(':caseId', _case.id) | replace(':partyId', party.id),
                   text: "Change",
                   visuallyHiddenText: "Item label"
                 }

@@ -2,18 +2,18 @@ const { DateTime } = require("luxon");
 
 module.exports = router => {
 
-  router.get('/main/cases/:appealId/edit-timetable-due-dates', function (req, res) {
-    let application = req.session.data.applications.find(application => application.id == req.params.appealId)
+  router.get('/main/cases/:caseId/edit-timetable-due-dates', function (req, res) {
+    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
     res.render('/main/cases/edit-timetable-due-dates/index', {
-      application
+      _case
     })
   })
 
-  router.post('/main/cases/:appealId/edit-timetable-due-dates', function (req, res) {
-    let application = req.session.data.applications.find(application => application.id == req.params.appealId)
+  router.post('/main/cases/:caseId/edit-timetable-due-dates', function (req, res) {
+    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
     let editTimetableDueDates = req.body.editTimetableDueDates
 
-    // let applicationHasNoDueDates = application.LPAQuestionnaireDueDate && application.statementsDueDate && application.interestedPartyCommentsDueDate && application.statementOfCommonGroundDueDate && application.proofOfEvidenceAndWitnessesDueDate && application.planningObligationDueDate
+    // let _caseHasNoDueDates = _case.LPAQuestionnaireDueDate && _case.statementsDueDate && _case.interestedPartyCommentsDueDate && _case.statementOfCommonGroundDueDate && _case.proofOfEvidenceAndWitnessesDueDate && _case.planningObligationDueDate
 
     // let userHasSubmittedAtLeastOneDueDate = editTimetableDueDates.LPAQuestionnaireDueDate || editTimetableDueDates.statementsDueDate || editTimetableDueDates.interestedPartyCommentsDueDate || editTimetableDueDates.statementOfCommonGroundDueDate || editTimetableDueDates.proofOfEvidenceAndWitnessesDueDate || editTimetableDueDates.planningObligationDueDate
 
@@ -25,66 +25,66 @@ module.exports = router => {
 
 
     if(editTimetableDueDates.LPAQuestionnaireDueDate.day.length) {
-      application.LPAQuestionnaireDueDate = DateTime.fromObject({
+      _case.LPAQuestionnaireDueDate = DateTime.fromObject({
         day: editTimetableDueDates.LPAQuestionnaireDueDate.day,
         month: editTimetableDueDates.LPAQuestionnaireDueDate.month,
         year: editTimetableDueDates.LPAQuestionnaireDueDate.year
       }).toISO()
     } else {
-      application.LPAQuestionnaireDueDate = null
+      _case.LPAQuestionnaireDueDate = null
     }
 
     if(editTimetableDueDates.statementsDueDate.day.length) {
-      application.statementsDueDate = DateTime.fromObject({
+      _case.statementsDueDate = DateTime.fromObject({
         day: editTimetableDueDates.statementsDueDate.day,
         month: editTimetableDueDates.statementsDueDate.month,
         year: editTimetableDueDates.statementsDueDate.year
       }).toISO()
     } else {
-      application.statementsDueDate = null
+      _case.statementsDueDate = null
     }
 
     if(editTimetableDueDates.interestedPartyCommentsDueDate.day.length) {
-      application.interestedPartyCommentsDueDate = DateTime.fromObject({
+      _case.interestedPartyCommentsDueDate = DateTime.fromObject({
         day: editTimetableDueDates.interestedPartyCommentsDueDate.day,
         month: editTimetableDueDates.interestedPartyCommentsDueDate.month,
         year: editTimetableDueDates.interestedPartyCommentsDueDate.year
       }).toISO()
     } else {
-      application.interestedPartyCommentsDueDate = null
+      _case.interestedPartyCommentsDueDate = null
     }
 
     if(editTimetableDueDates.statementOfCommonGroundDueDate.day.length) {
-      application.statementOfCommonGroundDueDate = DateTime.fromObject({
+      _case.statementOfCommonGroundDueDate = DateTime.fromObject({
         day: editTimetableDueDates.statementOfCommonGroundDueDate.day,
         month: editTimetableDueDates.statementOfCommonGroundDueDate.month,
         year: editTimetableDueDates.statementOfCommonGroundDueDate.year
       }).toISO()
     } else {
-      application.statementOfCommonGroundDueDate = null
+      _case.statementOfCommonGroundDueDate = null
     }
 
     if(editTimetableDueDates.proofOfEvidenceAndWitnessesDueDate.day.length) {
-      application.proofOfEvidenceAndWitnessesDueDate = DateTime.fromObject({
+      _case.proofOfEvidenceAndWitnessesDueDate = DateTime.fromObject({
         day: editTimetableDueDates.proofOfEvidenceAndWitnessesDueDate.day,
         month: editTimetableDueDates.proofOfEvidenceAndWitnessesDueDate.month,
         year: editTimetableDueDates.proofOfEvidenceAndWitnessesDueDate.year
       }).toISO()
     } else {
-      application.proofOfEvidenceAndWitnessesDueDate = null
+      _case.proofOfEvidenceAndWitnessesDueDate = null
     }
 
     if(editTimetableDueDates.planningObligationDueDate.day.length) {
-      application.planningObligationDueDate = DateTime.fromObject({
+      _case.planningObligationDueDate = DateTime.fromObject({
         day: editTimetableDueDates.planningObligationDueDate.day,
         month: editTimetableDueDates.planningObligationDueDate.month,
         year: editTimetableDueDates.planningObligationDueDate.year
       }).toISO()
     } else {
-      application.planningObligationDueDate = null
+      _case.planningObligationDueDate = null
     }
 
-    res.redirect(`/main/cases/${req.params.appealId}`)
+    res.redirect(`/main/cases/${req.params.caseId}`)
   })
 
 }

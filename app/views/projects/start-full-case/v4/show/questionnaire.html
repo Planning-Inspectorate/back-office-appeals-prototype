@@ -25,7 +25,10 @@
               html: 'Is this the correct type of appeal?'
             },
             value: {
-              html: 'Yes'
+              html: "No"
+            } if data['empty'] else
+            {
+              html: "Yes"
             },
             actions: {
               items: [
@@ -36,98 +39,118 @@
               ]
             }
           },
+
+
+
           {
             key: {
               html: 'Does the development change a listed building?'
             },
             value: {
-              html: '
-                <ul class="govuk-list govuk-list--bullet">
-                  <li>Yes<br>
-                    <a href="#">1282049</a><br>
-                    Grade II listed building<br>
-                    150, York Road, Bedminster, Bristol, BS3 4AL
-                  </li>
-                </ul>'
+              html: "No"
+            } if data['empty'] else
+            {
+              html: 'Yes<br>
+              <ul class="govuk-list govuk-list--bullet">
+                <li>
+                  <a href="#">1282050</a><br>
+                  Grade II listed building<br>
+                  151, York Road, Bedminster, Bristol, BS3 4AL
+                </li>
+                <li>
+                  <a href="#">1282051</a><br>
+                  Grade II listed building<br>
+                  152, York Road, Bedminster, Bristol, BS3 4AL
+                </li>
+              </ul>'
             },
             actions: {
               items: [
-                {
-                  href: 'constraints/affected-listed-building-details?cya=true',
-                  html: 'Change'
-                }
-              ]
-            }
-          } if data['answers'] != 'empty',
+              {
+                href: '/affected-listed-building-details?cya=true',
+                text: "Add",
+                visuallyHiddenText: "Item label"
+              }
+            ]
+          }if data['empty'] else 
           {
-            key: {
-              html: ''
-            },
-            value: {
-              html: ''
-              
-              
-            },
-            actions: {
-              items: [
-                {
-                  href: 'constraints/affected-listed-building-details?cya=true',
-                  html: 'Change'
-                }
-              ]
-            }
-          } if data['answers'] == 'empty',
+            items: [
+        {
+          href: "#",
+          text: "Add",
+          visuallyHiddenText: "contact details"
+        },
+        {
+          href: "#",
+          text: "Change",
+          visuallyHiddenText: "contact details"
+        }
+      ]
+          }
+        },
+
+
+             
+           
           {
             key: {
               html: 'Does the development affect the setting of listed buildings?'
             },
             value: {
+              html: "No"
+            } if data['empty'] else
+            {
               html: 'Yes<br>
-                <ul class="govuk-list govuk-list--bullet">
-                  <li>
-                    <a href="#">1282050</a><br>
-                    Grade II listed building<br>
-                    151, York Road, Bedminster, Bristol, BS3 4AL
-                  </li>
-                  <li>
-                    <a href="#">1282051</a><br>
-                    Grade II listed building<br>
-                    152, York Road, Bedminster, Bristol, BS3 4AL
-                  </li>
-                </ul>'
+              <ul class="govuk-list govuk-list--bullet">
+                <li>
+                  <a href="#">1282050</a><br>
+                  Grade II listed building<br>
+                  151, York Road, Bedminster, Bristol, BS3 4AL
+                </li>
+                <li>
+                  <a href="#">1282051</a><br>
+                  Grade II listed building<br>
+                  152, York Road, Bedminster, Bristol, BS3 4AL
+                </li>
+              </ul>'
             },
             actions: {
               items: [
-                {
-                  href: 'constraints/affected-listed-building-details?cya=true',
-                  html: 'Change'
-                }
-              ]
-            }
-          } if data['answers'] != 'empty',
+              {
+                href: '/affected-listed-building-details?cya=true',
+                text: "Add",
+                visuallyHiddenText: "Item label"
+              }
+            ]
+          }if data['empty'] else 
           {
-            key: {
-              html: 'Affected listed buildings'
-            },
-            value: {
-              html: 'No'
-            },
-            actions: {
-              items: [
-                {
-                  href: 'constraints/affected-listed-building-details?cya=true',
-                  html: 'Change'
-                }
-              ]
-            }
-          } if data['answers'] == 'empty',
+            items: [
+        {
+          href: "#",
+          text: "Add",
+          visuallyHiddenText: "contact details"
+        },
+        {
+          href: "#",
+          text: "Change",
+          visuallyHiddenText: "contact details"
+        }
+      ]
+          }
+        },
+
+          
+          
           {
             key: {
               html: 'Would the development affect a scheduled monument?'
             },
             value: {
-              html: 'Yes'
-            },
+            html: "No"
+          } if data['empty'] else
+          {
+            html: "Yes"
+          },
             actions: {
               items: [
                 {
@@ -138,52 +161,53 @@
             }
           },
           {
+            
             key: {
               html: 'Conservation area map and guidance'
             },
             value: {
-              html: '<ul class="govuk-list govuk-list--bullet">
-                      <li>
-                        <a href="#" class="govuk-link">BS3 4AL Conservation-map.pdf</a>
-                      </li>
-                      <li>
-                        <a href="#" class="govuk-link">BS3 4AL Conservation-guidance.doc</a>
-                      </li>
-                    </ul>'
+              html: "No documents"
+            } if data['empty'] else
+            {
+              html: "<a href='#'>example-file.pdf</a>"
             },
             actions: {
               items: [
                 {
-                  href: 'notified/notified-who?cya=true',
-                  html: 'Change<span class="govuk-visually-hidden"> conservation area map and guidance</span>'
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Item label"
                 }
-               
               ]
-            }
-          } if data['answers'] != 'empty',
+            }if data['empty'] else 
+            {
+              items: [
           {
-            key: {
-              html: 'Conservation area map and guidance'
-            },
-            value: {
-              html: 'Not applicable'
-            },
-            actions: {
-              items: [
-                {
-                  href: 'notified/notified-who?cya=true',
-                  html: 'Add<span class="govuk-visually-hidden"> to conservation area map and guidance</span>'
-                }
-              ]
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "contact details"
+          },
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "contact details"
+          }
+        ]
             }
-          } if data['answers'] == 'empty',
+          },
+
+
+
           {
             key: {
               html: 'Would the development affect a protected species?'
             },
             value: {
-              html: 'Yes'
-            },
+            html: "No"
+          } if data['empty'] else
+          {
+            html: "Yes"
+          },
             actions: {
               items: [
                 {
@@ -198,7 +222,10 @@
               html: 'Is the site in a green belt?'
             },
             value: {
-              html: 'No'
+              html: "No"
+            } if data['empty'] else
+            {
+              html: "Yes"
             },
             actions: {
               items: [
@@ -214,7 +241,10 @@
               html: 'Is the site in an area of outstanding natural beauty?'
             },
             value: {
-              html: 'No'
+              html: "No"
+            } if data['empty'] else
+            {
+              html: "Yes"
             },
             actions: {
               items: [
@@ -230,7 +260,10 @@
               html: 'Is the development in, near or likely to affect any designated sites?'
             },
             value: {
-              html: 'No'
+              html: "No"
+            } if data['empty'] else
+            {
+              html: "Yes"
             },
             actions: {
               items: [
@@ -246,23 +279,46 @@
               html: 'Tree Preservation Order'
             },
             value: {
-              html: 'No'
+              html: "No documents"
+            } if data['empty'] else
+            {
+              html: "<a href='#'>example-file.pdf</a>"
             },
             actions: {
               items: [
                 {
-                  href: 'constraints/tree-preservation-order?cya=true',
-                  html: 'Change'
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Item label"
                 }
               ]
+            }if data['empty'] else 
+            {
+              items: [
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "contact details"
+          },
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "contact details"
+          }
+        ]
             }
           },
+
+
           {
             key: {
               html: 'Does the development relate to anyone claiming to be a Gypsy or Traveller?'
             },
-            value: {
-              html: 'No'
+           value: {
+              html: "No"
+            } if data['empty'] else
+            {
+              html: "Yes"
             },
             actions: {
               items: [
@@ -278,15 +334,33 @@
               html: 'Definitive map and statement extract'
             },
             value: {
-              html: 'No'
+              html: "No documents"
+            } if data['empty'] else
+            {
+              html: "<a href='#'>example-file.pdf</a>"
             },
             actions: {
               items: [
                 {
-                  href: 'constraints/public-right-of-way?cya=true',
-                  html: 'Change'
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Item label"
                 }
               ]
+            }if data['empty'] else 
+            {
+              items: [
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "contact details"
+          },
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "contact details"
+          }
+        ]
             }
           }
 
@@ -318,37 +392,78 @@
               html: 'Environmental statement and supporting information'
             },
             value: {
-              html: '<a href="#">example-file.pdf</a>'
+              html: "No documents"
+            } if data['empty'] else
+            {
+              html: "<a href='#'>example-file.pdf</a>"
             },
             actions: {
               items: [
                 {
-                  html: 'Change'
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Item label"
                 }
               ]
+            }if data['empty'] else 
+            {
+              items: [
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "contact details"
+          },
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "contact details"
+          }
+        ]
             }
           },
+
+
           {
             key: {
               html: 'Screening direction'
             },
             value: {
-              html: '<a href="#">example-file.pdf</a>'
+              html: "No documents"
+            } if data['empty'] else
+            {
+              html: "<a href='#'>example-file.pdf</a>"
             },
             actions: {
               items: [
                 {
-                  html: 'Change'
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Item label"
                 }
               ]
-            }
+            }if data['empty'] else 
+            {
+              items: [
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "contact details"
           },
           {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "contact details"
+          }
+        ]
+            }
+          },
+
+          {
             key: {
-              html: 'Description of development'
+              html: 'Description of the development'
             },
             value: {
-              html: 'Test description'
+              html: "Example description"
             },
             actions: {
               items: [
@@ -358,12 +473,17 @@
               ]
             }
           },
+
+          
           {
             key: {
               html: 'Is the development in, partly in, or likely to affect a sensitive area?'
             },
             value: {
-              html: 'Yes'
+              html: "No"
+            } if data['empty'] else
+            {
+              html: "Yes"
             },
             actions: {
               items: [
@@ -378,14 +498,28 @@
               html: 'Does the development meet or exceed the threshold or criteria in column 2?'
             },
             value: {
-              html: 'Yes'
+              html: "Not answered"
+            } if data['empty'] else
+            {
+              html: "Yes"
             },
             actions: {
               items: [
                 {
-                  html: 'Change'
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Item label"
                 }
               ]
+            }if data['empty'] else 
+            {
+              items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "contact details"
+          }
+        ]
             }
           },
          
@@ -395,31 +529,63 @@
               html: 'Screening opinion'
             },
             value: {
-              html: '<a href="#">example-file.pdf</a>'
+              html: "No documents"
+            } if data['empty'] else
+            {
+              html: "<a href='#'>example-file.pdf</a>"
             },
             actions: {
               items: [
                 {
-                  href: 'environment/schedule-type?cya=true',
-                  html: 'Change'
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Item label"
                 }
               ]
+            }if data['empty'] else 
+            {
+              items: [
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "contact details"
+          },
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "contact details"
+          }
+        ]
             }
           },
+
           {
             key: {
               html: 'Did your screening opinion say the development needed an environmental statement?'
             },
             value: {
-              html: 'Yes'
+              html: "Not answered"
+            } if data['empty'] else
+            {
+              html: "Yes"
             },
             actions: {
               items: [
                 {
-                  href: 'environment/schedule-type?cya=true',
-                  html: 'Change'
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Item label"
                 }
               ]
+            }if data['empty'] else 
+            {
+              items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "contact details"
+          }
+        ]
             }
           },
           {
@@ -427,15 +593,33 @@
               html: 'Environmental statement and supporting information'
             },
             value: {
-              html: '<a href="#">example-file.pdf</a>'
+              html: "No documents"
+            } if data['empty'] else
+            {
+              html: "<a href='#'>example-file.pdf</a>"
             },
             actions: {
               items: [
                 {
-                  href: 'environment/schedule-type?cya=true',
-                  html: 'Change'
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Item label"
                 }
               ]
+            }if data['empty'] else 
+            {
+              items: [
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "contact details"
+          },
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "contact details"
+          }
+        ]
             }
           }
           
@@ -450,15 +634,33 @@
               html: 'Who did you notify about this application?'
             },
             value: {
-              html: '<a href="#">example-file.pdf</a>'
+              html: "No documents"
+            } if data['empty'] else
+            {
+              html: "<a href='#'>example-file.pdf</a>"
             },
             actions: {
               items: [
                 {
-                  href: 'environment/schedule-type?cya=true',
-                  html: 'Change'
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Item label"
                 }
               ]
+            }if data['empty'] else 
+            {
+              items: [
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "contact details"
+          },
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "contact details"
+          }
+        ]
             }
           },
           {
@@ -481,14 +683,33 @@
               html: 'Site notice'
             },
             value: {
-              html: '<a href="#">example-file.pdf</a>'
+              html: "No documents"
+            } if data['empty'] else
+            {
+              html: "<a href='#'>example-file.pdf</a>"
             },
             actions: {
               items: [
                 {
-                  html: 'Change'
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Item label"
                 }
               ]
+            }if data['empty'] else 
+            {
+              items: [
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "contact details"
+          },
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "contact details"
+          }
+        ]
             }
           },
           {
@@ -496,14 +717,33 @@
               html: 'Letters or emails sent to interested parties with their addresses'
             },
             value: {
-              html: '<a href="#">example-file.pdf</a>'
+              html: "No documents"
+            } if data['empty'] else
+            {
+              html: "<a href='#'>example-file.pdf</a>"
             },
             actions: {
               items: [
                 {
-                  html: 'Change'
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Item label"
                 }
               ]
+            }if data['empty'] else 
+            {
+              items: [
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "contact details"
+          },
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "contact details"
+          }
+        ]
             }
           },
           {
@@ -511,14 +751,33 @@
               html: 'Press advertisement'
             },
             value: {
-              html: '<a href="#">example-file.pdf</a>'
+              html: "No documents"
+            } if data['empty'] else
+            {
+              html: "<a href='#'>example-file.pdf</a>"
             },
             actions: {
               items: [
                 {
-                  html: 'Change'
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Item label"
                 }
               ]
+            }if data['empty'] else 
+            {
+              items: [
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "contact details"
+          },
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "contact details"
+          }
+        ]
             }
           },
           {
@@ -526,14 +785,33 @@
               html: 'Appeal notification letter'
             },
             value: {
-              html: '<a href="#">example-file.pdf</a>'
+              html: "No documents"
+            } if data['empty'] else
+            {
+              html: "<a href='#'>example-file.pdf</a>"
             },
             actions: {
               items: [
                 {
-                  html: 'Change'
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Item label"
                 }
               ]
+            }if data['empty'] else 
+            {
+              items: [
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "contact details"
+          },
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "contact details"
+          }
+        ]
             }
           }
 
@@ -552,7 +830,10 @@
               html: 'Did you consult all the relevant statutory consultees about the development?'
             },
             value: {
-              html: 'Yes<br>List of bodies'
+              html: "No"
+            } if data['empty'] else
+            {
+              html: "Yes<br>List of bodies"
             },
             actions: {
               items: [
@@ -567,15 +848,33 @@
               html: 'Consultation responses and standing advice'
             },
             value: {
-              html: '<a href="#">example-file.pdf</a>'
+              html: "No documents"
+            } if data['empty'] else
+            {
+              html: "<a href='#'>example-file.pdf</a>"
             },
             actions: {
               items: [
                 {
-                  href: 'environment/schedule-type?cya=true',
-                  html: 'Change'
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Item label"
                 }
               ]
+            }if data['empty'] else 
+            {
+              items: [
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "contact details"
+          },
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "contact details"
+          }
+        ]
             }
           },
           {
@@ -583,14 +882,33 @@
               html: 'Representations from members of the public or other parties'
             },
             value: {
-              html: '<a href="#">example-file.pdf</a>'
+              html: "No documents"
+            } if data['empty'] else
+            {
+              html: "<a href='#'>example-file.pdf</a>"
             },
             actions: {
               items: [
                 {
-                  html: 'Change'
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Item label"
                 }
               ]
+            }if data['empty'] else 
+            {
+              items: [
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "contact details"
+          },
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "contact details"
+          }
+        ]
             }
           }          
         ]
@@ -606,14 +924,33 @@
               html: 'Planning officer’s report'
             },
             value: {
-              html: '<a href="#">example-file.pdf</a>'
+              html: "No documents"
+            } if data['empty'] else
+            {
+              html: "<a href='#'>example-file.pdf</a>"
             },
             actions: {
               items: [
                 {
-                  html: 'Change'
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Item label"
                 }
               ]
+            }if data['empty'] else 
+            {
+              items: [
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "contact details"
+          },
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "contact details"
+          }
+        ]
             }
           },
           {
@@ -621,15 +958,33 @@
               html: 'Relevant policies from your statutory development plan'
             },
             value: {
-              html: '<a href="#">example-file.pdf</a>'
+              html: "No documents"
+            } if data['empty'] else
+            {
+              html: "<a href='#'>example-file.pdf</a>"
             },
             actions: {
               items: [
                 {
-                  href: 'environment/schedule-type?cya=true',
-                  html: 'Change'
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Item label"
                 }
               ]
+            }if data['empty'] else 
+            {
+              items: [
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "contact details"
+          },
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "contact details"
+          }
+        ]
             }
           },
           {
@@ -637,14 +992,33 @@
               html: 'Emerging plan and supporting information'
             },
             value: {
-              html: '<a href="#">example-file.pdf</a>'
+              html: "No documents"
+            } if data['empty'] else
+            {
+              html: "<a href='#'>example-file.pdf</a>"
             },
             actions: {
               items: [
                 {
-                  html: 'Change'
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Item label"
                 }
               ]
+            }if data['empty'] else 
+            {
+              items: [
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "contact details"
+          },
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "contact details"
+          }
+        ]
             }
           },
           {
@@ -652,14 +1026,33 @@
               html: 'Other relevant policies'
             },
             value: {
-              html: '<a href="#">example-file.pdf</a>'
+              html: "No documents"
+            } if data['empty'] else
+            {
+              html: "<a href='#'>example-file.pdf</a>"
             },
             actions: {
               items: [
                 {
-                  html: 'Change'
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Item label"
                 }
               ]
+            }if data['empty'] else 
+            {
+              items: [
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "contact details"
+          },
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "contact details"
+          }
+        ]
             }
           },
           {
@@ -667,14 +1060,33 @@
               html: 'Relevant policy extracts and supplementary planning documents'
             },
             value: {
-              html: '<a href="#">example-file.pdf</a>'
+              html: "No documents"
+            } if data['empty'] else
+            {
+              html: "<a href='#'>example-file.pdf</a>"
             },
             actions: {
               items: [
                 {
-                  html: 'Change'
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Item label"
                 }
               ]
+            }if data['empty'] else 
+            {
+              items: [
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "contact details"
+          },
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "contact details"
+          }
+        ]
             }
           },
           {
@@ -682,14 +1094,33 @@
               html: 'Community infrastructure levy'
             },
             value: {
-              html: '<a href="#">example-file.pdf</a>'
+              html: "No documents"
+            } if data['empty'] else
+            {
+              html: "<a href='#'>example-file.pdf</a>"
             },
             actions: {
               items: [
                 {
-                  html: 'Change'
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Item label"
                 }
               ]
+            }if data['empty'] else 
+            {
+              items: [
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "contact details"
+          },
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "contact details"
+          }
+        ]
             }
           },
           {
@@ -697,14 +1128,28 @@
               html: 'Is the community infrastructure levy formally adopted?'
             },
             value: {
-              html: 'Yes'
+              html: "Not answered"
+            } if data['empty'] else
+            {
+              html: "Yes"
             },
             actions: {
               items: [
                 {
-                  html: 'Change'
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Item label"
                 }
               ]
+            }if data['empty'] else 
+            {
+              items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "contact details"
+          }
+        ]
             }
           },
           {
@@ -712,16 +1157,30 @@
               html: 'When was the community infrastructure levy formally adopted?'
             },
             value: {
-              html: '16 January 2025'
+              html: "Not answered"
+            } if data['empty'] else
+            {
+              html: "16 January 2025"
             },
             actions: {
               items: [
                 {
-                  html: 'Change'
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Item label"
                 }
               ]
+            }if data['empty'] else 
+            {
+              items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "contact details"
+          }
+        ]
             }
-          }            
+          }           
         ]
       }) }}
 
@@ -735,7 +1194,10 @@
               html: 'Might the inspector need access to the appellant’s land or property?'
             },
             value: {
-              html: 'Yes<br>Terraced property'
+              html: "No"
+            } if data['empty'] else
+            {
+              html: "Yes<br>To check restricted view."
             },
             actions: {
               items: [
@@ -750,7 +1212,10 @@
               html: 'Might the inspector need to enter a neighbour’s land or property?'
             },
             value: {
-              html: 'Yes<br>To check the restricted view'
+              html: "No"
+            } if data['empty'] else
+            {
+              html: "Yes<br>To check the restricted view"
             },
             actions: {
               items: [
@@ -766,15 +1231,28 @@
               html: 'Address of the neighbour’s land or property'
             },
             value: {
-              html: '10 Example Street<br>London<br>A1 1AA'
+              html: "Not answered"
+            } if data['empty'] else
+            {
+              html: "10 Example Street<br>London<br>A1 1AA"
             },
             actions: {
               items: [
                 {
-                  href: 'environment/schedule-type?cya=true',
-                  html: 'Change'
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Item label"
                 }
               ]
+            }if data['empty'] else 
+            {
+              items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "contact details"
+          }
+        ]
             }
           },
           {
@@ -782,7 +1260,10 @@
               html: 'Are there any potential safety risks?'
             },
             value: {
-              html: 'Yes<br>Hostile neighbours'
+              html: "No"
+            } if data['empty'] else
+            {
+              html: "Yes<br>Hostile neighbours"
             },
             actions: {
               items: [
@@ -804,7 +1285,10 @@
               html: 'Which procedure do you think is most appropriate for this appeal?'
             },
             value: {
-              html: 'Inquiry'
+              html: "Written representations"
+            } if data['empty'] else
+            {
+              html: "Inquiry"
             },
             actions: {
               items: [
@@ -819,15 +1303,28 @@
               html: 'How many days would you expect the inquiry to last?'
             },
             value: {
-              html: '10'
+              html: "Not answered"
+            } if data['empty'] else
+            {
+              html: "10"
             },
             actions: {
               items: [
                 {
-                  href: 'environment/schedule-type?cya=true',
-                  html: 'Change'
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Item label"
                 }
               ]
+            }if data['empty'] else 
+            {
+              items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "contact details"
+          }
+        ]
             }
           },
           {
@@ -835,14 +1332,28 @@
               html: 'Why would you prefer this procedure?'
             },
             value: {
-              html: 'Complex case'
+              html: "Not answered"
+            } if data['empty'] else
+            {
+              html: "Complex case"
             },
             actions: {
               items: [
                 {
-                  html: 'Change'
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Item label"
                 }
               ]
+            }if data['empty'] else 
+            {
+              items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "contact details"
+          }
+        ]
             }
           },
           {
@@ -850,8 +1361,12 @@
               html: 'Are there any other ongoing appeals next to, or close to the site?'
             },
             value: {
-              html: 'Yes<br>1234567'
+              html: "No"
+            } if data['empty'] else
+            {
+              html: "Yes<br>123456789"
             },
+           
             actions: {
               items: [
                 {
@@ -865,7 +1380,10 @@
               html: 'Are there any new conditions?'
             },
             value: {
-              html: 'Yes<br>Must include community garden'
+              html: "No"
+            } if data['empty'] else
+            {
+              html: "Yes<br>Must include community garden"
             },
             actions: {
               items: [

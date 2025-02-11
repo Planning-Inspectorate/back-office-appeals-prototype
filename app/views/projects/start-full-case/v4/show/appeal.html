@@ -139,7 +139,7 @@
               text: "Does the appellant know who owns the land involved in the appeal?"
             },
             value: {
-              html: "Not applicable"
+              html: "Not answered"
             } if data['empty'] else
             {
               html: "Some of the land"
@@ -181,7 +181,7 @@
               text: "Are you a tenant of the agricultural holding?"
             },
             value: {
-              html: "Not applicable"
+              html: "Not answered"
             } if data['empty'] else
             {
               html: "Yes"
@@ -201,7 +201,7 @@
               text: "Are there any other tenants?"
             },
             value: {
-              html: "Not applicable"
+              html: "Not answered"
             } if data['empty'] else
             {
               html: "Yes"
@@ -400,7 +400,7 @@
               text: "What’s the date on the decision letter from the local planning authority?​"
             },
             value: {
-              html: "Not applicable"
+              html: "Not answered"
             } if data['empty'] else
             {
               html: "13 November 2024"
@@ -465,7 +465,7 @@
               text: "Why would you prefer this appeal procedure?	"
             },
             value: {
-              html: "Not applicable"
+              html: "Not answered"
             } if data['empty'] else
             {
               html: "Needs a thorough investigation"
@@ -494,7 +494,7 @@
               text: "How many days would you expect the inquiry to last?"
             },
             value: {
-              html: "Not applicable"
+              html: "Not answered"
             } if data['empty'] else
             {
               html: "3"
@@ -523,7 +523,7 @@
               text: "How many witnesses would you expect to give evidence at the inquiry?"
             },
             value: {
-              html: "Not applicable"
+              html: "Not answered"
             } if data['empty'] else
             {
               html: "3"
@@ -565,15 +565,22 @@
               html: "<a href='#'>example-file.pdf</a>"
             },
             actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "Another individual"
-                  }
-                ]
-              }
+              items: [
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "contact details"
           },
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "contact details"
+          }
+          ]
+          }
+          },
+
+
           {
             key: {
               text: "Agreement to change the description of development"
@@ -595,14 +602,20 @@
             }if data['empty'] else 
             {
               items: [
-                {
-                  href: "Item URL",
-                  text: "Change",
-                  visuallyHiddenText: "Item label"
-                }
-              ]
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "contact details"
+          },
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "contact details"
+          }
+        ]
             }
           },
+
           {
             key: {
               text: "Decision letter from the local planning authority"
@@ -612,15 +625,56 @@
             },
             actions: {
                 items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "Another individual"
-                  }
-                ]
-              }
+            {
+              href: "#",
+              text: "Add",
+              visuallyHiddenText: "contact details"
+            },
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "contact details"
+            }
+            ]
+            }
+            },
+
+          {
+            key: {
+              text: "Appeal statement"
+            },
+            value: {
+              html: "No documents"
+            } if data['empty'] else
+            {
+              html: "<a href='#'>example-file.pdf</a>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }if data['empty'] else 
+            {
+              items: [
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "contact details"
           },
-          
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "contact details"
+          }
+        ]
+            }
+          },
+
+
           {
             key: {
               text: "Do you plan to submit a planning obligation to support your appeal?"
@@ -658,7 +712,7 @@
             },
             
             value: {
-              html: "Not applicable"
+              html: "Not answered"
             } if data['empty'] else
             {
               html: "Finalised and ready to submit"
@@ -706,12 +760,17 @@
             }if data['empty'] else 
             {
               items: [
-                {
-                  href: "Item URL",
-                  text: "Change",
-                  visuallyHiddenText: "Item label"
-                }
-              ]
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "contact details"
+          },
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "contact details"
+          }
+        ]
             }
           },
 
@@ -736,60 +795,21 @@
             }if data['empty'] else 
             {
               items: [
-                {
-                  href: "Item URL",
-                  text: "Change",
-                  visuallyHiddenText: "Item label"
-                }
-              ]
-            }
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "contact details"
           },
           {
-            key: {
-              text: "Appeal statement"
-            },
-            value: {
-              html: "<a href='#'>example-file.pdf</a>"
-            },
-            actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "Another individual"
-                  }
-                ]
-              }
-          },
-          {
-            key: {
-              text: "Draft statement of common ground"
-            },
-            value: {
-              html: "No documents"
-            } if data['empty'] else
-            {
-              html: "<a href='#'>example-file.pdf</a>"
-            },
-            actions: {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Add",
-                  visuallyHiddenText: "Item label"
-                }
-              ]
-            }if data['empty'] else 
-            {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Change",
-                  visuallyHiddenText: "Item label"
-                }
-              ]
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "contact details"
+          }
+        ]
             }
           },
+         
+          
 
           {
             key: {
@@ -812,12 +832,17 @@
             }if data['empty'] else 
             {
               items: [
-                {
-                  href: "Item URL",
-                  text: "Change",
-                  visuallyHiddenText: "Item label"
-                }
-              ]
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "contact details"
+          },
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "contact details"
+          }
+        ]
             }
           },
 
@@ -842,14 +867,20 @@
             }if data['empty'] else 
             {
               items: [
-                {
-                  href: "Item URL",
-                  text: "Change",
-                  visuallyHiddenText: "Item label"
-                }
-              ]
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "contact details"
+          },
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "contact details"
+          }
+        ]
             }
           },
+
           {
             key: {
               text: "Plans, drawings and supporting documents"
@@ -860,25 +891,30 @@
             {
               html: "<a href='#'>example-file.pdf</a>"
             },
-            actions: {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Add",
-                  visuallyHiddenText: "Add plans, drawings and supporting documents"
-                }
-              ]
-            }if data['empty'] else 
+              actions: {
+                items: [
+                  {
+                    href: "Item URL",
+                    text: "Add",
+                    visuallyHiddenText: "Item label"
+                  }
+                ]
+              }if data['empty'] else 
+              {
+                items: [
             {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Change",
-                  visuallyHiddenText: "Change plans, drawings and supporting documents"
-                }
-              ]
+              href: "#",
+              text: "Add",
+              visuallyHiddenText: "contact details"
+            },
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "contact details"
             }
-          },
+          ]
+              }
+            },
 
           {
             key: {
@@ -915,6 +951,8 @@
             }
           },
 
+
+
           {
             key: {
               text: "Other new supporting documents"
@@ -930,16 +968,24 @@
                 {
                   href: "Item URL",
                   text: "Add",
-                  visuallyHiddenText: "Add other new supporting documents"
-                }, 
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "Change other new supporting documents"
-                } if not data['empty']
+                  visuallyHiddenText: "Item label"
+                }
               ]
-            }              
-      
+            }if data['empty'] else 
+            {
+              items: [
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "contact details"
+          },
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "contact details"
+          }
+        ]
+            }
           }
 
 

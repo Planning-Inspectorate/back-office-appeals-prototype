@@ -1,0 +1,24 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Confirm that you want to start the case" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal 2114328</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      <p>We’ll start the timetable on 7 October 2024 and send start letters to the relevant parties.</p>
+
+      <form method="post">
+        {{ govukButton({
+          text: "Start case"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

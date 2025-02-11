@@ -4,9 +4,15 @@ module.exports = router => {
 
   router.get('/main/cases/:caseId/start-case', function (req, res) {
     let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
-    res.render('/main/cases/start-case/index', {
-      _case
-    })
+
+    if(_case.type == 'Householder appeal') {
+      res.redirect(`/main/cases/${req.params.caseId}/start-case/confirm`)
+    }
+    else {
+      res.render('/main/cases/start-case/index', {
+        _case
+      })
+    }
   })
 
   router.post('/main/cases/:caseId/start-case', function (req, res) {
@@ -196,6 +202,22 @@ router.get('/main/cases/:caseId/start-case/has-inquiry-address', function (req, 
       _case.timetableShared = true
     }
 
+    req.flash('success', 'Case started')
+    res.redirect(`/main/cases/${req.params.caseId}`)
+  })
+
+  router.get('/main/cases/:caseId/start-case/confirm', function (req, res) {
+    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+
+    res.render('/main/cases/start-case/confirm', {
+      _case
+    })
+
+  })
+
+  router.post('/main/cases/:caseId/start-case/confirm', function (req, res) {
+    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    _case.status = 'Awaiting LPAQ'
     req.flash('success', 'Case started')
     res.redirect(`/main/cases/${req.params.caseId}`)
   })

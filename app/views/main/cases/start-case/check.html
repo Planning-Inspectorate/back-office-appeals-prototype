@@ -37,7 +37,7 @@
         ]
       }) }}
 
-      {% if _case.procedure == 'Inquiry' %}
+      {% if _case.procedure == 'Inquiry' or data.startCase.procedure == 'Inquiry' %}
         <h2 class="govuk-heading-m">Inquiry details</h2>
 
         {{ govukSummaryList({

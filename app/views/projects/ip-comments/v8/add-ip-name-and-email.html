@@ -39,6 +39,25 @@
         spellcheck: false
       }) }}
 
+      <section class="govuk-!-margin-bottom-3">
+        <!-- site visit requested -->
+        {{ govukCheckboxes({
+          name: "siteVisit",
+          fieldset: {
+            legend: {
+              text: "Site visit requested",
+              classes: "govuk-visually-hidden"
+            }
+          },
+          items: [
+            {
+              value: "keepMeAnonymous",
+              text: "Do not share this interested party’s name"
+            }
+          ]
+        }) }}
+      </section>
+
       {{ govukInput({
         label: {
           text: "Email address (optional)"

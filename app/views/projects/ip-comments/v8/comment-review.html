@@ -91,6 +91,11 @@
             {% endif %}
           </dd>
           <dd class="govuk-summary-list__actions">
+            {% if data['manual-ip-comment'] %}
+              <a href='change-address?address-for=review&address-added&address-changed=' class='govuk-link govuk-link--no-visited-state'>
+                Anonymise user
+              </a>
+            {% endif %}
           </dd>
         </div>
 

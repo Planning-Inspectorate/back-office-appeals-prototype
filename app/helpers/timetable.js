@@ -1,4 +1,3 @@
-const moment = require('moment')
 const { DateTime } = require("luxon");
 
 const row = params => {
@@ -26,23 +25,23 @@ const generateTimetableHouseholder = (_case) => {
       timetable.push(row({ key: 'Valid date', value: 'Not validated', action: { href: `/main/cases/${_case.id}/validate`, text: 'Validate' }}))
       break
     case 'Ready to start':
-      timetable.push(row({ key: 'Valid date', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Valid date', value: DateTime.now().toFormat('d MMMM yyyy'), action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
       timetable.push(row({ key: 'Start date', value: 'Not started', action: { href: `/main/cases/${_case.id}/start-case`, text: 'Start' }}))
       break
       case 'Awaiting LPAQ':
       case 'LPAQ ready to review':
       case 'Site visit ready to set up':
-        timetable.push(row({ key: 'Valid date', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
-        timetable.push(row({ key: 'Start date', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${_case.id}/start-case`, text: 'Change' }}))
-        timetable.push(row({ key: 'LPA questionnaire due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
+        timetable.push(row({ key: 'Valid date', value: DateTime.now().toFormat('d MMMM yyyy'), action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
+        timetable.push(row({ key: 'Start date', value: DateTime.now().toFormat('d MMMM yyyy'), action: { href: `/main/cases/${_case.id}/start-case`, text: 'Change' }}))
+        timetable.push(row({ key: 'LPA questionnaire due', value: DateTime.now().toFormat('d MMMM yyyy'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
         timetable.push(row({ key: 'Site visit', value: 'Not set up',  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Set up' }}))
         break
       case 'Awaiting site visit':
       case 'Decision ready to issue':
-        timetable.push(row({ key: 'Valid date', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
-        timetable.push(row({ key: 'Start date', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${_case.id}/start-case`, text: 'Change' }}))
-        timetable.push(row({ key: 'LPA questionnaire due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
-        timetable.push(row({ key: 'Site visit', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
+        timetable.push(row({ key: 'Valid date', value: DateTime.now().toFormat('d MMMM yyyy'), action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
+        timetable.push(row({ key: 'Start date', value: DateTime.now().toFormat('d MMMM yyyy'), action: { href: `/main/cases/${_case.id}/start-case`, text: 'Change' }}))
+        timetable.push(row({ key: 'LPA questionnaire due', value: DateTime.now().toFormat('d MMMM yyyy'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
+        timetable.push(row({ key: 'Site visit', value: DateTime.now().toFormat('d MMMM yyyy'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
         break
   }
   return timetable
@@ -56,7 +55,7 @@ const generateTimetableWritten = (_case) => {
       timetable.push(row({ key: 'Valid date', value: 'Not validated', action: { href: `/main/cases/${_case.id}/validate`, text: 'Validate' }}))
       break
     case 'Ready to start':
-      timetable.push(row({ key: 'Valid date', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Valid date', value: DateTime.now().toFormat('d MMMM yyyy'), action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
       timetable.push(row({ key: 'Start date', value: 'Not started', action: { href: `/main/cases/${_case.id}/start-case`, text: 'Start' }}))
       break
     case 'Awaiting LPAQ':
@@ -68,23 +67,23 @@ const generateTimetableWritten = (_case) => {
     case 'Final comments ready to review':
     case 'Final comments ready to share':
     case 'Site visit ready to set up':
-      timetable.push(row({ key: 'Valid date', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
-      timetable.push(row({ key: 'Start date', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${_case.id}/start-case`, text: 'Change' }}))
-      timetable.push(row({ key: 'LPA questionnaire due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
-      timetable.push(row({ key: 'Statements due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
-      timetable.push(row({ key: 'Interested party comments due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
-      timetable.push(row({ key: 'Final comments due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Valid date', value: DateTime.now().toFormat('d MMMM yyyy'), action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Start date', value: DateTime.now().toFormat('d MMMM yyyy'), action: { href: `/main/cases/${_case.id}/start-case`, text: 'Change' }}))
+      timetable.push(row({ key: 'LPA questionnaire due', value: DateTime.now().toFormat('d MMMM yyyy'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Statements due', value: DateTime.now().toFormat('d MMMM yyyy'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Interested party comments due', value: DateTime.now().toFormat('d MMMM yyyy'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Final comments due', value: DateTime.now().toFormat('d MMMM yyyy'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
       timetable.push(row({ key: 'Site visit', value: 'Not set up',  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Set up' }}))
       break
     case 'Awaiting site visit':
     case 'Decision ready to issue':
-      timetable.push(row({ key: 'Valid date', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
-      timetable.push(row({ key: 'Start date', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${_case.id}/start-case`, text: 'Change' }}))
-      timetable.push(row({ key: 'LPA questionnaire due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
-      timetable.push(row({ key: 'Statements due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
-      timetable.push(row({ key: 'Interested party comments due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
-      timetable.push(row({ key: 'Final comments due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
-      timetable.push(row({ key: 'Site visit', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Valid date', value: DateTime.now().toFormat('d MMMM yyyy'), action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Start date', value: DateTime.now().toFormat('d MMMM yyyy'), action: { href: `/main/cases/${_case.id}/start-case`, text: 'Change' }}))
+      timetable.push(row({ key: 'LPA questionnaire due', value: DateTime.now().toFormat('d MMMM yyyy'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Statements due', value: DateTime.now().toFormat('d MMMM yyyy'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Interested party comments due', value: DateTime.now().toFormat('d MMMM yyyy'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Final comments due', value: DateTime.now().toFormat('d MMMM yyyy'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Site visit', value: DateTime.now().toFormat('d MMMM yyyy'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
       break
   }
   return timetable
@@ -98,7 +97,7 @@ const generateTimetableHearing = (_case) => {
       timetable.push(row({ key: 'Valid date', value: 'Not validated', action: { href: `/main/cases/${_case.id}/validate`, text: 'Validate' }}))
       break
     case 'Ready to start':
-      timetable.push(row({ key: 'Valid date', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Valid date', value: DateTime.now().toFormat('d MMMM yyyy'), action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
       timetable.push(row({ key: 'Start date', value: 'Not started', action: { href: `/main/cases/${_case.id}/start-case`, text: 'Start' }}))
       break
     case 'Awaiting LPAQ':
@@ -107,25 +106,25 @@ const generateTimetableHearing = (_case) => {
     case 'Statements and IP comments ready to review':
     case 'Statements and IP comments ready to share':
     case 'Hearing ready to set up':
-      timetable.push(row({ key: 'Valid date', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
-      timetable.push(row({ key: 'Start date', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${_case.id}/start-case`, text: 'Change' }}))
-      timetable.push(row({ key: 'LPA questionnaire due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
-      timetable.push(row({ key: 'Statements due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
-      timetable.push(row({ key: 'Interested party comments due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
-      timetable.push(row({ key: 'Statement of common ground due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${_case.id}/edit-statement-of-common-ground-due-date`, text: 'Change' }}))
+      timetable.push(row({ key: 'Valid date', value: DateTime.now().toFormat('d MMMM yyyy'), action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Start date', value: DateTime.now().toFormat('d MMMM yyyy'), action: { href: `/main/cases/${_case.id}/start-case`, text: 'Change' }}))
+      timetable.push(row({ key: 'LPA questionnaire due', value: DateTime.now().toFormat('d MMMM yyyy'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Statements due', value: DateTime.now().toFormat('d MMMM yyyy'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Interested party comments due', value: DateTime.now().toFormat('d MMMM yyyy'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Statement of common ground due', value: DateTime.now().toFormat('d MMMM yyyy'),  action: { href: `/main/cases/${_case.id}/edit-statement-of-common-ground-due-date`, text: 'Change' }}))
       timetable.push(row({ key: 'Planning obligation due', value: 'Awaiting hearing date',  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
       timetable.push(row({ key: 'Hearing', value: 'Not set up',  action: { href: `/main/cases/${_case.id}/add-hearing`, text: 'Set up' }}))
       break
     case 'Awaiting hearing':
     case 'Decision ready to issue':
-      timetable.push(row({ key: 'Valid date', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
-      timetable.push(row({ key: 'Start date', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${_case.id}/start-case`, text: 'Change' }}))
-      timetable.push(row({ key: 'LPA questionnaire due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
-      timetable.push(row({ key: 'Statements due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
-      timetable.push(row({ key: 'Interested party comments due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
-      timetable.push(row({ key: 'Statement of common ground due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
-      timetable.push(row({ key: 'Planning obligation due', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
-      timetable.push(row({ key: 'Hearing', value: moment().format('D MMMM YYYY'),  action: { href: `/main/cases/${_case.id}/add-hearing`, text: 'Set up' }}))
+      timetable.push(row({ key: 'Valid date', value: DateTime.now().toFormat('d MMMM yyyy'), action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Start date', value: DateTime.now().toFormat('d MMMM yyyy'), action: { href: `/main/cases/${_case.id}/start-case`, text: 'Change' }}))
+      timetable.push(row({ key: 'LPA questionnaire due', value: DateTime.now().toFormat('d MMMM yyyy'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Statements due', value: DateTime.now().toFormat('d MMMM yyyy'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Interested party comments due', value: DateTime.now().toFormat('d MMMM yyyy'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Statement of common ground due', value: DateTime.now().toFormat('d MMMM yyyy'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Planning obligation due', value: DateTime.now().toFormat('d MMMM yyyy'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Hearing', value: DateTime.now().toFormat('d MMMM yyyy'),  action: { href: `/main/cases/${_case.id}/add-hearing`, text: 'Set up' }}))
       break
   }
   return timetable
@@ -150,7 +149,7 @@ const generateTimetableInquiry = (_case) => {
     case 'Proof of evidence and witnesses ready to share':
     case 'Awaiting inquiry':
     case 'Decision ready to issue':
-      timetable.push(row({ key: 'Valid date', value: moment().format('D MMMM YYYY'), action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
+      timetable.push(row({ key: 'Valid date', value: DateTime.now().toFormat('d MMMM yyyy'), action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
 
 
       var key = 'Start date'

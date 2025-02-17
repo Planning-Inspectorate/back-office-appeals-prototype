@@ -16,7 +16,7 @@
           id: "whatever",
           fieldset: {
             legend: {
-              text: 'LPA questionnaire due (optional)',
+              text: 'LPA questionnaire due',
               classes: "govuk-fieldset__legend--m"
             }
           },
@@ -49,7 +49,7 @@
           id: "whatever",
           fieldset: {
             legend: {
-              text: 'Statements due (optional)',
+              text: 'Statements due',
               classes: "govuk-fieldset__legend--m"
             }
           },
@@ -82,7 +82,7 @@
           id: "whatever",
           fieldset: {
             legend: {
-              text: 'Interested party comments due (optional)',
+              text: 'Interested party comments due',
               classes: "govuk-fieldset__legend--m"
             }
           },
@@ -115,7 +115,7 @@
           id: "whatever",
           fieldset: {
             legend: {
-              text: 'Statement of common ground due (optional)',
+              text: 'Statement of common ground due',
               classes: "govuk-fieldset__legend--m"
             }
           },
@@ -148,7 +148,7 @@
           id: "whatever",
           fieldset: {
             legend: {
-              text: 'Proof of evidence and witnesses due (optional)',
+              text: 'Proof of evidence and witnesses due',
               classes: "govuk-fieldset__legend--m"
             }
           },
@@ -181,7 +181,7 @@
           id: "whatever",
           fieldset: {
             legend: {
-              text: 'Planning obligation due (optional)',
+              text: 'Planning obligation due',
               classes: "govuk-fieldset__legend--m"
             }
           },
@@ -210,18 +210,10 @@
           ]
         }) }}
 
-        {% if _case.LPAQuestionnaireDueDate or _case.statementsDueDate or _case.interestedPartyCommentsDueDate or _case.statementOfCommonGroundDueDate or applicaiton.proofOfEvidenceAndWitnessesDueDate or _case.planningObligationDueDate %}
-          {{ govukButton({
-            text: 'Update timetable due dates'
-          }) }}
-        {% else %}
 
-          <input type="hidden" name='noneSet' value="yep">
-
-          {{ govukButton({
-            text: 'Add timetable due dates'
-          }) }}
-        {% endif %}
+        {{ govukButton({
+          text: 'Update timetable due dates'
+        }) }}
       </form>
 
     </div>

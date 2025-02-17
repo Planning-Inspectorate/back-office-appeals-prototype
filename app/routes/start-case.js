@@ -18,11 +18,11 @@ module.exports = router => {
   router.post('/main/cases/:caseId/start-case', function (req, res) {
     let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
     if(req.session.data.startCase.procedure === 'Inquiry') {
-      if(_case.inquiry) {
-        res.redirect(`/main/cases/${req.params.caseId}/start-case/inquiry-date`)
-      } else {
-        res.redirect(`/main/cases/${req.params.caseId}/start-case/has-inquiry`)
-      }
+      // if(_case.inquiry) {
+      res.redirect(`/main/cases/${req.params.caseId}/start-case/inquiry-date`)
+      // } else {
+      //   res.redirect(`/main/cases/${req.params.caseId}/start-case/has-inquiry`)
+      // }
     } else {
       res.redirect(`/main/cases/${req.params.caseId}/start-case/check`)
     }

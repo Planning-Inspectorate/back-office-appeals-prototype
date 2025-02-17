@@ -8,8 +8,13 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-l">Appeal 2114328</span>
+      <span class="govuk-caption-l">Appeal {{_case.id}}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
+
+      {% set address %}
+        {{appAddress({ address: data.editProcedure.inquiryAddress })}}
+      {% endset %}
+
       {{ govukSummaryList({
         rows: [
           {
@@ -17,14 +22,14 @@
               text: "Appeal procedure"
             },
             value: {
-              text: data.editAppealProcedure.procedure
+              text: data.editProcedure.procedure
             },
             actions: {
               items: [
                 {
                   href: "/main/cases/:caseId/edit-procedure" | replace(':caseId', _case.id),
                   text: "Change",
-                  visuallyHiddenText: "Procedure"
+                  visuallyHiddenText: "Appeal procedure"
                 }
               ]
             }
@@ -32,18 +37,259 @@
         ]
       }) }}
 
+      {% if data.editProcedure.procedure == 'Inquiry' %}
+        <h2 class="govuk-heading-m">Inquiry details</h2>
 
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Do you want to set up the inquiry?"
+              },
+              value: {
+                text: data.editProcedure.hasInquiry
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/cases/:caseId/edit-procedure/has-inquiry" | replace(':caseId', _case.id),
+                    text: "Change",
+                    visuallyHiddenText: "if you want to set up the inquiry"
+                  }
+                ]
+              }
+            } if data.editProcedure.hasInquiry,
+            {
+              key: {
+                text: "Inquiry date"
+              },
+              value: {
+                html: data.editProcedure.inquiryDate | isoDateFromDateInput | govukDate
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/cases/:caseId/edit-procedure/inquiry-date" | replace(':caseId', _case.id),
+                    text: "Change",
+                    visuallyHiddenText: "Inquiry date"
+                  }
+                ]
+              }
+            } if data.editProcedure.inquiryDate,
+            {
+              key: {
+                text: "Inquiry time"
+              },
+              value: {
+                html: data.editProcedure.inquiryTime
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/cases/:caseId/edit-procedure/inquiry-date" | replace(':caseId', _case.id),
+                    text: "Change",
+                    visuallyHiddenText: "Inquiry time"
+                  }
+                ]
+              }
+            } if data.editProcedure.inquiryTime,
+            {
+              key: {
+                text: "Do you know the expected number of days to carry out the inquiry?"
+              },
+              value: {
+                html: data.editProcedure.hasInquiryDays
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/cases/:caseId/edit-procedure/inquiry-days" | replace(':caseId', _case.id),
+                    text: "Change",
+                    visuallyHiddenText: "if you know the expected number of days to carry out the inquiry"
+                  }
+                ]
+              }
+            } if data.editProcedure.hasInquiryDays,
+            {
+              key: {
+                text: "Expected number of days to carry out the inquiry"
+              },
+              value: {
+                html: data.editProcedure.inquiryDays | days
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/cases/:caseId/edit-procedure/inquiry-days" | replace(':caseId', _case.id),
+                    text: "Change",
+                    visuallyHiddenText: "Expected number of days to carry out the inquiry"
+                  }
+                ]
+              }
+            } if data.editProcedure.hasInquiryDays == 'Yes',
+            {
+              key: {
+                text: "Do you know the address of where the inquiry will take place?"
+              },
+              value: {
+                html: data.editProcedure.hasInquiryAddress
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/cases/:caseId/edit-procedure/has-inquiry-address" | replace(':caseId', _case.id),
+                    text: "Change",
+                    visuallyHiddenText: "if you know the inquiry address"
+                  }
+                ]
+              }
+            } if data.editProcedure.hasInquiryAddress == 'Yes',
+            {
+              key: {
+                text: "Inquiry address"
+              },
+              value: {
+                html: address
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/cases/:caseId/edit-procedure/inquiry-address" | replace(':caseId', _case.id),
+                    text: "Change",
+                    visuallyHiddenText: "Inquiry address"
+                  }
+                ]
+              }
+            } if data.editProcedure.hasInquiryAddress == 'Yes'
+          ]
+        }) }}
 
-      <!-- When it’s being changed from a hearing -->
-      {% if _case.hearing and data.editAppealProcedure.procedure != 'Hearing' %}
-        <p>We’ll send an email to the appellant and LPA to tell them that we’ve changed the procedure and cancelled the hearing.</p>
-      {% elseif _case.inquiry and data.editAppealProcedure.procedure != 'Inquiry' %}
-        <p>We’ll send an email to the appellant and LPA to tell them that we’ve changed the procedure and cancelled the inquiry.</p>
-      {% else %}
-        <p>We’ll send an email to the appellant and LPA to tell them that we’ve changed the appeal procedure.</p>
+        <h2 class="govuk-heading-m">Timetable due dates</h2>
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "LPA questionnaire due"
+              },
+              value: {
+                text: data.editProcedure.LPAQuestionnaireDueDate | isoDateFromDateInput | govukDate if data.editProcedure.LPAQuestionnaireDueDate.day else 'Not added'
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/cases/:caseId/edit-procedure/timetable-due-dates" | replace(':caseId', _case.id),
+                    text: "Change",
+                    visuallyHiddenText: "LPA questionnaire due"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Statements due"
+              },
+              value: {
+                text: data.editProcedure.statementsDueDate | isoDateFromDateInput | govukDate if data.editProcedure.statementsDueDate.day else 'Not added'
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/cases/:caseId/edit-procedure/timetable-due-dates" | replace(':caseId', _case.id),
+                    text: "Change",
+                    visuallyHiddenText: "Statements due"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Interested party comments due"
+              },
+              value: {
+                text: data.editProcedure.interestedPartyCommentsDueDate | isoDateFromDateInput | govukDate if data.editProcedure.interestedPartyCommentsDueDate.day else 'Not added'
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/cases/:caseId/edit-procedure/timetable-due-dates" | replace(':caseId', _case.id),
+                    text: "Change",
+                    visuallyHiddenText: "Interested party comments due"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Statement of common ground due"
+              },
+              value: {
+                text: data.editProcedure.statementOfCommonGroundDueDate | isoDateFromDateInput | govukDate if data.editProcedure.statementOfCommonGroundDueDate.day else 'Not added'
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/cases/:caseId/edit-procedure/timetable-due-dates" | replace(':caseId', _case.id),
+                    text: "Change",
+                    visuallyHiddenText: "Statement of common ground due"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Proof of evidence and witnesses due"
+              },
+              value: {
+                text: data.editProcedure.proofOfEvidenceAndWitnessesDueDate | isoDateFromDateInput | govukDate if data.editProcedure.proofOfEvidenceAndWitnessesDueDate.day else 'Not added'
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/cases/:caseId/edit-procedure/timetable-due-dates" | replace(':caseId', _case.id),
+                    text: "Change",
+                    visuallyHiddenText: "Proof of evidence and witnesses due"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Planning obligation due"
+              },
+              value: {
+                text: data.editProcedure.planningObligationDueDate | isoDateFromDateInput | govukDate if data.editProcedure.planningObligationDueDate.day else 'Not added'
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/cases/:caseId/edit-procedure/timetable-due-dates" | replace(':caseId', _case.id),
+                    text: "Change",
+                    visuallyHiddenText: "Planning obligation due"
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
       {% endif %}
 
+      <p>We will send an email to the appellant and LPA to tell tham that:</p>
 
+      <ul class="govuk-list govuk-list--bullet">
+        <li>the procedure has changed</li>
+
+        {% if _case.procedure == 'Hearing' and _case.hearing  %}
+          <li>the hearing has been cancelled</li>
+        {% endif %}
+
+        {% if _case.procedure == 'Inquiry' and _case.inquiry  %}
+          <li>the inquiry has been cancelled</li>
+        {% endif %}
+
+        <li>the timetable has been updated</li>
+
+      </ul>
 
       <form method="post">
         {{ govukButton({

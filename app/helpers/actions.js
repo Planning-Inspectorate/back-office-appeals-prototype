@@ -4,17 +4,17 @@ const getActions = (_case) => {
   // Inquiry actions
   if(_case.procedure == 'Inquiry') {
     if(!_case.inquiry) {
-      actions.push({ text: "Set up inquiry", href: `/main/cases/${_case.id}/add-inquiry` })
+      // actions.push({ text: "Set up inquiry", href: `/main/cases/${_case.id}/add-inquiry` })
     }
     if(!_case.statementOfCommonGroundDueDate || !_case.proofOfEvidenceAndWitnessesDueDate || !_case.planningObligationDueDate) {
-      actions.push({ text: "Add timetable due dates", href: `/main/cases/${_case.id}/edit-timetable-due-dates` })
+      // actions.push({ text: "Add timetable due dates", href: `/main/cases/${_case.id}/edit-timetable-due-dates` })
     }
     if(_case.startDate) {
-      if(!_case.timetableShared && _case.inquiry && _case.statementOfCommonGroundDueDate && _case.proofOfEvidenceAndWitnessesDueDate && _case.planningObligationDueDate) {
-        actions.push({ text: "Share timetable", href: `/main/cases/${_case.id}/share-timetable` })
-      }
+      // if(!_case.timetableShared && _case.inquiry && _case.statementOfCommonGroundDueDate && _case.proofOfEvidenceAndWitnessesDueDate && _case.planningObligationDueDate) {
+        // actions.push({ text: "Share timetable", href: `/main/cases/${_case.id}/share-timetable` })
+      // }
     } else {
-      actions.push({ text: "Start case", href: `/main/cases/${_case.id}/start-case` })
+      // actions.push({ text: "Start case", href: `/main/cases/${_case.id}/start-case` })
     }
   } else {
     if (_case.status === "Ready to assign case officer") {

@@ -1,0 +1,220 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Timetable due dates" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal {{_case.id}} - start case</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+      <form method="post">
+        {{ govukDateInput({
+          id: "whatever",
+          fieldset: {
+            legend: {
+              text: 'LPA questionnaire due',
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 31 3 2025"
+          },
+          items: [
+            {
+              name: "editProcedure[LPAQuestionnaireDueDate][day]",
+              label: "Day",
+              value: data.editProcedure.LPAQuestionnaireDueDate.day or _case.LPAQuestionnaireDueDate | day,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "editProcedure[LPAQuestionnaireDueDate][month]",
+              label: "Month",
+              value: data.editProcedure.LPAQuestionnaireDueDate.month or _case.LPAQuestionnaireDueDate | month,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "editProcedure[LPAQuestionnaireDueDate][year]",
+              label: "Year",
+              value: data.editProcedure.LPAQuestionnaireDueDate.year or _case.LPAQuestionnaireDueDate | year,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+        {{ govukDateInput({
+          id: "whatever",
+          fieldset: {
+            legend: {
+              text: 'Statements due',
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 31 3 2025"
+          },
+          items: [
+            {
+              name: "editProcedure[statementsDueDate][day]",
+              label: "Day",
+              value: data.editProcedure.statementsDueDate.day or _case.statementsDueDate | day,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "editProcedure[statementsDueDate][month]",
+              label: "Month",
+              value: data.editProcedure.statementsDueDate.month or _case.statementsDueDate | month,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "editProcedure[statementsDueDate][year]",
+              label: "Year",
+              value: data.editProcedure.statementsDueDate.year or _case.statementsDueDate | year,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+        {{ govukDateInput({
+          id: "whatever",
+          fieldset: {
+            legend: {
+              text: 'Interested party comments due',
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 31 3 2025"
+          },
+          items: [
+            {
+              name: "editProcedure[interestedPartyCommentsDueDate][day]",
+              label: "Day",
+              value: data.editProcedure.interestedPartyCommentsDueDate.day or _case.interestedPartyCommentsDueDate | day,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "editProcedure[interestedPartyCommentsDueDate][month]",
+              label: "Month",
+              value: data.editProcedure.interestedPartyCommentsDueDate.month or _case.interestedPartyCommentsDueDate | month,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "editProcedure[interestedPartyCommentsDueDate][year]",
+              label: "Year",
+              value: data.editProcedure.interestedPartyCommentsDueDate.year or _case.interestedPartyCommentsDueDate | year,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+        {{ govukDateInput({
+          id: "whatever",
+          fieldset: {
+            legend: {
+              text: 'Statement of common ground due',
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 31 3 2025"
+          },
+          items: [
+            {
+              name: "editProcedure[statementOfCommonGroundDueDate][day]",
+              label: "Day",
+              value: data.editProcedure.statementOfCommonGroundDueDate.day or _case.statementOfCommonGroundDueDate | day,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "editProcedure[statementOfCommonGroundDueDate][month]",
+              label: "Month",
+              value: data.editProcedure.statementOfCommonGroundDueDate.month or _case.statementOfCommonGroundDueDate | month,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "editProcedure[statementOfCommonGroundDueDate][year]",
+              label: "Year",
+              value: data.editProcedure.statementOfCommonGroundDueDate.year or _case.statementOfCommonGroundDueDate | year,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+        {{ govukDateInput({
+          id: "whatever",
+          fieldset: {
+            legend: {
+              text: 'Proof of evidence and witnesses due',
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 31 3 2025"
+          },
+          items: [
+            {
+              name: "editProcedure[proofOfEvidenceAndWitnessesDueDate][day]",
+              label: "Day",
+              value: data.editProcedure.proofOfEvidenceAndWitnessesDueDate.day or _case.proofOfEvidenceAndWitnessesDueDate | day,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "editProcedure[proofOfEvidenceAndWitnessesDueDate][month]",
+              label: "Month",
+              value: data.editProcedure.proofOfEvidenceAndWitnessesDueDate.month or _case.proofOfEvidenceAndWitnessesDueDate | month,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "editProcedure[proofOfEvidenceAndWitnessesDueDate][year]",
+              label: "Year",
+              value: data.editProcedure.proofOfEvidenceAndWitnessesDueDate.year or _case.proofOfEvidenceAndWitnessesDueDate | year,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+        {{ govukDateInput({
+          id: "whatever",
+          fieldset: {
+            legend: {
+              text: 'Planning obligation due',
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 31 3 2025"
+          },
+          items: [
+            {
+              name: "editProcedure[planningObligationDueDate][day]",
+              label: "Day",
+              value: data.editProcedure.planningObligationDueDate.day or _case.planningObligationDueDate | day,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "editProcedure[planningObligationDueDate][month]",
+              label: "Month",
+              value: data.editProcedure.planningObligationDueDate.month or _case.planningObligationDueDate | month,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "editProcedure[planningObligationDueDate][year]",
+              label: "Year",
+              value: data.editProcedure.planningObligationDueDate.year or _case.planningObligationDueDate | year,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: 'Continue'
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

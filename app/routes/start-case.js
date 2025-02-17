@@ -18,30 +18,26 @@ module.exports = router => {
   router.post('/main/cases/:caseId/start-case', function (req, res) {
     let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
     if(req.session.data.startCase.procedure === 'Inquiry') {
-      // if(_case.inquiry) {
       res.redirect(`/main/cases/${req.params.caseId}/start-case/inquiry-date`)
-      // } else {
-      //   res.redirect(`/main/cases/${req.params.caseId}/start-case/has-inquiry`)
-      // }
     } else {
       res.redirect(`/main/cases/${req.params.caseId}/start-case/check`)
     }
   })
 
-  router.get('/main/cases/:caseId/start-case/has-inquiry', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
-    res.render('/main/cases/start-case/has-inquiry', {
-      _case
-    })
-  })
+  // router.get('/main/cases/:caseId/start-case/has-inquiry', function (req, res) {
+  //   let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+  //   res.render('/main/cases/start-case/has-inquiry', {
+  //     _case
+  //   })
+  // })
 
-  router.post('/main/cases/:caseId/start-case/has-inquiry', function (req, res) {
-    if(req.session.data.startCase.hasInquiry == 'Yes') {
-      res.redirect(`/main/cases/${req.params.caseId}/start-case/inquiry-date`)
-    } else {
-      res.redirect(`/main/cases/${req.params.caseId}/start-case/timetable-due-dates`)
-    }
-  })
+  // router.post('/main/cases/:caseId/start-case/has-inquiry', function (req, res) {
+  //   if(req.session.data.startCase.hasInquiry == 'Yes') {
+  //     res.redirect(`/main/cases/${req.params.caseId}/start-case/inquiry-date`)
+  //   } else {
+  //     res.redirect(`/main/cases/${req.params.caseId}/start-case/timetable-due-dates`)
+  //   }
+  // })
 
   router.get('/main/cases/:caseId/start-case/inquiry-date', function (req, res) {
     let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)

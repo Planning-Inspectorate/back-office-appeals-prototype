@@ -2,6 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const faker =  require('@faker-js/faker').faker
 const { v4: uuidv4 } = require('uuid')
+const { DateTime } = require("luxon")
 
 let now = new Date().toISOString()
 
@@ -180,6 +181,49 @@ const generateCase = (params = {}) => {
 
   if(_case.status == 'Ready to assign case officer' || _case.status == 'Ready to validate' || _case.status == 'Ready to start') {
     _case.procedure = null
+  }
+
+  if(_case.procedure == 'Written representations') {
+    _case.startDate = DateTime.now().toISO()
+    _case.LPAQuestionnaireDueDate = DateTime.now().toISO()
+    _case.statementsDueDate = DateTime.now().toISO()
+    _case.interestedPartyCommentsDueDate = DateTime.now().toISO()
+    _case.finalCommentsDueDate = DateTime.now().toISO()
+  }
+
+  if(_case.procedure == 'Hearing') {
+    _case.startDate = DateTime.now().toISO()
+    _case.LPAQuestionnaireDueDate = DateTime.now().toISO()
+    _case.statementsDueDate = DateTime.now().toISO()
+    _case.interestedPartyCommentsDueDate = DateTime.now().toISO()
+    _case.statementOfCommonGroundDueDate = DateTime.now().toISO()
+    _case.planningObligationDueDate = DateTime.now().toISO()
+
+    if(_case.status != 'Hearing ready to set up') {
+      _case.hearing = {
+        date: DateTime.now().toISO(),
+        time: '10am',
+        hasAddress: 'No'
+      }
+    }
+
+  }
+
+  if(_case.procedure == 'Inquiry') {
+    _case.startDate = DateTime.now().toISO()
+    _case.LPAQuestionnaireDueDate = DateTime.now().toISO()
+    _case.statementsDueDate = DateTime.now().toISO()
+    _case.interestedPartyCommentsDueDate = DateTime.now().toISO()
+    _case.statementOfCommonGroundDueDate = DateTime.now().toISO()
+    _case.proofOfEvidenceAndWitnessesDueDate = DateTime.now().toISO()
+    _case.planningObligationDueDate = DateTime.now().toISO()
+
+    _case.inquiry = {
+      date: DateTime.now().toISO(),
+      time: '10am',
+      hasDays: 'No',
+      hasAddress: 'No'
+    }
   }
 
   _case.appellant = params.appellant || {}

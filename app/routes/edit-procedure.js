@@ -180,7 +180,7 @@ module.exports = router => {
 
     _case.status = 'Awaiting LPAQ'
     _case.procedure = data.procedure
-    _case.startDate = new Date()
+    _case.startDate = DateTime.now().toISO()
 
     req.flash('success', 'Appeal procedure updated')
     res.redirect(`/main/cases/${req.params.caseId}`)

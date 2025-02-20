@@ -1,3 +1,5 @@
+const { DateTime } = require("luxon")
+
 module.exports = router => {
 
   router.get('/main/cases/:caseId/add-hearing', function (req, res) {
@@ -47,6 +49,13 @@ module.exports = router => {
   router.post('/main/cases/:caseId/add-hearing/check', function (req, res) {
     let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
     _case.hearing = req.session.data.addHearing
+
+    _case.hearing.date = DateTime.fromObject({
+      day: req.session.data.addHearing.date.day,
+      month: req.session.data.addHearing.date.month,
+      year: req.session.data.addHearing.date.year
+    }).toISO()
+
     _case.status = 'Awaiting hearing'
     delete req.session.data.addHearing
     req.flash('success', 'Hearing set up')

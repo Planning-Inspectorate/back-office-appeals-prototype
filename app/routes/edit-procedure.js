@@ -114,6 +114,65 @@ module.exports = router => {
       delete _case.inquiry
     }
 
+    if(newProcedure == 'Written representations') {
+      _case.LPAQuestionnaireDueDate = DateTime.fromObject({
+        day: data.LPAQuestionnaireDueDate.day,
+        month: data.LPAQuestionnaireDueDate.month,
+        year: data.LPAQuestionnaireDueDate.year
+      }).toISO()
+
+      _case.statementsDueDate = DateTime.fromObject({
+        day: data.statementsDueDate.day,
+        month: data.statementsDueDate.month,
+        year: data.statementsDueDate.year
+      }).toISO()
+
+      _case.interestedPartyCommentsDueDate = DateTime.fromObject({
+        day: data.interestedPartyCommentsDueDate.day,
+        month: data.interestedPartyCommentsDueDate.month,
+        year: data.interestedPartyCommentsDueDate.year
+      }).toISO()
+
+      _case.finalCommentsDueDate = DateTime.fromObject({
+        day: data.finalCommentsDueDate.day,
+        month: data.finalCommentsDueDate.month,
+        year: data.finalCommentsDueDate.year
+      }).toISO()
+
+    }
+
+    if(newProcedure == 'Hearing') {
+      _case.LPAQuestionnaireDueDate = DateTime.fromObject({
+        day: data.LPAQuestionnaireDueDate.day,
+        month: data.LPAQuestionnaireDueDate.month,
+        year: data.LPAQuestionnaireDueDate.year
+      }).toISO()
+
+      _case.statementsDueDate = DateTime.fromObject({
+        day: data.statementsDueDate.day,
+        month: data.statementsDueDate.month,
+        year: data.statementsDueDate.year
+      }).toISO()
+
+      _case.interestedPartyCommentsDueDate = DateTime.fromObject({
+        day: data.interestedPartyCommentsDueDate.day,
+        month: data.interestedPartyCommentsDueDate.month,
+        year: data.interestedPartyCommentsDueDate.year
+      }).toISO()
+
+      _case.statementOfCommonGroundDueDate = DateTime.fromObject({
+        day: data.statementOfCommonGroundDueDate.day,
+        month: data.statementOfCommonGroundDueDate.month,
+        year: data.statementOfCommonGroundDueDate.year
+      }).toISO()
+
+      _case.planningObligationDueDate = DateTime.fromObject({
+        day: data.planningObligationDueDate.day,
+        month: data.planningObligationDueDate.month,
+        year: data.planningObligationDueDate.year
+      }).toISO()
+    }
+
     if(newProcedure == 'Inquiry') {
       // save inquiry
       _case.inquiry = {}
@@ -129,53 +188,42 @@ module.exports = router => {
       _case.inquiry.address = data.inquiryAddress
 
       // save timetable dates
-      if(data.LPAQuestionnaireDueDate?.day.length) {
-        _case.LPAQuestionnaireDueDate = DateTime.fromObject({
-          day: data.LPAQuestionnaireDueDate.day,
-          month: data.LPAQuestionnaireDueDate.month,
-          year: data.LPAQuestionnaireDueDate.year
-        }).toISO()
-      }
+      _case.LPAQuestionnaireDueDate = DateTime.fromObject({
+        day: data.LPAQuestionnaireDueDate.day,
+        month: data.LPAQuestionnaireDueDate.month,
+        year: data.LPAQuestionnaireDueDate.year
+      }).toISO()
 
-      if(data.statementsDueDate?.day.length) {
-        _case.statementsDueDate = DateTime.fromObject({
-          day: data.statementsDueDate.day,
-          month: data.statementsDueDate.month,
-          year: data.statementsDueDate.year
-        }).toISO()
-      }
+      _case.statementsDueDate = DateTime.fromObject({
+        day: data.statementsDueDate.day,
+        month: data.statementsDueDate.month,
+        year: data.statementsDueDate.year
+      }).toISO()
 
-      if(data.interestedPartyCommentsDueDate?.day.length) {
-        _case.interestedPartyCommentsDueDate = DateTime.fromObject({
-          day: data.interestedPartyCommentsDueDate.day,
-          month: data.interestedPartyCommentsDueDate.month,
-          year: data.interestedPartyCommentsDueDate.year
-        }).toISO()
-      }
+      _case.interestedPartyCommentsDueDate = DateTime.fromObject({
+        day: data.interestedPartyCommentsDueDate.day,
+        month: data.interestedPartyCommentsDueDate.month,
+        year: data.interestedPartyCommentsDueDate.year
+      }).toISO()
 
-      if(data.statementOfCommonGroundDueDate?.day.length) {
-        _case.statementOfCommonGroundDueDate = DateTime.fromObject({
-          day: data.statementOfCommonGroundDueDate.day,
-          month: data.statementOfCommonGroundDueDate.month,
-          year: data.statementOfCommonGroundDueDate.year
-        }).toISO()
-      }
+      _case.statementOfCommonGroundDueDate = DateTime.fromObject({
+        day: data.statementOfCommonGroundDueDate.day,
+        month: data.statementOfCommonGroundDueDate.month,
+        year: data.statementOfCommonGroundDueDate.year
+      }).toISO()
 
-      if(data.proofOfEvidenceAndWitnessesDueDate?.day.length) {
-        _case.proofOfEvidenceAndWitnessesDueDate = DateTime.fromObject({
-          day: data.proofOfEvidenceAndWitnessesDueDate.day,
-          month: data.proofOfEvidenceAndWitnessesDueDate.month,
-          year: data.proofOfEvidenceAndWitnessesDueDate.year
-        }).toISO()
-      }
+      _case.proofOfEvidenceAndWitnessesDueDate = DateTime.fromObject({
+        day: data.proofOfEvidenceAndWitnessesDueDate.day,
+        month: data.proofOfEvidenceAndWitnessesDueDate.month,
+        year: data.proofOfEvidenceAndWitnessesDueDate.year
+      }).toISO()
 
-      if(data.planningObligationDueDate?.day.length) {
-        _case.planningObligationDueDate = DateTime.fromObject({
-          day: data.planningObligationDueDate.day,
-          month: data.planningObligationDueDate.month,
-          year: data.planningObligationDueDate.year
-        }).toISO()
-      }
+      _case.planningObligationDueDate = DateTime.fromObject({
+        day: data.planningObligationDueDate.day,
+        month: data.planningObligationDueDate.month,
+        year: data.planningObligationDueDate.year
+      }).toISO()
+
     }
 
     _case.status = 'Awaiting LPAQ'

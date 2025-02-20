@@ -13,7 +13,7 @@ module.exports = router => {
     if(req.session.data.editProcedure.procedure == 'Inquiry') {
       res.redirect(`/main/cases/${req.params.caseId}/edit-procedure/inquiry-date`)
     } else {
-      res.redirect(`/main/cases/${req.params.caseId}/edit-procedure/check`)
+      res.redirect(`/main/cases/${req.params.caseId}/edit-procedure/statement`)
     }
   })
 
@@ -39,9 +39,9 @@ module.exports = router => {
     res.redirect(`/main/cases/${req.params.caseId}/edit-procedure/has-inquiry-address`)
   })
 
-router.get('/main/cases/:caseId/edit-procedure/has-inquiry-address', function (req, res) {
+  router.get('/main/cases/:caseId/edit-procedure/has-inquiry-address', function (req, res) {
     let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
-  res.render('/main/cases/edit-procedure/has-inquiry-address', {
+    res.render('/main/cases/edit-procedure/has-inquiry-address', {
       _case
     })
   })
@@ -50,7 +50,7 @@ router.get('/main/cases/:caseId/edit-procedure/has-inquiry-address', function (r
     if(req.session.data.editProcedure.hasInquiryAddress == 'Yes') {
       res.redirect(`/main/cases/${req.params.caseId}/edit-procedure/inquiry-address`)
     } else {
-      res.redirect(`/main/cases/${req.params.caseId}/edit-procedure/timetable-due-dates`)
+      res.redirect(`/main/cases/${req.params.caseId}/edit-procedure/statement`)
     }
   })
 
@@ -62,6 +62,17 @@ router.get('/main/cases/:caseId/edit-procedure/has-inquiry-address', function (r
   })
 
   router.post('/main/cases/:caseId/edit-procedure/inquiry-address', function (req, res) {
+    res.redirect(`/main/cases/${req.params.caseId}/edit-procedure/statement`)
+  })
+
+  router.get('/main/cases/:caseId/edit-procedure/statement', function (req, res) {
+    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    res.render('/main/cases/edit-procedure/statement', {
+      _case
+    })
+  })
+
+  router.post('/main/cases/:caseId/edit-procedure/statement', function (req, res) {
     res.redirect(`/main/cases/${req.params.caseId}/edit-procedure/timetable-due-dates`)
   })
 

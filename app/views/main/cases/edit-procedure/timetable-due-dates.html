@@ -76,7 +76,7 @@
               classes: "govuk-input--width-4"
             }
           ]
-        }) }}
+        }) if data.editProcedure.hasNewStatement == 'Yes'}}
 
         {{ govukDateInput({
           id: "whatever",
@@ -142,7 +142,40 @@
               classes: "govuk-input--width-4"
             }
           ]
-        }) }}
+        }) if data.editProcedure.procedure == 'Inquiry' or data.editProcedure.procedure == 'Hearing' }}
+
+        {{ govukDateInput({
+          id: "whatever",
+          fieldset: {
+            legend: {
+              text: 'Final comments due',
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 31 3 2025"
+          },
+          items: [
+            {
+              name: "editProcedure[finalCommentsDueDate][day]",
+              label: "Day",
+              value: data.editProcedure.finalCommentsDueDate.day or _case.finalCommentsDueDate | day,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "editProcedure[finalCommentsDueDate][month]",
+              label: "Month",
+              value: data.editProcedure.finalCommentsDueDate.month or _case.finalCommentsDueDate | month,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "editProcedure[finalCommentsDueDate][year]",
+              label: "Year",
+              value: data.editProcedure.finalCommentsDueDate.year or _case.finalCommentsDueDate | year,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) if data.editProcedure.procedure == 'Written representations' }}
 
         {{ govukDateInput({
           id: "whatever",
@@ -175,7 +208,7 @@
               classes: "govuk-input--width-4"
             }
           ]
-        }) }}
+        }) if data.editProcedure.procedure == 'Inquiry' }}
 
         {{ govukDateInput({
           id: "whatever",
@@ -208,7 +241,7 @@
               classes: "govuk-input--width-4"
             }
           ]
-        }) }}
+        }) if data.editProcedure.procedure == 'Inquiry' or data.editProcedure.procedure == 'Hearing' }}
 
         {{ govukButton({
           text: 'Continue'

@@ -163,116 +163,133 @@
             } if data.editProcedure.hasInquiryAddress == 'Yes'
           ]
         }) }}
-
-        <h2 class="govuk-heading-m">Timetable due dates</h2>
-
-        {{ govukSummaryList({
-          rows: [
-            {
-              key: {
-                text: "LPA questionnaire due"
-              },
-              value: {
-                text: data.editProcedure.LPAQuestionnaireDueDate | isoDateFromDateInput | govukDate if data.editProcedure.LPAQuestionnaireDueDate.day else 'Not added'
-              },
-              actions: {
-                items: [
-                  {
-                    href: "/main/cases/:caseId/edit-procedure/timetable-due-dates" | replace(':caseId', _case.id),
-                    text: "Change",
-                    visuallyHiddenText: "LPA questionnaire due"
-                  }
-                ]
-              }
-            },
-            {
-              key: {
-                text: "Statements due"
-              },
-              value: {
-                text: data.editProcedure.statementsDueDate | isoDateFromDateInput | govukDate if data.editProcedure.statementsDueDate.day else 'Not added'
-              },
-              actions: {
-                items: [
-                  {
-                    href: "/main/cases/:caseId/edit-procedure/timetable-due-dates" | replace(':caseId', _case.id),
-                    text: "Change",
-                    visuallyHiddenText: "Statements due"
-                  }
-                ]
-              }
-            },
-            {
-              key: {
-                text: "Interested party comments due"
-              },
-              value: {
-                text: data.editProcedure.interestedPartyCommentsDueDate | isoDateFromDateInput | govukDate if data.editProcedure.interestedPartyCommentsDueDate.day else 'Not added'
-              },
-              actions: {
-                items: [
-                  {
-                    href: "/main/cases/:caseId/edit-procedure/timetable-due-dates" | replace(':caseId', _case.id),
-                    text: "Change",
-                    visuallyHiddenText: "Interested party comments due"
-                  }
-                ]
-              }
-            },
-            {
-              key: {
-                text: "Statement of common ground due"
-              },
-              value: {
-                text: data.editProcedure.statementOfCommonGroundDueDate | isoDateFromDateInput | govukDate if data.editProcedure.statementOfCommonGroundDueDate.day else 'Not added'
-              },
-              actions: {
-                items: [
-                  {
-                    href: "/main/cases/:caseId/edit-procedure/timetable-due-dates" | replace(':caseId', _case.id),
-                    text: "Change",
-                    visuallyHiddenText: "Statement of common ground due"
-                  }
-                ]
-              }
-            },
-            {
-              key: {
-                text: "Proof of evidence and witnesses due"
-              },
-              value: {
-                text: data.editProcedure.proofOfEvidenceAndWitnessesDueDate | isoDateFromDateInput | govukDate if data.editProcedure.proofOfEvidenceAndWitnessesDueDate.day else 'Not added'
-              },
-              actions: {
-                items: [
-                  {
-                    href: "/main/cases/:caseId/edit-procedure/timetable-due-dates" | replace(':caseId', _case.id),
-                    text: "Change",
-                    visuallyHiddenText: "Proof of evidence and witnesses due"
-                  }
-                ]
-              }
-            },
-            {
-              key: {
-                text: "Planning obligation due"
-              },
-              value: {
-                text: data.editProcedure.planningObligationDueDate | isoDateFromDateInput | govukDate if data.editProcedure.planningObligationDueDate.day else 'Not added'
-              },
-              actions: {
-                items: [
-                  {
-                    href: "/main/cases/:caseId/edit-procedure/timetable-due-dates" | replace(':caseId', _case.id),
-                    text: "Change",
-                    visuallyHiddenText: "Planning obligation due"
-                  }
-                ]
-              }
-            }
-          ]
-        }) }}
       {% endif %}
+
+      <h2 class="govuk-heading-m">Timetable due dates</h2>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "LPA questionnaire due"
+            },
+            value: {
+              text: data.editProcedure.LPAQuestionnaireDueDate | isoDateFromDateInput | govukDate if data.editProcedure.LPAQuestionnaireDueDate.day
+            },
+            actions: {
+              items: [
+                {
+                  href: "/main/cases/:caseId/edit-procedure/timetable-due-dates" | replace(':caseId', _case.id),
+                  text: "Change",
+                  visuallyHiddenText: "LPA questionnaire due"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Statements due"
+            },
+            value: {
+              text: data.editProcedure.statementsDueDate | isoDateFromDateInput | govukDate if data.editProcedure.statementsDueDate.day
+            },
+            actions: {
+              items: [
+                {
+                  href: "/main/cases/:caseId/edit-procedure/timetable-due-dates" | replace(':caseId', _case.id),
+                  text: "Change",
+                  visuallyHiddenText: "Statements due"
+                }
+              ]
+            }
+          } if data.editProcedure.statementsDueDate,
+          {
+            key: {
+              text: "Interested party comments due"
+            },
+            value: {
+              text: data.editProcedure.interestedPartyCommentsDueDate | isoDateFromDateInput | govukDate if data.editProcedure.interestedPartyCommentsDueDate.day
+            },
+            actions: {
+              items: [
+                {
+                  href: "/main/cases/:caseId/edit-procedure/timetable-due-dates" | replace(':caseId', _case.id),
+                  text: "Change",
+                  visuallyHiddenText: "Interested party comments due"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Statement of common ground due"
+            },
+            value: {
+              text: data.editProcedure.statementOfCommonGroundDueDate | isoDateFromDateInput | govukDate if data.editProcedure.statementOfCommonGroundDueDate.day
+            },
+            actions: {
+              items: [
+                {
+                  href: "/main/cases/:caseId/edit-procedure/timetable-due-dates" | replace(':caseId', _case.id),
+                  text: "Change",
+                  visuallyHiddenText: "Statement of common ground due"
+                }
+              ]
+            }
+          } if data.editProcedure.statementOfCommonGroundDueDate,
+          {
+            key: {
+              text: "Final comments due"
+            },
+            value: {
+              text: data.editProcedure.finalCommentsDueDate | isoDateFromDateInput | govukDate if data.editProcedure.finalCommentsDueDate.day
+            },
+            actions: {
+              items: [
+                {
+                  href: "/main/cases/:caseId/edit-procedure/timetable-due-dates" | replace(':caseId', _case.id),
+                  text: "Change",
+                  visuallyHiddenText: "Final comments due"
+                }
+              ]
+            }
+          } if data.editProcedure.finalCommentsDueDate,
+          {
+            key: {
+              text: "Proof of evidence and witnesses due"
+            },
+            value: {
+              text: data.editProcedure.proofOfEvidenceAndWitnessesDueDate | isoDateFromDateInput | govukDate if data.editProcedure.proofOfEvidenceAndWitnessesDueDate.day
+            },
+            actions: {
+              items: [
+                {
+                  href: "/main/cases/:caseId/edit-procedure/timetable-due-dates" | replace(':caseId', _case.id),
+                  text: "Change",
+                  visuallyHiddenText: "Proof of evidence and witnesses due"
+                }
+              ]
+            }
+          } if data.editProcedure.proofOfEvidenceAndWitnessesDueDate,
+          {
+            key: {
+              text: "Planning obligation due"
+            },
+            value: {
+              text: data.editProcedure.planningObligationDueDate | isoDateFromDateInput | govukDate if data.editProcedure.planningObligationDueDate.day
+            },
+            actions: {
+              items: [
+                {
+                  href: "/main/cases/:caseId/edit-procedure/timetable-due-dates" | replace(':caseId', _case.id),
+                  text: "Change",
+                  visuallyHiddenText: "Planning obligation due"
+                }
+              ]
+            }
+          } if data.editProcedure.planningObligationDueDate
+        ]
+      }) }}
 
       <p>We will send an email to the appellant and LPA to tell tham that:</p>
 

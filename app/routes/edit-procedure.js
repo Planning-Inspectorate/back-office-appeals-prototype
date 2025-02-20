@@ -230,6 +230,8 @@ module.exports = router => {
     _case.procedure = data.procedure
     _case.startDate = DateTime.now().toISO()
 
+    delete req.session.data.editProcedure
+
     req.flash('success', 'Appeal procedure updated')
     res.redirect(`/main/cases/${req.params.caseId}`)
   })

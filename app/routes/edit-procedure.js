@@ -10,10 +10,21 @@ module.exports = router => {
   })
 
   router.post('/main/cases/:caseId/edit-procedure', function (req, res) {
+      res.redirect(`/main/cases/${req.params.caseId}/edit-procedure/statement`)
+  })
+
+  router.get('/main/cases/:caseId/edit-procedure/statement', function (req, res) {
+    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    res.render('/main/cases/edit-procedure/statement', {
+      _case
+    })
+  })
+
+  router.post('/main/cases/:caseId/edit-procedure/statement', function (req, res) {
     if(req.session.data.editProcedure.procedure == 'Inquiry') {
       res.redirect(`/main/cases/${req.params.caseId}/edit-procedure/inquiry-date`)
     } else {
-      res.redirect(`/main/cases/${req.params.caseId}/edit-procedure/statement`)
+      res.redirect(`/main/cases/${req.params.caseId}/edit-procedure/timetable-due-dates`)
     }
   })
 
@@ -50,7 +61,7 @@ module.exports = router => {
     if(req.session.data.editProcedure.hasInquiryAddress == 'Yes') {
       res.redirect(`/main/cases/${req.params.caseId}/edit-procedure/inquiry-address`)
     } else {
-      res.redirect(`/main/cases/${req.params.caseId}/edit-procedure/statement`)
+      res.redirect(`/main/cases/${req.params.caseId}/edit-procedure/timetable-due-dates`)
     }
   })
 
@@ -62,17 +73,6 @@ module.exports = router => {
   })
 
   router.post('/main/cases/:caseId/edit-procedure/inquiry-address', function (req, res) {
-    res.redirect(`/main/cases/${req.params.caseId}/edit-procedure/statement`)
-  })
-
-  router.get('/main/cases/:caseId/edit-procedure/statement', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
-    res.render('/main/cases/edit-procedure/statement', {
-      _case
-    })
-  })
-
-  router.post('/main/cases/:caseId/edit-procedure/statement', function (req, res) {
     res.redirect(`/main/cases/${req.params.caseId}/edit-procedure/timetable-due-dates`)
   })
 
@@ -101,7 +101,7 @@ module.exports = router => {
     let newProcedure = data.procedure
 
     if(currentProcedure == 'Written representations') {
-      // Is there anything to do here?
+      // Cancel site visit when we have that concept
     }
 
     if(currentProcedure == 'Hearing' && _case.hearing) {

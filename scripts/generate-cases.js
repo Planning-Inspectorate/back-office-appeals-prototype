@@ -189,6 +189,15 @@ const generateCase = (params = {}) => {
     _case.statementsDueDate = DateTime.now().toISO()
     _case.interestedPartyCommentsDueDate = DateTime.now().toISO()
     _case.finalCommentsDueDate = DateTime.now().toISO()
+
+    if(_case.status != 'Site visit to set up') {
+      _case.siteVisit = {
+        date: DateTime.now().toISO(),
+        time: '10am',
+        hasAddress: 'No'
+      }
+    }
+
   }
 
   if(_case.procedure == 'Hearing') {

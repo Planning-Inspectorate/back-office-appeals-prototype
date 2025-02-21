@@ -313,7 +313,7 @@
           <p>We’ll send an email to the appellant and LPA to tell them that:</p>
           <ul class="govuk-list govuk-list--bullet">
             <li>we’ve changed the procedure</li>
-            <li>the site visit is cancelled</li>
+            <li>we’ve cancelled the site visit</li>
           </ul>
         {% else %}
           <p>We’ll send an email to the appellant and LPA to tell that we’ve changed the procedure.</p>
@@ -325,9 +325,9 @@
           <p>We’ll send an email to the appellant and LPA to tell them that:</p>
           <ul class="govuk-list govuk-list--bullet">
             <li>we’ve changed the procedure</li>
-            <li>the hearing is cancelled</li>
+            <li>we’ve cancelled the hearing</li>
             {% if data.editProcedure.procedure =='Written representations' and _case.cmc %}
-              <li>the case management conference is cancelled</li>
+              <li>we’ve cancelled the case management conference</li>
             {% endif %}
           </ul>
         {% else %}
@@ -340,9 +340,9 @@
           <p>We’ll send an email to the appellant and LPA to tell them that:</p>
           <ul class="govuk-list govuk-list--bullet">
             <li>we’ve changed the procedure</li>
-            <li>the inquiry is cancelled</li>
+            <li>we’ve cancelled the inquiry</li>
             {% if data.editProcedure.procedure =='Written representations' and _case.cmc %}
-              <li>the case management conference is cancelled</li>
+              <li>we’ve cancelled the case management conference</li>
             {% endif %}
           </ul>
         {% else %}

@@ -276,7 +276,7 @@ module.exports = router => {
     _.set(req, 'session.data.filters.statuses', null)
     _.set(req, 'session.data.filters.procedures', null)
     _.set(req, 'session.data.filters.siteVisit', null)
-    res.redirect('/main/cases')
+    res.redirect('/main/your-cases')
   })
 
 }

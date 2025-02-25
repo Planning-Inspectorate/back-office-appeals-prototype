@@ -174,6 +174,11 @@ const generateCase = (params = {}) => {
   if(_case.status !== 'Ready to assign case officer') {
     _case.caseOfficer = faker.helpers.arrayElement([
       'Tony Stark',
+      'Tony Stark',
+      'Tony Stark',
+      'Tony Stark',
+      'Tony Stark',
+      'Tony Stark',
       'Natasha Romanoff',
       'Peter Parker'
     ])
@@ -191,11 +196,11 @@ const generateCase = (params = {}) => {
     _case.finalCommentsDueDate = DateTime.now().toISO()
 
     if(_case.status != 'Site visit to set up') {
-      _case.siteVisit = {
+      _case.siteVisit = faker.helpers.arrayElement([{
         date: DateTime.now().toISO(),
         time: '10am',
         hasAddress: 'No'
-      }
+      }, null])
     }
 
   }
@@ -469,7 +474,7 @@ const generateCases = () => {
     status: "Decision issued"
   }))
 
-  for(let i = 0; i < 50; i++) {
+  for(let i = 0; i < 100; i++) {
     cases.push(generateCase())
   }
 

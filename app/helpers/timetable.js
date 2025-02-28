@@ -130,6 +130,7 @@ const generateTimetableHearing = (_case) => {
       }
       timetable.push(row({ key: 'Start date', value, action: { href: url, text: cta }}))
 
+      var url = `/main/cases/${_case.id}/edit-timetable-due-dates`
       if(_case.startDate) {
 
         var value = DateTime.fromISO(_case.LPAQuestionnaireDueDate).toFormat("d MMMM yyyy")
@@ -144,8 +145,10 @@ const generateTimetableHearing = (_case) => {
         var value = DateTime.fromISO(_case.statementOfCommonGroundDueDate).toFormat("d MMMM yyyy")
         timetable.push(row({ key: 'Statement of common ground due', value, action: { href: url, text: 'Change' }}))
 
-        var value = DateTime.fromISO(_case.planningObligationDueDate).toFormat("d MMMM yyyy")
-        timetable.push(row({ key: 'Planning obligation due', value, action: { href: url, text: 'Change' }}))
+        if(_case.appeal.planningObligation) {
+          var value = DateTime.fromISO(_case.planningObligationDueDate).toFormat("d MMMM yyyy")
+          timetable.push(row({ key: 'Planning obligation due', value, action: { href: url, text: 'Change' }}))
+        }
 
         timetable.push(row({ key: 'Case management conference', value: 'Not set up', action: { href: `/main/cases/${_case.id}/add-cmc`, text: 'Set up' }}))
       }
@@ -217,8 +220,10 @@ const generateTimetableInquiry = (_case) => {
         var value = DateTime.fromISO(_case.proofOfEvidenceAndWitnessesDueDate).toFormat("d MMMM yyyy")
         timetable.push(row({ key: 'Proof of evidence and witnesses due', value, action: { href: url, text: 'Change' }}))
 
-        var value = DateTime.fromISO(_case.planningObligationDueDate).toFormat("d MMMM yyyy")
-        timetable.push(row({ key: 'Planning obligation due', value, action: { href: url, text: 'Change' }}))
+        if(_case.appeal.planningObligation) {
+          var value = DateTime.fromISO(_case.planningObligationDueDate).toFormat("d MMMM yyyy")
+          timetable.push(row({ key: 'Planning obligation due', value, action: { href: url, text: 'Change' }}))
+        }
 
         timetable.push(row({ key: 'Case management conference', value: 'Not set up', action: { href: `/main/cases/${_case.id}/add-cmc`, text: 'Set up' }}))
 

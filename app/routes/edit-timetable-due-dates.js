@@ -13,15 +13,8 @@ module.exports = router => {
     let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
     let editTimetableDueDates = req.body.editTimetableDueDates
 
-    // let _caseHasNoDueDates = _case.LPAQuestionnaireDueDate && _case.statementsDueDate && _case.interestedPartyCommentsDueDate && _case.statementOfCommonGroundDueDate && _case.proofOfEvidenceAndWitnessesDueDate && _case.planningObligationDueDate
 
-    // let userHasSubmittedAtLeastOneDueDate = editTimetableDueDates.LPAQuestionnaireDueDate || editTimetableDueDates.statementsDueDate || editTimetableDueDates.interestedPartyCommentsDueDate || editTimetableDueDates.statementOfCommonGroundDueDate || editTimetableDueDates.proofOfEvidenceAndWitnessesDueDate || editTimetableDueDates.planningObligationDueDate
-
-    // if(req.body.noneSet) {
-      // req.flash('success', 'Timetable due dates added')
-    // } else {
-      req.flash('success', 'Timetable due dates updated')
-    // }
+    req.flash('success', 'Timetable due dates updated')
 
     if(editTimetableDueDates.LPAQuestionnaireDueDate.day.length) {
       _case.LPAQuestionnaireDueDate = DateTime.fromObject({
@@ -53,7 +46,17 @@ module.exports = router => {
       // _case.interestedPartyCommentsDueDate = null
     }
 
-    if(editTimetableDueDates.statementOfCommonGroundDueDate.day.length) {
+    if(editTimetableDueDates.finalCommentsDueDate.day.length) {
+      _case.finalCommentsDueDate = DateTime.fromObject({
+        day: editTimetableDueDates.finalCommentsDueDate.day,
+        month: editTimetableDueDates.finalCommentsDueDate.month,
+        year: editTimetableDueDates.finalCommentsDueDate.year
+      }).toISO()
+    } else {
+      // _case.finalCommentsDueDate = null
+    }
+
+    if(editTimetableDueDates?.statementOfCommonGroundDueDate?.day.length) {
       _case.statementOfCommonGroundDueDate = DateTime.fromObject({
         day: editTimetableDueDates.statementOfCommonGroundDueDate.day,
         month: editTimetableDueDates.statementOfCommonGroundDueDate.month,
@@ -63,7 +66,7 @@ module.exports = router => {
       // _case.statementOfCommonGroundDueDate = null
     }
 
-    if(editTimetableDueDates.proofOfEvidenceAndWitnessesDueDate.day.length) {
+    if(editTimetableDueDates?.proofOfEvidenceAndWitnessesDueDate?.day.length) {
       _case.proofOfEvidenceAndWitnessesDueDate = DateTime.fromObject({
         day: editTimetableDueDates.proofOfEvidenceAndWitnessesDueDate.day,
         month: editTimetableDueDates.proofOfEvidenceAndWitnessesDueDate.month,
@@ -73,7 +76,7 @@ module.exports = router => {
       // _case.proofOfEvidenceAndWitnessesDueDate = null
     }
 
-    if(editTimetableDueDates.planningObligationDueDate.day.length) {
+    if(editTimetableDueDates?.planningObligationDueDate?.day.length) {
       _case.planningObligationDueDate = DateTime.fromObject({
         day: editTimetableDueDates.planningObligationDueDate.day,
         month: editTimetableDueDates.planningObligationDueDate.month,

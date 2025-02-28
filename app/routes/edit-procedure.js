@@ -102,6 +102,7 @@ module.exports = router => {
 
     if(currentProcedure == 'Written representations') {
       // Cancel site visit when we have that concept
+      delete _case.siteVisit
     }
 
     if(currentProcedure == 'Hearing' && _case.hearing) {
@@ -139,6 +140,14 @@ module.exports = router => {
         year: data.finalCommentsDueDate.year
       }).toISO()
 
+      if(_case.appeal.hasPlanningObligation == 'Yes' && !_case.appeal.planningObligation) {
+        _case.planningObligationDueDate = DateTime.fromObject({
+          day: data.planningObligationDueDate.day,
+          month: data.planningObligationDueDate.month,
+          year: data.planningObligationDueDate.year
+        }).toISO()
+      }
+
     }
 
     if(newProcedure == 'Hearing') {
@@ -166,11 +175,13 @@ module.exports = router => {
         year: data.statementOfCommonGroundDueDate.year
       }).toISO()
 
-      _case.planningObligationDueDate = DateTime.fromObject({
-        day: data.planningObligationDueDate.day,
-        month: data.planningObligationDueDate.month,
-        year: data.planningObligationDueDate.year
-      }).toISO()
+      if(_case.appeal.hasPlanningObligation == 'Yes' && !_case.appeal.planningObligation) {
+        _case.planningObligationDueDate = DateTime.fromObject({
+          day: data.planningObligationDueDate.day,
+          month: data.planningObligationDueDate.month,
+          year: data.planningObligationDueDate.year
+        }).toISO()
+      }
     }
 
     if(newProcedure == 'Inquiry') {
@@ -218,11 +229,13 @@ module.exports = router => {
         year: data.proofOfEvidenceAndWitnessesDueDate.year
       }).toISO()
 
-      _case.planningObligationDueDate = DateTime.fromObject({
-        day: data.planningObligationDueDate.day,
-        month: data.planningObligationDueDate.month,
-        year: data.planningObligationDueDate.year
-      }).toISO()
+      if(_case.appeal.hasPlanningObligation == 'Yes' && !_case.appeal.planningObligation) {
+        _case.planningObligationDueDate = DateTime.fromObject({
+          day: data.planningObligationDueDate.day,
+          month: data.planningObligationDueDate.month,
+          year: data.planningObligationDueDate.year
+        }).toISO()
+      }
 
     }
 

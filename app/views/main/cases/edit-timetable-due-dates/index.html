@@ -142,7 +142,40 @@
               classes: "govuk-input--width-4"
             }
           ]
-        }) }}
+        }) if _case.procedure == 'Inquiry' or _case.procedure == 'Hearing'}}
+
+        {{ govukDateInput({
+          id: "whatever",
+          fieldset: {
+            legend: {
+              text: 'Final comments due',
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 31 3 2025"
+          },
+          items: [
+            {
+              name: "editTimetableDueDates[finalCommentsDueDate][day]",
+              label: "Day",
+              value: data.editTimetableDueDates.finalCommentsDueDate.day or _case.finalCommentsDueDate | day,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "editTimetableDueDates[finalCommentsDueDate][month]",
+              label: "Month",
+              value: data.editTimetableDueDates.finalCommentsDueDate.month or _case.finalCommentsDueDate | month,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "editTimetableDueDates[finalCommentsDueDate][year]",
+              label: "Year",
+              value: data.editTimetableDueDates.finalCommentsDueDate.year or _case.finalCommentsDueDate | year,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) if _case.procedure == 'Written representations' }}
 
         {{ govukDateInput({
           id: "whatever",
@@ -175,7 +208,7 @@
               classes: "govuk-input--width-4"
             }
           ]
-        }) }}
+        }) if _case.procedure == 'Inquiry' }}
 
         {{ govukDateInput({
           id: "whatever",
@@ -208,7 +241,7 @@
               classes: "govuk-input--width-4"
             }
           ]
-        }) }}
+        }) if _case.appeal.hasPlanningObligation == 'Yes' and not _case.appeal.planningObligation }}
 
 
         {{ govukButton({

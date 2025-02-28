@@ -159,7 +159,8 @@ module.exports = router => {
     let selectedStatusFilters = _.get(req.session.data.filters, 'statuses')
     let selectedProcedureFilters = _.get(req.session.data.filters, 'procedures')
     let selectedSiteVisitFilters = _.get(req.session.data.filters, 'siteVisit')
-    let hasFilters = _.get(selectedStatusFilters, 'length') || _.get(selectedProcedureFilters, 'length') || _.get(selectedSiteVisitFilters, 'length')
+    let selectedPlanningObligationFilters = _.get(req.session.data.filters, 'planningObligation')
+    let hasFilters = _.get(selectedStatusFilters, 'length') || _.get(selectedProcedureFilters, 'length') || _.get(selectedSiteVisitFilters, 'length') || _.get(selectedPlanningObligationFilters, 'length')
 
     let selectedFilters = {
       categories: []
@@ -171,6 +172,7 @@ module.exports = router => {
         let matchesStatus = true
         let matchesProcedure = true
         let matchesSiteVisit = true
+        let matchesPlanningObligation = true
 
         if(_.get(selectedStatusFilters, 'length')) {
           matchesStatus = selectedStatusFilters.includes(_case.status);
@@ -194,7 +196,21 @@ module.exports = router => {
           }
         }
 
-        return matchesStatus && matchesProcedure && matchesSiteVisit
+        if(_.get(selectedPlanningObligationFilters, 'length')) {
+          matchesPlanningObligation = false
+          if(selectedPlanningObligationFilters.includes('Has planning obligation')) {
+            if(_case.appeal.hasPlanningObligation == 'Yes') {
+              matchesPlanningObligation = true
+            }
+          }
+          if(selectedPlanningObligationFilters.includes('Does not have planning obligation')) {
+            if(_case.appeal.hasPlanningObligation == 'No') {
+              matchesPlanningObligation = true
+            }
+          }
+        }
+
+        return matchesStatus && matchesProcedure && matchesSiteVisit && matchesPlanningObligation
       })
     }
 
@@ -229,6 +245,18 @@ module.exports = router => {
           return {
             text: label,
             href: `/main/your-cases/remove-site-visit/${label}`
+          }
+        })
+      })
+    }
+
+    if(_.get(selectedPlanningObligationFilters, 'length')) {
+      selectedFilters.categories.push({
+        heading: { text: 'Planning obligation' },
+        items: selectedPlanningObligationFilters.map(label => {
+          return {
+            text: label,
+            href: `/main/your-cases/remove-planning-obligation/${label}`
           }
         })
       })
@@ -272,10 +300,16 @@ module.exports = router => {
     res.redirect('/main/your-cases')
   })
 
+  router.get('/main/your-cases/remove-planning-obligation/:planningObligation', (req, res) => {
+    _.set(req, 'session.data.filters.planningObligation', _.pull(req.session.data.filters.planningObligation, req.params.planningObligation))
+    res.redirect('/main/your-cases')
+  })
+
   router.get('/main/your-cases/clear-filters', (req, res) => {
     _.set(req, 'session.data.filters.statuses', null)
     _.set(req, 'session.data.filters.procedures', null)
     _.set(req, 'session.data.filters.siteVisit', null)
+    _.set(req, 'session.data.filters.planningObligation', null)
     res.redirect('/main/your-cases')
   })
 

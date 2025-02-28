@@ -188,12 +188,42 @@ const generateCase = (params = {}) => {
     _case.procedure = null
   }
 
+  let appeal = {}
+
+  appeal.procedurePreference = faker.helpers.arrayElement(['Written representations', 'Hearing', 'Inquiry'])
+  appeal.hasPlanningObligation = faker.helpers.arrayElement(['Yes', 'No'])
+  if(appeal.hasPlanningObligation == 'Yes') {
+    if(appeal.procedurePreference == 'Written representations') {
+      appeal.planningObligation = {
+        name: 'planning-obligation.pdf',
+        size: '5MB'
+      }
+    } else {
+      appeal.readyToSubmitPlanningObligation = faker.helpers.arrayElement(['Yes', 'No'])
+      if(appeal.readyToSubmitPlanningObligation == 'Yes') {
+        appeal.planningObligation = {
+          name: 'planning-obligation.pdf',
+          size: '5MB'
+        }
+      }
+    }
+  }
+
+
+
+  _case.appeal = appeal
+
+
+
   if(_case.procedure == 'Written representations') {
     _case.startDate = DateTime.now().toISO()
     _case.LPAQuestionnaireDueDate = DateTime.now().toISO()
     _case.statementsDueDate = DateTime.now().toISO()
     _case.interestedPartyCommentsDueDate = DateTime.now().toISO()
     _case.finalCommentsDueDate = DateTime.now().toISO()
+    if(appeal.hasPlanningObligation == 'Yes' && !appeal.planningObligation) {
+      _case.planningObligationDueDate = DateTime.now().toISO()
+    }
 
     if(_case.status != 'Site visit to set up') {
       _case.siteVisit = faker.helpers.arrayElement([{
@@ -211,7 +241,9 @@ const generateCase = (params = {}) => {
     _case.statementsDueDate = DateTime.now().toISO()
     _case.interestedPartyCommentsDueDate = DateTime.now().toISO()
     _case.statementOfCommonGroundDueDate = DateTime.now().toISO()
-    _case.planningObligationDueDate = DateTime.now().toISO()
+    if(appeal.hasPlanningObligation == 'Yes' && !appeal.planningObligation) {
+      _case.planningObligationDueDate = DateTime.now().toISO()
+    }
 
     if(_case.status != 'Hearing ready to set up') {
       _case.hearing = {
@@ -230,7 +262,9 @@ const generateCase = (params = {}) => {
     _case.interestedPartyCommentsDueDate = DateTime.now().toISO()
     _case.statementOfCommonGroundDueDate = DateTime.now().toISO()
     _case.proofOfEvidenceAndWitnessesDueDate = DateTime.now().toISO()
-    _case.planningObligationDueDate = DateTime.now().toISO()
+    if(appeal.hasPlanningObligation == 'Yes' && !appeal.planningObligation) {
+      _case.planningObligationDueDate = DateTime.now().toISO()
+    }
 
     _case.inquiry = {
       date: DateTime.now().toISO(),

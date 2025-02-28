@@ -115,6 +115,9 @@ router.get('/main/cases/:caseId/start-case/has-inquiry-address', function (req, 
       _case.statementsDueDate = DateTime.now().toISO()
       _case.interestedPartyCommentsDueDate = DateTime.now().toISO()
       _case.finalCommentsDueDate = DateTime.now().toISO()
+      if(_case.appeal.hasPlanningObligation == 'Yes' && !_case.appeal.planningObligation) {
+        _case.planningObligationDueDate = DateTime.now().toISO()
+      }
     }
 
     if(data.procedure === 'Hearing') {
@@ -122,7 +125,9 @@ router.get('/main/cases/:caseId/start-case/has-inquiry-address', function (req, 
       _case.statementsDueDate = DateTime.now().toISO()
       _case.interestedPartyCommentsDueDate = DateTime.now().toISO()
       _case.statementOfCommonGroundDueDate = DateTime.now().toISO()
-      _case.planningObligationDueDate = DateTime.now().toISO()
+      if(_case.appeal.hasPlanningObligation == 'Yes' && !_case.appeal.planningObligation) {
+        _case.planningObligationDueDate = DateTime.now().toISO()
+      }
     }
 
     if(data.procedure === 'Inquiry') {
@@ -168,12 +173,13 @@ router.get('/main/cases/:caseId/start-case/has-inquiry-address', function (req, 
         year: data.proofOfEvidenceAndWitnessesDueDate.year
       }).toISO()
 
-      _case.planningObligationDueDate = DateTime.fromObject({
-        day: data.planningObligationDueDate.day,
-        month: data.planningObligationDueDate.month,
-        year: data.planningObligationDueDate.year
-      }).toISO()
-
+      if(_case.appeal.hasPlanningObligation == 'Yes' && !_case.appeal.planningObligation) {
+        _case.planningObligationDueDate = DateTime.fromObject({
+          day: data.planningObligationDueDate.day,
+          month: data.planningObligationDueDate.month,
+          year: data.planningObligationDueDate.year
+        }).toISO()
+      }
     }
 
     _case.status = 'Awaiting LPAQ'

@@ -175,7 +175,7 @@
               classes: "govuk-input--width-4"
             }
           ]
-        }) }}
+        }) if data.editProcedure.procedure == 'Inquiry'}}
 
         {{ govukDateInput({
           id: "whatever",
@@ -208,7 +208,7 @@
               classes: "govuk-input--width-4"
             }
           ]
-        }) }}
+        }) if _case.appeal.hasPlanningObligation == 'Yes' and not _case.appeal.planningObligation }}
 
         {{ govukButton({
           text: 'Continue'

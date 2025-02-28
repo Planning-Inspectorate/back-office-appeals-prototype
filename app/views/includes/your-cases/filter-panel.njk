@@ -34,6 +34,23 @@
     values: data.filters.siteVisit
   }) }}
 
+  {{ govukCheckboxes({
+    idPrefix: "filters[planningObligation]",
+    name: "filters[planningObligation]",
+    classes: "govuk-checkboxes--small",
+    fieldset: {
+      legend: {
+        text: "Planning obligation",
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: [
+      { value: 'Has planning obligation', text: 'Has planning obligation' },
+      { value: 'Does not have planning obligation', text: 'Does not have planning obligation' }
+    ],
+    values: data.filters.planningObligation
+  }) }}
+
 
   {{ govukCheckboxes({
     idPrefix: "filters[statuses]",

@@ -145,7 +145,7 @@ const generateTimetableHearing = (_case) => {
         var value = DateTime.fromISO(_case.statementOfCommonGroundDueDate).toFormat("d MMMM yyyy")
         timetable.push(row({ key: 'Statement of common ground due', value, action: { href: url, text: 'Change' }}))
 
-        if(_case.appeal.planningObligation) {
+        if(_case.appeal.hasPlanningObligation == 'Yes' && !_case.appeal.planningObligation) {
           var value = DateTime.fromISO(_case.planningObligationDueDate).toFormat("d MMMM yyyy")
           timetable.push(row({ key: 'Planning obligation due', value, action: { href: url, text: 'Change' }}))
         }

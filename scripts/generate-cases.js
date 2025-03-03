@@ -128,7 +128,7 @@ const generateRule6Party = (params) => {
       party.statement = {}
       party.statement.dateReceived = faker.date.recent({ days: 2 })
       party.statement.status = 'Ready to review'
-      party.statement.statement = 'Having reviewed the proposal we would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. David Newton at number 6 The Grove also agrees.'
+      party.statement.statement = 'Having reviewed the proposal we would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. <mark>Residents have not been consulted</mark> on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. David Newton at number 6 The Grove also agrees.'
       party.statement.documents = [{
         name: 'St.Ritas_Community_Association_statement_for_appeal_4012345.doc',
         size: '5MB'

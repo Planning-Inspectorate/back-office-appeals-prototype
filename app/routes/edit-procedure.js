@@ -10,7 +10,16 @@ module.exports = router => {
   })
 
   router.post('/main/cases/:caseId/edit-procedure', function (req, res) {
+    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    if(_case.lpaStatement) {
       res.redirect(`/main/cases/${req.params.caseId}/edit-procedure/statement`)
+    } else {
+      if(req.session.data.editProcedure.procedure == 'Inquiry') {
+        res.redirect(`/main/cases/${req.params.caseId}/edit-procedure/inquiry-date`)
+      } else {
+        res.redirect(`/main/cases/${req.params.caseId}/edit-procedure/timetable-due-dates`)
+      }
+    }
   })
 
   router.get('/main/cases/:caseId/edit-procedure/statement', function (req, res) {

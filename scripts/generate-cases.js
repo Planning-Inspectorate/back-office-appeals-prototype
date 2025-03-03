@@ -208,10 +208,35 @@ const generateCase = (params = {}) => {
       }
     }
   }
-
-
-
   _case.appeal = appeal
+
+  switch(_case.status) {
+    case 'Statements and IP comments ready to review':
+    case 'Statements and IP comments ready to share':
+    case 'Awaiting final comments':
+    case 'Final comments ready to review':
+    case 'Final comments ready to share':
+    case 'Site visit ready to set up':
+    case 'Awaiting site visit':
+    case 'Hearing ready to set up':
+    case 'Awaiting hearing':
+    case 'Inquiry ready to set up':
+    case 'Awaiting proof of evidence and witnesses':
+    case 'Proof of evidence and witnesses ready to review':
+    case 'Proof of evidence and witnesses ready to share':
+    case 'Awaiting inquiry':
+    case 'Decision ready to issue':
+    case 'Decision issued':
+      _case.lpaStatement = {
+        statement: 'Sit laborum adipisicing nisi do velit dolor eiusmod aute ipsum commodo eu Lorem. Culpa qui irure irure aliquip. Sint consectetur ea nisi pariatur ipsum dolore in quis in eiusmod pariatur ex.\n\n Esse labore amet aliqua incididunt quis consequat cillum dolor sunt aute voluptate consectetur amet anim. Tempor officia est ea consectetur minim non do cupidatat dolor.',
+        documents: [{
+          name: 'document.pdf',
+          size: '5MB'
+        }]
+      }
+      break
+  }
+
 
 
 

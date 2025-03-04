@@ -31,18 +31,22 @@ const generateTimetableHouseholder = (_case) => {
       case 'Awaiting LPAQ':
       case 'LPAQ ready to review':
       case 'Site visit ready to set up':
-        timetable.push(row({ key: 'Valid date', value: DateTime.now().toFormat('d MMMM yyyy'), action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
-        timetable.push(row({ key: 'Start date', value: DateTime.now().toFormat('d MMMM yyyy'), action: { href: `/main/cases/${_case.id}/start-case`, text: 'Change' }}))
-        timetable.push(row({ key: 'LPA questionnaire due', value: DateTime.now().toFormat('d MMMM yyyy'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
-        timetable.push(row({ key: 'Site visit', value: 'Not set up',  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Set up' }}))
-        break
       case 'Awaiting site visit':
       case 'Decision ready to issue':
+      case 'Decision issued':
         timetable.push(row({ key: 'Valid date', value: DateTime.now().toFormat('d MMMM yyyy'), action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
         timetable.push(row({ key: 'Start date', value: DateTime.now().toFormat('d MMMM yyyy'), action: { href: `/main/cases/${_case.id}/start-case`, text: 'Change' }}))
         timetable.push(row({ key: 'LPA questionnaire due', value: DateTime.now().toFormat('d MMMM yyyy'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
-        timetable.push(row({ key: 'Site visit', value: DateTime.now().toFormat('d MMMM yyyy'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
-        break
+
+        if(_case.siteVisit) {
+          timetable.push(row({ key: 'Site visit', value: DateTime.now().toFormat('d MMMM yyyy'),  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
+        } else {
+          timetable.push(row({ key: 'Site visit', value: 'Not set up',  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Set up' }}))
+        }
+
+        if(_case.status == 'Decision issued') {
+          timetable.push(row({ key: 'Decision date', value: DateTime.now().toFormat('d MMMM yyyy'), action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
+        }
   }
   return timetable
 }
@@ -66,6 +70,7 @@ const generateTimetableWritten = (_case) => {
     case 'Site visit ready to set up':
     case 'Awaiting site visit':
     case 'Decision ready to issue':
+    case 'Decision issued':
       timetable.push(row({ key: 'Valid date', value: DateTime.now().toFormat('d MMMM yyyy'), action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
 
       if(_case.startDate) {
@@ -96,6 +101,10 @@ const generateTimetableWritten = (_case) => {
       // Make dynamic
       timetable.push(row({ key: 'Site visit', value: 'Not set up',  action: { href: `/main/cases/${_case.id}/xyz`, text: 'Set up' }}))
 
+      if(_case.status == 'Decision issued') {
+        timetable.push(row({ key: 'Decision date', value: DateTime.now().toFormat('d MMMM yyyy'), action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
+      }
+
       break
   }
   return timetable
@@ -117,6 +126,7 @@ const generateTimetableHearing = (_case) => {
     case 'Hearing ready to set up':
     case 'Awaiting hearing':
     case 'Decision ready to issue':
+    case 'Decision issued':
       timetable.push(row({ key: 'Valid date', value: DateTime.now().toFormat('d MMMM yyyy'), action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
 
       if(_case.startDate) {
@@ -165,6 +175,10 @@ const generateTimetableHearing = (_case) => {
       }
       timetable.push(row({ key, value, action: { href: url, text: cta }}))
 
+      if(_case.status == 'Decision issued') {
+        timetable.push(row({ key: 'Decision date', value: DateTime.now().toFormat('d MMMM yyyy'), action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
+      }
+
       break
   }
   return timetable
@@ -189,6 +203,7 @@ const generateTimetableInquiry = (_case) => {
     case 'Proof of evidence and witnesses ready to share':
     case 'Awaiting inquiry':
     case 'Decision ready to issue':
+    case 'Decision issued':
       timetable.push(row({ key: 'Valid date', value: DateTime.now().toFormat('d MMMM yyyy'), action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
 
       if(_case.startDate) {
@@ -238,6 +253,10 @@ const generateTimetableInquiry = (_case) => {
           var cta = 'Set up'
         }
         timetable.push(row({ key, value, action: { href: url, text: cta }}))
+      }
+
+      if(_case.status == 'Decision issued') {
+        timetable.push(row({ key: 'Decision date', value: DateTime.now().toFormat('d MMMM yyyy'), action: { href: `/main/cases/${_case.id}/xyz`, text: 'Change' }}))
       }
 
       break

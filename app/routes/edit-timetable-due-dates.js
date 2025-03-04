@@ -46,7 +46,7 @@ module.exports = router => {
       // _case.interestedPartyCommentsDueDate = null
     }
 
-    if(editTimetableDueDates.finalCommentsDueDate.day.length) {
+    if(editTimetableDueDates.finalCommentsDueDate?.day.length) {
       _case.finalCommentsDueDate = DateTime.fromObject({
         day: editTimetableDueDates.finalCommentsDueDate.day,
         month: editTimetableDueDates.finalCommentsDueDate.month,

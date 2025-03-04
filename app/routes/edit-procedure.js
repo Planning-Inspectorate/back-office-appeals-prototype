@@ -149,7 +149,7 @@ module.exports = router => {
         year: data.finalCommentsDueDate.year
       }).toISO()
 
-      if(_case.appeal.hasPlanningObligation == 'Yes' && !_case.appeal.planningObligation) {
+      if(_case.appeal.hasPlanningObligation == 'Yes' && _case.appeal.readyToSubmitPlanningObligation == 'No') {
         _case.planningObligationDueDate = DateTime.fromObject({
           day: data.planningObligationDueDate.day,
           month: data.planningObligationDueDate.month,
@@ -184,7 +184,7 @@ module.exports = router => {
         year: data.statementOfCommonGroundDueDate.year
       }).toISO()
 
-      if(_case.appeal.hasPlanningObligation == 'Yes' && !_case.appeal.planningObligation) {
+      if(_case.appeal.hasPlanningObligation == 'Yes' && _case.appeal.readyToSubmitPlanningObligation == 'No') {
         _case.planningObligationDueDate = DateTime.fromObject({
           day: data.planningObligationDueDate.day,
           month: data.planningObligationDueDate.month,
@@ -238,7 +238,7 @@ module.exports = router => {
         year: data.proofOfEvidenceAndWitnessesDueDate.year
       }).toISO()
 
-      if(_case.appeal.hasPlanningObligation == 'Yes' && !_case.appeal.planningObligation) {
+      if(_case.appeal.hasPlanningObligation == 'Yes' && _case.appeal.readyToSubmitPlanningObligation == 'No') {
         _case.planningObligationDueDate = DateTime.fromObject({
           day: data.planningObligationDueDate.day,
           month: data.planningObligationDueDate.month,

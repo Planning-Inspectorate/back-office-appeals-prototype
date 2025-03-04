@@ -1,4 +1,22 @@
 {% set filterOptionsHtml %}
+
+  {{ govukCheckboxes({
+    idPrefix: "filters[types]",
+    name: "filters[types]",
+    classes: "govuk-checkboxes--small",
+    fieldset: {
+      legend: {
+        text: "Type",
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: [
+      { value: 'Full planning appeal', text: 'Full planning appeal' },
+      { value: 'Householder appeal', text: 'Householder appeal' }
+    ],
+    values: data.filters.types
+  }) }}
+
   {{ govukCheckboxes({
     idPrefix: "filters[procedures]",
     name: "filters[procedures]",

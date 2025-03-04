@@ -115,7 +115,7 @@ router.get('/main/cases/:caseId/start-case/has-inquiry-address', function (req, 
       _case.statementsDueDate = DateTime.now().toISO()
       _case.interestedPartyCommentsDueDate = DateTime.now().toISO()
       _case.finalCommentsDueDate = DateTime.now().toISO()
-      if(_case.appeal.hasPlanningObligation == 'Yes' && !_case.appeal.planningObligation) {
+      if(_case.appeal.hasPlanningObligation == 'Yes' && _case.appeal.readyToSubmitPlanningObligation == 'No') {
         _case.planningObligationDueDate = DateTime.now().toISO()
       }
     }
@@ -125,7 +125,7 @@ router.get('/main/cases/:caseId/start-case/has-inquiry-address', function (req, 
       _case.statementsDueDate = DateTime.now().toISO()
       _case.interestedPartyCommentsDueDate = DateTime.now().toISO()
       _case.statementOfCommonGroundDueDate = DateTime.now().toISO()
-      if(_case.appeal.hasPlanningObligation == 'Yes' && !_case.appeal.planningObligation) {
+      if(_case.appeal.hasPlanningObligation == 'Yes' && _case.appeal.readyToSubmitPlanningObligation == 'No') {
         _case.planningObligationDueDate = DateTime.now().toISO()
       }
     }
@@ -173,7 +173,7 @@ router.get('/main/cases/:caseId/start-case/has-inquiry-address', function (req, 
         year: data.proofOfEvidenceAndWitnessesDueDate.year
       }).toISO()
 
-      if(_case.appeal.hasPlanningObligation == 'Yes' && !_case.appeal.planningObligation) {
+      if(_case.appeal.hasPlanningObligation == 'Yes' && _case.appeal.readyToSubmitPlanningObligation == 'No') {
         _case.planningObligationDueDate = DateTime.fromObject({
           day: data.planningObligationDueDate.day,
           month: data.planningObligationDueDate.month,

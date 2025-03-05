@@ -1,4 +1,4 @@
-const { DateTime } = require("luxon");
+const { DateTime } = require("luxon")
 
 module.exports = router => {
 
@@ -18,30 +18,26 @@ module.exports = router => {
   router.post('/main/cases/:caseId/start-case', function (req, res) {
     let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
     if(req.session.data.startCase.procedure === 'Inquiry') {
-      if(_case.inquiry) {
-        res.redirect(`/main/cases/${req.params.caseId}/start-case/inquiry-date`)
-      } else {
-        res.redirect(`/main/cases/${req.params.caseId}/start-case/has-inquiry`)
-      }
+      res.redirect(`/main/cases/${req.params.caseId}/start-case/inquiry-date`)
     } else {
       res.redirect(`/main/cases/${req.params.caseId}/start-case/check`)
     }
   })
 
-  router.get('/main/cases/:caseId/start-case/has-inquiry', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
-    res.render('/main/cases/start-case/has-inquiry', {
-      _case
-    })
-  })
+  // router.get('/main/cases/:caseId/start-case/has-inquiry', function (req, res) {
+  //   let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+  //   res.render('/main/cases/start-case/has-inquiry', {
+  //     _case
+  //   })
+  // })
 
-  router.post('/main/cases/:caseId/start-case/has-inquiry', function (req, res) {
-    if(req.session.data.startCase.hasInquiry == 'Yes') {
-      res.redirect(`/main/cases/${req.params.caseId}/start-case/inquiry-date`)
-    } else {
-      res.redirect(`/main/cases/${req.params.caseId}/start-case/timetable-due-dates`)
-    }
-  })
+  // router.post('/main/cases/:caseId/start-case/has-inquiry', function (req, res) {
+  //   if(req.session.data.startCase.hasInquiry == 'Yes') {
+  //     res.redirect(`/main/cases/${req.params.caseId}/start-case/inquiry-date`)
+  //   } else {
+  //     res.redirect(`/main/cases/${req.params.caseId}/start-case/timetable-due-dates`)
+  //   }
+  // })
 
   router.get('/main/cases/:caseId/start-case/inquiry-date', function (req, res) {
     let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
@@ -114,12 +110,27 @@ router.get('/main/cases/:caseId/start-case/has-inquiry-address', function (req, 
 
     let data = req.session.data.startCase
 
-    _case.status = 'Awaiting LPAQ'
-    _case.procedure = data.procedure
-    _case.startDate = new Date()
+    if(data.procedure === 'Written representations') {
+      _case.LPAQuestionnaireDueDate = DateTime.now().toISO()
+      _case.statementsDueDate = DateTime.now().toISO()
+      _case.interestedPartyCommentsDueDate = DateTime.now().toISO()
+      _case.finalCommentsDueDate = DateTime.now().toISO()
+      if(_case.appeal.hasPlanningObligation == 'Yes' && _case.appeal.readyToSubmitPlanningObligation == 'No') {
+        _case.planningObligationDueDate = DateTime.now().toISO()
+      }
+    }
 
-    // Save inquiry
-    if(data.inquiryDate) {
+    if(data.procedure === 'Hearing') {
+      _case.LPAQuestionnaireDueDate = DateTime.now().toISO()
+      _case.statementsDueDate = DateTime.now().toISO()
+      _case.interestedPartyCommentsDueDate = DateTime.now().toISO()
+      _case.statementOfCommonGroundDueDate = DateTime.now().toISO()
+      if(_case.appeal.hasPlanningObligation == 'Yes' && _case.appeal.readyToSubmitPlanningObligation == 'No') {
+        _case.planningObligationDueDate = DateTime.now().toISO()
+      }
+    }
+
+    if(data.procedure === 'Inquiry') {
       _case.inquiry = {}
       _case.inquiry.date = DateTime.fromObject({
         day: data.inquiryDate.day,
@@ -131,76 +142,49 @@ router.get('/main/cases/:caseId/start-case/has-inquiry-address', function (req, 
       _case.inquiry.days = data.inquiryDays
       _case.inquiry.hasAddress = data.hasInquiryAddress
       _case.inquiry.address = data.inquiryAddress
-    }
 
-
-
-    // Save timetable dates
-    if(data.LPAQuestionnaireDueDate?.day.length) {
       _case.LPAQuestionnaireDueDate = DateTime.fromObject({
         day: data.LPAQuestionnaireDueDate.day,
         month: data.LPAQuestionnaireDueDate.month,
         year: data.LPAQuestionnaireDueDate.year
       }).toISO()
-    } else {
-      _case.LPAQuestionnaireDueDate = null
-    }
 
-    if(data.statementsDueDate?.day.length) {
       _case.statementsDueDate = DateTime.fromObject({
         day: data.statementsDueDate.day,
         month: data.statementsDueDate.month,
         year: data.statementsDueDate.year
       }).toISO()
-    } else {
-      _case.statementsDueDate = null
-    }
 
-    if(data.interestedPartyCommentsDueDate?.day.length) {
       _case.interestedPartyCommentsDueDate = DateTime.fromObject({
         day: data.interestedPartyCommentsDueDate.day,
         month: data.interestedPartyCommentsDueDate.month,
         year: data.interestedPartyCommentsDueDate.year
       }).toISO()
-    } else {
-      _case.interestedPartyCommentsDueDate = null
-    }
 
-    if(data.statementOfCommonGroundDueDate?.day.length) {
       _case.statementOfCommonGroundDueDate = DateTime.fromObject({
         day: data.statementOfCommonGroundDueDate.day,
         month: data.statementOfCommonGroundDueDate.month,
         year: data.statementOfCommonGroundDueDate.year
       }).toISO()
-    } else {
-      _case.statementOfCommonGroundDueDate = null
-    }
 
-    if(data.proofOfEvidenceAndWitnessesDueDate?.day.length) {
       _case.proofOfEvidenceAndWitnessesDueDate = DateTime.fromObject({
         day: data.proofOfEvidenceAndWitnessesDueDate.day,
         month: data.proofOfEvidenceAndWitnessesDueDate.month,
         year: data.proofOfEvidenceAndWitnessesDueDate.year
       }).toISO()
-    } else {
-      _case.proofOfEvidenceAndWitnessesDueDate = null
+
+      if(_case.appeal.hasPlanningObligation == 'Yes' && _case.appeal.readyToSubmitPlanningObligation == 'No') {
+        _case.planningObligationDueDate = DateTime.fromObject({
+          day: data.planningObligationDueDate.day,
+          month: data.planningObligationDueDate.month,
+          year: data.planningObligationDueDate.year
+        }).toISO()
+      }
     }
 
-    if(data.planningObligationDueDate?.day.length) {
-      _case.planningObligationDueDate = DateTime.fromObject({
-        day: data.planningObligationDueDate.day,
-        month: data.planningObligationDueDate.month,
-        year: data.planningObligationDueDate.year
-      }).toISO()
-    } else {
-      _case.planningObligationDueDate = null
-    }
-
-    let _caseHasAllDueDates = _case.LPAQuestionnaireDueDate && _case.statementsDueDate && _case.interestedPartyCommentsDueDate && _case.statementOfCommonGroundDueDate && _case.proofOfEvidenceAndWitnessesDueDate && _case.planningObligationDueDate
-
-    if(_case.inquiry && _caseHasAllDueDates) {
-      _case.timetableShared = true
-    }
+    _case.status = 'Awaiting LPAQ'
+    _case.procedure = data.procedure
+    _case.startDate = new Date()
 
     req.flash('success', 'Case started')
     res.redirect(`/main/cases/${req.params.caseId}`)

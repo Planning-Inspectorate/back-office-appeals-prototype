@@ -1,5 +1,171 @@
 <div class="app-panel">
   <h2 class="govuk-heading-l">Documentation</h2>
+
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          text: "Appeal"
+        },
+        value: {
+          html: 'Valid<br><span class="govuk-!-font-size-16">Received on 2 February 2025</span>'
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "View",
+              visuallyHiddenText: "Appeal"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "LPA questionnaire"
+        },
+        value: {
+          html: 'Complete<br><span class="govuk-!-font-size-16">Received on 7 February 2025</span>'
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "View",
+              visuallyHiddenText: "LPA questionnaire"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "LPA statement"
+        },
+        value: {
+          html: 'Accepted<br><span class="govuk-!-font-size-16">Received on 7 February 2025</span>'
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "View",
+              visuallyHiddenText: "LPA statement"
+            }
+          ]
+        }
+      } if _case.lpaStatement,
+      {
+        key: {
+          text: "Interested party comments"
+        },
+        value: {
+          html: 'Shared<br><span class="govuk-!-font-size-16">Received on 7 February 2025</span>'
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "View",
+              visuallyHiddenText: "Interested party comments"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Appellant final comments"
+        },
+        value: {
+          html: 'Accepted<br><span class="govuk-!-font-size-16">Received on 7 February 2025</span>'
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "View",
+              visuallyHiddenText: "Appellant final comments"
+            }
+          ]
+        }
+      } if _case.procedure == 'Written representations',
+      {
+        key: {
+          text: "LPA final comments"
+        },
+        value: {
+          html: 'Accepted<br><span class="govuk-!-font-size-16">Received on 7 February 2025</span>'
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "View",
+              visuallyHiddenText: "LPA final comments"
+            }
+          ]
+        }
+      } if _case.procedure == 'Written representations',
+      {
+        key: {
+          text: "Environmental services team review"
+        },
+        value: {
+          html: '2 documents<br><span class="govuk-!-font-size-16">Received on 7 February 2025</span>'
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Add",
+              visuallyHiddenText: "Environmental services team review"
+            },
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "Environmental services team review"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Rule 6 statements"
+        },
+        value: {
+          html: '3 statements'
+        },
+        actions: {
+          items: [
+            {
+              href: '/main/cases/:caseId/rule-6-statements' | replace(':caseId', _case.id),
+              text: "Change",
+              visuallyHiddenText: "Decision"
+            }
+          ]
+        }
+      } if _case.procedure == 'Inquiry',
+      {
+        key: {
+          text: "Decision"
+        },
+        value: {
+          html: 'Awaiting decision'
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Issue",
+              visuallyHiddenText: "Decision"
+            }
+          ]
+        }
+      }
+    ]
+  }) }}
+
+
+
   {{ govukTable({
     firstCellIsHeader: true,
     head: [
@@ -142,7 +308,7 @@
   ]
       ]
 
-  }) }}
+  }) if 1==2 }}
 </div>
 
 <!--[

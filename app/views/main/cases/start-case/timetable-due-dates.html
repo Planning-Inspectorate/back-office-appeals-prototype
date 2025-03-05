@@ -16,7 +16,7 @@
           id: "whatever",
           fieldset: {
             legend: {
-              text: 'LPA questionnaire due (optional)',
+              text: 'LPA questionnaire due',
               classes: "govuk-fieldset__legend--m"
             }
           },
@@ -49,7 +49,7 @@
           id: "whatever",
           fieldset: {
             legend: {
-              text: 'Statements due (optional)',
+              text: 'Statements due',
               classes: "govuk-fieldset__legend--m"
             }
           },
@@ -82,7 +82,7 @@
           id: "whatever",
           fieldset: {
             legend: {
-              text: 'Interested party comments due (optional)',
+              text: 'Interested party comments due',
               classes: "govuk-fieldset__legend--m"
             }
           },
@@ -115,7 +115,7 @@
           id: "whatever",
           fieldset: {
             legend: {
-              text: 'Statement of common ground due (optional)',
+              text: 'Statement of common ground due',
               classes: "govuk-fieldset__legend--m"
             }
           },
@@ -148,7 +148,7 @@
           id: "whatever",
           fieldset: {
             legend: {
-              text: 'Proof of evidence and witnesses due (optional)',
+              text: 'Proof of evidence and witnesses due',
               classes: "govuk-fieldset__legend--m"
             }
           },
@@ -175,13 +175,13 @@
               classes: "govuk-input--width-4"
             }
           ]
-        }) }}
+        }) if data.editProcedure.procedure == 'Inquiry'}}
 
         {{ govukDateInput({
           id: "whatever",
           fieldset: {
             legend: {
-              text: 'Planning obligation due (optional)',
+              text: 'Planning obligation due',
               classes: "govuk-fieldset__legend--m"
             }
           },
@@ -208,7 +208,7 @@
               classes: "govuk-input--width-4"
             }
           ]
-        }) }}
+        }) if _case.appeal.hasPlanningObligation == 'Yes' and _case.appeal.readyToSubmitPlanningObligation == 'No' }}
 
         {{ govukButton({
           text: 'Continue'

@@ -1,5 +1,21 @@
 {% set filterOptionsHtml %}
 
+  {{ govukCheckboxes({
+    idPrefix: "filters[types]",
+    name: "filters[types]",
+    classes: "govuk-checkboxes--small",
+    fieldset: {
+      legend: {
+        text: "Type",
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: [
+      { value: 'Full planning appeal', text: 'Full planning appeal' },
+      { value: 'Householder appeal', text: 'Householder appeal' }
+    ],
+    values: data.filters.types
+  }) }}
 
   {{ govukCheckboxes({
     idPrefix: "filters[procedures]",
@@ -18,6 +34,41 @@
     ],
     values: data.filters.procedures
   }) }}
+
+  {{ govukCheckboxes({
+    idPrefix: "filters[siteVisit]",
+    name: "filters[siteVisit]",
+    classes: "govuk-checkboxes--small",
+    fieldset: {
+      legend: {
+        text: "Site visit",
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: [
+      { value: 'Site visit set up', text: 'Site visit set up' },
+      { value: 'Site visit not set up', text: 'Site visit not set up' }
+    ],
+    values: data.filters.siteVisit
+  }) }}
+
+  {{ govukCheckboxes({
+    idPrefix: "filters[planningObligation]",
+    name: "filters[planningObligation]",
+    classes: "govuk-checkboxes--small",
+    fieldset: {
+      legend: {
+        text: "Planning obligation",
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: [
+      { value: 'Has planning obligation', text: 'Has planning obligation' },
+      { value: 'Does not have planning obligation', text: 'Does not have planning obligation' }
+    ],
+    values: data.filters.planningObligation
+  }) }}
+
 
   {{ govukCheckboxes({
     idPrefix: "filters[statuses]",
@@ -55,6 +106,9 @@
     values: data.filters.statuses
   }) }}
 
+
+
+
 {% endset %}
 
 <div class="app-filter">
@@ -72,7 +126,7 @@
         <div class="app-filter__selected-heading">
           <div class="app-filter__heading-title">
             <h2 class="govuk-heading-m govuk-!-margin-bottom-1">Selected filters</h2>
-            <p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href="/main/cases/clear-filters">Clear filters</a></p>
+            <p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href="/main/your-cases/clear-filters">Clear filters</a></p>
           </div>
         </div>
         {% for category in selectedFilters.categories %}

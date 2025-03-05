@@ -23,8 +23,9 @@ module.exports = router => {
 
     let selectedStatusFilters = _.get(req.session.data.filters, 'statuses')
     let selectedCaseOfficerFilters = _.get(req.session.data.filters, 'caseOfficers')
+    let selectedTypeFilters = _.get(req.session.data.filters, 'types')
     let selectedProcedureFilters = _.get(req.session.data.filters, 'procedures')
-    let hasFilters = _.get(selectedStatusFilters, 'length') || _.get(selectedCaseOfficerFilters, 'length') || _.get(selectedProcedureFilters, 'length')
+    let hasFilters = _.get(selectedStatusFilters, 'length') || _.get(selectedCaseOfficerFilters, 'length') || _.get(selectedTypeFilters, 'length') || _.get(selectedProcedureFilters, 'length')
 
     let selectedFilters = {
       categories: []
@@ -35,6 +36,7 @@ module.exports = router => {
       cases = cases.filter(_case => {
         let matchesStatus = true
         let matchesCaseOfficer = true
+        let matchesType = true
         let matchesProcedure = true
 
         if(_.get(selectedStatusFilters, 'length')) {
@@ -45,11 +47,15 @@ module.exports = router => {
           matchesCaseOfficer = selectedCaseOfficerFilters.includes(_case.caseOfficer);
         }
 
+        if(_.get(selectedTypeFilters, 'length')) {
+          matchesType = selectedTypeFilters.includes(_case.type);
+        }
+
         if(_.get(selectedProcedureFilters, 'length')) {
           matchesProcedure = selectedProcedureFilters.includes(_case.procedure);
         }
 
-        return matchesStatus && matchesCaseOfficer && matchesProcedure
+        return matchesStatus && matchesCaseOfficer && matchesType && matchesProcedure
       })
     }
 
@@ -72,6 +78,18 @@ module.exports = router => {
           return {
             text: label,
             href: `/main/cases/remove-case-officer/${label}`
+          }
+        })
+      })
+    }
+
+    if(_.get(selectedTypeFilters, 'length')) {
+      selectedFilters.categories.push({
+        heading: { text: 'Type' },
+        items: selectedTypeFilters.map(label => {
+          return {
+            text: label,
+            href: `/main/cases/remove-type/${label}`
           }
         })
       })
@@ -110,6 +128,7 @@ module.exports = router => {
   router.get('/main/cases/clear-filters', (req, res) => {
     _.set(req, 'session.data.filters.statuses', null)
     _.set(req, 'session.data.filters.caseOfficers', null)
+    _.set(req, 'session.data.filters.types', null)
     _.set(req, 'session.data.filters.procedures', null)
     res.redirect('/main/cases')
   })
@@ -124,8 +143,18 @@ module.exports = router => {
     res.redirect('/main/cases')
   })
 
+  router.get('/main/cases/remove-type/:type', (req, res) => {
+    _.set(req, 'session.data.filters.types', _.pull(req.session.data.filters.types, req.params.type))
+    res.redirect('/main/cases')
+  })
+
   router.get('/main/cases/remove-procedure/:procedure', (req, res) => {
     _.set(req, 'session.data.filters.procedures', _.pull(req.session.data.filters.procedures, req.params.procedure))
+    res.redirect('/main/cases')
+  })
+
+  router.get('/main/cases/remove-site-visit/:siteVisit', (req, res) => {
+    _.set(req, 'session.data.filters.siteVisit', _.pull(req.session.data.filters.siteVisit, req.params.siteVisit))
     res.redirect('/main/cases')
   })
 
@@ -153,7 +182,10 @@ module.exports = router => {
 
     let selectedStatusFilters = _.get(req.session.data.filters, 'statuses')
     let selectedProcedureFilters = _.get(req.session.data.filters, 'procedures')
-    let hasFilters = _.get(selectedStatusFilters, 'length') || _.get(selectedProcedureFilters, 'length')
+    let selectedTypeFilters = _.get(req.session.data.filters, 'types')
+    let selectedSiteVisitFilters = _.get(req.session.data.filters, 'siteVisit')
+    let selectedPlanningObligationFilters = _.get(req.session.data.filters, 'planningObligation')
+    let hasFilters = _.get(selectedStatusFilters, 'length') || _.get(selectedProcedureFilters, 'length') || _.get(selectedTypeFilters, 'length') || _.get(selectedSiteVisitFilters, 'length') || _.get(selectedPlanningObligationFilters, 'length')
 
     let selectedFilters = {
       categories: []
@@ -163,17 +195,52 @@ module.exports = router => {
     if(hasFilters) {
       cases = cases.filter(_case => {
         let matchesStatus = true
+        let matchesType = true
         let matchesProcedure = true
+        let matchesSiteVisit = true
+        let matchesPlanningObligation = true
 
         if(_.get(selectedStatusFilters, 'length')) {
           matchesStatus = selectedStatusFilters.includes(_case.status);
+        }
+
+        if(_.get(selectedTypeFilters, 'length')) {
+          matchesType = selectedTypeFilters.includes(_case.type);
         }
 
         if(_.get(selectedProcedureFilters, 'length')) {
           matchesProcedure = selectedProcedureFilters.includes(_case.procedure);
         }
 
-        return matchesStatus && matchesProcedure
+        if(_.get(selectedSiteVisitFilters, 'length')) {
+          matchesSiteVisit = false
+          if(selectedSiteVisitFilters.includes('Site visit set up')) {
+            if(_case.siteVisit) {
+              matchesSiteVisit = true
+            }
+          }
+          if(selectedSiteVisitFilters.includes('Site visit not set up')) {
+            if(!_case.siteVisit) {
+              matchesSiteVisit = true
+            }
+          }
+        }
+
+        if(_.get(selectedPlanningObligationFilters, 'length')) {
+          matchesPlanningObligation = false
+          if(selectedPlanningObligationFilters.includes('Has planning obligation')) {
+            if(_case.appeal.hasPlanningObligation == 'Yes') {
+              matchesPlanningObligation = true
+            }
+          }
+          if(selectedPlanningObligationFilters.includes('Does not have planning obligation')) {
+            if(_case.appeal.hasPlanningObligation == 'No') {
+              matchesPlanningObligation = true
+            }
+          }
+        }
+
+        return matchesStatus && matchesType && matchesProcedure && matchesSiteVisit && matchesPlanningObligation
       })
     }
 
@@ -183,7 +250,19 @@ module.exports = router => {
         items: selectedStatusFilters.map(label => {
           return {
             text: label,
-            href: `/main/cases/remove-status/${label}`
+            href: `/main/your-cases/remove-status/${label}`
+          }
+        })
+      })
+    }
+
+    if(_.get(selectedTypeFilters, 'length')) {
+      selectedFilters.categories.push({
+        heading: { text: 'Type' },
+        items: selectedTypeFilters.map(label => {
+          return {
+            text: label,
+            href: `/main/your-cases/remove-type/${label}`
           }
         })
       })
@@ -195,7 +274,31 @@ module.exports = router => {
         items: selectedProcedureFilters.map(label => {
           return {
             text: label,
-            href: `/main/cases/remove-procedure/${label}`
+            href: `/main/your-cases/remove-procedure/${label}`
+          }
+        })
+      })
+    }
+
+    if(_.get(selectedSiteVisitFilters, 'length')) {
+      selectedFilters.categories.push({
+        heading: { text: 'Site visit' },
+        items: selectedSiteVisitFilters.map(label => {
+          return {
+            text: label,
+            href: `/main/your-cases/remove-site-visit/${label}`
+          }
+        })
+      })
+    }
+
+    if(_.get(selectedPlanningObligationFilters, 'length')) {
+      selectedFilters.categories.push({
+        heading: { text: 'Planning obligation' },
+        items: selectedPlanningObligationFilters.map(label => {
+          return {
+            text: label,
+            href: `/main/your-cases/remove-planning-obligation/${label}`
           }
         })
       })
@@ -217,6 +320,45 @@ module.exports = router => {
       pagination,
       totalCases
     })
+  })
+
+  router.get('/main/your-cases/remove-status/:status', (req, res) => {
+    _.set(req, 'session.data.filters.statuses', _.pull(req.session.data.filters.statuses, req.params.status))
+    res.redirect('/main/your-cases')
+  })
+
+  router.get('/main/your-cases/remove-case-officer/:caseOfficer', (req, res) => {
+    _.set(req, 'session.data.filters.caseOfficers', _.pull(req.session.data.filters.caseOfficers, req.params.caseOfficer))
+    res.redirect('/main/your-cases')
+  })
+
+  router.get('/main/your-cases/remove-type/:type', (req, res) => {
+    _.set(req, 'session.data.filters.types', _.pull(req.session.data.filters.types, req.params.type))
+    res.redirect('/main/your-cases')
+  })
+
+  router.get('/main/your-cases/remove-procedure/:procedure', (req, res) => {
+    _.set(req, 'session.data.filters.procedures', _.pull(req.session.data.filters.procedures, req.params.procedure))
+    res.redirect('/main/your-cases')
+  })
+
+  router.get('/main/your-cases/remove-site-visit/:siteVisit', (req, res) => {
+    _.set(req, 'session.data.filters.siteVisit', _.pull(req.session.data.filters.siteVisit, req.params.siteVisit))
+    res.redirect('/main/your-cases')
+  })
+
+  router.get('/main/your-cases/remove-planning-obligation/:planningObligation', (req, res) => {
+    _.set(req, 'session.data.filters.planningObligation', _.pull(req.session.data.filters.planningObligation, req.params.planningObligation))
+    res.redirect('/main/your-cases')
+  })
+
+  router.get('/main/your-cases/clear-filters', (req, res) => {
+    _.set(req, 'session.data.filters.statuses', null)
+    _.set(req, 'session.data.filters.types', null)
+    _.set(req, 'session.data.filters.procedures', null)
+    _.set(req, 'session.data.filters.siteVisit', null)
+    _.set(req, 'session.data.filters.planningObligation', null)
+    res.redirect('/main/your-cases')
   })
 
 }

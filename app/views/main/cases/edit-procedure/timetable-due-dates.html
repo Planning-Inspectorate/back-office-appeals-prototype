@@ -9,7 +9,7 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-l">Appeal {{_case.id}}</span>
+      <span class="govuk-caption-l">Appeal {{_case.id}} - update appeal procedure</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
       <form method="post">
         {{ govukDateInput({
@@ -25,21 +25,21 @@
           },
           items: [
             {
-              name: "editTimetableDueDates[LPAQuestionnaireDueDate][day]",
+              name: "editProcedure[LPAQuestionnaireDueDate][day]",
               label: "Day",
-              value: data.editTimetableDueDates.LPAQuestionnaireDueDate.day or _case.LPAQuestionnaireDueDate | day,
+              value: data.editProcedure.LPAQuestionnaireDueDate.day or _case.LPAQuestionnaireDueDate | day,
               classes: "govuk-input--width-2"
             },
             {
-              name: "editTimetableDueDates[LPAQuestionnaireDueDate][month]",
+              name: "editProcedure[LPAQuestionnaireDueDate][month]",
               label: "Month",
-              value: data.editTimetableDueDates.LPAQuestionnaireDueDate.month or _case.LPAQuestionnaireDueDate | month,
+              value: data.editProcedure.LPAQuestionnaireDueDate.month or _case.LPAQuestionnaireDueDate | month,
               classes: "govuk-input--width-2"
             },
             {
-              name: "editTimetableDueDates[LPAQuestionnaireDueDate][year]",
+              name: "editProcedure[LPAQuestionnaireDueDate][year]",
               label: "Year",
-              value: data.editTimetableDueDates.LPAQuestionnaireDueDate.year or _case.LPAQuestionnaireDueDate | year,
+              value: data.editProcedure.LPAQuestionnaireDueDate.year or _case.LPAQuestionnaireDueDate | year,
               classes: "govuk-input--width-4"
             }
           ]
@@ -58,25 +58,25 @@
           },
           items: [
             {
-              name: "editTimetableDueDates[statementsDueDate][day]",
+              name: "editProcedure[statementsDueDate][day]",
               label: "Day",
-              value: data.editTimetableDueDates.statementsDueDate.day or _case.statementsDueDate | day,
+              value: data.editProcedure.statementsDueDate.day or _case.statementsDueDate | day,
               classes: "govuk-input--width-2"
             },
             {
-              name: "editTimetableDueDates[statementsDueDate][month]",
+              name: "editProcedure[statementsDueDate][month]",
               label: "Month",
-              value: data.editTimetableDueDates.statementsDueDate.month or _case.statementsDueDate | month,
+              value: data.editProcedure.statementsDueDate.month or _case.statementsDueDate | month,
               classes: "govuk-input--width-2"
             },
             {
-              name: "editTimetableDueDates[statementsDueDate][year]",
+              name: "editProcedure[statementsDueDate][year]",
               label: "Year",
-              value: data.editTimetableDueDates.statementsDueDate.year or _case.statementsDueDate | year,
+              value: data.editProcedure.statementsDueDate.year or _case.statementsDueDate | year,
               classes: "govuk-input--width-4"
             }
           ]
-        }) }}
+        })}}
 
         {{ govukDateInput({
           id: "whatever",
@@ -91,21 +91,21 @@
           },
           items: [
             {
-              name: "editTimetableDueDates[interestedPartyCommentsDueDate][day]",
+              name: "editProcedure[interestedPartyCommentsDueDate][day]",
               label: "Day",
-              value: data.editTimetableDueDates.interestedPartyCommentsDueDate.day or _case.interestedPartyCommentsDueDate | day,
+              value: data.editProcedure.interestedPartyCommentsDueDate.day or _case.interestedPartyCommentsDueDate | day,
               classes: "govuk-input--width-2"
             },
             {
-              name: "editTimetableDueDates[interestedPartyCommentsDueDate][month]",
+              name: "editProcedure[interestedPartyCommentsDueDate][month]",
               label: "Month",
-              value: data.editTimetableDueDates.interestedPartyCommentsDueDate.month or _case.interestedPartyCommentsDueDate | month,
+              value: data.editProcedure.interestedPartyCommentsDueDate.month or _case.interestedPartyCommentsDueDate | month,
               classes: "govuk-input--width-2"
             },
             {
-              name: "editTimetableDueDates[interestedPartyCommentsDueDate][year]",
+              name: "editProcedure[interestedPartyCommentsDueDate][year]",
               label: "Year",
-              value: data.editTimetableDueDates.interestedPartyCommentsDueDate.year or _case.interestedPartyCommentsDueDate | year,
+              value: data.editProcedure.interestedPartyCommentsDueDate.year or _case.interestedPartyCommentsDueDate | year,
               classes: "govuk-input--width-4"
             }
           ]
@@ -124,25 +124,25 @@
           },
           items: [
             {
-              name: "editTimetableDueDates[statementOfCommonGroundDueDate][day]",
+              name: "editProcedure[statementOfCommonGroundDueDate][day]",
               label: "Day",
-              value: data.editTimetableDueDates.statementOfCommonGroundDueDate.day or _case.statementOfCommonGroundDueDate | day,
+              value: data.editProcedure.statementOfCommonGroundDueDate.day or _case.statementOfCommonGroundDueDate | day,
               classes: "govuk-input--width-2"
             },
             {
-              name: "editTimetableDueDates[statementOfCommonGroundDueDate][month]",
+              name: "editProcedure[statementOfCommonGroundDueDate][month]",
               label: "Month",
-              value: data.editTimetableDueDates.statementOfCommonGroundDueDate.month or _case.statementOfCommonGroundDueDate | month,
+              value: data.editProcedure.statementOfCommonGroundDueDate.month or _case.statementOfCommonGroundDueDate | month,
               classes: "govuk-input--width-2"
             },
             {
-              name: "editTimetableDueDates[statementOfCommonGroundDueDate][year]",
+              name: "editProcedure[statementOfCommonGroundDueDate][year]",
               label: "Year",
-              value: data.editTimetableDueDates.statementOfCommonGroundDueDate.year or _case.statementOfCommonGroundDueDate | year,
+              value: data.editProcedure.statementOfCommonGroundDueDate.year or _case.statementOfCommonGroundDueDate | year,
               classes: "govuk-input--width-4"
             }
           ]
-        }) if _case.procedure == 'Inquiry' or _case.procedure == 'Hearing'}}
+        }) if data.editProcedure.procedure == 'Inquiry' or data.editProcedure.procedure == 'Hearing' }}
 
         {{ govukDateInput({
           id: "whatever",
@@ -157,25 +157,25 @@
           },
           items: [
             {
-              name: "editTimetableDueDates[finalCommentsDueDate][day]",
+              name: "editProcedure[finalCommentsDueDate][day]",
               label: "Day",
-              value: data.editTimetableDueDates.finalCommentsDueDate.day or _case.finalCommentsDueDate | day,
+              value: data.editProcedure.finalCommentsDueDate.day or _case.finalCommentsDueDate | day,
               classes: "govuk-input--width-2"
             },
             {
-              name: "editTimetableDueDates[finalCommentsDueDate][month]",
+              name: "editProcedure[finalCommentsDueDate][month]",
               label: "Month",
-              value: data.editTimetableDueDates.finalCommentsDueDate.month or _case.finalCommentsDueDate | month,
+              value: data.editProcedure.finalCommentsDueDate.month or _case.finalCommentsDueDate | month,
               classes: "govuk-input--width-2"
             },
             {
-              name: "editTimetableDueDates[finalCommentsDueDate][year]",
+              name: "editProcedure[finalCommentsDueDate][year]",
               label: "Year",
-              value: data.editTimetableDueDates.finalCommentsDueDate.year or _case.finalCommentsDueDate | year,
+              value: data.editProcedure.finalCommentsDueDate.year or _case.finalCommentsDueDate | year,
               classes: "govuk-input--width-4"
             }
           ]
-        }) if _case.procedure == 'Written representations' }}
+        }) if data.editProcedure.procedure == 'Written representations' }}
 
         {{ govukDateInput({
           id: "whatever",
@@ -190,25 +190,25 @@
           },
           items: [
             {
-              name: "editTimetableDueDates[proofOfEvidenceAndWitnessesDueDate][day]",
+              name: "editProcedure[proofOfEvidenceAndWitnessesDueDate][day]",
               label: "Day",
-              value: data.editTimetableDueDates.proofOfEvidenceAndWitnessesDueDate.day or _case.proofOfEvidenceAndWitnessesDueDate | day,
+              value: data.editProcedure.proofOfEvidenceAndWitnessesDueDate.day or _case.proofOfEvidenceAndWitnessesDueDate | day,
               classes: "govuk-input--width-2"
             },
             {
-              name: "editTimetableDueDates[proofOfEvidenceAndWitnessesDueDate][month]",
+              name: "editProcedure[proofOfEvidenceAndWitnessesDueDate][month]",
               label: "Month",
-              value: data.editTimetableDueDates.proofOfEvidenceAndWitnessesDueDate.month or _case.proofOfEvidenceAndWitnessesDueDate | month,
+              value: data.editProcedure.proofOfEvidenceAndWitnessesDueDate.month or _case.proofOfEvidenceAndWitnessesDueDate | month,
               classes: "govuk-input--width-2"
             },
             {
-              name: "editTimetableDueDates[proofOfEvidenceAndWitnessesDueDate][year]",
+              name: "editProcedure[proofOfEvidenceAndWitnessesDueDate][year]",
               label: "Year",
-              value: data.editTimetableDueDates.proofOfEvidenceAndWitnessesDueDate.year or _case.proofOfEvidenceAndWitnessesDueDate | year,
+              value: data.editProcedure.proofOfEvidenceAndWitnessesDueDate.year or _case.proofOfEvidenceAndWitnessesDueDate | year,
               classes: "govuk-input--width-4"
             }
           ]
-        }) if _case.procedure == 'Inquiry' }}
+        }) if data.editProcedure.procedure == 'Inquiry' }}
 
         {{ govukDateInput({
           id: "whatever",
@@ -223,29 +223,28 @@
           },
           items: [
             {
-              name: "editTimetableDueDates[planningObligationDueDate][day]",
+              name: "editProcedure[planningObligationDueDate][day]",
               label: "Day",
-              value: data.editTimetableDueDates.planningObligationDueDate.day or _case.planningObligationDueDate | day,
+              value: data.editProcedure.planningObligationDueDate.day or _case.planningObligationDueDate | day,
               classes: "govuk-input--width-2"
             },
             {
-              name: "editTimetableDueDates[planningObligationDueDate][month]",
+              name: "editProcedure[planningObligationDueDate][month]",
               label: "Month",
-              value: data.editTimetableDueDates.planningObligationDueDate.month or _case.planningObligationDueDate | month,
+              value: data.editProcedure.planningObligationDueDate.month or _case.planningObligationDueDate | month,
               classes: "govuk-input--width-2"
             },
             {
-              name: "editTimetableDueDates[planningObligationDueDate][year]",
+              name: "editProcedure[planningObligationDueDate][year]",
               label: "Year",
-              value: data.editTimetableDueDates.planningObligationDueDate.year or _case.planningObligationDueDate | year,
+              value: data.editProcedure.planningObligationDueDate.year or _case.planningObligationDueDate | year,
               classes: "govuk-input--width-4"
             }
           ]
         }) if _case.appeal.hasPlanningObligation == 'Yes' and _case.appeal.readyToSubmitPlanningObligation == 'No' }}
 
-
         {{ govukButton({
-          text: 'Update timetable due dates'
+          text: 'Continue'
         }) }}
       </form>
 

@@ -1,6 +1,6 @@
 {% extends "layouts/bo.html" %}
 
-{% set title = "Appeal procedure" %}
+{% set title = "Do you want to request a new statement from the local planning authority?" %}
 {% set pageName = title %}
 
 {% set back = true %}
@@ -11,9 +11,9 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form method="post">
-        <span class="govuk-caption-l">Appeal {{_case.id}}</span>
+        <span class="govuk-caption-l">Appeal {{_case.id}} - update appeal procedure</span>
         {{ govukRadios({
-          name: "editProcedure[procedure]",
+          name: "editProcedure[hasNewStatement]",
           fieldset: {
             legend: {
               text: title,
@@ -21,19 +21,15 @@
               classes: "govuk-fieldset__legend--l"
             }
           },
-          value: data.editProcedure.procedure or _case.procedure,
+          value: data.editProcedure.hasNewStatement,
           items: [
             {
-              value: "Written representations",
-              text: "Written representations"
+              value: "Yes",
+              text: "Yes"
             },
             {
-              value: "Hearing",
-              text: "Hearing"
-            },
-            {
-              value: "Inquiry",
-              text: "Inquiry"
+              value: "No",
+              text: "No"
             }
           ]
         }) }}

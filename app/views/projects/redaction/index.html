@@ -44,16 +44,25 @@
     ]
   ]
 }) }}
-  
+<h2 class="govuk-heading-m">Version 2
+</h2>
 
-<h1 class="govuk-heading-m">Version 1
+{{ govukButton({
+  text: "View prototype",
+  isStartButton: true,
+  href: '/projects/redaction/v2'
+}) }}
+
+
+
+<h2 class="govuk-heading-m">Version 1
 
   {{govukTag({
       text: "In progress",
       classes: "govuk-!-margin-left-2 govuk-tag--yellow"
     })}}
 
-</h1>
+</h2>
 
 <h2 class="govuk-heading-s">Features:</h2>
 <ul class='govuk-list govuk-list--bullet'><li>redact a document from the document details page</li></ul>

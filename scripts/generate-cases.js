@@ -2,6 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const faker =  require('@faker-js/faker').faker
 const { v4: uuidv4 } = require('uuid')
+const { DateTime } = require("luxon")
 
 let now = new Date().toISOString()
 
@@ -127,7 +128,7 @@ const generateRule6Party = (params) => {
       party.statement = {}
       party.statement.dateReceived = faker.date.recent({ days: 2 })
       party.statement.status = 'Ready to review'
-      party.statement.statement = 'Having reviewed the proposal we would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. David Newton at number 6 The Grove also agrees.'
+      party.statement.statement = 'Having reviewed the proposal we would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. <mark>Residents have not been consulted</mark> on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. David Newton at number 6 The Grove also agrees.'
       party.statement.documents = [{
         name: 'St.Ritas_Community_Association_statement_for_appeal_4012345.doc',
         size: '5MB'
@@ -173,6 +174,11 @@ const generateCase = (params = {}) => {
   if(_case.status !== 'Ready to assign case officer') {
     _case.caseOfficer = faker.helpers.arrayElement([
       'Tony Stark',
+      'Tony Stark',
+      'Tony Stark',
+      'Tony Stark',
+      'Tony Stark',
+      'Tony Stark',
       'Natasha Romanoff',
       'Peter Parker'
     ])
@@ -180,6 +186,117 @@ const generateCase = (params = {}) => {
 
   if(_case.status == 'Ready to assign case officer' || _case.status == 'Ready to validate' || _case.status == 'Ready to start') {
     _case.procedure = null
+  }
+
+  let appeal = {}
+
+  appeal.procedurePreference = faker.helpers.arrayElement(['Written representations', 'Hearing', 'Inquiry'])
+  appeal.hasPlanningObligation = faker.helpers.arrayElement(['Yes', 'No'])
+  if(appeal.hasPlanningObligation == 'Yes') {
+    if(appeal.procedurePreference == 'Written representations') {
+      appeal.planningObligation = {
+        name: 'planning-obligation.pdf',
+        size: '5MB'
+      }
+    } else {
+      appeal.readyToSubmitPlanningObligation = faker.helpers.arrayElement(['Yes', 'No'])
+      if(appeal.readyToSubmitPlanningObligation == 'Yes') {
+        appeal.planningObligation = {
+          name: 'planning-obligation.pdf',
+          size: '5MB'
+        }
+      }
+    }
+  }
+  _case.appeal = appeal
+
+  switch(_case.status) {
+    case 'Statements and IP comments ready to review':
+    case 'Statements and IP comments ready to share':
+    case 'Awaiting final comments':
+    case 'Final comments ready to review':
+    case 'Final comments ready to share':
+    case 'Site visit ready to set up':
+    case 'Awaiting site visit':
+    case 'Hearing ready to set up':
+    case 'Awaiting hearing':
+    case 'Inquiry ready to set up':
+    case 'Awaiting proof of evidence and witnesses':
+    case 'Proof of evidence and witnesses ready to review':
+    case 'Proof of evidence and witnesses ready to share':
+    case 'Awaiting inquiry':
+    case 'Decision ready to issue':
+    case 'Decision issued':
+      _case.lpaStatement = {
+        statement: 'Sit laborum adipisicing nisi do velit dolor eiusmod aute ipsum commodo eu Lorem. Culpa qui irure irure aliquip. Sint consectetur ea nisi pariatur ipsum dolore in quis in eiusmod pariatur ex.\n\n Esse labore amet aliqua incididunt quis consequat cillum dolor sunt aute voluptate consectetur amet anim. Tempor officia est ea consectetur minim non do cupidatat dolor.',
+        documents: [{
+          name: 'document.pdf',
+          size: '5MB'
+        }]
+      }
+      break
+  }
+
+
+
+
+  if(_case.procedure == 'Written representations') {
+    _case.startDate = DateTime.now().toISO()
+    _case.LPAQuestionnaireDueDate = DateTime.now().toISO()
+    _case.statementsDueDate = DateTime.now().toISO()
+    _case.interestedPartyCommentsDueDate = DateTime.now().toISO()
+    _case.finalCommentsDueDate = DateTime.now().toISO()
+    if(appeal.hasPlanningObligation == 'Yes' && !appeal.planningObligation) {
+      _case.planningObligationDueDate = DateTime.now().toISO()
+    }
+
+    if(_case.status != 'Site visit to set up') {
+      _case.siteVisit = faker.helpers.arrayElement([{
+        date: DateTime.now().toISO(),
+        time: '10am',
+        hasAddress: 'No'
+      }, null])
+    }
+
+  }
+
+  if(_case.procedure == 'Hearing') {
+    _case.startDate = DateTime.now().toISO()
+    _case.LPAQuestionnaireDueDate = DateTime.now().toISO()
+    _case.statementsDueDate = DateTime.now().toISO()
+    _case.interestedPartyCommentsDueDate = DateTime.now().toISO()
+    _case.statementOfCommonGroundDueDate = DateTime.now().toISO()
+    if(appeal.hasPlanningObligation == 'Yes' && !appeal.planningObligation) {
+      _case.planningObligationDueDate = DateTime.now().toISO()
+    }
+
+    if(_case.status != 'Hearing ready to set up') {
+      _case.hearing = {
+        date: DateTime.now().toISO(),
+        time: '10am',
+        hasAddress: 'No'
+      }
+    }
+
+  }
+
+  if(_case.procedure == 'Inquiry') {
+    _case.startDate = DateTime.now().toISO()
+    _case.LPAQuestionnaireDueDate = DateTime.now().toISO()
+    _case.statementsDueDate = DateTime.now().toISO()
+    _case.interestedPartyCommentsDueDate = DateTime.now().toISO()
+    _case.statementOfCommonGroundDueDate = DateTime.now().toISO()
+    _case.proofOfEvidenceAndWitnessesDueDate = DateTime.now().toISO()
+    if(appeal.hasPlanningObligation == 'Yes' && !appeal.planningObligation) {
+      _case.planningObligationDueDate = DateTime.now().toISO()
+    }
+
+    _case.inquiry = {
+      date: DateTime.now().toISO(),
+      time: '10am',
+      hasDays: 'No',
+      hasAddress: 'No'
+    }
   }
 
   _case.appellant = params.appellant || {}
@@ -416,7 +533,7 @@ const generateCases = () => {
     status: "Decision issued"
   }))
 
-  for(let i = 0; i < 50; i++) {
+  for(let i = 0; i < 100; i++) {
     cases.push(generateCase())
   }
 

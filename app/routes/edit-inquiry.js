@@ -1,5 +1,5 @@
 const _ = require('lodash')
-const { DateTime } = require("luxon");
+const { DateTime } = require("luxon")
 
 module.exports = router => {
 

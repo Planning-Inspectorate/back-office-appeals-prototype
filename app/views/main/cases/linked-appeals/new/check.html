@@ -18,12 +18,12 @@
               text: "Reference"
             },
             value: {
-              html: data.addCase.Reference
+              html: data.addLinkedAppeal.reference
             },
             actions: {
               items: [
                 {
-                  href: "/main/cases/:caseId/add-case" | replace(':caseId', _case.id),
+                  href: "/main/cases/:caseId/linked-appeals/new" | replace(':caseId', _case.id),
                   text: "Change",
                   visuallyHiddenText: "Reference"
                 }
@@ -35,12 +35,12 @@
               text: "Relationship"
             },
             value: {
-              html: data.addCase.relationship
+              html: data.addLinkedAppeal.relationship
             },
             actions: {
               items: [
                 {
-                  href: "/main/cases/:caseId/add-case/relationship" | replace(':caseId', _case.id),
+                  href: "/main/cases/:caseId/linked-appeals/new/relationship" | replace(':caseId', _case.id),
                   text: "Change",
                   visuallyHiddenText: "Relationship"
                 }

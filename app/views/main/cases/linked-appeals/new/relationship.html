@@ -1,6 +1,6 @@
 {% extends "layouts/bo.html" %}
 
-{% set title = "Relationship" %}
+{% set title = "Do you want to make this the lead appeal or child appeal?" %}
 {% set pageName = title %}
 
 {% set back = true %}
@@ -13,7 +13,7 @@
       <form method="post">
         <span class="govuk-caption-l">Appeal {{_case.id}} - link case</span>
         {{ govukRadios({
-          name: "addCase[relationship]",
+          name: "addLinkedAppeal[relationship]",
           fieldset: {
             legend: {
               text: title,
@@ -21,15 +21,15 @@
               classes: "govuk-fieldset__legend--l"
             }
           },
-          value: data.addCase.relationship,
+          value: data.addLinkedAppeal.relationship,
           items: [
             {
-              value: "Lead",
-              text: "Lead"
+              value: "Lead appeal",
+              text: "Lead appeal"
             },
             {
-              value: "Child",
-              text: "Child"
+              value: "Child appeal",
+              text: "Child appeal"
             }
           ]
         }) }}

@@ -1,6 +1,17 @@
 <div class="app-panel">
   <h2 class="govuk-heading-l">Overview</h2>
 
+  {% set linkedAppealsHtml %}
+    {% if _case.linkedAppeals.length %}
+      {% for appeal in _case.linkedAppeals %}
+        <p><a href="/main/cases/{{appeal.id}}">{{appeal.id}}</a> {{ govukTag({ text: appeal.relationship }) }}</p>
+      {% endfor %}
+    {% else %}
+      No linked appeals
+    {% endif %}
+  {% endset %}
+
+
   {{ govukSummaryList({
     rows: [
     {
@@ -93,21 +104,17 @@
           text: "Linked appeals"
         },
         value: {
-          html: _case.linkedAppeal if _case.linkedAppeal == 'No appeals' else '<a href="#">'+_case.linkedAppeal+'</a>'
+          html: linkedAppealsHtml
         },
         actions: {
           items: [
             {
-              href: "Item URL",
+              href: "/main/cases/:caseId/linked-appeals/new" | replace(':caseId', _case.id),
               text: "Add",
               visuallyHiddenText: "linked appeal"
-            }
-          ]
-        }if data['empty'] else
-        {
-          items: [
+            },
             {
-              href: "Item URL",
+              href: "/main/cases/:caseId/linked-appeals" | replace(':caseId', _case.id),
               text: "Change",
               visuallyHiddenText: "linked appeals"
             }

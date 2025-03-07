@@ -1,6 +1,6 @@
 {% extends "layouts/bo.html" %}
 
-{% set title = "Reference" %}
+{% set title = "Appeal reference" %}
 {% set pageName = title %}
 
 {% set back = true %}
@@ -13,14 +13,15 @@
       <form method="post">
         <span class="govuk-caption-l">Appeal {{_case.id}} - link case</span>
         {{ govukInput({
-          id: "addCase[reference]",
-          name: "addCase[reference]",
+          id: "addLinkedAppeal[reference]",
+          name: "addLinkedAppeal[reference]",
           label: {
             text: title,
             isPageHeading: true,
             classes: "govuk-label--l"
           },
-          value: data.addCase.reference
+          classes: "govuk-input--width-10",
+          value: data.addLinkedAppeal.reference
         }) }}
 
         {{ govukButton({

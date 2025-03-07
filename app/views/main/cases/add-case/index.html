@@ -1,0 +1,33 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Reference" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+        <span class="govuk-caption-l">Appeal {{_case.id}} - link case</span>
+        {{ govukInput({
+          id: "addCase[reference]",
+          name: "addCase[reference]",
+          label: {
+            text: title,
+            isPageHeading: true,
+            classes: "govuk-label--l"
+          },
+          value: data.addCase.reference
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

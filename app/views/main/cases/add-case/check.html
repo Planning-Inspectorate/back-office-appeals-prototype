@@ -1,0 +1,63 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Check details and link case" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal {{_case.id}}</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Reference"
+            },
+            value: {
+              html: data.addCase.Reference
+            },
+            actions: {
+              items: [
+                {
+                  href: "/main/cases/:caseId/add-case" | replace(':caseId', _case.id),
+                  text: "Change",
+                  visuallyHiddenText: "Reference"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Relationship"
+            },
+            value: {
+              html: data.addCase.relationship
+            },
+            actions: {
+              items: [
+                {
+                  href: "/main/cases/:caseId/add-case/relationship" | replace(':caseId', _case.id),
+                  text: "Change",
+                  visuallyHiddenText: "Relationship"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      {# <p>We’ll send an email to the appellant and LPA to tell them about the hearing.</p> #}
+
+      <form method="post">
+        {{ govukButton({
+          text: "Link case"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Relationship" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+        <span class="govuk-caption-l">Appeal {{_case.id}} - link case</span>
+        {{ govukRadios({
+          name: "addCase[relationship]",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          value: data.addCase.relationship,
+          items: [
+            {
+              value: "Lead",
+              text: "Lead"
+            },
+            {
+              value: "Child",
+              text: "Child"
+            }
+          ]
+        }) }}
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

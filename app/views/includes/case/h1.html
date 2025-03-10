@@ -1,7 +1,17 @@
-<h1 class="govuk-heading-xl govuk-!-margin-bottom-3">{{_case.id}} {{ govukTag({
-  text: _case.status,
-  classes: _case.status | appealStatusColour
-}) }} {{ govukTag({
-  text: 'Child',
-  classes: 'govuk-tag--grey'
-}) }}</h1>
+<h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+  {{_case.id}}
+  {{ govukTag({
+    text: _case.status,
+    classes: _case.status | appealStatusColour
+  }) }}
+
+  {{ govukTag({
+    text: 'Lead',
+    classes: 'govuk-tag--grey'
+  }) if isLeadAppeal}}
+
+  {{ govukTag({
+    text: 'Child',
+    classes: 'govuk-tag--grey'
+  }) if isChildAppeal}}
+</h1>

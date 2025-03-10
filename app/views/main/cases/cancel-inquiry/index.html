@@ -3,7 +3,12 @@
 {% set title = "Confirm that you want to cancel the inquiry"  %}
 {% set pageName = title %}
 
-{% set back = true %}
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: 'javascript:history.back()'
+  }) }}
+{% endblock %}
 
 {% block content %}
   <div class="govuk-grid-row">

@@ -14,7 +14,7 @@ module.exports = router => {
   router.post('/main/cases/:caseId/linked-appeals/:linkedAppealId/delete', function (req, res) {
     _.remove(req.session.data.linkedAppeals, linkedAppeal => linkedAppeal.leadAppealId == req.params.linkedAppealId || linkedAppeal.childAppealId == req.params.linkedAppealId)
 
-    req.flash('success', 'Appeal unlinked')
+    req.flash('success', 'Linked appeal removed')
     res.redirect(`/main/cases/${req.params.caseId}`)
   })
 

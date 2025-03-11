@@ -1,6 +1,6 @@
 {% extends "layouts/bo.html" %}
 
-{% set title = "Confirm that you want to unlink appeal :linkedAppealId" | replace(':linkedAppealId', linkedAppealId)  %}
+{% set title = "Confirm that you want to remove linked appeal :linkedAppealId" | replace(':linkedAppealId', linkedAppealId)  %}
 {% set pageName = title %}
 
 {% set back = true %}
@@ -15,7 +15,7 @@
 
       <form method="post">
         {{ govukButton({
-          text: "Unlink appeal"
+          text: "Remove linked appeal"
         }) }}
 
         <p><a href="javascript:history.back()">Cancel</a></p>

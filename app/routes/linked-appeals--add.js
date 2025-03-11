@@ -80,34 +80,33 @@ module.exports = router => {
     let appealReference = req.session.data.addLinkedAppeal.reference
     let leadAppealReference = req.session.data.addLinkedAppeal.leadAppeal
 
-
-
-    // if you’re making the appeal reference that you typed in the lead
-    // then the current appeal should be the child
-    if(leadAppealReference == appealReference) {
-      req.session.data.linkedAppeals.push({
-        id: uuidv4(),
-        leadAppealId: leadAppealReference,
-        childAppealId: _case.id
-      })
-
-      // TODO
-      // If the childAppealId is a lead already
-      // It needs to be removed as a lead
-      // And all it’s children need to have a new lead to match the new lead
-
-
+    if(leadAppealReference) {
+      // if you’re making the appeal reference that you typed in the lead
+      // then the current appeal should be the child
+      if(leadAppealReference == appealReference) {
+        req.session.data.linkedAppeals.push({
+          id: uuidv4(),
+          leadAppealId: leadAppealReference,
+          childAppealId: _case.id
+        })
+      } else {
+        // otherwise the reference is the child and the lead is the lead
+        req.session.data.linkedAppeals.push({
+          id: uuidv4(),
+          leadAppealId: leadAppealReference,
+          childAppealId: appealReference
+        })
+      }
     } else {
-      // otherwise the reference is the child and the lead is the lead
       req.session.data.linkedAppeals.push({
         id: uuidv4(),
-        leadAppealId: req.session.data.addLinkedAppeal.leadAppeal,
-        childAppealId: req.session.data.addLinkedAppeal.reference
+        leadAppealId: _case.id,
+        childAppealId: appealReference
       })
     }
 
     delete req.session.data.addLinkedAppeal
-    req.flash('success', 'Appeal linked')
+    req.flash('success', 'Linked appeal added')
     res.redirect(`/main/cases/${req.params.caseId}`)
   })
 

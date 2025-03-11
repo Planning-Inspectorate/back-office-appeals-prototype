@@ -1,5 +1,5 @@
-const { DateTime } = require("luxon")
 const _ = require('lodash')
+const { isLeadAppeal } = require('../helpers/linked-appeals')
 
 module.exports = router => {
 
@@ -12,7 +12,12 @@ module.exports = router => {
   })
 
   router.post('/main/cases/:caseId/linked-appeals/:linkedAppealId/delete', function (req, res) {
-    _.remove(req.session.data.linkedAppeals, linkedAppeal => linkedAppeal.leadAppealId == req.params.linkedAppealId || linkedAppeal.childAppealId == req.params.linkedAppealId)
+    // TODO: must remove where lead is lead and child is child otherwise it removes them all - naughty
+    if(isLeadAppeal(req.params.linkedAppealId, req.session.data.linkedAppeals)) {
+      _.remove(req.session.data.linkedAppeals, linkedAppeal => linkedAppeal.leadAppealId == req.params.linkedAppealId)
+    } else {
+      _.remove(req.session.data.linkedAppeals, linkedAppeal => linkedAppeal.childAppealId == req.params.linkedAppealId)
+    }
 
     req.flash('success', 'Linked appeal removed')
     res.redirect(`/main/cases/${req.params.caseId}`)

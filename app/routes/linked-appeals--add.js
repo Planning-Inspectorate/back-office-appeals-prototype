@@ -1,6 +1,5 @@
-const { DateTime } = require("luxon")
 const { v4: uuidv4 } = require('uuid')
-const { getLinkedAppeals, isLeadAppeal } = require('../helpers/linked-appeals')
+const { isLeadAppeal } = require('../helpers/linked-appeals')
 
 module.exports = router => {
 
@@ -12,8 +11,7 @@ module.exports = router => {
   })
 
   router.post('/main/cases/:caseId/linked-appeals/new', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
-    if(isLeadAppeal(_case.id, req.session.data.linkedAppeals)) {
+    if(isLeadAppeal(req.params.caseId, req.session.data.linkedAppeals)) {
       res.redirect(`/main/cases/${req.params.caseId}/linked-appeals/new/check`)
     } else {
       res.redirect(`/main/cases/${req.params.caseId}/linked-appeals/new/lead-appeal`)

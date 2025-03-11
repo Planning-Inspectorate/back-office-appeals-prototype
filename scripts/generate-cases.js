@@ -537,17 +537,17 @@ const generateCases = () => {
     cases.push(generateCase())
   }
 
-  var leadCase = cases.find(_case => _case.id === '00000009')
-  var childCase = cases.find(_case => _case.id === '00000010')
-  leadCase.linkedAppeals.push({
-    relationship: 'Child',
-    id: '00000010'
-  })
+  // var leadCase = cases.find(_case => _case.id === '00000009')
+  // var childCase = cases.find(_case => _case.id === '00000010')
+  // leadCase.linkedAppeals.push({
+  //   relationship: 'Child',
+  //   id: '00000010'
+  // })
 
-  childCase.linkedAppeals.push({
-    relationship: 'Lead',
-    id: '00000009'
-  })
+  // childCase.linkedAppeals.push({
+  //   relationship: 'Lead',
+  //   id: '00000009'
+  // })
 
   return cases
 }

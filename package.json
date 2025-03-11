@@ -3,7 +3,7 @@
     "dev": "govuk-prototype-kit dev",
     "serve": "govuk-prototype-kit serve",
     "start": "govuk-prototype-kit start",
-    "generate-data": "node ./scripts/generate-cases.js"
+    "generate-data": "node ./scripts/generate-cases.js && node ./scripts/generate-linked-appeals.js"
   },
   "dependencies": {
     "@faker-js/faker": "^9.2.0",

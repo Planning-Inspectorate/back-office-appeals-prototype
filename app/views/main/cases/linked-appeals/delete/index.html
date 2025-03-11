@@ -1,6 +1,6 @@
 {% extends "layouts/bo.html" %}
 
-{% set title = "Confirm that you want to unlink the appeal"  %}
+{% set title = "Confirm that you want to unlink appeal :linkedAppealId" | replace(':linkedAppealId', linkedAppealId)  %}
 {% set pageName = title %}
 
 {% set back = true %}
@@ -8,12 +8,10 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
-      <span class="govuk-caption-l">Appeal</span>
+      <span class="govuk-caption-l">Appeal {{_case.id}}</span>
       <h1 class="govuk-heading-l">
         {{title}}
       </h1>
-
-      <p>[What will happen as a result of unlinking the appeal.]</p>
 
       <form method="post">
         {{ govukButton({

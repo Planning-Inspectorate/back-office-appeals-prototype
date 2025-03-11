@@ -1,15 +1,53 @@
 <div class="app-panel">
   <h2 class="govuk-heading-l">Overview</h2>
 
-  {% set linkedAppealsHtml %}
-    {% if _case.linkedAppeals.length %}
-      {% for appeal in _case.linkedAppeals %}
-        <p><a href="/main/cases/{{appeal.id}}">{{appeal.id}}</a> {{ govukTag({ text: appeal.relationship }) }}</p>
+  {% if linkedAppeals.length %}
+    {% set linkedAppealsHtml %}
+      {% for linkedAppeal in linkedAppeals %}
+        <p>
+          <a href="/main/cases/{{linkedAppeal.id}}">{{linkedAppeal.id}}</a>
+          {% if linkedAppeal.relationship == 'Lead' %}
+            (Lead)
+          {% endif %}
+        </p>
       {% endfor %}
+    {% endset %}
+
+    {% if not isLeadAppeal %}
+      {% set linkedAppealsActions = [
+        {
+          href: "/main/cases/:caseId/linked-appeals" | replace(':caseId', _case.id),
+          text: "Change",
+          visuallyHiddenText: "linked appeals"
+        }
+      ] %}
     {% else %}
-      No linked appeals
+      {% set linkedAppealsActions = [
+        {
+          href: "/main/cases/:caseId/linked-appeals/new" | replace(':caseId', _case.id),
+          text: "Add",
+          visuallyHiddenText: "linked appeal"
+        },
+        {
+          href: "/main/cases/:caseId/linked-appeals" | replace(':caseId', _case.id),
+          text: "Change",
+          visuallyHiddenText: "linked appeals"
+        }
+      ] %}
     {% endif %}
-  {% endset %}
+  {% else %}
+    {% set linkedAppealsHtml %}
+      No linked appeals
+    {% endset %}
+
+    {% set linkedAppealsActions = [
+      {
+        href: "/main/cases/:caseId/linked-appeals/new" | replace(':caseId', _case.id),
+        text: "Add",
+        visuallyHiddenText: "linked appeal"
+      }
+    ] %}
+  {% endif %}
 
 
   {{ govukSummaryList({
@@ -107,18 +145,7 @@
           html: linkedAppealsHtml
         },
         actions: {
-          items: [
-            {
-              href: "/main/cases/:caseId/linked-appeals/new" | replace(':caseId', _case.id),
-              text: "Add",
-              visuallyHiddenText: "linked appeal"
-            },
-            {
-              href: "/main/cases/:caseId/linked-appeals" | replace(':caseId', _case.id),
-              text: "Change",
-              visuallyHiddenText: "linked appeals"
-            }
-          ]
+          items: linkedAppealsActions
         }
       },
       {

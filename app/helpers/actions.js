@@ -6,7 +6,7 @@ const getActions = (_case) => {
   } else if (_case.status === "Ready to validate") {
     actions.push({ text: "Validate case", href: "#" })
   } else if (_case.status === "Ready to start") {
-    actions.push({ text: "Start case", href: `/main/cases/${_case.id}/start-case` })
+    actions.push({ text: "Start timetable", href: `/main/cases/${_case.id}/start-case` })
   } else if (_case.status === "LPAQ ready to review") {
     actions.push({ text: "Review LPAQ", href: "#" })
   } else if (_case.status === "Statements and IP comments ready to review") {

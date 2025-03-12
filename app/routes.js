@@ -34,6 +34,9 @@ router.get('/clear-data', function (req, res) {
 
 require('./routes/cases')(router)
 require('./routes/case')(router)
+require('./routes/linked-appeals')(router)
+require('./routes/linked-appeals--add')(router)
+require('./routes/linked-appeals--delete')(router)
 require('./routes/agent--add')(router)
 require('./routes/agent--edit')(router)
 require('./routes/agent--remove')(router)

@@ -145,7 +145,7 @@ const generateCase = (params = {}) => {
   _case.id = params.id || "" + faker.number.int({ min: 123456, max: 999999 })
   _case.type = params.type || faker.helpers.arrayElement(['Householder appeal', 'Full planning appeal'])
 
-  _case.linkedAppeal = params.linkedAppeal || faker.helpers.arrayElement(['No appeals', '1234567', ])
+  _case.linkedAppeals = params.linkedAppeals || []
 
   let statuses = baseStatuses
 
@@ -536,6 +536,18 @@ const generateCases = () => {
   for(let i = 0; i < 100; i++) {
     cases.push(generateCase())
   }
+
+  // var leadCase = cases.find(_case => _case.id === '00000009')
+  // var childCase = cases.find(_case => _case.id === '00000010')
+  // leadCase.linkedAppeals.push({
+  //   relationship: 'Child',
+  //   id: '00000010'
+  // })
+
+  // childCase.linkedAppeals.push({
+  //   relationship: 'Lead',
+  //   id: '00000009'
+  // })
 
   return cases
 }

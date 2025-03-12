@@ -1,6 +1,55 @@
 <div class="app-panel">
   <h2 class="govuk-heading-l">Overview</h2>
 
+  {% if linkedAppeals.length %}
+    {% set linkedAppealsHtml %}
+      {% for linkedAppeal in linkedAppeals %}
+        <p>
+          <a href="/main/cases/{{linkedAppeal.id}}">{{linkedAppeal.id}}</a>
+          {% if linkedAppeal.relationship == 'Lead' %}
+            (Lead)
+          {% endif %}
+        </p>
+      {% endfor %}
+    {% endset %}
+
+    {% if not isLeadAppeal %}
+      {% set linkedAppealsActions = [
+        {
+          href: "/main/cases/:caseId/linked-appeals" | replace(':caseId', _case.id),
+          text: "Change",
+          visuallyHiddenText: "linked appeals"
+        }
+      ] %}
+    {% else %}
+      {% set linkedAppealsActions = [
+        {
+          href: "/main/cases/:caseId/linked-appeals/new" | replace(':caseId', _case.id),
+          text: "Add",
+          visuallyHiddenText: "linked appeal"
+        },
+        {
+          href: "/main/cases/:caseId/linked-appeals" | replace(':caseId', _case.id),
+          text: "Change",
+          visuallyHiddenText: "linked appeals"
+        }
+      ] %}
+    {% endif %}
+  {% else %}
+    {% set linkedAppealsHtml %}
+      No linked appeals
+    {% endset %}
+
+    {% set linkedAppealsActions = [
+      {
+        href: "/main/cases/:caseId/linked-appeals/new" | replace(':caseId', _case.id),
+        text: "Add",
+        visuallyHiddenText: "linked appeal"
+      }
+    ] %}
+  {% endif %}
+
+
   {{ govukSummaryList({
     rows: [
     {
@@ -93,25 +142,10 @@
           text: "Linked appeals"
         },
         value: {
-          html: _case.linkedAppeal if _case.linkedAppeal == 'No appeals' else '<a href="#">'+_case.linkedAppeal+'</a>'
+          html: linkedAppealsHtml
         },
         actions: {
-          items: [
-            {
-              href: "Item URL",
-              text: "Add",
-              visuallyHiddenText: "linked appeal"
-            }
-          ]
-        }if data['empty'] else
-        {
-          items: [
-            {
-              href: "Item URL",
-              text: "Change",
-              visuallyHiddenText: "linked appeals"
-            }
-          ]
+          items: linkedAppealsActions
         }
       },
       {

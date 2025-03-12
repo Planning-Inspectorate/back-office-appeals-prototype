@@ -6,7 +6,7 @@ module.exports = router => {
   router.get('/main/cases/:caseId/edit-hearing', function (req, res) {
     let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
 
-    let date = _.get(req, 'session.data.editHearing.date') || DateTime.fromISO(_case.hearing.date).toObject();
+    let date = _.get(req, 'session.data.editHearing.date') || DateTime.fromISO(_case.hearing.date)
     let time = _.get(req, 'session.data.editHearing.time')  || _case.hearing.time
 
     res.render('/main/cases/edit-hearing/index', {
@@ -18,6 +18,11 @@ module.exports = router => {
 
 
   router.post('/main/cases/:caseId/edit-hearing', function (req, res) {
+    req.session.data.editHearing.date = DateTime.fromObject({
+      day: req.session.data.editHearing.date.day,
+      month: req.session.data.editHearing.date.month,
+      year: req.session.data.editHearing.date.year
+    }).toISO()
     res.redirect(`/main/cases/${req.params.caseId}/edit-hearing/has-address`)
   })
 
@@ -57,8 +62,12 @@ module.exports = router => {
 
   router.get('/main/cases/:caseId/edit-hearing/check', function (req, res) {
     let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let date = _.get(req, 'session.data.editHearing.date') || DateTime.fromISO(_case.hearing.date)
+    let time = _.get(req, 'session.data.editHearing.time')  || _case.hearing.time
 
     res.render('/main/cases/edit-hearing/check', {
+      date,
+      time,
       _case
     })
   })
@@ -66,12 +75,6 @@ module.exports = router => {
   router.post('/main/cases/:caseId/edit-hearing/check', function (req, res) {
     let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
     _case.hearing = req.session.data.editHearing
-
-    _case.hearing.date = DateTime.fromObject({
-      day: req.session.data.editHearing.date.day,
-      month: req.session.data.editHearing.date.month,
-      year: req.session.data.editHearing.date.year
-    }).toISO()
 
     req.flash('success', 'Hearing updated')
     res.redirect(`/main/cases/${req.params.caseId}`)

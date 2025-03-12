@@ -362,3 +362,7 @@ pre {
 		@include govuk-responsive-margin(5, "bottom");
 	}
 }
+
+.no-border {
+	border-bottom: none;
+}

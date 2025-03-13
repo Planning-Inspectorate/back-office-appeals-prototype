@@ -3,7 +3,7 @@ const _ = require('lodash')
 module.exports = router => {
 
   router.get('/main/cases/:caseId/rule-6-parties/:partyId/withdraw', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     let party = _case.rule6Parties.find(party => party.id == req.params.partyId)
 
     res.render('/main/cases/rule-6-parties/withdraw/index', {
@@ -17,7 +17,7 @@ module.exports = router => {
   })
 
   router.get('/main/cases/:caseId/rule-6-parties/:partyId/withdraw/check', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     let party = _case.rule6Parties.find(party => party.id == req.params.partyId)
 
     res.render('/main/cases/rule-6-parties/withdraw/check', {
@@ -27,7 +27,7 @@ module.exports = router => {
   })
 
   router.post('/main/cases/:caseId/rule-6-parties/:partyId/withdraw/check', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     let party = _case.rule6Parties.find(party => party.id == req.params.partyId)
     if(party.status == 'Ready to review') {
       req.flash('success', 'Request for Rule 6 status withdrawn')

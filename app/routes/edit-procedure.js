@@ -3,14 +3,14 @@ const { DateTime } = require("luxon");
 module.exports = router => {
 
   router.get('/main/cases/:caseId/edit-procedure', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     res.render('/main/cases/edit-procedure/index', {
       _case
     })
   })
 
   router.post('/main/cases/:caseId/edit-procedure', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     if(_case.lpaStatement) {
       res.redirect(`/main/cases/${req.params.caseId}/edit-procedure/statement`)
     } else {
@@ -23,7 +23,7 @@ module.exports = router => {
   })
 
   router.get('/main/cases/:caseId/edit-procedure/statement', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     res.render('/main/cases/edit-procedure/statement', {
       _case
     })
@@ -38,7 +38,7 @@ module.exports = router => {
   })
 
   router.get('/main/cases/:caseId/edit-procedure/inquiry-date', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     res.render('/main/cases/edit-procedure/inquiry-date', {
       _case
     })
@@ -49,7 +49,7 @@ module.exports = router => {
   })
 
   router.get('/main/cases/:caseId/edit-procedure/inquiry-days', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     res.render('/main/cases/edit-procedure/inquiry-days', {
       _case
     })
@@ -60,7 +60,7 @@ module.exports = router => {
   })
 
   router.get('/main/cases/:caseId/edit-procedure/has-inquiry-address', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     res.render('/main/cases/edit-procedure/has-inquiry-address', {
       _case
     })
@@ -75,7 +75,7 @@ module.exports = router => {
   })
 
   router.get('/main/cases/:caseId/edit-procedure/inquiry-address', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     res.render('/main/cases/edit-procedure/inquiry-address', {
       _case
     })
@@ -86,7 +86,7 @@ module.exports = router => {
   })
 
   router.get('/main/cases/:caseId/edit-procedure/timetable-due-dates', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     res.render('/main/cases/edit-procedure/timetable-due-dates', {
       _case
     })
@@ -97,14 +97,14 @@ module.exports = router => {
   })
 
   router.get('/main/cases/:caseId/edit-procedure/check', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     res.render('/main/cases/edit-procedure/check', {
       _case
     })
   })
 
   router.post('/main/cases/:caseId/edit-procedure/check', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     let data = req.session.data.editProcedure
     let currentProcedure = _case.procedure
     let newProcedure = data.procedure
@@ -149,7 +149,7 @@ module.exports = router => {
         year: data.finalCommentsDueDate.year
       }).toISO()
 
-      if(_case.appeal.hasPlanningObligation == 'Yes' && _case.appeal.readyToSubmitPlanningObligation == 'No') {
+      if(_case.appealForm.hasPlanningObligation == 'Yes' && _case.appealForm.readyToSubmitPlanningObligation == 'No') {
         _case.planningObligationDueDate = DateTime.fromObject({
           day: data.planningObligationDueDate.day,
           month: data.planningObligationDueDate.month,
@@ -184,7 +184,7 @@ module.exports = router => {
         year: data.statementOfCommonGroundDueDate.year
       }).toISO()
 
-      if(_case.appeal.hasPlanningObligation == 'Yes' && _case.appeal.readyToSubmitPlanningObligation == 'No') {
+      if(_case.appealForm.hasPlanningObligation == 'Yes' && _case.appealForm.readyToSubmitPlanningObligation == 'No') {
         _case.planningObligationDueDate = DateTime.fromObject({
           day: data.planningObligationDueDate.day,
           month: data.planningObligationDueDate.month,
@@ -238,7 +238,7 @@ module.exports = router => {
         year: data.proofOfEvidenceAndWitnessesDueDate.year
       }).toISO()
 
-      if(_case.appeal.hasPlanningObligation == 'Yes' && _case.appeal.readyToSubmitPlanningObligation == 'No') {
+      if(_case.appealForm.hasPlanningObligation == 'Yes' && _case.appealForm.readyToSubmitPlanningObligation == 'No') {
         _case.planningObligationDueDate = DateTime.fromObject({
           day: data.planningObligationDueDate.day,
           month: data.planningObligationDueDate.month,

@@ -3,7 +3,7 @@ const { DateTime } = require("luxon");
 module.exports = router => {
 
   router.get('/main/cases/:caseId/add-inquiry', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     res.render('/main/cases/add-inquiry/index', {
       _case
     })
@@ -14,7 +14,7 @@ module.exports = router => {
   })
 
   router.get('/main/cases/:caseId/add-inquiry/days', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     res.render('/main/cases/add-inquiry/days', {
       _case
     })
@@ -25,7 +25,7 @@ module.exports = router => {
   })
 
   router.get('/main/cases/:caseId/add-inquiry/has-address', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     res.render('/main/cases/add-inquiry/has-address', {
       _case
     })
@@ -40,7 +40,7 @@ module.exports = router => {
   })
 
   router.get('/main/cases/:caseId/add-inquiry/address', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     res.render('/main/cases/add-inquiry/address', {
       _case
     })
@@ -51,14 +51,14 @@ module.exports = router => {
   })
 
   router.get('/main/cases/:caseId/add-inquiry/check', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     res.render('/main/cases/add-inquiry/check', {
       _case
     })
   })
 
   router.post('/main/cases/:caseId/add-inquiry/check', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     _case.inquiry = req.session.data.addInquiry
 
     _case.inquiry.date = DateTime.fromObject({

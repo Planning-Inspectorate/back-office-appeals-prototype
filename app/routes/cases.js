@@ -6,7 +6,7 @@ module.exports = router => {
 
   router.get('/main/cases', function (req, res) {
 
-    let cases = req.session.data.cases
+    let cases = req.session.data.appeals
 
     let keywords = _.get(req.session.data.search, 'keywords')
 
@@ -166,7 +166,7 @@ module.exports = router => {
 
   router.get('/main/your-cases', function (req, res) {
 
-    let cases = req.session.data.cases.filter(_case => _case.caseOfficer == 'Tony Stark')
+    let cases = req.session.data.appeals.filter(_case => _case.caseOfficer == 'Tony Stark')
 
     let keywords = _.get(req.session.data.search, 'keywords')
 
@@ -229,12 +229,12 @@ module.exports = router => {
         if(_.get(selectedPlanningObligationFilters, 'length')) {
           matchesPlanningObligation = false
           if(selectedPlanningObligationFilters.includes('Has planning obligation')) {
-            if(_case.appeal.hasPlanningObligation == 'Yes') {
+            if(_case.appealForm.hasPlanningObligation == 'Yes') {
               matchesPlanningObligation = true
             }
           }
           if(selectedPlanningObligationFilters.includes('Does not have planning obligation')) {
-            if(_case.appeal.hasPlanningObligation == 'No') {
+            if(_case.appealForm.hasPlanningObligation == 'No') {
               matchesPlanningObligation = true
             }
           }

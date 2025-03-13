@@ -3,7 +3,7 @@ const { DateTime } = require("luxon")
 module.exports = router => {
 
   router.get('/main/cases/:caseId/start-case', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
 
     if(_case.type == 'Householder appeal') {
       res.redirect(`/main/cases/${req.params.caseId}/start-case/confirm`)
@@ -16,7 +16,7 @@ module.exports = router => {
   })
 
   router.post('/main/cases/:caseId/start-case', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     if(req.session.data.startCase.procedure === 'Inquiry') {
       res.redirect(`/main/cases/${req.params.caseId}/start-case/inquiry-date`)
     } else {
@@ -25,7 +25,7 @@ module.exports = router => {
   })
 
   // router.get('/main/cases/:caseId/start-case/has-inquiry', function (req, res) {
-  //   let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+  //   let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
   //   res.render('/main/cases/start-case/has-inquiry', {
   //     _case
   //   })
@@ -40,7 +40,7 @@ module.exports = router => {
   // })
 
   router.get('/main/cases/:caseId/start-case/inquiry-date', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     res.render('/main/cases/start-case/inquiry-date', {
       _case
     })
@@ -51,7 +51,7 @@ module.exports = router => {
   })
 
   router.get('/main/cases/:caseId/start-case/inquiry-days', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     res.render('/main/cases/start-case/inquiry-days', {
       _case
     })
@@ -62,7 +62,7 @@ module.exports = router => {
   })
 
 router.get('/main/cases/:caseId/start-case/has-inquiry-address', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
   res.render('/main/cases/start-case/has-inquiry-address', {
       _case
     })
@@ -77,7 +77,7 @@ router.get('/main/cases/:caseId/start-case/has-inquiry-address', function (req, 
   })
 
   router.get('/main/cases/:caseId/start-case/inquiry-address', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     res.render('/main/cases/start-case/inquiry-address', {
       _case
     })
@@ -88,7 +88,7 @@ router.get('/main/cases/:caseId/start-case/has-inquiry-address', function (req, 
   })
 
   router.get('/main/cases/:caseId/start-case/timetable-due-dates', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     res.render('/main/cases/start-case/timetable-due-dates', {
       _case
     })
@@ -99,14 +99,14 @@ router.get('/main/cases/:caseId/start-case/has-inquiry-address', function (req, 
   })
 
   router.get('/main/cases/:caseId/start-case/check', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     res.render('/main/cases/start-case/check', {
       _case
     })
   })
 
   router.post('/main/cases/:caseId/start-case/check', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
 
     let data = req.session.data.startCase
 
@@ -115,7 +115,7 @@ router.get('/main/cases/:caseId/start-case/has-inquiry-address', function (req, 
       _case.statementsDueDate = DateTime.now().toISO()
       _case.interestedPartyCommentsDueDate = DateTime.now().toISO()
       _case.finalCommentsDueDate = DateTime.now().toISO()
-      if(_case.appeal.hasPlanningObligation == 'Yes' && _case.appeal.readyToSubmitPlanningObligation == 'No') {
+      if(_case.appealForm.hasPlanningObligation == 'Yes' && _case.appealForm.readyToSubmitPlanningObligation == 'No') {
         _case.planningObligationDueDate = DateTime.now().toISO()
       }
     }
@@ -125,7 +125,7 @@ router.get('/main/cases/:caseId/start-case/has-inquiry-address', function (req, 
       _case.statementsDueDate = DateTime.now().toISO()
       _case.interestedPartyCommentsDueDate = DateTime.now().toISO()
       _case.statementOfCommonGroundDueDate = DateTime.now().toISO()
-      if(_case.appeal.hasPlanningObligation == 'Yes' && _case.appeal.readyToSubmitPlanningObligation == 'No') {
+      if(_case.appealForm.hasPlanningObligation == 'Yes' && _case.appealForm.readyToSubmitPlanningObligation == 'No') {
         _case.planningObligationDueDate = DateTime.now().toISO()
       }
     }
@@ -173,7 +173,7 @@ router.get('/main/cases/:caseId/start-case/has-inquiry-address', function (req, 
         year: data.proofOfEvidenceAndWitnessesDueDate.year
       }).toISO()
 
-      if(_case.appeal.hasPlanningObligation == 'Yes' && _case.appeal.readyToSubmitPlanningObligation == 'No') {
+      if(_case.appealForm.hasPlanningObligation == 'Yes' && _case.appealForm.readyToSubmitPlanningObligation == 'No') {
         _case.planningObligationDueDate = DateTime.fromObject({
           day: data.planningObligationDueDate.day,
           month: data.planningObligationDueDate.month,
@@ -191,7 +191,7 @@ router.get('/main/cases/:caseId/start-case/has-inquiry-address', function (req, 
   })
 
   router.get('/main/cases/:caseId/start-case/confirm', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
 
     res.render('/main/cases/start-case/confirm', {
       _case
@@ -200,7 +200,7 @@ router.get('/main/cases/:caseId/start-case/has-inquiry-address', function (req, 
   })
 
   router.post('/main/cases/:caseId/start-case/confirm', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     _case.status = 'Awaiting LPAQ'
     req.flash('success', 'Case started')
     res.redirect(`/main/cases/${req.params.caseId}`)

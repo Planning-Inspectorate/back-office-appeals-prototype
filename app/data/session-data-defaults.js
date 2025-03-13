@@ -1,7 +1,7 @@
-const cases = require('./cases.json')
+const appeals = require('./appeals.json')
 const linkedAppeals = require('./linked-appeals.json')
 
 module.exports = {
-  cases,
+  appeals,
   linkedAppeals
 }

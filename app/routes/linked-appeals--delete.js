@@ -4,7 +4,7 @@ const { isLeadAppeal, isChildAppeal } = require('../helpers/linked-appeals')
 module.exports = router => {
 
   router.get('/main/cases/:caseId/linked-appeals/:linkedAppealId/delete', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     res.render('/main/cases/linked-appeals/delete/index', {
       _case,
       linkedAppealId: req.params.linkedAppealId

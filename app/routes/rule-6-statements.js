@@ -3,7 +3,7 @@ const _ = require('lodash')
 module.exports = router => {
 
   router.get('/main/cases/:caseId/rule-6-statements', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     let rule6Statements = _case.rule6Parties.filter((rule6Party) => rule6Party.statement)
 
      // Desired status order

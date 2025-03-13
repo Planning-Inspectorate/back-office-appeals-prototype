@@ -4,7 +4,7 @@ const { isLeadAppeal } = require('../helpers/linked-appeals')
 module.exports = router => {
 
   router.get('/main/cases/:caseId/linked-appeals/new', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     res.render('/main/cases/linked-appeals/new/index', {
       _case
     })
@@ -19,7 +19,7 @@ module.exports = router => {
   })
 
   router.get('/main/cases/:caseId/linked-appeals/new/lead-appeal', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
 
     let radios = [{
       text: _case.id,
@@ -66,14 +66,14 @@ module.exports = router => {
   })
 
   router.get('/main/cases/:caseId/linked-appeals/new/check', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     res.render('/main/cases/linked-appeals/new/check', {
       _case
     })
   })
 
   router.post('/main/cases/:caseId/linked-appeals/new/check', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
 
     let appealReference = req.session.data.addLinkedAppeal.reference
     let leadAppealReference = req.session.data.addLinkedAppeal.leadAppeal

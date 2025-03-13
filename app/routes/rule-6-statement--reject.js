@@ -3,7 +3,7 @@ const _ = require('lodash')
 module.exports = router => {
 
   router.get('/main/cases/:caseId/rule-6-statements/:partyId/reject', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     let party = _case.rule6Parties.find(party => party.id == req.params.partyId)
 
     res.render('/main/cases/rule-6-statements/reject/index', {
@@ -17,7 +17,7 @@ module.exports = router => {
   })
 
   router.get('/main/cases/:caseId/rule-6-statements/:partyId/reject/can-resubmit', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     let party = _case.rule6Parties.find(party => party.id == req.params.partyId)
 
     res.render('/main/cases/rule-6-statements/reject/can-resubmit', {
@@ -31,7 +31,7 @@ module.exports = router => {
   })
 
   router.get('/main/cases/:caseId/rule-6-statements/:partyId/reject/check', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     let party = _case.rule6Parties.find(party => party.id == req.params.partyId)
 
     res.render('/main/cases/rule-6-statements/reject/check', {
@@ -41,7 +41,7 @@ module.exports = router => {
   })
 
   router.post('/main/cases/:caseId/rule-6-statements/:partyId/reject/check', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     let party = _case.rule6Parties.find(party => party.id == req.params.partyId)
     party.statement.status = 'Rejected'
     party.statement.dateRejected = new Date()

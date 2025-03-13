@@ -3,7 +3,7 @@ const _ = require('lodash')
 module.exports = router => {
 
   router.get('/main/cases/:caseId/rule-6-parties/:partyId/edit', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     let party = _case.rule6Parties.find(party => party.id === req.params.partyId)
 
     let hasOrganisation = _.get(req, 'session.data.editRule6Party.hasOrganisation') || party.hasOrganisation
@@ -20,7 +20,7 @@ module.exports = router => {
   })
 
   router.get('/main/cases/:caseId/rule-6-parties/:partyId/edit/name', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     let party = _case.rule6Parties.find(party => party.id === req.params.partyId)
 
     let firstName = _.get(req, 'session.data.editRule6Party.firstName') || party.firstName
@@ -38,7 +38,7 @@ module.exports = router => {
   })
 
   router.get('/main/cases/:caseId/rule-6-parties/:partyId/edit/email-address', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     let party = _case.rule6Parties.find(party => party.id === req.params.partyId)
 
     let emailAddress = _.get(req, 'session.data.editRule6Party.emailAddress')  || party.emailAddress
@@ -54,7 +54,7 @@ module.exports = router => {
   })
 
   router.get('/main/cases/:caseId/rule-6-parties/:partyId/edit/phone', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     let party = _case.rule6Parties.find(party => party.id === req.params.partyId)
 
     let phone = _.get(req, 'session.data.editRule6Party.phone')  || party.phone
@@ -70,7 +70,7 @@ module.exports = router => {
   })
 
   router.get('/main/cases/:caseId/rule-6-parties/:partyId/edit/form', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     res.render('/main/cases/rule-6-parties/edit/form', {
       _case
     })
@@ -81,7 +81,7 @@ module.exports = router => {
   })
 
   router.get('/main/cases/:caseId/rule-6-parties/:partyId/edit/check', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     let party = _case.rule6Parties.find(party => party.id === req.params.partyId)
     res.render('/main/cases/rule-6-parties/edit/check', {
       _case,
@@ -90,7 +90,7 @@ module.exports = router => {
   })
 
   router.post('/main/cases/:caseId/rule-6-parties/:partyId/edit/check', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     let party = _case.rule6Parties.find(party => party.id === req.params.partyId)
     req.flash('success', 'Rule 6 party updated')
 

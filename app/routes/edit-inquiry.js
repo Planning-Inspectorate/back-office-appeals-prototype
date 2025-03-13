@@ -4,7 +4,7 @@ const { DateTime } = require("luxon")
 module.exports = router => {
 
   router.get('/main/cases/:caseId/edit-inquiry', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
 
     let date = _.get(req, 'session.data.editInquiry.date') || DateTime.fromISO(_case.inquiry.date).toObject();
     let time = _.get(req, 'session.data.editInquiry.time')  || _case.inquiry.time
@@ -21,7 +21,7 @@ module.exports = router => {
   })
 
   router.get('/main/cases/:caseId/edit-inquiry/days', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
 
     let hasDays = _.get(req, 'session.data.editInquiry.hasDays') || _case.inquiry.hasDays
     let days = _.get(req, 'session.data.editInquiry.days') || _case.inquiry.days
@@ -38,7 +38,7 @@ module.exports = router => {
   })
 
   router.get('/main/cases/:caseId/edit-inquiry/has-address', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
 
     let hasAddress = _.get(req, 'session.data.editInquiry.hasAddress') || _case.inquiry.hasAddress
 
@@ -57,7 +57,7 @@ module.exports = router => {
   })
 
   router.get('/main/cases/:caseId/edit-inquiry/address', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
 
     let inquiryAddress = _.get(req, 'session.data.editInquiry.address') || _case.inquiry.address
 
@@ -72,7 +72,7 @@ module.exports = router => {
   })
 
   router.get('/main/cases/:caseId/edit-inquiry/check', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
 
     res.render('/main/cases/edit-inquiry/check', {
       _case
@@ -80,7 +80,7 @@ module.exports = router => {
   })
 
   router.post('/main/cases/:caseId/edit-inquiry/check', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     _case.inquiry = req.session.data.editInquiry
 
     _case.inquiry.date = DateTime.fromObject({

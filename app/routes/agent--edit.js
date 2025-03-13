@@ -3,7 +3,7 @@ const _ = require('lodash')
 module.exports = router => {
 
   router.get('/main/cases/:caseId/edit-agent', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     let agent = _case.agent
     let firstName = _.get(req, 'session.data.editAgent.firstName') || _.get(agent, 'firstName')
     let lastName = _.get(req, 'session.data.editAgent.lastName')  || _.get(agent, 'lastName')
@@ -23,7 +23,7 @@ module.exports = router => {
 
   router.post('/main/cases/:caseId/edit-agent', function (req, res) {
 
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     let agent = _case.agent
     agent.organisationName = req.session.data.editAgent.organisationName
     agent.firstName = req.session.data.editAgent.firstName

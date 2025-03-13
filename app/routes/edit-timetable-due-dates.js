@@ -3,14 +3,14 @@ const { DateTime } = require("luxon");
 module.exports = router => {
 
   router.get('/main/cases/:caseId/edit-timetable-due-dates', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     res.render('/main/cases/edit-timetable-due-dates/index', {
       _case
     })
   })
 
   router.post('/main/cases/:caseId/edit-timetable-due-dates', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     let editTimetableDueDates = req.body.editTimetableDueDates
 
 

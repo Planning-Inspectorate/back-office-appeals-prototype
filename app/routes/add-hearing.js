@@ -3,7 +3,7 @@ const { DateTime } = require("luxon")
 module.exports = router => {
 
   router.get('/main/cases/:caseId/add-hearing', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     res.render('/main/cases/add-hearing/index', {
       _case
     })
@@ -14,7 +14,7 @@ module.exports = router => {
   })
 
   router.get('/main/cases/:caseId/add-hearing/has-address', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     res.render('/main/cases/add-hearing/has-address', {
       _case
     })
@@ -29,7 +29,7 @@ module.exports = router => {
   })
 
   router.get('/main/cases/:caseId/add-hearing/address', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     res.render('/main/cases/add-hearing/address', {
       _case
     })
@@ -40,14 +40,14 @@ module.exports = router => {
   })
 
   router.get('/main/cases/:caseId/add-hearing/check', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     res.render('/main/cases/add-hearing/check', {
       _case
     })
   })
 
   router.post('/main/cases/:caseId/add-hearing/check', function (req, res) {
-    let _case = req.session.data.cases.find(_case => _case.id == req.params.caseId)
+    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
     _case.hearing = req.session.data.addHearing
 
     _case.hearing.date = DateTime.fromObject({

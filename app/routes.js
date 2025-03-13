@@ -3,7 +3,7 @@
 // https://prototype-kit.service.gov.uk/docs/create-routes
 //
 
-const cases = require('./data/cases.json')
+const appeals = require('./data/appeals.json')
 
 const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
@@ -24,7 +24,7 @@ router.all('*', (req, res, next) => {
 router.get('/clear-data', function (req, res) {
 	delete req.session.data
 	req.session.data = {}
-	req.session.data.cases = cases
+	req.session.data.appeals = appeals
 
 	const redirectUrl = req.query.returnUrl || '/main/cases'
 

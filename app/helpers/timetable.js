@@ -155,7 +155,7 @@ const generateTimetableHearing = (_case) => {
         var value = DateTime.fromISO(_case.statementOfCommonGroundDueDate).toFormat("d MMMM yyyy")
         timetable.push(row({ key: 'Statement of common ground due', value, action: { href: url, text: 'Change' }}))
 
-        if(_case.appeal.hasPlanningObligation == 'Yes' && _case.appeal.readyToSubmitPlanningObligation == 'No') {
+        if(_case.appealForm.hasPlanningObligation == 'Yes' && _case.appealForm.readyToSubmitPlanningObligation == 'No') {
           var value = DateTime.fromISO(_case.planningObligationDueDate).toFormat("d MMMM yyyy")
           timetable.push(row({ key: 'Planning obligation due', value, action: { href: url, text: 'Change' }}))
         }
@@ -235,7 +235,7 @@ const generateTimetableInquiry = (_case) => {
         var value = DateTime.fromISO(_case.proofOfEvidenceAndWitnessesDueDate).toFormat("d MMMM yyyy")
         timetable.push(row({ key: 'Proof of evidence and witnesses due', value, action: { href: url, text: 'Change' }}))
 
-        if(_case.appeal.hasPlanningObligation == 'Yes' && _case.appeal.readyToSubmitPlanningObligation == 'No') {
+        if(_case.appealForm.hasPlanningObligation == 'Yes' && _case.appealForm.readyToSubmitPlanningObligation == 'No') {
           var value = DateTime.fromISO(_case.planningObligationDueDate).toFormat("d MMMM yyyy")
           timetable.push(row({ key: 'Planning obligation due', value, action: { href: url, text: 'Change' }}))
         }

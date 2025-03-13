@@ -20,7 +20,7 @@ router.get('/changeSetting', function (req, res) {
 })
 
 router.get('/case-details', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == '00000005')
+  let application = req.session.data.appeals.find(application => application.id == '00000005')
   res.render('/projects/start-full-case/v4/case-details', {
     application
   })
@@ -32,28 +32,28 @@ router.get('/appeals', function (req, res) {
 })
 
 router.get('/appeals/:appealId', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == req.params.appealId)
+  let application = req.session.data.appeals.find(application => application.id == req.params.appealId)
   res.render('/projects/start-full-case/v4/show/index', {
     application
   })
 })
 
 router.get('/appeals/:appealId/appeal', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == req.params.appealId)
+  let application = req.session.data.appeals.find(application => application.id == req.params.appealId)
   res.render('/projects/start-full-case/v4/show/appeal', {
     application
   })
 })
 
 router.get('/appeals/:appealId/questionnaire', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == req.params.appealId)
+  let application = req.session.data.appeals.find(application => application.id == req.params.appealId)
   res.render('/projects/start-full-case/v4/show/questionnaire', {
     application
   })
 })
 
 router.get('/appeals/:appealId/statements', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == req.params.appealId)
+  let application = req.session.data.appeals.find(application => application.id == req.params.appealId)
   let rule6Statements = application.rule6Parties?.filter(party => party.statement)
   res.render('/projects/start-full-case/v4/show/statements', {
     application,
@@ -62,56 +62,56 @@ router.get('/appeals/:appealId/statements', function (req, res) {
 })
 
 router.get('/appeals/:appealId/ip-comments', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == req.params.appealId)
+  let application = req.session.data.appeals.find(application => application.id == req.params.appealId)
   res.render('/projects/start-full-case/v4/show/ip-comments', {
     application
   })
 })
 
 router.get('/appeals/:appealId/final-comments', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == req.params.appealId)
+  let application = req.session.data.appeals.find(application => application.id == req.params.appealId)
   res.render('/projects/start-full-case/v4/show/final-comments', {
     application
   })
 })
 
 router.get('/appeals/:appealId/site-visit', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == req.params.appealId)
+  let application = req.session.data.appeals.find(application => application.id == req.params.appealId)
   res.render('/projects/start-full-case/v4/show/site-visit', {
     application
   })
 })
 
 router.get('/appeals/:appealId/notes', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == req.params.appealId)
+  let application = req.session.data.appeals.find(application => application.id == req.params.appealId)
   res.render('/projects/start-full-case/v4/show/notes', {
     application
   })
 })
 
 router.get('/appeals/:appealId/activity', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == req.params.appealId)
+  let application = req.session.data.appeals.find(application => application.id == req.params.appealId)
   res.render('/projects/start-full-case/v4/show/activity', {
     application
   })
 })
 
 router.get('/appeals/:appealId/documents', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == req.params.appealId)
+  let application = req.session.data.appeals.find(application => application.id == req.params.appealId)
   res.render('/projects/start-full-case/v4/show/documents', {
     application
   })
 })
 
 router.get('/appeals/:appealId/hearing', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == req.params.appealId)
+  let application = req.session.data.appeals.find(application => application.id == req.params.appealId)
   res.render('/projects/start-full-case/v4/show/hearing', {
     application
   })
 })
 
 router.get('/appeals/:appealId/inquiry', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == req.params.appealId)
+  let application = req.session.data.appeals.find(application => application.id == req.params.appealId)
   res.render('/projects/start-full-case/v4/show/inquiry', {
     application
   })
@@ -123,7 +123,7 @@ router.get('/appeals/:appealId/inquiry', function (req, res) {
 
 router.get('/', function (req, res) {
 
-  let applications = req.session.data.cases
+  let applications = req.session.data.appeals
 
   let keywords = _.get(req.session.data.search, 'keywords')
 
@@ -230,7 +230,7 @@ router.get('/clear-search', (req, res) => {
 
 router.post('/start-case/check', function (req, res) {
   req.flash('success', 'Case started')
-  let application = req.session.data.cases.find(application => application.id == '00000005')
+  let application = req.session.data.appeals.find(application => application.id == '00000005')
   application.status = 'Awaiting LPAQ'
   res.redirect('../case-details')
 })
@@ -537,7 +537,7 @@ router.post('/edit-inquiry-estimates/check', function (req, res) {
 //
 
 router.get('/rule-6-parties', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == '00182182')
+  let application = req.session.data.appeals.find(application => application.id == '00182182')
   let rule6Parties = application.rule6Parties
 
   let awaitingReview = rule6Parties
@@ -664,7 +664,7 @@ router.get('/rule-6-parties/new/check', function (req, res) {
 })
 
 router.post('/rule-6-parties/new/check', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == '00182182')
+  let application = req.session.data.appeals.find(application => application.id == '00182182')
   let party = req.session.data.rule6application
   req.flash('success', 'Rule 6 party added')
 
@@ -689,7 +689,7 @@ router.post('/rule-6-parties/new/check', function (req, res) {
 //
 
 router.get('/rule-6-parties/:partyId/edit', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == '00182182')
+  let application = req.session.data.appeals.find(application => application.id == '00182182')
   let party = application.rule6Parties.find(party => party.id === req.params.partyId)
 
   let hasOrganisation = _.get(req, 'session.data.editRule6Party.hasOrganisation') || party.hasOrganisation
@@ -706,7 +706,7 @@ router.post('/rule-6-parties/:partyId/edit', function (req, res) {
 })
 
 router.get('/rule-6-parties/:partyId/edit/name', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == '00182182')
+  let application = req.session.data.appeals.find(application => application.id == '00182182')
   let party = application.rule6Parties.find(party => party.id === req.params.partyId)
 
   let firstName = _.get(req, 'session.data.editRule6Party.firstName') || party.firstName
@@ -723,7 +723,7 @@ router.post('/rule-6-parties/:partyId/edit/name', function (req, res) {
 })
 
 router.get('/rule-6-parties/:partyId/edit/email-address', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == '00182182')
+  let application = req.session.data.appeals.find(application => application.id == '00182182')
   let party = application.rule6Parties.find(party => party.id === req.params.partyId)
 
   let emailAddress = _.get(req, 'session.data.editRule6Party.emailAddress')  || party.emailAddress
@@ -738,7 +738,7 @@ router.post('/rule-6-parties/:partyId/edit/email-address', function (req, res) {
 })
 
 router.get('/rule-6-parties/:partyId/edit/phone', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == '00182182')
+  let application = req.session.data.appeals.find(application => application.id == '00182182')
   let party = application.rule6Parties.find(party => party.id === req.params.partyId)
 
   let phone = _.get(req, 'session.data.editRule6Party.phone')  || party.phone
@@ -754,7 +754,7 @@ router.post('/rule-6-parties/:partyId/edit/phone', function (req, res) {
 })
 
 router.get('/rule-6-parties/:partyId/edit/form', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == '00182182')
+  let application = req.session.data.appeals.find(application => application.id == '00182182')
   let party = application.rule6Parties.find(party => party.id === req.params.partyId)
   res.render('/projects/start-full-case/v4/rule-6-parties/edit/form')
 })
@@ -764,7 +764,7 @@ router.post('/rule-6-parties/:partyId/edit/form', function (req, res) {
 })
 
 router.get('/rule-6-parties/:partyId/edit/check', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == '00182182')
+  let application = req.session.data.appeals.find(application => application.id == '00182182')
   let party = application.rule6Parties.find(party => party.id === req.params.partyId)
   res.render('/projects/start-full-case/v4/rule-6-parties/edit/check', {
     party
@@ -772,7 +772,7 @@ router.get('/rule-6-parties/:partyId/edit/check', function (req, res) {
 })
 
 router.post('/rule-6-parties/:partyId/edit/check', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == '00182182')
+  let application = req.session.data.appeals.find(application => application.id == '00182182')
   let party = application.rule6Parties.find(party => party.id === req.params.partyId)
   req.flash('success', 'Rule 6 party updated')
 
@@ -800,7 +800,7 @@ router.post('/rule-6-parties/:partyId/edit/check', function (req, res) {
 //
 
 router.get('/rule-6-parties/:id', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == '00182182')
+  let application = req.session.data.appeals.find(application => application.id == '00182182')
   let party = application.rule6Parties.find(party => party.id == req.params.id)
 
   res.render('/projects/start-full-case/v4/rule-6-parties/show', {
@@ -813,7 +813,7 @@ router.get('/rule-6-parties/:id', function (req, res) {
 //
 
 router.get('/rule-6-parties/:id/approve', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == '00182182')
+  let application = req.session.data.appeals.find(application => application.id == '00182182')
   let party = application.rule6Parties.find(party => party.id == req.params.id)
 
   res.render('/projects/start-full-case/v4/rule-6-parties/approve/index', {
@@ -822,7 +822,7 @@ router.get('/rule-6-parties/:id/approve', function (req, res) {
 })
 
 router.post('/rule-6-parties/:id/approve', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == '00182182')
+  let application = req.session.data.appeals.find(application => application.id == '00182182')
   let party = application.rule6Parties.find(party => party.id == req.params.id)
   party.status = 'Approved'
   party.dateApproved = new Date()
@@ -835,7 +835,7 @@ router.post('/rule-6-parties/:id/approve', function (req, res) {
 //
 
 router.get('/rule-6-parties/:id/reject', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == '00182182')
+  let application = req.session.data.appeals.find(application => application.id == '00182182')
   let party = application.rule6Parties.find(party => party.id == req.params.id)
 
   res.render('/projects/start-full-case/v4/rule-6-parties/reject/index', {
@@ -848,7 +848,7 @@ router.post('/rule-6-parties/:id/reject', function (req, res) {
 })
 
 router.get('/rule-6-parties/:id/reject/check', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == '00182182')
+  let application = req.session.data.appeals.find(application => application.id == '00182182')
   let party = application.rule6Parties.find(party => party.id == req.params.id)
 
   res.render('/projects/start-full-case/v4/rule-6-parties/reject/check', {
@@ -857,7 +857,7 @@ router.get('/rule-6-parties/:id/reject/check', function (req, res) {
 })
 
 router.post('/rule-6-parties/:id/reject/check', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == '00182182')
+  let application = req.session.data.appeals.find(application => application.id == '00182182')
   let party = application.rule6Parties.find(party => party.id == req.params.id)
   party.status = 'Rejected'
   party.dateRejected = new Date()
@@ -870,7 +870,7 @@ router.post('/rule-6-parties/:id/reject/check', function (req, res) {
 //
 
 router.get('/rule-6-parties/:id/withdraw', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == '00182182')
+  let application = req.session.data.appeals.find(application => application.id == '00182182')
   let party = application.rule6Parties.find(party => party.id == req.params.id)
 
   res.render('/projects/start-full-case/v4/rule-6-parties/withdraw/index', {
@@ -879,13 +879,13 @@ router.get('/rule-6-parties/:id/withdraw', function (req, res) {
 })
 
 router.post('/rule-6-parties/:id/withdraw', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == '00182182')
+  let application = req.session.data.appeals.find(application => application.id == '00182182')
   let party = application.rule6Parties.find(party => party.id == req.params.id)
   res.redirect('/projects/start-full-case/v4/rule-6-parties/'+req.params.id+'/withdraw/check')
 })
 
 router.get('/rule-6-parties/:id/withdraw/check', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == '00182182')
+  let application = req.session.data.appeals.find(application => application.id == '00182182')
   let party = application.rule6Parties.find(party => party.id == req.params.id)
 
   res.render('/projects/start-full-case/v4/rule-6-parties/withdraw/check', {
@@ -894,7 +894,7 @@ router.get('/rule-6-parties/:id/withdraw/check', function (req, res) {
 })
 
 router.post('/rule-6-parties/:id/withdraw/check', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == '00182182')
+  let application = req.session.data.appeals.find(application => application.id == '00182182')
   let party = application.rule6Parties.find(party => party.id == req.params.id)
   if(party.status == 'Ready to review') {
     req.flash('success', 'Request for Rule 6 status withdrawn')
@@ -911,7 +911,7 @@ router.post('/rule-6-parties/:id/withdraw/check', function (req, res) {
 //
 
 router.get('/rule-6-statements', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == '00182182')
+  let application = req.session.data.appeals.find(application => application.id == '00182182')
   let rule6Statements = application.rule6Parties.filter((rule6Party) => rule6Party.statement)
 
   // let awaitingReview = rule6Statements
@@ -988,7 +988,7 @@ router.get('/rule-6-statements/new/check', function (req, res) {
 })
 
 router.post('/rule-6-statements/new/check', function (req, res) {
-  // let application = req.session.data.cases.find(application => application.id == '00182182')
+  // let application = req.session.data.appeals.find(application => application.id == '00182182')
   // let party = req.session.data.rule6application
   // req.flash('success', 'Rule 6 party added')
 
@@ -1013,7 +1013,7 @@ router.post('/rule-6-statements/new/check', function (req, res) {
 //
 
 router.get('/rule-6-statements/:partyId/edit', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == '00182182')
+  let application = req.session.data.appeals.find(application => application.id == '00182182')
   let party = application.rule6Parties.find(party => party.id === req.params.partyId)
 
   let hasOrganisation = _.get(req, 'session.data.editRule6Party.hasOrganisation') || party.hasOrganisation
@@ -1030,7 +1030,7 @@ router.post('/rule-6-statements/:partyId/edit', function (req, res) {
 })
 
 router.get('/rule-6-statements/:partyId/edit/name', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == '00182182')
+  let application = req.session.data.appeals.find(application => application.id == '00182182')
   let party = application.rule6Parties.find(party => party.id === req.params.partyId)
 
   let firstName = _.get(req, 'session.data.editRule6Party.firstName') || party.firstName
@@ -1047,7 +1047,7 @@ router.post('/rule-6-statements/:partyId/edit/name', function (req, res) {
 })
 
 router.get('/rule-6-statements/:partyId/edit/email-address', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == '00182182')
+  let application = req.session.data.appeals.find(application => application.id == '00182182')
   let party = application.rule6Parties.find(party => party.id === req.params.partyId)
 
   let emailAddress = _.get(req, 'session.data.editRule6Party.emailAddress')  || party.emailAddress
@@ -1062,7 +1062,7 @@ router.post('/rule-6-statements/:partyId/edit/email-address', function (req, res
 })
 
 router.get('/rule-6-statements/:partyId/edit/phone', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == '00182182')
+  let application = req.session.data.appeals.find(application => application.id == '00182182')
   let party = application.rule6Parties.find(party => party.id === req.params.partyId)
 
   let phone = _.get(req, 'session.data.editRule6Party.phone')  || party.phone
@@ -1078,7 +1078,7 @@ router.post('/rule-6-statements/:partyId/edit/phone', function (req, res) {
 })
 
 router.get('/rule-6-statements/:partyId/edit/form', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == '00182182')
+  let application = req.session.data.appeals.find(application => application.id == '00182182')
   let party = application.rule6Parties.find(party => party.id === req.params.partyId)
   res.render('/projects/start-full-case/v4/rule-6-statements/edit/form')
 })
@@ -1088,7 +1088,7 @@ router.post('/rule-6-statements/:partyId/edit/form', function (req, res) {
 })
 
 router.get('/rule-6-statements/:partyId/edit/check', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == '00182182')
+  let application = req.session.data.appeals.find(application => application.id == '00182182')
   let party = application.rule6Parties.find(party => party.id === req.params.partyId)
   res.render('/projects/start-full-case/v4/rule-6-statements/edit/check', {
     party
@@ -1096,7 +1096,7 @@ router.get('/rule-6-statements/:partyId/edit/check', function (req, res) {
 })
 
 router.post('/rule-6-statements/:partyId/edit/check', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == '00182182')
+  let application = req.session.data.appeals.find(application => application.id == '00182182')
   let party = application.rule6Parties.find(party => party.id === req.params.partyId)
   req.flash('success', 'Rule 6 party updated')
 
@@ -1124,7 +1124,7 @@ router.post('/rule-6-statements/:partyId/edit/check', function (req, res) {
 //
 
 router.get('/rule-6-statements/:id', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == '00182182')
+  let application = req.session.data.appeals.find(application => application.id == '00182182')
   let party = application.rule6Parties.find(party => party.id == req.params.id)
 
   res.render('/projects/start-full-case/v4/rule-6-statements/show', {
@@ -1137,7 +1137,7 @@ router.get('/rule-6-statements/:id', function (req, res) {
 //
 
 router.get('/rule-6-statements/:id/approve', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == '00182182')
+  let application = req.session.data.appeals.find(application => application.id == '00182182')
   let party = application.rule6Parties.find(party => party.id == req.params.id)
 
   res.render('/projects/start-full-case/v4/rule-6-statements/approve/index', {
@@ -1146,7 +1146,7 @@ router.get('/rule-6-statements/:id/approve', function (req, res) {
 })
 
 router.post('/rule-6-statements/:id/approve', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == '00182182')
+  let application = req.session.data.appeals.find(application => application.id == '00182182')
   let party = application.rule6Parties.find(party => party.id == req.params.id)
   party.statement.status = 'Accepted'
   party.statement.dateApproved = new Date()
@@ -1159,7 +1159,7 @@ router.post('/rule-6-statements/:id/approve', function (req, res) {
 //
 
 router.get('/rule-6-statements/:id/reject', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == '00182182')
+  let application = req.session.data.appeals.find(application => application.id == '00182182')
   let party = application.rule6Parties.find(party => party.id == req.params.id)
 
   res.render('/projects/start-full-case/v4/rule-6-statements/reject/index', {
@@ -1172,7 +1172,7 @@ router.post('/rule-6-statements/:id/reject', function (req, res) {
 })
 
 router.get('/rule-6-statements/:id/reject/can-resubmit', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == '00182182')
+  let application = req.session.data.appeals.find(application => application.id == '00182182')
   let party = application.rule6Parties.find(party => party.id == req.params.id)
 
   res.render('/projects/start-full-case/v4/rule-6-statements/reject/can-resubmit', {
@@ -1185,7 +1185,7 @@ router.post('/rule-6-statements/:id/reject/can-resubmit', function (req, res) {
 })
 
 router.get('/rule-6-statements/:id/reject/check', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == '00182182')
+  let application = req.session.data.appeals.find(application => application.id == '00182182')
   let party = application.rule6Parties.find(party => party.id == req.params.id)
 
   res.render('/projects/start-full-case/v4/rule-6-statements/reject/check', {
@@ -1194,7 +1194,7 @@ router.get('/rule-6-statements/:id/reject/check', function (req, res) {
 })
 
 router.post('/rule-6-statements/:id/reject/check', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == '00182182')
+  let application = req.session.data.appeals.find(application => application.id == '00182182')
   let party = application.rule6Parties.find(party => party.id == req.params.id)
   party.statement.status = 'Rejected'
   party.statement.dateRejected = new Date()
@@ -1207,7 +1207,7 @@ router.post('/rule-6-statements/:id/reject/check', function (req, res) {
 //
 
 router.get('/rule-6-statements/:id/redact', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == '00182182')
+  let application = req.session.data.appeals.find(application => application.id == '00182182')
   let party = application.rule6Parties.find(party => party.id == req.params.id)
 
   res.render('/projects/start-full-case/v4/rule-6-statements/redact/index', {
@@ -1220,7 +1220,7 @@ router.post('/rule-6-statements/:id/redact', function (req, res) {
 })
 
 router.get('/rule-6-statements/:id/redact/check', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == '00182182')
+  let application = req.session.data.appeals.find(application => application.id == '00182182')
   let party = application.rule6Parties.find(party => party.id == req.params.id)
 
   res.render('/projects/start-full-case/v4/rule-6-statements/redact/check', {
@@ -1229,7 +1229,7 @@ router.get('/rule-6-statements/:id/redact/check', function (req, res) {
 })
 
 router.post('/rule-6-statements/:id/redact/check', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == '00182182')
+  let application = req.session.data.appeals.find(application => application.id == '00182182')
   let party = application.rule6Parties.find(party => party.id == req.params.id)
   party.statement.status = 'Accepted'
   party.statement.dateApproved = new Date()
@@ -1242,7 +1242,7 @@ router.post('/rule-6-statements/:id/redact/check', function (req, res) {
 //
 
 router.get('/rule-6-statements/:id/withdraw', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == '00182182')
+  let application = req.session.data.appeals.find(application => application.id == '00182182')
   let party = application.rule6Parties.find(party => party.id == req.params.id)
 
   res.render('/projects/start-full-case/v4/rule-6-statements/withdraw/index', {
@@ -1251,7 +1251,7 @@ router.get('/rule-6-statements/:id/withdraw', function (req, res) {
 })
 
 router.post('/rule-6-statements/:id/withdraw', function (req, res) {
-  let application = req.session.data.cases.find(application => application.id == '00182182')
+  let application = req.session.data.appeals.find(application => application.id == '00182182')
   let party = application.rule6Parties.find(party => party.id == req.params.id)
   party.status = 'Withdrawn'
   party.dateWithdrawn = new Date()

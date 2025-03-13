@@ -1,6 +1,10 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Check details and accept planning obligation" %}
+{% if data['planning-obligation-review-decision'] == 'Reject planning obligation' %}
+  {% set title = "Check details and reject planning obligation" %}
+{% else %}
+  {% set title = "Check details and accept planning obligation" %}
+{% endif %}
 {% set pageName = title + ' - Planning Inspectorate' %}
 
 {% block content %}
@@ -26,7 +30,7 @@
              Planning obligation
             </dt>
             <dd class="govuk-summary-list__value">
-              <ul class="<ul class="govuk-list govuk-list--bullet">
+              <ul class="govuk-list govuk-list--bullet">
                 <li>
                   <a href="#" class="govuk-link">
                     appeal-2110166-section106-agreement_part1.pdf
@@ -57,7 +61,7 @@
           {% if data['planning-obligation-review-decision'] == 'Reject planning obligation' %}
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Reasons
+                Reason for rejecting the planning obligation
               </dt>
               <dd class="govuk-summary-list__value">
                 Not dated

@@ -1,6 +1,10 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Check details and accept appellant proof of evidence and witnesses" %}
+{% if data['document-review-decision'] == 'Reject proof of evidence and witnesses' %}
+  {% set title = "Check details and reject appellant proof of evidence and witnesses" %}
+{% else %}
+  {% set title = "Check details and accept appellant proof of evidence and witnesses" %}
+{% endif %}
 {% set pageName = title + ' - Planning Inspectorate' %}
 
 {% block content %}
@@ -62,7 +66,7 @@
           {% if data['document-review-decision'] == 'Reject proof of evidence and witnesses' %}
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Why are you rejecting the appellant proof of evidence and witnesses?
+                Reason for rejecting the appellant proof of evidence and witnesses
               </dt>
               <dd class="govuk-summary-list__value">
                 Not complete

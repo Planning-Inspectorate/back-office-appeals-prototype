@@ -186,7 +186,7 @@ router.get('/main/appeals/:appealId/start-case/has-inquiry-address', function (r
     appeal.procedure = data.procedure
     appeal.startDate = new Date()
 
-    req.flash('success', 'Case started')
+    req.flash('success', 'Timetable started')
     res.redirect(`/main/appeals/${req.params.appealId}`)
   })
 
@@ -202,7 +202,7 @@ router.get('/main/appeals/:appealId/start-case/has-inquiry-address', function (r
   router.post('/main/appeals/:appealId/start-case/confirm', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     appeal.status = 'Awaiting LPAQ'
-    req.flash('success', 'Case started')
+    req.flash('success', 'Timetable started')
     res.redirect(`/main/appeals/${req.params.appealId}`)
   })
 

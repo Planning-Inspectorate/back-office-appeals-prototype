@@ -107,7 +107,7 @@ module.exports = router => {
       })
     }
 
-    let totalCases = cases.length
+    let totalAppeals = cases.length
     let pageSize = 25
     let pagination = new Pagination(cases, req.query.page, pageSize)
     cases = pagination.getData()
@@ -121,7 +121,7 @@ module.exports = router => {
       cases,
       selectedFilters,
       pagination,
-      totalCases
+      totalAppeals
     })
   })
 
@@ -304,7 +304,7 @@ module.exports = router => {
       })
     }
 
-    let totalCases = cases.length
+    let totalAppeals = cases.length
     let pageSize = 25
     let pagination = new Pagination(cases, req.query.page, pageSize)
     cases = pagination.getData()
@@ -318,7 +318,7 @@ module.exports = router => {
       cases,
       selectedFilters,
       pagination,
-      totalCases
+      totalAppeals
     })
   })
 

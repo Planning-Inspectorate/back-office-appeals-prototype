@@ -1,0 +1,41 @@
+<div class="app-panel">
+  <h2 class="govuk-heading-l">Rule 6 parties</h2>
+
+  {% if appeal.rule6Parties %}
+    {% set rule6Value = appeal.rule6Parties.length + " parties" %}
+    {% set rule6Actions = [{
+        href: "/main/appeals/:caseId/rule-6-parties/new" | replace(':caseId', appeal.id),
+        text: "Add",
+        visuallyHiddenText: "Rule 6 party"
+      }, {
+        href: "/main/appeals/:caseId/rule-6-parties" | replace(':caseId', appeal.id),
+        text: "Change",
+        visuallyHiddenText: "Rule 6 party"
+      }]
+    %}
+  {% else %}
+    {% set rule6Value = "No parties"%}
+    {% set rule6Actions = [{
+        href: "/main/appeals/:caseId/rule-6-parties/new" | replace(':caseId', appeal.id),
+        text: "Add",
+        visuallyHiddenText: "Rule 6 party"
+      }]
+    %}
+  {% endif %}
+
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          text: "Rule 6 parties"
+        },
+        value: {
+          text: rule6Value
+        },
+        actions: {
+          items: rule6Actions
+        }
+      }
+    ]
+  }) }}
+</div>

@@ -3,33 +3,33 @@ const { isLeadAppeal } = require('../helpers/linked-appeals')
 
 module.exports = router => {
 
-  router.get('/main/cases/:caseId/linked-appeals/new', function (req, res) {
-    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
-    res.render('/main/cases/linked-appeals/new/index', {
-      _case
+  router.get('/main/appeals/:caseId/linked-appeals/new', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+    res.render('/main/appeals/linked-appeals/new/index', {
+      appeal
     })
   })
 
-  router.post('/main/cases/:caseId/linked-appeals/new', function (req, res) {
+  router.post('/main/appeals/:caseId/linked-appeals/new', function (req, res) {
     if(isLeadAppeal(req.params.caseId, req.session.data.linkedAppeals)) {
-      res.redirect(`/main/cases/${req.params.caseId}/linked-appeals/new/check`)
+      res.redirect(`/main/appeals/${req.params.caseId}/linked-appeals/new/check`)
     } else {
-      res.redirect(`/main/cases/${req.params.caseId}/linked-appeals/new/lead-appeal`)
+      res.redirect(`/main/appeals/${req.params.caseId}/linked-appeals/new/lead-appeal`)
     }
   })
 
-  router.get('/main/cases/:caseId/linked-appeals/new/lead-appeal', function (req, res) {
-    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
+  router.get('/main/appeals/:caseId/linked-appeals/new/lead-appeal', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
 
     let radios = [{
-      text: _case.id,
-      value: _case.id
+      text: appeal.id,
+      value: appeal.id
     }, {
       text: req.session.data.addLinkedAppeal.reference,
       value: req.session.data.addLinkedAppeal.reference
     }]
 
-    // const linkedAppeals = getLinkedAppeals(_case.id, req.session.data.linkedAppeals)
+    // const linkedAppeals = getLinkedAppeals(appeal.id, req.session.data.linkedAppeals)
 
     // radios = radios.concat(linkedAppeals.map(linkedAppeal => {
     //   return {
@@ -55,25 +55,25 @@ module.exports = router => {
     //   return b.text.includes("(Current)") - a.text.includes("(Current)");
     // })
 
-    res.render('/main/cases/linked-appeals/new/lead-appeal', {
-      _case,
+    res.render('/main/appeals/linked-appeals/new/lead-appeal', {
+      appeal,
       radios
     })
   })
 
-  router.post('/main/cases/:caseId/linked-appeals/new/lead-appeal', function (req, res) {
-    res.redirect(`/main/cases/${req.params.caseId}/linked-appeals/new/check`)
+  router.post('/main/appeals/:caseId/linked-appeals/new/lead-appeal', function (req, res) {
+    res.redirect(`/main/appeals/${req.params.caseId}/linked-appeals/new/check`)
   })
 
-  router.get('/main/cases/:caseId/linked-appeals/new/check', function (req, res) {
-    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
-    res.render('/main/cases/linked-appeals/new/check', {
-      _case
+  router.get('/main/appeals/:caseId/linked-appeals/new/check', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+    res.render('/main/appeals/linked-appeals/new/check', {
+      appeal
     })
   })
 
-  router.post('/main/cases/:caseId/linked-appeals/new/check', function (req, res) {
-    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
+  router.post('/main/appeals/:caseId/linked-appeals/new/check', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
 
     let appealReference = req.session.data.addLinkedAppeal.reference
     let leadAppealReference = req.session.data.addLinkedAppeal.leadAppeal
@@ -85,7 +85,7 @@ module.exports = router => {
         req.session.data.linkedAppeals.push({
           id: uuidv4(),
           leadAppealId: leadAppealReference,
-          childAppealId: _case.id
+          childAppealId: appeal.id
         })
       } else {
         // otherwise the reference is the child and the lead is the lead
@@ -98,14 +98,14 @@ module.exports = router => {
     } else {
       req.session.data.linkedAppeals.push({
         id: uuidv4(),
-        leadAppealId: _case.id,
+        leadAppealId: appeal.id,
         childAppealId: appealReference
       })
     }
 
     delete req.session.data.addLinkedAppeal
     req.flash('success', 'Linked appeal added')
-    res.redirect(`/main/cases/${req.params.caseId}`)
+    res.redirect(`/main/appeals/${req.params.caseId}`)
   })
 
 }

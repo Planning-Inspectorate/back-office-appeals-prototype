@@ -2,76 +2,76 @@ const { v4: uuidv4 } = require('uuid')
 
 module.exports = router => {
 
-  router.get('/main/cases/:caseId/rule-6-parties/new', function (req, res) {
-    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
+  router.get('/main/appeals/:caseId/rule-6-parties/new', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
 
-    res.render('/main/cases/rule-6-parties/new/organisation', {
-      _case
+    res.render('/main/appeals/rule-6-parties/new/organisation', {
+      appeal
     })
   })
 
-  router.post('/main/cases/:caseId/rule-6-parties/new', function (req, res) {
-    res.redirect(`/main/cases/${req.params.caseId}/rule-6-parties/new/name`)
+  router.post('/main/appeals/:caseId/rule-6-parties/new', function (req, res) {
+    res.redirect(`/main/appeals/${req.params.caseId}/rule-6-parties/new/name`)
   })
 
-  router.get('/main/cases/:caseId/rule-6-parties/new/name', function (req, res) {
-    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
+  router.get('/main/appeals/:caseId/rule-6-parties/new/name', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
 
-    res.render('/main/cases/rule-6-parties/new/name', {
-      _case
+    res.render('/main/appeals/rule-6-parties/new/name', {
+      appeal
     })
   })
 
-  router.post('/main/cases/:caseId/rule-6-parties/new/name', function (req, res) {
-    res.redirect(`/main/cases/${req.params.caseId}/rule-6-parties/new/email-address`)
+  router.post('/main/appeals/:caseId/rule-6-parties/new/name', function (req, res) {
+    res.redirect(`/main/appeals/${req.params.caseId}/rule-6-parties/new/email-address`)
   })
 
-  router.get('/main/cases/:caseId/rule-6-parties/new/email-address', function (req, res) {
-    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
+  router.get('/main/appeals/:caseId/rule-6-parties/new/email-address', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
 
-    res.render('/main/cases/rule-6-parties/new/email-address', {
-      _case
+    res.render('/main/appeals/rule-6-parties/new/email-address', {
+      appeal
     })
   })
 
-  router.post('/main/cases/:caseId/rule-6-parties/new/email-address', function (req, res) {
-    res.redirect(`/main/cases/${req.params.caseId}/rule-6-parties/new/phone`)
+  router.post('/main/appeals/:caseId/rule-6-parties/new/email-address', function (req, res) {
+    res.redirect(`/main/appeals/${req.params.caseId}/rule-6-parties/new/phone`)
   })
 
-  router.get('/main/cases/:caseId/rule-6-parties/new/phone', function (req, res) {
-    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
+  router.get('/main/appeals/:caseId/rule-6-parties/new/phone', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
 
-    res.render('/main/cases/rule-6-parties/new/phone', {
-      _case
+    res.render('/main/appeals/rule-6-parties/new/phone', {
+      appeal
     })
   })
 
-  router.post('/main/cases/:caseId/rule-6-parties/new/phone', function (req, res) {
-    res.redirect(`/main/cases/${req.params.caseId}/rule-6-parties/new/form`)
+  router.post('/main/appeals/:caseId/rule-6-parties/new/phone', function (req, res) {
+    res.redirect(`/main/appeals/${req.params.caseId}/rule-6-parties/new/form`)
   })
 
-  router.get('/main/cases/:caseId/rule-6-parties/new/form', function (req, res) {
-    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
+  router.get('/main/appeals/:caseId/rule-6-parties/new/form', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
 
-    res.render('/main/cases/rule-6-parties/new/form', {
-      _case
+    res.render('/main/appeals/rule-6-parties/new/form', {
+      appeal
     })
   })
 
-  router.post('/main/cases/:caseId/rule-6-parties/new/form', function (req, res) {
-    res.redirect(`/main/cases/${req.params.caseId}/rule-6-parties/new/check`)
+  router.post('/main/appeals/:caseId/rule-6-parties/new/form', function (req, res) {
+    res.redirect(`/main/appeals/${req.params.caseId}/rule-6-parties/new/check`)
   })
 
-  router.get('/main/cases/:caseId/rule-6-parties/new/check', function (req, res) {
-    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
+  router.get('/main/appeals/:caseId/rule-6-parties/new/check', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
 
-    res.render('/main/cases/rule-6-parties/new/check', {
-      _case
+    res.render('/main/appeals/rule-6-parties/new/check', {
+      appeal
     })
   })
 
-  router.post('/main/cases/:caseId/rule-6-parties/new/check', function (req, res) {
-    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
+  router.post('/main/appeals/:caseId/rule-6-parties/new/check', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
     let party = req.session.data.addRule6Party
     req.flash('success', 'Rule 6 party added')
 
@@ -87,12 +87,12 @@ module.exports = router => {
       status: 'Ready to review'
     }
 
-    if(!_case.rule6Parties) {
-      _case.rule6Parties = []
+    if(!appeal.rule6Parties) {
+      appeal.rule6Parties = []
     }
 
-    _case.rule6Parties.push(newParty)
-    res.redirect(`/main/cases/${req.params.caseId}/rule-6-parties`)
+    appeal.rule6Parties.push(newParty)
+    res.redirect(`/main/appeals/${req.params.caseId}/rule-6-parties`)
   })
 
 }

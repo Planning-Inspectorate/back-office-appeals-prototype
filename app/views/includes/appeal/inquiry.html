@@ -1,0 +1,188 @@
+<div class="app-panel">
+  <h2 class="govuk-heading-l">Inquiry</h2>
+
+  <div class="govuk-button-group">
+    {% if appeal.inquiry %}
+      <a class="govuk-link" href="/main/appeals/{{appeal.id}}/cancel-inquiry">Cancel inquiry</a>
+    {% else %}
+      {{ govukButton({
+        text: 'Set up inquiry',
+        href: '/main/appeals/:caseId/add-inquiry' | replace(':caseId', appeal.id)
+      }) }}
+    {% endif %}
+  </div>
+
+  {% set address %}
+    {{appAddress({ address: appeal.inquiry.address })}}
+  {% endset %}
+
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          text: "Date"
+        },
+        value: {
+          html: appeal.inquiry.date | govukDate
+        },
+        actions: {
+          items: [
+            {
+              href: '/main/appeals/:caseId/edit-inquiry' | replace(':caseId', appeal.id),
+              text: "Change",
+              visuallyHiddenText: "Date"
+            }
+          ]
+        }
+      } if appeal.inquiry.date,
+      {
+        key: {
+          text: "Time"
+        },
+        value: {
+          html: appeal.inquiry.time
+        },
+        actions: {
+          items: [
+            {
+              href: '/main/appeals/:caseId/edit-inquiry' | replace(':caseId', appeal.id),
+              text: "Change",
+              visuallyHiddenText: "Time"
+            }
+          ]
+        }
+      } if appeal.inquiry.time,
+      {
+        key: {
+          text: "Do you know the estimated number of days needed to carry out the inquiry"
+        },
+        value: {
+          html: appeal.inquiry.hasDays
+        },
+        actions: {
+          items: [
+            {
+              href: '/main/appeals/:caseId/edit-inquiry/days' | replace(':caseId', appeal.id),
+              text: "Change",
+              visuallyHiddenText: "if you know the expected number of days to carry out the inquiry"
+            }
+          ]
+        }
+      } if appeal.inquiry.hasDays,
+      {
+        key: {
+          text: "Estimated number of days needed to carry out the inquiry"
+        },
+        value: {
+          html: appeal.inquiry.days
+        },
+        actions: {
+          items: [
+            {
+              href: '/main/appeals/:caseId/edit-inquiry/days' | replace(':caseId', appeal.id),
+              text: "Change",
+              visuallyHiddenText: "Expected number of days to carry out the inquiry"
+            }
+          ]
+        }
+      } if appeal.inquiry.hasDays == 'Yes',
+      {
+        key: {
+          text: "Do you know the address of where the inquiry will take place?"
+        },
+        value: {
+          html: appeal.inquiry.hasAddress
+        },
+        actions: {
+          items: [
+            {
+              href: '/main/appeals/:caseId/edit-inquiry/has-address' | replace(':caseId', appeal.id),
+              text: "Change",
+              visuallyHiddenText: "whether you know the inquiry address"
+            }
+          ]
+        }
+      } if appeal.inquiry.hasAddress,
+      {
+        key: {
+          text: "Address"
+        },
+        value: {
+          html: address
+        },
+        actions: {
+          items: [
+            {
+              href: '/main/appeals/:caseId/edit-inquiry/address' | replace(':caseId', appeal.id),
+              text: "Change",
+              visuallyHiddenText: "Inquiry address"
+            }
+          ]
+        }
+      } if appeal.inquiry.hasAddress == 'Yes'
+    ]
+  }) if appeal.inquiry }}
+
+  <h3 class="govuk-heading-m">Inquiry estimates</h3>
+
+  {% if not appeal.inquiryEstimates %}
+    <p><a class="govuk-link" href="/main/appeals/{{appeal.id}}/add-inquiry-estimates">Add inquiry estimates</a></p>
+  {% endif %}
+
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          text: "Estimated preparation time"
+        },
+        value: {
+          html: appeal.inquiryEstimates.estimatedPreparationTime | days
+        },
+        actions: {
+          items: [
+            {
+              href: '/main/appeals/:caseId/edit-inquiry-estimates' | replace(':caseId', appeal.id),
+              text: "Change",
+              visuallyHiddenText: "Estimated preparation time"
+            }
+          ]
+        }
+      } if appeal.inquiryEstimates.estimatedPreparationTime,
+      {
+        key: {
+          text: "Estimated sitting time"
+        },
+        value: {
+          html: appeal.inquiryEstimates.estimatedInquiryTime | days
+        },
+        actions: {
+          items: [
+            {
+              href: '/main/appeals/:caseId/edit-inquiry-estimates' | replace(':caseId', appeal.id),
+              text: "Change",
+              visuallyHiddenText: "Estimated sitting time"
+            }
+          ]
+        }
+      } if appeal.inquiryEstimates.estimatedInquiryTime,
+      {
+        key: {
+          text: "Estimated reporting time"
+        },
+        value: {
+          html: appeal.inquiryEstimates.estimatedReportingTime | days
+        },
+        actions: {
+          items: [
+            {
+              href: '/main/appeals/:caseId/edit-inquiry-estimates' | replace(':caseId', appeal.id),
+              text: "Change",
+              visuallyHiddenText: "Estimated reporting time"
+            }
+          ]
+        }
+      } if appeal.inquiryEstimates.estimatedReportingTime
+    ]
+  }) if appeal.inquiryEstimates }}
+
+</div>

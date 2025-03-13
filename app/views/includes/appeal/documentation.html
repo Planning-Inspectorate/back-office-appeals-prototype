@@ -1,0 +1,355 @@
+<div class="app-panel">
+  <h2 class="govuk-heading-l">Documentation</h2>
+
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          text: "Appeal"
+        },
+        value: {
+          html: 'Valid<br><span class="govuk-!-font-size-16">Received on 2 February 2025</span>'
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "View",
+              visuallyHiddenText: "Appeal"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "LPA questionnaire"
+        },
+        value: {
+          html: 'Complete<br><span class="govuk-!-font-size-16">Received on 7 February 2025</span>'
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "View",
+              visuallyHiddenText: "LPA questionnaire"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "LPA statement"
+        },
+        value: {
+          html: 'Accepted<br><span class="govuk-!-font-size-16">Received on 7 February 2025</span>'
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "View",
+              visuallyHiddenText: "LPA statement"
+            }
+          ]
+        }
+      } if appeal.lpaStatement,
+      {
+        key: {
+          text: "Interested party comments"
+        },
+        value: {
+          html: 'Shared<br><span class="govuk-!-font-size-16">Received on 7 February 2025</span>'
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "View",
+              visuallyHiddenText: "Interested party comments"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Appellant final comments"
+        },
+        value: {
+          html: 'Accepted<br><span class="govuk-!-font-size-16">Received on 7 February 2025</span>'
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "View",
+              visuallyHiddenText: "Appellant final comments"
+            }
+          ]
+        }
+      } if appeal.procedure == 'Written representations',
+      {
+        key: {
+          text: "LPA final comments"
+        },
+        value: {
+          html: 'Accepted<br><span class="govuk-!-font-size-16">Received on 7 February 2025</span>'
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "View",
+              visuallyHiddenText: "LPA final comments"
+            }
+          ]
+        }
+      } if appeal.procedure == 'Written representations',
+      {
+        key: {
+          text: "Environmental services team review"
+        },
+        value: {
+          html: '2 documents<br><span class="govuk-!-font-size-16">Received on 7 February 2025</span>'
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Add",
+              visuallyHiddenText: "Environmental services team review"
+            },
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "Environmental services team review"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Rule 6 statements"
+        },
+        value: {
+          html: '3 statements'
+        },
+        actions: {
+          items: [
+            {
+              href: '/main/appeals/:caseId/rule-6-statements' | replace(':caseId', appeal.id),
+              text: "Change",
+              visuallyHiddenText: "Decision"
+            }
+          ]
+        }
+      } if appeal.procedure == 'Inquiry',
+      {
+        key: {
+          text: "Decision"
+        },
+        value: {
+          html: 'Awaiting decision'
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Issue",
+              visuallyHiddenText: "Decision"
+            }
+          ]
+        }
+      }
+    ]
+  }) }}
+
+
+
+  {{ govukTable({
+    firstCellIsHeader: true,
+    head: [
+      {
+        text: "Documentation"
+      },
+      {
+        text: "Status"
+      },
+      {
+        text: "Received"
+      },
+      {
+        text: "Action"
+      }
+    ],
+    rows: [
+      [
+        {
+          html: "Appeal"
+        },
+        {
+          html: "Valid"
+        },
+        {
+          html: 10 | daysAgo
+        },
+        {
+          html: '<a href="#">View</a>'
+          ,
+        visuallyHiddenText: 'appeal'
+        }
+      ],
+      [
+        {
+          html: "LPA questionnaire"
+        },
+        {
+          html: "Complete"
+        },
+        {
+          html: 5 | daysAgo
+        },
+        {
+          html: '<a href="#">View</a>',
+          visuallyHiddenText: 'LPA questionnaire'
+        }
+      ],
+      [
+        {
+          html: "LPA statement"
+        },
+        {
+          html: "Accepted"
+        },
+        {
+          html: 5 | daysAgo
+        },
+        {
+          html: '<a href="#">View</a>',
+          visuallyHiddenText: 'LPA statement'
+        }
+      ],
+      [
+        {
+          html: "Interested party comments"
+        },
+        {
+          html: "Shared"
+        },
+        {
+          html: 5 | daysAgo
+        },
+        {
+          html: '<a href="#">View</a>',
+          visuallyHiddenText: 'interested party comments'
+        }
+      ],
+      [
+      {
+        html: "Appellant final comments"
+      },
+      {
+        html: "Accepted"
+      },
+      {
+        html: 5 | daysAgo
+      },
+      {
+        html: '<a href="#">View</a>',
+        visuallyHiddenText: 'appellant final comments'
+      }
+    ],
+    [
+    {
+      html: "LPA final comments"
+    },
+    {
+      html: "Accepted"
+    },
+    {
+      html: 5 | daysAgo
+    },
+    {
+      html: '<a href="#">View</a>',
+      visuallyHiddenText: 'LPA final comments'
+    }
+  ],
+
+  [
+    {
+      html: "Environmental services team review"
+    },
+    {
+      html: "2 documents"
+    },
+    {
+      html: 5 | daysAgo
+    },
+    {
+      html: '<a href="#">Add</a> | <a href="#">Change</a>',
+      visuallyHiddenText: 'environmental services team review'
+    }
+  ],
+
+  [
+    {
+      html: "Decision"
+    },
+    {
+      html: "Awaiting decision"
+    },
+    {
+      html: "Not applicable"
+    },
+    {
+      html: '<a href="#">Issue</a>',
+      visuallyHiddenText: 'decision'
+    }
+  ]
+      ]
+
+  }) if 1==2 }}
+</div>
+
+<!--[
+        {
+          html: "Rule 6 statements"
+        },
+        {
+          html: "Received"
+        },
+        {
+          html: "Not applicable"
+        },
+        {
+          html: '<a href="/main/appeals/:caseId/rule-6-statements">View</a>' | replace(':caseId', appeal.id)
+        }
+      ],
+      [
+        {
+          html: "Appellant proof of evidence and witnesses"
+        },
+        {
+          html: "Received"
+        },
+        {
+          html: 3 | daysAgo
+        },
+        {
+          html: '<a href="#">View</a>'
+        }
+      ],
+      [
+        {
+          html: "LPA proof of evidence and witnesses"
+        },
+        {
+          html: "Received"
+        },
+        {
+          html: 1 | daysAgo
+        },
+        {
+          html: '<a href="#">View</a>'
+        }
+      ]-->

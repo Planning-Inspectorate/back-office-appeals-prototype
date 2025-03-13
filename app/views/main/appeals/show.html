@@ -1,0 +1,172 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Overview" %}
+{% set pageName = title %}
+{% set navId = 'overview' %}
+{% set back = false %}
+
+{% block content %}
+  <div class="app-prompt-container">
+    {% include "includes/appeal/success-banner.njk" %}
+    {% include "includes/appeal/prompt.njk" %}
+  </div>
+  {% include "includes/appeal/h1.njk" %}
+
+  <div class="govuk-button-group">
+    <a href="#" class="govuk-link">Download case</a>
+  </div>
+
+  {{ govukDetails({
+    summaryText: "Notes (1)",
+    text: "Note stuff here"
+  }) }}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% set overviewHtml %}
+        {% include "includes/appeal/overview.html" %}
+      {% endset%}
+      {% set siteHtml %}
+        {% include "includes/appeal/site.html" %}
+      {% endset%}
+      {% set timetableHtml %}
+        {% include "includes/appeal/timetable.html" %}
+      {% endset%}
+      {% if appeal.procedure == 'Hearing' %}
+        {% set hearingHtml %}
+          {% include "includes/appeal/hearing.html" %}
+        {% endset%}
+      {% endif %}
+      {% if appeal.procedure == 'Inquiry' %}
+        {% set cmcHtml %}
+          {% include "includes/appeal/cmc.html" %}
+        {% endset%}
+        {% set inquiryHtml %}
+          {% include "includes/appeal/inquiry.html" %}
+        {% endset%}
+        {% set rule6PartiesHtml %}
+          {% include "includes/appeal/rule6-parties.html" %}
+        {% endset%}
+      {% endif %}
+      {% set documentationHtml %}
+        {% include "includes/appeal/documentation.html" %}
+      {% endset%}
+      {% set costsHtml %}
+        {% include "includes/appeal/costs.html" %}
+      {% endset%}
+      {% set contactsHtml %}
+        {% include "includes/appeal/contacts.html" %}
+      {% endset%}
+      {% set teamHtml %}
+        {% include "includes/appeal/team.html" %}
+      {% endset%}
+      {% set caseManagementHtml %}
+        {% include "includes/appeal/case-management.html" %}
+      {% endset%}
+
+      {{ govukAccordion({
+        id: 'caseDetails',
+        classes: 'govuk-!-margin-top-4',
+        items: [
+          {
+            heading: {
+              text: "Overview"
+            },
+            content: {
+              html: overviewHtml
+            }
+          },
+          {
+            heading: {
+              text: "Site"
+            },
+            content: {
+              html: siteHtml
+            }
+          },
+          {
+            heading: {
+              text: "Timetable"
+            },
+            content: {
+              html: timetableHtml
+            }
+          },
+          {
+            heading: {
+              text: "Hearing"
+            },
+            content: {
+              html: hearingHtml
+            }
+          } if hearingHtml,
+          {
+            heading: {
+              text: "CMC"
+            },
+            content: {
+              html: cmcHtml
+            }
+          } if cmcHtml,
+          {
+            heading: {
+              text: "Inquiry"
+            },
+            content: {
+              html: inquiryHtml
+            }
+          } if inquiryHtml,
+          {
+            heading: {
+              text: "Rule 6 parties"
+            },
+            content: {
+              html: rule6PartiesHtml
+            }
+          } if rule6PartiesHtml,
+          {
+            heading: {
+              text: "Documentation"
+            },
+            content: {
+              html: documentationHtml
+            }
+          },
+          {
+            heading: {
+              text: "Costs"
+            },
+            content: {
+              html: costsHtml
+            }
+          },
+          {
+            heading: {
+              text: "Contacts"
+            },
+            content: {
+              html: contactsHtml
+            }
+          },
+          {
+            heading: {
+              text: "Team"
+            },
+            content: {
+              html: teamHtml
+            }
+          },
+          {
+            heading: {
+              text: "Case management"
+            },
+            content: {
+              html: caseManagementHtml
+            }
+          }
+        ]
+      }) }}
+
+    </div>
+  </div>
+{% endblock %}

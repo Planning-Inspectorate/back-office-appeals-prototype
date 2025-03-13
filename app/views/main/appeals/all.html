@@ -1,0 +1,120 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "All appeals (" + totalCases +")" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+{% set pageId = 'allCases' %}
+
+{% set back = false %}
+
+{% set prototypeLinks = [
+  {
+    href: 'team-email',
+    text: 'Manage case teams'
+  }
+] %}
+
+{% block content %}
+  <h1 class="govuk-heading-l">{{title}}</h1>
+
+  <div class="app-filter-layout">
+    <div class="app-filter-layout__filter">
+      {% include "includes/appeals/filter-panel.njk" %}
+    </div>
+    <div class="app-filter-layout__content">
+
+      {% include "includes/appeals/search-form.njk" %}
+
+      <div class="app-action-bar">
+        <div class="app-action-bar__filter"></div>
+      </div>
+
+      {% if cases.length %}
+         <div class="app-list">
+          {% for appeal in cases %}
+           <div class="app-list__item">
+              <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                <a href="/main/appeals/{{appeal.id}}" class="govuk-link--no-visited-state">{{appeal.id}}</a>
+                {{ govukTag({ text: appeal.status, classes: appeal.status | appealStatusColour + ' app-list__tag--top-right' }) }}
+              </h2>
+
+              {% set action %}
+                {% for action in appeal.actions %}
+                  <a class="govuk-link" href="{{action.href}}">{{action.text}}</a><br>
+                {% endfor %}
+              {% endset %}
+
+              {{ govukSummaryList({
+                classes: 'govuk-summary-list--no-border app-summary-list--compact app-summary-list--small-text',
+                rows: [
+                  {
+                    key: {
+                      html: 'Type'
+                    },
+                    value: {
+                      html: appeal.type
+                    }
+                  },
+                  {
+                    key: {
+                      html: 'Procedure'
+                    },
+                    value: {
+                      html: appeal.procedure
+                    }
+                  } if appeal.procedure,
+                  {
+                    key: {
+                      html: 'Action'
+                    },
+                    value: {
+                      html: action
+                    }
+                  } if appeal.actions.length,
+                  {
+                    key: {
+                      html: 'Due date'
+                    },
+                    value: {
+                      html: 'Not applicable'
+                    }
+                  }
+                ]
+              })}}
+
+
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p>There are no results.</p>
+      {% endif %}
+
+      {% include "includes/pagination.njk" %}
+    </div>
+  </div>
+
+
+{% endblock %}
+
+{% block scripts %}
+  {{super()}}
+  <script>
+    new App.FilterToggleButton({
+      bigModeMediaQuery: '(min-width: 48.063em)',
+      startHidden: false,
+      toggleButton: {
+        container: $('.app-action-bar__filter'),
+        showText: 'Show filter',
+        hideText: 'Hide filter',
+        classes: 'govuk-button--secondary govuk-!-margin-bottom-3'
+      },
+      closeButton: {
+        container: $('.app-filter__header-action'),
+        text: 'Close'
+      },
+      filter: {
+        container: $('.app-filter-layout__filter')
+      }
+    })
+  </script>
+{% endblock %}

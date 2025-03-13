@@ -2,64 +2,64 @@ const { DateTime } = require("luxon")
 
 module.exports = router => {
 
-  router.get('/main/cases/:caseId/add-hearing', function (req, res) {
-    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
-    res.render('/main/cases/add-hearing/index', {
-      _case
+  router.get('/main/appeals/:caseId/add-hearing', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+    res.render('/main/appeals/add-hearing/index', {
+      appeal
     })
   })
 
-  router.post('/main/cases/:caseId/add-hearing', function (req, res) {
-    res.redirect(`/main/cases/${req.params.caseId}/add-hearing/has-address`)
+  router.post('/main/appeals/:caseId/add-hearing', function (req, res) {
+    res.redirect(`/main/appeals/${req.params.caseId}/add-hearing/has-address`)
   })
 
-  router.get('/main/cases/:caseId/add-hearing/has-address', function (req, res) {
-    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
-    res.render('/main/cases/add-hearing/has-address', {
-      _case
+  router.get('/main/appeals/:caseId/add-hearing/has-address', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+    res.render('/main/appeals/add-hearing/has-address', {
+      appeal
     })
   })
 
-  router.post('/main/cases/:caseId/add-hearing/has-address', function (req, res) {
+  router.post('/main/appeals/:caseId/add-hearing/has-address', function (req, res) {
     if(req.session.data.addHearing.hasAddress == 'Yes') {
-      res.redirect(`/main/cases/${req.params.caseId}/add-hearing/address`)
+      res.redirect(`/main/appeals/${req.params.caseId}/add-hearing/address`)
     } else {
-      res.redirect(`/main/cases/${req.params.caseId}/add-hearing/check`)
+      res.redirect(`/main/appeals/${req.params.caseId}/add-hearing/check`)
     }
   })
 
-  router.get('/main/cases/:caseId/add-hearing/address', function (req, res) {
-    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
-    res.render('/main/cases/add-hearing/address', {
-      _case
+  router.get('/main/appeals/:caseId/add-hearing/address', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+    res.render('/main/appeals/add-hearing/address', {
+      appeal
     })
   })
 
-  router.post('/main/cases/:caseId/add-hearing/address', function (req, res) {
-    res.redirect(`/main/cases/${req.params.caseId}/add-hearing/check`)
+  router.post('/main/appeals/:caseId/add-hearing/address', function (req, res) {
+    res.redirect(`/main/appeals/${req.params.caseId}/add-hearing/check`)
   })
 
-  router.get('/main/cases/:caseId/add-hearing/check', function (req, res) {
-    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
-    res.render('/main/cases/add-hearing/check', {
-      _case
+  router.get('/main/appeals/:caseId/add-hearing/check', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+    res.render('/main/appeals/add-hearing/check', {
+      appeal
     })
   })
 
-  router.post('/main/cases/:caseId/add-hearing/check', function (req, res) {
-    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
-    _case.hearing = req.session.data.addHearing
+  router.post('/main/appeals/:caseId/add-hearing/check', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+    appeal.hearing = req.session.data.addHearing
 
-    _case.hearing.date = DateTime.fromObject({
+    appeal.hearing.date = DateTime.fromObject({
       day: req.session.data.addHearing.date.day,
       month: req.session.data.addHearing.date.month,
       year: req.session.data.addHearing.date.year
     }).toISO()
 
-    _case.status = 'Awaiting hearing'
+    appeal.status = 'Awaiting hearing'
     delete req.session.data.addHearing
     req.flash('success', 'Hearing set up')
-    res.redirect(`/main/cases/${req.params.caseId}`)
+    res.redirect(`/main/appeals/${req.params.caseId}`)
   })
 
 }

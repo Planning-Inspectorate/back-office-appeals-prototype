@@ -2,22 +2,22 @@ const moment = require('moment')
 
 module.exports = router => {
 
-  router.get('/main/cases/:caseId/add-statement-of-common-ground-due-date', function (req, res) {
-    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
-    res.render('/main/cases/add-statement-of-common-ground-due-date/index', {
-      _case
+  router.get('/main/appeals/:caseId/add-statement-of-common-ground-due-date', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+    res.render('/main/appeals/add-statement-of-common-ground-due-date/index', {
+      appeal
     })
   })
 
-  router.post('/main/cases/:caseId/add-statement-of-common-ground-due-date', function (req, res) {
-    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
-    _case.statementOfCommonGroundDueDate = moment({
+  router.post('/main/appeals/:caseId/add-statement-of-common-ground-due-date', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+    appeal.statementOfCommonGroundDueDate = moment({
       year: req.session.data.addStatementOfCommonGroundDueDate.statementOfCommonGroundDueDate.year,
       month: req.session.data.addStatementOfCommonGroundDueDate.statementOfCommonGroundDueDate.month - 1,
       day: req.session.data.addStatementOfCommonGroundDueDate.statementOfCommonGroundDueDate.day}
     ).toISOString()
     req.flash('success', 'Statement of common ground due date added')
-    res.redirect(`/main/cases/${req.params.caseId}`)
+    res.redirect(`/main/appeals/${req.params.caseId}`)
   })
 
 }

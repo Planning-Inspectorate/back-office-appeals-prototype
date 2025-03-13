@@ -3,15 +3,15 @@ const { isLeadAppeal, isChildAppeal } = require('../helpers/linked-appeals')
 
 module.exports = router => {
 
-  router.get('/main/cases/:caseId/linked-appeals/:linkedAppealId/delete', function (req, res) {
-    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
-    res.render('/main/cases/linked-appeals/delete/index', {
-      _case,
+  router.get('/main/appeals/:caseId/linked-appeals/:linkedAppealId/delete', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+    res.render('/main/appeals/linked-appeals/delete/index', {
+      appeal,
       linkedAppealId: req.params.linkedAppealId
     })
   })
 
-  router.post('/main/cases/:caseId/linked-appeals/:linkedAppealId/delete', function (req, res) {
+  router.post('/main/appeals/:caseId/linked-appeals/:linkedAppealId/delete', function (req, res) {
     // TODO: must remove where lead is lead and child is child otherwise it removes them all - naughty
 
     // If the linked appeal is the lead, then remove it where the child appeal is this appeal
@@ -30,7 +30,7 @@ module.exports = router => {
 
 
     req.flash('success', 'Linked appeal removed')
-    res.redirect(`/main/cases/${req.params.caseId}`)
+    res.redirect(`/main/appeals/${req.params.caseId}`)
   })
 
 }

@@ -2,23 +2,23 @@ const _ = require('lodash')
 
 module.exports = router => {
 
-  router.get('/main/cases/:caseId/rule-6-statements/:partyId/approve', function (req, res) {
-    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
-    let party = _case.rule6Parties.find(party => party.id == req.params.partyId)
+  router.get('/main/appeals/:caseId/rule-6-statements/:partyId/approve', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+    let party = appeal.rule6Parties.find(party => party.id == req.params.partyId)
 
-    res.render('/main/cases/rule-6-statements/approve/index', {
-      _case,
+    res.render('/main/appeals/rule-6-statements/approve/index', {
+      appeal,
       party
     })
   })
 
-  router.post('/main/cases/:caseId/rule-6-statements/:partyId/approve', function (req, res) {
-    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
-    let party = _case.rule6Parties.find(party => party.id == req.params.partyId)
+  router.post('/main/appeals/:caseId/rule-6-statements/:partyId/approve', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+    let party = appeal.rule6Parties.find(party => party.id == req.params.partyId)
     party.statement.status = 'Accepted'
     party.statement.dateApproved = new Date()
     req.flash('success', 'Rule 6 statement accepted')
-    res.redirect(`/main/cases/${req.params.caseId}/rule-6-statements/${req.params.partyId}`)
+    res.redirect(`/main/appeals/${req.params.caseId}/rule-6-statements/${req.params.partyId}`)
   })
 
 }

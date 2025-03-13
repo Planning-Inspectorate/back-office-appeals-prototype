@@ -1,0 +1,220 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Timetable due dates" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal {{appeal.id}} - start timetable</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+      <form method="post">
+        {{ govukDateInput({
+          id: "whatever",
+          fieldset: {
+            legend: {
+              text: 'LPA questionnaire due',
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 31 3 2025"
+          },
+          items: [
+            {
+              name: "startCase[LPAQuestionnaireDueDate][day]",
+              label: "Day",
+              value: data.startCase.LPAQuestionnaireDueDate.day or appeal.LPAQuestionnaireDueDate | day,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "startCase[LPAQuestionnaireDueDate][month]",
+              label: "Month",
+              value: data.startCase.LPAQuestionnaireDueDate.month or appeal.LPAQuestionnaireDueDate | month,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "startCase[LPAQuestionnaireDueDate][year]",
+              label: "Year",
+              value: data.startCase.LPAQuestionnaireDueDate.year or appeal.LPAQuestionnaireDueDate | year,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+        {{ govukDateInput({
+          id: "whatever",
+          fieldset: {
+            legend: {
+              text: 'Statements due',
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 31 3 2025"
+          },
+          items: [
+            {
+              name: "startCase[statementsDueDate][day]",
+              label: "Day",
+              value: data.startCase.statementsDueDate.day or appeal.statementsDueDate | day,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "startCase[statementsDueDate][month]",
+              label: "Month",
+              value: data.startCase.statementsDueDate.month or appeal.statementsDueDate | month,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "startCase[statementsDueDate][year]",
+              label: "Year",
+              value: data.startCase.statementsDueDate.year or appeal.statementsDueDate | year,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+        {{ govukDateInput({
+          id: "whatever",
+          fieldset: {
+            legend: {
+              text: 'Interested party comments due',
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 31 3 2025"
+          },
+          items: [
+            {
+              name: "startCase[interestedPartyCommentsDueDate][day]",
+              label: "Day",
+              value: data.startCase.interestedPartyCommentsDueDate.day or appeal.interestedPartyCommentsDueDate | day,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "startCase[interestedPartyCommentsDueDate][month]",
+              label: "Month",
+              value: data.startCase.interestedPartyCommentsDueDate.month or appeal.interestedPartyCommentsDueDate | month,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "startCase[interestedPartyCommentsDueDate][year]",
+              label: "Year",
+              value: data.startCase.interestedPartyCommentsDueDate.year or appeal.interestedPartyCommentsDueDate | year,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+        {{ govukDateInput({
+          id: "whatever",
+          fieldset: {
+            legend: {
+              text: 'Statement of common ground due',
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 31 3 2025"
+          },
+          items: [
+            {
+              name: "startCase[statementOfCommonGroundDueDate][day]",
+              label: "Day",
+              value: data.startCase.statementOfCommonGroundDueDate.day or appeal.statementOfCommonGroundDueDate | day,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "startCase[statementOfCommonGroundDueDate][month]",
+              label: "Month",
+              value: data.startCase.statementOfCommonGroundDueDate.month or appeal.statementOfCommonGroundDueDate | month,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "startCase[statementOfCommonGroundDueDate][year]",
+              label: "Year",
+              value: data.startCase.statementOfCommonGroundDueDate.year or appeal.statementOfCommonGroundDueDate | year,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+        {{ govukDateInput({
+          id: "whatever",
+          fieldset: {
+            legend: {
+              text: 'Proof of evidence and witnesses due',
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 31 3 2025"
+          },
+          items: [
+            {
+              name: "startCase[proofOfEvidenceAndWitnessesDueDate][day]",
+              label: "Day",
+              value: data.startCase.proofOfEvidenceAndWitnessesDueDate.day or appeal.proofOfEvidenceAndWitnessesDueDate | day,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "startCase[proofOfEvidenceAndWitnessesDueDate][month]",
+              label: "Month",
+              value: data.startCase.proofOfEvidenceAndWitnessesDueDate.month or appeal.proofOfEvidenceAndWitnessesDueDate | month,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "startCase[proofOfEvidenceAndWitnessesDueDate][year]",
+              label: "Year",
+              value: data.startCase.proofOfEvidenceAndWitnessesDueDate.year or appeal.proofOfEvidenceAndWitnessesDueDate | year,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) if data.editProcedure.procedure == 'Inquiry'}}
+
+        {{ govukDateInput({
+          id: "whatever",
+          fieldset: {
+            legend: {
+              text: 'Planning obligation due',
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 31 3 2025"
+          },
+          items: [
+            {
+              name: "startCase[planningObligationDueDate][day]",
+              label: "Day",
+              value: data.startCase.planningObligationDueDate.day or appeal.planningObligationDueDate | day,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "startCase[planningObligationDueDate][month]",
+              label: "Month",
+              value: data.startCase.planningObligationDueDate.month or appeal.planningObligationDueDate | month,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "startCase[planningObligationDueDate][year]",
+              label: "Year",
+              value: data.startCase.planningObligationDueDate.year or appeal.planningObligationDueDate | year,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) if appeal.appealForm.hasPlanningObligation == 'Yes' and appeal.appealForm.readyToSubmitPlanningObligation == 'No' }}
+
+        {{ govukButton({
+          text: 'Continue'
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

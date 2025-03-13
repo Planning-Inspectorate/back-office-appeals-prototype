@@ -26,14 +26,14 @@ router.get('/clear-data', function (req, res) {
 	req.session.data = {}
 	req.session.data.appeals = appeals
 
-	const redirectUrl = req.query.returnUrl || '/main/cases'
+	const redirectUrl = req.query.returnUrl || '/main/appeals'
 
 	res.redirect(redirectUrl)
 })
 
 
-require('./routes/cases')(router)
-require('./routes/case')(router)
+require('./routes/appeals')(router)
+require('./routes/appeal')(router)
 require('./routes/linked-appeals')(router)
 require('./routes/linked-appeals--add')(router)
 require('./routes/linked-appeals--delete')(router)
@@ -66,19 +66,16 @@ require('./routes/rule-6-statement')(router)
 require('./routes/rule-6-statement--approve')(router)
 require('./routes/rule-6-statement--reject')(router)
 require('./routes/rule-6-statement--redact')(router)
-
-// Timetable new
-
 require('./routes/edit-timetable-due-dates')(router)
 
 // Timetable
-require('./routes/add-statement-of-common-ground-due-date')(router)
-require('./routes/add-proof-of-evidence-and-witnesses-due-date')(router)
-require('./routes/add-planning-obligation-due-date')(router)
-require('./routes/edit-statement-of-common-ground-due-date')(router)
-require('./routes/edit-proof-of-evidence-and-witnesses-due-date')(router)
-require('./routes/edit-planning-obligation-due-date')(router)
-require('./routes/share-timetable')(router)
+// require('./routes/add-statement-of-common-ground-due-date')(router)
+// require('./routes/add-proof-of-evidence-and-witnesses-due-date')(router)
+// require('./routes/add-planning-obligation-due-date')(router)
+// require('./routes/edit-statement-of-common-ground-due-date')(router)
+// require('./routes/edit-proof-of-evidence-and-witnesses-due-date')(router)
+// require('./routes/edit-planning-obligation-due-date')(router)
+// require('./routes/share-timetable')(router)
 
 //added for simple branching ++ https://github.com/abbott567/radio-button-redirect ++
 

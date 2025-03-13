@@ -1,33 +1,33 @@
-const getActions = (_case) => {
+const getActions = (appeal) => {
   let actions = [];
 
-  if (_case.status === "Ready to assign case officer") {
+  if (appeal.status === "Ready to assign case officer") {
     actions.push({ text: "Assign case officer", href: "#" })
-  } else if (_case.status === "Ready to validate") {
+  } else if (appeal.status === "Ready to validate") {
     actions.push({ text: "Validate appeal", href: "#" })
-  } else if (_case.status === "Ready to start") {
-    actions.push({ text: "Start timetable", href: `/main/cases/${_case.id}/start-case` })
-  } else if (_case.status === "LPAQ ready to review") {
+  } else if (appeal.status === "Ready to start") {
+    actions.push({ text: "Start timetable", href: `/main/appeals/${appeal.id}/start-case` })
+  } else if (appeal.status === "LPAQ ready to review") {
     actions.push({ text: "Review LPAQ", href: "#" })
-  } else if (_case.status === "Statements and IP comments ready to review") {
+  } else if (appeal.status === "Statements and IP comments ready to review") {
     actions.push({ text: "Review statements and IP comments", href: "#" })
-  } else if (_case.status === "Statements and IP comments ready to share") {
+  } else if (appeal.status === "Statements and IP comments ready to share") {
     actions.push({ text: "Share statements and IP comments", href: "#" })
-  } else if (_case.status === "Final comments ready to review") {
+  } else if (appeal.status === "Final comments ready to review") {
     actions.push({ text: "Review final comments", href: "#" })
-  } else if (_case.status === "Final comments ready to share") {
+  } else if (appeal.status === "Final comments ready to share") {
     actions.push({ text: "Share final comments", href: "#" })
-  } else if (_case.status === "Site visit ready to set up") {
+  } else if (appeal.status === "Site visit ready to set up") {
     actions.push({ text: "Set up site visit", href: "#" })
-  } else if (_case.status === "Hearing ready to set up") {
-    actions.push({ text: "Set up hearing", href: `/main/cases/${_case.id}/add-hearing` })
-  } else if (_case.status === "Inquiry ready to set up") {
-    actions.push({ text: "Set up inquiry", href: `/main/cases/${_case.id}/add-inquiry` })
-  } else if (_case.status === "Proof of evidence and witnesses ready to review") {
+  } else if (appeal.status === "Hearing ready to set up") {
+    actions.push({ text: "Set up hearing", href: `/main/appeals/${appeal.id}/add-hearing` })
+  } else if (appeal.status === "Inquiry ready to set up") {
+    actions.push({ text: "Set up inquiry", href: `/main/appeals/${appeal.id}/add-inquiry` })
+  } else if (appeal.status === "Proof of evidence and witnesses ready to review") {
     actions.push({ text: "Review proof of evidence and witnesses", href: "#" })
-  } else if (_case.status === "Proof of evidence and witnesses ready to share") {
+  } else if (appeal.status === "Proof of evidence and witnesses ready to share") {
     actions.push({ text: "Share proof of evidence and witnesses", href: "#" })
-  } else if (_case.status === "Decision ready to issue") {
+  } else if (appeal.status === "Decision ready to issue") {
     actions.push({ text: "Issue decision", href: "#" })
   }
 

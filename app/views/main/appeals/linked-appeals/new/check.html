@@ -1,0 +1,61 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Check details and add linked appeal" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal {{appeal.id}}</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Appeal reference"
+            },
+            value: {
+              html: data.addLinkedAppeal.reference
+            },
+            actions: {
+              items: [
+                {
+                  href: "/main/appeals/:caseId/linked-appeals/new" | replace(':caseId', appeal.id),
+                  text: "Change",
+                  visuallyHiddenText: "Reference"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Lead appeal"
+            },
+            value: {
+              html: data.addLinkedAppeal.leadAppeal
+            },
+            actions: {
+              items: [
+                {
+                  href: "/main/appeals/:caseId/linked-appeals/new/lead-appeal" | replace(':caseId', appeal.id),
+                  text: "Change",
+                  visuallyHiddenText: "Lead appeal"
+                }
+              ]
+            }
+          } if data.addLinkedAppeal.leadAppeal
+        ]
+      }) }}
+
+      <form method="post">
+        {{ govukButton({
+          text: "Add linked appeal"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

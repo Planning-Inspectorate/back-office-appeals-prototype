@@ -1,29 +1,29 @@
 module.exports = router => {
 
-  router.get('/main/cases/:caseId/add-inquiry-estimates', function (req, res) {
-    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
-    res.render('/main/cases/add-inquiry-estimates/index', {
-      _case
+  router.get('/main/appeals/:caseId/add-inquiry-estimates', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+    res.render('/main/appeals/add-inquiry-estimates/index', {
+      appeal
     })
   })
 
-  router.post('/main/cases/:caseId/add-inquiry-estimates', function (req, res) {
-    res.redirect(`/main/cases/${req.params.caseId}/add-inquiry-estimates/check`)
+  router.post('/main/appeals/:caseId/add-inquiry-estimates', function (req, res) {
+    res.redirect(`/main/appeals/${req.params.caseId}/add-inquiry-estimates/check`)
   })
 
-  router.get('/main/cases/:caseId/add-inquiry-estimates/check', function (req, res) {
-    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
-    res.render('/main/cases/add-inquiry-estimates/check', {
-      _case
+  router.get('/main/appeals/:caseId/add-inquiry-estimates/check', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+    res.render('/main/appeals/add-inquiry-estimates/check', {
+      appeal
     })
   })
 
-  router.post('/main/cases/:caseId/add-inquiry-estimates/check', function (req, res) {
-    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
-    _case.inquiryEstimates = req.session.data.addInquiryEstimates
+  router.post('/main/appeals/:caseId/add-inquiry-estimates/check', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+    appeal.inquiryEstimates = req.session.data.addInquiryEstimates
     delete req.session.data.addInquiryEstimates
     req.flash('success', 'Inquiry estimates added')
-    res.redirect(`/main/cases/${req.params.caseId}`)
+    res.redirect(`/main/appeals/${req.params.caseId}`)
   })
 
 }

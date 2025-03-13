@@ -3,9 +3,9 @@ const Pagination = require('../helpers/pagination')
 
 module.exports = router => {
 
-  router.get('/main/cases/:caseId/rule-6-parties', function (req, res) {
-    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
-    let rule6Parties = _case.rule6Parties
+  router.get('/main/appeals/:caseId/rule-6-parties', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+    let rule6Parties = appeal.rule6Parties
 
     let awaitingReview = rule6Parties
       .filter((item) => item.status == 'Ready to review')
@@ -55,7 +55,7 @@ module.exports = router => {
     //     items: selectedStatusFilters.map(label => {
     //       return {
     //         text: label,
-    //         href: `/main/cases/${_case.id}/rule-6-parties/remove-status/${label}`
+    //         href: `/main/appeals/${appeal.id}/rule-6-parties/remove-status/${label}`
     //       }
     //     })
     //   })
@@ -65,8 +65,8 @@ module.exports = router => {
     // let pagination = new Pagination(parties, req.query.page, pageSize)
     // parties = pagination.getData()
 
-    res.render('/main/cases/rule-6-parties/index', {
-      _case,
+    res.render('/main/appeals/rule-6-parties/index', {
+      appeal,
       parties
     })
   })

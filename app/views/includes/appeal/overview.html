@@ -1,0 +1,199 @@
+<div class="app-panel">
+  <h2 class="govuk-heading-l">Overview</h2>
+
+  {% if linkedAppeals.length %}
+    {% set linkedAppealsHtml %}
+      {% for linkedAppeal in linkedAppeals %}
+        <p>
+          <a href="/main/appeals/{{linkedAppeal.id}}">{{linkedAppeal.id}}</a>
+          {% if linkedAppeal.relationship == 'Lead' %}
+            (Lead)
+          {% endif %}
+        </p>
+      {% endfor %}
+    {% endset %}
+
+    {% if not isLeadAppeal %}
+      {% set linkedAppealsActions = [
+        {
+          href: "/main/appeals/:caseId/linked-appeals" | replace(':caseId', appeal.id),
+          text: "Change",
+          visuallyHiddenText: "linked appeals"
+        }
+      ] %}
+    {% else %}
+      {% set linkedAppealsActions = [
+        {
+          href: "/main/appeals/:caseId/linked-appeals/new" | replace(':caseId', appeal.id),
+          text: "Add",
+          visuallyHiddenText: "linked appeal"
+        },
+        {
+          href: "/main/appeals/:caseId/linked-appeals" | replace(':caseId', appeal.id),
+          text: "Change",
+          visuallyHiddenText: "linked appeals"
+        }
+      ] %}
+    {% endif %}
+  {% else %}
+    {% set linkedAppealsHtml %}
+      No linked appeals
+    {% endset %}
+
+    {% set linkedAppealsActions = [
+      {
+        href: "/main/appeals/:caseId/linked-appeals/new" | replace(':caseId', appeal.id),
+        text: "Add",
+        visuallyHiddenText: "linked appeal"
+      }
+    ] %}
+  {% endif %}
+
+
+  {{ govukSummaryList({
+    rows: [
+    {
+      key: {
+        text: "Site address"
+      },
+      value: {
+        text: appAddress({address: application.site.address})
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "Site address"
+          }
+        ]
+      }
+    },
+    {
+        key: {
+          text: "LPA"
+        },
+        value: {
+          html: 'Barnet Council'
+        }
+      },
+      {
+        key: {
+          text: "Planning application reference"
+        },
+        value: {
+          html: '14012025HAS'
+        }
+      },
+
+      {
+        key: {
+          text: "Appeal type"
+        },
+        value: {
+          text: appeal.type
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "appeal type"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Appeal procedure"
+        },
+        value: {
+          text: appeal.procedure or 'No procedure'
+        },
+        actions: {
+          items: [
+            {
+              href: "/main/appeals/:caseId/edit-procedure" | replace(':caseId', appeal.id) if appeal.procedure else "/main/appeals/:caseId/add-procedure" | replace(':caseId', appeal.id),
+              text: "Change" if appeal.procedure else "Add",
+              visuallyHiddenText: "appeal procedure"
+            }
+          ]
+        }
+      } if appeal.procedure,
+      {
+        key: {
+          text: "Allocation level"
+        },
+        value: {
+          text: 'F / General allocation'
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Change",
+              visuallyHiddenText: "allocation level"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Linked appeals"
+        },
+        value: {
+          html: linkedAppealsHtml
+        },
+        actions: {
+          items: linkedAppealsActions
+        }
+      },
+      {
+        key: {
+          text: "Related appeals"
+        },
+        value: {
+          html: 'No appeals'
+        } if data['empty'] else {
+          html: '<a href="#">21/725293</a>'
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Add",
+              visuallyHiddenText: "related appeals"
+            }
+          ]
+        }if data['empty'] else
+        {
+          items: [
+            {
+              href: "Item URL",
+              text: "Change",
+              visuallyHiddenText: "related appeals"
+            }
+          ]
+        }
+      },
+
+      {
+        key: {
+          text: "Decision"
+        },
+        value: {
+          html: 'Not issued yet'
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Issue",
+              visuallyHiddenText: "decision"
+            }
+          ]
+        }
+      }
+    ]
+  }) }}
+</div>

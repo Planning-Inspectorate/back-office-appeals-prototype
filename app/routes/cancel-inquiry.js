@@ -1,17 +1,17 @@
 module.exports = router => {
 
-  router.get('/main/cases/:caseId/cancel-inquiry', function (req, res) {
-    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
-    res.render('/main/cases/cancel-inquiry/index', {
-      _case
+  router.get('/main/appeals/:caseId/cancel-inquiry', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+    res.render('/main/appeals/cancel-inquiry/index', {
+      appeal
     })
   })
 
-  router.post('/main/cases/:caseId/cancel-inquiry', function (req, res) {
-    let _case = req.session.data.appeals.find(_case => _case.id == req.params.caseId)
-    delete _case.inquiry
+  router.post('/main/appeals/:caseId/cancel-inquiry', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+    delete appeal.inquiry
     req.flash('success', 'Inquiry cancelled')
-    res.redirect(`/main/cases/${req.params.caseId}`)
+    res.redirect(`/main/appeals/${req.params.caseId}`)
   })
 
 }

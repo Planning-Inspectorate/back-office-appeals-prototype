@@ -400,22 +400,32 @@ const generateAppeal = (params = {}) => {
 const generateAppeals = () => {
   const appeals = []
 
-  // This will be when everything is completely filled in (Written)
   appeals.push(generateAppeal({
     id: '00000009',
     type: 'Full planning appeal',
     procedure: 'Written representations',
-    status: "Ready to start",
-    linkedAppeal: '1234567'
+    status: "Ready to start"
   }))
 
-  // This will be when everything is not filled in (Written)
   appeals.push(generateAppeal({
     id: '00000010',
     type: 'Full planning appeal',
     procedure: 'Written representations',
-    linkedAppeal: 'No appeals',
     status: "Ready to start"
+  }))
+
+  appeals.push(generateAppeal({
+    id: '00000011',
+    type: 'Full planning appeal',
+    procedure: 'Hearing',
+    status: 'Awaiting hearing'
+  }))
+
+  appeals.push(generateAppeal({
+    id: '00000012',
+    type: 'Full planning appeal',
+    procedure: 'Inquiry',
+    status: 'Awaiting inquiry'
   }))
 
   appeals.push(generateAppeal({

@@ -3,23 +3,23 @@ const { isLeadAppeal } = require('../helpers/linked-appeals')
 
 module.exports = router => {
 
-  router.get('/main/appeals/:caseId/linked-appeals/new', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+  router.get('/main/appeals/:appealId/linked-appeals/new', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     res.render('/main/appeals/linked-appeals/new/index', {
       appeal
     })
   })
 
-  router.post('/main/appeals/:caseId/linked-appeals/new', function (req, res) {
-    if(isLeadAppeal(req.params.caseId, req.session.data.linkedAppeals)) {
-      res.redirect(`/main/appeals/${req.params.caseId}/linked-appeals/new/check`)
+  router.post('/main/appeals/:appealId/linked-appeals/new', function (req, res) {
+    if(isLeadAppeal(req.params.appealId, req.session.data.linkedAppeals)) {
+      res.redirect(`/main/appeals/${req.params.appealId}/linked-appeals/new/check`)
     } else {
-      res.redirect(`/main/appeals/${req.params.caseId}/linked-appeals/new/lead-appeal`)
+      res.redirect(`/main/appeals/${req.params.appealId}/linked-appeals/new/lead-appeal`)
     }
   })
 
-  router.get('/main/appeals/:caseId/linked-appeals/new/lead-appeal', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+  router.get('/main/appeals/:appealId/linked-appeals/new/lead-appeal', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
 
     let radios = [{
       text: appeal.id,
@@ -61,19 +61,19 @@ module.exports = router => {
     })
   })
 
-  router.post('/main/appeals/:caseId/linked-appeals/new/lead-appeal', function (req, res) {
-    res.redirect(`/main/appeals/${req.params.caseId}/linked-appeals/new/check`)
+  router.post('/main/appeals/:appealId/linked-appeals/new/lead-appeal', function (req, res) {
+    res.redirect(`/main/appeals/${req.params.appealId}/linked-appeals/new/check`)
   })
 
-  router.get('/main/appeals/:caseId/linked-appeals/new/check', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+  router.get('/main/appeals/:appealId/linked-appeals/new/check', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     res.render('/main/appeals/linked-appeals/new/check', {
       appeal
     })
   })
 
-  router.post('/main/appeals/:caseId/linked-appeals/new/check', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+  router.post('/main/appeals/:appealId/linked-appeals/new/check', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
 
     let appealReference = req.session.data.addLinkedAppeal.reference
     let leadAppealReference = req.session.data.addLinkedAppeal.leadAppeal
@@ -105,7 +105,7 @@ module.exports = router => {
 
     delete req.session.data.addLinkedAppeal
     req.flash('success', 'Linked appeal added')
-    res.redirect(`/main/appeals/${req.params.caseId}`)
+    res.redirect(`/main/appeals/${req.params.appealId}`)
   })
 
 }

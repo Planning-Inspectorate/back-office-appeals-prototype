@@ -2,48 +2,48 @@ const moment = require('moment')
 
 module.exports = router => {
 
-  router.get('/main/appeals/:caseId/add-timetable-dates', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+  router.get('/main/appeals/:appealId/add-timetable-dates', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     res.render('/main/appeals/add-timetable-dates/index', {
       appeal
     })
   })
 
-  router.post('/main/appeals/:caseId/add-timetable-dates', function (req, res) {
-    res.redirect(`/main/appeals/${req.params.caseId}/add-timetable-dates/proof-of-evidence-and-witnesses-due-date`)
+  router.post('/main/appeals/:appealId/add-timetable-dates', function (req, res) {
+    res.redirect(`/main/appeals/${req.params.appealId}/add-timetable-dates/proof-of-evidence-and-witnesses-due-date`)
   })
 
-  router.get('/main/appeals/:caseId/add-timetable-dates/proof-of-evidence-and-witnesses-due-date', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+  router.get('/main/appeals/:appealId/add-timetable-dates/proof-of-evidence-and-witnesses-due-date', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     res.render('/main/appeals/add-timetable-dates/proof-of-evidence-and-witnesses-due-date', {
       appeal
     })
   })
 
-  router.post('/main/appeals/:caseId/add-timetable-dates/proof-of-evidence-and-witnesses-due-date', function (req, res) {
-    res.redirect(`/main/appeals/${req.params.caseId}/add-timetable-dates/planning-obligation-due-date`)
+  router.post('/main/appeals/:appealId/add-timetable-dates/proof-of-evidence-and-witnesses-due-date', function (req, res) {
+    res.redirect(`/main/appeals/${req.params.appealId}/add-timetable-dates/planning-obligation-due-date`)
   })
 
-  router.get('/main/appeals/:caseId/add-timetable-dates/planning-obligation-due-date', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+  router.get('/main/appeals/:appealId/add-timetable-dates/planning-obligation-due-date', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     res.render('/main/appeals/add-timetable-dates/planning-obligation-due-date', {
       appeal
     })
   })
 
-  router.post('/main/appeals/:caseId/add-timetable-dates/planning-obligation-due-date', function (req, res) {
-    res.redirect(`/main/appeals/${req.params.caseId}/add-timetable-dates/check`)
+  router.post('/main/appeals/:appealId/add-timetable-dates/planning-obligation-due-date', function (req, res) {
+    res.redirect(`/main/appeals/${req.params.appealId}/add-timetable-dates/check`)
   })
 
-  router.get('/main/appeals/:caseId/add-timetable-dates/check', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+  router.get('/main/appeals/:appealId/add-timetable-dates/check', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     res.render('/main/appeals/add-timetable-dates/check', {
       appeal
     })
   })
 
-  router.post('/main/appeals/:caseId/add-timetable-dates/check', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+  router.post('/main/appeals/:appealId/add-timetable-dates/check', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
 
     appeal.statementOfCommonGroundDueDate = moment({
       year: req.session.data.addTimetableDates.statementOfCommonGroundDueDate.year,
@@ -64,7 +64,7 @@ module.exports = router => {
     ).toISOString()
 
     req.flash('success', 'Timetable due dates added')
-    res.redirect(`/main/appeals/${req.params.caseId}`)
+    res.redirect(`/main/appeals/${req.params.appealId}`)
   })
 
 }

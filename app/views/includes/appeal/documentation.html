@@ -137,7 +137,7 @@
         actions: {
           items: [
             {
-              href: '/main/appeals/:caseId/rule-6-statements' | replace(':caseId', appeal.id),
+              href: '/main/appeals/:appealId/rule-6-statements' | replace(':appealId', appeal.id),
               text: "Change",
               visuallyHiddenText: "Decision"
             }
@@ -322,7 +322,7 @@
           html: "Not applicable"
         },
         {
-          html: '<a href="/main/appeals/:caseId/rule-6-statements">View</a>' | replace(':caseId', appeal.id)
+          html: '<a href="/main/appeals/:appealId/rule-6-statements">View</a>' | replace(':appealId', appeal.id)
         }
       ],
       [

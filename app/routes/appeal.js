@@ -5,8 +5,8 @@ const { getLinkedAppeals, isLeadAppeal, isChildAppeal } = require('../helpers/li
 
 module.exports = router => {
 
-  router.get('/main/appeals/:caseId', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+  router.get('/main/appeals/:appealId', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
 
     let timetable = generateTimetable(appeal)
     let actions = getActions(appeal)

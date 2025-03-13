@@ -4,11 +4,11 @@
   {% if appeal.rule6Parties %}
     {% set rule6Value = appeal.rule6Parties.length + " parties" %}
     {% set rule6Actions = [{
-        href: "/main/appeals/:caseId/rule-6-parties/new" | replace(':caseId', appeal.id),
+        href: "/main/appeals/:appealId/rule-6-parties/new" | replace(':appealId', appeal.id),
         text: "Add",
         visuallyHiddenText: "Rule 6 party"
       }, {
-        href: "/main/appeals/:caseId/rule-6-parties" | replace(':caseId', appeal.id),
+        href: "/main/appeals/:appealId/rule-6-parties" | replace(':appealId', appeal.id),
         text: "Change",
         visuallyHiddenText: "Rule 6 party"
       }]
@@ -16,7 +16,7 @@
   {% else %}
     {% set rule6Value = "No parties"%}
     {% set rule6Actions = [{
-        href: "/main/appeals/:caseId/rule-6-parties/new" | replace(':caseId', appeal.id),
+        href: "/main/appeals/:appealId/rule-6-parties/new" | replace(':appealId', appeal.id),
         text: "Add",
         visuallyHiddenText: "Rule 6 party"
       }]

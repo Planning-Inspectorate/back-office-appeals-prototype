@@ -2,15 +2,15 @@ const { DateTime } = require("luxon");
 
 module.exports = router => {
 
-  router.get('/main/appeals/:caseId/edit-timetable-due-dates', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+  router.get('/main/appeals/:appealId/edit-timetable-due-dates', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     res.render('/main/appeals/edit-timetable-due-dates/index', {
       appeal
     })
   })
 
-  router.post('/main/appeals/:caseId/edit-timetable-due-dates', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+  router.post('/main/appeals/:appealId/edit-timetable-due-dates', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     let editTimetableDueDates = req.body.editTimetableDueDates
 
 
@@ -86,7 +86,7 @@ module.exports = router => {
       // appeal.planningObligationDueDate = null
     }
 
-    res.redirect(`/main/appeals/${req.params.caseId}`)
+    res.redirect(`/main/appeals/${req.params.appealId}`)
   })
 
 }

@@ -7,7 +7,7 @@
     {% else %}
       {{ govukButton({
         text: 'Set up inquiry',
-        href: '/main/appeals/:caseId/add-inquiry' | replace(':caseId', appeal.id)
+        href: '/main/appeals/:appealId/add-inquiry' | replace(':appealId', appeal.id)
       }) }}
     {% endif %}
   </div>
@@ -28,7 +28,7 @@
         actions: {
           items: [
             {
-              href: '/main/appeals/:caseId/edit-inquiry' | replace(':caseId', appeal.id),
+              href: '/main/appeals/:appealId/edit-inquiry' | replace(':appealId', appeal.id),
               text: "Change",
               visuallyHiddenText: "Date"
             }
@@ -45,7 +45,7 @@
         actions: {
           items: [
             {
-              href: '/main/appeals/:caseId/edit-inquiry' | replace(':caseId', appeal.id),
+              href: '/main/appeals/:appealId/edit-inquiry' | replace(':appealId', appeal.id),
               text: "Change",
               visuallyHiddenText: "Time"
             }
@@ -62,7 +62,7 @@
         actions: {
           items: [
             {
-              href: '/main/appeals/:caseId/edit-inquiry/days' | replace(':caseId', appeal.id),
+              href: '/main/appeals/:appealId/edit-inquiry/days' | replace(':appealId', appeal.id),
               text: "Change",
               visuallyHiddenText: "if you know the expected number of days to carry out the inquiry"
             }
@@ -79,7 +79,7 @@
         actions: {
           items: [
             {
-              href: '/main/appeals/:caseId/edit-inquiry/days' | replace(':caseId', appeal.id),
+              href: '/main/appeals/:appealId/edit-inquiry/days' | replace(':appealId', appeal.id),
               text: "Change",
               visuallyHiddenText: "Expected number of days to carry out the inquiry"
             }
@@ -96,7 +96,7 @@
         actions: {
           items: [
             {
-              href: '/main/appeals/:caseId/edit-inquiry/has-address' | replace(':caseId', appeal.id),
+              href: '/main/appeals/:appealId/edit-inquiry/has-address' | replace(':appealId', appeal.id),
               text: "Change",
               visuallyHiddenText: "whether you know the inquiry address"
             }
@@ -113,7 +113,7 @@
         actions: {
           items: [
             {
-              href: '/main/appeals/:caseId/edit-inquiry/address' | replace(':caseId', appeal.id),
+              href: '/main/appeals/:appealId/edit-inquiry/address' | replace(':appealId', appeal.id),
               text: "Change",
               visuallyHiddenText: "Inquiry address"
             }
@@ -141,7 +141,7 @@
         actions: {
           items: [
             {
-              href: '/main/appeals/:caseId/edit-inquiry-estimates' | replace(':caseId', appeal.id),
+              href: '/main/appeals/:appealId/edit-inquiry-estimates' | replace(':appealId', appeal.id),
               text: "Change",
               visuallyHiddenText: "Estimated preparation time"
             }
@@ -158,7 +158,7 @@
         actions: {
           items: [
             {
-              href: '/main/appeals/:caseId/edit-inquiry-estimates' | replace(':caseId', appeal.id),
+              href: '/main/appeals/:appealId/edit-inquiry-estimates' | replace(':appealId', appeal.id),
               text: "Change",
               visuallyHiddenText: "Estimated sitting time"
             }
@@ -175,7 +175,7 @@
         actions: {
           items: [
             {
-              href: '/main/appeals/:caseId/edit-inquiry-estimates' | replace(':caseId', appeal.id),
+              href: '/main/appeals/:appealId/edit-inquiry-estimates' | replace(':appealId', appeal.id),
               text: "Change",
               visuallyHiddenText: "Estimated reporting time"
             }

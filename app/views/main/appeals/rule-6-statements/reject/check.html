@@ -43,7 +43,7 @@
             actions: {
               items: [
                 {
-                  href: '/main/appeals/:caseId/rule-6-statements/:partyId/reject' | replace(':caseId', appeal.id) | replace(':partyId', party.id),
+                  href: '/main/appeals/:appealId/rule-6-statements/:partyId/reject' | replace(':appealId', appeal.id) | replace(':partyId', party.id),
                   text: "Change",
                   visuallyHiddenText: "Item label"
                 }
@@ -60,7 +60,7 @@
             actions: {
               items: [
                 {
-                  href: '/main/appeals/:caseId/rule-6-statements/:partyId/reject/can-resubmit' | replace(':caseId', appeal.id) | replace(':partyId', party.id),
+                  href: '/main/appeals/:appealId/rule-6-statements/:partyId/reject/can-resubmit' | replace(':appealId', appeal.id) | replace(':partyId', party.id),
                   text: "Change",
                   visuallyHiddenText: "Item label"
                 }

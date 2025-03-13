@@ -14,7 +14,7 @@
       {{appeal.agent.phone}}
     {% endset %}
     {% set agentActions = [{
-      href: '/main/appeals/:caseId/edit-agent' | replace(':caseId', appeal.id),
+      href: '/main/appeals/:appealId/edit-agent' | replace(':appealId', appeal.id),
       text: "Change",
       visuallyHiddenText: "Agent details"
     }] %}
@@ -23,7 +23,7 @@
       No agent
     {% endset %}
     {% set agentActions = [{
-      href: '/main/appeals/:caseId/add-agent' | replace(':caseId', appeal.id),
+      href: '/main/appeals/:appealId/add-agent' | replace(':appealId', appeal.id),
       text: "Add",
       visuallyHiddenText: "Agent details"
     }] %}

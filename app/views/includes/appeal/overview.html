@@ -16,7 +16,7 @@
     {% if not isLeadAppeal %}
       {% set linkedAppealsActions = [
         {
-          href: "/main/appeals/:caseId/linked-appeals" | replace(':caseId', appeal.id),
+          href: "/main/appeals/:appealId/linked-appeals" | replace(':appealId', appeal.id),
           text: "Change",
           visuallyHiddenText: "linked appeals"
         }
@@ -24,12 +24,12 @@
     {% else %}
       {% set linkedAppealsActions = [
         {
-          href: "/main/appeals/:caseId/linked-appeals/new" | replace(':caseId', appeal.id),
+          href: "/main/appeals/:appealId/linked-appeals/new" | replace(':appealId', appeal.id),
           text: "Add",
           visuallyHiddenText: "linked appeal"
         },
         {
-          href: "/main/appeals/:caseId/linked-appeals" | replace(':caseId', appeal.id),
+          href: "/main/appeals/:appealId/linked-appeals" | replace(':appealId', appeal.id),
           text: "Change",
           visuallyHiddenText: "linked appeals"
         }
@@ -42,7 +42,7 @@
 
     {% set linkedAppealsActions = [
       {
-        href: "/main/appeals/:caseId/linked-appeals/new" | replace(':caseId', appeal.id),
+        href: "/main/appeals/:appealId/linked-appeals/new" | replace(':appealId', appeal.id),
         text: "Add",
         visuallyHiddenText: "linked appeal"
       }
@@ -113,7 +113,7 @@
         actions: {
           items: [
             {
-              href: "/main/appeals/:caseId/edit-procedure" | replace(':caseId', appeal.id) if appeal.procedure else "/main/appeals/:caseId/add-procedure" | replace(':caseId', appeal.id),
+              href: "/main/appeals/:appealId/edit-procedure" | replace(':appealId', appeal.id) if appeal.procedure else "/main/appeals/:appealId/add-procedure" | replace(':appealId', appeal.id),
               text: "Change" if appeal.procedure else "Add",
               visuallyHiddenText: "appeal procedure"
             }

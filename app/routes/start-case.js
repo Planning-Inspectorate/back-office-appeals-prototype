@@ -2,11 +2,11 @@ const { DateTime } = require("luxon")
 
 module.exports = router => {
 
-  router.get('/main/appeals/:caseId/start-case', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+  router.get('/main/appeals/:appealId/start-case', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
 
     if(appeal.type == 'Householder appeal') {
-      res.redirect(`/main/appeals/${req.params.caseId}/start-case/confirm`)
+      res.redirect(`/main/appeals/${req.params.appealId}/start-case/confirm`)
     }
     else {
       res.render('/main/appeals/start-case/index', {
@@ -15,98 +15,98 @@ module.exports = router => {
     }
   })
 
-  router.post('/main/appeals/:caseId/start-case', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+  router.post('/main/appeals/:appealId/start-case', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     if(req.session.data.startCase.procedure === 'Inquiry') {
-      res.redirect(`/main/appeals/${req.params.caseId}/start-case/inquiry-date`)
+      res.redirect(`/main/appeals/${req.params.appealId}/start-case/inquiry-date`)
     } else {
-      res.redirect(`/main/appeals/${req.params.caseId}/start-case/check`)
+      res.redirect(`/main/appeals/${req.params.appealId}/start-case/check`)
     }
   })
 
-  // router.get('/main/appeals/:caseId/start-case/has-inquiry', function (req, res) {
-  //   let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+  // router.get('/main/appeals/:appealId/start-case/has-inquiry', function (req, res) {
+  //   let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
   //   res.render('/main/appeals/start-case/has-inquiry', {
   //     appeal
   //   })
   // })
 
-  // router.post('/main/appeals/:caseId/start-case/has-inquiry', function (req, res) {
+  // router.post('/main/appeals/:appealId/start-case/has-inquiry', function (req, res) {
   //   if(req.session.data.startCase.hasInquiry == 'Yes') {
-  //     res.redirect(`/main/appeals/${req.params.caseId}/start-case/inquiry-date`)
+  //     res.redirect(`/main/appeals/${req.params.appealId}/start-case/inquiry-date`)
   //   } else {
-  //     res.redirect(`/main/appeals/${req.params.caseId}/start-case/timetable-due-dates`)
+  //     res.redirect(`/main/appeals/${req.params.appealId}/start-case/timetable-due-dates`)
   //   }
   // })
 
-  router.get('/main/appeals/:caseId/start-case/inquiry-date', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+  router.get('/main/appeals/:appealId/start-case/inquiry-date', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     res.render('/main/appeals/start-case/inquiry-date', {
       appeal
     })
   })
 
-  router.post('/main/appeals/:caseId/start-case/inquiry-date', function (req, res) {
-    res.redirect(`/main/appeals/${req.params.caseId}/start-case/inquiry-days`)
+  router.post('/main/appeals/:appealId/start-case/inquiry-date', function (req, res) {
+    res.redirect(`/main/appeals/${req.params.appealId}/start-case/inquiry-days`)
   })
 
-  router.get('/main/appeals/:caseId/start-case/inquiry-days', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+  router.get('/main/appeals/:appealId/start-case/inquiry-days', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     res.render('/main/appeals/start-case/inquiry-days', {
       appeal
     })
   })
 
-  router.post('/main/appeals/:caseId/start-case/inquiry-days', function (req, res) {
-    res.redirect(`/main/appeals/${req.params.caseId}/start-case/has-inquiry-address`)
+  router.post('/main/appeals/:appealId/start-case/inquiry-days', function (req, res) {
+    res.redirect(`/main/appeals/${req.params.appealId}/start-case/has-inquiry-address`)
   })
 
-router.get('/main/appeals/:caseId/start-case/has-inquiry-address', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+router.get('/main/appeals/:appealId/start-case/has-inquiry-address', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
   res.render('/main/appeals/start-case/has-inquiry-address', {
       appeal
     })
   })
 
-  router.post('/main/appeals/:caseId/start-case/has-inquiry-address', function (req, res) {
+  router.post('/main/appeals/:appealId/start-case/has-inquiry-address', function (req, res) {
     if(req.session.data.startCase.hasInquiryAddress == 'Yes') {
-      res.redirect(`/main/appeals/${req.params.caseId}/start-case/inquiry-address`)
+      res.redirect(`/main/appeals/${req.params.appealId}/start-case/inquiry-address`)
     } else {
-      res.redirect(`/main/appeals/${req.params.caseId}/start-case/timetable-due-dates`)
+      res.redirect(`/main/appeals/${req.params.appealId}/start-case/timetable-due-dates`)
     }
   })
 
-  router.get('/main/appeals/:caseId/start-case/inquiry-address', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+  router.get('/main/appeals/:appealId/start-case/inquiry-address', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     res.render('/main/appeals/start-case/inquiry-address', {
       appeal
     })
   })
 
-  router.post('/main/appeals/:caseId/start-case/inquiry-address', function (req, res) {
-    res.redirect(`/main/appeals/${req.params.caseId}/start-case/timetable-due-dates`)
+  router.post('/main/appeals/:appealId/start-case/inquiry-address', function (req, res) {
+    res.redirect(`/main/appeals/${req.params.appealId}/start-case/timetable-due-dates`)
   })
 
-  router.get('/main/appeals/:caseId/start-case/timetable-due-dates', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+  router.get('/main/appeals/:appealId/start-case/timetable-due-dates', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     res.render('/main/appeals/start-case/timetable-due-dates', {
       appeal
     })
   })
 
-  router.post('/main/appeals/:caseId/start-case/timetable-due-dates', function (req, res) {
-    res.redirect(`/main/appeals/${req.params.caseId}/start-case/check`)
+  router.post('/main/appeals/:appealId/start-case/timetable-due-dates', function (req, res) {
+    res.redirect(`/main/appeals/${req.params.appealId}/start-case/check`)
   })
 
-  router.get('/main/appeals/:caseId/start-case/check', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+  router.get('/main/appeals/:appealId/start-case/check', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     res.render('/main/appeals/start-case/check', {
       appeal
     })
   })
 
-  router.post('/main/appeals/:caseId/start-case/check', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+  router.post('/main/appeals/:appealId/start-case/check', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
 
     let data = req.session.data.startCase
 
@@ -187,11 +187,11 @@ router.get('/main/appeals/:caseId/start-case/has-inquiry-address', function (req
     appeal.startDate = new Date()
 
     req.flash('success', 'Case started')
-    res.redirect(`/main/appeals/${req.params.caseId}`)
+    res.redirect(`/main/appeals/${req.params.appealId}`)
   })
 
-  router.get('/main/appeals/:caseId/start-case/confirm', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+  router.get('/main/appeals/:appealId/start-case/confirm', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
 
     res.render('/main/appeals/start-case/confirm', {
       appeal
@@ -199,11 +199,11 @@ router.get('/main/appeals/:caseId/start-case/has-inquiry-address', function (req
 
   })
 
-  router.post('/main/appeals/:caseId/start-case/confirm', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+  router.post('/main/appeals/:appealId/start-case/confirm', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     appeal.status = 'Awaiting LPAQ'
     req.flash('success', 'Case started')
-    res.redirect(`/main/appeals/${req.params.caseId}`)
+    res.redirect(`/main/appeals/${req.params.appealId}`)
   })
 
 }

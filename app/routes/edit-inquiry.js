@@ -3,8 +3,8 @@ const { DateTime } = require("luxon")
 
 module.exports = router => {
 
-  router.get('/main/appeals/:caseId/edit-inquiry', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+  router.get('/main/appeals/:appealId/edit-inquiry', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
 
     let date = _.get(req, 'session.data.editInquiry.date') || DateTime.fromISO(appeal.inquiry.date).toObject();
     let time = _.get(req, 'session.data.editInquiry.time')  || appeal.inquiry.time
@@ -16,12 +16,12 @@ module.exports = router => {
     })
   })
 
-  router.post('/main/appeals/:caseId/edit-inquiry', function (req, res) {
-    res.redirect(`/main/appeals/${req.params.caseId}/edit-inquiry/days`)
+  router.post('/main/appeals/:appealId/edit-inquiry', function (req, res) {
+    res.redirect(`/main/appeals/${req.params.appealId}/edit-inquiry/days`)
   })
 
-  router.get('/main/appeals/:caseId/edit-inquiry/days', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+  router.get('/main/appeals/:appealId/edit-inquiry/days', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
 
     let hasDays = _.get(req, 'session.data.editInquiry.hasDays') || appeal.inquiry.hasDays
     let days = _.get(req, 'session.data.editInquiry.days') || appeal.inquiry.days
@@ -33,12 +33,12 @@ module.exports = router => {
     })
   })
 
-  router.post('/main/appeals/:caseId/edit-inquiry/days', function (req, res) {
-    res.redirect(`/main/appeals/${req.params.caseId}/edit-inquiry/has-address`)
+  router.post('/main/appeals/:appealId/edit-inquiry/days', function (req, res) {
+    res.redirect(`/main/appeals/${req.params.appealId}/edit-inquiry/has-address`)
   })
 
-  router.get('/main/appeals/:caseId/edit-inquiry/has-address', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+  router.get('/main/appeals/:appealId/edit-inquiry/has-address', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
 
     let hasAddress = _.get(req, 'session.data.editInquiry.hasAddress') || appeal.inquiry.hasAddress
 
@@ -48,16 +48,16 @@ module.exports = router => {
     })
   })
 
-  router.post('/main/appeals/:caseId/edit-inquiry/has-address', function (req, res) {
+  router.post('/main/appeals/:appealId/edit-inquiry/has-address', function (req, res) {
     if(req.session.data.editInquiry.hasAddress == 'Yes') {
-      res.redirect(`/main/appeals/${req.params.caseId}/edit-inquiry/address`)
+      res.redirect(`/main/appeals/${req.params.appealId}/edit-inquiry/address`)
     } else {
-      res.redirect(`/main/appeals/${req.params.caseId}/edit-inquiry/check`)
+      res.redirect(`/main/appeals/${req.params.appealId}/edit-inquiry/check`)
     }
   })
 
-  router.get('/main/appeals/:caseId/edit-inquiry/address', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+  router.get('/main/appeals/:appealId/edit-inquiry/address', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
 
     let inquiryAddress = _.get(req, 'session.data.editInquiry.address') || appeal.inquiry.address
 
@@ -67,20 +67,20 @@ module.exports = router => {
     })
   })
 
-  router.post('/main/appeals/:caseId/edit-inquiry/address', function (req, res) {
-    res.redirect(`/main/appeals/${req.params.caseId}/edit-inquiry/check`)
+  router.post('/main/appeals/:appealId/edit-inquiry/address', function (req, res) {
+    res.redirect(`/main/appeals/${req.params.appealId}/edit-inquiry/check`)
   })
 
-  router.get('/main/appeals/:caseId/edit-inquiry/check', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+  router.get('/main/appeals/:appealId/edit-inquiry/check', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
 
     res.render('/main/appeals/edit-inquiry/check', {
       appeal
     })
   })
 
-  router.post('/main/appeals/:caseId/edit-inquiry/check', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+  router.post('/main/appeals/:appealId/edit-inquiry/check', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     appeal.inquiry = req.session.data.editInquiry
 
     appeal.inquiry.date = DateTime.fromObject({
@@ -90,7 +90,7 @@ module.exports = router => {
     }).toISO()
 
     req.flash('success', 'Inquiry updated')
-    res.redirect(`/main/appeals/${req.params.caseId}`)
+    res.redirect(`/main/appeals/${req.params.appealId}`)
   })
 
 }

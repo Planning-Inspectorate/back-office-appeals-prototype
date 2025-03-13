@@ -2,109 +2,109 @@ const { DateTime } = require("luxon");
 
 module.exports = router => {
 
-  router.get('/main/appeals/:caseId/edit-procedure', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+  router.get('/main/appeals/:appealId/edit-procedure', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     res.render('/main/appeals/edit-procedure/index', {
       appeal
     })
   })
 
-  router.post('/main/appeals/:caseId/edit-procedure', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+  router.post('/main/appeals/:appealId/edit-procedure', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     if(appeal.lpaStatement) {
-      res.redirect(`/main/appeals/${req.params.caseId}/edit-procedure/statement`)
+      res.redirect(`/main/appeals/${req.params.appealId}/edit-procedure/statement`)
     } else {
       if(req.session.data.editProcedure.procedure == 'Inquiry') {
-        res.redirect(`/main/appeals/${req.params.caseId}/edit-procedure/inquiry-date`)
+        res.redirect(`/main/appeals/${req.params.appealId}/edit-procedure/inquiry-date`)
       } else {
-        res.redirect(`/main/appeals/${req.params.caseId}/edit-procedure/timetable-due-dates`)
+        res.redirect(`/main/appeals/${req.params.appealId}/edit-procedure/timetable-due-dates`)
       }
     }
   })
 
-  router.get('/main/appeals/:caseId/edit-procedure/statement', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+  router.get('/main/appeals/:appealId/edit-procedure/statement', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     res.render('/main/appeals/edit-procedure/statement', {
       appeal
     })
   })
 
-  router.post('/main/appeals/:caseId/edit-procedure/statement', function (req, res) {
+  router.post('/main/appeals/:appealId/edit-procedure/statement', function (req, res) {
     if(req.session.data.editProcedure.procedure == 'Inquiry') {
-      res.redirect(`/main/appeals/${req.params.caseId}/edit-procedure/inquiry-date`)
+      res.redirect(`/main/appeals/${req.params.appealId}/edit-procedure/inquiry-date`)
     } else {
-      res.redirect(`/main/appeals/${req.params.caseId}/edit-procedure/timetable-due-dates`)
+      res.redirect(`/main/appeals/${req.params.appealId}/edit-procedure/timetable-due-dates`)
     }
   })
 
-  router.get('/main/appeals/:caseId/edit-procedure/inquiry-date', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+  router.get('/main/appeals/:appealId/edit-procedure/inquiry-date', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     res.render('/main/appeals/edit-procedure/inquiry-date', {
       appeal
     })
   })
 
-  router.post('/main/appeals/:caseId/edit-procedure/inquiry-date', function (req, res) {
-    res.redirect(`/main/appeals/${req.params.caseId}/edit-procedure/inquiry-days`)
+  router.post('/main/appeals/:appealId/edit-procedure/inquiry-date', function (req, res) {
+    res.redirect(`/main/appeals/${req.params.appealId}/edit-procedure/inquiry-days`)
   })
 
-  router.get('/main/appeals/:caseId/edit-procedure/inquiry-days', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+  router.get('/main/appeals/:appealId/edit-procedure/inquiry-days', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     res.render('/main/appeals/edit-procedure/inquiry-days', {
       appeal
     })
   })
 
-  router.post('/main/appeals/:caseId/edit-procedure/inquiry-days', function (req, res) {
-    res.redirect(`/main/appeals/${req.params.caseId}/edit-procedure/has-inquiry-address`)
+  router.post('/main/appeals/:appealId/edit-procedure/inquiry-days', function (req, res) {
+    res.redirect(`/main/appeals/${req.params.appealId}/edit-procedure/has-inquiry-address`)
   })
 
-  router.get('/main/appeals/:caseId/edit-procedure/has-inquiry-address', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+  router.get('/main/appeals/:appealId/edit-procedure/has-inquiry-address', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     res.render('/main/appeals/edit-procedure/has-inquiry-address', {
       appeal
     })
   })
 
-  router.post('/main/appeals/:caseId/edit-procedure/has-inquiry-address', function (req, res) {
+  router.post('/main/appeals/:appealId/edit-procedure/has-inquiry-address', function (req, res) {
     if(req.session.data.editProcedure.hasInquiryAddress == 'Yes') {
-      res.redirect(`/main/appeals/${req.params.caseId}/edit-procedure/inquiry-address`)
+      res.redirect(`/main/appeals/${req.params.appealId}/edit-procedure/inquiry-address`)
     } else {
-      res.redirect(`/main/appeals/${req.params.caseId}/edit-procedure/timetable-due-dates`)
+      res.redirect(`/main/appeals/${req.params.appealId}/edit-procedure/timetable-due-dates`)
     }
   })
 
-  router.get('/main/appeals/:caseId/edit-procedure/inquiry-address', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+  router.get('/main/appeals/:appealId/edit-procedure/inquiry-address', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     res.render('/main/appeals/edit-procedure/inquiry-address', {
       appeal
     })
   })
 
-  router.post('/main/appeals/:caseId/edit-procedure/inquiry-address', function (req, res) {
-    res.redirect(`/main/appeals/${req.params.caseId}/edit-procedure/timetable-due-dates`)
+  router.post('/main/appeals/:appealId/edit-procedure/inquiry-address', function (req, res) {
+    res.redirect(`/main/appeals/${req.params.appealId}/edit-procedure/timetable-due-dates`)
   })
 
-  router.get('/main/appeals/:caseId/edit-procedure/timetable-due-dates', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+  router.get('/main/appeals/:appealId/edit-procedure/timetable-due-dates', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     res.render('/main/appeals/edit-procedure/timetable-due-dates', {
       appeal
     })
   })
 
-  router.post('/main/appeals/:caseId/edit-procedure/timetable-due-dates', function (req, res) {
-    res.redirect(`/main/appeals/${req.params.caseId}/edit-procedure/check`)
+  router.post('/main/appeals/:appealId/edit-procedure/timetable-due-dates', function (req, res) {
+    res.redirect(`/main/appeals/${req.params.appealId}/edit-procedure/check`)
   })
 
-  router.get('/main/appeals/:caseId/edit-procedure/check', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+  router.get('/main/appeals/:appealId/edit-procedure/check', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     res.render('/main/appeals/edit-procedure/check', {
       appeal
     })
   })
 
-  router.post('/main/appeals/:caseId/edit-procedure/check', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.caseId)
+  router.post('/main/appeals/:appealId/edit-procedure/check', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     let data = req.session.data.editProcedure
     let currentProcedure = appeal.procedure
     let newProcedure = data.procedure
@@ -255,6 +255,6 @@ module.exports = router => {
     delete req.session.data.editProcedure
 
     req.flash('success', 'Appeal procedure updated')
-    res.redirect(`/main/appeals/${req.params.caseId}`)
+    res.redirect(`/main/appeals/${req.params.appealId}`)
   })
 }

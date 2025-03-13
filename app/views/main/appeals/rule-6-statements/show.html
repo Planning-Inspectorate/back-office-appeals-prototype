@@ -13,11 +13,11 @@
       items: [
         {
           text: appeal.id,
-          href: "/main/appeals/:caseId" | replace(':caseId', appeal.id)
+          href: "/main/appeals/:appealId" | replace(':appealId', appeal.id)
         },
         {
           text: "Rule 6 statements",
-          href: "/main/appeals/:caseId/rule-6-statements" | replace(':caseId', appeal.id)
+          href: "/main/appeals/:appealId/rule-6-statements" | replace(':appealId', appeal.id)
         },
         {
           text: title
@@ -49,17 +49,17 @@
         <div class="govuk-button-group">
           {{ govukButton({
             text: "Accept",
-            href: '/main/appeals/:caseId/rule-6-statements/:partyId/approve' | replace(':caseId', appeal.id) | replace(':partyId', party.id)
+            href: '/main/appeals/:appealId/rule-6-statements/:partyId/approve' | replace(':appealId', appeal.id) | replace(':partyId', party.id)
           })}}
           {{ govukButton({
             text: "Redact and accept",
             classes: 'govuk-button--secondary',
-            href: '/main/appeals/:caseId/rule-6-statements/:partyId/redact' | replace(':caseId', appeal.id) | replace(':partyId', party.id)
+            href: '/main/appeals/:appealId/rule-6-statements/:partyId/redact' | replace(':appealId', appeal.id) | replace(':partyId', party.id)
           })}}
           {{ govukButton({
               text: "Reject",
               classes: 'govuk-button--secondary',
-              href: '/main/appeals/:caseId/rule-6-statements/:partyId/reject' | replace(':caseId', appeal.id) | replace(':partyId', party.id)
+              href: '/main/appeals/:appealId/rule-6-statements/:partyId/reject' | replace(':appealId', appeal.id) | replace(':partyId', party.id)
             })}}
           </div>
         {% else %}

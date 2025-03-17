@@ -6,7 +6,7 @@ const getActions = (appeal) => {
   } else if (appeal.status === "Ready to validate") {
     actions.push({ text: "Validate appeal", href: "#" })
   } else if (appeal.status === "Ready to start") {
-    actions.push({ text: "Start timetable", href: `/main/appeals/${appeal.id}/start-case` })
+    actions.push({ text: "Start case", href: `/main/appeals/${appeal.id}/start-case` })
   } else if (appeal.status === "LPAQ ready to review") {
     actions.push({ text: "Review LPAQ", href: "#" })
   } else if (appeal.status === "Statements and IP comments ready to review") {

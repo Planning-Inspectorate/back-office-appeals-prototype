@@ -1,6 +1,6 @@
 {% extends "layouts/bo.html" %}
 
-{% set title = "Rule 6 statements" %}
+{% set title = "Rule 6 proofs of evidence and witnesses" %}
 {% set pageName = title %}
 
 {% block beforeContent %}
@@ -26,31 +26,33 @@
         text: flash
       }) if flash.length }}
 
+      {{proofOfEvidenceAndWitnesses | log}}
+
       {# <span class="govuk-caption-l">Appeal 2114328</span> #}
       <h1 class="govuk-heading-l">{{title}}</h1>
 
-      {% if rule6Statements.length %}
+      {% if proofOfEvidenceAndWitnesses.length %}
          <div class="app-list">
-          {% for item in rule6Statements %}
+          {% for item in proofOfEvidenceAndWitnesses %}
             <div class="app-list__item">
               {% if item.organisationName %}
                 <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
-                  <a class="govuk-link--no-visited-state" href="/main/appeals/{{appeal.id}}/rule-6-statements/{{item.id}}">
+                  <a class="govuk-link--no-visited-state" href="/main/appeals/{{appeal.id}}/rule-6-proof-of-evidence-and-witnesses/{{item.id}}">
                     {{item.organisationName}}
                   </a>
                 </h2>
                 <p class="govuk-!-margin-bottom-0">{{item.firstName}} {{item.lastName}}</p>
               {% else %}
                 <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
-                  <a class="govuk-link--no-visited-state" href="/main/appeals/{{appeal.id}}/rule-6-statements/{{item.id}}">
+                  <a class="govuk-link--no-visited-state" href="/main/appeals/{{appeal.id}}/rule-6-proof-of-evidence-and-witnesses/{{item.id}}">
                     {{item.firstName}} {{item.lastName}}
                   </a>
                 </h2>
               {% endif %}
 
               {{ govukTag({
-                text: item.statement.status,
-                classes: "app-list__tag app-list__tag--top-right " + (item.statement.status | rule6StatementStatusColour)
+                text: item.proofOfEvidenceAndWitnesses.status,
+                classes: "app-list__tag app-list__tag--top-right " + (item.proofOfEvidenceAndWitnesses.status | rule6StatementStatusColour)
               }) }}
             </div>
           {% endfor %}

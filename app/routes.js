@@ -66,6 +66,10 @@ require('./routes/rule-6-statement')(router)
 require('./routes/rule-6-statement--approve')(router)
 require('./routes/rule-6-statement--reject')(router)
 require('./routes/rule-6-statement--redact')(router)
+require('./routes/rule-6-proof-of-evidence-and-witnesses--list')(router)
+require('./routes/rule-6-proof-of-evidence-and-witnesses--details')(router)
+require('./routes/rule-6-proof-of-evidence-and-witnesses--accept')(router)
+require('./routes/rule-6-proof-of-evidence-and-witnesses--reject')(router)
 require('./routes/edit-timetable-due-dates')(router)
 
 // Timetable

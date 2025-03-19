@@ -14,6 +14,12 @@ module.exports = router => {
 
     const linkedAppeals = getLinkedAppeals(appeal.id, req.session.data.linkedAppeals)
 
+
+
+    const rule6Statements = appeal.rule6Parties?.map(rule6Party => rule6Party.statement)
+    const rule6ProofOfEvidenceAndWitnesses = appeal.rule6Parties?.map(rule6Party => rule6Party.rule6ProofsOfEvidenceAndWitnesses)
+
+
     res.render('/main/appeals/show', {
       appeal,
       timetable,
@@ -21,7 +27,9 @@ module.exports = router => {
       isCaseStarted,
       isLeadAppeal: isLeadAppeal(appeal.id, req.session.data.linkedAppeals),
       isChildAppeal: isChildAppeal(appeal.id, req.session.data.linkedAppeals),
-      linkedAppeals
+      linkedAppeals,
+      rule6Statements,
+      rule6ProofOfEvidenceAndWitnesses
     })
   })
 

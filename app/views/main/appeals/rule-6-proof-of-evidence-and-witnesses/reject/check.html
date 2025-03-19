@@ -1,0 +1,73 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = 'Check details and reject proof of evidence and witnesses'  %}
+{% set pageName = title %}
+
+{% if party.organisationName  %}
+  {% set partyName = party.organisationName %}
+{% else %}
+  {% set partyName = party.firstName + ' ' + party.lastName %}
+{% endif %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: 'javascript:history.back()'
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <span class="govuk-caption-l">{{appeal.id}} - {{partyName}}</span>
+      <h1 class="govuk-heading-l">
+        {{title}}
+      </h1>
+
+      {% set reasonsHtml %}
+        <ul class="govuk-list govuk-list--bullet">
+          {% for item in data.rejectRule6Party.reason %}
+            <li>
+              {{item}}
+              {# {% if item == 'Other reason' %}
+                - {{data.new.otherObject}}
+              {% endif %} #}
+            </li>
+          {% endfor %}
+        </ul>
+      {% endset %}
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Reason for rejecting proof of evidence and witnesses"
+            },
+            value: {
+              html: reasonsHtml
+            },
+            actions: {
+              items: [
+                {
+                  href: '/main/appeals/:appealId/rule-6-statements/:partyId/reject' | replace(':appealId', appeal.id) | replace(':partyId', party.id),
+                  text: "Change",
+                  visuallyHiddenText: "Reason for rejecting proof of evidence and witnesses"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <p>We’ll send an email to {{partyName}} to explain why you rejected their proof of evidence and witnesses.</p>
+
+      <form method="post">
+        {{ govukButton({
+          text: "Reject proof of evidence and witnesses"
+        }) }}
+
+        {# <p><a href="javascript:history.back()">Cancel</a></p> #}
+      </form>
+    </div>
+  </div>
+{% endblock %}

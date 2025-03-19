@@ -133,6 +133,20 @@ const generateRule6Party = (params) => {
         name: 'St.Ritas_Community_Association_statement_for_appeal_4012345.doc',
         size: '5MB'
       }]
+
+      party.proofOfEvidenceAndWitnesses = {}
+      party.proofOfEvidenceAndWitnesses.status = 'Ready to review'
+      party.proofOfEvidenceAndWitnesses.documents = [{
+        name: 'summary.pdf',
+        size: '5MB'
+      }, {
+        name: 'evidence.pdf',
+        size: '5MB'
+      }, {
+        name: 'witnesses.pdf',
+        size: '5MB'
+      }]
+
       break
   }
 

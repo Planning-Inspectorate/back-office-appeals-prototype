@@ -1,0 +1,91 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = 'Reason for rejecting proof of evidence and witnesses'  %}
+{% set pageName = title %}
+
+{% if party.organisationName  %}
+  {% set partyName = party.organisationName %}
+{% else %}
+  {% set partyName = party.firstName + ' ' + party.lastName %}
+{% endif %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: 'javascript:history.back()'
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form method="post">
+        <span class="govuk-caption-l">{{appeal.id}} - {{partyName}}</span>
+        {% set otherReason %}
+        <div data-module="moj-add-another">
+
+          {% call govukFieldset({
+            classes: 'moj-add-another__item',
+            legend: {
+              text: 'Enter a reason',
+              classes: 'moj-add-another__title ',
+              isPageHeading: false
+            }
+            }) %}
+
+            {{ govukInput({
+              id: "reason",
+              name: "reason",
+              classes: "govuk-!-margin-bottom-4"
+            }) }}
+
+          {% endcall %}
+
+          <div class="moj-button-action">
+            {{ govukButton({
+              text: 'Add another reason',
+              classes: 'govuk-button--secondary moj-add-another__add-button govuk-!-margin-bottom-4'
+            }) }}
+          </div>
+        </div>
+      {% endset -%}
+
+        {{ govukCheckboxes({
+          name: "rejectRule6Party[reason]",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: 'Select all that apply'
+          },
+          values: data.rejectRule6Party.reason,
+          items: [
+            {
+              value: "Not complete",
+              text: "Not complete"
+            },
+            {
+              value: "Not relevant",
+              text: "Not relevant"
+            },
+            {
+              value: "Other reason",
+              text: "Other reason",
+              conditional: {
+                html: otherReason
+              }
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

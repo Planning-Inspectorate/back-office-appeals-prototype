@@ -132,7 +132,7 @@
           text: "Rule 6 statements"
         },
         value: {
-          html: '3 statements'
+          html: rule6Statements.length + ' statements'
         },
         actions: {
           items: [
@@ -140,6 +140,23 @@
               href: '/main/appeals/:appealId/rule-6-statements' | replace(':appealId', appeal.id),
               text: "Change",
               visuallyHiddenText: "Decision"
+            }
+          ]
+        }
+      } if appeal.procedure == 'Inquiry',
+      {
+        key: {
+          text: "Rule 6 proof of evidence and witnesses"
+        },
+        value: {
+          html: rule6ProofOfEvidenceAndWitnesses.length + ' proofs of evidence and witnesses'
+        },
+        actions: {
+          items: [
+            {
+              href: '/main/appeals/:appealId/rule-6-proof-of-evidence-and-witnesses' | replace(':appealId', appeal.id),
+              text: "Change",
+              visuallyHiddenText: "Rule 6 proof of evidence and witnesses"
             }
           ]
         }

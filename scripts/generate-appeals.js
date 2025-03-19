@@ -136,13 +136,11 @@ const generateRule6Party = (params) => {
 
       party.proofOfEvidenceAndWitnesses = {}
       party.proofOfEvidenceAndWitnesses.status = 'Ready to review'
-      party.proofOfEvidenceAndWitnesses.documents = [{
+      party.proofOfEvidenceAndWitnesses.evidenceAndSummary = [{
         name: 'summary.pdf',
         size: '5MB'
-      }, {
-        name: 'evidence.pdf',
-        size: '5MB'
-      }, {
+      }]
+      party.proofOfEvidenceAndWitnesses.witnessesAndSummary = [{
         name: 'witnesses.pdf',
         size: '5MB'
       }]

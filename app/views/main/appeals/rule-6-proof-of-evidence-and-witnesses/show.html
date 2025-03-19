@@ -61,19 +61,38 @@
           {# <p class="govuk-!-margin-bottom-6"><a class="govuk-link" href="/main/appeals/{{appeal.id}}/rule-6-proof-of-evidence-and-witnesses/{{party.id}}/new">Add new Rule 6 statement</a></p> #}
         {% endif %}
 
-        {% set docs %}
-          {% if party.proofOfEvidenceAndWitnesses.documents %}
+        {% set evidenceAndSummary %}
+          {% if party.proofOfEvidenceAndWitnesses.evidenceAndSummary %}
 
-            {% if party.proofOfEvidenceAndWitnesses.documents.length > 1 %}
+            {% if party.proofOfEvidenceAndWitnesses.evidenceAndSummary.length > 1 %}
               <ol class="govuk-list govuk-list--number">
-                {% for document in party.proofOfEvidenceAndWitnesses.documents %}
+                {% for document in party.proofOfEvidenceAndWitnesses.evidenceAndSummary %}
                   <li>
                     <a href="#">{{document.name}}</a>
                   </li>
                 {% endfor %}
               </ol>
             {% else %}
-              <a href="#">{{party.proofOfEvidenceAndWitnesses.documents[0].name}}</a>
+              <a href="#">{{party.proofOfEvidenceAndWitnesses.evidenceAndSummary[0].name}}</a>
+            {% endif %}
+          {% else %}
+            No documents
+          {% endif %}
+        {% endset %}
+
+        {% set witnessesAndSummary %}
+          {% if party.proofOfEvidenceAndWitnesses.witnessesAndSummary %}
+
+            {% if party.proofOfEvidenceAndWitnesses.witnessesAndSummary.length > 1 %}
+              <ol class="govuk-list govuk-list--number">
+                {% for document in party.proofOfEvidenceAndWitnesses.witnessesAndSummary %}
+                  <li>
+                    <a href="#">{{document.name}}</a>
+                  </li>
+                {% endfor %}
+              </ol>
+            {% else %}
+              <a href="#">{{party.proofOfEvidenceAndWitnesses.witnessesAndSummary[0].name}}</a>
             {% endif %}
           {% else %}
             No documents
@@ -84,10 +103,27 @@
         rows: [
           {
             key: {
-              text: 'Proof of evidence and witnesses'
+              text: 'Proof of evidence and summary'
             },
             value: {
-              html: docs
+              html: evidenceAndSummary
+            },
+            actions: {
+              items: [
+                {
+                  href: '#',
+                  text: "Change",
+                  visuallyHiddenText: "Proof of evidence and witnesses"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Witnesses and their evidence'
+            },
+            value: {
+              html: witnessesAndSummary
             },
             actions: {
               items: [

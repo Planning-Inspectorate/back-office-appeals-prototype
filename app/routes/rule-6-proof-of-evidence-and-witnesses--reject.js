@@ -32,7 +32,7 @@ module.exports = router => {
     party.proofOfEvidenceAndWitnesses.status = 'Rejected'
     party.proofOfEvidenceAndWitnesses.dateRejected = new Date()
     req.flash('success', 'Rule 6 proof of evidence rejected')
-    res.redirect(`/main/appeals/${req.params.appealId}/rule-6-proof-of-evidence-and-witnesses/${req.params.partyId}`)
+    res.redirect(`/main/appeals/${req.params.appealId}/rule-6-proof-of-evidence-and-witnesses`)
   })
 
 }

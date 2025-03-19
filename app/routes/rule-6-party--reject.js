@@ -32,7 +32,7 @@ module.exports = router => {
     party.status = 'Rejected'
     party.dateRejected = new Date()
     req.flash('success', 'Rule 6 status rejected')
-    res.redirect(`/main/appeals/${req.params.appealId}/rule-6-parties/${req.params.partyId}`)
+    res.redirect(`/main/appeals/${req.params.appealId}/rule-6-parties`)
   })
 
 }

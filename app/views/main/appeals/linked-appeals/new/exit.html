@@ -1,0 +1,36 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "You cannot link this appeal" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">{{title}}</h1>
+      
+      <p>This is because you can only link an appeal when the status is:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          Ready to assign case officer
+        </li>
+        <li>
+          Ready to validate
+        </li>
+        <li>
+          Ready to start
+        </li>
+        <li>
+          Awaiting LPAQ
+        </li>
+        <li>
+          LPAQ ready to review
+        </li>
+      </ul>
+
+    </div>
+  </div>
+{% endblock %}

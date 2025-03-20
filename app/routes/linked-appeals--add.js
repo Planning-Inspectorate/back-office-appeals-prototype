@@ -1,5 +1,5 @@
 const { v4: uuidv4 } = require('uuid')
-const { isLeadAppeal } = require('../helpers/linked-appeals')
+const { isLeadAppeal, canAppealBeLinked } = require('../helpers/linked-appeals')
 
 module.exports = router => {
 
@@ -11,7 +11,10 @@ module.exports = router => {
   })
 
   router.post('/main/appeals/:appealId/linked-appeals/new', function (req, res) {
-    if(isLeadAppeal(req.params.appealId, req.session.data.linkedAppeals)) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.session.data.addLinkedAppeal.reference)
+    if(!canAppealBeLinked(appeal)) {
+      res.redirect(`/main/appeals/${req.params.appealId}/linked-appeals/new/exit`)
+    } else if(isLeadAppeal(req.params.appealId, req.session.data.linkedAppeals)) {
       res.redirect(`/main/appeals/${req.params.appealId}/linked-appeals/new/check`)
     } else {
       res.redirect(`/main/appeals/${req.params.appealId}/linked-appeals/new/lead-appeal`)
@@ -106,6 +109,14 @@ module.exports = router => {
     delete req.session.data.addLinkedAppeal
     req.flash('success', 'Linked appeal added')
     res.redirect(`/main/appeals/${req.params.appealId}`)
+  })
+
+  router.get('/main/appeals/:appealId/linked-appeals/new/exit', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
+
+    res.render('/main/appeals/linked-appeals/new/exit', {
+      appeal
+    })
   })
 
 }

@@ -19,7 +19,7 @@
           href: "/main/appeals/:appealId/linked-appeals" | replace(':appealId', appeal.id),
           text: "Change",
           visuallyHiddenText: "linked appeals"
-        }
+        } if showAddLinkAppeal
       ] %}
     {% else %}
       {% set linkedAppealsActions = [
@@ -27,7 +27,7 @@
           href: "/main/appeals/:appealId/linked-appeals/new" | replace(':appealId', appeal.id),
           text: "Add",
           visuallyHiddenText: "linked appeal"
-        },
+        } if showAddLinkAppeal,
         {
           href: "/main/appeals/:appealId/linked-appeals" | replace(':appealId', appeal.id),
           text: "Change",
@@ -45,7 +45,7 @@
         href: "/main/appeals/:appealId/linked-appeals/new" | replace(':appealId', appeal.id),
         text: "Add",
         visuallyHiddenText: "linked appeal"
-      }
+      } if showAddLinkAppeal
     ] %}
   {% endif %}
 

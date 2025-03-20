@@ -38,8 +38,19 @@ function isChildAppeal(appealId, linkedAppeals) {
   return linkedAppeals.find(linkedAppeal => linkedAppeal.childAppealId === appealId)
 }
 
+function canAppealBeLinked(appeal) {
+  return [
+    'Ready to assign case officer', 
+    'Ready to validate', 
+    'Ready to start', 
+    'Awaiting LPAQ', 
+    'LPAQ ready to review'
+  ].includes(appeal.status)
+}
+
 module.exports = {
   getLinkedAppeals,
   isLeadAppeal,
-  isChildAppeal
+  isChildAppeal,
+  canAppealBeLinked
 }

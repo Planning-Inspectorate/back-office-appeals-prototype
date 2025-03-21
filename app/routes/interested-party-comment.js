@@ -2,13 +2,13 @@ const _ = require('lodash')
 
 module.exports = router => {
 
-  router.get('/main/appeals/:appealId/rule-6-proof-of-evidence-and-witnesses/:partyId', function (req, res) {
+  router.get('/main/appeals/:appealId/interested-party-comments/:commentId', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
-    let party = appeal.rule6Parties.find(party => party.id == req.params.partyId)
+    let comment = appeal.interestedPartyComments.find(comment => comment.id == req.params.commentId)
 
-    res.render('/main/appeals/rule-6-proof-of-evidence-and-witnesses/show', {
+    res.render('/main/appeals/interested-party-comments/show', {
       appeal,
-      party
+      comment
     })
   })
 

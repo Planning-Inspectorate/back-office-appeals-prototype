@@ -1,11 +1,8 @@
 {% extends "layouts/bo.html" %}
 
 
-{% if party.organisationName  %}
-  {% set title = party.organisationName %}
-{% else %}
-  {% set title = party.firstName + ' ' + party.lastName %}
-{% endif %}
+{% set title = comment.firstName + ' ' + comment.lastName %}
+
 {% set pageName = title %}
 
 {% block beforeContent %}
@@ -17,8 +14,8 @@
           href: "/main/appeals/:appealId" | replace(':appealId', appeal.id)
         },
         {
-          text: "Rule 6 parties",
-          href: "/main/appeals/:appealId/rule-6-parties" | replace(':appealId', appeal.id)
+          text: "Interested party comments",
+          href: "/main/appeals/:appealId/interested-party-comments" | replace(':appealId', appeal.id)
         },
         {
           text: title
@@ -41,119 +38,65 @@
       <h1 class="govuk-heading-l">
         {{title}}
         {{ govukTag({
-          text: party.status,
-          classes: ''+ party.status | rule6StatusColour
+          text: comment.status,
+          classes: ''+ comment.status | rule6StatusColour
         }) }}
       </h1>
 
-      <div class="govuk-button-group">
-
-          {% if party.status == 'Ready to review' or party.status == 'Withdawn' %}
-            {{ govukButton({
-              text: "Approve",
-              href: '/main/appeals/:appealId/rule-6-parties/:partyId/approve' | replace(':appealId', appeal.id) | replace(':partyId', party.id)
-            })}}
-          {% endif %}
-
-          {% if party.status == 'Ready to review' %}
-            {{ govukButton({
-              text: "Reject",
-              classes: 'govuk-button--secondary',
-              href: '/main/appeals/:appealId/rule-6-parties/:partyId/reject' | replace(':appealId', appeal.id) | replace(':partyId', party.id)
-            })}}
-          {% endif %}
-
-          {% if party.status == 'Invited' %}
-            <a class="govuk-link" href="#">Resend invite</a>
-          {% endif %}
-
-          {% if party.status == 'Ready to review' or party.status == 'Invited' or party.status == 'Approved' %}
-            <a class="govuk-link" href="/main/appeals/{{appeal.id}}/rule-6-parties/{{party.id}}/withdraw">Withdraw</a>
-          {% endif %}
-
+      {% if comment.status == 'Ready to review' %}
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Accept",
+            href: '/main/appeals/:appealId/interested-party-comment/:commentId/accept' | replace(':appealId', appeal.id) | replace(':commentId', comment.id)
+          })}}
+          {{ govukButton({
+            text: "Redact and accept",
+            classes: 'govuk-button--secondary',
+            href: '/main/appeals/:appealId/interested-party-comment/:commentId/redact' | replace(':appealId', appeal.id) | replace(':commentId', comment.id)
+          })}}
+          {{ govukButton({
+            text: "Reject",
+            classes: 'govuk-button--secondary',
+            href: '/main/appeals/:appealId/interested-party-comment/:commentId/reject' | replace(':appealId', appeal.id) | replace(':commentId', comment.id)
+          })}}
+          <a class="govuk-link" href="/main/appeals/{{appeal.id}}/interested-party-comment/{{comment.id}}/withdraw">Withdraw</a>
         </div>
+      
+      {% endif %}
+
 
       {{ govukSummaryList({
         rows: [
           {
             key: {
-              text: "Rule 6 status requested date"
+              text: "First name"
             },
             value: {
-              text: party.dateReceived | govukDateTime
-            }
-          } if 1==2,
-          {
-            key: {
-              text: "Rule 6 status approved date"
-            },
-            value: {
-              text: party.dateApproved | govukDateTime
-            }
-          } if party.dateApproved and 1==2,
-          {
-            key: {
-              text: "Rule 6 status rejected date"
-            },
-            value: {
-              text: party.dateRejected | govukDateTime
-            }
-          } if party.dateRejected and 1==2,
-          {
-            key: {
-              text: "Rule 6 status withdrawn date"
-            },
-            value: {
-              text: party.dateWithdrawn | govukDateTime
-            }
-          } if party.dateWithdrawn and 1==2,
-          {
-            key: {
-              text: "Is the Rule 6 party an organisation?"
-            },
-            value: {
-              text: party.hasOrganisation
+              text: comment.firstName
             },
             actions: {
               items: [
                 {
-                  href: '/main/appeals/:appealId/rule-6-parties/:partyId/edit' | replace(':appealId', appeal.id) | replace(':partyId', party.id),
+                  href: '/main/appeals/:appealId/interested-party-comment/:commentId/name/edit' | replace(':appealId', appeal.id) | replace(':commentId', comment.id),
                   text: "Change",
-                  visuallyHiddenText: "if the Rule 6 party represents an organisation"
+                  visuallyHiddenText: "first name"
                 }
               ]
             }
           },
           {
             key: {
-              text: "Organisation name"
+              text: "Last name"
             },
             value: {
-              text: party.organisationName
+              text: comment.lastName
             },
             actions: {
               items: [
                 {
-                  href: '/main/appeals/:appealId/rule-6-parties/:partyId/edit' | replace(':appealId', appeal.id) | replace(':partyId', party.id),
+                  href: '/main/appeals/:appealId/interested-party-comment/:commentId/name/edit' | replace(':appealId', appeal.id) | replace(':commentId', comment.id),
                   text: "Change",
-                  visuallyHiddenText: "Organisation name"
-                }
-              ]
-            }
-          } if party.organisationName,
-          {
-            key: {
-              text: "Name of representative"
-            },
-            value: {
-              text: party.firstName + ' ' + party.lastName
-            },
-            actions: {
-              items: [
-                {
-                  href: '/main/appeals/:appealId/rule-6-parties/:partyId/edit/name' | replace(':appealId', appeal.id) | replace(':partyId', party.id),
-                  text: "Change",
-                  visuallyHiddenText: "Name of representative"
+                  visuallyHiddenText: "first name"
                 }
               ]
             }
@@ -163,12 +106,12 @@
               text: "Email address"
             },
             value: {
-              text: party.emailAddress
+              text: comment.emailAddress
             },
             actions: {
               items: [
                 {
-                  href: '/main/appeals/:appealId/rule-6-parties/:partyId/edit/email-address' | replace(':appealId', appeal.id) | replace(':partyId', party.id),
+                  href: '/main/appeals/:appealId/interested-party-comment/:commentId/edit/email-address' | replace(':appealId', appeal.id) | replace(':commentId', comment.id),
                   text: "Change",
                   visuallyHiddenText: "Email address"
                 }
@@ -177,75 +120,40 @@
           },
           {
             key: {
-              text: "Phone number"
+              text: "Comment"
             },
             value: {
-              text: party.phone
+              html: comment.comment
             },
             actions: {
               items: [
                 {
-                  href: '/main/appeals/:appealId/rule-6-parties/:partyId/phone' | replace(':appealId', appeal.id) | replace(':partyId', party.id),
+                  href: '/main/appeals/:appealId/interested-party-comment/:commentId/edit/comment' | replace(':appealId', appeal.id) | replace(':commentId', comment.id),
                   text: "Change",
-                  visuallyHiddenText: "Phone number"
+                  visuallyHiddenText: "Comment"
                 }
               ]
             }
           },
           {
             key: {
-              text: "Rule 6 request"
+              text: "Supporting documents"
             },
             value: {
-              html: '<a href="#">Screenshot (JPG, 12MB)</a>'
+              html: 'Not provided'
             },
             actions: {
               items: [
                 {
-                  href: '/main/appeals/:appealId/rule-6-parties/:partyId/edit/form' | replace(':appealId', appeal.id) | replace(':partyId', party.id),
+                  href: '/main/appeals/:appealId/interested-party-comment/:commentId/edit/docs' | replace(':appealId', appeal.id) | replace(':commentId', comment.id),
                   text: "Change",
-                  visuallyHiddenText: "Request for Rule 6 status"
+                  visuallyHiddenText: "Support documents"
                 }
               ]
             }
           }
         ]
       }) }}
-
-      {# <h2 class="govuk-heading-m">Timeline</h2>
-
-      <div class="app-list">
-        {% if party.dateWithdrawn %}
-          <div class="app-list__item">
-            <h3 class="govuk-heading-s govuk-!-margin-bottom-1 govuk-!-font-weight-regular">Rule 6 status withdrawn</h3>
-            <p class="govuk-!-margin-bottom-0 govuk-hint govuk-!-font-size-16">{{party.dateWithdrawn | govukDateTime }}</p>
-          </div>
-        {% endif %}
-        {% if party.dateApproved %}
-          <div class="app-list__item">
-            <h3 class="govuk-heading-s govuk-!-margin-bottom-1 govuk-!-font-weight-regular">Rule 6 status approved</h3>
-            <p class="govuk-!-margin-bottom-0 govuk-hint govuk-!-font-size-16">{{party.dateApproved | govukDateTime }}</p>
-          </div>
-        {% endif %}
-        {% if party.dateRejected %}
-          <div class="app-list__item">
-            <h3 class="govuk-heading-s govuk-!-margin-bottom-1 govuk-!-font-weight-regular">Rule 6 status rejected</h3>
-            <p class="govuk-!-margin-bottom-0 govuk-hint govuk-!-font-size-16">{{party.dateRejected | govukDateTime }}</p>
-          </div>
-        {% endif %}
-        {% if party.dateReceived %}
-          <div class="app-list__item">
-            <h3 class="govuk-heading-s govuk-!-margin-bottom-1 govuk-!-font-weight-regular">Rule 6 status requested</h3>
-            <p class="govuk-!-margin-bottom-0 govuk-hint govuk-!-font-size-16">{{party.dateReceived | govukDateTime}}</p>
-          </div>
-        {% endif %}
-      </div> #}
-
-
-      {# <h2 class="govuk-heading-m">Statement</h2>
-
-      <p class="govuk-body">Fugiat sunt labore in laborum do ullamco mollit anim. Tempor ad dolor qui. Consequat labore velit tempor dolore aute. Amet id incididunt ex elit sint ex sunt sit et. Ad consequat proident quis in ad aute mollit officia occaecat et incididunt ex exercitation duis quis.</p> #}
-
 
     </div>
   </div>

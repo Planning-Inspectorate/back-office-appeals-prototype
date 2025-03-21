@@ -377,10 +377,15 @@ const generateAppeal = (params = {}) => {
   // IP comments
   appeal.interestedPartyComments = []
 
-  for(let i = 0; i < 50; i++) {
-    appeal.interestedPartyComments.push(generateInterestedPartyComment())
+  if(params.interestedPartyComments) {
+    appeal.interestedPartyComments = params.interestedPartyComments
+  } else {
+    for(let i = 0; i < 5; i++) {
+      appeal.interestedPartyComments.push(generateInterestedPartyComment())
+    }  
   }
 
+  
   // Generate Rule 6 Parties based on this
   if(appeal.procedure == 'Inquiry') {
     appeal.rule6Parties = []
@@ -483,11 +488,17 @@ const generateAppeals = () => {
     status: 'Awaiting hearing'
   }))
 
+  let interestedPartyComments = [] 
+  for(let i = 0; i < 50; i++) {
+    interestedPartyComments.push(generateInterestedPartyComment())
+  }
+
   appeals.push(generateAppeal({
     id: '00000012',
     type: 'Full planning appeal',
     procedure: 'Inquiry',
-    status: 'Awaiting inquiry'
+    status: 'Awaiting inquiry',
+    interestedPartyComments: interestedPartyComments
   }))
 
   appeals.push(generateAppeal({

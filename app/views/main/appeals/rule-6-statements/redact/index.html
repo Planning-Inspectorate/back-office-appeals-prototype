@@ -14,11 +14,18 @@
       {{ title }}
     </h1>
 
-    <p class="govuk-!-margin-bottom-0">Original statement:</p>
+    <p class="govuk-!-margin-bottom-0">Unredacted statement:</p>
 
     {{ govukInsetText({
       classes: 'govuk-!-margin-top-2',
       text: "Having reviewed the proposal we would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. David Newton at number 6 The Grove also agrees."
+    }) }}
+
+    <p class="govuk-!-margin-bottom-0">Previous version:</p>
+
+    {{ govukInsetText({
+      classes: 'govuk-!-margin-top-2',
+      text: "Having reviewed the proposal we would ████ to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. David Newton at number 6 The Grove also agrees."
     }) }}
 
     <p id="replaceHint">Replace any character with █ to redact it.</p>
@@ -35,13 +42,14 @@
           isPageHeading: false
         },
 
-        value: "Having reviewed the proposal we would like to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. David Newton at number 6 The Grove also agrees."
+        value: "Having reviewed the proposal we would ████ to raise strong objections based on the scale of the proposed buildings so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead. David Newton at number 6 The Grove also agrees."
 
       }) }}
 
       <div class="govuk-button-group app-hidden">
         <button type="button" class="govuk-button govuk-button--secondary" id="redactButton">Redact selected text</button>
-        <button type="button" class="govuk-button govuk-button--secondary" id="undoButton">Undo all changes</button>
+        <button type="button" class="govuk-button govuk-button--secondary" id="undoButton">Clear all redactions</button>
+        <button type="button" class="govuk-button govuk-button--secondary" id="undoButton">Revert to previous version</button>
       </div>
 
       {{ govukButton({

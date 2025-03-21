@@ -1,0 +1,40 @@
+{% extends "layouts/bo.html" %}
+
+{% if party.status == 'Ready to review' %}
+  {% set title = 'Reason for withdrawing the request for Rule 6 status'  %}
+{% else %}
+  {% set title = 'Reason for withdrawing Rule 6 status'  %}
+{% endif %}
+
+{% set pageName = title %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: 'javascript:history.back()'
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form method="post">
+        <span class="govuk-caption-l">{{party.firstName}} {{party.lastName}}</span>
+        {{ govukTextarea({
+          id: "withdrawRule6Party[reason]",
+          name: "withdrawRule6Party[reason]",
+          label: {
+            text: title,
+            isPageHeading: true,
+            classes: "govuk-label--l"
+          },
+          value: data.withdrawRule6Party.reason
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

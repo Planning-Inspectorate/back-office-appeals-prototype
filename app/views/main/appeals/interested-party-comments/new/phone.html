@@ -1,0 +1,37 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Phone number" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+        <span class="govuk-caption-l">Appeal 2114328 - Add Rule 6 party</span>
+
+        {{ govukInput({
+          label: {
+            text: title,
+            isPageHeading: true,
+            classes: "govuk-label--l"
+          },
+          id: "addRule6Party[phone]",
+          name: "addRule6Party[phone]",
+          type: "tel",
+          autocomplete: "tel",
+          classes: "govuk-input--width-20",
+          value: data.addRule6Party.phone
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

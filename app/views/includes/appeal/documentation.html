@@ -59,12 +59,12 @@
           text: "Interested party comments"
         },
         value: {
-          html: 'Shared<br><span class="govuk-!-font-size-16">Received on 7 February 2025</span>'
+          html: appeal.interestedPartyComments.length + ' comments<br><span class="govuk-!-font-size-16">Received on 7 February 2025</span>'
         },
         actions: {
           items: [
             {
-              href: "#",
+              href: '/main/appeals/:appealId/interested-party-comments' | replace(':appealId', appeal.id),
               text: "View",
               visuallyHiddenText: "Interested party comments"
             }

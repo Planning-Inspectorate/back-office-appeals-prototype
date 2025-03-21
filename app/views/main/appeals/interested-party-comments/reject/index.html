@@ -1,0 +1,35 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = 'Reason for rejecting the request for Rule 6 status'  %}
+{% set pageName = title %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: 'javascript:history.back()'
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form method="post">
+        <span class="govuk-caption-l">{{party.firstName}} {{party.lastName}}</span>
+        {{ govukTextarea({
+          id: "rejectRule6Party[reason]",
+          name: "rejectRule6Party[reason]",
+          label: {
+            text: title,
+            isPageHeading: true,
+            classes: "govuk-label--l"
+          },
+          value: data.rejectRule6Party.reason
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

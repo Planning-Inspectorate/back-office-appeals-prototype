@@ -66,6 +66,49 @@ const generateAgent = (params = {}) => {
   return agent
 }
 
+const generateInterestedPartyComment = (params = {}) => {
+  let ipComment = {}
+  ipComment.id = uuidv4()
+  ipComment.status = params.status || faker.helpers.arrayElement([
+    'Ready to review',
+    'Accepted',
+    'Rejected',
+    'Withdrawn'
+  ])
+  ipComment.dateReceived = params.dateReceived || faker.date.recent({ days: 2 })
+
+  if(ipComment.status == 'Rejected') {
+    ipComment.dateRejected = faker.date.between({
+      from: ipComment.dateReceived,
+      to: now
+    })
+  }
+  if(ipComment.status == 'Approved') {
+    ipComment.dateApproved = faker.date.between({
+      from: ipComment.dateReceived,
+      to: now
+    })
+  }
+  if(ipComment.status == 'Withdrawn') {
+    ipComment.dateWithdrawn = faker.date.between({
+      from: ipComment.dateReceived,
+      to: now
+    })
+  }
+
+
+  ipComment.firstName = params.firstName || faker.person.firstName()
+  ipComment.lastName = params.lastName || faker.person.lastName()
+  ipComment.emailAddress = `${ipComment.firstName.toLowerCase()}.${ipComment.lastName.toLowerCase()}@gmail.com`
+  ipComment.comment = '	Having reviewed the proposal I would like to raise strong objections based on the scale of the proposed buildings.'
+  ipComment.documents = [{
+    name: 'St.Ritas_Community_Association_statement_for_appeal_4012345.doc',
+    size: '5MB'
+  }]
+
+  return ipComment
+}
+
 const generateRule6Party = (params) => {
   let party = {}
   party.id = uuidv4()
@@ -330,6 +373,13 @@ const generateAppeal = (params = {}) => {
 
   appeal.site = params.site || {}
   appeal.site.address = params.site?.address || generateAddress()
+
+  // IP comments
+  appeal.interestedPartyComments = []
+
+  for(let i = 0; i < 50; i++) {
+    appeal.interestedPartyComments.push(generateInterestedPartyComment())
+  }
 
   // Generate Rule 6 Parties based on this
   if(appeal.procedure == 'Inquiry') {

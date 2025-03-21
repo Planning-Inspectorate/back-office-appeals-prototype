@@ -127,7 +127,7 @@ addFilter('rule6StatusColour', status => {
       return 'govuk-tag--red'
     case 'Approved':
       return 'govuk-tag--green'
-		case 'Withdrawn':
+	case 'Withdrawn':
       return 'govuk-tag--pink'
   }
 })
@@ -140,6 +140,19 @@ addFilter('rule6StatementStatusColour', status => {
       return 'govuk-tag--red'
     case 'Accepted':
       return 'govuk-tag--green'
+  }
+})
+
+addFilter('interestedPartyCommentStatusColour', status => {
+  switch(status) {
+	case 'Ready to review':
+	  return 'govuk-tag--blue'
+	case 'Rejected':
+	  return 'govuk-tag--red'
+	case 'Accepted':
+	  return 'govuk-tag--green'
+	case 'Withdrawn':
+      return 'govuk-tag--pink'
   }
 })
 

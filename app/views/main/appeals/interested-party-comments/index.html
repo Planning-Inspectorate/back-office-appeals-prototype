@@ -1,0 +1,93 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Interested party comments" %}
+{% set pageName = title %}
+
+{% block beforeContent %}
+  {{ govukBreadcrumbs({
+    classes: 'govuk-!-margin-top-4 govuk-!-margin-bottom-0',
+    items: [
+      {
+        text: appeal.id,
+        href: "/main/appeals/:appealId" | replace(':appealId', appeal.id)
+      },
+      {
+        text: title
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ govukNotificationBanner({
+        type: "success",
+        text: flash
+      }) if flash.length }}
+    </div>
+  </div>
+
+  <span class="govuk-caption-l">Appeal 2114328</span>
+  <h1 class="govuk-heading-l">{{title}}</h1>
+
+  <p class="govuk-!-margin-bottom-6"><a class="govuk-link" href="#">Add interested party comment</a></p>
+
+  <div class="app-filter-layout">
+    <div class="app-filter-layout__filter">
+      {% include "includes/interested-party-comments/filter-panel.njk" %}
+    </div>
+    <div class="app-filter-layout__content">
+
+      <div class="app-action-bar">
+        <div class="app-action-bar__filter"></div>
+      </div>
+
+      {% if interestedPartyComments.length %}
+         <div class="app-list">
+          {% for item in interestedPartyComments %}
+            <div class="app-list__item">
+
+              <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                <a href="/main/appeals/{{appeal.id}}/interested-party-comments/{{item.id}}" class="govuk-link--no-visited-state">{{item.firstName}} {{item.lastName}}</a>
+                {{ govukTag({ text: item.status, classes: item.status | interestedPartyCommentStatusColour + ' app-list__tag--top-right' }) }}
+              </h2>
+
+
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p>There are no results.</p>
+      {% endif %}
+
+      {% include "includes/pagination.njk" %}
+    </div>
+  </div>
+
+    </div>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  {{super()}}
+  <script>
+    new App.FilterToggleButton({
+      bigModeMediaQuery: '(min-width: 48.063em)',
+      startHidden: false,
+      toggleButton: {
+        container: $('.app-action-bar__filter'),
+        showText: 'Show filter',
+        hideText: 'Hide filter',
+        classes: 'govuk-button--secondary govuk-!-margin-bottom-3'
+      },
+      closeButton: {
+        container: $('.app-filter__header-action'),
+        text: 'Close'
+      },
+      filter: {
+        container: $('.app-filter-layout__filter')
+      }
+    })
+  </script>
+{% endblock %}

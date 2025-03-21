@@ -489,7 +489,7 @@ const generateAppeals = () => {
   }))
 
   let interestedPartyComments = [] 
-  for(let i = 0; i < 50; i++) {
+  for(let i = 0; i < 32; i++) {
     interestedPartyComments.push(generateInterestedPartyComment())
   }
 
@@ -616,7 +616,7 @@ const generateAppeals = () => {
     status: "Decision issued"
   }))
 
-  for(let i = 0; i < 100; i++) {
+  for(let i = 0; i < 45; i++) {
     appeals.push(generateAppeal())
   }
 

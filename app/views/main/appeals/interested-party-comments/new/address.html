@@ -1,0 +1,84 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Interested party address" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+        <span class="govuk-caption-l">Appeal {{appeal.id}}</span>
+        {% call govukFieldset({
+          legend: {
+            text: title,
+            classes: "govuk-fieldset__legend--l"
+          }
+        }) %}
+
+          {{ govukInput({
+            id: "address-line-1",
+            name: "addInterestedPartyComment[address][line1]",
+            label: {
+              text: "Address line 1"
+            },
+            value: data.inquiry.address.line1,
+            autocomplete: "address-line1"
+          }) }}
+
+          {{ govukInput({
+            id: "address-line-2",
+            name: "addInterestedPartyComment[address][line2]",
+            label: {
+              text: "Address line 2 (optional)"
+            },
+            value: data.inquiry.address.line2,
+            autocomplete: "address-line2"
+          }) }}
+
+          {{ govukInput({
+            id: "address-town",
+            name: "addInterestedPartyComment[address][town]",
+            label: {
+              text: "Town or city"
+            },
+            value: data.inquiry.address.town,
+            autocomplete: "address-level2",
+            classes: "govuk-!-width-two-thirds"
+          }) }}
+
+          {{ govukInput({
+            id: "address-county",
+            name: "addInterestedPartyComment[address][county]",
+            label: {
+              text: "County (optional)"
+            },
+            value: data.inquiry.address.county,
+            classes: "govuk-!-width-two-thirds"
+          }) }}
+
+          {{ govukInput({
+            id: "address-postcode",
+            name: "addInterestedPartyComment[address][postcode]",
+            label: {
+              text: "Postcode"
+            },
+            value: data.inquiry.address.postcode,
+            autocomplete: "postal-code",
+            classes: "govuk-input--width-10"
+          }) }}
+
+        {% endcall %}
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

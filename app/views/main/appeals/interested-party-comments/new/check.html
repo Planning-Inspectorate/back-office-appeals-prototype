@@ -1,62 +1,32 @@
 {% extends "layouts/bo.html" %}
 
-{% set title = "Check details and add Rule 6 party" %}
+{% set title = "Check details and add interested party comment" %}
 {% set pageName = title %}
 {% set back = true %}
 
 {% block content %}
 
+  {% set address %}
+    {{appAddress({ address: data.addInterestedPartyComment.address })}}
+  {% endset %}
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-l">Appeal 2114328</span>
+      <span class="govuk-caption-l">Appeal {{appeal.id}}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
       {{ govukSummaryList({
         rows: [
           {
             key: {
-              text: "Is the Rule 6 party an organisation?"
+              text: "Name"
             },
             value: {
-              text: data.addRule6Party.hasOrganisation
+              text: data.addInterestedPartyComment.firstName + ' ' + data.addInterestedPartyComment.lastName
             },
             actions: {
               items: [
                 {
-                  href: '/main/appeals/:appealId/rule-6-parties/new' | replace(':appealId', appeal.id),
-                  text: "Change",
-                  visuallyHiddenText: "if the Rule 6 party represents an organisation"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Organisation name"
-            },
-            value: {
-              text: data.addRule6Party.organisationName
-            },
-            actions: {
-              items: [
-                {
-                  href: '/main/appeals/:appealId/rule-6-parties/new' | replace(':appealId', appeal.id),
-                  text: "Change",
-                  visuallyHiddenText: "Organisation name"
-                }
-              ]
-            }
-          } if data.addRule6Party.hasOrganisation == 'Yes',
-          {
-            key: {
-              text: "Name of representative"
-            },
-            value: {
-              text: data.addRule6Party.firstName + ' ' + data.addRule6Party.lastName
-            },
-            actions: {
-              items: [
-                {
-                  href: '/main/appeals/:appealId/rule-6-parties/new/name' | replace(':appealId', appeal.id),
+                  href: '/main/appeals/:appealId/interested-party-comments/new' | replace(':appealId', appeal.id),
                   text: "Change",
                   visuallyHiddenText: "Name"
                 }
@@ -68,12 +38,12 @@
               text: "Email address"
             },
             value: {
-              html: data.addRule6Party.emailAddress
+              html: data.addInterestedPartyComment.emailAddress
             },
             actions: {
               items: [
                 {
-                  href: '/main/appeals/:appealId/rule-6-parties/new/email-address' | replace(':appealId', appeal.id),
+                  href: '/main/appeals/:appealId/interested-party-comments/new/email-address' | replace(':appealId', appeal.id),
                   text: "Change",
                   visuallyHiddenText: "Email address"
                 }
@@ -82,32 +52,49 @@
           },
           {
             key: {
-              text: "Phone number"
+              text: "Did the interested party provide an address?"
             },
             value: {
-              text: data.addRule6Party.phone
+              html: data.addInterestedPartyComment.hasAddress
             },
             actions: {
               items: [
                 {
-                  href: '/main/appeals/:appealId/rule-6-parties/new/phone' | replace(':appealId', appeal.id),
+                  href: '/main/appeals/:appealId/interested-party-comments/new/has-address' | replace(':appealId', appeal.id),
                   text: "Change",
-                  visuallyHiddenText: "Phone number"
+                  visuallyHiddenText: "Email address"
                 }
               ]
             }
           },
           {
             key: {
-              text: "Request for Rule 6 status"
+              text: "Interested party address"
             },
             value: {
-              html: '<a href="#">Screenshot (JPG, 12MB)</a>'
+              html: address
             },
             actions: {
               items: [
                 {
-                  href: '/main/appeals/:appealId/rule-6-parties/new/form' | replace(':appealId', appeal.id),
+                  href: '/main/appeals/:appealId/interested-party-comments/new/address' | replace(':appealId', appeal.id),
+                  text: "Change",
+                  visuallyHiddenText: "Email address"
+                }
+              ]
+            }
+          } if data.addInterestedPartyComment.hasAddress == 'Yes',
+          {
+            key: {
+              text: "Interested party comment"
+            },
+            value: {
+              html: '<a href="#">Comment (JPG, 12MB)</a>'
+            },
+            actions: {
+              items: [
+                {
+                  href: '/main/appeals/:appealId/interested-party-comments/new/form' | replace(':appealId', appeal.id),
                   text: "Change",
                   visuallyHiddenText: "Request for Rule 6 status"
                 }
@@ -119,7 +106,7 @@
 
       <form method="post">
         {{ govukButton({
-          text: "Add Rule 6 party"
+          text: "Add interested party comment"
         }) }}
       </form>
 

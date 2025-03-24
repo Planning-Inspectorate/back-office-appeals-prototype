@@ -1,16 +1,7 @@
 {% extends "layouts/bo.html" %}
 
-{% if party.status == 'Ready to review' %}
-  {% set title = 'Check details and withdraw the request for Rule 6 status'  %}
-  {% set reason = 'Reason for withdrawing the request for Rule 6 status'  %}
-  {% set warning = 'We’ll send an email to the Rule 6 party to explain why you’ve withdrawn their request for Rule 6 status.' %}
-  {% set button = 'Withdraw request for Rule 6 status ' %}
-{% else %}
-  {% set title = 'Check details and withdraw Rule 6 status'  %}
-  {% set reason = 'Reason for withdrawing the Rule 6 status'  %}
-  {% set warning = 'We‘ll send an email to the Rule 6 party to explain why you’ve withdrawn their Rule 6 status.' %}
-  {% set button = 'Withdraw Rule 6 status ' %}
-{% endif %}
+{% set title = 'Check details and withdraw interested party comment'  %}
+
 {% set pageName = title %}
 
 {% block beforeContent %}
@@ -23,7 +14,7 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
-      <span class="govuk-caption-l">{{party.firstName}} {{party.lastName}}</span>
+      <span class="govuk-caption-l">{{comment.firstName}} {{comment.lastName}}</span>
       <h1 class="govuk-heading-l">
         {{title}}
       </h1>
@@ -32,15 +23,15 @@
         rows: [
           {
             key: {
-              text: reason
+              text: 'Reason for withdrawing the interested party comment'
             },
             value: {
-              html: data.withdrawRule6Party.reason
+              html: data.withdrawInterestedPartyComment.reason
             },
             actions: {
               items: [
                 {
-                  href: '/main/appeals/:appealId/rule-6-parties/:partyId/withdraw' | replace(':appealId', appeal.id) | replace(':partyId', party.id),
+                  href: '/main/appeals/:appealId/interested-party-comments/:commentId/withdraw' | replace(':appealId', appeal.id) | replace(':commentId', comment.id),
                   text: "Change",
                   visuallyHiddenText: "Item label"
                 }
@@ -50,11 +41,11 @@
         ]
       }) }}
 
-      <p>{{warning}}</p>
+      <p>We‘ll send an email to the interested party to confirm that we’ve withdrawn their comment.</p>
 
       <form method="post">
         {{ govukButton({
-          text: button
+          text: 'Withdraw interested party comment'
         }) }}
 
       </form>

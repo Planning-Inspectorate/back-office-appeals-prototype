@@ -1,10 +1,6 @@
 {% extends "layouts/bo.html" %}
 
-{% if party.status == 'Ready to review' %}
-  {% set title = 'Reason for withdrawing the request for Rule 6 status'  %}
-{% else %}
-  {% set title = 'Reason for withdrawing Rule 6 status'  %}
-{% endif %}
+{% set title = 'Reason for withdrawing the interested party comment'  %}
 
 {% set pageName = title %}
 
@@ -19,16 +15,16 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
       <form method="post">
-        <span class="govuk-caption-l">{{party.firstName}} {{party.lastName}}</span>
+        <span class="govuk-caption-l">{{comment.firstName}} {{comment.lastName}}</span>
         {{ govukTextarea({
-          id: "withdrawRule6Party[reason]",
-          name: "withdrawRule6Party[reason]",
+          id: "withdrawInterestedPartyComment[reason]",
+          name: "withdrawInterestedPartyComment[reason]",
           label: {
             text: title,
             isPageHeading: true,
             classes: "govuk-label--l"
           },
-          value: data.withdrawRule6Party.reason
+          value: data.withdrawInterestedPartyComment.reason
         }) }}
 
         {{ govukButton({

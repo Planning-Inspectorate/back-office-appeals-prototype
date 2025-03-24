@@ -1,0 +1,76 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Interested party details" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post" novalidate>
+        <span class="govuk-caption-l">Appeal {{appeal.id}} - add interested party comment</span>
+        <h1 class="govuk-heading-l">{{title}}</h1>
+
+        {{ govukInput({
+          id: "addInterestedPartyComment[firstName]",
+          name: "addInterestedPartyComment[firstName]",
+          label: {
+            text: "First name",
+            isPageHeading: false,
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: "Or given name"
+          },
+          value: data.addInterestedPartyComment.firstName
+        }) }}
+
+        {{ govukInput({
+          id: "addInterestedPartyComment[lastName]",
+          name: "addInterestedPartyComment[lastName]",
+          label: {
+            text: "Last name",
+            isPageHeading: false,
+            classes: "govuk-label--m"
+          },
+          hint: {
+            text: "Or family name"
+          },
+          value: data.addInterestedPartyComment.lastName
+        }) }}
+
+        {{ govukCheckboxes({
+          name: "addInterestedPartyComment[doNotShare]",
+          values: data.addInterestedPartyComment.doNotShare,
+          items: [
+            {
+              value: "Do not share this inerested party name",
+              text: "Do not share this inerested party name"
+            }
+          ]
+        }) }}
+
+        {{ govukInput({
+          id: "addInterestedPartyComment[emailAddress]",
+          name: "addInterestedPartyComment[emailAddress]",
+          label: {
+            text: 'Email address (optional)',
+            classes: "govuk-label--m"
+          },
+          value: data.addInterestedPartyComment.emailAddress,
+          type: "email",
+          autocomplete: "email",
+          spellcheck: false
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

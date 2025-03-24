@@ -1,6 +1,6 @@
 {% extends "layouts/bo.html" %}
 
-{% set title = "Request for Rule 6 status" %}
+{% set title = "Interested party comment" %}
 {% set pageName = title %}
 
 {% set back = true %}
@@ -11,10 +11,10 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form method="post">
-        <span class="govuk-caption-l">Appeal 2114328 - Add Rule 6 party</span>
+        <span class="govuk-caption-l">Appeal {{appeal.id}} - add interested party comment</span>
         <h1 class="govuk-heading-l">{{title}}</h1>
 
-        <p>You can upload multiple files.</p>
+        <p>If you have a redacted version of the comment, you can upload this later.</p>
 
         <p>The total size must be smaller than 1GB.</p>
 
@@ -26,7 +26,7 @@
             name: 'upload',
             classes: 'moj-multi-file-upload__input',
             label: {
-              text: 'Upload request for Rule 6 status',
+              text: 'Upload interested party comment',
               classes: 'govuk-label--m'
             }
           }) }}

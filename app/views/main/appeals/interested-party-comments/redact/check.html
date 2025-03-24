@@ -1,0 +1,51 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = 'Check details and accept interested party comment'  %}
+{% set pageName = title %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: 'javascript:history.back()'
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <span class="govuk-caption-l">{{comment.firstName}} {{comment.lastName}}</span>
+      <h1 class="govuk-heading-l">
+        {{title}}
+      </h1>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Interested party comment"
+            },
+            value: {
+              html: 'Having reviewed the proposal we would like to raise strong objections based on the scale of the <mark>proposed buildings</mark> so close to a residential area. Residents have not been consulted on this and our views of the greenbelt adjacent to the estate will be ruined if this goes ahead.'
+            },
+            actions: {
+              items: [
+                {
+                  href: "/main/appeals/:appealId/interested-party-comments/:interestedPartyCommentId/redact" | replace(':appealId', appeal.id) | replace(':interestedPartyCommentId', comment.id),
+                  text: "Change",
+                  visuallyHiddenText: "Interested party comment"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+
+      <form method="post">
+        {{ govukButton({
+          text: "Accept interested party comment"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

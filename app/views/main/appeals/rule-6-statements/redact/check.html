@@ -18,19 +18,6 @@
         {{title}}
       </h1>
 
-      {% set reasonsHtml %}
-        <ul class="govuk-list govuk-list--bullet">
-          {% for item in data.rejectRule6Party.reason %}
-            <li>
-              {{item}}
-              {# {% if item == 'Other reason' %}
-                - {{data.new.otherObject}}
-              {% endif %} #}
-            </li>
-          {% endfor %}
-        </ul>
-      {% endset %}
-
       {{ govukSummaryList({
         rows: [
           {
@@ -61,14 +48,10 @@
         ]
       }) }}
 
-      {# <p>We’ll send an email to the Rule 6 party telling them that their statement was rejected and why.</p> #}
-
       <form method="post">
         {{ govukButton({
           text: "Accept Rule 6 statement"
         }) }}
-
-        {# <p><a href="javascript:history.back()">Cancel</a></p> #}
       </form>
     </div>
   </div>

@@ -1,6 +1,6 @@
 {% extends "layouts/bo.html" %}
 
-{% set title = "Do you want to allow the Rule 6 party to submit a new statement?" %}
+{% set title = "Do you want to allow the interested party to submit a new comment?" %}
 {% set pageName = title %}
 
 {% set back = true %}
@@ -9,13 +9,13 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <span class="govuk-caption-l">{{party.firstName}} {{party.lastName}}</span>
+    <span class="govuk-caption-l">{{comment.firstName}} {{comment.lastName}} - Reject</span>
 
     <form method="post">
 
       {{ govukRadios({
         classes: "govuk-radios",
-        name: "rejectRule6Party[canResubmit]",
+        name: "rejectInterestedPartyComment[canResubmit]",
         fieldset: {
           legend: {
             text: title,
@@ -23,10 +23,7 @@
             classes: "govuk-fieldset__legend--l"
           }
         },
-        hint: {
-          html: "The Rule 6 party must submit a new statement by " + 7 | daysInFuture + "."
-        },
-        value: data.rejectRule6Party.canResubmit,
+        value: data.rejectInterestedPartyComment.canResubmit,
         items: [
           {
             value: "Yes",

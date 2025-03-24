@@ -47,19 +47,19 @@
         <div class="govuk-button-group">
           {{ govukButton({
             text: "Accept",
-            href: '/main/appeals/:appealId/interested-party-comment/:commentId/accept' | replace(':appealId', appeal.id) | replace(':commentId', comment.id)
+            href: '/main/appeals/:appealId/interested-party-comments/:commentId/accept' | replace(':appealId', appeal.id) | replace(':commentId', comment.id)
           })}}
           {{ govukButton({
             text: "Redact and accept",
             classes: 'govuk-button--secondary',
-            href: '/main/appeals/:appealId/interested-party-comment/:commentId/redact' | replace(':appealId', appeal.id) | replace(':commentId', comment.id)
+            href: '/main/appeals/:appealId/interested-party-comments/:commentId/redact' | replace(':appealId', appeal.id) | replace(':commentId', comment.id)
           })}}
           {{ govukButton({
             text: "Reject",
             classes: 'govuk-button--secondary',
-            href: '/main/appeals/:appealId/interested-party-comment/:commentId/reject' | replace(':appealId', appeal.id) | replace(':commentId', comment.id)
+            href: '/main/appeals/:appealId/interested-party-comments/:commentId/reject' | replace(':appealId', appeal.id) | replace(':commentId', comment.id)
           })}}
-          <a class="govuk-link" href="/main/appeals/{{appeal.id}}/interested-party-comment/{{comment.id}}/withdraw">Withdraw</a>
+          <a class="govuk-link" href="/main/appeals/{{appeal.id}}/interested-party-comments/{{comment.id}}/withdraw">Withdraw</a>
         </div>
       
       {% endif %}

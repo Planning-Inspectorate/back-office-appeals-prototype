@@ -1,6 +1,6 @@
 {% extends "layouts/bo.html" %}
 
-{% set title = 'Check details and reject the request for Rule 6 status'  %}
+{% set title = 'Check details and reject interested party comment'  %}
 {% set pageName = title %}
 
 {% block beforeContent %}
@@ -13,24 +13,54 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
-      <span class="govuk-caption-l">{{party.firstName}} {{party.lastName}}</span>
+      <span class="govuk-caption-l">{{comment.firstName}} {{comment.lastName}}</span>
       <h1 class="govuk-heading-l">
         {{title}}
       </h1>
+
+      {% set reasonsHtml %}
+        <ul class="govuk-list govuk-list--bullet">
+          {% for item in data.rejectInterestedPartyComment.reason %}
+            <li>
+              {{item}}
+              {# {% if item == 'Other reason' %}
+                - {{data.new.otherObject}}
+              {% endif %} #}
+            </li>
+          {% endfor %}
+        </ul>
+      {% endset %}
 
       {{ govukSummaryList({
         rows: [
           {
             key: {
-              text: "Reason for rejecting the request for Rule 6 status"
+              text: "Reason for rejecting the interested party comment"
             },
             value: {
-              html: data.rejectRule6Party.reason
+              html: reasonsHtml
             },
             actions: {
               items: [
                 {
-                  href: '/main/appeals/:appealId/rule-6-parties/:partyId/reject' | replace(':appealId', appeal.id) | replace(':partyId', party.id),
+                  href: '/main/appeals/:appealId/interested-party-comments/:commentId/reject' | replace(':appealId', appeal.id) | replace(':commentId', comment.id),
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Do you want to allow the Rule 6 party to submit a new statement?"
+            },
+            value: {
+              html: data.rejectInterestedPartyComment.canResubmit
+            },
+            actions: {
+              items: [
+                {
+                  href: '/main/appeals/:appealId/interested-party-comments/:commentId/reject/can-resubmit' | replace(':appealId', appeal.id) | replace(':commentId', comment.id),
                   text: "Change",
                   visuallyHiddenText: "Item label"
                 }
@@ -40,15 +70,12 @@
         ]
       }) }}
 
-      {{party | log}}
-
-      <p>We’ll send an email to the Rule 6 party to explain why you’ve withdrawn their request for Rule 6 status.</p>
+      <p>We’ll send an email to the interested party to explain why you rejected their comment.</p>
 
       <form method="post">
         {{ govukButton({
-          text: "Reject request for Rule 6 status"
+          text: "Reject interested party comment"
         }) }}
-
       </form>
     </div>
   </div>

@@ -8,7 +8,7 @@ module.exports = router => {
 
     res.render('/main/appeals/interested-party-comments/redact/index', {
       appeal,
-      party
+      comment
     })
   })
 
@@ -22,7 +22,7 @@ module.exports = router => {
 
     res.render('/main/appeals/interested-party-comments/redact/check', {
       appeal,
-      party
+      comment
     })
   })
 

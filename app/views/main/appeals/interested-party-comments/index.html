@@ -28,8 +28,7 @@
     </div>
   </div>
 
-  <span class="govuk-caption-l">Appeal {{appeal.id}}</span>
-  <h1 class="govuk-heading-l">{{title}}</h1>
+  <h1 class="govuk-heading-l">{{title}} ({{totalComments}})</h1>
 
   <p class="govuk-!-margin-bottom-6"><a class="govuk-link" href="/main/appeals/{{appeal.id}}/interested-party-comments/new">Add interested party comment</a></p>
 
@@ -50,7 +49,9 @@
 
               <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
                 <a href="/main/appeals/{{appeal.id}}/interested-party-comments/{{item.id}}" class="govuk-link--no-visited-state">{{item.firstName}} {{item.lastName}}</a>
-                {{ govukTag({ text: item.status, classes: item.status | interestedPartyCommentStatusColour + ' app-list__tag--top-right' }) }}
+                <div class="app-list__tag">
+                  {{ govukTag({ text: item.status, classes: item.status | interestedPartyCommentStatusColour }) }}
+                </div>
               </h2>
 
 

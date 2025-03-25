@@ -51,10 +51,12 @@
                 </h2>
               {% endif %}
 
-              {{ govukTag({
-                text: item.status,
-                classes: "app-list__tag app-list__tag--top-right " + (item.status | rule6StatusColour)
-              }) }}
+              <div class="app-list__tag">
+                {{ govukTag({
+                  text: item.status,
+                  classes: item.status | rule6StatusColour
+                }) }}
+              </div>
             </div>
           {% endfor %}
         </div>

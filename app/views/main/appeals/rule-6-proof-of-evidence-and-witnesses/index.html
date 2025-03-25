@@ -49,11 +49,12 @@
                   </a>
                 </h2>
               {% endif %}
-
+              <div class="app-list__tag">
               {{ govukTag({
                 text: item.proofOfEvidenceAndWitnesses.status,
-                classes: "app-list__tag app-list__tag--top-right " + (item.proofOfEvidenceAndWitnesses.status | rule6StatementStatusColour)
+                classes: item.proofOfEvidenceAndWitnesses.status | rule6StatementStatusColour
               }) }}
+              </div>
             </div>
           {% endfor %}
         </div>

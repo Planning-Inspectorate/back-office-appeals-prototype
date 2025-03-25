@@ -1,6 +1,6 @@
 {% extends "layouts/bo.html" %}
 
-{% set title = "Rule 6 statements" %}
+{% set title = "Rule 6 statements (:total)" | replace(':total', rule6Statements.length) %}
 {% set pageName = title %}
 
 {% block beforeContent %}
@@ -12,7 +12,7 @@
           href: "/main/appeals/:appealId" | replace(':appealId', appeal.id)
         },
         {
-          text: title
+          text: 'Rule 6 statements'
         }
       ]
     }) }}

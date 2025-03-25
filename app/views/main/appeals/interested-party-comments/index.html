@@ -1,6 +1,6 @@
 {% extends "layouts/bo.html" %}
 
-{% set title = "Interested party comments" %}
+{% set title = "Interested party comments (:total)" | replace(':total', totalComments) %}
 {% set pageName = title %}
 
 {% block beforeContent %}
@@ -12,7 +12,7 @@
         href: "/main/appeals/:appealId" | replace(':appealId', appeal.id)
       },
       {
-        text: title
+        text: 'Interested party comments'
       }
     ]
   }) }}
@@ -28,7 +28,7 @@
     </div>
   </div>
 
-  <h1 class="govuk-heading-l">{{title}} ({{totalComments}})</h1>
+  <h1 class="govuk-heading-l">{{title}}</h1>
 
   <p class="govuk-!-margin-bottom-6"><a class="govuk-link" href="/main/appeals/{{appeal.id}}/interested-party-comments/new">Add interested party comment</a></p>
 

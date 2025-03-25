@@ -1,6 +1,6 @@
 {% extends "layouts/bo.html" %}
 
-{% set title = "Rule 6 proof of evidence and witnesses" %}
+{% set title = "Rule 6 proof of evidence and witnesses (:total)" | replace(':total', proofOfEvidenceAndWitnesses.length) %}
 {% set pageName = title %}
 
 {% block beforeContent %}
@@ -12,7 +12,7 @@
           href: "/main/appeals/:appealId" | replace(':appealId', appeal.id)
         },
         {
-          text: title
+          text: 'Rule 6 proof of evidence and witnesses'
         }
       ]
     }) }}
@@ -25,8 +25,6 @@
         type: "success",
         text: flash
       }) if flash.length }}
-
-      {{proofOfEvidenceAndWitnesses | log}}
 
       {# <span class="govuk-caption-l">Appeal 2114328</span> #}
       <h1 class="govuk-heading-l">{{title}}</h1>

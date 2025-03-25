@@ -1,6 +1,6 @@
 {% extends "layouts/bo.html" %}
 
-{% set title = "Rule 6 parties" %}
+{% set title = "Rule 6 parties (:total)" | replace(':total', parties.length) %}
 {% set pageName = title %}
 
 {% block beforeContent %}
@@ -12,7 +12,7 @@
           href: "/main/appeals/:appealId" | replace(':appealId', appeal.id)
         },
         {
-          text: title
+          text: 'Rule 6 parties'
         }
       ]
     }) }}
@@ -26,8 +26,6 @@
         text: flash
       }) if flash.length }}
 
-
-      <span class="govuk-caption-l">Appeal {{appeal.id}}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
 
       <p class="govuk-!-margin-bottom-6"><a class="govuk-link" href="/main/appeals/{{appeal.id}}/rule-6-parties/new">Add Rule 6 party</a></p>

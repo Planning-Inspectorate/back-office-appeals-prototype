@@ -8,6 +8,12 @@ module.exports = router => {
   router.get('/main/appeals', function (req, res) {
 
     let cases = req.session.data.appeals
+      .map(appeal => ({
+        ...appeal,
+        actions: getActions(appeal),
+        isLeadAppeal: isLeadAppeal(appeal.id, req.session.data.linkedAppeals),
+        isChildAppeal: isChildAppeal(appeal.id, req.session.data.linkedAppeals)
+      }));
 
     let keywords = _.get(req.session.data.search, 'keywords')
 
@@ -26,7 +32,8 @@ module.exports = router => {
     let selectedCaseOfficerFilters = _.get(req.session.data.filters, 'caseOfficers')
     let selectedTypeFilters = _.get(req.session.data.filters, 'types')
     let selectedProcedureFilters = _.get(req.session.data.filters, 'procedures')
-    let hasFilters = _.get(selectedStatusFilters, 'length') || _.get(selectedCaseOfficerFilters, 'length') || _.get(selectedTypeFilters, 'length') || _.get(selectedProcedureFilters, 'length')
+    let selectedLinkedAppealTypeFilters = _.get(req.session.data.filters, 'linkedAppealTypes')
+    let hasFilters = _.get(selectedStatusFilters, 'length') || _.get(selectedCaseOfficerFilters, 'length') || _.get(selectedTypeFilters, 'length') || _.get(selectedProcedureFilters, 'length') || _.get(selectedLinkedAppealTypeFilters, 'length')
 
     let selectedFilters = {
       categories: []
@@ -39,6 +46,7 @@ module.exports = router => {
         let matchesCaseOfficer = true
         let matchesType = true
         let matchesProcedure = true
+        let matchesLinkedAppealType = true
 
         if(_.get(selectedStatusFilters, 'length')) {
           matchesStatus = selectedStatusFilters.includes(appeal.status);
@@ -56,7 +64,19 @@ module.exports = router => {
           matchesProcedure = selectedProcedureFilters.includes(appeal.procedure);
         }
 
-        return matchesStatus && matchesCaseOfficer && matchesType && matchesProcedure
+        if(_.get(selectedLinkedAppealTypeFilters, 'length')) {
+          matchesLinkedAppealType = false
+
+          if(selectedLinkedAppealTypeFilters.includes('Lead') && appeal.isLeadAppeal) {
+            matchesLinkedAppealType = true
+          }
+
+          if(selectedLinkedAppealTypeFilters.includes('Child') && appeal.isChildAppeal) {
+            matchesLinkedAppealType = true
+          }
+        }
+
+        return matchesStatus && matchesCaseOfficer && matchesType && matchesProcedure && matchesLinkedAppealType
       })
     }
 
@@ -108,17 +128,22 @@ module.exports = router => {
       })
     }
 
+    if(_.get(selectedLinkedAppealTypeFilters, 'length')) {
+      selectedFilters.categories.push({
+        heading: { text: 'Linked appeal type' },
+        items: selectedLinkedAppealTypeFilters.map(label => {
+          return {
+            text: label,
+            href: `/main/appeals/remove-linked-appeal-type/${label}`
+          }
+        })
+      })
+    }
+
     let totalAppeals = cases.length
     let pageSize = 25
     let pagination = new Pagination(cases, req.query.page, pageSize)
     cases = pagination.getData()
-
-    cases = cases.map(appeal => ({
-      ...appeal,
-      actions: getActions(appeal),
-      isChildAppeal: isChildAppeal(appeal.id, req.session.data.linkedAppeals),
-      isleadAppeal: isLeadAppeal(appeal.id, req.session.data.linkedAppeals)
-    }));
 
     res.render('main/appeals/all', {
       cases,
@@ -133,6 +158,7 @@ module.exports = router => {
     _.set(req, 'session.data.filters.caseOfficers', null)
     _.set(req, 'session.data.filters.types', null)
     _.set(req, 'session.data.filters.procedures', null)
+    _.set(req, 'session.data.filters.linkedAppealTypes', null)
     res.redirect('/main/appeals')
   })
 
@@ -153,6 +179,11 @@ module.exports = router => {
 
   router.get('/main/appeals/remove-procedure/:procedure', (req, res) => {
     _.set(req, 'session.data.filters.procedures', _.pull(req.session.data.filters.procedures, req.params.procedure))
+    res.redirect('/main/appeals')
+  })
+
+  router.get('/main/appeals/remove-linked-appeal-type/:linkedAppealType', (req, res) => {
+    _.set(req, 'session.data.filters.linkedAppealTypes', _.pull(req.session.data.filters.linkedAppealTypes, req.params.linkedAppealType))
     res.redirect('/main/appeals')
   })
 
@@ -392,6 +423,7 @@ module.exports = router => {
     _.set(req, 'session.data.filters.statuses', null)
     _.set(req, 'session.data.filters.types', null)
     _.set(req, 'session.data.filters.procedures', null)
+    _.set(req, 'session.data.filters.linkedAppealTypes', null)
     _.set(req, 'session.data.filters.siteVisit', null)
     _.set(req, 'session.data.filters.planningObligation', null)
     res.redirect('/main/your-appeals')

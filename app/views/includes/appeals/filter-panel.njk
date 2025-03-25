@@ -55,6 +55,23 @@
   }) }}
 
   {{ govukCheckboxes({
+    idPrefix: "filters[linkedAppealTypes]",
+    name: "filters[linkedAppealTypes]",
+    classes: "govuk-checkboxes--small",
+    fieldset: {
+      legend: {
+        text: "Linked appeal type",
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: [
+      { value: 'Lead', text: 'Lead' },
+      { value: 'Child', text: 'Child' }
+    ],
+    values: data.filters.linkedAppealTypes
+  }) }}
+
+  {{ govukCheckboxes({
     idPrefix: "filters[statuses]",
     name: "filters[statuses]",
     classes: "govuk-checkboxes--small",

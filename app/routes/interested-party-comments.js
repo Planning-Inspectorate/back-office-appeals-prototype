@@ -48,6 +48,7 @@ module.exports = router => {
       })
     }
 
+    let totalComments = interestedPartyComments.length
     let pageSize = 25
     let pagination = new Pagination(interestedPartyComments, req.query.page, pageSize)
     interestedPartyComments = pagination.getData()
@@ -56,7 +57,8 @@ module.exports = router => {
       appeal,
       interestedPartyComments,
       pagination,
-      selectedFilters
+      selectedFilters,
+      totalComments
     })
   })
 

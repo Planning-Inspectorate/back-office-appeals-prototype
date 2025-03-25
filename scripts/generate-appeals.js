@@ -227,7 +227,7 @@ const generateAppeal = (params = {}) => {
   appeal.status = params.status || faker.helpers.arrayElement(statuses)
 
   if(appeal.status !== 'Ready to assign case officer') {
-    appeal.caseOfficer = faker.helpers.arrayElement([
+    appeal.caseOfficer = params.caseOfficer || faker.helpers.arrayElement([
       'Tony Stark',
       'Tony Stark',
       'Tony Stark',
@@ -471,21 +471,24 @@ const generateAppeals = () => {
     id: '00000009',
     type: 'Full planning appeal',
     procedure: 'Written representations',
-    status: "Ready to start"
+    status: 'Ready to start',
+    caseOfficer: 'Tony Stark'
   }))
 
   appeals.push(generateAppeal({
     id: '00000010',
     type: 'Full planning appeal',
     procedure: 'Written representations',
-    status: "Ready to start"
+    status: 'Ready to start',
+    caseOfficer: 'Tony Stark'
   }))
 
   appeals.push(generateAppeal({
     id: '00000011',
     type: 'Full planning appeal',
     procedure: 'Hearing',
-    status: 'Awaiting hearing'
+    status: 'Awaiting hearing',
+    caseOfficer: 'Tony Stark'
   }))
 
   let interestedPartyComments = [] 
@@ -498,122 +501,127 @@ const generateAppeals = () => {
     type: 'Full planning appeal',
     procedure: 'Inquiry',
     status: 'Awaiting inquiry',
-    interestedPartyComments: interestedPartyComments
+    interestedPartyComments: interestedPartyComments,
+    caseOfficer: 'Tony Stark'
   }))
 
   appeals.push(generateAppeal({
     type: 'Full planning appeal',
-    status: "Ready to assign case officer"
+    status: 'Ready to assign case officer'
   }))
   appeals.push(generateAppeal({
     type: 'Full planning appeal',
-    status: "Ready to validate"
+    status: 'Ready to validate',
+    caseOfficer: 'Tony Stark'
   }))
   appeals.push(generateAppeal({
     id: '00000005',
     type: 'Full planning appeal',
-    status: "Ready to start"
+    status: 'Ready to start',
+    caseOfficer: 'Tony Stark'
   }))
   appeals.push(generateAppeal({
     type: 'Full planning appeal',
-    status: "Awaiting LPAQ"
+    status: 'Awaiting LPAQ',
+    caseOfficer: 'Tony Stark'
   }))
   appeals.push(generateAppeal({
     type: 'Full planning appeal',
-    status: "LPAQ ready to review"
+    status: 'LPAQ ready to review',
+    caseOfficer: 'Tony Stark'
   }))
 
   appeals.push(generateAppeal({
     type: 'Full planning appeal',
-    status: "Awaiting statements and IP comments"
+    status: 'Awaiting statements and IP comments'
   }))
   appeals.push(generateAppeal({
     id: '00182182',
     type: 'Full planning appeal',
     procedure: 'Inquiry',
-    status: "Statements and IP comments ready to review"
+    status: 'Statements and IP comments ready to review'
   }))
   appeals.push(generateAppeal({
     type: 'Full planning appeal',
-    status: "Statements and IP comments ready to share"
+    status: 'Statements and IP comments ready to share'
   }))
 
   appeals.push(generateAppeal({
     type: 'Full planning appeal',
     procedure: 'Written representations',
-    status: "Awaiting final comments"
+    status: 'Awaiting final comments'
   }))
   appeals.push(generateAppeal({
     type: 'Full planning appeal',
     procedure: 'Written representations',
-    status: "Final comments ready to review"
+    status: 'Final comments ready to review'
   }))
   appeals.push(generateAppeal({
     type: 'Full planning appeal',
     procedure: 'Written representations',
-    status: "Final comments ready to share"
+    status: 'Final comments ready to share'
   }))
   appeals.push(generateAppeal({
     id: '00000001',
     type: 'Full planning appeal',
     procedure: 'Written representations',
-    status: "Site visit ready to set up"
+    status: 'Site visit ready to set up'
   }))
   appeals.push(generateAppeal({
     type: 'Full planning appeal',
     procedure: 'Written representations',
-    status: "Awaiting site visit"
+    status: 'Awaiting site visit'
   }))
 
   appeals.push(generateAppeal({
     id: '00000002',
     type: 'Full planning appeal',
     procedure: 'Hearing',
-    status: "Hearing ready to set up"
+    status: 'Hearing ready to set up'
   }))
   appeals.push(generateAppeal({
     type: 'Full planning appeal',
     procedure: 'Hearing',
-    status: "Awaiting hearing"
+    status: 'Awaiting hearing'
   }))
 
   appeals.push(generateAppeal({
     id: '00000003',
     type: 'Full planning appeal',
     procedure: 'Inquiry',
-    status: "Inquiry ready to set up"
+    status: 'Inquiry ready to set up'
   }))
   appeals.push(generateAppeal({
     type: 'Full planning appeal',
     procedure: 'Inquiry',
-    status: "Awaiting proof of evidence and witnesses"
+    status: 'Awaiting proof of evidence and witnesses'
   }))
   appeals.push(generateAppeal({
     type: 'Full planning appeal',
     procedure: 'Inquiry',
-    status: "Proof of evidence and witnesses ready to review"
+    status: 'Proof of evidence and witnesses ready to review'
   }))
   appeals.push(generateAppeal({
     type: 'Full planning appeal',
     procedure: 'Inquiry',
-    status: "Proof of evidence and witnesses ready to share"
+    status: 'Proof of evidence and witnesses ready to share'
   }))
   appeals.push(generateAppeal({
     type: 'Full planning appeal',
     procedure: 'Inquiry',
-    status: "Awaiting inquiry"
+    status: 'Awaiting inquiry'
   }))
 
   appeals.push(generateAppeal({
     id: '00000004',
     type: 'Full planning appeal',
     procedure: 'Inquiry',
-    status: "Decision ready to issue"
+    status: 'Decision ready to issue'
   }))
   appeals.push(generateAppeal({
     type: 'Full planning appeal',
     procedure: 'Inquiry',
-    status: "Decision issued"
+    status: 'Decision issued'
   }))
 
   for(let i = 0; i < 45; i++) {

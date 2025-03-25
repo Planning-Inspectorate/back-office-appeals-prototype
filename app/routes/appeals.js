@@ -1,6 +1,7 @@
 const _ = require('lodash')
 const Pagination = require('../helpers/pagination')
 const { getActions } = require('../helpers/actions')
+const { isChildAppeal, isLeadAppeal } = require('../helpers/linked-appeals')
 
 module.exports = router => {
 
@@ -114,7 +115,9 @@ module.exports = router => {
 
     cases = cases.map(appeal => ({
       ...appeal,
-      actions: getActions(appeal)
+      actions: getActions(appeal),
+      isChildAppeal: isChildAppeal(appeal.id, req.session.data.linkedAppeals),
+      isleadAppeal: isLeadAppeal(appeal.id, req.session.data.linkedAppeals)
     }));
 
     res.render('main/appeals/all', {
@@ -311,8 +314,11 @@ module.exports = router => {
 
     cases = cases.map(appeal => ({
       ...appeal,
-      actions: getActions(appeal)
+      actions: getActions(appeal),
+      isLeadAppeal: isLeadAppeal(appeal.id, req.session.data.linkedAppeals),
+      isChildAppeal: isChildAppeal(appeal.id, req.session.data.linkedAppeals)
     }));
+
 
     res.render('main/appeals/index', {
       cases,

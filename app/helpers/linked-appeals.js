@@ -31,11 +31,11 @@ function getLinkedAppeals(appealId, linkedAppeals) {
 }
 
 function isLeadAppeal(appealId, linkedAppeals) {
-  return linkedAppeals.find(linkedAppeal => linkedAppeal.leadAppealId === appealId)
+  return typeof linkedAppeals.find(linkedAppeal => linkedAppeal.leadAppealId === appealId) !== 'undefined'
 }
 
 function isChildAppeal(appealId, linkedAppeals) {
-  return linkedAppeals.find(linkedAppeal => linkedAppeal.childAppealId === appealId)
+  return typeof linkedAppeals.find(linkedAppeal => linkedAppeal.childAppealId === appealId) !== 'undefined'
 }
 
 function canAppealBeLinked(appeal) {

@@ -1,17 +1,10 @@
 {% extends "layouts/bo.html" %}
 
-{% set title = "Your appeals (" + totalAppeals +")" %}
+{% set title = "Your appeals (:total)" | replace(':total', totalAppeals) %}
 {% set pageName = title + ' - Planning Inspectorate'%}
-{% set pageId = 'yourCases' %}
+{% set pageId = 'yourAppeals' %}
 
 {% set back = false %}
-
-{% set prototypeLinks = [
-  {
-    href: 'team-email',
-    text: 'Manage case teams'
-  }
-] %}
 
 {% block content %}
   <h1 class="govuk-heading-l">{{title}}</h1>
@@ -28,9 +21,9 @@
         <div class="app-action-bar__filter"></div>
       </div>
 
-      {% if cases.length %}
+      {% if appeals.length %}
          <div class="app-list">
-          {% for appeal in cases %}
+          {% for appeal in appeals %}
             <div class="app-list__item">
               <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
                 <a href="/main/appeals/{{appeal.id}}" class="govuk-link--no-visited-state">{{appeal.id}}</a>

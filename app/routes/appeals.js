@@ -7,7 +7,7 @@ module.exports = router => {
 
   router.get('/main/appeals', function (req, res) {
 
-    let cases = req.session.data.appeals
+    let appeals = req.session.data.appeals
       .map(appeal => ({
         ...appeal,
         actions: getActions(appeal),
@@ -19,7 +19,7 @@ module.exports = router => {
 
     if(keywords) {
       keywords = keywords.toLowerCase()
-      cases = cases.filter(appeal => {
+      appeals = appeals.filter(appeal => {
         let reference = appeal.id
         let name = (appeal.appellant.firstName + ' ' + appeal.appellant.lastName).toLowerCase()
         let postcode = appeal.site.address.postcode.toLowerCase()
@@ -41,7 +41,7 @@ module.exports = router => {
 
     // the user has selected a status filter
     if(hasFilters) {
-      cases = cases.filter(appeal => {
+      appeals = appeals.filter(appeal => {
         let matchesStatus = true
         let matchesCaseOfficer = true
         let matchesType = true
@@ -140,13 +140,13 @@ module.exports = router => {
       })
     }
 
-    let totalAppeals = cases.length
+    let totalAppeals = appeals.length
     let pageSize = 25
-    let pagination = new Pagination(cases, req.query.page, pageSize)
-    cases = pagination.getData()
+    let pagination = new Pagination(appeals, req.query.page, pageSize)
+    appeals = pagination.getData()
 
     res.render('main/appeals/all', {
-      cases,
+      appeals,
       selectedFilters,
       pagination,
       totalAppeals
@@ -200,7 +200,7 @@ module.exports = router => {
 
   router.get('/main/your-appeals', function (req, res) {
 
-    let cases = req.session.data.appeals
+    let appeals = req.session.data.appeals
       .filter(appeal => appeal.caseOfficer == 'Tony Stark')
       .map(appeal => ({
         ...appeal,
@@ -213,7 +213,7 @@ module.exports = router => {
 
     if(keywords) {
       keywords = keywords.toLowerCase()
-      cases = cases.filter(appeal => {
+      appeals = appeals.filter(appeal => {
         let reference = appeal.id
         let name = (appeal.appellant.firstName + ' ' + appeal.appellant.lastName).toLowerCase()
         let postcode = appeal.site.address.postcode.toLowerCase()
@@ -235,7 +235,7 @@ module.exports = router => {
 
     // the user has selected a status filter
     if(hasFilters) {
-      cases = cases.filter(appeal => {
+      appeals = appeals.filter(appeal => {
         let matchesStatus = true
         let matchesType = true
         let matchesProcedure = true
@@ -371,13 +371,13 @@ module.exports = router => {
       })
     }
 
-    let totalAppeals = cases.length
+    let totalAppeals = appeals.length
     let pageSize = 25
-    let pagination = new Pagination(cases, req.query.page, pageSize)
-    cases = pagination.getData()
+    let pagination = new Pagination(appeals, req.query.page, pageSize)
+    appeals = pagination.getData()
 
     res.render('main/appeals/index', {
-      cases,
+      appeals,
       selectedFilters,
       pagination,
       totalAppeals

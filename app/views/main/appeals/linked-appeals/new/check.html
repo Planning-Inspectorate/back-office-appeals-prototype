@@ -32,7 +32,7 @@
           },
           {
             key: {
-              text: "Lead appeal"
+              text: "Lead appeal reference"
             },
             value: {
               html: data.addLinkedAppeal.leadAppeal
@@ -49,6 +49,8 @@
           } if data.addLinkedAppeal.leadAppeal
         ]
       }) }}
+
+      <p>Appeal {{relationship.childAppealId}} will be the child of appeal {{relationship.leadAppealId}}.</p>
 
       <form method="post">
         {{ govukButton({

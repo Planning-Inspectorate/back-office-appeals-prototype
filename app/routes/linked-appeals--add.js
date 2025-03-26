@@ -24,39 +24,21 @@ module.exports = router => {
   router.get('/main/appeals/:appealId/linked-appeals/new/lead-appeal', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
 
+    let otherAppeal = req.session.data.appeals.find(appeal => appeal.id == req.session.data.addLinkedAppeal.reference)
+
     let radios = [{
       text: appeal.id,
-      value: appeal.id
+      value: appeal.id,
+      hint: {
+        text: appeal.type
+      }
     }, {
       text: req.session.data.addLinkedAppeal.reference,
-      value: req.session.data.addLinkedAppeal.reference
+      value: req.session.data.addLinkedAppeal.reference,
+      hint: {
+        text: otherAppeal.type
+      }
     }]
-
-    // const linkedAppeals = getLinkedAppeals(appeal.id, req.session.data.linkedAppeals)
-
-    // radios = radios.concat(linkedAppeals.map(linkedAppeal => {
-    //   return {
-    //     text: linkedAppeal.id,
-    //     value: linkedAppeal.id
-    //   }
-    // }))
-
-
-    // loop through all of them and mark the lead
-    // radios = radios.map(radio => {
-    //   if(isLeadAppeal(radio.value, req.session.data.linkedAppeals)) {
-    //     return {
-    //       text: radio.text + ' (Current)',
-    //       value: radio.value
-    //     }
-    //   }
-
-    //   return radio
-    // })
-
-    // radios.sort((a, b) => {
-    //   return b.text.includes("(Current)") - a.text.includes("(Current)");
-    // })
 
     res.render('/main/appeals/linked-appeals/new/lead-appeal', {
       appeal,

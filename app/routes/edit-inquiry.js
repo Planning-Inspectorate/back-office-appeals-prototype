@@ -6,8 +6,23 @@ module.exports = router => {
   router.get('/main/appeals/:appealId/edit-inquiry', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
 
-    let date = _.get(req, 'session.data.editInquiry.date') || DateTime.fromISO(appeal.inquiry.date).toObject();
-    let time = _.get(req, 'session.data.editInquiry.time')  || appeal.inquiry.time
+    let date = _.get(req, 'session.data.editInquiry.date') || DateTime.fromISO(appeal.inquiry.date)
+    let time
+    
+    if(_.get(req, 'session.data.editInquiry.time.hour') || _.get(req, 'session.data.editInquiry.time.minute')) {
+      time = DateTime.now()
+        .set({ 
+          hour: parseInt(_.get(req, 'session.data.editInquiry.time.hour'), 10), 
+          minute: parseInt(_.get(req, 'session.data.editInquiry.time.minute'), 10)
+        })
+        .set({ 
+          hour: parseInt(_.get(req, 'session.data.editInquiry.time.hour'), 10), 
+          minute: parseInt(_.get(req, 'session.data.editInquiry.time.minute'), 10)
+        })
+        .toISO();
+    } else {
+      time = appeal.inquiry.date
+    }
 
     res.render('/main/appeals/edit-inquiry/index', {
       appeal,
@@ -74,8 +89,28 @@ module.exports = router => {
   router.get('/main/appeals/:appealId/edit-inquiry/check', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
 
+    let date = _.get(req, 'session.data.editInquiry.date') || DateTime.fromISO(appeal.inquiry.date)
+    let time
+
+    if(_.get(req, 'session.data.editInquiry.time.hour') || _.get(req, 'session.data.editInquiry.time.minute')) {
+      time = DateTime.now()
+        .set({ 
+          hour: parseInt(_.get(req, 'session.data.editInquiry.time.hour'), 10), 
+          minute: parseInt(_.get(req, 'session.data.editInquiry.time.minute'), 10)
+        })
+        .set({ 
+          hour: parseInt(_.get(req, 'session.data.editInquiry.time.hour'), 10), 
+          minute: parseInt(_.get(req, 'session.data.editInquiry.time.minute'), 10)
+        })
+        .toISO();
+    } else {
+      time = appeal.inquiry.date
+    }
+
     res.render('/main/appeals/edit-inquiry/check', {
-      appeal
+      appeal,
+      date,
+      time
     })
   })
 
@@ -86,7 +121,9 @@ module.exports = router => {
     appeal.inquiry.date = DateTime.fromObject({
       day: req.session.data.editInquiry.date.day,
       month: req.session.data.editInquiry.date.month,
-      year: req.session.data.editInquiry.date.year
+      year: req.session.data.editInquiry.date.year,
+      hours: req.session.data.editInquiry.time.hour,
+      minutes: req.session.data.editInquiry.time.minute,
     }).toISO()
 
     req.flash('success', 'Inquiry updated')

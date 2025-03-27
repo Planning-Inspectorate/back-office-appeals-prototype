@@ -64,7 +64,9 @@ module.exports = router => {
     appeal.inquiry.date = DateTime.fromObject({
       day: req.session.data.addInquiry.date.day,
       month: req.session.data.addInquiry.date.month,
-      year: req.session.data.addInquiry.date.year
+      year: req.session.data.addInquiry.date.year,
+      hours: req.session.data.addInquiry.time.hour,
+      minutes: req.session.data.addInquiry.time.minute,
     }).toISO()
 
     // if the status is not this then it's ‘ready to start’ so leave the status as that

@@ -22,16 +22,16 @@
               text: "Date"
             },
             value: {
-              html: data.editInquiry.date | isoDateFromDateInput | govukDate
+              html: date
             },
             actions: {
               items: [
                 {
-                  href: "/main/appeals/:appealId/edit-inquiry" | replace(':appealId', appeal,id),
+                  href: "/main/appeals/:appealId/edit-inquiry" | replace(':appealId', appeal.id),
                   text: "Change",
                   visuallyHiddenText: "Date"
                 }
-              ]
+              ] 
             }
           },
           {
@@ -39,12 +39,12 @@
               text: "Time"
             },
             value: {
-              html: data.editInquiry.time
+              html: time | govukTime
             },
             actions: {
               items: [
                 {
-                  href: "/main/appeals/:appealId/edit-inquiry" | replace(':appealId', appeal,id),
+                  href: "/main/appeals/:appealId/edit-inquiry" | replace(':appealId', appeal.id),
                   text: "Change",
                   visuallyHiddenText: "Time"
                 }
@@ -61,7 +61,7 @@
             actions: {
               items: [
                 {
-                  href: "/main/appeals/:appealId/edit-inquiry/days" | replace(':appealId', appeal,id),
+                  href: "/main/appeals/:appealId/edit-inquiry/days" | replace(':appealId', appeal.id),
                   text: "Change",
                   visuallyHiddenText: "if you know the expected number of days to carry out the inquiry"
                 }
@@ -78,7 +78,7 @@
             actions: {
               items: [
                 {
-                  href: "/main/appeals/:appealId/edit-inquiry/days" | replace(':appealId', appeal,id),
+                  href: "/main/appeals/:appealId/edit-inquiry/days" | replace(':appealId', appeal.id),
                   text: "Change",
                   visuallyHiddenText: "Expected number of days to carry out the inquiry"
                 }
@@ -95,7 +95,7 @@
             actions: {
               items: [
                 {
-                  href: "/main/appeals/:appealId/edit-inquiry/has-address" | replace(':appealId', appeal,id),
+                  href: "/main/appeals/:appealId/edit-inquiry/has-address" | replace(':appealId', appeal.id),
                   text: "Change",
                   visuallyHiddenText: "if you know the inquiry address"
                 }
@@ -112,7 +112,7 @@
             actions: {
               items: [
                 {
-                  href: "/main/appeals/:appealId/edit-inquiry/address" | replace(':appealId', appeal,id),
+                  href: "/main/appeals/:appealId/edit-inquiry/address" | replace(':appealId', appeal.id),
                   text: "Change",
                   visuallyHiddenText: "Inquiry address"
                 }

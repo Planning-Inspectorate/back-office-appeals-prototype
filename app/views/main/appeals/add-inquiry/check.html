@@ -22,7 +22,7 @@
               text: "Date"
             },
             value: {
-              html: 'data.addInquiry.date'
+              html: data.addInquiry.date | isoDateFromDateInput | govukDate
             },
             actions: {
               items: [
@@ -39,7 +39,7 @@
               text: "Time"
             },
             value: {
-              html: 'data.addInquiry.time'
+              html: data.addInquiry.time | isoDateFromTimeInput | govukTime
             },
             actions: {
               items: [

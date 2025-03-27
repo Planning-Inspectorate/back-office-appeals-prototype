@@ -6,7 +6,7 @@ module.exports = router => {
   router.get('/main/appeals/:appealId/edit-hearing', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
 
-    let date = _.get(req, 'session.data.editHearing.date') || DateTime.fromISO(appeal.hearing.date)
+    let date = _.get(req, 'session.data.editHearing.date') || DateTime.fromISO(appeal.hearing.date).toObject()
     let time
 
     if(_.get(req, 'session.data.editHearing.time.hour') || _.get(req, 'session.data.editHearing.time.minute')) {
@@ -33,11 +33,6 @@ module.exports = router => {
 
 
   router.post('/main/appeals/:appealId/edit-hearing', function (req, res) {
-    req.session.data.editHearing.date = DateTime.fromObject({
-      day: req.session.data.editHearing.date.day,
-      month: req.session.data.editHearing.date.month,
-      year: req.session.data.editHearing.date.year
-    }).toISO()
     res.redirect(`/main/appeals/${req.params.appealId}/edit-hearing/has-address`)
   })
 
@@ -77,7 +72,14 @@ module.exports = router => {
 
   router.get('/main/appeals/:appealId/edit-hearing/check', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
-    let date = _.get(req, 'session.data.editHearing.date') || DateTime.fromISO(appeal.hearing.date)
+
+    let luxonDate = DateTime.fromISO(appeal.hearing.date)
+
+    let date = _.get(req, 'session.data.editHearing.date') || {
+      year: luxonDate.toFormat('yyyy'),
+      month: luxonDate.toFormat('MM'),
+      day: luxonDate.toFormat('dd')
+    }
     let time
 
     if(_.get(req, 'session.data.editHearing.time.hour') || _.get(req, 'session.data.editHearing.time.minute')) {
@@ -104,15 +106,25 @@ module.exports = router => {
 
   router.post('/main/appeals/:appealId/edit-hearing/check', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
-    appeal.hearing = req.session.data.editHearing
+    // appeal.hearing = req.session.data.editHearing
 
-    appeal.hearing.date = DateTime.fromObject({
-      day: req.session.data.editHearing.date.day,
-      month: req.session.data.editHearing.date.month,
-      year: req.session.data.editHearing.date.year,
-      hours: req.session.data.editHearing.time.hour,
-      minutes: req.session.data.editHearing.time.minute,
-    }).toISO()
+    if(_.get(req, 'session.data.editHearing.date')) {
+      appeal.hearing.date = DateTime.fromObject({
+        day: req.session.data.editHearing.date.day,
+        month: req.session.data.editHearing.date.month,
+        year: req.session.data.editHearing.date.year,
+        hours: req.session.data.editHearing.time.hour,
+        minutes: req.session.data.editHearing.time.minute
+      }).toISO()
+    }
+
+    if(_.get(req, 'session.data.editHearing.hasAddress')) {
+      appeal.hearing.hasAddress = _.get(req, 'session.data.editHearing.hasAddress')
+    }
+
+    if(_.get(req, 'session.data.editHearing.address')) {
+      appeal.hearing.address = _.get(req, 'session.data.editHearing.address')
+    }
 
     req.flash('success', 'Hearing updated')
     res.redirect(`/main/appeals/${req.params.appealId}`)

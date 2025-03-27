@@ -48,20 +48,26 @@
           ]
         }) }}
 
-        {{ govukInput({
-          id: "editInquiry[time]",
-          name: "editInquiry[time]",
-          label: {
-            text: "Time",
-            isPageHeading: true,
-            classes: 'govuk-label--m'
+        {{appTimeInput({
+          id: 'time',
+          fieldset: {
+            legend: {
+              text: "Time",
+              classes: "govuk-fieldset__legend--m"
+            }
           },
           hint: {
-            text: "For example, 9am or 2:30pm - enter 12pm for midday"
+            text: 'For example, 9:00 or 13:15'
           },
-          value: data.editInquiry.time or '10am',
-          classes: "govuk-input--width-4"
-        }) }}
+          hour: {
+            name: "editInquiry[time][hour]", 
+            value: (time | hour) or '10'
+          },
+          minute: {
+            name: "editInquiry[time][minute]", 
+            value: (time | minute) or '00'
+          }
+        })}}
 
         {{ govukButton({
           text: "Continue"

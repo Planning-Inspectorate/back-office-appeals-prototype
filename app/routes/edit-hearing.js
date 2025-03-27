@@ -7,8 +7,23 @@ module.exports = router => {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
 
     let date = _.get(req, 'session.data.editHearing.date') || DateTime.fromISO(appeal.hearing.date)
-    let time = _.get(req, 'session.data.editHearing.time')  || appeal.hearing.time
+    let time
 
+    if(_.get(req, 'session.data.editHearing.time.hour') || _.get(req, 'session.data.editHearing.time.minute')) {
+      time = DateTime.now()
+        .set({ 
+          hour: parseInt(_.get(req, 'session.data.editHearing.time.hour'), 10), 
+          minute: parseInt(_.get(req, 'session.data.editHearing.time.minute'), 10)
+        })
+        .set({ 
+          hour: parseInt(_.get(req, 'session.data.editHearing.time.hour'), 10), 
+          minute: parseInt(_.get(req, 'session.data.editHearing.time.minute'), 10)
+        })
+        .toISO();
+    } else {
+      time = appeal.hearing.date
+    }
+    
     res.render('/main/appeals/edit-hearing/index', {
       appeal,
       date,
@@ -63,7 +78,22 @@ module.exports = router => {
   router.get('/main/appeals/:appealId/edit-hearing/check', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     let date = _.get(req, 'session.data.editHearing.date') || DateTime.fromISO(appeal.hearing.date)
-    let time = _.get(req, 'session.data.editHearing.time')  || appeal.hearing.time
+    let time
+
+    if(_.get(req, 'session.data.editHearing.time.hour') || _.get(req, 'session.data.editHearing.time.minute')) {
+      time = DateTime.now()
+        .set({ 
+          hour: parseInt(_.get(req, 'session.data.editHearing.time.hour'), 10), 
+          minute: parseInt(_.get(req, 'session.data.editHearing.time.minute'), 10)
+        })
+        .set({ 
+          hour: parseInt(_.get(req, 'session.data.editHearing.time.hour'), 10), 
+          minute: parseInt(_.get(req, 'session.data.editHearing.time.minute'), 10)
+        })
+        .toISO();
+    } else {
+      time = appeal.hearing.date
+    }
 
     res.render('/main/appeals/edit-hearing/check', {
       date,
@@ -75,6 +105,14 @@ module.exports = router => {
   router.post('/main/appeals/:appealId/edit-hearing/check', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     appeal.hearing = req.session.data.editHearing
+
+    appeal.hearing.date = DateTime.fromObject({
+      day: req.session.data.editHearing.date.day,
+      month: req.session.data.editHearing.date.month,
+      year: req.session.data.editHearing.date.year,
+      hours: req.session.data.editHearing.time.hour,
+      minutes: req.session.data.editHearing.time.minute,
+    }).toISO()
 
     req.flash('success', 'Hearing updated')
     res.redirect(`/main/appeals/${req.params.appealId}`)

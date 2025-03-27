@@ -235,3 +235,24 @@ addFilter('year', (isoDateString, part) => {
 
 	return DateTime.fromISO(isoDateString).year
 })
+
+addFilter('hour', (isoDateString, part) => {
+	return DateTime.fromISO(isoDateString).hour
+})
+
+addFilter('minute', (isoDateString, part) => {
+  return DateTime.fromISO(isoDateString).minute
+})
+
+addFilter('isoDateFromTimeInput', (object) => {
+  let hour, minute
+
+  hour = Number(object?.hour)
+  minute = Number(object?.minute)
+
+  const isoDateString = DateTime.now()
+  	.set({ hour: hour, minute: minute, second: 0, millisecond: 0 })
+  	.toISO();
+
+  return isoDateString
+})

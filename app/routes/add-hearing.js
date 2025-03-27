@@ -53,7 +53,9 @@ module.exports = router => {
     appeal.hearing.date = DateTime.fromObject({
       day: req.session.data.addHearing.date.day,
       month: req.session.data.addHearing.date.month,
-      year: req.session.data.addHearing.date.year
+      year: req.session.data.addHearing.date.year,
+      hours: req.session.data.addHearing.time.hour,
+      minutes: req.session.data.addHearing.time.minute,
     }).toISO()
 
     appeal.status = 'Awaiting hearing'

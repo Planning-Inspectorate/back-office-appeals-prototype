@@ -39,7 +39,7 @@
               text: "Time"
             },
             value: {
-              html: data.addHearing.time
+              html: data.addHearing.time | isoDateFromTimeInput | govukTime
             },
             actions: {
               items: [

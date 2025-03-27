@@ -9,7 +9,7 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-l">Appeal {{appeal.id}}</span>
+      <span class="govuk-caption-l">Appeal {{appeal.id}} {% if isLeadAppeal %}(lead){% endif %}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
       {{ govukSummaryList({
         rows: [
@@ -18,24 +18,24 @@
               text: "Appeal reference"
             },
             value: {
-              html: data.addLinkedAppeal.reference
+              html: newLinkedAppeal.id + '<br>:type' | replace(':type', newLinkedAppeal.type)
             },
             actions: {
               items: [
                 {
                   href: "/main/appeals/:appealId/linked-appeals/new" | replace(':appealId', appeal.id),
                   text: "Change",
-                  visuallyHiddenText: "Reference"
+                  visuallyHiddenText: "Appeal reference"
                 }
               ]
             }
           },
           {
             key: {
-              text: "Lead appeal reference"
+              text: "Which is the lead appeal?"
             },
             value: {
-              html: data.addLinkedAppeal.leadAppeal
+              html: newLeadAppeal.id + '<br>:type' | replace(':type', newLeadAppeal.type)
             },
             actions: {
               items: [
@@ -50,7 +50,18 @@
         ]
       }) }}
 
-      <p>Appeal {{relationship.childAppealId}} will be the child of appeal {{relationship.leadAppealId}}.</p>
+      <p>
+        {{relationship.leadAppealId}} will be the lead appeal of {{relationship.childAppealId}}{%- if willOtherChildAppealsBeMoved %} and all other linked appeals
+      {%- endif -%}.
+      </p>
+
+      {# <p>{{relationship.leadAppealId}} will be the lead appeal.</p>
+
+      <p>{{relationship.childAppealId}} will be the child appeal.</p>
+
+      {% if willOtherChildAppealsBeMoved %}
+        <p>All other linked appeals will become a child of {{relationship.leadAppealId}}.</p>
+      {% endif%} #}
 
       <form method="post">
         {{ govukButton({

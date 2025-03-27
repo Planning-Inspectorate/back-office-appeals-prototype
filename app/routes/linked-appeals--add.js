@@ -5,8 +5,10 @@ module.exports = router => {
 
   router.get('/main/appeals/:appealId/linked-appeals/new', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
+    
     res.render('/main/appeals/linked-appeals/new/index', {
-      appeal
+      appeal,
+      isLeadAppeal: isLeadAppeal(appeal.id, req.session.data.linkedAppeals)
     })
   })
 
@@ -15,7 +17,7 @@ module.exports = router => {
     if(!canAppealBeLinked(appeal)) {
       res.redirect(`/main/appeals/${req.params.appealId}/linked-appeals/new/exit`)
     } else if(isLeadAppeal(req.params.appealId, req.session.data.linkedAppeals)) {
-      res.redirect(`/main/appeals/${req.params.appealId}/linked-appeals/new/check`)
+      res.redirect(`/main/appeals/${req.params.appealId}/linked-appeals/new/lead-appeal`)
     } else {
       res.redirect(`/main/appeals/${req.params.appealId}/linked-appeals/new/lead-appeal`)
     }
@@ -27,7 +29,7 @@ module.exports = router => {
     let otherAppeal = req.session.data.appeals.find(appeal => appeal.id == req.session.data.addLinkedAppeal.reference)
 
     let radios = [{
-      text: appeal.id,
+      text: appeal.id + (isLeadAppeal(appeal.id, req.session.data.linkedAppeals) ? ' (current lead)': ''),
       value: appeal.id,
       hint: {
         text: appeal.type
@@ -42,6 +44,7 @@ module.exports = router => {
 
     res.render('/main/appeals/linked-appeals/new/lead-appeal', {
       appeal,
+      isLeadAppeal: isLeadAppeal(appeal.id, req.session.data.linkedAppeals),
       radios
     })
   })
@@ -88,9 +91,24 @@ module.exports = router => {
     let thisAppealReference = appeal.id
     let relationship = getRelationship(appealReference, leadAppealReference, thisAppealReference)
     
+    let isThisAppealTheLead = isLeadAppeal(appeal.id, req.session.data.linkedAppeals)
+    let willOtherChildAppealsBeMoved = false
+    if(isThisAppealTheLead && appeal.id !== leadAppealReference) {
+      willOtherChildAppealsBeMoved = true
+    }
+
+    let thisAppeal = appeal
+    let newLinkedAppeal = req.session.data.appeals.find(appeal => appeal.id == appealReference)
+    let newLeadAppeal = req.session.data.appeals.find(appeal => appeal.id == leadAppealReference)
+
     res.render('/main/appeals/linked-appeals/new/check', {
       appeal,
-      relationship
+      relationship,
+      isLeadAppeal: isThisAppealTheLead,
+      willOtherChildAppealsBeMoved,
+      thisAppeal,
+      newLinkedAppeal,
+      newLeadAppeal
     })
   })
 
@@ -100,30 +118,6 @@ module.exports = router => {
     let appealReference = req.session.data.addLinkedAppeal.reference
     let leadAppealReference = req.session.data.addLinkedAppeal.leadAppeal
     let thisAppealReference = appeal.id
-    // if(leadAppealReference) {
-    //   // if you’re making the typed-in appeal the lead
-    //   // then the current appeal should be the child
-    //   if(leadAppealReference == appealReference) {
-    //     req.session.data.linkedAppeals.push({
-    //       id: uuidv4(),
-    //       leadAppealId: leadAppealReference,
-    //       childAppealId: appeal.id
-    //     })
-    //   } else {
-    //     // otherwise the reference is the child and the lead is the lead
-    //     req.session.data.linkedAppeals.push({
-    //       id: uuidv4(),
-    //       leadAppealId: leadAppealReference,
-    //       childAppealId: appealReference
-    //     })
-    //   }
-    // } else {
-    //   req.session.data.linkedAppeals.push({
-    //     id: uuidv4(),
-    //     leadAppealId: appeal.id,
-    //     childAppealId: appealReference
-    //   })
-    // }
 
     let relationship = getRelationship(appealReference, leadAppealReference, thisAppealReference)
     req.session.data.linkedAppeals.push({
@@ -141,7 +135,8 @@ module.exports = router => {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
 
     res.render('/main/appeals/linked-appeals/new/exit', {
-      appeal
+      appeal,
+      isLeadAppeal: isLeadAppeal(appeal.id, req.session.data.linkedAppeals)
     })
   })
 

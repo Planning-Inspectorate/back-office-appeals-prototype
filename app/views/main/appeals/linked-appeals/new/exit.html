@@ -1,6 +1,6 @@
 {% extends "layouts/bo.html" %}
 
-{% set title = "You cannot link this appeal" %}
+{% set title = "You cannot link this appeal :appealId" | replace(':appealId', data.addLinkedAppeal.reference) %}
 {% set pageName = title %}
 
 {% set back = true %}
@@ -9,6 +9,7 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal {{appeal.id}}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
       
       <p>This is because you can only link an appeal when the status is:</p>

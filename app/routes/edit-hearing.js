@@ -106,7 +106,6 @@ module.exports = router => {
 
   router.post('/main/appeals/:appealId/edit-hearing/check', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
-    // appeal.hearing = req.session.data.editHearing
 
     if(_.get(req, 'session.data.editHearing.date')) {
       appeal.hearing.date = DateTime.fromObject({

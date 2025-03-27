@@ -22,7 +22,7 @@
               text: "Date"
             },
             value: {
-              html: date
+              html: date | isoDateFromDateInput | govukDate
             },
             actions: {
               items: [
@@ -56,7 +56,7 @@
               text: "Do you know the expected number of days to carry out the inquiry?"
             },
             value: {
-              html: data.editInquiry.hasDays
+              html: hasDays
             },
             actions: {
               items: [
@@ -84,7 +84,7 @@
                 }
               ]
             }
-          } if data.editInquiry.hasDays == 'Yes',
+          } if hasDays == 'Yes',
           {
             key: {
               text: "Do you know the address of where the inquiry will take place?"

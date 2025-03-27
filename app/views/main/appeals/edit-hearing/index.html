@@ -47,64 +47,28 @@
           ]
         }) }}
 
-
-        {% call govukFieldset({
-          legend: {
-            text: "Time",
-            classes: "govuk-fieldset__legend--m"
-          },
-          attributes: {
-            'aria-describedby': 'timeHint'
-          }
-        }) %}
-        
-        <div class="govuk-hint" id="timeHint">
-          For example, 9:00 or 13:15
-        </div>
-
-        <div class="govuk-date-input">
-          <div class="govuk-date-input__item govuk-!-margin-right-2">
-            {{ govukInput({
-              id: "editHearing[time][hour]",
-              name: "editHearing[time][hour]",
-              label: {
-                text: "Hour"
-              },
-              classes: 'govuk-input--width-2',
-              value: (time | hour) or '10'
-            }) }}
-          </div>
-          <div class="govuk-date-input__item govuk-!-font-size-19 govuk-!-padding-0 govuk-!-margin-right-2">
-          :
-          </div>
-          <div class="govuk-date-input__item">
-            {{ govukInput({
-              id: "editHearing[time][minute]",
-              name: "editHearing[time][minute]",
-              label: {
-                text: "Minute"
-              },
-              classes: 'govuk-input--width-2',
-              value: (time | minute) or '00'
-            }) }}
-          </div>
-        </div>        
-        {% endcall %}
-
-        {# {{ govukInput({
-          id: "editHearing[time]",
-          name: "editHearing[time]",
-          label: {
-            text: "Time",
-            isPageHeading: true,
-            classes: 'govuk-label--m'
+        {{appTimeInput({
+          id: 'time',
+          fieldset: {
+            legend: {
+              text: "Time",
+              classes: "govuk-fieldset__legend--m"
+            }
           },
           hint: {
-            text: "For example, 9am or 2:30pm - enter 12pm for midday"
+            text: 'For example, 9:00 or 13:15'
           },
-          value: data.editHearing.time or '10am',
-          classes: "govuk-input--width-4"
-        }) }} #}
+          hour: {
+            name: "editHearing[time][hour]", 
+            value: (time | hour) or '10'
+          },
+          minute: {
+            name: "editHearing[time][minute]", 
+            value: (time | minute) or '00'
+          }
+        })}}
+
+        
 
         {{ govukButton({
           text: "Continue"

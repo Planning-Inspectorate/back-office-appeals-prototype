@@ -31,19 +31,19 @@
             {
               name: "editHearing[date][day]",
               label: "Day",
-              value: date.day,
+              value: date | day,
               classes: "govuk-input--width-2"
             },
             {
               name: "editHearing[date][month]",
               label: "Month",
-              value: date.month,
+              value: date | month,
               classes: "govuk-input--width-2"
             },
             {
               name: "editHearing[date][year]",
               label: "Year",
-              value: date.year,
+              value: date | year,
               classes: "govuk-input--width-4"
             }
           ]
@@ -61,12 +61,12 @@
             text: 'For example, 9:00 or 13:15'
           },
           hour: {
-            name: "editHearing[time][hour]", 
-            value: (time | hour) or '10'
+            name: "editHearing[date][hour]", 
+            value: (date | hour) or '10'
           },
           minute: {
-            name: "editHearing[time][minute]", 
-            value: (time | minute) or '00'
+            name: "editHearing[date][minute]", 
+            value: (date | minute) or '00'
           }
         })}}
 

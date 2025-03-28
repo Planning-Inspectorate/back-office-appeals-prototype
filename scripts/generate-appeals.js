@@ -327,8 +327,7 @@ const generateAppeal = (params = {}) => {
 
     if(appeal.status != 'Hearing ready to set up') {
       appeal.hearing = {
-        date: DateTime.now().toISO(),
-        time: '10am',
+        date: DateTime.now().set({ hour: 10, minute: 0 }).toISO(),
         hasAddress: 'No'
       }
     }
@@ -347,8 +346,7 @@ const generateAppeal = (params = {}) => {
     }
 
     appeal.inquiry = {
-      date: DateTime.now().toISO(),
-      time: '10am',
+      date: DateTime.now().set({ hour: 10, minute: 0 }).toISO(),
       hasDays: 'No',
       hasAddress: 'No'
     }

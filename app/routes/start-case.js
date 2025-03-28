@@ -24,21 +24,6 @@ module.exports = router => {
     }
   })
 
-  // router.get('/main/appeals/:appealId/start-case/has-inquiry', function (req, res) {
-  //   let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
-  //   res.render('/main/appeals/start-case/has-inquiry', {
-  //     appeal
-  //   })
-  // })
-
-  // router.post('/main/appeals/:appealId/start-case/has-inquiry', function (req, res) {
-  //   if(req.session.data.startCase.hasInquiry == 'Yes') {
-  //     res.redirect(`/main/appeals/${req.params.appealId}/start-case/inquiry-date`)
-  //   } else {
-  //     res.redirect(`/main/appeals/${req.params.appealId}/start-case/timetable-due-dates`)
-  //   }
-  // })
-
   router.get('/main/appeals/:appealId/start-case/inquiry-date', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     res.render('/main/appeals/start-case/inquiry-date', {
@@ -135,9 +120,10 @@ router.get('/main/appeals/:appealId/start-case/has-inquiry-address', function (r
       appeal.inquiry.date = DateTime.fromObject({
         day: data.inquiryDate.day,
         month: data.inquiryDate.month,
-        year: data.inquiryDate.year
+        year: data.inquiryDate.year,
+        hour: data.inquiryTime.hour,
+        minute: data.inquiryTime.minute
       }).toISO()
-      appeal.inquiry.time = data.inquiryTime
       appeal.inquiry.hasDays = data.hasInquiryDays
       appeal.inquiry.days = data.inquiryDays
       appeal.inquiry.hasAddress = data.hasInquiryAddress

@@ -44,23 +44,6 @@
           rows: [
             {
               key: {
-                text: "Do you want to set up the inquiry?"
-              },
-              value: {
-                text: data.startCase.hasInquiry
-              },
-              actions: {
-                items: [
-                  {
-                    href: "/main/appeals/:appealId/start-case/has-inquiry" | replace(':appealId', appeal.id),
-                    text: "Change",
-                    visuallyHiddenText: "if you want to set up the inquiry"
-                  }
-                ]
-              }
-            } if data.startCase.hasInquiry,
-            {
-              key: {
                 text: "Inquiry date"
               },
               value: {
@@ -81,7 +64,7 @@
                 text: "Inquiry time"
               },
               value: {
-                html: data.startCase.inquiryTime
+                html: data.startCase.inquiryTime | isoDateFromTimeInput | govukTime
               },
               actions: {
                 items: [
@@ -173,7 +156,7 @@
                 text: "LPA questionnaire due"
               },
               value: {
-                text: data.startCase.LPAQuestionnaireDueDate | isoDateFromDateInput | govukDate if data.startCase.LPAQuestionnaireDueDate.day else 'Not added'
+                text: data.startCase.LPAQuestionnaireDueDate | isoDateFromDateInput | govukDate
               },
               actions: {
                 items: [
@@ -190,7 +173,7 @@
                 text: "Statements due"
               },
               value: {
-                text: data.startCase.statementsDueDate | isoDateFromDateInput | govukDate if data.startCase.statementsDueDate.day else 'Not added'
+                text: data.startCase.statementsDueDate | isoDateFromDateInput | govukDate
               },
               actions: {
                 items: [
@@ -207,7 +190,7 @@
                 text: "Interested party comments due"
               },
               value: {
-                text: data.startCase.interestedPartyCommentsDueDate | isoDateFromDateInput | govukDate if data.startCase.interestedPartyCommentsDueDate.day else 'Not added'
+                text: data.startCase.interestedPartyCommentsDueDate | isoDateFromDateInput | govukDate
               },
               actions: {
                 items: [
@@ -224,7 +207,7 @@
                 text: "Statement of common ground due"
               },
               value: {
-                text: data.startCase.statementOfCommonGroundDueDate | isoDateFromDateInput | govukDate if data.startCase.statementOfCommonGroundDueDate.day else 'Not added'
+                text: data.startCase.statementOfCommonGroundDueDate | isoDateFromDateInput | govukDate
               },
               actions: {
                 items: [
@@ -241,7 +224,7 @@
                 text: "Proof of evidence and witnesses due"
               },
               value: {
-                text: data.startCase.proofOfEvidenceAndWitnessesDueDate | isoDateFromDateInput | govukDate if data.startCase.proofOfEvidenceAndWitnessesDueDate.day else 'Not added'
+                text: data.startCase.proofOfEvidenceAndWitnessesDueDate | isoDateFromDateInput | govukDate
               },
               actions: {
                 items: [
@@ -258,7 +241,7 @@
                 text: "Planning obligation due"
               },
               value: {
-                text: data.startCase.planningObligationDueDate | isoDateFromDateInput | govukDate if data.startCase.planningObligationDueDate.day else 'Not added'
+                text: data.startCase.planningObligationDueDate | isoDateFromDateInput | govukDate
               },
               actions: {
                 items: [
@@ -269,7 +252,7 @@
                   }
                 ]
               }
-            }
+            } if data.startCase.planningObligationDueDate
           ]
         }) }}
       {% endif %}

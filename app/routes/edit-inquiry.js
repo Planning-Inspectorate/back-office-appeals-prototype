@@ -6,28 +6,22 @@ module.exports = router => {
   router.get('/main/appeals/:appealId/edit-inquiry', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
 
-    let date = _.get(req, 'session.data.editInquiry.date') || DateTime.fromISO(appeal.inquiry.date).toObject()
-    let time
-    
-    if(_.get(req, 'session.data.editInquiry.time.hour') || _.get(req, 'session.data.editInquiry.time.minute')) {
-      time = DateTime.now()
-        .set({ 
-          hour: parseInt(_.get(req, 'session.data.editInquiry.time.hour'), 10), 
-          minute: parseInt(_.get(req, 'session.data.editInquiry.time.minute'), 10)
-        })
-        .set({ 
-          hour: parseInt(_.get(req, 'session.data.editInquiry.time.hour'), 10), 
-          minute: parseInt(_.get(req, 'session.data.editInquiry.time.minute'), 10)
-        })
-        .toISO();
+    let date
+    if(_.get(req, 'session.data.editInquiry.date')) {
+      date = DateTime.fromObject({
+        day: req.session.data.editInquiry.date.day,
+        month: req.session.data.editInquiry.date.month,
+        year: req.session.data.editInquiry.date.year,
+        hours: req.session.data.editInquiry.date.hour,
+        minutes: req.session.data.editInquiry.date.minute
+      }).toISO()
     } else {
-      time = appeal.inquiry.date
+      date = appeal.inquiry.date
     }
 
     res.render('/main/appeals/edit-inquiry/index', {
       appeal,
-      date,
-      time
+      date
     })
   })
 
@@ -89,28 +83,17 @@ module.exports = router => {
   router.get('/main/appeals/:appealId/edit-inquiry/check', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
 
-    let luxonDate = DateTime.fromISO(appeal.inquiry.date)
-
-    let date = _.get(req, 'session.data.editInquiry.date') || {
-      year: luxonDate.toFormat('yyyy'),
-      month: luxonDate.toFormat('MM'),
-      day: luxonDate.toFormat('dd')
-    }
-    let time
-
-    if(_.get(req, 'session.data.editInquiry.time.hour') || _.get(req, 'session.data.editInquiry.time.minute')) {
-      time = DateTime.now()
-        .set({ 
-          hour: parseInt(_.get(req, 'session.data.editInquiry.time.hour'), 10), 
-          minute: parseInt(_.get(req, 'session.data.editInquiry.time.minute'), 10)
-        })
-        .set({ 
-          hour: parseInt(_.get(req, 'session.data.editInquiry.time.hour'), 10), 
-          minute: parseInt(_.get(req, 'session.data.editInquiry.time.minute'), 10)
-        })
-        .toISO();
+    let date
+    if(_.get(req, 'session.data.editInquiry.date')) {
+      date = DateTime.fromObject({
+        day: req.session.data.editInquiry.date.day,
+        month: req.session.data.editInquiry.date.month,
+        year: req.session.data.editInquiry.date.year,
+        hours: req.session.data.editInquiry.date.hour,
+        minutes: req.session.data.editInquiry.date.minute
+      }).toISO()
     } else {
-      time = appeal.inquiry.date
+      date = appeal.inquiry.date
     }
 
     let hasDays = _.get(req, 'session.data.editInquiry.hasDays') || appeal.inquiry.hasDays
@@ -119,7 +102,6 @@ module.exports = router => {
     res.render('/main/appeals/edit-inquiry/check', {
       appeal,
       date,
-      time,
       hasDays,
       days
     })
@@ -133,8 +115,8 @@ module.exports = router => {
         day: req.session.data.editInquiry.date.day,
         month: req.session.data.editInquiry.date.month,
         year: req.session.data.editInquiry.date.year,
-        hours: req.session.data.editInquiry.time.hour,
-        minutes: req.session.data.editInquiry.time.minute
+        hours: req.session.data.editInquiry.date.hour,
+        minutes: req.session.data.editInquiry.date.minute
       }).toISO()
     }
 

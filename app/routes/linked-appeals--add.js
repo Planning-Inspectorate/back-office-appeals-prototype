@@ -1,5 +1,6 @@
 const { v4: uuidv4 } = require('uuid')
-const { isLeadAppeal, canAppealBeLinked } = require('../helpers/linked-appeals')
+const { isLeadAppeal, canAppealBeLinked, getLinkedAppeals } = require('../helpers/linked-appeals')
+const _ = require('lodash')
 
 module.exports = router => {
 
@@ -84,19 +85,24 @@ module.exports = router => {
     }
   }
 
+  function checkIfLeadAppealIsChanging(thisAppealReference, leadAppealReference, linkedAppeals) {
+    return isLeadAppeal(thisAppealReference, linkedAppeals) && thisAppealReference !== leadAppealReference
+  }
+
   router.get('/main/appeals/:appealId/linked-appeals/new/check', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
+    let linkedAppeals = req.session.data.linkedAppeals
+
+    // References
+    let thisAppealReference = appeal.id
     let appealReference = req.session.data.addLinkedAppeal.reference
     let leadAppealReference = req.session.data.addLinkedAppeal.leadAppeal
-    let thisAppealReference = appeal.id
-    let relationship = getRelationship(appealReference, leadAppealReference, thisAppealReference)
-    
-    let isThisAppealTheLead = isLeadAppeal(appeal.id, req.session.data.linkedAppeals)
-    let willOtherChildAppealsBeMoved = false
-    if(isThisAppealTheLead && appeal.id !== leadAppealReference) {
-      willOtherChildAppealsBeMoved = true
-    }
 
+    let relationship = getRelationship(appealReference, leadAppealReference, thisAppealReference)
+    let isThisAppealTheLead = isLeadAppeal(thisAppealReference, linkedAppeals)
+    let isLeadAppealChanging = checkIfLeadAppealIsChanging(thisAppealReference, leadAppealReference, linkedAppeals)
+
+    // Appeals
     let thisAppeal = appeal
     let newLinkedAppeal = req.session.data.appeals.find(appeal => appeal.id == appealReference)
     let newLeadAppeal = req.session.data.appeals.find(appeal => appeal.id == leadAppealReference)
@@ -105,7 +111,7 @@ module.exports = router => {
       appeal,
       relationship,
       isLeadAppeal: isThisAppealTheLead,
-      willOtherChildAppealsBeMoved,
+      isLeadAppealChanging,
       thisAppeal,
       newLinkedAppeal,
       newLeadAppeal
@@ -115,11 +121,28 @@ module.exports = router => {
   router.post('/main/appeals/:appealId/linked-appeals/new/check', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
 
+    // references
+    let thisAppealReference = appeal.id
     let appealReference = req.session.data.addLinkedAppeal.reference
     let leadAppealReference = req.session.data.addLinkedAppeal.leadAppeal
-    let thisAppealReference = appeal.id
 
     let relationship = getRelationship(appealReference, leadAppealReference, thisAppealReference)
+  
+    let isLeadAppealChanging = checkIfLeadAppealIsChanging(thisAppealReference, leadAppealReference, req.session.data.linkedAppeals)
+    if(isLeadAppealChanging) {
+
+      // Update other child appeals
+      let linkedAppealsToUpdate = getLinkedAppeals(thisAppealReference, req.session.data.linkedAppeals)
+      linkedAppealsToUpdate.forEach((linkedAppealToUpdate) => {
+        req.session.data.linkedAppeals.find(linkedAppeal => linkedAppeal.childAppealId == linkedAppealToUpdate.id)
+          .leadAppealId = relationship.leadAppealId
+      })
+
+      // Remove current lead appeal
+      _.remove(req.session.data.linkedAppeals, linkedAppeal => linkedAppeal.leadAppealId === thisAppealReference)
+    }
+
+    // Add linked appeal
     req.session.data.linkedAppeals.push({
       id: uuidv4(),
       leadAppealId: relationship.leadAppealId,

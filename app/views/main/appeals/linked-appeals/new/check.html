@@ -51,7 +51,7 @@
       }) }}
 
       <p>
-        {{relationship.leadAppealId}} will be the lead appeal of {{relationship.childAppealId}}{%- if willOtherChildAppealsBeMoved %} and all other linked appeals
+        {{relationship.leadAppealId}} will be the lead appeal of {{relationship.childAppealId}}{%- if isLeadAppealChanging %} and all other linked appeals
       {%- endif -%}.
       </p>
 

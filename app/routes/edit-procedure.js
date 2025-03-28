@@ -199,9 +199,10 @@ module.exports = router => {
       appeal.inquiry.date = DateTime.fromObject({
         day: data.inquiryDate.day,
         month: data.inquiryDate.month,
-        year: data.inquiryDate.year
+        year: data.inquiryDate.year,
+        hour: data.inquiryDate.hour,
+        minute: data.inquiryDate.minute
       }).toISO()
-      appeal.inquiry.time = data.inquiryTime
       appeal.inquiry.hasDays = data.hasInquiryDays
       appeal.inquiry.days = data.inquiryDays
       appeal.inquiry.hasAddress = data.hasInquiryAddress

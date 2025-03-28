@@ -61,23 +61,6 @@
           rows: [
             {
               key: {
-                text: "Do you want to set up the inquiry?"
-              },
-              value: {
-                text: data.editProcedure.hasInquiry
-              },
-              actions: {
-                items: [
-                  {
-                    href: "/main/appeals/:appealId/edit-procedure/has-inquiry" | replace(':appealId', appeal.id),
-                    text: "Change",
-                    visuallyHiddenText: "if you want to set up the inquiry"
-                  }
-                ]
-              }
-            } if data.editProcedure.hasInquiry,
-            {
-              key: {
                 text: "Inquiry date"
               },
               value: {
@@ -98,7 +81,7 @@
                 text: "Inquiry time"
               },
               value: {
-                html: data.editProcedure.inquiryTime
+                html: data.editProcedure.inquiryDate | isoDateFromTimeInput | govukTime
               },
               actions: {
                 items: [
@@ -109,7 +92,7 @@
                   }
                 ]
               }
-            } if data.editProcedure.inquiryTime,
+            } if data.editProcedure.inquiryDate,
             {
               key: {
                 text: "Do you know the expected number of days to carry out the inquiry?"

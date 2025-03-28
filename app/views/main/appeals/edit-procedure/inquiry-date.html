@@ -30,38 +30,46 @@
             {
               name: "editProcedure[inquiryDate][day]",
               label: "Day",
-              value: data.editProcedure.inquiryDate.day or appeal.inquiry.date | day,
+              value: data.editProcedure.inquiryDate.day,
               classes: "govuk-input--width-2"
             },
             {
               name: "editProcedure[inquiryDate][month]",
               label: "Month",
-              value: data.editProcedure.inquiryDate.month or appeal.inquiry.date | month,
+              value: data.editProcedure.inquiryDate.month,
               classes: "govuk-input--width-2"
             },
             {
               name: "editProcedure[inquiryDate][year]",
               label: "Year",
-              value: data.editProcedure.inquiryDate.year or appeal.inquiry.date | year,
+              value: data.editProcedure.inquiryDate.year,
               classes: "govuk-input--width-4"
             }
           ]
         }) }}
 
-        {{ govukInput({
-          id: "editProcedure[inquiryTime]",
-          name: "editProcedure[inquiryTime]",
-          label: {
-            text: "Time",
-            isPageHeading: true,
-            classes: 'govuk-label--m'
+        {{appTimeInput({
+          id: 'time',
+          fieldset: {
+            legend: {
+              text: "Time",
+              classes: "govuk-fieldset__legend--m"
+            }
           },
           hint: {
-            text: "For example, 9am or 2:30pm - enter 12pm for midday"
+            text: 'For example, 9:00 or 13:15'
           },
-          value: data.editProcedure.inquiryTime or '10am',
-          classes: "govuk-input--width-4"
-        }) }}
+          hour: {
+            name: "editProcedure[inquiryDate][hour]", 
+            value: data.editProcedure.inquiryDate.hour or '10'
+          },
+          minute: {
+            name: "editProcedure[inquiryDate][minute]", 
+            value: data.editProcedure.inquiryDate.minute or '00'
+          }
+        })}}
+
+       
 
         {{ govukButton({
           text: "Continue"

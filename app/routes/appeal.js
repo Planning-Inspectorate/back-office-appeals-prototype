@@ -7,6 +7,8 @@ module.exports = router => {
 
   router.get('/main/appeals/:appealId', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
+    appeal.isLeadAppeal = isLeadAppeal(appeal.id, req.session.data.linkedAppeals)
+    appeal.isChildAppeal = isChildAppeal(appeal.id, req.session.data.linkedAppeals)
 
     let timetable = generateTimetable(appeal)
     let actions = getActions(appeal)
@@ -24,8 +26,6 @@ module.exports = router => {
       timetable,
       actions,
       isCaseStarted,
-      isLeadAppeal: isLeadAppeal(appeal.id, req.session.data.linkedAppeals),
-      isChildAppeal: isChildAppeal(appeal.id, req.session.data.linkedAppeals),
       linkedAppeals,
       rule6Statements,
       rule6ProofOfEvidenceAndWitnesses,

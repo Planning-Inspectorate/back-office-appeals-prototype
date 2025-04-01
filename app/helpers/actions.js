@@ -1,6 +1,13 @@
 const getActions = (appeal) => {
   let actions = [];
 
+  // If it's a child appeal, the only possible action is "Validate appeal" when status is "Ready to validate"
+  if (appeal.isChildAppeal) {
+    return appeal.status === "Ready to validate" 
+      ? [{ text: "Validate appeal", href: "#" }] 
+      : [];
+  }
+
   if (appeal.status === "Ready to assign case officer") {
     actions.push({ text: "Assign case officer", href: "#" })
   } else if (appeal.status === "Ready to validate") {
@@ -30,6 +37,7 @@ const getActions = (appeal) => {
   } else if (appeal.status === "Decision ready to issue") {
     actions.push({ text: "Issue decision", href: "#" })
   }
+
 
 
   return actions

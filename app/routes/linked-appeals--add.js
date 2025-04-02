@@ -8,8 +8,7 @@ module.exports = router => {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     
     res.render('/main/appeals/linked-appeals/new/index', {
-      appeal,
-      isLeadAppeal: isLeadAppeal(appeal.id, req.session.data.linkedAppeals)
+      appeal
     })
   })
 
@@ -45,7 +44,6 @@ module.exports = router => {
 
     res.render('/main/appeals/linked-appeals/new/lead-appeal', {
       appeal,
-      isLeadAppeal: isLeadAppeal(appeal.id, req.session.data.linkedAppeals),
       radios
     })
   })
@@ -110,7 +108,7 @@ module.exports = router => {
     res.render('/main/appeals/linked-appeals/new/check', {
       appeal,
       relationship,
-      isLeadAppeal: isThisAppealTheLead,
+      isLeadAppealx: isThisAppealTheLead,
       isLeadAppealChanging,
       thisAppeal,
       newLinkedAppeal,

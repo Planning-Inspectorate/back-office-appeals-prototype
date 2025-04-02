@@ -13,7 +13,7 @@
       {% endfor %}
     {% endset %}
 
-    {% if not isLeadAppeal %}
+    {% if not appeal.isLeadAppeal %}
       {% set linkedAppealsActions = [
         {
           href: "/main/appeals/:appealId/linked-appeals" | replace(':appealId', appeal.id),

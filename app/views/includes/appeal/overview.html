@@ -19,7 +19,7 @@
           href: "/main/appeals/:appealId/linked-appeals" | replace(':appealId', appeal.id),
           text: "Change",
           visuallyHiddenText: "linked appeals"
-        } if showAddLinkAppeal
+        } 
       ] %}
     {% else %}
       {% set linkedAppealsActions = [

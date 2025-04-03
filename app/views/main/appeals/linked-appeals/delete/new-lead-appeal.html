@@ -1,0 +1,35 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Which is the new lead appeal?" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+        <span class="govuk-caption-l">Appeal {{appeal.id}} - remove linked appeal</span>
+        {{ govukRadios({
+          name: "removeLinkedAppeal[newLeadAppealId]",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          value: data.removeLinkedAppeal.newLeadAppealId,
+          items: radios
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

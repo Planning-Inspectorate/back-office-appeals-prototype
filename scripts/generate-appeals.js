@@ -482,6 +482,14 @@ const generateAppeals = () => {
   }))
 
   appeals.push(generateAppeal({
+    id: '00000182',
+    type: 'Full planning appeal',
+    procedure: 'Written representations',
+    status: 'Ready to start',
+    caseOfficer: 'Tony Stark'
+  }))
+
+  appeals.push(generateAppeal({
     id: '00000011',
     type: 'Full planning appeal',
     procedure: 'Hearing',

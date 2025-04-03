@@ -22,7 +22,7 @@ const generateLinkedAppeals = () => {
 
   linkedAppeals.push(generateLinkedAppeal({
     leadAppealId: '00000009',
-    childAppealId: '00000002'
+    childAppealId: '00000182'
   }))
 
   return linkedAppeals

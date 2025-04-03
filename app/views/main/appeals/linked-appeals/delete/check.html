@@ -1,0 +1,44 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Check details and remove linked appeal :linkedAppealId" | replace(':linkedAppealId', linkedAppealId) %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal {{appeal.id}}</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Which is the new lead appeal?"
+            },
+            value: {
+              html: newLeadAppeal.id + '<br>:type' | replace(':type', newLeadAppeal.type)
+            },
+            actions: {
+              items: [
+                {
+                  href: "/main/appeals/:appealId/linked-appeals/:linkedAppealId/delete/new-lead-appeal" | replace(':appealId', appeal.id) | replace(':linkedAppealId', linkedAppealId),
+                  text: "Change",
+                  visuallyHiddenText: "which is the new lead appeal"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <form method="post">
+        {{ govukButton({
+          text: "Remove linked appeal"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

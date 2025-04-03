@@ -11,34 +11,31 @@
       <span class="govuk-caption-l">Appeal {{appeal.id}} {% if appeal.isLeadAppeal %}(lead){% endif %}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
 
+      <p><a href="#">Change lead appeal</a></p>
+
       {% if linkedAppeals.length %}
-        <table class="govuk-table">
-          {# <thead class="govuk-table__head">
-            <tr class="govuk-table__row">
-              <th scope="col" class="govuk-table__header">Appeal</th>
-              <th scope="col" class="govuk-table__header">Action</th>
-            </tr>
-          </thead> #}
-          <tbody class="govuk-table__body">
-            {% for item in linkedAppeals %}
-              <tr class="govuk-table__row">
-                <th scope="row" class="govuk-table__header">
-                  <a class="govuk-link--no-visited-state" href="/main/appeals/{{item.id}}">
-                    {{item.id}}
-                  </a>
-                  {% if item.relationship == 'Lead' %}
-                    <span class="govuk-!-font-weight-regular">({{item.relationship | lower}})</span>
-                  {% endif %}
-                </th>
-                <td class="govuk-table__cell govuk-table__cell--numeric">
-                  <a class="govuk-link--no-visited-state" href="/main/appeals/{{appeal.id}}/linked-appeals/{{item.id}}/delete">
-                    Remove
-                  </a>
-                </td>
-              </tr>
-            {% endfor %}
-          </tbody>
-        </table>
+        <div class="app-list">
+          {% for item in linkedAppeals %}
+            <div class="app-list__item">
+              <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                <a class="govuk-link--no-visited-state" href="/main/appeals/{{item.id}}">
+                  {{item.id}}
+                </a>
+                {% if item.isLeadAppeal %}
+                  <span class="govuk-!-font-weight-regular">(lead)</span>
+                {% endif %}
+              </h2>
+              <p class="govuk-!-margin-0">{{item.type}}</p>            
+
+              <div class="app-list__actions">
+                <p class="govuk-!-margin-0"><a class="govuk-link--no-visited-state" href="/main/appeals/{{appeal.id}}/linked-appeals/{{item.id}}/delete">
+                  Remove
+                </a>
+                </p>
+              </div>
+            </div>
+          {% endfor %}
+          
       {% else %}
         <p>There are no linked appeals.</p>
       {% endif %}

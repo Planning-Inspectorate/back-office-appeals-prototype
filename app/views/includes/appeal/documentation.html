@@ -70,7 +70,7 @@
             }
           ]
         }
-      },
+      } if not appeal.isChildAppeal,
       {
         key: {
           text: "Appellant final comments"
@@ -87,7 +87,7 @@
             }
           ]
         }
-      } if appeal.procedure == 'Written representations',
+      } if appeal.procedure == 'Written representations' and not appeal.isChildAppeal,
       {
         key: {
           text: "LPA final comments"
@@ -104,7 +104,7 @@
             }
           ]
         }
-      } if appeal.procedure == 'Written representations',
+      } if appeal.procedure == 'Written representations' and not appeal.isChildAppeal,
       {
         key: {
           text: "Environmental services team review"
@@ -143,7 +143,7 @@
             }
           ]
         }
-      } if appeal.procedure == 'Inquiry',
+      } if appeal.procedure == 'Inquiry' and not appeal.isChildAppeal,
       {
         key: {
           text: "Rule 6 proof of evidence and witnesses"
@@ -160,7 +160,7 @@
             }
           ]
         }
-      } if appeal.procedure == 'Inquiry',
+      } if appeal.procedure == 'Inquiry' and not appeal.isChildAppeal,
       {
         key: {
           text: "Decision"
@@ -177,196 +177,7 @@
             }
           ]
         }
-      }
+      } if not appeal.isChildAppeal
     ]
   }) }}
-
-
-
-  {{ govukTable({
-    firstCellIsHeader: true,
-    head: [
-      {
-        text: "Documentation"
-      },
-      {
-        text: "Status"
-      },
-      {
-        text: "Received"
-      },
-      {
-        text: "Action"
-      }
-    ],
-    rows: [
-      [
-        {
-          html: "Appeal"
-        },
-        {
-          html: "Valid"
-        },
-        {
-          html: 10 | daysAgo
-        },
-        {
-          html: '<a href="#">View</a>'
-          ,
-        visuallyHiddenText: 'appeal'
-        }
-      ],
-      [
-        {
-          html: "LPA questionnaire"
-        },
-        {
-          html: "Complete"
-        },
-        {
-          html: 5 | daysAgo
-        },
-        {
-          html: '<a href="#">View</a>',
-          visuallyHiddenText: 'LPA questionnaire'
-        }
-      ],
-      [
-        {
-          html: "LPA statement"
-        },
-        {
-          html: "Accepted"
-        },
-        {
-          html: 5 | daysAgo
-        },
-        {
-          html: '<a href="#">View</a>',
-          visuallyHiddenText: 'LPA statement'
-        }
-      ],
-      [
-        {
-          html: "Interested party comments"
-        },
-        {
-          html: "Shared"
-        },
-        {
-          html: 5 | daysAgo
-        },
-        {
-          html: '<a href="#">View</a>',
-          visuallyHiddenText: 'interested party comments'
-        }
-      ],
-      [
-      {
-        html: "Appellant final comments"
-      },
-      {
-        html: "Accepted"
-      },
-      {
-        html: 5 | daysAgo
-      },
-      {
-        html: '<a href="#">View</a>',
-        visuallyHiddenText: 'appellant final comments'
-      }
-    ],
-    [
-    {
-      html: "LPA final comments"
-    },
-    {
-      html: "Accepted"
-    },
-    {
-      html: 5 | daysAgo
-    },
-    {
-      html: '<a href="#">View</a>',
-      visuallyHiddenText: 'LPA final comments'
-    }
-  ],
-
-  [
-    {
-      html: "Environmental services team review"
-    },
-    {
-      html: "2 documents"
-    },
-    {
-      html: 5 | daysAgo
-    },
-    {
-      html: '<a href="#">Add</a> | <a href="#">Change</a>',
-      visuallyHiddenText: 'environmental services team review'
-    }
-  ],
-
-  [
-    {
-      html: "Decision"
-    },
-    {
-      html: "Awaiting decision"
-    },
-    {
-      html: "Not applicable"
-    },
-    {
-      html: '<a href="#">Issue</a>',
-      visuallyHiddenText: 'decision'
-    }
-  ]
-      ]
-
-  }) if 1==2 }}
 </div>
-
-<!--[
-        {
-          html: "Rule 6 statements"
-        },
-        {
-          html: "Received"
-        },
-        {
-          html: "Not applicable"
-        },
-        {
-          html: '<a href="/main/appeals/:appealId/rule-6-statements">View</a>' | replace(':appealId', appeal.id)
-        }
-      ],
-      [
-        {
-          html: "Appellant proof of evidence and witnesses"
-        },
-        {
-          html: "Received"
-        },
-        {
-          html: 3 | daysAgo
-        },
-        {
-          html: '<a href="#">View</a>'
-        }
-      ],
-      [
-        {
-          html: "LPA proof of evidence and witnesses"
-        },
-        {
-          html: "Received"
-        },
-        {
-          html: 1 | daysAgo
-        },
-        {
-          html: '<a href="#">View</a>'
-        }
-      ]-->

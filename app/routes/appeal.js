@@ -1,7 +1,7 @@
 
 const { generateTimetable } = require('../helpers/timetable')
 const { getActions } = require('../helpers/actions')
-const { getLinkedAppeals, isLeadAppeal, isChildAppeal, canAppealBeLinked } = require('../helpers/linked-appeals')
+const { getLinkedAppeals, canAppealBeLinked } = require('../helpers/linked-appeals')
 
 module.exports = router => {
 
@@ -24,8 +24,6 @@ module.exports = router => {
       timetable,
       actions,
       isCaseStarted,
-      isLeadAppeal: isLeadAppeal(appeal.id, req.session.data.linkedAppeals),
-      isChildAppeal: isChildAppeal(appeal.id, req.session.data.linkedAppeals),
       linkedAppeals,
       rule6Statements,
       rule6ProofOfEvidenceAndWitnesses,

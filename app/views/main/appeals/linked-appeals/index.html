@@ -8,7 +8,7 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-l">Appeal {{appeal.id}}</span>
+      <span class="govuk-caption-l">Appeal {{appeal.id}} {% if appeal.isLeadAppeal %}(lead){% endif %}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
 
       {% if linkedAppeals.length %}
@@ -27,7 +27,7 @@
                     {{item.id}}
                   </a>
                   {% if item.relationship == 'Lead' %}
-                    <span class="govuk-!-font-weight-regular">({{item.relationship}})</span>
+                    <span class="govuk-!-font-weight-regular">({{item.relationship | lower}})</span>
                   {% endif %}
                 </th>
                 <td class="govuk-table__cell govuk-table__cell--numeric">

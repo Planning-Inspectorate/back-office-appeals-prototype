@@ -7,12 +7,13 @@ const appeals = require('./data/appeals.json')
 
 const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
+const { isLeadAppeal, isChildAppeal } = require('../app/helpers/linked-appeals')
 
 const flash = require('connect-flash')
 router.use(flash())
 
 router.all('*', (req, res, next) => {
-	res.locals.referrer = req.query.referrer
+  res.locals.referrer = req.query.referrer
   res.locals.path = req.path
   res.locals.protocol = req.protocol
   res.locals.hostname = req.hostname
@@ -20,6 +21,13 @@ router.all('*', (req, res, next) => {
   res.locals.flash = req.flash('success')[0]
   next()
 })
+
+router.use('/main/appeals/:appealId*', (req, res, next) => {
+  let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
+  appeal.isLeadAppeal = isLeadAppeal(appeal.id, req.session.data.linkedAppeals)
+  appeal.isChildAppeal = isChildAppeal(appeal.id, req.session.data.linkedAppeals)
+  next()
+});
 
 router.get('/clear-data', function (req, res) {
 	delete req.session.data

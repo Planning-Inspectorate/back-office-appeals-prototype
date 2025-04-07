@@ -1,4 +1,4 @@
-{% macro metaData(site, lpa) %}
+{% macro metaData(caseofficer, site, lpa) %}
 {# Tweak the summary list to be smaller #}
 
   <style>
@@ -14,10 +14,15 @@
 
     <div class="govuk-summary-list__row">
       <dt class="govuk-summary-list__key govuk-!-width-one-third">
-        Case Officer
+        Case officer
       </dt>
       <dd class="govuk-summary-list__value">
-        Sammy Douglas
+        {{ caseofficer }}
+      </dd>
+      <dd class="govuk-summary-list__actions">
+        <a href='#'>
+          Change
+        </a>
       </dd>
     </div>
     <div class="govuk-summary-list__row">
@@ -26,6 +31,11 @@
       </dt>
       <dd class="govuk-summary-list__value">
         {{ site }}
+      </dd>
+      <dd class="govuk-summary-list__actions">
+        <a href='#'>
+          Change
+        </a>
       </dd>
     </div>
     <div class="govuk-summary-list__row">
@@ -36,6 +46,11 @@
         <p class="govuk-body">
           {{ lpa }}
         </p>
+      </dd>
+      <dd class="govuk-summary-list__actions">
+        <a href='#'>
+          Change
+        </a>
       </dd>
     </div>
 

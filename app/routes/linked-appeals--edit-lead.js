@@ -1,6 +1,5 @@
 const _ = require('lodash')
-const { isLeadAppeal, isChildAppeal, getLinkedAppeals } = require('../helpers/linked-appeals')
-const { removeData } = require('jquery')
+const { isLeadAppeal } = require('../helpers/linked-appeals')
 const { v4: uuidv4 } = require('uuid')
 
 module.exports = router => {
@@ -19,14 +18,14 @@ module.exports = router => {
       leadAppeal = req.session.data.appeals.find(appeal => appeal.id == leadAppealId)
     }
 
-    // get all the linked appeals for the child
-    let radios = getLinkedAppeals(leadAppeal.id, allLinkedAppeals)
+    // get all the linked appeals
+    let radios = allLinkedAppeals.filter(linkedAppeal => linkedAppeal.leadAppealId == leadAppeal.id)
       .map(linkedAppeal => {
         return {
-          text: linkedAppeal.id,
-          value: linkedAppeal.id,
+          text: linkedAppeal.childAppealId,
+          value: linkedAppeal.childAppealId,
           hint: {
-            text: req.session.data.appeals.find(appeal => appeal.id == linkedAppeal.id).type
+            text: req.session.data.appeals.find(appeal => appeal.id == linkedAppeal.childAppealId).type
           }
         }
       })

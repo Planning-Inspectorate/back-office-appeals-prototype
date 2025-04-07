@@ -3,9 +3,10 @@ module.exports = router => {
 
   router.get('/main/appeals/:appealId/linked-appeals', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
-    // appeal.isLeadAppeal = isLeadAppeal(appeal.id, req.session.data.linkedAppeals)
 
     let linkedAppeals = getLinkedAppeals(appeal.id, req.session.data.linkedAppeals)
+      // exclude ‘this appeal’
+      .filter(linkedAppeal => linkedAppeal.id != appeal.id)
       .map(item => {
         let appeal = req.session.data.appeals.find(appeal => appeal.id == item.id)
         appeal.isLeadAppeal = isLeadAppeal(appeal.id, req.session.data.linkedAppeals)

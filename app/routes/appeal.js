@@ -1,7 +1,7 @@
 
 const { generateTimetable } = require('../helpers/timetable')
 const { getActions } = require('../helpers/actions')
-const { getLinkedAppeals, canAppealBeLinked } = require('../helpers/linked-appeals')
+const { getLinkedAppeals, canAppealBeLinked, isLeadAppeal } = require('../helpers/linked-appeals')
 
 module.exports = router => {
 
@@ -13,6 +13,13 @@ module.exports = router => {
     const isCaseStarted = appeal.status !== 'Ready to assign case officer' && appeal.status !== 'Ready to validate' && appeal.status !== 'Ready to start'
 
     const linkedAppeals = getLinkedAppeals(appeal.id, req.session.data.linkedAppeals)
+      // exclude ‘this appeal’
+      .filter(linkedAppeal => linkedAppeal.id != appeal.id)
+      .map(item => {
+        let appeal = req.session.data.appeals.find(appeal => appeal.id == item.id)
+        appeal.isLeadAppeal = isLeadAppeal(appeal.id, req.session.data.linkedAppeals)
+        return appeal
+      })
 
     const rule6Statements = appeal.rule6Parties?.map(rule6Party => rule6Party.statement)
     const rule6ProofOfEvidenceAndWitnesses = appeal.rule6Parties?.map(rule6Party => rule6Party.rule6ProofsOfEvidenceAndWitnesses)

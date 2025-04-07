@@ -1,6 +1,5 @@
 const _ = require('lodash')
 const { isLeadAppeal, isChildAppeal, getLinkedAppeals } = require('../helpers/linked-appeals')
-const { removeData } = require('jquery')
 
 module.exports = router => {
 
@@ -39,11 +38,10 @@ module.exports = router => {
 
   router.get('/main/appeals/:appealId/linked-appeals/:linkedAppealId/delete/new-lead-appeal', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
-
-    // get the child of the lead so the user can choose which one they want to be the new lead
-    let linkedAppeals = getLinkedAppeals(req.params.linkedAppealId, req.session.data.linkedAppeals)
-      
-    let radios = linkedAppeals.map(linkedAppeal => {
+  
+    // this works because I know linkedAppealId is the lead appeal
+    let radios = getLinkedAppeals(req.params.linkedAppealId, req.session.data.linkedAppeals)
+      .map(linkedAppeal => {
       return {
         text: linkedAppeal.id,
         value: linkedAppeal.id,

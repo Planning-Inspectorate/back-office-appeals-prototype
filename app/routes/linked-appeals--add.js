@@ -127,14 +127,15 @@ module.exports = router => {
     let relationship = getRelationship(appealReference, leadAppealReference, thisAppealReference)
   
     let isLeadAppealChanging = checkIfLeadAppealIsChanging(thisAppealReference, leadAppealReference, req.session.data.linkedAppeals)
+
     if(isLeadAppealChanging) {
 
       // Update other child appeals
-      let linkedAppealsToUpdate = getLinkedAppeals(thisAppealReference, req.session.data.linkedAppeals)
-      linkedAppealsToUpdate.forEach((linkedAppealToUpdate) => {
-        req.session.data.linkedAppeals.find(linkedAppeal => linkedAppeal.childAppealId == linkedAppealToUpdate.id)
-          .leadAppealId = relationship.leadAppealId
-      })
+      getLinkedAppeals(thisAppealReference, req.session.data.linkedAppeals)
+        .forEach((linkedAppealToUpdate) => {
+          req.session.data.linkedAppeals.find(linkedAppeal => linkedAppeal.childAppealId == linkedAppealToUpdate.id)
+            .leadAppealId = relationship.leadAppealId
+        })
 
       // Remove current lead appeal
       _.remove(req.session.data.linkedAppeals, linkedAppeal => linkedAppeal.leadAppealId === thisAppealReference)

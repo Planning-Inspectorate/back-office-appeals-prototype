@@ -91,7 +91,7 @@ module.exports = router => {
     })
 
    req.flash('success', 'Linked appeal removed')
-   res.redirect(`/main/appeals/${req.params.appealId}`)
+   res.redirect(`/main/appeals/${req.params.appealId}/linked-appeals`)
 
 
   })

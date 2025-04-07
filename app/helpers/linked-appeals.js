@@ -1,3 +1,4 @@
+
 function getLinkedAppeals(appealId, linkedAppeals) {
   const result = [];
 

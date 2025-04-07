@@ -1,0 +1,96 @@
+const _ = require('lodash')
+const { isLeadAppeal, isChildAppeal, getLinkedAppeals } = require('../helpers/linked-appeals')
+const { removeData } = require('jquery')
+const { v4: uuidv4 } = require('uuid')
+
+module.exports = router => {
+
+  router.get('/main/appeals/:appealId/linked-appeals/edit-lead', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
+
+    let allLinkedAppeals = req.session.data.linkedAppeals
+
+    let leadAppeal
+    if(isLeadAppeal(appeal.id, allLinkedAppeals)) {
+      leadAppeal = appeal
+    } else {
+      // if it's not the lead, then get it’s lead appeal id
+      let leadAppealId = allLinkedAppeals.find(linkedAppeal => linkedAppeal.childAppealId == appeal.id).leadAppealId
+      leadAppeal = req.session.data.appeals.find(appeal => appeal.id == leadAppealId)
+    }
+
+    // get all the linked appeals for the child
+    let radios = getLinkedAppeals(leadAppeal.id, allLinkedAppeals)
+      .map(linkedAppeal => {
+        return {
+          text: linkedAppeal.id,
+          value: linkedAppeal.id,
+          hint: {
+            text: req.session.data.appeals.find(appeal => appeal.id == linkedAppeal.id).type
+          }
+        }
+      })
+
+    res.render('/main/appeals/linked-appeals/edit-lead/index', {
+      appeal,
+      radios
+    })  
+  
+  })
+
+  router.post('/main/appeals/:appealId/linked-appeals/edit-lead', function (req, res) {
+    res.redirect(`/main/appeals/${req.params.appealId}/linked-appeals/edit-lead/check`)
+  })
+
+  router.get('/main/appeals/:appealId/linked-appeals/edit-lead/check', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
+    let newLeadAppeal = req.session.data.appeals.find(appeal => appeal.id == req.session.data.editLeadAppeal.newLeadAppealId)
+
+    res.render('/main/appeals/linked-appeals/edit-lead/check', {
+      appeal,
+      newLeadAppeal
+    })  
+  })
+
+  router.post('/main/appeals/:appealId/linked-appeals/edit-lead/check', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
+    let allLinkedAppeals = req.session.data.linkedAppeals
+    let newLeadAppealId = req.session.data.editLeadAppeal.newLeadAppealId
+   
+    let leadAppeal
+    if(isLeadAppeal(appeal.id, allLinkedAppeals)) {
+      leadAppeal = appeal
+    } else {
+      // if it's not the lead, then get it’s lead appeal id
+      let leadAppealId = allLinkedAppeals.find(linkedAppeal => linkedAppeal.childAppealId == appeal.id).leadAppealId
+      leadAppeal = req.session.data.appeals.find(appeal => appeal.id == leadAppealId)
+    }
+
+    // update all linked appeals to have the new lead
+    allLinkedAppeals
+      .filter(linkedAppeal => linkedAppeal.leadAppealId == leadAppeal.id)
+      .forEach(linkedAppeal => {
+        linkedAppeal.leadAppealId = newLeadAppealId
+      })
+
+    // because of the above there will be some linked appeals
+    // where the lead and child are the same
+    // so remove those ones
+    _.remove(allLinkedAppeals, linkedAppeal => {
+      return linkedAppeal.leadAppealId == linkedAppeal.childAppealId
+    })
+
+    // Finally add the new linked appeal
+    // where the child = current lead appeal
+    // and the lead = new lead appeal
+    allLinkedAppeals.push({
+      id: uuidv4(),
+      leadAppealId: newLeadAppealId,
+      childAppealId: leadAppeal.id
+    })
+
+   req.flash('success', 'Lead appeal updated')
+   res.redirect(`/main/appeals/${req.params.appealId}`)
+  })
+
+}

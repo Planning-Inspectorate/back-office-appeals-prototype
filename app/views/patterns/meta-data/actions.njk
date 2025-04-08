@@ -1,0 +1,67 @@
+{% macro metaData(caseofficer, site, lpa) %}
+{# Tweak the summary list to be smaller #}
+
+  <style>
+    .appeal-details .govuk-summary-list__key,
+    .appeal-details .govuk-summary-list__value,
+    .appeal-details .govuk-summary-list__actions {
+      padding-top: .2rem;
+      padding-bottom: 0;
+    }
+  </style>
+
+  <dl class="govuk-summary-list appeal-details govuk-summary-list--no-border govuk-!-margin-top-6">
+
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key govuk-!-width-one-third">
+        Case officer
+      </dt>
+      <dd class="govuk-summary-list__value">
+        {{ caseofficer }}
+      </dd>
+      <dd class="govuk-summary-list__actions">
+        <a href='#'>
+          Change
+        </a>
+      </dd>
+    </div>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key govuk-!-width-one-third">
+        Appeal site
+      </dt>
+      <dd class="govuk-summary-list__value">
+        {{ site }}
+      </dd>
+      <dd class="govuk-summary-list__actions">
+        <a href='#'>
+          Change
+        </a>
+      </dd>
+    </div>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Local planning authority
+      </dt>
+      <dd class="govuk-summary-list__value">
+        <p class="govuk-body">
+          {{ lpa }}
+        </p>
+      </dd>
+      <dd class="govuk-summary-list__actions">
+        <a href='#'>
+          Change
+        </a>
+      </dd>
+    </div>
+
+    <!-- <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Application number
+      </dt>
+      <dd class="govuk-summary-list__value">
+        23/04125/FUL
+      </dd>
+    </div> -->
+  </dl>
+
+{% endmacro %}

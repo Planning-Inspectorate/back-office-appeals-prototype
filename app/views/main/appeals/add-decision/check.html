@@ -1,0 +1,101 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Check details and set up hearing" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  {% set address %}
+    {{appAddress({ address: data.addHearing.address })}}
+  {% endset %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal {{appeal.id}}</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Date"
+            },
+            value: {
+              html: data.addHearing.date | isoDateFromDateInput | govukDate
+            },
+            actions: {
+              items: [
+                {
+                  href: "/main/appeals/:appealId/add-hearing" | replace(':appealId', appeal.id),
+                  text: "Change",
+                  visuallyHiddenText: "Date"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Time"
+            },
+            value: {
+              html: data.addHearing.time | isoDateFromTimeInput | govukTime
+            },
+            actions: {
+              items: [
+                {
+                  href: "/main/appeals/:appealId/add-hearing" | replace(':appealId', appeal.id),
+                  text: "Change",
+                  visuallyHiddenText: "Time"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Do you know the address of where the hearing will take place?"
+            },
+            value: {
+              html: data.addHearing.hasAddress
+            },
+            actions: {
+              items: [
+                {
+                  href: "/main/appeals/:appealId/add-hearing/has-address" | replace(':appealId', appeal.id),
+                  text: "Change",
+                  visuallyHiddenText: "if you know the hearing address"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Address"
+            },
+            value: {
+              html: address
+            },
+            actions: {
+              items: [
+                {
+                  href: "/main/appeals/:appealId/add-hearing/address" | replace(':appealId', appeal.id),
+                  text: "Change",
+                  visuallyHiddenText: "Address"
+                }
+              ]
+            }
+          } if data.addHearing.hasAddress == 'Yes'
+        ]
+      }) }}
+
+      <p>We’ll send an email to the appellant and LPA to tell them about the hearing.</p>
+
+      <form method="post">
+        {{ govukButton({
+          text: "Set up hearing"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

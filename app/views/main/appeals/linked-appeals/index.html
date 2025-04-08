@@ -12,7 +12,9 @@
       <h1 class="govuk-heading-l">{{title}}</h1>
 
       <div class="govuk-button-group">
-        <a class="govuk-link" href="/main/appeals/{{appeal.id}}/linked-appeals/new">Add linked appeal</a>
+        {% if appeal.isLeadAppeal %}
+          <a class="govuk-link" href="/main/appeals/{{appeal.id}}/linked-appeals/new">Add linked appeal</a>
+        {% endif %}
         <a class="govuk-link" href="/main/appeals/{{appeal.id}}/linked-appeals/edit-lead">Change lead appeal</a>
       </div>
 

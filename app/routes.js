@@ -24,8 +24,10 @@ router.all('*', (req, res, next) => {
 
 router.use('/main/appeals/:appealId*', (req, res, next) => {
   let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
-  appeal.isLeadAppeal = isLeadAppeal(appeal.id, req.session.data.linkedAppeals)
-  appeal.isChildAppeal = isChildAppeal(appeal.id, req.session.data.linkedAppeals)
+  if(appeal) {
+	appeal.isLeadAppeal = isLeadAppeal(appeal.id, req.session.data.linkedAppeals)
+  	appeal.isChildAppeal = isChildAppeal(appeal.id, req.session.data.linkedAppeals)	
+  }
   next()
 });
 
@@ -89,6 +91,8 @@ require('./routes/rule-6-proof-of-evidence-and-witnesses--details')(router)
 require('./routes/rule-6-proof-of-evidence-and-witnesses--accept')(router)
 require('./routes/rule-6-proof-of-evidence-and-witnesses--reject')(router)
 require('./routes/edit-timetable-due-dates')(router)
+
+require('./routes/decision--add')(router)
 
 // Timetable
 // require('./routes/add-statement-of-common-ground-due-date')(router)

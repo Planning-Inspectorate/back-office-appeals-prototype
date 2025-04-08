@@ -6,7 +6,10 @@ module.exports = router => {
   router.get('/main/appeals/:appealId/linked-appeals/:linkedAppealId/delete', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     let linkedAppeal = req.session.data.appeals.find(appeal => appeal.id == req.params.linkedAppealId)
-    if(isLeadAppeal(linkedAppeal.id, req.session.data.linkedAppeals)) {
+
+    // if it's the lead appeal and there's more than one linked appeal for the lead
+    // then we ask users to choose the new lead appeal
+    if(isLeadAppeal(linkedAppeal.id, req.session.data.linkedAppeals) && getLinkedAppeals(linkedAppeal.id, req.session.data.linkedAppeals).length > 1) {
       res.redirect(`/main/appeals/${req.params.appealId}/linked-appeals/${req.params.linkedAppealId}/delete/new-lead-appeal`)
     } else {
       res.render('/main/appeals/linked-appeals/delete/index', {

@@ -11,7 +11,10 @@
       <span class="govuk-caption-l">Appeal {{appeal.id}} {% if appeal.isLeadAppeal %}(lead){% endif %}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
 
-      <p><a href="/main/appeals/{{appeal.id}}/linked-appeals/edit-lead">Change lead appeal</a></p>
+      <div class="govuk-button-group">
+        <a class="govuk-link" href="/main/appeals/{{appeal.id}}/linked-appeals/new">Add linked appeal</a>
+        <a class="govuk-link" href="/main/appeals/{{appeal.id}}/linked-appeals/edit-lead">Change lead appeal</a>
+      </div>
 
       {% if linkedAppeals.length %}
         <div class="app-list">

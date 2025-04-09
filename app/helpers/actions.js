@@ -27,9 +27,17 @@ const getActions = (appeal) => {
   } else if (appeal.status === "Site visit ready to set up") {
     actions.push({ text: "Set up site visit", href: "#" })
   } else if (appeal.status === "Hearing ready to set up") {
-    actions.push({ text: "Set up hearing", href: `/main/appeals/${appeal.id}/add-hearing` })
+    if(appeal?.hearing?.hasAddress == 'No') {
+      actions.push({ text: "Add hearing address", href: `/main/appeals/${appeal.id}/edit-hearing/address` })
+    } else {
+      actions.push({ text: "Set up hearing", href: `/main/appeals/${appeal.id}/add-hearing` })
+    }
   } else if (appeal.status === "Inquiry ready to set up") {
-    actions.push({ text: "Set up inquiry", href: `/main/appeals/${appeal.id}/add-inquiry` })
+    if(appeal?.inquiry?.hasAddress == 'No') {
+      actions.push({ text: "Add inquiry address", href: `/main/appeals/${appeal.id}/edit-inquiry/address` })
+    } else {
+      actions.push({ text: "Set up inquiry", href: `/main/appeals/${appeal.id}/add-inquiry` })
+    }
   } else if (appeal.status === "Proof of evidence and witnesses ready to review") {
     actions.push({ text: "Review proof of evidence and witnesses", href: "#" })
   } else if (appeal.status === "Proof of evidence and witnesses ready to share") {

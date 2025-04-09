@@ -71,7 +71,10 @@ module.exports = router => {
 
     // if the status is not this then it's ‘ready to start’ so leave the status as that
     if(appeal.status == 'Inquiry ready to set up') {
-      appeal.status = 'Awaiting proof of evidence and witnesses'
+
+      if(appeal.inquiry.hasAddress == 'Yes') {
+        appeal.status = 'Awaiting proof of evidence and witnesses'
+      }
     }
 
     delete req.session.data.addInquiry

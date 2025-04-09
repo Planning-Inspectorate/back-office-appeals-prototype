@@ -58,7 +58,9 @@ module.exports = router => {
       minutes: req.session.data.addHearing.time.minute,
     }).toISO()
 
-    appeal.status = 'Awaiting hearing'
+    if(appeal.hearing.hasAddress == 'Yes') {
+      appeal.status = 'Awaiting hearing'
+    }
     delete req.session.data.addHearing
     req.flash('success', 'Hearing set up')
     res.redirect(`/main/appeals/${req.params.appealId}`)

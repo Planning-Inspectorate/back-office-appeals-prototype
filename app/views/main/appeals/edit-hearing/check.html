@@ -56,7 +56,7 @@
               text: "Do you know the address of where the hearing will take place?"
             },
             value: {
-              html: data.editHearing.hasAddress
+              html: 'Yes' if data.editHearing.address else 'No'
             },
             actions: {
               items: [
@@ -84,7 +84,7 @@
                 }
               ]
             }
-          } if data.editHearing.hasAddress == 'Yes'
+          } if data.editHearing.address
         ]
       }) }}
 

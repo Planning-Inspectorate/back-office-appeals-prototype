@@ -1,3 +1,6 @@
+const { getLinkedAppeals } = require('../helpers/linked-appeals')
+const _ = require('lodash')
+
 module.exports = router => {
 
   router.get('/main/appeals/:appealId/add-decision', function (req, res) {
@@ -9,22 +12,35 @@ module.exports = router => {
   })
 
   router.post('/main/appeals/:appealId/add-decision', function (req, res) {
-    // get first child appeal and redirect there
-    res.redirect(`/main/appeals/${req.params.appealId}/add-decision/${appealId}`)
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
+    
+    if(appeal.isLeadAppeal) {
+      let firstChildAppealId = getLinkedAppeals(appeal.id, req.session.data.linkedAppeals)[0].id
+      res.redirect(`/main/appeals/${req.params.appealId}/add-decision/${firstChildAppealId}`)
+    } else {
+      res.redirect(`/main/appeals/${req.params.appealId}/add-decision/upload`)
+    }
   })
 
   router.get('/main/appeals/:appealId/add-decision/:childAppealId', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
-    res.render('/main/appeals/add-decision/index', {
+    res.render('/main/appeals/add-decision/child-decision', {
       appeal,
       appealId: req.params.childAppealId
     })
   })
 
-  router.post('/main/appeals/:appealId/add-decision', function (req, res) {
-    // get next child appeal and redirect there
-    // or go to the check answers page if there is none
-    res.redirect(`/main/appeals/${req.params.appealId}/add-decision/${appealId}`)
+  router.post('/main/appeals/:appealId/add-decision/:childAppealId', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
+    let linkedAppeals = getLinkedAppeals(appeal.id, req.session.data.linkedAppeals)
+    var childAppealIndex = _.findIndex(linkedAppeals, {id: req.params.childAppealId})
+    let nextChildAppeal = _.get(linkedAppeals, childAppealIndex + 1)
+
+    if(nextChildAppeal) {
+      res.redirect(`/main/appeals/${req.params.appealId}/add-decision/${nextChildAppeal.id}`)
+    } else {
+      res.redirect(`/main/appeals/${req.params.appealId}/add-decision/upload`)
+    }
   })
 
   router.get('/main/appeals/:appealId/add-decision/check', function (req, res) {

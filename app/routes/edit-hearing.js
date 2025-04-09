@@ -104,7 +104,12 @@ module.exports = router => {
     }
 
     if(_.get(req, 'session.data.editHearing.address')) {
+      appeal.hearing.hasAddress = 'Yes'
       appeal.hearing.address = _.get(req, 'session.data.editHearing.address')
+    }
+
+    if(appeal.hearing.hasAddress == 'Yes') {
+      appeal.status = 'Awaiting hearing'
     }
 
     req.flash('success', 'Hearing updated')

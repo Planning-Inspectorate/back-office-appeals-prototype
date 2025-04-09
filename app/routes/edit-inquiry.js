@@ -133,7 +133,12 @@ module.exports = router => {
     }
 
     if(_.get(req, 'session.data.editInquiry.address')) {
+      appeal.inquiry.hasAddress = 'Yes'
       appeal.inquiry.address = _.get(req, 'session.data.editInquiry.address')
+    }
+
+    if(appeal.inquiry.hasAddress == 'Yes') {
+      appeal.status = 'Awaiting proof of evidence and witnesses'
     }
 
     req.flash('success', 'Inquiry updated')

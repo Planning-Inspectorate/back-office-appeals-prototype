@@ -1,67 +1,110 @@
 <div class="app-panel">
         <h2 class="govuk-heading-l">Site</h2>
 
-        <dl class="govuk-summary-list">
-          {% if appeal.procedure != 'Hearing' and appeal.procedure != 'Inquiry' and not appeal.isChildAppeal %}
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Site visit
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {% if data['empty'] %}
-                  Not set up
-                {% else %}
-                  Unaccompanied
-                {% endif %}
-              </dd>
-              <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="/appeals-service/appeal-details/441/site-visit/set-visit-type">
-                  {% if data['empty'] %}
-                    Set up
-                  {% else %}
-                    Change
-                  {% endif %}
-                  <span class="govuk-visually-hidden">site visit</span>
-                </a>
-              </dd>
-            </div>
-          {% endif %}
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Does the appeal affect a neighbour’s land or property?
-            </dt>
-            <dd class="govuk-summary-list__value">
-              <p>Yes</p>
 
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="/appeals-service/appeal-details/441/change-appeal-details/neighbouring-site-is-affected">
-                Change
-                <span class="govuk-visually-hidden">does the appeal affect a neighbour’s land or property?</span>
-              </a>
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Interested party and neighbour addresses
-            </dt>
-            <dd class="govuk-summary-list__value">
-              <p>Yes</p>
-              <ul class="govuk-list govuk-list--bullet">
-                <li>172 York Road<br>
-                  Bristol<br>
-                  BS3 4AL</li>
-                <li>170, York Road<br>
-                  Bristol<br>
-                  BS3 4AL</li>
-              </ul>
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="manage-neighbouring-sites.html">
-                Change
-                <span class="govuk-visually-hidden">interested party and neighbour addresses</span>
-              </a>
-            </dd>
-          </div>
-        </dl>
+        {% set addresses %}
+        <p>Yes</p>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>172 York Road<br>
+                Bristol<br>
+                BS3 4AL</li>
+              <li>170, York Road<br>
+                Bristol<br>
+                BS3 4AL</li>
+            </ul>
+        {% endset %}
+
+
+
+         {{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          text: "Visit type"
+        },
+        value: {
+          text: "Unaccompanied"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Change",
+              visuallyHiddenText: "Visit type"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Date"
+        },
+        value: {
+          text: "19 December 2025"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Change",
+              visuallyHiddenText: "Date"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Start time"
+        },
+        value: {
+          text: "10am"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Change",
+              visuallyHiddenText: "Start time"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "End time"
+        },
+        value: {
+          text: "11:30am"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Change",
+              visuallyHiddenText: "End time"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Interested party and neighbour addresses"
+        },
+        value: {
+          html: addresses
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Change",
+              visuallyHiddenText: "End time"
+            }
+          ]
+        }
+      }
+    ]
+  }) }}
+
+
       </div>

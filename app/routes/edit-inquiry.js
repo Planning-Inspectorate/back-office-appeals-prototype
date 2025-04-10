@@ -145,13 +145,19 @@ module.exports = router => {
       appeal.inquiry.hasAddress = _.get(req, 'session.data.editInquiry.hasAddress')
     }
 
+    if(_.get(req, 'session.data.editInquiry.hasAddress') == 'No') {
+      delete appeal.inquiry.address
+    }
+
     if(_.get(req, 'session.data.editInquiry.address')) {
       appeal.inquiry.hasAddress = 'Yes'
       appeal.inquiry.address = _.get(req, 'session.data.editInquiry.address')
     }
 
     if(appeal.inquiry.hasDays == 'Yes' && appeal.inquiry.hasAddress == 'Yes') {
-      appeal.status = 'Awaiting proof of evidence and witnesses'
+      appeal.status = 'Awaiting inquiry'
+    } else {
+      appeal.status = 'Inquiry ready to set up'
     }
 
     // reset mini session

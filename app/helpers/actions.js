@@ -36,8 +36,8 @@ const getActions = (appeal) => {
 
     if(appeal.inquiry) {
       if(appeal.inquiry.hasDays == 'No' && appeal.inquiry.hasAddress == 'No') {
-        actions.push({ text: "Finish setting up the inquiry", href: `/main/appeals/${appeal.id}/edit-inquiry/days` })
-      } else if(appeal.inquiry.hasDays == 'No' || appeal.inquiry.hasAddress == 'No') {
+        actions.push({ text: "Finish setting up the inquiry", href: `/main/appeals/${appeal.id}/edit-inquiry/has-days` })
+      } else {
         if(appeal.inquiry.hasDays == 'No') {
           actions.push({ text: "Add expected number of days to carry out the inquiry", href: `/main/appeals/${appeal.id}/edit-inquiry/days` })
         } else {

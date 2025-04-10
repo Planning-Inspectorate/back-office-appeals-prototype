@@ -276,10 +276,10 @@ const generateAppeal = (params = {}) => {
     case 'Hearing ready to set up':
     case 'Awaiting hearing':
     case 'Inquiry ready to set up':
+    case 'Awaiting inquiry':
     case 'Awaiting proof of evidence and witnesses':
     case 'Proof of evidence and witnesses ready to review':
     case 'Proof of evidence and witnesses ready to share':
-    case 'Awaiting inquiry':
     case 'Decision ready to issue':
     case 'Decision issued':
       appeal.lpaStatement = {
@@ -347,8 +347,14 @@ const generateAppeal = (params = {}) => {
 
     appeal.inquiry = {
       date: DateTime.now().set({ hour: 10, minute: 0 }).toISO(),
-      hasDays: 'No',
-      hasAddress: 'No'
+      hasDays: 'Yes',
+      days: 10,
+      hasAddress: 'Yes',
+      address: {
+        line1: '100 Ocean Avenue',
+        town: 'London',
+        postcode: 'W3 1EE'
+      }
     }
   }
 

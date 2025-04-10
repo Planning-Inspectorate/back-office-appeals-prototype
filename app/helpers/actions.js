@@ -33,8 +33,17 @@ const getActions = (appeal) => {
       actions.push({ text: "Set up hearing", href: `/main/appeals/${appeal.id}/add-hearing` })
     }
   } else if (appeal.status === "Inquiry ready to set up") {
-    if(appeal?.inquiry?.hasAddress == 'No') {
-      actions.push({ text: "Add inquiry address", href: `/main/appeals/${appeal.id}/edit-inquiry/address` })
+
+    if(appeal.inquiry) {
+      if(appeal.inquiry.hasDays == 'No' && appeal.inquiry.hasAddress == 'No') {
+        actions.push({ text: "Finish setting up the inquiry", href: `/main/appeals/${appeal.id}/edit-inquiry/days` })
+      } else if(appeal.inquiry.hasDays == 'No' || appeal.inquiry.hasAddress == 'No') {
+        if(appeal.inquiry.hasDays == 'No') {
+          actions.push({ text: "Add expected number of days to carry out the inquiry", href: `/main/appeals/${appeal.id}/edit-inquiry/days` })
+        } else {
+          actions.push({ text: "Add inquiry address", href: `/main/appeals/${appeal.id}/edit-inquiry/address` })
+        }
+      }
     } else {
       actions.push({ text: "Set up inquiry", href: `/main/appeals/${appeal.id}/add-inquiry` })
     }

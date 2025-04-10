@@ -7,8 +7,8 @@
 
 {% block content %}
 
-  {% set address %}
-    {{appAddress({ address: data.editInquiry.address })}}
+  {% set addressHtml %}
+    {{appAddress({ address: inquiryAddress })}}
   {% endset %}
 
   <div class="govuk-grid-row">
@@ -90,7 +90,7 @@
               text: "Do you know the address of where the inquiry will take place?"
             },
             value: {
-              html: 'Yes' if data.editHearing.address else 'No'
+              html: hasAddress
             },
             actions: {
               items: [
@@ -107,7 +107,7 @@
               text: "Address"
             },
             value: {
-              html: address
+              html: addressHtml
             },
             actions: {
               items: [
@@ -118,7 +118,7 @@
                 }
               ]
             }
-          } if data.editInquiry.address
+          } if hasAddress == 'Yes'
         ]
       }) }}
 

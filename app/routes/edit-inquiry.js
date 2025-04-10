@@ -99,11 +99,19 @@ module.exports = router => {
     let hasDays = _.get(req, 'session.data.editInquiry.hasDays') || appeal.inquiry.hasDays
     let days = _.get(req, 'session.data.editInquiry.days') || appeal.inquiry.days
 
+    let hasAddress = _.get(req, 'session.data.editInquiry.hasAddress') || appeal.inquiry.hasAddress
+    let address = _.get(req, 'session.data.editInquiry.address') || appeal.inquiry.address
+    if(_.get(req, 'session.data.editInquiry.address')) {
+      _.set(req, 'session.data.editInquiry.hasAddress', 'Yes')
+    }
+
     res.render('/main/appeals/edit-inquiry/check', {
       appeal,
       date,
       hasDays,
-      days
+      days,
+      hasAddress,
+      inquiryAddress: address // bug in Nunjucks
     })
   })
 
@@ -125,6 +133,7 @@ module.exports = router => {
     }
 
     if(_.get(req, 'session.data.editInquiry.days')) {
+      appeal.inquiry.hasDays = 'Yes'
       appeal.inquiry.days = _.get(req, 'session.data.editInquiry.days')
     }
 
@@ -137,9 +146,12 @@ module.exports = router => {
       appeal.inquiry.address = _.get(req, 'session.data.editInquiry.address')
     }
 
-    if(appeal.inquiry.hasAddress == 'Yes') {
+    if(appeal.inquiry.hasDays == 'Yes' && appeal.inquiry.hasAddress == 'Yes') {
       appeal.status = 'Awaiting proof of evidence and witnesses'
     }
+
+    // reset mini session
+    delete req.session.data.editInquiry
 
     req.flash('success', 'Inquiry updated')
     res.redirect(`/main/appeals/${req.params.appealId}`)

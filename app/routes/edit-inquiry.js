@@ -105,13 +105,17 @@ module.exports = router => {
       _.set(req, 'session.data.editInquiry.hasAddress', 'Yes')
     }
 
-    res.render('/main/appeals/edit-inquiry/check', {
+    let v = {
       appeal,
       date,
       hasDays,
       days,
       hasAddress,
-      inquiryAddress: address // bug in Nunjucks
+      address
+    }
+
+    res.render('/main/appeals/edit-inquiry/check', {
+      v
     })
   })
 

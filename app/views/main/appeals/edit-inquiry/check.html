@@ -8,12 +8,12 @@
 {% block content %}
 
   {% set addressHtml %}
-    {{appAddress({ address: inquiryAddress })}}
+    {{appAddress({ address: v.address })}}
   {% endset %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-l">Appeal {{appeal.id}}</span>
+      <span class="govuk-caption-l">Appeal {{v.appeal.id}}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
       {{ govukSummaryList({
         rows: [
@@ -22,12 +22,12 @@
               text: "Date"
             },
             value: {
-              html: date | govukDate
+              html: v.date | govukDate
             },
             actions: {
               items: [
                 {
-                  href: "/main/appeals/:appealId/edit-inquiry" | replace(':appealId', appeal.id),
+                  href: "/main/appeals/:appealId/edit-inquiry" | replace(':appealId', v.appeal.id),
                   text: "Change",
                   visuallyHiddenText: "Date"
                 }
@@ -39,12 +39,12 @@
               text: "Time"
             },
             value: {
-              html: date | govukTime
+              html: v.date | govukTime
             },
             actions: {
               items: [
                 {
-                  href: "/main/appeals/:appealId/edit-inquiry" | replace(':appealId', appeal.id),
+                  href: "/main/appeals/:appealId/edit-inquiry" | replace(':appealId', v.appeal.id),
                   text: "Change",
                   visuallyHiddenText: "Time"
                 }
@@ -56,12 +56,12 @@
               text: "Do you know the expected number of days to carry out the inquiry?"
             },
             value: {
-              html: hasDays
+              html: v.hasDays
             },
             actions: {
               items: [
                 {
-                  href: "/main/appeals/:appealId/edit-inquiry/days" | replace(':appealId', appeal.id),
+                  href: "/main/appeals/:appealId/edit-inquiry/days" | replace(':appealId', v.appeal.id),
                   text: "Change",
                   visuallyHiddenText: "if you know the expected number of days to carry out the inquiry"
                 }
@@ -73,29 +73,29 @@
               text: "Expected number of days to carry out the inquiry"
             },
             value: {
-              html: data.editInquiry.days | days
+              html: v.days | days
             },
             actions: {
               items: [
                 {
-                  href: "/main/appeals/:appealId/edit-inquiry/days" | replace(':appealId', appeal.id),
+                  href: "/main/appeals/:appealId/edit-inquiry/days" | replace(':appealId', v.appeal.id),
                   text: "Change",
                   visuallyHiddenText: "Expected number of days to carry out the inquiry"
                 }
               ]
             }
-          } if hasDays == 'Yes',
+          } if v.hasDays == 'Yes',
           {
             key: {
               text: "Do you know the address of where the inquiry will take place?"
             },
             value: {
-              html: hasAddress
+              html: v.hasAddress
             },
             actions: {
               items: [
                 {
-                  href: "/main/appeals/:appealId/edit-inquiry/has-address" | replace(':appealId', appeal.id),
+                  href: "/main/appeals/:appealId/edit-inquiry/has-address" | replace(':appealId', v.appeal.id),
                   text: "Change",
                   visuallyHiddenText: "if you know the inquiry address"
                 }
@@ -112,13 +112,13 @@
             actions: {
               items: [
                 {
-                  href: "/main/appeals/:appealId/edit-inquiry/address" | replace(':appealId', appeal.id),
+                  href: "/main/appeals/:appealId/edit-inquiry/address" | replace(':appealId', v.appeal.id),
                   text: "Change",
                   visuallyHiddenText: "Inquiry address"
                 }
               ]
             }
-          } if hasAddress == 'Yes'
+          } if v.hasAddress == 'Yes'
         ]
       }) }}
 

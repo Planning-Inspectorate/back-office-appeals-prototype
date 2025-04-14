@@ -18,8 +18,33 @@ module.exports = router => {
       let firstChildAppealId = getLinkedAppeals(appeal.id, req.session.data.linkedAppeals)[0].id
       res.redirect(`/main/appeals/${req.params.appealId}/add-decision/${firstChildAppealId}`)
     } else {
-      res.redirect(`/main/appeals/${req.params.appealId}/add-decision/upload`)
+      res.redirect(`/main/appeals/${req.params.appealId}/add-decision/decision-letter`)
     }
+  })
+
+  router.get('/main/appeals/:appealId/add-decision/decision-letter', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
+    res.render('/main/appeals/add-decision/decision-letter', {
+      appeal
+    })
+  })
+
+  router.post('/main/appeals/:appealId/add-decision/decision-letter', function (req, res) {
+    res.redirect(`/main/appeals/${req.params.appealId}/add-decision/check`)
+  })
+
+  router.get('/main/appeals/:appealId/add-decision/check', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
+    res.render('/main/appeals/add-decision/check', {
+      appeal
+    })
+  })
+
+  router.post('/main/appeals/:appealId/add-decision/check', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
+    appeal.status = 'Decision issued'
+    req.flash('success', 'Decision issued')
+    res.redirect(`/main/appeals/${req.params.appealId}`)
   })
 
   router.get('/main/appeals/:appealId/add-decision/:childAppealId', function (req, res) {
@@ -39,22 +64,8 @@ module.exports = router => {
     if(nextChildAppeal) {
       res.redirect(`/main/appeals/${req.params.appealId}/add-decision/${nextChildAppeal.id}`)
     } else {
-      res.redirect(`/main/appeals/${req.params.appealId}/add-decision/upload`)
+      res.redirect(`/main/appeals/${req.params.appealId}/add-decision/decision-letter`)
     }
-  })
-
-  router.get('/main/appeals/:appealId/add-decision/check', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
-    res.render('/main/appeals/add-decision/check', {
-      appeal
-    })
-  })
-
-  router.post('/main/appeals/:appealId/add-decision/check', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
-    appeal.status = 'Decision issued'
-    req.flash('success', 'Decision issued')
-    res.redirect(`/main/appeals/${req.params.appealId}`)
   })
 
 }

@@ -22,7 +22,7 @@
               text: "Date"
             },
             value: {
-              html: data.addHearing.date | isoDateFromDateInput | govukDate
+              html: ''
             },
             actions: {
               items: [
@@ -33,58 +33,7 @@
                 }
               ]
             }
-          },
-          {
-            key: {
-              text: "Time"
-            },
-            value: {
-              html: data.addHearing.time | isoDateFromTimeInput | govukTime
-            },
-            actions: {
-              items: [
-                {
-                  href: "/main/appeals/:appealId/add-hearing" | replace(':appealId', appeal.id),
-                  text: "Change",
-                  visuallyHiddenText: "Time"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Do you know the address of where the hearing will take place?"
-            },
-            value: {
-              html: data.addHearing.hasAddress
-            },
-            actions: {
-              items: [
-                {
-                  href: "/main/appeals/:appealId/add-hearing/has-address" | replace(':appealId', appeal.id),
-                  text: "Change",
-                  visuallyHiddenText: "if you know the hearing address"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Address"
-            },
-            value: {
-              html: address
-            },
-            actions: {
-              items: [
-                {
-                  href: "/main/appeals/:appealId/add-hearing/address" | replace(':appealId', appeal.id),
-                  text: "Change",
-                  visuallyHiddenText: "Address"
-                }
-              ]
-            }
-          } if data.addHearing.hasAddress == 'Yes'
+          }
         ]
       }) }}
 

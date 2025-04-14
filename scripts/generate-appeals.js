@@ -69,12 +69,26 @@ const generateAgent = (params = {}) => {
 const generateInterestedPartyComment = (params = {}) => {
   let ipComment = {}
   ipComment.id = uuidv4()
-  ipComment.status = params.status || faker.helpers.arrayElement([
+
+  let statuses = [
     'Ready to review',
     'Accepted',
     'Rejected',
     'Withdrawn'
-  ])
+  ]
+
+  switch(params.appealStatus) {
+    // add more statuses that mean the ip comments would have been shared
+    case 'Awaiting inquiry':
+      statuses = [
+        'Shared',
+        'Rejected',
+        'Withdrawn'
+      ]
+      break    
+  }
+
+  ipComment.status = params.status || faker.helpers.arrayElement(statuses)
   ipComment.dateReceived = params.dateReceived || faker.date.recent({ days: 2 })
 
   if(ipComment.status == 'Rejected') {
@@ -100,11 +114,12 @@ const generateInterestedPartyComment = (params = {}) => {
   ipComment.firstName = params.firstName || faker.person.firstName()
   ipComment.lastName = params.lastName || faker.person.lastName()
   ipComment.emailAddress = `${ipComment.firstName.toLowerCase()}.${ipComment.lastName.toLowerCase()}@gmail.com`
-  ipComment.comment = '	Having reviewed the proposal I would like to raise strong objections based on the scale of the proposed buildings.'
+  ipComment.comment = faker.lorem.paragraphs({min: 1, max: 3 }, '\n\n')
   ipComment.documents = [{
-    name: 'St.Ritas_Community_Association_statement_for_appeal_4012345.doc',
+    name: 'planning-site-photos.pdf',
     size: '5MB'
   }]
+  ipComment.address = params.address || generateAddress()
 
   return ipComment
 }
@@ -388,7 +403,6 @@ const generateAppeal = (params = {}) => {
       appeal.interestedPartyComments.push(generateInterestedPartyComment())
     }  
   }
-
   
   // Generate Rule 6 Parties based on this
   if(appeal.procedure == 'Inquiry') {
@@ -503,16 +517,17 @@ const generateAppeals = () => {
     caseOfficer: 'Tony Stark'
   }))
 
+  let status12 = 'Awaiting inquiry'
   let interestedPartyComments = [] 
   for(let i = 0; i < 32; i++) {
-    interestedPartyComments.push(generateInterestedPartyComment())
+    interestedPartyComments.push(generateInterestedPartyComment({ appealStatus: status12 }))
   }
 
   appeals.push(generateAppeal({
     id: '00000012',
     type: 'Full planning appeal',
     procedure: 'Inquiry',
-    status: 'Awaiting inquiry',
+    status: status12,
     interestedPartyComments: interestedPartyComments,
     caseOfficer: 'Tony Stark'
   }))
@@ -553,9 +568,18 @@ const generateAppeals = () => {
     procedure: 'Inquiry',
     status: 'Statements and IP comments ready to review'
   }))
+
+  let status13 = 'Statements and IP comments ready to share'
+  let interestedPartyComments1 = [] 
+  for(let i = 0; i < 32; i++) {
+    interestedPartyComments1.push(generateInterestedPartyComment({ appealStatus: status13}))
+  }
+
   appeals.push(generateAppeal({
+    id: '00000013',
     type: 'Full planning appeal',
-    status: 'Statements and IP comments ready to share'
+    status: status13,
+    interestedPartyComments: interestedPartyComments1
   }))
 
   appeals.push(generateAppeal({

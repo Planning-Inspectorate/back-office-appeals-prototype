@@ -150,6 +150,7 @@ addFilter('interestedPartyCommentStatusColour', status => {
 	case 'Rejected':
 	  return 'govuk-tag--red'
 	case 'Accepted':
+	case 'Shared':	
 	  return 'govuk-tag--green'
 	case 'Withdrawn':
       return 'govuk-tag--pink'

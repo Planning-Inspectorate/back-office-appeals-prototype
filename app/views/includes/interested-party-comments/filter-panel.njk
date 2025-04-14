@@ -1,3 +1,33 @@
+
+
+{% if appeal.status == 'Awaiting inquiry' %}
+  {% set items = [{
+    value: 'Shared',
+    text: 'Shared'
+  }, {
+    value: 'Rejected',
+    text: 'Rejected'
+  }, {
+    value: 'Withdrawn',
+    text: 'Withdrawn'
+  }] %}
+{% else %}
+  {% set items = [{
+    value: 'Ready to review',
+    text: 'Ready to review'
+  }, {
+    value: 'Accepted',
+    text: 'Accepted'
+  }, {
+    value: 'Rejected',
+    text: 'Rejected'
+  }, {
+    value: 'Withdrawn',
+    text: 'Withdrawn'
+  }] %}
+{% endif %}
+
+
 {% set filterOptionsHtml %}
 
   {{ govukCheckboxes({
@@ -10,19 +40,7 @@
         classes: "govuk-fieldset__legend--s"
       }
     },
-    items: [{
-      value: 'Ready to review',
-      text: 'Ready to review'
-    }, {
-      value: 'Accepted',
-      text: 'Accepted'
-    }, {
-      value: 'Rejected',
-      text: 'Rejected'
-    }, {
-      value: 'Withdrawn',
-      text: 'Withdrawn'
-    }],
+    items: items,
     values: data.filters.statuses
   }) }}
 

@@ -31,7 +31,11 @@
   <span class="govuk-caption-l">Appeal {{appeal.id}}</span>
   <h1 class="govuk-heading-l">{{title}}</h1>
 
-  <p class="govuk-!-margin-bottom-6"><a class="govuk-link" href="/main/appeals/{{appeal.id}}/interested-party-comments/new">Add interested party comment</a></p>
+  {% if appeal.status == 'Awaiting inquiry' %}
+    <p class="govuk-!-margin-bottom-6"><a class="govuk-link" href="/main/appeals/{{appeal.id}}/interested-party-comments/new">Download shared comments</a></p>
+  {% else %}
+    <p class="govuk-!-margin-bottom-6"><a class="govuk-link" href="/main/appeals/{{appeal.id}}/interested-party-comments/new">Add interested party comment</a></p>
+  {% endif %}
 
   <div class="app-filter-layout">
     <div class="app-filter-layout__filter">
@@ -44,7 +48,7 @@
       </div>
 
       {% if interestedPartyComments.length %}
-         <div class="app-list">
+         <div class="app-list long-answers">
           {% for item in interestedPartyComments %}
             <div class="app-list__item">
 
@@ -55,6 +59,43 @@
                 </div>
               </h2>
 
+              {% set supportDocumentsHtml %}
+                <a href="">{{item.documents[0].name}}</a>
+              {% endset %}
+
+              {% set addressHtml %}
+                {{appAddress({address: item.address })}}
+              {% endset %}
+
+              {{ govukSummaryList({
+                classes: 'govuk-summary-list--no-border app-summary-list--compact app-summary-list--small-text',
+                rows: [
+                  {
+                    key: {
+                      html: 'Address'
+                    },
+                    value: {
+                      html: addressHtml
+                    }
+                  },
+                  {
+                    key: {
+                      html: 'Comment'
+                    },
+                    value: {
+                      html: item.comment | nl2br
+                    }
+                  },
+                  {
+                    key: {
+                      html: 'Supporting documents'
+                    },
+                    value: {
+                      html: supportDocumentsHtml
+                    }
+                  }
+                ]
+              })}}
 
             </div>
           {% endfor %}

@@ -163,21 +163,38 @@
       } if appeal.procedure == 'Inquiry' and not appeal.isChildAppeal,
       {
         key: {
-          text: "Decision"
+          text: "Appellant costs application"
         },
         value: {
-          html: 'Awaiting decision'
+          html: '1 document'
         },
         actions: {
           items: [
             {
-              href: "#",
-              text: "Issue",
-              visuallyHiddenText: "Decision"
+              href: '#' | replace(':appealId', appeal.id),
+              text: "View",
+              visuallyHiddenText: "Appellant costs application"
             }
           ]
         }
-      } if not appeal.isChildAppeal
+      } if 1==2,
+      {
+        key: {
+          text: "LPA costs application"
+        },
+        value: {
+          html: '1 document'
+        },
+        actions: {
+          items: [
+            {
+              href: '#' | replace(':appealId', appeal.id),
+              text: "View",
+              visuallyHiddenText: "LPA costs application"
+            }
+          ]
+        }
+      } if 1 == 2
     ]
   }) }}
 </div>

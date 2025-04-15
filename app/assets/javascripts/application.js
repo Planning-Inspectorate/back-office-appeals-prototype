@@ -20,7 +20,7 @@ jQuery(function() {
         '<span>... </span><a href="#" class="show">Read more</a>' +
         '<span style="display:none;">' +
         txt.slice(500, txt.length) +
-        ' <a href="#" class="less">Close</a></span>'
+        ' <a href="#" class="less">Read less</a></span>'
     );
   });
 

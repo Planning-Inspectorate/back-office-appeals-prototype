@@ -1,6 +1,9 @@
 <div class="app-panel">
   <h2 class="govuk-heading-l">Overview</h2>
 
+  
+
+
   {% if linkedAppeals.length %}
     {% set linkedAppealsHtml %}
       {% for linkedAppeal in linkedAppeals %}
@@ -46,6 +49,26 @@
         text: "Add",
         visuallyHiddenText: "linked appeal"
       } if showAddLinkAppeal
+    ] %}
+  {% endif %}
+
+
+
+  {% if appeal.decision %}
+    {% set decisionActions = [
+      {
+        href: "/main/appeals/:appealId/decision" | replace(':appealId', appeal.id),
+        text: "View",
+        visuallyHiddenText: "decision"
+      }
+    ] %}
+  {% else %}
+    {% set decisionActions = [
+      {
+        href: "/main/appeals/:appealId/add-decision" | replace(':appealId', appeal.id),
+        text: "Issue",
+        visuallyHiddenText: "decision"
+      }
     ] %}
   {% endif %}
 
@@ -176,22 +199,15 @@
           ]
         }
       },
-
       {
         key: {
           text: "Decision"
         },
         value: {
-          html: 'Not issued yet'
+          html: appeal.decision.decision if appeal.decision else 'Not issued yet'
         },
         actions: {
-          items: [
-            {
-              href: "/main/appeals/:appealId/add-decision" | replace(':appealId', appeal.id),
-              text: "Issue",
-              visuallyHiddenText: "decision"
-            }
-          ]
+          items: decisionActions
         }
       }
     ]

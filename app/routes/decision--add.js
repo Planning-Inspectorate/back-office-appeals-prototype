@@ -30,11 +30,35 @@ module.exports = router => {
   })
 
   router.post('/main/appeals/:appealId/add-decision/decision-letter', function (req, res) {
+    res.redirect(`/main/appeals/${req.params.appealId}/add-decision/appellant-costs-decision-letter`)
+  })
+
+  router.get('/main/appeals/:appealId/add-decision/appellant-costs-decision-letter', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
+    res.render('/main/appeals/add-decision/appellant-costs-decision-letter', {
+      appeal
+    })
+  })
+
+  router.post('/main/appeals/:appealId/add-decision/appellant-costs-decision-letter', function (req, res) {
+    res.redirect(`/main/appeals/${req.params.appealId}/add-decision/lpa-costs-decision-letter`)
+  })
+
+  router.get('/main/appeals/:appealId/add-decision/lpa-costs-decision-letter', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
+    res.render('/main/appeals/add-decision/lpa-costs-decision-letter', {
+      appeal
+    })
+  })
+
+  router.post('/main/appeals/:appealId/add-decision/lpa-costs-decision-letter', function (req, res) {
     res.redirect(`/main/appeals/${req.params.appealId}/add-decision/check`)
   })
 
+
   router.get('/main/appeals/:appealId/add-decision/check', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
+
     res.render('/main/appeals/add-decision/check', {
       appeal
     })
@@ -43,6 +67,11 @@ module.exports = router => {
   router.post('/main/appeals/:appealId/add-decision/check', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     appeal.status = 'Decision issued'
+    if(appeal.isLeadAppeal) {
+
+    } else {
+      appeal.decision = req.session.data.issueDecision
+    }
     req.flash('success', 'Decision issued')
     res.redirect(`/main/appeals/${req.params.appealId}`)
   })

@@ -1,6 +1,10 @@
 {% extends "layouts/bo.html" %}
 
-{% set title = "Decision for lead appeal :appealId" | replace(':appealId', appealId) %}
+{% if appeal.isLeadAppeal %}
+  {% set title = "Decision for lead appeal :appealId" | replace(':appealId', appealId) %}
+{% else %}
+  {% set title = "Decision" %}
+{% endif %}
 {% set pageName = title %}
 
 {% set back = true %}
@@ -9,19 +13,62 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal {{appeal.id}} {% if appeal.isLeadAppeal %}(lead){% endif %} - issue decision</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      {% set insetHtml %}
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                html: "Appellant"
+              },
+              value: {
+                html: ':firstName :lastName' | replace(':firstName', appeal.appellant.firstName) | replace(':lastName', appeal.appellant.lastName)
+              }
+            },
+            {
+              key: {
+                html: "Site"
+              },
+              value: {
+                html: appAddress({ address: appeal.site.address })
+              }
+            },
+            {
+              key: {
+                html: "Type"
+              },
+              value: {
+                html: appeal.type
+              }
+            }
+          ]
+        }) }}
+      {% endset %}
+
+      {{ govukInsetText({
+        html: insetHtml
+      }) }}
+
+      {% if appeal.isLeadAppeal %}
+        {% set decisionInputName = "issueDecision[decision][:appealId]" | replace(':appealId', appealId) %}
+        {% set decisionValue = data.issueDecision.decision[appealId] %}
+      {% else %}
+        {% set decisionInputName = "issueDecision[decision]" %}
+        {% set decisionValue = data.issueDecision.decision %}
+      {% endif %}
 
       <form method="post">
-        <span class="govuk-caption-l">Appeal {{appeal.id}} {% if appeal.isLeadAppeal %}(lead){% endif %} - issue decision</span>
         {{ govukRadios({
-          name: "issueDecision[appeal][:appealId]" | replace(':appealId', appealId),
+          name: decisionInputName,
           fieldset: {
             legend: {
-              text: title,
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
+              text: 'Decision',
+              classes: "govuk-fieldset__legend--m"
             }
           },
-          value: data.issueDecision.appeal[appealId],
+          value: decisionValue,
           items: [
             {
               value: "Allowed",

@@ -70,7 +70,7 @@
             }
           ]
         }
-      } if not appeal.isChildAppeal,
+      },
       {
         key: {
           text: "Appellant final comments"
@@ -142,8 +142,8 @@
               visuallyHiddenText: "Decision"
             }
           ]
-        }
-      } if appeal.procedure == 'Inquiry' and not appeal.isChildAppeal,
+        } if not appeal.isChildAppeal
+      } if appeal.procedure == 'Inquiry',
       {
         key: {
           text: "Rule 6 proof of evidence and witnesses"
@@ -159,42 +159,8 @@
               visuallyHiddenText: "Rule 6 proof of evidence and witnesses"
             }
           ]
-        }
-      } if appeal.procedure == 'Inquiry' and not appeal.isChildAppeal,
-      {
-        key: {
-          text: "Appellant costs application"
-        },
-        value: {
-          html: '1 document'
-        },
-        actions: {
-          items: [
-            {
-              href: '#' | replace(':appealId', appeal.id),
-              text: "View",
-              visuallyHiddenText: "Appellant costs application"
-            }
-          ]
-        }
-      } if 1==2,
-      {
-        key: {
-          text: "LPA costs application"
-        },
-        value: {
-          html: '1 document'
-        },
-        actions: {
-          items: [
-            {
-              href: '#' | replace(':appealId', appeal.id),
-              text: "View",
-              visuallyHiddenText: "LPA costs application"
-            }
-          ]
-        }
-      } if 1 == 2
+        } if not appeal.isChildAppeal
+      } if appeal.procedure == 'Inquiry'
     ]
   }) }}
 </div>

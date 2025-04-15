@@ -34,7 +34,7 @@
               visuallyHiddenText: "Date"
             }
           ]
-        }
+        } if not appeal.isChildAppeal
       } if appeal.hearing.date,
       {
         key: {
@@ -51,7 +51,7 @@
               visuallyHiddenText: "Time"
             }
           ]
-        }
+        } if not appeal.isChildAppeal
       } if appeal.hearing.date,
       {
         key: {
@@ -68,7 +68,7 @@
               visuallyHiddenText: "whether you know the Address"
             }
           ]
-        }
+        } if not appeal.isChildAppeal
       } if appeal.hearing.hasAddress,
       {
         key: {
@@ -85,7 +85,7 @@
               visuallyHiddenText: "Address"
             }
           ]
-        }
+        } if not appeal.isChildAppeal
       } if appeal.hearing.hasAddress == 'Yes'
     ]
   }) if appeal.hearing }}
@@ -113,7 +113,7 @@
               visuallyHiddenText: "Estimated preparation time"
             }
           ]
-        }
+        } if not appeal.isChildAppeal
       } if appeal.hearingEstimates.estimatedPreparationTime,
       {
         key: {
@@ -130,7 +130,7 @@
               visuallyHiddenText: "Estimated sitting time"
             }
           ]
-        }
+        } if not appeal.isChildAppeal
       } if appeal.hearingEstimates.estimatedHearingTime,
       {
         key: {
@@ -147,7 +147,7 @@
               visuallyHiddenText: "Estimated reporting time"
             }
           ]
-        }
+        } if not appeal.isChildAppeal
       } if appeal.hearingEstimates.estimatedReportingTime
     ]
   }) if appeal.hearingEstimates }}

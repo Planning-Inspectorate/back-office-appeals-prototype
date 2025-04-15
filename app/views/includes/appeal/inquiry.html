@@ -33,7 +33,7 @@
               visuallyHiddenText: "Date"
             }
           ]
-        }
+        } if not appeal.isChildAppeal
       } if appeal.inquiry.date,
       {
         key: {
@@ -50,7 +50,7 @@
               visuallyHiddenText: "Time"
             }
           ]
-        }
+        } if not appeal.isChildAppeal
       } if appeal.inquiry.date,
       {
         key: {
@@ -67,7 +67,7 @@
               visuallyHiddenText: "if you know the expected number of days to carry out the inquiry"
             }
           ]
-        }
+        } if not appeal.isChildAppeal
       } if appeal.inquiry.hasDays,
       {
         key: {
@@ -84,7 +84,7 @@
               visuallyHiddenText: "Expected number of days to carry out the inquiry"
             }
           ]
-        }
+        } if not appeal.isChildAppeal
       } if appeal.inquiry.hasDays == 'Yes',
       {
         key: {
@@ -101,7 +101,7 @@
               visuallyHiddenText: "whether you know the inquiry address"
             }
           ]
-        }
+        } if not appeal.isChildAppeal
       } if appeal.inquiry.hasAddress,
       {
         key: {
@@ -118,7 +118,7 @@
               visuallyHiddenText: "Inquiry address"
             }
           ]
-        }
+        } if not appeal.isChildAppeal
       } if appeal.inquiry.hasAddress == 'Yes'
     ]
   }) if appeal.inquiry }}
@@ -146,7 +146,7 @@
               visuallyHiddenText: "Estimated preparation time"
             }
           ]
-        }
+        } if not appeal.isChildAppeal
       } if appeal.inquiryEstimates.estimatedPreparationTime,
       {
         key: {
@@ -163,7 +163,7 @@
               visuallyHiddenText: "Estimated sitting time"
             }
           ]
-        }
+        } if not appeal.isChildAppeal
       } if appeal.inquiryEstimates.estimatedInquiryTime,
       {
         key: {
@@ -180,7 +180,7 @@
               visuallyHiddenText: "Estimated reporting time"
             }
           ]
-        }
+        } if not appeal.isChildAppeal
       } if appeal.inquiryEstimates.estimatedReportingTime
     ]
   }) if appeal.inquiryEstimates }}

@@ -9,6 +9,13 @@ module.exports = router => {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
 
     let timetable = generateTimetable(appeal)
+
+    if(appeal.isChildAppeal) {
+      timetable.forEach(row => {
+        delete row.actions
+      })
+    }
+
     let actions = getActions(appeal)
     const isCaseStarted = appeal.status !== 'Ready to assign case officer' && appeal.status !== 'Ready to validate' && appeal.status !== 'Ready to start'
 

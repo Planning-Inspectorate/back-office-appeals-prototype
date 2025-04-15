@@ -116,7 +116,7 @@
             content: {
               html: timetableHtml
             }
-          } if not appeal.isChildAppeal,
+          },
           {
             heading: {
               text: "Hearing"
@@ -124,7 +124,7 @@
             content: {
               html: hearingHtml
             }
-          } if hearingHtml and not appeal.isChildAppeal,
+          } if hearingHtml,
           {
             heading: {
               text: "CMC"
@@ -132,7 +132,7 @@
             content: {
               html: cmcHtml
             }
-          } if cmcHtml and not appeal.isChildAppeal,
+          } if cmcHtml and not appeal.isChildAppeal and 1==2,
           {
             heading: {
               text: "Inquiry"
@@ -140,7 +140,7 @@
             content: {
               html: inquiryHtml
             }
-          } if inquiryHtml and not appeal.isChildAppeal,
+          } if inquiryHtml,
           {
             heading: {
               text: "Rule 6 parties"
@@ -148,7 +148,7 @@
             content: {
               html: rule6PartiesHtml
             }
-          } if rule6PartiesHtml and not appeal.isChildAppeal,
+          } if rule6PartiesHtml,
           {
             heading: {
               text: "Documentation"
@@ -164,7 +164,7 @@
             content: {
               html: costsHtml
             }
-          } if not appeal.isChildAppeal,
+          },
           {
             heading: {
               text: "Contacts"

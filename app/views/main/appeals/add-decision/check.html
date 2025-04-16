@@ -17,7 +17,9 @@
       <h1 class="govuk-heading-l">{{title}}</h1>
 
       {% if appeal.isLeadAppeal %}
-
+        {{ govukSummaryList({
+          rows: rows
+        }) }}
       {% else %}
         {{ govukSummaryList({
           rows: [
@@ -33,7 +35,7 @@
                   {
                     href: "/main/appeals/:appealId/add-decision" | replace(':appealId', appeal.id),
                     text: "Change",
-                    visuallyHiddenText: "Date"
+                    visuallyHiddenText: "Decision"
                   }
                 ]
               }
@@ -50,7 +52,7 @@
                   {
                     href: "/main/appeals/:appealId/decision-letter" | replace(':appealId', appeal.id),
                     text: "Change",
-                    visuallyHiddenText: "Date"
+                    visuallyHiddenText: "decision letter"
                   }
                 ]
               }
@@ -67,7 +69,7 @@
                   {
                     href: "/main/appeals/:appealId/appellant-costs-decision-letter" | replace(':appealId', appeal.id),
                     text: "Change",
-                    visuallyHiddenText: "Date"
+                    visuallyHiddenText: "Appellant costs decision letter"
                   }
                 ]
               }

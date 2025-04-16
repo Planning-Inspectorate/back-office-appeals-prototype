@@ -209,7 +209,70 @@
         actions: {
           items: decisionActions
         }
+      } if 1==2,
+      {
+        key: {
+          text: "Appellant cost decision"
+        },
+        value: {
+          html: appeal.decision.decision if appeal.decision else 'Not issued yet'
+        },
+        actions: {
+          items: decisionActions
+        }
+      } if 1==2,
+      {
+        key: {
+          text: "LPA cost decision"
+        },
+        value: {
+          html: appeal.decision.decision if appeal.decision else 'Not issued yet'
+        },
+        actions: {
+          items: decisionActions
+        }
+      } if 1==2
+    ]
+  }) }}
+
+  <h3 class="govuk-heading-m">Decision</h3>
+
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          text: "Decision"
+        },
+        value: {
+          html: 'Issued' if appeal.decision else 'Not issued yet'
+        },
+        actions: {
+          items: decisionActions
+        }
+      },
+      {
+        key: {
+          text: "Appellant cost decision"
+        },
+        value: {
+          html: 'Issued' if appeal.decision else 'Not issued yet'
+        },
+        actions: {
+          items: decisionActions
+        }
+      },
+      {
+        key: {
+          text: "LPA cost decision"
+        },
+        value: {
+          html: 'Issued' if appeal.decision else 'Not issued yet'
+        },
+        actions: {
+          items: decisionActions
+        }
       }
     ]
   }) }}
+
 </div>

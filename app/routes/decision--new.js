@@ -1,79 +1,62 @@
 const { getLinkedAppeals, isLeadAppeal, isChildAppeal } = require('../helpers/linked-appeals')
 const _ = require('lodash')
 
-const row = params => {
-  let row = {}
-  row.key = { html: params.key }
-  row.value = { html: params.value }
-  if(params.action) {
-    row.actions = {
-      items: [{
-        href: params.action.href,
-        text: params.action.text,
-        visuallyHiddentText: params.action.text
-      }]
-    }
-  }
-
-  return row
-}
-
 module.exports = router => {
 
-  router.get('/main/appeals/:appealId/add-decision', function (req, res) {
+  router.get('/main/appeals/:appealId/decision/new', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
-    res.render('/main/appeals/add-decision/index', {
+    res.render('/main/appeals/decision/new/index', {
       appeal,
       appealId: appeal.id
     })
   })
 
-  router.post('/main/appeals/:appealId/add-decision', function (req, res) {
+  router.post('/main/appeals/:appealId/decision/new', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     
     if(appeal.isLeadAppeal) {
       let firstChildAppealId = getLinkedAppeals(appeal.id, req.session.data.linkedAppeals)[0].id
-      res.redirect(`/main/appeals/${req.params.appealId}/add-decision/${firstChildAppealId}`)
+      res.redirect(`/main/appeals/${req.params.appealId}/decision/new/${firstChildAppealId}`)
     } else {
-      res.redirect(`/main/appeals/${req.params.appealId}/add-decision/decision-letter`)
+      res.redirect(`/main/appeals/${req.params.appealId}/decision/new/decision-letter`)
     }
   })
 
-  router.get('/main/appeals/:appealId/add-decision/decision-letter', function (req, res) {
+  router.get('/main/appeals/:appealId/decision/new/decision-letter', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
-    res.render('/main/appeals/add-decision/decision-letter', {
+    res.render('/main/appeals/decision/new/decision-letter', {
       appeal
     })
   })
 
-  router.post('/main/appeals/:appealId/add-decision/decision-letter', function (req, res) {
-    res.redirect(`/main/appeals/${req.params.appealId}/add-decision/appellant-costs-decision-letter`)
+  router.post('/main/appeals/:appealId/decision/new/decision-letter', function (req, res) {
+    res.redirect(`/main/appeals/${req.params.appealId}/decision/new/appellant-costs-decision-letter`)
   })
 
-  router.get('/main/appeals/:appealId/add-decision/appellant-costs-decision-letter', function (req, res) {
+  router.get('/main/appeals/:appealId/decision/new/appellant-costs-decision-letter', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
-    res.render('/main/appeals/add-decision/appellant-costs-decision-letter', {
+    res.render('/main/appeals/decision/new/appellant-costs-decision-letter', {
       appeal
     })
   })
 
-  router.post('/main/appeals/:appealId/add-decision/appellant-costs-decision-letter', function (req, res) {
-    res.redirect(`/main/appeals/${req.params.appealId}/add-decision/lpa-costs-decision-letter`)
+  router.post('/main/appeals/:appealId/decision/new/appellant-costs-decision-letter', function (req, res) {
+    res.redirect(`/main/appeals/${req.params.appealId}/decision/new/lpa-costs-decision-letter`)
   })
 
-  router.get('/main/appeals/:appealId/add-decision/lpa-costs-decision-letter', function (req, res) {
+  router.get('/main/appeals/:appealId/decision/new/lpa-costs-decision-letter', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
-    res.render('/main/appeals/add-decision/lpa-costs-decision-letter', {
+    res.render('/main/appeals/decision/new/lpa-costs-decision-letter', {
       appeal
     })
   })
 
-  router.post('/main/appeals/:appealId/add-decision/lpa-costs-decision-letter', function (req, res) {
-    res.redirect(`/main/appeals/${req.params.appealId}/add-decision/check`)
+  router.post('/main/appeals/:appealId/decision/new/lpa-costs-decision-letter', function (req, res) {
+    res.redirect(`/main/appeals/${req.params.appealId}/decision/new/check`)
   })
 
 
-  router.get('/main/appeals/:appealId/add-decision/check', function (req, res) {
+  router.get('/main/appeals/:appealId/decision/new/check', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
 
     if(appeal.isLeadAppeal) {
@@ -175,13 +158,13 @@ module.exports = router => {
     }
 
 
-    res.render('/main/appeals/add-decision/check', {
+    res.render('/main/appeals/decision/new/check', {
       appeal,
       rows
     })
   })
 
-  router.post('/main/appeals/:appealId/add-decision/check', function (req, res) {
+  router.post('/main/appeals/:appealId/decision/new/check', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     appeal.status = 'Decision issued'
     if(appeal.isLeadAppeal) {
@@ -193,24 +176,24 @@ module.exports = router => {
     res.redirect(`/main/appeals/${req.params.appealId}`)
   })
 
-  router.get('/main/appeals/:appealId/add-decision/:childAppealId', function (req, res) {
+  router.get('/main/appeals/:appealId/decision/new/:childAppealId', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
-    res.render('/main/appeals/add-decision/child-decision', {
+    res.render('/main/appeals/decision/new/child-decision', {
       appeal,
       appealId: req.params.childAppealId
     })
   })
 
-  router.post('/main/appeals/:appealId/add-decision/:childAppealId', function (req, res) {
+  router.post('/main/appeals/:appealId/decision/new/:childAppealId', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     let linkedAppeals = getLinkedAppeals(appeal.id, req.session.data.linkedAppeals)
     var childAppealIndex = _.findIndex(linkedAppeals, {id: req.params.childAppealId})
     let nextChildAppeal = _.get(linkedAppeals, childAppealIndex + 1)
 
     if(nextChildAppeal) {
-      res.redirect(`/main/appeals/${req.params.appealId}/add-decision/${nextChildAppeal.id}`)
+      res.redirect(`/main/appeals/${req.params.appealId}/decision/new/${nextChildAppeal.id}`)
     } else {
-      res.redirect(`/main/appeals/${req.params.appealId}/add-decision/decision-letter`)
+      res.redirect(`/main/appeals/${req.params.appealId}/decision/new/decision-letter`)
     }
   })
 

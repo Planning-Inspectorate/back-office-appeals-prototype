@@ -1,0 +1,60 @@
+<div class="app-panel">
+  <h2 class="govuk-heading-l">Decision</h2>
+
+  {% if appeal.decision %}
+    {% set decisionActions = [
+      {
+        href: "/main/appeals/:appealId/decision" | replace(':appealId', appeal.id),
+        text: "View",
+        visuallyHiddenText: "decision"
+      }
+    ] %}
+  {% else %}
+    {% set decisionActions = [
+      {
+        href: "/main/appeals/:appealId/decision/new" | replace(':appealId', appeal.id),
+        text: "Issue",
+        visuallyHiddenText: "decision"
+      }
+    ] %}
+  {% endif %}
+
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          text: "Decision"
+        },
+        value: {
+          html: 'Issued' if appeal.decision else 'Not issued yet'
+        },
+        actions: {
+          items: decisionActions
+        }
+      },
+      {
+        key: {
+          text: "Appellant cost decision"
+        },
+        value: {
+          html: 'Issued' if appeal.decision else 'Not issued yet'
+        },
+        actions: {
+          items: decisionActions
+        }
+      },
+      {
+        key: {
+          text: "LPA cost decision"
+        },
+        value: {
+          html: 'Issued' if appeal.decision else 'Not issued yet'
+        },
+        actions: {
+          items: decisionActions
+        }
+      }
+    ]
+  }) }}
+
+</div>

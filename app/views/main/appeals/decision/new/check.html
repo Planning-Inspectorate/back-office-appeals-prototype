@@ -33,7 +33,7 @@
               actions: {
                 items: [
                   {
-                    href: "/main/appeals/:appealId/add-decision" | replace(':appealId', appeal.id),
+                    href: "/main/appeals/:appealId/decision/new" | replace(':appealId', appeal.id),
                     text: "Change",
                     visuallyHiddenText: "Decision"
                   }
@@ -50,7 +50,7 @@
               actions: {
                 items: [
                   {
-                    href: "/main/appeals/:appealId/decision-letter" | replace(':appealId', appeal.id),
+                    href: "/main/appeals/:appealId/decision/new/decision-letter" | replace(':appealId', appeal.id),
                     text: "Change",
                     visuallyHiddenText: "decision letter"
                   }
@@ -67,7 +67,7 @@
               actions: {
                 items: [
                   {
-                    href: "/main/appeals/:appealId/appellant-costs-decision-letter" | replace(':appealId', appeal.id),
+                    href: "/main/appeals/:appealId/decision/new/appellant-costs-decision-letter" | replace(':appealId', appeal.id),
                     text: "Change",
                     visuallyHiddenText: "Appellant costs decision letter"
                   }
@@ -84,7 +84,7 @@
               actions: {
                 items: [
                   {
-                    href: "/main/appeals/:appealId/lpa-costs-decision-letter" | replace(':appealId', appeal.id),
+                    href: "/main/appeals/:appealId/decision/new/lpa-costs-decision-letter" | replace(':appealId', appeal.id),
                     text: "Change",
                     visuallyHiddenText: "LPA costs decision letter"
                   }

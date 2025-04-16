@@ -65,7 +65,7 @@
   {% else %}
     {% set decisionActions = [
       {
-        href: "/main/appeals/:appealId/add-decision" | replace(':appealId', appeal.id),
+        href: "/main/appeals/:appealId/decision/new" | replace(':appealId', appeal.id),
         text: "Issue",
         visuallyHiddenText: "decision"
       }
@@ -232,46 +232,6 @@
           items: decisionActions
         }
       } if 1==2
-    ]
-  }) }}
-
-  <h3 class="govuk-heading-m">Decision</h3>
-
-  {{ govukSummaryList({
-    rows: [
-      {
-        key: {
-          text: "Decision"
-        },
-        value: {
-          html: 'Issued' if appeal.decision else 'Not issued yet'
-        },
-        actions: {
-          items: decisionActions
-        }
-      },
-      {
-        key: {
-          text: "Appellant cost decision"
-        },
-        value: {
-          html: 'Issued' if appeal.decision else 'Not issued yet'
-        },
-        actions: {
-          items: decisionActions
-        }
-      },
-      {
-        key: {
-          text: "LPA cost decision"
-        },
-        value: {
-          html: 'Issued' if appeal.decision else 'Not issued yet'
-        },
-        actions: {
-          items: decisionActions
-        }
-      }
     ]
   }) }}
 

@@ -92,7 +92,8 @@ require('./routes/rule-6-proof-of-evidence-and-witnesses--accept')(router)
 require('./routes/rule-6-proof-of-evidence-and-witnesses--reject')(router)
 require('./routes/edit-timetable-due-dates')(router)
 
-require('./routes/decision--add')(router)
+require('./routes/decision')(router)
+require('./routes/decision--new')(router)
 
 // Timetable
 // require('./routes/add-statement-of-common-ground-due-date')(router)

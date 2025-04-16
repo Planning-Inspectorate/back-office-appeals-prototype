@@ -27,7 +27,7 @@
         Issued on 15 April 2025
       </li>
       <li>
-        <a href="">View decision</a>
+        <a href="/main/appeals/{{appeal.id}}/decision">View decision</a>
       </li>
     </ul>
   {% endset %}
@@ -50,6 +50,9 @@
     <div class="govuk-grid-column-two-thirds">
       {% set overviewHtml %}
         {% include "includes/appeal/overview.html" %}
+      {% endset%}
+      {% set decisionHtml %}
+        {% include "includes/appeal/decision.html" %}
       {% endset%}
       {% set siteHtml %}
       {% include "includes/appeal/site.html" %}
@@ -99,6 +102,14 @@
             },
             content: {
               html: overviewHtml
+            }
+          },
+          {
+            heading: {
+              text: "Decision"
+            },
+            content: {
+              html: decisionHtml
             }
           },
           {

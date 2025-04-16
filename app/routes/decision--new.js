@@ -30,8 +30,25 @@ module.exports = router => {
   })
 
   router.post('/main/appeals/:appealId/decision/new/decision-letter', function (req, res) {
-    res.redirect(`/main/appeals/${req.params.appealId}/decision/new/appellant-costs-decision-letter`)
+    res.redirect(`/main/appeals/${req.params.appealId}/decision/new/has-appellant-costs-decision`)
   })
+
+  router.get('/main/appeals/:appealId/decision/new/has-appellant-costs-decision', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
+    res.render('/main/appeals/decision/new/has-appellant-costs-decision', {
+      appeal
+    })
+  })
+
+
+  router.post('/main/appeals/:appealId/decision/new/has-appellant-costs-decision', function (req, res) {
+    if(req.session.data.issueDecision.hasAppellantCostsDecision == 'Yes') {
+      res.redirect(`/main/appeals/${req.params.appealId}/decision/new/appellant-costs-decision-letter`)
+    } else {
+      res.redirect(`/main/appeals/${req.params.appealId}/decision/new/has-lpa-costs-decision`)
+    }
+  })
+
 
   router.get('/main/appeals/:appealId/decision/new/appellant-costs-decision-letter', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
@@ -41,7 +58,22 @@ module.exports = router => {
   })
 
   router.post('/main/appeals/:appealId/decision/new/appellant-costs-decision-letter', function (req, res) {
-    res.redirect(`/main/appeals/${req.params.appealId}/decision/new/lpa-costs-decision-letter`)
+    res.redirect(`/main/appeals/${req.params.appealId}/decision/new/has-lpa-costs-decision`)
+  })
+
+  router.get('/main/appeals/:appealId/decision/new/has-lpa-costs-decision', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
+    res.render('/main/appeals/decision/new/has-lpa-costs-decision', {
+      appeal
+    })
+  })
+
+  router.post('/main/appeals/:appealId/decision/new/has-lpa-costs-decision', function (req, res) {
+    if(req.session.data.issueDecision.hasLPACostsDecision == 'Yes') {
+      res.redirect(`/main/appeals/${req.params.appealId}/decision/new/lpa-costs-decision-letter`)
+    } else {
+      res.redirect(`/main/appeals/${req.params.appealId}/decision/new/check`)
+    }
   })
 
   router.get('/main/appeals/:appealId/decision/new/lpa-costs-decision-letter', function (req, res) {

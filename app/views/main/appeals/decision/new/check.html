@@ -59,6 +59,23 @@
             },
             {
               key: {
+                text: "Do you want to issue the appellant costs decision?"
+              },
+              value: {
+                html: data.issueDecision.hasAppellantCostsDecision
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/appeals/:appealId/decision/new/has-appellant-costs-decision" | replace(':appealId', appeal.id),
+                    text: "Change",
+                    visuallyHiddenText: "if you want to issue the appellant costs decision"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
                 text: "Appellant costs decision letter"
               },
               value: {
@@ -70,6 +87,23 @@
                     href: "/main/appeals/:appealId/decision/new/appellant-costs-decision-letter" | replace(':appealId', appeal.id),
                     text: "Change",
                     visuallyHiddenText: "Appellant costs decision letter"
+                  }
+                ]
+              }
+            } if data.issueDecision.hasAppellantCostsDecision == 'Yes',
+            {
+              key: {
+                text: "Do you want to issue the LPA costs decision?"
+              },
+              value: {
+                html: data.issueDecision.hasLPACostsDecision
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/appeals/:appealId/decision/new/has-LPA-costs-decision" | replace(':appealId', appeal.id),
+                    text: "Change",
+                    visuallyHiddenText: "if you want to issue the LPA costs decision"
                   }
                 ]
               }
@@ -90,7 +124,7 @@
                   }
                 ]
               }
-            }
+            } if data.issueDecision.hasAppellantCostsDecision == 'Yes'
           ]
         }) }}
       {% endif %}

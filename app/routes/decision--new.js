@@ -30,11 +30,18 @@ module.exports = router => {
   })
 
   router.post('/main/appeals/:appealId/decision/new/decision-letter', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     res.redirect(`/main/appeals/${req.params.appealId}/decision/new/has-appellant-costs-decision`)
   })
 
   router.get('/main/appeals/:appealId/decision/new/has-appellant-costs-decision', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
+
+    if(appeal.appellantCostsDecision) {
+      res.redirect(`/main/appeals/${req.params.appealId}/decision/new/has-lpa-costs-decision`)
+      return
+    }
+
     res.render('/main/appeals/decision/new/has-appellant-costs-decision', {
       appeal
     })
@@ -63,6 +70,12 @@ module.exports = router => {
 
   router.get('/main/appeals/:appealId/decision/new/has-lpa-costs-decision', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
+
+    if(appeal.lpaCostsDecision) {
+      res.redirect(`/main/appeals/${req.params.appealId}/decision/new/check`)
+      return
+    }
+
     res.render('/main/appeals/decision/new/has-lpa-costs-decision', {
       appeal
     })

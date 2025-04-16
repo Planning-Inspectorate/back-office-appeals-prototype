@@ -24,15 +24,15 @@
       {
         href: "/main/appeals/:appealId/decision" | replace(':appealId', appeal.id),
         text: "View",
-        visuallyHiddenText: "x"
+        visuallyHiddenText: "appellant costs decision"
       }
     ] %}
   {% else %}
     {% set appellantCostsDecisionActions = [
       {
-        href: "/main/appeals/:appealId/decision/x" | replace(':appealId', appeal.id),
+        href: "/main/appeals/:appealId/appellant-costs-decision/new" | replace(':appealId', appeal.id),
         text: "Issue",
-        visuallyHiddenText: "x"
+        visuallyHiddenText: "appellant costs decision"
       }
     ] %}
   {% endif %}
@@ -42,15 +42,15 @@
       {
         href: "/main/appeals/:appealId/decision" | replace(':appealId', appeal.id),
         text: "View",
-        visuallyHiddenText: "x"
+        visuallyHiddenText: "LPA costs decision"
       }
     ] %}
   {% else %}
     {% set lpaCostsDecisionActions = [
       {
-        href: "/main/appeals/:appealId/decision/x" | replace(':appealId', appeal.id),
+        href: "/main/appeals/:appealId/lpa-costs-decision/new" | replace(':appealId', appeal.id),
         text: "Issue",
-        visuallyHiddenText: "x"
+        visuallyHiddenText: "LPA costs decision"
       }
     ] %}
   {% endif %}

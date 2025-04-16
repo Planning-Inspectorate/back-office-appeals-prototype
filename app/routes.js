@@ -94,6 +94,8 @@ require('./routes/edit-timetable-due-dates')(router)
 
 require('./routes/decision')(router)
 require('./routes/decision--new')(router)
+require('./routes/appellant-costs-decision--new')(router)
+require('./routes/lpa-costs-decision--new')(router)
 
 // Timetable
 // require('./routes/add-statement-of-common-ground-due-date')(router)

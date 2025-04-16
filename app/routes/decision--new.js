@@ -209,12 +209,14 @@ module.exports = router => {
           name: 'appellant-cost-decision.pdf',
           size: '10MB'
         }
+        appeal.decision.appellantCostsDecisionIssueDate = new Date()
       }
       if(req.session.data.issueDecision.hasLPACostsDecision == 'Yes') {
         appeal.decision.lpaCostsDecision = {
           name: 'lpa-cost-decision.pdf',
           size: '10MB'
         }
+        appeal.decision.lpaCostsDecisionIssueDate = new Date()
       }
     }
 

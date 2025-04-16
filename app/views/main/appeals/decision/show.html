@@ -47,14 +47,6 @@
           },
           {
             key: {
-              text: "Decision issue date"
-            },
-            value: {
-              text: appeal.decision.issueDate | govukDate
-            }
-          },
-          {
-            key: {
               text: "Decision letter"
             },
             value: {
@@ -72,6 +64,14 @@
           },
           {
             key: {
+              text: "Decision issue date"
+            },
+            value: {
+              text: appeal.decision.issueDate | govukDate
+            }
+          },
+          {
+            key: {
               text: "Appellant costs decision letter"
             },
             value: {
@@ -80,12 +80,28 @@
           } if appeal.decision.appellantCostsDecision,
           {
             key: {
+              text: "Appellant costs decision issue date"
+            },
+            value: {
+              text: appeal.decision.appellantCostsDecisionIssueDate | govukDate
+            }
+          } if appeal.decision.appellantCostsDecisionIssueDate,
+          {
+            key: {
               text: "LPA costs decision letter"
             },
             value: {
               html: '<a href="#">:lpaCostsDecisionLetter</a>' | replace(':lpaCostsDecisionLetter', appeal.decision.lpaCostsDecision.name)
             }
-          } if appeal.decision.lpaCostsDecision
+          } if appeal.decision.lpaCostsDecision,
+          {
+            key: {
+              text: "LPA costs decision issue date"
+            },
+            value: {
+              text: appeal.decision.lpaCostsDecisionIssueDate | govukDate
+            }
+          } if appeal.decision.lpaCostsDecisionIssueDate
         ]
       }) }}
 

@@ -59,7 +59,7 @@
             },
             {
               key: {
-                text: "Do you want to issue the appellant costs decision?"
+                text: "Do you want to issue the appellant’s costs decision?"
               },
               value: {
                 html: data.issueDecision.hasAppellantCostsDecision
@@ -93,7 +93,7 @@
             } if data.issueDecision.hasAppellantCostsDecision == 'Yes',
             {
               key: {
-                text: "Do you want to issue the LPA costs decision?"
+                text: "Do you want to issue the LPA’s costs decision?"
               },
               value: {
                 html: data.issueDecision.hasLPACostsDecision
@@ -124,7 +124,7 @@
                   }
                 ]
               }
-            } if data.issueDecision.hasAppellantCostsDecision == 'Yes'
+            } if data.issueDecision.hasLPACostsDecision == 'Yes'
           ]
         }) }}
       {% endif %}

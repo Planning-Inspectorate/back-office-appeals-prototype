@@ -200,23 +200,27 @@ module.exports = router => {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     appeal.status = 'Decision issued'
     if(appeal.isLeadAppeal) {
-
+      // Todo
     } else {
       appeal.decision = req.session.data.issueDecision
       appeal.decision.issueDate = new Date()
       if(req.session.data.issueDecision.hasAppellantCostsDecision == 'Yes') {
-        appeal.decision.appellantCostsDecision = {
-          name: 'appellant-cost-decision.pdf',
-          size: '10MB'
+        appeal.appellantCostsDecision = {
+          letter: {
+            name: 'appellant-cost-decision.pdf',
+            size: '10MB'
+          },
+          issueDate: new Date()
         }
-        appeal.decision.appellantCostsDecisionIssueDate = new Date()
       }
       if(req.session.data.issueDecision.hasLPACostsDecision == 'Yes') {
-        appeal.decision.lpaCostsDecision = {
-          name: 'lpa-cost-decision.pdf',
-          size: '10MB'
+        appeal.lpaCostsDecision = {
+          letter: {
+            name: 'lpa-cost-decision.pdf',
+            size: '10MB'
+          },
+          issueDate: new Date()
         }
-        appeal.decision.lpaCostsDecisionIssueDate = new Date()
       }
     }
 

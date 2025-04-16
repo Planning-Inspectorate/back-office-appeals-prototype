@@ -19,10 +19,10 @@
     ] %}
   {% endif %}
 
-  {% if appeal.decision.appellantCostsDecision %}
+  {% if appeal.appellantCostsDecision %}
     {% set appellantCostsDecisionActions = [
       {
-        href: "/main/appeals/:appealId/decision/x" | replace(':appealId', appeal.id),
+        href: "/main/appeals/:appealId/decision" | replace(':appealId', appeal.id),
         text: "View",
         visuallyHiddenText: "x"
       }
@@ -37,10 +37,10 @@
     ] %}
   {% endif %}
 
-  {% if appeal.decision.lpaCostsDecision %}
+  {% if appeal.lpaCostsDecision %}
     {% set lpaCostsDecisionActions = [
       {
-        href: "/main/appeals/:appealId/decision/x" | replace(':appealId', appeal.id),
+        href: "/main/appeals/:appealId/decision" | replace(':appealId', appeal.id),
         text: "View",
         visuallyHiddenText: "x"
       }
@@ -73,7 +73,7 @@
           text: "Appellant cost decision"
         },
         value: {
-          html: 'Issued' if appeal.decision.appellantCostsDecision else 'Not issued yet'
+          html: 'Issued' if appeal.appellantCostsDecision else 'Not issued yet'
         },
         actions: {
           items: appellantCostsDecisionActions
@@ -84,7 +84,7 @@
           text: "LPA cost decision"
         },
         value: {
-          html: 'Issued' if appeal.decision.lpaCostsDecision else 'Not issued yet'
+          html: 'Issued' if appeal.lpaCostsDecision else 'Not issued yet'
         },
         actions: {
           items: lpaCostsDecisionActions

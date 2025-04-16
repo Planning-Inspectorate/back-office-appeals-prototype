@@ -12,29 +12,8 @@
   </div>
   {% include "includes/appeal/h1.njk" %}
 
-
-  {% if appeal.status == 'Decision issued' %}
-
-  {% set decisionInsetHtml %}
-    <ul class="govuk-list govuk-list--bulle">
-      <li>
-        Decision: {{appeal.decision.decision}}
-      </li>
-      <li>
-        1 cost application decision
-      </li>
-      <li>
-        Issued on 15 April 2025
-      </li>
-      <li>
-        <a href="/main/appeals/{{appeal.id}}/decision">View decision</a>
-      </li>
-    </ul>
-  {% endset %}
-  {{ govukInsetText({
-    html: decisionInsetHtml
-  }) }}
-  {% endif %}
+  {% include "includes/appeal/decision-inset.njk" %}
+  
 
 
   <div class="govuk-button-group">

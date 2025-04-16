@@ -35,7 +35,6 @@
         {{title}}
       </h1>
 
-    
       {{ govukSummaryList({
         rows: [
           {
@@ -44,6 +43,14 @@
             },
             value: {
               text: appeal.decision.decision
+            }
+          },
+          {
+            key: {
+              text: "Decision issue date"
+            },
+            value: {
+              text: appeal.decision.issueDate | govukDate
             }
           },
           {
@@ -62,7 +69,23 @@
                 }
               ]
             }
-          }
+          },
+          {
+            key: {
+              text: "Appellant costs decision letter"
+            },
+            value: {
+              html: '<a href="#">:appellantCostsDecisionLetter</a>' | replace(':appellantCostsDecisionLetter', appeal.decision.appellantCostsDecision.name)
+            }
+          } if appeal.decision.appellantCostsDecision,
+          {
+            key: {
+              text: "LPA costs decision letter"
+            },
+            value: {
+              html: '<a href="#">:lpaCostsDecisionLetter</a>' | replace(':lpaCostsDecisionLetter', appeal.decision.lpaCostsDecision.name)
+            }
+          } if appeal.decision.lpaCostsDecision
         ]
       }) }}
 

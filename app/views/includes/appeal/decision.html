@@ -19,6 +19,42 @@
     ] %}
   {% endif %}
 
+  {% if appeal.decision.appellantCostsDecision %}
+    {% set appellantCostsDecisionActions = [
+      {
+        href: "/main/appeals/:appealId/decision/x" | replace(':appealId', appeal.id),
+        text: "View",
+        visuallyHiddenText: "x"
+      }
+    ] %}
+  {% else %}
+    {% set appellantCostsDecisionActions = [
+      {
+        href: "/main/appeals/:appealId/decision/x" | replace(':appealId', appeal.id),
+        text: "Issue",
+        visuallyHiddenText: "x"
+      }
+    ] %}
+  {% endif %}
+
+  {% if appeal.decision.lpaCostsDecision %}
+    {% set lpaCostsDecisionActions = [
+      {
+        href: "/main/appeals/:appealId/decision/x" | replace(':appealId', appeal.id),
+        text: "View",
+        visuallyHiddenText: "x"
+      }
+    ] %}
+  {% else %}
+    {% set lpaCostsDecisionActions = [
+      {
+        href: "/main/appeals/:appealId/decision/x" | replace(':appealId', appeal.id),
+        text: "Issue",
+        visuallyHiddenText: "x"
+      }
+    ] %}
+  {% endif %}
+
   {{ govukSummaryList({
     rows: [
       {
@@ -37,10 +73,10 @@
           text: "Appellant cost decision"
         },
         value: {
-          html: 'Issued' if appeal.decision else 'Not issued yet'
+          html: 'Issued' if appeal.decision.appellantCostsDecision else 'Not issued yet'
         },
         actions: {
-          items: decisionActions
+          items: appellantCostsDecisionActions
         }
       },
       {
@@ -48,10 +84,10 @@
           text: "LPA cost decision"
         },
         value: {
-          html: 'Issued' if appeal.decision else 'Not issued yet'
+          html: 'Issued' if appeal.decision.lpaCostsDecision else 'Not issued yet'
         },
         actions: {
-          items: decisionActions
+          items: lpaCostsDecisionActions
         }
       }
     ]

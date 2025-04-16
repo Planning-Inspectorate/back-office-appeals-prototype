@@ -203,7 +203,22 @@ module.exports = router => {
 
     } else {
       appeal.decision = req.session.data.issueDecision
+      appeal.decision.issueDate = new Date()
+      if(req.session.data.issueDecision.hasAppellantCostsDecision == 'Yes') {
+        appeal.decision.appellantCostsDecision = {
+          name: 'appellant-cost-decision.pdf',
+          size: '10MB'
+        }
+      }
+      if(req.session.data.issueDecision.hasLPACostsDecision == 'Yes') {
+        appeal.decision.lpaCostsDecision = {
+          name: 'lpa-cost-decision.pdf',
+          size: '10MB'
+        }
+      }
     }
+
+    delete req.session.data.issueDecision
     req.flash('success', 'Decision issued')
     res.redirect(`/main/appeals/${req.params.appealId}`)
   })

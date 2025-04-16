@@ -1,0 +1,29 @@
+{% if appeal.status == 'Decision issued' %}
+
+  {% set decisionInsetHtml %}
+    <ul class="govuk-list govuk-list--bulle">
+      <li>
+        Decision: {{appeal.decision.decision}}
+      </li>
+      <li>
+        Decision issued on 15 April 2025
+      </li>
+      {% if appeal.decision.appellantCostsDecision %}
+        <li>
+          Appellant costs decision: Issued
+        </li>
+      {% endif %}
+      {% if appeal.decision.lpaCostsDecision %}
+        <li>
+          LPA costs decision: Issued
+        </li>
+      {% endif %}
+      <li>
+        <a href="/main/appeals/{{appeal.id}}/decision">View decision</a>
+      </li>
+    </ul>
+  {% endset %}
+  {{ govukInsetText({
+    html: decisionInsetHtml
+  }) }}
+  {% endif %}

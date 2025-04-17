@@ -421,21 +421,21 @@ const generateAppeal = (params = {}) => {
     }))
 
 
-    appeal.rule6Parties.push(generateRule6Party({
-      appeal,
-      status: 'Ready to review',
-      emailAddress: 'natasha@shield.com',
-      firstName: 'Natasha',
-      lastName: 'Romanoff',
-      hasOrganisation: 'Yes',
-      organisationName: 'S.H.I.E.L.D',
-      phone: '07714545546'
-    }))
+    // appeal.rule6Parties.push(generateRule6Party({
+    //   appeal,
+    //   status: 'Ready to review',
+    //   emailAddress: 'natasha@shield.com',
+    //   firstName: 'Natasha',
+    //   lastName: 'Romanoff',
+    //   hasOrganisation: 'Yes',
+    //   organisationName: 'S.H.I.E.L.D',
+    //   phone: '07714545546'
+    // }))
 
 
     appeal.rule6Parties.push(generateRule6Party({
       appeal,
-      status: 'Ready to review',
+      status: 'Approved',
       emailAddress: 'peter@example.com',
       firstName: 'Peter',
       lastName: 'Parker',
@@ -446,7 +446,7 @@ const generateAppeal = (params = {}) => {
 
     appeal.rule6Parties.push(generateRule6Party({
       appeal,
-      status: 'Approved',
+      status: 'Rejected',
       emailAddress: 'bruce@avengers.com',
       firstName: 'Bruce',
       lastName: 'Banner',
@@ -456,16 +456,16 @@ const generateAppeal = (params = {}) => {
     }))
 
 
-    appeal.rule6Parties.push(generateRule6Party({
-      appeal,
-      status: 'Rejected',
-      emailAddress: 'scott@pymtech.com',
-      firstName: 'Scott',
-      lastName: 'Lang',
-      hasOrganisation: 'Yes',
-      organisationName: 'Pym Technologies',
-      phone: '07714545546'
-    }))
+    // appeal.rule6Parties.push(generateRule6Party({
+    //   appeal,
+    //   status: 'Rejected',
+    //   emailAddress: 'scott@pymtech.com',
+    //   firstName: 'Scott',
+    //   lastName: 'Lang',
+    //   hasOrganisation: 'Yes',
+    //   organisationName: 'Pym Technologies',
+    //   phone: '07714545546'
+    // }))
 
     appeal.rule6Parties.push(generateRule6Party({
       appeal,

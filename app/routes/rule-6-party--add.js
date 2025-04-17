@@ -92,7 +92,7 @@ module.exports = router => {
     }
 
     appeal.rule6Parties.push(newParty)
-    res.redirect(`/main/appeals/${req.params.appealId}/rule-6-parties`)
+    res.redirect(`/main/appeals/${req.params.appealId}/rule-6-parties/${newParty.id}`)
   })
 
 }

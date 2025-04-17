@@ -10,9 +10,19 @@ module.exports = router => {
   })
 
   router.post('/main/appeals/:appealId/edit-timetable-due-dates', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
-    let editTimetableDueDates = req.body.editTimetableDueDates
+    res.redirect(`/main/appeals/${req.params.appealId}/edit-timetable-due-dates/check`)
+  })
 
+  router.get('/main/appeals/:appealId/edit-timetable-due-dates/check', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
+    res.render('/main/appeals/edit-timetable-due-dates/check', {
+      appeal
+    })
+  })
+
+  router.post('/main/appeals/:appealId/edit-timetable-due-dates/check', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
+    let editTimetableDueDates = req.session.data.editTimetableDueDates
 
     req.flash('success', 'Timetable due dates updated')
 

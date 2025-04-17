@@ -44,7 +44,7 @@
             value: {
               text: appeal.decision.decision
             }
-          },
+          } if appeal.decision,
           {
             key: {
               text: "Decision letter"
@@ -61,7 +61,7 @@
                 }
               ]
             }
-          },
+          } if appeal.decision,
           {
             key: {
               text: "Decision issue date"
@@ -69,7 +69,7 @@
             value: {
               text: appeal.decision.issueDate | govukDate
             }
-          },
+          } if appeal.decision,
           {
             key: {
               text: "Appellant costs decision letter"

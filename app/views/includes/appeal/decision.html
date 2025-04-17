@@ -62,7 +62,7 @@
           text: "Decision"
         },
         value: {
-          html: 'Issued' if appeal.decision else 'Not issued yet'
+          html: appeal.decision.decision if appeal.decision else 'Not issued yet'
         },
         actions: {
           items: decisionActions

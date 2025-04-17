@@ -52,9 +52,7 @@
     ] %}
   {% endif %}
 
-
-
-  {% if appeal.decision %}
+ {% if appeal.decision %}
     {% set decisionActions = [
       {
         href: "/main/appeals/:appealId/decision" | replace(':appealId', appeal.id),
@@ -71,6 +69,44 @@
       }
     ] %}
   {% endif %}
+
+  {% if appeal.appellantCostsDecision %}
+    {% set appellantCostsDecisionActions = [
+      {
+        href: "/main/appeals/:appealId/decision" | replace(':appealId', appeal.id),
+        text: "View",
+        visuallyHiddenText: "appellant costs decision"
+      }
+    ] %}
+  {% else %}
+    {% set appellantCostsDecisionActions = [
+      {
+        href: "/main/appeals/:appealId/appellant-costs-decision/new" | replace(':appealId', appeal.id),
+        text: "Issue",
+        visuallyHiddenText: "appellant costs decision"
+      }
+    ] %}
+  {% endif %}
+
+  {% if appeal.lpaCostsDecision %}
+    {% set lpaCostsDecisionActions = [
+      {
+        href: "/main/appeals/:appealId/decision" | replace(':appealId', appeal.id),
+        text: "View",
+        visuallyHiddenText: "LPA costs decision"
+      }
+    ] %}
+  {% else %}
+    {% set lpaCostsDecisionActions = [
+      {
+        href: "/main/appeals/:appealId/lpa-costs-decision/new" | replace(':appealId', appeal.id),
+        text: "Issue",
+        visuallyHiddenText: "LPA costs decision"
+      }
+    ] %}
+  {% endif %}
+
+
 
 
   {{ govukSummaryList({
@@ -231,7 +267,40 @@
         actions: {
           items: decisionActions
         }
-      } if 1==2
+      } if 1==2,
+      {
+        key: {
+          text: "Decision"
+        },
+        value: {
+          html: appeal.decision.decision if appeal.decision else 'Not issued yet'
+        },
+        actions: {
+          items: decisionActions
+        }
+      },
+      {
+        key: {
+          text: "Appellant cost decision"
+        },
+        value: {
+          html: 'Issued' if appeal.appellantCostsDecision else 'Not issued yet'
+        },
+        actions: {
+          items: appellantCostsDecisionActions
+        }
+      },
+      {
+        key: {
+          text: "LPA cost decision"
+        },
+        value: {
+          html: 'Issued' if appeal.lpaCostsDecision else 'Not issued yet'
+        },
+        actions: {
+          items: lpaCostsDecisionActions
+        }
+      }
     ]
   }) }}
 

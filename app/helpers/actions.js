@@ -52,7 +52,7 @@ const getActions = (appeal) => {
   } else if (appeal.status === "Proof of evidence and witnesses ready to share") {
     actions.push({ text: "Share proof of evidence and witnesses", href: "#" })
   } else if (appeal.status === "Decision ready to issue") {
-    actions.push({ text: "Issue decision", href: "#" })
+    actions.push({ text: "Issue decision", href: `/main/appeals/${appeal.id}/decision/new` })
   }
 
 

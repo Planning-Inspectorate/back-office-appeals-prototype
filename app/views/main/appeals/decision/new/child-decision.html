@@ -20,7 +20,7 @@
                 html: "Appellant"
               },
               value: {
-                html: ':firstName :lastName' | replace(':firstName', appeal.appellant.firstName) | replace(':lastName', appeal.appellant.lastName)
+                html: ':firstName :lastName' | replace(':firstName', childAppeal.appellant.firstName) | replace(':lastName', childAppeal.appellant.lastName)
               }
             },
             {
@@ -28,7 +28,7 @@
                 html: "Site address"
               },
               value: {
-                html: appAddress({ address: appeal.site.address })
+                html: appAddress({ address: childAppeal.site.address })
               }
             },
             {
@@ -36,7 +36,7 @@
                 html: "Appeal type"
               },
               value: {
-                html: appeal.type
+                html: childAppeal.type
               }
             }
           ]

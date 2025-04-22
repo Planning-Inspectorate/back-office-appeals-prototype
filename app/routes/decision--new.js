@@ -121,7 +121,7 @@ module.exports = router => {
           } 
           rowActions = {
             items: [{
-              href: `/main/appeals/${appeal.id}/add-decision`,
+              href: `/main/appeals/${appeal.id}/decision/new`,
               text: 'Change',
               visuallyHiddenText: `Decision for lead appeal ${appeal.id}`
             }]
@@ -132,7 +132,7 @@ module.exports = router => {
           }
           rowActions = {
             items: [{
-              href: `/main/appeals/${appeal.id}/add-decision/${key}`,
+              href: `/main/appeals/${appeal.id}/decision/new/${key}`,
               text: 'Change',
               visuallyHiddenText: `Decision for child appeal ${linkedAppeal.id}`
             }]
@@ -156,7 +156,7 @@ module.exports = router => {
         actions: {
           items: [
             {
-              href: `/main/appeals/${appeal.id}/decision-letter`,
+              href: `/main/appeals/${appeal.id}/decision/new/decision-letter`,
               text: "Change",
               visuallyHiddenText: "decision letter"
             }
@@ -164,42 +164,82 @@ module.exports = router => {
         }
       })
 
-
       rows.push({
         key: {
-          text: "Appellant costs decision letter"
+          text: "Do you want to issue the appellant’s costs decision?"
         },
         value: {
-          html: '<a href="#">appellant-costs-decision-letter.pdf</a>'
+          html: req.session.data.issueDecision.hasAppellantCostsDecision
         },
         actions: {
           items: [
             {
-              href: `/main/appeals/${appeal.id}/appellant-costs-decision-letter`,
+              href: `/main/appeals/${appeal.id}/decision/new/has-appellant-costs-decision`,
               text: "Change",
-              visuallyHiddenText: "Appellant costs decision letter"
+              visuallyHiddenText: "if you want to issue the appellant costs decision"
             }
           ]
         }
       })
 
+      if(req.session.data.issueDecision.hasAppellantCostsDecision == 'Yes') {
+        rows.push({
+          key: {
+            text: "Appellant costs decision letter"
+          },
+          value: {
+            html: '<a href="#">appellant-costs-decision-letter.pdf</a>'
+          },
+          actions: {
+            items: [
+              {
+                href: `/main/appeals/${appeal.id}/decision/new/appellant-costs-decision-letter`,
+                text: "Change",
+                visuallyHiddenText: "Appellant costs decision letter"
+              }
+            ]
+          }
+        })
+      }
+
       rows.push({
         key: {
-          text: "LPA costs decision letter"
+          text: "Do you want to issue the LPA’s costs decision?"
         },
         value: {
-          html: '<a href="#">lpa-costs-decision-letter.pdf</a>'
+          html: req.session.data.issueDecision.hasLPACostsDecision
         },
         actions: {
           items: [
             {
-              href: `/main/appeals/${appeal.id}/lpa-costs-decision-letter`,
+              href: `/main/appeals/${appeal.id}/decision/new/has-lpa-costs-decision`,
               text: "Change",
-              visuallyHiddenText: "LPA costs decision letter"
+              visuallyHiddenText: "if you want to issue the LPA costs decision"
             }
           ]
         }
       })
+
+      if(req.session.data.issueDecision.hasLPACostsDecision == 'Yes') {
+        rows.push({
+          key: {
+            text: "LPA costs decision letter"
+          },
+          value: {
+            html: '<a href="#">lpa-costs-decision-letter.pdf</a>'
+          },
+          actions: {
+            items: [
+              {
+                href: `/main/appeals/${appeal.id}/decision/new/lpa-costs-decision-letter`,
+                text: "Change",
+                visuallyHiddenText: "LPA costs decision letter"
+              }
+            ]
+          }
+        })
+      }
+      
     }
 
 
@@ -213,7 +253,34 @@ module.exports = router => {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     appeal.status = 'Decision issued'
     if(appeal.isLeadAppeal) {
-      // Todo
+      _.forEach(req.session.data.issueDecision.decision, (value, key) => {
+        let linkedAppeal = req.session.data.appeals.find(appeal => appeal.id == key)
+        linkedAppeal.status = 'Decision issued'
+        linkedAppeal.decision = {
+          decision: value,
+          issueDate: new Date()
+        }
+        // Todo: check that this linkedAppeal actually has an appellant cost application
+        if(req.session.data.issueDecision.hasAppellantCostsDecision == 'Yes') {
+          linkedAppeal.appellantCostsDecision = {
+            letter: {
+              name: 'appellant-cost-decision.pdf',
+              size: '10MB'
+            },
+            issueDate: new Date()
+          }
+        }
+        // Todo: check that this linkedAppeal actually has a LPA cost application
+        if(req.session.data.issueDecision.hasLPACostsDecision == 'Yes') {
+          linkedAppeal.lpaCostsDecision = {
+            letter: {
+              name: 'lpa-cost-decision.pdf',
+              size: '10MB'
+            },
+            issueDate: new Date()
+          }
+        }
+      })
     } else {
       appeal.decision = req.session.data.issueDecision
       appeal.decision.issueDate = new Date()
@@ -244,8 +311,10 @@ module.exports = router => {
 
   router.get('/main/appeals/:appealId/decision/new/:childAppealId', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
+    let childAppeal = req.session.data.appeals.find(appeal => appeal.id == req.params.childAppealId)
     res.render('/main/appeals/decision/new/child-decision', {
       appeal,
+      childAppeal,
       appealId: req.params.childAppealId
     })
   })

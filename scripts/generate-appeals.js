@@ -261,7 +261,7 @@ const generateAppeal = (params = {}) => {
   let appealForm = {}
 
   appealForm.procedurePreference = faker.helpers.arrayElement(['Written representations', 'Hearing', 'Inquiry'])
-  appealForm.hasPlanningObligation = faker.helpers.arrayElement(['Yes', 'No'])
+  appealForm.hasPlanningObligation = faker.helpers.arrayElement(['Yes', 'Yes', 'Yes', 'Yes', 'Yes', 'No'])
   if(appealForm.hasPlanningObligation == 'Yes') {
     if(appealForm.procedurePreference == 'Written representations') {
       appealForm.planningObligation = {
@@ -269,7 +269,7 @@ const generateAppeal = (params = {}) => {
         size: '5MB'
       }
     } else {
-      appealForm.readyToSubmitPlanningObligation = faker.helpers.arrayElement(['Yes', 'No'])
+      appealForm.readyToSubmitPlanningObligation = faker.helpers.arrayElement(['Yes', 'No', 'No', 'No'])
       if(appealForm.readyToSubmitPlanningObligation == 'Yes') {
         appealForm.planningObligation = {
           name: 'planning-obligation.pdf',

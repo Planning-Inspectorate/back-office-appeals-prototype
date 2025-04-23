@@ -96,8 +96,8 @@ module.exports = router => {
       childAppealId: leadAppeal.id
     })
 
-   req.flash('success', 'Lead appeal updated')
-   res.redirect(`/main/appeals/${req.params.appealId}`)
+    req.flash('success', 'Lead appeal updated')
+    res.redirect(`/main/appeals/${req.params.appealId}`)
   })
 
   router.get('/main/appeals/:appealId/linked-appeals/edit-lead/confirm', function (req, res) {
@@ -114,6 +114,25 @@ module.exports = router => {
       appeal,
       newLeadAppeal
     })  
+  })
+
+  router.post('/main/appeals/:appealId/linked-appeals/edit-lead/confirm', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
+
+    if(appeal.isLeadAppeal) {
+      // `appeal` is the lead
+      let linkedAppeal = req.session.data.linkedAppeals.find(linkedAppeal => linkedAppeal.leadAppealId == appeal.id)
+      linkedAppeal.leadAppealId = linkedAppeal.childAppealId
+      linkedAppeal.childAppealId = appeal.id
+    } else {
+      // `appeal` is the child
+      let linkedAppeal = req.session.data.linkedAppeals.find(linkedAppeal => linkedAppeal.childAppealId == appeal.id)
+      linkedAppeal.childAppealId = linkedAppeal.leadAppealId
+      linkedAppeal.leadAppealId = appeal.id     
+    }
+
+    req.flash('success', 'Lead appeal updated')
+    res.redirect(`/main/appeals/${req.params.appealId}`)
   })
 
 }

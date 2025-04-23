@@ -32,6 +32,11 @@
         </li>
       </ul>
 
+       {{ govukButton({
+        text: "Add a different linked appeal",
+        href: '/main/appeals/:appealId/linked-appeals/new' | replace(':appealId', appeal.id)
+      }) }}
+
     </div>
   </div>
 {% endblock %}

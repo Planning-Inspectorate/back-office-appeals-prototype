@@ -5,7 +5,7 @@ module.exports = router => {
   router.get('/main/appeals/:appealId/start-case', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
 
-    if(appeal.type == 'Householder') {
+    if(appeal.type == 'Householder appeal') {
       res.redirect(`/main/appeals/${req.params.appealId}/start-case/confirm`)
     }
     else {

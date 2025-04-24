@@ -35,75 +35,86 @@
         {{title}}
       </h1>
 
-      {{ govukSummaryList({
-        rows: [
-          {
-            key: {
-              text: "Decision"
-            },
-            value: {
-              text: appeal.decision.decision
-            }
-          } if appeal.decision,
-          {
-            key: {
-              text: "Decision letter"
-            },
-            value: {
-              html: '<a href="#">decision-letter.pdf</a>'
-            },
-            actions: {
-              items: [
-                {
-                  href: '/main/appeals/:appealId/decision/edit-decision-letter' | replace(':appealId', appeal.id) | replace(':commentId', comment.id),
-                  text: "Change",
-                  visuallyHiddenText: "Decision letter"
-                }
-              ]
-            }
-          } if appeal.decision,
-          {
-            key: {
-              text: "Decision issue date"
-            },
-            value: {
-              text: appeal.decision.issueDate | govukDate
-            }
-          } if appeal.decision,
-          {
-            key: {
-              text: "Appellant costs decision letter"
-            },
-            value: {
-              html: '<a href="#">:appellantCostsDecisionLetter</a>' | replace(':appellantCostsDecisionLetter', appeal.appellantCostsDecision.letter.name)
-            }
-          } if appeal.appellantCostsDecision,
-          {
-            key: {
-              text: "Appellant costs decision issue date"
-            },
-            value: {
-              text: appeal.appellantCostsDecision.issueDate | govukDate
-            }
-          } if appeal.appellantCostsDecision.issueDate,
-          {
-            key: {
-              text: "LPA costs decision letter"
-            },
-            value: {
-              html: '<a href="#">:lpaCostsDecisionLetter</a>' | replace(':lpaCostsDecisionLetter', appeal.lpaCostsDecision.letter.name)
-            }
-          } if appeal.lpaCostsDecision,
-          {
-            key: {
-              text: "LPA costs decision issue date"
-            },
-            value: {
-              text: appeal.lpaCostsDecision.issueDate | govukDate
-            }
-          } if appeal.lpaCostsDecision.issueDate
-        ]
-      }) }}
+      {# Linked appeals #}
+      {% if rows.length %}
+        {{ govukSummaryList({
+          rows: rows
+        }) }}
+      {% else %}
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Decision"
+              },
+              value: {
+                text: appeal.decision.decision
+              }
+            } if appeal.decision,
+            {
+              key: {
+                text: "Decision letter"
+              },
+              value: {
+                html: '<a href="#">decision-letter.pdf</a>'
+              },
+              actions: {
+                items: [
+                  {
+                    href: '/main/appeals/:appealId/decision/edit-decision-letter' | replace(':appealId', appeal.id),
+                    text: "Change",
+                    visuallyHiddenText: "Decision letter"
+                  }
+                ]
+              }
+            } if appeal.decision,
+            {
+              key: {
+                text: "Decision issue date"
+              },
+              value: {
+                text: appeal.decision.issueDate | govukDate
+              }
+            } if appeal.decision,
+            {
+              key: {
+                text: "Appellant costs decision letter"
+              },
+              value: {
+                html: '<a href="#">:appellantCostsDecisionLetter</a>' | replace(':appellantCostsDecisionLetter', appeal.appellantCostsDecision.letter.name)
+              }
+            } if appeal.appellantCostsDecision,
+            {
+              key: {
+                text: "Appellant costs decision issue date"
+              },
+              value: {
+                text: appeal.appellantCostsDecision.issueDate | govukDate
+              }
+            } if appeal.appellantCostsDecision.issueDate,
+            {
+              key: {
+                text: "LPA costs decision letter"
+              },
+              value: {
+                html: '<a href="#">:lpaCostsDecisionLetter</a>' | replace(':lpaCostsDecisionLetter', appeal.lpaCostsDecision.letter.name)
+              }
+            } if appeal.lpaCostsDecision,
+            {
+              key: {
+                text: "LPA costs decision issue date"
+              },
+              value: {
+                text: appeal.lpaCostsDecision.issueDate | govukDate
+              }
+            } if appeal.lpaCostsDecision.issueDate
+          ]
+        }) }}
+      {% endif %}
+
+
+
+      
 
     </div>
   </div>

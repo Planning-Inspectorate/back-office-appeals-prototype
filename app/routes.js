@@ -25,7 +25,7 @@ router.all('*', (req, res, next) => {
 router.use('/main/appeals/:appealId*', (req, res, next) => {
   let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
   if(appeal) {
-	appeal.isLeadAppeal = isLeadAppeal(appeal.id, req.session.data.linkedAppeals)
+		appeal.isLeadAppeal = isLeadAppeal(appeal.id, req.session.data.linkedAppeals)
   	appeal.isChildAppeal = isChildAppeal(appeal.id, req.session.data.linkedAppeals)	
   }
   next()

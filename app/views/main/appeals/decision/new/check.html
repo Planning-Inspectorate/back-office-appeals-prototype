@@ -15,12 +15,19 @@
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">Appeal {{appeal.id}} {% if appeal.isLeadAppeal %}(lead){% endif %}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
-
       {% if appeal.isLeadAppeal %}
         {{ govukSummaryList({
           rows: rows
         }) }}
       {% else %}
+        {% set decisionRowHtml %}
+          {{data.issueDecision.decision}}
+          {% if data.issueDecision.decision == 'Invalid' %}
+            <p class="govuk-!-margin-top-2 govuk-!-margin-bottom-0">Reason: {{data.issueDecision.invalidReason}}</p>
+          {% endif %}
+        {% endset %}
+
+        {{data.issueDecision | log}}
         {{ govukSummaryList({
           rows: [
             {
@@ -28,7 +35,7 @@
                 text: "Decision"
               },
               value: {
-                html: data.issueDecision.decision
+                html: decisionRowHtml
               },
               actions: {
                 items: [

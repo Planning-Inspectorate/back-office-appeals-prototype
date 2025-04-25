@@ -16,48 +16,63 @@
       <span class="govuk-caption-l">Appeal {{appeal.id}} {% if appeal.isLeadAppeal %}(lead){% endif %} - issue decision</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
 
-      {% set insetHtml %}
-        {{ govukSummaryList({
-          rows: [
-            {
-              key: {
-                html: "Appellant"
-              },
-              value: {
-                html: ':firstName :lastName' | replace(':firstName', appeal.appellant.firstName) | replace(':lastName', appeal.appellant.lastName)
-              }
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              html: "Appellant"
             },
-            {
-              key: {
-                html: "Site address"
-              },
-              value: {
-                html: appAddress({ address: appeal.site.address })
-              }
-            },
-            {
-              key: {
-                html: "Appeal type"
-              },
-              value: {
-                html: appeal.type
-              }
+            value: {
+              html: ':firstName :lastName' | replace(':firstName', appeal.appellant.firstName) | replace(':lastName', appeal.appellant.lastName)
             }
-          ]
+          },
+          {
+            key: {
+              html: "Site address"
+            },
+            value: {
+              html: appAddress({ address: appeal.site.address })
+            }
+          },
+          {
+            key: {
+              html: "Appeal type"
+            },
+            value: {
+              html: appeal.type
+            }
+          }
+        ]
+      }) }}
+
+
+      {% if appeal.isLeadAppeal %}
+        {% set decisionInputName = "issueDecision[decision][:appealId][decision]" | replace(':appealId', appealId) %}
+        {% set invalidReasonInputName = "issueDecision[decision][:appealId][invalidReason]" | replace(':appealId', appealId) %}
+        {% set decisionValue = data.issueDecision.decision[appealId].decision %}
+        {% set invalidReasonValue = data.issueDecision.decision[appealId].invalidReason %}
+      {% else %}
+        {% set decisionInputName = "issueDecision[decision]" %}
+        {% set invalidReasonInputName = "issueDecision[invalidReason]" %}
+        {% set decisionValue = data.issueDecision.decision %}
+        {% set invalidReasonValue = data.issueDecision.invalidReason %}
+      {% endif %}
+
+      {% set invalidReasonHtml %}
+        {{ govukTextarea({
+          id: invalidReasonInputName,
+          name: invalidReasonInputName,
+          label: {
+            text: "Reason",
+            classes: "govuk-label--s"
+          },
+          hint: {
+            text: "We will share the reason with the relevant parties"
+          },
+          value: invalidReasonValue
         }) }}
       {% endset %}
 
-      {{ govukInsetText({
-        html: insetHtml
-      }) }}
-
-      {% if appeal.isLeadAppeal %}
-        {% set decisionInputName = "issueDecision[decision][:appealId]" | replace(':appealId', appealId) %}
-        {% set decisionValue = data.issueDecision.decision[appealId] %}
-      {% else %}
-        {% set decisionInputName = "issueDecision[decision]" %}
-        {% set decisionValue = data.issueDecision.decision %}
-      {% endif %}
 
       <form method="post">
         {{ govukRadios({
@@ -84,7 +99,10 @@
             },
             {
               value: "Invalid",
-              text: "Invalid"
+              text: "Invalid",
+              conditional: {
+                html: invalidReasonHtml
+              }
             }
           ]
         }) }}

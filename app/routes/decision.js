@@ -11,22 +11,37 @@ module.exports = router => {
     if(appeal.isLeadAppeal) {
 
       if(appeal.decision) {
+
+        var rowValueHtml = appeal.decision.decision
+        if(appeal.decision.decision == 'Invalid') {
+          rowValueHtml = rowValueHtml + `<p class="govuk-!-margin-top-2 govuk-!-margin-bottom-0">Reason: ${appeal.decision.invalidReason}</p>`
+        }
+
         rows.push({
           key: {
             text: `Decision for lead appeal ${appeal.id}`
           },
           value: {
-            text: appeal.decision.decision
+            html: rowValueHtml
           }
         })
   
         _.forEach(getLinkedAppeals(appeal.id, req.session.data.linkedAppeals), (linkedAppeal) => {
+          
+          var decision = req.session.data.appeals.find(appeal => appeal.id == linkedAppeal.id).decision
+
+          var rowValueHtml = decision.decision
+          if(decision.decision == 'Invalid') {
+            rowValueHtml = rowValueHtml + `<p class="govuk-!-margin-top-2 govuk-!-margin-bottom-0">Reason: ${decision.invalidReason}</p>`
+          }
+
+
           rows.push({
             key: {
               text: `Decision for child appeal ${linkedAppeal.id}`
             },
             value: {
-              text: req.session.data.appeals.find(appeal => appeal.id == linkedAppeal.id).decision.decision
+              html: rowValueHtml 
             }
           })
         })

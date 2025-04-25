@@ -41,6 +41,13 @@
           rows: rows
         }) }}
       {% else %}
+        {% set decisionRowHtml %}
+          {{appeal.decision.decision}}
+          {% if appeal.decision.decision == 'Invalid' %}
+            <p class="govuk-!-margin-top-2 govuk-!-margin-bottom-0">Reason: {{appeal.decision.invalidReason}}</p>
+          {% endif %}
+        {% endset %}
+
         {{ govukSummaryList({
           rows: [
             {
@@ -48,7 +55,7 @@
                 text: "Decision"
               },
               value: {
-                text: appeal.decision.decision
+                html: decisionRowHtml
               }
             } if appeal.decision,
             {

@@ -12,45 +12,54 @@
       <span class="govuk-caption-l">Appeal {{appeal.id}} {% if appeal.isLeadAppeal %}(lead){% endif %} - issue decision</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
 
-      {% set insetHtml %}
-        {{ govukSummaryList({
-          rows: [
-            {
-              key: {
-                html: "Appellant"
-              },
-              value: {
-                html: ':firstName :lastName' | replace(':firstName', childAppeal.appellant.firstName) | replace(':lastName', childAppeal.appellant.lastName)
-              }
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              html: "Appellant"
             },
-            {
-              key: {
-                html: "Site address"
-              },
-              value: {
-                html: appAddress({ address: childAppeal.site.address })
-              }
-            },
-            {
-              key: {
-                html: "Appeal type"
-              },
-              value: {
-                html: childAppeal.type
-              }
+            value: {
+              html: ':firstName :lastName' | replace(':firstName', childAppeal.appellant.firstName) | replace(':lastName', childAppeal.appellant.lastName)
             }
-          ]
+          },
+          {
+            key: {
+              html: "Site address"
+            },
+            value: {
+              html: appAddress({ address: childAppeal.site.address })
+            }
+          },
+          {
+            key: {
+              html: "Appeal type"
+            },
+            value: {
+              html: childAppeal.type
+            }
+          }
+        ]
+      }) }}
+
+      {% set invalidReasonHtml %}
+        {{ govukTextarea({
+          id: "issueDecision[decision][:appealId][invalidReason]" | replace(':appealId', appealId),
+          name: "issueDecision[decision][:appealId][invalidReason]" | replace(':appealId', appealId),
+          label: {
+            text: "Reason",
+            classes: "govuk-label--s"
+          },
+          hint: {
+            text: "We will share the reason with the relevant parties"
+          },
+          value: data.issueDecision.decision[appealId].invalidReason
         }) }}
       {% endset %}
-
-      {{ govukInsetText({
-        html: insetHtml
-      }) }}
 
       <form method="post">
         
         {{ govukRadios({
-          name: "issueDecision[decision][:appealId]" | replace(':appealId', appealId),
+          name: "issueDecision[decision][:appealId][decision]" | replace(':appealId', appealId),
           fieldset: {
             legend: {
               text: title,
@@ -58,7 +67,7 @@
               classes: "govuk-fieldset__legend--m"
             }
           },
-          value: data.issueDecision.decision[appealId],
+          value: data.issueDecision.decision[appealId].decision,
           items: [
             {
               value: "Allowed",
@@ -74,7 +83,10 @@
             },
             {
               value: "Invalid",
-              text: "Invalid"
+              text: "Invalid",
+              conditional: {
+                html: invalidReasonHtml
+              }
             }
           ]
         }) }}

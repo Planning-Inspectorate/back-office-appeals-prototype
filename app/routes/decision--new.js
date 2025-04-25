@@ -110,9 +110,14 @@ module.exports = router => {
         linkedAppeal.isLeadAppeal = isLeadAppeal(linkedAppeal.id, req.session.data.linkedAppeals)
   	    linkedAppeal.isChildAppeal = isChildAppeal(linkedAppeal.id, req.session.data.linkedAppeals)	
 
+        var rowValueHtml = value.decision
+        if(value.decision == 'Invalid') {
+          rowValueHtml = rowValueHtml + `<p class="govuk-!-margin-top-2 govuk-!-margin-bottom-0">Reason: ${value.invalidReason}</p>`
+        }
+
         var rowKey
         var rowValue = {
-          html: value
+          html: rowValueHtml
         }
         var rowActions
         if(linkedAppeal.isLeadAppeal) {
@@ -257,9 +262,11 @@ module.exports = router => {
         let linkedAppeal = req.session.data.appeals.find(appeal => appeal.id == key)
         linkedAppeal.status = 'Decision issued'
         linkedAppeal.decision = {
-          decision: value,
+          decision: value.decision,
+          invalidReason: value.invalidReason,
           issueDate: new Date()
         }
+
         // Todo: check that this linkedAppeal actually has an appellant cost application
         if(req.session.data.issueDecision.hasAppellantCostsDecision == 'Yes') {
           linkedAppeal.appellantCostsDecision = {

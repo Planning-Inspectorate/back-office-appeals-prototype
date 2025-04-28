@@ -18,7 +18,12 @@ module.exports = router => {
       let firstChildAppealId = getLinkedAppeals(appeal.id, req.session.data.linkedAppeals)[0].id
       res.redirect(`/main/appeals/${req.params.appealId}/decision/new/${firstChildAppealId}`)
     } else {
-      res.redirect(`/main/appeals/${req.params.appealId}/decision/new/decision-letter`)
+      if(req.session.data.issueDecision.decision == 'Invalid') {
+        res.redirect(`/main/appeals/${req.params.appealId}/decision/new/has-appellant-costs-decision`)
+      } else {
+        res.redirect(`/main/appeals/${req.params.appealId}/decision/new/decision-letter`)
+      }
+
     }
   })
 

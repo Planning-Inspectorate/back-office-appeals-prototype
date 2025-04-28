@@ -19,6 +19,7 @@
 @import "components/hidden";
 @import "components/action-bar";
 @import "components/search-form";
+@import "components/multi-file-upload";
 
 // styles for the document library project
 @import "PINS-header--internal"; // dark green internal pins header
@@ -212,11 +213,15 @@ h1 .govuk-tag {
 
 // Modify the moj multi upload drop styles
 .moj-multi-file-upload__dropzone {
-	outline-color: $govuk-link-colour;
-	outline-width: 4px;
+	outline-color: $govuk-border-colour;
+	outline-width: 2px;
 
 	@include govuk-media-query($from: desktop) {
 		padding: 80px 15px;
+	}
+
+	p {
+		margin-left: 10px;
 	}
 }
 

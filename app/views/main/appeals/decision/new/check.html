@@ -27,7 +27,6 @@
           {% endif %}
         {% endset %}
 
-        {{data.issueDecision | log}}
         {{ govukSummaryList({
           rows: [
             {
@@ -63,7 +62,7 @@
                   }
                 ]
               }
-            },
+            } if not data.issueDecision.decision == 'Invalid',
             {
               key: {
                 text: "Do you want to issue the appellant’s costs decision?"

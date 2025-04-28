@@ -18,22 +18,31 @@
 
         {% set uploadHtml %}
           {{ govukFileUpload({
-            id: 'upload',
-            name: 'upload',
-            classes: 'moj-multi-file-upload__input',
+            id: "documents",
+            name: "documents",
+            classes: 'app-multi-file-upload__input',
             label: {
-              text: 'Upload LPA costs decision letter',
+              text: "Upload LPA costs decision letter",
               classes: 'govuk-label--m'
-            }
+            },
+            attributes: { multiple: '' },
+            errorMessage: errorMessage,
+            hint: {
+              text: 'You can only upload a PNG, GIF or JPEG file under 2MB.'
+            } if false
           }) }}
 
           {{govukButton({
             text: 'Upload file',
-            classes: 'govuk-button--secondary moj-multi-file-upload__button'
+            classes: 'govuk-button--secondary app-multi-file-upload__button'
           })}}
         {% endset %}
 
-        {{ mojMultiFileUpload({
+        {{ appMultiFileUpload({
+          uploadedFiles: {
+            heading: { text: 'Files added' },
+            items: uploadedFiles
+          } if uploadedFiles,
           uploadHtml: uploadHtml
         }) }}
 
@@ -45,4 +54,19 @@
 
     </div>
   </div>
+{% endblock %}
+
+{% block pageScripts %}
+  {{super()}}
+  <script>
+    if(typeof App.MultiFileUpload !== 'undefined') {
+     new App.MultiFileUpload({
+        container: $('.app-multi-file-upload'),
+        uploadUrl: '/ajax-upload',
+        deleteUrl: '/ajax-delete',
+        dropzoneHintText: 'or drop file',
+        dropzoneButtonText: 'Choose file'
+      });
+    }
+  </script>
 {% endblock %}

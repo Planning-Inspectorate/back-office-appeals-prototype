@@ -1,0 +1,71 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = 'Check details and update appeal type'  %}
+{% set pageName = title %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: 'javascript:history.back()'
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <span class="govuk-caption-l">Appeal {{appeal.id}} - update appeal type</span>
+      <h1 class="govuk-heading-l">
+        {{title}}
+      </h1>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Appeal type"
+            },
+            value: {
+              html: data.editType.type
+            },
+            actions: {
+              items: [
+                {
+                  href: '/main/appeals/:appealId/edit-type' | replace(':appealId', appeal.id),
+                  text: "Change",
+                  visuallyHiddenText: "Appeal type"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Does the appellant need to resubmit the appeal?"
+            },
+            value: {
+              html: data.editType.mustResubmit
+            },
+            actions: {
+              items: [
+                {
+                  href: '/main/appeals/:appealId/edit-type/must-resubmit' | replace(':appealId', appeal.id),
+                  text: "Change",
+                  visuallyHiddenText: "if the appellant needs to resubmit the appeal"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <p>We will send an email to the relevant parties to tell them that the appeal type
+has changed.</p>
+
+      <form method="post">
+        {{ govukButton({
+          text: "Update appeal type"
+        }) }}
+
+      </form>
+    </div>
+  </div>
+{% endblock %}

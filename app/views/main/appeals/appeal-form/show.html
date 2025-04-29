@@ -88,6 +88,57 @@
           },
           {
             key: {
+              text: "Grid reference"
+            },
+            value: {
+              html: "62 33"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "grid reference"
+                  }
+                ]
+              }
+          } if appeal.type == 'Adverts' or appeal.type == 'CAS adverts' or appeal.type == 'CAS planning',
+          {
+            key: {
+              text: "Is the appeal site on highway land?"
+            },
+            value: {
+              html: "Yes"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "if the appeal site is on highway land"
+                  }
+                ]
+              }
+          } if appeal.type == 'Adverts' or appeal.type == 'CAS adverts',
+          {
+            key: {
+              text: "Is the advertisement in position?"
+            },
+            value: {
+              html: "Yes"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "if the advertisment is in position"
+                  }
+                ]
+              }
+          } if appeal.type == 'Adverts' or appeal.type == 'CAS adverts',
+          {
+            key: {
               text: "What is the area of the appeal site?"
             },
             value: {
@@ -102,7 +153,7 @@
                   }
                 ]
               }
-          },
+          } if appeal.type == 'Householder appeal' or appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'CAS planning',
           {
             key: {
               text: "Is the appeal site in a green belt?"
@@ -139,8 +190,7 @@
                   }
                 ]
               }
-          },
-
+          } if appeal.type == 'Householder appeal' or appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'CAS planning',
           {
             key: {
               text: "Does the appellant know who owns the land involved in the appeal?"
@@ -152,17 +202,35 @@
               html: "Some of the land"
             },
             actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "if the appellant knows who owns the land involved in the appeal"
-                  }
-                ]
-              }
-           
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "if the appellant knows who owns the land involved in the appeal"
+                }
+              ]
+            }
           },
-
+          {
+            key: {
+              text: "Do you have the landowner’s permission?"
+            },
+            value: {
+              html: "Not answered"
+            } if data['empty'] else
+            {
+              html: "Some of the land"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "if the appellant has the landowner’s permission"
+                }
+              ]
+            }
+          } if appeal.type == 'Adverts' or appeal.type == 'CAS adverts',
           {
             key: {
               text: "Is the appeal site part of an agricultural holding?"
@@ -182,7 +250,7 @@
                   }
                 ]
               }
-          },
+          } if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
           {
             key: {
               text: "Are you a tenant of the agricultural holding?"
@@ -194,15 +262,15 @@
               html: "Yes"
             },
             actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "if the appellant is a tenant of the agricultural holding"
-                  }
-                ]
-              }
-          },
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "if the appellant is a tenant of the agricultural holding"
+                }
+              ]
+            }
+          } if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
           {
             key: {
               text: "Are there any other tenants?"
@@ -214,17 +282,15 @@
               html: "Yes"
             },
             actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "if there are any other tenants"
-                  }
-                ]
-              }
-          },
-         
-
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "if there are any other tenants"
+                }
+              ]
+            }
+          } if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
           {
             key: {
               text: "Will an inspector need to access your land or property?"
@@ -244,7 +310,7 @@
                   }
                 ]
               }
-          },
+          } if appeal.type == 'Householder appeal' or appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'CAS planning',
           {
             key: {
               text: "Are there any health and safety issues on the appeal site?"
@@ -282,8 +348,6 @@
                 ]
               }
           },
-
-
           {
             key: {
               text: "What is the application reference number?"
@@ -320,6 +384,40 @@
           },
           {
             key: {
+              text: "Was your application for a major or minor development?"
+            },
+            value: {
+              html: "Yes"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "if the appellant’s application was for a major or minor development"
+                  }
+                ]
+              }
+          } if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
+          {
+            key: {
+              text: "Was your application about any of the following?"
+            },
+            value: {
+              html: "Yes"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "if the appellant’s application was about any of the following"
+                  }
+                ]
+              }
+          } if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
+          {
+            key: {
               text: "Enter the description of development that you submitted in your application"
             },
             value: {
@@ -334,7 +432,24 @@
                   }
                 ]
               }
-          },
+          } if appeal.type == 'Householder appeal' or appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'CAS planning',
+          {
+            key: {
+              text: "Enter the description of the advertisement"
+            },
+            value: {
+              html: "Big sign"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "description of the advertisement"
+                  }
+                ]
+              }
+          } if appeal.type == 'Adverts' or appeal.type == 'CAS adverts',
           {
             key: {
               text: "Did the local planning authority change the description of development?"
@@ -354,7 +469,7 @@
                   }
                 ]
               }
-          },
+          } if 1==2,
           {
             key: {
               text: "Are there other appeals linked to your development?"
@@ -447,9 +562,7 @@
                   }
                 ]
               }
-          },
-
-          
+          },          
           {
             key: {
               text: "How would you prefer us to decide your appeal?"
@@ -458,15 +571,15 @@
               html: "Written representations"
             },
             actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "how would you prefer us to decide your appeal?"
-                  }
-                ]
-              }
-          },
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "how would you prefer us to decide your appeal?"
+                }
+              ]
+            }
+          } if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Adverts',
           {
             key: {
               text: "Why would you prefer this appeal procedure?	"
@@ -495,7 +608,7 @@
                 }
               ]
             }
-          },
+          } if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Adverts',
           {
             key: {
               text: "How many days would you expect the inquiry to last?"
@@ -524,7 +637,7 @@
                 }
               ]
             }
-          },
+          } if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Adverts',
           {
             key: {
               text: "How many witnesses would you expect to give evidence at the inquiry?"
@@ -553,7 +666,7 @@
                 }
               ]
             }
-          }
+          } if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Adverts'
          
         ]
       }) }}
@@ -644,8 +757,7 @@
             }
             ]
             }
-            },
-
+          } if appeal.type == 'Householder appeal' or appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'CAS planning',
           {
             key: {
               text: "Appeal statement"
@@ -710,9 +822,7 @@
                 }
               ]
             }
-          },
-
-
+          } if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
           {
             key: {
               text: "What is the status of your planning obligation?"
@@ -742,7 +852,7 @@
                 }
               ]
             }
-          },
+          } if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
 
 
 
@@ -779,7 +889,7 @@
           }
         ]
             }
-          },
+          } if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
 
           {
             key: {
@@ -814,10 +924,7 @@
           }
         ]
             }
-          },
-         
-          
-
+          } if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
           {
             key: {
               text: "Application for an award of appeal costs"
@@ -886,7 +993,7 @@
           }
         ]
             }
-          },
+          } if appeal.type == 'Householder appeal' or appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'CAS planning',
 
           {
             key: {
@@ -956,10 +1063,7 @@
           }
         ]
             }
-          },
-
-
-
+          } if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Adverts' or appeal.type == 'CAS adverts' or appeal.type == 'CAS planning',
           {
             key: {
               text: "Other new supporting documents"
@@ -993,15 +1097,9 @@
           }
         ]
             }
-          }
-
-
-          
-
+          } if appeal.type == 'Planning appeal' or appeal.type == 'Listed building'
         ]
       }) }}
-
-
 
       <form action="/appellant-outcome" method="post" class="govuk-!-margin-top-9" novalidate>
         {{ govukRadios({

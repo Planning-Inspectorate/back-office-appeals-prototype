@@ -213,7 +213,7 @@ const generateAppeal = (params = {}) => {
   let appeal = {}
 
   appeal.id = params.id || "" + faker.number.int({ min: 123456, max: 999999 })
-  appeal.type = params.type || faker.helpers.arrayElement(['Householder appeal', 'Planning appeal'])
+  appeal.type = params.type || faker.helpers.arrayElement(['Householder appeal', 'Planning appeal', 'Adverts', 'CAS adverts', 'CAS planning'])
 
   appeal.linkedAppeals = params.linkedAppeals || []
 
@@ -259,6 +259,10 @@ const generateAppeal = (params = {}) => {
   }
 
   let appealForm = {}
+
+  if(appeal.type == 'Adverts') {
+    appealForm.prop1 = faker.helpers.arrayElement(['Yes', 'No'])
+  }
 
   appealForm.procedurePreference = faker.helpers.arrayElement(['Written representations', 'Hearing', 'Inquiry'])
   appealForm.hasPlanningObligation = faker.helpers.arrayElement(['Yes', 'Yes', 'Yes', 'Yes', 'Yes', 'No'])
@@ -308,7 +312,15 @@ const generateAppeal = (params = {}) => {
   }
 
 
-
+  if(appeal.type == 'Householder appeal' || appeal.type == 'CAS planning') {
+    appeal.startDate = DateTime.now().toISO()
+    appeal.LPAQuestionnaireDueDate = DateTime.now().toISO()
+    appeal.siteVisit = faker.helpers.arrayElement([{
+      date: DateTime.now().toISO(),
+      time: '10am',
+      hasAddress: 'No'
+    }, null])
+  }
 
   if(appeal.procedure == 'Written representations') {
     appeal.startDate = DateTime.now().toISO()

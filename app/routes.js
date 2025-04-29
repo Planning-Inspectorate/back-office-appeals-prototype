@@ -44,6 +44,8 @@ router.get('/clear-data', function (req, res) {
 
 require('./routes/appeals')(router)
 require('./routes/appeal')(router)
+require('./routes/lpaq')(router)
+require('./routes/appeal-form')(router)
 require('./routes/linked-appeals')(router)
 require('./routes/linked-appeals--add')(router)
 require('./routes/linked-appeals--delete')(router)

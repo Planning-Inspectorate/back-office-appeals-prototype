@@ -42,11 +42,26 @@
       
       <ul class="govuk-list govuk-list--bullet">
         <li>
-           we’ve withdrawn the appeal and
+           the appeal has been withdrawn
         </li>
-        <li>
-          any appointments have been cancelled
-        </li>
+        {% if appeal.siteVisit %}
+          <li>
+            the site visit has been cancelled
+          </li>
+        {% endif %}
+        {% if appeal.hearing %}
+          <li>
+            the hearing has been cancelled
+          </li>
+        {% endif %}
+        {% if appeal.inquiry %}
+          <li>
+            the case management conference has been cancelled
+          </li>
+          <li>
+            the inquiry has been cancelled
+          </li>
+        {% endif %}
       </ul>
 
       <form method="post">

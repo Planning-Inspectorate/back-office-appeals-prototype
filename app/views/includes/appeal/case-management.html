@@ -69,22 +69,17 @@
           text: "Appeal withdrawal"
         },
         value: {
-          text: "1 document"
+          text: "Not withdrawn" if appeal.status != 'Withdrawn' else 'Withdrawn'
         },
         actions: {
           items: [
             {
-              href: "#",
-              text: "Add",
-              visuallyHiddenText: "appeal withdrawal"
-            },
-            {
-              href: "#",
-              text: "Change",
+              href: "/main/appeals/:appealId/withdraw/new" | replace(':appealId', appeal.id),
+              text: "Withdraw",
               visuallyHiddenText: "appeal withdrawal"
             }
           ]
-        }
+        } if appeal.status != 'Withdrawn'
       }
     ]
   }) }}

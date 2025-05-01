@@ -309,7 +309,7 @@
 
           {
             key: {
-              html: 'Is the site in an area of special control of advertisements?'
+              html: 'Is the appeal site in an area of special control of advertisements?'
             },
             value: {
             html: "No"
@@ -322,7 +322,7 @@
                 {
                   href: 'constraints/protected-species?cya=true',
                   html: 'Change',
-                  visuallyHiddenText: 'if the site is in an area of special control of advertisements'
+                  visuallyHiddenText: 'if the appeal site is in an area of special control of advertisements'
                 }
               ]
             }
@@ -984,7 +984,7 @@
 
           {
             key: {
-              html: 'Is one of your grounds for refusal public safety involving highway or traffic considerations?'
+              html: 'Did you refuse the application because of highway or traffic public safety?'
             },
             value: {
               html: "No"
@@ -997,7 +997,7 @@
                 {
                   href: 'constraints/area-of-outstanding-natural-beauty?cya=true',
                   html: 'Change',
-                  visuallyHiddenText: 'is one of your grounds for refusal public safety involving highway or traffic considerations?'
+                  visuallyHiddenText: 'if you refused the application because of highway or traffic public safety'
                 }
               ]
             }
@@ -1190,7 +1190,7 @@
 
           {
             key: {
-              html: 'Confirm that any photographs and plan submitted by the appellant are complete and accurate'
+              html: 'Did the appellant submit complete and accurate photographs and plans?'
             },
             value: {
               html: "No"
@@ -1202,7 +1202,7 @@
               items: [
                 {
                   html: 'Change',
-                  visuallyHiddenText: "did you consult all the relevant statutory consultees about the development?"
+                  visuallyHiddenText: "if the appellant submitted complete and accurate photographs and plans"
                 }
               ]
             }
@@ -1477,9 +1477,10 @@
             }
           }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Adverts' or appeal.type == 'CAS adverts',
 
+
           {
             key: {
-              html: 'Other relevant policies'
+              html: 'Discontinuance notice'
             },
             value: {
               html: "No documents"
@@ -1492,7 +1493,7 @@
                 {
                   href: "Item URL",
                   text: "Add",
-                  visuallyHiddenText: "other relevant policies"
+                  visuallyHiddenText: "discontinuance notice"
                 }
               ]
             }if data['empty'] else
@@ -1501,12 +1502,12 @@
           {
             href: "#",
             text: "Add",
-            visuallyHiddenText: "other relevant policies"
+            visuallyHiddenText: "discontinuance notice"
           },
           {
             href: "#",
             text: "Change",
-            visuallyHiddenText: "other relevant policies"
+            visuallyHiddenText: "discontinuance notice"
           }
         ]
             }

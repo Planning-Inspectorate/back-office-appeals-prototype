@@ -19,7 +19,6 @@
     }) }}
 {% endblock %}
 
-
 {% block content %}
 
   <div class="govuk-grid-row">
@@ -39,18 +38,18 @@
           rows: [
             {
               key: {
-                text: "Withdraw request"
+                text: "Request to withdraw appeal"
               },
               value: {
-                html: '<a href="#">withdrawal-request.pdf (1MB)</a>'
+                html: '<a href="#">withdrawal-request.pdf</a>'
               }
             },
             {
               key: {
-                text: "Withdraw date"
+                text: "Withdrawn date"
               },
               value: {
-                text: appeal.withdrawal.withdrawDate | govukDate
+                text: appeal.withdrawal.withdrawnDate | govukDate
               }
             }
           ]

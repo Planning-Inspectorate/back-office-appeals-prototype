@@ -1,6 +1,6 @@
 {% extends "layouts/bo.html" %}
 
-{% set title = "Withdrawal request" %}
+{% set title = "Request to withdraw appeal" %}
 {% set pageName = title %}
 
 {% set back = true %}
@@ -14,7 +14,9 @@
         <span class="govuk-caption-l">Appeal {{appeal.id}} {% if appeal.isLeadAppeal %}(lead){% endif %} - withdraw appeal</span>
         <h1 class="govuk-heading-l">{{title}}</h1>
 
-        <p>The file must be a PDF and smaller than 25MB.</p>
+        <p>The file must be a PDF, DOC, DOCX, PPT, PPTX, XLS, XLSX, MSG, JPG, JPEG, MPEG, MP3, MP4, MOV, PNG, TIF or TIFF.</p>
+
+        <p>The file must be smaller than 25MB.</p>
 
          {% set uploadHtml %}
           {{ govukFileUpload({
@@ -22,7 +24,7 @@
             name: "documents",
             classes: 'app-multi-file-upload__input',
             label: {
-              text: "Upload withdrawal request",
+              text: "Upload request to withdraw appeal",
               classes: 'govuk-label--m'
             },
             attributes: { multiple: '' },

@@ -100,6 +100,9 @@ require('./routes/decision--new')(router)
 require('./routes/appellant-costs-decision--new')(router)
 require('./routes/lpa-costs-decision--new')(router)
 
+require('./routes/withdrawal')(router)
+require('./routes/withdrawal--new')(router)
+
 // Timetable
 // require('./routes/add-statement-of-common-ground-due-date')(router)
 // require('./routes/add-proof-of-evidence-and-witnesses-due-date')(router)

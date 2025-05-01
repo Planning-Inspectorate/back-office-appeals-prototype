@@ -1,5 +1,20 @@
+{% if appeal.status == 'Withdrawn' %}
+  {% set withdrawalActions = [{
+    href: "/main/appeals/:appealId/withdrawal" | replace(':appealId', appeal.id),
+    text: "View",
+    visuallyHiddenText: "appeal withdrawal"
+  }]%}
+{% else %}
+  {% set withdrawalActions = [{
+    href: "/main/appeals/:appealId/withdrawal/new" | replace(':appealId', appeal.id),
+    text: "Withdraw",
+    visuallyHiddenText: "appeal withdrawal"
+  }] %}
+{% endif %}
+
 <div class="app-panel">
   <h2 class="govuk-heading-l">Case management</h2>
+
   {{ govukSummaryList({
     classes: 'app-summary-list--wider-actions',
     rows: [
@@ -69,21 +84,10 @@
           text: "Appeal withdrawal"
         },
         value: {
-          text: "1 document"
+          text: "Not withdrawn" if appeal.status != 'Withdrawn' else 'Withdrawn'
         },
         actions: {
-          items: [
-            {
-              href: "#",
-              text: "Add",
-              visuallyHiddenText: "appeal withdrawal"
-            },
-            {
-              href: "#",
-              text: "Change",
-              visuallyHiddenText: "appeal withdrawal"
-            }
-          ]
+          items: withdrawalActions
         }
       }
     ]

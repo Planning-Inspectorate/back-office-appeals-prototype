@@ -30,11 +30,29 @@
                 {
                   href: "/main/appeals/:appealId/withdrawal/new" | replace(':appealId', appeal.id),
                   text: "Change",
-                  visuallyHiddenText: "decision letter"
+                  visuallyHiddenText: "withdrawal request"
                 }
               ]
             }
-          }
+          },
+          {
+            key: {
+              text: "Which is the new lead appeal?
+"
+            },
+            value: {
+              html: data.withdraw.newLeadAppealId
+            },
+            actions: {
+              items: [
+                {
+                  href: "/main/appeals/:appealId/withdrawal/new/new-lead-appeal" | replace(':appealId', appeal.id),
+                  text: "Change",
+                  visuallyHiddenText: "which is the new lead appeal"
+                }
+              ]
+            }
+          } if data.withdraw.newLeadAppealId
         ]
       }) }}
 
@@ -62,11 +80,16 @@
             the inquiry has been cancelled
           </li>
         {% endif %}
+        {# {% if data.withdraw.newLeadAppealId %}
+          <li>
+            the new lead appeal is {{data.withdraw.newLeadAppealId}}
+          </li>
+        {% endif %} #}
       </ul>
 
       <form method="post">
         {{ govukButton({
-          text: "Withdaw appeal"
+          text: "Withdraw appeal"
         }) }}
       </form>
 

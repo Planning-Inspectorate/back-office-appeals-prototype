@@ -20,1719 +20,1715 @@
 
 {% block content %}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-l">Appeal {{appeal.id}} {% if appeal.isLeadAppeal %}(lead){% endif %}</span>
-      <h1 class="govuk-heading-l">{{title}}</h1>
-<h2 class="govuk-heading-m govuk-!-margin-top-4">1. Constraints, designations and other issues</h2>
+  <span class="govuk-caption-l">Appeal {{appeal.id}} {% if appeal.isLeadAppeal %}(lead){% endif %}</span>
+  <h1 class="govuk-heading-l">{{title}}</h1>
+  <h2 class="govuk-heading-m govuk-!-margin-top-4">1. Constraints, designations and other issues</h2>
 
-      {{ govukSummaryList({
-        rows: [
-          {
-            key: {
-              html: 'Is planning appeal the correct type of appeal?'
-            },
-            value: {
-              html: "No"
-            } if data['empty'] else
-            {
-              html: "Yes"
-            },
-            actions: {
-              items: [
-                {
-                  href: 'constraints/appropriate?cya=true',
-                  html: 'Change',
-                  visuallyHiddenText: "Is planning appeal the correct type of appeal?"
-                }
-              ]
-            }
-          },
-
-
-
-          {
-            key: {
-              html: 'Does the development change a listed building?'
-            },
-            value: {
-              html: "No"
-            } if data['empty'] else
-            {
-              html: 'Yes<br>
-              <ul class="govuk-list govuk-list--bullet">
-                <li>
-                  <a href="#">1282050</a><br>
-                  Grade II listed building<br>
-                  151, York Road, Bedminster, Bristol, BS3 4AL
-                </li>
-                <li>
-                  <a href="#">1282051</a><br>
-                  Grade II listed building<br>
-                  152, York Road, Bedminster, Bristol, BS3 4AL
-                </li>
-              </ul>'
-            },
-            actions: {
-              items: [
-              {
-                href: '/affected-listed-building-details?cya=true',
-                text: "Add",
-                visuallyHiddenText: "does the development change a listed building?"
-              }
-            ]
-          }if data['empty'] else
-          {
-            items: [
-        {
-          href: "#",
-          text: "Add",
-          visuallyHiddenText: "a listed building?"
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          html: 'Is planning appeal the correct type of appeal?'
         },
-        {
-          href: "#",
-          text: "Change",
-          visuallyHiddenText: "change listed building?"
-        }
-      ]
-          }
-        } if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Adverts' or appeal.type == 'CAS adverts',
-
-
-
-
-          {
-            key: {
-              html: 'Does the development affect the setting of listed buildings?'
-            },
-            value: {
-              html: "No"
-            } if data['empty'] else
-            {
-              html: 'Yes<br>
-              <ul class="govuk-list govuk-list--bullet">
-                <li>
-                  <a href="#">1282050</a><br>
-                  Grade II listed building<br>
-                  151, York Road, Bedminster, Bristol, BS3 4AL
-                </li>
-                <li>
-                  <a href="#">1282051</a><br>
-                  Grade II listed building<br>
-                  152, York Road, Bedminster, Bristol, BS3 4AL
-                </li>
-              </ul>'
-            },
-            actions: {
-              items: [
-              {
-                href: '/affected-listed-building-details?cya=true',
-                text: "Add",
-                visuallyHiddenText: "affected listed building"
-              }
-            ]
-          }if data['empty'] else
-          {
-            items: [
-        {
-          href: "#",
-          text: "Add",
-          visuallyHiddenText: "affected listed building"
-        },
-        {
-          href: "#",
-          text: "Change",
-          visuallyHiddenText: "affected listed building 1282050"
-        }
-      ]
-          }
-        },
-
-        {
-          key: {
-            html: 'Was a grant or loan made to preserve the listed building 1282050?'
-          },
-          value: {
+        value: {
           html: "No"
         } if data['empty'] else
         {
           html: "Yes"
         },
-          actions: {
-            items: [
-              {
-                href: '#',
-                html: 'Change',
-                visuallyHiddenText: 'if a grant or loan was made to preserve the listed building 1282050?'
-              }
-            ]
-          }
-        } if appeal.type == 'Listed building',
-
-        {
-
-          key: {
-            html: 'Historic England consultation'
-          },
-          value: {
-            html: "No documents"
-          } if data['empty'] else
-          {
-            html: "<a href='#'>example-file.pdf</a>"
-          },
-          actions: {
-            items: [
-              {
-                href: "Item URL",
-                text: "Add",
-                visuallyHiddenText: "Historic England consultation"
-              }
-            ]
-          }if data['empty'] else
-          {
-            items: [
-        {
-          href: "#",
-          text: "Add",
-          visuallyHiddenText: "Historic England consultation"
-        },
-        {
-          href: "#",
-          text: "Change",
-          visuallyHiddenText: "Historic England consultation"
+        actions: {
+          items: [
+            {
+              href: 'constraints/appropriate?cya=true',
+              html: 'Change',
+              visuallyHiddenText: "Is planning appeal the correct type of appeal?"
+            }
+          ]
         }
+      },
+
+
+
+      {
+        key: {
+          html: 'Does the development change a listed building?'
+        },
+        value: {
+          html: "No"
+        } if data['empty'] else
+        {
+          html: 'Yes<br>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>
+              <a href="#">1282050</a><br>
+              Grade II listed building<br>
+              151, York Road, Bedminster, Bristol, BS3 4AL
+            </li>
+            <li>
+              <a href="#">1282051</a><br>
+              Grade II listed building<br>
+              152, York Road, Bedminster, Bristol, BS3 4AL
+            </li>
+          </ul>'
+        },
+        actions: {
+          items: [
+          {
+            href: '/affected-listed-building-details?cya=true',
+            text: "Add",
+            visuallyHiddenText: "does the development change a listed building?"
+          }
+        ]
+      }if data['empty'] else
+      {
+        items: [
+    {
+      href: "#",
+      text: "Add",
+      visuallyHiddenText: "a listed building?"
+    },
+    {
+      href: "#",
+      text: "Change",
+      visuallyHiddenText: "change listed building?"
+    }
+  ]
+      }
+    } if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Adverts' or appeal.type == 'CAS adverts',
+
+
+
+
+      {
+        key: {
+          html: 'Does the development affect the setting of listed buildings?'
+        },
+        value: {
+          html: "No"
+        } if data['empty'] else
+        {
+          html: 'Yes<br>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>
+              <a href="#">1282050</a><br>
+              Grade II listed building<br>
+              151, York Road, Bedminster, Bristol, BS3 4AL
+            </li>
+            <li>
+              <a href="#">1282051</a><br>
+              Grade II listed building<br>
+              152, York Road, Bedminster, Bristol, BS3 4AL
+            </li>
+          </ul>'
+        },
+        actions: {
+          items: [
+          {
+            href: '/affected-listed-building-details?cya=true',
+            text: "Add",
+            visuallyHiddenText: "affected listed building"
+          }
+        ]
+      }if data['empty'] else
+      {
+        items: [
+    {
+      href: "#",
+      text: "Add",
+      visuallyHiddenText: "affected listed building"
+    },
+    {
+      href: "#",
+      text: "Change",
+      visuallyHiddenText: "affected listed building 1282050"
+    }
+  ]
+      }
+    },
+
+    {
+      key: {
+        html: 'Was a grant or loan made to preserve the listed building 1282050?'
+      },
+      value: {
+      html: "No"
+    } if data['empty'] else
+    {
+      html: "Yes"
+    },
+      actions: {
+        items: [
+          {
+            href: '#',
+            html: 'Change',
+            visuallyHiddenText: 'if a grant or loan was made to preserve the listed building 1282050?'
+          }
+        ]
+      }
+    } if appeal.type == 'Listed building',
+
+    {
+
+      key: {
+        html: 'Historic England consultation'
+      },
+      value: {
+        html: "No documents"
+      } if data['empty'] else
+      {
+        html: "<a href='#'>example-file.pdf</a>"
+      },
+      actions: {
+        items: [
+          {
+            href: "Item URL",
+            text: "Add",
+            visuallyHiddenText: "Historic England consultation"
+          }
+        ]
+      }if data['empty'] else
+      {
+        items: [
+    {
+      href: "#",
+      text: "Add",
+      visuallyHiddenText: "Historic England consultation"
+    },
+    {
+      href: "#",
+      text: "Change",
+      visuallyHiddenText: "Historic England consultation"
+    }
+  ]
+      }
+    } if appeal.type == 'Listed building',
+
+
+
+      {
+        key: {
+          html: 'Would the development affect a scheduled monument?'
+        },
+        value: {
+        html: "No"
+      } if data['empty'] else
+      {
+        html: "Yes"
+      },
+        actions: {
+          items: [
+            {
+              href: 'constraints/affected-scheduled-monument-check?cya=true',
+              html: 'Change',
+              visuallyHiddenText: 'would the development affect a scheduled monument?'
+            }
+          ]
+        }
+      }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Adverts' or appeal.type == 'CAS adverts',
+      {
+
+        key: {
+          html: 'Conservation area map and guidance'
+        },
+        value: {
+          html: "No documents"
+        } if data['empty'] else
+        {
+          html: "<a href='#'>example-file.pdf</a>"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Add",
+              visuallyHiddenText: "conservation area map and guidance"
+            }
+          ]
+        }if data['empty'] else
+        {
+          items: [
+      {
+        href: "#",
+        text: "Add",
+        visuallyHiddenText: "conservation area map and guidance"
+      },
+      {
+        href: "#",
+        text: "Change",
+        visuallyHiddenText: "conservation area map and guidance"
+      }
+    ]
+        }
+      },
+
+      {
+        key: {
+          html: 'Do you consider that any condition other than the 5 standard conditions set out in Schedule 2 of the 2007 Refulations should be imposed in the event that express consent as applied for is granted?'
+        },
+        value: {
+        html: "No"
+      } if data['empty'] else
+      {
+        html: "Yes"
+      },
+        actions: {
+          items: [
+            {
+              href: 'constraints/protected-species?cya=true',
+              html: 'Change',
+              visuallyHiddenText: '#'
+            }
+          ]
+        }
+      }if appeal.type ==  appeal.type == 'Adverts' or appeal.type == 'CAS adverts',
+
+
+      {
+        key: {
+          html: 'Would the development affect a protected species?'
+        },
+        value: {
+        html: "No"
+      } if data['empty'] else
+      {
+        html: "Yes"
+      },
+        actions: {
+          items: [
+            {
+              href: 'constraints/protected-species?cya=true',
+              html: 'Change',
+              visuallyHiddenText: 'would the development affect a protected species?'
+            }
+          ]
+        }
+      }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Adverts' or appeal.type == 'CAS adverts' or appeal.type == 'CAS planning',
+
+
+      {
+        key: {
+          html: 'Is the appeal site in an area of special control of advertisements?'
+        },
+        value: {
+        html: "No"
+      } if data['empty'] else
+      {
+        html: "Yes"
+      },
+        actions: {
+          items: [
+            {
+              href: 'constraints/protected-species?cya=true',
+              html: 'Change',
+              visuallyHiddenText: 'if the appeal site is in an area of special control of advertisements'
+            }
+          ]
+        }
+      }if appeal.type == 'Adverts' or appeal.type == 'CAS adverts',
+
+
+      {
+        key: {
+          html: 'Is the site in a green belt?'
+        },
+        value: {
+          html: "No"
+        } if data['empty'] else
+        {
+          html: "Yes"
+        },
+        actions: {
+          items: [
+            {
+              href: 'constraints/green-belt?cya=true',
+              html: 'Change',
+              visuallyHiddenText: 'is the site in a green belt?'
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          html: 'Is the site in an area of outstanding natural beauty?'
+        },
+        value: {
+          html: "No"
+        } if data['empty'] else
+        {
+          html: "Yes"
+        },
+        actions: {
+          items: [
+            {
+              href: 'constraints/area-of-outstanding-natural-beauty?cya=true',
+              html: 'Change',
+              visuallyHiddenText: 'is the site in an area of outstanding natural beauty?'
+            }
+          ]
+        }
+      }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Adverts' or appeal.type == 'CAS adverts',
+
+
+
+
+      {
+        key: {
+          html: 'Is the development in, near or likely to affect any designated sites?'
+        },
+        value: {
+          html: "No"
+        } if data['empty'] else
+        {
+          html: "Yes"
+        },
+        actions: {
+          items: [
+            {
+              href: 'constraints/designated-sites?cya=true',
+              html: 'Change',
+              visuallyHiddenText: 'is the development in, near or likely to affect any designated sites?'
+            }
+          ]
+        }
+      }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Adverts' or appeal.type == 'CAS adverts',
+
+      {
+        key: {
+          html: 'Tree Preservation Order'
+        },
+        value: {
+          html: "No documents"
+        } if data['empty'] else
+        {
+          html: "<a href='#'>example-file.pdf</a>"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Add",
+              visuallyHiddenText: "Tree Preservation Order"
+            }
+          ]
+        }if data['empty'] else
+        {
+          items: [
+      {
+        href: "#",
+        text: "Add",
+        visuallyHiddenText: "Tree Preservation Order"
+      },
+      {
+        href: "#",
+        text: "Change",
+        visuallyHiddenText: "Tree Preservation Order"
+      }
+    ]
+        }
+      }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
+
+
+      {
+        key: {
+          html: 'Does the development relate to anyone claiming to be a Gypsy or Traveller?'
+        },
+       value: {
+          html: "No"
+        } if data['empty'] else
+        {
+          html: "Yes"
+        },
+        actions: {
+          items: [
+            {
+              href: 'constraints/gypsy-or-traveller?cya=true',
+              html: 'Change',
+              visuallyHiddenText: 'does the development relate to anyone claiming to be a Gypsy or Traveller?'
+            }
+          ]
+        }
+      }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
+
+      {
+        key: {
+          html: 'Definitive map and statement extract'
+        },
+        value: {
+          html: "No documents"
+        } if data['empty'] else
+        {
+          html: "<a href='#'>example-file.pdf</a>"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Add",
+              visuallyHiddenText: "definitive map and statement extract"
+            }
+          ]
+        }if data['empty'] else
+        {
+          items: [
+      {
+        href: "#",
+        text: "Add",
+        visuallyHiddenText: "definitive map and statement extract"
+      },
+      {
+        href: "#",
+        text: "Change",
+        visuallyHiddenText: "definitive map and statement extract"
+      }
+    ]
+        }
+      }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building'
+
+    ]
+  }) }}
+
+  <h2 class="govuk-heading-m govuk-!-margin-top-8">2. Environmental impact assessment</h2>
+
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          html: 'What is the development category?'
+        },
+        value: {
+          html: 'Schedule '+ (data['environment-schedule'] or '1')
+        },
+        actions: {
+          items: [
+            {
+              href: 'environment/schedule-type?cya=true',
+              html: 'Change',
+              visuallyHiddenText: "development category"
+            }
+          ]
+        }
+      }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
+
+      {
+        key: {
+          html: 'Environmental statement and supporting information'
+        },
+        value: {
+          html: "No documents"
+        } if data['empty'] else
+        {
+          html: "<a href='#'>example-file.pdf</a>"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Add",
+              visuallyHiddenText: "environmental statement and supporting information"
+            }
+          ]
+        }if data['empty'] else
+        {
+          items: [
+      {
+        href: "#",
+        text: "Add",
+        visuallyHiddenText: "environmental statement and supporting information"
+      },
+      {
+        href: "#",
+        text: "Change",
+        visuallyHiddenText: "environmental statement and supporting information"
+      }
+    ]
+        }
+      }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
+
+
+      {
+        key: {
+          html: 'Screening direction'
+        },
+        value: {
+          html: "No documents"
+        } if data['empty'] else
+        {
+          html: "<a href='#'>example-file.pdf</a>"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Add",
+              visuallyHiddenText: "screening direction"
+            }
+          ]
+        }if data['empty'] else
+        {
+          items: [
+      {
+        href: "#",
+        text: "Add",
+        visuallyHiddenText: "screening direction"
+      },
+      {
+        href: "#",
+        text: "Change",
+        visuallyHiddenText: "screening direction"
+      }
+    ]
+        }
+      }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
+
+
+      {
+        key: {
+          html: 'Scoping opinion'
+        },
+        value: {
+          html: "No documents"
+        } if data['empty'] else
+        {
+          html: "<a href='#'>example-file.pdf</a>"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Add",
+              visuallyHiddenText: "scoping opinion"
+            }
+          ]
+        }if data['empty'] else
+        {
+          items: [
+      {
+        href: "#",
+        text: "Add",
+        visuallyHiddenText: "scoping opinion"
+      },
+      {
+        href: "#",
+        text: "Change",
+        visuallyHiddenText: "scoping opinion"
+      }
+    ]
+        }
+      }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
+
+      {
+        key: {
+          html: 'Description of the development'
+        },
+        value: {
+          html: "Example description"
+        },
+        actions: {
+          items: [
+            {
+              html: 'Change',
+              visuallyHiddenText: "description of development"
+            }
+          ]
+        }
+      }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
+
+
+      {
+        key: {
+          html: 'Is the development in, partly in, or likely to affect a sensitive area?'
+        },
+        value: {
+          html: "No"
+        } if data['empty'] else
+        {
+          html: "Yes"
+        },
+        actions: {
+          items: [
+            {
+              html: 'Change',
+              visuallyHiddenText: "is the development in, partly in, or likely to affect a sensitive area?"
+            }
+          ]
+        }
+      }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
+
+
+      {
+        key: {
+          html: 'Does the development meet or exceed the threshold or criteria in column 2?'
+        },
+        value: {
+          html: "Not answered"
+        } if data['empty'] else
+        {
+          html: "Yes"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Add",
+              visuallyHiddenText: "does the development meet or exceed the threshold or criteria in column 2?"
+            }
+          ]
+        }if data['empty'] else
+        {
+          items: [
+      {
+        href: "#",
+        text: "Change",
+        visuallyHiddenText: "does the development meet or exceed the threshold or criteria in column 2?"
+      }
+    ]
+        }
+      }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
+
+
+      {
+        key: {
+          html: 'Screening opinion'
+        },
+        value: {
+          html: "No documents"
+        } if data['empty'] else
+        {
+          html: "<a href='#'>example-file.pdf</a>"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Add",
+              visuallyHiddenText: "screening opinion"
+            }
+          ]
+        }if data['empty'] else
+        {
+          items: [
+      {
+        href: "#",
+        text: "Add",
+        visuallyHiddenText: "screening opinion"
+      },
+      {
+        href: "#",
+        text: "Change",
+        visuallyHiddenText: "screening opinion"
+      }
+    ]
+        }
+      }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
+
+      {
+        key: {
+          html: 'Did your screening opinion say the development needed an environmental statement?'
+        },
+        value: {
+          html: "Not answered"
+        } if data['empty'] else
+        {
+          html: "Yes"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Add",
+              visuallyHiddenText: "did your screening opinion say the development needed an environmental statement?"
+            }
+          ]
+        }if data['empty'] else
+        {
+          items: [
+      {
+        href: "#",
+        text: "Change",
+        visuallyHiddenText: "did your screening opinion say the development needed an environmental statement?"
+      }
+    ]
+        }
+      }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
+
+
+      {
+        key: {
+          html: 'Environmental statement and supporting information'
+        },
+        value: {
+          html: "No documents"
+        } if data['empty'] else
+        {
+          html: "<a href='#'>example-file.pdf</a>"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Add",
+              visuallyHiddenText: "environmental statement and supporting information"
+            }
+          ]
+        }if data['empty'] else
+        {
+          items: [
+      {
+        href: "#",
+        text: "Add",
+        visuallyHiddenText: "environmental statement and supporting information"
+      },
+      {
+        href: "#",
+        text: "Change",
+        visuallyHiddenText: "environmental statement and supporting information"
+      }
+    ]
+        }
+      }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building'
+
+    ]
+  }) }}
+
+  <h2 class="govuk-heading-m govuk-!-margin-top-8">3. Notifying relevant parties</h2>
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          html: 'Who did you notify about this application?'
+        },
+        value: {
+          html: "No documents"
+        } if data['empty'] else
+        {
+          html: "<a href='#'>example-file.pdf</a>"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Add",
+              visuallyHiddenText: "who did you notify about this application?"
+            }
+          ]
+        }if data['empty'] else
+        {
+          items: [
+      {
+        href: "#",
+        text: "Add",
+        visuallyHiddenText: "who did you notify about this application?"
+      },
+      {
+        href: "#",
+        text: "Change",
+        visuallyHiddenText: "who did you notify about this application?"
+      }
+    ]
+        }
+      },
+      {
+        key: {
+          html: 'How did you notify relevant parties about the application?'
+        },
+        value: {
+          html: 'A site notice<br>Letters or emails to interested parties<br>An advert in the local press'
+        },
+        actions: {
+          items: [
+            {
+              html: 'Change',
+              visuallyHiddenText: "how did you notify relevant parties about the application?"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          html: 'Site notice'
+        },
+        value: {
+          html: "No documents"
+        } if data['empty'] else
+        {
+          html: "<a href='#'>example-file.pdf</a>"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Add",
+              visuallyHiddenText: "site notice"
+            }
+          ]
+        }if data['empty'] else
+        {
+          items: [
+      {
+        href: "#",
+        text: "Add",
+        visuallyHiddenText: "site notice"
+      },
+      {
+        href: "#",
+        text: "Change",
+        visuallyHiddenText: "site notice"
+      }
+    ]
+        }
+      },
+      {
+        key: {
+          html: 'Letters or emails sent to interested parties with their addresses'
+        },
+        value: {
+          html: "No documents"
+        } if data['empty'] else
+        {
+          html: "<a href='#'>example-file.pdf</a>"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Add",
+              visuallyHiddenText: "letters or emails sent to interested parties with their addresses"
+            }
+          ]
+        }if data['empty'] else
+        {
+          items: [
+      {
+        href: "#",
+        text: "Add",
+        visuallyHiddenText: "letters or emails sent to interested parties with their addresses"
+      },
+      {
+        href: "#",
+        text: "Change",
+        visuallyHiddenText: "letters or emails sent to interested parties with their addresses"
+      }
+    ]
+        }
+      },
+      {
+        key: {
+          html: 'Press advertisement'
+        },
+        value: {
+          html: "No documents"
+        } if data['empty'] else
+        {
+          html: "<a href='#'>example-file.pdf</a>"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Add",
+              visuallyHiddenText: "press advertisement"
+            }
+          ]
+        }if data['empty'] else
+        {
+          items: [
+      {
+        href: "#",
+        text: "Add",
+        visuallyHiddenText: "press advertisement"
+      },
+      {
+        href: "#",
+        text: "Change",
+        visuallyHiddenText: "press advertisement"
+      }
+    ]
+        }
+      },
+      {
+        key: {
+          html: 'Appeal notification letter'
+        },
+        value: {
+          html: "No documents"
+        } if data['empty'] else
+        {
+          html: "<a href='#'>example-file.pdf</a>"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Add",
+              visuallyHiddenText: "appeal notification letter"
+            }
+          ]
+        }if data['empty'] else
+        {
+          items: [
+      {
+        href: "#",
+        text: "Add",
+        visuallyHiddenText: "appeal notification letter"
+      },
+      {
+        href: "#",
+        text: "Change",
+        visuallyHiddenText: "appeal notification letter"
+      }
+    ]
+        }
+      },
+
+      {
+        key: {
+          html: 'Did you refuse the application because of highway or traffic public safety?'
+        },
+        value: {
+          html: "No"
+        } if data['empty'] else
+        {
+          html: "Yes"
+        },
+        actions: {
+          items: [
+            {
+              href: 'constraints/area-of-outstanding-natural-beauty?cya=true',
+              html: 'Change',
+              visuallyHiddenText: 'if you refused the application because of highway or traffic public safety'
+            }
+          ]
+        }
+      }if appeal.type == 'Adverts' or appeal.type == 'CAS adverts'
+
+
+
+
+
+    ]
+  }) }}
+
+  <h2 class="govuk-heading-m govuk-!-margin-top-8">4. Consultation responses and representations</h2>
+  {{ govukSummaryList({
+    rows: [
+
+
+      {
+        key: {
+          html: 'Did you consult all the relevant statutory consultees about the development?'
+        },
+        value: {
+          html: "No"
+        } if data['empty'] else
+        {
+          html: "Yes<br>List of bodies"
+        },
+        actions: {
+          items: [
+            {
+              html: 'Change',
+              visuallyHiddenText: "did you consult all the relevant statutory consultees about the development?"
+            }
+          ]
+        }
+      }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Adverts',
+
+
+
+
+      {
+        key: {
+          html: 'Plans, drawings and list of plans'
+        },
+        value: {
+          html: "No documents"
+        } if data['empty'] else
+        {
+          html: "<a href='#'>example-file.pdf</a>"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Add",
+              visuallyHiddenText: "plans, drawings and list of plans	"
+            }
+          ]
+        }if data['empty'] else
+        {
+          items: [
+      {
+        href: "#",
+        text: "Add",
+        visuallyHiddenText: "plans, drawings and list of plans"
+      },
+      {
+        href: "#",
+        text: "Change",
+        visuallyHiddenText: "plans, drawings and list of plans"
+      }
+    ]
+        }
+      }if appeal.type == 'Householder' or appeal.type == 'CAS planning',
+
+
+      {
+        key: {
+          html: 'Consultation responses and standing advice'
+        },
+        value: {
+          html: "No documents"
+        } if data['empty'] else
+        {
+          html: "<a href='#'>example-file.pdf</a>"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Add",
+              visuallyHiddenText: "consultation responses and standing advice"
+            }
+          ]
+        }if data['empty'] else
+        {
+          items: [
+      {
+        href: "#",
+        text: "Add",
+        visuallyHiddenText: "consultation responses and standing advice"
+      },
+      {
+        href: "#",
+        text: "Change",
+        visuallyHiddenText: "consultation responses and standing advice"
+      }
+    ]
+        }
+      }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
+
+
+
+      {
+        key: {
+          html: 'Representations from members of the public or other parties'
+        },
+        value: {
+          html: "No documents"
+        } if data['empty'] else
+        {
+          html: "<a href='#'>example-file.pdf</a>"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Add",
+              visuallyHiddenText: "representations from members of the public or other parties"
+            }
+          ]
+        }if data['empty'] else
+        {
+          items: [
+      {
+        href: "#",
+        text: "Add",
+        visuallyHiddenText: "representations from members of the public or other parties"
+      },
+      {
+        href: "#",
+        text: "Change",
+        visuallyHiddenText: "representations from members of the public or other parties"
+      }
+    ]
+        }
+      }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Householder' or appeal.type == 'CAS planning'
       ]
-          }
-        } if appeal.type == 'Listed building',
+  }) }}
+
+  <h2 class="govuk-heading-m govuk-!-margin-top-8">5. Planning officer’s report and supporting documents</h2>
+  {{ govukSummaryList({
+    rows: [
 
 
-
-          {
-            key: {
-              html: 'Would the development affect a scheduled monument?'
-            },
-            value: {
-            html: "No"
-          } if data['empty'] else
-          {
-            html: "Yes"
-          },
-            actions: {
-              items: [
-                {
-                  href: 'constraints/affected-scheduled-monument-check?cya=true',
-                  html: 'Change',
-                  visuallyHiddenText: 'would the development affect a scheduled monument?'
-                }
-              ]
+      {
+        key: {
+          html: 'Planning officer’s report'
+        },
+        value: {
+          html: "No documents"
+        } if data['empty'] else
+        {
+          html: "<a href='#'>example-file.pdf</a>"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Add",
+              visuallyHiddenText: "planning officer’s report"
             }
-          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Adverts' or appeal.type == 'CAS adverts',
-          {
-
-            key: {
-              html: 'Conservation area map and guidance'
-            },
-            value: {
-              html: "No documents"
-            } if data['empty'] else
-            {
-              html: "<a href='#'>example-file.pdf</a>"
-            },
-            actions: {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Add",
-                  visuallyHiddenText: "conservation area map and guidance"
-                }
-              ]
-            }if data['empty'] else
-            {
-              items: [
-          {
-            href: "#",
-            text: "Add",
-            visuallyHiddenText: "conservation area map and guidance"
-          },
-          {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "conservation area map and guidance"
-          }
-        ]
-            }
-          },
-
-          {
-            key: {
-              html: 'Do you consider that any condition other than the 5 standard conditions set out in Schedule 2 of the 2007 Refulations should be imposed in the event that express consent as applied for is granted?'
-            },
-            value: {
-            html: "No"
-          } if data['empty'] else
-          {
-            html: "Yes"
-          },
-            actions: {
-              items: [
-                {
-                  href: 'constraints/protected-species?cya=true',
-                  html: 'Change',
-                  visuallyHiddenText: '#'
-                }
-              ]
-            }
-          }if appeal.type ==  appeal.type == 'Adverts' or appeal.type == 'CAS adverts',
-
-
-          {
-            key: {
-              html: 'Would the development affect a protected species?'
-            },
-            value: {
-            html: "No"
-          } if data['empty'] else
-          {
-            html: "Yes"
-          },
-            actions: {
-              items: [
-                {
-                  href: 'constraints/protected-species?cya=true',
-                  html: 'Change',
-                  visuallyHiddenText: 'would the development affect a protected species?'
-                }
-              ]
-            }
-          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Adverts' or appeal.type == 'CAS adverts' or appeal.type == 'CAS planning',
-
-
-          {
-            key: {
-              html: 'Is the appeal site in an area of special control of advertisements?'
-            },
-            value: {
-            html: "No"
-          } if data['empty'] else
-          {
-            html: "Yes"
-          },
-            actions: {
-              items: [
-                {
-                  href: 'constraints/protected-species?cya=true',
-                  html: 'Change',
-                  visuallyHiddenText: 'if the appeal site is in an area of special control of advertisements'
-                }
-              ]
-            }
-          }if appeal.type == 'Adverts' or appeal.type == 'CAS adverts',
-
-
-          {
-            key: {
-              html: 'Is the site in a green belt?'
-            },
-            value: {
-              html: "No"
-            } if data['empty'] else
-            {
-              html: "Yes"
-            },
-            actions: {
-              items: [
-                {
-                  href: 'constraints/green-belt?cya=true',
-                  html: 'Change',
-                  visuallyHiddenText: 'is the site in a green belt?'
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              html: 'Is the site in an area of outstanding natural beauty?'
-            },
-            value: {
-              html: "No"
-            } if data['empty'] else
-            {
-              html: "Yes"
-            },
-            actions: {
-              items: [
-                {
-                  href: 'constraints/area-of-outstanding-natural-beauty?cya=true',
-                  html: 'Change',
-                  visuallyHiddenText: 'is the site in an area of outstanding natural beauty?'
-                }
-              ]
-            }
-          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Adverts' or appeal.type == 'CAS adverts',
-
-
-
-
-          {
-            key: {
-              html: 'Is the development in, near or likely to affect any designated sites?'
-            },
-            value: {
-              html: "No"
-            } if data['empty'] else
-            {
-              html: "Yes"
-            },
-            actions: {
-              items: [
-                {
-                  href: 'constraints/designated-sites?cya=true',
-                  html: 'Change',
-                  visuallyHiddenText: 'is the development in, near or likely to affect any designated sites?'
-                }
-              ]
-            }
-          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Adverts' or appeal.type == 'CAS adverts',
-
-          {
-            key: {
-              html: 'Tree Preservation Order'
-            },
-            value: {
-              html: "No documents"
-            } if data['empty'] else
-            {
-              html: "<a href='#'>example-file.pdf</a>"
-            },
-            actions: {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Add",
-                  visuallyHiddenText: "Tree Preservation Order"
-                }
-              ]
-            }if data['empty'] else
-            {
-              items: [
-          {
-            href: "#",
-            text: "Add",
-            visuallyHiddenText: "Tree Preservation Order"
-          },
-          {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "Tree Preservation Order"
-          }
-        ]
-            }
-          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
-
-
-          {
-            key: {
-              html: 'Does the development relate to anyone claiming to be a Gypsy or Traveller?'
-            },
-           value: {
-              html: "No"
-            } if data['empty'] else
-            {
-              html: "Yes"
-            },
-            actions: {
-              items: [
-                {
-                  href: 'constraints/gypsy-or-traveller?cya=true',
-                  html: 'Change',
-                  visuallyHiddenText: 'does the development relate to anyone claiming to be a Gypsy or Traveller?'
-                }
-              ]
-            }
-          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
-
-          {
-            key: {
-              html: 'Definitive map and statement extract'
-            },
-            value: {
-              html: "No documents"
-            } if data['empty'] else
-            {
-              html: "<a href='#'>example-file.pdf</a>"
-            },
-            actions: {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Add",
-                  visuallyHiddenText: "definitive map and statement extract"
-                }
-              ]
-            }if data['empty'] else
-            {
-              items: [
-          {
-            href: "#",
-            text: "Add",
-            visuallyHiddenText: "definitive map and statement extract"
-          },
-          {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "definitive map and statement extract"
-          }
-        ]
-            }
-          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building'
-
-        ]
-      }) }}
-
-      <h2 class="govuk-heading-m govuk-!-margin-top-8">2. Environmental impact assessment</h2>
-
-      {{ govukSummaryList({
-        rows: [
-          {
-            key: {
-              html: 'What is the development category?'
-            },
-            value: {
-              html: 'Schedule '+ (data['environment-schedule'] or '1')
-            },
-            actions: {
-              items: [
-                {
-                  href: 'environment/schedule-type?cya=true',
-                  html: 'Change',
-                  visuallyHiddenText: "development category"
-                }
-              ]
-            }
-          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
-
-          {
-            key: {
-              html: 'Environmental statement and supporting information'
-            },
-            value: {
-              html: "No documents"
-            } if data['empty'] else
-            {
-              html: "<a href='#'>example-file.pdf</a>"
-            },
-            actions: {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Add",
-                  visuallyHiddenText: "environmental statement and supporting information"
-                }
-              ]
-            }if data['empty'] else
-            {
-              items: [
-          {
-            href: "#",
-            text: "Add",
-            visuallyHiddenText: "environmental statement and supporting information"
-          },
-          {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "environmental statement and supporting information"
-          }
-        ]
-            }
-          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
-
-
-          {
-            key: {
-              html: 'Screening direction'
-            },
-            value: {
-              html: "No documents"
-            } if data['empty'] else
-            {
-              html: "<a href='#'>example-file.pdf</a>"
-            },
-            actions: {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Add",
-                  visuallyHiddenText: "screening direction"
-                }
-              ]
-            }if data['empty'] else
-            {
-              items: [
-          {
-            href: "#",
-            text: "Add",
-            visuallyHiddenText: "screening direction"
-          },
-          {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "screening direction"
-          }
-        ]
-            }
-          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
-
-
-          {
-            key: {
-              html: 'Scoping opinion'
-            },
-            value: {
-              html: "No documents"
-            } if data['empty'] else
-            {
-              html: "<a href='#'>example-file.pdf</a>"
-            },
-            actions: {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Add",
-                  visuallyHiddenText: "scoping opinion"
-                }
-              ]
-            }if data['empty'] else
-            {
-              items: [
-          {
-            href: "#",
-            text: "Add",
-            visuallyHiddenText: "scoping opinion"
-          },
-          {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "scoping opinion"
-          }
-        ]
-            }
-          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
-
-          {
-            key: {
-              html: 'Description of the development'
-            },
-            value: {
-              html: "Example description"
-            },
-            actions: {
-              items: [
-                {
-                  html: 'Change',
-                  visuallyHiddenText: "description of development"
-                }
-              ]
-            }
-          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
-
-
-          {
-            key: {
-              html: 'Is the development in, partly in, or likely to affect a sensitive area?'
-            },
-            value: {
-              html: "No"
-            } if data['empty'] else
-            {
-              html: "Yes"
-            },
-            actions: {
-              items: [
-                {
-                  html: 'Change',
-                  visuallyHiddenText: "is the development in, partly in, or likely to affect a sensitive area?"
-                }
-              ]
-            }
-          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
-
-
-          {
-            key: {
-              html: 'Does the development meet or exceed the threshold or criteria in column 2?'
-            },
-            value: {
-              html: "Not answered"
-            } if data['empty'] else
-            {
-              html: "Yes"
-            },
-            actions: {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Add",
-                  visuallyHiddenText: "does the development meet or exceed the threshold or criteria in column 2?"
-                }
-              ]
-            }if data['empty'] else
-            {
-              items: [
-          {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "does the development meet or exceed the threshold or criteria in column 2?"
-          }
-        ]
-            }
-          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
-
-
-          {
-            key: {
-              html: 'Screening opinion'
-            },
-            value: {
-              html: "No documents"
-            } if data['empty'] else
-            {
-              html: "<a href='#'>example-file.pdf</a>"
-            },
-            actions: {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Add",
-                  visuallyHiddenText: "screening opinion"
-                }
-              ]
-            }if data['empty'] else
-            {
-              items: [
-          {
-            href: "#",
-            text: "Add",
-            visuallyHiddenText: "screening opinion"
-          },
-          {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "screening opinion"
-          }
-        ]
-            }
-          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
-
-          {
-            key: {
-              html: 'Did your screening opinion say the development needed an environmental statement?'
-            },
-            value: {
-              html: "Not answered"
-            } if data['empty'] else
-            {
-              html: "Yes"
-            },
-            actions: {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Add",
-                  visuallyHiddenText: "did your screening opinion say the development needed an environmental statement?"
-                }
-              ]
-            }if data['empty'] else
-            {
-              items: [
-          {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "did your screening opinion say the development needed an environmental statement?"
-          }
-        ]
-            }
-          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
-
-
-          {
-            key: {
-              html: 'Environmental statement and supporting information'
-            },
-            value: {
-              html: "No documents"
-            } if data['empty'] else
-            {
-              html: "<a href='#'>example-file.pdf</a>"
-            },
-            actions: {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Add",
-                  visuallyHiddenText: "environmental statement and supporting information"
-                }
-              ]
-            }if data['empty'] else
-            {
-              items: [
-          {
-            href: "#",
-            text: "Add",
-            visuallyHiddenText: "environmental statement and supporting information"
-          },
-          {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "environmental statement and supporting information"
-          }
-        ]
-            }
-          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building'
-
-        ]
-      }) }}
-
-      <h2 class="govuk-heading-m govuk-!-margin-top-8">3. Notifying relevant parties</h2>
-      {{ govukSummaryList({
-        rows: [
-          {
-            key: {
-              html: 'Who did you notify about this application?'
-            },
-            value: {
-              html: "No documents"
-            } if data['empty'] else
-            {
-              html: "<a href='#'>example-file.pdf</a>"
-            },
-            actions: {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Add",
-                  visuallyHiddenText: "who did you notify about this application?"
-                }
-              ]
-            }if data['empty'] else
-            {
-              items: [
-          {
-            href: "#",
-            text: "Add",
-            visuallyHiddenText: "who did you notify about this application?"
-          },
-          {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "who did you notify about this application?"
-          }
-        ]
-            }
-          },
-          {
-            key: {
-              html: 'How did you notify relevant parties about the application?'
-            },
-            value: {
-              html: 'A site notice<br>Letters or emails to interested parties<br>An advert in the local press'
-            },
-            actions: {
-              items: [
-                {
-                  html: 'Change',
-                  visuallyHiddenText: "how did you notify relevant parties about the application?"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              html: 'Site notice'
-            },
-            value: {
-              html: "No documents"
-            } if data['empty'] else
-            {
-              html: "<a href='#'>example-file.pdf</a>"
-            },
-            actions: {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Add",
-                  visuallyHiddenText: "site notice"
-                }
-              ]
-            }if data['empty'] else
-            {
-              items: [
-          {
-            href: "#",
-            text: "Add",
-            visuallyHiddenText: "site notice"
-          },
-          {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "site notice"
-          }
-        ]
-            }
-          },
-          {
-            key: {
-              html: 'Letters or emails sent to interested parties with their addresses'
-            },
-            value: {
-              html: "No documents"
-            } if data['empty'] else
-            {
-              html: "<a href='#'>example-file.pdf</a>"
-            },
-            actions: {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Add",
-                  visuallyHiddenText: "letters or emails sent to interested parties with their addresses"
-                }
-              ]
-            }if data['empty'] else
-            {
-              items: [
-          {
-            href: "#",
-            text: "Add",
-            visuallyHiddenText: "letters or emails sent to interested parties with their addresses"
-          },
-          {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "letters or emails sent to interested parties with their addresses"
-          }
-        ]
-            }
-          },
-          {
-            key: {
-              html: 'Press advertisement'
-            },
-            value: {
-              html: "No documents"
-            } if data['empty'] else
-            {
-              html: "<a href='#'>example-file.pdf</a>"
-            },
-            actions: {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Add",
-                  visuallyHiddenText: "press advertisement"
-                }
-              ]
-            }if data['empty'] else
-            {
-              items: [
-          {
-            href: "#",
-            text: "Add",
-            visuallyHiddenText: "press advertisement"
-          },
-          {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "press advertisement"
-          }
-        ]
-            }
-          },
-          {
-            key: {
-              html: 'Appeal notification letter'
-            },
-            value: {
-              html: "No documents"
-            } if data['empty'] else
-            {
-              html: "<a href='#'>example-file.pdf</a>"
-            },
-            actions: {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Add",
-                  visuallyHiddenText: "appeal notification letter"
-                }
-              ]
-            }if data['empty'] else
-            {
-              items: [
-          {
-            href: "#",
-            text: "Add",
-            visuallyHiddenText: "appeal notification letter"
-          },
-          {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "appeal notification letter"
-          }
-        ]
-            }
-          },
-
-          {
-            key: {
-              html: 'Did you refuse the application because of highway or traffic public safety?'
-            },
-            value: {
-              html: "No"
-            } if data['empty'] else
-            {
-              html: "Yes"
-            },
-            actions: {
-              items: [
-                {
-                  href: 'constraints/area-of-outstanding-natural-beauty?cya=true',
-                  html: 'Change',
-                  visuallyHiddenText: 'if you refused the application because of highway or traffic public safety'
-                }
-              ]
-            }
-          }if appeal.type == 'Adverts' or appeal.type == 'CAS adverts'
-
-
-
-
-
-        ]
-      }) }}
-
-      <h2 class="govuk-heading-m govuk-!-margin-top-8">4. Consultation responses and representations</h2>
-      {{ govukSummaryList({
-        rows: [
-
-
-          {
-            key: {
-              html: 'Did you consult all the relevant statutory consultees about the development?'
-            },
-            value: {
-              html: "No"
-            } if data['empty'] else
-            {
-              html: "Yes<br>List of bodies"
-            },
-            actions: {
-              items: [
-                {
-                  html: 'Change',
-                  visuallyHiddenText: "did you consult all the relevant statutory consultees about the development?"
-                }
-              ]
-            }
-          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Adverts',
-
-        
-
-
-          {
-            key: {
-              html: 'Plans, drawings and list of plans'
-            },
-            value: {
-              html: "No documents"
-            } if data['empty'] else
-            {
-              html: "<a href='#'>example-file.pdf</a>"
-            },
-            actions: {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Add",
-                  visuallyHiddenText: "plans, drawings and list of plans	"
-                }
-              ]
-            }if data['empty'] else
-            {
-              items: [
-          {
-            href: "#",
-            text: "Add",
-            visuallyHiddenText: "plans, drawings and list of plans"
-          },
-          {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "plans, drawings and list of plans"
-          }
-        ]
-            }
-          }if appeal.type == 'Householder' or appeal.type == 'CAS planning',
-
-
-          {
-            key: {
-              html: 'Consultation responses and standing advice'
-            },
-            value: {
-              html: "No documents"
-            } if data['empty'] else
-            {
-              html: "<a href='#'>example-file.pdf</a>"
-            },
-            actions: {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Add",
-                  visuallyHiddenText: "consultation responses and standing advice"
-                }
-              ]
-            }if data['empty'] else
-            {
-              items: [
-          {
-            href: "#",
-            text: "Add",
-            visuallyHiddenText: "consultation responses and standing advice"
-          },
-          {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "consultation responses and standing advice"
-          }
-        ]
-            }
-          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
-
-
-
-          {
-            key: {
-              html: 'Representations from members of the public or other parties'
-            },
-            value: {
-              html: "No documents"
-            } if data['empty'] else
-            {
-              html: "<a href='#'>example-file.pdf</a>"
-            },
-            actions: {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Add",
-                  visuallyHiddenText: "representations from members of the public or other parties"
-                }
-              ]
-            }if data['empty'] else
-            {
-              items: [
-          {
-            href: "#",
-            text: "Add",
-            visuallyHiddenText: "representations from members of the public or other parties"
-          },
-          {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "representations from members of the public or other parties"
-          }
-        ]
-            }
-          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Householder' or appeal.type == 'CAS planning'
           ]
-      }) }}
+        }if data['empty'] else
+        {
+          items: [
+      {
+        href: "#",
+        text: "Add",
+        visuallyHiddenText: "planning officer’s report"
+      },
+      {
+        href: "#",
+        text: "Change",
+        visuallyHiddenText: "planning officer’s report"
+      }
+    ]
+        }
+      },
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-8">5. Planning officer’s report and supporting documents</h2>
-      {{ govukSummaryList({
-        rows: [
-
-
-          {
-            key: {
-              html: 'Planning officer’s report'
-            },
-            value: {
-              html: "No documents"
-            } if data['empty'] else
+      {
+        key: {
+          html: 'Did the appellant submit complete and accurate photographs and plans?'
+        },
+        value: {
+          html: "No"
+        } if data['empty'] else
+        {
+          html: "Yes"
+        },
+        actions: {
+          items: [
             {
-              html: "<a href='#'>example-file.pdf</a>"
-            },
-            actions: {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Add",
-                  visuallyHiddenText: "planning officer’s report"
-                }
-              ]
-            }if data['empty'] else
-            {
-              items: [
-          {
-            href: "#",
-            text: "Add",
-            visuallyHiddenText: "planning officer’s report"
-          },
-          {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "planning officer’s report"
-          }
-        ]
+              html: 'Change',
+              visuallyHiddenText: "if the appellant submitted complete and accurate photographs and plans"
             }
-          },
-
-          {
-            key: {
-              html: 'Did the appellant submit complete and accurate photographs and plans?'
-            },
-            value: {
-              html: "No"
-            } if data['empty'] else
-            {
-              html: "Yes"
-            },
-            actions: {
-              items: [
-                {
-                  html: 'Change',
-                  visuallyHiddenText: "if the appellant submitted complete and accurate photographs and plans"
-                }
-              ]
-            }
-          }if appeal.type == 'Adverts' or appeal.type == 'CAS Adverts',
-
-
-          {
-            key: {
-              html: 'Plans, drawings and list of plans'
-            },
-            value: {
-              html: "No documents"
-            } if data['empty'] else
-            {
-              html: "<a href='#'>example-file.pdf</a>"
-            },
-            actions: {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Add",
-                  visuallyHiddenText: "plans, drawings and list of plans	"
-                }
-              ]
-            }if data['empty'] else
-            {
-              items: [
-          {
-            href: "#",
-            text: "Add",
-            visuallyHiddenText: "plans, drawings and list of plans"
-          },
-          {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "plans, drawings and list of plans"
-          }
-        ]
-            }
-          }if appeal.type == 'Householder' or appeal.type == 'CAS planning',
-
-          {
-            key: {
-              html: 'Relevant policies from your statutory development plan'
-            },
-            value: {
-              html: "No documents"
-            } if data['empty'] else
-            {
-              html: "<a href='#'>example-file.pdf</a>"
-            },
-            actions: {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Add",
-                  visuallyHiddenText: "relevant policies from your statutory development plan"
-                }
-              ]
-            }if data['empty'] else
-            {
-              items: [
-          {
-            href: "#",
-            text: "Add",
-            visuallyHiddenText: "relevant policies from your statutory development plan"
-          },
-          {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "relevant policies from your statutory development plan"
-          }
-        ]
-            }
-          },
-
-          {
-            key: {
-              html: 'Emerging plan and supporting information'
-            },
-            value: {
-              html: "No documents"
-            } if data['empty'] else
-            {
-              html: "<a href='#'>example-file.pdf</a>"
-            },
-            actions: {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Add",
-                  visuallyHiddenText: "emerging plan and supporting information"
-                }
-              ]
-            }if data['empty'] else
-            {
-              items: [
-          {
-            href: "#",
-            text: "Add",
-            visuallyHiddenText: "emerging plan and supporting information"
-          },
-          {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "emerging plan and supporting information"
-          }
-        ]
-            }
-          },
-          {
-            key: {
-              html: 'Other relevant policies'
-            },
-            value: {
-              html: "No documents"
-            } if data['empty'] else
-            {
-              html: "<a href='#'>example-file.pdf</a>"
-            },
-            actions: {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Add",
-                  visuallyHiddenText: "other relevant policies"
-                }
-              ]
-            }if data['empty'] else
-            {
-              items: [
-          {
-            href: "#",
-            text: "Add",
-            visuallyHiddenText: "other relevant policies"
-          },
-          {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "other relevant policies"
-          }
-        ]
-            }
-        }if appeal.type == 'Adverts' or appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
-
-
-
-          {
-            key: {
-              html: 'Relevant policy extracts and supplementary planning documents'
-            },
-            value: {
-              html: "No documents"
-            } if data['empty'] else
-            {
-              html: "<a href='#'>example-file.pdf</a>"
-            },
-            actions: {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Add",
-                  visuallyHiddenText: "relevant policy extracts and supplementary planning documents"
-                }
-              ]
-            }if data['empty'] else
-            {
-              items: [
-          {
-            href: "#",
-            text: "Add",
-            visuallyHiddenText: "relevant policy extracts and supplementary planning documents"
-          },
-          {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "relevant policy extracts and supplementary planning documents"
-          }
-        ]
-            }
-          },
-          {
-            key: {
-              html: 'Community infrastructure levy'
-            },
-            value: {
-              html: "No documents"
-            } if data['empty'] else
-            {
-              html: "<a href='#'>example-file.pdf</a>"
-            },
-            actions: {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Add",
-                  visuallyHiddenText: "community infrastructure levy"
-                }
-              ]
-            }if data['empty'] else
-            {
-              items: [
-          {
-            href: "#",
-            text: "Add",
-            visuallyHiddenText: "community infrastructure levy"
-          },
-          {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "community infrastructure levy"
-          }
-        ]
-            }
-          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Adverts' or appeal.type == 'CAS adverts',
-          {
-            key: {
-              html: 'Is the community infrastructure levy formally adopted?'
-            },
-            value: {
-              html: "Not answered"
-            } if data['empty'] else
-            {
-              html: "Yes"
-            },
-            actions: {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Add",
-                  visuallyHiddenText: "is the community infrastructure levy formally adopted?"
-                }
-              ]
-            }if data['empty'] else
-            {
-              items: [
-          {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "is the community infrastructure levy formally adopted?"
-          }
-        ]
-            }
-          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Adverts' or appeal.type == 'CAS adverts',
-          {
-            key: {
-              html: 'When was the community infrastructure levy formally adopted?'
-            },
-            value: {
-              html: "Not answered"
-            } if data['empty'] else
-            {
-              html: "16 January 2025"
-            },
-            actions: {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Add",
-                  visuallyHiddenText: "when was the community infrastructure levy formally adopted?"
-                }
-              ]
-            }if data['empty'] else
-            {
-              items: [
-          {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "when was the community infrastructure levy formally adopted?"
-          }
-        ]
-            }
-          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Adverts' or appeal.type == 'CAS adverts',
-
-
-          {
-            key: {
-              html: 'Discontinuance notice'
-            },
-            value: {
-              html: "No documents"
-            } if data['empty'] else
-            {
-              html: "<a href='#'>example-file.pdf</a>"
-            },
-            actions: {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Add",
-                  visuallyHiddenText: "discontinuance notice"
-                }
-              ]
-            }if data['empty'] else
-            {
-              items: [
-          {
-            href: "#",
-            text: "Add",
-            visuallyHiddenText: "discontinuance notice"
-          },
-          {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "discontinuance notice"
-          }
-        ]
-            }
-        }if appeal.type == 'Adverts' or appeal.type == 'CAS adverts'
-
           ]
-      }) }}
-
-      <h2 class="govuk-heading-m govuk-!-margin-top-8">6. Site access</h2>
-      {{ govukSummaryList({
-        rows: [
+        }
+      }if appeal.type == 'Adverts' or appeal.type == 'CAS Adverts',
 
 
-          {
-            key: {
-              html: 'Might the inspector need access to the appellant’s land or property?'
-            },
-            value: {
-              html: "No"
-            } if data['empty'] else
+      {
+        key: {
+          html: 'Plans, drawings and list of plans'
+        },
+        value: {
+          html: "No documents"
+        } if data['empty'] else
+        {
+          html: "<a href='#'>example-file.pdf</a>"
+        },
+        actions: {
+          items: [
             {
-              html: "Yes<br>To check restricted view."
-            },
-            actions: {
-              items: [
-                {
-                  html: 'Change',
-                  visuallyHiddenText: 'might the inspector need access to the appellant’s land or property?'
-                }
-              ]
+              href: "Item URL",
+              text: "Add",
+              visuallyHiddenText: "plans, drawings and list of plans	"
             }
-          },
-          {
-            key: {
-              html: 'Might the inspector need to enter a neighbour’s land or property?'
-            },
-            value: {
-              html: "No"
-            } if data['empty'] else
+          ]
+        }if data['empty'] else
+        {
+          items: [
+      {
+        href: "#",
+        text: "Add",
+        visuallyHiddenText: "plans, drawings and list of plans"
+      },
+      {
+        href: "#",
+        text: "Change",
+        visuallyHiddenText: "plans, drawings and list of plans"
+      }
+    ]
+        }
+      }if appeal.type == 'Householder' or appeal.type == 'CAS planning',
+
+      {
+        key: {
+          html: 'Relevant policies from your statutory development plan'
+        },
+        value: {
+          html: "No documents"
+        } if data['empty'] else
+        {
+          html: "<a href='#'>example-file.pdf</a>"
+        },
+        actions: {
+          items: [
             {
-              html: "Yes<br>To check the restricted view"
-            },
-            actions: {
-              items: [
-                {
-                  href: 'environment/schedule-type?cya=true',
-                  html: 'Change',
-                  visuallyHiddenText: 'might the inspector need access to the neighbour’s land or property?'
-                }
-              ]
+              href: "Item URL",
+              text: "Add",
+              visuallyHiddenText: "relevant policies from your statutory development plan"
             }
-          },
-          {
-            key: {
-              html: 'Address of the neighbour’s land or property'
-            },
-            value: {
-              html: "Not answered"
-            } if data['empty'] else
+          ]
+        }if data['empty'] else
+        {
+          items: [
+      {
+        href: "#",
+        text: "Add",
+        visuallyHiddenText: "relevant policies from your statutory development plan"
+      },
+      {
+        href: "#",
+        text: "Change",
+        visuallyHiddenText: "relevant policies from your statutory development plan"
+      }
+    ]
+        }
+      },
+
+      {
+        key: {
+          html: 'Emerging plan and supporting information'
+        },
+        value: {
+          html: "No documents"
+        } if data['empty'] else
+        {
+          html: "<a href='#'>example-file.pdf</a>"
+        },
+        actions: {
+          items: [
             {
-              html: "10 Example Street<br>London<br>A1 1AA"
-            },
-            actions: {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Add",
-                  visuallyHiddenText: "address of the neighbour’s land or property"
-                }
-              ]
-            }if data['empty'] else
-            {
-              items: [
-          {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "address of the neighbour’s land or property"
-          }
-        ]
+              href: "Item URL",
+              text: "Add",
+              visuallyHiddenText: "emerging plan and supporting information"
             }
-          },
-          {
-            key: {
-              html: 'Are there any potential safety risks?'
-            },
-            value: {
-              html: "No"
-            } if data['empty'] else
+          ]
+        }if data['empty'] else
+        {
+          items: [
+      {
+        href: "#",
+        text: "Add",
+        visuallyHiddenText: "emerging plan and supporting information"
+      },
+      {
+        href: "#",
+        text: "Change",
+        visuallyHiddenText: "emerging plan and supporting information"
+      }
+    ]
+        }
+      },
+      {
+        key: {
+          html: 'Other relevant policies'
+        },
+        value: {
+          html: "No documents"
+        } if data['empty'] else
+        {
+          html: "<a href='#'>example-file.pdf</a>"
+        },
+        actions: {
+          items: [
             {
-              html: "Yes<br>Hostile neighbours"
-            },
-            actions: {
-              items: [
-                {
-                  html: 'Change',
-                  visuallyHiddenText: 'are there any potential safety risks?'
-                }
-              ]
+              href: "Item URL",
+              text: "Add",
+              visuallyHiddenText: "other relevant policies"
             }
-          }
-        ]
-      }) }}
-      <h2 class="govuk-heading-m govuk-!-margin-top-8">7. Appeal process</h2>
-      {{ govukSummaryList({
-        rows: [
+          ]
+        }if data['empty'] else
+        {
+          items: [
+      {
+        href: "#",
+        text: "Add",
+        visuallyHiddenText: "other relevant policies"
+      },
+      {
+        href: "#",
+        text: "Change",
+        visuallyHiddenText: "other relevant policies"
+      }
+    ]
+        }
+    }if appeal.type == 'Adverts' or appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
 
 
-          {
-            key: {
-              html: 'Which procedure do you think is most appropriate for this appeal?'
-            },
-            value: {
-              html: "Written representations"
-            } if data['empty'] else
-            {
-              html: "Inquiry"
-            },
-            actions: {
-              items: [
-                {
-                  html: 'Change',
-                  visuallyHiddenText: 'which procedure do you think is most appropriate for this appeal?'
-                }
-              ]
-            }
-          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Adverts' or appeal.type == 'CAS adverts',
-          {
-            key: {
-              html: 'How many days would you expect the inquiry to last?'
-            },
-            value: {
-              html: "Not answered"
-            } if data['empty'] else
-            {
-              html: "10"
-            },
-            actions: {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Add",
-                  visuallyHiddenText: "how many days would you expect the inquiry to last?"
-                }
-              ]
-            }if data['empty'] else
-            {
-              items: [
-          {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "how many days would you expect the inquiry to last?"
-          }
-        ]
-            }
-          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Adverts' or appeal.type == 'CAS adverts',
-          {
-            key: {
-              html: 'Why would you prefer this procedure?'
-            },
-            value: {
-              html: "Not answered"
-            } if data['empty'] else
-            {
-              html: "Complex case"
-            },
-            actions: {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Add",
-                  visuallyHiddenText: "why would you prefer this procedure?"
-                }
-              ]
-            }if data['empty'] else
-            {
-              items: [
-          {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "why would you prefer this procedure?"
-          }
-        ]
-            }
-          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Adverts' or appeal.type == 'CAS adverts',
-          {
-            key: {
-              html: 'Are there any other ongoing appeals next to, or close to the site?'
-            },
-            value: {
-              html: "No"
-            } if data['empty'] else
-            {
-              html: "Yes<br>123456789"
-            },
 
-            actions: {
-              items: [
-                {
-                  html: 'Change',
-                  visuallyHiddenText: 'are there any other ongoing appeals next to, or close to the site?'
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              html: 'Are there any new conditions?'
-            },
-            value: {
-              html: "No"
-            } if data['empty'] else
+      {
+        key: {
+          html: 'Relevant policy extracts and supplementary planning documents'
+        },
+        value: {
+          html: "No documents"
+        } if data['empty'] else
+        {
+          html: "<a href='#'>example-file.pdf</a>"
+        },
+        actions: {
+          items: [
             {
-              html: "Yes<br>Must include community garden"
-            },
-            actions: {
-              items: [
-                {
-                  html: 'Change',
-                  visuallyHiddenText: 'are there any new conditions?'
-                }
-              ]
+              href: "Item URL",
+              text: "Add",
+              visuallyHiddenText: "relevant policy extracts and supplementary planning documents"
             }
-          }
-        ]
-      }) }}
-    </div>
-  </div>
+          ]
+        }if data['empty'] else
+        {
+          items: [
+      {
+        href: "#",
+        text: "Add",
+        visuallyHiddenText: "relevant policy extracts and supplementary planning documents"
+      },
+      {
+        href: "#",
+        text: "Change",
+        visuallyHiddenText: "relevant policy extracts and supplementary planning documents"
+      }
+    ]
+        }
+      },
+      {
+        key: {
+          html: 'Community infrastructure levy'
+        },
+        value: {
+          html: "No documents"
+        } if data['empty'] else
+        {
+          html: "<a href='#'>example-file.pdf</a>"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Add",
+              visuallyHiddenText: "community infrastructure levy"
+            }
+          ]
+        }if data['empty'] else
+        {
+          items: [
+      {
+        href: "#",
+        text: "Add",
+        visuallyHiddenText: "community infrastructure levy"
+      },
+      {
+        href: "#",
+        text: "Change",
+        visuallyHiddenText: "community infrastructure levy"
+      }
+    ]
+        }
+      }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Adverts' or appeal.type == 'CAS adverts',
+      {
+        key: {
+          html: 'Is the community infrastructure levy formally adopted?'
+        },
+        value: {
+          html: "Not answered"
+        } if data['empty'] else
+        {
+          html: "Yes"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Add",
+              visuallyHiddenText: "is the community infrastructure levy formally adopted?"
+            }
+          ]
+        }if data['empty'] else
+        {
+          items: [
+      {
+        href: "#",
+        text: "Change",
+        visuallyHiddenText: "is the community infrastructure levy formally adopted?"
+      }
+    ]
+        }
+      }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Adverts' or appeal.type == 'CAS adverts',
+      {
+        key: {
+          html: 'When was the community infrastructure levy formally adopted?'
+        },
+        value: {
+          html: "Not answered"
+        } if data['empty'] else
+        {
+          html: "16 January 2025"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Add",
+              visuallyHiddenText: "when was the community infrastructure levy formally adopted?"
+            }
+          ]
+        }if data['empty'] else
+        {
+          items: [
+      {
+        href: "#",
+        text: "Change",
+        visuallyHiddenText: "when was the community infrastructure levy formally adopted?"
+      }
+    ]
+        }
+      }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Adverts' or appeal.type == 'CAS adverts',
+
+
+      {
+        key: {
+          html: 'Discontinuance notice'
+        },
+        value: {
+          html: "No documents"
+        } if data['empty'] else
+        {
+          html: "<a href='#'>example-file.pdf</a>"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Add",
+              visuallyHiddenText: "discontinuance notice"
+            }
+          ]
+        }if data['empty'] else
+        {
+          items: [
+      {
+        href: "#",
+        text: "Add",
+        visuallyHiddenText: "discontinuance notice"
+      },
+      {
+        href: "#",
+        text: "Change",
+        visuallyHiddenText: "discontinuance notice"
+      }
+    ]
+        }
+    }if appeal.type == 'Adverts' or appeal.type == 'CAS adverts'
+
+      ]
+  }) }}
+
+  <h2 class="govuk-heading-m govuk-!-margin-top-8">6. Site access</h2>
+  {{ govukSummaryList({
+    rows: [
+
+
+      {
+        key: {
+          html: 'Might the inspector need access to the appellant’s land or property?'
+        },
+        value: {
+          html: "No"
+        } if data['empty'] else
+        {
+          html: "Yes<br>To check restricted view."
+        },
+        actions: {
+          items: [
+            {
+              html: 'Change',
+              visuallyHiddenText: 'might the inspector need access to the appellant’s land or property?'
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          html: 'Might the inspector need to enter a neighbour’s land or property?'
+        },
+        value: {
+          html: "No"
+        } if data['empty'] else
+        {
+          html: "Yes<br>To check the restricted view"
+        },
+        actions: {
+          items: [
+            {
+              href: 'environment/schedule-type?cya=true',
+              html: 'Change',
+              visuallyHiddenText: 'might the inspector need access to the neighbour’s land or property?'
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          html: 'Address of the neighbour’s land or property'
+        },
+        value: {
+          html: "Not answered"
+        } if data['empty'] else
+        {
+          html: "10 Example Street<br>London<br>A1 1AA"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Add",
+              visuallyHiddenText: "address of the neighbour’s land or property"
+            }
+          ]
+        }if data['empty'] else
+        {
+          items: [
+      {
+        href: "#",
+        text: "Change",
+        visuallyHiddenText: "address of the neighbour’s land or property"
+      }
+    ]
+        }
+      },
+      {
+        key: {
+          html: 'Are there any potential safety risks?'
+        },
+        value: {
+          html: "No"
+        } if data['empty'] else
+        {
+          html: "Yes<br>Hostile neighbours"
+        },
+        actions: {
+          items: [
+            {
+              html: 'Change',
+              visuallyHiddenText: 'are there any potential safety risks?'
+            }
+          ]
+        }
+      }
+    ]
+  }) }}
+  <h2 class="govuk-heading-m govuk-!-margin-top-8">7. Appeal process</h2>
+  {{ govukSummaryList({
+    rows: [
+
+
+      {
+        key: {
+          html: 'Which procedure do you think is most appropriate for this appeal?'
+        },
+        value: {
+          html: "Written representations"
+        } if data['empty'] else
+        {
+          html: "Inquiry"
+        },
+        actions: {
+          items: [
+            {
+              html: 'Change',
+              visuallyHiddenText: 'which procedure do you think is most appropriate for this appeal?'
+            }
+          ]
+        }
+      }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Adverts' or appeal.type == 'CAS adverts',
+      {
+        key: {
+          html: 'How many days would you expect the inquiry to last?'
+        },
+        value: {
+          html: "Not answered"
+        } if data['empty'] else
+        {
+          html: "10"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Add",
+              visuallyHiddenText: "how many days would you expect the inquiry to last?"
+            }
+          ]
+        }if data['empty'] else
+        {
+          items: [
+      {
+        href: "#",
+        text: "Change",
+        visuallyHiddenText: "how many days would you expect the inquiry to last?"
+      }
+    ]
+        }
+      }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Adverts' or appeal.type == 'CAS adverts',
+      {
+        key: {
+          html: 'Why would you prefer this procedure?'
+        },
+        value: {
+          html: "Not answered"
+        } if data['empty'] else
+        {
+          html: "Complex case"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Add",
+              visuallyHiddenText: "why would you prefer this procedure?"
+            }
+          ]
+        }if data['empty'] else
+        {
+          items: [
+      {
+        href: "#",
+        text: "Change",
+        visuallyHiddenText: "why would you prefer this procedure?"
+      }
+    ]
+        }
+      }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Adverts' or appeal.type == 'CAS adverts',
+      {
+        key: {
+          html: 'Are there any other ongoing appeals next to, or close to the site?'
+        },
+        value: {
+          html: "No"
+        } if data['empty'] else
+        {
+          html: "Yes<br>123456789"
+        },
+
+        actions: {
+          items: [
+            {
+              html: 'Change',
+              visuallyHiddenText: 'are there any other ongoing appeals next to, or close to the site?'
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          html: 'Are there any new conditions?'
+        },
+        value: {
+          html: "No"
+        } if data['empty'] else
+        {
+          html: "Yes<br>Must include community garden"
+        },
+        actions: {
+          items: [
+            {
+              html: 'Change',
+              visuallyHiddenText: 'are there any new conditions?'
+            }
+          ]
+        }
+      }
+    ]
+  }) }}
 {% endblock %}

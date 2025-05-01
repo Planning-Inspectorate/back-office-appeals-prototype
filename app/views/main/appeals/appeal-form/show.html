@@ -174,6 +174,71 @@
                 ]
               }
           },
+
+          {
+            key: {
+              text: "Is the appeal site in an area of outstanding natural beauty?"
+            },
+            value: {
+              html: "No"
+            } if data['empty'] else
+            {
+              html: "Yes"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "if the appeal site is in a green belt"
+                  }
+                ]
+              }
+          },
+
+          {
+            key: {
+              text: "Is the development in, near or likely to affect any designated sites?"
+            },
+            value: {
+              html: "No"
+            } if data['empty'] else
+            {
+              html: "Yes"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "if the appeal site is in a green belt"
+                  }
+                ]
+              }
+          },
+
+          {
+            key: {
+              text: "Tree Preservation Order"
+            },
+            value: {
+              html: "No"
+            } if data['empty'] else
+            {
+              html: "Yes"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "if the appeal site is in a green belt"
+                  }
+                ]
+              }
+          },
+
+
           {
             key: {
               text: "Does the appellant own all of the land involved in the appeal?"

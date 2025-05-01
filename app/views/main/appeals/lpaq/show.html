@@ -96,7 +96,7 @@
         }
       ]
           }
-        },
+        } if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Adverts' or appeal.type == 'CAS adverts',
 
 
 
@@ -148,6 +148,63 @@
           }
         },
 
+        {
+          key: {
+            html: 'Was a grant or loan made to preserve the listed building 1282050?'
+          },
+          value: {
+          html: "No"
+        } if data['empty'] else
+        {
+          html: "Yes"
+        },
+          actions: {
+            items: [
+              {
+                href: '#',
+                html: 'Change',
+                visuallyHiddenText: 'if a grant or loan was made to preserve the listed building 1282050?'
+              }
+            ]
+          }
+        } if appeal.type == 'Listed building',
+
+        {
+
+          key: {
+            html: 'Historic England consultation'
+          },
+          value: {
+            html: "No documents"
+          } if data['empty'] else
+          {
+            html: "<a href='#'>example-file.pdf</a>"
+          },
+          actions: {
+            items: [
+              {
+                href: "Item URL",
+                text: "Add",
+                visuallyHiddenText: "Historic England consultation"
+              }
+            ]
+          }if data['empty'] else
+          {
+            items: [
+        {
+          href: "#",
+          text: "Add",
+          visuallyHiddenText: "Historic England consultation"
+        },
+        {
+          href: "#",
+          text: "Change",
+          visuallyHiddenText: "Historic England consultation"
+        }
+      ]
+          }
+        } if appeal.type == 'Listed building',
+
 
 
           {
@@ -169,7 +226,7 @@
                 }
               ]
             }
-          },
+          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Adverts' or appeal.type == 'CAS adverts',
           {
 
             key: {
@@ -206,6 +263,26 @@
             }
           },
 
+          {
+            key: {
+              html: 'Do you consider that any condition other than the 5 standard conditions set out in Schedule 2 of the 2007 Refulations should be imposed in the event that express consent as applied for is granted?'
+            },
+            value: {
+            html: "No"
+          } if data['empty'] else
+          {
+            html: "Yes"
+          },
+            actions: {
+              items: [
+                {
+                  href: 'constraints/protected-species?cya=true',
+                  html: 'Change',
+                  visuallyHiddenText: '#'
+                }
+              ]
+            }
+          }if appeal.type ==  appeal.type == 'Adverts' or appeal.type == 'CAS adverts',
 
 
           {
@@ -227,7 +304,31 @@
                 }
               ]
             }
+          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Adverts' or appeal.type == 'CAS adverts' or appeal.type == 'CAS planning',
+
+
+          {
+            key: {
+              html: 'Is the site in an area of special control of advertisements?'
+            },
+            value: {
+            html: "No"
+          } if data['empty'] else
+          {
+            html: "Yes"
           },
+            actions: {
+              items: [
+                {
+                  href: 'constraints/protected-species?cya=true',
+                  html: 'Change',
+                  visuallyHiddenText: 'if the site is in an area of special control of advertisements'
+                }
+              ]
+            }
+          }if appeal.type == 'Adverts' or appeal.type == 'CAS adverts',
+
+
           {
             key: {
               html: 'Is the site in a green belt?'
@@ -267,7 +368,11 @@
                 }
               ]
             }
-          },
+          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Adverts' or appeal.type == 'CAS adverts',
+
+
+
+
           {
             key: {
               html: 'Is the development in, near or likely to affect any designated sites?'
@@ -287,7 +392,8 @@
                 }
               ]
             }
-          },
+          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Adverts' or appeal.type == 'CAS adverts',
+
           {
             key: {
               html: 'Tree Preservation Order'
@@ -321,7 +427,7 @@
           }
         ]
             }
-          },
+          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
 
 
           {
@@ -343,7 +449,8 @@
                 }
               ]
             }
-          },
+          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
+
           {
             key: {
               html: 'Definitive map and statement extract'
@@ -377,7 +484,7 @@
           }
         ]
             }
-          }
+          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building'
 
         ]
       }) }}
@@ -402,7 +509,8 @@
                 }
               ]
             }
-          },
+          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
+
           {
             key: {
               html: 'Environmental statement and supporting information'
@@ -436,7 +544,7 @@
           }
         ]
             }
-          },
+          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
 
 
           {
@@ -472,7 +580,43 @@
           }
         ]
             }
+          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
+
+
+          {
+            key: {
+              html: 'Scoping opinion'
+            },
+            value: {
+              html: "No documents"
+            } if data['empty'] else
+            {
+              html: "<a href='#'>example-file.pdf</a>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "scoping opinion"
+                }
+              ]
+            }if data['empty'] else
+            {
+              items: [
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "scoping opinion"
           },
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "scoping opinion"
+          }
+        ]
+            }
+          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
 
           {
             key: {
@@ -489,7 +633,7 @@
                 }
               ]
             }
-          },
+          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
 
 
           {
@@ -510,7 +654,9 @@
                 }
               ]
             }
-          },
+          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
+
+
           {
             key: {
               html: 'Does the development meet or exceed the threshold or criteria in column 2?'
@@ -539,7 +685,7 @@
           }
         ]
             }
-          },
+          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
 
 
           {
@@ -575,7 +721,7 @@
           }
         ]
             }
-          },
+          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
 
           {
             key: {
@@ -605,7 +751,9 @@
           }
         ]
             }
-          },
+          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
+
+
           {
             key: {
               html: 'Environmental statement and supporting information'
@@ -639,7 +787,7 @@
           }
         ]
             }
-          }
+          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building'
 
         ]
       }) }}
@@ -832,7 +980,30 @@
           }
         ]
             }
-          }
+          },
+
+          {
+            key: {
+              html: 'Is one of your grounds for refusal public safety involving highway or traffic considerations?'
+            },
+            value: {
+              html: "No"
+            } if data['empty'] else
+            {
+              html: "Yes"
+            },
+            actions: {
+              items: [
+                {
+                  href: 'constraints/area-of-outstanding-natural-beauty?cya=true',
+                  html: 'Change',
+                  visuallyHiddenText: 'is one of your grounds for refusal public safety involving highway or traffic considerations?'
+                }
+              ]
+            }
+          }if appeal.type == 'Adverts' or appeal.type == 'CAS adverts'
+
+
 
 
 
@@ -862,7 +1033,47 @@
                 }
               ]
             }
+          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Adverts',
+
+        
+
+
+          {
+            key: {
+              html: 'Plans, drawings and list of plans'
+            },
+            value: {
+              html: "No documents"
+            } if data['empty'] else
+            {
+              html: "<a href='#'>example-file.pdf</a>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "plans, drawings and list of plans	"
+                }
+              ]
+            }if data['empty'] else
+            {
+              items: [
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "plans, drawings and list of plans"
           },
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "plans, drawings and list of plans"
+          }
+        ]
+            }
+          }if appeal.type == 'Householder' or appeal.type == 'CAS planning',
+
+
           {
             key: {
               html: 'Consultation responses and standing advice'
@@ -896,7 +1107,10 @@
           }
         ]
             }
-          },
+          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
+
+
+
           {
             key: {
               html: 'Representations from members of the public or other parties'
@@ -930,8 +1144,8 @@
           }
         ]
             }
-          }
-        ]
+          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Householder' or appeal.type == 'CAS planning'
+          ]
       }) }}
 
       <h2 class="govuk-heading-m govuk-!-margin-top-8">5. Planning officer’s report and supporting documents</h2>
@@ -973,6 +1187,63 @@
         ]
             }
           },
+
+          {
+            key: {
+              html: 'Confirm that any photographs and plan submitted by the appellant are complete and accurate'
+            },
+            value: {
+              html: "No"
+            } if data['empty'] else
+            {
+              html: "Yes"
+            },
+            actions: {
+              items: [
+                {
+                  html: 'Change',
+                  visuallyHiddenText: "did you consult all the relevant statutory consultees about the development?"
+                }
+              ]
+            }
+          }if appeal.type == 'Adverts' or appeal.type == 'CAS Adverts',
+
+
+          {
+            key: {
+              html: 'Plans, drawings and list of plans'
+            },
+            value: {
+              html: "No documents"
+            } if data['empty'] else
+            {
+              html: "<a href='#'>example-file.pdf</a>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "plans, drawings and list of plans	"
+                }
+              ]
+            }if data['empty'] else
+            {
+              items: [
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "plans, drawings and list of plans"
+          },
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "plans, drawings and list of plans"
+          }
+        ]
+            }
+          }if appeal.type == 'Householder' or appeal.type == 'CAS planning',
+
           {
             key: {
               html: 'Relevant policies from your statutory development plan'
@@ -1007,6 +1278,7 @@
         ]
             }
           },
+
           {
             key: {
               html: 'Emerging plan and supporting information'
@@ -1074,7 +1346,10 @@
           }
         ]
             }
-          },
+        }if appeal.type == 'Adverts' or appeal.type == 'Planning appeal' or appeal.type == 'Listed building',
+
+
+
           {
             key: {
               html: 'Relevant policy extracts and supplementary planning documents'
@@ -1142,7 +1417,7 @@
           }
         ]
             }
-          },
+          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Adverts' or appeal.type == 'CAS adverts',
           {
             key: {
               html: 'Is the community infrastructure levy formally adopted?'
@@ -1171,7 +1446,7 @@
           }
         ]
             }
-          },
+          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Adverts' or appeal.type == 'CAS adverts',
           {
             key: {
               html: 'When was the community infrastructure levy formally adopted?'
@@ -1200,8 +1475,44 @@
           }
         ]
             }
+          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Adverts' or appeal.type == 'CAS adverts',
+
+          {
+            key: {
+              html: 'Other relevant policies'
+            },
+            value: {
+              html: "No documents"
+            } if data['empty'] else
+            {
+              html: "<a href='#'>example-file.pdf</a>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "other relevant policies"
+                }
+              ]
+            }if data['empty'] else
+            {
+              items: [
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "other relevant policies"
+          },
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "other relevant policies"
           }
         ]
+            }
+        }if appeal.type == 'Adverts' or appeal.type == 'CAS adverts'
+
+          ]
       }) }}
 
       <h2 class="govuk-heading-m govuk-!-margin-top-8">6. Site access</h2>
@@ -1321,7 +1632,7 @@
                 }
               ]
             }
-          },
+          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Adverts' or appeal.type == 'CAS adverts',
           {
             key: {
               html: 'How many days would you expect the inquiry to last?'
@@ -1350,7 +1661,7 @@
           }
         ]
             }
-          },
+          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Adverts' or appeal.type == 'CAS adverts',
           {
             key: {
               html: 'Why would you prefer this procedure?'
@@ -1379,7 +1690,7 @@
           }
         ]
             }
-          },
+          }if appeal.type == 'Planning appeal' or appeal.type == 'Listed building' or appeal.type == 'Adverts' or appeal.type == 'CAS adverts',
           {
             key: {
               html: 'Are there any other ongoing appeals next to, or close to the site?'

@@ -1,9 +1,6 @@
 <div class="app-panel">
   <h2 class="govuk-heading-l">Overview</h2>
 
-  
-
-
   {% if linkedAppeals.length %}
     {% set linkedAppealsHtml %}
       {% for linkedAppeal in linkedAppeals %}
@@ -52,9 +49,7 @@
     ] %}
   {% endif %}
 
-
-
-  {% if appeal.decision %}
+ {% if appeal.decision %}
     {% set decisionActions = [
       {
         href: "/main/appeals/:appealId/decision" | replace(':appealId', appeal.id),
@@ -65,12 +60,50 @@
   {% else %}
     {% set decisionActions = [
       {
-        href: "/main/appeals/:appealId/add-decision" | replace(':appealId', appeal.id),
+        href: "/main/appeals/:appealId/decision/new" | replace(':appealId', appeal.id),
         text: "Issue",
         visuallyHiddenText: "decision"
       }
     ] %}
   {% endif %}
+
+  {% if appeal.appellantCostsDecision %}
+    {% set appellantCostsDecisionActions = [
+      {
+        href: "/main/appeals/:appealId/decision" | replace(':appealId', appeal.id),
+        text: "View",
+        visuallyHiddenText: "appellant costs decision"
+      }
+    ] %}
+  {% else %}
+    {% set appellantCostsDecisionActions = [
+      {
+        href: "/main/appeals/:appealId/appellant-costs-decision/new" | replace(':appealId', appeal.id),
+        text: "Issue",
+        visuallyHiddenText: "appellant costs decision"
+      }
+    ] %}
+  {% endif %}
+
+  {% if appeal.lpaCostsDecision %}
+    {% set lpaCostsDecisionActions = [
+      {
+        href: "/main/appeals/:appealId/decision" | replace(':appealId', appeal.id),
+        text: "View",
+        visuallyHiddenText: "LPA costs decision"
+      }
+    ] %}
+  {% else %}
+    {% set lpaCostsDecisionActions = [
+      {
+        href: "/main/appeals/:appealId/lpa-costs-decision/new" | replace(':appealId', appeal.id),
+        text: "Issue",
+        visuallyHiddenText: "LPA costs decision"
+      }
+    ] %}
+  {% endif %}
+
+
 
 
   {{ govukSummaryList({
@@ -119,7 +152,7 @@
         actions: {
           items: [
             {
-              href: "#",
+              href: '/main/appeals/:appealId/edit-type' | replace(':appealId', appeal.id),
               text: "Change",
               visuallyHiddenText: "appeal type"
             }
@@ -204,12 +237,68 @@
           text: "Decision"
         },
         value: {
-          html: appeal.decision.decision if appeal.decision else 'Not issued yet'
+          html: appeal.decision.decision if appeal.decision else 'Not issued'
         },
         actions: {
           items: decisionActions
         }
+      } if 1==2,
+      {
+        key: {
+          text: "Appellant costs decision"
+        },
+        value: {
+          html: appeal.decision.decision if appeal.decision else 'Not issued'
+        },
+        actions: {
+          items: decisionActions
+        }
+      } if 1==2,
+      {
+        key: {
+          text: "LPA costs decision"
+        },
+        value: {
+          html: appeal.decision.decision if appeal.decision else 'Not issued'
+        },
+        actions: {
+          items: decisionActions
+        }
+      } if 1==2,
+      {
+        key: {
+          text: "Decision"
+        },
+        value: {
+          html: appeal.decision.decision if appeal.decision else 'Not issued'
+        },
+        actions: {
+          items: decisionActions
+        }
+      },
+      {
+        key: {
+          text: "Appellant costs decision"
+        },
+        value: {
+          html: 'Issued' if appeal.appellantCostsDecision else 'Not issued'
+        },
+        actions: {
+          items: appellantCostsDecisionActions
+        }
+      },
+      {
+        key: {
+          text: "LPA costs decision"
+        },
+        value: {
+          html: 'Issued' if appeal.lpaCostsDecision else 'Not issued'
+        },
+        actions: {
+          items: lpaCostsDecisionActions
+        }
       }
     ]
   }) }}
+
 </div>

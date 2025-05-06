@@ -12,34 +12,17 @@
   </div>
   {% include "includes/appeal/h1.njk" %}
 
-
-  {% if appeal.status == 'Decision issued' %}
-
-  {% set decisionInsetHtml %}
-    <ul class="govuk-list govuk-list--bulle">
-      <li>
-        Decision: {{appeal.decision.decision}}
-      </li>
-      <li>
-        Costs decision: {{appeal.decision.costsDecision}}
-      </li>
-      <li>
-        Issued on: 15 April 2025
-      </li>
-      <li>
-        <a href="">View decision</a>
-      </li>
-    </ul>
-  {% endset %}
-  {{ govukInsetText({
-    html: decisionInsetHtml
-  }) }}
-  {% endif %}
-
-
+  {% include "includes/appeal/decision-inset.njk" %}
+  {% include "includes/appeal/withdrawal-inset.njk" %}
+  
   <div class="govuk-button-group">
     <a href="#" class="govuk-link">Download appeal</a>
   </div>
+
+  {{appeal.appealForm.name}}
+  {{appeal.appealForm.age}}
+  {{appeal.appealForm.blah}}
+
 
   {{ govukDetails({
     summaryText: "Notes (1)",
@@ -50,6 +33,9 @@
     <div class="govuk-grid-column-two-thirds">
       {% set overviewHtml %}
         {% include "includes/appeal/overview.html" %}
+      {% endset%}
+      {% set decisionHtml %}
+        {% include "includes/appeal/decision.html" %}
       {% endset%}
       {% set siteHtml %}
       {% include "includes/appeal/site.html" %}

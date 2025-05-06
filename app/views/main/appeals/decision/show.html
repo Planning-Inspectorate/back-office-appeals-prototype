@@ -1,0 +1,128 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = 'Decision' %}
+
+{% set pageName = title %}
+
+{% block beforeContent %}
+  {{ govukBreadcrumbs({
+    classes: 'govuk-!-margin-top-4 govuk-!-margin-bottom-0',
+      items: [
+        {
+          text: appeal.id,
+          href: "/main/appeals/:appealId" | replace(':appealId', appeal.id)
+        },
+        {
+          text: title
+        }
+      ]
+    }) }}
+{% endblock %}
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukNotificationBanner({
+        type: "success",
+        text: flash
+      }) if flash.length }}
+
+      <span class="govuk-caption-l">Appeal {{appeal.id}}</span>
+      <h1 class="govuk-heading-l">
+        {{title}}
+      </h1>
+
+      {# Linked appeals #}
+      {% if rows.length %}
+        {{ govukSummaryList({
+          rows: rows
+        }) }}
+      {% else %}
+        {% set decisionRowHtml %}
+          {{appeal.decision.decision}}
+          {% if appeal.decision.decision == 'Invalid' %}
+            <p class="govuk-!-margin-top-2 govuk-!-margin-bottom-0">Reason: {{appeal.decision.invalidReason}}</p>
+          {% endif %}
+        {% endset %}
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Decision"
+              },
+              value: {
+                html: decisionRowHtml
+              }
+            } if appeal.decision,
+            {
+              key: {
+                text: "Decision letter"
+              },
+              value: {
+                html: '<a href="#">decision-letter.pdf</a>'
+              },
+              actions: {
+                items: [
+                  {
+                    href: '/main/appeals/:appealId/decision/edit-decision-letter' | replace(':appealId', appeal.id),
+                    text: "Change",
+                    visuallyHiddenText: "Decision letter"
+                  }
+                ]
+              }
+            } if appeal.decision,
+            {
+              key: {
+                text: "Decision issue date"
+              },
+              value: {
+                text: appeal.decision.issueDate | govukDate
+              }
+            } if appeal.decision,
+            {
+              key: {
+                text: "Appellant costs decision letter"
+              },
+              value: {
+                html: '<a href="#">:appellantCostsDecisionLetter</a>' | replace(':appellantCostsDecisionLetter', appeal.appellantCostsDecision.letter.name)
+              }
+            } if appeal.appellantCostsDecision,
+            {
+              key: {
+                text: "Appellant costs decision issue date"
+              },
+              value: {
+                text: appeal.appellantCostsDecision.issueDate | govukDate
+              }
+            } if appeal.appellantCostsDecision.issueDate,
+            {
+              key: {
+                text: "LPA costs decision letter"
+              },
+              value: {
+                html: '<a href="#">:lpaCostsDecisionLetter</a>' | replace(':lpaCostsDecisionLetter', appeal.lpaCostsDecision.letter.name)
+              }
+            } if appeal.lpaCostsDecision,
+            {
+              key: {
+                text: "LPA costs decision issue date"
+              },
+              value: {
+                text: appeal.lpaCostsDecision.issueDate | govukDate
+              }
+            } if appeal.lpaCostsDecision.issueDate
+          ]
+        }) }}
+      {% endif %}
+
+
+
+      
+
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Appellant costs decision letter" | replace(':appealId', appealId) %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+        <span class="govuk-caption-l">Appeal {{appeal.id}} {% if appeal.isLeadAppeal %}(lead){% endif %} - issue decision</span>
+        <h1 class="govuk-heading-l">{{title}}</h1>
+
+        <p>The file must be a PDF and smaller than 25MB.</p>
+
+        {% set uploadHtml %}
+          {{ govukFileUpload({
+            id: "documents",
+            name: "documents",
+            classes: 'app-multi-file-upload__input',
+            label: {
+              text: "Upload appellant costs decision letter",
+              classes: 'govuk-label--m'
+            },
+            attributes: { multiple: '' },
+            errorMessage: errorMessage,
+            hint: {
+              text: 'You can only upload a PNG, GIF or JPEG file under 2MB.'
+            } if false
+          }) }}
+
+          {{govukButton({
+            text: 'Upload file',
+            classes: 'govuk-button--secondary app-multi-file-upload__button'
+          })}}
+        {% endset %}
+
+        {{ appMultiFileUpload({
+          uploadedFiles: {
+            heading: { text: 'Files added' },
+            items: uploadedFiles
+          } if uploadedFiles,
+          uploadHtml: uploadHtml
+        }) }}
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
+
+{% block pageScripts %}
+  {{super()}}
+  <script>
+    if(typeof App.MultiFileUpload !== 'undefined') {
+     new App.MultiFileUpload({
+        container: $('.app-multi-file-upload'),
+        uploadUrl: '/ajax-upload',
+        deleteUrl: '/ajax-delete',
+        dropzoneHintText: 'or drop file',
+        dropzoneButtonText: 'Choose file'
+      });
+    }
+  </script>
+{% endblock %}

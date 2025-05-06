@@ -1,0 +1,148 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Check details and update timetable due dates" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal {{appeal.id}} {% if appeal.isLeadAppeal %}(lead){% endif %}</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "LPA questionnaire due"
+              },
+              value: {
+                text: data.editTimetableDueDates.LPAQuestionnaireDueDate | isoDateFromDateInput | govukDate
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/appeals/:appealId/edit-timetable-due-dates" | replace(':appealId', appeal.id),
+                    text: "Change",
+                    visuallyHiddenText: "LPA questionnaire due"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Statements due"
+              },
+              value: {
+                text: data.editTimetableDueDates.statementsDueDate | isoDateFromDateInput | govukDate
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/appeals/:appealId/edit-timetable-due-dates" | replace(':appealId', appeal.id),
+                    text: "Change",
+                    visuallyHiddenText: "Statements due"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Interested party comments due"
+              },
+              value: {
+                text: data.editTimetableDueDates.interestedPartyCommentsDueDate | isoDateFromDateInput | govukDate
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/appeals/:appealId/edit-timetable-due-dates" | replace(':appealId', appeal.id),
+                    text: "Change",
+                    visuallyHiddenText: "Interested party comments due"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Final comments due"
+              },
+              value: {
+                text: data.editTimetableDueDates.finalCommentsDueDate | isoDateFromDateInput | govukDate
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/appeals/:appealId/edit-timetable-due-dates" | replace(':appealId', appeal.id),
+                    text: "Change",
+                    visuallyHiddenText: "Final comments due"
+                  }
+                ]
+              }
+            } if data.editTimetableDueDates.finalCommentsDueDate,
+            {
+              key: {
+                text: "Statement of common ground due"
+              },
+              value: {
+                text: data.editTimetableDueDates.statementOfCommonGroundDueDate | isoDateFromDateInput | govukDate
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/appeals/:appealId/edit-timetable-due-dates" | replace(':appealId', appeal.id),
+                    text: "Change",
+                    visuallyHiddenText: "Statement of common ground due"
+                  }
+                ]
+              }
+            } if data.editTimetableDueDates.statementOfCommonGroundDueDate,
+            {
+              key: {
+                text: "Proof of evidence and witnesses due"
+              },
+              value: {
+                text: data.editTimetableDueDates.proofOfEvidenceAndWitnessesDueDate | isoDateFromDateInput | govukDate
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/appeals/:appealId/edit-timetable-due-dates" | replace(':appealId', appeal.id),
+                    text: "Change",
+                    visuallyHiddenText: "Proof of evidence and witnesses due"
+                  }
+                ]
+              }
+            } if data.editTimetableDueDates.proofOfEvidenceAndWitnessesDueDate,
+            {
+              key: {
+                text: "Planning obligation due"
+              },
+              value: {
+                text: data.editTimetableDueDates.planningObligationDueDate | isoDateFromDateInput | govukDate
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/appeals/:appealId/edit-timetable-due-dates" | replace(':appealId', appeal.id),
+                    text: "Change",
+                    visuallyHiddenText: "Planning obligation due"
+                  }
+                ]
+              }
+            } if data.editTimetableDueDates.planningObligationDueDate
+          ]
+        }) }}
+
+      <p>We’ll send an email to the appellant and LPA to tell them about the new timetable.</p>
+
+      <form method="post">
+        {{ govukButton({
+          text: "Update timetable due dates"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

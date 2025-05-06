@@ -1,0 +1,148 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Check details and issue decision" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  {% set address %}
+    {{appAddress({ address: data.addHearing.address })}}
+  {% endset %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal {{appeal.id}} {% if appeal.isLeadAppeal %}(lead){% endif %}</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+      {% if appeal.isLeadAppeal %}
+        {{ govukSummaryList({
+          rows: rows
+        }) }}
+      {% else %}
+        {% set decisionRowHtml %}
+          {{data.issueDecision.decision}}
+          {% if data.issueDecision.decision == 'Invalid' %}
+            <p class="govuk-!-margin-top-2 govuk-!-margin-bottom-0">Reason: {{data.issueDecision.invalidReason}}</p>
+          {% endif %}
+        {% endset %}
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Decision"
+              },
+              value: {
+                html: decisionRowHtml
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/appeals/:appealId/decision/new" | replace(':appealId', appeal.id),
+                    text: "Change",
+                    visuallyHiddenText: "Decision"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Decision letter"
+              },
+              value: {
+                html: '<a href="#">decision-letter.pdf</a>'
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/appeals/:appealId/decision/new/decision-letter" | replace(':appealId', appeal.id),
+                    text: "Change",
+                    visuallyHiddenText: "decision letter"
+                  }
+                ]
+              }
+            } if not data.issueDecision.decision == 'Invalid',
+            {
+              key: {
+                text: "Do you want to issue the appellant’s costs decision?"
+              },
+              value: {
+                html: data.issueDecision.hasAppellantCostsDecision
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/appeals/:appealId/decision/new/has-appellant-costs-decision" | replace(':appealId', appeal.id),
+                    text: "Change",
+                    visuallyHiddenText: "if you want to issue the appellant costs decision"
+                  }
+                ]
+              }
+            } if data.issueDecision.hasAppellantCostsDecision,
+            {
+              key: {
+                text: "Appellant costs decision letter"
+              },
+              value: {
+                html: '<a href="#">appellant-costs-decision-letter.pdf</a>'
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/appeals/:appealId/decision/new/appellant-costs-decision-letter" | replace(':appealId', appeal.id),
+                    text: "Change",
+                    visuallyHiddenText: "Appellant costs decision letter"
+                  }
+                ]
+              }
+            } if data.issueDecision.hasAppellantCostsDecision == 'Yes',
+            {
+              key: {
+                text: "Do you want to issue the LPA’s costs decision?"
+              },
+              value: {
+                html: data.issueDecision.hasLPACostsDecision
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/appeals/:appealId/decision/new/has-LPA-costs-decision" | replace(':appealId', appeal.id),
+                    text: "Change",
+                    visuallyHiddenText: "if you want to issue the LPA costs decision"
+                  }
+                ]
+              }
+            } if data.issueDecision.hasLPACostsDecision,
+            {
+              key: {
+                text: "LPA costs decision letter"
+              },
+              value: {
+                html: '<a href="#">lpa-costs-decision-letter.pdf</a>'
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/appeals/:appealId/decision/new/lpa-costs-decision-letter" | replace(':appealId', appeal.id),
+                    text: "Change",
+                    visuallyHiddenText: "LPA costs decision letter"
+                  }
+                ]
+              }
+            } if data.issueDecision.hasLPACostsDecision == 'Yes'
+          ]
+        }) }}
+      {% endif %}
+
+      <p>We’ll send an email to the appellant and LPA to tell them about the decision.</p>
+
+      <form method="post">
+        {{ govukButton({
+          text: "Issue decision"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

@@ -13,7 +13,7 @@
         actions: {
           items: [
             {
-              href: "#",
+              href: "/main/appeals/:appealId/appeal-form" | replace(':appealId', appeal.id),
               text: "View",
               visuallyHiddenText: "Appeal"
             }
@@ -30,7 +30,7 @@
         actions: {
           items: [
             {
-              href: "#",
+              href: "/main/appeals/:appealId/lpaq" | replace(':appealId', appeal.id),
               text: "View",
               visuallyHiddenText: "LPA questionnaire"
             }

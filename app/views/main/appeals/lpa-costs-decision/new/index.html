@@ -1,6 +1,6 @@
 {% extends "layouts/bo.html" %}
 
-{% set title = "Appellant costs decision letter" | replace(':appealId', appealId) %}
+{% set title = "LPA costs decision letter" | replace(':appealId', appealId) %}
 {% set pageName = title %}
 
 {% set back = true %}
@@ -11,7 +11,7 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form method="post">
-        <span class="govuk-caption-l">Appeal {{appeal.id}} {% if appeal.isLeadAppeal %}(lead){% endif %} - issue decision</span>
+        <span class="govuk-caption-l">Appeal {{appeal.id}} {% if appeal.isLeadAppeal %}(lead){% endif %} - issue LPA costs decision</span>
         <h1 class="govuk-heading-l">{{title}}</h1>
 
         <p>The file must be a PDF and smaller than 25MB.</p>
@@ -22,7 +22,7 @@
             name: 'upload',
             classes: 'moj-multi-file-upload__input',
             label: {
-              text: 'Upload appellant costs decision letter',
+              text: 'Upload LPA costs decision letter',
               classes: 'govuk-label--m'
             }
           }) }}

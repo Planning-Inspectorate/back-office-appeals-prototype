@@ -1,0 +1,22 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "You have already linked appeal :appealId" | replace(':appealId', data.addLinkedAppeal.reference) %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal {{appeal.id}}</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+      
+      {{ govukButton({
+        text: "Add a different linked appeal",
+        href: '/main/appeals/:appealId/linked-appeals/new' | replace(':appealId', appeal.id)
+      }) }}
+
+    </div>
+  </div>
+{% endblock %}

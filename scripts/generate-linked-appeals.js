@@ -15,6 +15,7 @@ const generateLinkedAppeal = (params = {}) => {
 const generateLinkedAppeals = () => {
   const linkedAppeals = []
 
+  // Not started
   linkedAppeals.push(generateLinkedAppeal({
     leadAppealId: '00000009',
     childAppealId: '00000010'
@@ -23,6 +24,17 @@ const generateLinkedAppeals = () => {
   linkedAppeals.push(generateLinkedAppeal({
     leadAppealId: '00000009',
     childAppealId: '00000182'
+  }))
+
+
+  linkedAppeals.push(generateLinkedAppeal({
+    leadAppealId: '00000015',
+    childAppealId: '00000016'
+  }))
+
+  linkedAppeals.push(generateLinkedAppeal({
+    leadAppealId: '00000015',
+    childAppealId: '00000017'
   }))
 
   return linkedAppeals

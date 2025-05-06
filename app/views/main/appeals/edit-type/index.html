@@ -1,0 +1,95 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = 'Appeal type'  %}
+{% set pageName = title %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: 'javascript:history.back()'
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form method="post">
+        <span class="govuk-caption-l">Appeal {{appeal.id}} - update appeal type</span>
+        
+
+        {{ govukRadios({
+          name: "editType[type]",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: 'Select all that apply'
+          },
+          values: data.editType.type or appeal.type,
+          items: [
+            { 
+              text: '(C) Enforcement notice appeal',
+              value: '(C) Enforcement notice appeal'
+            },
+            { 
+              text: '(D) Householder',
+              value: '(D) Householder'
+            },
+            { 
+              text: '(F) Enforcement listed building and conservation area appeal',
+              value: '(F) Enforcement listed building and conservation area appeal'
+            },
+            { 
+              text: '(G) Discontinuance notice appeal',
+              value: '(G) Discontinuance notice appeal'
+            },
+            { 
+              text: '(H) Advertisement appeal',
+              value: '(H) Advertisement appeal'
+            },
+            { 
+              text: '(L) Community infrastructure levy',
+              value: '(L) Community infrastructure levy'
+            },
+            { 
+              text: '(Q) Planning obligation appeal',
+              value: '(Q) Planning obligation appeal'
+            },
+            { 
+              text: '(S) Affordable housing obligation appeal',
+              value: '(S) Affordable housing obligation appeal'
+            },
+            { 
+              text: '(V) Call-in application',
+              value: '(V) Call-in application'
+            },
+            { 
+              text: '(W) Planning appeal',
+              value: 'Planning appeal'
+            },
+            { 
+              text: '(X) Lawful development certificate appeal',
+              value: '(X) Lawful development certificate appeal'
+            },
+            { 
+              text: '(Y) Planned listed building and conservation area appeal',
+              value: '(Y) Planned listed building and conservation area appeal'
+            },
+            { 
+              text: '(Z) Commercial (CAS) appeal',
+              value: '(Z) Commercial (CAS) appeal'
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

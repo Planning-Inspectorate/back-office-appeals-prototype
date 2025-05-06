@@ -1,0 +1,52 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Check details and issue LPA costs decision" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  {% set address %}
+    {{appAddress({ address: data.addHearing.address })}}
+  {% endset %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal {{appeal.id}} {% if appeal.isLeadAppeal %}(lead){% endif %}</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "LPA costs decision letter"
+              },
+              value: {
+                html: '<a href="#">lpa-costs-decision-letter.pdf</a>'
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/appeals/:appealId/lpa-costs-decision/new" | replace(':appealId', appeal.id),
+                    text: "Change",
+                    visuallyHiddenText: "LPA costs decision letter"
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
+
+      <p>We’ll send an email to the appellant and LPA to tell them about the LPA costs decision.</p>
+
+      <form method="post">
+        {{ govukButton({
+          text: "Issue LPA costs decision"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

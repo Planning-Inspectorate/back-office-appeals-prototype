@@ -13,7 +13,7 @@ module.exports = router => {
     if(isLeadAppeal(appeal.id, allLinkedAppeals)) {
       leadAppeal = appeal
     } else {
-      // if it's not the lead, then get it’s lead appeal id
+      // if it's not the lead, then get its lead appeal id
       let leadAppealId = allLinkedAppeals.find(linkedAppeal => linkedAppeal.childAppealId == appeal.id).leadAppealId
       leadAppeal = req.session.data.appeals.find(appeal => appeal.id == leadAppealId)
     }
@@ -29,6 +29,14 @@ module.exports = router => {
           }
         }
       })
+
+    // check if there's only one child appeal
+    // if so then redirect to a confirmation screen
+    if(radios.length == 1) {allLinkedAppeals
+      res.redirect(`/main/appeals/${req.params.appealId}/linked-appeals/edit-lead/confirm`)
+      return
+    }
+
 
     res.render('/main/appeals/linked-appeals/edit-lead/index', {
       appeal,
@@ -88,8 +96,43 @@ module.exports = router => {
       childAppealId: leadAppeal.id
     })
 
-   req.flash('success', 'Lead appeal updated')
-   res.redirect(`/main/appeals/${req.params.appealId}`)
+    req.flash('success', 'Lead appeal updated')
+    res.redirect(`/main/appeals/${req.params.appealId}`)
+  })
+
+  router.get('/main/appeals/:appealId/linked-appeals/edit-lead/confirm', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
+
+    let newLeadAppeal
+    if(appeal.isLeadAppeal) {
+      newLeadAppeal = req.session.data.linkedAppeals.find(linkedAppeal => linkedAppeal.leadAppealId == appeal.id).childAppealId
+    } else {
+      newLeadAppeal = appeal.id
+    }
+
+    res.render('/main/appeals/linked-appeals/edit-lead/confirm', {
+      appeal,
+      newLeadAppeal
+    })  
+  })
+
+  router.post('/main/appeals/:appealId/linked-appeals/edit-lead/confirm', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
+
+    if(appeal.isLeadAppeal) {
+      // `appeal` is the lead
+      let linkedAppeal = req.session.data.linkedAppeals.find(linkedAppeal => linkedAppeal.leadAppealId == appeal.id)
+      linkedAppeal.leadAppealId = linkedAppeal.childAppealId
+      linkedAppeal.childAppealId = appeal.id
+    } else {
+      // `appeal` is the child
+      let linkedAppeal = req.session.data.linkedAppeals.find(linkedAppeal => linkedAppeal.childAppealId == appeal.id)
+      linkedAppeal.childAppealId = linkedAppeal.leadAppealId
+      linkedAppeal.leadAppealId = appeal.id     
+    }
+
+    req.flash('success', 'Lead appeal updated')
+    res.redirect(`/main/appeals/${req.params.appealId}`)
   })
 
 }

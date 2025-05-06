@@ -25,7 +25,7 @@ router.all('*', (req, res, next) => {
 router.use('/main/appeals/:appealId*', (req, res, next) => {
   let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
   if(appeal) {
-	appeal.isLeadAppeal = isLeadAppeal(appeal.id, req.session.data.linkedAppeals)
+		appeal.isLeadAppeal = isLeadAppeal(appeal.id, req.session.data.linkedAppeals)
   	appeal.isChildAppeal = isChildAppeal(appeal.id, req.session.data.linkedAppeals)	
   }
   next()
@@ -44,6 +44,8 @@ router.get('/clear-data', function (req, res) {
 
 require('./routes/appeals')(router)
 require('./routes/appeal')(router)
+require('./routes/lpaq')(router)
+require('./routes/appeal-form')(router)
 require('./routes/linked-appeals')(router)
 require('./routes/linked-appeals--add')(router)
 require('./routes/linked-appeals--delete')(router)
@@ -54,6 +56,7 @@ require('./routes/agent--remove')(router)
 require('./routes/start-case')(router)
 require('./routes/add-procedure')(router)
 require('./routes/edit-procedure')(router)
+require('./routes/edit-type')(router)
 require('./routes/add-hearing')(router)
 require('./routes/edit-hearing')(router)
 require('./routes/cancel-hearing')(router)
@@ -92,7 +95,13 @@ require('./routes/rule-6-proof-of-evidence-and-witnesses--accept')(router)
 require('./routes/rule-6-proof-of-evidence-and-witnesses--reject')(router)
 require('./routes/edit-timetable-due-dates')(router)
 
-require('./routes/decision--add')(router)
+require('./routes/decision')(router)
+require('./routes/decision--new')(router)
+require('./routes/appellant-costs-decision--new')(router)
+require('./routes/lpa-costs-decision--new')(router)
+
+require('./routes/withdrawal')(router)
+require('./routes/withdrawal--new')(router)
 
 // Timetable
 // require('./routes/add-statement-of-common-ground-due-date')(router)

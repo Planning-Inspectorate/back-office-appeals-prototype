@@ -1,0 +1,60 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = 'Withdrawal' %}
+
+{% set pageName = title %}
+
+{% block beforeContent %}
+  {{ govukBreadcrumbs({
+    classes: 'govuk-!-margin-top-4 govuk-!-margin-bottom-0',
+      items: [
+        {
+          text: appeal.id,
+          href: "/main/appeals/:appealId" | replace(':appealId', appeal.id)
+        },
+        {
+          text: title
+        }
+      ]
+    }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukNotificationBanner({
+        type: "success",
+        text: flash
+      }) if flash.length }}
+
+      <span class="govuk-caption-l">Appeal {{appeal.id}}</span>
+      <h1 class="govuk-heading-l">
+        {{title}}
+      </h1>
+
+      {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Request to withdraw appeal"
+              },
+              value: {
+                html: '<a href="#">withdrawal-request.pdf</a>'
+              }
+            },
+            {
+              key: {
+                text: "Withdrawn date"
+              },
+              value: {
+                text: appeal.withdrawal.withdrawnDate | govukDate
+              }
+            }
+          ]
+        }) }}
+
+    </div>
+  </div>
+{% endblock %}

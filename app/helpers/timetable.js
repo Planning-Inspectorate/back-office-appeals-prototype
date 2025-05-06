@@ -265,15 +265,16 @@ const generateTimetableInquiry = (appeal) => {
 }
 
 const generateTimetable = (appeal) => {
-  if(appeal.procedure == 'Inquiry') {
+  if(appeal?.procedure == 'Inquiry') {
     return generateTimetableInquiry(appeal)
   }
-  if(appeal.procedure == 'Hearing') {
+  if(appeal?.procedure == 'Hearing') {
     return generateTimetableHearing(appeal)
   }
-  if(appeal.procedure == 'Written representations') {
+  if(appeal?.procedure == 'Written representations') {
     return generateTimetableWritten(appeal)
   }
+  // Use for everything else ()
   return generateTimetableHouseholder(appeal)
 }
 

@@ -1,0 +1,101 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Decision for child appeal :appealId" | replace(':appealId', appealId) %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal {{appeal.id}} {% if appeal.isLeadAppeal %}(lead){% endif %} - issue decision</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              html: "Appellant"
+            },
+            value: {
+              html: ':firstName :lastName' | replace(':firstName', childAppeal.appellant.firstName) | replace(':lastName', childAppeal.appellant.lastName)
+            }
+          },
+          {
+            key: {
+              html: "Site address"
+            },
+            value: {
+              html: appAddress({ address: childAppeal.site.address })
+            }
+          },
+          {
+            key: {
+              html: "Appeal type"
+            },
+            value: {
+              html: childAppeal.type
+            }
+          }
+        ]
+      }) }}
+
+      {% set invalidReasonHtml %}
+        {{ govukTextarea({
+          id: "issueDecision[decision][:appealId][invalidReason]" | replace(':appealId', appealId),
+          name: "issueDecision[decision][:appealId][invalidReason]" | replace(':appealId', appealId),
+          label: {
+            text: "Reason",
+            classes: "govuk-label--s"
+          },
+          hint: {
+            text: "We will share the reason with the relevant parties"
+          },
+          value: data.issueDecision.decision[appealId].invalidReason
+        }) }}
+      {% endset %}
+
+      <form method="post">
+        
+        {{ govukRadios({
+          name: "issueDecision[decision][:appealId][decision]" | replace(':appealId', appealId),
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          value: data.issueDecision.decision[appealId].decision,
+          items: [
+            {
+              value: "Allowed",
+              text: "Allowed"
+            },
+            {
+              value: "Dismissed",
+              text: "Dismissed"
+            },
+            {
+              value: "Split decision",
+              text: "Split decision"
+            },
+            {
+              value: "Invalid",
+              text: "Invalid",
+              conditional: {
+                html: invalidReasonHtml
+              }
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

@@ -14,10 +14,16 @@ module.exports = router => {
 
   router.post('/main/appeals/:appealId/linked-appeals/new', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.session.data.addLinkedAppeal.reference)
-    if(!canAppealBeLinked(appeal)) {
+
+    
+
+    // Check to see if it's already linked
+    if(req.session.data.linkedAppeals.find(linkedAppeal => linkedAppeal.leadAppealId === req.session.data.addLinkedAppeal.reference || linkedAppeal.childAppealId === req.session.data.addLinkedAppeal.reference)) {
+      res.redirect(`/main/appeals/${req.params.appealId}/linked-appeals/new/exit--already-added`)
+    // Checking to see if the appeal the user wants to add has the right status
+    // If not, send them to the exit page
+    } else if(!canAppealBeLinked(appeal)) {
       res.redirect(`/main/appeals/${req.params.appealId}/linked-appeals/new/exit`)
-    } else if(isLeadAppeal(req.params.appealId, req.session.data.linkedAppeals)) {
-      res.redirect(`/main/appeals/${req.params.appealId}/linked-appeals/new/lead-appeal`)
     } else {
       res.redirect(`/main/appeals/${req.params.appealId}/linked-appeals/new/lead-appeal`)
     }
@@ -159,6 +165,14 @@ module.exports = router => {
     res.render('/main/appeals/linked-appeals/new/exit', {
       appeal,
       isLeadAppeal: isLeadAppeal(appeal.id, req.session.data.linkedAppeals)
+    })
+  })
+
+  router.get('/main/appeals/:appealId/linked-appeals/new/exit--already-added', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
+
+    res.render('/main/appeals/linked-appeals/new/exit--already-added', {
+      appeal
     })
   })
 

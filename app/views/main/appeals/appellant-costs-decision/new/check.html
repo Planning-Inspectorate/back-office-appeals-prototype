@@ -1,0 +1,52 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Check details and issue appellant costs decision" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  {% set address %}
+    {{appAddress({ address: data.addHearing.address })}}
+  {% endset %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal {{appeal.id}} {% if appeal.isLeadAppeal %}(lead){% endif %}</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Appellant costs decision letter"
+              },
+              value: {
+                html: '<a href="#">appellant-costs-decision-letter.pdf</a>'
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/appeals/:appealId/appellant-costs-decision/new" | replace(':appealId', appeal.id),
+                    text: "Change",
+                    visuallyHiddenText: "Appellant costs decision letter"
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
+
+      <p>We’ll send an email to the appellant and LPA to tell them about the appellant costs decision.</p>
+
+      <form method="post">
+        {{ govukButton({
+          text: "Issue appellant costs decision"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

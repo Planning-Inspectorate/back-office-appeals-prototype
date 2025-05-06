@@ -74,6 +74,11 @@ module.exports = router => {
           if(selectedLinkedAppealTypeFilters.includes('Child') && appeal.isChildAppeal) {
             matchesLinkedAppealType = true
           }
+
+          if(selectedLinkedAppealTypeFilters.includes('Not linked') && !appeal.isLeadAppeal && !appeal.isChildAppeal) {
+            matchesLinkedAppealType = true
+          }
+
         }
 
         return matchesStatus && matchesCaseOfficer && matchesType && matchesProcedure && matchesLinkedAppealType
@@ -263,6 +268,10 @@ module.exports = router => {
           }
 
           if(selectedLinkedAppealTypeFilters.includes('Child') && appeal.isChildAppeal) {
+            matchesLinkedAppealType = true
+          }
+
+          if(selectedLinkedAppealTypeFilters.includes('Not linked') && !appeal.isLeadAppeal && !appeal.isChildAppeal) {
             matchesLinkedAppealType = true
           }
         }

@@ -1,0 +1,99 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Check details and withdraw appeal" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  {% set address %}
+    {{appAddress({ address: data.addHearing.address })}}
+  {% endset %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal {{appeal.id}} {% if appeal.isLeadAppeal %}(lead){% endif %}</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+      
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Request to withdraw appeal"
+            },
+            value: {
+              html: '<a href="#">withdrawal-request.pdf</a>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "/main/appeals/:appealId/withdrawal/new" | replace(':appealId', appeal.id),
+                  text: "Change",
+                  visuallyHiddenText: "request to withdraw appeal"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Which is the new lead appeal?
+"
+            },
+            value: {
+              html: data.withdraw.newLeadAppealId
+            },
+            actions: {
+              items: [
+                {
+                  href: "/main/appeals/:appealId/withdrawal/new/new-lead-appeal" | replace(':appealId', appeal.id),
+                  text: "Change",
+                  visuallyHiddenText: "which is the new lead appeal"
+                }
+              ]
+            }
+          } if data.withdraw.newLeadAppealId
+        ]
+      }) }}
+
+      {% if appeal.siteVisit or appeal.hearing or appeal.inquiry%}
+
+
+        <p>We’ll send an email to the appellant and LPA to tell them that the:</p>
+        
+        <ul class="govuk-list govuk-list--bullet">
+          <li>
+            appeal has been withdrawn
+          </li>
+          {% if appeal.siteVisit %}
+            <li>
+              site visit has been cancelled
+            </li>
+          {% endif %}
+          {% if appeal.hearing %}
+            <li>
+              hearing has been cancelled
+            </li>
+          {% endif %}
+          {% if appeal.inquiry %}
+            <li>
+              case management conference has been cancelled
+            </li>
+            <li>
+              inquiry has been cancelled
+            </li>
+          {% endif %}
+        </ul>
+      {% else %}
+        <p>We’ll send an email to the appellant and LPA to tell them that the appeal has been withdrawn.</p>
+      {% endif %}
+
+      <form method="post">
+        {{ govukButton({
+          text: "Withdraw appeal"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

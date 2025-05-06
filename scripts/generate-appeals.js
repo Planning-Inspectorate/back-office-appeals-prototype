@@ -521,6 +521,31 @@ const generateAppeals = () => {
     caseOfficer: 'Tony Stark'
   }))
 
+
+  appeals.push(generateAppeal({
+    id: '00000015',
+    type: 'Planning appeal',
+    procedure: 'Written representations',
+    status: 'Decision ready to issue',
+    caseOfficer: 'Tony Stark'
+  }))
+
+  appeals.push(generateAppeal({
+    id: '00000016',
+    type: 'Planning appeal',
+    procedure: 'Written representations',
+    status: 'Decision ready to issue',
+    caseOfficer: 'Tony Stark'
+  }))
+
+  appeals.push(generateAppeal({
+    id: '00000017',
+    type: 'Planning appeal',
+    procedure: 'Written representations',
+    status: 'Decision ready to issue',
+    caseOfficer: 'Tony Stark'
+  }))
+
   appeals.push(generateAppeal({
     id: '00000011',
     type: 'Planning appeal',

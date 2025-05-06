@@ -1,22 +1,19 @@
 <div class="app-panel">
-        <h2 class="govuk-heading-l">Site</h2>
+  <h2 class="govuk-heading-l">Site</h2>
 
+  {% set addresses %}
+    <p>Yes</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>172 York Road<br>
+        Bristol<br>
+        BS3 4AL</li>
+      <li>170, York Road<br>
+        Bristol<br>
+        BS3 4AL</li>
+    </ul>
+  {% endset %}
 
-        {% set addresses %}
-        <p>Yes</p>
-            <ul class="govuk-list govuk-list--bullet">
-              <li>172 York Road<br>
-                Bristol<br>
-                BS3 4AL</li>
-              <li>170, York Road<br>
-                Bristol<br>
-                BS3 4AL</li>
-            </ul>
-        {% endset %}
-
-
-
-         {{ govukSummaryList({
+  {{ govukSummaryList({
     rows: [
       {
         key: {
@@ -33,7 +30,7 @@
               visuallyHiddenText: "Visit type"
             }
           ]
-        }
+        } if not appeal.isChildAppeal
       },
       {
         key: {
@@ -50,7 +47,7 @@
               visuallyHiddenText: "Date"
             }
           ]
-        }
+        } if not appeal.isChildAppeal
       },
       {
         key: {
@@ -67,7 +64,7 @@
               visuallyHiddenText: "Start time"
             }
           ]
-        }
+        } if not appeal.isChildAppeal
       },
       {
         key: {
@@ -84,7 +81,7 @@
               visuallyHiddenText: "End time"
             }
           ]
-        }
+        } if not appeal.isChildAppeal
       },
       {
         key: {
@@ -101,10 +98,8 @@
               visuallyHiddenText: "End time"
             }
           ]
-        }
+        } if not appeal.isChildAppeal
       }
     ]
   }) }}
-
-
-      </div>
+</div>

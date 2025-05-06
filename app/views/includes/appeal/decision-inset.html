@@ -6,7 +6,7 @@
           Decision: {{appeal.decision.decision}}
         </li>
         <li>
-          Decision issued on 15 April 2025
+          Decision issued on {{appeal.decision.issueDate | govukDate}}
         </li>
       {% endif %}
       {% if appeal.appellantCostsDecision %}

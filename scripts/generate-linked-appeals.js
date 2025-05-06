@@ -26,7 +26,7 @@ const generateLinkedAppeals = () => {
     childAppealId: '00000182'
   }))
 
-
+  // Ready to issue decision
   linkedAppeals.push(generateLinkedAppeal({
     leadAppealId: '00000015',
     childAppealId: '00000016'

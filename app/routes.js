@@ -104,7 +104,7 @@ require('./routes/withdrawal')(router)
 require('./routes/withdrawal--new')(router)
 
 require('./routes/site-visit--new')(router)
-// require('./routes/site-visit--edit')(router)
+require('./routes/site-visit--edit')(router)
 // require('./routes/site-visit--delete')(router)
 
 // Timetable

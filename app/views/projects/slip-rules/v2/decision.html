@@ -1,0 +1,92 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Appeal decision" %}
+
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = false %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    html: 'Back',
+    href: 'case-details?success='
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% if data['success'] %}
+        {{ govukNotificationBanner({
+          type: "success",
+          text: "Decision letter updated"
+        }) }}
+      {% endif %}
+
+      <span class="govuk-caption-l">Appeal 7001224</span>
+      <h1 class="govuk-heading-l">{{ title }}</h1>
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Decision"
+              },
+              value: {
+                text: "Dismissed"
+              },
+              actions: {
+
+              }
+            },
+            {
+              key: {
+                text: "Decision issued date"
+              },
+              value: {
+                html: 2 | daysAgo
+              },
+              actions: {
+                items: [
+
+                ]
+              }
+            } if data['reissued'] != 'Yes',
+            {
+              key: {
+                text: "Decision issued date"
+              },
+              value: {
+                html: 2 | daysAgo+" (reissued on "+1 | daysAgo+")"
+              },
+              actions: {
+                items: [
+
+                ]
+              }
+            } if data['reissued'],
+            {
+              key: {
+                text: "Decision letter"
+              },
+              value: {
+                html: '<a a href= "#" class="govuk-link">Decision-letter-7001224.pdf</a>'
+              },
+              actions: {
+                items: [
+                  {
+                    href: "upload-decision",
+                    text: "Change",
+                    visuallyHiddenText: "decision letter"
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
+
+    </div>
+  </div>
+{% endblock %}

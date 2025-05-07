@@ -316,9 +316,8 @@ const generateAppeal = (params = {}) => {
     appeal.startDate = DateTime.now().toISO()
     appeal.LPAQuestionnaireDueDate = DateTime.now().toISO()
     appeal.siteVisit = faker.helpers.arrayElement([{
-      date: DateTime.now().toISO(),
-      time: '10am',
-      hasAddress: 'No'
+      date: DateTime.now().set({ hour: 10, minute: 0 }).toISO(),
+      type: faker.helpers.arrayElement(['Unaccompanied', 'Accompanied', 'Access required'])
     }, null])
   }
 
@@ -334,9 +333,8 @@ const generateAppeal = (params = {}) => {
 
     if(appeal.status != 'Site visit to set up') {
       appeal.siteVisit = faker.helpers.arrayElement([{
-        date: DateTime.now().toISO(),
-        time: '10am',
-        hasAddress: 'No'
+        date: DateTime.now().set({ hour: 10, minute: 0 }).toISO(),
+        type: faker.helpers.arrayElement(['Unaccompanied', 'Accompanied', 'Access required'])
       }, null])
     }
 

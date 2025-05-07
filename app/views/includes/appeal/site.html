@@ -1,17 +1,102 @@
-<div class="app-panel">
-  <h2 class="govuk-heading-l">Site</h2>
 
-  {% set addresses %}
-    <p>Yes</p>
-    <ul class="govuk-list govuk-list--bullet">
-      <li>172 York Road<br>
-        Bristol<br>
-        BS3 4AL</li>
-      <li>170, York Road<br>
-        Bristol<br>
-        BS3 4AL</li>
-    </ul>
-  {% endset %}
+{% set addresses %}
+  <p>Yes</p>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>172 York Road<br>
+      Bristol<br>
+      BS3 4AL</li>
+    <li>170, York Road<br>
+      Bristol<br>
+      BS3 4AL</li>
+  </ul>
+{% endset %}
+
+<div class="app-panel">
+  <h2 class="govuk-heading-l">Site visit</h2>
+
+  <div class="govuk-button-group">
+    {% if appeal.siteVisit %}
+      <a class="govuk-link" href="/main/appeals/{{appeal.id}}/site-visit/delete">Cancel site visit</a>
+    {% else %}
+      {{ govukButton({
+        text: 'Set up site visit',
+        href: '/main/appeals/:appealId/site-visit/new' | replace(':appealId', appeal.id)
+      }) }}
+    {% endif %}
+  </div>
+
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          text: "Date"
+        },
+        value: {
+          html: appeal.siteVisit.date | govukDate
+        },
+        actions: {
+          items: [
+            {
+              href: '/main/appeals/:appealId/site-visit/edit' | replace(':appealId', appeal.id),
+              text: "Change",
+              visuallyHiddenText: "Date"
+            }
+          ]
+        } if not appeal.isChildAppeal
+      },
+      {
+        key: {
+          text: "Time"
+        },
+        value: {
+          html: appeal.siteVisit.date | govukTime
+        },
+        actions: {
+          items: [
+            {
+              href: '/main/appeals/:appealId/site-visit/edit' | replace(':appealId', appeal.id),
+              text: "Change",
+              visuallyHiddenText: "Time"
+            }
+          ]
+        } if not appeal.isChildAppeal
+      },
+      {
+        key: {
+          text: "Visit type"
+        },
+        value: {
+          html: appeal.siteVisit.type
+        },
+        actions: {
+          items: [
+            {
+              href: '/main/appeals/:appealId/site-visit/edit/type' | replace(':appealId', appeal.id),
+              text: "Change",
+              visuallyHiddenText: "visit type"
+            }
+          ]
+        } if not appeal.isChildAppeal
+      },
+      {
+        key: {
+          text: "Interested party and neighbour addresses"
+        },
+        value: {
+          html: addresses
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Change",
+              visuallyHiddenText: "End time"
+            }
+          ]
+        } if not appeal.isChildAppeal
+      }
+    ]
+  }) if appeal.siteVisit }}
 
   {{ govukSummaryList({
     rows: [
@@ -93,7 +178,7 @@
         actions: {
           items: [
             {
-              href: "Item URL",
+              href: "#",
               text: "Change",
               visuallyHiddenText: "End time"
             }
@@ -101,5 +186,5 @@
         } if not appeal.isChildAppeal
       }
     ]
-  }) }}
+  }) if 1==2}}
 </div>

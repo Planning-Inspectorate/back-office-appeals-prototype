@@ -16,19 +16,68 @@
         When we spot an error in the appeal decision letter, it can be updated and a notice can be sent with a notice of the correction.
       </p>
 
-      <h2 class="govuk-heading-m">Version 1
+      <h2 class="govuk-heading-m">Version 2
         {{govukTag({
           text: "In progress",
           classes: "govuk-!-margin-left-2 govuk-tag--yellow"
         })}}
       </h2>
 
-      <a href="/projects/slip-rules/v1/case-details?case-stage=closed" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
+      <p class="govuk-body">
+        Updates following <a href="https://pins-ds.atlassian.net/wiki/spaces/BO/pages/2155675671/Slip+rules+user-research" class="govuk-link">user research</a>:
+      </p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          making it clear when a decision has been reissued (on <a href="v2/decision?reissued=Yes&success=" class="govuk-link">decision screen</a>)
+        </li>
+        <li>
+          clarification for ‘reasons’ / correction notice content
+        </li>
+        <li>
+          preview of email
+        </li>
+      </ul>
+
+      <a href="/projects/slip-rules/v2/case-details?case-stage=closed" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
         View prototype
         <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
           <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
         </svg>
       </a>
+
+      {% set v1HTML %}
+
+        <p class="govuk-body">
+          Researched on Wed 16 April to 25 April 2025 with 5 Customer Quality Team users.
+        </p>
+
+        <p class="govuk-body">
+          <a href="https://pins-ds.atlassian.net/wiki/spaces/BO/pages/2155675671/Slip+rules+user-research" class="govuk-link">User research notes on Confluence</a>.
+        </p>
+
+        <a href="/projects/slip-rules/v1/case-details?case-stage=closed" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
+          View prototype
+          <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+            <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+          </svg>
+        </a>
+
+      {% endset -%}
+
+      {{ govukAccordion({
+        id: 'previous',
+        classes: 'govuk-!-margin-top-5',
+        items: [
+          {
+          heading: {
+            html: 'Version 1 <strong class="govuk-tag govuk-tag--blue govuk-!-margin-left-2">Researched</strong>'
+          },
+          content: {
+            html: v1HTML
+          }
+        }]
+      }) }}
 
     </div>
   </div>

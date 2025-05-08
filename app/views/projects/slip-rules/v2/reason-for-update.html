@@ -1,0 +1,35 @@
+{% extends "layouts/PINS.html" %}
+
+{% set title = "Correction notice" %}
+
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% block content %}
+
+ <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Appeal 7001224</span>
+
+      <form action="check-your-answers" method="post">
+
+        {{ govukTextarea({
+          name: "reason",
+          id: "reason",
+          label: {
+            text: title,
+            classes: "govuk-label--l",
+            isPageHeading: true
+          }
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

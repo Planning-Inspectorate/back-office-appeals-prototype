@@ -1,0 +1,78 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Subject: We have corrected the appeal decision letter: 7001224" %}
+{% set pageName = title + ' - Planning Inspectorate' %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Appeal 7001224</span>
+      <h1 class="govuk-heading-l">
+        {{ title }}
+      </h1>
+
+    </div>
+    <div class="govuk-grid-column-two-thirds">
+
+      <div class="preview">
+
+        <p class="govuk-body">
+          We have corrected the appeal decision letter.
+        </p>
+
+        <h2 class="govuk-heading-m">
+          Appeal details
+        </h2>
+
+        <div class="govuk-inset-text">
+          Appeal reference number: 7001224<br>
+          Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
+          Planning application reference: 22/00118/FULL
+        </div>
+
+        <h2 class="govuk-heading-m">
+          Why we corrected the appeal decision letter
+        </h2>
+
+        <p class="govuk-body">
+          We corrected the decision letter because:
+        </p>
+
+        <p class="govuk-body">
+          (Reason for updating the decision letter)
+        </p>
+
+        <p class="govuk-body">
+          <a href="#" class="govuk-link">Sign into our service</a> to view the decision letter dated {{ 1 | daysAgo }}
+        </p>
+
+        <h2 class="govuk-heading-m">
+          The Planning Inspectorate’s role
+        </h2>
+
+        <p class="govuk-body">
+          The Planning Inspectorate cannot change or revoke the decision. Only the high court can change this decision.
+        </p>
+
+        <h2 class="govuk-heading-m">
+          Feedback
+        </h2>
+
+        <p class="govuk-body">
+          We welcome your feedback on our appeals service. Tell us on this short <a href="#" class="govuk-link">feedback form</a>.
+        </p>
+
+        <p class="govuk-body">
+          The Planning Inspectorate<br>
+          caseofficers@planninginspectorate.gov.uk
+        </p>
+
+      </div>
+
+
+    </div>
+  </div>
+
+{% endblock %}

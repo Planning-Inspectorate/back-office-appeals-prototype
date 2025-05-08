@@ -7,7 +7,6 @@
     {% else %}
       {{ govukButton({
         text: 'Set up hearing',
-        classes: 'govuk-button--secondar',
         href: '/main/appeals/:appealId/add-hearing' | replace(':appealId', appeal.id)
       }) }}
     {% endif %}

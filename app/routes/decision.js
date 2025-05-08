@@ -66,7 +66,7 @@ module.exports = router => {
 
         rows.push({
           key: {
-            text: "Decision issue date"
+            text: "Decision issued date"
           },
           value: {
             text: DateTime.fromISO(appeal.decision.issueDate).toFormat('d LLLL yyyy')

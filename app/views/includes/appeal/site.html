@@ -1,18 +1,16 @@
 
 {% set addresses %}
-  <p>Yes</p>
   <ul class="govuk-list govuk-list--bullet">
     <li>172 York Road<br>
       Bristol<br>
       BS3 4AL</li>
-    <li>170, York Road<br>
+    <li>170 York Road<br>
       Bristol<br>
       BS3 4AL</li>
   </ul>
 {% endset %}
 
 <div class="app-panel">
-  <h2 class="govuk-heading-l">Site visit</h2>
 
   <div class="govuk-button-group">
     {% if appeal.siteVisit %}
@@ -63,7 +61,7 @@
       },
       {
         key: {
-          text: "Visit type"
+          text: "Type"
         },
         value: {
           html: appeal.siteVisit.type
@@ -77,99 +75,16 @@
             }
           ]
         } if not appeal.isChildAppeal
-      },
-      {
-        key: {
-          text: "Interested party and neighbour addresses"
-        },
-        value: {
-          html: addresses
-        },
-        actions: {
-          items: [
-            {
-              href: "Item URL",
-              text: "Change",
-              visuallyHiddenText: "End time"
-            }
-          ]
-        } if not appeal.isChildAppeal
       }
     ]
-  }) if appeal.siteVisit }}
+  }) if appeal.siteVisit}}
+
+  <h3 class="govuk-heading-m">Site visit requests</h3>
 
   {{ govukSummaryList({
     rows: [
       {
         key: {
-          text: "Visit type"
-        },
-        value: {
-          text: "Unaccompanied"
-        },
-        actions: {
-          items: [
-            {
-              href: "Item URL",
-              text: "Change",
-              visuallyHiddenText: "Visit type"
-            }
-          ]
-        } if not appeal.isChildAppeal
-      },
-      {
-        key: {
-          text: "Date"
-        },
-        value: {
-          text: "19 December 2025"
-        },
-        actions: {
-          items: [
-            {
-              href: "Item URL",
-              text: "Change",
-              visuallyHiddenText: "Date"
-            }
-          ]
-        } if not appeal.isChildAppeal
-      },
-      {
-        key: {
-          text: "Start time"
-        },
-        value: {
-          text: "10am"
-        },
-        actions: {
-          items: [
-            {
-              href: "Item URL",
-              text: "Change",
-              visuallyHiddenText: "Start time"
-            }
-          ]
-        } if not appeal.isChildAppeal
-      },
-      {
-        key: {
-          text: "End time"
-        },
-        value: {
-          text: "11:30am"
-        },
-        actions: {
-          items: [
-            {
-              href: "Item URL",
-              text: "Change",
-              visuallyHiddenText: "End time"
-            }
-          ]
-        } if not appeal.isChildAppeal
-      },
-      {
-        key: {
           text: "Interested party and neighbour addresses"
         },
         value: {
@@ -178,7 +93,7 @@
         actions: {
           items: [
             {
-              href: "#",
+              href: "Item URL",
               text: "Change",
               visuallyHiddenText: "End time"
             }
@@ -186,5 +101,5 @@
         } if not appeal.isChildAppeal
       }
     ]
-  }) if 1==2}}
+  }) }}
 </div>

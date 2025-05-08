@@ -19,6 +19,25 @@
     values: data.filters.caseOfficers
   }) }}
 
+    {{ govukCheckboxes({
+    idPrefix: "filters[inspector]",
+    name: "filters[inspector]",
+    classes: "govuk-checkboxes--small",
+    fieldset: {
+      legend: {
+        text: "Inspector",
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: [
+      { value: 'Unassigned', text: 'Unassigned' },
+      { value: 'Tony Stark (you)', text: 'Tony Stark (you)' },
+      { value: 'Natasha Romanoff', text: 'Natasha Romanoff' },
+      { value: 'Peter Parker', text: 'Peter Parker' }
+    ],
+    values: data.filters.inspector
+  }) }}
+
   {{ govukCheckboxes({
     idPrefix: "filters[types]",
     name: "filters[types]",
@@ -112,25 +131,6 @@
       { value: "Withdrawn", text: 'Withdrawn' }
     ],
     values: data.filters.statuses
-  }) }}
-
-  {{ govukCheckboxes({
-    idPrefix: "filters[inspector]",
-    name: "filters[inspector]",
-    classes: "govuk-checkboxes--small",
-    fieldset: {
-      legend: {
-        text: "Inspector",
-        classes: "govuk-fieldset__legend--s"
-      }
-    },
-    items: [
-      { value: 'Unassigned', text: 'Unassigned' },
-      { value: 'Tony Stark (you)', text: 'Tony Stark (you)' },
-      { value: 'Natasha Romanoff', text: 'Natasha Romanoff' },
-      { value: 'Peter Parker', text: 'Peter Parker' }
-    ],
-    values: data.filters.inspector
   }) }}
 
   {{ govukCheckboxes({

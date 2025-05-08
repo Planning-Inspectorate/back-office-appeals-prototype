@@ -48,6 +48,30 @@
                 rows: [
                   {
                     key: {
+                      html: 'Site address'
+                    },
+                    value: {
+                    html: appAddress({address: appeal.site.address})
+                    }
+                  },
+                  {
+                    key: {
+                      html: 'Case officer'
+                    },
+                    value: {
+                      html: appeal.caseOfficer or "Unassigned"
+                    }
+                  },
+                  {
+                    key: {
+                      html: 'Inspector'
+                    },
+                    value: {
+                      html: appeal.inspector or "Unassigned"
+                    }
+                  },
+                  {
+                    key: {
                       html: 'Type'
                     },
                     value: {
@@ -64,20 +88,20 @@
                   } if appeal.procedure,
                   {
                     key: {
-                      html: 'Action'
-                    },
-                    value: {
-                      html: action
-                    }
-                  } if appeal.actions.length,
-                  {
-                    key: {
                       html: 'Due date'
                     },
                     value: {
                       html: 'Not applicable'
                     }
-                  }
+                  },
+                  {
+                    key: {
+                      html: 'Action'
+                    },
+                    value: {
+                      html: action
+                    }
+                  } if appeal.actions.length
                 ]
               })}}
 

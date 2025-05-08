@@ -21,9 +21,10 @@ module.exports = router => {
       keywords = keywords.toLowerCase()
       appeals = appeals.filter(appeal => {
         let reference = appeal.id
+        let planningApplicationReference = appeal.planningApplicationReference
         let name = (appeal.appellant.firstName + ' ' + appeal.appellant.lastName).toLowerCase()
         let postcode = appeal.site.address.postcode.toLowerCase()
-        return postcode.indexOf(keywords) > -1 || reference.indexOf(keywords) > -1 || name.indexOf(keywords) > -1
+        return postcode.indexOf(keywords) > -1 || reference.indexOf(keywords) > -1 || name.indexOf(keywords) > -1 || planningApplicationReference.indexOf(keywords) > -1
       })
     }
 
@@ -220,9 +221,10 @@ module.exports = router => {
       keywords = keywords.toLowerCase()
       appeals = appeals.filter(appeal => {
         let reference = appeal.id
+        let planningApplicationReference = appeal.planningApplicationReference
         let name = (appeal.appellant.firstName + ' ' + appeal.appellant.lastName).toLowerCase()
         let postcode = appeal.site.address.postcode.toLowerCase()
-        return postcode.indexOf(keywords) > -1 || reference.indexOf(keywords) > -1 || name.indexOf(keywords) > -1
+        return postcode.indexOf(keywords) > -1 || reference.indexOf(keywords) > -1 || name.indexOf(keywords) > -1 || planningApplicationReference.indexOf(keywords) > -1
       })
     }
 

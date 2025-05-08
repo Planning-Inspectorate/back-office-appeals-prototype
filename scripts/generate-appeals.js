@@ -215,6 +215,8 @@ const generateAppeal = (params = {}) => {
   appeal.id = params.id || "" + faker.number.int({ min: 123456, max: 999999 })
   appeal.type = params.type || faker.helpers.arrayElement(['Householder appeal', 'Planning appeal', 'Listed building', 'Adverts', 'CAS adverts', 'CAS planning'])
 
+  appeal.planningApplicationReference = params.planningApplicationReference || "" + faker.number.int({ min: 783456, max: 996738 })
+
   appeal.linkedAppeals = params.linkedAppeals || []
 
   let statuses = baseStatuses

@@ -48,6 +48,22 @@
                 rows: [
                   {
                     key: {
+                      html: 'Planning application reference'
+                    },
+                    value: {
+                    html: appeal.planningApplicationReference
+                    }
+                  } if appeal.planningApplicationReference,
+                  {
+                    key: {
+                      html: 'Local planning authority'
+                    },
+                    value: {
+                    html: appeal.lpa.name
+                    }
+                  },
+                  {
+                    key: {
                       html: 'Type'
                     },
                     value: {

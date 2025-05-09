@@ -156,5 +156,19 @@
         container: $('.app-filter-layout__filter')
       }
     })
+
+    new App.ListFilter({
+      container: $('.case-officer-filter'),
+      textBox: {
+        label: 'Find case officer'
+      }
+    })
+
+    new App.ListFilter({
+      container: $('.inspector-filter'),
+      textBox: {
+        label: 'Find inspector'
+      }
+    })
   </script>
 {% endblock %}

@@ -29,12 +29,13 @@ module.exports = router => {
     }
 
 
-    let selectedStatusFilters = _.get(req.session.data.filters, 'statuses')
     let selectedCaseOfficerFilters = _.get(req.session.data.filters, 'caseOfficers')
+    let selectedInspectorFilters = _.get(req.session.data.filters, 'inspectors')
+    let selectedStatusFilters = _.get(req.session.data.filters, 'statuses')
     let selectedTypeFilters = _.get(req.session.data.filters, 'types')
     let selectedProcedureFilters = _.get(req.session.data.filters, 'procedures')
     let selectedLinkedAppealTypeFilters = _.get(req.session.data.filters, 'linkedAppealTypes')
-    let hasFilters = _.get(selectedStatusFilters, 'length') || _.get(selectedCaseOfficerFilters, 'length') || _.get(selectedTypeFilters, 'length') || _.get(selectedProcedureFilters, 'length') || _.get(selectedLinkedAppealTypeFilters, 'length')
+    let hasFilters = _.get(selectedStatusFilters, 'length') || _.get(selectedInspectorFilters, 'length') || _.get(selectedCaseOfficerFilters, 'length') || _.get(selectedTypeFilters, 'length') || _.get(selectedProcedureFilters, 'length') || _.get(selectedLinkedAppealTypeFilters, 'length')
 
     let selectedFilters = {
       categories: []
@@ -43,18 +44,23 @@ module.exports = router => {
     // the user has selected a status filter
     if(hasFilters) {
       appeals = appeals.filter(appeal => {
-        let matchesStatus = true
         let matchesCaseOfficer = true
+        let matchesInspector = true
+        let matchesStatus = true
         let matchesType = true
         let matchesProcedure = true
         let matchesLinkedAppealType = true
 
-        if(_.get(selectedStatusFilters, 'length')) {
-          matchesStatus = selectedStatusFilters.includes(appeal.status);
-        }
-
         if(_.get(selectedCaseOfficerFilters, 'length')) {
           matchesCaseOfficer = selectedCaseOfficerFilters.includes(appeal.caseOfficer);
+        }
+
+        if(_.get(selectedInspectorFilters, 'length')) {
+          matchesInspector = selectedInspectorFilters.includes(appeal.inspector);
+        }
+
+        if(_.get(selectedStatusFilters, 'length')) {
+          matchesStatus = selectedStatusFilters.includes(appeal.status);
         }
 
         if(_.get(selectedTypeFilters, 'length')) {
@@ -82,7 +88,42 @@ module.exports = router => {
 
         }
 
-        return matchesStatus && matchesCaseOfficer && matchesType && matchesProcedure && matchesLinkedAppealType
+        return matchesStatus && matchesInspector && matchesCaseOfficer && matchesType && matchesProcedure && matchesLinkedAppealType
+      })
+    }
+
+    let selectedCaseOfficerItems
+    let selectedInspectorItems
+
+    if(_.get(selectedCaseOfficerFilters, 'length')) {
+
+      selectedCaseOfficerItems = selectedCaseOfficerFilters.map(label => {
+        return {
+          text: label,
+          href: `/main/appeals/remove-case-officer/${label}`
+        }
+      })
+
+
+      selectedFilters.categories.push({
+        heading: { text: 'Case officer' },
+        items: selectedCaseOfficerItems
+      })
+    }
+
+    if(_.get(selectedInspectorFilters, 'length')) {
+
+      selectedInspectorItems = selectedInspectorFilters.map(label => {
+        return {
+          text: label,
+          href: `/main/appeals/remove-inspector/${label}`
+        }
+      })
+
+
+      selectedFilters.categories.push({
+        heading: { text: 'Inspector' },
+        items: selectedInspectorItems
       })
     }
 
@@ -93,18 +134,6 @@ module.exports = router => {
           return {
             text: label,
             href: `/main/appeals/remove-status/${label}`
-          }
-        })
-      })
-    }
-
-    if(_.get(selectedCaseOfficerFilters, 'length')) {
-      selectedFilters.categories.push({
-        heading: { text: 'Case officer' },
-        items: selectedCaseOfficerFilters.map(label => {
-          return {
-            text: label,
-            href: `/main/appeals/remove-case-officer/${label}`
           }
         })
       })
@@ -155,13 +184,16 @@ module.exports = router => {
       appeals,
       selectedFilters,
       pagination,
-      totalAppeals
+      totalAppeals,
+      selectedCaseOfficerItems,
+      selectedInspectorItems
     })
   })
 
   router.get('/main/appeals/clear-filters', (req, res) => {
     _.set(req, 'session.data.filters.statuses', null)
     _.set(req, 'session.data.filters.caseOfficers', null)
+    _.set(req, 'session.data.filters.inspectors', null)
     _.set(req, 'session.data.filters.types', null)
     _.set(req, 'session.data.filters.procedures', null)
     _.set(req, 'session.data.filters.linkedAppealTypes', null)
@@ -175,6 +207,11 @@ module.exports = router => {
 
   router.get('/main/appeals/remove-case-officer/:caseOfficer', (req, res) => {
     _.set(req, 'session.data.filters.caseOfficers', _.pull(req.session.data.filters.caseOfficers, req.params.caseOfficer))
+    res.redirect('/main/appeals')
+  })
+
+  router.get('/main/appeals/remove-inspector/:inspector', (req, res) => {
+    _.set(req, 'session.data.filters.inspectors', _.pull(req.session.data.filters.inspectors, req.params.inspector))
     res.redirect('/main/appeals')
   })
 
@@ -228,13 +265,14 @@ module.exports = router => {
       })
     }
 
+    let selectedCaseOfficerFilters = _.get(req.session.data.filters, 'caseOfficers')
     let selectedStatusFilters = _.get(req.session.data.filters, 'statuses')
     let selectedProcedureFilters = _.get(req.session.data.filters, 'procedures')
     let selectedTypeFilters = _.get(req.session.data.filters, 'types')
     let selectedLinkedAppealTypeFilters = _.get(req.session.data.filters, 'linkedAppealTypes')
     let selectedSiteVisitFilters = _.get(req.session.data.filters, 'siteVisit')
     let selectedPlanningObligationFilters = _.get(req.session.data.filters, 'planningObligation')
-    let hasFilters = _.get(selectedStatusFilters, 'length') || _.get(selectedProcedureFilters, 'length') || _.get(selectedLinkedAppealTypeFilters, 'length') || _.get(selectedTypeFilters, 'length') || _.get(selectedSiteVisitFilters, 'length') || _.get(selectedPlanningObligationFilters, 'length')
+    let hasFilters = _.get(selectedCaseOfficerFilters, 'length') || _.get(selectedStatusFilters, 'length') || _.get(selectedProcedureFilters, 'length') || _.get(selectedLinkedAppealTypeFilters, 'length') || _.get(selectedTypeFilters, 'length') || _.get(selectedSiteVisitFilters, 'length') || _.get(selectedPlanningObligationFilters, 'length')
 
     let selectedFilters = {
       categories: []
@@ -243,12 +281,17 @@ module.exports = router => {
     // the user has selected a status filter
     if(hasFilters) {
       appeals = appeals.filter(appeal => {
+        let matchesCaseOfficer = true
         let matchesStatus = true
         let matchesType = true
         let matchesProcedure = true
         let matchesLinkedAppealType = true
         let matchesSiteVisit = true
         let matchesPlanningObligation = true
+
+        if(_.get(selectedCaseOfficerFilters, 'length')) {
+          matchesCaseOfficer = selectedCaseOfficerFilters.includes(appeal.caseOfficer);
+        }
 
         if(_.get(selectedStatusFilters, 'length')) {
           matchesStatus = selectedStatusFilters.includes(appeal.status);
@@ -306,7 +349,7 @@ module.exports = router => {
           }
         }
 
-        return matchesStatus && matchesType && matchesProcedure && matchesLinkedAppealType && matchesSiteVisit && matchesPlanningObligation
+        return matchesCaseOfficer && matchesStatus && matchesType && matchesProcedure && matchesLinkedAppealType && matchesSiteVisit && matchesPlanningObligation
       })
     }
 
@@ -391,7 +434,7 @@ module.exports = router => {
       appeals,
       selectedFilters,
       pagination,
-      totalAppeals
+      totalAppeals 
     })
   })
 

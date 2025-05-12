@@ -31,11 +31,12 @@ module.exports = router => {
 
     let selectedCaseOfficerFilters = _.get(req.session.data.filters, 'caseOfficers')
     let selectedInspectorFilters = _.get(req.session.data.filters, 'inspectors')
+    let selectedLPAFilters = _.get(req.session.data.filters, 'lpas')
     let selectedStatusFilters = _.get(req.session.data.filters, 'statuses')
     let selectedTypeFilters = _.get(req.session.data.filters, 'types')
     let selectedProcedureFilters = _.get(req.session.data.filters, 'procedures')
     let selectedLinkedAppealTypeFilters = _.get(req.session.data.filters, 'linkedAppealTypes')
-    let hasFilters = _.get(selectedStatusFilters, 'length') || _.get(selectedInspectorFilters, 'length') || _.get(selectedCaseOfficerFilters, 'length') || _.get(selectedTypeFilters, 'length') || _.get(selectedProcedureFilters, 'length') || _.get(selectedLinkedAppealTypeFilters, 'length')
+    let hasFilters = _.get(selectedStatusFilters, 'length') || _.get(selectedInspectorFilters, 'length') || _.get(selectedLPAFilters, 'length') ||  _.get(selectedCaseOfficerFilters, 'length') || _.get(selectedTypeFilters, 'length') || _.get(selectedProcedureFilters, 'length') || _.get(selectedLinkedAppealTypeFilters, 'length')
 
     let selectedFilters = {
       categories: []
@@ -46,6 +47,7 @@ module.exports = router => {
       appeals = appeals.filter(appeal => {
         let matchesCaseOfficer = true
         let matchesInspector = true
+        let matchesLPA = true
         let matchesStatus = true
         let matchesType = true
         let matchesProcedure = true
@@ -57,6 +59,10 @@ module.exports = router => {
 
         if(_.get(selectedInspectorFilters, 'length')) {
           matchesInspector = selectedInspectorFilters.includes(appeal.inspector);
+        }
+
+        if(_.get(selectedLPAFilters, 'length')) {
+          matchesInspector = selectedLPAFilters.includes(appeal.lpa.name);
         }
 
         if(_.get(selectedStatusFilters, 'length')) {
@@ -88,12 +94,13 @@ module.exports = router => {
 
         }
 
-        return matchesStatus && matchesInspector && matchesCaseOfficer && matchesType && matchesProcedure && matchesLinkedAppealType
+        return matchesStatus && matchesInspector && matchesLPA && matchesCaseOfficer && matchesType && matchesProcedure && matchesLinkedAppealType
       })
     }
 
     let selectedCaseOfficerItems
     let selectedInspectorItems
+    let selectedLPAItems
 
     if(_.get(selectedCaseOfficerFilters, 'length')) {
 
@@ -124,6 +131,22 @@ module.exports = router => {
       selectedFilters.categories.push({
         heading: { text: 'Inspector' },
         items: selectedInspectorItems
+      })
+    }
+
+    if(_.get(selectedLPAFilters, 'length')) {
+
+      selectedLPAItems = selectedLPAFilters.map(label => {
+        return {
+          text: label,
+          href: `/main/appeals/remove-lpa/${label}`
+        }
+      })
+
+
+      selectedFilters.categories.push({
+        heading: { text: 'Local planning authority' },
+        items: selectedLPAItems
       })
     }
 
@@ -180,13 +203,19 @@ module.exports = router => {
     let pagination = new Pagination(appeals, req.query.page, pageSize)
     appeals = pagination.getData()
 
+    let lpaCheckboxes = require('../data/local-planning-authorities').map(lpa => {
+      return { text: lpa, value: lpa }
+    })
+
     res.render('main/appeals/all', {
       appeals,
       selectedFilters,
       pagination,
       totalAppeals,
       selectedCaseOfficerItems,
-      selectedInspectorItems
+      selectedInspectorItems,
+      selectedLPAItems,
+      lpaCheckboxes
     })
   })
 
@@ -194,6 +223,7 @@ module.exports = router => {
     _.set(req, 'session.data.filters.statuses', null)
     _.set(req, 'session.data.filters.caseOfficers', null)
     _.set(req, 'session.data.filters.inspectors', null)
+    _.set(req, 'session.data.filters.lpas', null)
     _.set(req, 'session.data.filters.types', null)
     _.set(req, 'session.data.filters.procedures', null)
     _.set(req, 'session.data.filters.linkedAppealTypes', null)
@@ -212,6 +242,11 @@ module.exports = router => {
 
   router.get('/main/appeals/remove-inspector/:inspector', (req, res) => {
     _.set(req, 'session.data.filters.inspectors', _.pull(req.session.data.filters.inspectors, req.params.inspector))
+    res.redirect('/main/appeals')
+  })
+
+  router.get('/main/appeals/remove-lpa/:lpa', (req, res) => {
+    _.set(req, 'session.data.filters.lpas', _.pull(req.session.data.filters.lpas, req.params.lpa))
     res.redirect('/main/appeals')
   })
 

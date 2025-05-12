@@ -81,6 +81,25 @@
     ]
   }) }}
 
+  {{ appCheckboxFilter({
+    idPrefix: "filters[lpas]",
+    name: "filters[lpas]",
+    classes: "lpa-filter govuk-checkboxes--small",
+    attributes: {
+      id: 'lpa-filter'
+    },
+    fieldset: {
+      legend: {
+        text: "Local planning authority",
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    maxHeight: true,
+    values: data.filters.lpas,
+    selectedItems: selectedLPAItems,
+    items: lpaCheckboxes
+  }) }}
+
   {{ govukCheckboxes({
     idPrefix: "filters[types]",
     name: "filters[types]",

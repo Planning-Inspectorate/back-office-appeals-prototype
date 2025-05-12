@@ -3,6 +3,7 @@ const path = require('path')
 const faker =  require('@faker-js/faker').faker
 const { v4: uuidv4 } = require('uuid')
 const { DateTime } = require("luxon")
+const lpas = require('../app/data/local-planning-authorities')
 
 let now = new Date().toISOString()
 
@@ -419,10 +420,7 @@ const generateAppeal = (params = {}) => {
   appeal.agent = generateAgent()
 
   appeal.lpa = params.lpa || {}
-  appeal.lpa.name = params.lpa?.name || faker.helpers.arrayElement([
-    'Barnet Council',
-    'Hertfordshire Council'
-  ])
+  appeal.lpa.name = params.lpa?.name || faker.helpers.arrayElement(lpas)
 
   appeal.lpa.emailAddress = params.lpa?.emailAddress || 'example@blah.com'
 

@@ -254,8 +254,32 @@ const generateAppeal = (params = {}) => {
       'Natasha Romanoff',
       'Peter Parker'
     ])
+
+    appeal.inspector = params.inspector || faker.helpers.arrayElement([
+      "Thanos",
+      "Loki",
+      "Green Goblin",
+      "Doctor Doom",
+      "Magneto",
+      "Red Skull",
+      "Ultron",
+      "Kingpin",
+      "Hela", 
+      "Killmonger",
+      "Mystique",
+      "Venom",
+      "Carnage",
+      "Bullseye",
+      "Mysterio",
+      "Vulture",
+      "Abomination",
+      "Taskmaster",
+      "Dormammu",
+      "The Mandarin"
+    ])
   }
 
+  
   if(appeal.status == 'Ready to assign case officer' || appeal.status == 'Ready to validate' || appeal.status == 'Ready to start') {
     appeal.procedure = null
   }

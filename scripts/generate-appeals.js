@@ -4,45 +4,9 @@ const faker =  require('@faker-js/faker').faker
 const { v4: uuidv4 } = require('uuid')
 const { DateTime } = require("luxon")
 const lpas = require('../app/data/local-planning-authorities')
-
+const { baseStatusesStart, s78Statuses, s78WrittenStatuses, s78HearingStatuses, s78InquiryStatuses, baseStatusesEnd } = require('../app/data/statuses')
 let now = new Date().toISOString()
 
-const baseStatuses = [
-  'Ready to assign case officer',
-  'Ready to validate',
-  'Ready to start',
-  'Awaiting LPAQ',
-  'LPAQ ready to review',
-  'Decision ready to issue',
-  'Decision issued'
-]
-
-const s78Statuses = [
-  'Awaiting statements and IP comments',
-  'Statements and IP comments ready to review',
-  'Statements and IP comments ready to share'
-]
-
-const s78WrittenStatuses = [
-  'Awaiting final comments',
-  'Final comments ready to review',
-  'Final comments ready to share',
-  'Site visit ready to set up',
-  'Awaiting site visit'
-]
-
-const s78HearingStatuses = [
-  'Hearing ready to set up',
-  'Awaiting hearing'
-]
-
-const s78InquiryStatuses = [
-  'Inquiry ready to set up',
-  'Awaiting proof of evidence and witnesses',
-  'Proof of evidence and witnesses ready to review',
-  'Proof of evidence and witnesses ready to share',
-  'Awaiting inquiry'
-]
 
 function capitalizeFirstLetter(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
@@ -220,7 +184,7 @@ const generateAppeal = (params = {}) => {
 
   appeal.linkedAppeals = params.linkedAppeals || []
 
-  let statuses = baseStatuses
+  let statuses = baseStatusesStart
 
   if(appeal.type == 'Planning appeal') {
     statuses = statuses.concat(s78Statuses)
@@ -241,6 +205,8 @@ const generateAppeal = (params = {}) => {
       statuses = statuses.concat(s78InquiryStatuses)
     }
   }
+
+  statuses = statuses.concat(baseStatusesEnd)
 
   appeal.status = params.status || faker.helpers.arrayElement(statuses)
 
@@ -283,6 +249,45 @@ const generateAppeal = (params = {}) => {
   
   if(appeal.status == 'Ready to assign case officer' || appeal.status == 'Ready to validate' || appeal.status == 'Ready to start') {
     appeal.procedure = null
+  }
+
+  switch(appeal.status) {
+    case 'Awaiting LPAQ':
+      appeal.dueDate = faker.date.soon()
+    case 'LPAQ ready to review':
+      appeal.dueDate = faker.date.soon()
+    case 'Decision ready to issue':
+      appeal.dueDate = faker.date.soon()
+    case 'Awaiting statements and IP comments':
+      appeal.dueDate = faker.date.soon()
+    case 'Statements and IP comments ready to review':
+      appeal.dueDate = faker.date.soon()
+    case 'Statements and IP comments ready to share':
+      appeal.dueDate = faker.date.soon()
+    case 'Awaiting final comments':
+      appeal.dueDate = faker.date.soon()
+    case 'Final comments ready to review':
+      appeal.dueDate = faker.date.soon()
+    case 'Final comments ready to share':
+      appeal.dueDate = faker.date.soon()
+    case 'Site visit ready to set up':
+      appeal.dueDate = faker.date.soon()
+    case 'Awaiting site visit':
+      appeal.dueDate = faker.date.soon()
+    case 'Hearing ready to set up':
+      appeal.dueDate = faker.date.soon()
+    case 'Awaiting hearing':
+      appeal.dueDate = faker.date.soon()
+    case 'Inquiry ready to set up':
+      appeal.dueDate = faker.date.soon()
+    case 'Awaiting proof of evidence and witnesses':
+      appeal.dueDate = faker.date.soon()
+    case 'Proof of evidence and witnesses ready to review':
+      appeal.dueDate = faker.date.soon()
+    case 'Proof of evidence and witnesses ready to share':
+      appeal.dueDate = faker.date.soon()
+    case 'Awaiting inquiry':
+      appeal.dueDate = faker.date.soon()
   }
 
   let appealForm = {}

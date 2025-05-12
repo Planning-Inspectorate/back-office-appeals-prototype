@@ -124,9 +124,9 @@
                       html: 'Due date'
                     },
                     value: {
-                      html: 'Not applicable'
+                      html: appeal.dueDate | govukDate
                     }
-                  },
+                  } if appeal.dueDate,
                   {
                     key: {
                       html: 'Action'

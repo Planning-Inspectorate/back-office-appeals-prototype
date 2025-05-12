@@ -2,6 +2,7 @@ const _ = require('lodash')
 const Pagination = require('../helpers/pagination')
 const { getActions } = require('../helpers/actions')
 const { isChildAppeal, isLeadAppeal } = require('../helpers/linked-appeals')
+const { allStatuses } = require('../data/statuses')
 
 module.exports = router => {
 
@@ -14,6 +15,29 @@ module.exports = router => {
         isLeadAppeal: isLeadAppeal(appeal.id, req.session.data.linkedAppeals),
         isChildAppeal: isChildAppeal(appeal.id, req.session.data.linkedAppeals)
       }));
+
+    
+    if(req.session.data.sort == 'Status') {
+      // Sort by status
+      appeals = appeals.sort((a, b) => {
+        return allStatuses.indexOf(a.status) - allStatuses.indexOf(b.status);
+      })
+    } else {
+      // Sort by due date
+      const now = new Date()
+
+      appeals = appeals.sort((a, b) => {
+        const aDue = a.dueDate ? new Date(a.dueDate) : null;
+        const bDue = b.dueDate ? new Date(b.dueDate) : null;
+      
+        if (!aDue && !bDue) return 0;        // both have no due date
+        if (!aDue) return 1;                 // a has no due date, b does => a goes after
+        if (!bDue) return -1;                // b has no due date, a does => b goes after
+      
+        // both have due dates — sort by proximity to now
+        return Math.abs(aDue - now) - Math.abs(bDue - now);
+      });
+    }
 
     let keywords = _.get(req.session.data.search, 'keywords')
 

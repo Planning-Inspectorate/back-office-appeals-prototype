@@ -3,5 +3,6 @@ const linkedAppeals = require('./linked-appeals.json')
 
 module.exports = {
   appeals,
-  linkedAppeals
+  linkedAppeals,
+  sort: 'Status'
 }

@@ -20,8 +20,7 @@ const getActions = (appeal) => {
     actions.push({ text: "Review statements", href: "#" })
     actions.push({ text: "Review IP comments", href: "#" })
   } else if (appeal.status === "Statements and IP comments ready to share") {
-    actions.push({ text: "Share statements", href: "#" })
-    actions.push({ text: "Share IP comments", href: "#" })
+    actions.push({ text: "Share statements and IP comments", href: "#" })
   } else if (appeal.status === "Final comments ready to review") {
     actions.push({ text: "Review final comments", href: "#" })
   } else if (appeal.status === "Final comments ready to share") {

@@ -1,5 +1,65 @@
 {% set filterOptionsHtml %}
 
+  {{ appCheckboxFilter({
+    idPrefix: "filters[inspectors]",
+    name: "filters[inspectors]",
+    classes: "inspector-filter govuk-checkboxes--small",
+    attributes: {
+      id: 'inspector-filter'
+    },
+    fieldset: {
+      legend: {
+        text: "Inspector",
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    maxHeight: true,
+    values: data.filters.inspectors,
+    selectedItems: selectedInspectorItems,
+    items: [
+      { value: 'Unassigned', text: 'Unassigned' },
+      { text: "Thanos", value: "Thanos" },
+      { text: "Loki", value: "Loki" },
+      { text: "Green Goblin", value: "Green Goblin" },
+      { text: "Doctor Doom", value: "Doctor Doom" },
+      { text: "Magneto", value: "Magneto" },
+      { text: "Red Skull", value: "Red Skull" },
+      { text: "Ultron", value: "Ultron" },
+      { text: "Kingpin", value: "Kingpin" },
+      { text: "Hela", value: "Hela" },
+      { text: "Killmonger", value: "Killmonger" },
+      { text: "Mystique", value: "Mystique" },
+      { text: "Venom", value: "Venom" },
+      { text: "Carnage", value: "Carnage" },
+      { text: "Bullseye", value: "Bullseye" },
+      { text: "Mysterio", value: "Mysterio" },
+      { text: "Vulture", value: "Vulture" },
+      { text: "Abomination", value: "Abomination" },
+      { text: "Taskmaster", value: "Taskmaster" },
+      { text: "Dormammu", value: "Dormammu" },
+      { text: "The Mandarin", value: "The Mandarin" }
+    ]
+  }) }}
+
+  {{ appCheckboxFilter({
+    idPrefix: "filters[lpas]",
+    name: "filters[lpas]",
+    classes: "lpa-filter govuk-checkboxes--small",
+    attributes: {
+      id: 'lpa-filter'
+    },
+    fieldset: {
+      legend: {
+        text: "Local planning authority",
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    maxHeight: true,
+    values: data.filters.lpas,
+    selectedItems: selectedLPAItems,
+    items: lpaCheckboxes
+  }) }}
+
   {{ govukCheckboxes({
     idPrefix: "filters[types]",
     name: "filters[types]",

@@ -27,10 +27,11 @@
 
 @include govuk-media-query($until: desktop) {
   .js-enabled .app-filter-layout__filter {
-    background-color: govuk-colour("white");
+    background-color: govuk-colour("light-grey");
     position: fixed; top: 5px; right: 5px; bottom: 5px;
     overflow-y: scroll;
     z-index: 100;
+    width: 315px;
   }
 }
 

@@ -20,23 +20,7 @@
       </div>
 
       {% include "includes/appeals/search-form.njk" %}
-
-      <div class="app-sort">
-        <p>
-          <b class="govuk-!-margin-right-1">Sort by:</b>
-          {% if data.sort == 'Status' %}
-            <span class="govuk-!-margin-right-1">Status</span>
-          {% else %}
-            <a class="govuk-!-margin-right-1" href="?sort=Status">Status</a>
-          {% endif %}
-          |
-          {% if data.sort == 'Due date' %}
-            <span class="govuk-!-margin-right-1 govuk-!-margin-left-1">Due date</span>
-          {% else %}
-            <a class="govuk-!-margin-right-1 govuk-!-margin-left-1" href="?sort=Due date">Due date</a>
-          {% endif %}
-        </p>
-      </div>
+      {% include "includes/appeals/sort.njk" %}
 
       {% if appeals.length %}
          <div class="app-list">

@@ -41,6 +41,25 @@ router.get('/clear-data', function (req, res) {
 	res.redirect(redirectUrl)
 })
 
+router.get('/mode', function (req, res) {
+	delete req.session.data
+	req.session.data = {}
+	req.session.data.appeals = appeals
+	req.session.data.userType = req.query.userType
+
+	if(req.query.userType == 'caseOfficer') {
+		req.session.data.filters = {
+    caseOfficers: ['Tony Stark']
+  }
+	} else {
+		req.session.data.filters = {
+			inspectors: ['Eli Morrow']
+		}
+	}
+
+	res.redirect(req.query.returnUrl || '/main/appeals')
+})
+
 
 require('./routes/appeals')(router)
 require('./routes/appeal')(router)

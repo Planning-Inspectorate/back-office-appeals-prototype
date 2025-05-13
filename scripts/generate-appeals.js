@@ -223,30 +223,17 @@ const generateAppeal = (params = {}) => {
     ])
 
     appeal.inspector = params.inspector || faker.helpers.arrayElement([
-      "Thanos",
-      "Loki",
-      "Green Goblin",
-      "Doctor Doom",
-      "Magneto",
-      "Red Skull",
-      "Ultron",
-      "Kingpin",
-      "Hela", 
-      "Killmonger",
-      "Mystique",
-      "Venom",
-      "Carnage",
-      "Bullseye",
-      "Mysterio",
-      "Vulture",
-      "Abomination",
-      "Taskmaster",
-      "Dormammu",
-      "The Mandarin"
+      "Eli Morrow",
+      "Eli Morrow",
+      "Eli Morrow",
+      "Eli Morrow",
+      "Eli Morrow",
+      "Eli Morrow",
+      "Norman Osborn",
+      "William Stryker"
     ])
   }
 
-  
   if(appeal.status == 'Ready to assign case officer' || appeal.status == 'Ready to validate' || appeal.status == 'Ready to start') {
     appeal.procedure = null
   }

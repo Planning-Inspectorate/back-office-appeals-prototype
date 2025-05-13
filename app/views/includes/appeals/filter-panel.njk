@@ -1,5 +1,17 @@
-{% set filterOptionsHtml %}
 
+{% if data.userType == 'caseOfficer' %}
+  {% set caseOfficerYouValue = 'Tony Stark (You)' %}
+{% else %}
+  {% set caseOfficerYouValue = 'Tony Stark' %}
+{% endif %}
+
+{% if data.userType == 'inspector' %}
+  {% set inspectorYouValue = 'Eli Morrow (You)' %}
+{% else %}
+  {% set inspectorYouValue = 'Eli Morrow' %}
+{% endif %}
+
+{% set filterOptionsHtml %}
   {{ appCheckboxFilter({
     idPrefix: "filters[caseOfficers]",
     name: "filters[caseOfficers]",
@@ -18,86 +30,32 @@
     selectedItems: selectedCaseOfficerItems,
     items: [
       { value: 'Unassigned', text: 'Unassigned' },
-      { value: 'Tony Stark', text: 'Tony Stark (you)' },
-      { value: 'Natasha Romanoff', text: 'Natasha Romanoff' },
-      { value: 'Peter Parker', text: 'Peter Parker' },
-      { value: 'Steve Rogers', text: 'Steve Rogers' },
-      { value: 'Bruce Banner', text: 'Bruce Banner' },
-      { value: 'Thor Odinson', text: 'Thor Odinson' },
-      { value: 'Stephen Strange', text: 'Stephen Strange' },
-      { value: 'T’Challa', text: 'T’Challa' },
-      { value: 'Wanda Maximoff', text: 'Wanda Maximoff' },
-      { value: 'Vision', text: 'Vision' },
-      { value: 'Scott Lang', text: 'Scott Lang' },
-      { value: 'Sam Wilson', text: 'Sam Wilson' },
-      { value: 'Clint Barton', text: 'Clint Barton' },
-      { value: 'Carol Danvers', text: 'Carol Danvers' },
-      { value: 'Loki Laufeyson', text: 'Loki Laufeyson' },
-      { value: 'James Rhodes', text: 'James Rhodes' },
-      { value: 'Shuri', text: 'Shuri' },
-      { value: 'Kate Bishop', text: 'Kate Bishop' },
-      { value: 'Kamala Khan', text: 'Kamala Khan' }
+      { value: 'Tony Stark', text: caseOfficerYouValue },
+      { text: 'Peter Parker', value: 'Peter Parker' },
+      { text: 'Steve Rogers', value: 'Steve Rogers' },
+      { text: 'Bruce Banner', value: 'Bruce Banner' },
+      { text: 'Natasha Romanoff', value: 'Natasha Romanoff' },
+      { text: 'Clint Barton', value: 'Clint Barton' },
+      { text: 'Stephen Strange', value: 'Stephen Strange' },
+      { text: 'Scott Lang', value: 'Scott Lang' },
+      { text: 'Carol Danvers', value: 'Carol Danvers' },
+      { text: 'Sam Wilson', value: 'Sam Wilson' },
+      { text: 'Matt Murdock', value: 'Matt Murdock' },
+      { text: 'Wade Wilson', value: 'Wade Wilson' },
+      { text: 'Jessica Jones', value: 'Jessica Jones' },
+      { text: 'Luke Cage', value: 'Luke Cage' },
+      { text: 'Danny Rand', value: 'Danny Rand' },
+      { text: 'Jennifer Walters', value: 'Jennifer Walters' },
+      { text: 'Marc Spector', value: 'Marc Spector' },
+      { text: 'Frank Castle', value: 'Frank Castle' },
+      { text: 'Sharon Carter', value: 'Sharon Carter' },
+      { text: 'Monica Rambeau', value: 'Monica Rambeau' },
+      { text: 'Peggy Carter', value: 'Peggy Carter' },
+      { text: 'James Rhodes', value: 'James Rhodes' },
+      { text: 'Hank Pym', value: 'Hank Pym' },
+      { text: 'Hope Van Dyne', value: 'Hope Van Dyne' },
+      { text: 'Bucky Barnes', value: 'Bucky Barnes' }
     ]
-  }) }}
-
-  {{ appCheckboxFilter({
-    idPrefix: "filters[inspectors]",
-    name: "filters[inspectors]",
-    classes: "inspector-filter govuk-checkboxes--small",
-    attributes: {
-      id: 'inspector-filter'
-    },
-    fieldset: {
-      legend: {
-        text: "Inspector",
-        classes: "govuk-fieldset__legend--s"
-      }
-    },
-    maxHeight: true,
-    values: data.filters.inspectors,
-    selectedItems: selectedInspectorItems,
-    items: [
-      { value: 'Unassigned', text: 'Unassigned' },
-      { text: "Thanos", value: "Thanos" },
-      { text: "Loki", value: "Loki" },
-      { text: "Green Goblin", value: "Green Goblin" },
-      { text: "Doctor Doom", value: "Doctor Doom" },
-      { text: "Magneto", value: "Magneto" },
-      { text: "Red Skull", value: "Red Skull" },
-      { text: "Ultron", value: "Ultron" },
-      { text: "Kingpin", value: "Kingpin" },
-      { text: "Hela", value: "Hela" },
-      { text: "Killmonger", value: "Killmonger" },
-      { text: "Mystique", value: "Mystique" },
-      { text: "Venom", value: "Venom" },
-      { text: "Carnage", value: "Carnage" },
-      { text: "Bullseye", value: "Bullseye" },
-      { text: "Mysterio", value: "Mysterio" },
-      { text: "Vulture", value: "Vulture" },
-      { text: "Abomination", value: "Abomination" },
-      { text: "Taskmaster", value: "Taskmaster" },
-      { text: "Dormammu", value: "Dormammu" },
-      { text: "The Mandarin", value: "The Mandarin" }
-    ]
-  }) }}
-
-  {{ appCheckboxFilter({
-    idPrefix: "filters[lpas]",
-    name: "filters[lpas]",
-    classes: "lpa-filter govuk-checkboxes--small",
-    attributes: {
-      id: 'lpa-filter'
-    },
-    fieldset: {
-      legend: {
-        text: "Local planning authority",
-        classes: "govuk-fieldset__legend--s"
-      }
-    },
-    maxHeight: true,
-    values: data.filters.lpas,
-    selectedItems: selectedLPAItems,
-    items: lpaCheckboxes
   }) }}
 
   {{ govukCheckboxes({
@@ -140,24 +98,6 @@
   }) }}
 
   {{ govukCheckboxes({
-    idPrefix: "filters[linkedAppealTypes]",
-    name: "filters[linkedAppealTypes]",
-    classes: "govuk-checkboxes--small",
-    fieldset: {
-      legend: {
-        text: "Linked appeal type",
-        classes: "govuk-fieldset__legend--s"
-      }
-    },
-    items: [
-      { value: 'Lead', text: 'Lead' },
-      { value: 'Child', text: 'Child' },
-      { value: 'Not linked', text: 'Not linked' }
-    ],
-    values: data.filters.linkedAppealTypes
-  }) }}
-
-  {{ govukCheckboxes({
     idPrefix: "filters[statuses]",
     name: "filters[statuses]",
     classes: "govuk-checkboxes--small",
@@ -195,9 +135,87 @@
     values: data.filters.statuses
   }) }}
 
+  {{ appCheckboxFilter({
+    idPrefix: "filters[lpas]",
+    name: "filters[lpas]",
+    classes: "lpa-filter govuk-checkboxes--small",
+    attributes: {
+      id: 'lpa-filter'
+    },
+    fieldset: {
+      legend: {
+        text: "Local planning authority",
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    maxHeight: true,
+    values: data.filters.lpas,
+    selectedItems: selectedLPAItems,
+    items: lpaCheckboxes
+  }) }}
+  
+  {{ appCheckboxFilter({
+    idPrefix: "filters[inspectors]",
+    name: "filters[inspectors]",
+    classes: "inspector-filter govuk-checkboxes--small",
+    attributes: {
+      id: 'inspector-filter'
+    },
+    fieldset: {
+      legend: {
+        text: "Inspector",
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    maxHeight: true,
+    values: data.filters.inspectors,
+    selectedItems: selectedInspectorItems,
+    items: [
+      { value: 'Unassigned', text: 'Unassigned' },
+      { value: "Eli Morrow", text: inspectorYouValue },
+      { value: "Norman Osborn", text: "Norman Osborn" },
+      { value: "William Stryker", text: "William Stryker" },
+      { value: "Quentin Beck", text: "Quentin Beck" },
+      { value: "Nathaniel Essex", text: "Nathaniel Essex" },
+      { value: "Erik Lehnsherr", text: "Erik Lehnsherr" },
+      { value: "Martin Li", text: "Martin Li" },
+      { value: "Frank Payne", text: "Frank Payne" },
+      { value: "John Garrett", text: "John Garrett" },
+      { value: "Zebediah Killgrave", text: "Zebediah Killgrave" },
+      { value: "Maxwell Dillon", text: "Maxwell Dillon" },
+      { value: "Emil Blonsky", text: "Emil Blonsky" },
+      { value: "Karl Malus", text: "Karl Malus" },
+      { value: "Abe Jenkins", text: "Abe Jenkins" },
+      { value: "Samuel Sterns", text: "Samuel Sterns" },
+      { value: "Jackson Day", text: "Jackson Day" },
+      { value: "Michael Morbius", text: "Michael Morbius" },
+      { value: "Arthur Harrow", text: "Arthur Harrow" },
+      { value: "Otto Octavius", text: "Otto Octavius" },
+      { value: "Roderick Kingsley", text: "Roderick Kingsley" }
+    ]
+  }) }}
+
   {{ govukCheckboxes({
-    idPrefix: "filters[green]",
-    name: "filters[green]",
+    idPrefix: "filters[linkedAppealTypes]",
+    name: "filters[linkedAppealTypes]",
+    classes: "govuk-checkboxes--small",
+    fieldset: {
+      legend: {
+        text: "Linked appeal type",
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: [
+      { value: 'Lead', text: 'Lead' },
+      { value: 'Child', text: 'Child' },
+      { value: 'Not linked', text: 'Not linked' }
+    ],
+    values: data.filters.linkedAppealTypes
+  }) }}
+
+  {{ govukCheckboxes({
+    idPrefix: "filters[greenBelt]",
+    name: "filters[greenBelt]",
     classes: "govuk-checkboxes--small",
     fieldset: {
       legend: {
@@ -209,7 +227,41 @@
       { value: 'Is green belt', text: 'Is green belt' },
       { value: 'Is not green belt', text: 'Is not green belt' }
     ],
-    values: data.filters.green
+    values: data.filters.greenBelt
+  }) }}
+
+  {{ govukCheckboxes({
+    idPrefix: "filters[siteVisit]",
+    name: "filters[siteVisit]",
+    classes: "govuk-checkboxes--small",
+    fieldset: {
+      legend: {
+        text: "Site visit",
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: [
+      { value: 'Site visit set up', text: 'Site visit set up' },
+      { value: 'Site visit not set up', text: 'Site visit not set up' }
+    ],
+    values: data.filters.siteVisit
+  }) }}
+
+  {{ govukCheckboxes({
+    idPrefix: "filters[planningObligation]",
+    name: "filters[planningObligation]",
+    classes: "govuk-checkboxes--small",
+    fieldset: {
+      legend: {
+        text: "Planning obligation",
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: [
+      { value: 'Has planning obligation', text: 'Has planning obligation' },
+      { value: 'Does not have planning obligation', text: 'Does not have planning obligation' }
+    ],
+    values: data.filters.planningObligation
   }) }}
 
 {% endset %}

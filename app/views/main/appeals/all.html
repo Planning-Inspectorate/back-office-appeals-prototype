@@ -1,12 +1,13 @@
 {% extends "layouts/bo.html" %}
 
-{% set title = "All appeals (:total)" | replace(':total', totalAppeals) %}
+{% set title = "Appeals (:total)" | replace(':total', totalAppeals) %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 {% set pageId = 'allAppeals' %}
 
 {% set back = false %}
 
 {% block content %}
+
   <h1 class="govuk-heading-l">{{title}}</h1>
 
   <div class="app-filter-layout">

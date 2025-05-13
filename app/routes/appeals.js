@@ -60,7 +60,10 @@ module.exports = router => {
     let selectedTypeFilters = _.get(req.session.data.filters, 'types')
     let selectedProcedureFilters = _.get(req.session.data.filters, 'procedures')
     let selectedLinkedAppealTypeFilters = _.get(req.session.data.filters, 'linkedAppealTypes')
-    let hasFilters = _.get(selectedStatusFilters, 'length') || _.get(selectedInspectorFilters, 'length') || _.get(selectedLPAFilters, 'length') ||  _.get(selectedCaseOfficerFilters, 'length') || _.get(selectedTypeFilters, 'length') || _.get(selectedProcedureFilters, 'length') || _.get(selectedLinkedAppealTypeFilters, 'length')
+    let selectedSiteVisitFilters = _.get(req.session.data.filters, 'siteVisit')
+    let selectedPlanningObligationFilters = _.get(req.session.data.filters, 'planningObligation')
+    let selectedGreenBeltFilters = _.get(req.session.data.filters, 'greenBelt')
+    let hasFilters = _.get(selectedStatusFilters, 'length') || _.get(selectedInspectorFilters, 'length') || _.get(selectedLPAFilters, 'length') ||  _.get(selectedCaseOfficerFilters, 'length') || _.get(selectedTypeFilters, 'length') || _.get(selectedProcedureFilters, 'length') || _.get(selectedLinkedAppealTypeFilters, 'length') || _.get(selectedSiteVisitFilters, 'length') || _.get(selectedPlanningObligationFilters, 'length') || _.get(selectedGreenBeltFilters, 'length')
 
     let selectedFilters = {
       categories: []
@@ -76,6 +79,8 @@ module.exports = router => {
         let matchesType = true
         let matchesProcedure = true
         let matchesLinkedAppealType = true
+        let matchesSiteVisit = true
+        let matchesPlanningObligation = true
 
         if(_.get(selectedCaseOfficerFilters, 'length')) {
           matchesCaseOfficer = false
@@ -127,10 +132,37 @@ module.exports = router => {
           if(selectedLinkedAppealTypeFilters.includes('Not linked') && !appeal.isLeadAppeal && !appeal.isChildAppeal) {
             matchesLinkedAppealType = true
           }
-
         }
 
-        return matchesStatus && matchesInspector && matchesLPA && matchesCaseOfficer && matchesType && matchesProcedure && matchesLinkedAppealType
+        if(_.get(selectedSiteVisitFilters, 'length')) {
+          matchesSiteVisit = false
+          if(selectedSiteVisitFilters.includes('Site visit set up')) {
+            if(appeal.siteVisit) {
+              matchesSiteVisit = true
+            }
+          }
+          if(selectedSiteVisitFilters.includes('Site visit not set up')) {
+            if(!appeal.siteVisit) {
+              matchesSiteVisit = true
+            }
+          }
+        }
+
+        if(_.get(selectedPlanningObligationFilters, 'length')) {
+          matchesPlanningObligation = false
+          if(selectedPlanningObligationFilters.includes('Has planning obligation')) {
+            if(appeal.appealForm.hasPlanningObligation == 'Yes') {
+              matchesPlanningObligation = true
+            }
+          }
+          if(selectedPlanningObligationFilters.includes('Does not have planning obligation')) {
+            if(appeal.appealForm.hasPlanningObligation == 'No') {
+              matchesPlanningObligation = true
+            }
+          }
+        }
+
+        return matchesStatus && matchesInspector && matchesLPA && matchesCaseOfficer && matchesType && matchesProcedure && matchesLinkedAppealType && matchesSiteVisit && matchesPlanningObligation
       })
     }
 
@@ -138,45 +170,18 @@ module.exports = router => {
     let selectedInspectorItems
     let selectedLPAItems
 
-    if(_.get(selectedInspectorFilters, 'length')) {
+    if(_.get(selectedCaseOfficerFilters, 'length')) {
 
-      selectedInspectorItems = selectedInspectorFilters.map(label => {
+      selectedCaseOfficerItems = selectedCaseOfficerFilters.map(label => {
         return {
           text: label,
-          href: `/main/appeals/remove-inspector/${label}`
+          href: `/main/appeals/remove-case-officer/${label}`
         }
       })
 
       selectedFilters.categories.push({
-        heading: { text: 'Inspector' },
-        items: selectedInspectorItems
-      })
-    }
-
-    if(_.get(selectedLPAFilters, 'length')) {
-
-      selectedLPAItems = selectedLPAFilters.map(label => {
-        return {
-          text: label,
-          href: `/main/appeals/remove-lpa/${label}`
-        }
-      })
-
-      selectedFilters.categories.push({
-        heading: { text: 'Local planning authority' },
-        items: selectedLPAItems
-      })
-    }
-
-    if(_.get(selectedStatusFilters, 'length')) {
-      selectedFilters.categories.push({
-        heading: { text: 'Status' },
-        items: selectedStatusFilters.map(label => {
-          return {
-            text: label,
-            href: `/main/appeals/remove-status/${label}`
-          }
-        })
+        heading: { text: 'Case officer' },
+        items: selectedCaseOfficerItems
       })
     }
 
@@ -204,6 +209,48 @@ module.exports = router => {
       })
     }
 
+    if(_.get(selectedStatusFilters, 'length')) {
+      selectedFilters.categories.push({
+        heading: { text: 'Status' },
+        items: selectedStatusFilters.map(label => {
+          return {
+            text: label,
+            href: `/main/appeals/remove-status/${label}`
+          }
+        })
+      })
+    }
+
+    if(_.get(selectedLPAFilters, 'length')) {
+
+      selectedLPAItems = selectedLPAFilters.map(label => {
+        return {
+          text: label,
+          href: `/main/appeals/remove-lpa/${label}`
+        }
+      })
+
+      selectedFilters.categories.push({
+        heading: { text: 'Local planning authority' },
+        items: selectedLPAItems
+      })
+    }
+
+    if(_.get(selectedInspectorFilters, 'length')) {
+
+      selectedInspectorItems = selectedInspectorFilters.map(label => {
+        return {
+          text: label,
+          href: `/main/appeals/remove-inspector/${label}`
+        }
+      })
+
+      selectedFilters.categories.push({
+        heading: { text: 'Inspector' },
+        items: selectedInspectorItems
+      })
+    }
+
     if(_.get(selectedLinkedAppealTypeFilters, 'length')) {
       selectedFilters.categories.push({
         heading: { text: 'Linked appeal type' },
@@ -211,6 +258,42 @@ module.exports = router => {
           return {
             text: label,
             href: `/main/appeals/remove-linked-appeal-type/${label}`
+          }
+        })
+      })
+    }
+
+    if(_.get(selectedSiteVisitFilters, 'length')) {
+      selectedFilters.categories.push({
+        heading: { text: 'Site visit' },
+        items: selectedSiteVisitFilters.map(label => {
+          return {
+            text: label,
+            href: `/main/your-appeals/remove-site-visit/${label}`
+          }
+        })
+      })
+    }
+
+    if(_.get(selectedPlanningObligationFilters, 'length')) {
+      selectedFilters.categories.push({
+        heading: { text: 'Planning obligation' },
+        items: selectedPlanningObligationFilters.map(label => {
+          return {
+            text: label,
+            href: `/main/your-appeals/remove-planning-obligation/${label}`
+          }
+        })
+      })
+    }
+
+    if(_.get(selectedGreenBeltFilters, 'length')) {
+      selectedFilters.categories.push({
+        heading: { text: 'Green belt' },
+        items: selectedGreenBeltFilters.map(label => {
+          return {
+            text: label,
+            href: `/main/appeals/remove-green-belt/${label}`
           }
         })
       })
@@ -245,6 +328,9 @@ module.exports = router => {
     _.set(req, 'session.data.filters.types', null)
     _.set(req, 'session.data.filters.procedures', null)
     _.set(req, 'session.data.filters.linkedAppealTypes', null)
+    _.set(req, 'session.data.filters.siteVisit', null)
+    _.set(req, 'session.data.filters.planningObligation', null)
+    _.set(req, 'session.data.filters.greenBelt', null)
     res.redirect('/main/appeals')
   })
 
@@ -285,6 +371,16 @@ module.exports = router => {
 
   router.get('/main/appeals/remove-site-visit/:siteVisit', (req, res) => {
     _.set(req, 'session.data.filters.siteVisit', _.pull(req.session.data.filters.siteVisit, req.params.siteVisit))
+    res.redirect('/main/appeals')
+  })
+
+  router.get('/main/your-appeals/remove-planning-obligation/:planningObligation', (req, res) => {
+    _.set(req, 'session.data.filters.planningObligation', _.pull(req.session.data.filters.planningObligation, req.params.planningObligation))
+    res.redirect('/main/appeals')
+  })
+
+  router.get('/main/appeals/remove-green-belt/:greenBelt', (req, res) => {
+    _.set(req, 'session.data.filters.greenBelt', _.pull(req.session.data.filters.greenBelt, req.params.greenBelt))
     res.redirect('/main/appeals')
   })
 

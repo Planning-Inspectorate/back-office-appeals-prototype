@@ -15,7 +15,7 @@
   text-align: justify; // Trick to remove the need for floats
   position: sticky;
   top: 0;
-  // background-color: govuk-colour('white');
+  background-color: govuk-colour("light-grey");
   z-index: 9;
   &:after {
     content: '';

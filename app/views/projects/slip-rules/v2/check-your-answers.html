@@ -45,9 +45,71 @@
         We will send the updated decision letter to the relevant parties.
       </p>
 
-      <p class="govuk-body">
-        <a href="preview-email" class="govuk-link">Preview email</a>
-      </p>
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Preview email
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <div class="preview">
+
+            <p class="govuk-body">
+              We have corrected the appeal decision letter.
+            </p>
+
+            <h2 class="govuk-heading-m">
+              Appeal details
+            </h2>
+
+            <div class="govuk-inset-text">
+              Appeal reference number: 7001224<br>
+              Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
+              Planning application reference: 22/00118/FULL
+            </div>
+
+            <h2 class="govuk-heading-m">
+              Why we corrected the appeal decision letter
+            </h2>
+
+            <p class="govuk-body">
+              We corrected the decision letter because:
+            </p>
+
+            <p class="govuk-body">
+              (Reason for updating the decision letter)
+            </p>
+
+            <p class="govuk-body">
+              <a href="#" class="govuk-link">Sign into our service</a> to view the decision letter dated {{ 1 | daysAgo }}
+            </p>
+
+            <h2 class="govuk-heading-m">
+              The Planning Inspectorate’s role
+            </h2>
+
+            <p class="govuk-body">
+              The Planning Inspectorate cannot change or revoke the decision. Only the high court can change this decision.
+            </p>
+
+            <h2 class="govuk-heading-m">
+              Feedback
+            </h2>
+
+            <p class="govuk-body">
+              We welcome your feedback on our appeals service. Tell us on this short <a href="#" class="govuk-link">feedback form</a>.
+            </p>
+
+            <p class="govuk-body">
+              The Planning Inspectorate<br>
+              caseofficers@planninginspectorate.gov.uk
+            </p>
+
+          </div>
+        </div>
+      </details>
+
+
 
       {{ govukButton({
         href: "decision?success=true&reissued=Yes",

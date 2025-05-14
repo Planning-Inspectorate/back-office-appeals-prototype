@@ -297,20 +297,24 @@
 
         {{ caseStatus (caseStatus = 'complete') }}
 
-        {{ govukInsetText({
-          html: "
+        <div class="govuk-inset-text">
+
           <p class='govuk-body'>
             Decision: approved
           </p>
           <p class='govuk-body'>
-            Decision issued on "+ 1 | daysAgo + ".
+            {% if data['reissued'] != 'Yes' %}
+              Decision issued on {{ 2 | daysAgo }}.
+            {% else %}
+              Decision issued on {{ 2 | daysAgo }} (reissued on {{ 0 | daysAgo }}).
+            {% endif %}
           </p>
           <p class='govuk-body'>
             <a href='decision' class='govuk-link'>
               View decision
             </a>
-          </p>"
-        }) }}
+          </p>
+        </div>
 
       {% else %}
 

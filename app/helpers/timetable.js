@@ -61,11 +61,11 @@ const generateTimetableWritten = (appeal) => {
     case 'Ready to start':
     case 'Awaiting LPAQ':
     case 'LPAQ ready to review':
-    case 'Awaiting statements and IP comments':
-    case 'Statements and IP comments ready to review':
+    case 'Statements and IP comments open':
+    case 'Statements and IP comments closed':
     case 'Statements and IP comments ready to share':
-    case 'Awaiting final comments':
-    case 'Final comments ready to review':
+    case 'Final comments open':
+    case 'Final comments closed':
     case 'Final comments ready to share':
     case 'Site visit ready to set up':
     case 'Awaiting site visit':
@@ -120,8 +120,8 @@ const generateTimetableHearing = (appeal) => {
     case 'Ready to start':
     case 'Awaiting LPAQ':
     case 'LPAQ ready to review':
-    case 'Awaiting statements and IP comments':
-    case 'Statements and IP comments ready to review':
+    case 'Statements and IP comments open':
+    case 'Statements and IP comments closed':
     case 'Statements and IP comments ready to share':
     case 'Hearing ready to set up':
     case 'Awaiting hearing':
@@ -194,12 +194,12 @@ const generateTimetableInquiry = (appeal) => {
     case 'Ready to start':
     case 'Awaiting LPAQ':
     case 'LPAQ ready to review':
-    case 'Awaiting statements and IP comments':
-    case 'Statements and IP comments ready to review':
+    case 'Statements and IP comments open':
+    case 'Statements and IP comments closed':
     case 'Statements and IP comments ready to share':
     case 'Inquiry ready to set up':
-    case 'Awaiting proof of evidence and witnesses':
-    case 'Proof of evidence and witnesses ready to review':
+    case 'Proof of evidence and witnesses open':
+    case 'Proof of evidence and witnesses closed':
     case 'Proof of evidence and witnesses ready to share':
     case 'Awaiting inquiry':
     case 'Decision ready to issue':

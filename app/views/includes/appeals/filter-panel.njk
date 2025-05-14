@@ -113,18 +113,18 @@
       { value: 'Ready to start', text: 'Ready to start' },
       { value: 'Awaiting LPAQ', text: 'Awaiting LPAQ' },
       { value: 'LPAQ ready to review', text: 'LPAQ ready to review' },
-      { value: 'Awaiting statements and IP comments', text: 'Awaiting statements and IP comments' },
-      { value: 'Statements and IP comments ready to review', text: 'Statements and IP comments ready to review' },
+      { value: 'Statements and IP comments open', text: 'Statements and IP comments open' },
+      { value: 'Statements and IP comments closed', text: 'Statements and IP comments closed' },
       { value: 'Statements and IP comments ready to share', text: 'Statements and IP comments ready to share' },
-      { value: 'Awaiting final comments', text: 'Awaiting final comments' },
-      { value: 'Final comments ready to review', text: 'Final comments ready to review' },
+      { value: 'Final comments open', text: 'Final comments open' },
+      { value: 'Final comments closed', text: 'Final comments closed' },
       { value: 'Final comments ready to share', text: 'Final comments ready to share' },
       { value: 'Site visit ready to set up', text: 'Site visit ready to set up' },
       { value: 'Awaiting site visit', text: 'Awaiting site visit' },
       { value: 'Hearing ready to set up', text: 'Hearing ready to set up' },
       { value: 'Awaiting hearing', text: 'Awaiting hearing' },
-      { value: 'Awaiting proof of evidence and witnesses', text: 'Awaiting proof of evidence and witnesses' },
-      { value: 'Proof of evidence and witnesses ready to review', text: 'Proof of evidence and witnesses ready to review' },
+      { value: 'Proof of evidence and witnesses open', text: 'Proof of evidence and witnesses open' },
+      { value: 'Proof of evidence and witnesses closed', text: 'Proof of evidence and witnesses closed' },
       { value: 'Proof of evidence and witnesses ready to share', text: 'Proof of evidence and witnesses ready to share' },
       { value: 'Inquiry ready to set up', text: 'Inquiry ready to set up' },
       { value: 'Awaiting inquiry', text: 'Awaiting inquiry' },
@@ -214,23 +214,6 @@
   }) }}
 
   {{ govukCheckboxes({
-    idPrefix: "filters[greenBelt]",
-    name: "filters[greenBelt]",
-    classes: "govuk-checkboxes--small",
-    fieldset: {
-      legend: {
-        text: "Green belt",
-        classes: "govuk-fieldset__legend--s"
-      }
-    },
-    items: [
-      { value: 'Is green belt', text: 'Is green belt' },
-      { value: 'Is not green belt', text: 'Is not green belt' }
-    ],
-    values: data.filters.greenBelt
-  }) }}
-
-  {{ govukCheckboxes({
     idPrefix: "filters[siteVisit]",
     name: "filters[siteVisit]",
     classes: "govuk-checkboxes--small",
@@ -262,6 +245,23 @@
       { value: 'Does not have planning obligation', text: 'Does not have planning obligation' }
     ],
     values: data.filters.planningObligation
+  }) }}
+
+    {{ govukCheckboxes({
+    idPrefix: "filters[greenBelt]",
+    name: "filters[greenBelt]",
+    classes: "govuk-checkboxes--small",
+    fieldset: {
+      legend: {
+        text: "Green belt",
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    items: [
+      { value: 'Is green belt', text: 'Is green belt' },
+      { value: 'Is not green belt', text: 'Is not green belt' }
+    ],
+    values: data.filters.greenBelt
   }) }}
 
 {% endset %}

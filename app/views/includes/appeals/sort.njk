@@ -1,16 +1,16 @@
 <div class="app-sort">
   <p>
     <b class="govuk-!-margin-right-1">Sort by:</b>
-    {% if data.sort == 'Status' %}
-      <span class="govuk-!-margin-right-1">Status</span>
-    {% else %}
-      <a class="govuk-!-margin-right-1" href="?sort=Status">Status</a>
-    {% endif %}
-    |
     {% if data.sort == 'Due date' %}
-      <span class="govuk-!-margin-right-1 govuk-!-margin-left-1">Due date</span>
+      <span class="">Due date</span>
     {% else %}
-      <a class="govuk-!-margin-right-1 govuk-!-margin-left-1" href="?sort=Due date">Due date</a>
+      <a  href="?sort=Due date">Due date</a>
+    {% endif %}
+    <span class="govuk-!-margin-left-1 govuk-!-margin-right-1">|</span>
+    {% if data.sort == 'Status' %}
+      <span>Status</span>
+    {% else %}
+      <a href="?sort=Status">Status</a>
     {% endif %}
   </p>
 </div>

@@ -49,8 +49,8 @@
               </p>
               <p class="govuk-!-margin-bottom-1">{{appAddress({address: item.site.address, delimiter: ',' })}}</p>
               {% if item.status == 'Awaiting LPAQ'
-                or item.status == 'Awaiting statements and IP comments'
-                or item.status == 'Awaiting final comments'
+                or item.status == 'Statements and IP comments open'
+                or item.status == 'Final comments open'
               %}
                 <p class="govuk-!-margin-bottom-1 govuk-!-font-weight-bold">Due on 19 Jan 2024</p>
               {% endif %}

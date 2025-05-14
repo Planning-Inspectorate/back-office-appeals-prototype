@@ -13,14 +13,14 @@ const baseStatusesEnd = [
 ]
 
 const s78Statuses = [
-  'Awaiting statements and IP comments',
-  'Statements and IP comments ready to review',
+  'Statements and IP comments open',
+  'Statements and IP comments closed',
   'Statements and IP comments ready to share'
 ]
 
 const s78WrittenStatuses = [
-  'Awaiting final comments',
-  'Final comments ready to review',
+  'Final comments open',
+  'Final comments closed',
   'Final comments ready to share',
   'Site visit ready to set up',
   'Awaiting site visit'
@@ -33,8 +33,8 @@ const s78HearingStatuses = [
 
 const s78InquiryStatuses = [
   'Inquiry ready to set up',
-  'Awaiting proof of evidence and witnesses',
-  'Proof of evidence and witnesses ready to review',
+  'Proof of evidence and witnesses open',
+  'Proof of evidence and witnesses closed',
   'Proof of evidence and witnesses ready to share',
   'Awaiting inquiry'
 ]

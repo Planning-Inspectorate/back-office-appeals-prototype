@@ -4,7 +4,7 @@ const linkedAppeals = require('./linked-appeals.json')
 module.exports = {
   appeals,
   linkedAppeals,
-  sort: 'Status',
+  sort: 'Due date',
   filters: {
     caseOfficers: ['Tony Stark']
   },

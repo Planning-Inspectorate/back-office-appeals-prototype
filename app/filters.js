@@ -182,28 +182,28 @@ addFilter('appealStatusText', status => {
 	if(status == 'LPAQ ready to review') {
 		return 'LPAQ'
 	}
-	if(status == 'Awaiting statements and IP comments') {
+	if(status == 'Statements and IP comments open') {
 		return 'Statements and IP comments'
 	}
-	if(status == 'Statements and IP comments ready to review') {
+	if(status == 'Statements and IP comments closed') {
 		return 'Statements and IP comments'
 	}
 	if(status == 'Statements and IP comments ready to share') {
 		return 'Statements and IP comments'
 	}
-	if(status == 'Awaiting final comments') {
+	if(status == 'Final comments open') {
 		return 'Final comments'
 	}
-	if(status == 'Final comments ready to review') {
+	if(status == 'Final comments closed') {
 		return 'Final comments'
 	}
 	if(status == 'Final comments ready to share') {
 		return 'Final comments'
 	}
-	if(status == 'Awaiting proof of evidence and witnesses') {
+	if(status == 'Proof of evidence and witnesses open') {
 		return 'Proof of evidence and witnesses'
 	}
-	if(status == 'Proof of evidence and witnesses ready to review') {
+	if(status == 'Proof of evidence and witnesses closed') {
 		return 'Proof of evidence and witnesses'
 	}
 	if(status == 'Proof of evidence and witnesses ready to share') {

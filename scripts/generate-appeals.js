@@ -140,10 +140,10 @@ const generateRule6Party = (params) => {
   }
 
   switch(params.appeal.status) {
-    case "Statements and IP comments ready to review":
+    case "Statements and IP comments closed":
     case "Statements and IP comments ready to share":
     case "Inquiry ready to set up":
-    case "Proof of evidence and witnesses ready to review":
+    case "Proof of evidence and witnesses closed":
     case "Proof of evidence and witnesses ready to share":
     case "Awaiting inquiry":
     case "Decision ready to issue":
@@ -245,15 +245,15 @@ const generateAppeal = (params = {}) => {
       appeal.dueDate = faker.date.soon()
     case 'Decision ready to issue':
       appeal.dueDate = faker.date.soon()
-    case 'Awaiting statements and IP comments':
+    case 'Sstatements and IP comments open':
       appeal.dueDate = faker.date.soon()
-    case 'Statements and IP comments ready to review':
+    case 'Statements and IP comments closed':
       appeal.dueDate = faker.date.soon()
     case 'Statements and IP comments ready to share':
       appeal.dueDate = faker.date.soon()
-    case 'Awaiting final comments':
+    case 'Final comments open':
       appeal.dueDate = faker.date.soon()
-    case 'Final comments ready to review':
+    case 'Final comments closed':
       appeal.dueDate = faker.date.soon()
     case 'Final comments ready to share':
       appeal.dueDate = faker.date.soon()
@@ -267,9 +267,9 @@ const generateAppeal = (params = {}) => {
       appeal.dueDate = faker.date.soon()
     case 'Inquiry ready to set up':
       appeal.dueDate = faker.date.soon()
-    case 'Awaiting proof of evidence and witnesses':
+    case 'Proof of evidence and witnesses open':
       appeal.dueDate = faker.date.soon()
-    case 'Proof of evidence and witnesses ready to review':
+    case 'Proof of evidence and witnesses closed':
       appeal.dueDate = faker.date.soon()
     case 'Proof of evidence and witnesses ready to share':
       appeal.dueDate = faker.date.soon()
@@ -313,8 +313,8 @@ const generateAppeal = (params = {}) => {
   switch(appeal.status) {
     case 'Statements and IP comments ready to review':
     case 'Statements and IP comments ready to share':
-    case 'Awaiting final comments':
-    case 'Final comments ready to review':
+    case 'Final comments open':
+    case 'Final comments closed':
     case 'Final comments ready to share':
     case 'Site visit ready to set up':
     case 'Awaiting site visit':
@@ -618,13 +618,13 @@ const generateAppeals = () => {
 
   appeals.push(generateAppeal({
     type: 'Planning appeal',
-    status: 'Awaiting statements and IP comments'
+    status: 'Statements and IP comments open'
   }))
   appeals.push(generateAppeal({
     id: '00182182',
     type: 'Planning appeal',
     procedure: 'Inquiry',
-    status: 'Statements and IP comments ready to review'
+    status: 'Statements and IP comments closed'
   }))
 
   let status13 = 'Statements and IP comments ready to share'
@@ -643,7 +643,12 @@ const generateAppeals = () => {
   appeals.push(generateAppeal({
     type: 'Planning appeal',
     procedure: 'Written representations',
-    status: 'Awaiting final comments'
+    status: 'Final comments open'
+  }))
+  appeals.push(generateAppeal({
+    type: 'Planning appeal',
+    procedure: 'Written representations',
+    status: 'Final comments closed'
   }))
   appeals.push(generateAppeal({
     type: 'Planning appeal',
@@ -688,12 +693,12 @@ const generateAppeals = () => {
   appeals.push(generateAppeal({
     type: 'Planning appeal',
     procedure: 'Inquiry',
-    status: 'Awaiting proof of evidence and witnesses'
+    status: 'Proof of evidence and witnesses open'
   }))
   appeals.push(generateAppeal({
     type: 'Planning appeal',
     procedure: 'Inquiry',
-    status: 'Proof of evidence and witnesses ready to review'
+    status: 'Proof of evidence and witnesses closed'
   }))
   appeals.push(generateAppeal({
     type: 'Planning appeal',

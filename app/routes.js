@@ -61,6 +61,7 @@ router.get('/mode', function (req, res) {
 })
 
 
+require('./routes/your-appeals')(router)
 require('./routes/appeals')(router)
 require('./routes/appeal')(router)
 require('./routes/lpaq')(router)

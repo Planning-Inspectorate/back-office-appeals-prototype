@@ -6,9 +6,10 @@ const { allStatuses } = require('../data/statuses')
 
 module.exports = router => {
 
-  router.get('/main/appeals', function (req, res) {
+  router.get('/main/your-appeals', function (req, res) {
 
     let appeals = req.session.data.appeals
+      .filter(appeal => appeal.caseOfficer == 'Tony Stark')
       .map(appeal => ({
         ...appeal,
         actions: getActions(appeal),
@@ -16,7 +17,6 @@ module.exports = router => {
         isChildAppeal: isChildAppeal(appeal.id, req.session.data.linkedAppeals)
       }));
 
-    
     if(req.session.data.sort == 'Status') {
       // Sort by status
       appeals = appeals.sort((a, b) => {
@@ -52,18 +52,15 @@ module.exports = router => {
       })
     }
 
-
-    let selectedCaseOfficerFilters = _.get(req.session.data.filters, 'caseOfficers')
     let selectedInspectorFilters = _.get(req.session.data.filters, 'inspectors')
     let selectedLPAFilters = _.get(req.session.data.filters, 'lpas')
     let selectedStatusFilters = _.get(req.session.data.filters, 'statuses')
-    let selectedTypeFilters = _.get(req.session.data.filters, 'types')
     let selectedProcedureFilters = _.get(req.session.data.filters, 'procedures')
+    let selectedTypeFilters = _.get(req.session.data.filters, 'types')
     let selectedLinkedAppealTypeFilters = _.get(req.session.data.filters, 'linkedAppealTypes')
     let selectedSiteVisitFilters = _.get(req.session.data.filters, 'siteVisit')
     let selectedPlanningObligationFilters = _.get(req.session.data.filters, 'planningObligation')
-    let selectedGreenBeltFilters = _.get(req.session.data.filters, 'greenBelt')
-    let hasFilters = _.get(selectedStatusFilters, 'length') || _.get(selectedInspectorFilters, 'length') || _.get(selectedLPAFilters, 'length') ||  _.get(selectedCaseOfficerFilters, 'length') || _.get(selectedTypeFilters, 'length') || _.get(selectedProcedureFilters, 'length') || _.get(selectedLinkedAppealTypeFilters, 'length') || _.get(selectedSiteVisitFilters, 'length') || _.get(selectedPlanningObligationFilters, 'length') || _.get(selectedGreenBeltFilters, 'length')
+    let hasFilters = _.get(selectedInspectorFilters, 'length') || _.get(selectedLPAFilters, 'length') || _.get(selectedStatusFilters, 'length') || _.get(selectedProcedureFilters, 'length') || _.get(selectedLinkedAppealTypeFilters, 'length') || _.get(selectedTypeFilters, 'length') || _.get(selectedSiteVisitFilters, 'length') || _.get(selectedPlanningObligationFilters, 'length')
 
     let selectedFilters = {
       categories: []
@@ -72,24 +69,21 @@ module.exports = router => {
     // the user has selected a status filter
     if(hasFilters) {
       appeals = appeals.filter(appeal => {
-        let matchesCaseOfficer = true
+        let matchesStatus = true
         let matchesInspector = true
         let matchesLPA = true
-        let matchesStatus = true
         let matchesType = true
         let matchesProcedure = true
         let matchesLinkedAppealType = true
         let matchesSiteVisit = true
         let matchesPlanningObligation = true
 
-        if(_.get(selectedCaseOfficerFilters, 'length')) {
-          matchesCaseOfficer = false
-          if(selectedCaseOfficerFilters.includes('Unassigned') && !appeal.caseOfficer) {
-            matchesCaseOfficer = true
-          } 
-          if(selectedCaseOfficerFilters.includes(appeal.caseOfficer)) {
-            matchesCaseOfficer = true
-          }
+        if(_.get(selectedStatusFilters, 'length')) {
+          matchesStatus = selectedStatusFilters.includes(appeal.status);
+        }
+        
+        if(_.get(selectedLPAFilters, 'length')) {
+          matchesLPA = selectedLPAFilters.includes(appeal.lpa.name);
         }
 
         if(_.get(selectedInspectorFilters, 'length')) {
@@ -100,14 +94,6 @@ module.exports = router => {
           if(selectedInspectorFilters.includes(appeal.inspector)) {
             matchesInspector = true
           }
-        }
-
-        if(_.get(selectedLPAFilters, 'length')) {
-          matchesLPA = selectedLPAFilters.includes(appeal.lpa.name);
-        }
-
-        if(_.get(selectedStatusFilters, 'length')) {
-          matchesStatus = selectedStatusFilters.includes(appeal.status);
         }
 
         if(_.get(selectedTypeFilters, 'length')) {
@@ -162,26 +148,53 @@ module.exports = router => {
           }
         }
 
-        return matchesStatus && matchesInspector && matchesLPA && matchesCaseOfficer && matchesType && matchesProcedure && matchesLinkedAppealType && matchesSiteVisit && matchesPlanningObligation
+        return matchesInspector && matchesLPA && matchesStatus && matchesType && matchesProcedure && matchesLinkedAppealType && matchesSiteVisit && matchesPlanningObligation
       })
     }
 
-    let selectedCaseOfficerItems
     let selectedInspectorItems
     let selectedLPAItems
 
-    if(_.get(selectedCaseOfficerFilters, 'length')) {
+    if(_.get(selectedStatusFilters, 'length')) {
+      selectedFilters.categories.push({
+        heading: { text: 'Status' },
+        items: selectedStatusFilters.map(label => {
+          return {
+            text: label,
+            href: `/main/your-appeals/remove-status/${label}`
+          }
+        })
+      })
+    }
 
-      selectedCaseOfficerItems = selectedCaseOfficerFilters.map(label => {
+    if(_.get(selectedInspectorFilters, 'length')) {
+
+      selectedInspectorItems = selectedInspectorFilters.map(label => {
         return {
           text: label,
-          href: `/main/appeals/remove-case-officer/${label}`
+          href: `/main/your-appeals/remove-inspector/${label}`
+        }
+      })
+
+
+      selectedFilters.categories.push({
+        heading: { text: 'Inspector' },
+        items: selectedInspectorItems
+      })
+    }
+
+    if(_.get(selectedLPAFilters, 'length')) {
+
+      selectedLPAItems = selectedLPAFilters.map(label => {
+        return {
+          text: label,
+          href: `/main/your-appeals/remove-lpa/${label}`
         }
       })
 
       selectedFilters.categories.push({
-        heading: { text: 'Case officer' },
-        items: selectedCaseOfficerItems
+        heading: { text: 'Local planning authority' },
+        items: selectedLPAItems
       })
     }
 
@@ -191,7 +204,7 @@ module.exports = router => {
         items: selectedTypeFilters.map(label => {
           return {
             text: label,
-            href: `/main/appeals/remove-type/${label}`
+            href: `/main/your-appeals/remove-type/${label}`
           }
         })
       })
@@ -203,51 +216,9 @@ module.exports = router => {
         items: selectedProcedureFilters.map(label => {
           return {
             text: label,
-            href: `/main/appeals/remove-procedure/${label}`
+            href: `/main/your-appeals/remove-procedure/${label}`
           }
         })
-      })
-    }
-
-    if(_.get(selectedStatusFilters, 'length')) {
-      selectedFilters.categories.push({
-        heading: { text: 'Status' },
-        items: selectedStatusFilters.map(label => {
-          return {
-            text: label,
-            href: `/main/appeals/remove-status/${label}`
-          }
-        })
-      })
-    }
-
-    if(_.get(selectedLPAFilters, 'length')) {
-
-      selectedLPAItems = selectedLPAFilters.map(label => {
-        return {
-          text: label,
-          href: `/main/appeals/remove-lpa/${label}`
-        }
-      })
-
-      selectedFilters.categories.push({
-        heading: { text: 'Local planning authority' },
-        items: selectedLPAItems
-      })
-    }
-
-    if(_.get(selectedInspectorFilters, 'length')) {
-
-      selectedInspectorItems = selectedInspectorFilters.map(label => {
-        return {
-          text: label,
-          href: `/main/appeals/remove-inspector/${label}`
-        }
-      })
-
-      selectedFilters.categories.push({
-        heading: { text: 'Inspector' },
-        items: selectedInspectorItems
       })
     }
 
@@ -257,7 +228,7 @@ module.exports = router => {
         items: selectedLinkedAppealTypeFilters.map(label => {
           return {
             text: label,
-            href: `/main/appeals/remove-linked-appeal-type/${label}`
+            href: `/main/your-appeals/remove-linked-appeal-type/${label}`
           }
         })
       })
@@ -287,53 +258,6 @@ module.exports = router => {
       })
     }
 
-    if(_.get(selectedGreenBeltFilters, 'length')) {
-      selectedFilters.categories.push({
-        heading: { text: 'Green belt' },
-        items: selectedGreenBeltFilters.map(label => {
-          return {
-            text: label,
-            href: `/main/appeals/remove-green-belt/${label}`
-          }
-        })
-      })
-    }
-
-    // Sort the way we present selected filter categories based on who is signed in
-    let order
-    
-    if(req.session.data.userType == 'caseOfficer') {
-      order = [
-        'Case officer',
-        'Type',
-        'Procedure',
-        'Status',
-        'Local planning authority',
-        'Inspector',
-        'Linked appeal type',
-        'Site visit',
-        'Planning obligation',
-        'Green belt'
-      ]
-    } else {
-      order = [
-        'Inspector',
-        'Type',
-        'Procedure',
-        'Status',
-        'Local planning authority',
-        'Case officer',
-        'Linked appeal type',
-        'Site visit',
-        'Planning obligation',
-        'Green belt'
-      ]
-    }
-    
-    selectedFilters.categories = selectedFilters.categories.sort((a, b) => {
-      return order.indexOf(a.heading.text) - order.indexOf(b.heading.text)
-    })
-
     let totalAppeals = appeals.length
     let pageSize = 25
     let pagination = new Pagination(appeals, req.query.page, pageSize)
@@ -343,85 +267,67 @@ module.exports = router => {
       return { text: lpa, value: lpa }
     })
 
-    res.render('main/appeals/all', {
+    res.render('main/appeals/index', {
       appeals,
       selectedFilters,
       pagination,
       totalAppeals,
-      selectedCaseOfficerItems,
       selectedInspectorItems,
       selectedLPAItems,
       lpaCheckboxes
     })
   })
 
-  router.get('/main/appeals/clear-filters', (req, res) => {
-    _.set(req, 'session.data.filters.statuses', null)
-    _.set(req, 'session.data.filters.caseOfficers', null)
+  router.get('/main/your-appeals/remove-inspector/:inspector', (req, res) => {
+    _.set(req, 'session.data.filters.inspectors', _.pull(req.session.data.filters.inspectors, req.params.inspector))
+    res.redirect('/main/your-appeals')
+  })
+
+  router.get('/main/your-appeals/remove-lpa/:lpa', (req, res) => {
+    _.set(req, 'session.data.filters.lpas', _.pull(req.session.data.filters.lpas, req.params.lpa))
+    res.redirect('/main/your-appeals')
+  })
+
+  router.get('/main/your-appeals/remove-status/:status', (req, res) => {
+    _.set(req, 'session.data.filters.statuses', _.pull(req.session.data.filters.statuses, req.params.status))
+    res.redirect('/main/your-appeals')
+  })
+
+  router.get('/main/your-appeals/remove-type/:type', (req, res) => {
+    _.set(req, 'session.data.filters.types', _.pull(req.session.data.filters.types, req.params.type))
+    res.redirect('/main/your-appeals')
+  })
+
+  router.get('/main/your-appeals/remove-procedure/:procedure', (req, res) => {
+    _.set(req, 'session.data.filters.procedures', _.pull(req.session.data.filters.procedures, req.params.procedure))
+    res.redirect('/main/your-appeals')
+  })
+
+  router.get('/main/your-appeals/remove-linked-appeal-type/:linkedAppealType', (req, res) => {
+    _.set(req, 'session.data.filters.linkedAppealTypes', _.pull(req.session.data.filters.linkedAppealTypes, req.params.linkedAppealType))
+    res.redirect('/main/your-appeals')
+  })
+
+  router.get('/main/your-appeals/remove-site-visit/:siteVisit', (req, res) => {
+    _.set(req, 'session.data.filters.siteVisit', _.pull(req.session.data.filters.siteVisit, req.params.siteVisit))
+    res.redirect('/main/your-appeals')
+  })
+
+  router.get('/main/your-appeals/remove-planning-obligation/:planningObligation', (req, res) => {
+    _.set(req, 'session.data.filters.planningObligation', _.pull(req.session.data.filters.planningObligation, req.params.planningObligation))
+    res.redirect('/main/your-appeals')
+  })
+
+  router.get('/main/your-appeals/clear-filters', (req, res) => {
     _.set(req, 'session.data.filters.inspectors', null)
     _.set(req, 'session.data.filters.lpas', null)
+    _.set(req, 'session.data.filters.statuses', null)
     _.set(req, 'session.data.filters.types', null)
     _.set(req, 'session.data.filters.procedures', null)
     _.set(req, 'session.data.filters.linkedAppealTypes', null)
     _.set(req, 'session.data.filters.siteVisit', null)
     _.set(req, 'session.data.filters.planningObligation', null)
-    _.set(req, 'session.data.filters.greenBelt', null)
-    res.redirect('/main/appeals')
-  })
-
-  router.get('/main/appeals/remove-status/:status', (req, res) => {
-    _.set(req, 'session.data.filters.statuses', _.pull(req.session.data.filters.statuses, req.params.status))
-    res.redirect('/main/appeals')
-  })
-
-  router.get('/main/appeals/remove-case-officer/:caseOfficer', (req, res) => {
-    _.set(req, 'session.data.filters.caseOfficers', _.pull(req.session.data.filters.caseOfficers, req.params.caseOfficer))
-    res.redirect('/main/appeals')
-  })
-
-  router.get('/main/appeals/remove-inspector/:inspector', (req, res) => {
-    _.set(req, 'session.data.filters.inspectors', _.pull(req.session.data.filters.inspectors, req.params.inspector))
-    res.redirect('/main/appeals')
-  })
-
-  router.get('/main/appeals/remove-lpa/:lpa', (req, res) => {
-    _.set(req, 'session.data.filters.lpas', _.pull(req.session.data.filters.lpas, req.params.lpa))
-    res.redirect('/main/appeals')
-  })
-
-  router.get('/main/appeals/remove-type/:type', (req, res) => {
-    _.set(req, 'session.data.filters.types', _.pull(req.session.data.filters.types, req.params.type))
-    res.redirect('/main/appeals')
-  })
-
-  router.get('/main/appeals/remove-procedure/:procedure', (req, res) => {
-    _.set(req, 'session.data.filters.procedures', _.pull(req.session.data.filters.procedures, req.params.procedure))
-    res.redirect('/main/appeals')
-  })
-
-  router.get('/main/appeals/remove-linked-appeal-type/:linkedAppealType', (req, res) => {
-    _.set(req, 'session.data.filters.linkedAppealTypes', _.pull(req.session.data.filters.linkedAppealTypes, req.params.linkedAppealType))
-    res.redirect('/main/appeals')
-  })
-
-  router.get('/main/appeals/remove-site-visit/:siteVisit', (req, res) => {
-    _.set(req, 'session.data.filters.siteVisit', _.pull(req.session.data.filters.siteVisit, req.params.siteVisit))
-    res.redirect('/main/appeals')
-  })
-
-  router.get('/main/your-appeals/remove-planning-obligation/:planningObligation', (req, res) => {
-    _.set(req, 'session.data.filters.planningObligation', _.pull(req.session.data.filters.planningObligation, req.params.planningObligation))
-    res.redirect('/main/appeals')
-  })
-
-  router.get('/main/appeals/remove-green-belt/:greenBelt', (req, res) => {
-    _.set(req, 'session.data.filters.greenBelt', _.pull(req.session.data.filters.greenBelt, req.params.greenBelt))
-    res.redirect('/main/appeals')
-  })
-
-  router.get('/main/appeals/clear-search', (req, res) => {
-    _.set(req, 'session.data.search.keywords', '')
-    res.redirect('/main/appeals')
+    res.redirect('/main/your-appeals')
   })
 
 }

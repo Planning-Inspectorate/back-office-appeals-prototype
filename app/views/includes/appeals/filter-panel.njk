@@ -11,7 +11,7 @@
   {% set inspectorYouValue = 'Eli Morrow' %}
 {% endif %}
 
-{% set filterOptionsHtml %}
+{% set caseOfficerFilterHtml %}
   {{ appCheckboxFilter({
     idPrefix: "filters[caseOfficers]",
     name: "filters[caseOfficers]",
@@ -57,7 +57,9 @@
       { text: 'Bucky Barnes', value: 'Bucky Barnes' }
     ]
   }) }}
+{% endset %}
 
+{% set typeFilterHtml %}
   {{ govukCheckboxes({
     idPrefix: "filters[types]",
     name: "filters[types]",
@@ -78,7 +80,8 @@
     ],
     values: data.filters.types
   }) }}
-
+{% endset %}
+{% set procedureFilterHtml %}
   {{ govukCheckboxes({
     idPrefix: "filters[procedures]",
     name: "filters[procedures]",
@@ -96,7 +99,8 @@
     ],
     values: data.filters.procedures
   }) }}
-
+{% endset %}
+{% set statusFilterHtml %}
   {{ govukCheckboxes({
     idPrefix: "filters[statuses]",
     name: "filters[statuses]",
@@ -134,7 +138,8 @@
     ],
     values: data.filters.statuses
   }) }}
-
+{% endset %}
+{% set localPlanningAuthorityFilterHtml %}
   {{ appCheckboxFilter({
     idPrefix: "filters[lpas]",
     name: "filters[lpas]",
@@ -153,7 +158,8 @@
     selectedItems: selectedLPAItems,
     items: lpaCheckboxes
   }) }}
-  
+{% endset %}
+{% set inspectorFilterHtml %}
   {{ appCheckboxFilter({
     idPrefix: "filters[inspectors]",
     name: "filters[inspectors]",
@@ -194,7 +200,8 @@
       { value: "Roderick Kingsley", text: "Roderick Kingsley" }
     ]
   }) }}
-
+{% endset %}
+{% set linkedAppealTypeFilterHtml %}
   {{ govukCheckboxes({
     idPrefix: "filters[linkedAppealTypes]",
     name: "filters[linkedAppealTypes]",
@@ -212,7 +219,8 @@
     ],
     values: data.filters.linkedAppealTypes
   }) }}
-
+{% endset %}
+{% set siteVisitFilterUI %}
   {{ govukCheckboxes({
     idPrefix: "filters[siteVisit]",
     name: "filters[siteVisit]",
@@ -229,8 +237,9 @@
     ],
     values: data.filters.siteVisit
   }) }}
-
-  {{ govukCheckboxes({
+{% endset %}
+{% set planningObligationFilterUI %}
+   {{ govukCheckboxes({
     idPrefix: "filters[planningObligation]",
     name: "filters[planningObligation]",
     classes: "govuk-checkboxes--small",
@@ -246,8 +255,9 @@
     ],
     values: data.filters.planningObligation
   }) }}
-
-    {{ govukCheckboxes({
+{% endset %}
+{% set greenBeltFilterUI %}
+  {{ govukCheckboxes({
     idPrefix: "filters[greenBelt]",
     name: "filters[greenBelt]",
     classes: "govuk-checkboxes--small",
@@ -263,7 +273,32 @@
     ],
     values: data.filters.greenBelt
   }) }}
+{% endset %}
 
+{% set filterOptionsHtml %}
+  {% if data.userType == 'caseOfficer' %}
+    {{caseOfficerFilterHtml | safe}}
+    {{typeFilterHtml | safe}}
+    {{procedureFilterHtml | safe}}
+    {{statusFilterHtml | safe}}
+    {{localPlanningAuthorityFilterHtml | safe}}
+    {{inspectorFilterHtml | safe}}
+    {{linkedAppealTypeFilterHtml | safe}}
+    {{siteVisitFilterUI | safe}}
+    {{planningObligationFilterUI | safe}}
+    {{greenBeltFilterUI | safe}}   
+  {% else %}
+    {{inspectorFilterHtml | safe}}
+    {{typeFilterHtml | safe}}
+    {{procedureFilterHtml | safe}}
+    {{statusFilterHtml | safe}}
+    {{localPlanningAuthorityFilterHtml | safe}}
+    {{caseOfficerFilterHtml | safe}}
+    {{linkedAppealTypeFilterHtml | safe}}
+    {{siteVisitFilterUI | safe}}
+    {{planningObligationFilterUI | safe}}
+    {{greenBeltFilterUI | safe}}   
+  {% endif %}
 {% endset %}
 
 <div class="app-filter">

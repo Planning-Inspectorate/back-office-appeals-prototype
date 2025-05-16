@@ -1,5 +1,8 @@
 pr: none
-trigger: none
+trigger:
+  branches:
+    include:
+      - main
 
 pool: pins-odt-agent-pool
 
@@ -13,10 +16,6 @@ resources:
 
 steps:
   - checkout: self
-  - template: steps/node_script.yml@templates
-    parameters:
-      nodeVersion: 20
-      script: npm ci
   - task: ArchiveFiles@2
     inputs:
       rootFolderOrFile: $(Build.Repository.LocalPath)/
@@ -29,10 +28,3 @@ steps:
       appType: webAppLinux
       appName: pins-app-prototype-appeals-back-office
       package: $(Build.ArtifactStagingDirectory)/pins-app-prototype-appeals-back-office.zip
-  - task: PublishPipelineArtifact@1
-    inputs:
-      targetPath: $(Build.ArtifactStagingDirectory)
-      artifactName: WebApp
-  - task: DownloadPipelineArtifact@2
-    inputs:
-      patterns: '**/*.zip'

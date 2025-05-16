@@ -21,7 +21,26 @@ module.exports = router => {
   })
 
   router.post('/main/appeals/:appealId/edit-type/must-resubmit', function (req, res) {
-    res.redirect(`/main/appeals/${req.params.appealId}/edit-type/check`)
+    if(req.session.data.editType.type == 'Enforcement notice') {
+      res.redirect(`/main/appeals/${req.params.appealId}/edit-type/transfer`)
+    } else {
+      res.redirect(`/main/appeals/${req.params.appealId}/edit-type/check`)
+    }
+  })
+
+  router.get('/main/appeals/:appealId/edit-type/transfer', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
+
+    res.render('/main/appeals/edit-type/transfer', {
+      appeal
+    })
+  })
+
+  router.post('/main/appeals/:appealId/edit-type/transfer', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
+    appeal.status == 'Awaiting transfer'
+    req.flash('success', 'Appeal marked as awaiting transfer')
+    res.redirect(`/main/appeals/${req.params.appealId}`)
   })
 
   router.get('/main/appeals/:appealId/edit-type/check', function (req, res) {

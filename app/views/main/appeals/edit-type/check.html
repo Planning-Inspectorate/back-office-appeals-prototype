@@ -53,7 +53,24 @@
                 }
               ]
             }
-          }
+          },
+          {
+            key: {
+              text: "Deadline to resubmit appeal"
+            },
+            value: {
+              html: data.editType.resubmitDate | isoDateFromDateInput | govukDate
+            },
+            actions: {
+              items: [
+                {
+                  href: '/main/appeals/:appealId/edit-type/must-resubmit' | replace(':appealId', appeal.id),
+                  text: "Change",
+                  visuallyHiddenText: "Deadline to resubmit appeal"
+                }
+              ]
+            }
+          } if data.editType.resubmitDate.day
         ]
       }) }}
 

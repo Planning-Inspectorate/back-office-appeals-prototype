@@ -1,0 +1,24 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "You must transfer this case to Horizon" %}
+{% set pageName = title %}
+{% set back = true %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal {{appeal.id}} - update appeal type</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      <p>At the moment, this new service only supports some appeal procedures.</p>
+      <p>You need to transfer the case to Horizon, then add the Horizon reference number to this case.</p>
+
+      <form method="post">
+        {{ govukButton({
+          text: "Mark as awaiting transfer"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Horizon reference" %}
+{% set pageName = title %}
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form method="post">
+        <span class="govuk-caption-l">Appeal {{appeal.id}} - mark as transferred</span>
+        {{ govukInput({
+          id: "addHorizonReference[reference]",
+          name: "addHorizonReference[reference]",
+          label: {
+            text: "Horizon reference",
+            isPageHeading: true,
+            classes: "govuk-label--l"
+          },
+          value: data.addHorizonReference.reference,
+          classes: 'govuk-input--width-10'
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

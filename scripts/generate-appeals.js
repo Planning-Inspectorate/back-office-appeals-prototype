@@ -178,7 +178,14 @@ const generateAppeal = (params = {}) => {
   let appeal = {}
 
   appeal.id = params.id || "" + faker.number.int({ min: 123456, max: 999999 })
-  appeal.type = params.type || faker.helpers.arrayElement(['Householder appeal', 'Planning appeal', 'Listed building', 'Adverts', 'CAS adverts', 'CAS planning'])
+  appeal.type = params.type || faker.helpers.arrayElement([
+    'Householder', 
+    'Planning', 
+    'Planned listed building and conservation area', 
+    'Advertisement', 
+    'Commercial planning (CAS)', 
+    'Commercial advertisement (CAS)'
+  ])
 
   appeal.planningApplicationReference = params.planningApplicationReference || `25/${faker.number.int({ min: 783456, max: 996738 })}/BA`
 
@@ -186,7 +193,7 @@ const generateAppeal = (params = {}) => {
 
   let statuses = baseStatusesStart
 
-  if(appeal.type == 'Planning appeal') {
+  if(appeal.type == 'Planning') {
     statuses = statuses.concat(s78Statuses)
 
     appeal.procedure = params.procedure || faker.helpers.arrayElement([
@@ -286,9 +293,9 @@ const generateAppeal = (params = {}) => {
 
   let appealForm = {}
 
-  if(appeal.type == 'Adverts') {
-    appealForm.prop1 = faker.helpers.arrayElement(['Yes', 'No'])
-  }
+  //if(appeal.type == 'Advertisements') {
+    //appealForm.prop1 = faker.helpers.arrayElement(['Yes', 'No'])
+  //}
 
   appealForm.procedurePreference = faker.helpers.arrayElement(['Written representations', 'Hearing', 'Inquiry'])
   appealForm.hasPlanningObligation = faker.helpers.arrayElement(['Yes', 'Yes', 'Yes', 'Yes', 'Yes', 'No'])
@@ -311,7 +318,7 @@ const generateAppeal = (params = {}) => {
   appeal.appealForm = appealForm
 
   switch(appeal.status) {
-    case 'Statements and IP comments ready to review':
+    case 'Statements and IP comments closed':
     case 'Statements and IP comments ready to share':
     case 'Final comments open':
     case 'Final comments closed':
@@ -323,7 +330,7 @@ const generateAppeal = (params = {}) => {
     case 'Inquiry ready to set up':
     case 'Awaiting inquiry':
     case 'Awaiting proof of evidence and witnesses':
-    case 'Proof of evidence and witnesses ready to review':
+    case 'Proof of evidence and witnesses closed':
     case 'Proof of evidence and witnesses ready to share':
     case 'Decision ready to issue':
     case 'Decision issued':
@@ -338,7 +345,7 @@ const generateAppeal = (params = {}) => {
   }
 
 
-  if(appeal.type == 'Householder appeal' || appeal.type == 'CAS planning') {
+  if(appeal.type == 'Householder' || appeal.type == 'Commercial planning (CAS)') {
     appeal.startDate = DateTime.now().toISO()
     appeal.LPAQuestionnaireDueDate = DateTime.now().toISO()
     appeal.siteVisit = faker.helpers.arrayElement([{
@@ -520,7 +527,7 @@ const generateAppeals = () => {
 
   appeals.push(generateAppeal({
     id: '00000009',
-    type: 'Planning appeal',
+    type: 'Planning',
     procedure: 'Written representations',
     status: 'Ready to start',
     caseOfficer: 'Tony Stark'
@@ -528,7 +535,7 @@ const generateAppeals = () => {
 
   appeals.push(generateAppeal({
     id: '00000010',
-    type: 'Planning appeal',
+    type: 'Planning',
     procedure: 'Written representations',
     status: 'Ready to start',
     caseOfficer: 'Tony Stark'
@@ -536,7 +543,7 @@ const generateAppeals = () => {
 
   appeals.push(generateAppeal({
     id: '00000182',
-    type: 'Planning appeal',
+    type: 'Planning',
     procedure: 'Written representations',
     status: 'Ready to start',
     caseOfficer: 'Tony Stark'
@@ -545,7 +552,7 @@ const generateAppeals = () => {
 
   appeals.push(generateAppeal({
     id: '00000015',
-    type: 'Planning appeal',
+    type: 'Planning',
     procedure: 'Written representations',
     status: 'Decision ready to issue',
     caseOfficer: 'Tony Stark'
@@ -553,7 +560,7 @@ const generateAppeals = () => {
 
   appeals.push(generateAppeal({
     id: '00000016',
-    type: 'Planning appeal',
+    type: 'Planning',
     procedure: 'Written representations',
     status: 'Decision ready to issue',
     caseOfficer: 'Tony Stark'
@@ -561,7 +568,7 @@ const generateAppeals = () => {
 
   appeals.push(generateAppeal({
     id: '00000017',
-    type: 'Planning appeal',
+    type: 'Planning',
     procedure: 'Written representations',
     status: 'Decision ready to issue',
     caseOfficer: 'Tony Stark'
@@ -569,7 +576,7 @@ const generateAppeals = () => {
 
   appeals.push(generateAppeal({
     id: '00000011',
-    type: 'Planning appeal',
+    type: 'Planning',
     procedure: 'Hearing',
     status: 'Awaiting hearing',
     caseOfficer: 'Tony Stark'
@@ -583,7 +590,7 @@ const generateAppeals = () => {
 
   appeals.push(generateAppeal({
     id: '00000012',
-    type: 'Planning appeal',
+    type: 'Planning',
     procedure: 'Inquiry',
     status: status12,
     interestedPartyComments: interestedPartyComments,
@@ -591,38 +598,38 @@ const generateAppeals = () => {
   }))
 
   appeals.push(generateAppeal({
-    type: 'Planning appeal',
+    type: 'Planning',
     status: 'Ready to assign case officer'
   }))
   appeals.push(generateAppeal({
-    type: 'Planning appeal',
+    type: 'Planning',
     status: 'Ready to validate',
     caseOfficer: 'Tony Stark'
   }))
   appeals.push(generateAppeal({
     id: '00000005',
-    type: 'Planning appeal',
+    type: 'Planning',
     status: 'Ready to start',
     caseOfficer: 'Tony Stark'
   }))
   appeals.push(generateAppeal({
-    type: 'Planning appeal',
+    type: 'Planning',
     status: 'Awaiting LPAQ',
     caseOfficer: 'Tony Stark'
   }))
   appeals.push(generateAppeal({
-    type: 'Planning appeal',
+    type: 'Planning',
     status: 'LPAQ ready to review',
     caseOfficer: 'Tony Stark'
   }))
 
   appeals.push(generateAppeal({
-    type: 'Planning appeal',
+    type: 'Planning',
     status: 'Statements and IP comments open'
   }))
   appeals.push(generateAppeal({
     id: '00182182',
-    type: 'Planning appeal',
+    type: 'Planning',
     procedure: 'Inquiry',
     status: 'Statements and IP comments closed'
   }))
@@ -635,90 +642,90 @@ const generateAppeals = () => {
 
   appeals.push(generateAppeal({
     id: '00000013',
-    type: 'Planning appeal',
+    type: 'Planning',
     status: status13,
     interestedPartyComments: interestedPartyComments1
   }))
 
   appeals.push(generateAppeal({
-    type: 'Planning appeal',
+    type: 'Planning',
     procedure: 'Written representations',
     status: 'Final comments open'
   }))
   appeals.push(generateAppeal({
-    type: 'Planning appeal',
+    type: 'Planning',
     procedure: 'Written representations',
     status: 'Final comments closed'
   }))
   appeals.push(generateAppeal({
-    type: 'Planning appeal',
+    type: 'Planning',
     procedure: 'Written representations',
     status: 'Final comments ready to review'
   }))
   appeals.push(generateAppeal({
-    type: 'Planning appeal',
+    type: 'Planning',
     procedure: 'Written representations',
     status: 'Final comments ready to share'
   }))
   appeals.push(generateAppeal({
     id: '00000001',
-    type: 'Planning appeal',
+    type: 'Planning',
     procedure: 'Written representations',
     status: 'Site visit ready to set up'
   }))
   appeals.push(generateAppeal({
-    type: 'Planning appeal',
+    type: 'Planning',
     procedure: 'Written representations',
     status: 'Awaiting site visit'
   }))
 
   appeals.push(generateAppeal({
     id: '00000002',
-    type: 'Planning appeal',
+    type: 'Planning',
     procedure: 'Hearing',
     status: 'Hearing ready to set up'
   }))
   appeals.push(generateAppeal({
-    type: 'Planning appeal',
+    type: 'Planning',
     procedure: 'Hearing',
     status: 'Awaiting hearing'
   }))
 
   appeals.push(generateAppeal({
     id: '00000003',
-    type: 'Planning appeal',
+    type: 'Planning',
     procedure: 'Inquiry',
     status: 'Inquiry ready to set up'
   }))
   appeals.push(generateAppeal({
-    type: 'Planning appeal',
+    type: 'Planning',
     procedure: 'Inquiry',
     status: 'Proof of evidence and witnesses open'
   }))
   appeals.push(generateAppeal({
-    type: 'Planning appeal',
+    type: 'Planning',
     procedure: 'Inquiry',
     status: 'Proof of evidence and witnesses closed'
   }))
   appeals.push(generateAppeal({
-    type: 'Planning appeal',
+    type: 'Planning',
     procedure: 'Inquiry',
     status: 'Proof of evidence and witnesses ready to share'
   }))
   appeals.push(generateAppeal({
-    type: 'Planning appeal',
+    type: 'Planning',
     procedure: 'Inquiry',
     status: 'Awaiting inquiry'
   }))
 
   appeals.push(generateAppeal({
     id: '00000004',
-    type: 'Planning appeal',
+    type: 'Planning',
     procedure: 'Inquiry',
     status: 'Decision ready to issue'
   }))
   appeals.push(generateAppeal({
-    type: 'Planning appeal',
+    type: 'Planning',
     procedure: 'Inquiry',
     status: 'Decision issued'
   }))

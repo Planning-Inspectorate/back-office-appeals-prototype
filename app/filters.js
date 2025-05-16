@@ -158,8 +158,11 @@ addFilter('interestedPartyCommentStatusColour', status => {
 })
 
 addFilter('appealStatusColour', status => {
-	if(status.indexOf('Awaiting') > -1) {
+	if(status.indexOf('open') > -1) {
 		return 'govuk-tag--yellow'
+	}
+	if(status == 'Transferred') {
+		return 'govuk-tag--grey'
 	}
 	if(status == 'Decision issued') {
 		return 'govuk-tag--green'

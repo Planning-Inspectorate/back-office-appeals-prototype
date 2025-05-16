@@ -9,6 +9,8 @@ const baseStatusesStart = [
 const baseStatusesEnd = [
   'Decision ready to issue',
   'Decision issued',
+  'Awaiting transfer to Horizon',
+  'Transferred to Horizon',
   'Withdrawn'
 ]
 

@@ -128,6 +128,7 @@ require('./routes/site-visit--edit')(router)
 require('./routes/site-visit--delete')(router)
 
 require('./routes/horizon-reference--new')(router)
+require('./routes/horizon-reference--edit')(router)
 
 
 // Timetable

@@ -1,0 +1,43 @@
+{% extends "layouts/PINS-Simple.html" %}
+
+{% set title = "Check details and update Horizon reference" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal {{appeal.id}}</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Horizon reference"
+            },
+            value: {
+              text: data.editHorizonReference.reference
+            },
+            actions: {
+              items: [
+                {
+                  href: '/main/appeals/:appealId/horizon-reference/edit' | replace(':appealId', appeal.id),
+                  text: "Change",
+                  visuallyHiddenText: "Horizon reference"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <form method="post">
+        {{ govukButton({
+          text: "Update Horizon reference"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

@@ -139,6 +139,15 @@
         },
         value: {
           html: appeal.planningApplicationReference
+        },
+        actions: {
+          items: [
+            {
+              href: '/main/appeals/:appealId/horizon-reference/edit' | replace(':appealId', appeal.id),
+              text: "Change",
+              visuallyHiddenText: "Horizon reference"
+            }
+          ]
         }
       },
       {

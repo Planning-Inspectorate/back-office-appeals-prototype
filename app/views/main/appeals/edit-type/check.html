@@ -1,6 +1,10 @@
 {% extends "layouts/bo.html" %}
 
-{% set title = 'Check details and update appeal type'  %}
+{% if data.editType.mustResubmit == 'Yes' %}
+  {% set title = 'Check details and mark appeal as invalid' %}
+{% else %}
+  {% set title = 'Check details and update appeal type' %}
+{% endif %}
 {% set pageName = title %}
 
 {% block beforeContent %}
@@ -13,7 +17,7 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
-      <span class="govuk-caption-l">Appeal {{appeal.id}} - update appeal type</span>
+      <span class="govuk-caption-l">Appeal {{appeal.id}}</span>
       <h1 class="govuk-heading-l">
         {{title}}
       </h1>
@@ -36,7 +40,7 @@
                 }
               ]
             }
-          },
+          } if data.editType.mustResubmit == 'No',
           {
             key: {
               text: "Does the appellant need to resubmit the appeal?"
@@ -53,7 +57,7 @@
                 }
               ]
             }
-          },
+          } if data.editType.mustResubmit == 'No',
           {
             key: {
               text: "Deadline to resubmit appeal"
@@ -70,17 +74,26 @@
                 }
               ]
             }
-          } if data.editType.resubmitDate.day
+          } if data.editType.mustResubmit == 'Yes'
         ]
       }) }}
 
-      <p>We will send an email to the relevant parties to tell them that the appeal type
-has changed.</p>
+      {% if data.editType.mustResubmit == 'Yes' %}
+        <p>We will send an email to the appellant to tell them that they need to resubmit a new {{data.editType.type | lower}} appeal by {{data.editType.resubmitDate | isoDateFromDateInput | govukDate}}.</p>
+      {% else %}
+        <p>We will send an email to the relevant parties to tell them that the appeal type has changed.</p>
+      {% endif %}
 
       <form method="post">
-        {{ govukButton({
-          text: "Update appeal type"
-        }) }}
+        {% if data.editType.mustResubmit == 'Yes' %}
+          {{ govukButton({
+            text: "Mark appeal as invalid"
+          }) }}
+        {% else %}
+          {{ govukButton({
+            text: "Update appeal type"
+          }) }}
+        {% endif %}
 
       </form>
     </div>

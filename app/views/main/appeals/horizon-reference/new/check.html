@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-Simple.html" %}
 
-{% set title = "Check details and mark case as transferred" %}
+{% set title = "Check details and mark appeal as transferred" %}
 {% set pageName = title %}
 
 {% set back = true %}
@@ -33,11 +33,8 @@
       }) }}
 
       <form method="post">
-        {# {{ govukButton({
-          text: "Add Horizon reference"
-        }) }} #}
         {{ govukButton({
-          text: "Mark case as transferred"
+          text: "Mark appeal as transferred"
         }) }}
       </form>
 

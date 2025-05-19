@@ -1,0 +1,29 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "You cannot update the appeal type" %}
+{% set pageName = title %}
+{% set back = true %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal {{appeal.id}}</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      <p>This is because you can only update the appeal type when the status is:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          ready to assign case officer
+        </li>
+        <li>
+          ready to validate
+        </li>
+        <li>
+          ready to start
+        </li>
+      </ul>
+
+    </div>
+  </div>
+{% endblock %}

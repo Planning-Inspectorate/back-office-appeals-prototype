@@ -1,0 +1,24 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "We will mark the ‘:type’ appeal as invalid" | replace(':type', appeal.type)  %}
+{% set pageName = title %}
+{% set back = true %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal {{appeal.id}}</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      <p>You need to add a deadline for the appellant to resubmit the new commercial advert appeal.</p>
+
+      <form method="post">
+        {{ govukButton({
+          text: "Continue",
+          href: '/main/appeals/:appealId/edit-type/resubmit-date' | replace(':appealId', appeal.id)
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

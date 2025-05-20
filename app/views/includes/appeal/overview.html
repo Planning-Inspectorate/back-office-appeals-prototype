@@ -157,7 +157,7 @@
         value: {
           html: appeal.horizonReference
         }
-      },
+      } if appeal.horizonReference or appeal.status == 'Awaiting transfer',
       {
         key: {
           text: "Appeal type"

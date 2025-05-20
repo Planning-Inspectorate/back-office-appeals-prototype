@@ -3,12 +3,12 @@ module.exports = router => {
   router.get('/main/appeals/:appealId/edit-type', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
 
-    if(!['Ready to assign case officer', 'Ready to validate', 'Ready to start'].includes(appeal.type)) {
-      res.redirect(`/main/appeals/${req.params.appealId}/edit-type/exit`)
-    } else {
+    if(['Ready to assign case officer', 'Ready to validate', 'Ready to start'].includes(appeal.status)) {
       res.render('/main/appeals/edit-type/index', {
         appeal
       })
+    } else {
+      res.redirect(`/main/appeals/${req.params.appealId}/edit-type/exit`)
     }
   })
 

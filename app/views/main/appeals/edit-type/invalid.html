@@ -1,6 +1,9 @@
 {% extends "layouts/bo.html" %}
 
-{% set title = "We will mark the ‘:type’ appeal as invalid" | replace(':type', appeal.type)  %}
+
+{% set lowerCaseType = appeal.type | lower %}
+
+{% set title = "We will mark the :type appeal as invalid" | replace(':type', lowerCaseType)  %}
 {% set pageName = title %}
 {% set back = true %}
 

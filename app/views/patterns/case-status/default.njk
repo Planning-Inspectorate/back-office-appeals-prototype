@@ -5,79 +5,97 @@
   {% if caseStatus === "validation" %}
     {{ govukTag({
       text: "Validation",
-      classes:'govuk-tag--orange'
-    }) }}
-
-  {% elseif caseStatus === "awaitingTransfer" %}
-    {{ govukTag({
-      text: "Awaiting transfer",
-      classes:'govuk-tag--red'
-    }) }}
-
-  {% elseif caseStatus === "transferred" %}
-    {{ govukTag({
-      text: "Transferred",
-      classes:'govuk-tag--grey'
+      classes:'govuk-tag--green'
     }) }}
 
   {% elseif caseStatus === "assign" %}
     {{ govukTag({
       text: "Assign case officer",
-      classes:'govuk-tag--grey'
+      classes:'govuk-tag--green'
     }) }}
 
   {% elseif caseStatus === "ready" %}
     {{ govukTag({
       text: "Ready to start",
-      classes:'govuk-tag--turquoise'
+      classes:'govuk-tag--green'
     }) }}
 
   {% elseif caseStatus === "questionnaire" %}
     {{ govukTag({
       text: "LPA questionnaire",
-      classes:'govuk-tag--yellow'
+      classes:'govuk-tag--green'
     }) }}
 
   {% elseif caseStatus === "statements" %}
     {{ govukTag({
       text: "Statements",
-      classes:'govuk-tag--blue'
+      classes:'govuk-tag--green'
     }) }}
 
   {% elseif caseStatus === "comments" %}
     {{ govukTag({
       text: "IP comments",
-      classes:'govuk-tag--purple'
+      classes:'govuk-tag--green'
     }) }}
 
   {% elseif caseStatus === "finalComments" %}
     {{ govukTag({
       text: "Final comments",
-      classes:'govuk-tag--orange'
+      classes:'govuk-tag--green'
     }) }}
 
   {% elseif caseStatus === "proofs" %}
     {{ govukTag({
-      text: "Evidence",
-      classes:'govuk-tag--purple'
+      text: "Proof of evidence",
+      classes:'govuk-tag--green'
     }) }}
 
-  {% elseif caseStatus === "event" %}
+  {% elseif caseStatus === "setupSiteVisit" %}
     {{ govukTag({
-      text: "Event",
+      text: "Site visit ready to set up",
+      classes:'govuk-tag--green'
+    }) }}
+
+  {% elseif caseStatus === "awaitingSiteVisit" %}
+    {{ govukTag({
+      text: "Awaiting site visit",
+      classes:'govuk-tag--yellow'
+    }) }}
+
+  {% elseif caseStatus === "setupHearing" %}
+    {{ govukTag({
+      text: "Hearing ready to set up",
+      classes:'govuk-tag--green'
+    }) }}
+
+  {% elseif caseStatus === "awaitingHearing" %}
+    {{ govukTag({
+      text: "Awaiting hearing",
+      classes:'govuk-tag--yellow'
+    }) }}
+
+  {% elseif caseStatus === "setupInquiry" %}
+    {{ govukTag({
+      text: "Inquiry ready to set up",
+      classes:'govuk-tag--green'
+    }) }}
+
+  {% elseif caseStatus === "awaitingInquiry" %}
+    {{ govukTag({
+      text: "Awaiting inquiry",
       classes:'govuk-tag--yellow'
     }) }}
 
   {% elseif caseStatus === "decision" %}
     {{ govukTag({
       text: "Issue decision",
-      classes:'govuk-tag--pink'
+      classes:'govuk-tag--green'
     }) }}
 
   {% elseif caseStatus === "complete" %}
     {{ govukTag({
       text: "Complete",
-      classes:'govuk-tag--green'
+      classes:'govuk-tag--blue'
     }) }}
 
   {% elseif caseStatus === "invalid" %}
@@ -89,7 +107,7 @@
   {% elseif caseStatus === "awaiting" %}
     {{ govukTag({
       text: "Awaiting transfer",
-      classes:'govuk-tag--grey'
+      classes:'govuk-tag--green'
     }) }}
 
   {% elseif caseStatus === "transferred" %}

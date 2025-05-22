@@ -101,11 +101,23 @@
       </p>
 
       <p>
-        {{ caseStatus ( caseStatus = "evidence" ) }}
+        {{ caseStatus ( caseStatus = "finalComments" ) }}
       </p>
 
       <p>
-        {{ caseStatus ( caseStatus = "finalComments" ) }}
+        {{ caseStatus ( caseStatus = "setupSiteVisit" ) }}
+      </p>
+
+      <p>
+        {{ caseStatus ( caseStatus = "awaitingSiteVisit" ) }}
+      </p>
+
+      <p>
+        {{ caseStatus ( caseStatus = "setupHearing" ) }}
+      </p>
+
+      <p>
+        {{ caseStatus ( caseStatus = "awaitingHearing" ) }}
       </p>
 
       <p>
@@ -113,7 +125,11 @@
       </p>
 
       <p>
-        {{ caseStatus ( caseStatus = "event" ) }}
+        {{ caseStatus ( caseStatus = "setupInquiry" ) }}
+      </p>
+
+      <p>
+        {{ caseStatus ( caseStatus = "awaitingInquiry" ) }}
       </p>
 
       <p>
@@ -209,12 +225,36 @@
             <th scope="col" class="govuk-table__header">{{ caseStatus ( caseStatus = 'statements' ) }}</th>
           </tr>
           <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header govuk-!-font-weight-regular">evidence</th>
-            <th scope="col" class="govuk-table__header">{{ caseStatus ( caseStatus = 'evidence' ) }}</th>
-          </tr>
-          <tr class="govuk-table__row">
             <th scope="row" class="govuk-table__header govuk-!-font-weight-regular">finalComments</th>
             <th scope="col" class="govuk-table__header">{{ caseStatus ( caseStatus = 'finalComments' ) }}</th>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header govuk-!-font-weight-regular">setupSiteVisit</th>
+            <th scope="col" class="govuk-table__header">{{ caseStatus ( caseStatus = 'setupSiteVisit' ) }}</th>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header govuk-!-font-weight-regular">awaitingSiteVisit</th>
+            <th scope="col" class="govuk-table__header">{{ caseStatus ( caseStatus = 'awaitingSiteVisit' ) }}</th>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header govuk-!-font-weight-regular">setupHearing</th>
+            <th scope="col" class="govuk-table__header">{{ caseStatus ( caseStatus = 'setupHearing' ) }}</th>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header govuk-!-font-weight-regular">awaitingHearing</th>
+            <th scope="col" class="govuk-table__header">{{ caseStatus ( caseStatus = 'awaitingHearing' ) }}</th>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header govuk-!-font-weight-regular">proofs</th>
+            <th scope="col" class="govuk-table__header">{{ caseStatus ( caseStatus = 'proofs' ) }}</th>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header govuk-!-font-weight-regular">setupInquiry</th>
+            <th scope="col" class="govuk-table__header">{{ caseStatus ( caseStatus = 'setupInquiry' ) }}</th>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header govuk-!-font-weight-regular">awaitingInquiry</th>
+            <th scope="col" class="govuk-table__header">{{ caseStatus ( caseStatus = 'awaitingInquiry' ) }}</th>
           </tr>
           <tr class="govuk-table__row">
             <th scope="row" class="govuk-table__header govuk-!-font-weight-regular">decision</th>

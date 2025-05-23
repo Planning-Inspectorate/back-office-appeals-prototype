@@ -1,0 +1,16 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  GOV.UK page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+	{% include "includes/PINS-header-simple.html" %}
+	{% set active_section = { your_organisation: true } %}
+	{% include "includes/service-navigation-header.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+{% endblock %}

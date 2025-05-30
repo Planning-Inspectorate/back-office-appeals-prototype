@@ -18,7 +18,7 @@
               text: "Appeal reference"
             },
             value: {
-              html: newLinkedAppeal.id + '<br>:type' | replace(':type', newLinkedAppeal.type)
+              html: newLinkedAppeal.id + '<br>:address <br>:type' | replace(':address', appAddress({ address: newLinkedAppeal.site.address, delimiter: ', '})) | replace(':type', newLinkedAppeal.type)
             },
             actions: {
               items: [
@@ -35,7 +35,7 @@
               text: "Which is the lead appeal?"
             },
             value: {
-              html: newLeadAppeal.id + '<br>:type' | replace(':type', newLeadAppeal.type)
+              html: newLeadAppeal.id + '<br>:address <br>:type' | replace(':address', appAddress({ address: newLeadAppeal.site.address, delimiter: ', '})) | replace(':type', newLeadAppeal.type)
             },
             actions: {
               items: [

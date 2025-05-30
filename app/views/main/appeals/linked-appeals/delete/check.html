@@ -18,7 +18,7 @@
               text: "Which is the new lead appeal?"
             },
             value: {
-              html: newLeadAppeal.id + '<br>:type' | replace(':type', newLeadAppeal.type)
+              html: newLeadAppeal.id + '<br>:address <br>:type' | replace(':address', appAddress({ address: newLeadAppeal.site.address, delimiter: ', '})) | replace(':type', newLeadAppeal.type)
             },
             actions: {
               items: [

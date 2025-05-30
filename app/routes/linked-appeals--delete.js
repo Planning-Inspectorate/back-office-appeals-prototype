@@ -45,11 +45,14 @@ module.exports = router => {
     // this works because I know linkedAppealId is the lead appeal
     let radios = getLinkedAppeals(req.params.linkedAppealId, req.session.data.linkedAppeals)
       .map(linkedAppeal => {
+
+        let appeal = req.session.data.appeals.find(appeal => appeal.id == linkedAppeal.id)
+
       return {
         text: linkedAppeal.id,
         value: linkedAppeal.id,
         hint: {
-          text: req.session.data.appeals.find(appeal => appeal.id == linkedAppeal.id).type
+          html: `${[appeal.site.address.line1, appeal.site.address.town, appeal.site.address.postcode].join(', ')} <div class="govuk-!-margin-top-1">${appeal.type}</div>` 
         }
       }
     })

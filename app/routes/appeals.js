@@ -24,18 +24,27 @@ module.exports = router => {
       })
     } else {
       // Sort by due date
-      const now = new Date()
-
+      const now = new Date();
       appeals = appeals.sort((a, b) => {
-        const aDue = a.dueDate ? new Date(a.dueDate) : null;
-        const bDue = b.dueDate ? new Date(b.dueDate) : null;
-      
-        if (!aDue && !bDue) return 0;        // both have no due date
-        if (!aDue) return 1;                 // a has no due date, b does => a goes after
-        if (!bDue) return -1;                // b has no due date, a does => b goes after
-      
-        // both have due dates — sort by proximity to now
-        return Math.abs(aDue - now) - Math.abs(bDue - now);
+        const aDue = a.dueDate ? new Date(a.dueDate) : null
+        const bDue = b.dueDate ? new Date(b.dueDate) : null
+
+        if (!aDue && !bDue) return 0
+        if (!aDue) return 1
+        if (!bDue) return -1
+
+        const aTime = aDue.getTime()
+        const bTime = bDue.getTime()
+        const nowTime = now.getTime()
+
+        const aOverdue = aTime < nowTime
+        const bOverdue = bTime < nowTime
+
+        if (aOverdue && !bOverdue) return -1 // a is overdue, b is not
+        if (!aOverdue && bOverdue) return 1  // b is overdue, a is not
+
+        // both are in the same category: both overdue or both upcoming
+        return aTime - bTime // earlier date first
       });
     }
 

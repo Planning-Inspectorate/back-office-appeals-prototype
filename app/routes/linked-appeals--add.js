@@ -1,5 +1,5 @@
 const { v4: uuidv4 } = require('uuid')
-const { isLeadAppeal, canAppealBeLinked, getLinkedAppeals } = require('../helpers/linked-appeals')
+const { isLeadAppeal, canAppealBeLinked, getLinkedAppeals, getHintText } = require('../helpers/linked-appeals')
 const _ = require('lodash')
 
 module.exports = router => {
@@ -38,13 +38,13 @@ module.exports = router => {
       text: appeal.id + (isLeadAppeal(appeal.id, req.session.data.linkedAppeals) ? ' (current lead)': ''),
       value: appeal.id,
       hint: {
-        html: `${[appeal.site.address.line1, appeal.site.address.town, appeal.site.address.postcode].join(', ')} <div class="govuk-!-margin-top-1">${appeal.type}</div>`
+        html: getHintText(appeal)
       }
     }, {
       text: req.session.data.addLinkedAppeal.reference,
       value: req.session.data.addLinkedAppeal.reference,
       hint: {
-        html: `${[otherAppeal.site.address.line1, otherAppeal.site.address.town, otherAppeal.site.address.postcode].join(', ')} <div class="govuk-!-margin-top-1">${otherAppeal.type}</div>`
+        html: getHintText(otherAppeal)
       }
     }]
 

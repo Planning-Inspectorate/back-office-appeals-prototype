@@ -1,5 +1,5 @@
 const _ = require('lodash')
-const { isLeadAppeal } = require('../helpers/linked-appeals')
+const { isLeadAppeal, getHintText } = require('../helpers/linked-appeals')
 const { v4: uuidv4 } = require('uuid')
 
 module.exports = router => {
@@ -21,11 +21,12 @@ module.exports = router => {
     // get all the linked appeals
     let radios = allLinkedAppeals.filter(linkedAppeal => linkedAppeal.leadAppealId == leadAppeal.id)
       .map(linkedAppeal => {
+
         return {
           text: linkedAppeal.childAppealId,
           value: linkedAppeal.childAppealId,
           hint: {
-            text: req.session.data.appeals.find(appeal => appeal.id == linkedAppeal.childAppealId).type
+            html: getHintText( req.session.data.appeals.find(appeal => appeal.id == linkedAppeal.childAppealId) )
           }
         }
       })

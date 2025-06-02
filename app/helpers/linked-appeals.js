@@ -48,9 +48,14 @@ function canAppealBeLinked(appeal) {
   ].includes(appeal.status)
 }
 
+function getHintText(appeal) {
+  return `<div>${[appeal.site.address.line1, appeal.site.address.town, appeal.site.address.postcode].join('<br>')}</div> <div class="govuk-!-margin-top-1">${appeal.type}</div>`
+}
+
 module.exports = {
   getLinkedAppeals,
   isLeadAppeal,
   isChildAppeal,
-  canAppealBeLinked
+  canAppealBeLinked,
+  getHintText
 }

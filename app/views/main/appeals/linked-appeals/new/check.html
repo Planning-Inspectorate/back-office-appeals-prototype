@@ -11,6 +11,19 @@
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">Appeal {{appeal.id}} {% if appeal.isLeadAppeal %}(lead){% endif %}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
+
+      {% set newLinkedAppealHtml %}
+        <p>{{newLinkedAppeal.id}}</p>
+        <p>{{appAddress({ address: newLinkedAppeal.site.address})}}</p>
+        <p>{{newLinkedAppeal.type}}</p>
+      {% endset %}
+
+      {% set newLeadAppealHtml %}
+        <p>{{newLeadAppeal.id}}</p>
+        <p>{{appAddress({ address: newLeadAppeal.site.address})}}</p>
+        <p>{{newLeadAppeal.type}}</p>
+      {% endset %}
+
       {{ govukSummaryList({
         rows: [
           {
@@ -18,7 +31,7 @@
               text: "Appeal reference"
             },
             value: {
-              html: newLinkedAppeal.id + '<br>:address <br>:type' | replace(':address', appAddress({ address: newLinkedAppeal.site.address, delimiter: ', '})) | replace(':type', newLinkedAppeal.type)
+              html: newLinkedAppealHtml
             },
             actions: {
               items: [
@@ -35,7 +48,7 @@
               text: "Which is the lead appeal?"
             },
             value: {
-              html: newLeadAppeal.id + '<br>:address <br>:type' | replace(':address', appAddress({ address: newLeadAppeal.site.address, delimiter: ', '})) | replace(':type', newLeadAppeal.type)
+              html: newLeadAppealHtml
             },
             actions: {
               items: [

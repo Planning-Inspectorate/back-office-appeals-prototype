@@ -11,6 +11,13 @@
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">Appeal {{appeal.id}}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
+
+      {% set newLeadAppealHtml %}
+        <p>{{newLinkedAppeal.id}}</p>
+        <p>{{appAddress({ address: newLeadAppeal.site.address})}}</p>
+        <p>{{newLeadAppeal.type}}</p>
+      {% endset %}
+
       {{ govukSummaryList({
         rows: [
           {
@@ -18,7 +25,7 @@
               text: "Which is the new lead appeal?"
             },
             value: {
-              html: newLeadAppeal.id + '<br>:address <br>:type' | replace(':address', appAddress({ address: newLeadAppeal.site.address, delimiter: ', '})) | replace(':type', newLeadAppeal.type)
+              html: newLeadAppealHtml
             },
             actions: {
               items: [

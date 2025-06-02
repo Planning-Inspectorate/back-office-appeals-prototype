@@ -1,5 +1,5 @@
 const _ = require('lodash')
-const { isLeadAppeal, isChildAppeal, getLinkedAppeals } = require('../helpers/linked-appeals')
+const { isLeadAppeal, isChildAppeal, getLinkedAppeal, getHintText } = require('../helpers/linked-appeals')
 
 module.exports = router => {
 
@@ -52,7 +52,7 @@ module.exports = router => {
         text: linkedAppeal.id,
         value: linkedAppeal.id,
         hint: {
-          html: `${[appeal.site.address.line1, appeal.site.address.town, appeal.site.address.postcode].join(', ')} <div class="govuk-!-margin-top-1">${appeal.type}</div>` 
+          html: getHintText(appeal)
         }
       }
     })

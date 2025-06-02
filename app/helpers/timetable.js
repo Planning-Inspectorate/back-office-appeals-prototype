@@ -156,8 +156,14 @@ const generateTimetableHearing = (appeal) => {
         timetable.push(row({ key: 'Statement of common ground due', value, action: { href: url, text: 'Change' }}))
 
         if(appeal.appealForm.hasPlanningObligation == 'Yes' && appeal.appealForm.readyToSubmitPlanningObligation == 'No') {
-          var value = DateTime.fromISO(appeal.planningObligationDueDate).toFormat("d MMMM yyyy")
-          timetable.push(row({ key: 'Planning obligation due', value, action: { href: url, text: 'Change' }}))
+          if(appeal.planningObligationDueDate) {
+            var value = DateTime.fromISO(appeal.planningObligationDueDate).toFormat("d MMMM yyyy")
+            var cta = 'Change'
+          } else {
+            var value = 'Not provided'
+            var cta = 'Add'
+          }
+          timetable.push(row({ key: 'Planning obligation due', value, action: { href: url, text: cta }}))
         }
 
         timetable.push(row({ key: 'Case management conference', value: 'Not set up', action: { href: `/main/appeals/${appeal.id}/add-cmc`, text: 'Set up' }}))

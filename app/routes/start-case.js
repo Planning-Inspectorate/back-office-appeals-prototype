@@ -110,9 +110,9 @@ router.get('/main/appeals/:appealId/start-case/has-inquiry-address', function (r
       appeal.statementsDueDate = DateTime.now().toISO()
       appeal.interestedPartyCommentsDueDate = DateTime.now().toISO()
       appeal.statementOfCommonGroundDueDate = DateTime.now().toISO()
-      if(appeal.appealForm.hasPlanningObligation == 'Yes' && appeal.appealForm.readyToSubmitPlanningObligation == 'No') {
-        appeal.planningObligationDueDate = DateTime.now().toISO()
-      }
+      // if(appeal.appealForm.hasPlanningObligation == 'Yes' && appeal.appealForm.readyToSubmitPlanningObligation == 'No') {
+      //   appeal.planningObligationDueDate = DateTime.now().toISO()
+      // }
     }
 
     if(data.procedure === 'Inquiry') {

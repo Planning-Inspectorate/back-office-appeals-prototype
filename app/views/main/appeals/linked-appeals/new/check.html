@@ -13,15 +13,15 @@
       <h1 class="govuk-heading-l">{{title}}</h1>
 
       {% set newLinkedAppealHtml %}
-        <p>{{newLinkedAppeal.id}}</p>
-        <p>{{appAddress({ address: newLinkedAppeal.site.address})}}</p>
-        <p>{{newLinkedAppeal.type}}</p>
+        <p class="govuk-!-margin-bottom-1">{{newLinkedAppeal.id}}</p>
+        <p class="govuk-!-margin-bottom-1">{{newLinkedAppeal.site.address.line1}}</p>
+        <p class="govuk-!-margin-bottom-0">{{newLinkedAppeal.type}}</p>
       {% endset %}
 
       {% set newLeadAppealHtml %}
-        <p>{{newLeadAppeal.id}}</p>
-        <p>{{appAddress({ address: newLeadAppeal.site.address})}}</p>
-        <p>{{newLeadAppeal.type}}</p>
+        <p class="govuk-!-margin-bottom-1">{{newLeadAppeal.id}}</p>
+        <p class="govuk-!-margin-bottom-1">{{newLeadAppeal.site.address.line1}}</p>
+        <p class="govuk-!-margin-bottom-0">{{newLeadAppeal.type}}</p>
       {% endset %}
 
       {{ govukSummaryList({

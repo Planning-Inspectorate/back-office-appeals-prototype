@@ -49,7 +49,8 @@ function canAppealBeLinked(appeal) {
 }
 
 function getHintText(appeal) {
-  return `<div>${[appeal.site.address.line1, appeal.site.address.town, appeal.site.address.postcode].join('<br>')}</div> <div class="govuk-!-margin-top-1">${appeal.type}</div>`
+  return `<div>${appeal.site.address.line1}</div> <div class="govuk-!-margin-top-1">${appeal.type}</div>`
+  // return `<div>${[appeal.site.address.line1, appeal.site.address.town, appeal.site.address.postcode].join('<br>')}</div> <div class="govuk-!-margin-top-1">${appeal.type}</div>`
 }
 
 module.exports = {

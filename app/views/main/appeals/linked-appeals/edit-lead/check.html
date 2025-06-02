@@ -13,9 +13,9 @@
       <h1 class="govuk-heading-l">{{title}}</h1>
 
       {% set newLeadAppealHtml %}
-        <p>{{newLeadAppeal.id}}</p>
-        <p>{{appAddress({ address: newLeadAppeal.site.address})}}</p>
-        <p>{{newLeadAppeal.type}}</p>
+        <p class="govuk-!-margin-bottom-1">{{newLeadAppeal.id}}</p>
+        <p class="govuk-!-margin-bottom-1">{{appAddress({ address: newLeadAppeal.site.address})}}</p>
+        <p class="govuk-!-margin-bottom-0">{{newLeadAppeal.type}}</p>
       {% endset %}
 
       {{ govukSummaryList({

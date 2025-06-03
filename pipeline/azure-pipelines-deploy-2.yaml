@@ -24,6 +24,7 @@ extends:
         deploymentJobs:
           - name: Build & Deploy
             steps:
+              - checkout: self
               - template: ../steps/azure_web_app_docker_build_push.yml@templates
                 parameters:
                   azurecrName: pinscrsharedtoolinguks

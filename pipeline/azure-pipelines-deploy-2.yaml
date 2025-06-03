@@ -17,10 +17,7 @@ resources:
 extends:
   template: stages/wrapper_cd.yml@templates
   parameters:
-    gitFetchDepth: 0
-    globalVariables:
-      - template: .azure/pipelines/azure-pipelines-variables.yml@self
-    validationJobs:
+    deploymentStages:
       - name: Build & Deploy
         steps:
           - template: ../steps/azure_web_app_docker_build_push.yml@templates

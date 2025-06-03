@@ -17,6 +17,8 @@ resources:
 extends:
   template: stages/wrapper_cd.yml@templates
   parameters:
+    environments:
+      - name: Dev
     deploymentStages:
       - name: Build & Deploy
         deploymentJobs:

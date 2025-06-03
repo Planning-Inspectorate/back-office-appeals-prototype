@@ -17,10 +17,12 @@ module.exports = router => {
       }));
 
     
-    if(req.session.data.sort == 'Status') {
+    if (req.session.data.sort === 'Status') {
       // Sort by status
       appeals = appeals.sort((a, b) => {
-        return allStatuses.indexOf(a.status) - allStatuses.indexOf(b.status);
+        const aIndex = allStatuses.indexOf(a.status)
+        const bIndex = allStatuses.indexOf(b.status)
+        return (aIndex === -1 ? Infinity : aIndex) - (bIndex === -1 ? Infinity : bIndex)
       })
     } else {
       // Sort by due date
@@ -29,9 +31,9 @@ module.exports = router => {
         const aDue = a.dueDate ? new Date(a.dueDate) : null
         const bDue = b.dueDate ? new Date(b.dueDate) : null
 
-        if (!aDue && !bDue) return 0
-        if (!aDue) return 1
-        if (!bDue) return -1
+        if (!aDue && !bDue) return 0;
+        if (!aDue) return 1;
+        if (!bDue) return -1;
 
         const aTime = aDue.getTime()
         const bTime = bDue.getTime()
@@ -40,12 +42,11 @@ module.exports = router => {
         const aOverdue = aTime < nowTime
         const bOverdue = bTime < nowTime
 
-        if (aOverdue && !bOverdue) return -1 // a is overdue, b is not
-        if (!aOverdue && bOverdue) return 1  // b is overdue, a is not
+        if (aOverdue && !bOverdue) return -1
+        if (!aOverdue && bOverdue) return 1
 
-        // both are in the same category: both overdue or both upcoming
-        return aTime - bTime // earlier date first
-      });
+        return aTime - bTime
+      })
     }
 
     let keywords = _.get(req.session.data.search, 'keywords')

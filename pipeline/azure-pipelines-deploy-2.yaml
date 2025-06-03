@@ -19,15 +19,14 @@ extends:
   parameters:
     deploymentStages:
       - name: Build & Deploy
-        steps:
-          - template: ../steps/azure_web_app_docker_build_push.yml@templates
-            parameters:
-              azurecrName: pinscrsharedtoolinguks
-              dockerfilePath: $(Build.SourcesDirectory)/Dockerfile
-              repository: prototypes/appeals-back-office
-          - name: Deploy
+        deploymentJobs:
+          - name: Build & Deploy
             steps:
-              - checkout: self
+              - template: ../steps/azure_web_app_docker_build_push.yml@templates
+                parameters:
+                  azurecrName: pinscrsharedtoolinguks
+                  dockerfilePath: $(Build.SourcesDirectory)/Dockerfile
+                  repository: prototypes/appeals-back-office
               - template: ../steps/azure_web_app_deploy_slot.yml@templates
                 parameters:
                   appName: pins-app-prototype-appeals-back-office-dkr

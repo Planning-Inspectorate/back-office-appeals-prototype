@@ -6,6 +6,10 @@
 const appeals = require('./data/appeals.json')
 
 const govukPrototypeKit = require('govuk-prototype-kit')
+
+const {applyAzureHostingFix} = require('./azure-hosting-fix');
+applyAzureHostingFix();
+
 const router = govukPrototypeKit.requests.setupRouter()
 const { isLeadAppeal, isChildAppeal } = require('../app/helpers/linked-appeals')
 

@@ -43,8 +43,7 @@ function canAppealBeLinked(appeal) {
     'Ready to assign case officer', 
     'Ready to validate', 
     'Ready to start', 
-    'Awaiting LPAQ', 
-    'LPAQ ready to review'
+    'LPAQ'
   ].includes(appeal.status)
 }
 

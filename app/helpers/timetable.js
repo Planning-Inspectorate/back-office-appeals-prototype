@@ -28,8 +28,7 @@ const generateTimetableHouseholder = (appeal) => {
       timetable.push(row({ key: 'Valid date', value: DateTime.now().toFormat('d MMMM yyyy'), action: { href: `/main/appeals/${appeal.id}/xyz`, text: 'Change' }}))
       timetable.push(row({ key: 'Start date', value: 'Not started', action: { href: `/main/appeals/${appeal.id}/start-case`, text: 'Start' }}))
       break
-      case 'Awaiting LPAQ':
-      case 'LPAQ ready to review':
+      case 'LPAQ':
       case 'Site visit ready to set up':
       case 'Awaiting site visit':
       case 'Decision ready to issue':
@@ -59,14 +58,9 @@ const generateTimetableWritten = (appeal) => {
       timetable.push(row({ key: 'Valid date', value: 'Not validated', action: { href: `/main/appeals/${appeal.id}/validate`, text: 'Validate' }}))
       break
     case 'Ready to start':
-    case 'Awaiting LPAQ':
-    case 'LPAQ ready to review':
-    case 'Statements and IP comments open':
-    case 'Statements and IP comments closed':
-    case 'Statements and IP comments ready to share':
-    case 'Final comments open':
-    case 'Final comments closed':
-    case 'Final comments ready to share':
+    case 'LPAQ':
+    case 'Statements and IP comments':
+    case 'Final comments':
     case 'Site visit ready to set up':
     case 'Awaiting site visit':
     case 'Decision ready to issue':
@@ -118,11 +112,8 @@ const generateTimetableHearing = (appeal) => {
       timetable.push(row({ key: 'Valid date', value: 'Not validated', action: { href: `/main/appeals/${appeal.id}/validate`, text: 'Validate' }}))
       break
     case 'Ready to start':
-    case 'Awaiting LPAQ':
-    case 'LPAQ ready to review':
-    case 'Statements and IP comments open':
-    case 'Statements and IP comments closed':
-    case 'Statements and IP comments ready to share':
+    case 'LPAQ':
+    case 'Statements and IP comments':
     case 'Hearing ready to set up':
     case 'Awaiting hearing':
     case 'Decision ready to issue':
@@ -198,15 +189,10 @@ const generateTimetableInquiry = (appeal) => {
       timetable.push(row({ key: 'Valid date', value: 'Not validated', action: { href: `/main/appeals/${appeal.id}/validate`, text: 'Validate' }}))
       break
     case 'Ready to start':
-    case 'Awaiting LPAQ':
-    case 'LPAQ ready to review':
-    case 'Statements and IP comments open':
-    case 'Statements and IP comments closed':
-    case 'Statements and IP comments ready to share':
+    case 'LPAQ':
+    case 'Statements and IP comments':
     case 'Inquiry ready to set up':
-    case 'Proof of evidence and witnesses open':
-    case 'Proof of evidence and witnesses closed':
-    case 'Proof of evidence and witnesses ready to share':
+    case 'Proof of evidence and witnesses':
     case 'Awaiting inquiry':
     case 'Decision ready to issue':
     case 'Decision issued':

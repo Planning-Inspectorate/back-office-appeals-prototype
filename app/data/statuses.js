@@ -2,8 +2,7 @@ const baseStatusesStart = [
   'Ready to assign case officer',
   'Ready to validate',
   'Ready to start',
-  'Awaiting LPAQ',
-  'LPAQ ready to review'
+  'LPAQ'
 ]
 
 const baseStatusesEnd = [
@@ -15,15 +14,11 @@ const baseStatusesEnd = [
 ]
 
 const s78Statuses = [
-  'Statements and IP comments open',
-  'Statements and IP comments closed',
-  'Statements and IP comments ready to share'
+  'Statements and IP comments'
 ]
 
 const s78WrittenStatuses = [
-  'Final comments open',
-  'Final comments closed',
-  'Final comments ready to share',
+  'Final comments',
   'Site visit ready to set up',
   'Awaiting site visit'
 ]
@@ -35,9 +30,7 @@ const s78HearingStatuses = [
 
 const s78InquiryStatuses = [
   'Inquiry ready to set up',
-  'Proof of evidence and witnesses open',
-  'Proof of evidence and witnesses closed',
-  'Proof of evidence and witnesses ready to share',
+  'Proof of evidence and witnesses',
   'Awaiting inquiry'
 ]
 

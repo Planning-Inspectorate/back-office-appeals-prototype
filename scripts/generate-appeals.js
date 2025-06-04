@@ -140,11 +140,9 @@ const generateRule6Party = (params) => {
   }
 
   switch(params.appeal.status) {
-    case "Statements and IP comments closed":
-    case "Statements and IP comments ready to share":
+    case "Statements and IP comments": // closed/ready to share
     case "Inquiry ready to set up":
-    case "Proof of evidence and witnesses closed":
-    case "Proof of evidence and witnesses ready to share":
+    case "Proof of evidence and witnesses": // closed/ready to share
     case "Awaiting inquiry":
     case "Decision ready to issue":
     case "Decision issued":
@@ -246,23 +244,12 @@ const generateAppeal = (params = {}) => {
   }
 
   switch(appeal.status) {
-    case 'Awaiting LPAQ':
-      appeal.dueDate = faker.date.soon()
-    case 'LPAQ ready to review':
-      appeal.dueDate = faker.date.soon()
+    case 'LPAQ':
     case 'Decision ready to issue':
       appeal.dueDate = faker.date.soon()
-    case 'Sstatements and IP comments open':
+    case 'Statements and IP comments':
       appeal.dueDate = faker.date.soon()
-    case 'Statements and IP comments closed':
-      appeal.dueDate = faker.date.soon()
-    case 'Statements and IP comments ready to share':
-      appeal.dueDate = faker.date.soon()
-    case 'Final comments open':
-      appeal.dueDate = faker.date.soon()
-    case 'Final comments closed':
-      appeal.dueDate = faker.date.soon()
-    case 'Final comments ready to share':
+    case 'Final comments':
       appeal.dueDate = faker.date.soon()
     case 'Site visit ready to set up':
       appeal.dueDate = faker.date.soon()
@@ -274,11 +261,7 @@ const generateAppeal = (params = {}) => {
       appeal.dueDate = faker.date.soon()
     case 'Inquiry ready to set up':
       appeal.dueDate = faker.date.soon()
-    case 'Proof of evidence and witnesses open':
-      appeal.dueDate = faker.date.soon()
-    case 'Proof of evidence and witnesses closed':
-      appeal.dueDate = faker.date.soon()
-    case 'Proof of evidence and witnesses ready to share':
+    case 'Proof of evidence and witnesses':
       appeal.dueDate = faker.date.soon()
     case 'Awaiting inquiry':
       appeal.dueDate = faker.date.soon()
@@ -292,10 +275,6 @@ const generateAppeal = (params = {}) => {
   }
 
   let appealForm = {}
-
-  //if(appeal.type == 'Advertisements') {
-    //appealForm.prop1 = faker.helpers.arrayElement(['Yes', 'No'])
-  //}
 
   appealForm.procedurePreference = faker.helpers.arrayElement(['Written representations', 'Hearing', 'Inquiry'])
   appealForm.hasPlanningObligation = faker.helpers.arrayElement(['Yes', 'Yes', 'Yes', 'Yes', 'Yes', 'No'])
@@ -318,20 +297,15 @@ const generateAppeal = (params = {}) => {
   appeal.appealForm = appealForm
 
   switch(appeal.status) {
-    case 'Statements and IP comments closed':
-    case 'Statements and IP comments ready to share':
-    case 'Final comments open':
-    case 'Final comments closed':
-    case 'Final comments ready to share':
+    case 'Statements and IP comments': // closed/ready to share
+    case 'Final comments': // open/closed/ready to share
     case 'Site visit ready to set up':
     case 'Awaiting site visit':
     case 'Hearing ready to set up':
     case 'Awaiting hearing':
     case 'Inquiry ready to set up':
     case 'Awaiting inquiry':
-    case 'Awaiting proof of evidence and witnesses':
-    case 'Proof of evidence and witnesses closed':
-    case 'Proof of evidence and witnesses ready to share':
+    case 'Proof of evidence and witnesses': // open/ closed/ready to share
     case 'Decision ready to issue':
     case 'Decision issued':
       appeal.lpaStatement = {
@@ -460,19 +434,6 @@ const generateAppeal = (params = {}) => {
       phone: '07714545545'
     }))
 
-
-    // appeal.rule6Parties.push(generateRule6Party({
-    //   appeal,
-    //   status: 'Ready to review',
-    //   emailAddress: 'natasha@shield.com',
-    //   firstName: 'Natasha',
-    //   lastName: 'Romanoff',
-    //   hasOrganisation: 'Yes',
-    //   organisationName: 'S.H.I.E.L.D',
-    //   phone: '07714545546'
-    // }))
-
-
     appeal.rule6Parties.push(generateRule6Party({
       appeal,
       status: 'Approved',
@@ -482,7 +443,6 @@ const generateAppeal = (params = {}) => {
       hasOrganisation: 'No',
       phone: '07714545546'
     }))
-
 
     appeal.rule6Parties.push(generateRule6Party({
       appeal,
@@ -495,22 +455,10 @@ const generateAppeal = (params = {}) => {
       phone: '07714545546'
     }))
 
-
-    // appeal.rule6Parties.push(generateRule6Party({
-    //   appeal,
-    //   status: 'Rejected',
-    //   emailAddress: 'scott@pymtech.com',
-    //   firstName: 'Scott',
-    //   lastName: 'Lang',
-    //   hasOrganisation: 'Yes',
-    //   organisationName: 'Pym Technologies',
-    //   phone: '07714545546'
-    // }))
-
     appeal.rule6Parties.push(generateRule6Party({
       appeal,
       status: 'Withdrawn',
-      emailAddress: 'carol@starfoce.com',
+      emailAddress: 'carol@starforce.com',
       firstName: 'Carol',
       lastName: 'Danvers',
       hasOrganisation: 'Yes',
@@ -614,27 +562,23 @@ const generateAppeals = () => {
   }))
   appeals.push(generateAppeal({
     type: 'Planning',
-    status: 'Awaiting LPAQ',
-    caseOfficer: 'Tony Stark'
-  }))
-  appeals.push(generateAppeal({
-    type: 'Planning',
-    status: 'LPAQ ready to review',
+    status: 'LPAQ',
     caseOfficer: 'Tony Stark'
   }))
 
   appeals.push(generateAppeal({
     type: 'Planning',
-    status: 'Statements and IP comments open'
+    status: 'Statements and IP comments'
   }))
+
   appeals.push(generateAppeal({
     id: '00182182',
     type: 'Planning',
     procedure: 'Inquiry',
-    status: 'Statements and IP comments closed'
+    status: 'Statements and IP comments'
   }))
 
-  let status13 = 'Statements and IP comments ready to share'
+  let status13 = 'Statements and IP comments'
   let interestedPartyComments1 = [] 
   for(let i = 0; i < 32; i++) {
     interestedPartyComments1.push(generateInterestedPartyComment({ appealStatus: status13}))
@@ -650,22 +594,7 @@ const generateAppeals = () => {
   appeals.push(generateAppeal({
     type: 'Planning',
     procedure: 'Written representations',
-    status: 'Final comments open'
-  }))
-  appeals.push(generateAppeal({
-    type: 'Planning',
-    procedure: 'Written representations',
-    status: 'Final comments closed'
-  }))
-  appeals.push(generateAppeal({
-    type: 'Planning',
-    procedure: 'Written representations',
-    status: 'Final comments ready to review'
-  }))
-  appeals.push(generateAppeal({
-    type: 'Planning',
-    procedure: 'Written representations',
-    status: 'Final comments ready to share'
+    status: 'Final comments'
   }))
   appeals.push(generateAppeal({
     id: '00000001',
@@ -700,17 +629,7 @@ const generateAppeals = () => {
   appeals.push(generateAppeal({
     type: 'Planning',
     procedure: 'Inquiry',
-    status: 'Proof of evidence and witnesses open'
-  }))
-  appeals.push(generateAppeal({
-    type: 'Planning',
-    procedure: 'Inquiry',
-    status: 'Proof of evidence and witnesses closed'
-  }))
-  appeals.push(generateAppeal({
-    type: 'Planning',
-    procedure: 'Inquiry',
-    status: 'Proof of evidence and witnesses ready to share'
+    status: 'Proof of evidence and witnesses'
   }))
   appeals.push(generateAppeal({
     type: 'Planning',

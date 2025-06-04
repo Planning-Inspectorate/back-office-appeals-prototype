@@ -158,14 +158,31 @@ addFilter('interestedPartyCommentStatusColour', status => {
 })
 
 addFilter('appealStatusColour', status => {
-	if(status.indexOf('open') > -1) {
-		return 'govuk-tag--yellow'
+	if(['Ready to assign case officer', 
+		'Ready to validate', 
+		'Ready to start', 
+		'LPAQ', 
+		'Statements and IP comments', 
+		'Final comments', 
+		'Proof of evidence and witnesses', 
+		'Site visit ready to set up',
+		'Hearing ready to set up',
+		'Inquiry ready to set up',
+		'Decision ready to issue',
+		'Awaiting transfer to Horizon'].includes(status)) {
+		return 'govuk-tag--green'
 	}
-	if(status == 'Transferred') {
+	if(['Transferred to Horizon', 
+		'Withdrawn'].includes(status)) {
 		return 'govuk-tag--grey'
 	}
 	if(status == 'Decision issued') {
-		return 'govuk-tag--green'
+		return 'govuk-tag--blue'
+	}
+	if(['Awaiting site visit', 
+		'Awaiting hearing', 
+		'Awaiting inquiry'].includes(status)) {
+		return 'govuk-tag--yellow'
 	}
 })
 
@@ -176,44 +193,6 @@ addFilter('appealStatusColourAlternative', status => {
 	if(status == 'Decision issued') {
 		return 'govuk-tag--green'
 	}
-})
-
-addFilter('appealStatusText', status => {
-	if(status == 'Awaiting LPAQ') {
-		return 'LPAQ'
-	}
-	if(status == 'LPAQ ready to review') {
-		return 'LPAQ'
-	}
-	if(status == 'Statements and IP comments open') {
-		return 'Statements and IP comments'
-	}
-	if(status == 'Statements and IP comments closed') {
-		return 'Statements and IP comments'
-	}
-	if(status == 'Statements and IP comments ready to share') {
-		return 'Statements and IP comments'
-	}
-	if(status == 'Final comments open') {
-		return 'Final comments'
-	}
-	if(status == 'Final comments closed') {
-		return 'Final comments'
-	}
-	if(status == 'Final comments ready to share') {
-		return 'Final comments'
-	}
-	if(status == 'Proof of evidence and witnesses open') {
-		return 'Proof of evidence and witnesses'
-	}
-	if(status == 'Proof of evidence and witnesses closed') {
-		return 'Proof of evidence and witnesses'
-	}
-	if(status == 'Proof of evidence and witnesses ready to share') {
-		return 'Proof of evidence and witnesses'
-	}
-	return status
-
 })
 
 addFilter('day', (isoDateString, part) => {

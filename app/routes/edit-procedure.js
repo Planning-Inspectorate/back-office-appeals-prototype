@@ -249,7 +249,7 @@ module.exports = router => {
 
     }
 
-    appeal.status = 'Awaiting LPAQ'
+    appeal.status = 'LPAQ'
     appeal.procedure = data.procedure
     appeal.startDate = DateTime.now().toISO()
 

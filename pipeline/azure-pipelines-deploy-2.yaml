@@ -12,7 +12,7 @@ resources:
       type: github
       endpoint: Planning-Inspectorate
       name: Planning-Inspectorate/common-pipeline-templates
-      ref: refs/tags/release/3.21.1
+      ref: 72e717284e38bc754def1e1b50e558abc9c7647e
 
 extends:
   template: stages/wrapper_cd.yml@templates
@@ -37,3 +37,4 @@ extends:
                   azurecrName: pinscrsharedtoolinguks
                   repository: prototypes/appeals-back-office
                   slot: default
+                  gitCommitHash: $(Build.SourceVersion)

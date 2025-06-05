@@ -146,7 +146,7 @@ mark {
 
   @include govuk-media-query($from: tablet) {
     .govuk-summary-list__key {
-      width: 37%;
+      width: 40%;
     }
   }
 }
@@ -375,5 +375,5 @@ pre {
 }
 
 * {
-	font-family:helvetica, arial, sans-serif !important;
+	font-family: "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif !important;
 }

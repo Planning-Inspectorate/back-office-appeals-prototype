@@ -1,0 +1,68 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Check details and request missing information" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  {% set addressHtml %}
+    {{appAddress({ address: v.address })}}
+  {% endset %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal {{v.appeal.id}}</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Prepare appeal"
+            },
+            value: {
+              text: data['prepare-appeal']  
+            },
+            actions: {
+              items: [
+                {
+                  href: "./missing-docs",
+                  text: "Change",
+                  visuallyHiddenText: "prepare appeal"
+                }
+              ] 
+            }
+          },
+          {
+            key: {
+              text: "Upload documents"
+            },
+            value: {
+              text: data['upload-documents'] 
+            },
+            actions: {
+              items: [
+                {
+                  href: "./missing-docs",
+                  text: "Change",
+                  visuallyHiddenText: "upload documents"
+                }
+              ]
+            }
+          }
+         
+        ]
+      }) }}
+
+      <p>We’ll send an email to the appellant to request the missing information.</p>
+
+      <form method="post">
+        {{ govukButton({
+          text: "Request missing information"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

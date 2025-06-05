@@ -1,0 +1,219 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Missing information" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+<span class="govuk-caption-l">Appeal {{v.appeal.id}} - request missing information</span>
+
+<h1 class="govuk-heading-l">Missing information</h1>
+
+
+{{ govukCheckboxes({
+  name: "prepare-appeal",
+  fieldset: {
+    legend: {
+      text: "Prepare appeal",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  value: data.prepare-appeal,
+  hint: {
+    text: "Select all that apply"
+  },
+
+  items: [
+    {
+      value: "Appellant’s contact details",
+      text: "Appellant’s contact details"
+      conditional: {
+        html: conditionalHtml
+      }
+    },
+    {
+      value: "No",
+      text: "No"
+    },
+    {
+      value: "Agent’s contact details",
+      text: "Agent's contact details"
+    },
+    {
+        value: "Agent’s contact details",
+        text: "What is the address of the appeal site?"
+      },
+    {
+     value: "Agent’s contact details",
+     text: "What is the area of the appeal site?"
+    },
+    {
+    value: "Agent’s contact details",
+    text: "Does the appellant own all of the land involved in the appeal?"
+    },
+
+    {
+    value: "Agent’s contact details",
+    text: "Does the appellant know who owns the land involved in the appeal?"
+    },
+    {
+    value: "Agent’s contact details",
+    text: "Is the appeal site part of an agricultural holding?"
+    },
+
+    {
+    value: "Agent’s contact details",
+    text: "Are you a tenant of the agricultural holding?"
+    },
+
+    {
+    value: "Agent’s contact details",
+    text: "Are there any other tenants?"
+    },
+
+    {
+    value: "Agent’s contact details",
+    text: "Will an inspector need to access your land or property?"
+    },
+    {
+    value: "Agent’s contact details",
+    text: "Are there any health and safety issues on the appeal site?"
+    },
+
+    {
+    value: "Agent’s contact details",
+    text: "Which local planning authority (LPA) do you want to appeal against?"
+    },
+    {
+    value: "Agent’s contact details",
+    text: "What is the application reference number?"
+    },
+    {
+    value: "Agent’s contact details",
+    text: "What date did you submit your application?"
+    },
+
+    {
+    value: "Agent’s contact details",
+    text: "Enter the description of development that you submitted in your application"
+    },
+    {
+    value: "Agent’s contact details",
+    text: "Are there other appeals linked to your development?"
+    },
+    {
+    value: "Agent’s contact details",
+    text: "Was your application granted or refused?"
+    },
+                                                        
+    {
+    value: "Agent’s contact details",
+    text: "What’s the date on the decision letter from the local planning authority?​"
+    },
+    {
+    value: "Agent’s contact details",
+    text: "What type of application is your appeal about?"
+    },
+    {
+    value: "Agent’s contact details",
+    text: "How would you prefer us to decide your appeal?​"
+    },
+
+    {
+    value: "Agent’s contact details",
+    text: "How would you prefer us to decide your appeal?​"
+    }   
+    
+
+                           
+  ]
+}) }}
+
+
+{{ govukCheckboxes({
+    name: "upload-documents",
+    fieldset: {
+      legend: {
+        text: "Upload documents",
+        isPageHeading: true,
+        classes: "govuk-fieldset__legend--m"
+      }
+    },
+    hint: {
+      text: "Select all that apply"
+    },
+  
+    items: [
+      {
+        value: "Application form",
+        text: "Application form"
+      },
+      {
+        value: "Agreement to change the description of development",
+        text: "Agreement to change the description of development"
+      },
+      {
+          value: "Decision letter from the local planning authority",
+          text: "Decision letter from the local planning authority"
+        },
+      {
+       value: "Appeal statement",
+       text: "Appeal statement"
+      },
+      {
+      value: "What is the status of your planning obligation?",
+      text: "What is the status of your planning obligation?"
+      },
+  
+      {
+      value: "Planning obligation",
+      text: "Planning obligation"
+      },
+      {
+      value: "Separate ownership certificate and agricultural land declaration",
+      text: "Separate ownership certificate and agricultural land declaration"
+      },
+  
+      {
+      value: "Application for an award of appeal costs",
+      text: "Application for an award of appeal costs"
+      },
+  
+      {
+      value: "Design and access statement",
+      text: "Design and access statement"
+      },
+  
+      {
+      value: "Plans, drawings and list of plans	",
+      text: "Plans, drawings and list of plans"
+      },
+      {
+      value: "New plans or drawings",
+      text: "New plans or drawings"
+      },
+  
+      {
+      value: "Other new supporting documents",
+      text: "Other new supporting documents"
+      }
+      
+  
+                             
+    ]
+  }) }}
+
+
+  {% from "govuk/components/button/macro.njk" import govukButton %}
+
+{{ govukButton({
+  text: "Continue",
+  href: "./check-details"
+}) }}
+
+{% endblock %}

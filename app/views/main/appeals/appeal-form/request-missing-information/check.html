@@ -15,6 +15,15 @@
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">Appeal {{v.appeal.id}}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
+
+      {% set theValueInTheCellHtml %}
+        <ul class="govuk-list govuk-list--bullet">
+          {% for item in data.requestMissingInformation.prepareAppeal %}
+            <li>{{item}}:<br> {{data.requestMissingInformation[item]}}</li>
+          {% endfor %}
+        </ul>
+      {% endset %}
+
       {{ govukSummaryList({
         rows: [
           {
@@ -22,12 +31,12 @@
               text: "Prepare appeal"
             },
             value: {
-              text: data['prepare-appeal']  
+              html: theValueInTheCellHtml 
             },
             actions: {
               items: [
                 {
-                  href: "./missing-docs",
+                  href: '/main/appeals/:appealId/appeal-form/request-missing-information' | replace(':appealId', appeal.id),
                   text: "Change",
                   visuallyHiddenText: "prepare appeal"
                 }

@@ -19,13 +19,17 @@
 {% endblock %}
 
 {% block content %}
-
+  {% include "includes/appeal/success-banner.njk" %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
+      
+
+
       <span class="govuk-caption-l">Appeal {{appeal.id}} {% if appeal.isLeadAppeal %}(lead){% endif %}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
       <p class="govuk-body">
-       <a href="./missing-docs/missing-docs" class="govuk-link">Request missing information</a>
+       <a href="/main/appeals/{{appeal.id}}/appeal-form/request-missing-information" class="govuk-link">Request missing information</a>
       </p>
       <!--Prepare appeal-->
       <h2 class="govuk-heading-m govuk-!-margin-top-4">1. Prepare appeal</h2>

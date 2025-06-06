@@ -9,12 +9,151 @@
 
 {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
 
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">   
+
 <span class="govuk-caption-l">Appeal {{v.appeal.id}} - request missing information</span>
 
 <h1 class="govuk-heading-l">Missing information</h1>
 
+{% set conditionalHtml1 %}
+{{ govukInput({
+    label: {
+      text: "Reason",
+      classes: "govuk-label--s",
+      isPageHeading: true
+    },
+    id: "reason1",
+    name: "reason1"
+  }) }}  {% endset %}
 
-{{ govukCheckboxes({
+  {% set conditionalHtml2 %}
+{{ govukInput({
+    label: {
+      text: "Reason",
+      classes: "govuk-label--s",
+      isPageHeading: true
+    },
+    id: "reason2",
+    name: "reason2"
+  }) }}  {% endset %}
+
+
+  {% set conditionalHtml3 %}
+{{ govukInput({
+    label: {
+    text: "Reason",
+    classes: "govuk-label--s",
+    isPageHeading: true
+    },
+    id: "reason3",
+    name: "reason3"
+}) }}  {% endset %}
+
+{% set conditionalHtml4 %}
+{{ govukInput({
+    label: {
+        text: "Reason",
+        classes: "govuk-label--s",
+        isPageHeading: true
+    },
+    id: "reason4",
+    name: "reason4"
+    }) }}  {% endset %}
+
+{% set conditionalHtml5 %}
+{{ govukInput({
+    label: {
+    text: "Reason",
+    classes: "govuk-label--s",
+    isPageHeading: true
+    },
+    id: "reason5",
+    name: "reason5"
+}) }}  {% endset %}
+
+{% set conditionalHtml6 %}
+{{ govukInput({
+    label: {
+        text: "Reason",
+        classes: "govuk-label--s",
+        isPageHeading: true
+    },
+    id: "reason6",
+    name: "reason6"
+    }) }}  {% endset %}
+
+
+{% set conditionalHtml7 %}
+{{ govukInput({
+    label: {
+    text: "Reason",
+    classes: "govuk-label--s",
+    isPageHeading: true
+    },
+    id: "reason7",
+    name: "reason7"
+}) }}  {% endset %}
+
+{% set conditionalHtml8 %}
+{{ govukInput({
+    label: {
+        text: "Reason",
+        classes: "govuk-label--s",
+        isPageHeading: true
+    },
+    id: "reason8",
+    name: "reason8"
+    }) }}  {% endset %}
+
+{% set conditionalHtml9 %}
+{{ govukInput({
+    label: {
+        text: "Reason",
+        classes: "govuk-label--s",
+        isPageHeading: true
+    },
+    id: "reason9",
+    name: "reason9"
+    }) }}  {% endset %}
+
+{% set conditionalHtml10 %}
+{{ govukInput({
+    label: {
+        text: "Reason",
+        classes: "govuk-label--s",
+        isPageHeading: true
+    },
+    id: "reason10",
+    name: "reason10"
+    }) }}  {% endset %}
+
+{% set conditionalHtml11 %}
+{{ govukInput({
+    label: {
+        text: "Reason",
+        classes: "govuk-label--s",
+        isPageHeading: true
+    },
+    id: "reason11",
+    name: "reason11"
+    }) }}  {% endset %}
+
+{% set conditionalHtml12 %}
+{{ govukInput({
+label: {
+    text: "Reason",
+    classes: "govuk-label--s",
+    isPageHeading: true
+},
+id: "reason12",
+name: "reason12"
+}) }}  {% endset %}
+
+
+
+
+  {{ govukCheckboxes({
   name: "prepare-appeal",
   fieldset: {
     legend: {
@@ -23,6 +162,7 @@
       classes: "govuk-fieldset__legend--m"
     }
   },
+
   value: data.prepare-appeal,
   hint: {
     text: "Select all that apply"
@@ -31,103 +171,150 @@
   items: [
     {
       value: "Appellant’s contact details",
-      text: "Appellant’s contact details"
+      text: "Appellant’s contact details",
       conditional: {
-        html: conditionalHtml
+        html: conditionalHtml1
+      }
+    
+    },
+    
+    {
+      value: "Agent’s contact details",
+      text: "Agent's contact details",
+      conditional: {
+        html: conditionalHtml2
       }
     },
     {
-      value: "No",
-      text: "No"
-    },
-    {
-      value: "Agent’s contact details",
-      text: "Agent's contact details"
-    },
-    {
-        value: "Agent’s contact details",
-        text: "What is the address of the appeal site?"
+        value: "What is the address of the appeal site?",
+        text: "What is the address of the appeal site?",
+        conditional: {
+          html: conditionalHtml3
+        }
       },
     {
-     value: "Agent’s contact details",
-     text: "What is the area of the appeal site?"
+     value: "What is the area of the appeal site?",
+     text: "What is the area of the appeal site?",
+     conditional: {
+       html: conditionalHtml4
+     }
     },
     {
-    value: "Agent’s contact details",
-    text: "Does the appellant own all of the land involved in the appeal?"
-    },
-
-    {
-    value: "Agent’s contact details",
-    text: "Does the appellant know who owns the land involved in the appeal?"
-    },
-    {
-    value: "Agent’s contact details",
-    text: "Is the appeal site part of an agricultural holding?"
+    value: "Does the appellant own all of the land involved in the appeal?",
+    text: "Does the appellant own all of the land involved in the appeal?",
+    conditional: {
+      html: conditionalHtml5
+    }
     },
 
     {
-    value: "Agent’s contact details",
-    text: "Are you a tenant of the agricultural holding?"
+    value: "Does the appellant know who owns the land involved in the appeal?",
+    text: "Does the appellant know who owns the land involved in the appeal?",
+    conditional: {
+      html: conditionalHtml6
+    }
+    },
+    {
+    value: "Is the appeal site part of an agricultural holding?",
+    text: "Is the appeal site part of an agricultural holding?",
+    conditional: {
+      html: conditionalHtml7
+    }
     },
 
     {
-    value: "Agent’s contact details",
-    text: "Are there any other tenants?"
+    value: "Are you a tenant of the agricultural holding?",
+    text: "Are you a tenant of the agricultural holding?",
+    conditional: {
+      html: conditionalHtml8
+    }
     },
 
     {
-    value: "Agent’s contact details",
-    text: "Will an inspector need to access your land or property?"
-    },
-    {
-    value: "Agent’s contact details",
-    text: "Are there any health and safety issues on the appeal site?"
-    },
-
-    {
-    value: "Agent’s contact details",
-    text: "Which local planning authority (LPA) do you want to appeal against?"
-    },
-    {
-    value: "Agent’s contact details",
-    text: "What is the application reference number?"
-    },
-    {
-    value: "Agent’s contact details",
-    text: "What date did you submit your application?"
+    value: "Are there any other tenants?",
+    text: "Are there any other tenants?",
+    conditional: {
+      html: conditionalHtml9
+    }
     },
 
     {
-    value: "Agent’s contact details",
-    text: "Enter the description of development that you submitted in your application"
+    value: "Will an inspector need to access your land or property?",
+    text: "Will an inspector need to access your land or property?",
+    conditional: {
+      html: conditionalHtml10
+    }
     },
     {
-    value: "Agent’s contact details",
-    text: "Are there other appeals linked to your development?"
+    value: "Are there any health and safety issues on the appeal site?",
+    text: "Are there any health and safety issues on the appeal site?",
+    conditional: {
+      html: conditionalHtml11
+    }
+    },
+
+    {
+    value: "Which local planning authority (LPA) do you want to appeal against?",
+    text: "Which local planning authority (LPA) do you want to appeal against?",
+    conditional: {
+      html: conditionalHtml12
+    }
     },
     {
-    value: "Agent’s contact details",
-    text: "Was your application granted or refused?"
+    value: "What is the application reference number?",
+    text: "What is the application reference number?",
+    conditional: {
+      html: conditionalHtml13
+    }
+    },
+    {
+    value: "What date did you submit your application?",
+    text: "What date did you submit your application?",
+    conditional: {
+      html: conditionalHtml14
+    }
+    },
+
+    {
+    value: "Enter the description of development that you submitted in your application",
+    text: "Enter the description of development that you submitted in your application",
+    conditional: {
+      html: conditionalHtml15
+    }
+    },
+    {
+    value: "Are there other appeals linked to your development?",
+    text: "Are there other appeals linked to your development?",
+    conditional: {
+      html: conditionalHtml16
+    }
+    },
+    {
+    value: "Was your application granted or refused?",
+    text: "Was your application granted or refused?",
+    conditional: {
+      html: conditionalHtml17
+    }
     },
                                                         
     {
-    value: "Agent’s contact details",
-    text: "What’s the date on the decision letter from the local planning authority?​"
+    value: "What’s the date on the decision letter from the local planning authority?",
+    text: "What’s the date on the decision letter from the local planning authority?​",
+    conditional: {
+      html: conditionalHtml18
+    }
     },
     {
-    value: "Agent’s contact details",
-    text: "What type of application is your appeal about?"
+    value: "What type of application is your appeal about?",
+    text: "What type of application is your appeal about?",
+    conditional: {
+      html: conditionalHtml19
+    }
     },
     {
-    value: "Agent’s contact details",
+    value: "How would you prefer us to decide your appeal?",
     text: "How would you prefer us to decide your appeal?​"
-    },
-
-    {
-    value: "Agent’s contact details",
-    text: "How would you prefer us to decide your appeal?​"
-    }   
+    }
     
 
                            
@@ -215,5 +402,8 @@
   text: "Continue",
   href: "./check-details"
 }) }}
+
+</div>
+</div>
 
 {% endblock %}

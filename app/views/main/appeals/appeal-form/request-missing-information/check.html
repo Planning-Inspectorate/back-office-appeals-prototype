@@ -24,6 +24,16 @@
         </ul>
       {% endset %}
 
+      {% set theValueInTheSecondCellHtml %}
+        <ul class="govuk-list govuk-list--bullet">
+          {% for item in data.requestMissingInformation.uploadDocuments %}
+            <li>{{item}}:<br> {{data.requestMissingInformation[item]}}</li>
+          {% endfor %}
+        </ul>
+      {% endset %}
+
+
+
       {{ govukSummaryList({
         rows: [
           {
@@ -48,7 +58,7 @@
               text: "Upload documents"
             },
             value: {
-              text: data['upload-documents'] 
+              html: theValueInTheCellHtml 
             },
             actions: {
               items: [

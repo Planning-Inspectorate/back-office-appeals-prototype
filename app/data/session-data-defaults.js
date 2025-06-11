@@ -5,8 +5,5 @@ module.exports = {
   appeals,
   linkedAppeals,
   sort: 'Due date',
-  filters: {
-    caseOfficers: ['Tony Stark']
-  },
   userType: 'caseOfficer'
 }

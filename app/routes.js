@@ -51,17 +51,17 @@ router.get('/mode', function (req, res) {
 	req.session.data.appeals = appeals
 	req.session.data.userType = req.query.userType
 
-	if(req.query.userType == 'caseOfficer') {
-		req.session.data.filters = {
-    caseOfficers: ['Tony Stark']
-  }
-	} else {
-		req.session.data.filters = {
-			inspectors: ['Eli Morrow']
-		}
-	}
+	// if(req.query.userType == 'caseOfficer') {
+	// 	req.session.data.filters = {
+  //   caseOfficers: ['Tony Stark']
+  // }
+	// } else {
+	// 	req.session.data.filters = {
+	// 		inspectors: ['Eli Morrow']
+	// 	}
+	// }
 
-	res.redirect(req.query.returnUrl || '/main/appeals')
+	res.redirect(req.query.returnUrl || '/main/your-appeals')
 })
 
 

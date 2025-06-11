@@ -1,6 +1,25 @@
 {% set filterOptionsHtml %}
 
   {{ appCheckboxFilter({
+    idPrefix: "filters[lpas]",
+    name: "filters[lpas]",
+    classes: "lpa-filter govuk-checkboxes--small",
+    attributes: {
+      id: 'lpa-filter'
+    },
+    fieldset: {
+      legend: {
+        text: "Local planning authority",
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    maxHeight: true,
+    values: data.filters.lpas,
+    selectedItems: selectedLPAItems,
+    items: lpaCheckboxes
+  }) }}
+
+  {{ appCheckboxFilter({
     idPrefix: "filters[inspectors]",
     name: "filters[inspectors]",
     classes: "inspector-filter govuk-checkboxes--small",
@@ -41,24 +60,7 @@
     ]
   }) }}
 
-  {{ appCheckboxFilter({
-    idPrefix: "filters[lpas]",
-    name: "filters[lpas]",
-    classes: "lpa-filter govuk-checkboxes--small",
-    attributes: {
-      id: 'lpa-filter'
-    },
-    fieldset: {
-      legend: {
-        text: "Local planning authority",
-        classes: "govuk-fieldset__legend--s"
-      }
-    },
-    maxHeight: true,
-    values: data.filters.lpas,
-    selectedItems: selectedLPAItems,
-    items: lpaCheckboxes
-  }) }}
+  
 
   {{ govukCheckboxes({
     idPrefix: "filters[types]",
@@ -97,7 +99,7 @@
       { value: 'Inquiry', text: 'Inquiry' }
     ],
     values: data.filters.procedures
-  }) }}
+  }) if 1==2 }}
 
   {{ govukCheckboxes({
     idPrefix: "filters[linkedAppealTypes]",
@@ -132,7 +134,7 @@
       { value: 'Site visit not set up', text: 'Site visit not set up' }
     ],
     values: data.filters.siteVisit
-  }) }}
+  }) if 1==2 }}
 
   {{ govukCheckboxes({
     idPrefix: "filters[planningObligation]",
@@ -149,21 +151,26 @@
       { value: 'Does not have planning obligation', text: 'Does not have planning obligation' }
     ],
     values: data.filters.planningObligation
-  }) }}
+  }) if 1==2 }}
 
 
-  {{ govukCheckboxes({
+  {{ appCheckboxFilter({
     idPrefix: "filters[statuses]",
     name: "filters[statuses]",
-    classes: "govuk-checkboxes--small",
+    classes: "status-filter govuk-checkboxes--small",
+    attributes: {
+      id: 'status-filter'
+    },
     fieldset: {
       legend: {
         text: "Status",
         classes: "govuk-fieldset__legend--s"
       }
     },
-    items: [
-      { value: 'Ready to assign case officer', text: 'Ready to assign case officer' },
+    maxHeight: true,
+    values: data.filters.statuses,
+    selectedItems: selectedLPAItems,
+    items: [ { value: 'Ready to assign case officer', text: 'Ready to assign case officer' },
       { value: 'Ready to validate', text: 'Ready to validate' },
       { value: 'Ready to start', text: 'Ready to start' },
       { value: 'LPAQ', text: 'LPAQ' },
@@ -180,9 +187,7 @@
       { value: "Decision issued", text: 'Decision issued' },
       { value: "Awaiting transfer", text: 'Awaiting transfer' },
       { value: "Transferred", text: 'Transferred' },
-      { value: "Withdrawn", text: 'Withdrawn' }
-    ],
-    values: data.filters.statuses
+      { value: "Withdrawn", text: 'Withdrawn' }]
   }) }}
 
 {% endset %}

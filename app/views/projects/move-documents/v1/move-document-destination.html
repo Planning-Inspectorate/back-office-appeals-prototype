@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Move ‘2114328-IP-comment.doc’" %}
+{% set title = "Confirm the new location" %}
 
 {% set pageName = title + ' - Planning Inspectorate'%}
 
@@ -18,23 +18,21 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <span class="govuk-caption-l">Appeal 7001224</span>
+      <span class="govuk-caption-l">Appeal 7001224 - move ‘7001224-IP-comment.doc’</span>
       <h1 class="govuk-heading-l">{{ title }}</h1>
 
       <div class="govuk-inset-text">
-        The document is currently in:<br>
-        Interested party comments / Asad Khan / supporting documents
+        Current location: Interested party comments / Asad Khan / supporting documents
       </div>
 
-      <p class="govuk-body">
-        You are about to move the document to:<br>
-        Interested party comments / Amanda Lyons / supporting documents
-      </p>
+      <div class="govuk-inset-text">
+        New location: Interested party comments / Amanda Lyons / supporting documents
+      </div>
 
       <form method="post">
 
         {{ govukButton({
-          text: "Confirm this move"
+          text: "Confirm this location"
         }) }}
 
       </form>

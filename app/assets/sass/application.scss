@@ -48,6 +48,11 @@ mark {
 	margin-right: 15px;
 }
 
+.app-email-break {
+	@include govuk-font($size: 16)
+}
+
+.app-email-break,
 .app-break-word {
 	word-break: break-word;
 }
@@ -105,6 +110,19 @@ mark {
 		font-weight: normal;
 		display: inline-block;
 		margin-left: 5px;
+	}
+
+	.app-list__summary-list--grey {
+		background: govuk-colour('light-grey');
+		padding: govuk-spacing(1) govuk-spacing(3);
+
+		.govuk-summary-list {
+			margin: 0;
+
+			.govuk-summary-list__row:last-child {
+				border-bottom: none;
+			}
+		}
 	}
 
 }
@@ -376,4 +394,21 @@ pre {
 
 * {
 	font-family: "Open Sans", "Helvetica Neue", "HelveticaNeue", "Helvetica", "Arial", sans-serif !important;
+}
+
+.app-email-preview {
+	border: 1px solid govuk-colour('mid-grey');
+
+	.app-email-preview__subject {
+		padding: govuk-spacing(2);
+		border-bottom: 1px solid govuk-colour('mid-grey');
+	}
+
+	.app-email-preview__body {
+		padding: govuk-spacing(3) govuk-spacing(2);
+	}
+
+	.app-email-preview__body *:last-child {
+		margin-bottom: 0;
+	}
 }

@@ -18,61 +18,54 @@
       Appeal a planning decision
     </span>
     <h1 class="govuk-heading-l">
-      History of changes
+      Case history / activity log
     </h1>
 
-    <section class="govuk-!-margin-bottom-6">
 
-    	<h2 class="govuk-heading-m">Version 1
+    <h2 class="govuk-heading-m">Version 1</h2>
 
-    		{{govukTag({
-              text: "In progress",
-              classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-            })}}
+    <p class="govuk-body">As we temporarily (MVP) allow case officers to edit the properties of appeals, LPA questionnaires, statements and other forms on behalf of the authors, it’s important for PINS to keep an audit of the changes to increase transparency and traceability.</p>
 
-    		<!-- Status tag options
+    {{ govukButton({
+      text: "View prototype",
+      href: "version1/history",
+      isStartButton: true
+    }) }}
 
-    		{{govukTag({
-              text: "New",
-              classes: "govuk-!-margin-left-2 govuk-tag--green"
-            })}}
+    <h2 class="govuk-heading-m">Version 2</h2>
 
-            {{govukTag({
-              text: "In progress",
-              classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-            })}}
+    {{ govukButton({
+      text: "View prototype",
+      href: "version2/history",
+      isStartButton: true
+    }) }}
 
-            {{govukTag({
-              text: "Ready for review",
-              classes: "govuk-!-margin-left-2 govuk-tag--blue"
-            })}}
+    <h2 class="govuk-heading-m">Version 3</h2>
 
-            {{govukTag({
-              text: "Ready for research",
-              classes: "govuk-!-margin-left-2 govuk-tag--green"
-            })}}
+    {{ govukButton({
+      text: "View prototype",
+      href: "version3/history",
+      isStartButton: true
+    }) }}
 
-            {{govukTag({
-              text: "Researched",
-              classes: " govuk-!-margin-left-2 govuk-tag--green"
-            })}}
+    <h2 class="govuk-heading-m">Version 4</h2>
 
-            -->
-      </h2>
+    {{ govukButton({
+      text: "View prototype",
+      href: "version4/history",
+      isStartButton: true
+    }) }}
 
-      <p class="govuk-body">As we temporarily (MVP) allow case officers to edit the properties of appeals, LPA questionnaires, statements and other forms on behalf of the authors, it’s important for PINS to keep an audit of the changes to increase transparency and traceability.</p>
+    <h2 class="govuk-heading-m">Version 5</h2>
 
-      <p>
-        <a href="https://trello.com/c/EPok8X8z/61-access-and-review-a-history-of-changes-to-the-case-documentation-audit">Trello ticket</a>
-      </p>
+    {{ govukButton({
+      text: "View prototype",
+      href: "version5",
+      isStartButton: true
+    }) }}
 
-    	{{ govukButton({
-    	  text: "View prototype",
-    	  href: "version1/case",
-    	  isStartButton: true
-    	}) }}
 
-    </section>
+
 
   </div>
 

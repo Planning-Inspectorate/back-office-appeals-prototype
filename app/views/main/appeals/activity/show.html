@@ -1,0 +1,259 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Activity" %}
+{% set pageName = title %}
+
+{% block beforeContent %}
+  {{ govukBreadcrumbs({
+    classes: 'govuk-!-margin-top-4 govuk-!-margin-bottom-0',
+      items: [
+        {
+          text: appeal.id,
+          href: "/main/appeals/:appealId" | replace(':appealId', appeal.id)
+        },
+        {
+          text: title
+        }
+      ]
+    }) }}
+{% endblock %}
+
+{% block content %}
+
+  {% set emailHtml %}
+    <div class="app-email-preview">
+      <div class="app-email-preview__subject">
+        Subject: Subject goes here
+      </div>
+      <div class="app-email-preview__body">
+        <p class="govuk-body">
+          We have corrected the appeal decision letter.
+        </p>
+
+        <h2 class="govuk-heading-m">
+          Appeal details
+        </h2>
+
+        <div class="govuk-inset-text">
+          Appeal reference number: 7001224<br>
+          Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
+          Planning application reference: 22/00118/FULL
+        </div>
+
+        <h2 class="govuk-heading-m">
+          Why we corrected the appeal decision letter
+        </h2>
+
+        <p class="govuk-body">
+          We corrected the decision letter because:
+        </p>
+
+        <p class="govuk-body">
+          (Reason for updating the decision letter)
+        </p>
+
+        <p class="govuk-body">
+          <a href="#" class="govuk-link">Sign into our service</a> to view the decision letter dated {{ 1 | daysAgo }}
+        </p>
+
+        <h2 class="govuk-heading-m">
+          The Planning Inspectorate’s role
+        </h2>
+
+        <p class="govuk-body">
+          The Planning Inspectorate cannot change or revoke the decision. Only the high court can change this decision.
+        </p>
+
+        <h2 class="govuk-heading-m">
+          Feedback
+        </h2>
+
+        <p class="govuk-body">
+          We welcome your feedback on our appeals service. Tell us on this short <a href="#" class="govuk-link">feedback form</a>.
+        </p>
+
+        <p class="govuk-body">
+          The Planning Inspectorate<br>
+          caseofficers@planninginspectorate.gov.uk
+        </p>
+
+      </div>
+    </div>
+  {% endset %}
+
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+       <span class="govuk-caption-l">Appeal {{appeal.id}} {% if appeal.isLeadAppeal %}(lead){% endif %}</span>
+  <h1 class="govuk-heading-l">{{title}}</h1>
+  
+  <div class="app-list">
+    <div class="app-list__item">
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-1">Document renamed</h2>
+      <p class="govuk-!-margin-bottom-3">adam.silver@planninginspectorate.gov.uk, 9 June 2025 at 1:30pm</p>
+
+      <div class="app-list__summary-list--grey">
+        {{ govukSummaryList({
+          classes: 'app-summary-list--compac app-summary-list--small-tex',
+          rows: [
+            {
+              key: {
+                text: "Document"
+              },
+              value: {
+                html: '<a href="#">file-name.pdf</a>'
+              }
+            }
+          ]
+        }) }}
+      </div>
+    </div>
+    <div class="app-list__item">
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-1">Status updated</h2>
+      <p class="govuk-!-margin-bottom-3">adam.silver@planninginspectorate.gov.uk, 9 June 2025 at 1:30pm</p>
+
+      <div class="app-list__summary-list--grey">
+        {{ govukSummaryList({
+          classes: 'app-summary-list--compac app-summary-list--small-tex',
+          rows: [
+            {
+              key: {
+                text: "Status"
+              },
+              value: {
+                text: "Withdrawn"
+              }
+            }
+          ]
+        }) }}
+      </div>
+
+      {{ govukDetails({
+        classes: 'govuk-!-margin-top-5 govuk-!-margin-bottom-1',
+        summaryText: "View email to LPA",
+        html: emailHtml
+      }) }}
+
+      {{ govukDetails({
+        classes: 'govuk-!-margin-top-5 govuk-!-margin-bottom-1',
+        summaryText: "View email to appellant",
+        html: emailHtml
+      }) }}
+    </div>
+    <div class="app-list__item">
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-1">Appeal started</h2>
+      <p class="govuk-!-margin-bottom-3">adam.silver@planninginspectorate.gov.uk, 1 June 2025 at 1:30pm</p>
+
+      <div class="app-list__summary-list--grey">
+        {{ govukSummaryList({
+          classes: 'app-summary-list--compac app-summary-list--small-tex',
+          rows: [
+            {
+              key: {
+                text: "Appeal procedure"
+              },
+              value: {
+                text: "Written representations"
+              }
+            }
+          ]
+        }) }}
+      </div>
+
+      {{ govukDetails({
+        classes: 'govuk-!-margin-top-5 govuk-!-margin-bottom-1',
+        summaryText: "View email to LPA",
+        text: "Email goes here"
+      }) }}
+
+      {{ govukDetails({
+        classes: 'govuk-!-margin-top-5 govuk-!-margin-bottom-1',
+        summaryText: "View email to appellant",
+        text: "Email goes here"
+      }) }}
+
+    </div>
+    <div class="app-list__item">
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-1">Case officer assigned</h2>
+      <p class="govuk-!-margin-bottom-3">adam.silver@planninginspectorate.gov.uk, 9 June 2025 at 1:30pm</p>
+
+      <div class="app-list__summary-list--grey">
+        {{ govukSummaryList({
+          classes: 'app-summary-list--compac app-summary-list--small-tex',
+          rows: [
+            {
+              key: {
+                text: "Case officer"
+              },
+              value: {
+                html: 'rachel.harvey@planninginspectorate.gov.uk'
+              }
+            }
+          ]
+        }) }}
+      </div>
+
+      {{ govukDetails({
+        classes: 'govuk-!-margin-top-5 govuk-!-margin-bottom-1',
+        summaryText: "View email to case officer",
+        text: "Email goes here"
+      }) }}
+    </div>
+    <div class="app-list__item">
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-1">Appeal submitted</h2>
+      <p class="govuk-!-margin-bottom-3">Appellant, 1 June 2025 at 1:30pm</p>
+
+      <div class="app-list__summary-list--grey">
+        {{ govukSummaryList({
+          classes: 'app-summary-list--compac app-summary-list--small-tex',
+          rows: [
+            {
+              key: {
+                text: "Appellant name"
+              },
+              value: {
+                html: 'John Smith'
+              }
+            },
+            {
+              key: {
+                text: "Site address"
+              },
+              value: {
+                html: 'Address goes here'
+              }
+            }
+          ]
+        }) }}
+      </div>
+    </div>
+  </div>
+
+  {{ govukPagination({
+    next: {
+      href: "#"
+    },
+    items: [
+      {
+        number: 1,
+        current: true,
+        href: "#"
+      },
+      {
+        number: 2,
+        href: "#"
+      },
+      {
+        number: 3,
+        href: "#"
+      }
+    ]
+  }) }}
+    </div>
+  </div>
+
+ 
+
+{% endblock %}

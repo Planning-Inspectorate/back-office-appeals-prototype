@@ -31,7 +31,7 @@ module.exports = router => {
       if([
         'Householder', 
         'Planning', 
-        'Planned listed building and conservation area', 
+        'Planning listed building and conservation area', 
         'Advertisement', 
         'Commercial planning (CAS)', 
         'Commercial advertisement (CAS)'

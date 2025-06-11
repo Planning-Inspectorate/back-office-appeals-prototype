@@ -181,7 +181,7 @@ const generateAppeal = (params = {}) => {
   appeal.type = params.type || faker.helpers.arrayElement([
     'Householder', 
     'Planning', 
-    'Planned listed building and conservation area', 
+    'Planning listed building and conservation area', 
     'Advertisement', 
     'Commercial planning (CAS)', 
     'Commercial advertisement (CAS)'

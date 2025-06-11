@@ -1,0 +1,87 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Check details and request missing information" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  {% set addressHtml %}
+    {{appAddress({ address: v.address })}}
+  {% endset %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal {{v.appeal.id}}</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      {% set theValueInTheCellHtml %}
+        <ul class="govuk-list govuk-list--bullet">
+          {% for item in data.requestMissingInformation.prepareAppeal %}
+            <li>{{item}}:<br> {{data.requestMissingInformation[item]}}</li>
+          {% endfor %}
+        </ul>
+      {% endset %}
+
+      {% set theValueInTheSecondCellHtml %}
+        <ul class="govuk-list govuk-list--bullet">
+          {% for item in data.requestMissingInformation.uploadDocuments %}
+            <li>{{item}}:<br> {{data.requestMissingInformation[item]}}</li>
+          {% endfor %}
+        </ul>
+      {% endset %}
+
+
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Prepare appeal"
+            },
+            value: {
+              html: theValueInTheCellHtml 
+            },
+            actions: {
+              items: [
+                {
+                  href: '/main/appeals/:appealId/appeal-form/request-missing-information' | replace(':appealId', appeal.id),
+                  text: "Change",
+                  visuallyHiddenText: "prepare appeal"
+                }
+              ] 
+            }
+          },
+          {
+            key: {
+              text: "Upload documents"
+            },
+            value: {
+              html: theValueInTheCellHtml 
+            },
+            actions: {
+              items: [
+                {
+                  href: "./missing-docs",
+                  text: "Change",
+                  visuallyHiddenText: "upload documents"
+                }
+              ]
+            }
+          }
+         
+        ]
+      }) }}
+
+      <p>We’ll send an email to the appellant to request the missing information.</p>
+
+      <form method="post">
+        {{ govukButton({
+          text: "Request missing information"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

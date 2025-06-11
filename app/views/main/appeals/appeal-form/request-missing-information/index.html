@@ -1,0 +1,702 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Missing information" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">   
+
+<span class="govuk-caption-l">Appeal {{v.appeal.id}} - request missing information</span>
+
+<h1 class="govuk-heading-l">Missing information</h1>
+
+{% set conditionalHtml1 %}
+{{ govukInput({
+    label: {
+      text: "Reason",
+      classes: "govuk-label--s",
+      isPageHeading: true
+    },
+    id: "requestMissingInformation[Appellant’s contact details]",
+    name: "requestMissingInformation[Appellant’s contact details]",
+    value: data.requestMissingInformation['Appellant’s contact details']
+  }) }}  {% endset %}
+
+  {% set conditionalHtml2 %}
+{{ govukInput({
+    label: {
+      text: "Reason",
+      classes: "govuk-label--s",
+      isPageHeading: true
+    },
+    id: "requestMissingInformation[Agent’s contact details]",
+    name: "requestMissingInformation[Agent’s contact details]",
+    value: data.requestMissingInformation['Agent’s contact details']
+  }) }}  {% endset %}
+
+
+  {% set conditionalHtml3 %}
+{{ govukInput({
+    label: {
+    text: "Reason",
+    classes: "govuk-label--s",
+    isPageHeading: true
+    },
+    id: "requestMissingInformation[What is the address of the appeal site?]",
+    name: "requestMissingInformation[What is the address of the appeal site?]",
+    value: data.requestMissingInformation['What is the address of the appeal site?']
+}) }}  {% endset %}
+
+{% set conditionalHtml4 %}
+{{ govukInput({
+    label: {
+        text: "Reason",
+        classes: "govuk-label--s",
+        isPageHeading: true
+    },
+    id: "requestMissingInformation[What is the area of the appeal site?]",
+    name: "requestMissingInformation[What is the area of the appeal site?]",
+    value: data.requestMissingInformation['What is the area of the appeal site?']
+    }) }}  {% endset %}
+
+{% set conditionalHtml5 %}
+{{ govukInput({
+    label: {
+    text: "Reason",
+    classes: "govuk-label--s",
+    isPageHeading: true
+    },
+    id: "requestMissingInformation[Does the appellant own all of the land involved in the appeal?]",
+    name: "requestMissingInformation[Does the appellant own all of the land involved in the appeal?]",
+    value: data.requestMissingInformation['Does the appellant own all of the land involved in the appeal?']
+}) }}  {% endset %}
+
+{% set conditionalHtml6 %}
+{{ govukInput({
+    label: {
+        text: "Reason",
+        classes: "govuk-label--s",
+        isPageHeading: true
+    },
+    id: "requestMissingInformation[Does the appellant know who owns the land involved in the appeal?]",
+    name: "requestMissingInformation[Does the appellant know who owns the land involved in the appeal?]",
+    value: data.requestMissingInformation['Does the appellant know who owns the land involved in the appeal?']
+    }) }}  {% endset %}
+
+
+{% set conditionalHtml7 %}
+{{ govukInput({
+    label: {
+    text: "Reason",
+    classes: "govuk-label--s",
+    isPageHeading: true
+    },
+    id: "requestMissingInformation[Is the appeal site part of an agricultural holding?]",
+    name: "requestMissingInformation[Is the appeal site part of an agricultural holding?]",
+    value: data.requestMissingInformation['Is the appeal site part of an agricultural holding?']
+}) }}  {% endset %}
+
+{% set conditionalHtml8 %}
+{{ govukInput({
+    label: {
+        text: "Reason",
+        classes: "govuk-label--s",
+        isPageHeading: true
+    },
+    id: "requestMissingInformation[Are you a tenant of the agricultural holding?]",
+    name: "requestMissingInformation[Are you a tenant of the agricultural holding?]",
+    value: data.requestMissingInformation['Are you a tenant of the agricultural holding?']
+    }) }}  {% endset %}
+
+{% set conditionalHtml9 %}
+{{ govukInput({
+    label: {
+        text: "Reason",
+        classes: "govuk-label--s",
+        isPageHeading: true
+    },
+    id: "requestMissingInformation[Are there any other tenants?]",
+    name: "requestMissingInformation[Are there any other tenants?]",
+    value: data.requestMissingInformation['Are there any other tenants?']
+    }) }}  {% endset %}
+
+{% set conditionalHtml10 %}
+{{ govukInput({
+    label: {
+        text: "Reason",
+        classes: "govuk-label--s",
+        isPageHeading: true
+    },
+    id: "requestMissingInformation[Will an inspector need to access your land or property?]",
+    name: "requestMissingInformation[Will an inspector need to access your land or property?]",
+    value: data.requestMissingInformation['Will an inspector need to access your land or property?']
+    }) }}  {% endset %}
+
+{% set conditionalHtml11 %}
+{{ govukInput({
+    label: {
+        text: "Reason",
+        classes: "govuk-label--s",
+        isPageHeading: true
+    },
+    id: "requestMissingInformation[Are there any health and safety issues on the appeal site?]",
+    name: "requestMissingInformation[Are there any health and safety issues on the appeal site?]",
+    value: data.requestMissingInformation['Are there any health and safety issues on the appeal site?']
+    }) }}  {% endset %}
+
+{% set conditionalHtml12 %}
+{{ govukInput({
+label: {
+    text: "Reason",
+    classes: "govuk-label--s",
+    isPageHeading: true
+},
+id: "requestMissingInformation[Which local planning authority (LPA) do you want to appeal against?]",
+    name: "requestMissingInformation[Which local planning authority (LPA) do you want to appeal against?]",
+    value: data.requestMissingInformation['Which local planning authority (LPA) do you want to appeal against?']
+}) }}  {% endset %}
+{% set conditionalHtml13 %}
+{{ govukInput({
+label: {
+    text: "Reason",
+    classes: "govuk-label--s",
+    isPageHeading: true
+},
+id: "requestMissingInformation[What is the application reference number?]",
+    name: "requestMissingInformation[What is the application reference number?]",
+    value: data.requestMissingInformation['What is the application reference number?']
+}) }}  {% endset %}
+
+
+{% set conditionalHtml14 %}
+{{ govukInput({
+label: {
+    text: "Reason",
+    classes: "govuk-label--s",
+    isPageHeading: true
+},
+id: "requestMissingInformation[What date did you submit your application?]",
+    name: "requestMissingInformation[What date did you submit your application?]",
+    value: data.requestMissingInformation['What date did you submit your application?']
+}) }}  {% endset %}
+
+
+{% set conditionalHtml15 %}
+{{ govukInput({
+label: {
+    text: "Reason",
+    classes: "govuk-label--s",
+    isPageHeading: true
+},
+id: "requestMissingInformation[Enter the description of development that you submitted in your application]",
+    name: "requestMissingInformation[Enter the description of development that you submitted in your application]",
+    value: data.requestMissingInformation['Enter the description of development that you submitted in your application']
+}) }}  {% endset %}
+
+{% set conditionalHtml16 %}
+{{ govukInput({
+label: {
+    text: "Reason",
+    classes: "govuk-label--s",
+    isPageHeading: true
+},
+id: "requestMissingInformation[Are there other appeals linked to your development?]",
+    name: "requestMissingInformation[Are there other appeals linked to your development?]",
+    value: data.requestMissingInformation['Are there other appeals linked to your development?']
+}) }}  {% endset %}
+
+{% set conditionalHtml17 %}
+{{ govukInput({
+label: {
+    text: "Reason",
+    classes: "govuk-label--s",
+    isPageHeading: true
+},
+id: "requestMissingInformation[Was your application granted or refused?]",
+    name: "requestMissingInformation[Was your application granted or refused?]",
+    value: data.requestMissingInformation['Was your application granted or refused?']
+}) }}  {% endset %}
+
+{% set conditionalHtml18 %}
+{{ govukInput({
+label: {
+    text: "Reason",
+    classes: "govuk-label--s",
+    isPageHeading: true
+},
+id: "requestMissingInformation[What’s the date on the decision letter from the local planning authority?​]",
+    name: "requestMissingInformation[What’s the date on the decision letter from the local planning authority?​]",
+    value: data.requestMissingInformation['What’s the date on the decision letter from the local planning authority?​']
+}) }}  {% endset %}
+
+{% set conditionalHtml19 %}
+{{ govukInput({
+label: {
+    text: "Reason",
+    classes: "govuk-label--s",
+    isPageHeading: true
+},
+id: "requestMissingInformation[What type of application is your appeal about?]",
+    name: "requestMissingInformation[What type of application is your appeal about?]",
+    value: data.requestMissingInformation['What type of application is your appeal about?']
+}) }}  {% endset %}
+
+{% set conditionalHtml20 %}
+{{ govukInput({
+label: {
+    text: "Reason",
+    classes: "govuk-label--s",
+    isPageHeading: true
+},
+id: "requestMissingInformation[How would you prefer us to decide your appeal?​]",
+    name: "requestMissingInformation[How would you prefer us to decide your appeal?​]",
+    value: data.requestMissingInformation['How would you prefer us to decide your appeal?​']
+}) }}  {% endset %}
+
+{% set conditionalHtml21 %}
+{{ govukInput({
+label: {
+    text: "Reason",
+    classes: "govuk-label--s",
+    isPageHeading: true
+},
+id: "requestMissingInformation[Application form​]",
+    name: "requestMissingInformation[Application form​]",
+    value: data.requestMissingInformation['Application form']
+}) }}  {% endset %}
+
+{% set conditionalHtml22 %}
+{{ govukInput({
+label: {
+    text: "Reason",
+    classes: "govuk-label--s",
+    isPageHeading: true
+},
+id: "requestMissingInformation[Agreement to change the description of development]",
+    name: "requestMissingInformation[Agreement to change the description of development]",
+    value: data.requestMissingInformation['Agreement to change the description of development']
+}) }}  {% endset %}
+
+{% set conditionalHtml23 %}
+{{ govukInput({
+label: {
+    text: "Reason",
+    classes: "govuk-label--s",
+    isPageHeading: true
+},
+id: "requestMissingInformation[Decision letter from the local planning authority​]",
+    name: "requestMissingInformation[Decision letter from the local planning authority]",
+    value: data.requestMissingInformation['Decision letter from the local planning authority']
+}) }}  {% endset %}
+
+{% set conditionalHtml24 %}
+{{ govukInput({
+label: {
+    text: "Reason",
+    classes: "govuk-label--s",
+    isPageHeading: true
+},
+id: "requestMissingInformation[Appeal statement​]",
+    name: "requestMissingInformation[Appeal statement]",
+    value: data.requestMissingInformation['Appeal statement']
+}) }}  {% endset %}
+
+{% set conditionalHtml25 %}
+{{ govukInput({
+label: {
+    text: "Reason",
+    classes: "govuk-label--s",
+    isPageHeading: true
+},
+id: "requestMissingInformation[What is the status of your planning obligation?​]",
+    name: "requestMissingInformation[What is the status of your planning obligation?]",
+    value: data.requestMissingInformation['What is the status of your planning obligation?']
+}) }}  {% endset %}
+
+{% set conditionalHtml26 %}
+{{ govukInput({
+label: {
+    text: "Reason",
+    classes: "govuk-label--s",
+    isPageHeading: true
+},
+id: "requestMissingInformation[Planning obligation​]",
+    name: "requestMissingInformation[Planning obligation]",
+    value: data.requestMissingInformation['Planning obligation']
+}) }}  {% endset %}
+
+{% set conditionalHtml27 %}
+{{ govukInput({
+label: {
+    text: "Reason",
+    classes: "govuk-label--s",
+    isPageHeading: true
+},
+id: "requestMissingInformation[Separate ownership certificate and agricultural land declaration​]",
+    name: "requestMissingInformation[Separate ownership certificate and agricultural land declaration]",
+    value: data.requestMissingInformation['Separate ownership certificate and agricultural land declaration']
+}) }}  {% endset %}
+
+{% set conditionalHtml28 %}
+{{ govukInput({
+label: {
+    text: "Reason",
+    classes: "govuk-label--s",
+    isPageHeading: true
+},
+id: "requestMissingInformation[Application for an award of appeal costs​]",
+    name: "requestMissingInformation[Application for an award of appeal costs]",
+    value: data.requestMissingInformation['Application for an award of appeal costs']
+}) }}  {% endset %}
+
+{% set conditionalHtml29 %}
+{{ govukInput({
+label: {
+    text: "Reason",
+    classes: "govuk-label--s",
+    isPageHeading: true
+},
+id: "requestMissingInformation[Design and access statement​]",
+    name: "requestMissingInformation[Design and access statement]",
+    value: data.requestMissingInformation['Design and access statement']
+}) }}  {% endset %}
+
+{% set conditionalHtml30 %}
+{{ govukInput({
+label: {
+    text: "Reason",
+    classes: "govuk-label--s",
+    isPageHeading: true
+},
+id: "requestMissingInformation[Plans, drawings and list of plans​]",
+    name: "requestMissingInformation[Plans, drawings and list of plans]",
+    value: data.requestMissingInformation['Plans, drawings and list of plans']
+}) }}  {% endset %}
+
+{% set conditionalHtml31 %}
+{{ govukInput({
+label: {
+    text: "Reason",
+    classes: "govuk-label--s",
+    isPageHeading: true
+},
+id: "requestMissingInformation[New plans or drawings​]",
+    name: "requestMissingInformation[New plans or drawings]",
+    value: data.requestMissingInformation['New plans or drawings']
+}) }}  {% endset %}
+
+{% set conditionalHtml32 %}
+{{ govukInput({
+label: {
+    text: "Reason",
+    classes: "govuk-label--s",
+    isPageHeading: true
+},
+id: "requestMissingInformation[Other new supporting documents​]",
+    name: "requestMissingInformation[Other new supporting documents]",
+    value: data.requestMissingInformation['Other new supporting documents']
+}) }}  {% endset %}
+
+
+  <form method="post">
+
+    {{ govukCheckboxes({
+    name: "requestMissingInformation[prepareAppeal]",
+    fieldset: {
+      legend: {
+        text: "Prepare appeal",
+        isPageHeading: true,
+        classes: "govuk-fieldset__legend--m"
+      }
+    },
+
+    values: data.requestMissingInformation.prepareAppeal,
+    hint: {
+      text: "Select all that apply"
+    },
+    items: [
+      {
+        value: "Appellant’s contact details",
+        text: "Appellant’s contact details",
+        conditional: {
+          html: conditionalHtml1
+        }
+      
+      },
+      
+      {
+        value: "Agent’s contact details",
+        text: "Agent's contact details",
+        conditional: {
+          html: conditionalHtml2
+        }
+      },
+      {
+          value: "What is the address of the appeal site?",
+          text: "What is the address of the appeal site?",
+          conditional: {
+            html: conditionalHtml3
+          }
+        },
+      {
+      value: "What is the area of the appeal site?",
+      text: "What is the area of the appeal site?",
+      conditional: {
+        html: conditionalHtml4
+      }
+      },
+      {
+      value: "Does the appellant own all of the land involved in the appeal?",
+      text: "Does the appellant own all of the land involved in the appeal?",
+      conditional: {
+        html: conditionalHtml5
+      }
+      },
+
+      {
+      value: "Does the appellant know who owns the land involved in the appeal?",
+      text: "Does the appellant know who owns the land involved in the appeal?",
+      conditional: {
+        html: conditionalHtml6
+      }
+      },
+      {
+      value: "Is the appeal site part of an agricultural holding?",
+      text: "Is the appeal site part of an agricultural holding?",
+      conditional: {
+        html: conditionalHtml7
+      }
+      },
+
+      {
+      value: "Are you a tenant of the agricultural holding?",
+      text: "Are you a tenant of the agricultural holding?",
+      conditional: {
+        html: conditionalHtml8
+      }
+      },
+
+      {
+      value: "Are there any other tenants?",
+      text: "Are there any other tenants?",
+      conditional: {
+        html: conditionalHtml9
+      }
+      },
+
+      {
+      value: "Will an inspector need to access your land or property?",
+      text: "Will an inspector need to access your land or property?",
+      conditional: {
+        html: conditionalHtml10
+      }
+      },
+      {
+      value: "Are there any health and safety issues on the appeal site?",
+      text: "Are there any health and safety issues on the appeal site?",
+      conditional: {
+        html: conditionalHtml11
+      }
+      },
+
+      {
+      value: "Which local planning authority (LPA) do you want to appeal against?",
+      text: "Which local planning authority (LPA) do you want to appeal against?",
+      conditional: {
+        html: conditionalHtml12
+      }
+      },
+      {
+      value: "What is the application reference number?",
+      text: "What is the application reference number?",
+      conditional: {
+        html: conditionalHtml13
+      }
+      },
+      {
+      value: "What date did you submit your application?",
+      text: "What date did you submit your application?",
+      conditional: {
+        html: conditionalHtml14
+      }
+      },
+
+      {
+      value: "Enter the description of development that you submitted in your application",
+      text: "Enter the description of development that you submitted in your application",
+      conditional: {
+        html: conditionalHtml15
+      }
+      },
+      {
+      value: "Are there other appeals linked to your development?",
+      text: "Are there other appeals linked to your development?",
+      conditional: {
+        html: conditionalHtml16
+      }
+      },
+      {
+      value: "Was your application granted or refused?",
+      text: "Was your application granted or refused?",
+      conditional: {
+        html: conditionalHtml17
+      }
+      },
+                                                          
+      {
+      value: "What’s the date on the decision letter from the local planning authority?",
+      text: "What’s the date on the decision letter from the local planning authority?​",
+      conditional: {
+        html: conditionalHtml18
+      }
+      },
+      {
+      value: "What type of application is your appeal about?",
+      text: "What type of application is your appeal about?",
+      conditional: {
+        html: conditionalHtml19
+      }
+      },
+      {
+      value: "How would you prefer us to decide your appeal?",
+      text: "How would you prefer us to decide your appeal?​",
+      conditional: {
+        html: conditionalHtml20
+      }
+      
+      }
+      
+
+                            
+    ]
+  }) }}
+
+      {{ govukCheckboxes({
+        name: "requestMissingInformation[uploadDocuments]",
+        fieldset: {
+          legend: {
+            text: "Upload documents",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+    
+        values: data.requestMissingInformation.uploadDocuments,
+        hint: {
+          text: "Select all that apply"
+        },
+    
+      items: [
+        {
+          value: "Application form",
+          text: "Application form",
+          conditional: {
+            html: conditionalHtml21
+          }
+        },
+        {
+          value: "Agreement to change the description of development",
+          text: "Agreement to change the description of development",
+          conditional: {
+            html: conditionalHtml22
+          }
+        },
+        {
+            value: "Decision letter from the local planning authority",
+            text: "Decision letter from the local planning authority",
+            conditional: {
+              html: conditionalHtml23
+            }
+          },
+        {
+        value: "Appeal statement",
+        text: "Appeal statement",
+        conditional: {
+          html: conditionalHtml24
+        }
+        },
+        {
+        value: "What is the status of your planning obligation?",
+        text: "What is the status of your planning obligation?",
+        conditional: {
+          html: conditionalHtml25
+        }
+        },
+    
+        {
+        value: "Planning obligation",
+        text: "Planning obligation",
+        conditional: {
+          html: conditionalHtml26
+        }
+        },
+        {
+        value: "Separate ownership certificate and agricultural land declaration",
+        text: "Separate ownership certificate and agricultural land declaration",
+        conditional: {
+          html: conditionalHtml27
+        }
+        },
+    
+        {
+        value: "Application for an award of appeal costs",
+        text: "Application for an award of appeal costs",
+        conditional: {
+          html: conditionalHtml28
+        }
+        },
+    
+        {
+        value: "Design and access statement",
+        text: "Design and access statement",
+        conditional: {
+          html: conditionalHtml29
+        }
+        },
+    
+        {
+        value: "Plans, drawings and list of plans	",
+        text: "Plans, drawings and list of plans",
+        conditional: {
+          html: conditionalHtml30
+        }
+        },
+        {
+        value: "New plans or drawings",
+        text: "New plans or drawings",
+        conditional: {
+          html: conditionalHtml31
+        }
+        },
+    
+        {
+        value: "Other new supporting documents",
+        text: "Other new supporting documents",
+        conditional: {
+          html: conditionalHtml32
+        }
+        }
+        
+    
+                              
+      ]
+    }) }}
+
+
+    {% from "govuk/components/button/macro.njk" import govukButton %}
+
+  {{ govukButton({
+    text: "Continue"
+  }) }}
+</form>
+
+</div>
+</div>
+
+{% endblock %}

@@ -64,7 +64,7 @@
       },
       {
         key: {
-          text: "Case history"
+          text: "Activity log"
         },
         value: {
           text: "5 events"
@@ -72,9 +72,9 @@
         actions: {
           items: [
             {
-              href: "#",
+              href: "/main/appeals/:appealId/activity" | replace(':appealId', appeal.id),
               text: "View",
-              visuallyHiddenText: "case history"
+              visuallyHiddenText: "Activity log"
             }
           ]
         }

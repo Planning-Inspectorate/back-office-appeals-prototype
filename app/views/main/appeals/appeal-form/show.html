@@ -19,11 +19,18 @@
 {% endblock %}
 
 {% block content %}
-
+  {% include "includes/appeal/success-banner.njk" %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
+      
+
+
       <span class="govuk-caption-l">Appeal {{appeal.id}} {% if appeal.isLeadAppeal %}(lead){% endif %}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
+      <p class="govuk-body">
+       <a href="/main/appeals/{{appeal.id}}/appeal-form/request-missing-information" class="govuk-link">Request missing information</a>
+      </p>
       <!--Prepare appeal-->
       <h2 class="govuk-heading-m govuk-!-margin-top-4">1. Prepare appeal</h2>
 
@@ -153,7 +160,7 @@
                   }
                 ]
               }
-          } if appeal.type == 'Householder' or appeal.type == 'Planning' or appeal.type == 'Planned listed building and conservation area' or appeal.type == 'Commerical planning (CAS)',
+          } if appeal.type == 'Householder' or appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Commerical planning (CAS)',
           {
             key: {
               text: "Is the appeal site in a green belt?"
@@ -255,7 +262,7 @@
                   }
                 ]
               }
-          } if appeal.type == 'Householder' or appeal.type == 'Planning' or appeal.type == 'Planned listed building and conservation area' or appeal.type == 'Commerical planning (CAS)',
+          } if appeal.type == 'Householder' or appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Commerical planning (CAS)',
           {
             key: {
               text: "Does the appellant know who owns the land involved in the appeal?"
@@ -315,7 +322,7 @@
                   }
                 ]
               }
-          } if appeal.type == 'Planning' or appeal.type == 'Planned listed building and conservation area',
+          } if appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area',
           {
             key: {
               text: "Are you a tenant of the agricultural holding?"
@@ -335,7 +342,7 @@
                 }
               ]
             }
-          } if appeal.type == 'Planning' or appeal.type == 'Planned listed building and conservation area',
+          } if appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area',
           {
             key: {
               text: "Are there any other tenants?"
@@ -355,7 +362,7 @@
                 }
               ]
             }
-          } if appeal.type == 'Planning' or appeal.type == 'Planned listed building and conservation area',
+          } if appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area',
           {
             key: {
               text: "Will an inspector need to access your land or property?"
@@ -375,7 +382,7 @@
                   }
                 ]
               }
-          } if appeal.type == 'Householder' or appeal.type == 'Planning' or appeal.type == 'Planned listed building and conservation area' or appeal.type == 'Commerical planning (CAS)',
+          } if appeal.type == 'Householder' or appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Commerical planning (CAS)',
           {
             key: {
               text: "Are there any health and safety issues on the appeal site?"
@@ -463,7 +470,7 @@
                   }
                 ]
               }
-          } if appeal.type == 'Planning' or appeal.type == 'Planned listed building and conservation area',
+          } if appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area',
           {
             key: {
               text: "Was your application about any of the following?"
@@ -480,7 +487,7 @@
                   }
                 ]
               }
-          } if appeal.type == 'Planning' or appeal.type == 'Planned listed building and conservation area',
+          } if appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area',
           {
             key: {
               text: "Enter the description of development that you submitted in your application"
@@ -497,7 +504,7 @@
                   }
                 ]
               }
-          } if appeal.type == 'Householder' or appeal.type == 'Planning' or appeal.type == 'Planned listed building and conservation area' or appeal.type == 'Commerical planning (CAS)',
+          } if appeal.type == 'Householder' or appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Commerical planning (CAS)',
           {
             key: {
               text: "Enter the description of the advertisement"
@@ -644,7 +651,7 @@
                 }
               ]
             }
-          } if appeal.type == 'Planning' or appeal.type == 'Planned listed building and conservation area' or appeal.type == 'Advertisements',
+          } if appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Advertisements',
           {
             key: {
               text: "Why would you prefer this appeal procedure?	"
@@ -673,7 +680,7 @@
                 }
               ]
             }
-          } if appeal.type == 'Planning' or appeal.type == 'Planned listed building and conservation area' or appeal.type == 'Advertisements',
+          } if appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Advertisements',
           {
             key: {
               text: "How many days would you expect the inquiry to last?"
@@ -702,7 +709,7 @@
                 }
               ]
             }
-          } if appeal.type == 'Planning' or appeal.type == 'Planned listed building and conservation area' or appeal.type == 'Advertisements',
+          } if appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Advertisements',
           {
             key: {
               text: "How many witnesses would you expect to give evidence at the inquiry?"
@@ -731,7 +738,7 @@
                 }
               ]
             }
-          } if appeal.type == 'Planning' or appeal.type == 'Planned listed building and conservation area' or appeal.type == 'Advertisements'
+          } if appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Advertisements'
          
         ]
       }) }}
@@ -822,7 +829,7 @@
             }
             ]
             }
-          } if appeal.type == 'Householder' or appeal.type == 'Planning' or appeal.type == 'Planned listed building and conservation area' or appeal.type == 'Commerical planning (CAS)',
+          } if appeal.type == 'Householder' or appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Commerical planning (CAS)',
           {
             key: {
               text: "Appeal statement"
@@ -887,7 +894,7 @@
                 }
               ]
             }
-          } if appeal.type == 'Planning' or appeal.type == 'Planned listed building and conservation area',
+          } if appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area',
           {
             key: {
               text: "What is the status of your planning obligation?"
@@ -917,7 +924,7 @@
                 }
               ]
             }
-          } if appeal.type == 'Planning' or appeal.type == 'Planned listed building and conservation area',
+          } if appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area',
 
 
 
@@ -954,7 +961,7 @@
           }
         ]
             }
-          } if appeal.type == 'Planning' or appeal.type == 'Planned listed building and conservation area',
+          } if appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area',
 
           {
             key: {
@@ -989,7 +996,7 @@
           }
         ]
             }
-          } if appeal.type == 'Planning' or appeal.type == 'Planned listed building and conservation area',
+          } if appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area',
           {
             key: {
               text: "Application for an award of appeal costs"
@@ -1058,7 +1065,7 @@
           }
         ]
             }
-          } if appeal.type == 'Householder' or appeal.type == 'Planning' or appeal.type == 'Planned listed building and conservation area' or appeal.type == 'Commerical planning (CAS)',
+          } if appeal.type == 'Householder' or appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Commerical planning (CAS)',
 
           {
             key: {
@@ -1128,7 +1135,7 @@
           }
         ]
             }
-          } if appeal.type == 'Planning' or appeal.type == 'Planned listed building and conservation area' or appeal.type == 'Advertisements' or appeal.type == 'Commercial advertisement (CAS)' or appeal.type == 'Commerical planning (CAS)',
+          } if appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Advertisements' or appeal.type == 'Commercial advertisement (CAS)' or appeal.type == 'Commerical planning (CAS)',
           {
             key: {
               text: "Other new supporting documents"
@@ -1162,7 +1169,7 @@
           }
         ]
             }
-          } if appeal.type == 'Planning' or appeal.type == 'Planned listed building and conservation area'
+          } if appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area'
         ]
       }) }}
 

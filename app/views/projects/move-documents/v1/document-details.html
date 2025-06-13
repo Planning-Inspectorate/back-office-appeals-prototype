@@ -19,11 +19,13 @@
       {{ title }}
     </h1>
 
-  </div>
-</div>
-
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-button-group">
+      {{ govukButton({
+        href: "move-document",
+        text: "Move document",
+        classes: "govuk-button--secondary"
+      }) }}
+    </div>
 
     <dl class="govuk-summary-list">
       <div class="govuk-summary-list__row">
@@ -71,15 +73,6 @@
         </dd>
       </div>
     </dl>
-
-    <div class="govuk-button-group">
-      {{ govukButton({
-        href: "move-document",
-        text: "Move document",
-        classes: "govuk-button--secondary"
-      }) }}
-
-    </div>
 
     <div class="govuk-button-group">
 

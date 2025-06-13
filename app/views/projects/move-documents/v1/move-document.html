@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "New location" %}
+{% set title = "Choose folder for 7001224-IP-comment.doc" %}
 
 {% set pageName = title + ' - Planning Inspectorate'%}
 
@@ -18,21 +18,8 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <span class="govuk-caption-l">Appeal 7001224</span>
+      <span class="govuk-caption-l">Appeal 7001224 - move document</span>
       <h1 class="govuk-heading-l">{{ title }}</h1>
-
-      <div class="govuk-inset-text">
-        <p class="govuk-body">
-          Document:<br>
-          <a href="#" class="govuk-link">
-            7001224-IP-comment.doc
-          </a>
-        </p>
-        <p class="govuk-body">
-          Current location:<br>
-          Documents/ Interested party comments / Asad Khan
-        </p>
-      </div>
 
       <!-- conditionally revealed radio options -->
 
@@ -425,8 +412,8 @@
       }) }}
 
       {{ govukButton({
-        href: "check-your-answers",
-        text: "Choose location"
+        href: "confirm-move",
+        text: "Continue"
       }) }}
 
     </div>

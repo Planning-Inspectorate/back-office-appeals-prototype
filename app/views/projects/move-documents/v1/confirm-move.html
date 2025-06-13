@@ -1,0 +1,75 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Move 7001224-IP-comment.doc" %}
+{% set pageName = title + ' - Planning Inspectorate' %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <span class="govuk-caption-l">Appeal 7001224</span>
+      <h1 class="govuk-heading-l">
+        {{ title }}
+      </h1>
+
+    </div>
+    <div class="govuk-grid-column-full">
+
+      <p class="govuk-body-l">
+
+      <span class="folder-name">
+        Documentation
+      </span>
+      <!-- <span class="govuk-hint folder-spacer"> › </span> -->
+      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="20" viewBox="0 0 26 20" aria-hidden="true" focusable="false" class="svg-folder-icon folder-heading-folder__icon">
+      <style>
+        .svg-folder-icon &gt; path {
+          fill: #dee0e2;
+        }
+        @media (forced-colors: active) {
+          .svg-folder-icon &gt; path {
+            fill: none;
+          }
+        }
+      </style>
+
+      <path d="M9.64475,1.25 H1.25 V18.75 H24.75 V5.25 H11.14475z" stroke="currentColor" stroke-width="2.5" stroke-linecap="butt" fill="transparent"></path>
+      </svg>
+        <span class="folder-name">
+          Interested party comments
+        </span>
+        <!-- <span class="govuk-hint folder-spacer"> › </span> -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="20" viewBox="0 0 26 20" aria-hidden="true" focusable="false" class="svg-folder-icon folder-heading-folder__icon">
+        <style>
+          .svg-folder-icon &gt; path {
+            fill: #dee0e2;
+          }
+          @media (forced-colors: active) {
+            .svg-folder-icon &gt; path {
+              fill: none;
+            }
+          }
+        </style>
+
+        <path d="M9.64475,1.25 H1.25 V18.75 H24.75 V5.25 H11.14475z" stroke="currentColor" stroke-width="2.5" stroke-linecap="butt" fill="transparent"></path>
+      </svg>
+        <span class="folder-name">
+          Caitlin Lovays
+        </span>
+      </p>
+
+
+
+      <form method="post">
+
+        {{ govukButton({
+          text: "Move document"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

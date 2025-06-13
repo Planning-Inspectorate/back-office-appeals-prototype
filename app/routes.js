@@ -135,6 +135,9 @@ require('./routes/site-visit--delete')(router)
 require('./routes/horizon-reference--new')(router)
 require('./routes/horizon-reference--edit')(router)
 
+require('./routes/residential-units--new')(router)
+require('./routes/residential-units--edit')(router)
+
 
 // Timetable
 // require('./routes/add-statement-of-common-ground-due-date')(router)

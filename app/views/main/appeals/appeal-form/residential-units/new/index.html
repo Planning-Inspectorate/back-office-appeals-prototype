@@ -1,0 +1,80 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Is there a net gain or loss of residential units?" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+        <span class="govuk-caption-l">Appeal {{appeal.id}}</span>
+
+        {% set netGainHtml %}
+          {{ govukInput({
+            id: "appealForm[netGain]",
+            name: "appealForm[netGain]",
+            label: {
+              text: "Net gain"
+            },
+            classes: "govuk-input--width-4",
+            value: data.appealForm.netGain
+          }) }}
+        {% endset %}
+        {% set netLossHtml %}
+          {{ govukInput({
+            id: "appealForm[netLoss]",
+            name: "appealForm[netLoss]",
+            label: {
+              text: "Net loss"
+            },
+            classes: "govuk-input--width-4",
+            value: data.appealForm.netLoss
+          }) }}
+        {% endset %}
+
+        {{ govukRadios({
+          name: "appealForm[residentialUnits]",
+          fieldset: {
+            legend: {
+              text: "Is there a net gain or loss of residential units?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          value: data.appealForm.residentialUnits,
+          items: [
+            {
+              value: "Net gain",
+              text: "Net gain",
+              conditional: {
+                html: netGainHtml
+              }
+            },
+            {
+              value: "Net loss",
+              text: "Net loss",
+              conditional: {
+                html: netLossHtml
+              }
+            }, {
+              value: "No change to number of residential units",
+              text: "No change to number of residential units"
+            }
+          ]
+        }) }}
+
+
+
+
+        {{ govukButton({
+          text: "Save and return"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

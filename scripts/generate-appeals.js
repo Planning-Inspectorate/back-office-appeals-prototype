@@ -276,6 +276,10 @@ const generateAppeal = (params = {}) => {
 
   let appealForm = {}
 
+  // if(['Planning', 'Planning listed building and conservation area', ].includes(appeal.type)) {
+    // appealForm.isThereANetGainOrLossOfResidentialUnits = null
+  // }
+
   appealForm.procedurePreference = faker.helpers.arrayElement(['Written representations', 'Hearing', 'Inquiry'])
   appealForm.hasPlanningObligation = faker.helpers.arrayElement(['Yes', 'Yes', 'Yes', 'Yes', 'Yes', 'No'])
   if(appealForm.hasPlanningObligation == 'Yes') {

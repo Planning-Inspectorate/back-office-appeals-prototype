@@ -1173,6 +1173,69 @@
         ]
       }) }}
 
+      {% if appeal.type == 'Planning' or appela.type == 'Planning listed building and conservation area' %}
+        <h2 class="govuk-heading-m">3. Number of residential units</h2>
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Is there a net gain or loss of residential units?"
+              },
+              value: {
+                text: appeal.appealForm.isThereANetGainOrLossOfResidentialUnits if appeal.appealForm.isThereANetGainOrLossOfResidentialUnits else "Not provided"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/appeals/:appealId/appeal-form/residential-units/new" | replace(':appealId', appeal.id),
+                    text: 'Change' if appeal.appealForm.isThereANetGainOrLossOfResidentialUnits else 'Add',
+                    visuallyHiddenText: "if there is a net gain or loss of residential units?"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Net gain"
+              },
+              value: {
+                text: appeal.appealForm.residentialUnitsNetGain
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/appeals/:appealId/appeal-form/residential-units/new" | replace(':appealId', appeal.id),
+                    text: "Change",
+                    visuallyHiddenText: "Net gain"
+                  }
+                ]
+              }
+            } if appeal.appealForm.isThereANetGainOrLossOfResidentialUnits == 'Net gain',
+            {
+              key: {
+                text: "Net gain"
+              },
+              value: {
+                text: appeal.appealForm.residentialUnitsNetLoss
+              },
+              actions: {
+                items: [
+                  {
+                    href: "/main/appeals/:appealId/appeal-form/edit-number-of-residential-units" | replace(':appealId', appeal.id),
+                    text: "Change",
+                    visuallyHiddenText: "Net loss"
+                  }
+                ]
+              }
+            } if appeal.appealForm.isThereANetGainOrLossOfResidentialUnits == 'Net loss'
+          ]
+        }) }}
+      {% endif %}
+
+
+
+
       <form action="/appellant-outcome" method="post" class="govuk-!-margin-top-9" novalidate>
         {{ govukRadios({
           name: "appelant-outcome",

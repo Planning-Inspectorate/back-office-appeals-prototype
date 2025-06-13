@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Check details and update decision letter" %}
+{% set title = "Check details and move document" %}
 {% set pageName = title + ' - Planning Inspectorate' %}
 
 {% block content %}
@@ -13,51 +13,42 @@
         {{ title }}
       </h1>
 
-    </div>
-    <div class="govuk-grid-column-full">
+      <div class="govuk-inset-text">
+        <p class="govuk-body">
+          Document:<br>
+          <a href="#" class="govuk-link">
+            7001224-IP-comment.doc
+          </a>
+        </p>
+        <p class="govuk-body">
+          Current location:<br>
+          Documents / Interested party comments / Asad Khan
+        </p>
+      </div>
+
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-quarter">
+            New location
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <a href="#" class="govuk-link">
+              Documents/ Interested party comments / Caitlin Lovays
+            </a>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="document-review-decision">Change<span class="govuk-visually-hidden"> new location</span></a>
+          </dd>
+        </div>
+      </dl>
 
       <form method="post">
 
-        <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key govuk-!-width-one-quarter">
-              Decision letter
-            </dt>
-            <dd class="govuk-summary-list__value">
-              <a href="#" class="govuk-link">
-                decision-letter-7001224.pdf
-              </a>
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="document-review-decision">Change<span class="govuk-visually-hidden"> decision letter</span></a>
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Reason for updating the decision letter
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{ data['reason' ] or '(Reason for updating the decision letter)' }}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="document-review">Change<span class="govuk-visually-hidden"> reason for updating the decision letter</span></a>
-            </dd>
-          </div>
+        {{ govukButton({
+          text: "Move document"
+        }) }}
 
-        </dl>
-
-    </div>
-
-    <div class="govuk-grid-column-two-thirds">
-
-      <p class="govuk-body">
-        We will send the updated decision letter to the relevant parties.
-      </p>
-
-      {{ govukButton({
-        href: "decision?success=true",
-        text: "Update decision letter"
-      }) }}
+      </form>
 
     </div>
   </div>

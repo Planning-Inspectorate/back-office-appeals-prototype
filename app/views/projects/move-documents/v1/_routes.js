@@ -8,7 +8,7 @@ router.get('*', function(req, res, next){
 })
 
 // Add a case note
-router.post('/move-document-destination', function (req, res) {
+router.post('/check-your-answers', function (req, res) {
   req.flash('success', 'Document moved')
   res.redirect('document-details')
 })

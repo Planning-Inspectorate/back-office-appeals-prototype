@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Select a new location" %}
+{% set title = "New location" %}
 
 {% set pageName = title + ' - Planning Inspectorate'%}
 
@@ -18,323 +18,416 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <span class="govuk-caption-l">Appeal 7001224 - move ‘7001224-IP-comment.doc’</span>
+      <span class="govuk-caption-l">Appeal 7001224</span>
       <h1 class="govuk-heading-l">{{ title }}</h1>
 
-      <p class="govuk-body">
-        The document is currently in:
-      </p>
-
       <div class="govuk-inset-text">
-        Interested party comments / Asad Khan / supporting documents
+        <p class="govuk-body">
+          Document:<br>
+          <a href="#" class="govuk-link">
+            7001224-IP-comment.doc
+          </a>
+        </p>
+        <p class="govuk-body">
+          Current location:<br>
+          Documents/ Interested party comments / Asad Khan
+        </p>
       </div>
 
-      <h2 class="govuk-heading-m">
-        Documentation
-      </h2>
+      <!-- conditionally revealed radio options -->
 
-      <h3 class="govuk-heading-s">
-        Appeal
-      </h3>
+      <!-- third level options -->
 
-      <ul class="govuk-list">
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Application form
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Agreement to change description of development
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Decision letter from local planning authority
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Appeal statement
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Planning obligation
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Separate ownership certificate and agricultural land declaration
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Application for an award of costs
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Design and access statement
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Plans, drawings and list of plans
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            New plans or drawings
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Other new supporting documents
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Additional documents
-          </a>
-        </li>
+      <!-- appeal locations -->
+      {% set appeal %}
+        {{ govukRadios({
+          name: "Appeal",
+          fieldset: {
+            legend: {
+              text: "Appeal",
+              isPageHeading: false,
+              classes: "govuk-visually-hidden"
+            }
+          },
+          items: [
+            {
+              value: "Application form",
+              text: "Application form"
+            },
+            {
+              value: "Agreement to change description of development",
+              text: "Agreement to change description of development"
+            },
+            {
+              value: "Decision letter from local planning authority",
+              text: "Decision letter from local planning authority"
+            },
+            {
+              value: "Appeal statement",
+              text: "Appeal statement"
+            },
+            {
+              value: "Planning obligation",
+              text: "Planning obligation"
+            },
+            {
+              value: "Separate ownership certificate and agricultural land declaration",
+              text: "Separate ownership certificate and agricultural land declaration"
+            },
+            {
+              value: "Application for an award of costs",
+              text: "Application for an award of costs"
+            },
+            {
+              value: "Design and access statement",
+              text: "Design and access statement"
+            },
+            {
+              value: "Plans, drawings and list of plans",
+              text: "Plans, drawings and list of plans"
+            },
+            {
+              value: "New plans or drawings",
+              text: "New plans or drawings"
+            },
+            {
+              value: "Other new supporting documents",
+              text: "Other new supporting documents"
+            },
+            {
+              value: "Additional documents",
+              text: "Additional documents"
+            }
+          ]
+        }) }}
+      {% endset -%}
 
-      </ul>
+      <!-- questionnaire locations -->
+      {% set questionnaire %}
+        {{ govukRadios({
+          name: "Questionnaire",
+          fieldset: {
+            legend: {
+              text: "Questionnaire",
+              isPageHeading: false,
+              classes: "govuk-visually-hidden"
+            }
+          },
+          items: [
+            {
+              value: "Conservation area map and guidance",
+              text: "Conservation area map and guidance"
+            },
+            {
+              value: "Tree preservation order documents",
+              text: "Tree preservation order documents"
+            },
+            {
+              value: "Definitive map and statement extract",
+              text: "Definitive map and statement extract"
+            },
+            {
+              value: "Environmental statement and supporting information",
+              text: "Environmental statement and supporting information"
+            },
+            {
+              value: "Screening opinion documents",
+              text: "Screening opinion documents"
+            },
+            {
+              value: "Screening direction documents",
+              text: "Screening direction documents"
+            },
+            {
+              value: "Scoping opinion documents",
+              text: "Scoping opinion documents"
+            },
+            {
+              value: "Who did you notify about this application?",
+              text: "Who did you notify about this application?"
+            },
+            {
+              value: "Site notice",
+              text: "Site notice"
+            },
+            {
+              value: "Press advertisement",
+              text: "Press advertisement"
+            },
+            {
+              value: "Appeal notification letter",
+              text: "Appeal notification letter"
+            },
+            {
+              value: "Representations from members of the public or other parties",
+              text: "Representations from members of the public or other parties"
+            },
+            {
+              value: "Consultation responses and standing advice",
+              text: "Consultation responses and standing advice"
+            },
+            {
+              value: "Planning Officer’s report",
+              text: "Planning Officer’s report"
+            },
+            {
+              value: "Relevant policies from statutory development plan",
+              text: "Relevant policies from statutory development plan"
+            },
+            {
+              value: "Supplementary planning documents",
+              text: "Supplementary planning documents"
+            },
+            {
+              value: "Emerging plan relevant to appeal",
+              text: "Emerging plan relevant to appeal"
+            },
+            {
+              value: "Other relevant policies",
+              text: "Other relevant policies"
+            },
+            {
+              value: "Community infrastructure levy",
+              text: "Community infrastructure levy"
+            },
+            {
+              value: "New conditions",
+              text: "New conditions"
+            },
+            {
+              value: "Additional documents",
+              text: "Additional documents"
+            }
+          ]
+        }) }}
+      {% endset -%}
 
-      <h3 class="govuk-heading-s">
-        LPA questionnaire
-      </h3>
+      <!-- statement locations -->
+      {% set statement %}
+        {{ govukRadios({
+          name: "LPA statement",
+          fieldset: {
+            legend: {
+              text: "LPA statement",
+              isPageHeading: false,
+              classes: "govuk-visually-hidden"
+            }
+          },
+          items: [
+            {
+              value: "Supporting documents",
+              text: "Supporting documents"
+            }
+          ]
+        }) }}
+      {% endset -%}
 
-      <ul class="govuk-list">
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Conservation area map and guidance
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Tree preservation order documents
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Definitive map and statement extract
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Environmental statement and supporting information
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Screening opinion documents
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Screening direction documents
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Scoping opinion documents
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Who did you notify about this application?
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Site notice
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Press advertisement
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Appeal notification letter
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Representations from members of the public or other parties
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Consultation responses and standing advice
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Planning Officer’s report
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Relevant policies from statutory development plan
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Supplementary planning documents
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Emerging plan relevant to appeal
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Other relevant policies
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Community infrastructure levy
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            New conditions
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Additional documents
-          </a>
-        </li>
+      <!-- IP comment locations -->
+      {% set ipcomments %}
+        {{ govukRadios({
+          name: "Interested party comments",
+          fieldset: {
+            legend: {
+              text: "Interested party comments",
+              isPageHeading: false,
+              classes: "govuk-visually-hidden"
+            }
+          },
+          items: [
+            {
+              value: "Shafeeq Muhammad",
+              text: "Shafeeq Muhamad"
+            },
+            {
+              value: "Anca Gricore",
+              text: "Anca Gricore"
+            },
+            {
+              value: "Ari Arif",
+              text: "Ari Arif"
+            },
+            {
+              value: "Gurpreet Sagoo",
+              text: "Gurpreet Sagoo"
+            },
+            {
+              value: "Asad Khan",
+              text: "Asad Khan"
+            },
+            {
+              value: "Caitlin Lovays",
+              text: "Caitlin Lovays"
+            },
+            {
+              value: "Amanda Lyons",
+              text: "Amanda Lyons"
+            },
+            {
+              value: "Gillian Gormley",
+              text: "Gillian Gormley"
+            },
+            {
+              value: "Pete Knowles",
+              text: "Pete Knowles"
+            }
+          ]
+        }) }}
+      {% endset -%}
 
-      </ul>
+      <!-- final comment locations -->
+      {% set finalcomments %}
+        {{ govukRadios({
+          name: "Final comments",
+          fieldset: {
+            legend: {
+              text: "Final comments",
+              isPageHeading: false,
+              classes: "govuk-visually-hidden"
+            }
+          },
+          items: [
+            {
+              value: "Appellant final comments",
+              text: "Appellant final comments"
+            },
+            {
+              value: "LPA final comments",
+              text: "LPA final comments"
+            }
+          ]
+        }) }}
+      {% endset -%}
 
-      <h3 class="govuk-heading-s">
-        LPA statement
-      </h3>
+      <!-- second level options -->
 
-      <ul class="govuk-list">
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Supporting documents
-          </a>
-        </li>
+      <!-- documents -->
+      {% set documents %}
 
-      </ul>
+        {{ govukRadios({
+          name: "Documents",
+          fieldset: {
+            legend: {
+              text: "Documents",
+              isPageHeading: false,
+              classes: "govuk-visually-hidden"
+            }
+          },
+          items: [
+            {
+              value: "Appeal",
+              text: "Appeal",
+              conditional: {
+                html: appeal
+              }
+            },
+            {
+              value: "Questionnaire",
+              text: "LPA questionnaire",
+              conditional: {
+                html: questionnaire
+              }
+            },
+            {
+              value: "LPA statement",
+              text: "LPA statement",
+              conditional: {
+                html: statement
+              }
+            },
+            {
+              value: "Interested party comments",
+              text: "Interested party comments",
+              conditional: {
+                html: ipcomments
+              }
+            },
+            {
+              value: "Final comments",
+              text: "Final comments",
+              conditional: {
+                html: finalcomments
+              }
+            }
+          ]
+        }) }}
 
-      <h3 class="govuk-heading-s">
-        Interested party comments
-      </h3>
+      {% endset -%}
 
-      <ul class="govuk-list">
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Shafeeq Muhammad
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Anca Grigore
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Ari Arif
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Gurpreet Sagoo
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Asad Khan
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Caitlin Lovays
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Amanda Lyons
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Gillian Gormley
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Pete Knowles
-          </a>
-        </li>
+      <!-- costs locations -->
+      {% set costs %}
 
-      </ul>
+        {{ govukRadios({
+          name: "Costs",
+          fieldset: {
+            legend: {
+              text: "Costs",
+              isPageHeading: false,
+              classes: "govuk-visually-hidden"
+            }
+          },
+          items: [
+            {
+              value: "Appellant application",
+              text: "Appellant application"
+            },
+            {
+              value: "Appellant withdrawal",
+              text: "Appellant withdrawal"
+            },
+            {
+              value: "Appellant correspondence",
+              text: "Appellant correspondence"
+            },
+            {
+              value: "LPA application",
+              text: "LPA application"
+            },
+            {
+              value: "LPA withdrawal",
+              text: "LPA withdrawal"
+            },
+            {
+              value: "LPA correspondence",
+              text: "LPA correspondence"
+            }
+          ]
+        }) }}
 
-      <h3 class="govuk-heading-s">
-        Final comments
-      </h3>
+      {% endset -%}
 
-      <ul class="govuk-list">
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Appellant final comments
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            LPA final comments
-          </a>
-        </li>
+      <!-- first level options -->
 
-      </ul>
+      {{ govukRadios({
+        name: "Case locations",
+        fieldset: {
+          legend: {
+            text: "Case locations",
+            isPageHeading: false,
+            classes: "govuk-visually-hidden"
+          }
+        },
+        items: [
+          {
+            value: "Documents",
+            text: "Documents",
+            conditional: {
+              html: documents
+            }
+          },
+          {
+            value: "Costs",
+            text: "Costs",
+            conditional: {
+              html: costs
+            }
+          }
+        ]
+      }) }}
 
-      <h3 class="govuk-heading-s">
-        Costs
-      </h3>
-
-      <ul class="govuk-list">
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Appellant cost application
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Appellant cost withdrawal
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            Appellant correspondence
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            LPA cost application
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            LPA cost withdrawal
-          </a>
-        </li>
-        <li>
-          <a class="govuk-link" href="move-document-destination">
-            LPA correspondence
-          </a>
-        </li>
-
-      </ul>
+      {{ govukButton({
+        href: "check-your-answers",
+        text: "Choose location"
+      }) }}
 
     </div>
   </div>

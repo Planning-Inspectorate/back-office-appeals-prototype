@@ -179,6 +179,7 @@ module.exports = router => {
     let selectedCaseOfficerItems
     let selectedInspectorItems
     let selectedLPAItems
+    let selectedStatusItems
 
     if(_.get(selectedCaseOfficerFilters, 'length')) {
 
@@ -220,14 +221,17 @@ module.exports = router => {
     }
 
     if(_.get(selectedStatusFilters, 'length')) {
+
+      selectedStatusItems = selectedStatusFilters.map(label => {
+        return {
+          text: label,
+          href: `/main/appeals/remove-status/${label}`
+        }
+      })
+
       selectedFilters.categories.push({
         heading: { text: 'Status' },
-        items: selectedStatusFilters.map(label => {
-          return {
-            text: label,
-            href: `/main/appeals/remove-status/${label}`
-          }
-        })
+        items: selectedStatusItems
       })
     }
 
@@ -312,33 +316,16 @@ module.exports = router => {
     // Sort the way we present selected filter categories based on who is signed in
     let order
     
-    if(req.session.data.userType == 'caseOfficer') {
-      order = [
-        'Case officer',
-        'Type',
-        'Procedure',
-        'Status',
-        'Local planning authority',
-        'Inspector',
-        'Linked appeal type',
-        'Site visit',
-        'Planning obligation',
-        'Green belt'
-      ]
-    } else {
-      order = [
-        'Inspector',
-        'Type',
-        'Procedure',
-        'Status',
-        'Local planning authority',
-        'Case officer',
-        'Linked appeal type',
-        'Site visit',
-        'Planning obligation',
-        'Green belt'
-      ]
-    }
+    order = [
+      'Local planning authority',
+      'Case officer',
+      'Inspector',
+      'Type',
+      'Procedure',
+      'Status',
+      'Linked appeal type',
+      'Green belt'
+    ]
     
     selectedFilters.categories = selectedFilters.categories.sort((a, b) => {
       return order.indexOf(a.heading.text) - order.indexOf(b.heading.text)
@@ -361,6 +348,7 @@ module.exports = router => {
       selectedCaseOfficerItems,
       selectedInspectorItems,
       selectedLPAItems,
+      selectedStatusItems,
       lpaCheckboxes
     })
   })

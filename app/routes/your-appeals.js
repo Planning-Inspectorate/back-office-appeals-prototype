@@ -154,16 +154,19 @@ module.exports = router => {
 
     let selectedInspectorItems
     let selectedLPAItems
+    let selectedStatusItems
 
     if(_.get(selectedStatusFilters, 'length')) {
+      selectedStatusItems = selectedStatusFilters.map(label => {
+        return {
+          text: label,
+          href: `/main/your-appeals/remove-status/${label}`
+        }
+      })
+
       selectedFilters.categories.push({
         heading: { text: 'Status' },
-        items: selectedStatusFilters.map(label => {
-          return {
-            text: label,
-            href: `/main/your-appeals/remove-status/${label}`
-          }
-        })
+        items: selectedStatusItems
       })
     }
 
@@ -234,29 +237,29 @@ module.exports = router => {
       })
     }
 
-    if(_.get(selectedSiteVisitFilters, 'length')) {
-      selectedFilters.categories.push({
-        heading: { text: 'Site visit' },
-        items: selectedSiteVisitFilters.map(label => {
-          return {
-            text: label,
-            href: `/main/your-appeals/remove-site-visit/${label}`
-          }
-        })
-      })
-    }
+    // if(_.get(selectedSiteVisitFilters, 'length')) {
+    //   selectedFilters.categories.push({
+    //     heading: { text: 'Site visit' },
+    //     items: selectedSiteVisitFilters.map(label => {
+    //       return {
+    //         text: label,
+    //         href: `/main/your-appeals/remove-site-visit/${label}`
+    //       }
+    //     })
+    //   })
+    // }
 
-    if(_.get(selectedPlanningObligationFilters, 'length')) {
-      selectedFilters.categories.push({
-        heading: { text: 'Planning obligation' },
-        items: selectedPlanningObligationFilters.map(label => {
-          return {
-            text: label,
-            href: `/main/your-appeals/remove-planning-obligation/${label}`
-          }
-        })
-      })
-    }
+    // if(_.get(selectedPlanningObligationFilters, 'length')) {
+    //   selectedFilters.categories.push({
+    //     heading: { text: 'Planning obligation' },
+    //     items: selectedPlanningObligationFilters.map(label => {
+    //       return {
+    //         text: label,
+    //         href: `/main/your-appeals/remove-planning-obligation/${label}`
+    //       }
+    //     })
+    //   })
+    // }
 
     let totalAppeals = appeals.length
     let pageSize = 25
@@ -274,6 +277,7 @@ module.exports = router => {
       totalAppeals,
       selectedInspectorItems,
       selectedLPAItems,
+      selectedStatusItems,
       lpaCheckboxes
     })
   })

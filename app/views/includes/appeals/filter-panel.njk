@@ -101,18 +101,23 @@
   }) }}
 {% endset %}
 {% set statusFilterHtml %}
-  {{ govukCheckboxes({
+  {{ appCheckboxFilter({
     idPrefix: "filters[statuses]",
     name: "filters[statuses]",
-    classes: "govuk-checkboxes--small",
+    classes: "status-filter govuk-checkboxes--small",
+    attributes: {
+      id: 'status-filter'
+    },
     fieldset: {
       legend: {
         text: "Status",
         classes: "govuk-fieldset__legend--s"
       }
     },
-    items: [
-      { value: 'Ready to assign case officer', text: 'Ready to assign case officer' },
+    maxHeight: true,
+    values: data.filters.statuses,
+    selectedItems: selectedStatusItems,
+    items: [ { value: 'Ready to assign case officer', text: 'Ready to assign case officer' },
       { value: 'Ready to validate', text: 'Ready to validate' },
       { value: 'Ready to start', text: 'Ready to start' },
       { value: 'LPAQ', text: 'LPAQ' },
@@ -125,13 +130,11 @@
       { value: 'Proof of evidence and witnesses', text: 'Proof of evidence and witnesses' },
       { value: 'Inquiry ready to set up', text: 'Inquiry ready to set up' },
       { value: 'Awaiting inquiry', text: 'Awaiting inquiry' },
-      { value: 'Decision ready to issue', text: 'Decision ready to issue' },
-      { value: 'Decision issued', text: 'Decision issued' },
-      { value: 'Awaiting transfer to Horizon', text: 'Awaiting transfer to Horizon' },
-      { value: 'Transferred to Horizon', text: 'Transferred to Horizon' },
-      { value: 'Withdrawn', text: 'Withdrawn' }
-    ],
-    values: data.filters.statuses
+      { value: "Decision ready to issue", text: 'Decision ready to issue' },
+      { value: "Decision issued", text: 'Decision issued' },
+      { value: "Awaiting transfer", text: 'Awaiting transfer' },
+      { value: "Transferred", text: 'Transferred' },
+      { value: "Withdrawn", text: 'Withdrawn' }]
   }) }}
 {% endset %}
 {% set localPlanningAuthorityFilterHtml %}
@@ -270,32 +273,6 @@
   }) }}
 {% endset %}
 
-{% set filterOptionsHtml %}
-  {% if data.userType == 'caseOfficer' %}
-    {{caseOfficerFilterHtml | safe}}
-    {{typeFilterHtml | safe}}
-    {{procedureFilterHtml | safe}}
-    {{statusFilterHtml | safe}}
-    {{localPlanningAuthorityFilterHtml | safe}}
-    {{inspectorFilterHtml | safe}}
-    {{linkedAppealTypeFilterHtml | safe}}
-    {{siteVisitFilterUI | safe}}
-    {{planningObligationFilterUI | safe}}
-    {{greenBeltFilterUI | safe}}   
-  {% else %}
-    {{inspectorFilterHtml | safe}}
-    {{typeFilterHtml | safe}}
-    {{procedureFilterHtml | safe}}
-    {{statusFilterHtml | safe}}
-    {{localPlanningAuthorityFilterHtml | safe}}
-    {{caseOfficerFilterHtml | safe}}
-    {{linkedAppealTypeFilterHtml | safe}}
-    {{siteVisitFilterUI | safe}}
-    {{planningObligationFilterUI | safe}}
-    {{greenBeltFilterUI | safe}}   
-  {% endif %}
-{% endset %}
-
 <div class="app-filter">
   <div class="app-filter__header">
     <div class="app-filter__header-title">
@@ -334,7 +311,16 @@
             <a class="govuk-link govuk-link--no-visited-state" href="/main/appeals/clear-filters">Clear filters</a>
           {% endif %}
         </div>
-        {{filterOptionsHtml | safe}}
+        {{localPlanningAuthorityFilterHtml | safe}}
+        {{caseOfficerFilterHtml | safe}}
+        {{inspectorFilterHtml | safe}}
+        {{typeFilterHtml | safe}}
+        {{procedureFilterHtml | safe}}
+        {{statusFilterHtml | safe}}
+        {{linkedAppealTypeFilterHtml | safe}}
+        {# {{siteVisitFilterUI | safe}} #}
+        {# {{planningObligationFilterUI | safe}} #}
+        {{greenBeltFilterUI | safe}}  
       </form>
     </div>
   </div>

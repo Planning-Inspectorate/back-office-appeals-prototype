@@ -1,6 +1,6 @@
 {% extends "layouts/bo.html" %}
 
-{% set title = "Date and time" %}
+{% set title = "Is there a net gain or loss of residential units?" %}
 {% set pageName = title %}
 
 {% set back = true %}
@@ -11,67 +11,67 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form method="post">
-        <span class="govuk-caption-l">Appeal {{appeal.id}} - update site visit</span>
-        <h1 class="govuk-heading-l">{{title}}</h1>
+        <span class="govuk-caption-l">Appeal {{appeal.id}}</span>
 
-        {{ govukDateInput({
+        {% set netGainHtml %}
+          {{ govukInput({
+            id: "appealForm[netGain]",
+            name: "appealForm[netGain]",
+            label: {
+              text: "Net gain"
+            },
+            classes: "govuk-input--width-4",
+            value: netGain
+          }) }}
+        {% endset %}
+        {% set netLossHtml %}
+          {{ govukInput({
+            id: "appealForm[netLoss]",
+            name: "appealForm[netLoss]",
+            label: {
+              text: "Net loss"
+            },
+            classes: "govuk-input--width-4",
+            value: netLoss
+          }) }}
+        {% endset %}
+
+        {{ govukRadios({
+          name: "appealForm[residentialUnits]",
           fieldset: {
             legend: {
-              text: "Date",
+              text: "Is there a net gain or loss of residential units?",
               isPageHeading: true,
-              classes: "govuk-fieldset__legend--m"
+              classes: "govuk-fieldset__legend--l"
             }
           },
-          hint: {
-            text: "For example, 31 3 2025"
-          },
+          value: residentialUnits,
           items: [
             {
-              name: "editSiteVisit[date][day]",
-              label: "Day",
-              value: date | day,
-              classes: "govuk-input--width-2"
+              value: "Net gain",
+              text: "Net gain",
+              conditional: {
+                html: netGainHtml
+              }
             },
             {
-              name: "editSiteVisit[date][month]",
-              label: "Month",
-              value: date | month,
-              classes: "govuk-input--width-2"
-            },
-            {
-              name: "editSiteVisit[date][year]",
-              label: "Year",
-              value: date | year,
-              classes: "govuk-input--width-4"
+              value: "Net loss",
+              text: "Net loss",
+              conditional: {
+                html: netLossHtml
+              }
+            }, {
+              value: "No change to number of residential units",
+              text: "No change to number of residential units"
             }
           ]
         }) }}
 
-        {{appTimeInput({
-          id: 'time',
-          fieldset: {
-            legend: {
-              text: "Time",
-              classes: "govuk-fieldset__legend--m"
-            }
-          },
-          hint: {
-            text: 'For example, 9:00 or 13:15'
-          },
-          hour: {
-            name: "editSiteVisit[date][hour]", 
-            value: (date | hour) or '10'
-          },
-          minute: {
-            name: "editSiteVisit[date][minute]", 
-            value: (date | minute) or '00'
-          }
-        })}}
 
-        
+
 
         {{ govukButton({
-          text: "Continue"
+          text: "Save and return"
         }) }}
       </form>
 

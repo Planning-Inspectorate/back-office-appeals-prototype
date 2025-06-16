@@ -55,6 +55,10 @@ const getActions = (appeal) => {
     actions.push({ text: "Mark as transferred", href: `/main/appeals/${appeal.id}/horizon-reference/new` })
   }
 
+  if(!appeal?.appealForm?.residentialUnits) {
+    actions.push({ text: "Add number of residential units", href: `/main/appeals/${appeal.id}/appeal-form` })
+  }
+
   return actions
 }
 

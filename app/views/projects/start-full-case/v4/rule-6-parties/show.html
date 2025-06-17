@@ -46,25 +46,6 @@
         }) }}
       </h1>
 
-
-      {% set promptHtml %}
-        {% if party.status == 'Ready to review' %}
-          <p>Rule 6 status was requested on {{party.dateReceived | govukDateTime}}.</p>
-        {% elseif party.status == 'Approved' %}
-          <p>The Rule 6 party was approved on {{party.dateApproved | govukDateTime }}.</p>
-        {% elseif party.status == 'Rejected' %}
-          <p>Rule 6 status was rejected on {{party.dateRejected | govukDateTime }}.</p>
-        {% elseif party.status == 'Withdrawn' %}
-          <p>The Rule 6 party was withdrawn on {{party.dateWithdrawn | govukDateTime }}.</p>
-        {% endif %}
-      {% endset %}
-
-      {{ govukInsetText({
-        html: promptHtml
-      }) if 1==2}}
-
-      {# {{promptHtml | safe}} #}
-
       <div class="govuk-button-group">
 
           {% if party.status == 'Ready to review' or party.status == 'Withdawn' %}

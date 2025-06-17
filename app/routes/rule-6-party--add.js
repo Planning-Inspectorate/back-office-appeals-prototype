@@ -77,14 +77,14 @@ module.exports = router => {
 
     let newParty = {
       id: uuidv4(),
-      dateReceived: new Date(),
+      dateAdded: new Date(),
       emailAddress: party.emailAddress,
       firstName: party.firstName,
       lastName: party.lastName,
       hasOrganisation: party.hasOrganisation,
       organisationName: party.organisationName,
       phone: party.phone,
-      status: 'Ready to review'
+      status: 'Active'
     }
 
     if(!appeal.rule6Parties) {

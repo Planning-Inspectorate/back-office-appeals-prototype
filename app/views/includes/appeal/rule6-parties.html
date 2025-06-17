@@ -9,7 +9,7 @@
         visuallyHiddenText: "Rule 6 party"
       }, {
         href: "/main/appeals/:appealId/rule-6-parties" | replace(':appealId', appeal.id),
-        text: "Change",
+        text: "View",
         visuallyHiddenText: "Rule 6 party"
       }]
     %}
@@ -24,6 +24,7 @@
   {% endif %}
 
   {{ govukSummaryList({
+    classes: "app-summary-list--wider-actions",
     rows: [
       {
         key: {

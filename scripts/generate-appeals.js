@@ -93,32 +93,17 @@ const generateRule6Party = (params) => {
   let party = {}
   party.id = uuidv4()
   party.status = params.status || faker.helpers.arrayElement([
-    'Ready to review',
-    'Approved',
-    'Rejected',
+    'Active',
     'Withdrawn'
   ])
-  party.dateReceived = params.dateReceived || faker.date.recent({ days: 2 })
+  party.dateAdded = params.dateAdded || faker.date.recent({ days: 2 })
 
-  if(party.status == 'Rejected') {
-    party.dateRejected = faker.date.between({
-      from: party.dateReceived,
-      to: now
-    })
-  }
-  if(party.status == 'Approved') {
-    party.dateApproved = faker.date.between({
-      from: party.dateReceived,
-      to: now
-    })
-  }
   if(party.status == 'Withdrawn') {
     party.dateWithdrawn = faker.date.between({
-      from: party.dateReceived,
+      from: party.dateAdded,
       to: now
     })
   }
-
 
   party.firstName = params.firstName || faker.person.firstName()
   party.lastName = params.lastName || faker.person.lastName()
@@ -426,21 +411,20 @@ const generateAppeal = (params = {}) => {
   if(appeal.procedure == 'Inquiry') {
     appeal.rule6Parties = []
 
+    // appeal.rule6Parties.push(generateRule6Party({
+    //   appeal,
+    //   status: 'Ready to review',
+    //   emailAddress: 'tony@starkindustries.com',
+    //   firstName: 'Tony',
+    //   lastName: 'Stark',
+    //   hasOrganisation: 'Yes',
+    //   organisationName: 'Stark Industries',
+    //   phone: '07714545545'
+    // }))
 
     appeal.rule6Parties.push(generateRule6Party({
       appeal,
-      status: 'Ready to review',
-      emailAddress: 'tony@starkindustries.com',
-      firstName: 'Tony',
-      lastName: 'Stark',
-      hasOrganisation: 'Yes',
-      organisationName: 'Stark Industries',
-      phone: '07714545545'
-    }))
-
-    appeal.rule6Parties.push(generateRule6Party({
-      appeal,
-      status: 'Approved',
+      status: 'Withdrawn',
       emailAddress: 'peter@example.com',
       firstName: 'Peter',
       lastName: 'Parker',
@@ -450,23 +434,12 @@ const generateAppeal = (params = {}) => {
 
     appeal.rule6Parties.push(generateRule6Party({
       appeal,
-      status: 'Rejected',
+      status: 'Active',
       emailAddress: 'bruce@avengers.com',
       firstName: 'Bruce',
       lastName: 'Banner',
       hasOrganisation: 'Yes',
       organisationName: 'Avengers',
-      phone: '07714545546'
-    }))
-
-    appeal.rule6Parties.push(generateRule6Party({
-      appeal,
-      status: 'Withdrawn',
-      emailAddress: 'carol@starforce.com',
-      firstName: 'Carol',
-      lastName: 'Danvers',
-      hasOrganisation: 'Yes',
-      organisationName: 'Starforce',
       phone: '07714545546'
     }))
   }

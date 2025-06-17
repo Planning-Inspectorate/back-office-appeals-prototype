@@ -15,7 +15,7 @@
     {% endset %}
     {% set agentActions = [{
       href: '/main/appeals/:appealId/edit-agent' | replace(':appealId', appeal.id),
-      text: "Change",
+      text: "View",
       visuallyHiddenText: "Agent details"
     }] %}
   {% else %}
@@ -27,6 +27,28 @@
       text: "Add",
       visuallyHiddenText: "Agent details"
     }] %}
+  {% endif %}
+
+  {% if appeal.rule6Parties %}
+    {% set rule6Value = appeal.rule6Parties.length + " parties" %}
+    {% set rule6Actions = [{
+        href: "/main/appeals/:appealId/rule-6-parties/new" | replace(':appealId', appeal.id),
+        text: "Add",
+        visuallyHiddenText: "Rule 6 party"
+      }, {
+        href: "/main/appeals/:appealId/rule-6-parties" | replace(':appealId', appeal.id),
+        text: "View",
+        visuallyHiddenText: "Rule 6 party"
+      }]
+    %}
+  {% else %}
+    {% set rule6Value = "No parties"%}
+    {% set rule6Actions = [{
+        href: "/main/appeals/:appealId/rule-6-parties/new" | replace(':appealId', appeal.id),
+        text: "Add",
+        visuallyHiddenText: "Rule 6 party"
+      }]
+    %}
   {% endif %}
 
   {{ govukSummaryList({
@@ -42,8 +64,8 @@
         actions: {
           items: [
             {
-              href: "Item URL",
-              text: "Change",
+              href: "#",
+              text: "View",
               visuallyHiddenText: "Appellant"
             }
           ]
@@ -70,13 +92,24 @@
         actions: {
           items: [
             {
-              href: "Item URL",
-              text: "Change",
+              href: "#",
+              text: "View",
               visuallyHiddenText: "LPA"
             }
           ]
         }
-      }
+      },
+      {
+        key: {
+          text: "Rule 6 parties"
+        },
+        value: {
+          text: rule6Value
+        },
+        actions: {
+          items: rule6Actions
+        } if not appeal.isChildAppeal
+      } if appeal.procedure == 'Inquiry'
     ]
   }) }}
 
@@ -98,7 +131,7 @@
         actions: {
           items: [
             {
-              href: "Item URL",
+              href: "#",
               text: "View",
               visuallyHiddenText: "Appellant"
             }
@@ -115,7 +148,7 @@
         actions: {
           items: [
             {
-              href: "Item URL",
+              href: "#",
               text: "View",
               visuallyHiddenText: "Agent"
             }
@@ -132,7 +165,7 @@
         actions: {
           items: [
             {
-              href: "Item URL",
+              href: "#",
               text: "View",
               visuallyHiddenText: "LPA"
             }
@@ -159,7 +192,7 @@
         actions: {
           items: [
             {
-              href: "Item URL",
+              href: "#",
               text: "Change",
               visuallyHiddenText: "First name"
             }
@@ -176,7 +209,7 @@
         actions: {
           items: [
             {
-              href: "Item URL",
+              href: "#",
               text: "Change",
               visuallyHiddenText: "Last name"
             }
@@ -193,7 +226,7 @@
         actions: {
           items: [
             {
-              href: "Item URL",
+              href: "#",
               text: "Change",
               visuallyHiddenText: "Organisation name"
             }
@@ -210,7 +243,7 @@
         actions: {
           items: [
             {
-              href: "Item URL",
+              href: "#",
               text: "Change",
               visuallyHiddenText: "Organisation name"
             }
@@ -227,7 +260,7 @@
         actions: {
           items: [
             {
-              href: "Item URL",
+              href: "#",
               text: "Change",
               visuallyHiddenText: "Organisation name"
             }
@@ -255,7 +288,7 @@
         actions: {
           items: [
             {
-              href: "Item URL",
+              href: "#",
               text: "Change",
               visuallyHiddenText: "First name"
             }
@@ -272,7 +305,7 @@
         actions: {
           items: [
             {
-              href: "Item URL",
+              href: "#",
               text: "Change",
               visuallyHiddenText: "Last name"
             }
@@ -289,7 +322,7 @@
         actions: {
           items: [
             {
-              href: "Item URL",
+              href: "#",
               text: "Change",
               visuallyHiddenText: "Organisation name"
             }
@@ -306,7 +339,7 @@
         actions: {
           items: [
             {
-              href: "Item URL",
+              href: "#",
               text: "Change",
               visuallyHiddenText: "Organisation name"
             }
@@ -323,7 +356,7 @@
         actions: {
           items: [
             {
-              href: "Item URL",
+              href: "#",
               text: "Change",
               visuallyHiddenText: "Organisation name"
             }

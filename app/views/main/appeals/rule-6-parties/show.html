@@ -48,31 +48,10 @@
       </h1>
 
       <div class="govuk-button-group">
-
-          {% if party.status == 'Ready to review' or party.status == 'Withdawn' %}
-            {{ govukButton({
-              text: "Approve",
-              href: '/main/appeals/:appealId/rule-6-parties/:partyId/approve' | replace(':appealId', appeal.id) | replace(':partyId', party.id)
-            })}}
-          {% endif %}
-
-          {% if party.status == 'Ready to review' %}
-            {{ govukButton({
-              text: "Reject",
-              classes: 'govuk-button--secondary',
-              href: '/main/appeals/:appealId/rule-6-parties/:partyId/reject' | replace(':appealId', appeal.id) | replace(':partyId', party.id)
-            })}}
-          {% endif %}
-
-          {% if party.status == 'Invited' %}
-            <a class="govuk-link" href="#">Resend invite</a>
-          {% endif %}
-
-          {% if party.status == 'Ready to review' or party.status == 'Invited' or party.status == 'Approved' %}
-            <a class="govuk-link" href="/main/appeals/{{appeal.id}}/rule-6-parties/{{party.id}}/withdraw">Withdraw</a>
-          {% endif %}
-
-        </div>
+        {% if party.status == 'Active' %}
+          <a class="govuk-link" href="/main/appeals/{{appeal.id}}/rule-6-parties/{{party.id}}/withdraw">Withdraw</a>
+        {% endif %}
+      </div>
 
       {{ govukSummaryList({
         rows: [

@@ -56,7 +56,7 @@ const getActions = (appeal) => {
   }
 
   if(!appeal?.appealForm?.residentialUnits) {
-    actions.push({ text: "Add number of residential units", href: `/main/appeals/${appeal.id}/appeal-form` })
+    actions.push({ text: "Add number of residential units", href: `/main/appeals/${appeal.id}/residential-units/new` })
   }
 
   return actions

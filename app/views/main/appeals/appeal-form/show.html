@@ -32,7 +32,7 @@
        <a href="/main/appeals/{{appeal.id}}/appeal-form/request-missing-information" class="govuk-link">Request missing information</a>
       </p>
       <!--Prepare appeal-->
-      <h2 class="govuk-heading-m govuk-!-margin-top-4">1. Prepare appeal</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-4">1. Appellant details</h2>
 
       {{ govukSummaryList({
         rows: [
@@ -74,8 +74,15 @@
                   }
                 ]
               }
-          },
-         
+          }
+
+          ]
+        }) }}
+
+          <h2 class="govuk-heading-m govuk-!-margin-top-4">2. Site details</h2>
+          {{ govukSummaryList({
+            rows: [
+     
           {
             key: {
               text: "What is the address of the appeal site?"
@@ -402,7 +409,15 @@
                   }
                 ]
               }
-          },
+          }
+
+          ]
+        }) }}
+
+
+          <h2 class="govuk-heading-m govuk-!-margin-top-4">3. Application details</h2>
+          {{ govukSummaryList({
+            rows: [
           {
             key: {
               text: "Which local planning authority (LPA) do you want to appeal against?"
@@ -618,6 +633,45 @@
               ]
             }
           },
+
+          {
+            key: {
+              text: "Development type​"
+            },
+            value: {
+              html: "Not answered"
+            } if data['empty'] else
+            {
+              html: "Major development"
+            },
+            actions: {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Add",
+                  visuallyHiddenText: "development type"
+                }
+              ]
+            }if data['empty'] else 
+            {
+              items: [
+                {
+                  href: "Item URL",
+                  text: "Change",
+                  visuallyHiddenText: "development type"
+                }
+              ]
+            }
+          }
+          ]
+        }) }}
+
+        <h2 class="govuk-heading-m govuk-!-margin-top-8">4. Appeal details</h2>
+
+        {{ govukSummaryList({
+          classes: "app-summary-list--wider-actions",
+          rows: [
+
           {
             key: {
               text: "What type of application is your appeal about?​"
@@ -739,13 +793,15 @@
               ]
             }
           } if appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Advertisements'
+        
+          ]
+        }) }}
+
          
-        ]
-      }) }}
 
       <!--Your documents-->
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-8">2. Upload documents</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">5. Upload documents</h2>
 
       {{ govukSummaryList({
         classes: "app-summary-list--wider-actions",

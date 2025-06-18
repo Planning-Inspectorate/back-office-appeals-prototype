@@ -29,11 +29,7 @@ module.exports = router => {
   router.post('/main/appeals/:appealId/rule-6-parties/:partyId/withdraw/check', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     let party = appeal.rule6Parties.find(party => party.id == req.params.partyId)
-    if(party.status == 'Ready to review') {
-      req.flash('success', 'Request for Rule 6 status withdrawn')
-    } else {
-      req.flash('success', 'Rule 6 status withdrawn')
-    }
+    req.flash('success', 'Rule 6 status withdrawn')
     party.status = 'Withdrawn'
     party.dateWithdrawn = new Date()
     res.redirect(`/main/appeals/${req.params.appealId}/rule-6-parties/${req.params.partyId}`)

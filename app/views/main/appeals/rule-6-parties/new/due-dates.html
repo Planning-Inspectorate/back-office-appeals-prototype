@@ -1,0 +1,93 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Due dates" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+        <span class="govuk-caption-l">Appeal {{appeal.id}} - add Rule 6 party</span>
+        <h1 class="govuk-heading-l">{{title}}</h1>
+
+        {{ govukDateInput({
+          id: "statementDueDate",
+          fieldset: {
+            legend: {
+              text: "Statement due",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 31 3 2025"
+          },
+          items: [
+            {
+              name: "addRule6Party[statementDueDate][day]",
+              label: "Day",
+              value: data.addRule6Party.statementDueDate.day,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "addRule6Party[statementDueDate][month]",
+              label: "Month",
+              value: data.addRule6Party.statementDueDate.month,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "addRule6Party[statementDueDate][year]",
+              label: "Year",
+              value: data.addRule6Party.statementDueDate.year,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+
+        {{ govukDateInput({
+          id: "statementDueDate",
+          fieldset: {
+            legend: {
+              text: "Proof of evidence and witnesses due",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 31 3 2025"
+          },
+          items: [
+            {
+              name: "addRule6Party[proofOfEvidenceAndWitnessesDueDate][day]",
+              label: "Day",
+              value: data.addRule6Party.proofOfEvidenceAndWitnessesDueDate.day,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "addRule6Party[proofOfEvidenceAndWitnessesDueDate][month]",
+              label: "Month",
+              value: data.addRule6Party.proofOfEvidenceAndWitnessesDueDate.month,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "addRule6Party[proofOfEvidenceAndWitnessesDueDate][year]",
+              label: "Year",
+              value: data.addRule6Party.proofOfEvidenceAndWitnessesDueDate.year,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

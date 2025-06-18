@@ -87,6 +87,16 @@
         html: emailHtml
       }) }}
 
+      {{ govukDetails({
+        summaryText: "Preview email to appellant",
+        html: emailHtml
+      }) }}
+
+      {{ govukDetails({
+        summaryText: "Preview email to LPA",
+        html: emailHtml
+      }) }}
+
       <form method="post">
         {{ govukButton({
           text: 'Withdraw Rule 6 status'

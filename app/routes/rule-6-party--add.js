@@ -1,4 +1,5 @@
 const { v4: uuidv4 } = require('uuid')
+const { DateTime } = require("luxon")
 
 module.exports = router => {
 
@@ -59,6 +60,19 @@ module.exports = router => {
   })
 
   router.post('/main/appeals/:appealId/rule-6-parties/new/form', function (req, res) {
+    res.redirect(`/main/appeals/${req.params.appealId}/rule-6-parties/new/due-dates`)
+  })
+
+
+  router.get('/main/appeals/:appealId/rule-6-parties/new/due-dates', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
+
+    res.render('/main/appeals/rule-6-parties/new/due-dates', {
+      appeal
+    })
+  })
+
+  router.post('/main/appeals/:appealId/rule-6-parties/new/due-dates', function (req, res) {
     res.redirect(`/main/appeals/${req.params.appealId}/rule-6-parties/new/check`)
   })
 
@@ -84,6 +98,16 @@ module.exports = router => {
       hasOrganisation: party.hasOrganisation,
       organisationName: party.organisationName,
       phone: party.phone,
+      statementDueDate: DateTime.fromObject({
+        day: party.statementDueDate.day,
+        month: party.statementDueDate.month,
+        year: party.statementDueDate.year
+      }).toISO(),
+      proofOfEvidenceAndWitnessesDueDate: DateTime.fromObject({
+        day: party.proofOfEvidenceAndWitnessesDueDate.day,
+        month: party.proofOfEvidenceAndWitnessesDueDate.month,
+        year: party.proofOfEvidenceAndWitnessesDueDate.year
+      }).toISO(),
       status: 'Active'
     }
 

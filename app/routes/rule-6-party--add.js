@@ -98,10 +98,10 @@ module.exports = router => {
       hasOrganisation: party.hasOrganisation,
       organisationName: party.organisationName,
       phone: party.phone,
-      statementDueDate: DateTime.fromObject({
-        day: party.statementDueDate.day,
-        month: party.statementDueDate.month,
-        year: party.statementDueDate.year
+      statementsDueDate: DateTime.fromObject({
+        day: party.statementsDueDate.day,
+        month: party.statementsDueDate.month,
+        year: party.statementsDueDate.year
       }).toISO(),
       proofOfEvidenceAndWitnessesDueDate: DateTime.fromObject({
         day: party.proofOfEvidenceAndWitnessesDueDate.day,

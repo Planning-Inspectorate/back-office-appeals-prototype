@@ -1,4 +1,5 @@
 const _ = require('lodash')
+const { DateTime } = require("luxon")
 
 module.exports = router => {
 
@@ -77,6 +78,44 @@ module.exports = router => {
   })
 
   router.post('/main/appeals/:appealId/rule-6-parties/:partyId/edit/form', function (req, res) {
+    res.redirect(`/main/appeals/${req.params.appealId}/rule-6-parties/${req.params.partyId}/edit/due-dates`)
+  })
+
+  router.get('/main/appeals/:appealId/rule-6-parties/:partyId/edit/due-dates', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
+    let party = appeal.rule6Parties.find(party => party.id === req.params.partyId)
+
+    let statementsDueDate
+    if(_.get(req, 'session.data.editRule6Party.statementsDueDate')) {
+      statementsDueDate = DateTime.fromObject({
+        day: req.session.data.editRule6Party.statementsDueDate.day,
+        month: req.session.data.editRule6Party.statementsDueDate.month,
+        year: req.session.data.editRule6Party.statementsDueDate.year
+      }).toISO()
+    } else {
+      statementsDueDate = party.statementsDueDate
+    }
+
+    let proofOfEvidenceAndWitnessesDueDate
+    if(_.get(req, 'session.data.editRule6Party.proofOfEvidenceAndWitnessesDueDate')) {
+      proofOfEvidenceAndWitnessesDueDate = DateTime.fromObject({
+        day: req.session.data.editRule6Party.proofOfEvidenceAndWitnessesDueDate.day,
+        month: req.session.data.editRule6Party.proofOfEvidenceAndWitnessesDueDate.month,
+        year: req.session.data.editRule6Party.proofOfEvidenceAndWitnessesDueDate.year
+      }).toISO()
+    } else {
+      proofOfEvidenceAndWitnessesDueDate = party.proofOfEvidenceAndWitnessesDueDate
+    }
+
+
+    res.render('/main/appeals/rule-6-parties/edit/due-dates', {
+      appeal,
+      statementsDueDate,
+      proofOfEvidenceAndWitnessesDueDate
+    })
+  })
+
+  router.post('/main/appeals/:appealId/rule-6-parties/:partyId/edit/due-dates', function (req, res) {
     res.redirect(`/main/appeals/${req.params.appealId}/rule-6-parties/${req.params.partyId}/edit/check`)
   })
 
@@ -92,7 +131,7 @@ module.exports = router => {
   router.post('/main/appeals/:appealId/rule-6-parties/:partyId/edit/check', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     let party = appeal.rule6Parties.find(party => party.id === req.params.partyId)
-    req.flash('success', 'Rule 6 party updated')
+    
 
     // Update party
     party.hasOrganisation = req.session.data.editRule6Party.hasOrganisation
@@ -104,6 +143,18 @@ module.exports = router => {
     party.lastName = req.session.data.editRule6Party.lastName
     party.emailAddress = req.session.data.editRule6Party.emailAddress
     party.phone = req.session.data.editRule6Party.phone
+    party.statementsDueDate = DateTime.fromObject({
+      day: req.session.data.editRule6Party.statementsDueDate.day,
+      month: req.session.data.editRule6Party.statementsDueDate.month,
+      year: req.session.data.editRule6Party.statementsDueDate.year
+    }).toISO()
+    party.proofOfEvidenceAndWitnessesDueDate = DateTime.fromObject({
+      day: req.session.data.editRule6Party.proofOfEvidenceAndWitnessesDueDate.day,
+      month: req.session.data.editRule6Party.proofOfEvidenceAndWitnessesDueDate.month,
+      year: req.session.data.editRule6Party.proofOfEvidenceAndWitnessesDueDate.year
+    }).toISO(),
+
+    req.flash('success', 'Rule 6 party updated')
 
     // Clear temporary form data
     delete req.session.data.editRule6Party

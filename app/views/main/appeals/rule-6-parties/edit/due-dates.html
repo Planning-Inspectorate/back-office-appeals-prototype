@@ -15,7 +15,7 @@
         <h1 class="govuk-heading-l">{{title}}</h1>
 
         {{ govukDateInput({
-          id: "statementsDueDate",
+          id: "statementDueDate",
           fieldset: {
             legend: {
               text: "Statements due",
@@ -28,21 +28,21 @@
           },
           items: [
             {
-              name: "addRule6Party[statementsDueDate][day]",
+              name: "editRule6Party[statementsDueDate][day]",
               label: "Day",
-              value: data.addRule6Party.statementsDueDate.day,
+              value: statementsDueDate | day,
               classes: "govuk-input--width-2"
             },
             {
-              name: "addRule6Party[statementsDueDate][month]",
+              name: "editRule6Party[statementsDueDate][month]",
               label: "Month",
-              value: data.addRule6Party.statementsDueDate.month,
+              value: statementsDueDate | month,
               classes: "govuk-input--width-2"
             },
             {
-              name: "addRule6Party[statementsDueDate][year]",
+              name: "editRule6Party[statementsDueDate][year]",
               label: "Year",
-              value: data.addRule6Party.statementsDueDate.year,
+              value: statementsDueDate | year,
               classes: "govuk-input--width-4"
             }
           ]
@@ -50,7 +50,7 @@
 
 
         {{ govukDateInput({
-          id: "proofOfEvidenceAndWitnessesDueDate",
+          id: "statementDueDate",
           fieldset: {
             legend: {
               text: "Proof of evidence and witnesses due",
@@ -63,21 +63,21 @@
           },
           items: [
             {
-              name: "addRule6Party[proofOfEvidenceAndWitnessesDueDate][day]",
+              name: "editRule6Party[proofOfEvidenceAndWitnessesDueDate][day]",
               label: "Day",
-              value: data.addRule6Party.proofOfEvidenceAndWitnessesDueDate.day,
+              value: proofOfEvidenceAndWitnessesDueDate | day,
               classes: "govuk-input--width-2"
             },
             {
-              name: "addRule6Party[proofOfEvidenceAndWitnessesDueDate][month]",
+              name: "editRule6Party[proofOfEvidenceAndWitnessesDueDate][month]",
               label: "Month",
-              value: data.addRule6Party.proofOfEvidenceAndWitnessesDueDate.month,
+              value: proofOfEvidenceAndWitnessesDueDate | month,
               classes: "govuk-input--width-2"
             },
             {
-              name: "addRule6Party[proofOfEvidenceAndWitnessesDueDate][year]",
+              name: "editRule6Party[proofOfEvidenceAndWitnessesDueDate][year]",
               label: "Year",
-              value: data.addRule6Party.proofOfEvidenceAndWitnessesDueDate.year,
+              value: proofOfEvidenceAndWitnessesDueDate | year,
               classes: "govuk-input--width-4"
             }
           ]

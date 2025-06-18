@@ -118,6 +118,40 @@
                 }
               ]
             }
+          },
+          {
+            key: {
+              text: "Statements due"
+            },
+            value: {
+              text: data.editRule6Party.statementsDueDate | isoDateFromDateInput | govukDate
+            },
+            actions: {
+              items: [
+                {
+                  href: '/main/appeals/:appealId/rule-6-parties/:partyId/edit/due-dates' | replace(':appealId', appeal.id),
+                  text: "Change",
+                  visuallyHiddenText: "Statements due"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Proof of evidence and witnesses due"
+            },
+            value: {
+              text: data.editRule6Party.proofOfEvidenceAndWitnessesDueDate | isoDateFromDateInput | govukDate
+            },
+            actions: {
+              items: [
+                {
+                  href: '/main/appeals/:appealId/rule-6-parties/:partyId/edit/due-dates' | replace(':appealId', appeal.id),
+                  text: "Change",
+                  visuallyHiddenText: "Statements due"
+                }
+              ]
+            }
           }
         ]
       }) }}

@@ -156,6 +156,60 @@
         ]
       }) }}
 
+      {% set emailHtml %}
+        <div class="app-email-preview">
+          <div class="app-email-preview__subject">
+            Subject: Subject goes here
+          </div>
+          <div class="app-email-preview__body">
+            <p class="govuk-body">
+              You have been given Rule 6 status.
+            </p>
+
+            <h2 class="govuk-heading-m">
+              Appeal details
+            </h2>
+
+            <div class="govuk-inset-text">
+              Appeal reference number: 7001224<br>
+              Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
+              Planning application reference: 22/00118/FULL
+            </div>
+
+            
+
+            <h2 class="govuk-heading-m">
+              Feedback
+            </h2>
+
+            <p class="govuk-body">
+              We welcome your feedback on our appeals service. Tell us on this short <a href="#" class="govuk-link">feedback form</a>.
+            </p>
+
+            <p class="govuk-body">
+              The Planning Inspectorat</span>e<br>
+              caseofficers@planninginspectorate.gov.uk
+            </p>
+
+          </div>
+        </div>
+      {% endset %}
+
+      {{ govukDetails({
+        summaryText: "Preview email to Rule 6 party",
+        html: emailHtml
+      }) }}
+
+      {{ govukDetails({
+        summaryText: "Preview email to appellant",
+        html: emailHtml
+      }) }}
+
+      {{ govukDetails({
+        summaryText: "Preview email to LPA",
+        html: emailHtml
+      }) }}
+
       <form method="post">
         {{ govukButton({
           text: "Update Rule 6 party"

@@ -195,6 +195,16 @@
         html: emailHtml
       }) }}
 
+      {{ govukDetails({
+        summaryText: "Preview email to appellant",
+        html: emailHtml
+      }) }}
+
+      {{ govukDetails({
+        summaryText: "Preview email to LPA",
+        html: emailHtml
+      }) }}
+
       <form method="post">
         {{ govukButton({
           text: "Add Rule 6 party"

@@ -59,38 +59,38 @@
         ]
       }) }}
 
-
-{% set emailHtml %}
+      {% set rule6EmailHtml %}
         <div class="app-email-preview">
           <div class="app-email-preview__subject">
-            Subject: Subject goes here
+            Subject: We have rejected your proof of evidence and witnesses: {{appeal.id}}
           </div>
           <div class="app-email-preview__body">
             <p class="govuk-body">
-              You have been given Rule 6 status.
+              We have rejected your proof of evidence and witnesses.
             </p>
 
-            <h2 class="govuk-heading-m">
-              Appeal details
-            </h2>
-
             <div class="govuk-inset-text">
-              Appeal reference number: 7001224<br>
+              Appeal reference number: {{appeal.id}}<br>
               Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
-              Planning application reference: 22/00118/FULL
+              Planning application reference: {{appeal.planningApplicationReference}}
             </div>
 
             <h2 class="govuk-heading-m">
-              Feedback
+              Why we rejected your proof of evidence and witnesses
             </h2>
 
-            <p class="govuk-body">
-              We welcome your feedback on our appeals service. Tell us on this short <a href="#" class="govuk-link">feedback form</a>.
-            </p>
+            <p>We rejected your proof of evidence and witnesses because:</p>
+
+            {{reasonsHtml | safe}}
+
+            <h2 class="govuk-heading-m">
+              What happens next
+            </h2>
+
+            <p>You can send different proof of evidence and witnesses to caseofficers@planninginspectorate.gov.uk. You must send your proof of evidence and witnesses by 20 September 2025.</p>
 
             <p class="govuk-body">
-              The Planning Inspectorat</span>e<br>
-              caseofficers@planninginspectorate.gov.uk
+              The Planning Inspectorate
             </p>
 
           </div>
@@ -99,7 +99,7 @@
 
       {{ govukDetails({
         summaryText: "Preview email to Rule 6 party",
-        html: emailHtml
+        html: rule6EmailHtml
       }) }}
 
       <form method="post">

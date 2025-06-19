@@ -156,38 +156,39 @@
         ]
       }) }}
 
-      {% set emailHtml %}
+      {% set rule6EmailHtml %}
         <div class="app-email-preview">
           <div class="app-email-preview__subject">
-            Subject: Subject goes here
+            Subject: Updated your details: {{appeal.id}}
           </div>
           <div class="app-email-preview__body">
             <p class="govuk-body">
-              You have been given Rule 6 status.
+              We have updated your details.
             </p>
+
+            <div class="govuk-inset-text">
+              {% if party.hasOrganisation %}
+                Organisation name: {{party.organisationName}}<br>
+              {% endif %}
+              Name of representative: {{party.firstName}} {{party.lastName}}<br>
+              Email address: {{party.emailAddress}}<br>
+              {% if party.phone %}
+                Phone number: {{party.phone}}<br>
+              {% endif %}
+            </div>
 
             <h2 class="govuk-heading-m">
               Appeal details
             </h2>
 
             <div class="govuk-inset-text">
-              Appeal reference number: 7001224<br>
+              Appeal reference number: {{appeal.id}}<br>
               Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
-              Planning application reference: 22/00118/FULL
+              Planning application reference: {{appeal.planningReferenceNumber}}
             </div>
 
-            
-
-            <h2 class="govuk-heading-m">
-              Feedback
-            </h2>
-
             <p class="govuk-body">
-              We welcome your feedback on our appeals service. Tell us on this short <a href="#" class="govuk-link">feedback form</a>.
-            </p>
-
-            <p class="govuk-body">
-              The Planning Inspectorat</span>e<br>
+              The Planning Inspectorate<br>
               caseofficers@planninginspectorate.gov.uk
             </p>
 
@@ -197,17 +198,97 @@
 
       {{ govukDetails({
         summaryText: "Preview email to Rule 6 party",
-        html: emailHtml
+        html: rule6EmailHtml
       }) }}
+
+      {% set appellantEmailHtml %}
+        <div class="app-email-preview">
+          <div class="app-email-preview__subject">
+            Subject: Updated Rule 6 party details: {{appeal.id}}
+          </div>
+          <div class="app-email-preview__body">
+            <p class="govuk-body">
+              We have updated the details for a Rule 6 party.
+            </p>
+
+            <div class="govuk-inset-text">
+              {% if party.hasOrganisation %}
+                Organisation name: {{party.organisationName}}<br>
+              {% endif %}
+              Name of representative: {{party.firstName}} {{party.lastName}}<br>
+              Email address: {{party.emailAddress}}<br>
+              {% if party.phone %}
+                Phone number: {{party.phone}}<br>
+              {% endif %}
+            </div>
+
+            <h2 class="govuk-heading-m">
+              Appeal details
+            </h2>
+
+            <div class="govuk-inset-text">
+              Appeal reference number: {{appeal.id}}<br>
+              Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
+              Planning application reference: {{appeal.planningReferenceNumber}}
+            </div>
+
+            <p class="govuk-body">
+              The Planning Inspectorate<br>
+              caseofficers@planninginspectorate.gov.uk
+            </p>
+
+          </div>
+        </div>
+      {% endset %}
 
       {{ govukDetails({
         summaryText: "Preview email to appellant",
-        html: emailHtml
+        html: appellantEmailHtml
       }) }}
+
+      {% set lpaEmailHtml %}
+        <div class="app-email-preview">
+          <div class="app-email-preview__subject">
+            Subject: Updated Rule 6 party details: {{appeal.id}}
+          </div>
+          <div class="app-email-preview__body">
+            <p class="govuk-body">
+              We have updated the details for a Rule 6 party.
+            </p>
+
+            <div class="govuk-inset-text">
+              {% if party.hasOrganisation %}
+                Organisation name: {{party.organisationName}}<br>
+              {% endif %}
+              Name of representative: {{party.firstName}} {{party.lastName}}<br>
+              Email address: {{party.emailAddress}}<br>
+              {% if party.phone %}
+                Phone number: {{party.phone}}<br>
+              {% endif %}
+            </div>
+
+            <h2 class="govuk-heading-m">
+              Appeal details
+            </h2>
+
+            <div class="govuk-inset-text">
+              Appeal reference number: {{appeal.id}}<br>
+              Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
+              Planning application reference: {{appeal.planningReferenceNumber}}
+            </div>
+
+            <p class="govuk-body">
+              The Planning Inspectorate<br>
+              caseofficers@planninginspectorate.gov.uk
+            </p>
+
+          </div>
+        </div>
+      {% endset %}
 
       {{ govukDetails({
         summaryText: "Preview email to LPA",
-        html: emailHtml
+        html: lpaEmailHtml
       }) }}
 
       <form method="post">

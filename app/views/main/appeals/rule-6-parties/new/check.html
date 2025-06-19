@@ -184,17 +184,15 @@
                 view the appeal
               </li>
               <li>
-                submit a statement of case
+                submit a statement of case by {{data.addRule6Party.statementsDueDate | isoDateFromDateInput | govukDate}}
               </li>
               <li>
-                add proof of evidence
+                submit proof of evidence and witnesses by {{data.addRule6Party.proofOfEvidenceAndWitnessesDueDate | isoDateFromDateInput | govukDate}} 
               </li>
             </ul>
 
-            <p>You need to submit your statement by {{data.addRule6Party.statementsDueDate | isoDateFromDateInput | govukDate}}.</p>
-
             <p class="govuk-body">
-              The Planning Inspectorat</span>e<br>
+              The Planning Inspectorate<br>
               caseofficers@planninginspectorate.gov.uk
             </p>
 

@@ -124,6 +124,9 @@ const generateRule6Party = (params) => {
     party.organisationName = params.organisationName || faker.company.name()
   }
 
+  party.statementsDueDate = params.statementsDueDate || faker.date.recent({ days: 2 })
+  party.proofOfEvidenceAndWitnessesDueDate = params.proofOfEvidenceAndWitnessesDueDate || faker.date.recent({ days: 2 })
+
   switch(params.appeal.status) {
     case "Statements and IP comments": // closed/ready to share
     case "Inquiry ready to set up":

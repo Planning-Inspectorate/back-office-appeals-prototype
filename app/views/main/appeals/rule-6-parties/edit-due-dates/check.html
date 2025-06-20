@@ -1,0 +1,111 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Check details and update Rule 6 party due dates" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  {% set address %}
+    {{appAddress({ address: data.hearing.address })}}
+  {% endset %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal {{appeal.id}}</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Statements due"
+            },
+            value: {
+              text: data.editRule6Party.statementsDueDate | isoDateFromDateInput | govukDate
+            },
+            actions: {
+              items: [
+                {
+                  href: '/main/appeals/:appealId/rule-6-parties/:partyId/edit-due-dates' | replace(':appealId', appeal.id),
+                  text: "Change",
+                  visuallyHiddenText: "Statements due"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Proof of evidence and witnesses due"
+            },
+            value: {
+              text: data.editRule6Party.proofOfEvidenceAndWitnessesDueDate | isoDateFromDateInput | govukDate
+            },
+            actions: {
+              items: [
+                {
+                  href: '/main/appeals/:appealId/rule-6-parties/:partyId/edit-due-dates' | replace(':appealId', appeal.id),
+                  text: "Change",
+                  visuallyHiddenText: "Proof of evidence and witnesses due"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      {% set rule6EmailHtml %}
+        <div class="app-email-preview">
+          <div class="app-email-preview__subject">
+            Subject: Updated your details: {{appeal.id}}
+          </div>
+          <div class="app-email-preview__body">
+            <p class="govuk-body">
+              We have updated your details.
+            </p>
+
+            <div class="govuk-inset-text">
+              {% if party.hasOrganisation %}
+                Organisation name: {{party.organisationName}}<br>
+              {% endif %}
+              Name of representative: {{party.firstName}} {{party.lastName}}<br>
+              Email address: {{party.emailAddress}}<br>
+              {% if party.phone %}
+                Phone number: {{party.phone}}<br>
+              {% endif %}
+            </div>
+
+            <h2 class="govuk-heading-m">
+              Appeal details
+            </h2>
+
+            <div class="govuk-inset-text">
+              Appeal reference number: {{appeal.id}}<br>
+              Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
+              Planning application reference: {{appeal.planningReferenceNumber}}
+            </div>
+
+            <p class="govuk-body">
+              The Planning Inspectorate<br>
+              caseofficers@planninginspectorate.gov.uk
+            </p>
+
+          </div>
+        </div>
+      {% endset %}
+
+      {{ govukDetails({
+        summaryText: "Preview email to Rule 6 party",
+        html: rule6EmailHtml
+      }) }}
+
+      <form method="post">
+        {{ govukButton({
+          text: "Update Rule 6 party due dates"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

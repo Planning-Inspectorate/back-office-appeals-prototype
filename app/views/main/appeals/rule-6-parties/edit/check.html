@@ -1,6 +1,6 @@
 {% extends "layouts/bo.html" %}
 
-{% set title = "Check details and update Rule 6 party" %}
+{% set title = "Check details and update Rule 6 party details" %}
 {% set pageName = title %}
 
 {% set back = true %}
@@ -115,47 +115,6 @@
                   href: '/main/appeals/:appealId/rule-6-parties/:partyId/edit/form' | replace(':appealId', appeal.id) | replace(':partyId', party.id),
                   text: "Change",
                   visuallyHiddenText: "Request for Rule 6 status"
-                }
-              ]
-            }
-          }
-        ]
-      }) }}
-
-      <h2 class="govuk-heading-m">Due dates</h2>
-
-      {{ govukSummaryList({
-        rows: [
-          {
-            key: {
-              text: "Statements due"
-            },
-            value: {
-              text: data.editRule6Party.statementsDueDate | isoDateFromDateInput | govukDate
-            },
-            actions: {
-              items: [
-                {
-                  href: '/main/appeals/:appealId/rule-6-parties/:partyId/edit/due-dates' | replace(':appealId', appeal.id),
-                  text: "Change",
-                  visuallyHiddenText: "Statements due"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Proof of evidence and witnesses due"
-            },
-            value: {
-              text: data.editRule6Party.proofOfEvidenceAndWitnessesDueDate | isoDateFromDateInput | govukDate
-            },
-            actions: {
-              items: [
-                {
-                  href: '/main/appeals/:appealId/rule-6-parties/:partyId/edit/due-dates' | replace(':appealId', appeal.id),
-                  text: "Change",
-                  visuallyHiddenText: "Statements due"
                 }
               ]
             }
@@ -300,7 +259,7 @@
 
       <form method="post">
         {{ govukButton({
-          text: "Update Rule 6 party"
+          text: "Update Rule 6 party details"
         }) }}
       </form>
 

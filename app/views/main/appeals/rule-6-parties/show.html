@@ -156,7 +156,14 @@
                 }
               ]
             }
-          },
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">Due dates</h2>
+
+      {{ govukSummaryList({
+        rows: [
           {
             key: {
               text: "Statements due"
@@ -167,7 +174,7 @@
             actions: {
               items: [
                 {
-                  href: '/main/appeals/:appealId/rule-6-parties/:partyId/edit/due-dates' | replace(':appealId', appeal.id) | replace(':partyId', party.id),
+                  href: '/main/appeals/:appealId/rule-6-parties/:partyId/edit-due-dates' | replace(':appealId', appeal.id) | replace(':partyId', party.id),
                   text: "Change",
                   visuallyHiddenText: "Statements due"
                 }
@@ -184,7 +191,7 @@
             actions: {
               items: [
                 {
-                  href: '/main/appeals/:appealId/rule-6-parties/:partyId/edit/due-dates' | replace(':appealId', appeal.id) | replace(':partyId', party.id),
+                  href: '/main/appeals/:appealId/rule-6-parties/:partyId/edit-due-dates' | replace(':appealId', appeal.id) | replace(':partyId', party.id),
                   text: "Change",
                   visuallyHiddenText: "Statements due"
                 }

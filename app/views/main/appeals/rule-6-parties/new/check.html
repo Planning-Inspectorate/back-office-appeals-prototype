@@ -10,6 +10,7 @@
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">Appeal {{appeal.id}}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
+
       {{ govukSummaryList({
         rows: [
           {
@@ -113,7 +114,14 @@
                 }
               ]
             }
-          },
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">Due dates</h2>
+
+      {{ govukSummaryList({
+        rows: [
           {
             key: {
               text: "Statements due"

@@ -58,23 +58,12 @@
       {% set rule6EmailHtml %}
         <div class="app-email-preview">
           <div class="app-email-preview__subject">
-            Subject: Updated your details: {{appeal.id}}
+            Subject: We have updated your timetable: {{appeal.id}}
           </div>
           <div class="app-email-preview__body">
             <p class="govuk-body">
-              We have updated your details.
+              We have updated your timetable.
             </p>
-
-            <div class="govuk-inset-text">
-              {% if party.hasOrganisation %}
-                Organisation name: {{party.organisationName}}<br>
-              {% endif %}
-              Name of representative: {{party.firstName}} {{party.lastName}}<br>
-              Email address: {{party.emailAddress}}<br>
-              {% if party.phone %}
-                Phone number: {{party.phone}}<br>
-              {% endif %}
-            </div>
 
             <h2 class="govuk-heading-m">
               Appeal details
@@ -86,10 +75,31 @@
               Planning application reference: {{appeal.planningReferenceNumber}}
             </div>
 
+            <h2 class="govuk-heading-m">
+              Timetable
+            </h2>
+
+            <h3 class="govuk-heading-s">Statement</h3>
+            <p class="govuk-body">Due by {{data.addRule6Party.statementsDueDate | isoDateFromDateInput | govukDate}}.</p>
+
+            <h3 class="govuk-heading-s">Proof of evidence and witnesses</h3>
+            <p class="govuk-body">Due by {{data.addRule6Party.proofOfEvidenceAndWitnessesDueDate | isoDateFromDateInput | govukDate}}.</p>
+
+            <h2 class="govuk-heading-m">
+              What happens next
+            </h2>
+            <p class="govuk-body">
+              <a href="https://appeal-a-planning-decision.service.gov.uk/" class="govuk-link">Submit your information in the appeals service</a>.
+              </p>
+            </p>
+
+
             <p class="govuk-body">
               The Planning Inspectorate<br>
               caseofficers@planninginspectorate.gov.uk
             </p>
+
+            
 
           </div>
         </div>

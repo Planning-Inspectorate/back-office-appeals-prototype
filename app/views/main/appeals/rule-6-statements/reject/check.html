@@ -66,6 +66,23 @@
                 }
               ]
             }
+          },
+          {
+            key: {
+              text: "Statements due"
+            },
+            value: {
+              text: data.rejectRule6Party.statementsDueDate | isoDateFromDateInput | govukDate
+            },
+            actions: {
+              items: [
+                {
+                  href: '/main/appeals/:appealId/rule-6-statements/:partyId/reject/can-resubmit' | replace(':appealId', appeal.id),
+                  text: "Change",
+                  visuallyHiddenText: "Statements due"
+                }
+              ]
+            }
           }
         ]
       }) }}

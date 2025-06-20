@@ -20,9 +20,21 @@ module.exports = router => {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     let party = appeal.rule6Parties.find(party => party.id == req.params.partyId)
 
+    let statementsDueDate
+    if(_.get(req, 'session.data.rejectRule6Party.statementsDueDate')) {
+      statementsDueDate = DateTime.fromObject({
+        day: req.session.data.rejectRule6Party.statementsDueDate.day,
+        month: req.session.data.rejectRule6Party.statementsDueDate.month,
+        year: req.session.data.rejectRule6Party.statementsDueDate.year
+      }).toISO()
+    } else {
+      statementsDueDate = party.statementsDueDate
+    }
+
     res.render('/main/appeals/rule-6-statements/reject/can-resubmit', {
       appeal,
-      party
+      party,
+      statementsDueDate
     })
   })
 

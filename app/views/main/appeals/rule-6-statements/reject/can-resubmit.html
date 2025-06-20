@@ -13,6 +13,44 @@
 
     <form method="post">
 
+      {% set statementDueDateHtml %}
+        {{ govukDateInput({
+          id: "statementDueDate",
+          fieldset: {
+            legend: {
+              text: "Statements due",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          hint: {
+            text: "For example, 31 3 2025"
+          },
+          items: [
+            {
+              name: "rejectRule6Party[statementsDueDate][day]",
+              label: "Day",
+              value: statementsDueDate | day,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "rejectRule6Party[statementsDueDate][month]",
+              label: "Month",
+              value: statementsDueDate | month,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "rejectRule6Party[statementsDueDate][year]",
+              label: "Year",
+              value: statementsDueDate | year,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+      {% endset %}
+
+
       {{ govukRadios({
         classes: "govuk-radios",
         name: "rejectRule6Party[canResubmit]",
@@ -23,14 +61,14 @@
             classes: "govuk-fieldset__legend--l"
           }
         },
-        hint: {
-          html: "The Rule 6 party must submit a new statement by " + 7 | daysInFuture + "."
-        },
         value: data.rejectRule6Party.canResubmit,
         items: [
           {
             value: "Yes",
-            text: "Yes"
+            text: "Yes",
+            conditional: {
+              html: statementDueDateHtml
+            }
           },
           {
             value: "No",

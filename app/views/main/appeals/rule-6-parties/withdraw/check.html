@@ -41,10 +41,10 @@
         ]
       }) }}
 
-      {% set Rule6emailHtml %}
+      {% set rule6EmailHtml %}
         <div class="app-email-preview">
           <div class="app-email-preview__subject">
-            Subject: We have withdrawn your Rule 6 status: 7001224
+            Subject: We have withdrawn your Rule 6 status: {{appeal.id}}
           </div>
           <div class="app-email-preview__body">
             <p class="govuk-body">
@@ -56,9 +56,9 @@
             </h2>
 
             <div class="govuk-inset-text">
-              Appeal reference number: 7001224<br>
+              Appeal reference number: {{appeal.id}}<br>
               Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
-              Planning application reference: 22/00118/FULL
+              Planning application reference: {{appeal.planningApplicationReference}}
             </div>
 
             
@@ -67,7 +67,7 @@
               Why we have withdrawn your Rule 6 status
             </h2>
 
-            {{reasonsHtml | safe}}
+            <p>{{data.withdrawRule6Party.reason}}</p>
 
             <p class="govuk-body">
               The Planning Inspectorate<br>
@@ -78,7 +78,7 @@
         </div>
       {% endset %}
 
-      {% set appellantemailHtml %}
+      {% set appellantEmailHtml %}
         <div class="app-email-preview">
           <div class="app-email-preview__subject">
             Subject: We have withdrawn a Rule 6 party: 7001224
@@ -112,7 +112,7 @@
               Why we have withdrawn a Rule 6 party
             </h2>
 
-            {{reasonsHtml | safe}}
+            <p>{{data.withdrawRule6Party.reason}}</p>
 
             <p class="govuk-body">
               The Planning Inspectorate<br>
@@ -123,19 +123,21 @@
         </div>
       {% endset %}
 
+      {% set lpaEmailHtml = appellantEmailHtml %}
+
       {{ govukDetails({
         summaryText: "Preview email to Rule 6 party",
-        html: Rule6emailHtml
+        html: rule6EmailHtml
       }) }}
 
       {{ govukDetails({
         summaryText: "Preview email to appellant",
-        html: appellantemailHtml
+        html: appellantEmailHtml
       }) }}
 
       {{ govukDetails({
         summaryText: "Preview email to LPA",
-        html: appellantemailHtml
+        html: lpaEmailHtml
       }) }}
 
       <form method="post">

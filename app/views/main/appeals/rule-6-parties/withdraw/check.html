@@ -41,14 +41,14 @@
         ]
       }) }}
 
-      {% set emailHtml %}
+      {% set Rule6emailHtml %}
         <div class="app-email-preview">
           <div class="app-email-preview__subject">
-            Subject: Subject goes here
+            Subject: We have withdrawn your Rule 6 status: 7001224
           </div>
           <div class="app-email-preview__body">
             <p class="govuk-body">
-              You have been given Rule 6 status.
+              We have withdrawn your Rule 6 status
             </p>
 
             <h2 class="govuk-heading-m">
@@ -64,15 +64,58 @@
             
 
             <h2 class="govuk-heading-m">
-              Feedback
+              Why we have withdrawn your Rule 6 status
             </h2>
 
-            <p class="govuk-body">
-              We welcome your feedback on our appeals service. Tell us on this short <a href="#" class="govuk-link">feedback form</a>.
-            </p>
+            {{reasonsHtml | safe}}
 
             <p class="govuk-body">
-              The Planning Inspectorat</span>e<br>
+              The Planning Inspectorate<br>
+              caseofficers@planninginspectorate.gov.uk
+            </p>
+
+          </div>
+        </div>
+      {% endset %}
+
+      {% set appellantemailHtml %}
+        <div class="app-email-preview">
+          <div class="app-email-preview__subject">
+            Subject: We have withdrawn a Rule 6 party: 7001224
+          </div>
+          <div class="app-email-preview__body">
+            <p class="govuk-body">
+              We have withdrawn a Rule 6 party.
+            </p>
+
+            <div class="govuk-inset-text">
+              {% if data.addRule6Party.hasOrganisation == 'Yes '%}
+                Organisation name: {{data.addRule6Party.organisationName}}<br>
+              {% endif %}
+              Organisation name: {{data.addRule6Party.firstName}} {{data.addRule6Party.lastName}}
+            </div>
+
+
+            <h2 class="govuk-heading-m">
+              Appeal details
+            </h2>
+
+            <div class="govuk-inset-text">
+              Appeal reference number: 7001224<br>
+              Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
+              Planning application reference: 22/00118/FULL
+            </div>
+
+            
+
+            <h2 class="govuk-heading-m">
+              Why we have withdrawn a Rule 6 party
+            </h2>
+
+            {{reasonsHtml | safe}}
+
+            <p class="govuk-body">
+              The Planning Inspectorate<br>
               caseofficers@planninginspectorate.gov.uk
             </p>
 
@@ -82,17 +125,17 @@
 
       {{ govukDetails({
         summaryText: "Preview email to Rule 6 party",
-        html: emailHtml
+        html: Rule6emailHtml
       }) }}
 
       {{ govukDetails({
         summaryText: "Preview email to appellant",
-        html: emailHtml
+        html: appellantemailHtml
       }) }}
 
       {{ govukDetails({
         summaryText: "Preview email to LPA",
-        html: emailHtml
+        html: appellantemailHtml
       }) }}
 
       <form method="post">

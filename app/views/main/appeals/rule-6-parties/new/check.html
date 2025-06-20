@@ -166,7 +166,7 @@
           </div>
           <div class="app-email-preview__body">
             <p class="govuk-body">
-              You have been given Rule 6 status.
+              We have accepted your application for Rule 6 status.
             </p>
 
             <h2 class="govuk-heading-m">
@@ -192,10 +192,10 @@
                 view the appeal
               </li>
               <li>
-                submit a statement of case by {{data.addRule6Party.statementsDueDate | isoDateFromDateInput | govukDate}}
+                submit your statement by {{data.addRule6Party.statementsDueDate | isoDateFromDateInput | govukDate}}
               </li>
               <li>
-                submit proof of evidence and witnesses by {{data.addRule6Party.proofOfEvidenceAndWitnessesDueDate | isoDateFromDateInput | govukDate}} 
+                submit your proof of evidence and witnesses by {{data.addRule6Party.proofOfEvidenceAndWitnessesDueDate | isoDateFromDateInput | govukDate}} 
               </li>
             </ul>
 
@@ -245,7 +245,7 @@
             </h2>
 
             <p class="govuk-body">
-              Anyone with Rule 6 status is considered a main party. They can view information submitted by:
+              Anyone with Rule 6 status is a main party. They can view information submitted by:
             </p>
 
             <ul class="govuk-list govuk-list--bullet">
@@ -253,7 +253,7 @@
                 the appellant
               </li>
               <li>
-                local planning authority
+                the local planning authority
               </li>
               <li>
                 any other Rule 6 parties
@@ -291,75 +291,75 @@
       }) }}
 
       {% set lpaEmailHtml %}
-        <div class="app-email-preview">
-          <div class="app-email-preview__subject">
-            Subject: Rule 6 status application accepted: {{appeal.id}}
-          </div>
-          <div class="app-email-preview__body">
-            <p class="govuk-body">
-              We have accepted a new application for Rule 6 status.
-            </p>
-
-            <div class="govuk-inset-text">
-              {% if data.addRule6Party.hasOrganisation == 'Yes '%}
-                Organisation name: {{data.addRule6Party.organisationName}}<br>
-              {% endif %}
-              Organisation name: {{data.addRule6Party.firstName}} {{data.addRule6Party.lastName}}
-            </div>
-
-            <h2 class="govuk-heading-m">
-              Appeal details
-            </h2>
-
-            <div class="govuk-inset-text">
-              Appeal reference number: {{appeal.id}}<br>
-              Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
-              Planning application reference: {{appeal.planningApplicationReference}}
-            </div>
-
-            <h2 class="govuk-heading-m">
-              About Rule 6 status
-            </h2>
-
-            <p class="govuk-body">
-              Anyone with Rule 6 status is considered a main party. They can view information submitted by:
-            </p>
-
-            <ul class="govuk-list govuk-list--bullet">
-              <li>
-                the appellant
-              </li>
-              <li>
-                local planning authority
-              </li>
-              <li>
-                any other Rule 6 parties
-              </li>
-            </ul>
-
-            <p class="govuk-body">
-              Rule 6 parties can:
-            </p>
-
-            <ul class="govuk-list govuk-list--bullet">
-              <li>
-                submit a statement
-              </li>
-              <li>
-                submit proof of evidence and witnesses
-              </li>
-              <li>
-                appear at the inquiry to cross-examine other parties
-              </li>
-            </ul>
-
-            <p class="govuk-body">
-              If you have any questions, contact caseofficers@planninginspectorate.gov.uk.
-            </p>
-
-            <p class="govuk-body">The Planning Inspectorate</p>
-          </div>
+      <div class="app-email-preview">
+        <div class="app-email-preview__subject">
+          Subject: Rule 6 status application accepted: {{appeal.id}}
         </div>
+        <div class="app-email-preview__body">
+          <p class="govuk-body">
+            We have accepted a new application for Rule 6 status.
+          </p>
+
+          <div class="govuk-inset-text">
+            {% if data.addRule6Party.hasOrganisation == 'Yes '%}
+              Organisation name: {{data.addRule6Party.organisationName}}<br>
+            {% endif %}
+            Organisation name: {{data.addRule6Party.firstName}} {{data.addRule6Party.lastName}}
+          </div>
+
+          <h2 class="govuk-heading-m">
+            Appeal details
+          </h2>
+
+          <div class="govuk-inset-text">
+            Appeal reference number: {{appeal.id}}<br>
+            Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
+            Planning application reference: {{appeal.planningApplicationReference}}
+          </div>
+
+          <h2 class="govuk-heading-m">
+            About Rule 6 status
+          </h2>
+
+          <p class="govuk-body">
+            Anyone with Rule 6 status is a main party. They can view information submitted by:
+          </p>
+
+          <ul class="govuk-list govuk-list--bullet">
+            <li>
+              the appellant
+            </li>
+            <li>
+              the local planning authority
+            </li>
+            <li>
+              any other Rule 6 parties
+            </li>
+          </ul>
+
+          <p class="govuk-body">
+            Rule 6 parties can:
+          </p>
+
+          <ul class="govuk-list govuk-list--bullet">
+            <li>
+              submit a statement
+            </li>
+            <li>
+              submit proof of evidence and witnesses
+            </li>
+            <li>
+              appear at the inquiry to cross-examine other parties
+            </li>
+          </ul>
+
+          <p class="govuk-body">
+            If you have any questions, contact caseofficers@planninginspectorate.gov.uk.
+          </p>
+
+          <p class="govuk-body">The Planning Inspectorate</p>
+        </div>
+      </div>
       {% endset %}
 
       {{ govukDetails({

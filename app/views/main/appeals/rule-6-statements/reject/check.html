@@ -90,13 +90,16 @@
       {% set rule6EmailHtml %}
         <div class="app-email-preview">
           <div class="app-email-preview__subject">
-            Subject: We’ve rejected your statement: {{appeal.id}}
+            Subject: We have rejected your statement: {{appeal.id}}
           </div>
           <div class="app-email-preview__body">
             <p class="govuk-body">
-              We’ve rejected your statement.
+              We have rejected your statement.
             </p>
 
+            <h2 class="govuk-heading-m">
+              Appeal details
+            </h2>
             <div class="govuk-inset-text">
               Appeal reference number: {{appeal.id}}<br>
               Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
@@ -107,15 +110,13 @@
               Why we rejected your statement
             </h2>
 
-            <p>We rejected your statement because:</p>
-
             {{reasonsHtml | safe}}
 
             <h2 class="govuk-heading-m">
               What happens next
             </h2>
 
-            <p>You can send a different statement to caseofficers@planninginspectorate.gov.uk. You must submit your statement by 20 September 2025.</p>
+            <p>You can send a different statement to caseofficers@planninginspectorate.gov.uk by 20 September 2025.</p>
 
             <p class="govuk-body">
               The Planning Inspectorate

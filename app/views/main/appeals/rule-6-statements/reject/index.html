@@ -1,6 +1,6 @@
 {% extends "layouts/bo.html" %}
 
-{% set title = 'Reason for rejecting the statement'  %}
+{% set title = 'Why is the Rule 6 statement incomplete?'  %}
 {% set pageName = title %}
 
 {% block beforeContent %}
@@ -14,7 +14,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
       <form method="post">
-        <span class="govuk-caption-l">Appeal {{appeal.id}} - {{party.firstName}} {{party.lastName}} - reject</span>
+        <span class="govuk-caption-l">Appeal {{appeal.id}} - {{party.firstName}} {{party.lastName}} - mark as incomplete</span>
         {% set otherReason %}
         <div data-module="moj-add-another">
 
@@ -59,20 +59,8 @@
           values: data.rejectRule6Party.reason,
           items: [
             {
-              value: "Personal information",
-              text: "Includes personal or medical information"
-            },
-            {
-              value: "Inflammatory information",
-              text: "Includes inflammatory content"
-            },
-            {
-              value: "Not relevant to this appeal",
-              text: "Not relevant to this appeal"
-            },
-            {
-              value: "Contains links to web pages",
-              text: "Contains links to web pages"
+              value: "Supporting documents missing",
+              text: "Supporting documents missing"
             },
             {
               value: "Other reason",

@@ -48,6 +48,7 @@
       </h1>
 
       <div class="govuk-button-group">
+        {# <a class="govuk-link" href="/main/appeals/{{appeal.id}}/rule-6-parties/{{party.id}}/withdraw">Add statement</a> #}
         {% if party.status == 'Active' %}
           <a class="govuk-link" href="/main/appeals/{{appeal.id}}/rule-6-parties/{{party.id}}/withdraw">Withdraw</a>
         {% endif %}
@@ -200,6 +201,14 @@
           }
         ]
       }) }}
+
+      <h2 class="govuk-heading-m">Statement</h2>
+
+      <p><a href="">Add statement</a></p>
+
+      <h2 class="govuk-heading-m">Proof of evidence and witnesses</h2>
+
+      <p><a href="">Add proof of evidence and witnesses</a></p>
 
     </div>
   </div>

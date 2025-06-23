@@ -53,7 +53,7 @@
             href: '/main/appeals/:appealId/rule-6-proof-of-evidence-and-witnesses/:partyId/accept' | replace(':appealId', appeal.id) | replace(':partyId', party.id)
           })}}
           {{ govukButton({
-              text: "Reject",
+              text: "Mark as incomplete",
               classes: 'govuk-button--secondary',
               href: '/main/appeals/:appealId/rule-6-proof-of-evidence-and-witnesses/:partyId/reject' | replace(':appealId', appeal.id) | replace(':partyId', party.id)
             })}}

@@ -30,7 +30,7 @@
 {% block content %}
 
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-full">
 
       {{ govukNotificationBanner({
         type: "success",
@@ -58,13 +58,13 @@
             href: '/main/appeals/:appealId/rule-6-statements/:partyId/redact' | replace(':appealId', appeal.id) | replace(':partyId', party.id)
           })}}
           {{ govukButton({
-              text: "Reject",
+              text: "Mark as incomplete",
               classes: 'govuk-button--secondary',
               href: '/main/appeals/:appealId/rule-6-statements/:partyId/reject' | replace(':appealId', appeal.id) | replace(':partyId', party.id)
             })}}
           </div>
         {% else %}
-          <p class="govuk-!-margin-bottom-6"><a class="govuk-link" href="/main/appeals/{{appeal.id}}/rule-6-statements/{{party.id}}/new">Add new Rule 6 statement</a></p>
+          {# <p class="govuk-!-margin-bottom-6"><a class="govuk-link" href="/main/appeals/{{appeal.id}}/rule-6-statements/{{party.id}}/new">Add new Rule 6 statement</a></p> #}
         {% endif %}
 
         {% set docs %}
@@ -94,6 +94,15 @@
             },
             value: {
               html: party.statement.statement
+            },
+            actions: {
+              items: [
+                {
+                  href: '#',
+                  text: "Redact",
+                  visuallyHiddenText: ""
+                }
+              ]
             }
           },
           {
@@ -111,7 +120,7 @@
                   visuallyHiddenText: "Supporting documents"
                 }
               ]
-            } if 1==2
+            }
           }
         ]
       }) }}

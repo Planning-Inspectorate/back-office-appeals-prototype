@@ -1,6 +1,6 @@
 {% extends "layouts/bo.html" %}
 
-{% set title = 'Check details and reject Rule 6 statement'  %}
+{% set title = 'Check details and mark Rule 6 statement as incomplete'  %}
 {% set pageName = title %}
 
 {% block beforeContent %}
@@ -35,7 +35,7 @@
         rows: [
           {
             key: {
-              text: "Reason for rejecting the Rule 6 statement"
+              text: "Why is the Rule 6 statement incomplete?"
             },
             value: {
               html: reasonsHtml
@@ -45,7 +45,7 @@
                 {
                   href: '/main/appeals/:appealId/rule-6-statements/:partyId/reject' | replace(':appealId', appeal.id) | replace(':partyId', party.id),
                   text: "Change",
-                  visuallyHiddenText: "Item label"
+                  visuallyHiddenText: "Why is the Rule 6 statement incomplete?"
                 }
               ]
             }
@@ -90,11 +90,11 @@
       {% set rule6EmailHtml %}
         <div class="app-email-preview">
           <div class="app-email-preview__subject">
-            Subject: We have rejected your statement: {{appeal.id}}
+            Subject: Your statement is incomplete: {{appeal.id}}
           </div>
           <div class="app-email-preview__body">
             <p class="govuk-body">
-              We have rejected your statement.
+              Your statement is incomplete.
             </p>
 
             <h2 class="govuk-heading-m">
@@ -107,7 +107,7 @@
             </div>
 
             <h2 class="govuk-heading-m">
-              Why we rejected your statement
+              This is what we need
             </h2>
 
             {{reasonsHtml | safe}}
@@ -133,7 +133,7 @@
 
       <form method="post">
         {{ govukButton({
-          text: "Reject Rule 6 statement"
+          text: "Mark Rule 6 statement as incomplete"
         }) }}
 
         {# <p><a href="javascript:history.back()">Cancel</a></p> #}

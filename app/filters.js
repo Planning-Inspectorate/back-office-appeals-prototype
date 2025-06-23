@@ -1,7 +1,7 @@
 const govukPrototypeKit = require('govuk-prototype-kit')
 const addFilter = govukPrototypeKit.views.addFilter
 
-const { DateTime } = require("luxon");
+const { DateTime } = require("luxon")
 const moment = require('moment')
 
 addFilter('formatMonth', (number) => {
@@ -132,7 +132,7 @@ addFilter('rule6StatementStatusColour', status => {
   switch(status) {
     case 'Ready to review':
       return 'govuk-tag--blue'
-    case 'Rejected':
+    case 'Incomplete':
       return 'govuk-tag--red'
     case 'Accepted':
       return 'govuk-tag--green'

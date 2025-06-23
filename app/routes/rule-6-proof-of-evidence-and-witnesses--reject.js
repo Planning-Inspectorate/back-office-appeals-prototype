@@ -29,9 +29,9 @@ module.exports = router => {
   router.post('/main/appeals/:appealId/rule-6-proof-of-evidence-and-witnesses/:partyId/reject/check', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     let party = appeal.rule6Parties.find(party => party.id == req.params.partyId)
-    party.proofOfEvidenceAndWitnesses.status = 'Rejected'
-    party.proofOfEvidenceAndWitnesses.dateRejected = new Date()
-    req.flash('success', 'Rule 6 proof of evidence rejected')
+    party.proofOfEvidenceAndWitnesses.status = 'Incomplete'
+    party.proofOfEvidenceAndWitnesses.dateIncomplete = new Date()
+    req.flash('success', 'Rule 6 proof of evidence marked as incomplete')
     res.redirect(`/main/appeals/${req.params.appealId}/rule-6-proof-of-evidence-and-witnesses`)
   })
 

@@ -1,4 +1,5 @@
 const _ = require('lodash')
+const { DateTime } = require("luxon")
 
 module.exports = router => {
 
@@ -55,9 +56,9 @@ module.exports = router => {
   router.post('/main/appeals/:appealId/rule-6-statements/:partyId/reject/check', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     let party = appeal.rule6Parties.find(party => party.id == req.params.partyId)
-    party.statement.status = 'Rejected'
-    party.statement.dateRejected = new Date()
-    req.flash('success', 'Rule 6 statement rejected')
+    party.statement.status = 'Incomplete'
+    party.statement.dateIncomplete = new Date()
+    req.flash('success', 'Rule 6 statement marked as incomplete')
     res.redirect(`/main/appeals/${req.params.appealId}/rule-6-statements`)
   })
 

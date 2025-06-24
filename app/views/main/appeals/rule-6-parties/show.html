@@ -212,7 +212,11 @@
 
       <h2 class="govuk-heading-m">Proof of evidence and witnesses</h2>
 
-      <p><a href="#">Add proof of evidence and witnesses</a></p>
+      {% if not party.proofOfEvidenceAndWitnesses %}
+        <p><a href="/main/appeals/{{appeal.id}}/rule-6-parties/{{party.id}}/add-proof-of-evidence-and-witnesses">Add proof of evidence and witnesses</a></p>
+      {% else %}
+        <p><a href="/main/appeals/{{appeal.id}}/rule-6-proof-of-evidence-and-witnesses/{{party.id}}">View proof of evidence and witnesses</a></p>
+      {% endif %}
 
     </div>
   </div>

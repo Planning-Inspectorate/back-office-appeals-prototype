@@ -1,0 +1,61 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Check details and add Rule 6 proof of evidence and witnesses" %}
+{% set pageName = title %}
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal {{appeal.id}}</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Witnesses and their evidence"
+            },
+            value: {
+              html: '<a href="#">summary.pdf</a>'
+            },
+            actions: {
+              items: [
+                {
+                  href: '/main/appeals/:appealId/rule-6-parties/:partyId/add-proof-of-evidence-and-witnesses' | replace(':appealId', appeal.id) | replace(':partyId', party.id),
+                  text: "Change",
+                  visuallyHiddenText: "Witnesses and their evidence"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Witnesses and their evidence"
+            },
+            value: {
+              html: '<a href="#">witnesses.pdf</a>'
+            },
+            actions: {
+              items: [
+                {
+                  href: '/main/appeals/:appealId/rule-6-parties/:partyId/add-proof-of-evidence-and-witnesses/witnesses' | replace(':appealId', appeal.id) | replace(':partyId', party.id),
+                  text: "Change",
+                  visuallyHiddenText: "Supporting documents"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <form method="post">
+        {{ govukButton({
+          text: "Add Rule 6 proof of evidence and witnesses"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

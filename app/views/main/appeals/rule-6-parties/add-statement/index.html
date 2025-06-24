@@ -12,7 +12,7 @@
 
       <form method="post" novalidate>
         <span class="govuk-caption-l">Appeal {{appeal.id}} - add Rule 6 statement</span>
-        {{ govukCharacterCount({
+        {{ govukTextarea({
           id: "addRule6Statement[statement]",
           name: "addRule6Statement[statement]",
           label: {
@@ -20,7 +20,6 @@
             isPageHeading: true,
             classes: "govuk-label--l"
           },
-          maxlength: 500,
           value: data.addRule6Statement.statement
         }) }}
 

@@ -205,71 +205,14 @@
       <h2 class="govuk-heading-m">Statement</h2>
 
       {% if not party.statement %}
-        <p><a href="/main/appeals/{{appeal.id}}/rule-6-parties/statements/new">Add statement</a></p>
+        <p><a href="/main/appeals/{{appeal.id}}/rule-6-parties/{{party.id}}/add-statement">Add statement</a></p>
       {% else %}
-         {% set docs %}
-          {% if party.statement.documents %}
-
-            {% if party.statement.documents.length > 1 %}
-              <ol class="govuk-list govuk-list--number">
-                {% for document in party.statement.documents %}
-                  <li>
-                    <a href="#">{{document.name}}</a>
-                  </li>
-                {% endfor %}
-              </ol>
-            {% else %}
-              <a href="#">{{party.statement.documents[0].name}}</a>
-            {% endif %}
-          {% else %}
-            No documents
-          {% endif %}
-        {% endset %}
-
-        {{ govukSummaryList({
-          rows: [
-            {
-              key: {
-                text: 'Statement'
-              },
-              value: {
-                html: party.statement.statement
-              },
-              actions: {
-                items: [
-                  {
-                    href: '#',
-                    text: "Redact",
-                    visuallyHiddenText: ""
-                  }
-                ]
-              }
-            },
-            {
-              key: {
-                text: 'Supporting documents'
-              },
-              value: {
-                html: docs
-              },
-              actions: {
-                items: [
-                  {
-                    href: '#',
-                    text: "Change",
-                    visuallyHiddenText: "Supporting documents"
-                  }
-                ]
-              }
-            }
-          ]
-        }) if 1==2}}
         <p><a href="/main/appeals/{{appeal.id}}/rule-6-statements/{{party.id}}">View statement</a></p>
       {% endif %}
 
       <h2 class="govuk-heading-m">Proof of evidence and witnesses</h2>
 
-      <p><a href="">Add proof of evidence and witnesses</a></p>
+      <p><a href="#">Add proof of evidence and witnesses</a></p>
 
     </div>
   </div>

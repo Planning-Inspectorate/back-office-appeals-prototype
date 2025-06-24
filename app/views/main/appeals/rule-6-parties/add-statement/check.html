@@ -1,0 +1,80 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Check details and add Rule 6 statement" %}
+{% set pageName = title %}
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal {{appeal.id}}</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Statement"
+            },
+            value: {
+              text: data.addRule6Statement.statement
+            },
+            actions: {
+              items: [
+                {
+                  href: '/main/appeals/:appealId/rule-6-parties/:partyId/add-statement' | replace(':appealId', appeal.id) | replace(':partyId', party.id),
+                  text: "Change",
+                  visuallyHiddenText: "statement"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Supporting documents"
+            },
+            value: {
+              html: '<a href="#">supporting-document-01.doc</a>'
+            },
+            actions: {
+              items: [
+                {
+                  href: '/main/appeals/:appealId/rule-6-parties/new/form' | replace(':appealId', appeal.id) | replace(':partyId', party.id),
+                  text: "Change",
+                  visuallyHiddenText: "Supporting documents"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      {% set rule6EmailHtml %}
+        <div class="app-email-preview">
+          <div class="app-email-preview__subject">
+            Subject: We have accepted your application for Rule 6 status: {{appeal.id}}
+          </div>
+          <div class="app-email-preview__body">
+            Here’s the statement we have added on your behalf.
+
+            If you spot a problem, contact us at blah.
+          </div>
+        </div>
+      {% endset %}
+
+      {{ govukDetails({
+        summaryText: "Preview email to Rule 6 party",
+        html: rule6EmailHtml
+      }) }}
+
+
+      <form method="post">
+        {{ govukButton({
+          text: "Add Rule 6 statement"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

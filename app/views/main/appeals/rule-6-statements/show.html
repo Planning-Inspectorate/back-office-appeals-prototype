@@ -28,10 +28,8 @@
 
 
 {% block content %}
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
-
       {{ govukNotificationBanner({
         type: "success",
         text: flash
@@ -58,33 +56,33 @@
             href: '/main/appeals/:appealId/rule-6-statements/:partyId/redact' | replace(':appealId', appeal.id) | replace(':partyId', party.id)
           })}}
           {{ govukButton({
-              text: "Mark as incomplete",
-              classes: 'govuk-button--secondary',
-              href: '/main/appeals/:appealId/rule-6-statements/:partyId/reject' | replace(':appealId', appeal.id) | replace(':partyId', party.id)
-            })}}
-          </div>
-        {% else %}
-          {# <p class="govuk-!-margin-bottom-6"><a class="govuk-link" href="/main/appeals/{{appeal.id}}/rule-6-statements/{{party.id}}/new">Add new Rule 6 statement</a></p> #}
-        {% endif %}
+            text: "Mark as incomplete",
+            classes: 'govuk-button--secondary',
+            href: '/main/appeals/:appealId/rule-6-statements/:partyId/reject' | replace(':appealId', appeal.id) | replace(':partyId', party.id)
+          })}}
+        </div>
+      {% else %}
+        {# <p class="govuk-!-margin-bottom-6"><a class="govuk-link" href="/main/appeals/{{appeal.id}}/rule-6-statements/{{party.id}}/new">Add new Rule 6 statement</a></p> #}
+      {% endif %}
 
-        {% set docs %}
-          {% if party.statement.documents %}
+      {% set docs %}
+        {% if party.statement.documents %}
 
-            {% if party.statement.documents.length > 1 %}
-              <ol class="govuk-list govuk-list--number">
-                {% for document in party.statement.documents %}
-                  <li>
-                    <a href="#">{{document.name}}</a>
-                  </li>
-                {% endfor %}
-              </ol>
-            {% else %}
-              <a href="#">{{party.statement.documents[0].name}}</a>
-            {% endif %}
+          {% if party.statement.documents.length > 1 %}
+            <ol class="govuk-list govuk-list--number">
+              {% for document in party.statement.documents %}
+                <li>
+                  <a href="#">{{document.name}}</a>
+                </li>
+              {% endfor %}
+            </ol>
           {% else %}
-            No documents
+            <a href="#">{{party.statement.documents[0].name}}</a>
           {% endif %}
-        {% endset %}
+        {% else %}
+          No documents
+        {% endif %}
+      {% endset %}
 
       {{ govukSummaryList({
         rows: [

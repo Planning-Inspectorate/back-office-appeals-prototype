@@ -24,6 +24,27 @@
         {{title}}
       </h1>
 
+      {{ govukDetails({
+        summaryText: "Preview email to Rule 6 party",
+        html: rule6EmailHtml
+      }) }}
+
+      {{ govukDetails({
+        summaryText: "Preview email to appellant",
+        html: rule6EmailHtml
+      }) }}
+
+      {{ govukDetails({
+        summaryText: "Preview email to LPA",
+        html: rule6EmailHtml
+      }) }}
+
+
+      {{ govukWarningText({
+        text: "Do not accept the proof of evidence and witnesses until you have reviewed all the documents and redacted any sensitive information.",
+        iconFallbackText: "Fallback text"
+      }) }}
+
       <form method="post">
         {{ govukButton({
           text: "Accept proof of evidence and witnesses"

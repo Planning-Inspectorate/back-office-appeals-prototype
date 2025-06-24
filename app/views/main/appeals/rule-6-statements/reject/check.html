@@ -83,7 +83,7 @@
                 }
               ]
             }
-          }
+          } if data.rejectRule6Party.canResubmit == 'Yes'
         ]
       }) }}
 
@@ -129,7 +129,7 @@
       {{ govukDetails({
         summaryText: "Preview email to Rule 6 party",
         html: rule6EmailHtml
-      }) }}
+      }) if data.rejectRule6Party.canResubmit == 'Yes' }}
 
       <form method="post">
         {{ govukButton({

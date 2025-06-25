@@ -1,6 +1,6 @@
 {% extends "layouts/bo.html" %}
 
-{% set title = "Rule 6 parties (:total)" | replace(':total', parties.length) %}
+{% set title = "Rule 6 parties" %}
 {% set pageName = title %}
 
 {% block beforeContent %}
@@ -31,9 +31,9 @@
 
       <p class="govuk-!-margin-bottom-6"><a class="govuk-link" href="/main/appeals/{{appeal.id}}/rule-6-parties/new">Add Rule 6 party</a></p>
 
-      {% if parties.length %}
+      {% if activeParties.length %}
          <div class="app-list">
-          {% for item in parties %}
+          {% for item in activeParties %}
             <div class="app-list__item">
               {% if item.organisationName %}
                 <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
@@ -49,18 +49,15 @@
                   </a>
                 </h2>
               {% endif %}
-
-              <div class="app-list__tag">
-                {{ govukTag({
-                  text: item.status,
-                  classes: item.status | rule6StatusColour
-                }) }}
-              </div>
             </div>
           {% endfor %}
         </div>
       {% else %}
-        <p>There are no results.</p>
+        <p>There are no Rule 6 parties.</p>
+      {% endif %}
+
+      {% if withdrawnParties.length %}
+        <p><a href="/main/appeals/{{appeal.id}}/rule-6-parties/withdrawn">Withdrawn Rule 6 parties</a></p>
       {% endif %}
 
     </div>

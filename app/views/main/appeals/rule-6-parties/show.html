@@ -218,6 +218,24 @@
         <p><a href="/main/appeals/{{appeal.id}}/rule-6-proof-of-evidence-and-witnesses/{{party.id}}">View proof of evidence and witnesses</a></p>
       {% endif %}
 
+      {{party | log}}
+
+      {% if party.withdrawal %}
+        <h2 class="govuk-heading-m govuk-!-margin-top-6">Withdrawal</h2>
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Reason"
+              },
+              value: {
+                text: party.withdrawal.reason
+              }
+            }
+          ]
+        }) }}
+      {% endif %}
+
     </div>
   </div>
 {% endblock %}

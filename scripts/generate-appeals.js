@@ -99,10 +99,13 @@ const generateRule6Party = (params) => {
   party.dateAdded = params.dateAdded || faker.date.recent({ days: 2 })
 
   if(party.status == 'Withdrawn') {
-    party.dateWithdrawn = faker.date.between({
+    party.withdrawal = {
+      date: faker.date.between({
       from: party.dateAdded,
       to: now
-    })
+    }),
+      reason: 'Didn’t fancy it anymore'
+    }
   }
 
   party.firstName = params.firstName || faker.person.firstName()

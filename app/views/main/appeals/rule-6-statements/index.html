@@ -1,6 +1,6 @@
 {% extends "layouts/bo.html" %}
 
-{% set title = "Rule 6 statements (:total)" | replace(':total', statements.length) %}
+{% set title = "Rule 6 statements" %}
 {% set pageName = title %}
 
 {% block beforeContent %}
@@ -30,15 +30,15 @@
       <h1 class="govuk-heading-l">{{title}}</h1>
 
       {% set awaitingReviewHtml %}
-        {{appRule6Table({ appeal: appeal, items: statementsReadyToReview })}}
+        {{appRule6StatementsTable({ appeal: appeal, items: statementsReadyToReview })}}
       {% endset %}
 
       {% set acceptedHtml %}
-        {{appRule6Table({ appeal: appeal, items: statementsAccepted })}}
+        {{appRule6StatementsTable({ appeal: appeal, items: statementsAccepted })}}
       {% endset %}
 
       {% set incompleteHtml %}
-        {{appRule6Table({ appeal: appeal, items: statementsIncomplete })}}
+        {{appRule6StatementsTable({ appeal: appeal, items: statementsIncomplete })}}
       {% endset %}
 
       {{ govukTabs({

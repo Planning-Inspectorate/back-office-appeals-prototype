@@ -1,6 +1,6 @@
 {% extends "layouts/bo.html" %}
 
-{% set title = "Rule 6 proof of evidence and witnesses (:total)" | replace(':total', proofOfEvidenceAndWitnesses.length) %}
+{% set title = "Rule 6 proof of evidence and witnesses" %}
 {% set pageName = title %}
 
 {% block beforeContent %}
@@ -29,36 +29,43 @@
       <span class="govuk-caption-l">Appeal {{appeal.id}}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
 
-      {% if proofOfEvidenceAndWitnesses.length %}
-         <div class="app-list">
-          {% for item in proofOfEvidenceAndWitnesses %}
-            <div class="app-list__item">
-              {% if item.organisationName %}
-                <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
-                  <a class="govuk-link--no-visited-state" href="/main/appeals/{{appeal.id}}/rule-6-proof-of-evidence-and-witnesses/{{item.id}}">
-                    {{item.organisationName}}
-                  </a>
-                </h2>
-                <p class="govuk-!-margin-bottom-0">{{item.firstName}} {{item.lastName}}</p>
-              {% else %}
-                <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
-                  <a class="govuk-link--no-visited-state" href="/main/appeals/{{appeal.id}}/rule-6-proof-of-evidence-and-witnesses/{{item.id}}">
-                    {{item.firstName}} {{item.lastName}}
-                  </a>
-                </h2>
-              {% endif %}
-              <div class="app-list__tag">
-              {{ govukTag({
-                text: item.proofOfEvidenceAndWitnesses.status,
-                classes: item.proofOfEvidenceAndWitnesses.status | rule6StatementStatusColour
-              }) }}
-              </div>
-            </div>
-          {% endfor %}
-        </div>
-      {% else %}
-        <p>There are no results.</p>
-      {% endif %}
+       {% set awaitingReviewHtml %}
+        {{appRule6ProofOfEvidenceAndWitnessesTable({ appeal: appeal, items: proofOfEvidenceAndWitnessesReadyToReview })}}
+      {% endset %}
+
+      {% set acceptedHtml %}
+        {{appRule6ProofOfEvidenceAndWitnessesTable({ appeal: appeal, items: proofOfEvidenceAndWitnessesAccepted })}}
+      {% endset %}
+
+      {% set incompleteHtml %}
+        {{appRule6ProofOfEvidenceAndWitnessesTable({ appeal: appeal, items: proofOfEvidenceAndWitnessesIncomplete })}}
+      {% endset %}
+
+      {{ govukTabs({
+        items: [
+          {
+            label: "Awaiting review",
+            id: "awaitingReview",
+            panel: {
+              html: awaitingReviewHtml
+            }
+          },
+          {
+            label: "Accepted",
+            id: "accepted",
+            panel: {
+              html: acceptedHtml
+            }
+          },
+          {
+            label: "Incomplete",
+            id: "incomplete",
+            panel: {
+              html: incompleteHtml
+            }
+          }
+        ]
+      }) }}
 
     </div>
   </div>

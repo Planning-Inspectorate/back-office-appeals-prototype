@@ -1,0 +1,33 @@
+{% if params.items.length %}
+  <table class="govuk-table">
+    <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+        <th scope="col" class="govuk-table__header">Rule 6 party</th>
+        <th scope="col" class="govuk-table__header">Submitted</th>
+        <th scope="col" class="govuk-table__header">Action</th>
+      </tr>
+    </thead>
+    <tbody class="govuk-table__body">
+      {% for item in params.items %}
+        <tr class="govuk-table__row">
+          <th class="govuk-table__cell">
+            {% if item.organisationName %}
+              {{item.organisationName}}
+              <p class="govuk-!-margin-bottom-0">{{item.firstName}} {{item.lastName}}</p>
+            {% else %}
+              {{item.firstName}} {{item.lastName}}
+            {% endif %}
+          </th>
+          <td class="govuk-table__cell">{{item.dateAdded | govukDate}}</td>
+          <td class="govuk-table__cell">
+            <a class="govuk-link--no-visited-state" href="/main/appeals/{{params.appeal.id}}/rule-6-proof-of-evidence-and-witnesses/{{item.id}}">
+              View
+            </a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <p>None</p>
+{% endif %}

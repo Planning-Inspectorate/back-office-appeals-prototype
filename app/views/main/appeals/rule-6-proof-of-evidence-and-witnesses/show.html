@@ -43,10 +43,10 @@
         {{ govukTag({
           text: party.proofOfEvidenceAndWitnesses.status,
           classes: party.proofOfEvidenceAndWitnesses.status | rule6StatementStatusColour
-        }) }}
+        }) if 1==2}}
       </h1>
 
-      {% if party.proofOfEvidenceAndWitnesses.status == 'Ready to review' %}
+      {% if party.proofOfEvidenceAndWitnesses.status == 'Ready to review' and 1==2 %}
         <div class="govuk-button-group">
           {{ govukButton({
             text: "Accept",
@@ -138,6 +138,38 @@
           }
         ]
       }) }}
+
+      {% if party.proofOfEvidenceAndWitnesses.status == 'Ready to review' %}
+        <form method="post">
+          {{ govukRadios({
+            name: "reviewProofOfEvidenceAndWitnesses[decision]",
+            fieldset: {
+              legend: {
+                text: "Review",
+                isPageHeading: false,
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            value: data.reviewProofOfEvidenceAndWitnesses.decision,
+            items: [
+              {
+                value: "Accept",
+                text: "Accept"
+              },
+              {
+                value: "Mark as incomplete",
+                text: "Mark as incomplete"
+              }
+            ]
+          }) }}
+
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+        </form>
+      {% endif %}
+
+
 
     </div>
   </div>

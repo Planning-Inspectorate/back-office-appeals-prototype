@@ -44,7 +44,7 @@
         }) }}
       </h1>
 
-      {% if party.statement.status == 'Ready to review' %}
+      {% if party.statement.status == 'Ready to review' and 1==2 %}
         <div class="govuk-button-group">
           {{ govukButton({
             text: "Accept",
@@ -122,6 +122,40 @@
           }
         ]
       }) }}
+
+      {% if party.statement.status == 'Ready to review' %}
+        <form method="post">
+          {{ govukRadios({
+            name: "reviewStatement[decision]",
+            fieldset: {
+              legend: {
+                text: "Review",
+                isPageHeading: false,
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            value: data.reviewStatement.decision,
+            items: [
+              {
+                value: "Accept",
+                text: "Accept"
+              },
+              {
+                value: "Redact and accept",
+                text: "Redact and accept"
+              },
+              {
+                value: "Mark as incomplete",
+                text: "Mark as incomplete"
+              }
+            ]
+          }) }}
+
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+        </form>
+      {% endif %}
 
     </div>
   </div>

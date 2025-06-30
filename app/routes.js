@@ -121,6 +121,9 @@ require('./routes/rule-6-proof-of-evidence-and-witnesses--accept')(router)
 require('./routes/rule-6-proof-of-evidence-and-witnesses--reject')(router)
 require('./routes/edit-timetable-due-dates')(router)
 
+require('./routes/case-officer--new')(router)
+require('./routes/case-officer--edit')(router)
+
 require('./routes/decision')(router)
 require('./routes/decision--new')(router)
 require('./routes/appellant-costs-decision--new')(router)

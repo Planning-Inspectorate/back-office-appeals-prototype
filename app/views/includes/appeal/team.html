@@ -1,6 +1,16 @@
 <div class="app-panel">
   <h2 class="govuk-heading-l">Team</h2>
 
+
+	{% if appeal.caseOfficer %}
+		{% set caseOfficerAction = '/main/appeals/:appealId/case-officer/edit' | replace(':appealId', appeal.id) %}
+		{% set caseOfficerText = 'Change' %}
+	{% else %}
+		{% set caseOfficerAction = '/main/appeals/:appealId/case-officer/new' | replace(':appealId', appeal.id) %}
+		{% set caseOfficerText = 'Assign' %}
+	{% endif %}
+
+
 	{{ govukSummaryList({
 		rows: [
 			{
@@ -8,13 +18,13 @@
 					text: "Case officer"
 				},
 				value: {
-					text: appeal.caseOfficer
+					text: appeal.caseOfficer or 'Not assigned'
 				},
 				actions: {
 					items: [
 						{
-							href: '/main/appeals/:appealId/case-officer/edit',
-							text: "Change",
+							href: caseOfficerAction,
+							text: caseOfficerText,
 							visuallyHiddenText: "Case officer"
 						}
 					]

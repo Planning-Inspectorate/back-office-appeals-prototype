@@ -1,0 +1,49 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Check details and update assigned case officer" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  {% set address %}
+    {{appAddress({ address: data.addHearing.address })}}
+  {% endset %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal {{appeal.id}} {% if appeal.isLeadAppeal %}(lead){% endif %}</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Case officer"
+            },
+            value: {
+              html: data.editCaseOfficer.caseOfficer
+            },
+            actions: {
+              items: [
+                {
+                  href: "/main/appeals/:appealId/decision/new" | replace(':appealId', appeal.id),
+                  text: "Change",
+                  visuallyHiddenText: "Decision"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <form method="post">
+        {{ govukButton({
+          text: "Update assigned case officer"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

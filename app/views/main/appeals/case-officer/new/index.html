@@ -1,0 +1,41 @@
+{% extends "layouts/bo.html" %}
+
+
+{% set title = "Case officer" %}
+
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal {{appeal.id}} {% if appeal.isLeadAppeal %}(lead){% endif %} - assign case officer</span>
+      <form method="post">
+        {{ xGovukAutocomplete({
+          id: "addCaseOfficer[caseOfficer]",
+          name: "addCaseOfficer[caseOfficer]",
+          allowEmpty: false,
+          label: {
+            classes: "govuk-label--l",
+            isPageHeading: true,
+            text: title
+          },
+          value: 'Tony Stark',
+          items: [
+            { text: "Adam Silver (adam.silver@example.com)", value: "Adam Silver" },
+            { text: "Oliver Rose (oliver.rose@example.com)", value: "Oliver Rose" },
+            { text: "Steve Murphy (steve.murphy@example.com)", value: "Steve Murphy" },
+            { text: "Tony Stark (tony.stark@example.com)", value: "Tony Stark" }
+          ]
+        }) }}  
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

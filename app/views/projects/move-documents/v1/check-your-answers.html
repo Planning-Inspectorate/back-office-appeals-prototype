@@ -1,0 +1,49 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Check details and move document" %}
+{% set pageName = title + ' - Planning Inspectorate' %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Appeal 7001224 - 7001224-IP-comment.doc</span>
+      <h1 class="govuk-heading-l">
+        {{ title }}
+      </h1>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "New folder"
+            },
+            value: {
+              html: "Documentation / Interested parties / Caitlin Lovays"
+            },
+            actions: {
+              items: [
+                {
+                  href: "move-folder",
+                  text: "Change",
+                  visuallyHiddenText: "new location"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <form method="post">
+
+        {{ govukButton({
+          text: "Move document"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

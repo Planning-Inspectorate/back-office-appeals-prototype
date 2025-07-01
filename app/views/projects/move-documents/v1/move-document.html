@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Choose folder for 7001224-IP-comment.doc" %}
+{% set title = "New folder" %}
 
 {% set pageName = title + ' - Planning Inspectorate'%}
 
@@ -18,7 +18,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <span class="govuk-caption-l">Appeal 7001224 - move document</span>
+      <span class="govuk-caption-l">Appeal 7001224 - 7001224-IP-comment.doc - move document</span>
       <h1 class="govuk-heading-l">{{ title }}</h1>
 
       <!-- conditionally revealed radio options -->
@@ -220,6 +220,7 @@
               classes: "govuk-visually-hidden"
             }
           },
+          value: "Asad Khan",
           items: [
             {
               value: "Shafeeq Muhammad",
@@ -291,14 +292,15 @@
       {% set documents %}
 
         {{ govukRadios({
-          name: "Documents",
+          name: "Documentation",
           fieldset: {
             legend: {
-              text: "Documents",
+              text: "Documentation",
               isPageHeading: false,
               classes: "govuk-visually-hidden"
             }
           },
+          value: "Interested party comments",
           items: [
             {
               value: "Appeal",
@@ -393,10 +395,11 @@
             classes: "govuk-visually-hidden"
           }
         },
+        value: "Documentation",
         items: [
           {
-            value: "Documents",
-            text: "Documents",
+            value: "Documentation",
+            text: "Documentation",
             conditional: {
               html: documents
             }
@@ -412,7 +415,7 @@
       }) }}
 
       {{ govukButton({
-        href: "confirm-move",
+        href: "check-your-answers",
         text: "Continue"
       }) }}
 

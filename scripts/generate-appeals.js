@@ -208,8 +208,6 @@ const generateAppeal = (params = {}) => {
 
   appeal.status = params.status || faker.helpers.arrayElement(statuses)
 
-  appeal.caseTeam = params.caseTeam || faker.helpers.arrayElement(caseTeams)
-
   if(appeal.status !== 'Ready to assign case officer') {
     appeal.caseOfficer = params.caseOfficer || faker.helpers.arrayElement(caseOfficers)
 
@@ -224,6 +222,14 @@ const generateAppeal = (params = {}) => {
       "William Stryker"
     ])
   }
+
+  appeal.caseTeam = params.caseTeam || faker.helpers.arrayElement(caseTeams)
+
+  // if we assign a case officer then make sure the team matches the case officer’s team
+  if(appeal.caseOfficer) {
+    appeal.caseTeam = appeal.caseOfficer.caseTeam
+  }
+
 
   if(appeal.status == 'Ready to assign case officer' || appeal.status == 'Ready to validate' || appeal.status == 'Ready to start') {
     appeal.procedure = null

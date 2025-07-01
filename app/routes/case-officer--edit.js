@@ -43,9 +43,9 @@ module.exports = router => {
 
   router.post('/main/appeals/:appealId/case-officer/edit/check', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
-    
     let newCaseOfficer = caseOfficers.find(caseOfficer => caseOfficer.name == req.session.data.editCaseOfficer.caseOfficer)
 
+    appeal.caseTeam = newCaseOfficer.caseTeam
     appeal.caseOfficer = newCaseOfficer
     delete req.session.data.editCaseOfficer
     req.flash('success', 'Assigned case officer updated')

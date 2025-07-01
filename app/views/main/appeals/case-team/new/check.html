@@ -1,6 +1,6 @@
 {% extends "layouts/bo.html" %}
 
-{% set title = "Check details and assign case officer" %}
+{% set title = "Check details and assign case team" %}
 {% set pageName = title %}
 
 {% set back = true %}
@@ -28,9 +28,9 @@
             actions: {
               items: [
                 {
-                  href: "/main/appeals/:appealId/case-officer/new" | replace(':appealId', appeal.id),
+                  href: "/main/appeals/:appealId/case-team/new" | replace(':appealId', appeal.id),
                   text: "Change",
-                  visuallyHiddenText: "Case officer"
+                  visuallyHiddenText: "Case team"
                 }
               ]
             }

@@ -1,6 +1,21 @@
 <div class="app-panel">
   <h2 class="govuk-heading-l">Team</h2>
 
+	{% set caseTeam %}
+		{{appeal.caseTeam.name}}<br>
+		{{appeal.caseTeam.emailAddress}}
+	{% endset %}
+
+	{% if appeal.caseTeam %}
+		{% set caseTeamAction = '/main/appeals/:appealId/case-team/edit' | replace(':appealId', appeal.id) %}
+		{% set caseTeamText = 'Change' %}
+	{% else %}
+		{% set caseTeamAction = '/main/appeals/:appealId/case-team/new' | replace(':appealId', appeal.id) %}
+		{% set caseTeamText = 'Assign' %}
+	{% endif %}
+
+
+
 
 	{% if appeal.caseOfficer %}
 		{% set caseOfficerAction = '/main/appeals/:appealId/case-officer/edit' | replace(':appealId', appeal.id) %}
@@ -10,9 +25,25 @@
 		{% set caseOfficerText = 'Assign' %}
 	{% endif %}
 
-
 	{{ govukSummaryList({
 		rows: [
+			{
+				key: {
+					text: "Case team"
+				},
+				value: {
+					html: caseTeam
+				},
+				actions: {
+					items: [
+						{
+							href: caseTeamAction,
+							text: caseTeamText,
+							visuallyHiddenText: "Case team"
+						}
+					]
+				}
+			},
 			{
 				key: {
 					text: "Case officer"

@@ -4,6 +4,7 @@ const faker =  require('@faker-js/faker').faker
 const { v4: uuidv4 } = require('uuid')
 const { DateTime } = require("luxon")
 const lpas = require('../app/data/local-planning-authorities')
+const caseTeams = require('../app/data/case-teams')
 const { baseStatusesStart, s78Statuses, s78WrittenStatuses, s78HearingStatuses, s78InquiryStatuses, baseStatusesEnd } = require('../app/data/statuses')
 let now = new Date().toISOString()
 
@@ -205,6 +206,8 @@ const generateAppeal = (params = {}) => {
   statuses = statuses.concat(baseStatusesEnd)
 
   appeal.status = params.status || faker.helpers.arrayElement(statuses)
+
+  appeal.caseTeam = params.caseTeam || faker.helpers.arrayElement(caseTeams)
 
   if(appeal.status !== 'Ready to assign case officer') {
     appeal.caseOfficer = params.caseOfficer || faker.helpers.arrayElement([

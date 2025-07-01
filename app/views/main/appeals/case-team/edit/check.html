@@ -1,6 +1,6 @@
 {% extends "layouts/bo.html" %}
 
-{% set title = "Check details and update assigned case officer" %}
+{% set title = "Check details and update assigned case team" %}
 {% set pageName = title %}
 
 {% set back = true %}
@@ -16,21 +16,27 @@
       <span class="govuk-caption-l">Appeal {{appeal.id}} {% if appeal.isLeadAppeal %}(lead){% endif %}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
 
+      {% set caseTeam %}
+        {{newCaseTeam.name}}<br>
+        {{newCaseTeam.emailAddress}}
+      {% endset %}
+
+
       {{ govukSummaryList({
         rows: [
           {
             key: {
-              text: "Case officer"
+              text: "Case team"
             },
             value: {
-              html: data.editCaseOfficer.caseOfficer
+              html: caseTeam
             },
             actions: {
               items: [
                 {
-                  href: "/main/appeals/:appealId/decision/new" | replace(':appealId', appeal.id),
+                  href: "/main/appeals/:appealId/case-team/new" | replace(':appealId', appeal.id),
                   text: "Change",
-                  visuallyHiddenText: "Decision"
+                  visuallyHiddenText: "Case team"
                 }
               ]
             }
@@ -40,7 +46,7 @@
 
       <form method="post">
         {{ govukButton({
-          text: "Update assigned case officer"
+          text: "Update assigned case team"
         }) }}
       </form>
 

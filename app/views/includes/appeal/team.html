@@ -1,10 +1,16 @@
 <div class="app-panel">
   <h2 class="govuk-heading-l">Team</h2>
 
-	{% set caseTeam %}
-		{{appeal.caseTeam.name}}<br>
-		{{appeal.caseTeam.emailAddress}}
-	{% endset %}
+	{% if appeal.caseTeam %}
+		{% set caseTeam %}
+			{{appeal.caseTeam.name}}<br>
+			{{appeal.caseTeam.emailAddress}}
+		{% endset %}
+	{% else %}
+		{% set caseTeam %}
+			Not assigned
+		{% endset %}
+	{% endif %}
 
 	{% if appeal.caseTeam %}
 		{% set caseTeamAction = '/main/appeals/:appealId/case-team/edit' | replace(':appealId', appeal.id) %}
@@ -14,7 +20,16 @@
 		{% set caseTeamText = 'Assign' %}
 	{% endif %}
 
-
+	{% if appeal.caseOfficer %}
+		{% set caseOfficer %}
+			{{appeal.caseOfficer.name}}<br>
+			{{appeal.caseOfficer.emailAddress}}
+		{% endset %}
+	{% else %}
+		{% set caseOfficer %}
+			Not assigned
+		{% endset %}
+	{% endif %}
 
 
 	{% if appeal.caseOfficer %}
@@ -49,7 +64,7 @@
 					text: "Case officer"
 				},
 				value: {
-					text: appeal.caseOfficer or 'Not assigned'
+					html: caseOfficer
 				},
 				actions: {
 					items: [
@@ -66,7 +81,7 @@
 					text: "Inspector"
 				},
 				value: {
-					text: 'Allan Poe'
+					html: 'Allan Poe<br>whatever@example.com'
 				},
 				actions: {
 					items: [

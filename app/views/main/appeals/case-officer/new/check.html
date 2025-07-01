@@ -16,6 +16,11 @@
       <span class="govuk-caption-l">Appeal {{appeal.id}} {% if appeal.isLeadAppeal %}(lead){% endif %}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
 
+      {% set newCaseOfficer %}
+        {{newCaseOfficer.name}}<br>
+        {{newCaseOfficer.emailAddress}}
+      {% endset %}
+
       {{ govukSummaryList({
         rows: [
           {
@@ -23,7 +28,7 @@
               text: "Case officer"
             },
             value: {
-              html: data.addCaseOfficer.caseOfficer
+              html: newCaseOfficer
             },
             actions: {
               items: [

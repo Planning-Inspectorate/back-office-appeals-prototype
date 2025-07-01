@@ -5,6 +5,7 @@ const { v4: uuidv4 } = require('uuid')
 const { DateTime } = require("luxon")
 const lpas = require('../app/data/local-planning-authorities')
 const caseTeams = require('../app/data/case-teams')
+const caseOfficers = require('../app/data/case-officers')
 const { baseStatusesStart, s78Statuses, s78WrittenStatuses, s78HearingStatuses, s78InquiryStatuses, baseStatusesEnd } = require('../app/data/statuses')
 let now = new Date().toISOString()
 
@@ -210,16 +211,7 @@ const generateAppeal = (params = {}) => {
   appeal.caseTeam = params.caseTeam || faker.helpers.arrayElement(caseTeams)
 
   if(appeal.status !== 'Ready to assign case officer') {
-    appeal.caseOfficer = params.caseOfficer || faker.helpers.arrayElement([
-      'Tony Stark',
-      'Tony Stark',
-      'Tony Stark',
-      'Tony Stark',
-      'Tony Stark',
-      'Tony Stark',
-      'Natasha Romanoff',
-      'Peter Parker'
-    ])
+    appeal.caseOfficer = params.caseOfficer || faker.helpers.arrayElement(caseOfficers)
 
     appeal.inspector = params.inspector || faker.helpers.arrayElement([
       "Eli Morrow",
@@ -464,7 +456,7 @@ const generateAppeals = () => {
     type: 'Planning',
     procedure: 'Written representations',
     status: 'Ready to start',
-    caseOfficer: 'Tony Stark'
+    caseOfficer: caseOfficers.find(caseOfficer => caseOfficer.name == 'Tony Stark')
   }))
 
   appeals.push(generateAppeal({
@@ -472,7 +464,7 @@ const generateAppeals = () => {
     type: 'Planning',
     procedure: 'Written representations',
     status: 'Ready to start',
-    caseOfficer: 'Tony Stark'
+    caseOfficer: caseOfficers.find(caseOfficer => caseOfficer.name == 'Tony Stark')
   }))
 
   appeals.push(generateAppeal({
@@ -480,7 +472,7 @@ const generateAppeals = () => {
     type: 'Planning',
     procedure: 'Written representations',
     status: 'Ready to start',
-    caseOfficer: 'Tony Stark'
+    caseOfficer: caseOfficers.find(caseOfficer => caseOfficer.name == 'Tony Stark')
   }))
 
 
@@ -489,7 +481,7 @@ const generateAppeals = () => {
     type: 'Planning',
     procedure: 'Written representations',
     status: 'Decision ready to issue',
-    caseOfficer: 'Tony Stark'
+    caseOfficer: caseOfficers.find(caseOfficer => caseOfficer.name == 'Tony Stark')
   }))
 
   appeals.push(generateAppeal({
@@ -497,7 +489,7 @@ const generateAppeals = () => {
     type: 'Planning',
     procedure: 'Written representations',
     status: 'Decision ready to issue',
-    caseOfficer: 'Tony Stark'
+    caseOfficer: caseOfficers.find(caseOfficer => caseOfficer.name == 'Tony Stark')
   }))
 
   appeals.push(generateAppeal({
@@ -505,7 +497,7 @@ const generateAppeals = () => {
     type: 'Planning',
     procedure: 'Written representations',
     status: 'Decision ready to issue',
-    caseOfficer: 'Tony Stark'
+    caseOfficer: caseOfficers.find(caseOfficer => caseOfficer.name == 'Tony Stark')
   }))
 
   appeals.push(generateAppeal({
@@ -513,7 +505,7 @@ const generateAppeals = () => {
     type: 'Planning',
     procedure: 'Hearing',
     status: 'Awaiting hearing',
-    caseOfficer: 'Tony Stark'
+    caseOfficer: caseOfficers.find(caseOfficer => caseOfficer.name == 'Tony Stark')
   }))
 
   let status12 = 'Awaiting inquiry'
@@ -528,7 +520,7 @@ const generateAppeals = () => {
     procedure: 'Inquiry',
     status: status12,
     interestedPartyComments: interestedPartyComments,
-    caseOfficer: 'Tony Stark'
+    caseOfficer: caseOfficers.find(caseOfficer => caseOfficer.name == 'Tony Stark')
   }))
 
   appeals.push(generateAppeal({
@@ -538,18 +530,18 @@ const generateAppeals = () => {
   appeals.push(generateAppeal({
     type: 'Planning',
     status: 'Ready to validate',
-    caseOfficer: 'Tony Stark'
+    caseOfficer: caseOfficers.find(caseOfficer => caseOfficer.name == 'Tony Stark')
   }))
   appeals.push(generateAppeal({
     id: '00000005',
     type: 'Planning',
     status: 'Ready to start',
-    caseOfficer: 'Tony Stark'
+    caseOfficer: caseOfficers.find(caseOfficer => caseOfficer.name == 'Tony Stark')
   }))
   appeals.push(generateAppeal({
     type: 'Planning',
     status: 'LPAQ',
-    caseOfficer: 'Tony Stark'
+    caseOfficer: caseOfficers.find(caseOfficer => caseOfficer.name == 'Tony Stark')
   }))
 
   appeals.push(generateAppeal({

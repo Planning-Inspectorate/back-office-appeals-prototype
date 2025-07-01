@@ -77,7 +77,7 @@
                       html: 'Case officer'
                     },
                     value: {
-                      html: appeal.caseOfficer or "Unassigned"
+                      html: appeal.caseOfficer.name if appeal.caseOfficer else "Unassigned"
                     }
                   },
                   {

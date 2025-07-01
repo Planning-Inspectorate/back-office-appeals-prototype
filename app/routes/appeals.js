@@ -3,6 +3,7 @@ const Pagination = require('../helpers/pagination')
 const { getActions } = require('../helpers/actions')
 const { isChildAppeal, isLeadAppeal } = require('../helpers/linked-appeals')
 const { allStatuses } = require('../data/statuses')
+const caseOfficers = require('../data/case-officers')
 
 module.exports = router => {
 
@@ -97,7 +98,7 @@ module.exports = router => {
           if(selectedCaseOfficerFilters.includes('Unassigned') && !appeal.caseOfficer) {
             matchesCaseOfficer = true
           } 
-          if(selectedCaseOfficerFilters.includes(appeal.caseOfficer)) {
+          if(selectedCaseOfficerFilters.includes(appeal.caseOfficer?.name)) {
             matchesCaseOfficer = true
           }
         }
@@ -340,6 +341,14 @@ module.exports = router => {
       return { text: lpa, value: lpa }
     })
 
+    let caseOfficerItems = [
+      { text: "Unassigned", value: "Unassigned" },
+      ...caseOfficers.map(caseOfficer => ({ 
+        text: `${caseOfficer.name}`, 
+        value: caseOfficer.name
+      }))
+    ]
+
     res.render('main/appeals/all', {
       appeals,
       selectedFilters,
@@ -349,7 +358,8 @@ module.exports = router => {
       selectedInspectorItems,
       selectedLPAItems,
       selectedStatusItems,
-      lpaCheckboxes
+      lpaCheckboxes,
+      caseOfficerItems
     })
   })
 

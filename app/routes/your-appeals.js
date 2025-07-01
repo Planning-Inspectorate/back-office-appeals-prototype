@@ -3,13 +3,14 @@ const Pagination = require('../helpers/pagination')
 const { getActions } = require('../helpers/actions')
 const { isChildAppeal, isLeadAppeal } = require('../helpers/linked-appeals')
 const { allStatuses } = require('../data/statuses')
+const caseOfficers = require('../data/case-officers')
 
 module.exports = router => {
 
   router.get('/main/your-appeals', function (req, res) {
 
     let appeals = req.session.data.appeals
-      .filter(appeal => appeal.caseOfficer == 'Tony Stark')
+      .filter(appeal => appeal.caseOfficer?.name == 'Tony Stark')
       .map(appeal => ({
         ...appeal,
         actions: getActions(appeal),
@@ -270,6 +271,12 @@ module.exports = router => {
       return { text: lpa, value: lpa }
     })
 
+    let caseOfficerItems = caseOfficers.map(caseOfficer => ({ 
+      text: `${caseOfficer.name}`, 
+      value: caseOfficer.name
+    }))
+
+
     res.render('main/appeals/index', {
       appeals,
       selectedFilters,
@@ -278,7 +285,8 @@ module.exports = router => {
       selectedInspectorItems,
       selectedLPAItems,
       selectedStatusItems,
-      lpaCheckboxes
+      lpaCheckboxes,
+      caseOfficerItems
     })
   })
 

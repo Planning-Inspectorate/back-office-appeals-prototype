@@ -11,25 +11,20 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-l">Appeal {{appeal.id}} {% if appeal.isLeadAppeal %}(lead){% endif %} - assign case officer</span>
+      <span class="govuk-caption-l">Appeal {{appeal.id}} {% if appeal.isLeadAppeal %}(lead){% endif %} - assign case team</span>
       <form method="post">
-        {{ xGovukAutocomplete({
-          id: "addCaseOfficer[caseOfficer]",
-          name: "addCaseOfficer[caseOfficer]",
-          allowEmpty: false,
-          label: {
-            classes: "govuk-label--l",
-            isPageHeading: true,
-            text: title
+        {{ govukRadios({
+          name: "addCaseTeam[caseTeam]",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
           },
-          value: 'Tony Stark',
-          items: [
-            { text: "Adam Silver (adam.silver@example.com)", value: "Adam Silver" },
-            { text: "Oliver Rose (oliver.rose@example.com)", value: "Oliver Rose" },
-            { text: "Steve Murphy (steve.murphy@example.com)", value: "Steve Murphy" },
-            { text: "Tony Stark (tony.stark@example.com)", value: "Tony Stark" }
-          ]
-        }) }}  
+          value: data.addCaseTeam.caseTeam,
+          items: caseTeamItems
+        }) }}
 
         {{ govukButton({
           text: "Continue"

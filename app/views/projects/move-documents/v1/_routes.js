@@ -8,7 +8,8 @@ router.get('*', function(req, res, next){
 })
 
 // Add a case note
-router.post('/confirm-move', function (req, res) {
+router.post('/check-your-answers', function (req, res) {
+  req.session.data['new-location'] = 'Caitlin Lovays'
   req.flash('success', 'Document moved')
   res.redirect('document-details')
 })

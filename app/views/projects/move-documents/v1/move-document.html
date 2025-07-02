@@ -1,6 +1,6 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "New folder" %}
+{% set title = "File location" %}
 
 {% set pageName = title + ' - Planning Inspectorate'%}
 
@@ -18,9 +18,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <span class="govuk-caption-l">Appeal 7001224 - 7001224-IP-comment.doc - move document</span>
-      <h1 class="govuk-heading-l">{{ title }}</h1>
-
+      <span class="govuk-caption-l">Appeal 7001224 - 7001224-IP-comment.doc - update file location</span>
       <!-- conditionally revealed radio options -->
 
       <!-- third level options -->
@@ -390,9 +388,9 @@
         name: "Case locations",
         fieldset: {
           legend: {
-            text: "Case locations",
-            isPageHeading: false,
-            classes: "govuk-visually-hidden"
+            text: title,
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
           }
         },
         value: "Documentation",

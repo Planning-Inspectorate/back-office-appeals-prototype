@@ -10,7 +10,7 @@ router.get('*', function(req, res, next){
 // Add a case note
 router.post('/check-your-answers', function (req, res) {
   req.session.data['new-location'] = 'Caitlin Lovays'
-  req.flash('success', 'Document moved')
+  req.flash('success', 'File location updated')
   res.redirect('document-details')
 })
 

@@ -1,3 +1,10 @@
+{% if params.linkText %}
+  {% set linkText = params.linkText %}
+{% else %}
+  {% set linkText = 'View' %}
+{% endif %}
+
+
 {% if params.items.length %}
   <table class="govuk-table">
     <thead class="govuk-table__head">
@@ -21,7 +28,7 @@
           <td class="govuk-table__cell">{{item.dateAdded | govukDate}}</td>
           <td class="govuk-table__cell">
             <a class="govuk-link--no-visited-state" href="/main/appeals/{{params.appeal.id}}/rule-6-proof-of-evidence-and-witnesses/{{item.id}}">
-              View
+            {{linkText}}
             </a>
           </td>
         </tr>

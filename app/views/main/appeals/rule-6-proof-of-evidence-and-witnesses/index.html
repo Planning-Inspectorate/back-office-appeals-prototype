@@ -30,7 +30,7 @@
       <h1 class="govuk-heading-l">{{title}}</h1>
 
        {% set awaitingReviewHtml %}
-        {{appRule6ProofOfEvidenceAndWitnessesTable({ appeal: appeal, items: proofOfEvidenceAndWitnessesReadyToReview })}}
+        {{appRule6ProofOfEvidenceAndWitnessesTable({ appeal: appeal, items: proofOfEvidenceAndWitnessesReadyToReview, linkText: 'Review' })}}
       {% endset %}
 
       {% set acceptedHtml %}

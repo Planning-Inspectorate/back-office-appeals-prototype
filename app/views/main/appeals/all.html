@@ -74,6 +74,14 @@
                   },
                   {
                     key: {
+                      html: 'Case team'
+                    },
+                    value: {
+                      html: appeal.caseTeam.name if appeal.caseTeam else "Unassigned"
+                    }
+                  },
+                  {
+                    key: {
                       html: 'Case officer'
                     },
                     value: {
@@ -170,6 +178,13 @@
       container: $('.inspector-filter'),
       textBox: {
         label: 'Find inspector'
+      }
+    })
+
+    new App.ListFilter({
+      container: $('.case-team-filter'),
+      textBox: {
+        label: 'Find case team'
       }
     })
 

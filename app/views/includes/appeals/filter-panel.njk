@@ -11,6 +11,27 @@
   {% set inspectorYouValue = 'Eli Morrow' %}
 {% endif %}
 
+{% set teamFilterHtml %}
+  {{ appCheckboxFilter({
+    idPrefix: "filters[caseTeams]",
+    name: "filters[caseTeams]",
+    classes: "case-team-filter govuk-checkboxes--small",
+    attributes: {
+      id: 'case-team-filter'
+    },
+    fieldset: {
+      legend: {
+        text: "Case team",
+        classes: "govuk-fieldset__legend--s"
+      }
+    },
+    maxHeight: true,
+    values: data.filters.caseTeams,
+    selectedItems: selectedCaseTeamItems,
+    items: caseTeamItems
+  }) }}
+{% endset %}
+
 {% set caseOfficerFilterHtml %}
   {{ appCheckboxFilter({
     idPrefix: "filters[caseOfficers]",
@@ -284,6 +305,7 @@
             <a class="govuk-link govuk-link--no-visited-state" href="/main/appeals/clear-filters">Clear filters</a>
           {% endif %}
         </div>
+        {{teamFilterHtml | safe}}
         {{localPlanningAuthorityFilterHtml | safe}}
         {{caseOfficerFilterHtml | safe}}
         {{inspectorFilterHtml | safe}}

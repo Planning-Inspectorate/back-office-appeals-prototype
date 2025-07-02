@@ -223,7 +223,7 @@ const generateAppeal = (params = {}) => {
     ])
   }
 
-  appeal.caseTeam = params.caseTeam || faker.helpers.arrayElement(caseTeams)
+  appeal.caseTeam = params.caseTeam || faker.helpers.arrayElement([null, null, null, null, ...caseTeams])
 
   // if we assign a case officer then make sure the team matches the case officer’s team
   if(appeal.caseOfficer) {

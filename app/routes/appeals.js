@@ -3,6 +3,7 @@ const Pagination = require('../helpers/pagination')
 const { getActions } = require('../helpers/actions')
 const { isChildAppeal, isLeadAppeal } = require('../helpers/linked-appeals')
 const { allStatuses } = require('../data/statuses')
+const caseTeams = require('../data/case-teams')
 const caseOfficers = require('../data/case-officers')
 
 module.exports = router => {
@@ -64,6 +65,7 @@ module.exports = router => {
     }
 
 
+    let selectedCaseTeamFilters = _.get(req.session.data.filters, 'caseTeams')
     let selectedCaseOfficerFilters = _.get(req.session.data.filters, 'caseOfficers')
     let selectedInspectorFilters = _.get(req.session.data.filters, 'inspectors')
     let selectedLPAFilters = _.get(req.session.data.filters, 'lpas')
@@ -74,7 +76,7 @@ module.exports = router => {
     let selectedSiteVisitFilters = _.get(req.session.data.filters, 'siteVisit')
     let selectedPlanningObligationFilters = _.get(req.session.data.filters, 'planningObligation')
     let selectedGreenBeltFilters = _.get(req.session.data.filters, 'greenBelt')
-    let hasFilters = _.get(selectedStatusFilters, 'length') || _.get(selectedInspectorFilters, 'length') || _.get(selectedLPAFilters, 'length') ||  _.get(selectedCaseOfficerFilters, 'length') || _.get(selectedTypeFilters, 'length') || _.get(selectedProcedureFilters, 'length') || _.get(selectedLinkedAppealTypeFilters, 'length') || _.get(selectedSiteVisitFilters, 'length') || _.get(selectedPlanningObligationFilters, 'length') || _.get(selectedGreenBeltFilters, 'length')
+    let hasFilters = _.get(selectedCaseTeamFilters, 'length') || _.get(selectedStatusFilters, 'length') || _.get(selectedInspectorFilters, 'length') || _.get(selectedLPAFilters, 'length') ||  _.get(selectedCaseOfficerFilters, 'length') || _.get(selectedTypeFilters, 'length') || _.get(selectedProcedureFilters, 'length') || _.get(selectedLinkedAppealTypeFilters, 'length') || _.get(selectedSiteVisitFilters, 'length') || _.get(selectedPlanningObligationFilters, 'length') || _.get(selectedGreenBeltFilters, 'length')
 
     let selectedFilters = {
       categories: []
@@ -83,6 +85,7 @@ module.exports = router => {
     // the user has selected a status filter
     if(hasFilters) {
       appeals = appeals.filter(appeal => {
+        let matchesCaseTeam = true
         let matchesCaseOfficer = true
         let matchesInspector = true
         let matchesLPA = true
@@ -92,6 +95,16 @@ module.exports = router => {
         let matchesLinkedAppealType = true
         let matchesSiteVisit = true
         let matchesPlanningObligation = true
+
+        if(_.get(selectedCaseTeamFilters, 'length')) {
+          matchesCaseTeam = false
+          if(selectedCaseTeamFilters.includes('Unassigned') && !appeal.caseTeam) {
+            matchesCaseTeam = true
+          } 
+          if(selectedCaseTeamFilters.includes(appeal.caseTeam?.name)) {
+            matchesCaseTeam = true
+          }
+        }
 
         if(_.get(selectedCaseOfficerFilters, 'length')) {
           matchesCaseOfficer = false
@@ -173,14 +186,30 @@ module.exports = router => {
           }
         }
 
-        return matchesStatus && matchesInspector && matchesLPA && matchesCaseOfficer && matchesType && matchesProcedure && matchesLinkedAppealType && matchesSiteVisit && matchesPlanningObligation
+        return matchesCaseTeam && matchesStatus && matchesInspector && matchesLPA && matchesCaseOfficer && matchesType && matchesProcedure && matchesLinkedAppealType && matchesSiteVisit && matchesPlanningObligation
       })
     }
 
+    let selectedCaseTeamItems
     let selectedCaseOfficerItems
     let selectedInspectorItems
     let selectedLPAItems
     let selectedStatusItems
+
+    if(_.get(selectedCaseTeamFilters, 'length')) {
+
+      selectedCaseTeamItems = selectedCaseTeamFilters.map(label => {
+        return {
+          text: label,
+          href: `/main/appeals/remove-case-team/${label}`
+        }
+      })
+
+      selectedFilters.categories.push({
+        heading: { text: 'Case team' },
+        items: selectedCaseTeamItems
+      })
+    }
 
     if(_.get(selectedCaseOfficerFilters, 'length')) {
 
@@ -341,10 +370,18 @@ module.exports = router => {
       return { text: lpa, value: lpa }
     })
 
+    let caseTeamItems = [
+      { text: "Unassigned", value: "Unassigned" },
+      ...caseTeams.map(caseTeam => ({ 
+        text: caseTeam.name, 
+        value: caseTeam.name
+      }))
+    ]
+
     let caseOfficerItems = [
       { text: "Unassigned", value: "Unassigned" },
       ...caseOfficers.map(caseOfficer => ({ 
-        text: `${caseOfficer.name}`, 
+        text: caseOfficer.name, 
         value: caseOfficer.name
       }))
     ]
@@ -359,12 +396,15 @@ module.exports = router => {
       selectedLPAItems,
       selectedStatusItems,
       lpaCheckboxes,
+      caseTeamItems,
       caseOfficerItems
     })
   })
 
   router.get('/main/appeals/clear-filters', (req, res) => {
     _.set(req, 'session.data.filters.statuses', null)
+    _.set(req, 'session.data.filters.caseTeams', null)
+    _.set(req, 'session.data.filters.caseOfficers', null)
     _.set(req, 'session.data.filters.caseOfficers', null)
     _.set(req, 'session.data.filters.inspectors', null)
     _.set(req, 'session.data.filters.lpas', null)
@@ -379,6 +419,11 @@ module.exports = router => {
 
   router.get('/main/appeals/remove-status/:status', (req, res) => {
     _.set(req, 'session.data.filters.statuses', _.pull(req.session.data.filters.statuses, req.params.status))
+    res.redirect('/main/appeals')
+  })
+
+  router.get('/main/appeals/remove-case-team/:caseTeam', (req, res) => {
+    _.set(req, 'session.data.filters.caseTeams', _.pull(req.session.data.filters.caseTeams, req.params.caseTeam))
     res.redirect('/main/appeals')
   })
 

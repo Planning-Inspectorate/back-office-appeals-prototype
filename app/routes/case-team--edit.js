@@ -51,7 +51,7 @@ module.exports = router => {
 
     appeal.caseTeam = newCaseTeam
     delete req.session.data.editCaseOfficer
-    req.flash('success', 'Assigned case officer updated')
+    req.flash('success', 'Case team updated')
     res.redirect(`/main/appeals/${req.params.appealId}`)
   })
 

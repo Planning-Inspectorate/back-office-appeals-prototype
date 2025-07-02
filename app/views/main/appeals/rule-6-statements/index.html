@@ -30,7 +30,7 @@
       <h1 class="govuk-heading-l">{{title}}</h1>
 
       {% set awaitingReviewHtml %}
-        {{appRule6StatementsTable({ appeal: appeal, items: statementsReadyToReview })}}
+        {{appRule6StatementsTable({ appeal: appeal, items: statementsReadyToReview, linkText: 'Review' })}}
       {% endset %}
 
       {% set acceptedHtml %}
@@ -67,11 +67,11 @@
           ]
         }) }}
 
-        <p class="govuk-body">
+        {# <p class="govuk-body">
           <a href="withdrawn-comments">
             Withdrawn Rule 6 statements
           </a>
-        </p>
+        </p> #}
 
       {# {% if statements.length %}
          <div class="app-list">

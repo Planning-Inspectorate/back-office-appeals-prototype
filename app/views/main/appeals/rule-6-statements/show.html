@@ -41,7 +41,7 @@
         {{ govukTag({
           text: party.statement.status,
           classes: party.statement.status | rule6StatementStatusColour
-        }) }}
+        }) if 1==2}}
       </h1>
 
       {% if party.statement.status == 'Ready to review' and 1==2 %}

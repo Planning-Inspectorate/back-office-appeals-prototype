@@ -1,0 +1,108 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = 'Check details and mark appellant proof of evidence and witnesses as incomplete'  %}
+{% set pageName = title %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: 'javascript:history.back()'
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <span class="govuk-caption-l">Appeal {{appeal.id}}</span>
+      <h1 class="govuk-heading-l">
+        {{title}}
+      </h1>
+
+      {% set reasonsHtml %}
+        <ul class="govuk-list govuk-list--bullet">
+          {% for item in data.rejectRule6Party.reason %}
+            <li>
+              {{item}}
+              {# {% if item == 'Other reason' %}
+                - {{data.new.otherObject}}
+              {% endif %} #}
+            </li>
+          {% endfor %}
+        </ul>
+      {% endset %}
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Why is the proof of evidence and witnesses incomplete?"
+            },
+            value: {
+              html: reasonsHtml
+            },
+            actions: {
+              items: [
+                {
+                  href: '/main/appeals/:appealId/appellant-proof-of-evidence-and-witnesses/reject' | replace(':appealId', appeal.id),
+                  text: "Change",
+                  visuallyHiddenText: "Reason for rejecting appellant proof of evidence and witnesses"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      {% set rule6EmailHtml %}
+        <div class="app-email-preview">
+          <div class="app-email-preview__subject">
+            Subject: Your proof of evidence and witnesses is incomplete: {{appeal.id}}
+          </div>
+          <div class="app-email-preview__body">
+            <p class="govuk-body">
+              Your proof of evidence and witnesses is incomplete.
+            </p>
+
+            <h2 class="govuk-heading-m">
+              Appeal details
+            </h2>
+
+            <div class="govuk-inset-text">
+              Appeal reference number: {{appeal.id}}<br>
+              Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
+              Planning application reference: {{appeal.planningApplicationReference}}
+            </div>
+
+            <h2 class="govuk-heading-m">
+              Why your proof of evidence and witnesses is incomplete
+            </h2>
+
+            {{reasonsHtml | safe}}
+
+            <h2 class="govuk-heading-m">
+              What happens next
+            </h2>
+
+            <p>You can send different proof of evidence and witnesses to caseofficers@planninginspectorate.gov.uk by 20 September 2025.</p>
+
+            <p class="govuk-body">
+              The Planning Inspectorate
+            </p>
+
+          </div>
+        </div>
+      {% endset %}
+
+      {{ govukDetails({
+        summaryText: "Preview email to Rule 6 party",
+        html: rule6EmailHtml
+      }) if 1==2}}
+
+      <form method="post">
+        {{ govukButton({
+          text: "Mark appellant proof of evidence and witnesses as incomplete"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

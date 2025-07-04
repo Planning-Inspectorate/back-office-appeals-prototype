@@ -1,6 +1,26 @@
 <div class="app-panel">
   <h2 class="govuk-heading-l">Documentation</h2>
 
+  {% if appeal.appellantProofOfEvidenceAndWitnesses %}
+    {% set appellantProofOfEvidenceValue = 'Received' %}
+    {% set appellantProofOfEvidenceHref = '/main/appeals/:appealId/appellant-proof-of-evidence-and-witnesses' | replace(':appealId', appeal.id) %}
+    {% set appellantProofOfEvidenceLinkText = 'View' %}
+  {% else %}
+    {% set appellantProofOfEvidenceValue = 'Not received' %}
+    {% set appellantProofOfEvidenceHref = '/main/appeals/:appealId/appellant-proof-of-evidence-and-witnesses/new' | replace(':appealId', appeal.id) %}
+    {% set appellantProofOfEvidenceLinkText = 'Add' %}
+  {% endif %}
+
+  {% if appeal.lpaProofOfEvidenceAndWitnesses %}
+    {% set lpaProofOfEvidenceValue = 'Received' %}
+    {% set lpaProofOfEvidenceHref = '/main/appeals/:appealId/lpa-proof-of-evidence-and-witnesses' | replace(':appealId', appeal.id) %}
+    {% set lpaProofOfEvidenceLinkText = 'View' %}
+  {% else %}
+    {% set lpaProofOfEvidenceValue = 'Not received' %}
+    {% set lpaProofOfEvidenceHref = '/main/appeals/:appealId/lpa-proof-of-evidence-and-witnesses/new' | replace(':appealId', appeal.id) %}
+    {% set lpaProofOfEvidenceLinkText = 'Add' %}
+  {% endif %}
+
   {{ govukSummaryList({
     rows: [
       {
@@ -54,6 +74,23 @@
           ]
         }
       } if appeal.lpaStatement,
+      {
+        key: {
+          text: "Rule 6 statements"
+        },
+        value: {
+          html: rule6Statements.length + ' statements'
+        },
+        actions: {
+          items: [
+            {
+              href: '/main/appeals/:appealId/rule-6-statements' | replace(':appealId', appeal.id),
+              text: "View",
+              visuallyHiddenText: "Decision"
+            }
+          ]
+        } if not appeal.isChildAppeal
+      } if appeal.procedure == 'Inquiry',
       {
         key: {
           text: "Interested party comments"
@@ -129,17 +166,34 @@
       },
       {
         key: {
-          text: "Rule 6 statements"
+          text: "Appellant proof of evidence and witnesses"
         },
         value: {
-          html: rule6Statements.length + ' statements'
+          html: appellantProofOfEvidenceValue
         },
         actions: {
           items: [
             {
-              href: '/main/appeals/:appealId/rule-6-statements' | replace(':appealId', appeal.id),
-              text: "View",
-              visuallyHiddenText: "Decision"
+              href: appellantProofOfEvidenceHref,
+              text: appellantProofOfEvidenceLinkText,
+              visuallyHiddenText: "Appellant proof of evidence and witnesses"
+            }
+          ]
+        } if not appeal.isChildAppeal
+      } if appeal.procedure == 'Inquiry',
+      {
+        key: {
+          text: "LPA proof of evidence and witnesses"
+        },
+        value: {
+          html: lpaProofOfEvidenceValue
+        },
+        actions: {
+          items: [
+            {
+              href: lpaProofOfEvidenceHref,
+              text: lpaProofOfEvidenceLinkText,
+              visuallyHiddenText: "LPA proof of evidence and witnesses"
             }
           ]
         } if not appeal.isChildAppeal

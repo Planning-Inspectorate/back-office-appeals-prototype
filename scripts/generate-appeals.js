@@ -301,7 +301,7 @@ const generateAppeal = (params = {}) => {
     case 'Awaiting hearing':
     case 'Inquiry ready to set up':
     case 'Awaiting inquiry':
-    case 'Proof of evidence and witnesses': // open/ closed/ready to share
+    case 'Proof of evidence and witnesses': // open/closed/ready to share
     case 'Decision ready to issue':
     case 'Decision issued':
       appeal.lpaStatement = {
@@ -416,18 +416,38 @@ const generateAppeal = (params = {}) => {
   
   // Generate Rule 6 Parties based on this
   if(appeal.procedure == 'Inquiry') {
-    appeal.rule6Parties = []
 
-    // appeal.rule6Parties.push(generateRule6Party({
-    //   appeal,
-    //   status: 'Ready to review',
-    //   emailAddress: 'tony@starkindustries.com',
-    //   firstName: 'Tony',
-    //   lastName: 'Stark',
-    //   hasOrganisation: 'Yes',
-    //   organisationName: 'Stark Industries',
-    //   phone: '07714545545'
-    // }))
+    appeal.appellantProofOfEvidenceAndWitnesses = typeof params.appellantProofOfEvidenceAndWitnesses != 'undefined' ? params.appellantProofOfEvidenceAndWitnesses :  faker.helpers.arrayElement([
+      {
+        status: 'Ready to review',
+        evidenceAndSummary: [{
+          name: 'summary.pdf',
+          size: '5MB'
+        }],
+        witnessesAndSummary: [{
+          name: 'witnesses.pdf',
+          size: '5MB'
+        }]
+      },
+      null
+    ])
+
+    appeal.lpaProofOfEvidenceAndWitnesses = typeof params.lpaProofOfEvidenceAndWitnesses != 'undefined' ? params.lpaProofOfEvidenceAndWitnesses : faker.helpers.arrayElement([
+      {
+        status: 'Ready to review',
+        evidenceAndSummary: [{
+          name: 'summary.pdf',
+          size: '5MB'
+        }],
+        witnessesAndSummary: [{
+          name: 'witnesses.pdf',
+          size: '5MB'
+        }]
+      },
+      null
+    ])
+
+    appeal.rule6Parties = []
 
     appeal.rule6Parties.push(generateRule6Party({
       appeal,
@@ -526,7 +546,9 @@ const generateAppeals = () => {
     procedure: 'Inquiry',
     status: status12,
     interestedPartyComments: interestedPartyComments,
-    caseOfficer: caseOfficers.find(caseOfficer => caseOfficer.name == 'Tony Stark')
+    caseOfficer: caseOfficers.find(caseOfficer => caseOfficer.name == 'Tony Stark'),
+    appellantProofOfEvidenceAndWitnesses: null,
+    lpaProofOfEvidenceAndWitnesses: null
   }))
 
   appeals.push(generateAppeal({

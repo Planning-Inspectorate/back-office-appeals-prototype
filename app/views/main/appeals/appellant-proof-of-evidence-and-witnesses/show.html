@@ -1,0 +1,148 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = 'Appellant proof of evidence and witnesses' %}
+
+{% set pageName = title %}
+
+{% block beforeContent %}
+  {{ govukBreadcrumbs({
+    classes: 'govuk-!-margin-top-4 govuk-!-margin-bottom-0',
+      items: [
+        {
+          text: appeal.id,
+          href: "/main/appeals/:appealId" | replace(':appealId', appeal.id)
+        },
+        {
+          text: title
+        }
+      ]
+    }) }}
+{% endblock %}
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukNotificationBanner({
+        type: "success",
+        text: flash
+      }) if flash.length }}
+
+      <span class="govuk-caption-l">Appeal {{appeal.id}}</span>
+      <h1 class="govuk-heading-l">
+        {{title}}
+      </h1>
+
+       {% set evidenceAndSummary %}
+          {% if appeal.appellantProofOfEvidenceAndWitnesses.evidenceAndSummary %}
+
+            {% if appeal.appellantProofOfEvidenceAndWitnesses.evidenceAndSummary.length > 1 %}
+              <ol class="govuk-list govuk-list--number">
+                {% for document in appeal.appellantProofOfEvidenceAndWitnesses.evidenceAndSummary %}
+                  <li>
+                    <a href="#">{{document.name}}</a>
+                  </li>
+                {% endfor %}
+              </ol>
+            {% else %}
+              <a href="#">{{appeal.appellantProofOfEvidenceAndWitnesses.evidenceAndSummary[0].name}}</a>
+            {% endif %}
+          {% else %}
+            No documents
+          {% endif %}
+        {% endset %}
+
+        {% set witnessesAndSummary %}
+          {% if appeal.appellantProofOfEvidenceAndWitnesses.witnessesAndSummary %}
+
+            {% if appeal.appellantProofOfEvidenceAndWitnesses.witnessesAndSummary.length > 1 %}
+              <ol class="govuk-list govuk-list--number">
+                {% for document in appeal.appellantProofOfEvidenceAndWitnesses.witnessesAndSummary %}
+                  <li>
+                    <a href="#">{{document.name}}</a>
+                  </li>
+                {% endfor %}
+              </ol>
+            {% else %}
+              <a href="#">{{appeal.appellantProofOfEvidenceAndWitnesses.witnessesAndSummary[0].name}}</a>
+            {% endif %}
+          {% else %}
+            No documents
+          {% endif %}
+        {% endset %}
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: 'Proof of evidence and summary'
+            },
+            value: {
+              html: evidenceAndSummary
+            },
+            actions: {
+              items: [
+                {
+                  href: '#',
+                  text: "Change",
+                  visuallyHiddenText: "Proof of evidence and witnesses"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: 'Witnesses and their evidence'
+            },
+            value: {
+              html: witnessesAndSummary
+            },
+            actions: {
+              items: [
+                {
+                  href: '#',
+                  text: "Change",
+                  visuallyHiddenText: "Proof of evidence and witnesses"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      {% if appeal.appellantProofOfEvidenceAndWitnesses.status == 'Ready to review' %}
+        <form method="post">
+          {{ govukRadios({
+            name: "reviewProofOfEvidenceAndWitnesses[decision]",
+            fieldset: {
+              legend: {
+                text: "Review",
+                isPageHeading: false,
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            value: data.reviewProofOfEvidenceAndWitnesses.decision,
+            items: [
+              {
+                value: "Accept",
+                text: "Accept"
+              },
+              {
+                value: "Mark as incomplete",
+                text: "Mark as incomplete"
+              }
+            ]
+          }) }}
+
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+        </form>
+      {% endif %}
+
+
+    </div>
+  </div>
+{% endblock %}

@@ -35,6 +35,11 @@ module.exports = router => {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     let newCaseOfficer = caseOfficers.find(caseOfficer => caseOfficer.name == req.session.data.addCaseOfficer.caseOfficer)
     appeal.caseOfficer = newCaseOfficer
+
+    if(appeal.status == 'Ready to assign case officer') {
+      appeal.status = 'Ready to validate'
+    }
+
     delete req.session.data.addCaseOfficer
     req.flash('success', 'Case officer assigned')
     res.redirect(`/main/appeals/${req.params.appealId}`)

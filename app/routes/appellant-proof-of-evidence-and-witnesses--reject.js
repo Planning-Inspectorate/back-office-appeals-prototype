@@ -26,6 +26,7 @@ module.exports = router => {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     appeal.appellantProofOfEvidenceAndWitnesses.status = 'Incomplete'
     appeal.appellantProofOfEvidenceAndWitnesses.dateIncomplete = new Date()
+    appeal.appellantProofOfEvidenceAndWitnesses.incompleteReason = req.session.data.rejectAppellantProofOfEvidenceAndWitnesses.reason
     req.flash('success', 'Appellant proof of evidence marked as incomplete')
     res.redirect(`/main/appeals/${req.params.appealId}/appellant-proof-of-evidence-and-witnesses`)
   })

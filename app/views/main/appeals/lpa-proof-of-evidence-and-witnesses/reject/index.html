@@ -1,6 +1,6 @@
 {% extends "layouts/bo.html" %}
 
-{% set title = 'Why is the appellant proof of evidence and witnesses incomplete?'  %}
+{% set title = 'Why is the LPA proof of evidence and witnesses incomplete?'  %}
 {% set pageName = title %}
 
 {% block beforeContent %}
@@ -45,7 +45,7 @@
       {% endset -%}
 
         {{ govukCheckboxes({
-          name: "rejectAppellantProofOfEvidenceAndWitnesses[reason]",
+          name: "rejectLPAProofOfEvidenceAndWitnesses[reason]",
           fieldset: {
             legend: {
               text: title,
@@ -56,7 +56,7 @@
           hint: {
             text: 'Select all that apply'
           },
-          values: data.rejectAppellantProofOfEvidenceAndWitnesses.reason,
+          values: data.rejectLPAProofOfEvidenceAndWitnesses.reason,
           items: [
             {
               value: "Supporting documents missing",

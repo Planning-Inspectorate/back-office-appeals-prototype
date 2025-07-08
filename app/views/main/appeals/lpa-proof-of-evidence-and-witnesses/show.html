@@ -1,6 +1,6 @@
 {% extends "layouts/bo.html" %}
 
-{% set title = 'Appellant proof of evidence and witnesses' %}
+{% set title = 'LPA proof of evidence and witnesses' %}
 
 {% set pageName = title %}
 
@@ -36,18 +36,18 @@
       </h1>
 
        {% set evidenceAndSummary %}
-          {% if appeal.appellantProofOfEvidenceAndWitnesses.evidenceAndSummary %}
+          {% if appeal.lpaProofOfEvidenceAndWitnesses.evidenceAndSummary %}
 
-            {% if appeal.appellantProofOfEvidenceAndWitnesses.evidenceAndSummary.length > 1 %}
+            {% if appeal.lpaProofOfEvidenceAndWitnesses.evidenceAndSummary.length > 1 %}
               <ol class="govuk-list govuk-list--number">
-                {% for document in appeal.appellantProofOfEvidenceAndWitnesses.evidenceAndSummary %}
+                {% for document in appeal.lpaProofOfEvidenceAndWitnesses.evidenceAndSummary %}
                   <li>
                     <a href="#">{{document.name}}</a>
                   </li>
                 {% endfor %}
               </ol>
             {% else %}
-              <a href="#">{{appeal.appellantProofOfEvidenceAndWitnesses.evidenceAndSummary[0].name}}</a>
+              <a href="#">{{appeal.lpaProofOfEvidenceAndWitnesses.evidenceAndSummary[0].name}}</a>
             {% endif %}
           {% else %}
             No documents
@@ -55,18 +55,18 @@
         {% endset %}
 
       {% set witnessesAndSummary %}
-        {% if appeal.appellantProofOfEvidenceAndWitnesses.witnessesAndSummary %}
+        {% if appeal.lpaProofOfEvidenceAndWitnesses.witnessesAndSummary %}
 
-          {% if appeal.appellantProofOfEvidenceAndWitnesses.witnessesAndSummary.length > 1 %}
+          {% if appeal.lpaProofOfEvidenceAndWitnesses.witnessesAndSummary.length > 1 %}
             <ol class="govuk-list govuk-list--number">
-              {% for document in appeal.appellantProofOfEvidenceAndWitnesses.witnessesAndSummary %}
+              {% for document in appeal.lpaProofOfEvidenceAndWitnesses.witnessesAndSummary %}
                 <li>
                   <a href="#">{{document.name}}</a>
                 </li>
               {% endfor %}
             </ol>
           {% else %}
-            <a href="#">{{appeal.appellantProofOfEvidenceAndWitnesses.witnessesAndSummary[0].name}}</a>
+            <a href="#">{{appeal.lpaProofOfEvidenceAndWitnesses.witnessesAndSummary[0].name}}</a>
           {% endif %}
         {% else %}
           No documents
@@ -75,7 +75,7 @@
 
       {% set reasonsHtml %}
         <ul class="govuk-list govuk-list--bullet">
-          {% for item in appeal.appellantProofOfEvidenceAndWitnesses.incompleteReason %}
+          {% for item in appeal.lpaProofOfEvidenceAndWitnesses.incompleteReason %}
             <li>
               {{item}}
             </li>
@@ -121,16 +121,16 @@
           },
           {
             key: {
-              text: 'Why is the appellant proof of evidence and witnesses incomplete?'
+              text: 'Why is the LPA proof of evidence and witnesses incomplete?'
             },
             value: {
               html: reasonsHtml
             }
-          } if appeal.appellantProofOfEvidenceAndWitnesses.status == 'Incomplete'
+          } if appeal.lpaProofOfEvidenceAndWitnesses.status == 'Incomplete'
         ]
       }) }}
 
-      {% if appeal.appellantProofOfEvidenceAndWitnesses.status == 'Ready to review' %}
+      {% if appeal.lpaProofOfEvidenceAndWitnesses.status == 'Ready to review' %}
         <form method="post">
           {{ govukRadios({
             name: "reviewProofOfEvidenceAndWitnesses[decision]",

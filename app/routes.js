@@ -126,6 +126,11 @@ require('./routes/appellant-proof-of-evidence-and-witnesses--new')(router)
 require('./routes/appellant-proof-of-evidence-and-witnesses--accept')(router)
 require('./routes/appellant-proof-of-evidence-and-witnesses--reject')(router)
 
+require('./routes/lpa-proof-of-evidence-and-witnesses')(router)
+require('./routes/lpa-proof-of-evidence-and-witnesses--new')(router)
+require('./routes/lpa-proof-of-evidence-and-witnesses--accept')(router)
+require('./routes/lpa-proof-of-evidence-and-witnesses--reject')(router)
+
 require('./routes/case-team--new')(router)
 require('./routes/case-team--edit')(router)
 

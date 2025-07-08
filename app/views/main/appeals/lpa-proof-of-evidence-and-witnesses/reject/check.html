@@ -1,6 +1,6 @@
 {% extends "layouts/bo.html" %}
 
-{% set title = 'Check details and mark appellant proof of evidence and witnesses as incomplete'  %}
+{% set title = 'Check details and mark LPA proof of evidence and witnesses as incomplete'  %}
 {% set pageName = title %}
 
 {% block beforeContent %}
@@ -20,7 +20,7 @@
 
       {% set reasonsHtml %}
         <ul class="govuk-list govuk-list--bullet">
-          {% for item in data.rejectAppellantProofOfEvidenceAndWitnesses.reason %}
+          {% for item in data.rejectLPAProofOfEvidenceAndWitnesses.reason %}
             <li>
               {{item}}
               {# {% if item == 'Other reason' %}
@@ -35,7 +35,7 @@
         rows: [
           {
             key: {
-              text: "Why is the appellant proof of evidence and witnesses incomplete?"
+              text: "Why is the LPA proof of evidence and witnesses incomplete?"
             },
             value: {
               html: reasonsHtml
@@ -43,9 +43,9 @@
             actions: {
               items: [
                 {
-                  href: '/main/appeals/:appealId/appellant-proof-of-evidence-and-witnesses/reject' | replace(':appealId', appeal.id),
+                  href: '/main/appeals/:appealId/lpa-proof-of-evidence-and-witnesses/reject' | replace(':appealId', appeal.id),
                   text: "Change",
-                  visuallyHiddenText: "Reason for rejecting appellant proof of evidence and witnesses"
+                  visuallyHiddenText: "Reason for rejecting LPA proof of evidence and witnesses"
                 }
               ]
             }
@@ -95,7 +95,7 @@
 
       <form method="post">
         {{ govukButton({
-          text: "Mark appellant proof of evidence and witnesses as incomplete"
+          text: "Mark LPA proof of evidence and witnesses as incomplete"
         }) }}
       </form>
     </div>

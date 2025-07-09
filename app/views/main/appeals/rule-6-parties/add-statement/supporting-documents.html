@@ -22,7 +22,7 @@
           {{ govukFileUpload({
             id: 'upload',
             name: 'upload',
-            classes: 'moj-multi-file-upload__input',
+            classes: 'app-multi-file-upload__input',
             label: {
               text: 'Upload supporting documents',
               classes: 'govuk-label--m'
@@ -31,11 +31,11 @@
 
           {{govukButton({
             text: 'Upload file',
-            classes: 'govuk-button--secondary moj-multi-file-upload__button'
+            classes: 'govuk-button--secondary app-multi-file-upload__button'
           })}}
         {% endset %}
 
-        {{ mojMultiFileUpload({
+        {{ appMultiFileUpload({
           uploadHtml: uploadHtml
         }) }}
 
@@ -46,4 +46,19 @@
 
     </div>
   </div>
+{% endblock %}
+
+{% block pageScripts %}
+  {{super()}}
+  <script>
+    if(typeof App.MultiFileUpload !== 'undefined') {
+     new App.MultiFileUpload({
+        container: $('.app-multi-file-upload'),
+        uploadUrl: '/ajax-upload',
+        deleteUrl: '/ajax-delete',
+        dropzoneHintText: 'or drop file',
+        dropzoneButtonText: 'Choose file'
+      });
+    }
+  </script>
 {% endblock %}

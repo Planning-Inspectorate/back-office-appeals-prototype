@@ -47,7 +47,9 @@ const getActions = (appeal) => {
       actions.push({ text: "Set up inquiry", href: `/main/appeals/${appeal.id}/add-inquiry` })
     }
   } else if (appeal.status === "Proof of evidence and witnesses") {
-    actions.push({ text: "Review proof of evidence and witnesses", href: "#" })
+    actions.push({ text: "Review appellant proof of evidence and witnesses", href: "#" })
+    actions.push({ text: "Review LPA proof of evidence and witnesses", href: "#" })
+    actions.push({ text: "Review Rule 6 proof of evidence and witnesses", href: "#" })
     // actions.push({ text: "Share proof of evidence and witnesses", href: "#" })
   } else if (appeal.status === "Decision ready to issue") {
     actions.push({ text: "Issue decision", href: `/main/appeals/${appeal.id}/decision/new` })

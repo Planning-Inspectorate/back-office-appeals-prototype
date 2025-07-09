@@ -429,7 +429,9 @@ const generateAppeal = (params = {}) => {
           size: '5MB'
         }]
       },
-      null
+      {
+        status: 'Awaiting proof of evidence and witnesses'
+      }
     ])
 
     appeal.lpaProofOfEvidenceAndWitnesses = typeof params.lpaProofOfEvidenceAndWitnesses != 'undefined' ? params.lpaProofOfEvidenceAndWitnesses : faker.helpers.arrayElement([
@@ -444,7 +446,9 @@ const generateAppeal = (params = {}) => {
           size: '5MB'
         }]
       },
-      null
+      {
+        status: 'Not received'
+      }
     ])
 
     appeal.rule6Parties = []
@@ -547,8 +551,8 @@ const generateAppeals = () => {
     status: status12,
     interestedPartyComments: interestedPartyComments,
     caseOfficer: caseOfficers.find(caseOfficer => caseOfficer.name == 'Tony Stark'),
-    appellantProofOfEvidenceAndWitnesses: null,
-    lpaProofOfEvidenceAndWitnesses: null
+    appellantProofOfEvidenceAndWitnesses: { status: 'Awaiting proof of evidence and witnesses' },
+    lpaProofOfEvidenceAndWitnesses: { status: 'Awaiting proof of evidence and witnesses' }
   }))
 
   appeals.push(generateAppeal({

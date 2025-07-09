@@ -1,24 +1,30 @@
 <div class="app-panel">
   <h2 class="govuk-heading-l">Documentation</h2>
 
-  {% if appeal.appellantProofOfEvidenceAndWitnesses %}
-    {% set appellantProofOfEvidenceValue = 'Received' %}
-    {% set appellantProofOfEvidenceHref = '/main/appeals/:appealId/appellant-proof-of-evidence-and-witnesses' | replace(':appealId', appeal.id) %}
-    {% set appellantProofOfEvidenceLinkText = 'View' %}
-  {% else %}
-    {% set appellantProofOfEvidenceValue = 'Not received' %}
+  {% set appellantProofOfEvidenceValue = appeal.appellantProofOfEvidenceAndWitnesses.status %}
+
+  {% if appeal.appellantProofOfEvidenceAndWitnesses.status == 'Awaiting proof of evidence and witnesses' %}
     {% set appellantProofOfEvidenceHref = '/main/appeals/:appealId/appellant-proof-of-evidence-and-witnesses/new' | replace(':appealId', appeal.id) %}
     {% set appellantProofOfEvidenceLinkText = 'Add' %}
+  {% elseif appeal.appellantProofOfEvidenceAndWitnesses.status == 'Ready to review' %}
+    {% set appellantProofOfEvidenceHref = '/main/appeals/:appealId/appellant-proof-of-evidence-and-witnesses' | replace(':appealId', appeal.id) %}
+    {% set appellantProofOfEvidenceLinkText = 'Review' %}
+  {% else %}
+    {% set appellantProofOfEvidenceHref = '/main/appeals/:appealId/appellant-proof-of-evidence-and-witnesses' | replace(':appealId', appeal.id) %}
+    {% set appellantProofOfEvidenceLinkText = 'View' %}
   {% endif %}
 
-  {% if appeal.lpaProofOfEvidenceAndWitnesses %}
-    {% set lpaProofOfEvidenceValue = 'Received' %}
-    {% set lpaProofOfEvidenceHref = '/main/appeals/:appealId/lpa-proof-of-evidence-and-witnesses' | replace(':appealId', appeal.id) %}
-    {% set lpaProofOfEvidenceLinkText = 'View' %}
-  {% else %}
-    {% set lpaProofOfEvidenceValue = 'Not received' %}
+  {% set lpaProofOfEvidenceValue = appeal.lpaProofOfEvidenceAndWitnesses.status %}
+
+  {% if appeal.lpaProofOfEvidenceAndWitnesses.status == 'Awaiting proof of evidence and witnesses' %}
     {% set lpaProofOfEvidenceHref = '/main/appeals/:appealId/lpa-proof-of-evidence-and-witnesses/new' | replace(':appealId', appeal.id) %}
     {% set lpaProofOfEvidenceLinkText = 'Add' %}
+  {% elseif appeal.lpaProofOfEvidenceAndWitnesses.status == 'Ready to review' %}
+    {% set lpaProofOfEvidenceHref = '/main/appeals/:appealId/lpa-proof-of-evidence-and-witnesses' | replace(':appealId', appeal.id) %}
+    {% set lpaProofOfEvidenceLinkText = 'Review' %}
+  {% else %}
+    {% set lpaProofOfEvidenceHref = '/main/appeals/:appealId/lpa-proof-of-evidence-and-witnesses' | replace(':appealId', appeal.id) %}
+    {% set lpaProofOfEvidenceLinkText = 'View' %}
   {% endif %}
 
   {{ govukSummaryList({

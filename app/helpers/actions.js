@@ -58,15 +58,15 @@ const getActions = (appeal) => {
     // actions.push({ text: "Share proof of evidence and witnesses", href: "#" })
   }
 
-  if(appeal?.rule6Parties.some(rule6Party => rule6Party.proofOfEvidenceAndWitnesses?.status === 'Ready to review')) {
+  if(appeal?.rule6Parties?.some(rule6Party => rule6Party.proofOfEvidenceAndWitnesses?.status === 'Ready to review')) {
     actions.push({ text: "Review Rule 6 proof of evidence and witnesses", href: `/main/appeals/${appeal.id}/rule-6-proof-of-evidence-and-witnesses` })
   }
   
-  if (appeal.status === "Decision ready to issue") {
+  if(appeal.status === "Decision ready to issue") {
     actions.push({ text: "Issue decision", href: `/main/appeals/${appeal.id}/decision/new` })
   }
   
-  if (appeal.status == 'Awaiting transfer') {
+  if(appeal.status == 'Awaiting transfer') {
     actions.push({ text: "Mark as transferred", href: `/main/appeals/${appeal.id}/horizon-reference/new` })
   }
 

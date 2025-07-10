@@ -637,9 +637,13 @@ const generateAppeals = () => {
     status: 'Inquiry ready to set up'
   }))
   appeals.push(generateAppeal({
+    id: '00000185',
     type: 'Planning',
     procedure: 'Inquiry',
-    status: 'Proof of evidence and witnesses'
+    status: 'Proof of evidence and witnesses',
+    appellantProofOfEvidenceAndWitnesses: { status: 'Awaiting proof of evidence and witnesses' },
+    lpaProofOfEvidenceAndWitnesses: { status: 'Awaiting proof of evidence and witnesses' },
+    caseOfficer: caseOfficers.find(caseOfficer => caseOfficer.name == 'Tony Stark')
   }))
   appeals.push(generateAppeal({
     type: 'Planning',

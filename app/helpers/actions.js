@@ -46,25 +46,32 @@ const getActions = (appeal) => {
     } else {
       actions.push({ text: "Set up inquiry", href: `/main/appeals/${appeal.id}/add-inquiry` })
     }
-  } else if (appeal.status === "Proof of evidence and witnesses") {
+  }
+  
+  if (appeal.status === "Proof of evidence and witnesses") {
     if(appeal.appellantProofOfEvidenceAndWitnesses.status == 'Ready to review') {
       actions.push({ text: "Review appellant proof of evidence and witnesses", href: `/main/appeals/${appeal.id}/appellant-proof-of-evidence-and-witnesses` })
     }
     if(appeal.lpaProofOfEvidenceAndWitnesses.status == 'Ready to review') {
       actions.push({ text: "Review LPA proof of evidence and witnesses", href: `/main/appeals/${appeal.id}/lpa-proof-of-evidence-and-witnesses` })
-    }
-    if(appeal.rule6Parties.some(rule6Party => rule6Party.proofOfEvidenceAndWitnesses?.status === 'Ready to review')) {
-      actions.push({ text: "Review Rule 6 proof of evidence and witnesses", href: `/main/appeals/${appeal.id}/rule-6-proof-of-evidence-and-witnesses` })
-    }
+    }  
     // actions.push({ text: "Share proof of evidence and witnesses", href: "#" })
-  } else if (appeal.status === "Decision ready to issue") {
+  }
+
+  if(appeal?.rule6Parties.some(rule6Party => rule6Party.proofOfEvidenceAndWitnesses?.status === 'Ready to review')) {
+    actions.push({ text: "Review Rule 6 proof of evidence and witnesses", href: `/main/appeals/${appeal.id}/rule-6-proof-of-evidence-and-witnesses` })
+  }
+  
+  if (appeal.status === "Decision ready to issue") {
     actions.push({ text: "Issue decision", href: `/main/appeals/${appeal.id}/decision/new` })
-  } else if (appeal.status == 'Awaiting transfer') {
+  }
+  
+  if (appeal.status == 'Awaiting transfer') {
     actions.push({ text: "Mark as transferred", href: `/main/appeals/${appeal.id}/horizon-reference/new` })
   }
 
   if(!appeal?.appealForm?.residentialUnits) {
-    actions.push({ text: "Add number of residential units", href: `/main/appeals/${appeal.id}/residential-units/new` })
+    // actions.push({ text: "Add number of residential units", href: `/main/appeals/${appeal.id}/residential-units/new` })
   }
 
   return actions

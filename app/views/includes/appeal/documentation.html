@@ -27,6 +27,13 @@
     {% set lpaProofOfEvidenceLinkText = 'View' %}
   {% endif %}
 
+
+  {% if rule6ProofOfEvidenceAndWitnesses.length > 0 %}
+    {% set rule6ProofOfEvidenceValue %}{{rule6ProofOfEvidenceAndWitnesses.length}} proofs of evidence and witnesses{% endset %}
+  {% else %}
+    {% set rule6ProofOfEvidenceValue %}No proofs of evidence and witnesses{% endset %}
+  {% endif %}
+
   {{ govukSummaryList({
     rows: [
       {
@@ -96,7 +103,7 @@
             }
           ]
         } if not appeal.isChildAppeal
-      } if appeal.procedure == 'Inquiry',
+      } if appeal.procedure == 'Inquiry' and appeal.rule6Parties.length,
       {
         key: {
           text: "Interested party comments"
@@ -209,7 +216,7 @@
           text: "Rule 6 proof of evidence and witnesses"
         },
         value: {
-          html: rule6ProofOfEvidenceAndWitnesses.length + ' documents'
+          html: rule6ProofOfEvidenceValue
         },
         actions: {
           items: [
@@ -220,7 +227,7 @@
             }
           ]
         } if not appeal.isChildAppeal
-      } if appeal.procedure == 'Inquiry'
+      } if appeal.procedure == 'Inquiry' and appeal.rule6Parties.length
     ]
   }) }}
 </div>

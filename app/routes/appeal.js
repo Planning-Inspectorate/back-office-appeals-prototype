@@ -28,7 +28,7 @@ module.exports = router => {
         return appeal
       })
 
-    const rule6Statements = appeal.rule6Parties?.map(rule6Party => rule6Party.statement)
+    const rule6Statements = appeal.rule6Parties.map(rule6Party => rule6Party.statement)
     const rule6ProofOfEvidenceAndWitnesses = appeal.rule6Parties?.map(rule6Party => rule6Party.rule6ProofsOfEvidenceAndWitnesses)
 
     const showAddLinkAppeal = canAppealBeLinked(appeal)

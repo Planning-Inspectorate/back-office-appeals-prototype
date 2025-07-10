@@ -451,28 +451,8 @@ const generateAppeal = (params = {}) => {
       }
     ])
 
-    appeal.rule6Parties = []
+    appeal.rule6Parties = typeof params.rule6Parties != 'undefined' ? params.rule6Parties : []
 
-    appeal.rule6Parties.push(generateRule6Party({
-      appeal,
-      status: 'Withdrawn',
-      emailAddress: 'peter@example.com',
-      firstName: 'Peter',
-      lastName: 'Parker',
-      hasOrganisation: 'No',
-      phone: '07714545546'
-    }))
-
-    appeal.rule6Parties.push(generateRule6Party({
-      appeal,
-      status: 'Active',
-      emailAddress: 'bruce@avengers.com',
-      firstName: 'Bruce',
-      lastName: 'Banner',
-      hasOrganisation: 'Yes',
-      organisationName: 'Avengers',
-      phone: '07714545546'
-    }))
   }
 
   return appeal
@@ -544,7 +524,7 @@ const generateAppeals = () => {
     interestedPartyComments.push(generateInterestedPartyComment({ appealStatus: status12 }))
   }
 
-  appeals.push(generateAppeal({
+  let appeal012 = generateAppeal({
     id: '00000012',
     type: 'Planning',
     procedure: 'Inquiry',
@@ -553,7 +533,35 @@ const generateAppeals = () => {
     caseOfficer: caseOfficers.find(caseOfficer => caseOfficer.name == 'Tony Stark'),
     appellantProofOfEvidenceAndWitnesses: { status: 'Awaiting proof of evidence and witnesses' },
     lpaProofOfEvidenceAndWitnesses: { status: 'Awaiting proof of evidence and witnesses' }
+  })
+  
+  
+
+  // console.log(appeal012)
+
+  appeal012.rule6Parties = []
+  appeal012.rule6Parties.push(generateRule6Party({
+    appeal: appeal012,
+    status: 'Withdrawn',
+    emailAddress: 'peter@example.com',
+    firstName: 'Peter',
+    lastName: 'Parker',
+    hasOrganisation: 'No',
+    phone: '07714545546'
   }))
+
+  appeal012.rule6Parties.push(generateRule6Party({
+    appeal: appeal012,
+    status: 'Active',
+    emailAddress: 'bruce@avengers.com',
+    firstName: 'Bruce',
+    lastName: 'Banner',
+    hasOrganisation: 'Yes',
+    organisationName: 'Avengers',
+    phone: '07714545546'
+  }))
+
+  appeals.push(appeal012)
 
   appeals.push(generateAppeal({
     type: 'Planning',

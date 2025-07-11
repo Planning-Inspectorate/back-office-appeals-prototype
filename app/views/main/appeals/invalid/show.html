@@ -1,0 +1,55 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = 'Appeal marked as invalid' %}
+
+{% set pageName = title %}
+
+{% block beforeContent %}
+  {{ govukBreadcrumbs({
+    classes: 'govuk-!-margin-top-4 govuk-!-margin-bottom-0',
+      items: [
+        {
+          text: appeal.id,
+          href: "/main/appeals/:appealId" | replace(':appealId', appeal.id)
+        },
+        {
+          text: title
+        }
+      ]
+    }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Appeal {{appeal.id}}</span>
+      <h1 class="govuk-heading-l">
+        {{title}}
+      </h1>
+
+      {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Why is the appeal invalid?"
+              },
+              value: {
+                html: 'The appellant doesn’t have the right to appeal'
+              }
+            },
+            {
+              key: {
+                text: "Invalid date"
+              },
+              value: {
+                text: appeal.invalid.invalidDate | govukDate
+              }
+            }
+          ]
+        }) }}
+
+    </div>
+  </div>
+{% endblock %}

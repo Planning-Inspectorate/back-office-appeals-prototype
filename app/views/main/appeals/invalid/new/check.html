@@ -1,0 +1,91 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Check details and mark appeal as invalid" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  {% set address %}
+    {{appAddress({ address: data.addHearing.address })}}
+  {% endset %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal {{appeal.id}} {% if appeal.isLeadAppeal %}(lead){% endif %}</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+      
+      {% set reasonsHtml %}
+        <ul class="govuk-list govuk-list--bullet">
+          {% for item in data.markAsInvalid.reason %}
+            <li>
+              {{item}}
+              {# {% if item == 'Other reason' %}
+                - {{data.new.otherObject}}
+              {% endif %} #}
+            </li>
+          {% endfor %}
+        </ul>
+      {% endset %}
+
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Why is the appeal invalid?"
+            },
+            value: {
+              html: reasonsHtml
+            },
+            actions: {
+              items: [
+                {
+                  href: "/main/appeals/:appealId/invalid/new" | replace(':appealId', appeal.id),
+                  text: "Change",
+                  visuallyHiddenText: "why the appeal is invalid"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      {% set emailHtml %}
+        <div class="app-email-preview">
+          <div class="app-email-preview__subject">
+            Subject: {{appeal.id}}
+          </div>
+          <div class="app-email-preview__body">
+            <p>Email goes here</p>
+          </div>
+        </div>
+      {% endset %}
+
+      {{ govukDetails({
+        summaryText: "Preview email to appellant",
+        html: emailHtml
+      }) }}
+
+      {{ govukDetails({
+        summaryText: "Preview email to LPA",
+        html: emailHtml
+      }) }}
+
+      {{ govukDetails({
+        summaryText: "Preview email to Rule 6 parties",
+        html: emailHtml
+      }) if appeal.rule6Parties.length }}
+
+
+    
+      <form method="post">
+        {{ govukButton({
+          text: "Mark appeal as invalid"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

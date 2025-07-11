@@ -14,6 +14,7 @@
 
   {% include "includes/appeal/decision-inset.njk" %}
   {% include "includes/appeal/withdrawal-inset.njk" %}
+  {% include "includes/appeal/invalid-inset.njk" %}
   
   <div class="govuk-button-group">
     <a href="#" class="govuk-link">Download appeal</a>
@@ -172,6 +173,11 @@
           }
         ]
       }) }}
+
+      {% if appeal.status != 'Decision issued' and appeal.status != 'Withdrawn' and appeal.status != 'Invalid' %}
+        <h2 class="govuk-heading-m">Cancel appeal</h2>
+        <p><a href="/main/appeals/{{appeal.id}}/cancel">Cancel appeal</a></p>
+      {% endif %}
 
     </div>
   </div>

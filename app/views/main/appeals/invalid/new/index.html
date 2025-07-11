@@ -1,0 +1,84 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Why is the appeal invalid?" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <form method="post">
+        <span class="govuk-caption-l">Appeal {{appeal.id}} {% if appeal.isLeadAppeal %}(lead){% endif %} - mark as incomplete</span>
+        {% set otherReason %}
+        <div data-module="moj-add-another">
+
+          {% call govukFieldset({
+            classes: 'moj-add-another__item',
+            legend: {
+              text: 'Enter a reason',
+              classes: 'moj-add-another__title ',
+              isPageHeading: false
+            }
+            }) %}
+
+            {{ govukInput({
+              id: "reason",
+              name: "reason",
+              classes: "govuk-!-margin-bottom-4"
+            }) }}
+
+          {% endcall %}
+
+          <div class="moj-button-action">
+            {{ govukButton({
+              text: 'Add another reason',
+              classes: 'govuk-button--secondary moj-add-another__add-button govuk-!-margin-bottom-4'
+            }) }}
+          </div>
+        </div>
+      {% endset -%}
+
+        {{ govukCheckboxes({
+          name: "markAsInvalid[reason]",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: 'Select all that apply'
+          },
+          values: data.markAsInvalid.reason,
+          items: [
+            {
+              value: "Appeal has not been submitted on time",
+              text: "Appeal has not been submitted on time"
+            },
+            {
+              value: "Documents have not been submitted on time",
+              text: "Documents have not been submitted on time"
+            },
+            {
+              value: "The appellant doesn’t have the right to appeal",
+              text: "The appellant doesn’t have the right to appeal"
+            },
+            {
+              value: "Other reason",
+              text: "Other reason",
+              conditional: {
+                html: otherReason
+              }
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

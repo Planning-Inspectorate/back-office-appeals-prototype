@@ -1,0 +1,44 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Why are you cancelling the appeal?" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Appeal {{appeal.id}} {% if appeal.isLeadAppeal %}(lead){% endif %} - cancel appeal</span>
+      <form method="post">
+        {{ govukRadios({
+          name: "cancel[reason]",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          value: data.cancel.reason,
+          items: [
+            {
+              value: "Appeal invalid",
+              text: "Appeal invalid"
+            },
+            {
+              value: "Request to withdraw appeal",
+              text: "Request to withdraw appeal"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

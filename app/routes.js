@@ -155,6 +155,10 @@ require('./routes/horizon-reference--edit')(router)
 require('./routes/residential-units--new')(router)
 require('./routes/residential-units--edit')(router)
 
+require('./routes/cancel')(router)
+require('./routes/invalid')(router)
+require('./routes/invalid--new')(router)
+
 
 // Timetable
 // require('./routes/add-statement-of-common-ground-due-date')(router)

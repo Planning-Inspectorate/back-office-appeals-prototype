@@ -56,7 +56,7 @@
         ]
       }) }}
 
-      {# {% if appeal.siteVisit or appeal.hearing or appeal.inquiry %}
+      {% if appeal.siteVisit or appeal.hearing or appeal.inquiry%}
 
 
         <p>We’ll send an email to the appellant and LPA to tell them that the:</p>
@@ -86,26 +86,7 @@
         </ul>
       {% else %}
         <p>We’ll send an email to the appellant and LPA to tell them that the appeal has been withdrawn.</p>
-      {% endif %} #}
-
-
-      {{ govukDetails({
-        summaryText: "Preview email to appellant",
-        html: emailHtml
-      }) }}
-
-      {{ govukDetails({
-        summaryText: "Preview email to LPA",
-        html: emailHtml
-      }) }}
-
-      {{ govukDetails({
-        summaryText: "Preview email to Rule 6 parties",
-        html: emailHtml
-      }) if appeal.rule6Parties.length }}
-
-
-
+      {% endif %}
 
       <form method="post">
         {{ govukButton({

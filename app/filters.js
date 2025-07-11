@@ -169,7 +169,7 @@ addFilter('appealStatusColour', status => {
 		return 'govuk-tag--green'
 	}
 	if(['Transferred to Horizon', 
-		'Withdrawn'].includes(status)) {
+		'Withdrawn', 'Invalid'].includes(status)) {
 		return 'govuk-tag--grey'
 	}
 	if(status == 'Decision issued') {

@@ -27,13 +27,6 @@
     {% set lpaProofOfEvidenceLinkText = 'View' %}
   {% endif %}
 
-
-  {% if rule6ProofOfEvidenceAndWitnesses.length > 0 %}
-    {% set rule6ProofOfEvidenceValue %}{{rule6ProofOfEvidenceAndWitnesses.length}} proofs of evidence and witnesses{% endset %}
-  {% else %}
-    {% set rule6ProofOfEvidenceValue %}No proofs of evidence and witnesses{% endset %}
-  {% endif %}
-
   {{ govukSummaryList({
     rows: [
       {
@@ -92,14 +85,14 @@
           text: "Rule 6 statements"
         },
         value: {
-          html: rule6Statements.length + ' statements'
+          html: rule6StatementsStatus
         },
         actions: {
           items: [
             {
               href: '/main/appeals/:appealId/rule-6-statements' | replace(':appealId', appeal.id),
-              text: "View",
-              visuallyHiddenText: "Decision"
+              text: rule6StatementsLinkText,
+              visuallyHiddenText: "Rule 6 statements"
             }
           ]
         } if not appeal.isChildAppeal
@@ -216,13 +209,13 @@
           text: "Rule 6 proof of evidence and witnesses"
         },
         value: {
-          html: rule6ProofOfEvidenceValue
+          html: rule6ProofOfEvidenceAndWitnessesStatus
         },
         actions: {
           items: [
             {
               href: '/main/appeals/:appealId/rule-6-proof-of-evidence-and-witnesses' | replace(':appealId', appeal.id),
-              text: "View",
+              text: rule6ProofOfEvidenceAndWitnessesLinkText,
               visuallyHiddenText: "Rule 6 proof of evidence and witnesses"
             }
           ]

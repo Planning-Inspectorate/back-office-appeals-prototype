@@ -23,9 +23,26 @@
             actions: {
               items: [
                 {
-                  href: '/main/appeals/:appealId/appellant-proof-of-evidence-and-witnesses' | replace(':appealId', appeal.id) | replace(':partyId', party.id),
+                  href: '/main/appeals/:appealId/appellant-proof-of-evidence-and-witnesses/new' | replace(':appealId', appeal.id) | replace(':partyId', party.id),
                   text: "Change",
                   visuallyHiddenText: "Proof of evidence and summary"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Do you need to upload witnesses and their evidence?"
+            },
+            value: {
+              html: data.addAppellantProofOfEvidenceAndWitnesses.hasWitnesses
+            },
+            actions: {
+              items: [
+                {
+                  href: '/main/appeals/:appealId/appellant-proof-of-evidence-and-witnesses/new/has-witnesses' | replace(':appealId', appeal.id) | replace(':partyId', party.id),
+                  text: "Change",
+                  visuallyHiddenText: "if you need to upload witnesses and their evidences"
                 }
               ]
             }
@@ -40,13 +57,13 @@
             actions: {
               items: [
                 {
-                  href: '/main/appeals/:appealId/appellant-proof-of-evidence-and-witnesses/witnesses' | replace(':appealId', appeal.id) | replace(':partyId', party.id),
+                  href: '/main/appeals/:appealId/appellant-proof-of-evidence-and-witnesses/new/witnesses' | replace(':appealId', appeal.id) | replace(':partyId', party.id),
                   text: "Change",
                   visuallyHiddenText: "Supporting documents"
                 }
               ]
             }
-          }
+          } if data.addAppellantProofOfEvidenceAndWitnesses.hasWitnesses == 'Yes'
         ]
       }) }}
 

@@ -104,6 +104,23 @@
           },
           {
             key: {
+              text: "Do you need to upload witnesses and their evidence?"
+            },
+            value: {
+              html: appeal.lpaProofOfEvidenceAndWitnesses.hasWitnesses
+            },
+            actions: {
+              items: [
+                {
+                  href: '#',
+                  text: "Change",
+                  visuallyHiddenText: "if you need to upload witnesses and their evidence"
+                }
+              ]
+            }
+          },
+          {
+            key: {
               text: 'Witnesses and their evidence'
             },
             value: {
@@ -118,7 +135,7 @@
                 }
               ]
             }
-          },
+          } if appeal.lpaProofOfEvidenceAndWitnesses.hasWitnesses == 'Yes',
           {
             key: {
               text: 'Why is the LPA proof of evidence and witnesses incomplete?'

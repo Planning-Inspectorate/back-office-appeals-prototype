@@ -32,6 +32,23 @@
           },
           {
             key: {
+              text: "Do you want to upload witnesses and their evidences?"
+            },
+            value: {
+              html: data.addLPAProofOfEvidenceAndWitnesses.hasWitnesses
+            },
+            actions: {
+              items: [
+                {
+                  href: '/main/appeals/:appealId/lpa-proof-of-evidence-and-witnesses/new/has-witnesses' | replace(':appealId', appeal.id) | replace(':partyId', party.id),
+                  text: "Change",
+                  visuallyHiddenText: "if you want to upload witnesses and their evidences"
+                }
+              ]
+            }
+          },
+          {
+            key: {
               text: "Witnesses and their evidence"
             },
             value: {
@@ -40,13 +57,13 @@
             actions: {
               items: [
                 {
-                  href: '/main/appeals/:appealId/lpa-proof-of-evidence-and-witnesses/witnesses' | replace(':appealId', appeal.id) | replace(':partyId', party.id),
+                  href: '/main/appeals/:appealId/lpa-proof-of-evidence-and-witnesses/new/witnesses' | replace(':appealId', appeal.id) | replace(':partyId', party.id),
                   text: "Change",
                   visuallyHiddenText: "Supporting documents"
                 }
               ]
             }
-          }
+          } if data.addLPAProofOfEvidenceAndWitnesses.hasWitnesses == 'Yes'
         ]
       }) }}
 

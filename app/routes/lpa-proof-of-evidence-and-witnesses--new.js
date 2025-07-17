@@ -9,7 +9,23 @@ module.exports = router => {
   })
 
   router.post('/main/appeals/:appealId/lpa-proof-of-evidence-and-witnesses/new', function (req, res) {
-    res.redirect(`/main/appeals/${req.params.appealId}/lpa-proof-of-evidence-and-witnesses/new/witnesses`)
+    res.redirect(`/main/appeals/${req.params.appealId}/lpa-proof-of-evidence-and-witnesses/new/has-witnesses`)
+  })
+
+  router.get('/main/appeals/:appealId/lpa-proof-of-evidence-and-witnesses/new/has-witnesses', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
+
+    res.render('/main/appeals/lpa-proof-of-evidence-and-witnesses/new/has-witnesses', {
+      appeal
+    })
+  })
+
+  router.post('/main/appeals/:appealId/lpa-proof-of-evidence-and-witnesses/new/has-witnesses', function (req, res) {
+    if(req.session.data.addLPAProofOfEvidenceAndWitnesses.hasWitnesses == 'Yes') {
+      res.redirect(`/main/appeals/${req.params.appealId}/lpa-proof-of-evidence-and-witnesses/new/witnesses`)
+    } else {
+      res.redirect(`/main/appeals/${req.params.appealId}/lpa-proof-of-evidence-and-witnesses/new/check`)
+    }
   })
 
   router.get('/main/appeals/:appealId/lpa-proof-of-evidence-and-witnesses/new/witnesses', function (req, res) {
@@ -44,7 +60,11 @@ module.exports = router => {
         name: 'summary.pdf',
         size: '5MB'
       }],
-      witnessesAndSummary: [{
+      hasWitnesses: req.session.data.addLPAProofOfEvidenceAndWitnesses.hasWitnesses
+    }
+
+    if(req.session.data.addLPAProofOfEvidenceAndWitnesses.hasWitnesses == 'Yes') {
+      appeal.lpaProofOfEvidenceAndWitnesses.witnessesAndSummary = [{
         name: 'witnesses.pdf',
         size: '5MB'
       }]

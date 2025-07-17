@@ -9,8 +9,25 @@ module.exports = router => {
   })
 
   router.post('/main/appeals/:appealId/appellant-proof-of-evidence-and-witnesses/new', function (req, res) {
-    res.redirect(`/main/appeals/${req.params.appealId}/appellant-proof-of-evidence-and-witnesses/new/witnesses`)
+    res.redirect(`/main/appeals/${req.params.appealId}/appellant-proof-of-evidence-and-witnesses/new/has-witnesses`)
   })
+
+  router.get('/main/appeals/:appealId/appellant-proof-of-evidence-and-witnesses/new/has-witnesses', function (req, res) {
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
+
+    res.render('/main/appeals/appellant-proof-of-evidence-and-witnesses/new/has-witnesses', {
+      appeal
+    })
+  })
+
+  router.post('/main/appeals/:appealId/appellant-proof-of-evidence-and-witnesses/new/has-witnesses', function (req, res) {
+    if(req.session.data.addAppellantProofOfEvidenceAndWitnesses.hasWitnesses == 'Yes') {
+      res.redirect(`/main/appeals/${req.params.appealId}/appellant-proof-of-evidence-and-witnesses/new/witnesses`)
+    } else {
+      res.redirect(`/main/appeals/${req.params.appealId}/appellant-proof-of-evidence-and-witnesses/new/check`)
+    }
+  })
+
 
   router.get('/main/appeals/:appealId/appellant-proof-of-evidence-and-witnesses/new/witnesses', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
@@ -19,7 +36,6 @@ module.exports = router => {
       appeal
     })
   })
-
 
   router.post('/main/appeals/:appealId/appellant-proof-of-evidence-and-witnesses/new/witnesses', function (req, res) {
     res.redirect(`/main/appeals/${req.params.appealId}/appellant-proof-of-evidence-and-witnesses/new/check`)
@@ -44,7 +60,11 @@ module.exports = router => {
         name: 'summary.pdf',
         size: '5MB'
       }],
-      witnessesAndSummary: [{
+      hasWitnesses: req.session.data.addAppellantProofOfEvidenceAndWitnesses.hasWitnesses
+    }
+
+    if(req.session.data.addAppellantProofOfEvidenceAndWitnesses.hasWitnesses == 'Yes') {
+      appeal.appellantProofOfEvidenceAndWitnesses.witnessesAndSummary = [{
         name: 'witnesses.pdf',
         size: '5MB'
       }]

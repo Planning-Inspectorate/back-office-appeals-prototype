@@ -4,6 +4,7 @@ const { getActions } = require('../helpers/actions')
 const { isChildAppeal, isLeadAppeal } = require('../helpers/linked-appeals')
 const { allStatuses } = require('../data/statuses')
 const caseOfficers = require('../data/case-officers')
+const types = require('../data/types')
 
 module.exports = router => {
 
@@ -272,8 +273,13 @@ module.exports = router => {
     })
 
     let caseOfficerItems = caseOfficers.map(caseOfficer => ({ 
-      text: `${caseOfficer.name}`, 
+      text: caseOfficer.name, 
       value: caseOfficer.name
+    }))
+
+    let typeItems = types.map(type => ({ 
+      text: type, 
+      value: type
     }))
 
 
@@ -286,7 +292,8 @@ module.exports = router => {
       selectedLPAItems,
       selectedStatusItems,
       lpaCheckboxes,
-      caseOfficerItems
+      caseOfficerItems,
+      typeItems
     })
   })
 

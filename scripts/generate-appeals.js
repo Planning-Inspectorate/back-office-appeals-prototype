@@ -6,6 +6,7 @@ const { DateTime } = require("luxon")
 const lpas = require('../app/data/local-planning-authorities')
 const caseTeams = require('../app/data/case-teams')
 const caseOfficers = require('../app/data/case-officers')
+const types = require('../app/data/types')
 const { baseStatusesStart, s78Statuses, s78WrittenStatuses, s78HearingStatuses, s78InquiryStatuses, baseStatusesEnd } = require('../app/data/statuses')
 let now = new Date().toISOString()
 
@@ -169,14 +170,7 @@ const generateAppeal = (params = {}) => {
   let appeal = {}
 
   appeal.id = params.id || "" + faker.number.int({ min: 123456, max: 999999 })
-  appeal.type = params.type || faker.helpers.arrayElement([
-    'Householder', 
-    'Planning', 
-    'Planning listed building and conservation area', 
-    'Advertisement', 
-    'Commercial planning (CAS)', 
-    'Commercial advertisement (CAS)'
-  ])
+  appeal.type = params.type || faker.helpers.arrayElement(types)
 
   appeal.planningApplicationReference = params.planningApplicationReference || `25/${faker.number.int({ min: 783456, max: 996738 })}/BA`
 

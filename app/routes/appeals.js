@@ -5,6 +5,7 @@ const { isChildAppeal, isLeadAppeal } = require('../helpers/linked-appeals')
 const { allStatuses } = require('../data/statuses')
 const caseTeams = require('../data/case-teams')
 const caseOfficers = require('../data/case-officers')
+const types = require('../data/types')
 
 module.exports = router => {
 
@@ -386,6 +387,11 @@ module.exports = router => {
       }))
     ]
 
+    let typeItems = types.map(type => ({ 
+      text: type, 
+      value: type
+    }))
+
     res.render('main/appeals/all', {
       appeals,
       selectedFilters,
@@ -397,7 +403,8 @@ module.exports = router => {
       selectedStatusItems,
       lpaCheckboxes,
       caseTeamItems,
-      caseOfficerItems
+      caseOfficerItems,
+      typeItems
     })
   })
 

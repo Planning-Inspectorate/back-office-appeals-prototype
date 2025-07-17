@@ -57,6 +57,24 @@
           },
           {
             key: {
+              text: "Appellant 2 contact details"
+            },
+            value: {
+              html: "Jane Doe<br>Applicant Ltd.<br>ENF12345678"
+            },
+            
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "appellant’s contact details"
+                  }
+                ]
+              }
+          }if appeal.type == 'Enforcement',
+          {
+            key: {
               text: "Agent’s contact details"
             },
             value: {
@@ -116,7 +134,7 @@
                   }
                 ]
               }
-          } if appeal.type == 'Advertisements' or appeal.type == 'Commercial advertisement (CAS)' or appeal.type == 'Commerical planning (CAS)',
+          } if appeal.type == 'Advertisements' or appeal.type == 'Commercial advertisement (CAS)' or appeal.type == 'Commercial planning (CAS)',
           {
             key: {
               text: "Is the appeal site on highway land?"
@@ -134,6 +152,7 @@
                 ]
               }
           } if appeal.type == 'Advertisements' or appeal.type == 'Commercial advertisement (CAS)',
+          
           {
             key: {
               text: "Is the advertisement in position?"
@@ -149,8 +168,9 @@
                     visuallyHiddenText: "if the advertisment is in position"
                   }
                 ]
-              }
+              }              
           } if appeal.type == 'Advertisements' or appeal.type == 'Commercial advertisement (CAS)',
+          
           {
             key: {
               text: "What is the area of the appeal site?"
@@ -167,7 +187,30 @@
                   }
                 ]
               }
-          } if appeal.type == 'Householder' or appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Commerical planning (CAS)',
+            } if appeal.type == 'Householder' or appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Commercial planning (CAS)', 
+            
+            {
+              key: {
+                text: "What is your interest in the appeal site?"
+              },
+              value: {
+                html: "Owner"
+              },
+              actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "your interest in the appeal site"
+                    }
+                  ]
+                }
+            }if appeal.type == 'Enforcement',  
+    
+         
+          
+          
+          
           {
             key: {
               text: "Is the appeal site in a green belt?"
@@ -187,7 +230,7 @@
                   }
                 ]
               }
-          },
+          }if appeal.type == 'Householder' or appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Commercial planning (CAS)' or appeal.type == 'Advertisements' or appeal.type == 'Commercial advertisement (CAS)',
 
           {
             key: {
@@ -204,11 +247,11 @@
                   {
                     href: "#",
                     text: "Change",
-                    visuallyHiddenText: "if the appeal site is in a green belt"
+                    visuallyHiddenText: "if the appeal site is in an area of outstanding natural beauty"
                   }
                 ]
               }
-          },
+          }if appeal.type == 'Householder' or appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Commercial planning (CAS)' or appeal.type == 'Advertisements' or appeal.type == 'Commercial advertisement (CAS)',
 
           {
             key: {
@@ -225,11 +268,11 @@
                   {
                     href: "#",
                     text: "Change",
-                    visuallyHiddenText: "if the appeal site is in a green belt"
+                    visuallyHiddenText: "if the development is in, near or likely to affect any designated sites"
                   }
                 ]
               }
-          },
+          }if appeal.type == 'Householder' or appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Commercial planning (CAS)' or appeal.type == 'Advertisements' or appeal.type == 'Commercial advertisement (CAS)',
 
           {
             key: {
@@ -246,11 +289,11 @@
                   {
                     href: "#",
                     text: "Change",
-                    visuallyHiddenText: "if the appeal site is in a green belt"
+                    visuallyHiddenText: "the Tree Preservation Order"
                   }
                 ]
               }
-          },
+          }if appeal.type == 'Householder' or appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Commercial planning (CAS)' or appeal.type == 'Advertisements' or appeal.type == 'Commercial advertisement (CAS)',
 
 
           {
@@ -269,7 +312,7 @@
                   }
                 ]
               }
-          } if appeal.type == 'Householder' or appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Commerical planning (CAS)',
+          } if appeal.type == 'Householder' or appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Commercial planning (CAS)',
           {
             key: {
               text: "Does the appellant know who owns the land involved in the appeal?"
@@ -289,7 +332,7 @@
                 }
               ]
             }
-          },
+          }if appeal.type == 'Householder' or appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Commercial planning (CAS)' or appeal.type == 'Advertisements' or appeal.type == 'Commercial advertisement (CAS)',
           {
             key: {
               text: "Do you have the landowner’s permission?"
@@ -370,6 +413,88 @@
               ]
             }
           } if appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area',
+          
+          {
+            key: {
+              text: "What is your interest in the appeal site?"
+            },
+            value: {
+              html: "No"
+            } if data['empty'] else
+            {
+              html: "Owner"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "your interest in the appeal site"
+                  }
+                ]
+              }
+          }if appeal.type == 'Enforcement',
+          
+          {
+            key: {
+              text: "Description of development"
+            },
+            value: {
+              html: "No"
+            } if data['empty'] else
+            {
+              html: "Example description"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "the description of development"
+                  }
+                ]
+              }
+          }if appeal.type == 'Enforcement',
+          {
+            key: {
+              text: "Do you live at the appeal site?"
+            },
+            value: {
+              html: "No"
+            } if data['empty'] else
+            {
+              html: "Yes"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "if you live at the appeal site"
+                  }
+                ]
+              }
+          }if appeal.type == 'Enforcement',
+          {
+            key: {
+              text: "Did you live at the appeal site when the local planning authority issued the enforcement notice?"
+            },
+            value: {
+              html: "No"
+            } if data['empty'] else
+            {
+              html: "Yes"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "if you lived at the appeal site when the local planning authority issued the enforcement notice"
+                  }
+                ]
+              }
+          }if appeal.type == 'Enforcement',
           {
             key: {
               text: "Will an inspector need to access your land or property?"
@@ -389,7 +514,7 @@
                   }
                 ]
               }
-          } if appeal.type == 'Householder' or appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Commerical planning (CAS)',
+          } if appeal.type == 'Householder' or appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Commercial planning (CAS)' or appeal.type == 'Enforcement',
           {
             key: {
               text: "Are there any health and safety issues on the appeal site?"
@@ -410,6 +535,8 @@
                 ]
               }
           }
+
+         
 
           ]
         }) }}
@@ -437,6 +564,26 @@
           },
           {
             key: {
+              text: "What is the enforcement reference number?"
+            },
+            value: {
+              html: "No"
+            } if data['empty'] else
+            {
+              html: "1234567"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "the enforcement reference number"
+                  }
+                ]
+              }
+          }if appeal.type == 'Enforcement',
+          {
+            key: {
               text: "What is the application reference number?"
             },
             value: {
@@ -451,7 +598,7 @@
                   }
                 ]
               }
-          },
+          }if appeal.type == 'Householder' or appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Commercial planning (CAS)' or appeal.type == 'Advertisements' or appeal.type == 'Commercial advertisement (CAS)',
           {
             key: {
               text: "What date did you submit your application?"
@@ -469,6 +616,23 @@
                 ]
               }
           },
+          {
+            key: {
+              text: "What is the application reference number?"
+            },
+            value: {
+              html: "123456789"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "application reference number"
+                  }
+                ]
+              }
+          }if appeal.type == 'Householder' or appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Commercial planning (CAS)' or appeal.type == 'Advertisements' or appeal.type == 'Commercial advertisement (CAS)',
           {
             key: {
               text: "Was your application for a major or minor development?"
@@ -519,7 +683,7 @@
                   }
                 ]
               }
-          } if appeal.type == 'Householder' or appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Commerical planning (CAS)',
+          } if appeal.type == 'Householder' or appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Commercial planning (CAS)',
           {
             key: {
               text: "Enter the description of the advertisement"
@@ -556,7 +720,7 @@
                   }
                 ]
               }
-          } if 1==2,
+          } if appeal.type == 'Householder' or appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Commercial planning (CAS)' or appeal.type == 'Advertisements' or appeal.type == 'Commercial advertisement (CAS)',
           {
             key: {
               text: "Are there other appeals linked to your development?"
@@ -585,7 +749,7 @@
                 }
               ]
             }
-          },
+          }if appeal.type == 'Householder' or appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Commercial planning (CAS)' or appeal.type == 'Advertisements' or appeal.type == 'Commercial advertisement (CAS)',
          
           {
             key: {
@@ -603,7 +767,7 @@
                   }
                 ]
               }
-          },
+          }if appeal.type == 'Householder' or appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Commercial planning (CAS)' or appeal.type == 'Advertisements' or appeal.type == 'Commercial advertisement (CAS)',
           {
             key: {
               text: "What’s the date on the decision letter from the local planning authority?​"
@@ -632,7 +796,7 @@
                 }
               ]
             }
-          },
+          }if appeal.type == 'Householder' or appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Commercial planning (CAS)' or appeal.type == 'Advertisements' or appeal.type == 'Commercial advertisement (CAS)',
 
           {
             key: {
@@ -662,7 +826,8 @@
                 }
               ]
             }
-          }
+          }if appeal.type == 'Householder' or appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Commercial planning (CAS)' or appeal.type == 'Advertisements' or appeal.type == 'Commercial advertisement (CAS)'
+
           ]
         }) }}
 
@@ -688,7 +853,58 @@
                   }
                 ]
               }
-          },          
+          },  
+          {
+            key: {
+              text: "Grounds and facts​"
+            },
+            value: {
+              html: "Ground A"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "grounds and facts"
+                  }
+                ]
+              }
+          }if appeal.type == 'Enforcement',
+          {
+            key: {
+              text: "Did you apply for planning permission and pay the application fee?​"
+            },
+            value: {
+              html: "Yes"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "if you applied for planning permission and paid the application fee"
+                  }
+                ]
+              }
+          }if appeal.type == 'Enforcement', 
+          {
+            key: {
+              text: "Grounds and facts supporting documents​"
+            },
+            value: {
+              html: "<a href=’#’>example-file.pdf</a>"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "if you applied for planning permission and paid the application fee"
+                  }
+                ]
+              }
+          }if appeal.type == 'Enforcement',             
           {
             key: {
               text: "How would you prefer us to decide your appeal?"
@@ -705,7 +921,7 @@
                 }
               ]
             }
-          } if appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Advertisements',
+          } if appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Advertisements' or appeal.type == 'Enforcement',
           {
             key: {
               text: "Why would you prefer this appeal procedure?	"
@@ -734,7 +950,7 @@
                 }
               ]
             }
-          } if appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Advertisements',
+          } if appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Advertisements' or appeal.type == 'Enforcement',
           {
             key: {
               text: "How many days would you expect the inquiry to last?"
@@ -763,7 +979,7 @@
                 }
               ]
             }
-          } if appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Advertisements',
+          } if appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Advertisements' or appeal.type == 'Enforcement',
           {
             key: {
               text: "How many witnesses would you expect to give evidence at the inquiry?"
@@ -792,7 +1008,7 @@
                 }
               ]
             }
-          } if appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Advertisements'
+          } if appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Advertisements' or appeal.type == 'Enforcement'
         
           ]
         }) }}
@@ -827,9 +1043,53 @@
           }
           ]
           }
+          }if appeal.type == 'Householder' or appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Commercial planning (CAS)' or appeal.type == 'Advertisements' or appeal.type == 'Commercial advertisement (CAS)',
+
+          {
+            key: {
+              text: "Enforcement notice"
+            },
+            value: {
+              html: "<a href=’#’>example-file.pdf</a>"
+            },
+            actions: {
+              items: [
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "enforcement notice"
           },
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "enforcement notice"
+          }
+          ]
+          }
+          }if appeal.type == 'Enforcement',
 
-
+          {
+            key: {
+              text: "Enforcement plan"
+            },
+            value: {
+              html: "<a href=’#’>example-file.pdf</a>"
+            },
+            actions: {
+              items: [
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "enforcement plan"
+          },
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "enforcement plan"
+          }
+          ]
+          }
+          }if appeal.type == 'Enforcement',
           {
             key: {
               text: "Agreement to change the description of development"
@@ -863,7 +1123,7 @@
           }
         ]
             }
-          },
+        }if appeal.type == 'Householder' or appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Commercial planning (CAS)' or appeal.type == 'Advertisements' or appeal.type == 'Commercial advertisement (CAS)',
 
           {
             key: {
@@ -886,7 +1146,7 @@
             }
             ]
             }
-          } if appeal.type == 'Householder' or appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Commerical planning (CAS)',
+          } if appeal.type == 'Householder' or appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Commercial planning (CAS)',
           {
             key: {
               text: "Appeal statement"
@@ -920,7 +1180,7 @@
           }
         ]
             }
-          },
+        }if appeal.type == 'Householder' or appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Commercial planning (CAS)' or appeal.type == 'Advertisements' or appeal.type == 'Commercial advertisement (CAS)',
 
 
           {
@@ -951,7 +1211,7 @@
                 }
               ]
             }
-          } if appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area',
+          } if appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Enforcement',
           {
             key: {
               text: "What is the status of your planning obligation?"
@@ -981,7 +1241,7 @@
                 }
               ]
             }
-          } if appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area',
+          } if appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Enforcement',
 
 
 
@@ -1018,7 +1278,7 @@
           }
         ]
             }
-          } if appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area',
+          } if appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Enforcement',
 
           {
             key: {
@@ -1122,7 +1382,7 @@
           }
         ]
             }
-          } if appeal.type == 'Householder' or appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Commerical planning (CAS)',
+          } if appeal.type == 'Householder' or appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Commercial planning (CAS)',
 
           {
             key: {
@@ -1157,7 +1417,7 @@
             }
           ]
               }
-            },
+          }if appeal.type == 'Householder' or appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Commercial planning (CAS)' or appeal.type == 'Advertisements' or appeal.type == 'Commercial advertisement (CAS)',
 
           {
             key: {
@@ -1192,7 +1452,7 @@
           }
         ]
             }
-          } if appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Advertisements' or appeal.type == 'Commercial advertisement (CAS)' or appeal.type == 'Commerical planning (CAS)',
+          } if appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Advertisements' or appeal.type == 'Commercial advertisement (CAS)' or appeal.type == 'Commercial planning (CAS)',
           {
             key: {
               text: "Other new supporting documents"
@@ -1226,7 +1486,7 @@
           }
         ]
             }
-          } if appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area'
+          } if appeal.type == 'Planning' or appeal.type == 'Planning listed building and conservation area' or appeal.type == 'Enforcement'
         ]
       }) }}
 

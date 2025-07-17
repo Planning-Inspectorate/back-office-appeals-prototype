@@ -13,19 +13,18 @@ module.exports = router => {
   })
 
   router.post('/main/appeals/:appealId/linked-appeals/new', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.session.data.addLinkedAppeal.reference)
-
-    
+    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
+    let otherAppeal = req.session.data.appeals.find(appeal => appeal.id == req.session.data.addLinkedAppeal.reference)
 
     // Check to see if it's already linked
     if(req.session.data.linkedAppeals.find(linkedAppeal => linkedAppeal.leadAppealId === req.session.data.addLinkedAppeal.reference || linkedAppeal.childAppealId === req.session.data.addLinkedAppeal.reference)) {
-      res.redirect(`/main/appeals/${req.params.appealId}/linked-appeals/new/exit--already-added`)
+      res.redirect(`/main/appeals/${appeal.id}/linked-appeals/new/exit--already-added`)
     // Checking to see if the appeal the user wants to add has the right status
     // If not, send them to the exit page
-    } else if(!canAppealBeLinked(appeal)) {
-      res.redirect(`/main/appeals/${req.params.appealId}/linked-appeals/new/exit`)
+    } else if(!canAppealBeLinked(otherAppeal)) {
+      res.redirect(`/main/appeals/${appeal.id}/linked-appeals/new/exit`)
     } else {
-      res.redirect(`/main/appeals/${req.params.appealId}/linked-appeals/new/lead-appeal`)
+      res.redirect(`/main/appeals/${appeal.id}/linked-appeals/new/lead-appeal`)
     }
   })
 

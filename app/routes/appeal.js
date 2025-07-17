@@ -31,11 +31,11 @@ module.exports = router => {
     const rule6Statements = appeal?.rule6Parties?.map(rule6Party => rule6Party.statement)
     const rule6ProofOfEvidenceAndWitnesses = appeal?.rule6Parties?.map(rule6Party => rule6Party.proofOfEvidenceAndWitnesses)
 
-    const readyCount = rule6Statements.filter(
+    const readyCount = rule6Statements?.filter(
       statement => statement?.status === "Ready to review"
     ).length;
 
-    const acceptedCount = rule6Statements.filter(
+    const acceptedCount = rule6Statements?.filter(
       statement => statement?.status === "Accepted"
     ).length;
 
@@ -51,11 +51,11 @@ module.exports = router => {
     }
 
     // Proofs
-    const proofsReadyCount = rule6ProofOfEvidenceAndWitnesses.filter(
+    const proofsReadyCount = rule6ProofOfEvidenceAndWitnesses?.filter(
       rule6ProofsOfEvidenceAndWitnesses => rule6ProofsOfEvidenceAndWitnesses?.status === "Ready to review"
     ).length;
 
-    const proofsAcceptedCount = rule6ProofOfEvidenceAndWitnesses.filter(
+    const proofsAcceptedCount = rule6ProofOfEvidenceAndWitnesses?.filter(
       rule6ProofsOfEvidenceAndWitnesses => rule6ProofsOfEvidenceAndWitnesses?.status === "Accepted"
     ).length;
 

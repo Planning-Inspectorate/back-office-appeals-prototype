@@ -38,13 +38,14 @@ function isChildAppeal(appealId, linkedAppeals) {
   return typeof linkedAppeals.find(linkedAppeal => linkedAppeal.childAppealId === appealId) !== 'undefined'
 }
 
-function canAppealBeLinked(appeal) {
+
+function canAppealBeLinked(otherAppeal) {
   return [
     'Ready to assign case officer', 
     'Ready to validate', 
     'Ready to start', 
     'LPAQ'
-  ].includes(appeal.status)
+  ].includes(otherAppeal.status)
 }
 
 function getHintText(appeal) {

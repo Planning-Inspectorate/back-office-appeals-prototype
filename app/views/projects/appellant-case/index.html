@@ -23,17 +23,16 @@
     <section class="govuk-!-margin-bottom-6">
 
 
-	<h2 class="govuk-heading-m">Version 1
-		{%- from "govuk/components/tag/macro.njk" import govukTag -%}
+	     <h2 class="govuk-heading-m">Version 1
 
-		{{govukTag({
+    		{{govukTag({
           text: "In progress",
           classes: "govuk-!-margin-left-2 govuk-tag--yellow"
         })}}
 
-		<!-- Status tag options
+    		<!-- Status tag options
 
-		{{govukTag({
+    		{{govukTag({
           text: "New",
           classes: "govuk-!-margin-left-2 govuk-tag--green"
         })}}
@@ -61,18 +60,15 @@
         -->
 
 
-	</h2>
+	     </h2>
 
-	<p class="govuk-body">Case officer can review a case and submit a decision</p>
+       <p class="govuk-body">Case officer can review a case and submit a decision</p>
 
-
-	{% from "govuk/components/button/macro.njk" import govukButton %}
-
-	{{ govukButton({
-	  text: "View prototype",
-	  href: "cases",
-	  isStartButton: true
-	}) }}
+    	{{ govukButton({
+    	  text: "View prototype",
+    	  href: "v1/cases",
+    	  isStartButton: true
+    	}) }}
 
     </section>
 

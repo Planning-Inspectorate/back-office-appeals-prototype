@@ -22,56 +22,60 @@
 
     <section class="govuk-!-margin-bottom-6">
 
+      {% set version = "2" %}
 
-	     <h2 class="govuk-heading-m">Version 1
+      <h2 class="govuk-heading-m">
+        Version {{version}}
 
-    		{{govukTag({
-          text: "In progress",
-          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-        })}}
-
-    		<!-- Status tag options
-
-    		{{govukTag({
-          text: "New",
+        {{govukTag({
+          text: "ready for research",
           classes: "govuk-!-margin-left-2 govuk-tag--green"
         })}}
 
-        {{govukTag({
-          text: "In progress",
-          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-        })}}
+      </h2>
 
-        {{govukTag({
-          text: "Ready for review",
-          classes: "govuk-!-margin-left-2 govuk-tag--blue"
-        })}}
+      <p class="govuk-body">
+        Case officer can set the procedure and start a full planning case (includes S78E/part 1 only procedure)
+      </p>
 
-        {{govukTag({
-          text: "Ready for research",
-          classes: "govuk-!-margin-left-2 govuk-tag--green"
-        })}}
-
-        {{govukTag({
-          text: "Researched",
-          classes: "govuk-!-margin-left-2 govuk-tag--green"
-        })}}
-
-        -->
-
-
-	     </h2>
-
-       <p class="govuk-body">Case officer can review a case and submit a decision</p>
-
-    	{{ govukButton({
-    	  text: "View prototype",
-    	  href: "v1/cases",
-    	  isStartButton: true
-    	}) }}
+      {{ govukButton({
+        text: "View prototype",
+        href: "appellant-case/v2/cases",
+        isStartButton: true
+      }) }}
 
     </section>
 
-  </div>
+    {% set v1HTML %}
 
+      <p class="govuk-body">
+        Case officer can set the procedure and start a full planning case.
+      </p>
+      <a href="appellant-case/v1/cases" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
+        View prototype
+        <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+          <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+        </svg>
+      </a>
+
+    {% endset -%}
+
+    {{ govukAccordion({
+      id: 'previous',
+      classes: 'govuk-!-margin-top-5',
+      items: [
+        {
+        heading: {
+          html: 'Version 1 <strong class="govuk-tag govuk-tag--yellow govuk-!-margin-left-2">In progress</strong>'
+        },
+        content: {
+          html: v1HTML
+        }
+      }]
+    }) }}
+
+
+
+  </div>
+</div>
 {% endblock %}

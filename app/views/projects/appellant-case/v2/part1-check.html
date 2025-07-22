@@ -1,0 +1,51 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Confirm you want to use part 1" %}
+
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Appeal 2110166</span>
+
+      <form method="post">
+
+        {{ govukRadios({
+          classes: "govuk-radios",
+          name: "part1check",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "The appeal meets the crieria to be a part 1 appeal"
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes, use part 1 only"
+            },
+            {
+              value: "No",
+              text: "No, use part 2 procedure"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          classes: "govuk-button",
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

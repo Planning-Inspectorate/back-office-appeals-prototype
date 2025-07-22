@@ -1,7 +1,7 @@
- 
+
 {% extends "layouts/PINS-post-mvp.html" %}
 {% set title = "Check your answers" %}
-{% set pageName = title + ' - Planning Inspectorate'%} 
+{% set pageName = title + ' - Planning Inspectorate'%}
 
 {% set prototypeLinks = [
   {
@@ -16,21 +16,21 @@
 
 {% block content %}
 
- 
+
 
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
-    
+
     <span class="govuk-caption-l">Appeal 2110166</span>
 
       <h1 class="govuk-heading-l">{{title}}</h1>
 
     <form action="case-complete" method="post" class="" novalidate>
 
-      
- 
+
+
 
       {{ govukSummaryList({
         classes: "govuk-!-margin-bottom-6",
@@ -40,10 +40,10 @@
             text: "Unredacted appellant final comment"
           },
           value: {
-            html: data['original-statement'] or "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus. 
-            Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus. 
+            html: data['original-statement'] or "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus.
+            Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus.
             Mauris nulla erat, posuere ut nisi vitae, pulvinar gravida arcu.
-            <br><a href='#'>Read more</a> 
+            <br><a href='#'>Read more</a>
              "
           },
           actions: {
@@ -56,14 +56,14 @@
             ]
           }
         },
-            
+
            {
               key: {
                 text: "Redacted appellant final comment"
               },
               value: {
-                html: data['redacted-statement'] or " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus. 
-                Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus. 
+                html: data['redacted-statement'] or " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus.
+                Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus.
                 Mauris nulla erat, posuere ut nisi vitae, pulvinar gravida arcu.<br><a href='#'>Read more</a> "
               } ,
               actions: {
@@ -130,10 +130,10 @@
                 }
               ]
             }
-          }  
+          }
         ]
       })
-    }}   
+    }}
 {{ govukButton({
   text: "Confirm"
 }) }}
@@ -141,7 +141,7 @@
 
     </form>
 
- 
+
 
 
 {% endblock %}

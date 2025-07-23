@@ -1,6 +1,7 @@
 {% extends "layouts/PINS.html" %}
 
-{% set pageName="Case details" %}
+{% set title = "Case details" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
 
 {% block backLink %}
   {{ govukBackLink({
@@ -19,18 +20,25 @@
   	    Appeal valid
   	  </p>
   	  <p>
-        <a class="govuk-notification-banner__link" href="part1-check">
+        <a class="govuk-notification-banner__link" href="procedure">
           Start case
         </a>
       </p>
   	{% endset %}
 
-  	{{ govukNotificationBanner({
-  	  html: html
-  	}) }}
+    {% if not data['procedure']  %}
+    	{{ govukNotificationBanner({
+    	  html: html
+    	}) }}
+    {% endif %}
 
-	   <span class="govuk-caption-l">Appeal 2110166</span>
-	   <h1 class="govuk-heading-l">Case details</h1>
+    {{ govukNotificationBanner({
+      type: "success",
+      text: flash
+    }) if flash.length }}
+
+    <span class="govuk-caption-l">Appeal 2110166</span>
+    <h1 class="govuk-heading-l">Case details</h1>
 
      {{ govukTag({
        text: "Ready to start",
@@ -69,56 +77,162 @@
   	      </h2>
   	    </div>
   	    <div id="accordion-default-content-1" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-1">
-  			{% include "projects/appellant-case/v1/includes/case-overview-table.html" %}
-  	    </div>
-  	  </div>
-  	  <div class="govuk-accordion__section">
-  	    <div class="govuk-accordion__section-header">
-  	      <h2 class="govuk-accordion__section-heading">
-  	        <span class="govuk-accordion__section-button" id="accordion-default-heading-2">
-  	          Case timetable
-  	        </span>
-  	      </h2>
-  	    </div>
-  	    <div id="accordion-default-content-2" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-2">
+  			<!-- {% include "projects/appellant-case/v1/includes/case-overview-table.html" %} -->
 
-          {{ govukSummaryList({
-            rows: [
-              {
-                key: {
-                  text: "Valid date"
+          <div class="pins-panel">
+            {{ govukSummaryList({
+              rows: [
+                {
+                  key: {
+                    text: "Appeal type"
+                  },
+                  value: {
+                    text: "Full planning"
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "#",
+                        text: "Change",
+                        visuallyHiddenText: "appeal type"
+                      }
+                    ]
+                  }
                 },
-                value: {
-                  text: "18 July 2025"
+                {
+                  key: {
+                    text: "Appeal procedure"
+                  },
+                  value: {
+                    html: data['procedure'] or "Part 1"
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "#",
+                        text: "Change",
+                        visuallyHiddenText: "appeal type"
+                      }
+                    ]
+                  }
+                } if data['procedure'],
+                {
+                  key: {
+                    text: "Appellant name"
+                  },
+                  value: {
+                    text: "Bingford Jobi"
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "#",
+                        text: "Change"
+                      }
+                    ]
+                  }
                 },
-                actions: {
-                  items: [
-                    {
-                      href: "#",
-                      text: "Change",
-                      visuallyHiddenText: "valid date"
-                    }
-                  ]
+                {
+                  key: {
+                    text: "Agent name"
+                  },
+                  value: {
+                    text: "Martin Shamford"
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "#",
+                        text: "Change"
+                      }
+                    ]
+                  }
+                },
+                {
+                  key: {
+                    text: "Linked appeal"
+                  },
+                  value: {
+                    text: "None"
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "#",
+                        text: "Change"
+                      }
+                    ]
+                  }
+                },
+                {
+                  key: {
+                    text: "Other appeals"
+                  },
+                  value: {
+                    text: "None"
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "#",
+                        text: "Change"
+                      }
+                    ]
+                  }
                 }
-              },
-              {
-                key: {
-                  text: "Start date"
+              ]
+            }) }}
+    	    </div>
+    	  </div>
+    	  <div class="govuk-accordion__section">
+    	    <div class="govuk-accordion__section-header">
+    	      <h2 class="govuk-accordion__section-heading">
+    	        <span class="govuk-accordion__section-button" id="accordion-default-heading-2">
+    	          Case timetable
+    	        </span>
+    	      </h2>
+    	    </div>
+    	    <div id="accordion-default-content-2" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-2">
+
+            {{ govukSummaryList({
+              rows: [
+                {
+                  key: {
+                    text: "Valid date"
+                  },
+                  value: {
+                    text: "18 July 2025"
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "#",
+                        text: "Change",
+                        visuallyHiddenText: "valid date"
+                      }
+                    ]
+                  }
                 },
-                value: {
-                  text: "Not started"
-                },
-                actions: {
-                  items: [
-                    {
-                      href: "part1-check",
-                      text: "Start case"
-                    }
-                  ]
+                {
+                  key: {
+                    text: "Start date"
+                  },
+                  value: {
+                    text: "Not started"
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "procedure",
+                        text: "Start case"
+                      }
+                    ]
+                  }
                 }
-              }
-            ]
-          }) }}
+              ]
+            }) }}
+
+          </div>
 
   	    </div>
   	  </div>

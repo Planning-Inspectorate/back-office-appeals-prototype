@@ -12,16 +12,23 @@
 
 <div class="app-panel">
 
-  <div class="govuk-button-group">
+
     {% if appeal.siteVisit %}
-      <a class="govuk-link" href="/main/appeals/{{appeal.id}}/site-visit/delete">Cancel site visit</a>
+      <p class="govuk-body govuk-!-margin-bottom-3">
+        <a class="govuk-link" href="/main/appeals/{{appeal.id}}/site-visit/delete">Cancel site visit</a>
+      </p>
+      <p class="govuk-body govuk-!-margin-bottom-3">
+        <a class="govuk-link" href="/main/appeals/{{appeal.id}}/site-visit/missed">Record missed event</a>
+      </p>
     {% else %}
-      {{ govukButton({
-        text: 'Set up site visit',
-        href: '/main/appeals/:appealId/site-visit/new' | replace(':appealId', appeal.id)
-      }) }}
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: 'Set up site visit',
+          href: '/main/appeals/:appealId/site-visit/new' | replace(':appealId', appeal.id)
+        }) }}
+      </div>
     {% endif %}
-  </div>
+
 
   {{ govukSummaryList({
     rows: [

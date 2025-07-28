@@ -1,0 +1,48 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Type" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+        <span class="govuk-caption-l">Appeal {{appeal.id}} - set up site visit</span>
+        {{ govukRadios({
+          name: "addSiteVisit[type]",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          value: data.addSiteVisit.type,
+          items: [
+            {
+              value: "Unaccompanied",
+              text: "Unaccompanied"
+            },
+            {
+              value: "Accompanied",
+              text: "Accompanied"
+            },
+            {
+              value: "Access required",
+              text: "Access required"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

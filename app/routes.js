@@ -30,7 +30,7 @@ router.use('/main/appeals/:appealId*', (req, res, next) => {
   let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
   if(appeal) {
 		appeal.isLeadAppeal = isLeadAppeal(appeal.id, req.session.data.linkedAppeals)
-  	appeal.isChildAppeal = isChildAppeal(appeal.id, req.session.data.linkedAppeals)	
+  	appeal.isChildAppeal = isChildAppeal(appeal.id, req.session.data.linkedAppeals)
   }
   next()
 });
@@ -148,6 +148,7 @@ require('./routes/withdrawal--new')(router)
 require('./routes/site-visit--new')(router)
 require('./routes/site-visit--edit')(router)
 require('./routes/site-visit--delete')(router)
+require('./routes/site-visit--missed')(router)
 
 require('./routes/horizon-reference--new')(router)
 require('./routes/horizon-reference--edit')(router)
@@ -322,6 +323,3 @@ router.get("/projects/closing-cases/v1/change-appeal-resubmit-process", (req, re
 		res.redirect(req.originalUrl.replace("change-appeal-resubmit-process","case-closed"))
 	}
 })
-
-
-

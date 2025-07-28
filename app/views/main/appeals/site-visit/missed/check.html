@@ -1,0 +1,81 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Check details and set up site visit" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal {{appeal.id}}</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Date"
+            },
+            value: {
+              html: data.addSiteVisit.date | isoDateFromDateInput | govukDate
+            },
+            actions: {
+              items: [
+                {
+                  href: "/main/appeals/:appealId/site-visit/new" | replace(':appealId', appeal.id),
+                  text: "Change",
+                  visuallyHiddenText: "Date"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Time"
+            },
+            value: {
+              html: data.addSiteVisit.time | isoDateFromTimeInput | govukTime
+            },
+            actions: {
+              items: [
+                {
+                  href: "/main/appeals/:appealId/site-visit/new" | replace(':appealId', appeal.id),
+                  text: "Change",
+                  visuallyHiddenText: "Time"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Type"
+            },
+            value: {
+              html: data.addSiteVisit.type
+            },
+            actions: {
+              items: [
+                {
+                  href: "/main/appeals/:appealId/site-visit/new/type" | replace(':appealId', appeal.id),
+                  text: "Change",
+                  visuallyHiddenText: "Visit type"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <p>We’ll send an email to the appellant and LPA to tell them about the site visit.</p>
+
+      <form method="post">
+        {{ govukButton({
+          text: "Set up site visit"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

@@ -1,6 +1,6 @@
 {% extends "layouts/bo.html" %}
 
-{% set title = "Check details and set up site visit" %}
+{% set title = "Check details and record missed site visit" %}
 {% set pageName = title %}
 
 {% set back = true %}
@@ -10,69 +10,114 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-l">Appeal {{appeal.id}}</span>
+      <span class="govuk-caption-l">Appeal {{appeal.id}} - record missed site visit</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
       {{ govukSummaryList({
         rows: [
           {
             key: {
-              text: "Date"
+              text: "Who missed the site visit?"
             },
             value: {
-              html: data.addSiteVisit.date | isoDateFromDateInput | govukDate
+              text: data['missedSiteVisitReason']
             },
             actions: {
               items: [
                 {
-                  href: "/main/appeals/:appealId/site-visit/new" | replace(':appealId', appeal.id),
+                  href: "/main/appeals/:appealId/site-visit/index" | replace(':appealId', appeal.id),
                   text: "Change",
-                  visuallyHiddenText: "Date"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Time"
-            },
-            value: {
-              html: data.addSiteVisit.time | isoDateFromTimeInput | govukTime
-            },
-            actions: {
-              items: [
-                {
-                  href: "/main/appeals/:appealId/site-visit/new" | replace(':appealId', appeal.id),
-                  text: "Change",
-                  visuallyHiddenText: "Time"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Type"
-            },
-            value: {
-              html: data.addSiteVisit.type
-            },
-            actions: {
-              items: [
-                {
-                  href: "/main/appeals/:appealId/site-visit/new/type" | replace(':appealId', appeal.id),
-                  text: "Change",
-                  visuallyHiddenText: "Visit type"
+                  visuallyHiddenText: "who missed the site visit"
                 }
               ]
             }
           }
+          
         ]
       }) }}
 
-      <p>We’ll send an email to the appellant and LPA to tell them about the site visit.</p>
+      {% set appellantEmailHtml %}
+      <div class="app-email-preview">
+        <div class="app-email-preview__subject">
+          Subject: Missed site visit: {{appeal.id}}
+        </div>
+        <div class="app-email-preview__body">
+          <p>Our inspector visited the site at 9am on 28 July 2025. Nobody was at the site to give the inspector access.</p>
+          <h2 class="govuk-heading-m">
+            Appeal details
+          </h2>
+          <div class="govuk-inset-text">
+            Appeal reference number: {{appeal.id}}<br>
+            Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
+            Planning application reference: {{appeal.planningApplicationReference}}
+          </div>
+
+          <h2 class="govuk-heading-m">
+            What happens next
+          </h2>
+
+          <p>
+            Send an email to explain why you did not attend to caseofficers@planninginspectorate.gov.uk by 1 August 2025.
+          </p>
+          <p>
+          If you missed your site visit without a good reason, we may dismiss your appeal.
+          </p>
+          <p>
+            The Planning Inspectorate
+          </p>
+        </div>
+      </div>
+    {% endset %}
+
+    {% set lpaEmailHtml %}
+      <div class="app-email-preview">
+        <div class="app-email-preview__subject">
+          Subject: Missed site visit: {{appeal.id}}
+        </div>
+        <div class="app-email-preview__body">
+          <p>Our inspector visited the site at 9am on 28 July 2025. You did not attend the site visit.</p>
+          <h2 class="govuk-heading-m">
+            Appeal details
+          </h2>
+          <div class="govuk-inset-text">
+            Appeal reference number: {{appeal.id}}<br>
+            Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
+            Planning application reference: {{appeal.planningApplicationReference}}
+          </div>
+
+          <h2 class="govuk-heading-m">
+            What happens next
+          </h2>
+
+          <p>
+            Send an email to explain why you did not attend to caseofficers@planninginspectorate.gov.uk by 1 August 2025.
+          </p>
+          <p>
+          If you missed your site visit without a good reason, you may need to pay appeal costs.
+          </p>
+          <p>
+            The Planning Inspectorate
+          </p>
+        </div>
+      </div>
+    {% endset %}
+
+    {% if data['missedSiteVisitReason'] == "Appellant" %} 
+    {{ govukDetails({
+      summaryText: "Preview email to appellant",
+      html: appellantEmailHtml
+    }) }}
+    {% endif %}
+
+    {% if data['missedSiteVisitReason'] == "LPA" %} 
+    {{ govukDetails({
+      summaryText: "Preview email to LPA",
+      html: lpaEmailHtml
+    }) }}
+    {% endif %}
 
       <form method="post">
         {{ govukButton({
-          text: "Set up site visit"
+          text: "Record missed site visit"
         }) }}
       </form>
 

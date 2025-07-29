@@ -11,63 +11,32 @@
     <div class="govuk-grid-column-two-thirds">
 
       <form method="post">
-        <span class="govuk-caption-l">Appeal {{appeal.id}} - record missed event</span>
-        <h1 class="govuk-heading-l">{{title}}</h1>
+        <span class="govuk-caption-l">Appeal {{appeal.id}} - record missed site visit</span>
 
-        {{ govukDateInput({
-          id: "whatever",
+        {{ govukRadios({
+          name: "missedSiteVisitReason",
           fieldset: {
             legend: {
-              text: "Date",
-              isPageHeading: false,
-              classes: "govuk-fieldset__legend--m"
+              text: "Who missed the site visit?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
             }
-          },
-          hint: {
-            text: "For example, 31 3 2025"
           },
           items: [
             {
-              name: "addSiteVisit[date][day]",
-              label: "Day",
-              value: data.addSiteVisit.date.day,
-              classes: "govuk-input--width-2"
+              value: "Appellant",
+              text: "Appellant"
             },
             {
-              name: "addSiteVisit[date][month]",
-              label: "Month",
-              value: data.addSiteVisit.date.month,
-              classes: "govuk-input--width-2"
+              value: "LPA",
+              text: "LPA"
             },
             {
-              name: "addSiteVisit[date][year]",
-              label: "Year",
-              value: data.addSiteVisit.date.year,
-              classes: "govuk-input--width-4"
+              value: "Inspector",
+              text: "Inspector"
             }
           ]
         }) }}
-
-        {{appTimeInput({
-          id: 'time',
-          fieldset: {
-            legend: {
-              text: "Time",
-              classes: "govuk-fieldset__legend--m"
-            }
-          },
-          hint: {
-            text: 'For example, 9:00 or 13:15'
-          },
-          hour: {
-            name: "addSiteVisit[time][hour]",
-            value: data.addSiteVisit.time.hour
-          },
-          minute: {
-            name: "addSiteVisit[time][minute]",
-            value: data.addSiteVisit.time.minute
-          }
-        })}}
 
         {{ govukButton({
           text: "Continue"

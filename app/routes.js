@@ -333,7 +333,7 @@ router.post('/enhancements/has-hearing-address', function (req, res) {
     if (answer === 'Yes') {
       res.redirect('/enhancements/hearing-address.html')   // go to address page
     } else if (answer === 'No') {
-      res.redirect('/enhancements/check-no-address.html')     // go to check page
+      res.redirect('/enhancements/check.html')     // go to check page
     } else {
       // if nothing selected, reload the same page with error
       res.redirect('/enhancements/has-hearing-address')

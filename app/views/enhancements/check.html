@@ -73,114 +73,99 @@
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">Appeal 6021709</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
-
       {% set address %}
-  {{ data.startCase.hearingAddress.line1 }}<br>
-  {% if data.startCase.hearingAddress.line2 %}{{ data.startCase.hearingAddress.line2 }}<br>{% endif %}
-  {{ data.startCase.hearingAddress.town }}<br>
-  {% if data.startCase.hearingAddress.county %}{{ data.startCase.hearingAddress.county }}<br>{% endif %}
-  {{ data.startCase.hearingAddress.postcode }}
-{% endset %}
-
-{% if data.startCase.hearingDate.day and data.startCase.hearingDate.month and data.startCase.hearingDate.year %}
-  {% set hearingDate = data.startCase.hearingDate | isoDateFromDateInput | govukDate %}
-{% else %}
-  {% set hearingDate = "" %}
-{% endif %}
-
-{{ govukSummaryList({
-  rows: [
-    {
-      key: {
-        text: "Appeal procedure"
+      {{ data.startCase.hearingAddress.line1 }}<br>
+      {% if data.startCase.hearingAddress.line2 %}{{ data.startCase.hearingAddress.line2 }}<br>{% endif %}
+      {{ data.startCase.hearingAddress.town }}<br>
+      {% if data.startCase.hearingAddress.county %}{{ data.startCase.hearingAddress.county }}<br>{% endif %}
+      {{ data.startCase.hearingAddress.postcode }}
+    {% endset %}
+    
+    {# Format the hearing date if entered #}
+    {% if data.startCase.hearingDate.day and data.startCase.hearingDate.month and data.startCase.hearingDate.year %}
+      {% set hearingDate = data.startCase.hearingDate | isoDateFromDateInput | govukDate %}
+    {% else %}
+      {% set hearingDate = "" %}
+    {% endif %}
+    
+    {# Build the rows dynamically #}
+    {% set rows = [
+      {
+        key: { text: "Appeal procedure" },
+        value: { text: "Hearing" },
+        actions: {
+          items: [
+            { href: "start-hearing", text: "Change", visuallyHiddenText: "appeal procedure" }
+          ]
+        }
       },
-      value: {
-        text: "Hearing"
+      {
+        key: { text: "Hearing date" },
+        value: { html: hearingDate },
+        actions: {
+          items: [
+            { href: "hearing-date", text: "Change", visuallyHiddenText: "hearing date" }
+          ]
+        }
       },
-      actions: {
-        items: [
-          {
-            href: "start-hearing",
-            text: "Change",
-            visuallyHiddenText: "appeal procedure"
-          }
-        ]
+      {
+        key: { text: "Hearing time" },
+        value: { text: "10:00am" },
+        actions: {
+          items: [
+            { href: "hearing-date", text: "Change", visuallyHiddenText: "hearing time" }
+          ]
+        }
+      },
+      {
+        key: { text: "Do you know the address of where the hearing will take place?" },
+        value: { text: data.startCase.hasHearingAddress },
+        actions: {
+          items: [
+            { href: "has-address", text: "Change", visuallyHiddenText: "hearing address question" }
+          ]
+        }
       }
-    },
-    {
-      key: {
-        text: "Hearing date"
-      },
-      value: {
-        html: hearingDate
-      },
-      actions: {
-        items: [
-          {
-            href: "hearing-date",
-            text: "Change",
-            visuallyHiddenText: "hearing date"
+    ] %}
+    
+    {# Only add Hearing address row if answer was Yes #}
+    {% if data.startCase.hasHearingAddress == "Yes" %}
+      {% set rows = rows.concat([
+        {
+          key: { text: "Hearing address" },
+          value: { html: address },
+          actions: {
+            items: [
+              { href: "hearing-address", text: "Change", visuallyHiddenText: "hearing address" }
+            ]
           }
-        ]
-      }
-    },
-    {
-      key: {
-        text: "Hearing time"
-      },
-      value: {
-        text: "10:00am"
-      },
-      actions: {
-        items: [
-          {
-            href: "hearing-date",
-            text: "Change",
-            visuallyHiddenText: "hearing time"
-          }
-        ]
-      }
-    },
-    {
-      key: {
-        text: "Hearing address"
-      },
-      value: {
-        html: address
-      },
-      actions: {
-        items: [
-          {
-            href: "hearing-address",
-            text: "Change",
-            visuallyHiddenText: "hearing address"
-          }
-        ]
-      }
-    }
-  ]
-}) }}
-
-      <p>We’ll start the timetable now and send emails to the relevant parties.</p>
-          
-      {{ govukDetails({
-        classes: 'govuk-!-margin-top-5 govuk-!-margin-bottom-1',
-        summaryText: "Preview email to LPA",
-        html: emailHtml
+        }
+      ]) %}
+    {% endif %}
+    
+    {{ govukSummaryList({ rows: rows }) }}
+    
+    <p>We’ll start the timetable now and send emails to the relevant parties.</p>
+    
+    {{ govukDetails({
+      classes: 'govuk-!-margin-top-5 govuk-!-margin-bottom-1',
+      summaryText: "Preview email to LPA",
+      html: emailHtml
+    }) }}
+    
+    {{ govukDetails({
+      classes: 'govuk-!-margin-top-5 govuk-!-margin-bottom-1',
+      summaryText: "Preview email to appellant",
+      html: emailHtml
+    }) }}
+    
+    <div class="govuk-!-padding-bottom-6"></div>
+    
+    <form method="post">
+      {{ govukButton({
+        text: "Start case"
       }) }}
-
-      {{ govukDetails({
-        classes: 'govuk-!-margin-top-5 govuk-!-margin-bottom-1',
-        summaryText: "Preview email to appellant",
-        html: emailHtml
-      }) }}
-      <div class="govuk-!-padding-bottom-6"></div>
-
-      <form method="post">
-        {{ govukButton({
-          text: "Start case"
-        }) }}
-      </form>
+    </form>
 
     </div>
   </div>

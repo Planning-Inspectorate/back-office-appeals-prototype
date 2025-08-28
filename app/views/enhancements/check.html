@@ -82,6 +82,12 @@
   {{ data.startCase.hearingAddress.postcode }}
 {% endset %}
 
+{% if data.startCase.hearingDate.day and data.startCase.hearingDate.month and data.startCase.hearingDate.year %}
+  {% set hearingDate = data.startCase.hearingDate | isoDateFromDateInput | govukDate %}
+{% else %}
+  {% set hearingDate = "" %}
+{% endif %}
+
 {{ govukSummaryList({
   rows: [
     {
@@ -106,7 +112,7 @@
         text: "Hearing date"
       },
       value: {
-        html: data.startCase.hearingDate | isoDateFromDateInput | govukDate
+        html: hearingDate
       },
       actions: {
         items: [

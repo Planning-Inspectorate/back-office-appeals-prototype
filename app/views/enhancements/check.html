@@ -11,7 +11,9 @@
 {% set emailHtml %}
 <div class="app-email-preview">
   <div class="app-email-preview__subject">
+    <p class="govuk-body">
     Subject: Subject goes here
+  </p>
   </div>
   <div class="app-email-preview__body">
     <p class="govuk-body">
@@ -95,7 +97,9 @@
         value: { text: "Hearing" },
         actions: {
           items: [
-            { href: "start-hearing", text: "Change", visuallyHiddenText: "appeal procedure" }
+            { href: "start-hearing", 
+            text: "Change", 
+            visuallyHiddenText: "appeal procedure" }
           ]
         }
       },
@@ -104,7 +108,10 @@
         value: { html: hearingDate },
         actions: {
           items: [
-            { href: "hearing-date", text: "Change", visuallyHiddenText: "hearing date" }
+            { 
+              href: "hearing-date",  
+              text: "Change", 
+              visuallyHiddenText: "hearing date" }
           ]
         }
       },
@@ -113,7 +120,9 @@
         value: { text: "10:00am" },
         actions: {
           items: [
-            { href: "hearing-date", text: "Change", visuallyHiddenText: "hearing time" }
+            { href: "hearing-date", 
+            text: "Change", 
+            visuallyHiddenText: "hearing time" }
           ]
         }
       },
@@ -122,7 +131,9 @@
         value: { text: data.startCase.hasHearingAddress },
         actions: {
           items: [
-            { href: "has-address", text: "Change", visuallyHiddenText: "hearing address question" }
+            { href: "has-address", 
+            text: "Change", 
+            visuallyHiddenText: "hearing address question" }
           ]
         }
       }
@@ -136,7 +147,10 @@
           value: { html: address },
           actions: {
             items: [
-              { href: "hearing-address", text: "Change", visuallyHiddenText: "hearing address" }
+              { 
+                href: "hearing-address", 
+                text: "Change", 
+                visuallyHiddenText: "hearing address" }
             ]
           }
         }
@@ -144,9 +158,9 @@
     {% endif %}
     
     {{ govukSummaryList({ rows: rows }) }}
-    
+
     <p>We’ll start the timetable now and send emails to the relevant parties.</p>
-    
+
     {{ govukDetails({
       classes: 'govuk-!-margin-top-5 govuk-!-margin-bottom-1',
       summaryText: "Preview email to LPA",
@@ -158,6 +172,7 @@
       summaryText: "Preview email to appellant",
       html: emailHtml
     }) }}
+
     
     <div class="govuk-!-padding-bottom-6"></div>
     

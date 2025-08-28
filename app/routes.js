@@ -350,11 +350,12 @@ router.post('/enhancements/has-hearing-address', function (req, res) {
 		res.redirect('/enhancements/has-hearing-address')
 	  })
 
+
 	router.post('/enhancements/start-hearing', function (req, res) {
 	const answer = req.session.data['startCase']['procedure']
 
 	if (answer === 'Hearing') {
-		res.redirect('/enhancements/hearing-date')   // go to hearing date
+		res.redirect('/enhancements/hearing-date')   // go to hearing date and time
 	} else {
 		// if nothing selected, reload the same page with error
 		res.redirect('/enhancements/start-hearing')

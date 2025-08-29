@@ -327,31 +327,8 @@ router.get("/projects/closing-cases/v1/change-appeal-resubmit-process", (req, re
 
 
 // NEW HEARING FLOW
-router.post('/enhancements/has-address', function (req, res) {
-    const answer = req.session.data['startCase']['hasHearingAddress']
 
-    if (answer === 'Yes') {
-      res.redirect('/enhancements/hearing-address.html')   // go to address page
-    } else if (answer === 'No') {
-      res.redirect('/enhancements/check.html')     // go to check page
-    } else {
-      // if nothing selected, reload the same page with error
-      res.redirect('/enhancements/has-address')
-    }
-  })
-
-	router.post('/enhancements/hearing-address', function (req, res) {
-	  // data is automatically stored in req.session.data
-	  res.redirect('/enhancements/check')
-	})
-
-	router.post('/enhancements/hearing-date', function (req, res) {
-		// data is automatically stored in req.session.data
-		res.redirect('/enhancements/has-address')
-	  })
-
-
-	router.post('/enhancements/start-hearing', function (req, res) {
+router.post('/enhancements/start-hearing', function (req, res) {
 	const answer = req.session.data['startCase']['procedure']
 
 	if (answer === 'Hearing') {
@@ -361,3 +338,11 @@ router.post('/enhancements/has-address', function (req, res) {
 		res.redirect('/enhancements/start-hearing')
 	}
 	})
+
+	router.post('/enhancements/hearing-date', function (req, res) {
+		// data is automatically stored in req.session.data
+		res.redirect('/enhancements/check')
+	  })
+
+
+	

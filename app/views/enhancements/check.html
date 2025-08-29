@@ -75,13 +75,7 @@
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">Appeal 6021709</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
-      {% set address %}
-      {{ data.startCase.hearingAddress.line1 }}<br>
-      {% if data.startCase.hearingAddress.line2 %}{{ data.startCase.hearingAddress.line2 }}<br>{% endif %}
-      {{ data.startCase.hearingAddress.town }}<br>
-      {% if data.startCase.hearingAddress.county %}{{ data.startCase.hearingAddress.county }}<br>{% endif %}
-      {{ data.startCase.hearingAddress.postcode }}
-    {% endset %}
+      
     
     {# Format the hearing date if entered #}
     {% if data.startCase.hearingDate.day and data.startCase.hearingDate.month and data.startCase.hearingDate.year %}
@@ -125,37 +119,9 @@
             visuallyHiddenText: "hearing time" }
           ]
         }
-      },
-      {
-        key: { text: "Do you know the address of where the hearing will take place?" },
-        value: { text: data.startCase.hasHearingAddress },
-        actions: {
-          items: [
-            { href: "has-address", 
-            text: "Change", 
-            visuallyHiddenText: "hearing address question" }
-          ]
-        }
       }
     ] %}
     
-    {# Only add Hearing address row if answer was Yes #}
-    {% if data.startCase.hasHearingAddress == "Yes" %}
-      {% set rows = rows.concat([
-        {
-          key: { text: "Hearing address" },
-          value: { html: address },
-          actions: {
-            items: [
-              { 
-                href: "hearing-address", 
-                text: "Change", 
-                visuallyHiddenText: "hearing address" }
-            ]
-          }
-        }
-      ]) %}
-    {% endif %}
     
     {{ govukSummaryList({ rows: rows }) }}
 

@@ -75,52 +75,60 @@
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">Appeal 6021709</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
+
+      {# Format the hearing date if entered #}
+      {% if data.startCase.hearingDate.day and data.startCase.hearingDate.month and data.startCase.hearingDate.year %}
+        {% set hearingDate = data.startCase.hearingDate | isoDateFromDateInput | govukDate %}
+      {% else %}
+        {% set hearingDate = "" %}
+      {% endif %}
       
     
-    {# Format the hearing date if entered #}
-    {% if data.startCase.hearingDate.day and data.startCase.hearingDate.month and data.startCase.hearingDate.year %}
-      {% set hearingDate = data.startCase.hearingDate | isoDateFromDateInput | govukDate %}
-    {% else %}
-      {% set hearingDate = "" %}
-    {% endif %}
-    
-    {# Build the rows dynamically #}
-    {% set rows = [
-      {
-        key: { text: "Appeal procedure" },
-        value: { text: "Hearing" },
-        actions: {
-          items: [
-            { href: "start-hearing", 
-            text: "Change", 
-            visuallyHiddenText: "appeal procedure" }
-          ]
+      {% set rows = [
+        {
+          key: { text: "Appeal procedure" },
+          value: { text: "Hearing" },
+          actions: {
+            items: [
+              { href: "start-hearing", text: "Change", visuallyHiddenText: "appeal procedure" }
+            ]
+          }
+        },
+        {
+          key: { text: "Do you know the date and time of the hearing?" },
+          value: { text: data.startCase.knowDate or "Not answered" },
+          actions: {
+            items: [
+              { href: "know-hearing-date", text: "Change", visuallyHiddenText: "hearing date knowledge" }
+            ]
+          }
         }
-      },
-      {
-        key: { text: "Hearing date" },
-        value: { html: hearingDate },
-        actions: {
-          items: [
-            { 
-              href: "hearing-date",  
-              text: "Change", 
-              visuallyHiddenText: "hearing date" }
-          ]
-        }
-      },
-      {
-        key: { text: "Hearing time" },
-        value: { text: "10:00am" },
-        actions: {
-          items: [
-            { href: "hearing-date", 
-            text: "Change", 
-            visuallyHiddenText: "hearing time" }
-          ]
-        }
-      }
-    ] %}
+      ] %}
+      
+      {# If user said Yes, add date and time rows #}
+      {% if data.startCase.knowDate == "Yes" %}
+        {% set rows = rows.concat([
+          {
+            key: { text: "Hearing date" },
+            value: { html: hearingDate or "Not provided" },
+            actions: {
+              items: [
+                { href: "hearing-date", text: "Change", visuallyHiddenText: "hearing date" }
+              ]
+            }
+          },
+          {
+            key: { text: "Hearing time" },
+            value: { text: "10:00am" },
+            actions: {
+              items: [
+                { href: "hearing-date", text: "Change", visuallyHiddenText: "hearing time" }
+              ]
+            }
+          }
+        ]) %}
+      {% endif %}
+      
     
     
     {{ govukSummaryList({ rows: rows }) }}

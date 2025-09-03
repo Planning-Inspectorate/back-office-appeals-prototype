@@ -1,0 +1,42 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Do you know the date and time of the hearing?" %}
+{% set pageName = title %}
+{% set back = true %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+        <span class="govuk-caption-l">Appeal 6021709 - start case</span>
+        {{ govukRadios({
+          name: "startCase[knowDate]",
+          fieldset: {
+            legend: {
+              text: pageName,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          value: data.startCase.knowDate,
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

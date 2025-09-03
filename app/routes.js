@@ -332,12 +332,23 @@ router.post('/enhancements/start-hearing', function (req, res) {
 	const answer = req.session.data['startCase']['procedure']
 
 	if (answer === 'Hearing') {
-		res.redirect('/enhancements/hearing-date')   // go to hearing date and time
+		res.redirect('/enhancements/know-hearing-date')   // go to hearing date and time
 	} else {
 		// if nothing selected, reload the same page with error
 		res.redirect('/enhancements/start-hearing')
 	}
 	})
+
+	router.post('/enhancements/know-hearing-date', function (req, res) {
+		const answer = req.session.data['startCase']['knowDate']
+	
+		if (answer === 'Yes') {
+			res.redirect('/enhancements/hearing-date')   // go to hearing date and time
+		} else {
+			// if nothing selected, reload the same page with error
+			res.redirect('/enhancements/check')
+		}
+		})
 
 	router.post('/enhancements/hearing-date', function (req, res) {
 		// data is automatically stored in req.session.data

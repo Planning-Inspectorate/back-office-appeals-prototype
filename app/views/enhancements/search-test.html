@@ -1,0 +1,43 @@
+{% extends "layouts/bo.html" %}
+
+{% block content %}
+
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+  
+      <div class="moj-search">
+        <form action="#" method="post">
+  
+          <div class="govuk-form-group">
+            <label class="govuk-label moj-search__label govuk-!-font-weight-bold" for="search">
+              Search for appeals
+            </label>
+  
+            <div id="search-hint" class="govuk-hint moj-search__hint">
+                Search by reference number, site address or appellant name
+            </div>
+  
+            <!-- Flex container -->
+            <div class="moj-search__wrapper margin-bottom-10" style="display: flex; gap: 8px;">
+              <input class="govuk-input moj-search__input" id="search" name="search" type="search" aria-describedby="search-hint">
+              <button type="submit" class="govuk-button moj-search__button" data-module="govuk-button">
+                Search
+              </button>
+            </div>
+
+            <p class="govuk-body">
+                <a href="#" class="govuk-link govuk-link--no-visited-state">Clear search</a>
+              </p>
+  
+          </div>
+  
+        </form>
+      </div>
+  
+    </div>
+  </div>
+  
+
+{% endblock %}

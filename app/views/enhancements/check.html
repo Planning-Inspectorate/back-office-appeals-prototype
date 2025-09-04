@@ -96,7 +96,7 @@
         },
         {
           key: { text: "Do you know the date and time of the hearing?" },
-          value: { text: data.startCase.knowDate or "Not answered" },
+          value: { text: data.startCase.knowDate or "No" },
           actions: {
             items: [
               { href: "know-hearing-date", text: "Change", visuallyHiddenText: "hearing date knowledge" }
@@ -110,7 +110,7 @@
         {% set rows = rows.concat([
           {
             key: { text: "Hearing date" },
-            value: { html: hearingDate or "Not provided" },
+            value: { html: hearingDate or "17 September 2025" },
             actions: {
               items: [
                 { href: "hearing-date", text: "Change", visuallyHiddenText: "hearing date" }

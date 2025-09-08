@@ -9,25 +9,26 @@ router.get('*', function(req, res, next){
 
 // Filter the personal list
 
- router.post('/index', function (req, res) {
-    const selected = req.session.data['appeal-status-filter'] || [];
+// thanks Copilot!
+// this looks at the checkboxes in the filters and creates a param query based on the values
+router.post('/index', function (req, res) {
+  const selected = req.session.data['appeal-status-filter'] || [];
 
-    const allFilters = {
-      'Validation': 'appeal-status-validation',
-      'Ready to start': 'appeal-status-ready',
-      'Questionnaire': 'appeal-status-questionnaire',
-      'Waiting for event': 'appeal-status-event',
-      'Issue decision': 'appeal-status-decision'
-    };
+  const allFilters = {
+    'Validation': 'appeal-status-validation',
+    'Ready to start': 'appeal-status-ready',
+    'Questionnaire': 'appeal-status-questionnaire',
+    'Waiting for event': 'appeal-status-event',
+    'Issue decision': 'appeal-status-decision'
+  };
 
-    // Set each filter to true or false in session data
-    for (const [label, key] of Object.entries(allFilters)) {
-      req.session.data[key] = selected.includes(label);
-    }
+  // Set each filter to true or false in session data
+  for (const [label, key] of Object.entries(allFilters)) {
+    req.session.data[key] = selected.includes(label);
+  }
 
-    res.redirect('/projects/personal-list/v5/index');
-  });
-
+  res.redirect('/projects/personal-list/v5/index');
+});
 
 // Add your routes above the module.exports line
 module.exports = router

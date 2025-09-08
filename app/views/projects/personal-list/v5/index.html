@@ -163,13 +163,6 @@
   <!-- list -->
   <div class="govuk-grid-column-two-thirds">
 
-    appeal-status-filter is {{ data['appeal-status-filter'] }}<br>
-    appeal-status-validation is {{ data['appeal-status-validation'] }}<br>
-    appeal-status-ready is {{ data['appeal-status-ready'] }}<br>
-    appeal-status-questionnaire is {{ data['appeal-status-questionnaire'] }}<br>
-    appeal-status-event is {{ data['appeal-status-event'] }}<br>
-    appeal-status-decision is {{ data['appeal-status-decision'] }}
-
     {% if data['appeal-status-validation'] == true
        or data['appeal-status-ready'] == true
        or data['appeal-status-questionnaire'] == true

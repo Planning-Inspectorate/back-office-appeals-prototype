@@ -36,11 +36,13 @@
         {% include "includes/appeal/decision.html" %}
       {% endset%}
       {% set siteHtml %}
-      {% include "includes/appeal/site.html" %}
+        {% include "includes/appeal/site.html" %}
       {% endset%}
+
       {% set timetableHtml %}
         {% include "includes/appeal/timetable.html" %}
       {% endset%}
+
       {% if appeal.procedure == 'Hearing' %}
         {% set hearingHtml %}
           {% include "includes/appeal/hearing.html" %}

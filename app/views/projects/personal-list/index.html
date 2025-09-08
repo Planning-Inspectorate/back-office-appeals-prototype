@@ -18,7 +18,7 @@
       I want to view my personal list so that I can see all the cases that are assigned to me
     </p>
 
-    {% set version = "4" %}
+    {% set version = "5" %}
 
     <h2 class="govuk-heading-m">
       Version {{version}}
@@ -31,19 +31,35 @@
     </h2>
 
     <p class="govuk-body">
-      Content updates following research:
+      Adding filters following pilot service feedback.
     </p>
-
-    <ul class="govuk-list govuk-list--bullet">
-      <li>updated invalid appeal decision tag change to Completed</li>
-      <li>links with Inspector decisions v3</li>
-    </ul>
 
     {{ govukButton({
       text: "View prototype",
-      href: "v4/",
+      href: "v5/?appeal-status-validation=1&appeal-status-ready=1&appeal-status-questionnaire=1&appeal-status-event=1&appeal-status-decision=1",
       isStartButton: true
     }) }}
+
+    {% set v4HTML %}
+
+      {% set version = "4" %}
+
+      <p class="govuk-body">
+        Content updates following research:
+      </p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>updated invalid appeal decision tag change to Completed</li>
+        <li>links with Inspector decisions v3</li>
+      </ul>
+
+      {{ govukButton({
+        text: "View prototype",
+        href: "v4/",
+        isStartButton: true
+      }) }}
+
+    {% endset -%}
 
     {% set v3HTML %}
 
@@ -103,6 +119,14 @@
       classes: 'govuk-!-margin-top-5',
       items: [
 
+          {
+            heading: {
+              html: 'Version 4 <strong class="govuk-tag govuk-tag--green govuk-!-margin-left-2">Ready for research</strong>'
+            },
+            content: {
+              html: v4HTML
+            }
+          },
           {
             heading: {
               html: 'Version 3 <strong class="govuk-tag govuk-tag--blue govuk-!-margin-left-2">Researched</strong>'

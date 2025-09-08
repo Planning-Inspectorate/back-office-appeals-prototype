@@ -1,0 +1,192 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Personal list" %}
+
+{% set back = false %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+  <h1 class="govuk-heading-l">Cases assigned to you</h1>
+
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+
+  <!-- filters -->
+  <div class="govuk-grid-column-one-third">
+
+    <div class="pins-filter__header">
+
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-0">
+        Filters
+      </h2>
+
+    </div>
+
+    {% if data['appeal-status-validation'] == true
+       or data['appeal-status-ready'] == true
+       or data['appeal-status-questionnaire'] == true
+       or data['appeal-status-event'] == true
+       or data['appeal-status-decision'] == true %}
+
+    <!-- applied filters section -->
+    <div class="pins-filter__selected-filters">
+
+        <h3 class="govuk-heading-s">
+          Applied filters
+        </h3>
+
+        {% if data['appeal-status-validation'] == true %}
+          <a title="Clear this filter 'Validation'" class="pins-filter__tag" href="?appeal-status-validation=">
+            Validation  <span class="pins-filter__close-icon" aria-hidden>&#215;</span>
+          </a>
+        {% endif %}
+
+        {% if data['appeal-status-ready'] == true %}
+          <a title="Clear this filter 'Ready to start'" class="pins-filter__tag" href="?appeal-status-ready=">
+            Ready to start  <span class="pins-filter__close-icon" aria-hidden>&#215;</span>
+          </a>
+        {% endif %}
+
+        {% if data['appeal-status-questionnaire'] == true %}
+          <a title="Clear this filter 'Questionnaire'" class="pins-filter__tag" href="?appeal-status-questionnaire=">
+            Questionnaire  <span class="pins-filter__close-icon" aria-hidden>&#215;</span>
+          </a>
+        {% endif %}
+
+        {% if data['appeal-status-event'] == true %}
+          <a title="Clear this filter 'Waiting for event'" class="pins-filter__tag" href="?appeal-status-event=">
+            Waiting for event  <span class="pins-filter__close-icon" aria-hidden>&#215;</span>
+          </a>
+        {% endif %}
+
+        {% if data['appeal-status-decision'] == true %}
+          <a title="Clear this filter 'Issue decision'" class="pins-filter__tag" href="?appeal-status-decision=">
+            Issue decision  <span class="pins-filter__close-icon" aria-hidden>&#215;</span>
+          </a>
+        {% endif %}
+
+    </div>
+    {% endif %}
+
+    <div class="pins-filter__area">
+
+      <form method="post" action="/projects/personal-list/v5/index">
+
+        <div class="govuk-button-group">
+
+          {{ govukButton({
+              text: "Apply filters"
+          }) }}
+
+          <a class="govuk-link" href="?appeal-status-validation=1&appeal-status-ready=1&appeal-status-questionnaire=1&appeal-status-event=1&appeal-status-decision=1">Reset filters</a>
+
+        </div>
+
+        <!-- checkbox filter for appeal statuses -->
+
+        {{ govukCheckboxes({
+          name: "appeal-status-filter",
+          classes: "govuk-checkboxes--small",
+          fieldset: {
+            legend: {
+              text: "Appeal status",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+
+            {
+              value: "Validation",
+              text: "Validation",
+              checked: "Checked"
+            } if data['appeal-status-validation'] == true,
+            {
+              value: "Validation",
+              text: "Validation"
+            } if data['appeal-status-validation'] != true,
+
+            {
+              value: "Ready to start",
+              text: "Ready to start",
+              checked: "Checked"
+            } if data['appeal-status-ready'] == true,
+            {
+              value: "Ready to start",
+              text: "Ready to start"
+            } if data['appeal-status-ready'] != true,
+
+            {
+              value: "Questionnaire",
+              text: "Questionnaire",
+              checked: "Checked"
+            } if data['appeal-status-questionnaire'] == true,
+            {
+              value: "Questionnaire",
+              text: "Questionnaire"
+            } if data['appeal-status-questionnaire'] != true,
+
+            {
+              value: "Waiting for event",
+              text: "Waiting for event",
+              checked: "Checked"
+            } if data['appeal-status-event'] == true,
+            {
+              value: "Waiting for event",
+              text: "Waiting for event"
+            } if data['appeal-status-event'] != true,
+
+            {
+              value: "Issue decision",
+              text: "Issue decision",
+              checked: "Checked"
+            } if data['appeal-status-decision'] == true,
+            {
+              value: "Issue decision",
+              text: "Issue decision"
+            } if data['appeal-status-decision'] != true
+          ]
+        }) }}
+
+      </form>
+
+    </div>
+    <!-- end filters area -->
+
+  </div>
+
+  <!-- list -->
+  <div class="govuk-grid-column-two-thirds">
+
+    appeal-status-filter is {{ data['appeal-status-filter'] }}<br>
+    appeal-status-validation is {{ data['appeal-status-validation'] }}<br>
+    appeal-status-ready is {{ data['appeal-status-ready'] }}<br>
+    appeal-status-questionnaire is {{ data['appeal-status-questionnaire'] }}<br>
+    appeal-status-event is {{ data['appeal-status-event'] }}<br>
+    appeal-status-decision is {{ data['appeal-status-decision'] }}
+
+    {% if data['appeal-status-validation'] == true
+       or data['appeal-status-ready'] == true
+       or data['appeal-status-questionnaire'] == true
+       or data['appeal-status-event'] == true
+       or data['appeal-status-decision'] == true %}
+
+	      {% include "projects/personal-list/v5/includes/personal-list-table.html" %}
+
+    {% else %}
+
+      <p class="govuk-body">
+        There are no appeals to show, try <a href="?appeal-status-validation=1&appeal-status-ready=1&appeal-status-questionnaire=1&appeal-status-event=1&appeal-status-decision=1">resetting the filters</a>.
+      </p>
+
+    {% endif %}
+
+  </div>
+</div>
+
+{% endblock %}

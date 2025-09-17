@@ -1,0 +1,58 @@
+.pins-filter__header {
+	border: 1px solid #b1b4b6;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.pins-filter__selected-filters {
+	background: #f3f2f1;
+  border: 1px solid #b1b4b6;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: rgb(177, 180, 182);
+  border-top: none;
+  padding: 20px;
+}
+
+.pins-filter__area {
+	padding: 20px;
+  border: 1px solid #b1b4b6;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: rgb(177, 180, 182);
+  border-top: none;
+}
+
+.pins-filter__tag,
+.pins-filter__tag:hover,
+.pins-filter__tag:visited {
+
+	display: inline-block;
+  font-weight: bold;
+	color: #0b0c0c !important;
+	background-color: white;
+
+  padding: 0.3rem;
+	padding-left: 0.6rem;
+	padding-right: 0.4rem;
+
+	text-decoration: none;
+	border: 2px solid black !important;
+
+	margin-bottom: 0.6rem;
+
+}
+
+.pins-filter__tag:hover {
+	color: white  !important;
+	background-color: black;
+}
+
+.pins-filter__close-icon {
+	font-weight: 200;
+	font-size: 1.2rem;
+
+	position: relative;
+  bottom: -0.1em;
+}

@@ -100,7 +100,19 @@
   {
     href: '?newnote=',
     text: 'Clear new case note'
-  }
+  },
+  {
+    href: '#',
+    text: '________________________________________________________________________'
+  },
+  {
+    href: '?venue-address=complete',
+    text: 'Venue is set'
+  } if not data['venue-address'],
+  {
+    href: '?venue-address=',
+    text: 'Venue is not set'
+  } if data['venue-address']
 
 
 ] %}
@@ -662,6 +674,48 @@
             },
             {
               html: "<a href='site-visit.html'>Change</a>",
+              format: "numeric"
+            }
+          ]
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-9">
+        Hearing
+      </h2>
+
+      {% set venuelink %}
+        {% if data['venue-address'] != "complete" %}
+          Awaiting venue
+        {% endif %}
+      {% endset %}
+
+      {{ govukTable({
+        captionClasses: "govuk-table__caption--m",
+        firstCellIsHeader: true,
+        rows: [
+          [
+            {
+              text: "Hearing date and time",
+              classes: "govuk-!-width-one-third"
+            },
+            {
+              html: '1.30am on' + 35 | daysInFuture
+            },
+            {
+              html: "<a href='#'>Change</a>",
+              format: "numeric"
+            }
+          ],
+          [
+            {
+              text: "Venue address"
+            },
+            {
+              text: '101 Big Hall, Town Centre, Townsville, Testborough TT1 2PP'
+            } if data['venue-address'] == 'complete' else { text: 'Awaiting venue' },
+            {
+              html: "<a href='#'>Change</a>",
               format: "numeric"
             }
           ]

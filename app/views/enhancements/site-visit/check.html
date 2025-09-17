@@ -1,0 +1,78 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Check details and set up site visit" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal 6021709</span>
+      <h1 class="govuk-heading-l">{{ title }}</h1>
+
+      {# Check if user entered both date + time #}
+      {% set hasDate = data.setupVisit.visitDate.day and data.setupVisit.visitDate.month and data.setupVisit.visitDate.year %}
+      {% set hasTime = data.setupVisit.visitTime.hour and data.setupVisit.visitTime.minute %}
+      {% set hasDateOrTime = hasDate or hasTime %}
+
+      {# Format the visit date if entered #}
+      {% if hasDate %}
+        {% set visitDate = data.setupVisit.visitDate | isoDateFromDateInput | govukDate %}
+      {% endif %}
+
+      {# Format the visit time if entered #}
+      {% if hasTime %}
+        {% set visitTime = data.setupVisit.visitTime.hour ~ ":" ~ data.setupVisit.visitTime.minute %}
+      {% endif %}
+
+      {# Build rows dynamically #}
+      {% set rows = [
+        {
+          key: { text: "Type" },
+          value: { text: data.setupVisit.type or "Not provided" },
+          actions: {
+            items: [
+              { href: "visit-type", text: "Change", visuallyHiddenText: "visit type" }
+            ]
+          }
+        }
+      ] %}
+
+      {% if hasDateOrTime %}
+        {% set rows = rows.concat([
+          {
+            key: { text: "Date" },
+            value: { text: visitDate or "Not provided" },
+            actions: {
+              items: [
+                { href: "visit-date", text: "Change", visuallyHiddenText: "visit date" }
+              ]
+            }
+          },
+          {
+            key: { text: "Time" },
+            value: { text: visitTime or "10:00" },
+            actions: {
+              items: [
+                { href: "visit-date", text: "Change", visuallyHiddenText: "visit time" }
+              ]
+            }
+          }
+        ]) %}
+      {% endif %}
+
+      {{ govukSummaryList({ rows: rows }) }}
+
+      {% if hasDateOrTime %}
+        <p>We’ll send an email to the appellant and LPA to tell them about the site visit.</p>
+      {% endif %}
+    
+      <form method="post">
+        {{ govukButton({
+          text: "Set up site visit"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

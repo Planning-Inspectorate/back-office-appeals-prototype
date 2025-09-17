@@ -1,0 +1,153 @@
+{% extends "layouts/bo.html" %}
+
+{% block content %}
+
+<style>
+  .arrow {
+    border: solid black;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3px;
+    transition: transform 0.2s ease;
+  }
+
+  .down {
+    transform: rotate(45deg);
+  }
+
+  .up {
+    transform: rotate(-135deg);
+  }
+
+  .filter-toggle {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+  }
+
+  .filter-toggle span {
+    margin-left: 0.5rem;
+  }
+
+  .filter-content {
+    display: none;
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .filter-content.show {
+    display: block;
+  }
+</style>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-third">
+
+    {%- from "moj/components/filter/macro.njk" import mojFilter -%}
+    {%- from "govuk/components/checkboxes/macro.njk" import govukCheckboxes -%}
+    {%- from "govuk/components/input/macro.njk" import govukInput -%}
+
+    {%- set filterOptionsHtml %}
+
+      {{ govukInput({
+        id: "keywords",
+        name: "keywords",
+        label: {
+          text: "Keywords",
+          classes: "govuk-label--m"
+        }
+      }) }}
+
+      <div class="filter-section">
+        <div class="filter-toggle" data-target="type-content">
+          <i class="arrow down"></i>
+          <span class="govuk-body">Type</span>
+        </div>
+        <div class="filter-content" id="type-content">
+          {{ govukCheckboxes({
+            idPrefix: "type",
+            name: "type",
+            classes: "govuk-checkboxes--small",
+            items: [
+              { value: "1", text: "Blue (18)", checked: true },
+              { value: "2", text: "Yellow (5)", checked: true },
+              { value: "3", text: "Red (2)" }
+            ]
+          }) }}
+        </div>
+      </div>
+
+      <div class="filter-section">
+        <div class="filter-toggle" data-target="status-content">
+          <i class="arrow down"></i>
+          <span class="govuk-body">Status</span>
+        </div>
+        <div class="filter-content" id="status-content">
+          {{ govukCheckboxes({
+            idPrefix: "status",
+            name: "status",
+            classes: "govuk-checkboxes--small",
+            items: [
+              { value: "complete", text: "Completed (2)", checked: true },
+              { value: "incomplete", text: "Incomplete (5)" },
+              { value: "inprogress", text: "In progress (3)" }
+            ]
+          }) }}
+        </div>
+      </div>
+
+    {% endset -%}
+
+    {{ mojFilter({
+      heading: {
+        text: "Filter"
+      },
+      submit: {
+        attributes: {
+          "data-test-id": "submit-button"
+        }
+      },
+      selectedFilters: {
+        heading: {
+          text: "Selected filters"
+        },
+        clearLink: {
+          text: "Clear filters"
+        },
+        categories: [
+          {
+            heading: { text: "Type" },
+            items: [
+              { href: "/path/to/remove/this", text: "Blue" },
+              { href: "/path/to/remove/this", text: "Yellow" }
+            ]
+          },
+          {
+            heading: { text: "Status" },
+            items: [
+              { href: "/path/to/remove/this", text: "Completed" }
+            ]
+          }
+        ]
+      },
+      optionsHtml: filterOptionsHtml
+    }) }}
+
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.filter-toggle').forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const targetId = toggle.getAttribute('data-target');
+      const content = document.getElementById(targetId);
+      const arrow = toggle.querySelector('.arrow');
+      content.classList.toggle('show');
+      arrow.classList.toggle('down');
+      arrow.classList.toggle('up');
+    });
+  });
+</script>
+
+{% endblock %}

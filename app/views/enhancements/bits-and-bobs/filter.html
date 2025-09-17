@@ -1,0 +1,106 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "My cases" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+{% set pageId = 'yourAppeals' %}
+
+{% set back = false %}
+
+{% block content %}
+
+<style>
+  .arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    transition: transform 0.2s ease;
+  }
+
+  .down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    margin-right: 10px;
+  }
+
+  .up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+    margin-right: 10px;
+  }
+
+  .filter-section {
+    margin-bottom: 1rem;
+  }
+
+    .filter-toggle {
+    display: flex;
+    align-items: center;   /* vertical centering */
+    cursor: pointer;
+  }
+
+  .filter-toggle .arrow {
+    margin-right: 8px;     /* small gap between arrow and text */
+  }
+
+  .filter-content {
+    display: none;
+    margin-left: 1.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .filter-content.show {
+    display: block;
+  }
+</style>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h1 class="govuk-heading-l">{{title}}</h1>
+  </div>
+
+  <div class="govuk-grid-column-one-third">
+    <h3 class="govuk-heading-m">Filter</h3>
+    <a href="#" class="govuk-link">Show all sections</a>
+
+    <div class="filter-section">
+      <div class="filter-toggle" id="procedure-toggle">
+        <i class="arrow down"></i>
+        <span class="govuk-body">Procedure type</span>
+      </div>
+      <div class="filter-content" id="procedure-content">
+        <div class="govuk-checkboxes">
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="proc1" name="procedure" type="checkbox" value="proc1">
+            <label class="govuk-label govuk-checkboxes__label" for="proc1">
+              Procedure option 1
+            </label>
+          </div>
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="proc2" name="procedure" type="checkbox" value="proc2">
+            <label class="govuk-label govuk-checkboxes__label" for="proc2">
+              Procedure option 2
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="govuk-section-break govuk-section-break--visible">
+
+  </div>
+</div>
+
+<script>
+  const toggle = document.getElementById('procedure-toggle');
+  const content = document.getElementById('procedure-content');
+  const arrow = toggle.querySelector('.arrow');
+
+  toggle.addEventListener('click', () => {
+    content.classList.toggle('show');
+    arrow.classList.toggle('down');
+    arrow.classList.toggle('up');
+  });
+</script>
+
+{% endblock %}

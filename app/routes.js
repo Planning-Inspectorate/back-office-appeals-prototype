@@ -328,31 +328,44 @@ router.get("/projects/closing-cases/v1/change-appeal-resubmit-process", (req, re
 
 // NEW HEARING FLOW
 
-router.post('/enhancements/start-hearing', function (req, res) {
+router.post('/enhancements/start-hearing/start-hearing', function (req, res) {
 	const answer = req.session.data['startCase']['procedure']
 
 	if (answer === 'Hearing') {
-		res.redirect('/enhancements/know-hearing-date')   // go to hearing date and time
+		res.redirect('/enhancements/start-hearing/know-hearing-date')   // go to hearing date and time
 	} else {
 		// if nothing selected, reload the same page with error
-		res.redirect('/enhancements/start-hearing')
+		res.redirect('/enhancements/start-hearing/start-hearing')
 	}
 	})
 
-	router.post('/enhancements/know-hearing-date', function (req, res) {
+	router.post('/enhancements/start-hearing/know-hearing-date', function (req, res) {
 		const answer = req.session.data['startCase']['knowDate']
 	
 		if (answer === 'Yes') {
-			res.redirect('/enhancements/hearing-date')   // go to hearing date and time
+			res.redirect('/enhancements/start-hearing/hearing-date')   // go to hearing date and time
 		} else {
 			// if nothing selected, reload the same page with error
-			res.redirect('/enhancements/check')
+			res.redirect('/enhancements/start-hearing/check')
 		}
 		})
 
-	router.post('/enhancements/hearing-date', function (req, res) {
+	router.post('/enhancements/start-hearing/hearing-date', function (req, res) {
 		// data is automatically stored in req.session.data
-		res.redirect('/enhancements/check')
+		res.redirect('/enhancements/start-hearing/check')
+	  })
+
+
+	  // SETUP SITE VISIT
+
+	  router.post('/enhancements/site-visit/visit-type', function (req, res) {
+		// data is automatically stored in req.session.data
+		res.redirect('/enhancements/site-visit/visit-date')
+	  })
+
+	  router.post('/enhancements/site-visit/visit-date', function (req, res) {
+		// data is automatically stored in req.session.data
+		res.redirect('/enhancements/site-visit/check')
 	  })
 
 

@@ -1,0 +1,56 @@
+{% extends "layouts/bo.html" %}
+
+{% block content %}
+
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-third">
+    {% from "_components/ui/checkbox-accordion.njk" import uiCheckboxAccordion %}
+  
+    {{ uiCheckboxAccordion(
+        true,  
+        [
+          {
+            title: 'Section 1',
+            type: 'checkbox',
+            idPrefix: 'section1',
+            name: 'section1',
+            items: [
+              { text: 'Option 1', value: '1' },
+              { text: 'Option 2', value: '2' }
+            ]
+          },
+          {
+            title: 'Section 2',
+            type: 'date',
+            formGroups: [
+              {
+                id: 'date1',
+                inputNamePrefix: 'date1',
+                title: 'Choose a date',
+                inputs: [
+                  { name: 'day', classes: 'govuk-input--width-2' },
+                  { name: 'month', classes: 'govuk-input--width-2' },
+                  { name: 'year', classes: 'govuk-input--width-4' }
+                ]
+              }
+            ]
+          }
+        ],
+        'Title',
+        'Subtitle text',
+        'accordion1',  
+        ''             
+    ) }}
+  </div>
+  
+
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">test</h1>
+    </div>
+  </div>
+  
+
+{% endblock %}
+

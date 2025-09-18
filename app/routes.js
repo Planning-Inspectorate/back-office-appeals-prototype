@@ -368,5 +368,10 @@ router.post('/enhancements/start-hearing/start-hearing', function (req, res) {
 		res.redirect('/enhancements/site-visit/check')
 	  })
 
+	  router.post('/enhancements/site-visit/check', function (req, res) {
+		// data is automatically stored in req.session.data
+		res.redirect('/enhancements/site-visit/success')
+	  })
+
 
 	

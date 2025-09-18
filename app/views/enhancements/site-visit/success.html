@@ -1,0 +1,93 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Sucess" %}
+{% set pageName = title %}
+{% set back = false %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
+
+        {% set html %}
+        <p class="govuk-notification-banner__heading">Site visit updated</p>
+        {% endset %}
+
+        {{ govukNotificationBanner({
+        html: html,
+        type: "success"
+        }) }}
+        </div>
+
+        <div class="govuk-grid-column-full">
+            
+        
+
+        <span class="govuk-caption-l">Appeal 6024299</span>
+        <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">Case details</h1>
+
+        <h1 class="govuk-heading-l">Site visit</h1>
+
+        {{ govukSummaryList({
+            rows: [
+                {
+                    key: {
+                        text: "Type"
+                    },
+                    value: {
+                        text: data.setupVisit.type or "Not provided"
+                    },
+                    actions: {
+                        items: [
+                            {
+                                href: "visit-type",
+                                text: "Change",
+                                visuallyHiddenText: "Item label"
+                            }
+                        ]
+                    }
+                },
+                {
+                    key: {
+                        text: "Date"
+                    },
+                    value: {
+                        html: '<a href="visit-date" class="govuk-link">Enter date</a>'
+                    },
+                    actions: {
+                        items: [
+                            {
+                                href: "visit-type",
+                                text: "",
+                                visuallyHiddenText: "Item label"
+                            }
+                        ]
+                    }
+                },
+                {
+                    key: {
+                        text: "Time"
+                    },
+                    value: {
+                        html: '<a href="visit-date" class="govuk-link">Enter time</a>'
+
+                    },
+                    actions: {
+                        items: [
+                            {
+                                href: "visit-type",
+                                text: "",
+                                visuallyHiddenText: "Item label"
+                            }
+                        ]
+                    }
+                }
+            ]
+        }) }}
+
+
+    </div>
+</div>
+{% endblock %}

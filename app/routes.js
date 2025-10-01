@@ -329,74 +329,75 @@ router.get("/projects/closing-cases/v1/change-appeal-resubmit-process", (req, re
 // NEW HEARING FLOW
 
 router.post('/enhancements/start-hearing/start-hearing', function (req, res) {
-	const answer = req.session.data['startCase']['procedure']
+const answer = req.session.data['startCase']['procedure']
 
-	if (answer === 'Hearing') {
-		res.redirect('/enhancements/start-hearing/know-hearing-date')   // go to hearing date and time
+if (answer === 'Hearing') {
+	res.redirect('/enhancements/start-hearing/know-hearing-date')   // go to hearing date and time
+} else {
+	// if nothing selected, reload the same page with error
+	res.redirect('/enhancements/start-hearing/start-hearing')
+}
+})
+
+router.post('/enhancements/start-hearing/know-hearing-date', function (req, res) {
+	const answer = req.session.data['startCase']['knowDate']
+
+	if (answer === 'Yes') {
+		res.redirect('/enhancements/start-hearing/hearing-date')   // go to hearing date and time
 	} else {
 		// if nothing selected, reload the same page with error
-		res.redirect('/enhancements/start-hearing/start-hearing')
+		res.redirect('/enhancements/start-hearing/check')
 	}
 	})
 
-	router.post('/enhancements/start-hearing/know-hearing-date', function (req, res) {
-		const answer = req.session.data['startCase']['knowDate']
-
-		if (answer === 'Yes') {
-			res.redirect('/enhancements/start-hearing/hearing-date')   // go to hearing date and time
-		} else {
-			// if nothing selected, reload the same page with error
-			res.redirect('/enhancements/start-hearing/check')
-		}
-		})
-
-	router.post('/enhancements/start-hearing/hearing-date', function (req, res) {
-		// data is automatically stored in req.session.data
-		res.redirect('/enhancements/start-hearing/check')
-	  })
+router.post('/enhancements/start-hearing/hearing-date', function (req, res) {
+	// data is automatically stored in req.session.data
+	res.redirect('/enhancements/start-hearing/check')
+})
 
 
-	  // SETUP SITE VISIT
+// SETUP SITE VISIT
 
-	  router.post('/enhancements/site-visit/visit-type', function (req, res) {
-		// data is automatically stored in req.session.data
-		res.redirect('/enhancements/site-visit/visit-date')
-	  })
+router.post('/enhancements/site-visit/visit-type', function (req, res) {
+	// data is automatically stored in req.session.data
+	res.redirect('/enhancements/site-visit/visit-date')
+})
 
-	  router.post('/enhancements/site-visit/visit-date', function (req, res) {
-		// data is automatically stored in req.session.data
-		res.redirect('/enhancements/site-visit/check')
-	  })
+router.post('/enhancements/site-visit/visit-date', function (req, res) {
+	// data is automatically stored in req.session.data
+	res.redirect('/enhancements/site-visit/check')
+})
 
-	  router.post('/enhancements/site-visit/check', function (req, res) {
-		// data is automatically stored in req.session.data
-		res.redirect('/enhancements/site-visit/success')
-	  })
+router.post('/enhancements/site-visit/check', function (req, res) {
+	// data is automatically stored in req.session.data
+	res.redirect('/enhancements/site-visit/success')
+})
 
 
-	// Validate enforcement flow
+// Validate enforcement flow
+router.post('/main/appeals/validate-enforcement/enforcement-appeal',(req, res) => {
+  req.session.data.legalInterest = null
+  req.session.data.enfInvalid = null
+  res.redirect('/enforcement-invalid-reason?')
+})
 
-	router.post('/main/appeals/validate-enforcement/enforcement-appeal',(req, res) => {		
-			res.redirect('/enforcement-invalid-reason?')
-	  })
-	
-	router.post('/main/appeals/validate-enforcement/enforcement-invalid-reason',(req, res) => {
-		if (req.session.data['invalid']?.includes('Appellant does not have a legal interest in the land')) {
-			req.session.data.legalInterest = 'Yes'  
-		}
-		if (req.session.data['invalid']?.includes('Enforcement notice is invalid')) {
-			req.session.data.enfInvalid = 'Yes'  
-			res.redirect('enforcement-notice-invalid-reason')
-		} else{
-			res.redirect('./check')
-		}
-  	})
+router.post('/main/appeals/validate-enforcement/enforcement-invalid-reason',(req, res) => {
+	if (req.session.data['invalid']?.includes('Appellant does not have a legal interest in the land')) {
+		req.session.data.legalInterest = 'Yes'
+	}
+	if (req.session.data['invalid']?.includes('Enforcement notice is invalid')) {
+		req.session.data.enfInvalid = 'Yes'
+		res.redirect('enforcement-notice-invalid-reason')
+	} else{
+		res.redirect('./check')
+	}
+})
 
-	router.post('/main/appeals/validate-enforcement/enforcement-notice-invalid-reason',(req, res) => {
-	res.redirect('./check')		
-	 })
+router.post('/main/appeals/validate-enforcement/enforcement-notice-invalid-reason',(req, res) => {
+   res.redirect('./check')
+})
 
-	router.post('/main/appeals/validate-enforcement/check',(req, res) => {
-		req.flash('success', 'Appeal marked as invalid')
-		res.redirect('/main/appeals/validate-enforcement/enforcement-appeal')		
-	 })
+router.post('/main/appeals/validate-enforcement/check',(req, res) => {
+  req.flash('success', 'Appeal marked as invalid')
+	res.redirect('/main/appeals/validate-enforcement/enforcement-appeal')
+})

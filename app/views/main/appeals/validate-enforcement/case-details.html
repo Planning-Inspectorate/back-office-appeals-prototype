@@ -14,28 +14,20 @@
         text: flash
       }) if flash.length }}
 
-    </div>
-  </div>
+      <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner" data-govuk-notification-banner-init="">
+        <div class="govuk-notification-banner__header">
+          <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+            Important
+          </h2>
+        </div>
 
-  <div class="govuk-grid-column-two-thirds">
-
-    <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner" data-govuk-notification-banner-init="">
-      <div class="govuk-notification-banner__header">
-        <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
-          Important
-        </h2>
+        <div class="govuk-notification-banner__content">
+          <p class="govuk-notification-banner__heading">
+            <a class="govuk-notification-banner__link" href="/main/appeals/validate-enforcement/enforcement-appeal.html">Validate appeal</a>
+          </p>
+        </div>
       </div>
 
-      <div class="govuk-notification-banner__content">
-        <p class="govuk-notification-banner__heading">
-          <a class="govuk-notification-banner__link" href="/main/appeals/validate-enforcement/enforcement-appeal.html">Validate appeal</a>
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">00000005
         <strong class="govuk-tag govuk-tag--green">
           Ready to start
@@ -44,20 +36,16 @@
           Child
         </strong>
       </h1>
-    </div>
-  </div>
 
-  <div class="govuk-button-group">
-    <a href="#" class="govuk-link">Download case</a>
-  </div>
+      <div class="govuk-button-group">
+        <a href="#" class="govuk-link">Download case</a>
+      </div>
 
-  {{ govukDetails({
-    summaryText: "Notes (1)",
-    text: "Note stuff here"
-  }) }}
+      {{ govukDetails({
+        summaryText: "Notes (1)",
+        text: "Note stuff here"
+      }) }}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
       <div class="app-panel">
         <h2 class="govuk-heading-l">Overview</h2>
 
@@ -635,7 +623,7 @@
               ]
             }) if data.cmc }}
           </div>
-          
+
           <div class="app-panel">
             <h2 class="govuk-heading-l">Inquiry</h2>
 

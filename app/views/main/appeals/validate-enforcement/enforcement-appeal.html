@@ -4,23 +4,21 @@
 {% set pageName = title %}
 
 {% block content %}
-<div class="govuk-grid-row">
+  <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
-      
-
 
       <span class="govuk-caption-l">Appeal {{appeal.id}} {% if appeal.isLeadAppeal %}(lead){% endif %}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
       <p class="govuk-body">
        <a href="/main/appeals/{{appeal.id}}/appeal-form/request-missing-information" class="govuk-link">Request missing information</a>
       </p>
+
       <!--Prepare appeal-->
       <h2 class="govuk-heading-m govuk-!-margin-top-4">1. Appellant details</h2>
 
       {{ govukSummaryList({
         rows: [
-       
+
         {
             key: {
               text: "Appellant’s contact details"
@@ -28,7 +26,7 @@
             value: {
               html: "Jane Doe<br>Applicant Ltd."
             },
-            
+
             actions: {
                 items: [
                   {
@@ -46,7 +44,7 @@
             value: {
               html: "Jane Doe<br>Applicant Ltd.<br>ENF12345678"
             },
-            
+
             actions: {
                 items: [
                   {
@@ -85,7 +83,7 @@
         <h2 class="govuk-heading-m govuk-!-margin-top-4">2. Site details</h2>
           {{ govukSummaryList({
             rows: [
-     
+
           {
             key: {
               text: "What is the address of the appeal site?"
@@ -120,8 +118,8 @@
                 ]
               }
           },
-          
-          
+
+
           {
             key: {
               text: "What is the area of the appeal site?"
@@ -138,8 +136,8 @@
                   }
                 ]
               }
-            }, 
-            
+            },
+
             {
               key: {
                 text: "What is your interest in the appeal site?"
@@ -177,7 +175,7 @@
                     ]
                   }
               },
-              
+
               {
                 key: {
                   text: "Description of development"
@@ -257,7 +255,7 @@
                       }
                     ]
                   }
-              }, 
+              },
               {
                 key: {
                   text: "Are there any health and safety issues on the appeal site?"
@@ -278,9 +276,9 @@
                     ]
                   }
               }
-    
-             
-    
+
+
+
               ]
             }) }}
 
@@ -324,7 +322,7 @@
                     }
                   ]
                 }
-            },   
+            },
             {
               key: {
                 text: "Enter the description of the alleged development"
@@ -342,7 +340,7 @@
                   ]
                 }
             }
-  
+
             ]
           }) }}
 
@@ -351,7 +349,7 @@
 
         {{ govukSummaryList({
           classes: "app-summary-list--wider-actions",
-          rows: [ 
+          rows: [
           {
             key: {
               text: "Grounds and facts​"
@@ -385,7 +383,7 @@
                   }
                 ]
               }
-          }, 
+          },
           {
             key: {
               text: "Grounds and facts supporting documents​"
@@ -402,7 +400,7 @@
                   }
                 ]
               }
-          },             
+          },
           {
             key: {
               text: "How would you prefer us to decide your appeal?"
@@ -438,7 +436,7 @@
                   visuallyHiddenText: "why would you prefer this appeal procedure?"
                 }
               ]
-            }if data['empty'] else 
+            }if data['empty'] else
             {
               items: [
                 {
@@ -467,7 +465,7 @@
                   visuallyHiddenText: "how many days would you expect the inquiry to last?"
                 }
               ]
-            }if data['empty'] else 
+            }if data['empty'] else
             {
               items: [
                 {
@@ -496,7 +494,7 @@
                   visuallyHiddenText: "how many witnesses would you expect to give evidence at the inquiry?"
                 }
               ]
-            }if data['empty'] else 
+            }if data['empty'] else
             {
               items: [
                 {
@@ -507,18 +505,18 @@
               ]
             }
           }
-        
+
           ]
         }) }}
 
         <!--Your documents-->
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-8">5. Upload documents</h2>
+    <h2 class="govuk-heading-m govuk-!-margin-top-8">5. Upload documents</h2>
 
       {{ govukSummaryList({
         classes: "app-summary-list--wider-actions",
         rows: [
-          
+
           {
             key: {
               text: "Enforcement notice"
@@ -528,18 +526,18 @@
             },
             actions: {
               items: [
-          {
-            href: "#",
-            text: "Add",
-            visuallyHiddenText: "enforcement notice"
-          },
-          {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "enforcement notice"
-          }
-          ]
-          }
+                {
+                  href: "#",
+                  text: "Add",
+                  visuallyHiddenText: "enforcement notice"
+                },
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "enforcement notice"
+                }
+              ]
+            }
           },
 
           {
@@ -551,23 +549,19 @@
             },
             actions: {
               items: [
-          {
-            href: "#",
-            text: "Add",
-            visuallyHiddenText: "enforcement plan"
+                {
+                  href: "#",
+                  text: "Add",
+                  visuallyHiddenText: "enforcement plan"
+                },
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "enforcement plan"
+                }
+              ]
+            }
           },
-          {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "enforcement plan"
-          }
-          ]
-          }
-          },
-          
-         
-
-
           {
             key: {
               text: "Do you plan to submit a planning obligation to support your appeal?"
@@ -586,7 +580,7 @@
                   visuallyHiddenText: "Do you plan to submit a planning obligation to support your appeal?"
                 }
               ]
-            }if data['empty'] else 
+            }if data['empty'] else
             {
               items: [
                 {
@@ -601,7 +595,7 @@
             key: {
               text: "What is the status of your planning obligation?"
             },
-            
+
             value: {
               html: "Not answered"
             } if data['empty'] else
@@ -616,7 +610,7 @@
                   visuallyHiddenText: "planning obligation status"
                 }
               ]
-            }if data['empty'] else 
+            }if data['empty'] else
             {
               items: [
                 {
@@ -627,9 +621,6 @@
               ]
             }
           },
-
-
-
           {
             key: {
               text: "Planning obligation"
@@ -648,7 +639,7 @@
                   visuallyHiddenText: "planning obligation"
                 }
               ]
-            }if data['empty'] else 
+            }if data['empty'] else
             {
               items: [
           {
@@ -665,7 +656,7 @@
             }
           },
 
-         
+
           {
             key: {
               text: "Application for an award of appeal costs"
@@ -684,7 +675,7 @@
                   visuallyHiddenText: "application for an award of appeal costs"
                 }
               ]
-            }if data['empty'] else 
+            }if data['empty'] else
             {
               items: [
           {
@@ -719,7 +710,7 @@
                   visuallyHiddenText: "other new supporting documents"
                 }
               ]
-            }if data['empty'] else 
+            }if data['empty'] else
             {
               items: [
           {
@@ -734,51 +725,44 @@
           }
         ]
             }
-          } 
+          }
         ]
       }) }}
-      {% from "govuk/components/radios/macro.njk" import govukRadios %}
-      {% from "govuk/components/button/macro.njk" import govukButton %}
-      
-      
-      
-    
-        <div class="govuk-grid-row">
-          <div class="govuk-grid-column-two-thirds">
-            <form action="./enforcement-invalid-reason" method="post" novalidate>
-      
-              {{ govukRadios({
-                name: "reviewDecision",
-                fieldset: {
-                  legend: {
-                    text: "Review decision",
-                    isPageHeading: true,
-                    classes: "govuk-fieldset__legend--m"
-                  }
+
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <form method="post">
+
+            {{ govukRadios({
+              name: "enforcementReviewDecision",
+              fieldset: {
+                legend: {
+                  text: "Review decision",
+                  isPageHeading: true,
+                  classes: "govuk-fieldset__legend--m"
+                }
+              },
+              items: [
+                {
+                  value: "Valid",
+                  text: "Valid"
                 },
-                items: [
-                  {
-                    value: "Valid",
-                    text: "Valid"
-                  },
-                  {
-                    value: "Invalid",
-                    text: "Invalid"
-                  },
-                  {
-                    value: "Incomplete",
-                    text: "Incomplete"
-                  }
-                ]
-              }) }}
-      
-              {{ govukButton({
-                text: "Continue"
-              }) }}
-            </form>
-          </div>
+                {
+                  value: "Invalid",
+                  text: "Invalid"
+                },
+                {
+                  value: "Incomplete",
+                  text: "Incomplete"
+                }
+              ]
+            }) }}
+
+            {{ govukButton({
+              text: "Continue"
+            }) }}
+          </form>
         </div>
-         
+      </div>
 
-
-        {% endblock %}
+    {% endblock %}

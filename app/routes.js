@@ -376,6 +376,16 @@ router.post('/enhancements/start-hearing/start-hearing', function (req, res) {
 
 	// Validate enforcement flow
 
+	router.post('/main/appeals/validate-enforcement/enforcement-appeal',(req, res) => {
+    if (req.session.data['enforcementReviewDecision'] == 'Incomplete') {
+      res.redirect('enforcement-incomplete-reason')
+    } else if (req.session.data['enforcementReviewDecision'] == 'Invalid') {
+      res.redirect('enforcement-invalid-reason')
+		} else {
+	    res.redirect('check')
+		}
+  })
+
 	router.post('/main/appeals/validate-enforcement/enforcement-invalid-reason',(req, res) => {
     if (req.session.data['invalid']?.includes('Enforcement notice is invalid')) {
 		  res.redirect('enforcement-notice-invalid-reason')

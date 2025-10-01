@@ -26,12 +26,12 @@
               text: "Review decision"
             },
             value: {
-              html: 'Invalid'
+              html: data.enforcementReviewDecision or 'Valid'
             },
             actions: {
               items: [
                 {
-                  href: "/enforcement-invalid-reason",  
+                  href: "/enforcement-invalid-reason",
                   text: "Change",
                   visuallyHiddenText: "Why is the appeal invalid?"
                 }
@@ -48,7 +48,7 @@
             actions: {
               items: [
                 {
-                  href: "/enforcement-invalid-reason",  
+                  href: "/enforcement-invalid-reason",
                   text: "Change",
                   visuallyHiddenText: "Why is the appeal invalid?"
                 }
@@ -146,9 +146,9 @@
           </p>
 
           <h2 class="govuk-heading-m">
-            Reasons the enforcement notice is invalid          
+            Reasons the enforcement notice is invalid
             </h2>
-            
+
             {{reasonsHtml | safe}}
 
           <h2 class="govuk-heading-m">

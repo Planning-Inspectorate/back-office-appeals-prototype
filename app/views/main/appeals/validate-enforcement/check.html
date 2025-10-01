@@ -1,0 +1,196 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = 'Check details and mark appeal as invalid'  %}
+{% set pageName = title %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: 'javascript:history.back()'
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <span class="govuk-caption-l">Appeal {{appeal.id}} - </span>
+      <h1 class="govuk-heading-l">
+        {{title}}
+      </h1>
+
+
+      {{ govukSummaryList({
+        rows: [
+        {
+            key: {
+              text: "Review decision"
+            },
+            value: {
+              html: 'Invalid'
+            },
+            actions: {
+              items: [
+                {
+                  href: "/enforcement-invalid-reason",  
+                  text: "Change",
+                  visuallyHiddenText: "Why is the appeal invalid?"
+                }
+              ]
+            }
+          },
+        {
+            key: {
+              text: "Why is the appeal invalid?"
+            },
+            value: {
+              html: reasonsHtml
+            },
+            actions: {
+              items: [
+                {
+                  href: "/enforcement-invalid-reason",  
+                  text: "Change",
+                  visuallyHiddenText: "Why is the appeal invalid?"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Why is the enforcement notice invalid?"
+            },
+            value: {
+              html: data.rejectRule6Party.canResubmit
+            },
+            actions: {
+              items: [
+                {
+                  href: '/main/appeals/:appealId/rule-6-statements/:partyId/reject/can-resubmit' | replace(':appealId', appeal.id) | replace(':partyId', party.id),
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Statements due"
+            },
+            value: {
+              text: data.rejectRule6Party.statementsDueDate | isoDateFromDateInput | govukDate
+            },
+            actions: {
+              items: [
+                {
+                  href: '/main/appeals/:appealId/rule-6-statements/:partyId/reject/can-resubmit' | replace(':appealId', appeal.id),
+                  text: "Change",
+                  visuallyHiddenText: "Statements due"
+                }
+              ]
+            }
+          } if data.rejectRule6Party.canResubmit == 'Yes'
+        ]
+      }) }}
+
+      {% set NoLegalInterestEmailHtml %}
+        <div class="app-email-preview">
+          <div class="app-email-preview__subject">
+            Subject: You cannot submit an enforcement appeal: {{appeal.id}}
+          </div>
+          <div class="app-email-preview__body">
+            <p class="govuk-body">
+            We have reviewed your appeal and you do not have a legal interest in the land.
+            </p>
+
+            <p class="govuk-body">
+            You can only submit an enforcement appeal if you are:
+            </p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>someone with a legal interest in the land</li>
+                <li>a relevant occupier</li>
+              </ul>
+
+            <h2 class="govuk-heading-m">
+              Appeal details
+            </h2>
+            <div class="govuk-inset-text">
+              Appeal reference number: {{appeal.id}}<br>
+              Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
+              Planning application reference: {{appeal.planningApplicationReference}}
+            </div>
+
+            <h2 class="govuk-heading-m">
+              What happens next
+            </h2>
+
+            <p>If you think that you should be able to submit this appeal, email caseofficers@planninginspectorate.gov.uk. Include the details of your interest in the land and any supporting documents.</p>
+
+            <p>We will mark your appeal as invalid if you do not reply within 2 weeks.</p>
+
+            <p class="govuk-body">
+              Planning Inspectorate
+            </p>
+
+          </div>
+        </div>
+      {% endset %}
+
+      {% set NoticeInvalidEmailHtml %}
+      <div class="app-email-preview">
+        <div class="app-email-preview__subject">
+          Subject: Enforcement notice invalid: {{appeal.id}}
+        </div>
+        <div class="app-email-preview__body">
+          <p class="govuk-body">
+            We have reviewed the enforcement notice and it is not valid.
+          </p>
+
+          <h2 class="govuk-heading-m">
+            Reasons the enforcement notice is invalid          
+            </h2>
+            
+            {{reasonsHtml | safe}}
+
+          <h2 class="govuk-heading-m">
+            Appeal details
+          </h2>
+          <div class="govuk-inset-text">
+            Appeal reference number: {{appeal.id}}<br>
+            Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
+            Planning application reference: {{appeal.planningApplicationReference}}
+          </div>
+
+          <h2 class="govuk-heading-m">
+            What happens next
+          </h2>
+
+          <p>Contact caseofficers@planninginspectorate.gov.uk to confirm if you will withdraw this enforcement notice and serve another by 24 October 2025</p>
+
+          <p class="govuk-body">
+            Planning Inspectorate
+          </p>
+
+        </div>
+      </div>
+    {% endset %}
+
+      {{ govukDetails({
+        summaryText: "Preview email to appellant",
+        html: NoLegalInterestEmailHtml
+      }) if data.reason-enforcement-invalid == 'The appellant does not have a legal interest in the land' }}
+
+      {{ govukDetails({
+        summaryText: "Preview email to appellant",
+        html: NoticeInvalidEmailHtml
+      }) if data.reason-enforcement-invalid == 'Enforcement notice is invalid' }}
+
+      <form method="post" action="enforcement-appeal">
+        {{ govukButton({
+          text: "Mark appeal as invalid"
+        }) }}
+
+        {# <p><a href="javascript:history.back()">Cancel</a></p> #}
+      </form>
+    </div>
+  </div>
+{% endblock %}

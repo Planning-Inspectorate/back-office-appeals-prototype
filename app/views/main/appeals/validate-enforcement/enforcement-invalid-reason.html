@@ -1,0 +1,64 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Case details" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+		<span class="govuk-caption-xl">Appeal 2110166</span>
+	
+
+      <form class="form" action="./check" method="post">
+
+        {{ govukCheckboxes({
+          name: "invalid",
+          values: data["invalid"],
+          fieldset: {
+            legend: {
+              text: "Why is the appeal invalid?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--xl"
+            }
+          },
+          hint: {
+            text: "Select all that apply."
+          },
+          items: [
+            {
+              value: "Appeal not submitted on time",
+              text: "Appeal not submitted on time"
+            },
+            {
+              value: "Documents not submitted on time",
+              text: "Documents not submitted on time"
+            },
+            {
+              value: "Appellant does not have the right to appeal",
+              text: "Appellant does not have the right to appeal"
+            },
+            {
+                value: "Appellant does not have a legal interest in the land",
+                text: "Appellant does not have a legal interest in the land"
+            },
+            {
+                value: "Enforcement notice is invalid",
+                text: "Enforcement notice is invalid"
+            }
+          ]
+        }) }}
+        
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+        
+        </form>
+
+
+
+    </div>
+  </div>
+
+{% endblock %}

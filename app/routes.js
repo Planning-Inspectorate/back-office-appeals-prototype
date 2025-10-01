@@ -374,4 +374,14 @@ router.post('/enhancements/start-hearing/start-hearing', function (req, res) {
 	  })
 
 
-	
+	// Validate enforcement flow
+
+	router.post('/validate-enforcement/enforcement-invalid-reason',(req, res) => {
+		if(req.session.data.new.invalid === 'Enforcement notice is invalid') {
+		  res.redirect('/enforcement-notice-invalid-reason')
+		} else{
+		res.redirect('/check')
+		}
+	  })
+
+  

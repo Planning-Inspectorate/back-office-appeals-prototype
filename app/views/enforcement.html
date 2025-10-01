@@ -1,0 +1,90 @@
+{% extends "layouts/PINS-admin-post-mvp.html" %}
+
+{% set title = "Enforcement and enforcement listed building" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+{% set pageId = 'enf' %}
+
+{% set back = false %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-quarter">
+    <ul class="govuk-list govuk-list-bullet">
+      <li><a href="#common" class="govuk-link--no-visited-state govuk-link--no-underline">Enforcement</a></li>
+      <!-- <li><a href="#dev" class="govuk-link--no-visited-state govuk-link--no-underline">Ready for development</a></li> -->
+    </ul>
+  </div>
+
+  
+
+    <div class="govuk-grid-column-three-quarters">
+      <h1 class="govuk-heading-xl">
+        {{ title }}
+      </h1>
+
+     
+
+      <!-- written representations elements -->
+      <section id="written-reps">
+
+        <h2 class="govuk-heading-m">
+          Enforcement
+        </h2>
+
+        {{ govukTable({
+          firstCellIsHeader: true,
+          head: [
+            {
+              text: "Name",
+              classes: "govuk-!-width-one-half"
+            }
+          ],
+          rows: [
+              
+            [
+              {
+                html: "<a href='/main/appeals/validate-enforcement/case-details.html'>Enforcement validation</a> "
+              }
+            ]
+          ]
+        }) }}
+
+      </section>
+
+     
+
+      
+
+    
+
+  	  <!-- <h2 class="govuk-heading-m" id="dev">
+        Ready for development
+      </h2>
+
+      <p>
+        Features that have been refined and are ready to be developed. These prototypes should not change unless a fix is needed or the requirments change.
+      </p>
+
+      {{ govukTable({
+        firstCellIsHeader: true,
+        head: [
+          {
+            text: "Name"
+          },
+          {
+            text: "Tickets"
+          },
+          {
+            text: "Related docs"
+          }
+        ],
+        rows: [
+
+        ]
+      }) }} -->
+
+    </div>
+  </div>
+
+{% endblock %}

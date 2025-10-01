@@ -1,0 +1,86 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Case details" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+		<span class="govuk-caption-xl">Appeal 2110166</span>
+		<h1 class="govuk-heading-xl">Why is the enforcement notice invalid?</h1>
+
+
+       <form action="/projects/appellant-case/invalid/check" method="post" class="govuk-!-margin-top-9" validate>
+
+
+	    {% set textHtml %}
+
+	    {% from "govuk/components/character-count/macro.njk" import govukCharacterCount %}
+
+			{{ govukCharacterCount({
+			  name: "more-detail",
+			  id: "more-detail",
+			  maxlength: 300,
+			  label: {
+			    text: "List any other reasons?",
+			    classes: "govuk-label--s",
+			    isPageHeading: false
+			  },
+			  hint: {
+			    text: "Try to organise your list, for example using dashes or bullets"
+			  }
+			}) }}
+
+	 		{% endset -%}
+
+        {{ govukCheckboxes({
+          name: "reason-enforcement-notice-invalid",
+          items: [
+            {
+              value: "It does not specify the boundaries of the land",
+              text: "It does not specify the boundaries of the land"
+            },
+            {
+              value: "It states that the recipient needs to immediately stop enforcement stuff",
+              text: "It states that the recipient needs to immediately stop enforcement stuff"
+            },
+            {
+              value: "There is a mistake in the wording",
+              text: "There is a mistake in the wording"
+            },
+            {
+                value: "No time between the effective date and the end of the compliance period",
+                text: "No time between the effective date and the end of the compliance period"
+              },
+
+              {
+                value: "It does not specify a period for compliance (only a description)",
+                text: "It does not specify a period for compliance (only a description)"
+              },
+              {
+                value: "It does not specify a period for compliance (completely missing)",
+                text: "It does not specify a period for compliance (completely missing)"
+              },
+            {
+              value: "The period for compliance is not clear",
+              text: "The period for compliance is not clear",
+		      conditional: {
+		        html: textHtml
+		      }
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+	  </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

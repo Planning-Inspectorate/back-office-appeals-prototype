@@ -341,7 +341,7 @@ router.post('/enhancements/start-hearing/start-hearing', function (req, res) {
 
 	router.post('/enhancements/start-hearing/know-hearing-date', function (req, res) {
 		const answer = req.session.data['startCase']['knowDate']
-	
+
 		if (answer === 'Yes') {
 			res.redirect('/enhancements/start-hearing/hearing-date')   // go to hearing date and time
 		} else {
@@ -376,12 +376,10 @@ router.post('/enhancements/start-hearing/start-hearing', function (req, res) {
 
 	// Validate enforcement flow
 
-	router.post('/validate-enforcement/enforcement-invalid-reason',(req, res) => {
-		if(req.session.data.new.invalid === 'Enforcement notice is invalid') {
-		  res.redirect('/enforcement-notice-invalid-reason')
+	router.post('/main/appeals/validate-enforcement/enforcement-invalid-reason',(req, res) => {
+    if (req.session.data['invalid']?.includes('Enforcement notice is invalid')) {
+		  res.redirect('enforcement-notice-invalid-reason')
 		} else{
 		res.redirect('/check')
 		}
-	  })
-
-  
+  })

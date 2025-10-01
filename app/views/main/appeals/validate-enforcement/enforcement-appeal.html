@@ -9,7 +9,10 @@
 
       
 
-
+      {{ govukNotificationBanner({
+        type: "success",
+        text: "Appeal marked as invalid"
+      }) if flash.length}}
       <span class="govuk-caption-l">Appeal {{appeal.id}} {% if appeal.isLeadAppeal %}(lead){% endif %}</span>
       <h1 class="govuk-heading-l">{{title}}</h1>
       <p class="govuk-body">
@@ -745,8 +748,8 @@
     
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-two-thirds">
-            <form action="./enforcement-invalid-reason" method="post" novalidate>
-      
+            <!-- <form action="enforcement-invalid-reason" method="post" novalidate> -->
+
               {{ govukRadios({
                 name: "reviewDecision",
                 fieldset: {
@@ -771,11 +774,12 @@
                   }
                 ]
               }) }}
-      
+
               {{ govukButton({
+                href: "enforcement-invalid-reason",
                 text: "Continue"
               }) }}
-            </form>
+            <!-- </form> -->
           </div>
         </div>
          

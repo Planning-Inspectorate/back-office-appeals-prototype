@@ -26,7 +26,7 @@
               text: "Review decision"
             },
             value: {
-              html: 'Invalid'
+              text: 'Invalid'
             },
             actions: {
               items: [
@@ -43,7 +43,7 @@
               text: "Why is the appeal invalid?"
             },
             value: {
-              html: reasonsHtml
+              text: data['invalid']
             },
             actions: {
               items: [
@@ -60,85 +60,30 @@
               text: "Why is the enforcement notice invalid?"
             },
             value: {
-              html: data.rejectRule6Party.canResubmit
+              text: data['reason-enforcement-notice-invalid']
             },
             actions: {
               items: [
                 {
-                  href: '/main/appeals/:appealId/rule-6-statements/:partyId/reject/can-resubmit' | replace(':appealId', appeal.id) | replace(':partyId', party.id),
+                  href: '/enforcement-invalid-reason',
                   text: "Change",
                   visuallyHiddenText: "Item label"
                 }
               ]
             }
-          },
-          {
-            key: {
-              text: "Statements due"
-            },
-            value: {
-              text: data.rejectRule6Party.statementsDueDate | isoDateFromDateInput | govukDate
-            },
-            actions: {
-              items: [
-                {
-                  href: '/main/appeals/:appealId/rule-6-statements/:partyId/reject/can-resubmit' | replace(':appealId', appeal.id),
-                  text: "Change",
-                  visuallyHiddenText: "Statements due"
-                }
-              ]
-            }
-          } if data.rejectRule6Party.canResubmit == 'Yes'
+          }
         ]
       }) }}
 
-      {% set NoLegalInterestEmailHtml %}
-        <div class="app-email-preview">
-          <div class="app-email-preview__subject">
-            Subject: You cannot submit an enforcement appeal: {{appeal.id}}
-          </div>
-          <div class="app-email-preview__body">
-            <p class="govuk-body">
-            We have reviewed your appeal and you do not have a legal interest in the land.
-            </p>
-
-            <p class="govuk-body">
-            You can only submit an enforcement appeal if you are:
-            </p>
-            <ul class="govuk-list govuk-list--bullet">
-                <li>someone with a legal interest in the land</li>
-                <li>a relevant occupier</li>
-              </ul>
-
-            <h2 class="govuk-heading-m">
-              Appeal details
-            </h2>
-            <div class="govuk-inset-text">
-              Appeal reference number: {{appeal.id}}<br>
-              Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
-              Planning application reference: {{appeal.planningApplicationReference}}
-            </div>
-
-            <h2 class="govuk-heading-m">
-              What happens next
-            </h2>
-
-            <p>If you think that you should be able to submit this appeal, email caseofficers@planninginspectorate.gov.uk. Include the details of your interest in the land and any supporting documents.</p>
-
-            <p>We will mark your appeal as invalid if you do not reply within 2 weeks.</p>
-
-            <p class="govuk-body">
-              Planning Inspectorate
-            </p>
-
-          </div>
-        </div>
-      {% endset %}
-
-      {% set NoticeInvalidEmailHtml %}
+      
+  
+      {% if data['enfInvalid'] == "Yes" %}     
+      {{ govukDetails({
+        summaryText: "Preview enforcement notice invalid email to the LPA",
+        html: '
       <div class="app-email-preview">
         <div class="app-email-preview__subject">
-          Subject: Enforcement notice invalid: {{appeal.id}}
+          Subject: Enforcement notice invalid: 12345678
         </div>
         <div class="app-email-preview__body">
           <p class="govuk-body">
@@ -148,48 +93,84 @@
           <h2 class="govuk-heading-m">
             Reasons the enforcement notice is invalid          
             </h2>
-            
-            {{reasonsHtml | safe}}
+            <p class="govuk-body">
+            It does not specify the boundaries of the land	
+          </p>
 
           <h2 class="govuk-heading-m">
             Appeal details
           </h2>
           <div class="govuk-inset-text">
-            Appeal reference number: {{appeal.id}}<br>
+            Appeal reference number: 12345678<br>
             Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
-            Planning application reference: {{appeal.planningApplicationReference}}
+            Planning application reference: LPA12345678
           </div>
 
           <h2 class="govuk-heading-m">
             What happens next
           </h2>
 
-          <p>Contact caseofficers@planninginspectorate.gov.uk to confirm if you will withdraw this enforcement notice and serve another by 24 October 2025</p>
+          <p>Contact caseofficers@planninginspectorate.gov.uk to confirm if you will withdraw this enforcement notice and serve another by 24 October 2025.</p>
 
           <p class="govuk-body">
             Planning Inspectorate
           </p>
 
         </div>
-      </div>
-    {% endset %}
+      </div>'
+    }) }}
+    {% endif %}
 
-      {{ govukDetails({
-        summaryText: "Preview email to appellant",
-        html: NoLegalInterestEmailHtml
-      }) if data.reason-enforcement-invalid == 'The appellant does not have a legal interest in the land' }}
+    {{ govukDetails({
+      summaryText: "Preview no legal interest email to the appellant",
+      html: '
+        <div class="govuk-email-preview">
+          <div class="app-email-preview">
+            <div class="app-email-preview__subject">
+              Subject: You cannot submit an enforcement appeal: 12345678
+            </div>
+          <p>We have reviewed your appeal and you do not have a legal interest in the land.
+          </p>
+          <p class="govuk-body">
+              You can only submit an enforcement appeal if you are:
+              </p>
+              <ul class="govuk-list govuk-list--bullet">
+                  <li>someone with a legal interest in the land</li>
+                  <li>a relevant occupier</li>
+                </ul>
+  
+              <h2 class="govuk-heading-m">
+                Appeal details
+              </h2>
+              <div class="govuk-inset-text">
+                Appeal reference number: 12345678<br>
+                Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
+                Planning application reference: LPA12345678
+              </div>
+  
+              <h2 class="govuk-heading-m">
+                What happens next
+              </h2>
+  
+              <p>If you think that you should be able to submit this appeal, email caseofficers@planninginspectorate.gov.uk. Include the details of your interest in the land and any supporting documents.</p>
+  
+              <p>We will mark your appeal as invalid if you do not reply within 2 weeks.</p>
+  
+              <p class="govuk-body">
+                Planning Inspectorate
+              </p>
+        </div>
+      '
+    }) }}
+    
+    
+    
+     
 
-      {{ govukDetails({
-        summaryText: "Preview email to appellant",
-        html: NoticeInvalidEmailHtml
-      }) if data.reason-enforcement-invalid == 'Enforcement notice is invalid' }}
-
-      <form method="post" action="enforcement-appeal">
+      <form method="post">
         {{ govukButton({
           text: "Mark appeal as invalid"
         }) }}
-
-        {# <p><a href="javascript:history.back()">Cancel</a></p> #}
       </form>
     </div>
   </div>

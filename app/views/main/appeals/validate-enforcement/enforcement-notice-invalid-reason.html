@@ -19,35 +19,88 @@
           items: [
             {
               value: "It does not specify the boundaries of the land",
-              text: "It does not specify the boundaries of the land"
+              text: "It does not specify the boundaries of the land",
+              conditional: {
+                html: govukInput({
+                  name: "other-reason",
+                  label: {
+                    text: "Enter a reason"
+                  }
+                })
+              }
             },
             {
               value: "It states that the recipient needs to immediately stop enforcement stuff",
-              text: "It states that the recipient needs to immediately stop enforcement stuff"
+              text: "It states that the recipient needs to immediately stop enforcement stuff",
+              conditional: {
+                html: govukInput({
+                  name: "other-reason",
+                  label: {
+                    text: "Enter a reason"
+                  }
+                })
+              }
             },
             {
               value: "There is a mistake in the wording",
-              text: "There is a mistake in the wording"
+              text: "There is a mistake in the wording",
+              conditional: {
+                html: govukInput({
+                  name: "other-reason",
+                  label: {
+                    text: "Enter a reason"
+                  }
+                })
+              }
             },
             {
                 value: "No time between the effective date and the end of the compliance period",
-                text: "No time between the effective date and the end of the compliance period"
+                text: "No time between the effective date and the end of the compliance period",
+                conditional: {
+                  html: govukInput({
+                    name: "other-reason",
+                    label: {
+                      text: "Enter a reason"
+                    }
+                  })
+                }
               },
 
               {
                 value: "It does not specify a period for compliance (only a description)",
-                text: "It does not specify a period for compliance (only a description)"
+                text: "It does not specify a period for compliance (only a description)",
+                conditional: {
+                  html: govukInput({
+                    name: "other-reason",
+                    label: {
+                      text: "Enter a reason"
+                    }
+                  })
+                }
               },
               {
                 value: "It does not specify a period for compliance (completely missing)",
-                text: "It does not specify a period for compliance (completely missing)"
+                text: "It does not specify a period for compliance (completely missing)",
+                conditional: {
+                  html: govukInput({
+                    name: "other-reason",
+                    label: {
+                      text: "Enter a reason"
+                    }
+                  })
+                }
               },
             {
               value: "The period for compliance is not clear",
               text: "The period for compliance is not clear",
-		      conditional: {
-		        html: textHtml
-		      }
+              conditional: {
+                html: govukInput({
+                  name: "other-reason",
+                  label: {
+                    text: "Enter a reason"
+                  }
+                })
+              }
             }
           ]
         }) }}

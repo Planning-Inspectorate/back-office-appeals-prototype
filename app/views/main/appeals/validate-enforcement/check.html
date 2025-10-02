@@ -19,15 +19,26 @@
         {{title}}
       </h1>
 
+      <!-- create a HTML snippet to display the data from an array -->
+      <!-- makes a chunk of HTML turning checkbox answers into a bulleted list -->
+
+      {% set invalidReasonsHtml %}
+        {% if data['invalid'] %}
+          <ul>
+            {% for reason in data['invalid'] %}
+              <li>{{ reason }}</li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <span>No reasons selected</span>
+        {% endif %}
+      {% endset %}
+
       {{ govukSummaryList({
         rows: [
-        {
-            key: {
-              text: "Review decision"
-            },
-            value: {
-              text: 'Invalid'
-            },
+          {
+            key: { text: "Review decision" },
+            value: { text: 'Invalid' },
             actions: {
               items: [
                 {
@@ -38,12 +49,10 @@
               ]
             }
           },
-        {
-            key: {
-              text: "Why is the appeal invalid?"
-            },
+          {
+            key: { text: "Why is the appeal invalid?" },
             value: {
-              text: data['invalid']
+              html: invalidReasonsHtml
             },
             actions: {
               items: [
@@ -56,9 +65,7 @@
             }
           },
           {
-            key: {
-              text: "Why is the enforcement notice invalid?"
-            },
+            key: { text: "Why is the enforcement notice invalid?" },
             value: {
               text: data['reason-enforcement-notice-invalid'] or 'Appeal not submitted on time'
             },
@@ -74,6 +81,7 @@
           }
         ]
       }) }}
+
 
       {% if data['enfInvalid'] == "Yes" %}
         {{ govukDetails({

@@ -384,11 +384,14 @@ router.post('/main/appeals/validate-enforcement/enforcement-appeal',(req, res) =
 router.post('/main/appeals/validate-enforcement/enforcement-invalid-reason',(req, res) => {
 	if (req.session.data['invalid']?.includes('Appellant does not have a legal interest in the land')) {
 		req.session.data.legalInterest = 'Yes'
-	}
+	} else {
+    req.session.data.legalInterest = null
+  }
 	if (req.session.data['invalid']?.includes('Enforcement notice is invalid')) {
 		req.session.data.enfInvalid = 'Yes'
 		res.redirect('enforcement-notice-invalid-reason')
 	} else{
+    req.session.data.enfInvalid = null
 		res.redirect('./check')
 	}
 })

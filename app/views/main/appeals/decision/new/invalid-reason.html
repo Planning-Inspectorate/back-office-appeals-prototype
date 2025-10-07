@@ -1,0 +1,40 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Do you want to issue a decision letter?"%}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <span class="govuk-caption-l">Appeal {{appeal.id}} {% if appeal.isLeadAppeal %}(lead){% endif %} - issue decision</span>
+        <form class="form" action="/invalid-reason" method="post">
+
+{{ govukTextarea({
+  name: "invalidReason",
+  id: "invalidReason",
+  label: {
+    text: "Why is the appeal invalid?",
+    classes: "govuk-label--l",
+    isPageHeading: true
+  },
+  hint: {
+    text: "We will share the reason with the relevant parties"
+  }
+}) }}
+
+
+{{ govukButton({
+    text: "Continue"
+  }) }}
+</form>
+
+</div>
+</div>
+
+{% endblock %}

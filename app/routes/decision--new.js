@@ -11,21 +11,52 @@ module.exports = router => {
     })
   })
 
-  router.post('/main/appeals/:appealId/decision/new', function (req, res) {
-    let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
+  // router.post('/main/appeals/:appealId/decision/new', function (req, res) {
+  //   let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)
     
-    if(appeal.isLeadAppeal) {
-      let firstChildAppealId = getLinkedAppeals(appeal.id, req.session.data.linkedAppeals)[0].id
-      res.redirect(`/main/appeals/${req.params.appealId}/decision/new/${firstChildAppealId}`)
-    } else {
-      if(req.session.data.issueDecision.decision == 'Invalid') {
-        res.redirect(`/main/appeals/${req.params.appealId}/decision/new/has-appellant-costs-decision`)
-      } else {
-        res.redirect(`/main/appeals/${req.params.appealId}/decision/new/decision-letter`)
-      }
+  //   if(appeal.isLeadAppeal) {
+  //     let firstChildAppealId = getLinkedAppeals(appeal.id, req.session.data.linkedAppeals)[0].id
+  //     res.redirect(`/main/appeals/${req.params.appealId}/decision/new/${firstChildAppealId}`)
+  //   } else {
+  //     if(req.session.data.issueDecision.decision == 'Invalid') {
+  //       res.redirect(`/main/appeals/${req.params.appealId}/decision/new/has-appellant-costs-decision`)
+  //     } else {
+  //       res.redirect(`/main/appeals/${req.params.appealId}/decision/new/decision-letter`)
+  //     }
 
+  //   }
+  // })
+
+
+  //Issue decision letter when invalid
+  router.post('/main/appeals/:appealId/decision/new', function (req, res) {
+  if(req.session.data.issueDecision.decision == 'Invalid') {
+     res.redirect(`/main/appeals/decision/new/has-decision-letter`)
     }
   })
+
+  router.post('/has-decision-letter', function(request, response) {
+
+    var hasDecisionLetter = request.session.data['hasDecisionLetter']
+    if (hasDecisionLetter == "Yes"){
+        response.redirect("/main/appeals/decision/new/decision-letter")
+    } else {
+        response.redirect("/main/appeals/decision/new/invalid-reason")
+    }
+})
+
+router.post('/decision-letter', function(request, response) { 
+      response.redirect("/main/appeals/decision/new/check")
+  
+})
+
+router.post('/invalid-reason', function(request, response) { 
+  response.redirect("/main/appeals/decision/new/check")
+
+})
+
+
+  //
 
   router.get('/main/appeals/:appealId/decision/new/decision-letter', function (req, res) {
     let appeal = req.session.data.appeals.find(appeal => appeal.id == req.params.appealId)

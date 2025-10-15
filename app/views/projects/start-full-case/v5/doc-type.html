@@ -1,0 +1,33 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set back = true %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+<span class="govuk-caption-l">Appeal 1223443 - add document details</span>
+{{ govukInput({
+    label: {
+      text: "Correspondence type",
+      classes: "govuk-label--l",
+      isPageHeading: true
+    },
+    classes: "govuk-input--width-10",
+    id: "width-10",
+    name: "width10"
+  }) }}
+  <div class="govuk-button-group">
+    {{ govukButton({
+      text: "Continue",
+      href:"check-doc"
+    }) }}
+  
+    <a class="govuk-link" href="check-doc">Skip</a>
+  </div>
+
+  </div>
+</div>
+{% endblock %}

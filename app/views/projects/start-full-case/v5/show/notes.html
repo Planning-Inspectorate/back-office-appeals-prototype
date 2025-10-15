@@ -1,0 +1,42 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Notes" %}
+{% set pageName = title %}
+{% set navId = 'notes' %}
+{% set back = false %}
+
+{% block content %}
+  {% include "/projects/start-full-case/v4/_includes/prompt.html" %}
+  {% include "/projects/start-full-case/v4/_includes/h1.html" %}
+  {% include "/projects/start-full-case/v4/_includes/nav.html" %}
+
+  <h1 class="govuk-heading-l"> {{title}} </h1>
+
+  {{ govukButton({
+    text: "Add note"
+  }) }}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <div class="app-list">
+        <div class="app-list__item">
+          <p class="govuk-body govuk-!-margin-bottom-1">
+            Contacted the agent by email and post for the missing documents.
+          </p>
+          <p class="govuk-hint govuk-!-margin-bottom-0">
+            11.04am on Tuesday {{ 12 | daysAgo }} by gem.dalgano
+          </p>
+        </div>
+        <div class="app-list__item">
+          <p class="govuk-body govuk-!-margin-bottom-1">
+            Documents missing from the case.
+          </p>
+          <p class="govuk-hint govuk-!-margin-bottom-0">
+            11.52am on Tuesday {{ 19 | daysAgo }} by sam.griffin
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

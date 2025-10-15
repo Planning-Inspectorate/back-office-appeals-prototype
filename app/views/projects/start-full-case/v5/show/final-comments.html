@@ -1,0 +1,70 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Final comments" %}
+{% set pageName = title %}
+{% set navId = 'finalComments' %}
+{% set back = false %}
+
+{% block content %}
+  {% include "/projects/start-full-case/v4/_includes/prompt.html" %}
+  {% include "/projects/start-full-case/v4/_includes/h1.html" %}
+  {% include "/projects/start-full-case/v4/_includes/nav.html" %}
+
+  <h1 class="govuk-heading-l"> {{title}} </h1>
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <ul class="govuk-list govuk-list--spaced govuk-!-margin-bottom-0">
+        <li>
+          <a href="#">Appellant final comments (Reviewed)</a>
+        </li>
+        <li>
+          <a href="#">LPA final comments (Ready to review)</a>
+        </li>
+      </ul>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Appellant final comments"
+            },
+            value: {
+              html: 'Reviewed'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "LPA"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "LPA final comments"
+            },
+            value: {
+              html: 'Ready to review'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
+          }
+        ]
+      }) if 1==2}}
+
+    </div>
+  </div>
+
+{% endblock %}

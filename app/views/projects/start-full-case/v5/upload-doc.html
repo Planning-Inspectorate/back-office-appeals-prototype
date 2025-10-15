@@ -1,0 +1,65 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set back = true %}
+
+{% set title = 'Upload cross-team correspondence' %}
+
+{% block questions %}
+<span class="govuk-caption-l">Appeal 1223443 - add documents</span>
+  <h1 class="govuk-heading-l">
+    {{ title }}
+  </h1>
+
+  {% set uploadHtml %}
+    {{ govukFileUpload({
+      id: 'decision-letter',
+      name: 'decision-letter',
+      classes: 'moj-multi-file-upload__input',
+
+      hint: {
+        html: '<p>Each file must be a PDF, DOC, DOCX, PPT, PPTX, XLS, XLSX, MSG, JPG, JPEG, MPEG, MP3, MP4, MOV, PNG, TIF or TIFF and smaller than 25MB. </p><p>The total size of your uploaded files must be smaller than 1GB.
+        </p>       '
+      }
+    }) }}
+
+  {% endset %}
+
+  {{ mojMultiFileUpload({
+    uploadedFiles: {
+      heading: { text: 'File added' },
+      items: []
+    },
+    uploadHtml: uploadHtml
+  }) }}
+
+
+{% endblock %}
+
+{% block pageScripts %}
+  <script>
+    // Hacky hacky single file
+    $('.moj-multi-file-upload__dropzone .govuk-body').text('Drag and drop a file here or ')
+    $('.moj-multi-file-upload__dropzone .govuk-button').text('Select file')
+    $('.moj-multi-file__uploaded-files').on('fileAdded', function() {
+      $('.moj-multi-file-upload__upload').hide()
+    });
+
+    $('.moj-multi-file__uploaded-files').click(function() {
+      $('.moj-multi-file-upload__upload').show()
+    });
+
+
+
+    // I really should learn how the MOJ upload works, however, a hack to get all the files passed into data
+    $('form').submit(function(e) {
+      e.preventDefault();
+
+      $('.moj-multi-file-upload__filename').each(function() {
+        $('<input name="decision-letter" type="checkbox" value="'+ $(this).text() +'" checked="true" style="display: none">').insertBefore('.govuk-heading-l');
+      });
+
+      $(this).unbind('submit').submit();
+    })
+  </script>
+
+{% endblock %}

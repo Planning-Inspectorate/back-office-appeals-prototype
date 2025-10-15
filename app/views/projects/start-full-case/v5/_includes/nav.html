@@ -1,0 +1,61 @@
+{{ xGovukSecondaryNavigation({
+      visuallyHiddenTitle: "Secondary menu",
+      classes: 'govuk-!-margin-bottom-6',
+      items: [{
+        text: "Overview",
+        href: '/projects/start-full-case/v4/appeals/:id' | replace(':id', application.id),
+        current: navId == 'overview'
+      }, {
+        text: "Appeal",
+        href: '/projects/start-full-case/v4/appeals/:id/appeal' | replace(':id', application.id),
+        current: navId == 'appeal'
+      }, {
+        text: "Questionnaire",
+        href: '/projects/start-full-case/v4/appeals/:id/questionnaire' | replace(':id', application.id),
+        current: navId == 'questionnaire'
+      },
+      {
+        text: "Statements",
+        href: '/projects/start-full-case/v4/appeals/:id/statements' | replace(':id', application.id),
+        current: navId == 'statements'
+      },
+      {
+        text: "IP comments",
+        href: '/projects/start-full-case/v4/appeals/:id/ip-comments' | replace(':id', application.id),
+        current: navId == 'ipComments'
+      },
+      {
+        text: "Final comments",
+        href: '/projects/start-full-case/v4/appeals/:id/final-comments' | replace(':id', application.id),
+        current: navId == 'finalComments'
+      } if application.procedure == 'Written representations',
+      {
+        text: "Site visit",
+        href: '/projects/start-full-case/v4/appeals/:id/site-visit' | replace(':id', application.id),
+        current: navId == 'siteVisit'
+      } if application.procedure == 'Written representations',
+      {
+        text: "Hearing",
+        href: '/projects/start-full-case/v4/appeals/:id/hearing' | replace(':id', application.id),
+        current: navId == 'hearing'
+      } if application.procedure == 'Hearing',
+      {
+        text: "Inquiry",
+        href: '/projects/start-full-case/v4/appeals/:id/inquiry' | replace(':id', application.id),
+        current: navId == 'inquiry'
+      } if application.procedure == 'Inquiry',
+      {
+        text: "Notes",
+        href: '/projects/start-full-case/v4/appeals/:id/notes' | replace(':id', application.id),
+        current: navId == 'notes'
+      },
+      {
+        text: "Activity",
+        href: '/projects/start-full-case/v4/appeals/:id/activity' | replace(':id', application.id),
+        current: navId == 'activity'
+      }, {
+        text: "Other",
+        href: '/projects/start-full-case/v4/appeals/:id/documents' | replace(':id', application.id),
+        current: navId == 'documents'
+      }]
+    }) }}

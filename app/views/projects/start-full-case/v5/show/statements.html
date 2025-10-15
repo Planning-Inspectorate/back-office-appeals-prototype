@@ -1,0 +1,80 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Statements" %}
+{% set pageName = title %}
+{% set navId = 'statements' %}
+{% set back = false %}
+
+{% block content %}
+  {% include "/projects/start-full-case/v4/_includes/prompt.html" %}
+  {% include "/projects/start-full-case/v4/_includes/h1.html" %}
+  {% include "/projects/start-full-case/v4/_includes/nav.html" %}
+
+  <h1 class="govuk-heading-l"> {{title}} </h1>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% if rule6Statements.length == 1 %}
+        {% set statementText = rule6Statements.length + ' statement' %}
+      {% elseif rule6Statements.length > 1 %}
+        {% set statementText = rule6Statements.length + ' statements' %}
+      {% else %}
+        {% set statementText = 'No statements' %}
+      {% endif %}
+
+      {% if rule6Statements.length %}
+        {% set statementAction = {
+            href: "/projects/start-full-case/v4/rule-6-statements",
+            text: "Change",
+            visuallyHiddenText: "Item label"
+          }
+        %}
+      {% else %}
+        {% set statementAction = {
+            href: "/projects/start-full-case/v4/rule-6-statements",
+            text: "Add",
+            visuallyHiddenText: "Item label"
+          }
+        %}
+      {% endif %}
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "LPA statement"
+            },
+            value: {
+              html: 'Ready to review'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Review",
+                  visuallyHiddenText: "LPA"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Rule 6 statements"
+            },
+            value: {
+              html: statementText
+            },
+            actions: {
+              items: [
+                statementAction
+              ]
+            }
+          } if application.procedure == 'Inquiry'
+        ]
+      }) if 1==1}}
+
+    </div>
+  </div>
+
+{% endblock %}

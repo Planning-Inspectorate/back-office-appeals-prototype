@@ -1,0 +1,48 @@
+{% extends "layouts/PINS-Simple.html" %}
+
+{% set title = "Procedure" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="/projects/start-full-case/v4/edit-procedure/check">
+        <span class="govuk-caption-l">Appeal 2114328</span>
+        {{ govukRadios({
+          name: "appealProcedure",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          value: data.appealProcedure,
+          items: [
+            {
+              value: "Written representations",
+              text: "Written representations"
+            },
+            {
+              value: "Hearing",
+              text: "Hearing"
+            },
+            {
+              value: "Inquiry",
+              text: "Inquiry"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

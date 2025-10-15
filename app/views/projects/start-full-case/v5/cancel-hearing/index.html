@@ -1,0 +1,28 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Confirm that you want to cancel the hearing"  %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <span class="govuk-caption-l">Appeal 2114328</span>
+      <h1 class="govuk-heading-l">
+        {{title}}
+      </h1>
+
+      <p>We’ll send an email to the appellant and LPA to tell them the hearing has been cancelled.</p>
+
+      <form method="post">
+        {{ govukButton({
+          text: "Cancel hearing",
+          classes: 'govuk-button--warnin'
+        }) }}
+
+        <p><a href="/projects/start-full-case/v4/case-details">Keep hearing</a></p>
+      </form>
+    </div>
+  </div>
+{% endblock %}

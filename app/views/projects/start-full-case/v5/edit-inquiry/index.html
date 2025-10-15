@@ -1,0 +1,73 @@
+{% extends "layouts/PINS-Simple.html" %}
+
+{% set title = "Date and time" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal 2114328 - update inquiry</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      <form method="post">
+
+        {{ govukDateInput({
+          id: "whatever",
+          fieldset: {
+            legend: {
+              text: "Date",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 31 3 2025"
+          },
+          items: [
+            {
+              name: "inquiry[date][day]",
+              label: "Day",
+              value: data.inquiry.date.day,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "inquiry[date][month]",
+              label: "Month",
+              value: data.inquiry.date.month,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "inquiry[date][year]",
+              label: "Year",
+              value: data.inquiry.date.year,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+        {{ govukInput({
+          id: "inquiry[time]",
+          name: "inquiry[time]",
+          label: {
+            text: "Time",
+            isPageHeading: true,
+            classes: 'govuk-label--m'
+          },
+          hint: {
+            text: "For example, 9am or 2:30pm - enter 12pm for midday"
+          },
+          value: data.inquiry.time or '10am',
+          classes: "govuk-input--width-4"
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,77 @@
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Cross-team correspondence"
+      },
+      value: {
+        html: '1 document'
+      },
+      actions: {
+        items: [
+          {
+            href: "upload-doc",
+            text: "Add",
+            visuallyHiddenText: "contact details"
+          },
+          {
+            href: "manage-docs",
+            text: "Change",
+            visuallyHiddenText: "contact details"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Inspector correspondence"
+      },
+      value: {
+        text: "No documents"
+      },
+      actions: {
+        items: [
+          {
+            href: "upload-doc",
+            text: "Add",
+            visuallyHiddenText: "Item label"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Main party correspondence"
+      },
+      value: {
+        text: "No documents"
+      },
+      actions: {
+        items: [
+          {
+            href: "upload-doc",
+            text: "Add",
+            visuallyHiddenText: "Item label"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Case history"
+      },
+      value: {
+        text: "5 events"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "View",
+            visuallyHiddenText: "Item label"
+          }
+        ]
+      }
+    }
+  ]
+}) }}

@@ -1,0 +1,173 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set back = true %}
+{% set title = 'Check your answers' %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Appeal 1223443</span>
+  <h1 class="govuk-heading-l">
+    {{ title }}
+  </h1>
+
+  <h2 class="govuk-heading-m">Uploaded file 1</h2>
+
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "File"
+      },
+      value: {
+        html: '<p><a href="#">filename.pdf</a></p>'
+      },
+      actions: {
+        items: [
+          {
+            href: "Item URL",
+            text: "Change",
+            visuallyHiddenText: "Item label"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Correspondence type"
+      },
+      value: {
+        text: "Complaints and issues"
+      },
+      actions: {
+        items: [
+          {
+            href: "Item URL",
+            text: "Change",
+            visuallyHiddenText: "Item label"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Date received"
+      },
+      value: {
+        text: "14 October 2025"
+      },
+      actions: {
+        items: [
+          {
+            href: "Item URL",
+            text: "Change",
+            visuallyHiddenText: "Item label"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Redaction status"
+      },
+      value: {
+        text: "No redaction required"
+      },
+      actions: {
+        items: [
+          {
+            href: "Item URL",
+            text: "Change",
+            visuallyHiddenText: "Item label"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+
+<h2 class="govuk-heading-m">Uploaded file 2</h2>
+
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "File"
+      },
+      value: {
+        html: '<p><a href="#">filename2.pdf</a></p>'
+      },
+      actions: {
+        items: [
+          {
+            href: "Item URL",
+            text: "Change",
+            visuallyHiddenText: "Item label"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Correspondence type"
+      },
+      value: {
+        text: "Complaints and issues"
+      },
+      actions: {
+        items: [
+          {
+            href: "Item URL",
+            text: "Change",
+            visuallyHiddenText: "Item label"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Date received"
+      },
+      value: {
+        text: "14 October 2025"
+      },
+      actions: {
+        items: [
+          {
+            href: "Item URL",
+            text: "Change",
+            visuallyHiddenText: "Item label"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Redaction status"
+      },
+      value: {
+        text: "No redaction required"
+      },
+      actions: {
+        items: [
+          {
+            href: "Item URL",
+            text: "Change",
+            visuallyHiddenText: "Item label"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+
+{{ govukButton({
+  text: "Confirm"
+}) }}
+
+  </div>
+</div>
+{% endblock %}

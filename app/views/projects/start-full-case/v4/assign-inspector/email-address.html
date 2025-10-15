@@ -1,0 +1,41 @@
+{% extends "layouts/bo.html" %}
+
+
+{% set title = "Email address" %}
+
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal {{appeal.id}} {% if appeal.isLeadAppeal %}(lead){% endif %} - assign inspector</span>
+      <form method="post">
+      
+        <h1 class="govuk-heading-l">{{title}}</h1>
+
+        {{ govukInput({
+          label: {
+            text: ""
+          },
+          id: "full-name",
+          name: "fullName",
+          autocomplete: "name",
+          spellcheck: false
+        }) }}
+
+        <div class="govuk-button-group">
+            {{ govukButton({
+              text: "Continue",
+              href: "/projects/start-full-case/v4/assign-inspector/check-add"
+            }) }}
+          
+            <a class="govuk-link" href="/projects/start-full-case/v4/assign-inspector/find-inspector">Find an inspector</a>
+          </div>
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

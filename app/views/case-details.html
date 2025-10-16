@@ -2,9 +2,13 @@
 
 {% set title = "Case details" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
-{% set pageId = 'enf' %}
+{% set pageId = 'caseDetails' %}
 
 {% set back = false %}
+
+{% block header %}
+	{% include "includes/PINS-header-admin.html" %}
+{% endblock %}
 
 {% block content %}
 
@@ -23,6 +27,11 @@
         {{ title }}
       </h1>
 
+      {{ govukButton({
+        text: "Master case details page",
+        href: "projects/start-full-case/v5/case-details-v2"
+      }) }}
+
      
 
       <!-- written representations elements -->
@@ -36,13 +45,24 @@
             {
               text: "Name",
               classes: "govuk-!-width-one-half"
+            },
+            {
+              text: "Link to prototype"
+            },  
+            {
+              text: "Notes"
             }
           ],
           rows: [
-              
-            [
+          [
               {
-                html: "<a href='/projects/start-full-case/v5/case-details-v2'>Master case details page</a> "
+                html: "<a href='#'>Add link to new flow here</a> "
+              },
+              {
+                html: "<a href='#'>Tickets</a> "
+              },
+              {
+                html: "<a href='#'>Related docs</a> "
               }
             ]
           ]

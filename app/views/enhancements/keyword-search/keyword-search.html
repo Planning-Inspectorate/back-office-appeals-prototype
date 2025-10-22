@@ -8,21 +8,33 @@
 
 <script>window.GOVUKFrontend.initAll()</script>
 
-
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-l">Decision letter keyword search</h1>
+      <h1 class="govuk-heading-l">Advanced search</h1>
 
       <form>
 
         <fieldset id="keyword-group" class="govuk-fieldset">
+
+        {{ govukSelect({
+          id: "sort",
+          name: "sort",
+          label: {
+            text: "Document type"
+          },
+          items: [
+            {
+              value: "decisions",
+              text: "Decision letters"
+            }
+          ]
+        }) }}
           <div class="keyword-criteria">
 
             <div class="govuk-form-group">
               <label class="govuk-label" for="one-half">
-                Keyword
+                Look for
               </label>
               <input class="govuk-input govuk-!-width-one-half" id="one-half" name="oneHalf" type="text">
             </div>
@@ -93,19 +105,19 @@
         wrapper.innerHTML = `
         <div class="govuk-form-group" style="display:flex; gap: 10px; align-items:flex-end;">
           <div>
-            <label class="govuk-label" for="condition-${count}">Condition</label>
+            <label class="govuk-label" for="condition-${count}">Rule</label>
             <select
               class="govuk-select"
               id="condition-${count}"
               name="condition-${count}"
               style="width: 90px;">
-              <option value="and">and</option>
-              <option value="or">or</option>
-              <option value="or">not</option>
+              <option value="And">And</option>
+              <option value="Or">Or</option>
+              <option value="Not">Not</option>
             </select>
           </div>
           <div class="govuk-form-group">
-            <label class="govuk-label" for="keyword-${count}">Keyword</label>
+            <label class="govuk-label" for="keyword-${count}">Look for</label>
             <input class="govuk-input"" id="keyword-${count}" name="keyword-${count}" type="text">
           </div>
           <button

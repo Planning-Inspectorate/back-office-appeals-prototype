@@ -13,6 +13,9 @@
 
     <h1 class="govuk-heading-xl">Appellant case</h1>
 
+    {{ govukInsetText({
+      text: "Some of these details have been imported from the LPA's records."
+    }) }}
 
 
     {{ govukSummaryList({
@@ -41,7 +44,7 @@
     {{ govukSummaryList({
       card: {
         title: {
-          text: "Before you start (details imported from LPA)"
+          text: "Before you start"
         }
       },
       rows: [
@@ -101,7 +104,7 @@
             text: "What’s the date on the decision letter from the local planning authority?​	"
           },
           value: {
-            html: '<p class="govuk-body">12 Jan 2024<br>Changed by appellant to: 14 Jan 2024</p>'
+            html: '<p class="govuk-body">12 Jan 2024</p>'
           },
           actions: {
             items: [

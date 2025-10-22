@@ -1,0 +1,144 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Search all cases" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+{% set pageId = 'allAppeals' %}
+{% set back = false %}
+{% block beforeContent %}
+{{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback by email</a>.'
+  }) }}
+  {% endblock %}
+
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+  <h1 class="govuk-heading-l">{{title}}</h1>
+  <div id="event-name-hint" class="govuk-hint">
+      You can search by appeal reference, planning application reference or postcode (including spaces)
+  </div>
+  <form class="govuk-form-group" style="display: flex; gap: 8px; align-items: center; margin-bottom: 0px;"
+  action="active-search-applied" method="get">
+
+  <input class="govuk-input" id="keyword-search" name="keyword-search" type="text" autocomplete="off"
+      style="margin-bottom: 0; width:100%;">
+
+  <button class="govuk-button" id="keyword-search-button" type="submit" style="margin-bottom: 0;">
+      Search
+  </button>
+</form>
+
+{# Size modifiers: xl, l, m #}
+<hr class="govuk-section-break govuk-section-break--s govuk-section-break">
+<p class="govuk-body" style="padding-top:20px; margin-bottom:5px"><a href="keyword-search" class="govuk-link">Advanced search</a></p>
+</div>
+<div class="govuk-grid-column-full">
+
+  {# Size modifiers: xl, l, m #}
+  <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+  {{ govukDetails({
+    summaryText: "Filters",
+    text: "Filters go here"
+  }) }}
+
+
+
+  {{ govukTable({
+    firstCellIsHeader: false,
+    head: [
+        {
+            text: "Appeal reference"
+        },
+        {
+            text: "Planning application reference"
+        },
+        {
+            text: "Site address"
+        },
+        {
+            text: "Local planning authority (LPA)"
+        },
+        {
+            text: "Appeal type"
+        },
+        {
+            text: "Status"
+        }
+    ],
+    rows: [
+        [
+            {
+                html: '<p class="govuk-body--strong"><a href="#">1920333</a></p>'
+            },
+            {
+                text: "46899/APP"
+            },
+            {
+                text: "72 Guild Street London SE23 6FH"
+            },
+            {
+                text: "Borough Council"
+            },
+            {
+                text: "Householder"
+            },
+            {
+                html: '<span class="govuk-tag govuk-tag--blue">Validation</span>'
+            }
+        ],
+        [
+        {
+            html: '<p class="govuk-body--strong"><a href="#">1920333</a></p>'
+        },
+        {
+            text: "46899/APP"
+        },
+        {
+            text: "72 Guild Street London SE23 6FH"
+        },
+        {
+            text: "Borough Council"
+        },
+        {
+            text: "Householder"
+        },
+        {
+            html: '<span class="govuk-tag govuk-tag--blue">Validation</span>'
+        }
+        ],
+        [
+        {
+            html: '<p class="govuk-body--strong"><a href="#">1920333</a></p>'
+        },
+        {
+            text: "46899/APP"
+        },
+        {
+            text: "72 Guild Street London SE23 6FH"
+        },
+        {
+            text: "Borough Council"
+        },
+        {
+            text: "Householder"
+        },
+        {
+            html: '<span class="govuk-tag govuk-tag--blue">Validation</span>'
+        }
+        ]
+    ]
+  }) }}
+
+  </div>
+</div>
+
+
+{% endblock %}

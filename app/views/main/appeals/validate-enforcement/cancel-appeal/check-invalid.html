@@ -1,0 +1,143 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = 'Check details and mark enforcement notice as invalid'  %}
+{% set pageName = title %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: 'javascript:history.back()'
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <span class="govuk-caption-l">Appeal 1223443</span>
+      <h1 class="govuk-heading-l">
+        {{title}}
+      </h1>
+<!--
+      {% set invalidReasonsHtml %}
+        {% if data['invalid'] %}
+          <ul>
+            {% for reason in data['invalid'] %}
+              <li>{{ reason }}</li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <span>No reasons selected</span>
+        {% endif %}
+      {% endset %}
+
+      -->
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: { text: "Why are you cancelling the appeal?" },
+            value: { text: "The enforcement notice is invalid" },
+            actions: {
+              items: [
+                {
+                  href: "cancel-reason",
+                  text: "Change",
+                  visuallyHiddenText: "Cancel reason"
+                }
+              ]
+            }
+          },
+          {
+            key: { text: "Did the LPA reply with more information about the enforcement notice?" },
+            value: { text: data['cancel-reason'] or "Yes"},
+            actions: {
+              items: [
+                {
+                  href: "lpa-reply",
+                  text: "Change",
+                  visuallyHiddenText: "More information from LPA"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      {{ govukDetails({
+        summaryText: "Preview email to appellant",
+        html: '
+          <div class="app-email-preview">
+            <div class="app-email-preview__subject">
+              Subject: Enforcement notice invalid: 1223443
+            </div>
+            <div class="app-email-preview__body">
+              <p class="govuk-body">
+                We have reviewed your appeal and the enforcement notice is not valid.
+              </p>
+
+              <p class="govuk-body">
+                We have cancelled the appeal. The enforcment notice will not take effect.
+              </p>
+
+              <h2 class="govuk-heading-m">
+                Appeal details
+              </h2>
+              <div class="govuk-inset-text">
+                Appeal reference number: 1223443<br>
+                Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
+                Planning application reference: LPA12345678
+              </div>
+
+              <p class="govuk-body">
+                Planning Inspectorate
+              </p>
+
+            </div>
+          </div>'
+        })}}
+
+      {{ govukDetails({
+        summaryText: "Preview email to LPA",
+        html: '
+          <div class="app-email-preview">
+            <div class="app-email-preview__subject">
+              Subject: Appeal cancelled: 1223443
+            </div>
+            <div class="app-email-preview__body">
+              <p class="govuk-body">
+                We have reviewed the information you submitted and decided that the enforcement notice is not valid.
+              </p>
+              <p class="govuk-body">
+                We did not receive an email to confirm if you will withdraw the enforcement notice and servce another.
+              </p>
+              <p class="govuk-body">
+                We have cancelled the appeal.
+              </p>
+
+              <h2 class="govuk-heading-m">
+                Appeal details
+              </h2>
+              <div class="govuk-inset-text">
+                Appeal reference number: 1223443<br>
+                Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
+                Planning application reference: LPA12345678
+              </div>
+
+              <p class="govuk-body">
+                Planning Inspectorate
+              </p>
+
+            </div>
+          </div>'
+        })}}
+
+      <form method="post">
+        {{ govukButton({
+          text: "Mark enforcement notice as invalid"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

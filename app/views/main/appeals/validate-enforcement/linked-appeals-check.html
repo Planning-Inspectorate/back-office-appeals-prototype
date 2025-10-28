@@ -1,0 +1,44 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Does the appellant have any other linked enforcement appeals?" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+		<span class="govuk-caption-xl">Appeal 2110166</span>
+
+
+       <form method="post" validate>
+
+        {{ govukRadios({
+          name: "linkedAppeals",
+          fieldset: {
+            legend: {
+              text: pageName,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ]
+        }) }}
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+	  </form>
+    </div>
+  </div>
+
+{% endblock %}

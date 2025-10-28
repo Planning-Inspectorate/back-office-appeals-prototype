@@ -737,6 +737,8 @@
 
       </section>
 
+      <form method="post">
+
       {{ govukRadios({
         name: "reviewDecision",
         fieldset: {
@@ -763,9 +765,10 @@
       }) }}
 
       {{ govukButton({
-        href: "enforcement-invalid-reason",
         text: "Continue"
       }) }}
+
+      </form>
 
     </div>
   </div>

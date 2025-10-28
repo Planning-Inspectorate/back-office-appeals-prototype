@@ -1,0 +1,62 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Case details" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+		<span class="govuk-caption-xl">Appeal 2110166</span>
+
+
+       <form method="post" validate>
+
+        {{ govukRadios({
+          name: "cancel-reason",
+          fieldset: {
+            legend: {
+              text: "Why are you cancelling the appeal?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Appeal invalid",
+              text: "Appeal invalid"
+            },
+            {
+              value: "Did not receive more information",
+              text: "Did not receive more information"
+            },
+            {
+              value: "The enforcement notice is invalid",
+              text: "The enforcement notice is invalid"
+            },
+            {
+              value: "LPA has withdrawn the enforcement notice",
+              text: "LPA has withdrawn the enforcement notice"
+            },
+            {
+              value: "Did not submit application or pay fee",
+              text: "Did not submit application or pay fee"
+            },
+            {
+              value: "Request to withdraw appeal",
+              text: "Request to withdraw appeal"
+            }
+          ]
+        }) }}
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+	  </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

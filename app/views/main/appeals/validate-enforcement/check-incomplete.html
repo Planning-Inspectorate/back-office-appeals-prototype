@@ -1,0 +1,76 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = 'Check details and mark appeal as incomplete'  %}
+{% set pageName = title %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: 'javascript:history.back()'
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <span class="govuk-caption-l">Appeal 1223443</span>
+      <h1 class="govuk-heading-l">
+        {{title}}
+      </h1>
+
+      {{ govukSummaryList({
+        rows: [
+        {
+          key: { text: "Review decision" },
+          value: { text: "Incomplete" },
+          actions: {
+            items: [
+              {
+                href: "enforcement-appeal",
+                text: "Change",
+                visuallyHiddenText: "review decison"
+              }
+            ]
+          }
+        },
+          {
+            key: { text: "Why is the appeal incomplete?" },
+            value: { text: data['incomplete'] or "No ground (a)" },
+            actions: {
+              items: [
+                {
+                  href: "enforcement-incomplete-reason",
+                  text: "Change",
+                  visuallyHiddenText: "incomplete reason"
+                }
+              ]
+            }
+          },
+          {
+            key: { text: "Appeal due date" },
+            value: {
+              text: "24 October 2025"
+            },
+            actions: {
+              items: [
+                {
+                  href: "update-due-date",
+                  text: "Change",
+                  visuallyHiddenText: "due date"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+      
+      <form method="post">
+        {{ govukButton({
+          text: "Mark appeal as incomplete"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

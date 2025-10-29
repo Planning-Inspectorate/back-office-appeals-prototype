@@ -118,8 +118,58 @@ router.post('/linked-appeals-check', (req, res) => {
   router.post('/appeal-due-date', function (req, res) {
     res.redirect('check-appeal-incomplete')
   })
-  
 
+  router.post('/check-grounds', function (req, res) {
+    res.redirect('enforcement-appeal-incomplete')
+  })
+
+  router.post('/check-invalid', function (req, res) {
+    res.redirect('case-details-invalid')
+  })
+
+  router.post('/check-incomplete', function (req, res) {
+    res.redirect('case-details-incomplete')
+  })
+
+  router.post('/check-fee', function (req, res) {
+    res.redirect('case-details-cancelled')
+  })
+
+  router.post('/check-appeal-incomplete', function (req, res) {
+    res.redirect('enforcement-appeal-incomplete')
+  })
+
+  router.post('/cancel-appeal/check-withdraw', function (req, res) {
+    res.redirect('../case-details-withdrawn')
+  })
+
+  router.post('/cancel-appeal/check-invalid', function (req, res) {
+    res.redirect('../case-details-invalid')
+  })
+
+  router.post('/cancel-appeal/check-invalid', function (req, res) {
+    req.session.data['appealStatus'] = 'invalid'
+    res.redirect('../case-details')
+  })
+
+  router.post('/cancel-appeal/check-information', function (req, res) {
+    res.redirect('../case-details-cancelled')
+  })
+
+  router.get('/validate-enforcement/case-details', function (req, res) {
+    const appealStatus = req.session.data['appealStatus']
+  
+    // Clear it so it only shows once
+    delete req.locals.data['appealStatus']
+  
+    // Pass it to the page
+    res.render('main/appeals/validate-enforcement/case-details', {
+      data: {
+        ...req.session.data,
+        appealStatus
+      }
+    })
+  })
 
 // Add your routes above the module.exports line
 module.exports = router

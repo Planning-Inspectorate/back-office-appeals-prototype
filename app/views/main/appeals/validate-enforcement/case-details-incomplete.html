@@ -18,6 +18,16 @@
       html: html,
       type: "success"
     }) }}
+
+    {% set html %}
+  <p class="govuk-notification-banner__heading">
+    <a class="govuk-notification-banner__link" href="enforcement-appeal">Validate appeal</a>
+  </p>
+{% endset %}
+
+{{ govukNotificationBanner({
+  html: html
+}) }}
     
 
       <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">00000005

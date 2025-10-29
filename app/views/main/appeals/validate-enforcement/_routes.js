@@ -56,6 +56,18 @@ router.post('/cancel-appeal/cancel-reason', function (req, res) {
     }
   })
 
+  router.post('/enforcement-appeal-incomplete', function (req, res) {
+    const reviewDecision = req.session.data['reviewDecision']
+    if (reviewDecision === 'Invalid') {
+      res.redirect('appeal-invalid-reason')
+    } else if (reviewDecision === 'Incomplete') {
+      res.redirect('appeal-incomplete-reason')
+    } else {
+      // If "Valid" or nothing selected
+      res.redirect('enforcement-appeal')
+    }
+  })
+
   router.post('/enforcement-incomplete-reason', function (req, res) {
     res.redirect('update-due-date')
   })

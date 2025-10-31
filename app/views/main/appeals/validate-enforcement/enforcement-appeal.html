@@ -31,7 +31,7 @@
       <!--Prepare appeal-->
 
       <section>
-        <h2 class="govuk-heading-m govuk-!-margin-top-4">1. Appellant details</h2>
+        <h2 class="govuk-heading-m govuk-!-margin-top-4">1. Contact details</h2>
 
         {{ govukSummaryList({
           rows: [
@@ -97,7 +97,86 @@
       </section>
 
       <section>
-        <h2 class="govuk-heading-m govuk-!-margin-top-4">2. Site details</h2>
+        <h2 class="govuk-heading-m govuk-!-margin-top-4">2. Application details</h2>
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Which local planning authority (LPA) do you want to appeal against?"
+              },
+              value: {
+                html: "Borough Council"
+              },
+              actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "local planning authority"
+                    }
+                  ]
+                }
+            },
+            {
+              key: {
+                text: "Enforcement reference number?"
+              },
+              value: {
+                html: "No"
+              } if data['empty'] else
+              {
+                html: "1234567"
+              },
+              actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "the enforcement reference number"
+                    }
+                  ]
+                }
+            },
+            {
+              key: {
+                text: "What is the issue date on your enforcement notice?"
+              },
+              value: {
+                html: "11 November 2025"
+              },
+              actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "description of development"
+                    }
+                  ]
+                }
+              },
+              {
+                key: {
+                  text: "What is the effective date on your enforcement notice?"
+                },
+                value: {
+                  html: "25 November 2025"
+                },
+                actions: {
+                    items: [
+                      {
+                        href: "#",
+                        text: "Change",
+                        visuallyHiddenText: "description of development"
+                      }
+                    ]
+                  }
+              }
+          ]
+        }) }}
+      </section>
+
+      <section>
+        <h2 class="govuk-heading-m govuk-!-margin-top-4">2. Land details</h2>
         {{ govukSummaryList({
           rows: [
             {
@@ -119,10 +198,10 @@
             },
             {
               key: {
-                text: "Grid reference"
+                text: "Is the appeal site address your contact address?"
               },
               value: {
-                html: "62 33"
+                html: "Yes"
               },
               actions: {
                   items: [
@@ -138,10 +217,10 @@
 
             {
               key: {
-                text: "What is the area of the appeal site?"
+                text: "What is your interest in the land?"
               },
               value: {
-                html: "22 m²"
+                html: "Owner"
               },
               actions: {
                   items: [
@@ -156,10 +235,10 @@
 
               {
                 key: {
-                  text: "What is your interest in the appeal site?"
+                  text: "Description of the land"
                 },
                 value: {
-                  html: "Owner"
+                  html: "Example description"
                 },
                 actions: {
                     items: [
@@ -173,13 +252,10 @@
               },
               {
                   key: {
-                    text: "What is your interest in the appeal site?"
+                    text: "Will an inspector need to access your land or property?"
                   },
                   value: {
                     html: "No"
-                  } if data['empty'] else
-                  {
-                    html: "Owner"
                   },
                   actions: {
                       items: [
@@ -194,13 +270,10 @@
 
                 {
                   key: {
-                    text: "Description of development"
+                    text: "Are there any health and safety issues on the appeal site?"
                   },
                   value: {
                     html: "No"
-                  } if data['empty'] else
-                  {
-                    html: "Example description"
                   },
                   actions: {
                       items: [
@@ -211,168 +284,23 @@
                         }
                       ]
                     }
-                },
-                {
-                  key: {
-                    text: "Do you live at the appeal site?"
-                  },
-                  value: {
-                    html: "No"
-                  } if data['empty'] else
-                  {
-                    html: "Yes"
-                  },
-                  actions: {
-                      items: [
-                        {
-                          href: "#",
-                          text: "Change",
-                          visuallyHiddenText: "if you live at the appeal site"
-                        }
-                      ]
-                    }
-                },
-                {
-                  key: {
-                    text: "Did you live at the appeal site when the local planning authority issued the enforcement notice?"
-                  },
-                  value: {
-                    html: "No"
-                  } if data['empty'] else
-                  {
-                    html: "Yes"
-                  },
-                  actions: {
-                      items: [
-                        {
-                          href: "#",
-                          text: "Change",
-                          visuallyHiddenText: "if you lived at the appeal site when the local planning authority issued the enforcement notice"
-                        }
-                      ]
-                    }
-                },
-                {
-                  key: {
-                    text: "Will an inspector need to access your land or property?"
-                  },
-                  value: {
-                    html: "No"
-                  } if data['empty'] else
-                  {
-                    html: "Yes<br>The development is not visible from a public road."
-                  },
-                  actions: {
-                      items: [
-                        {
-                          href: "#",
-                          text: "Change",
-                          visuallyHiddenText: "if an inspector needs to access the land or property"
-                        }
-                      ]
-                    }
-                },
-                {
-                  key: {
-                    text: "Are there any health and safety issues on the appeal site?"
-                  },
-                  value: {
-                    html: "No"
-                  } if data['empty'] else
-                  {
-                    html: "Yes<br>Construction works"
-                  },
-                  actions: {
-                      items: [
-                        {
-                          href: "#",
-                          text: "Change",
-                          visuallyHiddenText: "if there are any health and safety issues on the appeal site"
-                        }
-                      ]
-                    }
-                }
-
-
-
+                  }
           ]
         }) }}
       </section>
 
       <section>
-        <h2 class="govuk-heading-m govuk-!-margin-top-4">3. Application details</h2>
-        {{ govukSummaryList({
-          rows: [
-            {
-              key: {
-                text: "Which local planning authority (LPA) do you want to appeal against?"
-              },
-              value: {
-                html: "System Test Borough"
-              },
-              actions: {
-                  items: [
-                    {
-                      href: "#",
-                      text: "Change",
-                      visuallyHiddenText: "local planning authority"
-                    }
-                  ]
-                }
-            },
-            {
-              key: {
-                text: "What is the enforcement reference number?"
-              },
-              value: {
-                html: "No"
-              } if data['empty'] else
-              {
-                html: "1234567"
-              },
-              actions: {
-                  items: [
-                    {
-                      href: "#",
-                      text: "Change",
-                      visuallyHiddenText: "the enforcement reference number"
-                    }
-                  ]
-                }
-            },
-            {
-              key: {
-                text: "Enter the description of the alleged development"
-              },
-              value: {
-                html: "2 storey extension to the rear of the property."
-              },
-              actions: {
-                  items: [
-                    {
-                      href: "#",
-                      text: "Change",
-                      visuallyHiddenText: "description of development"
-                    }
-                  ]
-                }
-            }
-          ]
-        }) }}
-      </section>
-
-      <section>
-        <h2 class="govuk-heading-m govuk-!-margin-top-8">4. Appeal details</h2>
+        <h2 class="govuk-heading-m govuk-!-margin-top-8">4. Gounds of appeal and supporting facts</h2>
 
         {{ govukSummaryList({
           classes: "app-summary-list--wider-actions",
           rows: [
           {
             key: {
-              text: "Grounds and facts​"
+              text: "Description of the alleged breach​"
             },
             value: {
-              html: "Ground A"
+              html: "Example description"
             },
             actions: {
                 items: [
@@ -386,7 +314,58 @@
           },
           {
             key: {
-              text: "Did you apply for planning permission and pay the application fee?​"
+              text: "Grounds of appeal​"
+            },
+            value: {
+              html: "Ground (a)"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "grounds and facts"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Did you submit a planning application for the development on the enforcement notice?​"
+            },
+            value: {
+              html: "No"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "if you applied for planning permission and paid the application fee"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Facts for ground (a)​"
+            },
+            value: {
+              html: "Example facts"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "if you applied for planning permission and paid the application fee"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Do you have any documents to support your ground (a) facts?​"
             },
             value: {
               html: "Yes"
@@ -403,7 +382,7 @@
           },
           {
             key: {
-              text: "Grounds and facts supporting documents​"
+              text: "Ground (a) supporting documents​"
             },
             value: {
               html: "<a href=’#’>example-file.pdf</a>"
@@ -417,112 +396,52 @@
                   }
                 ]
               }
-          },
-          {
-            key: {
-              text: "How would you prefer us to decide your appeal?"
-            },
-            value: {
-              html: "Written representations"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "how would you prefer us to decide your appeal?"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Why would you prefer this appeal procedure?"
-            },
-            value: {
-              html: "Not answered"
-            } if data['empty'] else
-            {
-              html: "Needs a thorough investigation"
-            },
-            actions: {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Add",
-                  visuallyHiddenText: "why would you prefer this appeal procedure?"
-                }
-              ]
-            }if data['empty'] else
-            {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Change",
-                  visuallyHiddenText: "why would you prefer this appeal procedure?"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "How many days would you expect the inquiry to last?"
-            },
-            value: {
-              html: "Not answered"
-            } if data['empty'] else
-            {
-              html: "3"
-            },
-            actions: {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Add",
-                  visuallyHiddenText: "how many days would you expect the inquiry to last?"
-                }
-              ]
-            }if data['empty'] else
-            {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Change",
-                  visuallyHiddenText: "how many days would you expect the inquiry to last?"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "How many witnesses would you expect to give evidence at the inquiry?"
-            },
-            value: {
-              html: "Not answered"
-            } if data['empty'] else
-            {
-              html: "3"
-            },
-            actions: {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Add",
-                  visuallyHiddenText: "how many witnesses would you expect to give evidence at the inquiry?"
-                }
-              ]
-            }if data['empty'] else
-            {
-              items: [
-                {
-                  href: "Item URL",
-                  text: "Change",
-                  visuallyHiddenText: "how many witnesses would you expect to give evidence at the inquiry?"
-                }
-              ]
-            }
           }
 
+          ]
+        }) }}
+      </section>
+
+      
+
+      <section>
+        <h2 class="govuk-heading-m govuk-!-margin-top-4">3. Procedure</h2>
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "How would you prefer us to decide your appeal?"
+              },
+              value: {
+                html: "Written representations"
+              },
+              actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "local planning authority"
+                    }
+                  ]
+                }
+            },
+            {
+              key: {
+                text: "Are there any other appeals linked to your development?"
+              },
+              value: {
+                html: "Yes: 0122234"
+              },
+              actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "the enforcement reference number"
+                    }
+                  ]
+                }
+            }
           ]
         }) }}
       </section>

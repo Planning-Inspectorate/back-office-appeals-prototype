@@ -1,0 +1,75 @@
+{% extends "layouts/PINS-Simple-post-mvp.html" %}
+
+{% set title = "Validate enforcement" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = false %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Appeal a planning decision</span>
+    <h1 class="govuk-heading-l">{{ title }}</h1>
+
+    {{ govukTable({
+      captionClasses: "govuk-table__caption--m",
+      firstCellIsHeader: true,
+
+      rows: [
+        [
+          {
+            text: "Typical user",
+            classes: "govuk-!-width-one-third"
+          },
+          {
+            text: "Case officers"
+          }
+        ],
+        [
+          {
+            text: "User story"
+          },
+          {
+            html: "As a CO I can validate an enforcement appeal,<br>
+              So that the case can progress."
+          }
+        ],
+        [
+          {
+            text: "Jira ticket"
+          },
+          {
+            html: 'A2-'
+          }
+        ]
+      ]
+    }) }}
+
+    <h2 class="govuk-heading-m">
+      Version 1
+      {{govukTag({
+          text: "In progress",
+          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+      })}}
+    </h2>
+
+    <h3 class="govuk-heading-s">Features:</h3>
+    <ul class='govuk-list govuk-list--bullet'>
+      <li>
+        [to be filled out]
+      </li>
+    </ul>
+
+    {{ govukButton({
+      text: "View prototype",
+      href: "case-details",
+      isStartButton: true
+    }) }}
+
+    </div>
+  </div>
+
+{% endblock %}

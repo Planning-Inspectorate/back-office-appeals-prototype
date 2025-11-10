@@ -41,15 +41,6 @@
       {% endif %}
       {% set startTimeDisplay = (startHour ~ startMinutePart) or '10:00' %}
 
-      {# compute end time display safely #}
-      {% set endHour = data.setupVisit.endTime.hour or '' %}
-      {% if data.setupVisit.endTime and data.setupVisit.endTime.minute %}
-        {% set endMinutePart = ':' ~ data.setupVisit.endTime.minute %}
-      {% else %}
-        {% set endMinutePart = '' %}
-      {% endif %}
-      {% set endTimeDisplay = (endHour ~ endMinutePart) or '11:00' %}
-
       {{ govukSummaryList({
         rows: [
           {
@@ -68,13 +59,8 @@
             actions: { items: [{ href: "date-and-time-check", text: "Change" }] }
           },
           {
-            key: { text: "Start time" },
+            key: { text: "Time" },
             value: { html: startTimeDisplay },
-            actions: { items: [{ href: "date-and-time-check", text: "Change" }] }
-          },
-          {
-            key: { text: "End time" },
-            value: { html: endTimeDisplay },
             actions: { items: [{ href: "date-and-time-check", text: "Change" }] }
           }
         ]

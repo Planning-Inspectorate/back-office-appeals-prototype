@@ -1,0 +1,66 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Appellant statement" %}
+
+{% set back = true %}
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <span class="govuk-caption-l">Appeal 1223443</span>
+      <h1 class="govuk-heading-l">{{pageName}}</h1>
+      
+      {{ govukSummaryList({
+        rows: [
+            {
+                key: {
+                    text: "Statement"
+                },
+                value: {
+                    text: "I am appealing the decision to refuse planning permission for the proposed rear extension at 14 Meadowbrook Close. The extension is modest in scale and has been designed to be in keeping with the character of the existing property and surrounding area."
+                },
+                actions: {
+                    items: [
+                        {
+                            href: "redact-statement",
+                            text: "Redact",
+                            visuallyHiddenText: "Item label"
+                        }
+                    ]
+                }
+            },
+            {
+                key: {
+                    text: "Supporting Documents"
+                },
+                value: {
+                    html: '<p class="govuk-body"><a href="#">document.pdf</a></p>'
+                },
+                actions: {
+                    items: [
+                        {
+                            href: "#",
+                            text: "Manage",
+                            visuallyHiddenText: "contact details"
+                        },
+                        {
+                            href: "#",
+                            text: "Add",
+                            visuallyHiddenText: "contact details"
+                        }
+                        ]
+                }
+            }
+        ]
+      }) }}
+
+      
+
+    </div>
+    </div>
+
+
+
+{% endblock %}

@@ -20,15 +20,6 @@
         type: "success"
         }) }}
 
-        {% set html %}
-        <p class="govuk-notification-banner__heading">
-            <a class="govuk-notification-banner__link" href="visit-date--access-required">Add site visit date and time</a>
-        </p>
-        {% endset %}
-
-        {{ govukNotificationBanner({
-        html: html
-        }) }}
         </div>
 
         <div class="govuk-grid-column-full">
@@ -47,7 +38,7 @@
                         text: "Type"
                     },
                     value: {
-                        text: data.setupVisit.type or "Unaccompanied"
+                        text: "Accompanied"
                     },
                     actions: {
                         items: [
@@ -64,12 +55,63 @@
                         text: "Do you know the start date and time?"
                     },
                     value: {
-                        html: 'No'
+                        html: 'Yes'
                     },
                     actions: {
                         items: [
                             {
                                 href: "date-and-time-check",
+                                text: "Change",
+                                visuallyHiddenText: "Item label"
+                            }
+                        ]
+                    }
+                },
+                {
+                    key: {
+                        text: "Date"
+                    },
+                    value: {
+                        html: '17 March 2026'
+                    },
+                    actions: {
+                        items: [
+                            {
+                                href: "date-and-time-check",
+                                text: "Change",
+                                visuallyHiddenText: "Item label"
+                            }
+                        ]
+                    }
+                },
+                {
+                    key: {
+                        text: "Start time"
+                    },
+                    value: {
+                        html: '10:00'
+                    },
+                    actions: {
+                        items: [
+                            {
+                                href: "visit-date--accompanied",
+                                text: "Change",
+                                visuallyHiddenText: "Item label"
+                            }
+                        ]
+                    }
+                },
+                {
+                    key: {
+                        text: "End time"
+                    },
+                    value: {
+                        html: '11:00'
+                    },
+                    actions: {
+                        items: [
+                            {
+                                href: "visit-date--accompanied",
                                 text: "Change",
                                 visuallyHiddenText: "Item label"
                             }

@@ -149,6 +149,7 @@ require('./routes/site-visit--new')(router)
 require('./routes/site-visit--edit')(router)
 require('./routes/site-visit--delete')(router)
 require('./routes/site-visit--missed')(router)
+require('./routes/site-visit--setup')(router)
 
 require('./routes/horizon-reference--new')(router)
 require('./routes/horizon-reference--edit')(router)
@@ -353,24 +354,6 @@ router.post('/enhancements/start-hearing/know-hearing-date', function (req, res)
 router.post('/enhancements/start-hearing/hearing-date', function (req, res) {
 	// data is automatically stored in req.session.data
 	res.redirect('/enhancements/start-hearing/check')
-})
-
-
-// SETUP SITE VISIT
-
-router.post('/enhancements/site-visit/visit-type', function (req, res) {
-	// data is automatically stored in req.session.data
-	res.redirect('/enhancements/site-visit/visit-date')
-})
-
-router.post('/enhancements/site-visit/visit-date', function (req, res) {
-	// data is automatically stored in req.session.data
-	res.redirect('/enhancements/site-visit/check')
-})
-
-router.post('/enhancements/site-visit/check', function (req, res) {
-	// data is automatically stored in req.session.data
-	res.redirect('/enhancements/site-visit/success')
 })
 
 

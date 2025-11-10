@@ -1,0 +1,253 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% if data['review-outcome'] == 'Redact and accept statement' %}
+  {% set title = "Check details and accept statement" %}
+{% elseif data['review-outcome'] == 'Statement incomplete' %}
+  {% set title = "Check details and confirm statement is incomplete" %}
+{% elseif data['review-outcome'] == 'Reject statement' %}
+  {% set title = "Check details and reject statement" %}
+{% else %}
+  {% set title = "Check details and accept statement" %}
+{% endif %}
+
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <span class="govuk-caption-l">Appeal 2110166</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      <form method="post">
+
+        <div class="pins-panel">
+          {{ govukSummaryList({
+            classes: "govuk-!-margin-bottom-6",
+            rows: [
+            {
+              key: {
+                text: "Statement"
+              } if data['review-outcome'] != 'Redact and accept statement' else { text: "Original statement" },
+              value: {
+                html: data['original-statement'] or "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus.
+                Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus.
+                Mauris nulla erat, posuere ut nisi vitae, pulvinar gravida arcu."
+              },
+              actions: {
+                items: [
+                  {
+                    text: "",
+                    visuallyHiddenText: ""
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Redacted statement"
+              },
+              value: {
+                html: data['redacted-statement'] or " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at nunc mi. Donec maximus risus nec interdum vestibulum. Cras laoreet vestibulum bibendum. Cras lectus nulla, efficitur nec fringilla ac, cursus ac lectus.
+                Nam interdum lorem sed lacus feugiat faucibus in vitae tellus. Aliquam erat volutpat. Donec aliquam tincidunt vehicula. Vivamus id elit ac libero rhoncus pulvinar. Etiam blandit posuere elit id rhoncus.
+                Mauris nulla erat, posuere ut nisi vitae, pulvinar gravida arcu."
+              } ,
+              actions: {
+                items: [
+                  {
+                    href: "redact-lpa-statement",
+                    text: "Change",
+                    visuallyHiddenText: "Redacted statement"
+                  }
+                ]
+              }
+            } if data['review-outcome'] == 'Redact and accept statement',
+            {
+              key: {
+                text: "Supporting documents"
+              },
+              value: {
+                html:"<ul class='govuk-list govuk-list--bullet'><li><a href='#'>2110166-statement-appendix-A.doc</a></li>
+                <li><a href='#'>2110166-statement-appendix-B.doc</a></li></ul>"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "redact-supporting-documents",
+                    text: "Change",
+                    visuallyHiddenText: "Supporting documents"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Review decision"
+              },
+              value: {
+                html: data['review-outcome'] or 'Accept statement'
+              },
+              actions: {
+                items: [
+                  {
+                    href: "what-is-outcome-of-review",
+                    text: "Change",
+                    visuallyHiddenText: "Review outcome"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Do you need to update the allocation level and specialisms?"
+              },
+              value: {
+                html: data['matrix-update'] or 'Yes'
+              },
+              actions: {
+                items: [
+                  {
+                    href: "what-is-outcome-of-review",
+                    text: "Change",
+                    visuallyHiddenText: "Review outcome"
+                  }
+                ]
+              }
+            } if data['review-outcome'] != 'Statement incomplete' and data['review-outcome'] != 'Reject statement',
+            {
+              key: {
+                text: "Allocation level"
+              },
+              value: {
+                text: data['allocation-level'] or "B"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "select-allocation",
+                    text: "Change",
+                    visuallyHiddenText: "Level"
+                  }
+                ]
+              }
+            } if data['review-outcome'] != 'Statement incomplete' and data['review-outcome'] != 'Reject statement' and data['matrix-update'] != 'No',
+            {
+              key: {
+                text: "Allocation specialisms"
+              },
+              value: {
+                html: "<ul class='govuk-list govuk-list--bullet'>
+                         <li>Enforcement</li>
+                         <li>Housing orders</li>
+                       </ul>"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "select-specialism",
+                    text: "Change",
+                    visuallyHiddenText: "Specialism"
+                  }
+                ]
+              }
+            } if data['review-outcome'] != 'Statement incomplete' and data['review-outcome'] != 'Reject statement' and data['matrix-update'] != 'No',
+            {
+              key: {
+                text: "Why is the statement incomplete?"
+              },
+              value: {
+                html: "<ul class='govuk-list govuk-list--bullet'>
+                         <li>
+                           Supporting documents missing: Document A
+                         </li>
+                         <li>
+                           Supporting documents missing: Document B
+                         </li>
+                         <li>
+                           No list of suggested conditions
+                         </li>
+                         <li>
+                           Other: (Given reason text)
+                         </li>
+                       </ul>"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "why-Statement incomplete",
+                    text: "Change",
+                    visuallyHiddenText: "Reasons"
+                  }
+                ]
+              }
+            } if data['review-outcome'] == 'Statement incomplete',
+            {
+              key: {
+                text: "Why are you rejecting the statement?"
+              },
+              value: {
+                html: "<ul class='govuk-list govuk-list--bullet'><li>Supporting documents missing</li><li>Other: (Given reason text)</li></ul>"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "why-rejected",
+                    text: "Change",
+                    visuallyHiddenText: "Reasons"
+                  }
+                ]
+              }
+            } if data['review-outcome'] == 'Reject statement',
+            {
+              key: {
+                text: "Do you want to allow the appellant to resubmit their statement?"
+              },
+              value: {
+                html: data['allow-resubmission']
+              },
+              actions: {
+                items: [
+                  {
+                    href: "update-due-date",
+                    text: "Change",
+                    visuallyHiddenText: "allow resubmission"
+                  }
+                ]
+              }
+            } if data['review-outcome'] == 'Statement incomplete' or data['review-outcome'] == 'Reject statement'
+          ] })
+          }}
+
+        </div>
+
+        {% if data['review-outcome'] == 'Statement incomplete' %}
+          <p class="govuk-body">
+            We’ll send an email to the appellant to explain why their statement is incomplete.
+          </p>
+        {% endif %}
+
+        {% if data['review-outcome'] == 'Redact and accept statement' %}
+          {{ govukButton({
+            text: "Redact and accept statement"
+          }) }}
+        {% elseif data['review-outcome'] == 'Statement incomplete' %}
+          {{ govukButton({
+            text: "Confirm statement is incomplete"
+          }) }}
+        {% elseif data['review-outcome'] == 'Reject statement' %}
+          {{ govukButton({
+            text: "Reject statement"
+          }) }}
+        {% else %}
+          {{ govukButton({
+            text: "Accept"
+          }) }}
+        {% endif %}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

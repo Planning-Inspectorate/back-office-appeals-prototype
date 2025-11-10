@@ -1,0 +1,67 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Site visit reminder date" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+        <span class="govuk-caption-l">Appeal 6021709</span>
+        <h1 class="govuk-heading-l">{{title}}</h1>
+
+        <p class="govuk-body">Changing this date may change the case’s position in your list.
+        </p>
+
+        <p class="govuk-body">You can change it again later if needed.</p>
+
+        {{ govukDateInput({
+          id: "whatever",
+          fieldset: {
+            legend: {
+              text: "Date",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 31 3 2025"
+          },
+          items: [
+            {
+              name: "reminder[visitDate][day]",
+              label: "Day",
+              value: data.reminder.visitDate.day or appeal.visit.date | day,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "reminder[visitDate][month]",
+              label: "Month",
+              value: data.reminder.visitDate.month or appeal.visit.date | month,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "reminder[visitDate][year]",
+              label: "Year",
+              value: data.reminder.visitDate.year or appeal.visit.date | year,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Continue",
+            href: "check"
+          }) }}
+        
+          <!--<a class="govuk-link" href="check-2">Skip</a>-->
+        </div>
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

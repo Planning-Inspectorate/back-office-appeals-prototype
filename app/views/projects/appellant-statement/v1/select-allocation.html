@@ -1,0 +1,71 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Allocation level" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Appeal 2110166</span>
+
+      <form method="post">
+
+        {{ govukRadios({
+          name: "allocation-level",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "A",
+              text: "A"
+            },
+            {
+              value: "B",
+              text: "B"
+            },
+            {
+              value: "C",
+              text: "C"
+            },
+            {
+              value: "D",
+              text: "D",
+              checked:"checked"
+            },
+            {
+              value: "E",
+              text: "E"
+            },
+            {
+              value: "F",
+              text: "F"
+            },
+            {
+              value: "G",
+              text: "G"
+            },
+            {
+              value: "H",
+              text: "H"
+            }
+
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

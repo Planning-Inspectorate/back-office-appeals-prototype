@@ -1,0 +1,52 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Check details" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal 6021709</span>
+      <h1 class="govuk-heading-l">{{ title }}</h1>
+
+      {# Check if user entered both date + time #}
+      {% set hasDate = data.reminder.visitDate.day and data.reminder.visitDate.month and data.reminder.visitDate.year %}
+      {% set hasTime = data.reminder.visitTime.hour and data.reminder.visitTime.minute %}
+      {% set hasDateOrTime = hasDate or hasTime %}
+
+      {# Format the visit date if entered #}
+      {% if hasDate %}
+        {% set visitDate = data.reminder.visitDate | isoDateFromDateInput | govukDate %}
+      {% endif %}
+
+      {# Format the visit time if entered #}
+      {% if hasTime %}
+        {% set visitTime = data.reminder.visitTime.hour ~ ":" ~ data.reminder.visitTime.minute %}
+      {% endif %}
+
+      {# Build rows dynamically #}
+      {% set rows = [
+        {
+          key: { text: "Site visit reminder date" },
+          value: { text: (visitDate or "12 February 2026") },
+          actions: {
+            items: [
+              { href: "visit-type", text: "Change", visuallyHiddenText: "change-reminder-date" }
+            ]
+          }
+        }
+      ] %}
+
+      {{ govukSummaryList({ rows: rows }) }}
+    
+      <form method="post">
+        {{ govukButton({
+          text: "Confirm",
+          href: "case-details--success"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

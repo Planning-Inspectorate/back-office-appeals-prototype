@@ -1,0 +1,107 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Why are you rejecting the statement?" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = true %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Appeal 2114328</span>
+
+      <form method="post">
+
+        {% set otherReason %}
+          <div data-module="moj-add-another">
+
+            {% call govukFieldset({
+              classes: 'moj-add-another__item',
+              legend: {
+                text: 'Why the comment is Reject statement?',
+                classes: 'moj-add-another__title ',
+                isPageHeading: false
+              }
+              }) %}
+
+              {{ govukInput({
+                id: "reason",
+                name: "reason",
+                classes: "govuk-!-margin-bottom-4"
+              }) }}
+
+            {% endcall %}
+
+            <div class="moj-button-action">
+              {{ govukButton({
+                text: 'Add another reason',
+                classes: 'govuk-button--secondary moj-add-another__add-button govuk-!-margin-bottom-4'
+              }) }}
+            </div>
+          </div>
+        {% endset -%}
+
+        {{ govukCheckboxes({
+          name: "reasonsReject statement",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "Select all that apply."
+          },
+          items: [
+            {
+              value: "Received after deadline",
+              text: "Received after deadline"
+            } if 1 == 2,
+            {
+              value: "Personal information",
+              text: "Includes personal or medical information"
+            },
+            {
+              value: "Inflammatory information",
+              text: "Includes inflammatory content"
+            },
+            {
+              value: "Duplicated statement",
+              text: "Duplicated statement"
+            } if 1 == 2,
+            {
+              value: "Not relevant to this appeal",
+              text: "Not relevant to this appeal"
+            },
+            {
+              value: "Contains links to web pages",
+              text: "Contains links to web pages"
+            },
+            {
+              value: "Other reason",
+              text: "Other reason",
+              conditional: {
+  	            html: otherReason
+  		        }
+            }
+          ]
+        }) }}
+
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}

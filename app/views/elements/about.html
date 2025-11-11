@@ -1,0 +1,70 @@
+{% extends "layouts/PINS-admin-post-mvp.html" %}
+
+{% set title = "Service elements" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+{% set pageId = 'inc' %}
+
+{% set back = false %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-quarter">
+
+    <h2 class="govuk-heading-m">
+      Introduction
+    </h2>
+
+    <ul class="govuk-list govuk-list-bullet">
+      <li>
+        <a href="about" class="govuk-link--no-visited-state govuk-link--no-underline">
+          What is this
+        </a>
+      </li>
+    </ul>
+
+    <h2 class="govuk-heading-m">
+      Appeal details
+    </h2>
+    <ul class="govuk-list govuk-list-bullet">
+      <li>
+        <a href="documentation" class="govuk-link--no-visited-state govuk-link--no-underline">
+          Documentation
+        </a>
+      </li>
+
+    </ul>
+
+  </div>
+
+    <div class="govuk-grid-column-three-quarters">
+      <h1 class="govuk-heading-xl">
+        {{ title }}
+      </h1>
+
+      <p class="govuk-body-l">
+        Elements of the service we can use in the prototype
+      </p>
+
+      <h2 class="govuk-heading-m">
+        How to use elements
+      </h2>
+
+      <p class="govuk-body">
+        We can use these to:
+      </p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          show design variations
+        </li>
+        <li>
+          have elements of the service that can be used in views of the prototype
+        </li>
+      </ul>
+
+
+    </div>
+  </div>
+
+{% endblock %}

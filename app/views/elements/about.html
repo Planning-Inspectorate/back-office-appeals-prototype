@@ -1,8 +1,12 @@
-{% extends "layouts/PINS-admin-post-mvp.html" %}
+{% extends "layouts/bo.html" %}
 
-{% set title = "Service elements" %}
-{% set pageName = title + ' - Planning Inspectorate'%}
-{% set pageId = 'inc' %}
+{% set title = 'Service elements' %}
+{% set pageId = 'elements' %}
+{% set back = false %}
+
+{% block header %}
+	{% include "includes/PINS-header-admin.html" %}
+{% endblock %}
 
 {% set back = false %}
 
@@ -18,7 +22,7 @@
       </h1>
 
       <p class="govuk-body-l">
-        Elements of the service we can use in the prototype
+        Parts of the service we can use in the prototype
       </p>
 
       <h2 class="govuk-heading-m">

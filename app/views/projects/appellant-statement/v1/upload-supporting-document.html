@@ -1,7 +1,7 @@
 
 {% extends "layouts/PINS-post-mvp.html" %}
 
-{% set title = "Add supporting document" %}
+{% set title = "Upload supporting document" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% block content %}
@@ -46,10 +46,6 @@
           errorMessage: errorMessage
         }) }}
 
-        {{govukButton({
-          text: 'Upload file',
-          classes: 'govuk-button--secondary moj-multi-file-upload__button'
-        })}}
       {% endset %}
 
       {{ mojMultiFileUpload({

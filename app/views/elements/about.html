@@ -1,0 +1,49 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = 'Service elements' %}
+{% set pageId = 'elements' %}
+{% set back = false %}
+
+{% block header %}
+	{% include "includes/PINS-header-admin.html" %}
+{% endblock %}
+
+{% set back = false %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+  {% include "/elements/includes/side-navigation.html" %}
+
+    <div class="govuk-grid-column-three-quarters">
+      <h1 class="govuk-heading-xl">
+        {{ title }}
+      </h1>
+
+      <p class="govuk-body-l">
+        Parts of the service we can use in the prototype
+      </p>
+
+      <h2 class="govuk-heading-m">
+        How to use elements
+      </h2>
+
+      <p class="govuk-body">
+        We can use these to:
+      </p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          show design variations
+        </li>
+        <li>
+          have elements of the service that can be used in views of the prototype
+        </li>
+      </ul>
+
+
+    </div>
+  </div>
+
+{% endblock %}

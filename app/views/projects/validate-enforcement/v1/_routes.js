@@ -1,20 +1,20 @@
 const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
 
-// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-// SETTING UP
-// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+// ╔═════════════════════╗
+// ║    SET UP STUFF     ║
+// ╚═════════════════════╝
 
 router.get('*', function(req, res, next){
-
   // Change the service name for this feature
-  res.locals['serviceName'] = 'Casework Back Office System - Appeals'
-
-  // Add return to task list
-  res.locals['return'] = false
-
+  res.locals['serviceName'] = 'Manage appeals'
   next()
 })
+
+// ╔═════════════════════╗
+// ║   ROUTES BE HERE    ║
+// ╚═════════════════════╝
 
 router.post('/cancel-appeal/cancel-reason', function (req, res) {
     const reason = req.session.data['cancel-reason']
@@ -93,7 +93,7 @@ router.post('/cancel-appeal/cancel-reason', function (req, res) {
 
   router.post('/appeal-invalid-reason', function (req, res) {
     const invalid = req.session.data['invalid'] || []
-  
+
     if (invalid.includes('Appellant does not have a legal interest in the land')) {
       res.redirect('linked-appeals-check')
     } else if (invalid.includes('Enforcement notice is invalid')) {
@@ -182,6 +182,10 @@ router.post('/linked-appeals-check', (req, res) => {
   router.post('/cancel-appeal/check-information', function (req, res) {
     res.redirect('../case-details-cancelled')
   })
+
+
+
+
 
 // Add your routes above the module.exports line
 module.exports = router

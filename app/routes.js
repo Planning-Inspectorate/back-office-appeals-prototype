@@ -161,6 +161,9 @@ require('./routes/cancel')(router)
 require('./routes/invalid')(router)
 require('./routes/invalid--new')(router)
 
+require('./views/main/appeals/validate-enforcement/v1/_routes.js')
+require('./views/main/appeals/validate-enforcement/v2/_routes.js')
+
 
 // Timetable
 // require('./routes/add-statement-of-common-ground-due-date')(router)
@@ -358,32 +361,6 @@ router.post('/enhancements/start-hearing/hearing-date', function (req, res) {
 
 
 // Validate enforcement flow
-router.post('/main/appeals/validate-enforcement/enforcement-appeal',(req, res) => {
-  req.session.data.legalInterest = null
-  req.session.data.enfInvalid = null
-  res.redirect('/enforcement-invalid-reason?')
-})
 
-router.post('/main/appeals/validate-enforcement/enforcement-invalid-reason',(req, res) => {
-	if (req.session.data['invalid']?.includes('Appellant does not have a legal interest in the land')) {
-		req.session.data.legalInterest = 'Yes'
-	} else {
-    req.session.data.legalInterest = null
-  }
-	if (req.session.data['invalid']?.includes('Enforcement notice is invalid')) {
-		req.session.data.enfInvalid = 'Yes'
-		res.redirect('enforcement-notice-invalid-reason')
-	} else{
-    req.session.data.enfInvalid = null
-		res.redirect('./check')
-	}
-})
 
-router.post('/main/appeals/validate-enforcement/enforcement-notice-invalid-reason',(req, res) => {
-   res.redirect('./check')
-})
-
-router.post('/main/appeals/validate-enforcement/check',(req, res) => {
-  req.flash('success', 'Appeal marked as invalid')
-	res.redirect('/main/appeals/validate-enforcement/enforcement-appeal')
-})
+	

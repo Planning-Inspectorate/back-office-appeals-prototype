@@ -1,0 +1,102 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Case details" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form method="post" validate>
+      <span class="govuk-caption-xl">Appeal 2110166</span>
+
+      {{ govukCheckboxes({
+        name: "reason-enforcement-notice-invalid",
+        fieldset: {
+          legend: {
+            text: "Why is the enforcement notice invalid?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "It does not specify the boundaries of the land",
+            text: "It does not specify the boundaries of the land",
+            conditional: {
+              html: govukInput({
+                name: "reason-text-It-does-not-specify-the-boundaries-of-the-land",
+                label: { text: "Enter a reason" }
+              })
+            }
+          },
+          {
+            value: "It states that the recipient needs to immediately stop enforcement stuff",
+            text: "It states that the recipient needs to immediately stop enforcement stuff",
+            conditional: {
+              html: govukInput({
+                name: "reason-text-It-states-that-the-recipient-needs-to-immediately-stop-enforcement-stuff",
+                label: { text: "Enter a reason" }
+              })
+            }
+          },
+          {
+            value: "There is a mistake in the wording",
+            text: "There is a mistake in the wording",
+            conditional: {
+              html: govukInput({
+                name: "reason-text-There-is-a-mistake-in-the-wording",
+                label: { text: "Enter a reason" }
+              })
+            }
+          },
+          {
+            value: "No time between the effective date and the end of the compliance period",
+            text: "No time between the effective date and the end of the compliance period",
+            conditional: {
+              html: govukInput({
+                name: "reason-text-No-time-between-the-effective-date-and-the-end-of-the-compliance-period",
+                label: { text: "Enter a reason" }
+              })
+            }
+          },
+          {
+            value: "It does not specify a period for compliance (only a description)",
+            text: "It does not specify a period for compliance (only a description)",
+            conditional: {
+              html: govukInput({
+                name: "reason-text-It-does-not-specify-a-period-for-compliance-only-a-description",
+                label: { text: "Enter a reason" }
+              })
+            }
+          },
+          {
+            value: "It does not specify a period for compliance (completely missing)",
+            text: "It does not specify a period for compliance (completely missing)",
+            conditional: {
+              html: govukInput({
+                name: "reason-text-It-does-not-specify-a-period-for-compliance-completely-missing",
+                label: { text: "Enter a reason" }
+              })
+            }
+          },
+          {
+            value: "The period for compliance is not clear",
+            text: "The period for compliance is not clear",
+            conditional: {
+              html: govukInput({
+                name: "reason-text-The-period-for-compliance-is-not-clear",
+                label: { text: "Enter a reason" }
+              })
+            }
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </form>
+
+  </div>
+</div>
+{% endblock %}

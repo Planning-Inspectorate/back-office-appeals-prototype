@@ -1,0 +1,1030 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "1223443" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+{% set back = false %}
+
+      {% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      
+      <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+        <div class="govuk-notification-banner__header">
+          <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">Important</h2>
+        </div>
+        <div class="govuk-notification-banner__content">
+          <p class="govuk-notification-banner__heading">
+            <a class="govuk-notification-banner__link" href="/main/appeals/validate-enforcement/v2/enforcement-appeal.html">Validate appeal</a>
+          </p>
+        </div>
+      </div>
+
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">00000005
+        <strong class="govuk-tag govuk-tag--green">
+          Ready to start
+        </strong>
+      </h1>
+
+      <div class="govuk-button-group">
+        <a href="#" class="govuk-link">Download case</a>
+      </div>
+
+      {{ govukDetails({
+        summaryText: "Notes (1)",
+        text: "Note stuff here"
+      }) }}
+
+      <div class="app-panel">
+        <h2 class="govuk-heading-l">Overview</h2>
+
+          {{ govukSummaryList({
+            rows: [
+              {
+                key: {
+                  text: "LPA"
+                },
+                value: {
+                  text: 'Barnet Council'
+                }
+              },
+              {
+                key: {
+                  text: "Site address"
+                },
+                value: {
+                  text: appAddress({address: application.site.address})
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "Site address"
+                    }
+                  ]
+                }
+              },
+              {
+                key: {
+                  text: "Appeal type"
+                },
+                value: {
+                  text: application.type
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "Item label"
+                    }
+                  ]
+                }
+              },
+              {
+                key: {
+                  text: "Appeal procedure"
+                },
+                value: {
+                  text: data.appealProcedure
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "/projects/start-full-case/v4/edit-procedure",
+                      text: "Change",
+                      visuallyHiddenText: "Item label"
+                    }
+                  ]
+                }
+              } if data.appealProcedure,
+              {
+                key: {
+                  text: "Allocation level"
+                },
+                value: {
+                  text: 'F / General allocation'
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "Item URL",
+                      text: "Change",
+                      visuallyHiddenText: "Item label"
+                    }
+                  ]
+                }
+              },
+              {
+                key: {
+                  text: "Linked appeals"
+                },
+                value: {
+                  html: '<a href="#">21/725284</a>'
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "Item URL",
+                      text: "Change",
+                      visuallyHiddenText: "Item label"
+                    }
+                  ]
+                }
+              },
+              {
+                key: {
+                  text: "Related appeals"
+                },
+                value: {
+                  html: '<a href="#">21/725284</a>'
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "Item URL",
+                      text: "Change",
+                      visuallyHiddenText: "Item label"
+                    }
+                  ]
+                }
+              },
+              {
+                key: {
+                  text: "Planning application reference"
+                },
+                value: {
+                  html: '14012025HAS'
+                }
+              },
+              {
+                key: {
+                  text: "Decision"
+                },
+                value: {
+                  html: 'Not issued yet'
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "Item URL",
+                      text: "Issue",
+                      visuallyHiddenText: "Item label"
+                    }
+                  ]
+                }
+              }
+            ]
+          }) }}
+        </div>
+
+        <div class="app-panel">
+          <h2 class="govuk-heading-l">Site</h2>
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Might the inspector need access to the appellant’s land or property?
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Yes
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="/appeals-service/appeal-details/441/change-appeal-details/lpa-inspector-access/">
+                  Change
+                </a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Will an inspector need to access your land or property?
+              </dt>
+              <dd class="govuk-summary-list__value">
+                No
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="/appeals-service/appeal-details/441/change-appeal-details/appellant-case-inspector-access">
+                  Change
+                </a>
+              </dd>
+            </div>
+
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Might the inspector need to enter a neighbour’s land or property?
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Yes
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="/appeals-service/appeal-details/441/change-appeal-details/lpa-health-and-safety">
+                  Change
+                </a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Are there any potential safety risks?
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Yes
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="/appeals-service/appeal-details/441/change-appeal-details/appellant-case-health-and-safety">
+                  Change
+                </a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Visit type
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Unaccompanied
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="/appeals-service/appeal-details/441/site-visit/set-visit-type">
+                  Change
+                </a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Tell us the address of the neighbour’s land or property
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Some addresss goes here
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="/appeals-service/appeal-details/441/change-appeal-details/neighbouring-site-is-affected">
+                  Change
+                </a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Might the inspector need to enter a neighbour’s land or property?
+              </dt>
+              <dd class="govuk-summary-list__value">
+                <p>Yes</p>
+                <ul class="govuk-list govuk-list--bullet">
+                  <li>172 York Road<br>
+                    Bristol<br>
+                    BS3 4AL</li>
+                  <li>170, York Road<br>
+                    Bristol<br>
+                    BS3 4AL</li>
+                </ul>
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="manage-neighbouring-sites.html">
+                  Change
+                  <span class="govuk-visually-hidden"> neighbouring sites</span>
+                </a>
+              </dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="app-panel">
+          <h2 class="govuk-heading-l">Timetable</h2>
+          {{ govukTable({
+            captionClasses: "govuk-table__caption--m",
+            firstCellIsHeader: true,
+            rows: [
+              [
+                {
+                  text: "Valid date"
+                },
+                {
+                  text: 38 | daysAgo
+                },
+                {
+                  html: "<a href='#'>Change</a>",
+                  format: "numeric"
+                }
+              ],
+              [
+                {
+                  text: "Start date"
+                },
+                {
+                  text: 38 | daysAgo
+                },
+                {
+                  html: "<a href='#'>Change</a>",
+                  format: "numeric"
+                }
+              ],
+              [
+                {
+                  text: "LPA questionnaire due"
+                },
+                {
+                  text: 31 | daysAgo
+                },
+                {
+                  html: "<a href='#'>Change</a>",
+                  format: "numeric"
+                }
+              ],
+              [
+                {
+                  text: "Site visit"
+                },
+                {
+                  text: -3 | daysAgo
+                },
+                {
+                  html: "<a href='site-visit.html'>Change</a>",
+                  format: "numeric"
+                }
+              ] if 1==2,
+              [
+                {
+                  text: "Date"
+                },
+                {
+                  html: data.hearing.date | isoDateFromDateInput | govukDate
+                },
+                {
+                  html: "<a href='/projects/start-full-case/v4/edit-hearing'>Change</a>",
+                  format: "numeric"
+                }
+              ] if data.hearing.date,
+              [
+                {
+                  text: "Date"
+                },
+                {
+                  html: data.hearing.date | isoDateFromDateInput | govukDate
+                },
+                {
+                  html: "<a href='/projects/start-full-case/v4/edit-hearing'>Change</a>",
+                  format: "numeric"
+                }
+              ] if data.hearing.date,
+              [
+                {
+                  text: "Inquiry"
+                },
+                {
+                  text: -10 | daysAgo + ' at 9pm'
+                },
+                {
+                  html: "<a href='#'>Change</a>",
+                  format: "numeric"
+                }
+              ] if data.appealProcedure == 'Inquiry'
+            ]
+          }) }}
+        </div>
+
+        {% if data.appealProcedure == 'Hearing' %}
+          <div class="app-panel">
+            <h2 class="govuk-heading-l">Hearing</h2>
+            <div class="govuk-button-group">
+              {% if data.hearing %}
+                <a class="govuk-link" href="cancel-hearing">Cancel hearing</a>
+              {% else %}
+                {{ govukButton({
+                  text: 'Set up hearing',
+                  classes: 'govuk-button--secondar',
+                  href: 'add-hearing'
+                }) }}
+              {% endif %}
+
+
+            </div>
+
+            {% set address %}
+              {{appAddress({ address: data.hearing.address })}}
+            {% endset %}
+
+            {{ govukSummaryList({
+              rows: [
+                {
+                  key: {
+                    text: "Date"
+                  },
+                  value: {
+                    html: data.hearing.date | isoDateFromDateInput | govukDate
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "/projects/start-full-case/v4/edit-hearing",
+                        text: "Change",
+                        visuallyHiddenText: "Date"
+                      }
+                    ]
+                  }
+                } if data.hearing.date,
+                {
+                  key: {
+                    text: "Time"
+                  },
+                  value: {
+                    html: data.hearing.time
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "/projects/start-full-case/v4/add-hearing",
+                        text: "Change",
+                        visuallyHiddenText: "Time"
+                      }
+                    ]
+                  }
+                } if data.hearing.time,
+                {
+                  key: {
+                    text: "Do you know the address of where the hearing will take place?"
+                  },
+                  value: {
+                    html: data.hearing.hasAddress
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "/projects/start-full-case/v4/edit-hearing/has-address",
+                        text: "Change",
+                        visuallyHiddenText: "whether you know the Address"
+                      }
+                    ]
+                  }
+                } if data.hearing.hasAddress,
+                {
+                  key: {
+                    text: "Address"
+                  },
+                  value: {
+                    html: address
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "/projects/start-full-case/v4/edit-hearing/address",
+                        text: "Change",
+                        visuallyHiddenText: "Address"
+                      }
+                    ]
+                  }
+                } if data.hearing.hasAddress == 'Yes'
+              ]
+            }) if data.hearing }}
+
+            <h3 class="govuk-heading-m">Hearing estimates</h3>
+
+            {% if not data.hearingEstimates %}
+              <p><a class="govuk-link" href="add-hearing-estimates">Add hearing estimates</a></p>
+            {% endif %}
+
+            {{ govukSummaryList({
+              rows: [
+                {
+                  key: {
+                    text: "Estimated preparation time"
+                  },
+                  value: {
+                    html: data.hearingEstimates.estimatedPreparationTime | days
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "/projects/start-full-case/v4/edit-hearing-estimates",
+                        text: "Change",
+                        visuallyHiddenText: "Estimated preparation time"
+                      }
+                    ]
+                  }
+                } if data.hearingEstimates.estimatedPreparationTime,
+                {
+                  key: {
+                    text: "Estimated sitting time"
+                  },
+                  value: {
+                    html: data.hearingEstimates.estimatedHearingTime | days
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "/projects/start-full-case/v4/edit-hearing-estimates",
+                        text: "Change",
+                        visuallyHiddenText: "Estimated sitting time"
+                      }
+                    ]
+                  }
+                } if data.hearingEstimates.estimatedHearingTime,
+                {
+                  key: {
+                    text: "Estimated reporting time"
+                  },
+                  value: {
+                    html: data.hearingEstimates.estimatedReportingTime | days
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "/projects/start-full-case/v4/edit-hearing-estimates",
+                        text: "Change",
+                        visuallyHiddenText: "Estimated reporting time"
+                      }
+                    ]
+                  }
+                } if data.hearingEstimates.estimatedReportingTime
+              ]
+            }) if data.hearingEstimates }}
+
+          </div>
+        {% endif %}
+
+        {% if data.appealProcedure == 'Inquiry' %}
+          <div class="app-panel">
+
+            <h2 class="govuk-heading-l">Case management conference</h2>
+
+            <div class="govuk-button-group">
+              {% if data.cmc %}
+                <a class="govuk-link" href="cancel-cmc">Cancel pre-inquiry meeting</a>
+              {% else %}
+                {{ govukButton({
+                  text: 'Set up pre-inquiry meeting',
+                  classes: 'govuk-button--secondar',
+                  href: 'add-cmc'
+                }) }}
+              {% endif %}
+            </div>
+
+            {{ govukSummaryList({
+              rows: [
+                {
+                  key: {
+                    text: "Date"
+                  },
+                  value: {
+                    html: data.cmc.date | isoDateFromDateInput | govukDate
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "/projects/start-full-case/v4/edit-cmc",
+                        text: "Change",
+                        visuallyHiddenText: "Date"
+                      }
+                    ]
+                  }
+                } if data.cmc.date,
+                {
+                  key: {
+                    text: "Time"
+                  },
+                  value: {
+                    html: data.cmc.time
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "/projects/start-full-case/v4/edit-cmc",
+                        text: "Change",
+                        visuallyHiddenText: "Time"
+                      }
+                    ]
+                  }
+                },
+                {
+                  key: {
+                    text: "Location"
+                  },
+                  value: {
+                    html: data.cmc.location
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "/projects/start-full-case/v4/edit-cmc",
+                        text: "Change",
+                        visuallyHiddenText: "Location"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }) if data.cmc }}
+          </div>
+
+          <div class="app-panel">
+            <h2 class="govuk-heading-l">Inquiry</h2>
+
+            <div class="govuk-button-group">
+              {% if data.inquiry %}
+                <a class="govuk-link" href="cancel-inquiry">Cancel inquiry</a>
+              {% else %}
+                {{ govukButton({
+                  text: 'Set up inquiry',
+                  classes: 'govuk-button--secondar',
+                  href: 'add-inquiry'
+                }) }}
+              {% endif %}
+            </div>
+
+            {% set address %}
+              {{appAddress({ address: data.inquiry.address })}}
+            {% endset %}
+
+            {{ govukSummaryList({
+              rows: [
+                {
+                  key: {
+                    text: "Date"
+                  },
+                  value: {
+                    html: data.inquiry.date | isoDateFromDateInput | govukDate
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "/projects/start-full-case/v4/edit-inquiry",
+                        text: "Change",
+                        visuallyHiddenText: "Date"
+                      }
+                    ]
+                  }
+                } if data.inquiry.date,
+                {
+                  key: {
+                    text: "Time"
+                  },
+                  value: {
+                    html: data.inquiry.time
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "/projects/start-full-case/v4/edit-inquiry/time",
+                        text: "Change",
+                        visuallyHiddenText: "Time"
+                      }
+                    ]
+                  }
+                } if data.inquiry.time,
+                {
+                  key: {
+                    text: "Do you know the estimated number of days needed to carry out the inquiry"
+                  },
+                  value: {
+                    html: data.inquiry.hasDays
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "/projects/start-full-case/v4/edit-inquiry/days",
+                        text: "Change",
+                        visuallyHiddenText: "if you know the expected number of days to carry out the inquiry"
+                      }
+                    ]
+                  }
+                } if data.inquiry.hasDays,
+                {
+                  key: {
+                    text: "Estimated number of days needed to carry out the inquiry"
+                  },
+                  value: {
+                    html: data.inquiry.days
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "/projects/start-full-case/v4/edit-inquiry/days",
+                        text: "Change",
+                        visuallyHiddenText: "Expected number of days to carry out the inquiry"
+                      }
+                    ]
+                  }
+                } if data.inquiry.hasDays == 'Yes',
+                {
+                  key: {
+                    text: "Do you know the address of where the inquiry will take place?"
+                  },
+                  value: {
+                    html: data.inquiry.hasAddress
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "/projects/start-full-case/v4/edit-inquiry/has-address",
+                        text: "Change",
+                        visuallyHiddenText: "whether you know the inquiry address"
+                      }
+                    ]
+                  }
+                } if data.inquiry.hasAddress,
+                {
+                  key: {
+                    text: "Address"
+                  },
+                  value: {
+                    html: address
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "/projects/start-full-case/v4/edit-inquiry/address",
+                        text: "Change",
+                        visuallyHiddenText: "Inquiry address"
+                      }
+                    ]
+                  }
+                } if data.inquiry.hasAddress == 'Yes'
+              ]
+            }) if data.inquiry }}
+
+            <h3 class="govuk-heading-m">Inquiry estimates</h3>
+
+            {% if not data.inquiryEstimates %}
+              <p><a class="govuk-link" href="add-inquiry-estimates">Add inquiry estimates</a></p>
+            {% endif %}
+
+            {{ govukSummaryList({
+              rows: [
+                {
+                  key: {
+                    text: "Estimated preparation time"
+                  },
+                  value: {
+                    html: data.inquiryEstimates.estimatedPreparationTime | days
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "/projects/start-full-case/v4/edit-inquiry-estimates",
+                        text: "Change",
+                        visuallyHiddenText: "Estimated preparation time"
+                      }
+                    ]
+                  }
+                } if data.inquiryEstimates.estimatedPreparationTime,
+                {
+                  key: {
+                    text: "Estimated sitting time"
+                  },
+                  value: {
+                    html: data.inquiryEstimates.estimatedInquiryTime | days
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "/projects/start-full-case/v4/edit-inquiry-estimates",
+                        text: "Change",
+                        visuallyHiddenText: "Estimated sitting time"
+                      }
+                    ]
+                  }
+                } if data.inquiryEstimates.estimatedInquiryTime,
+                {
+                  key: {
+                    text: "Estimated reporting time"
+                  },
+                  value: {
+                    html: data.inquiryEstimates.estimatedReportingTime | days
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "/projects/start-full-case/v4/edit-inquiry-estimates",
+                        text: "Change",
+                        visuallyHiddenText: "Estimated reporting time"
+                      }
+                    ]
+                  }
+                } if data.inquiryEstimates.estimatedReportingTime
+              ]
+            }) if data.inquiryEstimates }}
+
+          </div>
+          <div class="app-panel">
+            <h2 class="govuk-heading-l">Rule 6 parties</h2>
+
+            {{ govukSummaryList({
+              rows: [
+                {
+                  key: {
+                    text: "Rule 6 parties"
+                  },
+                  value: {
+                    text: application.rule6Parties.length + " parties"
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "/projects/start-full-case/v4/rule-6-parties",
+                        text: "Change",
+                        visuallyHiddenText: "Rule 6 party"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }) }}
+          </div>
+    {% endif %}
+
+      <div class="app-panel">
+        <h2 class="govuk-heading-l">Documentation</h2>
+        {{ govukTable({
+          firstCellIsHeader: true,
+          head: [
+            {
+              text: "Documentation"
+            },
+            {
+              text: "Status"
+            },
+            {
+              text: "Received"
+            },
+            {
+              text: "Action"
+            }
+          ],
+          rows: [
+            [
+              {
+                html: "Appeal"
+              },
+              {
+                html: "Received"
+              },
+              {
+                html: 10 | daysAgo
+              },
+              {
+                html: '<a href="#">View</a>'
+              }
+            ],
+            [
+              {
+                html: "LPA questionnaire"
+              },
+              {
+                html: "Received"
+              },
+              {
+                html: 5 | daysAgo
+              },
+              {
+                html: '<a href="#">View</a>'
+              }
+            ],
+            [
+              {
+                html: "Rule 6 statements"
+              },
+              {
+                html: "Received"
+              },
+              {
+                html: "Not applicable"
+              },
+              {
+                html: '<a href="/projects/start-full-case/v4/rule-6-statements">View</a>'
+              }
+            ],
+            [
+              {
+                html: "Appellant proof of evidence and witnesses"
+              },
+              {
+                html: "Received"
+              },
+              {
+                html: 3 | daysAgo
+              },
+              {
+                html: '<a href="#">View</a>'
+              }
+            ],
+            [
+              {
+                html: "LPA proof of evidence and witnesses"
+              },
+              {
+                html: "Received"
+              },
+              {
+                html: 1 | daysAgo
+              },
+              {
+                html: '<a href="#">View</a>'
+              }
+            ]
+          ]
+        }) }}
+      </div>
+
+      <div class="app-panel">
+        <h2 class="govuk-heading-l">Costs</h2>
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Appellant costs application"
+              },
+              value: {
+                text: "1 documents"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "Item label"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "LPA costs application"
+              },
+              value: {
+                text: "1 documents"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "Item label"
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
+      </div>
+
+      <div class="app-panel">
+        <h2 class="govuk-heading-l">Contacts</h2>
+        {{ govukTable({
+          captionClasses: "govuk-table__caption--m",
+          firstCellIsHeader: true,
+          rows: [
+            [
+            {
+              text: "Appellant"
+            },
+            {
+              html: "Fiona Shell<br><a href='fiona.shell@gmail.com'>fiona.shell@gmail.com</a>"
+            },
+            {
+              html: "<a href='#'>Change</a>",
+              format: "numeric"
+            }
+          ],[
+            {
+              text: "Agent"
+            },
+            {
+              html: "Naomi Johnson<br><a href='naomi.jonhson@planningagency.co.uk'>naomi.jonhson@planningagency.co.uk</a>"
+            },
+            {
+              html: "<a href='#'>Change</a>",
+              format: "numeric"
+            }
+          ],[
+            {
+              text: "LPA"
+            },
+            {
+              html: "Tim Cooper<br><a href='name@localauthority.gov.uk'>tim.cooper@localauthority.gov.uk</a>"
+
+            },
+            {
+              html: "<a href='#'>Change</a>",
+              format: "numeric"
+            }
+          ]
+          ]
+        }) }}
+      </div>
+
+      <div class="app-panel">
+        <h2 class="govuk-heading-l">Team</h2>
+        {% include "/projects/start-full-case/v4/_includes/team.html" %}
+      </div>
+
+
+      <div class="app-panel">
+        <h2 class="govuk-heading-l">Case management</h2>
+        {% include "/projects/start-full-case/v4/_includes/case-management.html" %}
+      </div>
+
+      <div class="app-panel">
+        <h2 class="govuk-heading-l">Cancel appeal</h2>
+          <p class="govuk-body"><a href="cancel-appeal/cancel-reason">Cancel appeal</a></p>      
+        </div>
+
+    </div>
+  </div>
+{% endblock %}

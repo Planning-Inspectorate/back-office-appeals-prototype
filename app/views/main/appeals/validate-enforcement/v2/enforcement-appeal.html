@@ -1,0 +1,702 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Appeal form" %}
+{% set pageName = title %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: 'case-details'
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukNotificationBanner({
+        type: "success",
+        text: "Appeal marked as invalid"
+      }) if flash.length}}
+
+      <span class="govuk-caption-l">
+        Appeal {{appeal.id}} {% if appeal.isLeadAppeal %}(lead){% endif %}
+      </span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      <p class="govuk-body">
+       <a href="/main/appeals/{{appeal.id}}/appeal-form/request-missing-information" class="govuk-link">Request missing information</a>
+      </p>
+
+      <!--Prepare appeal-->
+
+      <section>
+        <h2 class="govuk-heading-m govuk-!-margin-top-4">1. Contact details</h2>
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Appellant’s contact details"
+              },
+              value: {
+                html: "Jane Doe<br>Applicant Ltd."
+              },
+
+              actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "appellant’s contact details"
+                    }
+                  ]
+                }
+            },
+            {
+              key: {
+                text: "Appellant 2 contact details"
+              },
+              value: {
+                html: "Jane Doe<br>Applicant Ltd.<br>ENF12345678"
+              },
+
+              actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "appellant’s contact details"
+                    }
+                  ]
+                }
+            },
+            {
+              key: {
+                text: "Agent’s contact details"
+              },
+              value: {
+                html: "No agent"
+              } if data['empty'] else
+              {
+                html: "Jane Doe<br>Applicant Ltd."
+              },
+              actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "agent’s contact details"
+                    }
+                  ]
+                }
+            }
+
+            ]
+          }) }}
+      </section>
+
+      <section>
+        <h2 class="govuk-heading-m govuk-!-margin-top-4">2. Application details</h2>
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Which local planning authority (LPA) do you want to appeal against?"
+              },
+              value: {
+                html: "Borough Council"
+              },
+              actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "local planning authority"
+                    }
+                  ]
+                }
+            },
+            {
+              key: {
+                text: "Enforcement reference number?"
+              },
+              value: {
+                html: "No"
+              } if data['empty'] else
+              {
+                html: "1234567"
+              },
+              actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "the enforcement reference number"
+                    }
+                  ]
+                }
+            },
+            {
+              key: {
+                text: "What is the issue date on your enforcement notice?"
+              },
+              value: {
+                html: "11 November 2025"
+              },
+              actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "description of development"
+                    }
+                  ]
+                }
+              },
+              {
+                key: {
+                  text: "What is the effective date on your enforcement notice?"
+                },
+                value: {
+                  html: "25 November 2025"
+                },
+                actions: {
+                    items: [
+                      {
+                        href: "#",
+                        text: "Change",
+                        visuallyHiddenText: "description of development"
+                      }
+                    ]
+                  }
+              }
+          ]
+        }) }}
+      </section>
+
+      <section>
+        <h2 class="govuk-heading-m govuk-!-margin-top-4">2. Land details</h2>
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "What is the address of the appeal site?"
+              },
+              value: {
+                html: "1 Aubrey Road<br>London<br>SE1 1AA"
+              },
+              actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "appeal site address"
+                    }
+                  ]
+                }
+            },
+            {
+              key: {
+                text: "Is the appeal site address your contact address?"
+              },
+              value: {
+                html: "Yes"
+              },
+              actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "grid reference"
+                    }
+                  ]
+                }
+            },
+
+
+            {
+              key: {
+                text: "What is your interest in the land?"
+              },
+              value: {
+                html: "Owner"
+              },
+              actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "appeal site area"
+                    }
+                  ]
+                }
+              },
+
+              {
+                key: {
+                  text: "Description of the land"
+                },
+                value: {
+                  html: "Example description"
+                },
+                actions: {
+                    items: [
+                      {
+                        href: "#",
+                        text: "Change",
+                        visuallyHiddenText: "your interest in the appeal site"
+                      }
+                    ]
+                  }
+              },
+              {
+                  key: {
+                    text: "Will an inspector need to access your land or property?"
+                  },
+                  value: {
+                    html: "No"
+                  },
+                  actions: {
+                      items: [
+                        {
+                          href: "#",
+                          text: "Change",
+                          visuallyHiddenText: "your interest in the appeal site"
+                        }
+                      ]
+                    }
+                },
+
+                {
+                  key: {
+                    text: "Are there any health and safety issues on the appeal site?"
+                  },
+                  value: {
+                    html: "No"
+                  },
+                  actions: {
+                      items: [
+                        {
+                          href: "#",
+                          text: "Change",
+                          visuallyHiddenText: "the description of development"
+                        }
+                      ]
+                    }
+                  }
+          ]
+        }) }}
+      </section>
+
+      <section>
+        <h2 class="govuk-heading-m govuk-!-margin-top-8">4. Gounds of appeal and supporting facts</h2>
+
+        {{ govukSummaryList({
+          classes: "app-summary-list--wider-actions",
+          rows: [
+          {
+            key: {
+              text: "Description of the alleged breach​"
+            },
+            value: {
+              html: "Example description"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "grounds and facts"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Grounds of appeal​"
+            },
+            value: {
+              html: "Ground (a)"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "grounds and facts"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Did you submit a planning application for the development on the enforcement notice?​"
+            },
+            value: {
+              html: "No"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "if you applied for planning permission and paid the application fee"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Facts for ground (a)​"
+            },
+            value: {
+              html: "Example facts"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "if you applied for planning permission and paid the application fee"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Do you have any documents to support your ground (a) facts?​"
+            },
+            value: {
+              html: "Yes"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "if you applied for planning permission and paid the application fee"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Ground (a) supporting documents​"
+            },
+            value: {
+              html: "<a href=’#’>example-file.pdf</a>"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "if you applied for planning permission and paid the application fee"
+                  }
+                ]
+              }
+          }
+
+          ]
+        }) }}
+      </section>
+
+      
+
+      <section>
+        <h2 class="govuk-heading-m govuk-!-margin-top-4">3. Procedure</h2>
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "How would you prefer us to decide your appeal?"
+              },
+              value: {
+                html: "Written representations"
+              },
+              actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "local planning authority"
+                    }
+                  ]
+                }
+            },
+            {
+              key: {
+                text: "Are there any other appeals linked to your development?"
+              },
+              value: {
+                html: "Yes: 0122234"
+              },
+              actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "the enforcement reference number"
+                    }
+                  ]
+                }
+            }
+          ]
+        }) }}
+      </section>
+
+      <section>
+        <h2 class="govuk-heading-m govuk-!-margin-top-8">5. Upload documents</h2>
+        {{ govukSummaryList({
+          classes: "app-summary-list--wider-actions",
+          rows: [
+
+            {
+              key: {
+                text: "Enforcement notice"
+              },
+              value: {
+                html: "<a href=’#’>example-file.pdf</a>"
+              },
+              actions: {
+                items: [
+            {
+              href: "#",
+              text: "Add",
+              visuallyHiddenText: "enforcement notice"
+            },
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "enforcement notice"
+            }
+            ]
+            }
+            },
+
+            {
+              key: {
+                text: "Enforcement plan"
+              },
+              value: {
+                html: "<a href=’#’>example-file.pdf</a>"
+              },
+              actions: {
+                items: [
+            {
+              href: "#",
+              text: "Add",
+              visuallyHiddenText: "enforcement plan"
+            },
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "enforcement plan"
+            }
+          ]}
+        },
+        {
+          key: {
+            text: "Do you plan to submit a planning obligation to support your appeal?"
+          },
+          value: {
+            html: "No"
+          } if data['empty'] else
+          {
+            html: "Yes"
+          },
+          actions: {
+            items: [
+              {
+                href: "Item URL",
+                text: "Add",
+                visuallyHiddenText: "Do you plan to submit a planning obligation to support your appeal?"
+              }
+            ]
+          }if data['empty'] else
+          {
+            items: [
+              {
+                href: "Item URL",
+                text: "Change",
+                visuallyHiddenText: "Do you plan to submit a planning obligation to support your appeal?"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "What is the status of your planning obligation?"
+          },
+
+          value: {
+            html: "Not answered"
+          } if data['empty'] else
+          {
+            html: "Finalised and ready to submit"
+          },
+          actions: {
+            items: [
+              {
+                href: "Item URL",
+                text: "Add",
+                visuallyHiddenText: "planning obligation status"
+              }
+            ]
+          }if data['empty'] else
+          {
+            items: [
+              {
+                href: "Item URL",
+                text: "Change",
+                visuallyHiddenText: "planning obligation status"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Planning obligation"
+          },
+          value: {
+            html: "No documents"
+          } if data['empty'] else
+          {
+            html: "<a href='#'>example-file.pdf</a>"
+          },
+          actions: {
+            items: [
+              {
+                href: "Item URL",
+                text: "Add",
+                visuallyHiddenText: "planning obligation"
+              }
+            ]
+          }if data['empty'] else
+          {
+            items: [
+        {
+          href: "#",
+          text: "Add",
+          visuallyHiddenText: "planning obligation"
+        },
+        {
+          href: "#",
+          text: "Change",
+          visuallyHiddenText: "planning obligation"
+        }
+      ]
+          }
+        },
+        {
+          key: {
+            text: "Application for an award of appeal costs"
+          },
+          value: {
+            html: "No documents"
+          } if data['empty'] else
+          {
+            html: "<a href='#'>example-file.pdf</a>"
+          },
+          actions: {
+            items: [
+              {
+                href: "Item URL",
+                text: "Add",
+                visuallyHiddenText: "application for an award of appeal costs"
+              }
+            ]
+          }if data['empty'] else
+          {
+            items: [
+        {
+          href: "#",
+          text: "Add",
+          visuallyHiddenText: "application for an award of appeal costs"
+        },
+        {
+          href: "#",
+          text: "Change",
+          visuallyHiddenText: "application for an award of appeal costs"
+        }
+      ]
+          }
+        },
+
+        {
+          key: {
+            text: "Other new supporting documents"
+          },
+          value: {
+            html: "No documents"
+          } if data['empty'] else
+          {
+            html: "<a href='#'>example-file.pdf</a>"
+          },
+          actions: {
+            items: [
+              {
+                href: "Item URL",
+                text: "Add",
+                visuallyHiddenText: "other new supporting documents"
+              }
+            ]
+          }if data['empty'] else
+          {
+            items: [
+        {
+          href: "#",
+          text: "Add",
+          visuallyHiddenText: "other new supporting documents"
+        },
+        {
+          href: "#",
+          text: "Change",
+          visuallyHiddenText: "other new supporting documents"
+        }
+      ]
+          }
+        }
+      ]
+    }) }}
+
+      </section>
+
+      <form method="post">
+
+      {{ govukRadios({
+        name: "reviewDecision",
+        fieldset: {
+          legend: {
+            text: "Review decision",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+          {
+            value: "Valid",
+            text: "Valid"
+          },
+          {
+            value: "Invalid",
+            text: "Invalid"
+          },
+          {
+            value: "Incomplete",
+            text: "Incomplete"
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

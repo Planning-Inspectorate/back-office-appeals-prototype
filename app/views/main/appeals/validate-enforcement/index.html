@@ -1,0 +1,108 @@
+{% extends "layouts/PINS-Simple-post-mvp.html" %}
+
+{% set title = "Validate enforcement" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = false %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Appeal a planning decision</span>
+    <h1 class="govuk-heading-l">{{ title }}</h1>
+
+    {{ govukTable({
+      captionClasses: "govuk-table__caption--m",
+      firstCellIsHeader: true,
+
+      rows: [
+        [
+          {
+            text: "Typical user",
+            classes: "govuk-!-width-one-third"
+          },
+          {
+            text: "Case officers"
+          }
+        ],
+        [
+          {
+            text: "User story"
+          },
+          {
+            html: "As a CO, <br> I want to validate an enforcement appeal,<br>
+              So that the case can progress and parties are notified about the progress of their appeal."
+          }
+        ],
+        [
+          {
+            text: "Jira ticket"
+          },
+          {
+            html: '<p class="govuk-body"><a href="https://pins-ds.atlassian.net/browse/A2-3912?atlOrigin=eyJpIjoiYTAwMTVhNzc4ZmRjNDIyYjgyNGY1OGZjMjk4ZjUxNWIiLCJwIjoiaiJ9</a>A2-3912">A2-3912</a></p>'
+          }
+        ]
+      ]
+    }) }}
+
+    <h2 class="govuk-heading-m">
+      Version 2
+      {{govukTag({
+          text: "In progress",
+          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+      })}}
+    </h2>
+
+    <h3 class="govuk-heading-s">Features:</h3>
+    <ul class='govuk-list govuk-list--bullet'>
+      <li>
+        Changes to flow based on <a href="https://app.mural.co/t/allpins6990/m/allpins6990/1754403277658/b1eb0fc2144a494655ab071bf33f48ce8622eba2">user research findings</a>
+      </li>
+      <li>
+        <b>Remove:</b> 'Did not receive more information' from Cancel flow
+      </li>
+      <li>
+        <b>Remove:</b> 'The enforcement notice is not valid' from Cancel flow
+      </li>
+    </ul>
+
+    {{ govukButton({
+      text: "View prototype",
+      href: "v2/case-details",
+      isStartButton: true
+    }) }}
+
+    
+    <h2 class="govuk-heading-m">
+      Version 1
+      {{govukTag({
+          text: "Research complete",
+          classes: "govuk-!-margin-left-2 govuk-tag--blue"
+      })}}
+    </h2>
+
+    <h3 class="govuk-heading-s">Features:</h3>
+    <ul class='govuk-list govuk-list--bullet'>
+      <li>
+        Mark an appeal as invalid
+      </li>
+      <li>
+        Mark an appeal as incomplete
+      </li><li>
+        Cancel an appeal
+      </li>
+    </ul>
+
+    {{ govukButton({
+      text: "View prototype",
+      href: "v1/case-details",
+      isStartButton: true
+    }) }}
+
+    </div>
+  </div>
+
+{% endblock %}

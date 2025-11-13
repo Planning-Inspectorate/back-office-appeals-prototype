@@ -1,0 +1,205 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = 'Check details and mark enforcement notice as invalid'  %}
+{% set pageName = title %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: 'javascript:history.back()'
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <span class="govuk-caption-l">Appeal 1223443</span>
+      <h1 class="govuk-heading-l">
+        {{title}}
+      </h1>
+<!--
+      {% set invalidReasonsHtml %}
+        {% if data['invalid'] %}
+          <ul>
+            {% for reason in data['invalid'] %}
+              <li>{{ reason }}</li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <span>No reasons selected</span>
+        {% endif %}
+      {% endset %}
+
+      -->
+
+      {{ govukSummaryList({
+        rows: [
+        {
+          key: { text: "Why are you cancelling the appeal?" },
+          value: { text: data['cancel-reason'] or "Appeal invalid" },
+          actions: {
+            items: [
+              {
+                href: "cancel-reason",
+                text: "Change",
+                visuallyHiddenText: "Cancel reason"
+              }
+            ]
+          }
+        },  
+        {
+            key: { text: "Why is the appeal invalid?" },
+            value: { text: data['invalid'] or "Appellant does not have a legal interest in the land"},
+            actions: {
+              items: [
+                {
+                  href: "appeal-invalid-reason",
+                  text: "Change",
+                  visuallyHiddenText: "Appeal invalid reason"
+                }
+              ]
+            }
+          },
+          {
+            key: { text: "Did the appellant send any information about their legal interest in the land?" },
+            value: { text: data['legalInterest'] or "Yes"},
+            actions: {
+              items: [
+                {
+                  href: "legal-interest-information",
+                  text: "Change",
+                  visuallyHiddenText: "legal interest information"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      {{ govukDetails({
+        summaryText: "Preview email to appellant",
+        html: '
+          <div class="app-email-preview">
+            <div class="app-email-preview__subject">
+              Subject: Your appeal is not valid: 1223443
+            </div>
+            <div class="app-email-preview__body">
+              <p class="govuk-body">
+                We did not receive an email to confirm your legal interest in the land.
+              </p>
+
+              <p class="govuk-body">
+                We have received the information you submitted with the details of your interest in the land and any supporting documents.
+              </p>
+
+              <p class="govuk-body">
+                We have reviewed the information and decided that you are not:
+              </p>
+
+              <ul class="govuk-list govuk-list--bullet">
+                <li>
+                  someone with a legal interest in the land
+                </li>
+                <li>
+                  a relevant occupier
+                </li>
+              </ul>
+
+              <p class="govuk-body">
+                We have marked your appeal as invalid.
+              </p>
+
+              <h2 class="govuk-heading-m">
+                Appeal details
+              </h2>
+              <div class="govuk-inset-text">
+                Appeal reference number: 1223443<br>
+                Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
+                Planning application reference: LPA12345678
+              </div>
+
+              <h2 class="govuk-heading-m">
+                What happens next
+              </h2>
+
+              <p class="govuk-body">Your appeal is now closed. We have told the local planning authority.</p>
+
+              <p class="govuk-body">The enforcement notice will not take effect unless we dismiss or you withdraw your other appeal 3845900.</p>
+
+              <p class="govuk-body">The compliance period for the enforcement notice starts from the effective date.</p>
+
+              <p class="govuk-body">If you challenge this decision in the High court, you must contact a lawyer.</p>
+
+              <p class="govuk-body">
+                Planning Inspectorate
+              </p>
+
+            </div>
+          </div>'
+        })}}
+
+      {{ govukDetails({
+        summaryText: "Preview email to LPA",
+        html: '
+          <div class="app-email-preview">
+            <div class="app-email-preview__subject">
+              Subject: Appeal invalid: 1223443
+            </div>
+            <div class="app-email-preview__body">
+
+              <h2 class="govuk-heading-m">
+                Appeal details
+              </h2>
+              <div class="govuk-inset-text">
+                Appeal reference number: 1223443<br>
+                Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
+                Planning application reference: LPA12345678
+              </div>
+
+              <h2 class="govuk-heading-m">
+                The appeal is not valid
+              </h2>
+
+              <p class="govuk-body">
+                We have reviewed the appeal and it is not valid.
+              </p>
+              <p class="govuk-body">
+                The appeal is now closed.
+              </p>
+
+              <h2 class="govuk-heading-m">
+                Why the appeal is invalid
+              </h2>
+
+              <p>
+                No legal interest in the land.
+              </p>
+
+              <h2 class="govuk-heading-m">
+                Feedback
+              </h2>
+
+              <p>
+                This is a new service. Help us improve it and <a href="#">give your feedback) opens in a new tab</a>.
+              </p>
+
+              <p class="govuk-body">
+                Planning Inspectorate
+              </p>
+              <p class="govuk-body">
+              caseofficers@planninginspectorate.gov.uk
+            </p>
+            </div>
+          </div>'
+        })}}
+
+      <form method="post">
+        {{ govukButton({
+          text: "Mark appeal as invalid"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

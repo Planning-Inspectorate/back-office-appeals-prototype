@@ -1,0 +1,118 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Case details" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+       <form method="post" validate>
+        <span class="govuk-caption-xl">Appeal 2110166</span>
+        {{ govukCheckboxes({
+          name: 'grounds',
+          fieldset: {
+            legend: {
+              text: "Which grounds do not match the facts?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Ground A",
+              text: "Ground A",
+              conditional: {
+                html: govukInput({
+                  name: "reasonA",
+                  label: {
+                    text: "Enter a reason"
+                  }
+                })
+              }
+            },
+            {
+              value: "Ground B",
+              text: "Ground B",
+              conditional: {
+                html: govukInput({
+                  name: "reasonB",
+                  label: {
+                    text: "Enter a reason"
+                  }
+                })
+              }
+            },            {
+              value: "Ground C",
+              text: "Ground C",
+              conditional: {
+                html: govukInput({
+                  name: "reasonC",
+                  label: {
+                    text: "Enter a reason"
+                  }
+                })
+              }
+            },
+            {
+              value: "Ground D",
+              text: "Ground D",
+              conditional: {
+                html: govukInput({
+                  name: "reasonD",
+                  label: {
+                    text: "Enter a reason"
+                  }
+                })
+              }
+            },
+            {
+              value: "Ground E",
+              text: "Ground E",
+              conditional: {
+                html: govukInput({
+                  name: "reasonE",
+                  label: {
+                    text: "Enter a reason"
+                  }
+                })
+              }
+            },
+            {
+              value: "Ground F",
+              text: "Ground F",
+              conditional: {
+                html: govukInput({
+                  name: "reasonF",
+                  label: {
+                    text: "Enter a reason"
+                  }
+                })
+              }
+            },
+            {
+              value: "Ground G",
+              text: "Ground G",
+              conditional: {
+                html: govukInput({
+                  name: "reasonG",
+                  label: {
+                    text: "Enter a reason"
+                  }
+                })
+              }
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+	  </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

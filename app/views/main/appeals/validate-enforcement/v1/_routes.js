@@ -1,6 +1,21 @@
 const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
 
+// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+// SETTING UP
+// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+router.get('*', function(req, res, next){
+
+  // Change the service name for this feature
+  res.locals['serviceName'] = 'Casework Back Office System - Appeals'
+
+  // Add return to task list
+  res.locals['return'] = false
+
+  next()
+})
+
 router.post('/cancel-appeal/cancel-reason', function (req, res) {
     const reason = req.session.data['cancel-reason']
     if (reason === 'The enforcement notice is invalid') {
@@ -166,21 +181,6 @@ router.post('/linked-appeals-check', (req, res) => {
 
   router.post('/cancel-appeal/check-information', function (req, res) {
     res.redirect('../case-details-cancelled')
-  })
-
-  router.get('/validate-enforcement/case-details', function (req, res) {
-    const appealStatus = req.session.data['appealStatus']
-  
-    // Clear it so it only shows once
-    delete req.locals.data['appealStatus']
-  
-    // Pass it to the page
-    res.render('main/appeals/validate-enforcement/case-details', {
-      data: {
-        ...req.session.data,
-        appealStatus
-      }
-    })
   })
 
 // Add your routes above the module.exports line

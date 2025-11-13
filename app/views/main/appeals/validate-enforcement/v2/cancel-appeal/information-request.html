@@ -1,0 +1,45 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Case details" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form method="post" validate>
+        <span class="govuk-caption-xl">Appeal 2110166</span>
+        {{ govukCheckboxes({
+          name: "informationRequest",
+          fieldset: {
+            legend: {
+              text: "What information did you request?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "Select all that apply"
+          },
+          items: [
+            {
+              value: "Grounds and facts",
+              text: "Grounds and facts"
+            },
+            {
+              value: "Other information",
+              text: "Other information"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+	  </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

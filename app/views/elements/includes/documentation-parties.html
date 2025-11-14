@@ -93,54 +93,45 @@
   </tbody>
 </table>
 
-<h3 class="govuk-heading-m">
-  Rule 6 parties
-</h3>
+{% if data['procedure'] == 'inquiry' %}
 
-<table class="govuk-table">
-  <thead class="govuk-table__head">
-    <tr class="govuk-table__row">
-      <th scope="col" class="govuk-table__header">Documentation</th>
-      <th scope="col" class="govuk-table__header">Status</th>
-      <th scope="col" class="govuk-table__header">Date</th>
-      <th scope="col" class="govuk-table__header govuk-!-text-align-right">Action</th>
-    </tr>
-  </thead>
-  <tbody class="govuk-table__body">
+  <h3 class="govuk-heading-m">
+    Rule 6 parties
+  </h3>
 
-    <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header">Questionnaire</th>
-      <td class="govuk-table__cell">Complete</td>
-      <td class="govuk-table__cell">3 November 2025</td>
-      <td class="govuk-table__cell govuk-!-text-align-right"><a href="/appeals-service/appeal-details/46087/lpa-questionnaire/17211?backUrl=%2Fappeals-service%2Fappeal-details%2F46087" data-cy="review-lpa-questionnaire" class="govuk-link">View<span class="govuk-visually-hidden"> L P A questionnaire</span></a></td>
-    </tr>
-    <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header">Statement</th>
-      <td class="govuk-table__cell">Shared</td>
-      <td class="govuk-table__cell">22 January 2025</td>
-      <td class="govuk-table__cell govuk-!-text-align-right"><a href="/appeals-service/appeal-details/46087/lpa-statement?backUrl=%2Fappeals-service%2Fappeal-details%2F46087" data-cy="view-lpa-statement" class="govuk-link">View<span class="govuk-visually-hidden"> LPA statement</span></a></td>
-    </tr>
+  <h3 class="govuk-heading-s">
+    St Agnes Church Community
+  </h3>
 
-    {% if data['procedure'] == 'written' %}
+  <table class="govuk-table">
+    <thead class="govuk-table__head">
       <tr class="govuk-table__row">
-        <th scope="row" class="govuk-table__header">Final comments</th>
-        <td class="govuk-table__cell">Awaiting final comments</td>
-        <td class="govuk-table__cell">Due by </td>
-        <td class="govuk-table__cell govuk-!-text-align-right"></td>
+        <th scope="col" class="govuk-table__header">Documentation</th>
+        <th scope="col" class="govuk-table__header">Status</th>
+        <th scope="col" class="govuk-table__header">Date</th>
+        <th scope="col" class="govuk-table__header govuk-!-text-align-right">Action</th>
       </tr>
-    {% endif %}
+    </thead>
+    <tbody class="govuk-table__body">
 
-    {% if data['procedure'] == 'inquiry' %}
-    <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header">Proof of evidence and witness</th>
-      <td class="govuk-table__cell">Received</td>
-      <td class="govuk-table__cell">22 January 2025</td>
-      <td class="govuk-table__cell govuk-!-text-align-right"><a href="/appeals-service/appeal-details/46087/proof-of-evidence/lpa/manage-documents?backUrl=%2Fappeals-service%2Fappeal-details%2F46087" data-cy="view-lpa-proofs-evidence" class="govuk-link">View<span class="govuk-visually-hidden"> LPA proof of evidence</span></a></td>
-    </tr>
-    {% endif %}
+      <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__header">Statement</th>
+        <td class="govuk-table__cell">Shared</td>
+        <td class="govuk-table__cell">22 January 2025</td>
+        <td class="govuk-table__cell govuk-!-text-align-right"><a href="/appeals-service/appeal-details/46087/lpa-statement?backUrl=%2Fappeals-service%2Fappeal-details%2F46087" data-cy="view-lpa-statement" class="govuk-link">View<span class="govuk-visually-hidden"> LPA statement</span></a></td>
+      </tr>
 
-  </tbody>
-</table>
+      <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__header">Proof of evidence and witness</th>
+        <td class="govuk-table__cell">Received</td>
+        <td class="govuk-table__cell">22 January 2025</td>
+        <td class="govuk-table__cell govuk-!-text-align-right"><a href="/appeals-service/appeal-details/46087/proof-of-evidence/lpa/manage-documents?backUrl=%2Fappeals-service%2Fappeal-details%2F46087" data-cy="view-lpa-proofs-evidence" class="govuk-link">View<span class="govuk-visually-hidden"> LPA proof of evidence</span></a></td>
+      </tr>
+
+    </tbody>
+  </table>
+
+{% endif %}
 
 <h3 class="govuk-heading-m">
   Interested parties

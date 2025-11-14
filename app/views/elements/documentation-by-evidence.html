@@ -1,0 +1,47 @@
+{% extends "layouts/PINS-admin-post-mvp.html" %}
+
+{% set title = "Documentation by evidence" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+{% set pageId = 'elements' %}
+
+{% set back = false %}
+
+{% set prototypeLinks = [
+  {
+    href: '?procedure=written',
+    text: 'Procedure is Written representations'
+  },
+  {
+    href: '?procedure=inquiry',
+    text: 'Procedure is Inquiry'
+  }
+
+] %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+    {% include "/elements/includes/side-navigation.html" %}
+
+    <div class="govuk-grid-column-three-quarters">
+      <h1 class="govuk-heading-xl">
+        {{ title }}
+      </h1>
+
+      <p class="govuk-body-l">
+        Where to find submissions and documents, grouped by evidence.
+      </p>
+
+      <p class="govuk-body">
+        To use this pattern we would need to increment the size of all headings on the page.
+      </p>
+
+      <hr class="govuk-section-break govuk-section-break--visible govuk-!-margin-bottom-6">
+
+      {% include "/elements/includes/documentation-evidence.html" %}
+
+    </div>
+  </div>
+
+{% endblock %}

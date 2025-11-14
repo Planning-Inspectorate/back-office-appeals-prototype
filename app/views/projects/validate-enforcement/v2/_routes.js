@@ -37,6 +37,10 @@ router.post('/cancel-appeal/cancel-reason', function (req, res) {
     res.redirect('check-legal-interest')
   })
 
+  router.post('/cancel-appeal/check-legal-interest', function (req, res) {
+    res.redirect('../appeal-invalid')
+  })
+
   router.post('/cancel-appeal/upload-withdrawal', function (req, res) {
     res.redirect('check-withdraw')
   })
@@ -51,8 +55,7 @@ router.post('/cancel-appeal/cancel-reason', function (req, res) {
     } else if (reviewDecision === 'Incomplete') {
       res.redirect('appeal-incomplete-reason')
     } else {
-      // If "Valid" or nothing selected
-      res.redirect('enforcement-appeal')
+      res.redirect('ground-a')
     }
   })
 
@@ -103,7 +106,7 @@ router.post('/linked-appeals-check', (req, res) => {
     const reasons = req.session.data['incomplete'] || []  // always an array
     if (reasons.includes('Grounds and facts do not match')) {
       res.redirect('grounds')
-    } else if (reasons.includes('Waiting for the appellant to submit an application and pay the fee')) {
+    } else if (reasons.includes('Waiting for the appellant to pay the fee')) {
         res.redirect('update-due-date')
     } else if (reasons.includes('Ground (a) barred')) {
         res.redirect('other-grounds')
@@ -111,7 +114,7 @@ router.post('/linked-appeals-check', (req, res) => {
         res.redirect('update-due-date')
     } else {
       // fallback or default route
-      res.redirect('grounds')
+      res.redirect('appeal-incomplete-reason')
     }
   })
 
@@ -135,16 +138,20 @@ router.post('/linked-appeals-check', (req, res) => {
     res.redirect('enforcement-appeal-incomplete')
   })
 
+  router.post('/check', function (req, res) {
+    res.redirect('appeal-invalid')
+  })
+
   router.post('/check-invalid', function (req, res) {
     res.redirect('case-details-invalid')
   })
 
   router.post('/check-incomplete', function (req, res) {
-    res.redirect('case-details-incomplete')
+    res.redirect('enforcement-appeal-incomplete')
   })
 
-  router.post('/check-fee', function (req, res) {
-    res.redirect('case-details-cancelled')
+  router.post('/cancel-appeal/check-fee', function (req, res) {
+    res.redirect('../case-details-cancelled')
   })
 
   router.post('/check-appeal-incomplete', function (req, res) {
@@ -166,6 +173,18 @@ router.post('/linked-appeals-check', (req, res) => {
 
   router.post('/cancel-appeal/check-information', function (req, res) {
     res.redirect('../case-details-cancelled')
+  })
+
+  router.post('/ground-a', function (req, res) {
+    res.redirect('valid-date')
+  })
+
+  router.post('/valid-date', function (req, res) {
+    res.redirect('check-valid')
+  })
+
+  router.post('/check-valid', function (req, res) {
+    res.redirect('appeal-valid')
   })
 
 // Add your routes above the module.exports line

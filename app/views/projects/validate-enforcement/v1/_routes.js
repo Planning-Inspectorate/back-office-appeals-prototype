@@ -158,8 +158,8 @@ router.post('/linked-appeals-check', (req, res) => {
     res.redirect('case-details-incomplete')
   })
 
-  router.post('/check-fee', function (req, res) {
-    res.redirect('case-details-cancelled')
+  router.post('/cancel-appeal/check-fee', function (req, res) {
+    res.redirect('../case-details-cancelled')
   })
 
   router.post('/check-appeal-incomplete', function (req, res) {
@@ -181,6 +181,10 @@ router.post('/linked-appeals-check', (req, res) => {
 
   router.post('/cancel-appeal/check-information', function (req, res) {
     res.redirect('../case-details-cancelled')
+  })
+
+  router.post('/check', function (req, res) {
+    res.redirect('appeal-invalid')
   })
 
 

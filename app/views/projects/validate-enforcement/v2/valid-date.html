@@ -1,6 +1,6 @@
 {% extends "layouts/PINS.html" %}
 
-{% set pageName="Update appeal due date" %}
+{% set pageName="Valid date" %}
 
 {% block content %}
 
@@ -13,13 +13,17 @@
 
        <form method="post" validate>
 
+        <h1 class="govuk-heading-l">{{pageName}}</h1>
+
+        <p class="govuk-body">This is the date all case documentation was recevied and the appeal was valid.</p>
+
        {{ govukDateInput({
         id: "date",
         fieldset: {
           legend: {
-            text: pageName,
+            text: "Enter valid date for case",
             isPageHeading: true,
-            classes: "govuk-fieldset__legend--l"
+            classes: "govuk-fieldset__legend--m"
           }
         },
         hint: {
@@ -46,6 +50,7 @@
           }
         ]
        }) }}
+
         {{ govukButton({
           text: "Continue"
         }) }}

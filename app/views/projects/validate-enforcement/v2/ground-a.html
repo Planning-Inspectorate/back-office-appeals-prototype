@@ -1,6 +1,6 @@
 {% extends "layouts/PINS.html" %}
 
-{% set pageName="Does the appellant have any other linked enforcement appeals?" %}
+{% set pageName="Is the appeal ground (a) barred?" %}
 
 {% block content %}
 
@@ -14,7 +14,7 @@
        <form method="post" validate>
 
         {{ govukRadios({
-          name: 'linkedAppeals',
+          name: "groundA",
           fieldset: {
             legend: {
               text: pageName,
@@ -33,6 +33,7 @@
             }
           ]
         }) }}
+        
         {{ govukButton({
           text: "Continue"
         }) }}

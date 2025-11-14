@@ -30,6 +30,14 @@ href: 'javascript:history.back()'
       {% endif %}
     {% endset %}
 
+    {% set linkedAnswer %}
+    {% if data['linkedAppeals'] in ['Yes', 'No'] %}
+      {{ data['linkedAppeals'] }}
+      {% else %}
+         Yes
+      {% endif %}
+    {% endset %}
+
     {# --- Base summary list rows --- #}
     {% set summaryRows = [
       {
@@ -77,7 +85,7 @@ href: 'javascript:history.back()'
       {% set summaryRows = summaryRows.concat([
         {
           key: { text: "Does the appellant have any other linked enforcement appeals?" },
-          value: { text: data['linkedAppeals'] or "Not provided" },
+          value: { text: linkedAnswer },
           actions: {
             items: [
               { href: "linked-appeals-check", text: "Change", visuallyHiddenText: "linked appeals" }
@@ -153,7 +161,9 @@ href: 'javascript:history.back()'
           </div>'
       }) }}
     {% endif %}
-
+    <p class="govuk-body">
+      We will mark the appeal as invalid and send an email to the relevant parties.
+    </p>
     <form method="post">
       {{ govukButton({ text: "Mark appeal as invalid" }) }}
     </form>

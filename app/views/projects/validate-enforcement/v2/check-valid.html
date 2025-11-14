@@ -1,0 +1,112 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = 'Check details and mark appeal as valid' %}
+{% set pageName = title %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+text: "Back",
+href: 'javascript:history.back()'
+}) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+
+    <span class="govuk-caption-l">Appeal {{ data['appealReference'] or '1223443' }}</span>
+    <h1 class="govuk-heading-l">{{ title }}</h1>
+
+    {% set groundAbarred %}
+    {% if data['groundA'] in ['Yes', 'No'] %}
+      {{ data['groundA'] }}
+      {% else %}
+         Yes
+      {% endif %}
+    {% endset %}
+
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "Review decision"
+          },
+          value: {
+            text: "Valid"
+          },
+          actions: {
+            items: [
+              {
+                href: "enforcement-appeal",
+                text: "Change",
+                visuallyHiddenText: "review decision"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Is the appeal ground (a) barred"
+          },
+          value: {
+            text: groundAbarred
+          },
+          actions: {
+            items: [
+              {
+                href: "ground-a",
+                text: "Change",
+                visuallyHiddenText: "ground a barred"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Valid date for case"
+          },
+          value: {
+            text: "14 November 2025"
+          },
+          actions: {
+            items: [
+              {
+                href: "valid-date",
+                text: "Change",
+                visuallyHiddenText: "valid date for case"
+              }
+            ]
+          }
+        }
+      ]
+    }) }}
+
+
+
+    {# --- Email previews --- #}
+
+      {{ govukDetails({
+        summaryText: "Preview email to appellant",
+        html: '
+          <div class="app-email-preview">
+            <div class="app-email-preview__subject">
+              Subject: Your appeal is valid: ' ~ (data["appealReference"] or "1223443") ~ '
+            </div>
+            <div class="app-email-preview__body">
+
+              <p class="govuk-body"><a href="#">Find out more about the enforcement appeal process</a>.</p>
+              <p class="govuk-body">Planning Inspectorate</p>
+            </div>
+          </div>'
+      }) }}
+
+       <p class="govuk-body">
+      We will mark the appeal as valid and send an email to the relevant parties.
+    </p>
+    <form method="post">
+      {{ govukButton({ text: "Mark appeal as valid" }) }}
+    </form>
+
+  </div>
+</div>
+{% endblock %}

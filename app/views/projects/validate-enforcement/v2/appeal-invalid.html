@@ -1,7 +1,7 @@
 {% extends "layouts/bo.html" %}
 
 {% set title = "Appeal form" %}
-{% set pageName = title %}
+{% set pageName = title + ' - Planning Inspectorate'%}
 
 {% block beforeContent %}
 {{ govukBackLink({
@@ -16,10 +16,10 @@
 
       {% set html %}
       <h3 class="govuk-notification-banner__heading">
-        Appeal marked as incomplete
+        Appeal marked as invalid
       </h3>
     {% endset %}
-
+    
     {{ govukNotificationBanner({
       html: html,
       type: "success"
@@ -337,6 +337,23 @@
           },
           {
             key: {
+              text: "Did you submit a planning application for the development on the enforcement notice?​"
+            },
+            value: {
+              html: "No"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "if you applied for planning permission and paid the application fee"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
               text: "Facts for ground (a)​"
             },
             value: {
@@ -385,30 +402,13 @@
                   }
                 ]
               }
-            },
-            {
-              key: {
-                text: "Did you pay the application fee?​"
-              },
-              value: {
-                html: "No"
-              },
-              actions: {
-                  items: [
-                    {
-                      href: "#",
-                      text: "Change",
-                      visuallyHiddenText: "if you applied for planning permission and paid the application fee"
-                    }
-                  ]
-                }
-            }
-            
+          }
+
           ]
         }) }}
       </section>
 
-      
+
 
       <section>
         <h2 class="govuk-heading-m govuk-!-margin-top-4">3. Procedure</h2>
@@ -667,7 +667,7 @@
       ]
     }) }}
 
-      </section>
+    </section>
 
       <form method="post">
 

@@ -331,23 +331,6 @@
           },
           {
             key: {
-              text: "Did you submit a planning application for the development on the enforcement notice?​"
-            },
-            value: {
-              html: "No"
-            },
-            actions: {
-                items: [
-                  {
-                    href: "#",
-                    text: "Change",
-                    visuallyHiddenText: "if you applied for planning permission and paid the application fee"
-                  }
-                ]
-              }
-          },
-          {
-            key: {
               text: "Facts for ground (a)​"
             },
             value: {
@@ -396,7 +379,41 @@
                   }
                 ]
               }
-          }
+            },
+            {
+              key: {
+                text: "Did you pay the application fee?​"
+              },
+              value: {
+                html: "Yes"
+              },
+              actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "if you applied for planning permission and paid the application fee"
+                    }
+                  ]
+                }
+            },
+            {
+              key: {
+                text: "Application fee receipt"
+              },
+              value: {
+                html: "<a href=’#’>receipt.pdf</a>"
+              },
+              actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Change",
+                      visuallyHiddenText: "if you applied for planning permission and paid the application fee"
+                    }
+                  ]
+                }
+            }
 
           ]
         }) }}

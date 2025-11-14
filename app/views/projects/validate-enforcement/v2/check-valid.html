@@ -25,6 +25,17 @@ href: 'javascript:history.back()'
       {% endif %}
     {% endset %}
 
+    {# Default to No #}
+    {% set otherInformation = "No" %}
+    
+    {% if data['otherInfo'] == "Yes" %}
+      {% if data['otherInfoText'] %}
+        {% set otherInformation = "Yes: " + data['otherInfoText'] %}
+      {% else %}
+        {% set otherInformation = "Yes" %}
+      {% endif %}
+    {% endif %}
+
     {{ govukSummaryList({
       rows: [
         {
@@ -46,17 +57,17 @@ href: 'javascript:history.back()'
         },
         {
           key: {
-            text: "Is the appeal ground (a) barred"
+            text: "Do you want to add any other information?"
           },
           value: {
-            text: groundAbarred
+            text: otherInformation
           },
           actions: {
             items: [
               {
-                href: "ground-a",
+                href: "other-information-valid",
                 text: "Change",
-                visuallyHiddenText: "ground a barred"
+                visuallyHiddenText: "other information"
               }
             ]
           }

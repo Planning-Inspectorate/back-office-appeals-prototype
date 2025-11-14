@@ -55,19 +55,7 @@ router.post('/cancel-appeal/cancel-reason', function (req, res) {
     } else if (reviewDecision === 'Incomplete') {
       res.redirect('appeal-incomplete-reason')
     } else {
-      res.redirect('ground-a')
-    }
-  })
-
-  router.post('/enforcement-appeal-incomplete', function (req, res) {
-    const reviewDecision = req.session.data['reviewDecision']
-    if (reviewDecision === 'Invalid') {
-      res.redirect('appeal-invalid-reason')
-    } else if (reviewDecision === 'Incomplete') {
-      res.redirect('appeal-incomplete-reason')
-    } else {
-      // If "Valid" or nothing selected
-      res.redirect('enforcement-appeal')
+      res.redirect('other-information-valid')
     }
   })
 
@@ -175,7 +163,7 @@ router.post('/linked-appeals-check', (req, res) => {
     res.redirect('../case-details-cancelled')
   })
 
-  router.post('/ground-a', function (req, res) {
+  router.post('/other-information-valid', function (req, res) {
     res.redirect('valid-date')
   })
 

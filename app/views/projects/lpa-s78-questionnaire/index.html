@@ -24,6 +24,36 @@
 
     <section class="govuk-!-margin-bottom-6">
 
+      <h2 class="govuk-heading-m">Version 3
+        {{govukTag({
+          text: "In progress",
+          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+        })}}
+      </h2>
+
+      <p class="govuk-body">
+        Updates in this version include:
+      </p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          removed late documents section
+        </li>
+        <li>
+          added late documents tag
+        </li>
+      </ul>
+
+      {{ govukButton({
+        text: "View prototype",
+        href: "/projects/lpa-s78-questionnaire/v3/case-details?case-stage=questionnaire&questionnaire=received",
+        isStartButton: true
+      }) }}
+
+    </section>
+
+    <section class="govuk-!-margin-bottom-6">
+
       <h2 class="govuk-heading-m">Version 2
         {{govukTag({
           text: "In progress",

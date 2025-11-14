@@ -1,0 +1,92 @@
+{% extends "layouts/PINS.html" %}
+
+{% set title = 'LPA questionnaire' %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    html: 'Back to appeals',
+    href: '#'
+  }) }}
+{% endblock %}
+
+{% set prototypeLinks = [
+  {
+    href: '?answers=empty',
+    text: 'Empty LPAQ'
+  } if data['answers'] != 'empty',
+  {
+    href: '?answers=full',
+    text: 'Full LPAQ'
+  } if data['answers'] == 'empty',
+
+  {
+    href: '?environment-schedule=2',
+    text: 'Environmental Impact Assessment schedule 2'
+  } if data['environment-schedule'] != '2',
+  {
+    href: '?environment-schedule=',
+    text: 'Environmental Impact Assessment schedule 1'
+  } if data['environment-schedule'] == '2'
+] %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Appeal 2110166</span>
+      <h1 class="govuk-heading-l">
+        {{ title }}
+      </h1>
+
+    </div>
+    <div class="govuk-grid-column-full">
+      {% include "/includes/appeal-content/lpa-s78-questionnaire-meta" %}
+      {% include "./task-list__constraints.html" %}
+      {% include "./task-list__environmental-impact-assessment.html" %}
+      {% include "./task-list__notified.html" %}
+      {% include "./task-list__consultation.html" %}
+      {% include "./task-list__po-report.html" %}
+      {% include "./task-list__site-access.html" %}
+      {% include "./task-list__appeal-process.html" %}
+      {% include "./task-list__additional-docs.html" %}
+
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+
+          {{ govukRadios({
+            name: "lpaq-outcome",
+            fieldset: {
+              legend: {
+                text: "What’s the outcome of your review?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            items: [
+              {
+                value: "LPA questionnaire is complete",
+                text: "LPA questionnaire is complete"
+              },
+              {
+                value: "LPA questionnaire is incomplete",
+                text: "LPA questionnaire is incomplete"
+              }
+            ]
+          }) }}
+
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+
+  	  </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

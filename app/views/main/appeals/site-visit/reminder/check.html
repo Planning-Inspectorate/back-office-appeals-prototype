@@ -1,6 +1,6 @@
 {% extends "layouts/bo.html" %}
 
-{% set title = "Check details" %}
+{% set title = "Check details and update site visit reminder date" %}
 {% set pageName = title %}
 
 {% set back = true %}
@@ -33,7 +33,7 @@
           value: { text: (visitDate or "12 February 2026") },
           actions: {
             items: [
-              { href: "visit-type", text: "Change", visuallyHiddenText: "change-reminder-date" }
+              { href: "change-reminder-date", text: "Change", visuallyHiddenText: "change-reminder-date" }
             ]
           }
         }
@@ -43,7 +43,7 @@
     
       <form method="post">
         {{ govukButton({
-          text: "Confirm",
+          text: "Update site visit reminder date",
           href: "case-details--success"
         }) }}
       </form>

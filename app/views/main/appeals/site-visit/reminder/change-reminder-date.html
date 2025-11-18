@@ -14,17 +14,11 @@
         <span class="govuk-caption-l">Appeal 6021709</span>
         <h1 class="govuk-heading-l">{{title}}</h1>
 
-        <p class="govuk-body">Changing this date may change the case’s position in your list.
-        </p>
-
-        <p class="govuk-body">You can change it again later if needed.</p>
-
         {{ govukDateInput({
           id: "whatever",
           fieldset: {
             legend: {
-              text: "Date",
-              isPageHeading: false,
+              isPageHeading: true,
               classes: "govuk-fieldset__legend--m"
             }
           },

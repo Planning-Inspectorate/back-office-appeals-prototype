@@ -8,31 +8,14 @@
 {% block content %}
 
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
+  <div class="govuk-grid-full">
 
-    {% set html %}
-  <h3 class="govuk-notification-banner__heading">
-    Site visit reminder date updated
-  </h3>
-{% endset %}
-
-{{ govukNotificationBanner({
-  html: html,
-  type: "success"
-}) }}
-
-</div>
-</div>
-
-<div class="govuk-grid-full">
-  <span class="govuk-caption-xl">{{title}}</span>
-  <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">Case details</h1>
-    <p>
-      <strong class="govuk-tag govuk-tag--green govuk-!-margin-bottom-5">Site visit ready to set up</strong>
-      <strong class="govuk-tag govuk-tag--grey govuk-!-margin-bottom-5">Child</strong>
-    </p>
-
-
+<span class="govuk-caption-xl">{{title}}</span>
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">Case details</h1>
+      <p>
+        <strong class="govuk-tag govuk-tag--green govuk-!-margin-bottom-5">Ready to start</strong>
+        <strong class="govuk-tag govuk-tag--grey govuk-!-margin-bottom-5">Child</strong>
+      </p>
 
 {{ govukSummaryList({
   classes: "govuk-summary-list--no-border",
@@ -211,60 +194,7 @@ text: "Note stuff here"
       }) }}
     </div>
 
-    <div class="app-panel">
-      <h2 class="govuk-heading-l">Site</h2>
-
-        {{ govukButton({
-            text: "Set up site visit"
-        }) }}
-
-        <h2 class="govuk-heading-m">Site visit reminder date</h2>
-
-        {{ govukSummaryList({
-            rows: [
-                {
-                    key: {
-                        text: "Date"
-                    },
-                    value: {
-                        text: "12 January 2026"
-                    },
-                    actions: {
-                        items: [
-                            {
-                                href: "change-reminder-date",
-                                text: "Change",
-                                visuallyHiddenText: "Item label"
-                            }
-                        ]
-                    }
-                }
-            ]
-        }) }}
-
-        <h2 class="govuk-heading-m">Site visit requests</h2>
-
-        {{ govukSummaryList({
-            rows: [
-                {
-                    key: {
-                        text: "Interested party and neighbour addresses"
-                    },
-                    value: {
-                        text: "No addresses"
-                    },
-                    actions: {
-                        items: [
-                            {
-                                href: "Item URL",
-                                text: "Add",
-                                visuallyHiddenText: "Item label"
-                            }
-                        ]
-                    }
-                }
-            ]
-        }) }}
+    <!--include site details-->
 
     <div class="app-panel">
       <h2 class="govuk-heading-l">Timetable</h2>
@@ -1003,6 +933,5 @@ text: "Note stuff here"
     </div>
 
   </div>
-</div>
 </div>
 {% endblock %}

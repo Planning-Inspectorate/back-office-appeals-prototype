@@ -10,10 +10,12 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-full">
 
-
-    <h1 class="govuk-heading-xl">{{title}} <strong class="govuk-tag govuk-tag--green">
-      Site visit ready to set up
-      </strong></h1>
+<span class="govuk-caption-xl">{{title}}</span>
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">Case details</h1>
+      <p>
+        <strong class="govuk-tag govuk-tag--green govuk-!-margin-bottom-5">Site visit ready to set up</strong>
+        <strong class="govuk-tag govuk-tag--grey govuk-!-margin-bottom-5">Child</strong>
+      </p>
 
 {{ govukSummaryList({
   classes: "govuk-summary-list--no-border",
@@ -194,10 +196,6 @@ text: "Note stuff here"
 
     <div class="app-panel">
       <h2 class="govuk-heading-l">Site</h2>
-      
-        {{ govukButton({
-            text: "Set up site visit"
-        }) }}
 
         <h2 class="govuk-heading-m">Site visit reminder date</h2>
 
@@ -222,6 +220,10 @@ text: "Note stuff here"
                 }
             ]
         }) }}
+
+        {{ govukButton({
+          text: "Set up site visit"
+      }) }}
 
         <h2 class="govuk-heading-m">Site visit requests</h2>
 

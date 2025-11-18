@@ -24,13 +24,14 @@
 </div>
 </div>
 
-<div class="govuk-grid-row">
   <div class="govuk-grid-full">
 
-
-    <h1 class="govuk-heading-xl">{{title}} <strong class="govuk-tag govuk-tag--green">
-      Issue decision
-      </strong></h1>
+    <span class="govuk-caption-xl">{{title}}</span>
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">Case details</h1>
+      <p>
+        <strong class="govuk-tag govuk-tag--green govuk-!-margin-bottom-5">Issue decision</strong>
+        <strong class="govuk-tag govuk-tag--grey govuk-!-margin-bottom-5">Child</strong>
+      </p>
 
 {{ govukSummaryList({
   classes: "govuk-summary-list--no-border",
@@ -1019,4 +1020,5 @@ text: "Note stuff here"
 
   </div>
 </div>
+
 {% endblock %}

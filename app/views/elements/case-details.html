@@ -1,0 +1,159 @@
+{% extends "layouts/PINS-admin-post-mvp.html" %}
+
+{% set title = "Case details" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+{% set pageId = 'elements' %}
+
+{% set back = false %}
+
+{% set prototypeLinks = [
+  {
+    href: '?procedure=written',
+    text: 'Procedure is Written representations'
+  },
+  {
+    href: '?procedure=inquiry',
+    text: 'Procedure is Inquiry'
+  }
+
+] %}
+
+
+{% set prototypeLinks = [
+  {
+    href: '?case-stage=new',
+    text: 'New appeal'
+  },
+  {
+    href: '?case-stage=questionnaire',
+    text: 'Appeal started / Questionnaire stage'
+  },
+  {
+    href: '?case-stage=statements',
+    text: 'Statements stage'
+  },
+  {
+    href: '?case-stage=final-comments',
+    text: 'Final comments stage'
+  },
+  {
+    href: '?case-stage=determination',
+    text: 'Determination stage'
+  },
+  {
+    href: '?case-stage=closed',
+    text: 'Case closed'
+  },
+  {
+    href: '#',
+    text: '________________________________________________________________________'
+  },
+  {
+    href: '?questionnaire=received',
+    text: 'Questionnaire received'
+  } if (data['questionnaire'] != 'received' and data['case-stage'] == 'questionnaire'),
+  {
+    href: '?questionnaire=not-received',
+    text: 'Questionnaire not received'
+  } if data['questionnaire'] == 'received',
+  {
+    href: '?questionnaire=complete&case-stage=statements',
+    text: 'Questionnaire complete'
+  } if data['questionnaire'] == 'received',
+  {
+    href: '?lpa-statement=received',
+    text: 'LPA statement received'
+  } if (data['lpa-statement'] != 'received') and (data['case-stage'] == 'statements'),
+  {
+    href: '?lpa-statement=not-received',
+    text: 'LPA statement not received'
+  } if (data['lpa-statement'] == 'received') or (data['lpa-statement'] == 'complete') and (data['appeal-stage'] == 'statements'),
+  {
+    href: '?lpa-statement=complete',
+    text: 'LPA statement complete'
+  } if (data['lpa-statement'] == 'received') and (data['case-stage'] == 'statements'),
+  {
+    href: '?ipcomments=',
+    text: 'IP comments not received'
+  } if (data['ipcomments'] == 'received') and (data['case-stage'] == 'statements'),
+  {
+    href: '?ipcomments=received',
+    text: 'IP comments received'
+  } if (data['ipcomments'] != 'received') and (data['case-stage'] == 'statements'),
+  {
+    href: '?ipcomments=complete',
+    text: 'IP comments complete'
+  } if (data['ipcomments'] == 'received') and (data['case-stage'] == 'statements'),
+  {
+    href: '?appellant-final-comments=received',
+    text: 'Appellant final comments received'
+  } if (data['appellant-final-comments'] != 'received') and (data['case-stage'] == 'final-comments'),
+  {
+    href: '?appellant-final-comments=complete',
+    text: 'Appellant final comments complete'
+  } if (data['appellant-final-comments'] == 'received') and (data['case-stage'] == 'final-comments'),
+  {
+    href: '?lpa-final-comments=received',
+    text: 'LPA final comments received'
+  } if (data['lpa-final-comments'] != 'received') and (data['case-stage'] == 'final-comments'),
+  {
+    href: '?lpa-final-comments=complete',
+    text: 'LPA final comments complete'
+  } if (data['lpa-final-comments'] == 'received') and (data['case-stage'] == 'final-comments'),
+
+  {
+    href: '?casenotes=header',
+    text: 'Case notes in header'
+  } if not (data['casenotes']) or (data['casenotes']) == 'sidebar',
+  {
+    href: '?casenotes=sidebar',
+    text: 'Case notes in sidebar'
+  } if not (data['casenotes']) or (data['casenotes']) == 'header',
+  {
+    href: '?casenotes=',
+    text: 'Hide case notes'
+  } if (data['casenotes']),
+  {
+    href: '?newnote=',
+    text: 'Clear new case note'
+  },
+  {
+    href: '#',
+    text: '________________________________________________________________________'
+  },
+  {
+    href: '?venue-address=complete',
+    text: 'Venue is set'
+  } if not data['venue-address'],
+  {
+    href: '?venue-address=',
+    text: 'Venue is not set'
+  } if data['venue-address']
+
+
+] %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+    {% include "/elements/includes/side-navigation.html" %}
+
+    <div class="govuk-grid-column-three-quarters">
+      <h1 class="govuk-heading-xl">
+        {{ title }}
+      </h1>
+
+      <p class="govuk-body-l">
+        How we present data and documents for a case.
+      </p>
+
+      <hr class="govuk-section-break govuk-section-break--visible govuk-!-margin-bottom-6">
+
+      {% include "/elements/includes/case-details.html" %}
+
+    </div>
+  </div>
+
+{% endblock %}

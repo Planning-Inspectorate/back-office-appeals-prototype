@@ -1,0 +1,72 @@
+<h2 class="govuk-heading-l">
+  Timetable
+</h2>
+
+{{ govukTable({
+  captionClasses: "govuk-table__caption--m pins-summary-list--bottomless",
+  firstCellIsHeader: true,
+  rows: [
+    [
+      {
+        text: "Valid date",
+        classes: "govuk-!-width-one-third"
+      },
+      {
+        html: 2 | daysAgo
+      },
+      {
+        html: "<a href='#'>Change</a>",
+        format: "numeric"
+      }
+    ],
+    [
+      {
+        text: "Start date"
+      },
+      {
+        html: 'Not started'
+      },
+      {
+        html: "<a href='#'>Start</a>",
+        format: "numeric"
+      }
+    ],
+    [
+      {
+        text: "Allocation level"
+      },
+      {
+        html: "G<br>General"
+      },
+      {
+        html: "<a href='#'>Change</a>",
+        format: "numeric"
+      }
+    ],
+    [
+      {
+        text: "Linked appeals"
+      },
+      {
+        html: "No linked appeals"
+      },
+      {
+        html: "<a href='#'>Change</a>",
+        format: "numeric"
+      }
+    ],
+    [
+      {
+        text: "Related appeals"
+      },
+      {
+        html: "No related appeals"
+      },
+      {
+        html: "<a href='#'>Change</a>",
+        format: "numeric"
+      }
+
+    ]
+  ]
+}) }}

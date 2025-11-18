@@ -1,0 +1,72 @@
+<h2 class="govuk-heading-l">
+  Overview
+</h2>
+
+{{ govukTable({
+  captionClasses: "govuk-table__caption--m pins-summary-list--bottomless",
+  firstCellIsHeader: true,
+  rows: [
+    [
+      {
+        text: "Planning application reference",
+        classes: "govuk-!-width-one-third"
+      },
+      {
+        html: data['application-reference'] or '12345'
+      },
+      {
+        html: "<a href='#'>Change</a>",
+        format: "numeric"
+      }
+    ],
+    [
+      {
+        text: "Appeal type"
+      },
+      {
+        html: data['appealIs'] or 'Full planning'
+      },
+      {
+        html: "<a href='#'>Change</a>",
+        format: "numeric"
+      }
+    ],
+    [
+      {
+        text: "Allocation level"
+      },
+      {
+        html: "G<br>General"
+      },
+      {
+        html: "<a href='#'>Change</a>",
+        format: "numeric"
+      }
+    ],
+    [
+      {
+        text: "Linked appeals"
+      },
+      {
+        html: "No linked appeals"
+      },
+      {
+        html: "<a href='#'>Change</a>",
+        format: "numeric"
+      }
+    ],
+    [
+      {
+        text: "Related appeals"
+      },
+      {
+        html: "No related appeals"
+      },
+      {
+        html: "<a href='#'>Change</a>",
+        format: "numeric"
+      }
+
+    ]
+  ]
+}) }}

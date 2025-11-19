@@ -42,7 +42,7 @@
         html: "<a href='#'>Change</a>",
         format: "numeric"
       }
-    ],
+    ] if data['allocation-level'],
     [
       {
         text: "Linked appeals"
@@ -54,7 +54,7 @@
         html: "<a href='#'>Change</a>",
         format: "numeric"
       }
-    ],
+    ] if data['linked-appeals'],
     [
       {
         text: "Related appeals"
@@ -66,7 +66,7 @@
         html: "<a href='#'>Change</a>",
         format: "numeric"
       }
-
-    ]
+    ] if data['related-appeals']
+    
   ]
 }) }}

@@ -1,6 +1,7 @@
 {% extends "layouts/PINS.html" %}
 
-{% set pageName="Case details" %}
+{% set title = "Case details" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
 
 {% block backLink %}
   {{ govukBackLink({
@@ -15,7 +16,7 @@
   <div class="govuk-grid-column-two-thirds">
 
 	<span class="govuk-caption-l">Appeal 2110166</span>
-	<h1 class="govuk-heading-l">Case details</h1>
+	<h1 class="govuk-heading-l">{{ title }}</h1>
 
 
 	{{govukTag({

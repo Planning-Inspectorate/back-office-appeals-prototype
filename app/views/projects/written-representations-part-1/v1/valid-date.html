@@ -1,0 +1,38 @@
+{% extends "layouts/PINS.html" %}
+
+{% set title = 'Case valid date' %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = false %}
+
+{% block questions %}
+
+    <span class="govuk-caption-l">Appeal 2114328</span>
+    <h1 class="govuk-heading-l">
+      {{ title }}
+    </h1>
+
+    <p class="govuk-body">
+      This is the date all case documentation was received and the appeal was valid.
+    </p>
+
+    {{ govukDateInput({
+      id: "valid-date",
+      namePrefix: "valid-date",
+      fieldset: {
+        legend: {
+          text: "Enter the case valid date",
+          isPageHeading: false,
+          classes: "govuk-fieldset__legend--m"
+        }
+      },
+      hint: {
+        html: 'For example, 28 ' + 1 | monthsAgoNumeric + ' '+ 0 | yearsAgo
+      }
+    }) }}
+
+    <p class="govuk-body">
+       Confirming will inform the relevant parties of the valid date.
+     </p>
+
+{% endblock %}

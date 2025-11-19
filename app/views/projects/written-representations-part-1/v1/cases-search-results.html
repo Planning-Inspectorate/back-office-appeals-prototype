@@ -1,6 +1,7 @@
 {% extends "layouts/PINS.html" %}
 
-{% set pageName="Case officer home" %}
+{% set title = Search cases %}
+{% set pageName = title + ' - Planning Inspectorate'%}
 
 {% set back = false %}
 
@@ -14,7 +15,7 @@
 
 	{{ govukInput({
 	  label: {
-	    text: "Search cases",
+	    text: title,
 	    classes: "govuk-label--m",
 	    isPageHeading: false
 	  },
@@ -33,9 +34,9 @@
 	    Search
 	  </button>
 	</div>
-	
+
 	<hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-	
+
 	<p class="govuk-!-margin-bottom-8"><a href="#">Clear search results</a></p>
 
 

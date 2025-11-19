@@ -1,6 +1,12 @@
 <!-- notifications -->
 <section>
 
+  {{ govukNotificationBanner({
+    type: "success",
+    classes: "govuk-!-margin-bottom-5",
+    text: flash
+  }) if flash.length }}
+
   <!-- appeal ready to start -->
   {% if data['case-stage'] == 'ready' %}
 
@@ -8,24 +14,33 @@
     {% set html %}
       <p class="govuk-notification-banner__heading">
         Appeal valid
-        <a class="govuk-notification-banner__link" href="#">Start case</a>.
       </p>
+      <a class="govuk-link" href="procedure">
+        Start case
+      </a>
     {% endset %}
+
+    {{ govukNotificationBanner({
+      html: html
+    }) }}
 
   <!-- questionnaire stage -->
   {% elseif data['case-stage'] == 'questionnaire' %}
 
     <!-- questionnaire -->
     {% if data['questionnaire'] == 'received'%}
+
       {% set html %}
         <p class="govuk-notification-banner__heading">
           LPA questionnaire ready for review.
           <a class="govuk-notification-banner__link" href="#">Review</a>.
         </p>
       {% endset %}
+
       {{ govukNotificationBanner({
         html: html
       }) }}
+
     {% endif %}
 
     <!-- statements -->
@@ -36,9 +51,11 @@
           <a class="govuk-notification-banner__link" href="#">Review</a>.
         </p>
       {% endset %}
+
       {{ govukNotificationBanner({
         html: html
       }) }}
+
     {% endif %}
 
     <!-- ip comments -->
@@ -49,6 +66,11 @@
           IP comments ready for review.
           <a class="govuk-notification-banner__link" href="#">Review</a>.
         </p>
+
+        {{ govukNotificationBanner({
+          html: html
+        }) }}
+
       {% endset %}
 
     {% endif %}
@@ -63,6 +85,11 @@
           LPA statement ready for review.
           <a class="govuk-notification-banner__link" href="#">Review</a>.
         </p>
+
+        {{ govukNotificationBanner({
+          html: html
+        }) }}
+
       {% endset %}
 
     {% endif %}
@@ -75,6 +102,11 @@
           IP comments ready for review.
           <a class="govuk-notification-banner__link" href="#">Review</a>.
         </p>
+
+        {{ govukNotificationBanner({
+          html: html
+        }) }}
+
       {% endset %}
 
     {% endif %}
@@ -87,6 +119,11 @@
             IP comments and statements ready to <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">
               share<span class="govuk-visually-hidden"> IP comments and LPA statement</span></a>
           </p>
+
+          {{ govukNotificationBanner({
+            html: html
+          }) }}
+
         {% endset %}
 
       {% endif %}
@@ -101,6 +138,11 @@
           Appellant final comments ready for review.
           <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">Review<span class="govuk-visually-hidden"> appellant final comments</span></a>.
         </p>
+
+        {{ govukNotificationBanner({
+          html: html
+        }) }}
+
       {% endset %}
 
     {% endif %}
@@ -112,6 +154,11 @@
           LPA final comments ready for review.
           <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">Review<span class="govuk-visually-hidden"> LPA final comments</span></a>.
         </p>
+
+        {{ govukNotificationBanner({
+          html: html
+        }) }}
+
       {% endset %}
 
     {% endif %}
@@ -126,6 +173,11 @@
               Share<span class="govuk-visually-hidden"> final comments</span>
             </a>
           </p>
+
+          {{ govukNotificationBanner({
+            html: html
+          }) }}
+
         {% endset %}
 
       {% endif %}
@@ -136,11 +188,15 @@
     <!-- determination -->
     {% set html %}
       <p class="govuk-notification-banner__heading">
-
         <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">
           Decide appeal <span class="govuk-visually-hidden"> final comments</span>
         </a>
       </p>
+
+      {{ govukNotificationBanner({
+        html: html
+      }) }}
+
     {% endset %}
 
   {% elseif data['case-stage'] == 'closed' %}
@@ -153,15 +209,15 @@
       <p class="govuk-notification-banner__heading">
         Appeal ready for validation
       </p>
-      <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">
+      <a href="appellant-case" class="govuk-link govuk-link--no-visited-state">
         Validate
       </a>
     {% endset %}
 
-  {% endif %}
+    {{ govukNotificationBanner({
+      html: html
+    }) }}
 
-  {{ govukNotificationBanner({
-    html: html
-  }) }}
+  {% endif %}
 
 </section>

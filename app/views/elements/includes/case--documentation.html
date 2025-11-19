@@ -1,0 +1,69 @@
+<h2 class="govuk-heading-l">
+  Documentation
+</h2>
+
+<table class="govuk-table">
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Documentation</th>
+      <th scope="col" class="govuk-table__header">Status</th>
+      <th scope="col" class="govuk-table__header">Date</th>
+      <th scope="col" class="govuk-table__header govuk-!-text-align-right">Action</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Appeal</th>
+      <td class="govuk-table__cell">Valid</td>
+      <td class="govuk-table__cell">3 November 2025</td>
+      <td class="govuk-table__cell govuk-!-text-align-right"><a href="appellant-case" data-cy="review-appellant-case" class="govuk-link">View<span class="govuk-visually-hidden"> appellant case</span></a></td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">LPA questionnaire</th>
+      <td class="govuk-table__cell">Complete</td>
+      <td class="govuk-table__cell">3 November 2025</td>
+      <td class="govuk-table__cell govuk-!-text-align-right"><a href="/appeals-service/appeal-details/46087/lpa-questionnaire/17211?backUrl=%2Fappeals-service%2Fappeal-details%2F46087" data-cy="review-lpa-questionnaire" class="govuk-link">View<span class="govuk-visually-hidden"> L P A questionnaire</span></a></td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">LPA statement</th>
+      <td class="govuk-table__cell">Shared</td>
+      <td class="govuk-table__cell">22 January 2025</td>
+      <td class="govuk-table__cell govuk-!-text-align-right"><a href="/appeals-service/appeal-details/46087/lpa-statement?backUrl=%2Fappeals-service%2Fappeal-details%2F46087" data-cy="view-lpa-statement" class="govuk-link">View<span class="govuk-visually-hidden"> LPA statement</span></a></td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Interested party comments</th>
+      <td class="govuk-table__cell">Shared</td>
+      <td class="govuk-table__cell">Deadline on 31 October 2025</td>
+      <td class="govuk-table__cell govuk-!-text-align-right"><a href="/appeals-service/appeal-details/46087/interested-party-comments?backUrl=%2Fappeals-service%2Fappeal-details%2F46087" data-cy="review-ip-comments" class="govuk-link">View<span class="govuk-visually-hidden"> interested party comments</span></a></td>
+    </tr>
+    {% if data['procedure'] == 'written' %}
+      <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__header">Appellant final comments</th>
+        <td class="govuk-table__cell">Awaiting final comments</td>
+        <td class="govuk-table__cell">Due by </td>
+        <td class="govuk-table__cell govuk-!-text-align-right"></td>
+      </tr>
+      <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__header">LPA final comments</th>
+        <td class="govuk-table__cell">Awaiting final comments</td>
+        <td class="govuk-table__cell">Due by </td>
+        <td class="govuk-table__cell govuk-!-text-align-right"></td>
+      </tr>
+    {% endif %}
+
+    {% if data['procedure'] == 'inquiry' %}
+      <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__header">Appellant proof of evidence and witness</th>
+        <td class="govuk-table__cell">Received</td>
+        <td class="govuk-table__cell">2 November 2025</td>
+        <td class="govuk-table__cell govuk-!-text-align-right"><a href="/appeals-service/appeal-details/46087/proof-of-evidence/appellant/manage-documents?backUrl=%2Fappeals-service%2Fappeal-details%2F46087" data-cy="view-appellant-proofs-evidence" class="govuk-link">View<span class="govuk-visually-hidden"> Appellant proof of evidence</span></a></td>
+      </tr>
+      <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__header">LPA proof of evidence and witness</th>
+        <td class="govuk-table__cell">Received</td>
+        <td class="govuk-table__cell">22 January 2025</td>
+        <td class="govuk-table__cell govuk-!-text-align-right"><a href="/appeals-service/appeal-details/46087/proof-of-evidence/lpa/manage-documents?backUrl=%2Fappeals-service%2Fappeal-details%2F46087" data-cy="view-lpa-proofs-evidence" class="govuk-link">View<span class="govuk-visually-hidden"> LPA proof of evidence</span></a></td>
+      </tr>
+    {% endif %}
+  </tbody>
+</table>

@@ -1,0 +1,79 @@
+{% extends "layouts/PINS.html" %}
+
+{% set title = "Case details" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set prototypeLinks = [
+
+  {
+    href: '?case-stage=validation',
+    text: 'Case is new and ready to validate'
+  } if data['case-stage'] != 'validation' or not data['case-stage'],
+  {
+    href: '?case-stage=ready',
+    text: 'Case is valid and ready to start'
+  } if data['case-stage'] != 'ready',
+  {
+    href: '?case-stage=questionnaire',
+    text: 'Questionnaire stage'
+  } if data['case-stage'] != 'questionnaire',
+  {
+    href: '?environment-statement-check=Yes',
+    text: 'There is an environmental statement'
+  } if not data['environment-statement-check'],
+  {
+    href: '?environment-statement-check=',
+    text: 'No environmental statement'
+  } if data['environment-statement-check']
+
+] %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <!-- notifications -->
+    {% include "/elements/includes/case--notifications.html" %}
+
+    <!--	<span class="govuk-caption-l">Appeal 2110166</span> -->
+    <span class="govuk-caption-xl">Appeal 2114328</span>
+  	<h1 class="govuk-heading-xl govuk-!-margin-bottom-2">
+      {{ title }}
+    </h1>
+
+    {% include "/elements/includes/case--status.html" %}
+
+    {% include "/elements/includes/case--meta-data.html" %}
+
+    <p class="govuk-body">
+      <a href="#" class="govuk-link">
+        Download case
+      </a>
+    </p>
+
+    {% include "/elements/includes/case--case-notes.html" %}
+
+  </div>
+
+  <div class="govuk-grid-column-full">
+
+    <!-- case sections -->
+    <section class="govuk-!-margin-top-6">
+
+      {% include "/elements/includes/case--overview.html" %}
+      {% include "/elements/includes/case--timetable.html" %}
+      {% include "/elements/includes/case--site.html" %}
+
+      {% if data['procedure'] == 'hearing' %}
+        {% include "/elements/includes/hearing.html" %}
+      {% endif %}
+
+      {% include "/elements/includes/case--documentation.html" %}
+      {% include "/elements/includes/case--team.html" %}
+      {% include "/elements/includes/case--case-management.html" %}
+
+    </section>
+
+{% endblock %}

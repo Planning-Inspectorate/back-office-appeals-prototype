@@ -1,0 +1,35 @@
+<h2 class="govuk-heading-l">
+  Site
+</h2>
+
+{{ govukTable({
+  captionClasses: "govuk-table__caption--m",
+  firstCellIsHeader: true,
+  rows: [
+    [
+      {
+        text: "Visit type",
+        classes: "govuk-!-width-one-third"
+      },
+      {
+        text: "Unaccompanied"
+      },
+      {
+        html: "<a href='site-visit.html'>Change</a>",
+        format: "numeric"
+      }
+    ],
+    [
+      {
+        text: "Site visit"
+      },
+      {
+        text: -3 | daysAgo
+      },
+      {
+        html: "<a href='site-visit.html'>Change</a>",
+        format: "numeric"
+      }
+    ]
+  ]
+}) }}

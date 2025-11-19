@@ -1,0 +1,72 @@
+<h2 class="govuk-heading-l">
+  Case management
+</h2>
+
+<div class="pins-panel">
+
+  {{ govukTable({
+    captionClasses: "govuk-table__caption--m",
+    firstCellIsHeader: true,
+    rows: [
+      [
+        {
+          text: "Cross-team correspondence",
+          classes: "govuk-!-width-one-third"
+        },
+        {
+          text: "No documents"
+        },
+        {
+          html: "<a href='#'>Add<span class='govuk-visually-hidden'> cross-team correspondence</span></a>",
+          format: "numeric"
+        }
+      ],
+      [
+        {
+          text: "Inspector correspondence"
+        },
+        {
+          text: "No documents"
+        },
+        {
+          html: "<a href='#'>Add<span class='govuk-visually-hidden'> Inspector correspondence</span></a>",
+          format: "numeric"
+        }
+      ],
+      [
+        {
+          text: "Main party correspondence"
+        },
+        {
+          text: "No documents"
+        },
+        {
+          html: "<a href='#'>Add<span class='govuk-visually-hidden'> appeal withdrawal</span></a>",
+          format: "numeric"
+        }
+      ],
+      [
+        {
+          text: "Case history"
+        },
+        {
+          text: ""
+        },
+        {
+          html: "<a href='case-history'>View<span class='govuk-visually-hidden'> case history</span></a>",
+          format: "numeric"
+        }
+      ],
+      [
+        {
+          text: "Reopen this case"
+        },
+        {
+          html: "<a href='reopen-reason'>Reopen<span class='govuk-visually-hidden'> case</span></a>",
+          format: "numeric"
+        }
+      ] if data['case-stage'] == 'complete'
+    ]
+  }) }}
+
+</div>

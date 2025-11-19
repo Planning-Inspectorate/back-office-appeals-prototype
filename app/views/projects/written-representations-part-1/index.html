@@ -1,0 +1,26 @@
+{% extends "layouts/PINS-Simple.html" %}
+
+{% set title = "Written representations part 1" %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">{{ title }}</h1>
+
+      <p class="govuk-body">
+        When we receive an S78 / full planning appeal that meets the criteria to be part 1 only.
+      </p>
+
+      {{ govukButton({
+        text: "View prototype",
+        isStartButton: true,
+        href: '/projects/written-representations-part-1/v1/case.html'
+      }) }}
+
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,114 @@
+{% extends "layouts/PINS-Simple.html" %}
+
+{% set title = "S78 case, procedure type, new nav" %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">{{ title }}</h1>
+
+      <p>
+        S78 appeals have 3 different appeal procedures: written reps, hearings and inquiries. This is about asking users to specific which one it is when they start a case.
+      </p>
+
+      <h2 class="govuk-heading-m">Version 6
+        {{govukTag({
+          text: "Done",
+          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+        })}}
+      </h2>
+
+      <p>Expedited S78</p>
+
+      {{ govukButton({
+        text: "View prototype",
+        isStartButton: true,
+        href: '/projects/start-full-case/v6/cases.html'
+      }) }}
+
+      <h2 class="govuk-heading-m">Version 5
+        {{govukTag({
+          text: "In progress",
+          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+        })}}
+      </h2>
+
+      <p>Nav</p>
+
+      {{ govukButton({
+        text: "View prototype",
+        isStartButton: true,
+        href: '/projects/start-full-case/v4/'
+      }) }}
+
+      <p><a href="/projects/start-full-case/v4/index-mvp" class="govuk-link">Consolidated statuses</a></p>
+      <p><a href="/projects/start-full-case/v4/index-ideal" class="govuk-link">Granular statuses</a></p>
+      <p><a href="/projects/start-full-case/v4/index-another" class="govuk-link">Consolidated with action statuses</a></p>
+
+      <h2 class="govuk-heading-m">Version 4
+        {{govukTag({
+          text: "Done",
+          classes: "govuk-!-margin-left-2 govuk-tag--yello"
+        })}}
+      </h2>
+
+      <p>MVP</p>
+
+      {{ govukButton({
+        text: "View prototype",
+        isStartButton: true,
+        href: '/projects/start-full-case/v4/case-details.html'
+      }) }}
+
+      <h2 class="govuk-heading-m">Version 3
+        {{govukTag({
+          text: "Done",
+          classes: "govuk-!-margin-left-2 govuk-tag--blue"
+        })}}
+      </h2>
+
+      <p>More flexible hearing and inquiries that can last more than one day.</p>
+
+      {{ govukButton({
+        text: "View prototype",
+        isStartButton: true,
+        href: '/projects/start-full-case/v3/case-details.html'
+      }) }}
+
+      <h2 class="govuk-heading-m">Version 2
+        {{govukTag({
+          text: "Done",
+          classes: "govuk-!-margin-left-2 govuk-tag--blue"
+        })}}
+      </h2>
+
+      <p>If we don’t handle hearings and inquiries, we’ll get users to transfer the case to Horizon.</p>
+
+      {{ govukButton({
+        text: "View prototype",
+        isStartButton: true,
+        href: '/projects/start-full-case/v2/case-details.html'
+      }) }}
+
+      <h2 class="govuk-heading-m">Version 1
+        {{govukTag({
+          text: "Done",
+          classes: "govuk-!-margin-left-2 govuk-tag--blue"
+        })}}
+      </h2>
+
+      <p>If we handle all appeal procedures in our service.</p>
+
+      {{ govukButton({
+        text: "View prototype",
+        isStartButton: true,
+        href: '/projects/start-full-case/v1/case-details.html'
+      }) }}
+
+    </div>
+  </div>
+{% endblock %}

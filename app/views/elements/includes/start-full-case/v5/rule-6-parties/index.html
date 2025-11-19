@@ -1,0 +1,68 @@
+{% extends "layouts/PINS-Simple.html" %}
+
+{% set title = "Rule 6 parties" %}
+{% set pageName = title %}
+
+{% block beforeContent %}
+  {{ govukBreadcrumbs({
+    classes: 'govuk-!-margin-top-4 govuk-!-margin-bottom-0',
+      items: [
+        {
+          text: "21114328",
+          href: "/projects/start-full-case/v4/case-details"
+        },
+        {
+          text: title
+        }
+      ]
+    }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ govukNotificationBanner({
+        type: "success",
+        text: flash
+      }) if flash.length }}
+
+
+  <span class="govuk-caption-l">Appeal 2114328</span>
+  <h1 class="govuk-heading-l">{{title}}</h1>
+
+  <p class="govuk-!-margin-bottom-6"><a class="govuk-link" href="/projects/start-full-case/v4/rule-6-parties/new">Add Rule 6 party</a></p>
+
+      {% if parties.length %}
+         <div class="app-list">
+          {% for item in parties %}
+            <div class="app-list__item">
+              {% if item.organisationName %}
+                <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                  <a class="govuk-link--no-visited-state" href="/projects/start-full-case/v4/rule-6-parties/{{item.id}}">
+                    {{item.organisationName}}
+                  </a>
+                </h2>
+                <p class="govuk-!-margin-bottom-0">{{item.firstName}} {{item.lastName}}</p>
+              {% else %}
+                <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+                  <a class="govuk-link--no-visited-state" href="/projects/start-full-case/v4/rule-6-parties/{{item.id}}">
+                    {{item.firstName}} {{item.lastName}}
+                  </a>
+                </h2>
+              {% endif %}
+
+              {{ govukTag({
+                text: item.status,
+                classes: "app-list__tag app-list__tag--top-right " + (item.status | rule6StatusColour)
+              }) }}
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p>There are no results.</p>
+      {% endif %}
+
+    </div>
+  </div>
+
+{% endblock %}

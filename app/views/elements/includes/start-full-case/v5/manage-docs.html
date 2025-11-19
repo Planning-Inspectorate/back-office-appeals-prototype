@@ -1,0 +1,57 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set back = true %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <span class="govuk-caption-l">Appeal 1223443 - Manage folder</span>
+  <h1 class="govuk-heading-l">
+   Cross-team correspondence documents
+  </h1>
+
+  {{ govukButton({
+    text: "Add document",
+    classes: "govuk-button--secondary",
+    href: "upload-doc"
+  }) }}
+
+  {{ govukTable({
+    firstCellIsHeader: false,
+    head: [
+        {
+            text: "Name"
+        },
+        {
+            text: "Date received"
+        },
+        {
+            text: "Redaction status"
+        },
+        {
+            text: "Actions"
+        }
+    ],
+    rows: [
+        [
+            {
+                html: '<p><a href="#">filename.pdf</a></p><p>Complaints and issues</p><p>1.5 MB</p>'
+            },
+            {
+                text: "14 October 2025"
+            },
+            {
+                text: "no redaction required"
+            },
+            {
+                html: '<p><a href="#">View and edit</a></p>'
+            }
+        ]
+    ]
+  }) }}
+
+  </div>
+</div>
+{% endblock %}

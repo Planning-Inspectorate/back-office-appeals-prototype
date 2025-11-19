@@ -1,0 +1,342 @@
+{% extends "layouts/PINS.html" %}
+
+{% set title = "Case details" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back to national list",
+    href: 'javascript:history.back()'
+  }) }}
+{% endblock %}
+
+{% set prototypeLinks = [
+
+  {
+    href: '?appeal-stage=new',
+    text: 'Validating a case'
+  } if data['appeal-stage'] == 'validation',
+  {
+    href: '?appeal-stage=validation',
+    text: 'Starting a case'
+  } if data['appeal-stage'] != 'validation',
+  {
+    href: '?environment-statement-check=Yes',
+    text: 'There is an environmental statement'
+  } if not data['environment-statement-check'],
+  {
+    href: '?environment-statement-check=',
+    text: 'No environmental statement'
+  } if data['environment-statement-check']
+
+] %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {{ govukNotificationBanner({
+      type: "success",
+      text: flash
+    }) if flash.length }}
+
+  	{% set startBanner %}
+  	  <p class="govuk-notification-banner__heading">
+  	    Appeal valid
+  	  </p>
+  	  <p>
+        <a class="govuk-notification-banner__link" href="procedure">
+          Start case
+        </a>
+      </p>
+  	{% endset %}
+
+    {% set validateBanner %}
+      <p class="govuk-notification-banner__heading">
+        Appeal ready for validation
+      </p>
+      <p>
+        <a class="govuk-notification-banner__link" href="appellant-case">
+          Validate
+        </a>
+      </p>
+    {% endset %}
+
+    {% set environmentBanner %}
+  	  <p class="govuk-notification-banner__heading">
+  	    The environmental services team needs to review the case
+  	  </p>
+  	  <p>
+        <a class="govuk-notification-banner__link" href="procedure">
+          Add environmental statement or environmental screening
+        </a>
+      </p>
+  	{% endset %}
+
+    {% if data['appeal-stage'] == 'validation'  %}
+
+      {% if data['environment-statement-check'] == 'Yes'  %}
+        {{ govukNotificationBanner({
+          classes: 'govuk-!-margin-bottom-5',
+          html: startBanner
+        }) }}
+      {% else %}
+        {{ govukNotificationBanner({
+          html: startBanner
+        }) }}
+      {% endif %}
+
+    {% elseif data['appeal-stage'] == 'new' or not data['appeal-stage'] %}
+
+      {% if data['environment-statement-check'] == 'Yes'  %}
+        {{ govukNotificationBanner({
+          classes: 'govuk-!-margin-bottom-5',
+          html: validateBanner
+        }) }}
+      {% else %}
+        {{ govukNotificationBanner({
+          html: validateBanner
+        }) }}
+      {% endif %}
+
+    {% endif %}
+
+    {% if data['environment-statement-check'] == 'Yes'  %}
+    	{{ govukNotificationBanner({
+    	  html: environmentBanner
+    	}) }}
+    {% endif %}
+
+
+    <span class="govuk-caption-l">Appeal 2110166</span>
+    <h1 class="govuk-heading-l">Case details</h1>
+
+     {{ govukTag({
+       text: "Ready to start",
+       classes: "govuk-tag--green"
+     })}}
+
+  	{{ govukSummaryList({
+  	  classes: 'govuk-summary-list--no-border govuk-!-margin-top-6',
+  	  rows: [
+  	    {
+  	      key: {
+  	        text: "Site address"
+  	      },
+  	      value: {
+  	        text: "Address line 1, Address line 2, Town or city, Postcode"
+  	      }
+  	    },
+  	    {
+  	      key: {
+  	        text: "Local planning authority"
+  	      },
+  	      value: {
+  	        text: "Council name"
+  	      }
+  	    }
+  	  ]
+  	}) }}
+
+    <div class="govuk-accordion govuk-!-margin-top-9" data-module="govuk-accordion" id="accordion-default">
+  	  <div class="govuk-accordion__section">
+  	    <div class="govuk-accordion__section-header">
+  	      <h2 class="govuk-accordion__section-heading">
+  	        <span class="govuk-accordion__section-button" id="accordion-default-heading-1">
+  	          Case overview
+  	        </span>
+  	      </h2>
+  	    </div>
+  	    <div id="accordion-default-content-1" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-1">
+  			<!-- {% include "projects/appellant-case/v1/includes/case-overview-table.html" %} -->
+
+          <div class="pins-panel">
+            {{ govukSummaryList({
+              rows: [
+                {
+                  key: {
+                    text: "Appeal type"
+                  },
+                  value: {
+                    text: "Full planning"
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "#",
+                        text: "Change",
+                        visuallyHiddenText: "appeal type"
+                      }
+                    ]
+                  }
+                },
+                {
+                  key: {
+                    text: "Appeal procedure"
+                  },
+                  value: {
+                    html: data['procedure'] or "Part 1"
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "#",
+                        text: "Change",
+                        visuallyHiddenText: "appeal type"
+                      }
+                    ]
+                  }
+                } if data['procedure'],
+                {
+                  key: {
+                    text: "Appellant name"
+                  },
+                  value: {
+                    text: "Bingford Jobi"
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "#",
+                        text: "Change"
+                      }
+                    ]
+                  }
+                },
+                {
+                  key: {
+                    text: "Agent name"
+                  },
+                  value: {
+                    text: "Martin Shamford"
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "#",
+                        text: "Change"
+                      }
+                    ]
+                  }
+                },
+                {
+                  key: {
+                    text: "Linked appeal"
+                  },
+                  value: {
+                    text: "None"
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "#",
+                        text: "Change"
+                      }
+                    ]
+                  }
+                },
+                {
+                  key: {
+                    text: "Other appeals"
+                  },
+                  value: {
+                    text: "None"
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "#",
+                        text: "Change"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }) }}
+    	    </div>
+    	  </div>
+    	  <div class="govuk-accordion__section">
+    	    <div class="govuk-accordion__section-header">
+    	      <h2 class="govuk-accordion__section-heading">
+    	        <span class="govuk-accordion__section-button" id="accordion-default-heading-2">
+    	          Case timetable
+    	        </span>
+    	      </h2>
+    	    </div>
+    	    <div id="accordion-default-content-2" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-2">
+
+            {{ govukSummaryList({
+              rows: [
+                {
+                  key: {
+                    text: "Valid date"
+                  },
+                  value: {
+                    text: "18 July 2025"
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "#",
+                        text: "Change",
+                        visuallyHiddenText: "valid date"
+                      }
+                    ]
+                  }
+                },
+                {
+                  key: {
+                    text: "Start date"
+                  },
+                  value: {
+                    text: "Not started"
+                  },
+                  actions: {
+                    items: [
+                      {
+                        href: "procedure",
+                        text: "Start case"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }) }}
+
+          </div>
+
+  	    </div>
+  	  </div>
+  	  <div class="govuk-accordion__section">
+  	    <div class="govuk-accordion__section-header">
+  	      <h2 class="govuk-accordion__section-heading">
+  	        <span class="govuk-accordion__section-button" id="accordion-default-heading-3">
+  	          Case documentation
+  	        </span>
+  	      </h2>
+  	    </div>
+  	    <div id="accordion-default-content-3" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-3">
+  	      {% include "projects/appellant-case/v1/includes/case-documentation-table.html" %}
+  	    </div>
+  	  </div>
+  	  <div class="govuk-accordion__section">
+  	    <div class="govuk-accordion__section-header">
+  	      <h2 class="govuk-accordion__section-heading">
+  	        <span class="govuk-accordion__section-button" id="accordion-default-heading-4">
+  	          Case team
+  	        </span>
+  	      </h2>
+  	    </div>
+  	    <div id="accordion-default-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-4">
+  	      {% include "projects/appellant-case/v1/includes/case-team-table.html" %}
+  	    </div>
+  	  </div>
+  	</div>
+
+  </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,141 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set back = true %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+<span class="govuk-caption-l">Appeal 1223443 - add document details</span>
+<h1 class="govuk-heading-l">Crosss-team correspondence</h1>
+
+<h2 class="govuk-heading-m">filename1.pdf</h2>
+
+
+{{ govukDateInput({
+  id: "passport-issued",
+  namePrefix: "passport-issued",
+  fieldset: {
+    legend: {
+      text: "Date received",
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  hint: {
+    text: "For example, 27 3 2007"
+  }
+}) }}
+
+{{ govukInput({
+  label: {
+    text: "Correspondence type",
+    classes: "govuk-label--s",
+    isPageHeading: true
+  },
+  hint: {
+    text: "For example, 'Complaints and issues'"
+  },
+  classes: "govuk-input--width-10",
+  id: "width-10",
+  name: "width10"
+}) }}
+
+{{ govukRadios({
+  name: "redactionStatus",
+  fieldset: {
+    legend: {
+      text: "Redaction status",
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  items: [
+    {
+      value: "Redacted",
+      text: "Redaction"
+    },
+    {
+      value: "Unredacted",
+      text: "Unredacted"
+    },
+    {
+      divider: "or"
+    },
+    {
+      value: "none",
+      text: "No redaction required"
+    }
+  ]
+}) }}
+
+
+<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+<h2 class="govuk-heading-m">filename2.pdf</h2>
+
+
+{{ govukDateInput({
+  id: "passport-issued",
+  namePrefix: "passport-issued",
+  fieldset: {
+    legend: {
+      text: "Date received",
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  hint: {
+    text: "For example, 27 3 2007"
+  }
+}) }}
+
+{{ govukInput({
+  label: {
+    text: "Correspondence type",
+    classes: "govuk-label--s",
+    isPageHeading: true
+  },
+  hint: {
+    text: "For example, 'Complaints and issues'"
+  },
+  classes: "govuk-input--width-10",
+  id: "width-10",
+  name: "width10"
+}) }}
+
+{{ govukRadios({
+  name: "redactionStatus",
+  fieldset: {
+    legend: {
+      text: "Redaction status",
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  items: [
+    {
+      value: "Redacted",
+      text: "Redaction"
+    },
+    {
+      value: "Unredacted",
+      text: "Unredacted"
+    },
+    {
+      divider: "or"
+    },
+    {
+      value: "none",
+      text: "No redaction required"
+    }
+  ]
+}) }}
+
+
+    {{ govukButton({
+      text: "Continue",
+      href:"check-doc"
+    }) }}
+
+  </div>
+</div>
+{% endblock %}

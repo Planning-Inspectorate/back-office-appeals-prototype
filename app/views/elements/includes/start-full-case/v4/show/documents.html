@@ -1,0 +1,128 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Other" %}
+{% set pageName = title %}
+{% set navId = 'documents' %}
+{% set back = false %}
+
+{% block content %}
+  {% include "/projects/start-full-case/v4/_includes/prompt.html" %}
+  {% include "/projects/start-full-case/v4/_includes/h1.html" %}
+  {% include "/projects/start-full-case/v4/_includes/nav.html" %}
+
+  <h1 class="govuk-heading-l"> {{title}} </h1>
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-4">Correspondence</h2>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Cross-team correspondence"
+            },
+            value: {
+              html: 'No documents'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Add",
+                  visuallyHiddenText: "LPA"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Inspector correspondence"
+            },
+            value: {
+              text: "3 documents"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">Supporting documents</h2>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Supporting documents"
+            },
+            value: {
+              text: "3 documents"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-8">Costs</h2>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Appellant costs application"
+            },
+            value: {
+              text: "1 documents"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "LPA costs application"
+            },
+            value: {
+              text: "1 documents"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Item label"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,99 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Appeals (" + totalApplications +")" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = false %}
+
+{% set prototypeLinks = [
+  {
+    href: 'team-email',
+    text: 'Manage case teams'
+  }
+] %}
+
+{% block content %}
+  <h1 class="govuk-heading-l">{{title}}</h1>
+
+  <div class="app-filter-layout">
+    <div class="app-filter-layout__filter">
+      {% include "includes/case-filter-panel.njk" %}
+    </div>
+    <div class="app-filter-layout__content">
+
+      {% include "includes/search-form.njk" %}
+
+      <div class="app-action-bar">
+        <div class="app-action-bar__filter"></div>
+      </div>
+
+      {% if applications.length %}
+         <div class="app-list">
+          {% for item in applications %}
+            <div class="app-list__item">
+              <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                <a href="/projects/start-full-case/v4/appeals/{{item.id}}" class="govuk-link--no-visited-state">{{item.id}}</a>
+                
+              </h2>
+              <div class="app-list__tag">
+                {{ govukTag({ text: item.status, classes: item.status | appealStatusColour + ' app-list__tag--top-right' }) }}
+              </div>
+
+              {# <p class="govuk-!-margin-bottom-1">{{item.appellant.firstName}} {{item.appellant.lastName}}</p> #}
+
+              <p class="govuk-!-margin-bottom-1">
+                {{item.type}}
+                {% if item.type == 'Planning appeal' and item.procedure %}
+                  ({{item.procedure}})
+                {% endif %}
+              </p>
+              <p class="govuk-!-margin-bottom-1">{{appAddress({address: item.site.address, delimiter: ',' })}}</p>
+              {% if item.status == 'Awaiting LPAQ'
+                or item.status == 'Statements and IP comments open'
+                or item.status == 'Final comments open'
+              %}
+                <p class="govuk-!-margin-bottom-1 govuk-!-font-weight-bold">Due on 19 Jan 2024</p>
+              {% endif %}
+
+              {{ govukSummaryList({
+                classes: 'govuk-summary-list--no-border app-summary-list--compact app-summary-list--small-text',
+                rows: [
+                  {
+                    key: {
+                      html: 'Appeal type'
+                    },
+                    value: {
+                      html: 'Householder'
+                    }
+                  },
+                  {
+                    key: {
+                      html: 'Address'
+                    },
+                    value: {
+                      html: '1 The Avenue, London, BLH AHH'
+                    }
+                  },
+                  {
+                    key: {
+                      html: 'Due date'
+                    },
+                    value: {
+                      html: '4 January 2024'
+                    }
+                  }
+                ]
+              }) if 1==2}}
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        {# <p>There are no results.</p> #}
+      {% endif %}
+
+      {% include "includes/pagination.njk" %}
+    </div>
+  </div>
+
+
+{% endblock %}

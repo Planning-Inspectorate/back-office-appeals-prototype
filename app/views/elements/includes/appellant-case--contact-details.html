@@ -1,0 +1,61 @@
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "1. Appellant details"
+    }
+  },
+  rows: [
+    {
+      key: {
+        text: "Was the application made in your name?"
+      },
+      value: {
+        html: "Yes"
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "application made in your name"
+            }
+          ]
+        }
+    },
+    {
+      key: {
+        text: "Name"
+      },
+      value: {
+        html: "Jam Doe"
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "name"
+            }
+          ]
+        }
+    },
+    {
+      key: {
+        text: "Phone number"
+      },
+      value: {
+        html: "077245551111"
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "phone number"
+            }
+          ]
+        }
+    }
+
+  ]
+}) }}

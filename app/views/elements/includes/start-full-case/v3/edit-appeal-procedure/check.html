@@ -1,0 +1,46 @@
+{% extends "layouts/PINS-Simple.html" %}
+
+{% set title = "Check details and update appeal procedure" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal 2114328</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Appeal procedure"
+            },
+            value: {
+              text: data.appealProcedure
+            },
+            actions: {
+              items: [
+                {
+                  href: "./",
+                  text: "Change",
+                  visuallyHiddenText: "Appeal procedure"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+
+      <p>We’ll send an email to the appellant and LPA to tell them that we’ve changed the appeal procedure.</p>
+
+      <form method="post">
+        {{ govukButton({
+          text: "Update appeal procedure"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "layouts/bo.html" %}
+
+
+{% set title = "Find inspector" %}
+
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal {{appeal.id}} {% if appeal.isLeadAppeal %}(lead){% endif %} - assign inspector</span>
+      <form method="post">
+        {{ xGovukAutocomplete({
+          id: "addCaseOfficer[caseOfficer]",
+          name: "addCaseOfficer[caseOfficer]",
+          allowEmpty: false,
+          label: {
+            classes: "govuk-label--l",
+            isPageHeading: true,
+            text: title
+          },
+          value: data.addCaseOfficer.caseOfficer,
+          items: caseOfficerItems
+        }) }}  
+
+            {{ govukButton({
+              text: "Continue"
+            }) }}
+          
+            <p class="govuk-body"><a class="govuk-link" href="/projects/start-full-case/v4/assign-inspector/add-inspector">The inspector is not on the list</a></p>
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

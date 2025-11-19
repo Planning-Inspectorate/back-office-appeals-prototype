@@ -1,0 +1,76 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Appellant Case" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Appeal 2110166</span>
+    <h1 class="govuk-heading-l">Appellant case</h1>
+    {% include "/elements/includes/case--status.html" %}
+
+    {% include "/elements/includes/appellant-case--meta-data.html" %}
+
+  </div>
+
+  <div class="govuk-grid-column-full">
+
+    {% include "/elements/includes/appellant-case--before-you-start.html" %}
+    {% include "/elements/includes/appellant-case--contact-details.html" %}
+    {% include "/elements/includes/appellant-case--site-details.html" %}
+    {% include "/elements/includes/appellant-case--application-details.html" %}
+    {% include "/elements/includes/appellant-case--appeal-details.html" %}
+    {% include "/elements/includes/appellant-case--uploaded-documents.html" %}
+    {% include "/elements/includes/appellant-case--additional-documents.html" %}
+
+  </div>
+
+  <div class="govuk-grid-column-two-thirds">
+    <form action="/appellant-outcome" method="post" class="govuk-!-margin-top-3" novalidate>
+
+	    <!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
+
+        {{ govukRadios({
+          name: "appelant-outcome",
+          fieldset: {
+            legend: {
+              text: "What is the outcome of your review?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "valid~/projects/appellant-case/valid/",
+              text: "Valid"
+            },
+            {
+              value: "invalid~/projects/appellant-case/invalid",
+              text: "Invalid"
+            },
+            {
+              value: "complete~/projects/appellant-case/incomplete",
+              text: "Incomplete"
+            }
+          ]
+        }) }}
+
+        {{ govukWarningText({
+          text: "Do not select an outcome until you have reviewed all of the supporting documents and redacted any sensitive information.",
+          iconFallbackText: "Warning"
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+	  </form>
+
+
+  </div>
+</div>
+
+
+{% endblock %}

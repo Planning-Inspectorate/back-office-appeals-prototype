@@ -1,0 +1,91 @@
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "Before you start"
+    }
+  },
+  rows: [
+    {
+      key: {
+        text: "Enforcement notice"
+      },
+      value: {
+        html: "No"
+      },
+      actions: {
+      }
+    },
+    {
+      key: {
+        text: "Local planning authority"
+      },
+      value: {
+        html: "Camden Council"
+      },
+      actions: {
+      }
+    },
+    {
+      key: {
+        text: "What type of application is your appeal about?"
+      },
+      value: {
+        html: "Full planning"
+      },
+      actions: {
+      }
+    },
+    {
+      key: {
+        text: "What date did you submit your planning application?"
+      },
+      value: {
+        html: data['application-date'] or '31 July 2025'
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "application date"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Was your application granted or refused?"
+      },
+      value: {
+        html: "Refused"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "decision"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "What’s the date on the decision letter from the local planning authority?​"
+      },
+      value: {
+        html: 20 | daysAgo
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "decision date"
+          }
+        ]
+      }
+    }
+
+  ]
+}) }}

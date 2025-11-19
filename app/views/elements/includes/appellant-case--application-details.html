@@ -1,0 +1,104 @@
+{% set dummydod = 'The proposed development comprises the construction of 120 new residential dwellings on a 10-hectare site located on the outskirts of the town centre. The scheme includes a mix of detached, semi-detached, and terraced houses, alongside low-rise apartment blocks, designed to accommodate a range of household sizes and needs. The development will be phased over three years and will incorporate sustainable building practices, including energy-efficient materials, solar panel installations, and rainwater harvesting systems.
+
+Key features of the proposal include:
+
+A central green space with pedestrian pathways and recreational areas.
+Integration with existing transport infrastructure, including new bus stops and cycle lanes.
+Affordable housing provision, with 30% of units designated for shared ownership or social rent.
+Environmental impact mitigation measures, such as tree planting and biodiversity corridors.' %}
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "3. Application details"
+    }
+  },
+  classes: 'long-answers govuk-!-margin-bottom-9',
+  rows: [
+    {
+      key: {
+        text: "Application reference number"
+      },
+      value: {
+        html: data['application-reference'] or 'SY/200432P'
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "application reference number"
+            }
+          ]
+        }
+    },
+    {
+      key: {
+        text: "Development type"
+      },
+      value: {
+        html: "Major development"
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "development type"
+            }
+          ]
+        }
+    },
+    {
+      key: {
+        text: "Was your application about any of the following?"
+      },
+      value: {
+        html: "Other"
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "application about"
+            }
+          ]
+        }
+    },
+    {
+      key: {
+        text: "Enter the description of development that you submitted in your application"
+      },
+      value: {
+        html: dummydod
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "description of development"
+            }
+          ]
+        }
+    },
+    {
+      key: {
+        text: "Did the local planning authority change the description of development?"
+      },
+      value: {
+        html: data['application-desc-changed'] or 'No'
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "description of development changed"
+            }
+          ]
+        }
+    }
+  ]
+}) }}

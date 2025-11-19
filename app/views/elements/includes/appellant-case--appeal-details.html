@@ -1,0 +1,82 @@
+{% set dummygrounds = '• The appellant contends that the local planning authority decision to refuse the application was flawed on the following grounds.
+• I believe this to be a misinterpretation of Policy - The authority incorrectly applied local planning policies, particularly in relation to the assessment of visual impact and neighbourhood character, leading to an unjustified refusal.
+• Failure to Consider Material Benefits — The decision did not adequately account for the positive contributions of the proposal, including improved site utilisation and enhanced accessibility for local residents.' %}
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "4. Appeal details"
+    }
+  },
+  classes: 'long-answers',
+  rows: [
+    {
+      key: {
+        text: "Grounds of appeal"
+      },
+      value: {
+        html: dummygrounds
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "grounds of appeal"
+            }
+          ]
+        }
+    },
+    {
+      key: {
+        text: "Have there been any significant changes that would affect the application?"
+      },
+      value: {
+        html: data['localplanchange'] or 'There have been no significant changes'
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "significant change"
+            }
+          ]
+        }
+    },
+    {
+      key: {
+        text: "Appeal procedure"
+      },
+      value: {
+        html: data['procedure'] or 'Written representations'
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "appeal procedure"
+            }
+          ]
+        }
+    },
+    {
+      key: {
+        text: "Are there other appeals linked to your development?"
+      },
+      value: {
+        html: "<a href='#'>0123456</a>"
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "linked appeals"
+            }
+          ]
+        }
+    }
+  ]
+}) }}

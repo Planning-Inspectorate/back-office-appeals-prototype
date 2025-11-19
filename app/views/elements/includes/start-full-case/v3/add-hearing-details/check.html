@@ -1,0 +1,86 @@
+{% extends "layouts/PINS-Simple.html" %}
+
+{% set title = "Check details and set up hearing" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  {% set address %}
+    {{appAddress({ address: data.hearing.address })}}
+  {% endset %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal 2114328</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      {% set dates %}
+        <ul class="govuk-list govuk-list--bullet">
+          {% for day in data.hearing.days %}
+            <li>
+              <p class="govuk-!-margin-bottom-0">
+                {{day.date | isoDateFromDateInput | govukDate}}
+                {% if day.startTime and not day.endTime %}
+                  at {{day.startTime}}
+                {% endif %}
+                {% if day.startTime and day.endTime %}
+                  between {{day.startTime}} and {{day.endTime}}
+                {% endif %}
+              </p>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endset %}
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Hearing date and time"
+            },
+            value: {
+              html: dates
+            },
+            actions: {
+              items: [
+                {
+                  href: "/projects/start-full-case/v3/add-hearing-details",
+                  text: "Change",
+                  visuallyHiddenText: "Hearing date"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Hearing address"
+            },
+            value: {
+              html: address
+            },
+            actions: {
+              items: [
+                {
+                  href: "/projects/start-full-case/v3/add-hearing-details/address",
+                  text: "Change",
+                  visuallyHiddenText: "Hearing address"
+                }
+              ]
+            }
+          } if data.hearing.address.line1
+        ]
+      }) }}
+
+      <p>We’ll send an email to the appellant and LPA to tell them about the hearing.</p>
+
+      <form method="post">
+        {{ govukButton({
+          text: "Set up hearing"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

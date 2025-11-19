@@ -1,0 +1,37 @@
+{% extends "layouts/PINS-Simple.html" %}
+
+{% set title = "Email address" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post" novalidate>
+        <span class="govuk-caption-l">Appeal 2114328 - Add Rule 6 party</span>
+
+        {{ govukInput({
+          id: "rule6application[emailAddress]",
+          name: "rule6application[emailAddress]",
+          label: {
+            text: title,
+            isPageHeading: true,
+            classes: "govuk-label--l"
+          },
+          value: data.rule6application.emailAddress,
+          type: "email",
+          autocomplete: "email",
+          spellcheck: false
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

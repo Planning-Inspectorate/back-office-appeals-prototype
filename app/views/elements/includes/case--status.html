@@ -1,5 +1,9 @@
 <!-- case status tag -->
-{% if data['case-stage'] == 'ready' %}
+{% if data['case-stage'] == 'validation' %}
+
+  {{ caseStatus (caseStatus = 'validation') }}
+
+{% elseif data['case-stage'] == 'ready' %}
 
   {{ caseStatus (caseStatus = 'ready') }}
 

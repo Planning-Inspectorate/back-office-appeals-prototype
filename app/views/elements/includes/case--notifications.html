@@ -27,14 +27,16 @@
   <!-- questionnaire stage -->
   {% elseif data['case-stage'] == 'questionnaire' %}
 
-    <!-- questionnaire -->
+    <!-- waiting for questionnaire -->
+
+    <!-- if questionnaire arrives -->
     {% if data['questionnaire'] == 'received'%}
 
       {% set html %}
         <p class="govuk-notification-banner__heading">
           LPA questionnaire ready for review.
-          <a class="govuk-notification-banner__link" href="#">Review</a>.
         </p>
+        <a class="govuk-notification-banner__link" href="#">Review</a>.
       {% endset %}
 
       {{ govukNotificationBanner({
@@ -64,8 +66,8 @@
       {% set html %}
         <p class="govuk-notification-banner__heading">
           IP comments ready for review.
-          <a class="govuk-notification-banner__link" href="#">Review</a>.
         </p>
+        <a class="govuk-link" href="#">Review</a>.
 
         {{ govukNotificationBanner({
           html: html

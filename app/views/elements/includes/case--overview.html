@@ -33,6 +33,18 @@
     ],
     [
       {
+        text: "Procedure"
+      },
+      {
+        html: data['procedure'] or 'Written representations (part 1)'
+      },
+      {
+        html: "<a href='#'>Change</a>",
+        format: "numeric"
+      }
+    ] if data['procedure'],
+    [
+      {
         text: "Allocation level"
       },
       {

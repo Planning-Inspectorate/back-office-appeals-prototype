@@ -95,11 +95,15 @@ router.post('/linked-appeals-check', (req, res) => {
     if (reasons.includes('Grounds and facts do not match')) {
       res.redirect('grounds')
     } else if (reasons.includes('Waiting for the appellant to pay the fee')) {
-        res.redirect('update-due-date')
+        res.redirect('receipt-date')
     } else if (reasons.includes('Ground (a) barred')) {
         res.redirect('other-grounds')
     } else if (reasons.includes('No ground (a)')) {
         res.redirect('update-due-date')
+    } else if (reasons.includes('Missing documents')) {
+      res.redirect('missing-docs')
+    } else if (reasons.includes('Other')) {
+      res.redirect('check-other-reason')
     } else {
       // fallback or default route
       res.redirect('appeal-incomplete-reason')
@@ -114,12 +118,20 @@ router.post('/linked-appeals-check', (req, res) => {
     res.redirect('check-grounds')
   })
 
+  router.post('/missing-docs', function (req, res) {
+    res.redirect('appeal-due-date')
+  })
+
   router.post('/other-grounds', function (req, res) {
     res.redirect('appeal-due-date')
   })
 
   router.post('/appeal-due-date', function (req, res) {
     res.redirect('check-appeal-incomplete')
+  })
+
+  router.post('/receipt-date', function (req, res) {
+    res.redirect('check-appeal-incomplete-fee')
   })
 
   router.post('/check-grounds', function (req, res) {
@@ -132,6 +144,10 @@ router.post('/linked-appeals-check', (req, res) => {
 
   router.post('/check-invalid', function (req, res) {
     res.redirect('case-details-invalid')
+  })
+
+  router.post('/check-appeal-incomplete-fee', function (req, res) {
+    res.redirect('case-details-incomplete')
   })
 
   router.post('/check-incomplete', function (req, res) {
@@ -173,6 +189,10 @@ router.post('/linked-appeals-check', (req, res) => {
 
   router.post('/check-valid', function (req, res) {
     res.redirect('appeal-valid')
+  })
+
+  router.post('/check-other-reason', function (req, res) {
+    res.redirect('case-details-incomplete')
   })
 
 // Add your routes above the module.exports line

@@ -1,6 +1,6 @@
 {% extends "layouts/PINS.html" %}
 
-{% set pageName="Update appeal due date" %}
+{% set pageName="Application receipt due date" %}
 
 {% block content %}
 
@@ -26,25 +26,25 @@
           text: "For example, 31 3 2025"
         },
         items: [
-        {
-          name: "date[day]",
-          label: "Day",
-          value: data.date and data.date.day,
-          classes: "govuk-input--width-2"
-        },
-        {
-          name: "date[month]",
-          label: "Month",
-          value: data.date and data.date.month,
-          classes: "govuk-input--width-2"
-        },
-        {
-          name: "date[year]",
-          label: "Year",
-          value: data.date and data.date.year,
-          classes: "govuk-input--width-4"
-        }
-      ]
+          {
+            name: "date",
+            label: "Day",
+            value: data.day,
+            classes: "govuk-input--width-2"
+          },
+          {
+            name: "date",
+            label: "Month",
+            value: data.month,
+            classes: "govuk-input--width-2"
+          },
+          {
+            name: "date",
+            label: "Year",
+            value: data.year,
+            classes: "govuk-input--width-4"
+          }
+        ]
        }) }}
         {{ govukButton({
           text: "Continue"

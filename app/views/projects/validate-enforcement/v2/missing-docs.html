@@ -1,0 +1,115 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Which documents are missing?" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+		<span class="govuk-caption-l">Appeal 1223443</span>
+      <form method="post">
+
+        {{ govukCheckboxes({
+          name: 'missingDocuments',
+          values: data['missingDocuments'],
+          fieldset: {
+            legend: {
+              text: pageName,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "Select all that apply."
+          },
+          items: [
+            {
+              value: "Grounds of appeal supporting documents",
+              text: "Grounds of appeal supporting documents",
+              conditional: {
+                html: govukInput({
+                  id: "grounds-more",
+                  name: "grounds-more",
+                  label: {
+                    text: "Enter more information"
+                  }
+                })
+              }
+            },
+            {
+              value: "Enforcement notice",
+              text: "Enforcement notice",
+              conditional: {
+                html: govukInput({
+                  id: "enforcement-more",
+                  name: "enforcement-more",
+                  label: {
+                    text: "Enter more information"
+                  }
+                })
+              }
+            },
+            {
+              value: "Agreement to change the description of development",
+              text: "Agreement to change the description of development",
+              conditional: {
+                html: govukInput({
+                  id: "agreement-more",
+                  name: "agreement-more",
+                  label: {
+                    text: "Enter more information"
+                  }
+                })
+              }
+            },
+            {
+              value: "Planning obligation",
+              text: "Planning obligation",
+              conditional: {
+                html: govukInput({
+                  id: "obligation-more",
+                  name: "obligation-more",
+                  label: {
+                    text: "Enter more information"
+                  }
+                })
+              }
+            },
+            {
+              value: "Application for an award of appeal costs",
+              text: "Application for an award of appeal costs",
+              conditional: {
+                html: govukInput({
+                  id: "costs-more",
+                  name: "costs-more",
+                  label: {
+                    text: "Enter more information"
+                  }
+                })
+              }
+            },
+            {
+              value: "Other new supporting documents",
+              text: "Other new supporting documents",
+              conditional: {
+                html: govukInput({
+                  id: "other-more",
+                  name: "other-more",
+                  label: {
+                    text: "Enter more information"
+                  }
+                })
+              }
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

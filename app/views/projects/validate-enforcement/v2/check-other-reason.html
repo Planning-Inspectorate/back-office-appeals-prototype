@@ -18,33 +18,6 @@ href: 'javascript:history.back()'
     <h1 class="govuk-heading-l">
       {{title}}
     </h1>
-    
-    {% set groundsHtml %}
-  {% if data['grounds'] %}
-    <ul class="govuk-list govuk-list--bullet">
-      {% for ground in data['grounds'] %}
-        {% set reasonKey = "reason" + (ground | replace("Ground ", "")) %}
-        {% set reason = data[reasonKey] %}
-        {% if reason %}
-          <li>{{ ground }}: {{ reason }}</li>
-        {% else %}
-          <li>{{ ground }}</li>
-        {% endif %}
-      {% endfor %}
-    </ul>
-  {% else %}
-    <span>Ground (b): my reason</span>
-  {% endif %}
-{% endset %}
-
-{% set otherInfo = "No" %}
-{% if data['otherInformation'] == "Yes" %}
-  {% if data['otherInformationText'] %}
-    {% set otherInfo = "Yes: " + data['otherInformationText'] %}
-  {% else %}
-    {% set otherInfo = "Yes" %}
-  {% endif %}
-{% endif %}
 
 {{ govukSummaryList({
   rows: [
@@ -59,25 +32,7 @@ href: 'javascript:history.back()'
     },
     {
       key: { text: "Why is the appeal incomplete?" },
-      value: { text: data['incomplete'] or "Grounds and facts do not match" },
-      actions: {
-        items: [
-          { href: "enforcement-incomplete-reason", text: "Change", visuallyHiddenText: "incomplete reason" }
-        ]
-      }
-    },
-    {
-      key: { text: "Which grounds do not match the facts?" },
-      value: { html: groundsHtml },
-      actions: {
-        items: [
-          { href: "grounds", text: "Change", visuallyHiddenText: "grounds" }
-        ]
-      }
-    },
-    {
-      key: { text: "Do you want to add any other information?" },
-      value: { text: otherInfo },
+      value: { text: data['incomplete'] + ": " + data['otherReason'] or "Other: here is my reason" },
       actions: {
         items: [
           { href: "enforcement-incomplete-reason", text: "Change", visuallyHiddenText: "incomplete reason" }
@@ -96,7 +51,7 @@ href: 'javascript:history.back()'
       </div>
       <div class="app-email-preview__body">
         <p class="govuk-body">
-          We have reviewed your appeal and we need more information. Your grounds and facts do not match.
+          We have reviewed your appeal and we need more information.
         </p>
         <h2 class="govuk-heading-m">
           Appeal details
@@ -107,16 +62,9 @@ href: 'javascript:history.back()'
           Enforcement reference: LPA12345678
         </div>
         
-        <h2 class="govuk-heading-m">Gounds and facts that do not match</h2>
-        
-        <h3 class="govuk-heading-s">
-          Ground (b)
-        </h3>
+        <h2 class="govuk-heading-m">Information required</h2>
 
         <p class="govuk-body">This is my reason</p>
-
-        <h2 class="govuk-heading-m">Other information</h2>
-        <p class="govuk-body">More information about the grounds and facts</p>
 
 
         <h2 class="govuk-heading-m">What happens next</h2>

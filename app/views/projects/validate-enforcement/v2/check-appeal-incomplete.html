@@ -15,61 +15,176 @@
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
       <span class="govuk-caption-l">Appeal 1223443</span>
-      <h1 class="govuk-heading-l">
-        {{ title }}
-      </h1>
+      <h1 class="govuk-heading-l">{{ title }}</h1>
+
+      {# ---------------------- DYNAMIC DATA ---------------------- #}
+
+      {% set reason = data['incomplete'] %}
+      {% set missingDocs = data['missingDocuments'] %}
+      {% set otherGrounds = data['otherGrounds'] or "No" %}
+      {% set dueDate = data['date'] or "21 November 2025" %}
+
+      {# Build the missing documents HTML first #}
+      {% if missingDocs %}
+        {% set missingDocsHtml %}
+          <ul class="govuk-list govuk-list--bullet">
+            {% for doc in missingDocs %}
+              <li>{{ doc.name }}: {{ doc.reason }}</li>
+            {% endfor %}
+          </ul>
+        {% endset %}
+      {% else %}
+        {% set missingDocsHtml %}Planning obligation: never added{% endset %}
+      {% endif %}
+
+      {# ---------------------- DYNAMIC EMAIL CONTENT ---------------------- #}
+
+      {% if reason == "Missing documents" %}
+        
+        {% set appellantBody %}
+          <p class="govuk-body">
+            We have reviewed your appeal and it is incomplete because some required documents are missing.
+          </p>
+
+          <p class="govuk-body">The following documents were not provided:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            {% for doc in missingDocs %}
+              <li>{{ doc }}</li>
+            {% endfor %}
+          </ul>
+
+          <h2 class="govuk-heading-m">What happens next</h2>
+          <p class="govuk-body">
+            You must upload the missing documents before we can validate your appeal. Your update deadline is {{ dueDate }}.
+          </p>
+        {% endset %}
+
+        {% set lpaBody %}
+          <p class="govuk-body">
+            The appellant’s enforcement appeal is incomplete because required documents were not supplied.
+          </p>
+
+          <p class="govuk-body">Missing documents:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            {% for doc in missingDocs %}
+              <li>{{ doc }}</li>
+            {% endfor %}
+          </ul>
+
+          <p class="govuk-body">The appellant has until {{ dueDate }} to provide the missing information.</p>
+        {% endset %}
+
+        {% set emailSubject = "Missing documents: 1223443" %}
+
+      {% else %}
+
+        {# ===== OTHER STATIC REASON (Ex: Ground (a) barred) ===== #}
+
+        {% set emailSubject = "Ground (a) decision: 1223443" %}
+
+        {% set appellantBody %}
+          <p class="govuk-body">
+            We have reviewed the grounds and facts. We cannot consider ground (a) because the enforcement notice was issued with enough time for you to submit a retrospective planning application.
+          </p>
+
+          <h2 class="govuk-heading-m">Appeal details</h2>
+          <div class="govuk-inset-text">
+            Appeal reference number: 1223443<br>
+            Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
+            Enforcement reference: LPA12345678
+          </div>
+
+          <h2 class="govuk-heading-m">What happens next</h2>
+
+          {% if otherGrounds == "Yes" %}
+            <p class="govuk-body">Your appeal will continue on your other grounds, but not ground (a).</p>
+          {% else %}
+            <p class="govuk-body">We have closed your appeal as it is not valid.</p>
+          {% endif %}
+
+          <h2 class="govuk-heading-m">Planning Inspectorate's role</h2>
+          <p class="govuk-body">The Planning Inspectorate cannot change or revoke the decision. You can <a href="https://www.gov.uk/appeal-planning-decision/if-you-think-the-appeal-decision-is-legally-incorrect">challenge the decision in the High court</a> if you think the Planning Inspectorate made a legal mistake.</p>
+        {% endset %}
+
+        {% set lpaBody %}
+          <p class="govuk-body">
+            We have reviewed the grounds and facts. We cannot consider ground (a) because the enforcement notice was issued with enough time for the appellant to submit a retrospective planning application.
+          </p>
+
+          <h2 class="govuk-heading-m">Appeal details</h2>
+          <div class="govuk-inset-text">
+            Appeal reference number: 1223443<br>
+            Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
+            Enforcement reference: LPA12345678
+          </div>
+
+          <h2 class="govuk-heading-m">What happens next</h2>
+
+          {% if otherGrounds == "Yes" %}
+            <p class="govuk-body">The appeal will continue on the other grounds, but not ground (a).</p>
+          {% else %}
+            <p class="govuk-body">We have closed the appeal as it is not valid.</p>
+          {% endif %}
+        {% endset %}
+
+      {% endif %}
+
+      {# ---------------------- SUMMARY LIST ---------------------- #}
 
       {{ govukSummaryList({
         rows: [
           {
             key: { text: "Review decision" },
-            value: { html: "Incomplete" },
+            value: { html: data['reviewDecision'] or "Incomplete" },
             actions: {
               items: [
-                {
-                  href: "enforcement-appeal",
-                  text: "Change",
-                  visuallyHiddenText: "review decision"
-                }
+                { href: "enforcement-appeal", text: "Change", visuallyHiddenText: "review decision" }
               ]
             }
           },
           {
             key: { text: "Why is the appeal incomplete?" },
-            value: { html: data['incomplete'] or "Ground (a) barred" },
+            value: { html: data['incomplete'] },
             actions: {
               items: [
-                {
-                  href: "enforcement-incomplete-reason",
-                  text: "Change",
-                  visuallyHiddenText: "incomplete reason"
-                }
+                { href: "enforcement-incomplete-reason", text: "Change", visuallyHiddenText: "incomplete reason" }
               ]
             }
           },
+          {
+            key: { text: "Which documents are incomplete?" },
+            value: { html: '<ul class="govuk-list govuk-list--bullet">
+              <li>
+                Enforcement notice: missing
+              </li>
+              <li>
+                Planning obligation: incomplete section 1.C
+              </li>
+              <li>
+                Application for an award of appeal costs: missing
+              </li>
+            </ul>'},
+            actions: {
+              items: [
+                { href: "missing-docs", text: "Change", visuallyHiddenText: "incomplete reason" }
+              ]
+            }
+          } if data['incomplete'] == "Missing documents",
           {
             key: { text: "Does the appeal have other grounds?" },
-            value: { html: data['otherGrounds'] or "No" },
+            value: { html: otherGrounds },
             actions: {
               items: [
-                {
-                  href: "other-grounds",
-                  text: "Change",
-                  visuallyHiddenText: "other grounds"
-                }
+                { href: "other-grounds", text: "Change", visuallyHiddenText: "other grounds" }
               ]
             }
-          },
+          } if data['incomplete'] == "Ground (a) barred",
           {
             key: { text: "Appeal due date" },
-            value: { html: "14 November 2025" },
+            value: { html: "30 November 2025" },
             actions: {
               items: [
-                {
-                  href: "appeal-due-date",
-                  text: "Change",
-                  visuallyHiddenText: "due date"
-                }
+                { href: "appeal-due-date", text: "Change", visuallyHiddenText: "due date" }
               ]
             }
           }
@@ -77,37 +192,21 @@
       }) }}
 
       {# ---------------- EMAIL PREVIEW — APPELLANT ---------------- #}
+
       {% set appellantEmail %}
       <div class="app-email-preview">
         <div class="app-email-preview__subject">
-          Subject: Ground (a) decision: 1223443
+          Subject: {{ emailSubject }}
         </div>
         <div class="app-email-preview__body">
-          <p class="govuk-body">
-            We have reviewed the grounds and facts. We cannot consider ground (a) because the enforcement notice was issued with enough time for you to submit a retrospective planning application within 2 years from the date that the local planning authority stopped considering the planning application.
-          </p>
 
-          <h2 class="govuk-heading-m">Appeal details</h2>
-          <div class="govuk-inset-text">
-            Appeal reference number: 1223443<br>
-            Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
-            Planning application reference: LPA12345678
-          </div>
-
-          <h2 class="govuk-heading-m">What happens next</h2>
-          <p class="govuk-body">We have closed your appeal as it is not valid.</p>
-          <p class="govuk-body">Your appeal will continue on your other grounds, but not ground (a).</p>
-
-          <h2 class="govuk-heading-m">Planning Inspectorate's role</h2>
-          <p class="govuk-body">
-            The Planning Inspectorate cannot change or revoke the decision. You can 
-            <a href="#">challenge the decision in the High Court</a> if you think a legal mistake has been made.
-          </p>
+          {{ appellantBody | safe }}
 
           <p class="govuk-body">Planning Inspectorate</p>
           <p class="govuk-body">
             <a href="mailto:caseofficers@planninginspectorate.gov.uk">caseofficers@planninginspectorate.gov.uk</a>
           </p>
+
         </div>
       </div>
       {% endset %}
@@ -118,26 +217,15 @@
       }) }}
 
       {# ---------------- EMAIL PREVIEW — LPA ---------------- #}
+
       {% set lpaEmail %}
       <div class="app-email-preview">
         <div class="app-email-preview__subject">
-          Subject: Ground (a) decision: 1223443
+          Subject: {{ emailSubject }}
         </div>
         <div class="app-email-preview__body">
-          <p class="govuk-body">
-            We have reviewed the grounds and facts. We cannot consider ground (a) because the enforcement notice was issued with enough time for the appellant to submit a retrospective planning application within 2 years from the date that you stopped considering the planning application.
-          </p>
 
-          <h2 class="govuk-heading-m">Appeal details</h2>
-          <div class="govuk-inset-text">
-            Appeal reference number: 1223443<br>
-            Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
-            Planning application reference: LPA12345678
-          </div>
-
-          <h2 class="govuk-heading-m">What happens next</h2>
-          <p class="govuk-body">We have closed the appeal as it is not valid.</p>
-          <p class="govuk-body">The appeal will continue on the other grounds, but not ground (a).</p>
+          {{ lpaBody | safe }}
 
           <p class="govuk-body">Planning Inspectorate</p>
           <p class="govuk-body">
@@ -153,11 +241,9 @@
       }) }}
 
       <form method="post">
-        {{ govukButton({
-          text: "Mark appeal as incomplete"
-        }) }}
+        {{ govukButton({ text: "Mark appeal as incomplete" }) }}
       </form>
-
     </div>
   </div>
 {% endblock %}
+

@@ -41,7 +41,15 @@
             },
             {
               value: "Other",
-              text: "Other"
+              text: "Other",
+              conditional: {
+                html: govukInput({
+                  name: "otherReason",
+                  label: {
+                    text: "Enter a reason"
+                  }
+                })
+              }
            }
           ]
         }) }}

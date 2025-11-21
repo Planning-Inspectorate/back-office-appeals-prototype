@@ -1,0 +1,234 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = 'Check details and mark appeal as incomplete' %}
+{% set pageName = title %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+text: "Back",
+href: 'javascript:history.back()'
+}) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+
+    <span class="govuk-caption-l">Appeal {{ data['appealReference'] or '1223443' }}</span>
+    <h1 class="govuk-heading-l">{{ title }}</h1>
+
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "Review decision"
+          },
+          value: {
+            text: "Incomplete"
+          },
+          actions: {
+            items: [
+              {
+                href: "Item URL",
+                text: "Change",
+                visuallyHiddenText: "Item label"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Why is the appeal incomplete?"
+          },
+          value: {
+            html: '<ul class="govuk-list govuk-list--bullet">
+              <li>
+                Missing documents
+              </li>
+              <li>
+                Grounds and facts do not match
+              </li>
+              <li>
+                Ground (a) barred
+              </li>
+              <li>
+                Waiting for the appellant to pay the fee
+              </li>
+              <li>
+                Other: this is my other reason
+              </li>
+            </ul>'
+          },
+          actions: {
+            items: [
+              {
+                href: "Item URL",
+                text: "Change",
+                visuallyHiddenText: "Item label"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Missing documents"
+          },
+          value: {
+            html: '<ul class="govuk-list govuk-list--bullet">
+            <li>
+              Document 1 name: incomplete details
+            </li>
+            <li>
+              Document 2 name: not provided at all
+            </li>
+          </ul>'
+          },
+          actions: {
+            items: [
+              {
+                href: "Item URL",
+                text: "Change",
+                visuallyHiddenText: "Item label"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Which grounds do not match the facts?"
+          },
+          value: {
+            html: '<ul class="govuk-list govuk-list--bullet">
+              <li>
+                ground (b): reason goes here
+              </li>
+              <li>
+                ground (c): reason goes here
+              </li>
+            </ul>'
+          },
+          actions: {
+            items: [
+              {
+                href: "Item URL",
+                text: "Change",
+                visuallyHiddenText: "Item label"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Does the appeal have other grounds?"
+          },
+          value: {
+            text: "Yes"
+          },
+          actions: {
+            items: [
+              {
+                href: "Item URL",
+                text: "Change",
+                visuallyHiddenText: "Item label"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Appeal due date"
+          },
+          value: {
+            text: "18 December 2025"
+          },
+          actions: {
+            items: [
+              {
+                href: "Item URL",
+                text: "Change",
+                visuallyHiddenText: "Item label"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Fee due date"
+          },
+          value: {
+            text: "24 November 2024"
+          },
+          actions: {
+            items: [
+              {
+                href: "Item URL",
+                text: "Change",
+                visuallyHiddenText: "Item label"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Do you want to add any other information?"
+          },
+          value: {
+            text: "Yes: here is my other information"
+          },
+          actions: {
+            items: [
+              {
+                href: "Item URL",
+                text: "Change",
+                visuallyHiddenText: "Item label"
+              }
+            ]
+          }
+        }
+      ]
+    }) }}
+
+    
+
+    {# --- Email previews --- #}
+
+      {{ govukDetails({
+        summaryText: "Preview email to appellant",
+        html: '
+          <div class="app-email-preview">
+            <div class="app-email-preview__subject">
+              Subject: You cannot submit an enforcement appeal: ' ~ (data["appealReference"] or "1223443") ~ '
+            </div>
+            <div class="app-email-preview__body">
+              
+              <p class="govuk-body"><a href="#">Find out more about the enforcement appeal process</a>.</p>
+              <p class="govuk-body">Planning Inspectorate</p>
+            </div>
+          </div>'
+      }) }}
+
+      {{ govukDetails({
+        summaryText: "Preview email to LPA",
+        html: '
+          <div class="app-email-preview">
+            <div class="app-email-preview__subject">
+              Subject: Enforcement notice invalid: ' ~ (data["appealReference"] or "1223443") ~ '
+            </div>
+            <div class="app-email-preview__body">
+
+              <p class="govuk-body"><a href="#">Find out more about the enforcement process</a>.</p>
+              <p class="govuk-body">Planning Inspectorate</p>
+            </div>
+          </div>'
+      }) }}
+
+    <p class="govuk-body">
+      We will mark the appeal as incomplete and send an email to the relevant parties.
+    </p>
+    <form method="post">
+      {{ govukButton({ text: "Mark appeal as incomplete" }) }}
+    </form>
+
+  </div>
+</div>
+{% endblock %}

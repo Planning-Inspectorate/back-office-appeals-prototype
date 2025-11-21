@@ -101,7 +101,7 @@ href: 'javascript:history.back()'
 
     {% if data['invalid'] and data['invalid'].includes('Appellant does not have a legal interest in the land') %}
       {{ govukDetails({
-        summaryText: "Preview no legal interest email to the appellant",
+        summaryText: "Preview email to appellant",
         html: '
           <div class="app-email-preview">
             <div class="app-email-preview__subject">
@@ -126,7 +126,7 @@ href: 'javascript:history.back()'
                 and include details of your interest in the land and any supporting documents.
               </p>
               <p>We will mark your appeal as invalid if you do not reply by 24 October 2025.</p>
-              <p class="govuk-body"><a href="#">Find out more about the enforcement appeal process</a>.</p>
+              <p class="govuk-body"><a href="https://www.gov.uk/government/publications/enforcement-appeals-procedural-guide">Find out more about the enforcement appeal process</a>.</p>
               <p class="govuk-body">Planning Inspectorate</p>
             </div>
           </div>'
@@ -135,7 +135,7 @@ href: 'javascript:history.back()'
 
     {% if data['invalid'] and data['invalid'].includes('Enforcement notice is invalid') %}
       {{ govukDetails({
-        summaryText: "Preview enforcement notice invalid email to the LPA",
+        summaryText: "Preview email to LPA",
         html: '
           <div class="app-email-preview">
             <div class="app-email-preview__subject">
@@ -155,7 +155,7 @@ href: 'javascript:history.back()'
               <h2 class="govuk-heading-m">What happens next</h2>
               <p>Contact <a href="mailto:caseofficers@planninginspectorate.gov.uk">caseofficers@planninginspectorate.gov.uk</a>
               to confirm if you will withdraw this enforcement notice and serve another by 25 November 2025.</p>
-              <p class="govuk-body"><a href="#">Find out more about the enforcement process</a>.</p>
+              <p class="govuk-body"><a href="https://www.gov.uk/government/publications/enforcement-appeals-procedural-guide">Find out more about the enforcement process</a>.</p>
               <p class="govuk-body">Planning Inspectorate</p>
             </div>
           </div>'

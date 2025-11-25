@@ -1,0 +1,99 @@
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "Appeal process"
+    }
+  },
+  rows: [
+    {
+      key: {
+        html: 'Procedure type'
+      },
+      value: {
+        html: 'Written representations'
+      },
+      actions: {
+        items: [
+          {
+            href: 'appeal-process/procedure?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: 'Other appeals'
+      },
+      value: {
+        html: '<ul class="govuk-list govuk-list--bullet">
+                 <li>
+                   <a href="#" class="govuk-body">0123456</a>
+                 </li>
+                 <li>
+                   <a href="#" class="govuk-body">0127745</a>
+                 </li>
+               </ul>'
+
+      },
+      actions: {
+        items: [
+          {
+            href: 'appeal-process/other-appeals?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    } if data['answers'] != 'empty',
+    {
+      key: {
+        html: 'Other appeals'
+      },
+      value: {
+        html: 'No'
+
+      },
+      actions: {
+        items: [
+          {
+            href: 'appeal-process/other-appeals?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    } if data['answers'] == 'empty',
+    {
+      key: {
+        html: 'Request new conditions'
+      },
+      value: {
+        html: 'Some new conditions'
+      },
+      actions: {
+        items: [
+          {
+            href: 'appeal-process/extra-conditions?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    } if data['answers'] != 'empty',
+    {
+      key: {
+        html: 'Extra conditions'
+      },
+      value: {
+        html: 'Not applicable'
+      },
+      actions: {
+        items: [
+          {
+            href: 'appeal-process/extra-conditions?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    } if data['answers'] == 'empty'
+
+  ]
+}) }}

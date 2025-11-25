@@ -1,0 +1,34 @@
+{% extends "layouts/PINS.html" %}
+
+{% set title = 'Is the site in a national landscape?' %}
+
+{% block questions %}
+  {{ govukRadios({
+    idPrefix: 'national-landscape',
+    name: 'national-landscape',
+    fieldset: {
+      legend: {
+        html: title,
+        classes: 'govuk-fieldset__legend--l',
+        isPageHeading: true
+      }
+    },
+    hint: [
+      {
+        text: 'A national landscape used to be called an area of outstanding natural beauty'
+      }
+    ]
+    items: [
+      {
+        html: 'Yes',
+        value: 'Yes',
+        checked: checked('national-landscape','Yes')
+      },
+      {
+        html: 'No',
+        value: 'No',
+        checked: checked('national-landscape','No')
+      }
+    ]
+  }) }}
+{% endblock %}

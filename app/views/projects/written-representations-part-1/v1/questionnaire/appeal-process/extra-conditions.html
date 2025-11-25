@@ -1,0 +1,78 @@
+{% extends "layouts/PINS.html" %}
+
+{% set title = 'Add new condition requests' %}
+
+{% block questions %}
+  <h1 class="govuk-heading-l">
+    {{ title }}
+  </h1>
+
+  <p class="govuk-body">
+    If you have new condition requests, add them now or email them to <a href=:mailto:caseofficers@planninginspectorate.gov.uk">caseofficers@planninginspectorate.gov.uk</a>
+  </p>
+
+  <div class="govuk-inset-text">
+    The deadline for emailed condition requests is {{ '6' | daysInFuture }}.
+  </div>
+
+  <p class="govuk-body">
+    You do not need to tell us about standard conditions.
+  </p>
+
+  <!-- {% set standardConditions %}
+    <p class="govuk-body">
+      The development hereby permitted shall begin not later than 3 years from the date of this decision.
+    </p>
+
+    <p class="govuk-body">
+      The materials to be used in the construction of the external surfaces of the development hereby permitted shall match those used in the existing building.
+    </p>
+
+    <p class="govuk-body">
+      The development hereby permitted shall be carried out in accordance with the approved plans.
+    </p>
+
+  {% endset -%}
+
+  {{ govukDetails({
+    summaryHtml: 'Standard conditions',
+    html: standardConditions
+  }) }} -->
+
+  {% set extraConditions %}
+    {{ govukTextarea({
+      name: 'extra-conditions',
+      id: 'extra-conditions',
+      value: data['extra-conditions'],
+      rows: '3',
+      label: {
+        html: 'Add request details'
+      }
+    }) }}
+  {% endset -%}
+  {{ govukRadios({
+    idPrefix: 'extra-conditions-check',
+    name: 'extra-conditions-check',
+    fieldset: {
+      legend: {
+        html: 'Do you want to request new conditions?',
+        classes: 'govuk-fieldset__legend--m'
+      }
+    },
+    items: [
+      {
+        html: 'Yes',
+        value: 'Yes',
+        checked: checked('extra-conditions-check','Yes'),
+        conditional: {
+          html: extraConditions
+        }
+      },
+      {
+        html: 'No',
+        value: 'No',
+        checked: checked('extra-conditions','No')
+      }
+    ]
+  }) }}
+{% endblock %}

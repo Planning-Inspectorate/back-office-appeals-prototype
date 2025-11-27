@@ -1,6 +1,6 @@
 {% extends "layouts/PINS.html" %}
 
-{% set pageName="Case details" %}
+{% set pageName="Why is the enforcement notice invalid?" %}
 
 {% block content %}
 <div class="govuk-grid-row">
@@ -13,7 +13,7 @@
         name: "reason-enforcement-notice-invalid",
         fieldset: {
           legend: {
-            text: "Why is the enforcement notice invalid?",
+            text: pageName,
             isPageHeading: true,
             classes: "govuk-fieldset__legend--l"
           }
@@ -30,11 +30,11 @@
             }
           },
           {
-            value: "It states that the recipient needs to immediately stop enforcement stuff",
-            text: "It states that the recipient needs to immediately stop enforcement stuff",
+            value: "It states that the recipient needs to immediately stop enforcement activity",
+            text: "It states that the recipient needs to immediately stop enforcement activity",
             conditional: {
               html: govukInput({
-                name: "reason-text-It-states-that-the-recipient-needs-to-immediately-stop-enforcement-stuff",
+                name: "reason-text-It-states-that-the-recipient-needs-to-immediately-stop-enforcement-activity",
                 label: { text: "Enter a reason" }
               })
             }
@@ -60,7 +60,7 @@
             }
           },
           {
-            value: "It does not specify a period for compliance (only a description)",
+            value: "It does not specify a period for compliance only a description",
             text: "It does not specify a period for compliance (only a description)",
             conditional: {
               html: govukInput({
@@ -70,7 +70,7 @@
             }
           },
           {
-            value: "It does not specify a period for compliance (completely missing)",
+            value: "It does not specify a period for compliance completely missing",
             text: "It does not specify a period for compliance (completely missing)",
             conditional: {
               html: govukInput({

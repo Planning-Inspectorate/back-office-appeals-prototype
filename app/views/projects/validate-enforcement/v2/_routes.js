@@ -50,37 +50,107 @@ router.post('/cancel-appeal/cancel-reason', function (req, res) {
 
   router.post('/enforcement-appeal', function (req, res) {
     const reviewDecision = req.session.data['reviewDecision']
-    if (reviewDecision === 'Invalid') {
-      res.redirect('appeal-invalid-reason')
-    } else if (reviewDecision === 'Incomplete') {
-      res.redirect('appeal-incomplete-reason')
+    if (reviewDecision === 'Valid') {
+      res.redirect('ground-a')
     } else {
-      res.redirect('other-information-valid')
+      res.redirect('enf-notice-invalid')
     }
   })
+
+
+  router.post('/appeal-incomplete-reason', function (req, res) {
+    const reasons = req.session.data['incomplete'] || []; // assuming this is the array of selected reasons
+
+    if (reasons.includes('Missing documents')) {
+      res.redirect('missing-docs');
+    } else if (reasons.includes('Grounds and facts do not match')) {
+      res.redirect('grounds');
+    } else if (reasons.includes('Waiting for the appellant to pay the fee')) {
+      res.redirect('receipt-date');
+    } else if (reasons.length === 0) {
+      res.redirect('other-information-incomplete');
+    } else {
+      res.redirect('other-information-incomplete');
+    }
+  });
+
+  // Handle the flow after missing-docs
+  router.post('/missing-docs', function (req, res) {
+    res.redirect('update-due-date');
+  });
+
+  // Handle the flow after update-due-date
+  router.post('/update-due-date', function (req, res) {
+    const reasons = req.session.data['incomplete'] || [];
+    
+    if (reasons.includes('Grounds and facts do not match')) {
+      res.redirect('grounds');
+    } else if (reasons.includes('Waiting for the appellant to pay the fee')) {
+      res.redirect('receipt-date');
+    } else {
+      res.redirect('check-appeal-incomplete');
+    }
+  });
+
+  // Handle the flow after other-information
+  router.post('/grounds', function (req, res) {
+    const reasons = req.session.data['incomplete'] || [];
+    
+    if (reasons.includes('Waiting for the appellant to pay the fee')) {
+      res.redirect('receipt-date');
+    } else {
+      res.redirect('other-information-incomplete');
+    }
+  });
+
+  // Handle the flow after receipt-date
+  router.post('/receipt-date', function (req, res) {
+    res.redirect('other-information-incomplete');
+  });
+
+  router.post('/other-information-incomplete', function (req, res) {
+    const enfNotice = req.session.data['enfNotice']
+    if (enfNotice === 'Yes') {
+      res.redirect('check-incomplete-enf-invalid');
+    } else {
+      res.redirect('check-appeal-incomplete');
+    }
+  });
+
+
+  router.post('/enf-notice-invalid', function (req, res) {
+    const enfNotice = req.body.enfNotice;
+    const reviewDecision = req.session.data['reviewDecision']; // Retrieve reviewDecision from session data
+    if (enfNotice === 'No' && reviewDecision === 'Invalid') {
+      res.redirect('appeal-invalid-reason')
+    } else if (enfNotice === 'No' && reviewDecision === 'Incomplete') {
+      res.redirect('appeal-incomplete-reason')
+    } else {
+      res.redirect('enforcement-invalid-reason')
+    }
+    })
 
   router.post('/enforcement-incomplete-reason', function (req, res) {
     res.redirect('update-due-date')
   })
 
-  router.post('/update-due-date', function (req, res) {
-    res.redirect('check-incomplete')
-  })
-
   router.post('/appeal-invalid-reason', function (req, res) {
-    const invalid = req.session.data['invalid'] || []
-  
-    if (invalid.includes('Appellant does not have a legal interest in the land')) {
       res.redirect('linked-appeals-check')
-    } else if (invalid.includes('Enforcement notice is invalid')) {
-      res.redirect('enforcement-invalid-reason')
-    } else {
-      res.redirect('appeal-invalid-reason')
-    }
   })
 
   router.post('/enforcement-invalid-reason', function (req, res) {
-    res.redirect('check')
+    const reviewDecision = req.session.data.reviewDecision;
+    if (reviewDecision === 'Invalid') {
+      res.redirect('other-information-invalid');
+    } else if (reviewDecision === 'Incomplete'){
+      res.redirect('other-information-incomplete');
+    } else {
+      res.redirect('enforcement-invalid-reason');
+    }
+  });
+
+  router.post('/other-information-invalid', function (req, res) {
+    res.redirect('check-enf-notice')
   })
 
 // /linked-appeals-check
@@ -90,53 +160,8 @@ router.post('/linked-appeals-check', (req, res) => {
     res.redirect('check')
   })
 
-  router.post('/appeal-incomplete-reason', function (req, res) {
-    const reasons = req.session.data['incomplete'] || []  // always an array
-    if (reasons.includes('Grounds and facts do not match')) {
-      res.redirect('grounds')
-    } else if (reasons.includes('Waiting for the appellant to pay the fee')) {
-        res.redirect('receipt-date')
-    } else if (reasons.includes('Ground (a) barred')) {
-        res.redirect('other-grounds')
-    } else if (reasons.includes('No ground (a)')) {
-        res.redirect('update-due-date')
-    } else if (reasons.includes('Missing documents')) {
-      res.redirect('missing-docs')
-    } else if (reasons.includes('Other')) {
-      res.redirect('check-other-reason')
-    } else {
-      // fallback or default route
-      res.redirect('appeal-incomplete-reason')
-    }
-  })
 
-  router.post('/grounds', function (req, res) {
-    res.redirect('other-information')
-  })
-
-  router.post('/other-information', function (req, res) {
-    res.redirect('check-grounds')
-  })
-
-  router.post('/missing-docs', function (req, res) {
-    res.redirect('appeal-due-date')
-  })
-
-  router.post('/other-grounds', function (req, res) {
-    res.redirect('appeal-due-date')
-  })
-
-  router.post('/appeal-due-date', function (req, res) {
-    res.redirect('check-appeal-incomplete')
-  })
-
-  router.post('/receipt-date', function (req, res) {
-    res.redirect('check-appeal-incomplete-fee')
-  })
-
-  router.post('/check-grounds', function (req, res) {
-    res.redirect('enforcement-appeal-incomplete')
-  })
+  
 
   router.post('/check', function (req, res) {
     res.redirect('appeal-invalid')
@@ -179,6 +204,10 @@ router.post('/linked-appeals-check', (req, res) => {
     res.redirect('../case-details-cancelled')
   })
 
+  router.post('/ground-a', function (req, res) {
+    res.redirect('other-information-valid')
+  })
+
   router.post('/other-information-valid', function (req, res) {
     res.redirect('valid-date')
   })
@@ -191,9 +220,6 @@ router.post('/linked-appeals-check', (req, res) => {
     res.redirect('appeal-valid')
   })
 
-  router.post('/check-other-reason', function (req, res) {
-    res.redirect('case-details-incomplete')
-  })
 
 // Add your routes above the module.exports line
 module.exports = router

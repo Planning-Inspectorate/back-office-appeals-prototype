@@ -137,71 +137,52 @@
       html: '
       <div class="app-email-preview">
         <div class="app-email-preview__subject">
-          Subject: Enforcement notice invalid: 1223443
+          Subject: Enforcement notice withdrawn: 1223443
         </div>
         <div class="app-email-preview__body">
           <p class="govuk-body">
-            We have reviewed your appeal and the enforcement notice is not valid.
+            Barnet Council has withdrawn the enforcement notice.
           </p>
 
           <p class="govuk-body">
-            We have cancelled the appeal. The enforcment notice will not take effect.
+            The enforcment notice issued on 3 November 2025 will not take effect.
           </p>
 
           <h2 class="govuk-heading-m">
             Appeal details
           </h2>
+
+          
+
           <div class="govuk-inset-text">
             Appeal reference number: 1223443<br>
             Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
-            Planning application reference: LPA12345678
+            Enforcement notice reference: LPA12345678
           </div>
+
+          <h2 class="govuk-heading-m">
+            What happens next
+          </h2>
+
+          <p class="govuk-body">
+            We have closed the appeal and cancelled the enforcement notice.
+          </p>
+
+          <p class="govuk-body">
+            If there are any costs applications, we will decide these separately.
+          </p>
 
           <p class="govuk-body">
             Planning Inspectorate
           </p>
 
+          <p class="govuk-body"><a href="mailto:caseofficers@planninginspectorate.gov.uk">
+            caseofficers@planninginspectorate.gov.uk</a></p>
+
         </div>
       </div>'
     }) }}
   {% endif %}
-
-  {% if data['cancel-reason'] == "LPA has withdrawn the enforcement notice" %}
-  {{ govukDetails({
-    summaryText: "Preview email to LPA",
-    html: '
-    <div class="app-email-preview">
-      <div class="app-email-preview__subject">
-        Subject: Appeal cancelled: 1223443
-      </div>
-      <div class="app-email-preview__body">
-        <p class="govuk-body">
-          We have reviewed the information you submitted and decided that the enforcement notice is not valid.
-        </p>
-        <p class="govuk-body">
-          We did not receive an email to confirm if you will withdraw the enforcement notice and servce another.
-        </p>
-        <p class="govuk-body">
-          We have cancelled the appeal.
-        </p>
-
-        <h2 class="govuk-heading-m">
-          Appeal details
-        </h2>
-        <div class="govuk-inset-text">
-          Appeal reference number: 1223443<br>
-          Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
-          Planning application reference: LPA12345678
-        </div>
-
-        <p class="govuk-body">
-          Planning Inspectorate
-        </p>
-
-      </div>
-    </div>'
-  }) }}
-{% endif %}
 
 <p class="govuk-body">
   We will withdraw the enforcement notice and send an email to the relevant parties.

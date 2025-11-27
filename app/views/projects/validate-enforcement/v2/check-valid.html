@@ -4,10 +4,10 @@
 {% set pageName = title %}
 
 {% block beforeContent %}
-{{ govukBackLink({
-text: "Back",
-href: 'javascript:history.back()'
-}) }}
+  {{ govukBackLink({
+    text: "Back",
+    href: 'javascript:history.back()'
+  }) }}
 {% endblock %}
 
 {% block content %}
@@ -17,20 +17,18 @@ href: 'javascript:history.back()'
     <span class="govuk-caption-l">Appeal {{ data['appealReference'] or '1223443' }}</span>
     <h1 class="govuk-heading-l">{{ title }}</h1>
 
-    {% set groundAbarred %}
+    {# Ground A barred value (use if/else rather than a ternary inside set) #}
     {% if data['groundA'] in ['Yes', 'No'] %}
-      {{ data['groundA'] }}
-      {% else %}
-         Yes
-      {% endif %}
-    {% endset %}
+      {% set groundAbarred = data['groundA'] %}
+    {% else %}
+      {% set groundAbarred = 'Yes' %}
+    {% endif %}
 
-    {# Default to No #}
+    {# Other information #}
     {% set otherInformation = "No" %}
-    
     {% if data['otherInfo'] == "Yes" %}
       {% if data['otherInfoText'] %}
-        {% set otherInformation = "Yes: " + data['otherInfoText'] %}
+        {% set otherInformation = "Yes: " ~ data['otherInfoText'] %}
       {% else %}
         {% set otherInformation = "Yes" %}
       {% endif %}
@@ -39,94 +37,168 @@ href: 'javascript:history.back()'
     {{ govukSummaryList({
       rows: [
         {
-          key: {
-            text: "Review decision"
-          },
-          value: {
-            text: "Valid"
-          },
+          key: { text: "Review decision" },
+          value: { text: "Valid" },
           actions: {
             items: [
-              {
-                href: "enforcement-appeal",
-                text: "Change",
-                visuallyHiddenText: "review decision"
-              }
+              { href: "enforcement-appeal", text: "Change", visuallyHiddenText: "review decision" }
             ]
           }
         },
         {
-          key: {
-            text: "Do you want to add any other information?"
-          },
-          value: {
-            text: otherInformation
-          },
+          key: { text: "Is the appeal ground (a) barred?" },
+          value: { text: groundAbarred },
           actions: {
             items: [
-              {
-                href: "other-information-valid",
-                text: "Change",
-                visuallyHiddenText: "other information"
-              }
+              { href: "ground-a", text: "Change", visuallyHiddenText: "ground a" }
             ]
           }
         },
         {
-          key: {
-            text: "Valid date for case"
-          },
-          value: {
-            text: "14 November 2025"
-          },
+          key: { text: "Do you want to add any other information?" },
+          value: { text: otherInformation },
           actions: {
             items: [
-              {
-                href: "valid-date",
-                text: "Change",
-                visuallyHiddenText: "valid date for case"
-              }
+              { href: "other-information-valid", text: "Change", visuallyHiddenText: "other information" }
+            ]
+          }
+        },
+        {
+          key: { text: "Valid date for case" },
+          value: { text: "14 November 2025" },
+          actions: {
+            items: [
+              { href: "valid-date", text: "Change", visuallyHiddenText: "valid date for case" }
             ]
           }
         }
       ]
     }) }}
 
+    {# --- Build email preview HTML for appellant --- #}
+{% set appellantEmailHtml %}
+<div class="app-email-preview">
+  <div class="app-email-preview__subject">
+    Subject: We have confirmed your appeal: {{ data["appealReference"] or "1223443" }}
+  </div>
+  <div class="app-email-preview__body">
+    <p class="govuk-body">We have confirmed your appeal and you have submitted all of the information we need.</p>
+
+    <p class="govuk-body">The appeal will continue on the following grounds:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>ground (b)</li>
+      <li>ground (e)</li>
+    </ul>
+
+    <h2 class="govuk-heading-m">Appeal details</h2>
+    <div class="govuk-inset-text">
+      Appeal reference number: {{ data["appealReference"] or "1223443" }}<br>
+      Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
+      Enforcement notice reference: LPA12345678
+    </div>
+
+    {% if data['groundA'] == "Yes" %}
+    <h2 class="govuk-heading-m">Ground (a) barred</h2>
+    <p class="govuk-body">We cannot consider ground (a) because the enforcement notice was issued:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>after you made a retrospective planning application</li>
+      <li>within 2 years from the date the application stopped being considered</li>
+    </ul>
+    {% endif %}
+
+    {% if data['otherInfo'] == "Yes" %}
+    <h2 class="govuk-heading-m">Other information</h2>
+    <p class="govuk-body">{{ data['otherInfoText'] or "Here is some other info" }}</p>
+    {% endif %}
+
+    <h2 class="govuk-heading-m">What happens next</h2>
+    <ul class="govuk-list govuk-list--number">
+      <li><a href="#">Download a copy of your appeal form</a>.</li>
+      <li><a href="#">Find the email address for your local planning authority</a>.</li>
+      <li>Email the copy of your appeal form and the documents you uploaded to Barnet Council.</li>
+    </ul>
+
+    <p class="govuk-body">You must send a copy of your appeal form and documents to the local planning authority. It is a legal requirement.</p>
+
+    <p class="govuk-body"><a href="#">Find out about the enforcement appeals process</a>.</p>
+
+    <h2 class="govuk-heading-m">Give feedback</h2>
+    <p class="govuk-body"><a href="https://forms.office.com/pages/responsepage.aspx?id=mN94WIhvq0iTIpmM5VcIjYt1ax_BPvtOqhVjfvzyJN5UOUlNRkhaQjNXTDQyNEhSRExNOFVGSkNJTS4u&route=shorturl">Give feedback on the appeals service</a> (takes 2 minutes)</p>
+    <p class="govuk-body">Planning Inspectorate</p>
+    <p class="govuk-body"><a href="mailto:caseofficers@planninginspectorate.gov.uk">caseofficers@planninginspectorate.gov.uk</a></p>
+  </div>
+</div>
+{% endset %}
+
+{{ govukDetails({
+  summaryText: "Preview email to appellant",
+  html: appellantEmailHtml
+}) }}
 
 
-    {# --- Email previews --- #}
+{# --- Build email preview HTML for LPA --- #}
+{% set lpaEmailHtml %}
+<div class="app-email-preview">
+  <div class="app-email-preview__subject">
+    Subject: We have received an enforcement appeal: {{ data["appealReference"] or "1223443" }}
+  </div>
+  <div class="app-email-preview__body">
+    <p class="govuk-body">We have received an enforcement appeal.</p>
 
-      {{ govukDetails({
-        summaryText: "Preview email to appellant",
-        html: '
-          <div class="app-email-preview">
-            <div class="app-email-preview__subject">
-              Subject: Your appeal is valid: ' ~ (data["appealReference"] or "1223443") ~ '
-            </div>
-            <div class="app-email-preview__body">
+    <p class="govuk-body">The appeal will continue on the following grounds:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>ground (b)</li>
+      <li>ground (e)</li>
+    </ul>
 
-              <p class="govuk-body">We have reveiwed your appeal and you have submitted all of the information we need.</p>
+    <p class="govuk-body">You can <a href="#">view the appeal in the manage your appeals service</a>.</p>
 
-              <h2 class="govuk-heading-m">Other information</h2>
+    <h2 class="govuk-heading-m">Appeal details</h2>
+    <div class="govuk-inset-text">
+      Appeal reference number: {{ data["appealReference"] or "1223443" }}<br>
+      Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
+      Enforcement notice reference: LPA12345678<br>
+      Appellant name: John Smith<br>
+      Appellant email: john.smith@gmail.com<br>
+      Appellant phone number: 07849586723
+    </div>
 
-              <p class="govuk-body">The appeal is ground (a) barred so here is my additional information about that too...</p>
+    {% if data['groundA'] == "Yes" %}
+    <h2 class="govuk-heading-m">Ground (a) barred</h2>
+    <p class="govuk-body">We cannot consider ground (a) because the enforcement notice was issued:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>after the appellant made a retrospective planning application</li>
+      <li>within 2 years from the date the application stopped being considered</li>
+    </ul>
+    {% endif %}
 
-              <h2 class="govuk-heading-m">Give feedback</h2>
+    {% if data['otherInfo'] == "Yes" %}
+    <h2 class="govuk-heading-m">Other information</h2>
+    <p class="govuk-body">{{ data['otherInfoText'] or "Here is some other info" }}</p>
+    {% endif %}
 
-              <p class="govuk-body"><a href="https://forms.office.com/pages/responsepage.aspx?id=mN94WIhvq0iTIpmM5VcIjYt1ax_BPvtOqhVjfvzyJN5UOUlNRkhaQjNXTDQyNEhSRExNOFVGSkNJTS4u&route=shorturl">Give feedback on the appeals service</a> (takes 2 minutes)</p>
-              <p class="govuk-body">Planning Inspectorate</p>
-              <p class="govuk-body"><a href="mailto:caseofficers@planninginspectorate.gov.uk">caseofficers@planninginspectorate.gov.uk</a></p>
-            </div>
-          </div>'
-      }) }}
+    <h2 class="govuk-heading-m">What happens next</h2>
+    <p class="govuk-body">We will contact you when we start the appeal.</p>
 
-       <p class="govuk-body">
-      We will mark the appeal as valid and send an email to the relevant parties.
-    </p>
-    <form method="post">
-      {{ govukButton({ text: "Mark appeal as valid" }) }}
-    </form>
+    <p class="govuk-body">Planning Inspectorate</p>
+    <p class="govuk-body"><a href="mailto:caseofficers@planninginspectorate.gov.uk">caseofficers@planninginspectorate.gov.uk</a></p>
+  </div>
+</div>
+{% endset %}
+
+{{ govukDetails({
+  summaryText: "Preview email to LPA",
+  html: lpaEmailHtml
+}) }}
+
+  <p class="govuk-body">
+    We will mark the appeal as valid and send an email to the relevant parties.
+  </p>
+  <form method="post">
+    {{ govukButton({ text: "Mark appeal as valid" }) }}
+  </form>
 
   </div>
 </div>
 {% endblock %}
+

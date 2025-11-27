@@ -4,228 +4,178 @@
 {% set pageName = title %}
 
 {% block beforeContent %}
-{{ govukBackLink({
-  text: "Back",
-  href: 'javascript:history.back()'
-}) }}
+  {{ govukBackLink({ text: "Back", href: 'javascript:history.back()' }) }}
 {% endblock %}
 
 {% block content %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds-from-desktop">
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
 
-      <span class="govuk-caption-l">Appeal 1223443</span>
-      <h1 class="govuk-heading-l">{{ title }}</h1>
+    <span class="govuk-caption-l">Appeal 1223443</span>
+    <h1 class="govuk-heading-l">{{ title }}</h1>
 
-      {# ---------------------- DYNAMIC DATA ---------------------- #}
+    {% set reason          = data['incomplete'] %}
+    {% set missingDocs     = data['missingDocuments'] %}
+    {% set groundsSelected = data['grounds'] %}
+    {% set dueDate         = data['dueDate'] or "21 November 2025" %}
 
-      {% set reason = data['incomplete'] %}
-      {% set missingDocs = data['missingDocuments'] %}
-      {% set otherGrounds = data['otherGrounds'] or "No" %}
-      {% set dueDate = data['date'] or "21 November 2025" %}
-
-      {# Build the missing documents HTML first #}
+    {# ----------------------- Missing documents HTML ----------------------- #}
+    {% set missingDocsHtml %}
       {% if missingDocs %}
-        {% set missingDocsHtml %}
-          <ul class="govuk-list govuk-list--bullet">
-            {% for doc in missingDocs %}
-              <li>{{ doc.name }}: {{ doc.reason }}</li>
-            {% endfor %}
-          </ul>
-        {% endset %}
+        <ul class="govuk-list govuk-list--bullet">
+          {% for doc in missingDocs %}
+          <li>{{ doc }}: more info</li>
+          {% endfor %}
+        </ul>
       {% else %}
-        {% set missingDocsHtml %}Planning obligation: never added{% endset %}
+        Planning obligation: never added
       {% endif %}
+    {% endset %}
 
-      {# ---------------------- DYNAMIC EMAIL CONTENT ---------------------- #}
-
-      {% if reason == "Missing documents" %}
-        
-        {% set appellantBody %}
-          <p class="govuk-body">
-            We have reviewed your appeal and it is incomplete because some required documents are missing.
-          </p>
-
-          <p class="govuk-body">The following documents were not provided:</p>
-          <ul class="govuk-list govuk-list--bullet">
-            {% for doc in missingDocs %}
-              <li>{{ doc }}</li>
-            {% endfor %}
-          </ul>
-
-          <h2 class="govuk-heading-m">What happens next</h2>
-          <p class="govuk-body">
-            You must upload the missing documents before we can validate your appeal. Your update deadline is {{ dueDate }}.
-          </p>
-        {% endset %}
-
-        {% set lpaBody %}
-          <p class="govuk-body">
-            The appellant’s enforcement appeal is incomplete because required documents were not supplied.
-          </p>
-
-          <p class="govuk-body">Missing documents:</p>
-          <ul class="govuk-list govuk-list--bullet">
-            {% for doc in missingDocs %}
-              <li>{{ doc }}</li>
-            {% endfor %}
-          </ul>
-
-          <p class="govuk-body">The appellant has until {{ dueDate }} to provide the missing information.</p>
-        {% endset %}
-
-        {% set emailSubject = "Missing documents: 1223443" %}
-
+    {# ----------------------- Incomplete reason list ----------------------- #}
+    {% set incompleteList %}
+      {% if reason and reason.length %}
+        <ul class="govuk-list govuk-list--bullet">
+          {% for item in reason %}
+            {% if item == "Other" %}
+              <li>{{ item }}: {{ data['otherReason'] }}</li>
+            {% else %}
+              <li>{{ item }}</li>
+            {% endif %}
+          {% endfor %}
+        </ul>
       {% else %}
+        Waiting for the appellant to pay the fee
+      {% endif %}
+    {% endset %}
 
-        {# ===== OTHER STATIC REASON (Ex: Ground (a) barred) ===== #}
+    {# ----------------------- Grounds list ----------------------- #}
+    {% set groundsHtml %}
+      {% if groundsSelected %}
+        <ul class="govuk-list govuk-list--bullet">
+          {% for ground in groundsSelected %}
+            {% set key = "reason" + (ground | replace("Ground ", "")) %}
+            {% if data[key] %}
+              <li>{{ ground }}: {{ data[key] }}</li>
+            {% else %}
+              <li>{{ ground }}</li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      {% else %}
+        Ground (b): my reason
+      {% endif %}
+    {% endset %}
 
-        {% set emailSubject = "Ground (a) decision: 1223443" %}
+    {# ----------------------- Other info ----------------------- #}
+    {% set otherInfo = "No" %}
+    {% if data['otherInformation'] == "Yes" %}
+      {% if data['otherInformationText'] %}
+        {% set otherInfo = "Yes: " + data['otherInformationText'] %}
+      {% else %}
+        {% set otherInfo = "Yes" %}
+      {% endif %}
+    {% endif %}
 
-        {% set appellantBody %}
-          <p class="govuk-body">
-            We have reviewed the grounds and facts. We cannot consider ground (a) because the enforcement notice was issued with enough time for you to submit a retrospective planning application.
-          </p>
+    {# ----------------------- Summary List Rows ----------------------- #}
+
+    {% set rows = [
+      {
+        key: { text: "Review decision" },
+        value: { html: data['reviewDecision'] or "Incomplete" },
+        actions: { items: [{ href: "enforcement-appeal", text: "Change" }] }
+      },
+      {
+        key: { text: "Is the enforcement notice invalid?" },
+        value: { html: data['enfNotice'] or "No" },
+        actions: { items: [{ href: "enf-notice-invalid", text: "Change" }] }
+      },
+      {
+        key: { text: "Why is the appeal incomplete?" },
+        value: { html: incompleteList },
+        actions: { items: [{ href: "appeal-incomplete-reason", text: "Change" }] }
+      },
+      {
+        key: { text: "Which documents are incomplete?" },
+        value: { html: missingDocsHtml },
+        actions: { items: [{ href: "missing-docs", text: "Change" }] }
+      },
+      {
+        key: { text: "Appeal due date" },
+        value: { text: "25 November 2025" },
+        actions: { items: [{ href: "appeal-due-date", text: "Change" }] }
+      },
+      {
+        key: { text: "Grounds and facts do not match" },
+        value: { html: groundsHtml },
+        actions: { items: [{ href: "grounds", text: "Change" }] }
+      },
+      {
+        key: { text: "Application receipt due date" },
+        value: {text: "25 November 2025" },
+        actions: { items: [{ href: "grounds", text: "Change" }] }
+      },
+      {
+        key: { text: "Do you want to add any other information?" },
+        value: { text: otherInfo },
+        actions: { items: [{ href: "other-information-invalid", text: "Change" }] }
+      }
+    ] %}
+
+    {{ govukSummaryList({ rows: rows }) }}
+
+    {# ---------------- EMAIL PREVIEW ---------------- #}
+
+    {% set appellantEmail %}
+      <div class="app-email-preview">
+        <div class="app-email-preview__subject">
+          Subject: We need more information: 1223443
+        </div>
+
+        <div class="app-email-preview__body">
+          <p class="govuk-body">We have received your appeal and we need more information.</p>
 
           <h2 class="govuk-heading-m">Appeal details</h2>
           <div class="govuk-inset-text">
             Appeal reference number: 1223443<br>
             Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
-            Enforcement reference: LPA12345678
+            Enforcement notice reference: LPA12345678
           </div>
 
+          <h2 class="govuk-heading-m">Missing information</h2>
+          
+          <h3 class="govuk-heading-s">Missing documents</h3>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>
+              Grounds of appeal supporting documents: more info goes here
+            </li>
+            <li>
+              Planning obligation: more info goes here
+            </li>
+          </ul>
+
+          <h3 class="govuk-heading-s">Grounds and facts do not match</h3>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>
+              ground (b): reason goes here
+            </li>
+            <li>
+              ground (b): reason goes here
+            </li>
+          </ul>
+
+          <h3 class="govuk-heading-s">No application or fee</h3>
+
+          <p class="govuk-body">You need to submit an application to Barnet Council and pay the correct fee, then email your receipt to <a href="mailto:caseofficers@planninginspectorate.gov.uk">caseofficers@planninginspectorate.gov.uk</a>.</p>
+          
+          <h3 class="govuk-heading-s">Other</h3>
+          <p class="govuk-body">Other reasons here</p>
+
+          <h2 class="govuk-heading-m">Other information</h2>
+          <p class="govuk-body">Other info goes here</p>
+
           <h2 class="govuk-heading-m">What happens next</h2>
-
-          {% if otherGrounds == "Yes" %}
-            <p class="govuk-body">Your appeal will continue on your other grounds, but not ground (a).</p>
-          {% else %}
-            <p class="govuk-body">We have closed your appeal as it is not valid.</p>
-          {% endif %}
-
-          <h2 class="govuk-heading-m">Planning Inspectorate's role</h2>
-          <p class="govuk-body">The Planning Inspectorate cannot change or revoke the decision. You can <a href="https://www.gov.uk/appeal-planning-decision/if-you-think-the-appeal-decision-is-legally-incorrect">challenge the decision in the High court</a> if you think the Planning Inspectorate made a legal mistake.</p>
-        {% endset %}
-
-        {% set lpaBody %}
-          <p class="govuk-body">
-            We have reviewed the grounds and facts. We cannot consider ground (a) because the enforcement notice was issued with enough time for the appellant to submit a retrospective planning application.
-          </p>
-
-          <h2 class="govuk-heading-m">Appeal details</h2>
-          <div class="govuk-inset-text">
-            Appeal reference number: 1223443<br>
-            Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
-            Enforcement reference: LPA12345678
-          </div>
-
-          <h2 class="govuk-heading-m">What happens next</h2>
-
-          {% if otherGrounds == "Yes" %}
-            <p class="govuk-body">The appeal will continue on the other grounds, but not ground (a).</p>
-          {% else %}
-            <p class="govuk-body">We have closed the appeal as it is not valid.</p>
-          {% endif %}
-        {% endset %}
-
-      {% endif %}
-
-      {# ---------------------- SUMMARY LIST ---------------------- #}
-
-      {{ govukSummaryList({
-        rows: [
-          {
-            key: { text: "Review decision" },
-            value: { html: data['reviewDecision'] or "Incomplete" },
-            actions: {
-              items: [
-                { href: "enforcement-appeal", text: "Change", visuallyHiddenText: "review decision" }
-              ]
-            }
-          },
-          {
-            key: { text: "Why is the appeal incomplete?" },
-            value: { html: data['incomplete'] },
-            actions: {
-              items: [
-                { href: "enforcement-incomplete-reason", text: "Change", visuallyHiddenText: "incomplete reason" }
-              ]
-            }
-          },
-          {
-            key: { text: "Which documents are incomplete?" },
-            value: { html: '<ul class="govuk-list govuk-list--bullet">
-              <li>
-                Enforcement notice: missing
-              </li>
-              <li>
-                Planning obligation: incomplete section 1.C
-              </li>
-              <li>
-                Application for an award of appeal costs: missing
-              </li>
-            </ul>'},
-            actions: {
-              items: [
-                { href: "missing-docs", text: "Change", visuallyHiddenText: "incomplete reason" }
-              ]
-            }
-          } if data['incomplete'] == "Missing documents",
-          {
-            key: { text: "Does the appeal have other grounds?" },
-            value: { html: otherGrounds },
-            actions: {
-              items: [
-                { href: "other-grounds", text: "Change", visuallyHiddenText: "other grounds" }
-              ]
-            }
-          } if data['incomplete'] == "Ground (a) barred",
-          {
-            key: { text: "Appeal due date" },
-            value: { html: "30 November 2025" },
-            actions: {
-              items: [
-                { href: "appeal-due-date", text: "Change", visuallyHiddenText: "due date" }
-              ]
-            }
-          }
-        ]
-      }) }}
-
-      {# ---------------- EMAIL PREVIEW — APPELLANT ---------------- #}
-
-      {% set appellantEmail %}
-      <div class="app-email-preview">
-        <div class="app-email-preview__subject">
-          Subject: {{ emailSubject }}
-        </div>
-        <div class="app-email-preview__body">
-
-          {{ appellantBody | safe }}
-
-          <p class="govuk-body">Planning Inspectorate</p>
-          <p class="govuk-body">
-            <a href="mailto:caseofficers@planninginspectorate.gov.uk">caseofficers@planninginspectorate.gov.uk</a>
-          </p>
-
-        </div>
-      </div>
-      {% endset %}
-
-      {{ govukDetails({
-        summaryText: "Preview email to appellant",
-        html: appellantEmail
-      }) }}
-
-      {# ---------------- EMAIL PREVIEW — LPA ---------------- #}
-
-      {% set lpaEmail %}
-      <div class="app-email-preview">
-        <div class="app-email-preview__subject">
-          Subject: {{ emailSubject }}
-        </div>
-        <div class="app-email-preview__body">
-
-          {{ lpaBody | safe }}
+          <p class="govuk-body">You need to send the missing information by 30 November 2025.</p>
 
           <p class="govuk-body">Planning Inspectorate</p>
           <p class="govuk-body">
@@ -233,17 +183,20 @@
           </p>
         </div>
       </div>
-      {% endset %}
+    {% endset %}
 
-      {{ govukDetails({
-        summaryText: "Preview email to LPA",
-        html: lpaEmail
-      }) }}
+    {{ govukDetails({ summaryText: "Preview email to appellant", html: appellantEmail }) }}
 
-      <form method="post">
-        {{ govukButton({ text: "Mark appeal as incomplete" }) }}
-      </form>
-    </div>
+    <p class="govuk-body">
+      We will mark the appeal as incomplete and send an email to the relevant parties.
+    </p>
+
+    <form method="post">
+      {{ govukButton({ text: "Mark appeal as incomplete" }) }}
+    </form>
+
   </div>
+</div>
 {% endblock %}
+
 

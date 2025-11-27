@@ -7,49 +7,10 @@
 
 {% block content %}
   <div class="govuk-grid-row">
+
+    <!-- side navigation -->
     <div class="govuk-grid-column-one-quarter">
-      <ul class="govuk-list govuk-list-bullet">
-        <li>
-          <a href="/patterns/address/" class="govuk-link--no-visited-state govuk-link--no-underline govuk-!-font-weight-bold">
-            Address
-          </a>
-        </li>
-        <li>
-          <a href="/patterns/case-heading/" class="govuk-link--no-visited-state govuk-link--no-underline">
-            Case heading
-          </a>
-        </li>
-        <li>
-          <a href="/patterns/case-status/" class="govuk-link--no-visited-state govuk-link--no-underline">
-            Case status
-          </a>
-        </li>
-        <li>
-          <a href="/patterns/important-banners/" class="govuk-link--no-visited-state govuk-link--no-underline">
-            Banner (important)
-          </a>
-        </li>
-        <li>
-          <a href="/patterns/success-banner/" class="govuk-link--no-visited-state govuk-link--no-underline">
-            Banner (success)
-          </a>
-        </li>
-        <li>
-          <a href="/patterns/meta-data/" class="govuk-link--no-visited-state govuk-link--no-underline">
-            Meta data
-          </a>
-        </li>
-        <li>
-          <a href="/patterns/personal-list/" class="govuk-link--no-visited-state govuk-link--no-underline">
-            Personal list
-          </a>
-        </li>
-        <li>
-          <a href="/patterns/multiple-document-upload/" class="govuk-link--no-visited-state govuk-link--no-underline">
-            Upload multiple files
-          </a>
-        </li>
-      </ul>
+      {% include "/patterns/includes/side-navigation.html" %}
     </div>
 
     <div class="govuk-grid-column-three-quarters">

@@ -1,0 +1,18 @@
+.code-wrapper {
+  position: relative;
+  margin: 0;
+}
+
+.code-snippet {
+  margin: 0;
+  padding: 0.5rem; /* adjust as needed */
+  white-space: pre-wrap;
+  border-radius: 4px;
+  font-family: ui-monospace,menlo,"Cascadia Mono","Segoe UI Mono",consolas,"Liberation Mono",monospace;
+  overflow-x: auto;
+}
+.code-snippet code {
+  display: block;
+  padding: 0;
+	background-color: #cfd7d6;
+}

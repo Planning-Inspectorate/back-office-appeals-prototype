@@ -1,0 +1,91 @@
+{% extends "layouts/PINS-admin.html" %}
+
+{% set title = "Code block" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = false %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+
+    <!-- side navigation -->
+    <div class="govuk-grid-column-one-quarter">
+      {% include "/patterns/includes/side-navigation.html" %}
+    </div>
+
+
+    <div class="govuk-grid-column-three-quarters">
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-2" id="personal-list">
+        {{ title }}
+      </h1>
+
+      <p>
+        <strong class="govuk-tag govuk-!-margin-bottom-5">experimental</strong>
+      </p>
+
+      <p class="govuk-body-l">
+        Use this macro to display copyable code in a page.
+      </p>
+
+      {% set exampleHtml %}
+{{ codeBlock('<a href="url" class="govuk-link">
+A link is born
+</a>', 'html') }}
+      {% endset -%}
+
+{% set codeHtml -%}
+The codeblock can't be shown here easily.
+<br>Here's a link to
+<a href="https://github.com/Planning-Inspectorate/back-office-appeals-prototype/blob/main/app/views/patterns/code-block/example-code-block.html" class="govuk-link">
+  the example on GitHub
+</a>
+{%- endset %}
+
+
+      {{ govukTabs({
+        items: [
+          {
+            label: "Example",
+            id: "example",
+            panel: {
+              html: exampleHtml
+            }
+          },
+          {
+            label: "HTML",
+            id: "html",
+            panel: {
+              html: codeHtml
+            }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-l">
+        When to use this pattern
+      </h2>
+
+      <p>
+        This is for use within a design system.
+      </p>
+
+      <h2 class="govuk-heading-l">
+        How it works
+      </h2>
+
+      <p>
+        Add the <a href="https://github.com/Planning-Inspectorate/back-office-appeals-prototype/blob/main/app/views/includes/code-block.njk">code-block macro</a> to your prototype.
+      </p>
+
+      <p>
+        Then in the page you want to show copyable demonstration code, you can put HTML into the called Nunjucks macro.
+      </p>
+
+      <p>
+        <a href="https://app.mural.co/t/allpins6990/m/allpins6990/1759156440934/6d00b8b92dc23dffceaad1c4905d6d6ca866c54a?wid=0-1764178495949">More instructions on how to implement the macro </a>on this Mural board.
+      </p>
+
+    </div>
+  </div>
+{% endblock %}

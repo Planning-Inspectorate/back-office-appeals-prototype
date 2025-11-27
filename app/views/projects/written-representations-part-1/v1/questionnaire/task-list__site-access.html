@@ -1,0 +1,139 @@
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "Site access"
+    }
+  },
+  rows: [
+
+    {
+      key: {
+        html: 'Inspector access'
+      },
+      value: {
+        html: 'Appeal site not visible from the road'
+      },
+      actions: {
+        items: [
+          {
+            href: 'site-access/site-entry?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    } if data['answers'] != 'empty',
+    {
+      key: {
+        html: 'Inspector access'
+      },
+      value: {
+        html: 'No'
+      },
+      actions: {
+        items: [
+          {
+            href: 'site-access/site-entry?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    } if data['answers'] == 'empty',
+    {
+      key: {
+        html: 'Affected neighbouring site'
+      },
+      value: {
+        html: 'Loss of light'
+      },
+      actions: {
+        items: [
+          {
+            href: 'site-access/neighbours-land?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    } if data['answers'] != 'empty',
+    {
+      key: {
+        html: 'Affected neighbouring site'
+      },
+      value: {
+        html: 'No'
+      },
+      actions: {
+        items: [
+          {
+            href: 'site-access/neighbours-land?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    } if data['answers'] == 'empty',
+    {
+      key: {
+        html: 'Neighbour 1'
+      },
+      value: {
+        html: '172 York Road, Bristol BS3 4AL'
+
+      },
+      actions: {
+        items: [
+          {
+            href: 'site-access/neighbours-address?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    } if data['answers'] != 'empty',
+    {
+      key: {
+        html: 'Neighbour 2'
+      },
+      value: {
+        html: '171 York Road, Bristol BS3 4AL'
+      },
+      actions: {
+        items: [
+          {
+            href: 'site-access/neighbours-address?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    } if data['answers'] != 'empty',
+    {
+      key: {
+        html: 'Potential safety risks'
+      },
+      value: {
+        html: 'Dogs on site'
+      },
+      actions: {
+        items: [
+          {
+            href: 'site-access/health-and-safety?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    } if data['answers'] != 'empty',
+    {
+      key: {
+        html: 'Potential safety risks'
+      },
+      value: {
+        html: 'No'
+      },
+      actions: {
+        items: [
+          {
+            href: 'site-access/health-and-safety?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    } if data['answers'] == 'empty'
+  ]
+}) }}

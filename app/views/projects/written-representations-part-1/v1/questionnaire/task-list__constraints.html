@@ -1,0 +1,280 @@
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "Constraints, designations and other issues"
+    }
+  },
+  rows: [
+    {
+      key: {
+        html: 'Is the appeal type appropriate?'
+      },
+      value: {
+        html: 'Yes'
+      },
+      actions: {
+        items: [
+          {
+            href: 'constraints/appropriate?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: 'Changed listed buildings'
+      },
+      value: {
+        html: '
+          <ul class="govuk-list govuk-list--bullet">
+            <li>
+              <a href="#">1282049</a><br>
+              Grade II listed building<br>
+              150, York Road, Bedminster, Bristol, BS3 4AL
+            </li>
+          </ul>'
+      },
+      actions: {
+        items: [
+          {
+            href: 'constraints/affected-listed-building-details?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    } if data['answers'] != 'empty',
+    {
+      key: {
+        html: 'Changed listed buildings'
+      },
+      value: {
+        html: 'No'
+      },
+      actions: {
+        items: [
+          {
+            href: 'constraints/affected-listed-building-details?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    } if data['answers'] == 'empty',
+    {
+      key: {
+        html: 'Affected listed buildings'
+      },
+      value: {
+        html: '
+          <ul class="govuk-list govuk-list--bullet">
+            <li>
+              <a href="#">1282050</a><br>
+              Grade II listed building<br>
+              151, York Road, Bedminster, Bristol, BS3 4AL
+            </li>
+            <li>
+              <a href="#">1282051</a><br>
+              Grade II listed building<br>
+              152, York Road, Bedminster, Bristol, BS3 4AL
+            </li>
+          </ul>'
+      },
+      actions: {
+        items: [
+          {
+            href: 'constraints/affected-listed-building-details?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    } if data['answers'] != 'empty',
+    {
+      key: {
+        html: 'Affected listed buildings'
+      },
+      value: {
+        html: 'No'
+      },
+      actions: {
+        items: [
+          {
+            href: 'constraints/affected-listed-building-details?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    } if data['answers'] == 'empty',
+    {
+      key: {
+        html: 'Affects a scheduled monument'
+      },
+      value: {
+        html: 'No'
+      },
+      actions: {
+        items: [
+          {
+            href: 'constraints/affected-scheduled-monument-check?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: 'Conservation area map and guidance'
+      },
+      value: {
+        html: '<ol class="govuk-list govuk-list--number">
+                <li>
+                  <a href="#" class="govuk-link">BS3 4AL Conservation-map.pdf</a>
+                </li>
+                <li>
+                  <a href="#" class="govuk-link">BS3 4AL Conservation-guidance.doc</a>
+                </li>
+              </ol>'
+      },
+      actions: {
+        items: [
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Manage<span class="govuk-visually-hidden"> conservation area map and guidance</span>'
+          },
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Add<span class="govuk-visually-hidden"> to conservation area map and guidance</span>'
+          }
+        ]
+      }
+    } if data['answers'] != 'empty',
+    {
+      key: {
+        html: 'Conservation area map and guidance'
+      },
+      value: {
+        html: 'Not applicable'
+      },
+      actions: {
+        items: [
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Add<span class="govuk-visually-hidden"> to conservation area map and guidance</span>'
+          }
+        ]
+      }
+    } if data['answers'] == 'empty',
+    {
+      key: {
+        html: 'Protected species'
+      },
+      value: {
+        html: 'Yes'
+      },
+      actions: {
+        items: [
+          {
+            href: 'constraints/protected-species?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: 'Green belt'
+      },
+      value: {
+        html: data['green-belt'] or 'No'
+      },
+      actions: {
+        items: [
+          {
+            href: 'constraints/green-belt?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: 'National landscape'
+      },
+      value: {
+        html: data['national-landscape'] or 'No'
+      },
+      actions: {
+        items: [
+          {
+            href: 'constraints/national-landscape?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: 'Designated sites'
+      },
+      value: {
+        html: 'No'
+      },
+      actions: {
+        items: [
+          {
+            href: 'constraints/designated-sites?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: 'Tree preservation order'
+      },
+      value: {
+        html: 'No'
+      },
+      actions: {
+        items: [
+          {
+            href: 'constraints/tree-preservation-order?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: 'Gypsy or traveller'
+      },
+      value: {
+        html: 'No'
+      },
+      actions: {
+        items: [
+          {
+            href: 'constraints/gypsy-or-traveller?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: 'Public right of way'
+      },
+      value: {
+        html: 'No'
+      },
+      actions: {
+        items: [
+          {
+            href: 'constraints/public-right-of-way?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    }
+
+  ]
+}) }}

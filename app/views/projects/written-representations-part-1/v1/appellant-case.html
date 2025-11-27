@@ -43,7 +43,7 @@
 
   </div>
 
-  {% if data['case-stage'] == 'validation' %}
+  {% if data['case-stage'] == 'validation' or not data['case-stage'] %}
 
     <div class="govuk-grid-column-two-thirds">
       <form method="post">

@@ -1,0 +1,7 @@
+{% macro codeBlock(code, language="html") %}
+<pre class="code-snippet">
+  <code class="language-{{ language }}">
+    {{ code | escape }}
+  </code>
+</pre>
+{% endmacro %}

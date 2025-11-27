@@ -159,8 +159,10 @@
       {% endset -%}
 
       {% set codeHtml %}
-        <pre class="code-snippet"><code>{% raw -%}{{ caseStatus (caseStatus = "validation")}}{% endraw %}
-  </code></pre>
+
+        {{ codeBlock('<a href="" class="govuk-body">
+          A link is born
+        </a>', 'html') }}
 
       {% endset -%}
 

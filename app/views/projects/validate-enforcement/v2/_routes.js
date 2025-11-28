@@ -130,6 +130,10 @@ router.post('/cancel-appeal/cancel-reason', function (req, res) {
     }
     })
 
+    router.post('/check-incomplete-enf-invalid', function (req, res) {
+      res.redirect('case-details-incomplete')
+    })
+
   router.post('/enforcement-incomplete-reason', function (req, res) {
     res.redirect('update-due-date')
   })

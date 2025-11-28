@@ -154,7 +154,7 @@ router.post('/cancel-appeal/cancel-reason', function (req, res) {
   })
 
   router.post('/check-enf-notice', function (req, res) {
-    res.redirect('check-details-invalid')
+    res.redirect('case-details-invalid')
   })
 
 // /linked-appeals-check

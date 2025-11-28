@@ -32,7 +32,7 @@
 
     {# Linked Appeals Answer #}
     {% set linkedAppeals = data['linkedAppeals'] %}
-    {% set linkedAnswer = linkedAppeals or "Yes" %}
+    {% set linkedAnswer = linkedAppeals or "No" %}
 
     {# ---------------------------------------------- #}
     {# BASE SUMMARY LIST #}
@@ -92,6 +92,8 @@
           <h2 class="govuk-heading-m">Why the appeal is invalid</h2>
 
           <p class="govuk-body">{{ invalidReasonsHtml | safe }}</p>
+
+          {% if data['invalid'] == "Ground (a) barred" %}
           <h3 class="govuk-heading-s">Ground (a) barred</h3>
 
           <p class="govuk-body">We cannot consider ground (a) because the enforcement notice was issued either:</p>
@@ -104,6 +106,7 @@
               within 2 years from the date that the local planning authority stopped considering the planning application
             </li>
           </ul>
+          {% endif %}
 
           <h2 class="govuk-heading-m">What happens next</h2>
 

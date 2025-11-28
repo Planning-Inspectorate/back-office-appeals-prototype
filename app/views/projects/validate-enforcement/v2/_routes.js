@@ -109,12 +109,7 @@ router.post('/cancel-appeal/cancel-reason', function (req, res) {
   });
 
   router.post('/other-information-incomplete', function (req, res) {
-    const enfNotice = req.session.data['enfNotice']
-    if (enfNotice === 'Yes') {
-      res.redirect('check-incomplete-enf-invalid');
-    } else {
-      res.redirect('check-appeal-incomplete');
-    }
+    res.redirect('check-incomplete-enf-invalid');
   });
 
 

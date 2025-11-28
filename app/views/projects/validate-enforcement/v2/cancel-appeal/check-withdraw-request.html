@@ -1,13 +1,13 @@
 {% extends "layouts/bo.html" %}
 
-{% set title = 'Check details and withdraw appeal'  %}
+{% set title = 'Check details and withdraw appeal' %}
 {% set pageName = title %}
 
 {% block beforeContent %}
-{{ govukBackLink({
-  text: "Back",
-  href: 'javascript:history.back()'
-}) }}
+  {{ govukBackLink({
+    text: "Back",
+    href: 'javascript:history.back()'
+  }) }}
 {% endblock %}
 
 {% block content %}
@@ -17,7 +17,6 @@
     <span class="govuk-caption-l">Appeal {{ data['appealReference'] or '1223443' }}</span>
     <h1 class="govuk-heading-l">{{ title }}</h1>
 
-    {# --- 1. Base summary list rows --- #}
     {% set summaryRows = [
       {
         key: { text: "Why are you cancelling the appeal?" },
@@ -38,13 +37,91 @@
         }
       }
     ] %}
-        
-    {{ govukSummaryList({ rows: summaryRows }) }}
-<p class="govuk-body">
-  We will cancel the appeal and send an email to the relevant parties.
-</p>
 
-    {# --- 5. Final action --- #}
+    {{ govukSummaryList({ rows: summaryRows }) }}
+
+    {# ---- Email previews stored safely ---- #}
+    {% set appellantEmail %}
+      <div class="app-email-preview">
+        <div class="app-email-preview__subject">
+          Subject: Appeal withdrawn: 1223443
+        </div>
+        <div class="app-email-preview__body">
+
+          <div class="govuk-inset-text">
+            Appeal reference number: 1223443<br>
+            Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
+            Enforcement notice reference: LPA12345678
+          </div>
+
+          <h2 class="govuk-heading-m">Appeal withdrawn</h2>
+          <p class="govuk-body">
+            We have withdrawn the appeal following your request on 28 November 2025.
+          </p>
+
+          <h2 class="govuk-heading-m">What happens next</h2>
+
+          <p class="govuk-body">We have closed the appeal and cancelled the enforcement notice.</p>
+          <p class="govuk-body">If there are any costs applications, we will decide these separately.</p>
+          <p class="govuk-body">Planning Inspectorate</p>
+
+          <p class="govuk-body">
+            <a href="mailto:caseofficers@planninginspectorate.gov.uk">
+              caseofficers@planninginspectorate.gov.uk
+            </a>
+          </p>
+
+        </div>
+      </div>
+    {% endset %}
+
+    {% set lpaEmail %}
+      <div class="app-email-preview">
+        <div class="app-email-preview__subject">
+          Subject: Appeal withdrawn: 1223443
+        </div>
+        <div class="app-email-preview__body">
+
+          <p class="govuk-body">
+            We have withdrawn the appeal after the appellant's request.
+          </p>
+
+          <div class="govuk-inset-text">
+            Appeal reference number: 1223443<br>
+            Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
+            Enforcement notice reference: LPA12345678
+          </div>
+
+          <h2 class="govuk-heading-m">What happens next</h2>
+
+          <p class="govuk-body">We have closed the appeal and cancelled the enforcement notice.</p>
+          <p class="govuk-body">If there are any costs applications, we will decide these separately.</p>
+          <p class="govuk-body">Planning Inspectorate</p>
+
+          <p class="govuk-body">
+            <a href="mailto:caseofficers@planninginspectorate.gov.uk">
+              caseofficers@planninginspectorate.gov.uk
+            </a>
+          </p>
+
+        </div>
+      </div>
+    {% endset %}
+
+    {{ govukDetails({
+      summaryText: "Preview email to appellant",
+      html: appellantEmail
+    }) }}
+
+    {{ govukDetails({
+      summaryText: "Preview email to LPA",
+      html: lpaEmail
+    }) }}
+
+    <p class="govuk-body">
+      We will cancel the appeal and send an email to the relevant parties.
+    </p>
+
     <form method="post">
       {{ govukButton({ text: "Withdraw appeal" }) }}
     </form>
@@ -52,4 +129,5 @@
   </div>
 </div>
 {% endblock %}
+
 

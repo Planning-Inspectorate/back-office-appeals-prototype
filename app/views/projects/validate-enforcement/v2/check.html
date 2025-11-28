@@ -93,24 +93,18 @@
 
           <p class="govuk-body">{{ invalidReasonsHtml | safe }}</p>
 
-          {% if data['invalid'] == "Ground (a) barred" %}
+          {% if "Ground (a) barred" in data['invalid'] %}
           <h3 class="govuk-heading-s">Ground (a) barred</h3>
-
           <p class="govuk-body">We cannot consider ground (a) because the enforcement notice was issued either:</p>
-
           <ul class="govuk-list govuk-list--bullet">
-            <li>
-              with enough time for you to submit a retrospective planning application
-            </li>
-            <li>
-              within 2 years from the date that the local planning authority stopped considering the planning application
-            </li>
+            <li>with enough time for you to submit a retrospective planning application</li>
+            <li>within 2 years from the date that the local planning authority stopped considering the planning application</li>
           </ul>
-          {% endif %}
+        {% endif %}
 
           <h2 class="govuk-heading-m">What happens next</h2>
 
-          <p class="govuk-body">Your appeal is now closed</p>
+          <p class="govuk-body">Your appeal is now closed.</p>
 
           {% if linkedAppeals == "Yes" %}
             <p class="govuk-body">The enforcement notice will not take effect unless we dismiss or you withdraw your other appeal 3849485.</p>

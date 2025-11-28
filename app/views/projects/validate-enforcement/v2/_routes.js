@@ -114,10 +114,15 @@ router.post('/cancel-appeal/cancel-reason', function (req, res) {
     res.redirect('other-information-incomplete');
   });
 
-  router.post('/other-information-incomplete', function (req, res) {
-    res.redirect('check-incomplete-enf-invalid');
+    router.post('/other-information-incomplete', function (req, res) {
+      const enfNotice = req.body.enfNotice || req.session.data.enfNotice;
+  
+      if (enfNotice === 'No') {
+        res.redirect('check-appeal-incomplete')
+      } else {
+        res.redirect('check-incomplete-enf-invalid')
+      }
   });
-
 
   router.post('/enf-notice-invalid', function (req, res) {
     const enfNotice = req.body.enfNotice;

@@ -105,23 +105,17 @@ router.post('/cancel-appeal/cancel-reason', function (req, res) {
     if (reasons.includes('Waiting for the appellant to pay the fee')) {
       res.redirect('receipt-date');
     } else {
-      res.redirect('other-information-incomplete');
+      res.redirect('other-information-incomplete-venf');
     }
   });
 
   // Handle the flow after receipt-date
   router.post('/receipt-date', function (req, res) {
-    res.redirect('other-information-incomplete');
+    res.redirect('other-information-incomplete-venf');
   });
 
-    router.post('/other-information-incomplete', function (req, res) {
-      const enfNotice = req.body.enfNotice || req.session.data.enfNotice;
-  
-      if (enfNotice === 'No') {
-        res.redirect('check-appeal-incomplete')
-      } else {
-        res.redirect('check-incomplete-enf-invalid')
-      }
+  router.post('/other-information-incomplete-venf', function (req, res) {
+    res.redirect('check-appeal-incomplete');
   });
 
   router.post('/enf-notice-invalid', function (req, res) {
@@ -155,11 +149,15 @@ router.post('/cancel-appeal/cancel-reason', function (req, res) {
     if (reviewDecision === 'Invalid') {
       res.redirect('other-information-invalid');
     } else if (reviewDecision === 'Incomplete') {
-      res.redirect('other-information-incomplete');
+      res.redirect('other-information-incomplete-inenf');
     } else {
       res.redirect('enforcement-invalid-reason');
     }
   });
+
+  router.post('/other-information-incomplete-inenf', function (req, res) {
+    res.redirect('check-incomplete-enf-invalid')
+  })
 
   router.post('/other-information-invalid', function (req, res) {
     res.redirect('check-enf-notice')

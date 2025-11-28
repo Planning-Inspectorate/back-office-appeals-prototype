@@ -163,15 +163,6 @@
       Appellant phone number: 07849586723
     </div>
 
-    {% if data['groundA'] == "Yes" %}
-    <h2 class="govuk-heading-m">Ground (a) barred</h2>
-    <p class="govuk-body">We cannot consider ground (a) because the enforcement notice was issued:</p>
-    <ul class="govuk-list govuk-list--bullet">
-      <li>after the appellant made a retrospective planning application</li>
-      <li>within 2 years from the date the application stopped being considered</li>
-    </ul>
-    {% endif %}
-
     {% if data['otherInfo'] == "Yes" %}
     <h2 class="govuk-heading-m">Other information</h2>
     <p class="govuk-body">{{ data['otherInfoText'] or "Here is some other info" }}</p>

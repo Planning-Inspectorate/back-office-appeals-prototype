@@ -143,10 +143,12 @@ router.post('/cancel-appeal/cancel-reason', function (req, res) {
   })
 
   router.post('/enforcement-invalid-reason', function (req, res) {
-    const reviewDecision = req.session.data.reviewDecision;
+    const reviewDecision =
+      req.body.reviewDecision || req.session.data.reviewDecision;
+  
     if (reviewDecision === 'Invalid') {
       res.redirect('other-information-invalid');
-    } else if (reviewDecision === 'Incomplete'){
+    } else if (reviewDecision === 'Incomplete') {
       res.redirect('other-information-incomplete');
     } else {
       res.redirect('enforcement-invalid-reason');

@@ -171,9 +171,6 @@ router.post('/linked-appeals-check', (req, res) => {
     res.redirect('check')
   })
 
-
-  
-
   router.post('/check', function (req, res) {
     res.redirect('appeal-invalid')
   })
@@ -216,6 +213,8 @@ router.post('/linked-appeals-check', (req, res) => {
   })
 
   router.post('/ground-a', function (req, res) {
+    const groundA =
+      req.body.groundA || req.session.data.groundA;
     res.redirect('other-information-valid')
   })
 

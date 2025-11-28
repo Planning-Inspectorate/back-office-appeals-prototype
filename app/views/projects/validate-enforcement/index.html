@@ -56,34 +56,25 @@
       })}}
     </h2>
 
-    <h3 class="govuk-heading-s">Features:</h3>
+    {{ govukDetails({
+      summaryText: "Features",
+      html: "
+        <ul class=\"govuk-list govuk-list--bullet\">
+          <li>
+            Changes to flow based on <a href=\"https://app.mural.co/t/allpins6990/m/allpins6990/1754403277658/b1eb0fc2144a494655ab071bf33f48ce8622eba2\">user research findings</a>
+          </li>
+          <li><b>Remove:</b> Did not receive more information from Cancel flow</li>
+          <li><b>Remove:</b> The enforcement notice is not valid from Cancel flow</li>
+          <li><b>Remove:</b> No ground (a) from Incomplete flow</li>
+          <li>Message added to check pages about notifying parties</li>
+          <li>Valid journey with ground (a) barred question added</li>
+          <li>Email content updates</li>
+          <li>Is the enforcement notice invalid? question added to incomplete and invalid flows</li>
+        </ul>
+      "
+    }) }}    
 
-    <ul class='govuk-list govuk-list--bullet'>
-      <li>
-        Changes to flow based on <a href="https://app.mural.co/t/allpins6990/m/allpins6990/1754403277658/b1eb0fc2144a494655ab071bf33f48ce8622eba2">user research findings</a>
-      </li>
-      <li>
-        <b>Remove:</b> 'Did not receive more information' from Cancel flow
-      </li>
-      <li>
-        <b>Remove:</b> 'The enforcement notice is not valid' from Cancel flow
-      </li>
-      <li>
-        <b>Remove:</b> 'No ground (a)' from Incomplete flow
-      </li>
-      <li>
-        Message added to check pages about notifying parties
-      </li>
-      <li>
-        Valid journey with ground (a) barred question added
-      </li>
-      <li>
-        Email content updates
-      </li>
-      <li>
-        "Is the enforcement notice invalid?" question added to incomplete and invalid flows
-      </li>
-    </ul>
+    
 
     {{ govukButton({
       text: "View prototype",
@@ -100,17 +91,21 @@
       })}}
     </h2>
 
-    <h3 class="govuk-heading-s">Features:</h3>
-    <ul class='govuk-list govuk-list--bullet'>
-      <li>
-        Mark an appeal as invalid
-      </li>
-      <li>
-        Mark an appeal as incomplete
-      </li><li>
-        Cancel an appeal
-      </li>
-    </ul>
+    {{ govukDetails({
+      summaryText: "Features",
+      html: "
+      <ul class='govuk-list govuk-list--bullet'>
+        <li>
+          Mark an appeal as invalid
+        </li>
+        <li>
+          Mark an appeal as incomplete
+        </li><li>
+          Cancel an appeal
+        </li>
+      </ul>
+      "
+    }) }}  
 
     {{ govukButton({
       text: "View prototype",

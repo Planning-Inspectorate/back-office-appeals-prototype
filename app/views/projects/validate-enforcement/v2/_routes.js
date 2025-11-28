@@ -153,6 +153,10 @@ router.post('/cancel-appeal/cancel-reason', function (req, res) {
     res.redirect('check-enf-notice')
   })
 
+  router.post('/check-enf-notice', function (req, res) {
+    res.redirect('check-details-invalid')
+  })
+
 // /linked-appeals-check
 router.post('/linked-appeals-check', (req, res) => {
     // Example of saving linked appeal answer

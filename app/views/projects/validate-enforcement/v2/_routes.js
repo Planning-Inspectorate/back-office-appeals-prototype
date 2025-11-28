@@ -213,10 +213,15 @@ router.post('/linked-appeals-check', (req, res) => {
   })
 
   router.post('/ground-a', function (req, res) {
-    const groundA =
-      req.body.groundA || req.session.data.groundA;
-    res.redirect('other-information-valid')
-  })
+    // ensure session data object exists
+    req.session.data = req.session.data || {};
+  
+    // save groundA choice
+    req.session.data.groundA = req.body.groundA;
+  
+    // redirect to the next page
+    res.redirect('other-information-valid'); 
+  });
 
   router.post('/other-information-valid', function (req, res) {
     res.redirect('valid-date')

@@ -1,0 +1,55 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = 'Check details and withdraw appeal'  %}
+{% set pageName = title %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: 'javascript:history.back()'
+}) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Appeal {{ data['appealReference'] or '1223443' }}</span>
+    <h1 class="govuk-heading-l">{{ title }}</h1>
+
+    {# --- 1. Base summary list rows --- #}
+    {% set summaryRows = [
+      {
+        key: { text: "Why are you cancelling the appeal?" },
+        value: { text: data['cancel-reason'] or "Request to withdraw appeal" },
+        actions: {
+          items: [
+            { href: "cancel-reason", text: "Change", visuallyHiddenText: "cancel reason" }
+          ]
+        }
+      },
+      {
+        key: { text: "Withdraw request" },
+        value: { html: '<p class="govuk-body"><a href="' + (data["withdrawal-upload"] or "#") + '">withdraw-request.pdf</a></p>' },
+        actions: {
+          items: [
+            { href: "cancel-reason", text: "Change", visuallyHiddenText: "cancel reason" }
+          ]
+        }
+      }
+    ] %}
+        
+    {{ govukSummaryList({ rows: summaryRows }) }}
+<p class="govuk-body">
+  We will cancel the appeal and send an email to the relevant parties.
+</p>
+
+    {# --- 5. Final action --- #}
+    <form method="post">
+      {{ govukButton({ text: "Withdraw appeal" }) }}
+    </form>
+
+  </div>
+</div>
+{% endblock %}
+

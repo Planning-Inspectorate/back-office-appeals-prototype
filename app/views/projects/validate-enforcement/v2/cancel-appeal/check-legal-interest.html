@@ -18,20 +18,18 @@
       <h1 class="govuk-heading-l">
         {{title}}
       </h1>
-<!--
-      {% set invalidReasonsHtml %}
-        {% if data['invalid'] %}
-          <ul>
-            {% for reason in data['invalid'] %}
-              <li>{{ reason }}</li>
-            {% endfor %}
-          </ul>
-        {% else %}
-          <span>No reasons selected</span>
-        {% endif %}
-      {% endset %}
 
-      -->
+      {% set invalidReasonsHtml %}
+  {% if data['invalid'] %}
+    <ul class="govuk-list govuk-list--bullet">
+      {% for reason in data['invalid'] %}
+        <li>{{ reason }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <span>Appellant does not have a legal interest in the land</span>
+  {% endif %}
+{% endset %}
 
       {{ govukSummaryList({
         rows: [
@@ -49,21 +47,21 @@
           }
         },  
         {
-            key: { text: "Why is the appeal invalid?" },
-            value: { text: data['invalid'] or "Appellant does not have a legal interest in the land"},
-            actions: {
-              items: [
-                {
-                  href: "appeal-invalid-reason",
-                  text: "Change",
-                  visuallyHiddenText: "Appeal invalid reason"
-                }
-              ]
-            }
-          },
+          key: { text: "Why is the appeal invalid?" },
+          value: { html: invalidReasonsHtml | safe },
+          actions: {
+            items: [
+              {
+                href: "appeal-invalid-reason",
+                text: "Change",
+                visuallyHiddenText: "Appeal invalid reason"
+              }
+            ]
+          }
+        },
           {
             key: { text: "Did the appellant send any information about their legal interest in the land?" },
-            value: { text: data['legalInterest'] or "Yes"},
+            value: { text: data['legalInterest'] or "No"},
             actions: {
               items: [
                 {
@@ -77,65 +75,61 @@
         ]
       }) }}
 
-      {{ govukDetails({
-        summaryText: "Preview email to appellant",
-        html: '
-          <div class="app-email-preview">
-            <div class="app-email-preview__subject">
-              Subject: Your appeal is not valid: 1223443
-            </div>
-            <div class="app-email-preview__body">
+      {% set emailAppellant %}
+<div class="app-email-preview">
+  <div class="app-email-preview__subject">
+    Subject: Your appeal is not valid: 1223443
+  </div>
+  <div class="app-email-preview__body">
 
-              <p class="govuk-body">
-                We have received the information you submitted with the details of your interest in the land and any supporting documents.
-              </p>
+    {% if data['legalInterest'] == "Yes" %}
+    <p class="govuk-body">
+      We have received the information you submitted with the details of your interest in the land and any supporting documents.
+    </p>
 
-              <p class="govuk-body">
-                We have reviewed the information and decided that you are not:
-              </p>
+    <p class="govuk-body">
+      We have reviewed the information and decided that you are not:
+    </p>
 
-              <ul class="govuk-list govuk-list--bullet">
-                <li>
-                  someone with a legal interest in the land
-                </li>
-                <li>
-                  a relevant occupier
-                </li>
-              </ul>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>someone with a legal interest in the land</li>
+      <li>a relevant occupier</li>
+    </ul>
+    {% else %}
+      <p class="govuk-body">We did not receive an email to confirm your legal interest in the land.</p>
+    {% endif %}
 
-              <p class="govuk-body">
-                We have marked your appeal as invalid.
-              </p>
 
-              <h2 class="govuk-heading-m">
-                Appeal details
-              </h2>
-              <div class="govuk-inset-text">
-                Appeal reference number: 1223443<br>
-                Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
-                Enforcement reference: LPA12345678
-              </div>
 
-              <h2 class="govuk-heading-m">
-                What happens next
-              </h2>
+    <p class="govuk-body">We have marked your appeal as invalid.</p>
 
-              <p class="govuk-body">Your appeal is now closed. We have told the local planning authority.</p>
+    <h2 class="govuk-heading-m">Appeal details</h2>
+    <div class="govuk-inset-text">
+      Appeal reference number: 1223443<br>
+      Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
+      Enforcement notice reference: LPA12345678
+    </div>
 
-              <p class="govuk-body">The compliance period for the enforcement notice starts from the effective date.</p>
+    <h2 class="govuk-heading-m">What happens next</h2>
+      <p class="govuk-body">The enforcement notice will not take effect unless we dismiss or you withdraw your other appeal 1234557.</p>
 
-              <p class="govuk-body">If you challenge this decision in the High court, you must contact a lawyer.</p>
+      <p class="govuk-body">The compliance period for the enforcement notice starts from the effective date.</p>
 
-              <p class="govuk-body">
-                Planning Inspectorate
-              </p>
+    <p class="govuk-body">If you challenge this decision in the High Court, you must contact a lawyer.</p>
 
-              <p class="govuk-body"><a href="mailto:caseofficers@planninginspectorate.gov.uk">
-                caseofficers@planninginspectorate.gov.uk</a></p>
+    <p class="govuk-body">Planning Inspectorate</p>
+    <p class="govuk-body">
+      <a href="mailto:caseofficers@planninginspectorate.gov.uk">caseofficers@planninginspectorate.gov.uk</a>
+    </p>
 
-            </div>
-          </div>'
-        })}}
+  </div>
+</div>
+{% endset %}
+
+{{ govukDetails({
+  summaryText: "Preview email to appellant",
+  html: emailAppellant
+}) }}
 
       {{ govukDetails({
         summaryText: "Preview email to LPA",

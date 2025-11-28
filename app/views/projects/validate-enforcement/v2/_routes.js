@@ -13,6 +13,8 @@ router.post('/cancel-appeal/cancel-reason', function (req, res) {
         res.redirect('information-request')
     } else if (reason === 'Did not submit application or pay fee'){
         res.redirect('check-fee')
+    } else if (reason === 'Request to withdraw appeal'){
+      res.redirect('upload-withdraw-request')
     } else {
       // Fallback or default route if no match
       res.redirect('cancel-reason')
@@ -35,6 +37,10 @@ router.post('/cancel-appeal/cancel-reason', function (req, res) {
 
   router.post('/cancel-appeal/legal-interest-information', function (req, res) {
     res.redirect('check-legal-interest')
+  })
+
+  router.post('/cancel-appeal/upload-withdraw-request', function (req, res) {
+    res.redirect('check-withdraw-request')
   })
 
   router.post('/cancel-appeal/check-legal-interest', function (req, res) {

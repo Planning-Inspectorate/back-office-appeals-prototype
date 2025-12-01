@@ -31,7 +31,7 @@ router.post('/cancel-appeal/cancel-reason', function (req, res) {
       res.redirect('legal-interest-information')
     } else {
       // fallback or default route
-      res.redirect('check-appeal-invalid')
+      res.redirect('appeal-invalid-reason')
     }
   })
 

@@ -1,6 +1,6 @@
 {% extends "layouts/PINS.html" %}
 
-{% set pageName="Case details" %}
+{% set pageName="Why is the appeal invalid?" %}
 
 {% block content %}
 
@@ -14,7 +14,7 @@
           values: data['invalid'],
           fieldset: {
             legend: {
-              text: "Why is the appeal invalid?",
+              text: pageName,
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
@@ -41,7 +41,15 @@
             },
             {
                 value: "Other reason",
-                text: "Other reason"
+                text: "Other reason",
+                conditional: {
+                  html: govukInput({
+                    name: "reasonA",
+                    label: {
+                      text: "Enter a reason"
+                    }
+                  })
+                }
             }
           ]
         }) }}

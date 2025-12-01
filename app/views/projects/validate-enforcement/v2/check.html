@@ -93,7 +93,7 @@
 
           <p class="govuk-body">{{ invalidReasonsHtml | safe }}</p>
 
-          {% if "Ground (a) barred" in data['invalid'] %}
+          {% if "Ground (a) barred" in (data['invalid'] or []) %}
           <h3 class="govuk-heading-s">Ground (a) barred</h3>
           <p class="govuk-body">We cannot consider ground (a) because the enforcement notice was issued either:</p>
           <ul class="govuk-list govuk-list--bullet">

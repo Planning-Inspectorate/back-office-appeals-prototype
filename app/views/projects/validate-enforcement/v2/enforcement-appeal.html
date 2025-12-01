@@ -97,85 +97,6 @@
       </section>
 
       <section>
-        <h2 class="govuk-heading-m govuk-!-margin-top-4">2. Application details</h2>
-        {{ govukSummaryList({
-          rows: [
-            {
-              key: {
-                text: "Which local planning authority (LPA) do you want to appeal against?"
-              },
-              value: {
-                html: "Borough Council"
-              },
-              actions: {
-                  items: [
-                    {
-                      href: "#",
-                      text: "Change",
-                      visuallyHiddenText: "local planning authority"
-                    }
-                  ]
-                }
-            },
-            {
-              key: {
-                text: "Enforcement reference number?"
-              },
-              value: {
-                html: "No"
-              } if data['empty'] else
-              {
-                html: "1234567"
-              },
-              actions: {
-                  items: [
-                    {
-                      href: "#",
-                      text: "Change",
-                      visuallyHiddenText: "the enforcement reference number"
-                    }
-                  ]
-                }
-            },
-            {
-              key: {
-                text: "What is the issue date on your enforcement notice?"
-              },
-              value: {
-                html: "11 November 2025"
-              },
-              actions: {
-                  items: [
-                    {
-                      href: "#",
-                      text: "Change",
-                      visuallyHiddenText: "description of development"
-                    }
-                  ]
-                }
-              },
-              {
-                key: {
-                  text: "What is the effective date on your enforcement notice?"
-                },
-                value: {
-                  html: "25 November 2025"
-                },
-                actions: {
-                    items: [
-                      {
-                        href: "#",
-                        text: "Change",
-                        visuallyHiddenText: "description of development"
-                      }
-                    ]
-                  }
-              }
-          ]
-        }) }}
-      </section>
-
-      <section>
         <h2 class="govuk-heading-m govuk-!-margin-top-4">2. Land details</h2>
         {{ govukSummaryList({
           rows: [
@@ -290,14 +211,14 @@
       </section>
 
       <section>
-        <h2 class="govuk-heading-m govuk-!-margin-top-8">4. Gounds of appeal and supporting facts</h2>
+        <h2 class="govuk-heading-m govuk-!-margin-top-8">4. Grounds of appeal and supporting facts</h2>
 
         {{ govukSummaryList({
           classes: "app-summary-list--wider-actions",
           rows: [
           {
             key: {
-              text: "Description of the alleged breach​"
+              text: "Enter the description of the alleged breach​"
             },
             value: {
               html: "Example description"
@@ -325,6 +246,176 @@
                     href: "#",
                     text: "Change",
                     visuallyHiddenText: "grounds and facts"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Did anyone submit a planning application and pay the correct fee?​"
+            },
+            value: {
+              html: "Yes"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "fee"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Upload your application receipt"
+            },
+            value: {
+              html: "<a href=’#’>receipt.pdf</a>"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "receipt"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Was the application for all or part of the development?"
+            },
+            value: {
+              html: "All of the development"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "receipt"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "What is the planning application reference number?"
+            },
+            value: {
+              html: "129485749"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "ref number"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "What date did you submit your application?"
+            },
+            value: {
+              html: "12 September 2025"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "ref number"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Description of development"
+            },
+            value: {
+              html: "Small extension to rear of property"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "description"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Did the local planning authority change the description of development?"
+            },
+            value: {
+              html: "No"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "description change"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Was the application granted or refused?"
+            },
+            value: {
+              html: "Refused"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "decision"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "What is the date on the decision letter from the local planning authority?"
+            },
+            value: {
+              html: "30 September 2025"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "date"
+                  }
+                ]
+              }
+          },
+          {
+            key: {
+              text: "Did you appeal the decision?"
+            },
+            value: {
+              html: "No"
+            },
+            actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "date"
                   }
                 ]
               }
@@ -379,47 +470,12 @@
                   }
                 ]
               }
-            },
-            {
-              key: {
-                text: "Did you pay the application fee?​"
-              },
-              value: {
-                html: "Yes"
-              },
-              actions: {
-                  items: [
-                    {
-                      href: "#",
-                      text: "Change",
-                      visuallyHiddenText: "if you applied for planning permission and paid the application fee"
-                    }
-                  ]
-                }
-            },
-            {
-              key: {
-                text: "Application fee receipt"
-              },
-              value: {
-                html: "<a href=’#’>receipt.pdf</a>"
-              },
-              actions: {
-                  items: [
-                    {
-                      href: "#",
-                      text: "Change",
-                      visuallyHiddenText: "if you applied for planning permission and paid the application fee"
-                    }
-                  ]
-                }
             }
 
           ]
         }) }}
       </section>
 
-      
 
       <section>
         <h2 class="govuk-heading-m govuk-!-margin-top-4">3. Procedure</h2>

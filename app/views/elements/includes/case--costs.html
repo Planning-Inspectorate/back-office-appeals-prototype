@@ -1,0 +1,91 @@
+<h2 class="govuk-heading-l">
+  Costs
+</h2>
+
+<table class="govuk-table">
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Documentation</th>
+      <th scope="col" class="govuk-table__header">Status</th>
+      <th scope="col" class="govuk-table__header govuk-!-text-align-right">Action</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+
+      <!-- validation stage documents -->
+      {% if data['case-stage'] == 'validation' %}
+
+        <th scope="row" class="govuk-table__header">Appellant application</th>
+        <td class="govuk-table__cell">Received</td>
+        <td class="govuk-table__cell govuk-!-text-align-right">
+          <ul class="govuk-summary-list__actions-list">
+            <li class="govuk-summary-list__actions-list-item">
+              <a class="govuk-link" href="#">Manage<span class="govuk-visually-hidden"> Appellant application</span></a>
+            </li>
+            <li class="govuk-summary-list__actions-list-item">
+              <a class="govuk-link" href="#">Add<span class="govuk-visually-hidden"> Appellant application</span></a>
+            </li>
+          </ul>
+        </td>
+
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">Appellant withdrawal	</th>
+          <td class="govuk-table__cell">No documents available	
+          </td>
+          <td class="govuk-table__cell govuk-!-text-align-right">
+            <a class="govuk-link" href="#">Add<span class="govuk-visually-hidden"> Appellant withdrawal</span></a>
+          </td>
+
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">Appellant correspondence</th>
+            <td class="govuk-table__cell">No documents available</td>
+            <td class="govuk-table__cell govuk-!-text-align-right">
+              <a class="govuk-link" href="#">Add<span class="govuk-visually-hidden"> Appellant correspondence</span></a>
+            </td>
+          </tr>
+
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">LPA application	</th>
+            <td class="govuk-table__cell">No documents available</td>
+            <td class="govuk-table__cell govuk-!-text-align-right">
+              <a href="#" class="govuk-link">
+                Add<span class="govuk-visually-hidden">LPA application	</span>
+              </a>
+            </td>
+          </tr>
+
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">LPA withdrawal	</th>
+            <td class="govuk-table__cell">No documents available	
+            </td>
+            <td class="govuk-table__cell govuk-!-text-align-right">
+              <a class="govuk-link" href="#">Add<span class="govuk-visually-hidden"> LPA withdrawal</span></a>
+            </td>
+  
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">LPA correspondence</th>
+              <td class="govuk-table__cell">No documents available</td>
+              <td class="govuk-table__cell govuk-!-text-align-right">
+                <a class="govuk-link" href="#">Add<span class="govuk-visually-hidden"> LPA correspondence</span></a>
+              </td>
+            </tr>
+
+      {% endif %}
+
+      <!-- appeal is ready to start -->
+      {% if data['case-stage'] == 'ready' %}
+
+       
+
+      {% endif %}
+
+      <!-- questionnaire stage documents -->
+      {% if data['case-stage'] == 'questionnaire' %}
+
+      
+
+      {% endif %}
+
+  </tbody>
+</table>

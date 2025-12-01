@@ -1,0 +1,62 @@
+<h2 class="govuk-heading-l">
+  Contacts
+</h2>
+
+<table class="govuk-table">
+  <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+
+      <!-- validation stage documents -->
+      {% if data['case-stage'] == 'validation' %}
+
+      <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__header">Appellant 	</th>
+        <td class="govuk-table__cell">John Smith<br>Barnet Agency LTD.	<br> john.smith@gmail.com <br> 07394858920
+        </td>
+        <td class="govuk-table__cell govuk-!-text-align-right">
+          <a class="govuk-link" href="#">Add<span class="govuk-visually-hidden"> Appellant</span></a>
+        </td>
+
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">Agent 	</th>
+          <td class="govuk-table__cell">No agent
+          <td class="govuk-table__cell govuk-!-text-align-right">
+            <a class="govuk-link" href="#">Add<span class="govuk-visually-hidden"> agent</span></a>
+          </td>
+
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">LPA</th>
+            <td class="govuk-table__cell">Barnet Council <br>barnet.council@gov.uk</td>
+            <td class="govuk-table__cell govuk-!-text-align-right">
+              <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden">LPA</span></a>
+            </td>
+          </tr>
+
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">Rule 6 parties</th>
+            <td class="govuk-table__cell">No Rule 6 party </td>
+            <td class="govuk-table__cell govuk-!-text-align-right">
+              <a href="#" class="govuk-link">
+                Add<span class="govuk-visually-hidden">rule 6	</span>
+              </a>
+            </td>
+          </tr>
+
+      {% endif %}
+
+      <!-- appeal is ready to start -->
+      {% if data['case-stage'] == 'ready' %}
+
+       
+
+      {% endif %}
+
+      <!-- questionnaire stage documents -->
+      {% if data['case-stage'] == 'questionnaire' %}
+
+      
+
+      {% endif %}
+
+  </tbody>
+</table>

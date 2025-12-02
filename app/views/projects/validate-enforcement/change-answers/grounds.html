@@ -1,0 +1,85 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Which statements apply to your case?" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form method="post" validate>
+
+  {{ govukCheckboxes({
+    idPrefix: "grounds",
+    name: "grounds",
+    fieldset: {
+      legend: {
+        text: pageName,
+        classes: "govuk-fieldset__legend--l",
+        isPageHeading: true
+      }
+    },
+    hint: {
+      text: "Select all that apply."
+    },
+    items: [
+      {
+        value: "groundA",
+        text: "Ground (a)",
+        hint: {
+          text: "The local planning authority (LPA) should grant planning permission for all (or part) of the development described in the alleged breach."
+        }
+      },
+      {
+        value: "groundB",
+        text: "Ground (b)",
+        hint: {
+          text: "The alleged breach did not happen."
+        }
+      },
+      {
+        value: "groundC",
+        text: "Ground (c)",
+        hint: {
+          text: "You do not need planning permission (for example, it is a permitted development or you already have planning permission)."
+        }
+      },
+      {
+        value: "groundD",
+        text: "Ground (d)",
+        hint: {
+          text: "It is too late for the LPA to take enforcement action."
+        }
+      },
+      {
+        value: "groundE",
+        text: "Ground (e)",
+        hint: {
+          text: "The LPA did not serve the notice properly to everyone with an interest in the land."
+        }
+      },
+      {
+        value: "groundF",
+        text: "Ground (f)",
+        hint: {
+          text: "A simpler step (or steps) would achieve the same result."
+        }
+      },
+      {
+        value: "groundG",
+        text: "Ground (g)",
+        hint: {
+          text: "The time to comply with the notice is too short."
+        }
+      }
+    ]
+  }) }}
+
+  {{ govukButton({
+    text: "Continue"
+  }) }}
+
+</form>
+
+
+{% endblock %}

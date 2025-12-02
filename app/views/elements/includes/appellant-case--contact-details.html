@@ -1,3 +1,6 @@
+{% if data['case-stage'] != 'validation'  %}
+
+
 {{ govukSummaryList({
   card: {
     title: {
@@ -27,7 +30,7 @@
         text: "Name"
       },
       value: {
-        html: "Jam Doe"
+        html: "Jane Doe"
       },
       actions: {
           items: [
@@ -59,3 +62,66 @@
 
   ]
 }) }}
+
+{% endif %}
+
+
+{% if data['case-stage'] == 'validation' %}
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "1. Contact details"
+    }
+  },
+  rows: [
+
+      {
+        key: { html: 'Who is appealing against the enforcement notice?' },
+        value:
+          { html: 'A person' },
+        actions: {
+          items: [
+            { href: '#', html: 'Change' }
+          ]
+        }
+      },
+
+      {
+        key: { html: 'What is the name of the individual appealing against the enforcement notice?' },
+        value:
+          { html: 'Jan Fisher' },
+        actions: {
+          items: [
+            { href: '#', html: 'Change' }
+          ]
+        }
+      },
+
+      {
+        key: { html: 'You are one of the appellants' },
+        value:
+          { html: 'Yes' },
+        actions: {
+          items: [
+            { href: '#', html: 'Change' }
+          ]
+        }
+      },
+
+      {
+        key: { html: 'What is your phone number?' },
+        value:
+          { html: '07968475233' },
+        actions: {
+          items: [
+            { href: '#', html: 'Change' }
+          ]
+        }
+      }
+
+      ]
+  }) }}
+      
+{% endif %}
+

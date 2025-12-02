@@ -1,7 +1,8 @@
 {% extends "layouts/PINS-admin-post-mvp.html" %}
 
-{% set title = "Enforcement and enforcement listed building" %}
+{% set title = "Enforcement and listed building enforcement" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
+
 {% set pageId = 'enf' %}
 
 {% set back = false %}
@@ -11,26 +12,15 @@
 {% endblock %}
 
 {% block content %}
+	<div class="govuk-grid-row">
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-one-quarter">
-    <ul class="govuk-list govuk-list-bullet">
-      <li><a href="#common" class="govuk-link--no-visited-state govuk-link--no-underline">Enforcement</a></li>
-      <!-- <li><a href="#dev" class="govuk-link--no-visited-state govuk-link--no-underline">Ready for development</a></li> -->
-    </ul>
-  </div>
-
-
-
-    <div class="govuk-grid-column-three-quarters">
+    <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-xl">
         {{ title }}
       </h1>
 
-
-
-      <!-- written representations elements -->
-      <section id="written-reps">
+      <!-- enforcement -->
+      <section id="enforcement">
 
         <h2 class="govuk-heading-m">
           Enforcement
@@ -47,52 +37,60 @@
           rows: [
             [
               {
-                html: "<a href='/projects/validate-enforcement/index'>Enforcement validation</a> "
+                html: "<a href='/projects/validate-enforcement/index'>Appeal validation</a>"
+              }
+            ],
+						[
+              {
+                html: "<a href='/projects/enf-questionnaire/task-list'>LPA questionnaire</a>"
               }
             ],
             [
-            {
-              html: "<a href='/projects/appellant-statement/'>Enforcement review appellant statement</a>"
-            }
-          ]
+            	{
+              	html: "<a href='/projects/appellant-statement/'>Review appellant statement</a>"
+            	}
+          	]
           ]
         }) }}
 
       </section>
 
+			<!-- listed building enforcement -->
+      <!-- <section id="enforcement--listed-building">
 
+        <h2 class="govuk-heading-m">
+          Listed building enforcement
+        </h2>
 
+        {{ govukTable({
+          firstCellIsHeader: true,
+          head: [
+            {
+              text: "Name"
+            }
+          ],
+          rows: [
+            [
+              {
+                html: "<a href='#'>TBA</a>"
+              }
+            ],
+						[
+              {
+                html: "<a href='#'>TBA</a>"
+              }
+            ],
+            [
+            	{
+              	html: "<a href='#'>TBA</a>"
+            	}
+          	]
+          ]
+        }) }}
 
-
-
-
-  	  <!-- <h2 class="govuk-heading-m" id="dev">
-        Ready for development
-      </h2>
-
-      <p>
-        Features that have been refined and are ready to be developed. These prototypes should not change unless a fix is needed or the requirments change.
-      </p>
-
-      {{ govukTable({
-        firstCellIsHeader: true,
-        head: [
-          {
-            text: "Name"
-          },
-          {
-            text: "Tickets"
-          },
-          {
-            text: "Related docs"
-          }
-        ],
-        rows: [
-
-        ]
-      }) }} -->
+      </section> -->
 
     </div>
-  </div>
 
+	</div>
 {% endblock %}

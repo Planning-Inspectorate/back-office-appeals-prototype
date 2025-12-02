@@ -15,16 +15,22 @@
     <tr class="govuk-table__row">
 
       <!-- validation stage documents -->
-      {% if data['case-stage'] == 'validation' %}
+      {% if data['case-stage'] == 'validation' or data['case-stage'] == 'ready' %}
 
         <th scope="row" class="govuk-table__header">Appeal</th>
         <td class="govuk-table__cell">Ready to review</td>
         <td class="govuk-table__cell">{{ 2 | daysAgo }}</td>
         <td class="govuk-table__cell govuk-!-text-align-right">
-          <a href="appellant-case" data-cy="review-appellant-case" class="govuk-link">
+          {% if data['appealIs'] == 'enforcement' %}
+            <a href="enforcement-appeal" data-cy="review-appellant-case" class="govuk-link">
+          {% else %}
+            <a href="appellant-case" data-cy="review-appellant-case" class="govuk-link">
+          {% endif %}
             Review<span class="govuk-visually-hidden"> appellant case</span>
           </a>
         </td>
+
+      {% else %}
 
         <tr class="govuk-table__row">
           <th scope="row" class="govuk-table__header">LPA questionnaire</th>

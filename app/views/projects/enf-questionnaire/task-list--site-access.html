@@ -1,0 +1,16 @@
+
+{{ govukSummaryList({
+  card: { title: { text: "Site access" } },
+  rows: [
+    {
+      key: { html: 'Will the inspector need to enter a neighbour’s land or property?' },
+      value: { html: 'No' },
+      actions: { items: [{ href: 'site-access/neighbour-access?cya=true', html: 'Change' }] }
+    },
+    {
+      key: { html: 'Are there any health and safety issues on the appeal site?' },
+      value: { html: 'No' },
+      actions: { items: [{ href: 'site-access/health-safety?cya=true', html: 'Change' }] }
+    }
+  ]
+}) }}

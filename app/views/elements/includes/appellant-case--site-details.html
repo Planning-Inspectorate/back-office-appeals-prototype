@@ -1,4 +1,4 @@
-{% if data['case-stage'] != 'validation'  %}
+{% if appealIs != 'enforcement'  %}
 
 {{ govukSummaryList({
   card: {
@@ -185,7 +185,7 @@
 
 
 
-{% if data['case-stage'] == 'validation' %}
+{% if appealIs == 'enforcement' %}
 
 {{ govukSummaryList({
   card: {

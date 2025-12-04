@@ -1,8 +1,8 @@
 {% extends "layouts/PINS-admin-post-mvp.html" %}
 
-{% set title = "Case details" %}
+{% set title = "Case management" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
-{% set pageId = 'caseDetails' %}
+{% set pageId = 'caseManagement' %}
 
 {% set back = false %}
 
@@ -15,7 +15,7 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-one-quarter">
     <ul class="govuk-list govuk-list-bullet">
-      <li><a href="#common" class="govuk-link--no-visited-state govuk-link--no-underline">Case details</a></li>
+      <li><a href="#common" class="govuk-link--no-visited-state govuk-link--no-underline">Case management</a></li>
       <!-- <li><a href="#dev" class="govuk-link--no-visited-state govuk-link--no-underline">Ready for development</a></li> -->
     </ul>
   </div>
@@ -26,11 +26,6 @@
       <h1 class="govuk-heading-xl">
         {{ title }}
       </h1>
-
-      {{ govukButton({
-        text: "Master case details page",
-        href: "#"
-      }) }}
 
       <!-- written representations elements -->
       <section id="written-reps">
@@ -77,38 +72,6 @@
         }) }}
 
       </section>
-
-     
-
-      
-
-    
-
-  	  <!-- <h2 class="govuk-heading-m" id="dev">
-        Ready for development
-      </h2>
-
-      <p>
-        Features that have been refined and are ready to be developed. These prototypes should not change unless a fix is needed or the requirments change.
-      </p>
-
-      {{ govukTable({
-        firstCellIsHeader: true,
-        head: [
-          {
-            text: "Name"
-          },
-          {
-            text: "Tickets"
-          },
-          {
-            text: "Related docs"
-          }
-        ],
-        rows: [
-
-        ]
-      }) }} -->
 
     </div>
   </div>

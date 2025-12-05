@@ -1,47 +1,56 @@
-<section>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
 
-  <!-- notifications -->
-  {% include "/elements/includes/case--notifications.html" %}
+    <!-- notifications -->
+    {% include "/elements/includes/case--notifications.html" %}
 
-  <!--	<span class="govuk-caption-l">Appeal 2110166</span> -->
-  <span class="govuk-caption-xl">Appeal 2114328</span>
-	<h1 class="govuk-heading-xl govuk-!-margin-bottom-2">
-    {{ title }}
-  </h1>
+  </div>
+</div>
 
-  {% include "/elements/includes/case--status.html" %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
 
-  {% include "/elements/includes/case--meta-data.html" %}
+    <!--	<span class="govuk-caption-l">Appeal 2110166</span> -->
+    <span class="govuk-caption-xl">Appeal 2114328</span>
+  	<h1 class="govuk-heading-xl govuk-!-margin-bottom-2">
+      {{ title }}
+    </h1>
 
-  <p class="govuk-body">
-    <a href="#" class="govuk-link">
-      Download case
-    </a>
-  </p>
+    {% include "/elements/includes/case--status.html" %}
 
-  {% include "/elements/includes/case--case-notes.html" %}
+    {% include "/elements/includes/case--meta-data.html" %}
 
-</section>
+    <p class="govuk-body">
+      <a href="#" class="govuk-link">
+        Download case
+      </a>
+    </p>
 
-<!-- case sections -->
-<section class="govuk-!-margin-top-6">
+    {% include "/elements/includes/case--case-notes.html" %}
 
-  {% include "/elements/includes/case--overview.html" %}
+    <!-- case sections -->
+    <section class="govuk-!-margin-top-6">
 
-  {% include "/elements/includes/case--timetable.html" %}
+      {% include "/elements/includes/case--overview.html" %}
 
-  {% include "/elements/includes/case--site.html" %}
+      {% include "/elements/includes/case--timetable.html" %}
 
-  {% include "/elements/includes/case--hearing.html" %}
+      {% include "/elements/includes/case--site.html" %}
 
-  {% include "/elements/includes/case--documentation.html" %}
+      {% include "/elements/includes/case--hearing.html" %}
 
-  {% include "/elements/includes/case--costs.html" %}
+      {% include "/elements/includes/case--documentation.html" %}
 
-  {% include "/elements/includes/case--contacts.html" %}
+      {% include "/elements/includes/case--costs.html" %}
 
-  {% include "/elements/includes/case--team.html" %}
+      {% include "/elements/includes/case--contacts.html" %}
 
-  {% include "/elements/includes/case--case-management.html" %}
+      {% include "/elements/includes/case--team.html" %}
 
-</section>
+      {% include "/elements/includes/case--case-management.html" %}
+
+    </section>
+
+
+  </div>
+</div>

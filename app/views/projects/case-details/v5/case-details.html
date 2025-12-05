@@ -2,9 +2,20 @@
 
 {% set title = "Case details" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
-{% set pageId = 'elements' %}
 
 {% set back = false %}
+
+{% set prototypeLinks = [
+  {
+    href: '?requested-addresses=true',
+    text: 'Requested addresses'
+  } if not data['requested-addresses'],
+  {
+    href: '?requested-addresses=',
+    text: 'No addresses requested'
+  } if data['requested-addresses']
+
+] %}
 
 {% block content %}
 

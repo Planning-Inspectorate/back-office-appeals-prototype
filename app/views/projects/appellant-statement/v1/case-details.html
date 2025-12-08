@@ -85,27 +85,26 @@
 
       {% endif %}
 
-      <span class="govuk-caption-l">Appeal 2110166</span>
-    	<h1 class="govuk-heading-l">{{ title }}</h1>
+      <span class="govuk-caption-xl">Apppeal 0000005</span>
+    	<h1 class="govuk-heading-xl govuk-!-margin-bottom-3">{{ title }}</h1>
 
-      {{ govukTag({
-        text: "Statements",
-        classes: "govuk-tag--blue"
-      })}}
+        <strong class="govuk-tag govuk-tag--blue">
+          Statements
+        </strong>
+      </h1>
 
-      {% include "/includes/appeal-content/mvp-has-appeal-meta.html" %}
+    </div>
+
+    <div class="govuk-grid-column-full">
+
+      {% include "/elements/includes/case--meta-data.html" %}
+
       <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
-      <div class="govuk-accordion govuk-!-margin-top-9" data-module="govuk-accordion" id="accordion-default">
-        <div class="govuk-accordion__section">
-          <div class="govuk-accordion__section-header">
-            <h2 class="govuk-accordion__section-heading">
-              <span class="govuk-accordion__section-button" id="accordion-default-heading-1">
-                Case overview
-              </span>
-            </h2>
-          </div>
-          <div id="accordion-default-content-1" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-1">
+
+            <h2 class="govuk-heading-l">Case overview</h2>
+
+
             {{ govukTable({
               captionClasses: "govuk-table__caption--m",
               firstCellIsHeader: true,
@@ -192,18 +191,11 @@
                 ]
               ]
             }) }}
-          </div>
-        </div>
-        <div class="govuk-accordion__section">
-          <div class="govuk-accordion__section-header">
-            <h2 class="govuk-accordion__section-heading">
-              <span class="govuk-accordion__section-button" id="accordion-default-heading-2">
-               Site details
-              </span>
-            </h2>
-          </div>
 
-          <div id="accordion-default-content-2" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-2">
+
+            <h2 class="govuk-heading-l">Site details</h2>
+
+
             {{ govukTable({
               captionClasses: "govuk-table__caption--m",
               firstCellIsHeader: true,
@@ -317,15 +309,9 @@
           </div>
         </div>
 
-        <div class="govuk-accordion__section">
-          <div class="govuk-accordion__section-header">
-            <h2 class="govuk-accordion__section-heading">
-              <span class="govuk-accordion__section-button" id="accordion-default-heading-3">
-                Case timetable
-              </span>
-            </h2>
-          </div>
-          <div id="accordion-default-content-3" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-3">
+
+        <h2 class="govuk-heading-l">Timetable</h2>
+
             {{ govukTable({
               captionClasses: "govuk-table__caption--m",
               firstCellIsHeader: true,
@@ -438,18 +424,10 @@
                 ]
               ]
             }) }}
-          </div>
-        </div>
+          
 
-        <div class="govuk-accordion__section">
-          <div class="govuk-accordion__section-header">
-            <h2 class="govuk-accordion__section-heading">
-              <span class="govuk-accordion__section-button" id="accordion-default-heading-4">
-                Documentation
-              </span>
-            </h2>
-          </div>
-          <div id="accordion-default-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-4">
+        <h2 class="govuk-heading-l">Documentation</h2>
+
             {{ govukTable({
               captionClasses: "govuk-table__caption--m",
               firstCellIsHeader: false,
@@ -534,7 +512,7 @@
                     text: "Appellant statement"
                   },
                   {
-                    text: "Completed"
+                    text: "Complete"
                   } if data['review-outcome'] != 'Statement incomplete' else { text: "Incomplete" },
                   {
                     text: "19 Jul 2023"
@@ -610,18 +588,10 @@
 
               ]
             }) }}
-          </div>
-        </div>
 
-        <div class="govuk-accordion__section">
-          <div class="govuk-accordion__section-header">
-            <h2 class="govuk-accordion__section-heading">
-              <span class="govuk-accordion__section-button" id="accordion-default-heading-5">
-                Case contacts
-              </span>
-            </h2>
-          </div>
-          <div id="accordion-default-content-5" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-5">
+
+            <h2 class="govuk-heading-l">Case contacts</h2>
+
             {{ govukTable({
               captionClasses: "govuk-table__caption--m",
               firstCellIsHeader: true,
@@ -676,18 +646,10 @@
                 ]
               ]
             }) }}
-          </div>
-        </div>
 
-        <div class="govuk-accordion__section">
-          <div class="govuk-accordion__section-header">
-            <h2 class="govuk-accordion__section-heading">
-              <span class="govuk-accordion__section-button" id="accordion-default-heading-6">
-                Case team
-              </span>
-            </h2>
-          </div>
-          <div id="accordion-default-content-6" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-6">
+
+            <h2 class="govuk-heading-l">Case team</h2>
+
             {{ govukTable({
               captionClasses: "govuk-table__caption--m",
               firstCellIsHeader: true,
@@ -718,58 +680,9 @@
                 ]
               ]
             }) }}
-          </div>
-        </div>
 
-      </div>
-
-
-
-    </div>
-  </div>
-
-  {% if data['status'] == 'determination' %}
-
-    <form action="" method="post" class="govuk-!-margin-top-6" noAccept statementate>
-
-      <!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
-
-        {{ govukRadios({
-          name: "issue-decision",
-          fieldset: {
-            legend: {
-              text: "Issue your decision",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--m"
-            }
-          },
-          items: [
-            {
-              value: "allowed~../../issue-decision/v1/decision-date",
-              text: "Allowed"
-            },
-            {
-              value: "dismissed~../../issue-decision/v1/decision-date",
-              text: "Dismissed"
-            },
-            {
-              value: "split~../../issue-decision/v1/decision-date",
-              text: "Split-decision"
-            },
-            {
-              value: "Reject statement~../../issue-decision/v1/decision-date",
-              text: "Reject statement"
-            }
-          ]
-        }) }}
-
-        {{ govukButton({
-          text: "Continue"
-        }) }}
-
-    </form>
-
-  {% endif %}
+            <h2 class="govuk-heading-l">Cancel appeal</h2>
+            <p class="govuk-body"><a href="cancel-appeal/cancel-reason">Cancel appeal</a></p>    
 
 
 {% endblock %}

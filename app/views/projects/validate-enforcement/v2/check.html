@@ -55,7 +55,7 @@
         actions: { items: [{ href: "appeal-invalid-reason", text: "Change" }] }
       },
       {
-        key: { text: "Does the appellant have any other linked enforcement appeals?" },
+        key: { text: "Are there any other live appeals against the enforcement notice?" },
         value: { text: linkedAnswer },
         actions: {
           items: [
@@ -107,7 +107,7 @@
           <p class="govuk-body">Your appeal is now closed.</p>
 
           {% if linkedAppeals == "Yes" %}
-            <p class="govuk-body">The enforcement notice will not take effect unless we dismiss or you withdraw your other appeal 3849485.</p>
+            <p class="govuk-body">The enforcement notice will not take effect unless we dismiss the other appeal or someone withdraws it.</p>
           {% else %}
             <p class="govuk-body">The compliance period for the enforcement notice starts from 30 November 2025.</p>
           {% endif %}
@@ -160,7 +160,7 @@
           <p class="govuk-body">The appeal is now closed.</p>
 
           {% if linkedAppeals == "Yes" %}
-            <p class="govuk-body">The enforcement notice will not take effect unless we dismiss the other appeal 3849485 or the appellant withdraws it.</p>
+            <p class="govuk-body">The enforcement notice will not take effect unless we dismiss the other appeal or someone withdraws it.</p>
           {% else %}
             <p class="govuk-body">The compliance period for the enforcement notice starts from 30 November 2025.</p>
           {% endif %}

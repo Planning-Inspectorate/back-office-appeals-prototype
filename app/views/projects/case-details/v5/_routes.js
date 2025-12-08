@@ -29,6 +29,16 @@ router.post('*', function(req, res, next){
 // CONSTRAINTS
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
+router.post('/add-address', function (req, res) {
+  res.redirect('check-answers');
+})
+
+router.post('/check-answers', function (req, res) {
+  req.flash('success', 'Address added')
+  res.redirect('case-details?requested-addresses=true');
+})
+
+
 router.post('/confirm-remove-address', function (req, res) {
   req.flash('success', 'Address removed')
   res.redirect('requested-addresses?address-removed=true');

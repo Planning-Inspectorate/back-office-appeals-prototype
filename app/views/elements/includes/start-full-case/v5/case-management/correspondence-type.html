@@ -1,0 +1,91 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set back = true %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">filename1.pdf - cross-team correspondence</span>
+
+{{ govukRadios({
+  name: "Correspondence type",
+  fieldset: {
+    legend: {
+      text: "Correspondence type",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  value: data['correspondenceType'],
+  items: [
+    {
+      value: "Initial documents",
+      text: "Initial documents"
+    },
+    {
+      value: "Fee",
+      text: "Fee"
+    },
+    {
+      value: "Complaints and issues",
+      text: "Complaints and issues"
+    },
+    {
+      value: "Questionnaire",
+      text: "Questionnaire"
+    },
+    {
+      value: "Statements",
+      text: "Statements"
+    },
+    {
+      value: "Third parties",
+      text: "Third parties"
+    },
+    {
+      value: "Final comments",
+      text: "Final comments"
+    },
+    {
+      value: "S78 or linking",
+      text: "S78 or linking"
+    },
+    {
+      value: "Standard letters",
+      text: "Standard letters"
+    },
+    {
+      value: "Internal advice",
+      text: "Internal advice"
+    },
+    {
+      value: "Covering emails and personal forms",
+      text: "Covering emails and personal forms"
+    },
+    {
+      value: "Other",
+      text: "Other",
+      conditional: {
+        html: govukInput({
+          name: "otherCorrespondenceType",
+          label: {
+            text: "Enter more information"
+          }
+        })
+      }
+    }
+  ]
+}) }}
+
+
+    {{ govukButton({
+      text: "Continue",
+      href:"redaction"
+    }) }}
+
+  </div>
+</div>
+{% endblock %}

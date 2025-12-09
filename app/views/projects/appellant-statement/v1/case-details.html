@@ -351,7 +351,20 @@
                     html: "<a href='?bannerSeen=yes'>Add</a>",
                     format: "numeric"
                   }
-                ],[
+                ],
+                [
+                {
+                  text: "Appellant statement due"
+                },
+                {
+                  text: " "
+                },
+                {
+                  html: "<a href='?bannerSeen=yes'>Add</a>",
+                  format: "numeric"
+                }
+              ],
+                [
                 {
                   text: "Interested party comments due"
                 },
@@ -430,7 +443,7 @@
 
             {{ govukTable({
               captionClasses: "govuk-table__caption--m",
-              firstCellIsHeader: false,
+              firstCellIsHeader: true,
               head: [
                   {
                     text: "Documentation"

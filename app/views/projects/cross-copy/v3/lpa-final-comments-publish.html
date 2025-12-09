@@ -1,0 +1,85 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set pageName="Decision date" %}
+
+{% set title = "Publish final comments" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+  <span class="govuk-caption-l">
+    Appeal 2110917
+  </span>
+  <h1 class="govuk-heading-l">
+    {{ title }}
+  </h1>
+  
+  {{ govukTable({
+  firstCellIsHeader: true,
+  head: [
+    {
+      text: "Documentation"
+    },
+    {
+      text: "Status"
+    },
+    {
+      text: "Redaction"
+    },
+    {
+      text: "Action"
+    }
+  ],
+  rows: [
+    [
+      {
+        text: "LPA final comments"
+      },
+      {
+        text: "Complete"
+      },
+      {
+        text: "No redaction required"
+      },
+      {
+        html: "<a href='../../lpa-statement/v1/lpa-final-comments-review''>View</a>"
+      }
+    ],
+    [
+      {
+        text: "Appellant final comment"
+      },
+      {
+        text: "Complete"
+      },
+      {
+        text: "No redaction required"
+      },
+      {
+        html: "<a href='#''>View</a>"
+      }
+    ]
+  ]
+}) }}
+
+<form action="lpa-final-comments-confirm" method="post" class="govuk-!-margin-top-2">
+
+  {{ govukWarningText({
+    text: "You are about to publish the statement to the main parties. Please make sure you have reviewed and redacted if needed.",
+    iconFallbackText: "Warning"
+  }) }}
+
+
+	{{ govukButton({
+		text: 'Continue'
+	}) }}
+
+</form>
+
+  </div>
+  </div>
+
+{% endblock %}

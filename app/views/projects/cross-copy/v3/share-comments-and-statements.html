@@ -1,0 +1,63 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Check details and share interested party comments and statements" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = true %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Appeal 2114328</span>
+    <h1 class="govuk-heading-l">
+      {{ title }}
+    </h1>
+
+    <p>We’ll share the following with the main parties:
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          <a href='../../ip-comments/v5/ip-comments?no-comments=yes#valid-tab' class='govuk-body'>43 interested party comments</a>
+        </li>
+        <li>
+          <a href='../../lpa-statement/v4/view-statement' class='govuk-body'>1 LPA statement</a>
+        </li>
+        <li>
+          <a href='../../appellant-statement/v1/view-statement' class='govuk-body'>1 appellant statement</a>
+        </li>
+        <li>
+          <a href='../../rule-6-statements/v1/rule-6-statements?statement-reviewed=yes#valid-tab' class='govuk-body'>3 Rule 6 party statements</a>
+        </li>
+      </ul>
+
+    {{ govukWarningText({
+      text: "Do not share until you have reviewed all of the supporting documents and redacted any sensitive information.",
+      iconFallbackText: "Fallback text"
+    }) }}
+
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <!-- two options for the result of sharing IP comments -->
+    <form method="post">
+    <!-- <form action="/projects/ip-comments/v5/index?list=personal&ip-comments-shared=yes" method="post" class="govuk-!-margin-top-2"> -->
+
+      <!-- {{ govukWarningText({
+        html: "Confirming will share accepted IP comments with the main parties.",
+        iconFallbackText: "Warning"
+      }) }} -->
+
+    	{{ govukButton({
+    		text: 'Share interested party comments and statements'
+    	}) }}
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

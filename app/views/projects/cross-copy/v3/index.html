@@ -1,0 +1,161 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Cases assigned to you" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = false %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">{{ title }}</h1>
+    </div>
+
+    <div class="govuk-grid-column-full">
+
+      <details class="govuk-details" data-module="govuk-details">
+  		  <summary class="govuk-details__summary">
+  		    <span class="govuk-details__summary-text">
+  		      Filters
+  		    </span>
+  		  </summary>
+  		  <div class="govuk-details__text">
+  		    {{ govukSelect({
+  			  id: "sort",
+  			  name: "sort",
+  			  label: {
+  			    text: "Show cases with status"
+  			  },
+  			  items: [
+  			    {
+  			      value: "all",
+  			      text: "All",
+  			      selected: true
+  			    },
+  			    {
+  			      value: "ready to start",
+  			      text: "Ready to start"
+  			    },
+  			    {
+  			      value: "LPA questionnaire",
+  			      text: "LPA questionnaire"
+  			    },
+  			    {
+  			      value: "final comment review",
+  			      text: "Final comment review"
+  			    },
+  			    {
+  			      value: "ready final review",
+  			      text: "Ready for final review"
+  			    },
+  			    {
+  			      value: "arrange site visit",
+  			      text: "Arrange site visit"
+  			    },
+  			    {
+  			      value: "completed",
+  			      text: "Completed"
+  			    }
+  			  ]
+  			}) }}
+
+  			<div class="govuk-button-group">
+
+  			{{ govukButton({
+  				  text: "Apply",
+  				  classes: "govuk-button--secondary"
+  				}) }}
+
+  				<a class="govuk-link" href="#">Clear filter</a>
+
+  			</div>
+
+  		  </div>
+  		</details>
+
+  	  <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Appeal ID</th>
+            <th scope="col" class="govuk-table__header"></th>
+            <th scope="col" class="govuk-table__header">Action required</th>
+            <th scope="col" class="govuk-table__header">Due by</th>
+            <th scope="col" class="govuk-table__header">Case status</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header"><a href="#">2110166</a></th>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Lead</strong></td>
+            <td class="govuk-table__cell"><a href="#">View appellant case</a></td>
+            <td class="govuk-table__cell">10 July 2023</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Ready to start</strong></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header"><a href="#">2110167</a></th>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Child</strong></td>
+            <td class="govuk-table__cell"><a href="#">Review LPA Questionnaire</a></td>
+            <td class="govuk-table__cell">11 July 2023</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">LPA questionnaire</strong></td>
+          </tr>
+          <th scope="row" class="govuk-table__header"><a href="#">2936179</a></th>
+          <td class="govuk-table__cell"></td>
+          <td class="govuk-table__cell"><a href="#">Update Horizon reference</a></td>
+          <td class="govuk-table__cell">11 July 2023</td>
+          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Awaiting transfer</strong></td>
+        </tr>
+        <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header"><a href="#">2110917</a></th>
+            <td class="govuk-table__cell"></td>
+            <td class="govuk-table__cell"><a href="share-comments-and-statements">Share IP comments and LPA statement</a></td>
+            <td class="govuk-table__cell">12 July 2023</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--purple">Statements</strong></td>
+          </tr>
+
+      	<tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header"><a href="#">2734398</a></th>
+            <td class="govuk-table__cell"></td>
+            <td class="govuk-table__cell"><a href="#">Send to other parties</a></td>
+            <td class="govuk-table__cell">12 July 2023</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--orange">Proof of evidence</strong></td>
+          </tr>
+
+      <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header"><a href="#">2110928</a></th>
+            <td class="govuk-table__cell"></td>
+            <td class="govuk-table__cell"><a href="#">Send to other parties</a></td>
+            <td class="govuk-table__cell">12 July 2023</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--turquoise">Witnesses and timings</strong></td>
+          </tr>
+
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header"><a href="#">1234560</a></th>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Lead</strong></td>
+            <td class="govuk-table__cell"><a href="#">Send to other parties</a></td>
+            <td class="govuk-table__cell">13 July 2023</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--orange">Final comments</strong></td>
+          </tr>
+
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header"><a href="#">1234561</a></th>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Lead</strong></td>
+            <td class="govuk-table__cell"><a href="#">Issue decision</a></td>
+            <td class="govuk-table__cell">13 July 2023</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--pink">Issue decision</strong></td>
+          </tr>
+
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header"><a href="#">2934900</a></th>
+            <td class="govuk-table__cell"></td>
+            <td class="govuk-table__cell"><a href="#">Review appellant statement</a></td>
+            <td class="govuk-table__cell">14 July 2023</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--pink">Statements</strong></td>
+          </tr>
+
+
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+{% endblock %}

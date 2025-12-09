@@ -1,0 +1,41 @@
+{% extends "layouts/PINS.html" %}
+
+{% set title = "IP comments and statements shared" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = false %}
+
+{% set prototypeLinks = [
+  {
+    href: '/projects/ip-comments/v5/index?list=personal&ip-comments-shared=yes',
+    text: 'Alternative option'
+  }
+] %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {{ govukPanel({
+      titleText: title,
+      html: "Appeal reference<br><strong>2114328</strong>"
+    }) }}
+
+    <p class="govuk-body">
+      We have told the relevant parties where they can view the IP comments and statements
+    </p>
+
+    <p class="govuk-body">
+      <a href='../../ip-comments/v5/?comments-shared=yes' class='govuk-link'>
+        Go back to your list
+      </a>
+    </p>
+
+    <!-- <p class="govuk-body">
+      <a href="#" class="govuk-link">What did you think of this service?</a> (takes 30 seconds)
+    </p> -->
+
+  </div>
+</div>
+
+{% endblock %}

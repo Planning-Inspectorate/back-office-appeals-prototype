@@ -1,7 +1,7 @@
+
 {% extends "layouts/PINS.html" %}
 
 {% set title = 'LPA questionnaire' %}
-{% set pageName = title + ' - Planning Inspectorate'%}
 
 {% block content %}
   <div class="govuk-grid-row">
@@ -22,12 +22,12 @@
 
     <div class="govuk-grid-column-full">
 
-      {% include "/elements/includes/enf-questionnaire/task-list--constraints.html" %}
-      {% include "/elements/includes/enf-questionnaire/task-list--environmental-impact-assessment.html" %}
-      {% include "/elements/includes/enf-questionnaire/task-list--notified.html" %}
-      {% include "/elements/includes/enf-questionnaire/task-list--po-report.html" %}
-      {% include "/elements/includes/enf-questionnaire/task-list--site-access.html" %}
-      {% include "/elements/includes/enf-questionnaire/task-list--appeal-process.html" %}
+      {% include "./task-list--constraints.html" %}
+      {% include "./task-list--environmental-impact-assessment.html" %}
+      {% include "./task-list--notified.html" %}
+      {% include "./task-list--po-report.html" %}
+      {% include "./task-list--site-access.html" %}
+      {% include "./task-list--appeal-process.html" %}
     </div>
   </div>
 

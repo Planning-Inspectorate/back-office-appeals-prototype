@@ -39,7 +39,7 @@
   <div class="govuk-grid-column-two-thirds">
 
     <!-- notifications -->
-    {% include "/elements/includes/case--notifications.html" %}
+    {% include "/elements/includes/case-details/notifications.html" %}
 
     <!--	<span class="govuk-caption-l">Appeal 2110166</span> -->
     <span class="govuk-caption-xl">Appeal 2114328</span>
@@ -47,9 +47,9 @@
       {{ title }}
     </h1>
 
-    {% include "/elements/includes/case--status.html" %}
+    {% include "/elements/includes/case-details/status.html" %}
 
-    {% include "/elements/includes/case--meta-data.html" %}
+    {% include "/elements/includes/case-details/meta-data.html" %}
 
     <p class="govuk-body">
       <a href="#" class="govuk-link">
@@ -57,7 +57,7 @@
       </a>
     </p>
 
-    {% include "/elements/includes/case--case-notes.html" %}
+    {% include "/elements/includes/case-details/case-notes.html" %}
 
   </div>
 
@@ -66,17 +66,17 @@
     <!-- case sections -->
     <section class="govuk-!-margin-top-6">
 
-      {% include "/elements/includes/case--overview.html" %}
-      {% include "/elements/includes/case--timetable.html" %}
-      {% include "/elements/includes/case--site.html" %}
+      {% include "/elements/includes/case-details/overview.html" %}
+      {% include "/elements/includes/case-details/timetable.html" %}
+      {% include "/elements/includes/case-details/site.html" %}
 
       {% if data['procedure'] == 'hearing' %}
         {% include "/elements/includes/hearing.html" %}
       {% endif %}
 
-      {% include "/elements/includes/case--documentation.html" %}
-      {% include "/elements/includes/case--team.html" %}
-      {% include "/elements/includes/case--case-management.html" %}
+      {% include "/elements/includes/case-details/documentation.html" %}
+      {% include "/elements/includes/case-details/team.html" %}
+      {% include "/elements/includes/case-details/case-management.html" %}
 
     </section>
 

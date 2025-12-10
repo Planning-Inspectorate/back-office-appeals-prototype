@@ -139,6 +139,7 @@ require('./routes/case-officer--edit')(router)
 
 require('./routes/decision')(router)
 require('./routes/decision--new')(router)
+require('./routes/decision--enforcement')(router)
 require('./routes/appellant-costs-decision--new')(router)
 require('./routes/lpa-costs-decision--new')(router)
 
@@ -160,9 +161,6 @@ require('./routes/residential-units--edit')(router)
 require('./routes/cancel')(router)
 require('./routes/invalid')(router)
 require('./routes/invalid--new')(router)
-// 
-// require('./views/main/appeals/validate-enforcement/v1/_routes.js')
-// require('./views/main/appeals/validate-enforcement/v2/_routes.js')
 
 
 // Timetable

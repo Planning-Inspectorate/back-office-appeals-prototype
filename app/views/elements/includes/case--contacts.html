@@ -6,8 +6,6 @@
   <tbody class="govuk-table__body">
     <tr class="govuk-table__row">
 
-      <!-- validation stage documents -->
-      {% if data['case-stage'] == 'validation' %}
 
       <tr class="govuk-table__row">
         <th scope="row" class="govuk-table__header">Appellant 	</th>
@@ -42,21 +40,6 @@
             </td>
           </tr>
 
-      {% endif %}
-
-      <!-- appeal is ready to start -->
-      {% if data['case-stage'] == 'ready' %}
-
-       
-
-      {% endif %}
-
-      <!-- questionnaire stage documents -->
-      {% if data['case-stage'] == 'questionnaire' %}
-
-      
-
-      {% endif %}
 
   </tbody>
 </table>

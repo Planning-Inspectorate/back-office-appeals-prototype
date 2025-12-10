@@ -1,0 +1,128 @@
+{% extends "layouts/bo.html" %}
+
+{% if appeal.isLeadAppeal %}
+  {% set title = "Decision for lead appeal :appealId" | replace(':appealId', appealId) %}
+{% else %}
+  {% set title = "Decision" %}
+{% endif %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal 00000005 {% if appeal.isLeadAppeal %}(lead){% endif %} - issue decision</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              html: "Appellant"
+            },
+            value: {
+              html: 'Steve Blanda'
+            }
+          },
+          {
+            key: {
+              html: "Site address"
+            },
+            value: {
+              html: '90 Tangelo Lane <br>
+              Manchester<br>
+              WD3 8JT'
+            }
+          },
+          {
+            key: {
+              html: "Appeal type"
+            },
+            value: {
+              html: 'Enforcement'
+            }
+          }
+        ]
+      }) }}
+
+
+      {% if appeal.isLeadAppeal %}
+        {% set decisionInputName = "issueDecision[decision][:appealId][decision]" | replace(':appealId', appealId) %}
+        {% set invalidReasonInputName = "issueDecision[decision][:appealId][invalidReason]" | replace(':appealId', appealId) %}
+        {% set decisionValue = data.issueDecision.decision[appealId].decision %}
+        {% set invalidReasonValue = data.issueDecision.decision[appealId].invalidReason %}
+      {% else %}
+        {% set decisionInputName = "issueDecision[decision]" %}
+        {% set invalidReasonInputName = "issueDecision[invalidReason]" %}
+        {% set decisionValue = data.issueDecision.decision %}
+        {% set invalidReasonValue = data.issueDecision.invalidReason %}
+      {% endif %}
+
+      {% set textHtml %}
+        {{ govukTextarea({
+          id: "reason",
+          name: "reason",
+          label: {
+            text: "Enter a reason",
+            isPageHeading: true,
+            classes: "govuk-label--s"
+          },
+          hint: {
+            text: "We will share the reason with the relevant parties"
+          }
+        }) }}
+      {% endset -%}
+     
+
+      <form method="post">
+        {{ govukRadios({
+          name: decisionInputName,
+          fieldset: {
+            legend: {
+              text: title,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          value: decisionValue,
+          items: [
+            {
+              value: "Notice upheld",
+              text: "Notice upheld"
+            },
+            {
+              value: "Notice varied and upheld",
+              text: "Notice varied and upheld"
+            },
+            {
+              value: "Planning permission granted",
+              text: "Planning permission granted"
+            },
+            {
+              value: "Quashed on legal grounds",
+              text: "Quashed on legal grounds"
+            },
+            {
+              value: "Split decision",
+              text: "Split decision"
+            },
+            {
+              value: "Invalid",
+              text: "Invalid",
+              conditional: {
+                html: textHtml
+              }
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+        
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

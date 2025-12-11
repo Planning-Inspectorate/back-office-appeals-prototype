@@ -190,18 +190,24 @@
     <!-- determination -->
     {% set html %}
       <p class="govuk-notification-banner__heading">
-        <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">
-          Decide appeal <span class="govuk-visually-hidden"> final comments</span>
+        {% if data['appealIs'] == 'Enforcement'%}
+        <a href="/main/appeals/decision/enforcement/decision" class="govuk-link govuk-link--no-visited-state">
+          {% else %} 
+          <a href="/main/appeals/decision/enforcement/decision" class="govuk-link govuk-link--no-visited-state">
+          {% endif %}
+          Issue decision
         </a>
+        
       </p>
+      {% endset %}
 
       {{ govukNotificationBanner({
         html: html
       }) }}
 
-    {% endset %}
+    
 
-  {% elseif data['case-stage'] == 'closed' %}
+  {% elseif data['case-stage'] == 'complete' %}
     <!-- closed -->
 
   {% else %}

@@ -78,7 +78,32 @@
         html: "<a href='#'>Change</a>",
         format: "numeric"
       }
-
-    ]
+    ],
+    [
+      {
+        text: "Decision"
+      },
+      {
+        html: "Not issued yet"
+      },
+      {
+        html: "<a href='#'>Change</a>",
+        format: "numeric"
+      }
+    ]if data['case-stage'] == 'determination',
+    [
+    {
+      text: "Decision"
+    },
+    {
+      html: "Split decision"
+    },
+    {
+      html: "<a href='#'>Change</a>",
+      format: "numeric"
+    }
+  ]if data['case-stage'] == 'complete'  
   ]
 }) }}
+
+

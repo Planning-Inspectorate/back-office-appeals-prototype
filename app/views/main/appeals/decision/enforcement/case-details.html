@@ -5,10 +5,10 @@
 {% set pageName = title + ' - Planning Inspectorate'%}
 {% set back = false %}
 
-
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
+
 
     {% if success %}
     <div class="govuk-notification-banner govuk-notification-banner--success" role="alert"
@@ -26,58 +26,54 @@
 
 
     {% if not hideDecisionBanner %}
-    <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
-      <div class="govuk-notification-banner__header">
-        <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">Important</h2>
-      </div>
-      <div class="govuk-notification-banner__content">
-        <p class="govuk-notification-banner__heading">
-          <a class="govuk-notification-banner__link" href="decision.html?case-stage=decision&appealIs=Enforcement">Issue decision</a>
-        </p>
-      </div>
-    </div>
+    {% include "/elements/includes/case-details/notifications.html" %}
     {% endif %}
-
-    <span class="govuk-caption-xl">Appeal 00000005</span>
-    <h1 class="govuk-heading-xl govuk-!-margin-bottom-2">
-      {{ title }}
-    </h1>
-  </div>
-
-  <div class="govuk-grid-column-full">
-
-    {% include "/elements/includes/case--status.html" %}
-
-    {% include "/elements/includes/case--meta-data.html" %}
-
-    <div class="govuk-button-group">
-      <a href="#" class="govuk-link">Download case</a>
     </div>
 
-    {{ govukDetails({
-    summaryText: "Notes (1)",
-    text: "Note stuff here"
-    }) }}
+      <div class="govuk-grid-column-full">
+    
+        <!--	<span class="govuk-caption-l">Appeal 2110166</span> -->
+        <span class="govuk-caption-xl">Appeal 2114328</span>
+        <h1 class="govuk-heading-xl govuk-!-margin-bottom-2">
+          {{ title }}
+        </h1> 
 
-    {% include "/elements/includes/case--overview.html" %}
+        {% include "/elements/includes/case-details/status.html" %}
 
-    {% include "/elements/includes/case--timetable.html" %}
-
-    {% include "/elements/includes/case--documentation.html" %}
-
-    {% include "/elements/includes/case--costs.html" %}
-
-    {% include "/elements/includes/case--contacts.html" %}
-
-    {% include "/elements/includes/case--team.html" %}
-
-    {% include "/elements/includes/case--case-management.html" %}
-
-    <div class="app-panel">
-      <h2 class="govuk-heading-l">Cancel appeal</h2>
-      <p class="govuk-body"><a href="cancel-appeal/cancel-reason">Cancel appeal</a></p>
+        {% include "/elements/includes/case-details/meta-data.html" %}
+    
+        <p class="govuk-body">
+          <a href="#" class="govuk-link">
+            Download case
+          </a>
+        </p>
+    
+        {% include "/elements/includes/case-details/case-notes.html" %}
+    
+        <!-- case sections -->
+        <section class="govuk-!-margin-top-6">
+    
+          {% include "/elements/includes/case-details/overview.html" %}
+    
+          {% include "/elements/includes/case-details/timetable.html" %}
+    
+          {% include "/elements/includes/case-details/site.html" %}
+    
+          {% include "/elements/includes/case-details/hearing.html" %}
+    
+          {% include "/elements/includes/case-details/documentation.html" %}
+    
+          {% include "/elements/includes/case-details/costs.html" %}
+    
+          {% include "/elements/includes/case-details/contacts.html" %}
+    
+          {% include "/elements/includes/case-details/team.html" %}
+    
+          {% include "/elements/includes/case-details/case-management.html" %}
+    
+          {% include "/elements/includes/case-details/cancel-appeal.html" %}
+      </div>
     </div>
 
-  </div>
-</div>
+
 {% endblock %}

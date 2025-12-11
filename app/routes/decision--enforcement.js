@@ -38,23 +38,8 @@ router.post('/main/appeals/decision/enforcement/lpa-costs-decision-letter', func
 
   // Check page: issue decision confirmation
   router.post('/main/appeals/decision/enforcement/check', function (req, res) {
-    req.session.decisionIssued = true;
+    req.flash('success', 'Decision issued')
     // Redirect to case-details with success flag
-    res.redirect('/main/appeals/decision/enforcement/case-details?success=decision-issued');
-  });
-
-  // Case details page
-  router.get('/main/appeals/decision/enforcement/case-details', function (req, res) {
-    const decisionIssued = req.session.decisionIssued === true;
-  
-    // Clear it immediately so it only shows once
-    req.session.decisionIssued = false;
-  
-    res.render('/main/appeals/decision/enforcement/case-details', {
-      appeal: req.appeal,
-      success: decisionIssued,
-      hideDecisionBanner: decisionIssued
-    });
-  });
-
+    res.redirect('/main/appeals/decision/enforcement/case-details?case-stage=complete');
+  })
 }

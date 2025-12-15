@@ -1,0 +1,43 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Does the case need to be assessed for an Environmental assessment?" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = true %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <span class="govuk-caption-l">Appeal 2114328</span>
+
+    <form method="post">
+
+      {{ govukRadios({
+        name: "check-environmental-statement",
+        fieldset: {
+        legend: {
+          text: title,
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "Yes",
+            text: "Yes"
+          },
+          {
+            value: "No",
+            text: "No"
+          }
+        ]
+      }) }}
+      {{ govukButton({
+        text: "Confirm"
+      }) }}
+    </form>
+  </div>
+</div>
+
+{% endblock %}

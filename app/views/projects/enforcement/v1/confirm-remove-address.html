@@ -1,0 +1,19 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Confirm you want to remove the address" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+{% set pageId = 'elements' %}
+
+{% block questions %}
+
+  <!--	<span class="govuk-caption-l">Appeal 2110166</span> -->
+  <span class="govuk-caption-l">Appeal 2114328</span>
+  <h1 class="govuk-heading-l">
+    {{ title }}
+  </h1>
+
+  {{ govukInsetText({
+    text: "22 King Street, Bath, BA1 2AB"
+  }) }}
+
+{% endblock %}

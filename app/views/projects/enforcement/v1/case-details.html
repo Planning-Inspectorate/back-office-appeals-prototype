@@ -1,0 +1,134 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Case details" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = false %}
+
+{% set prototypeLinks = [
+  {
+    href: '?case-stage=validation',
+    text: 'New appeal'
+  },
+  {
+    href: '#',
+    text: '________________________________________________________________________'
+  },
+  {
+    href: '?case-stage=ready',
+    text: 'Appeal validated, ready to start'
+  },
+  {
+    href: '#',
+    text: '________________________________________________________________________'
+  },
+  {
+    href: '?case-stage=questionnaire',
+    text: 'Appeal started, questionnaire stage'
+  },
+  {
+    href: '?questionnaire=',
+    text: 'Awaiting questionnaire'
+  } if (data['questionnaire'] and data['case-stage'] == 'questionnaire'),
+  {
+    href: '?questionnaire=received',
+    text: 'Questionnaire received'
+  } if (data['questionnaire'] != 'received' and data['case-stage'] == 'questionnaire'),
+  {
+    href: '?questionnaire=valid',
+    text: 'Valid questionnaire'
+  } if (data['questionnaire'] != 'valid' and data['case-stage'] == 'questionnaire'),
+  {
+    href: '#',
+    text: '________________________________________________________________________'
+  },
+  {
+    href: '?case-stage=statements',
+    text: 'Statements stage'
+  },
+  {
+    href: '?case-stage=final-comments',
+    text: 'Final comments stage'
+  },
+  {
+    href: '?case-stage=determination',
+    text: 'Determination stage'
+  },
+  {
+    href: '?case-stage=closed',
+    text: 'Case closed'
+  },
+  {
+    href: '#',
+    text: '________________________________________________________________________'
+  },
+  {
+    href: '?questionnaire=not-received',
+    text: 'Questionnaire not received'
+  } if data['questionnaire'] == 'received',
+  {
+    href: '?questionnaire=complete&case-stage=statements',
+    text: 'Questionnaire complete'
+  } if data['questionnaire'] == 'received',
+  {
+    href: '?lpa-statement=received',
+    text: 'LPA statement received'
+  } if (data['lpa-statement'] != 'received') and (data['case-stage'] == 'statements'),
+  {
+    href: '?lpa-statement=not-received',
+    text: 'LPA statement not received'
+  } if (data['lpa-statement'] == 'received') or (data['lpa-statement'] == 'complete') and (data['appeal-stage'] == 'statements'),
+  {
+    href: '?lpa-statement=complete',
+    text: 'LPA statement complete'
+  } if (data['lpa-statement'] == 'received') and (data['case-stage'] == 'statements'),
+  {
+    href: '?ipcomments=',
+    text: 'IP comments not received'
+  } if (data['ipcomments'] == 'received') and (data['case-stage'] == 'statements'),
+  {
+    href: '?ipcomments=received',
+    text: 'IP comments received'
+  } if (data['ipcomments'] != 'received') and (data['case-stage'] == 'statements'),
+  {
+    href: '?ipcomments=complete',
+    text: 'IP comments complete'
+  } if (data['ipcomments'] == 'received') and (data['case-stage'] == 'statements'),
+  {
+    href: '?appellant-final-comments=received',
+    text: 'Appellant final comments received'
+  } if (data['appellant-final-comments'] != 'received') and (data['case-stage'] == 'final-comments'),
+  {
+    href: '?appellant-final-comments=complete',
+    text: 'Appellant final comments complete'
+  } if (data['appellant-final-comments'] == 'received') and (data['case-stage'] == 'final-comments'),
+  {
+    href: '?lpa-final-comments=received',
+    text: 'LPA final comments received'
+  } if (data['lpa-final-comments'] != 'received') and (data['case-stage'] == 'final-comments'),
+  {
+    href: '?lpa-final-comments=complete',
+    text: 'LPA final comments complete'
+  } if (data['lpa-final-comments'] == 'received') and (data['case-stage'] == 'final-comments'),
+
+
+  {
+    href: '?appealProcedure=Written representations',
+    text: 'Written reps'
+  },
+  {
+    href: '?appealProcedure=Hearing',
+    text: 'Hearing'
+  },
+  {
+    href: '?appealProcedure=Inquiry',
+    text: 'Inquiry'
+  }
+
+] %}
+
+{% block content %}
+
+  {% include "/elements/includes/case-details.html" %}
+
+{% endblock %}

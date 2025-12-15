@@ -1,0 +1,89 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Site visit requests" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set prototypeLinks = [
+  {
+    href: '?address-removed=true',
+    text: '1 address'
+  } if not data['address-removed'],
+  {
+    href: '?address-removed=',
+    text: '2 addresses'
+  } if data['address-removed']
+
+] %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "case-details"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukNotificationBanner({
+        type: "success",
+        text: flash
+      }) if flash.length }}
+
+      <!--	<span class="govuk-caption-l">Appeal 2110166</span> -->
+      <span class="govuk-caption-l">Appeal 2114328</span>
+    	<h1 class="govuk-heading-l">
+        {{ title }}
+      </h1>
+
+      <!-- <ul class="govuk-list govuk-list--bullet">
+        <li>17 Aubrey Road, Bristol, BS3 3EX<br>
+          <a href="#" class="govuk-link">Change</a> <a href="#" class="govuk-link">Remove</a>
+        </li>
+        <li>22 King Street, Bath, BA1 2AB<br>
+          <a href="#" class="govuk-link">Change</a> <a href="#" class="govuk-link">Remove</a>
+        </li>
+      </ul> -->
+
+      {{ govukButton({
+        text: "Add address",
+        classes: "govuk-button--secondary"
+      }) }}
+
+      <div class="pins-panel">
+
+        {{ govukTable({
+          caption: "Addresses",
+          captionClasses: "govuk-table__caption--m govuk-visually-hidden",
+          classes: "govuk-label--l",
+          firstCellIsHeader: false,
+
+          rows: [
+            [
+              {
+                html: "17 Aubrey Road, Bristol, BS3 3EX"
+              },
+              {
+                html: "<a href='confirm-remove-address' class='govuk-link'>Remove</a><span style='color: #b1b4b6;'> |</span> <a href='#' class='govuk-link'>Change</a>",
+                format: "numeric"
+              }
+            ],
+            [
+              {
+                text: "22 King Street, Bath, BA1 2AB"
+              },
+              {
+                html: "<a href='confirm-remove-address' class='govuk-link'>Remove</a><span style='color: #b1b4b6;'> |</span> <a href='#' class='govuk-link'>Change</a>",
+                format: "numeric"
+              }
+            ] if not data['address-removed']
+          ]
+        }) }}
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}

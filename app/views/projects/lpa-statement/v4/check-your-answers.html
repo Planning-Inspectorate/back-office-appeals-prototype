@@ -222,6 +222,55 @@
         </div>
 
         {% if data['review-outcome'] == 'Statement incomplete' %}
+        {{ govukDetails({
+          summaryText: "Preview email to LPA",
+          html: '
+          <div class="app-email-preview">
+            <div class="app-email-preview__subject">
+              Subject: Complete your appeal statement: 1223443
+            </div>
+            <div class="app-email-preview__body">
+              <p class="govuk-body">
+                We need more information before we can review your statement.
+              </p>
+    
+              <p class="govuk-body">
+                The statement is incomplete because: 
+              </p>
+              <ul class="govuk-list govuk-list--bullet">
+                <li>
+                  Supporting documents missing: Document A
+                </li>
+                <li>
+                  Supporting documents missing: Document B
+                </li>
+                <li>
+                  No list of suggested conditions
+                </li>
+                <li>
+                  Other: (given reason text)
+                </li>
+              </ul>
+              
+              <h2 class="govuk-heading-m">Appeal details</h2>
+    
+              <div class="govuk-inset-text">
+                Appeal reference number: 1223443<br>
+                Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
+                Enforcement reference: LPA12345678
+              </div>
+    
+              <h2 class="govuk-heading-m">What happens next</h2>
+      
+              <p>You need to send the information to <a href="mailto:caseofficers@planninginspectorate.gov.uk">
+                  caseofficers@planninginspectorate.gov.uk</a> by 25 November 2025.</p>
+             
+              <p class="govuk-body">Planning Inspectorate</p>
+      
+            </div>
+          </div>'
+          }) }}
+
           <p class="govuk-body">
             We’ll send an email to the LPA to explain why their statement is incomplete.
           </p>
@@ -236,6 +285,41 @@
             text: "Confirm statement is incomplete"
           }) }}
         {% elseif data['review-outcome'] == 'Reject statement' %}
+        {{ govukDetails({
+          summaryText: "Preview email to appellant",
+          html: '
+          <div class="app-email-preview">
+            <div class="app-email-preview__subject">
+              Subject: We have rejected your statement: 1223443
+            </div>
+            <div class="app-email-preview__body">
+              
+              <h2 class="govuk-heading-m">Appeal details</h2>
+    
+              <div class="govuk-inset-text">
+                Appeal reference number: 1223443<br>
+                Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
+                Enforcement reference: LPA12345678
+              </div>
+
+              <h2 class="govuk-heading-m">Why we rejected your statement</h2>
+
+              <p class="govuk-body">We rejected your statement because:</p>
+              <p class="govuk-body">((reasons))</p>
+    
+              <h2 class="govuk-heading-m">What happens next</h2>
+      
+              <p>You can send a different statement to <a href="mailto:caseofficers@planninginspectorate.gov.uk">
+                  caseofficers@planninginspectorate.gov.uk</a>. You must submit your statement by 25 November 2025.</p>
+             
+              <p class="govuk-body">Planning Inspectorate</p>
+      
+            </div>
+          </div>'
+          }) }}
+          <p class="govuk-body">
+            We’ll send an email to the LPA to explain why their statement is rejected.
+          </p>
           {{ govukButton({
             text: "Reject statement"
           }) }}

@@ -162,6 +162,8 @@ require('./routes/cancel')(router)
 require('./routes/invalid')(router)
 require('./routes/invalid--new')(router)
 
+require('./routes/change-validation-status')(router)
+
 
 // Timetable
 // require('./routes/add-statement-of-common-ground-due-date')(router)

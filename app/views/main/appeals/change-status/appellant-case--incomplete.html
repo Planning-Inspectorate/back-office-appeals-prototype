@@ -1,0 +1,146 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Appellant case" %}
+{% set pageName = title %}
+{% set appealIs = 'enforcement' %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: 'case-details'
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukNotificationBanner({
+        type: "important",
+        titleText: "Appeal is incomplete",
+        html: '
+          <strong>Due date:</strong> 27 January 2026
+          <details class="govuk-details" style="margin-top: 20px;">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+                Incorrect name and/or missing documents
+              </span>
+            </summary>
+            <div class="govuk-details__text">
+              <ul class="govuk-list govuk-list--bullet">
+                <li>
+                  LPA decision notice is missing
+                </li>
+                <li>
+                  Draft statement of common ground is missing
+                </li>
+              </ul>
+            </div>
+          </details>'
+      }) }}
+
+      <span class="govuk-caption-xl">
+        Appeal 00000005
+      </span>
+      <h1 class="govuk-heading-xl" style="margin-bottom:20px;">{{title}}</h1>
+
+      {{ govukSummaryList({
+        classes: "govuk-summary-list--no-border",
+        rows: [
+        {
+          key: {
+            text: "Validation status"
+          },
+          value: {
+            html: "Incomplete"
+          },
+          actions: {
+            items: [
+              {
+                href: "change-status?reviewDecision=Incomplete",
+                text: "Change",
+                visuallyHiddenText: "name"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Why is the appeal incomplete?"
+          },
+          value: {
+            html: '<ul class="govuk-list govuk-list--bullet">
+              <li>
+                LPA decision notice is missing
+              </li>
+              <li>
+                Draft statement of common ground is missing
+              </li>
+            </ul>'
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Change",
+                visuallyHiddenText: "name"
+              }
+            ]
+          }
+        },
+          {
+            key: {
+              text: "Site address"
+            },
+            value: {
+              html: "22b The Peach Trees, <br>Peckham, <br>SE15 9HA"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+
+      <!--
+      <p class="govuk-body">
+       <a href="/main/appeals/{{appeal.id}}/appeal-form/request-missing-information" class="govuk-link">Request missing information</a>
+      </p>-->
+
+      </div>
+
+      <div class="govuk-grid-column-full">
+
+      <!--Prepare appeal-->
+
+      <section>
+        {% include "/elements/includes/appellant-case/contact-details.html" %}
+      </section>
+
+      <section>
+        {% include "/elements/includes/appellant-case/site-details.html" %}
+      </section>
+
+      <section>
+        {% include "/elements/includes/appellant-case/grounds.html" %}
+      </section>
+
+      <section>
+        {% include "/elements/includes/appellant-case/procedure.html" %}
+      </section>
+
+      <section>
+        {% include "/elements/includes/appellant-case/uploaded-documents.html" %}
+      </section>
+
+    </div>
+  </div>
+
+{% endblock %}

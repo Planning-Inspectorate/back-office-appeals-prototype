@@ -23,13 +23,28 @@
       <span class="govuk-caption-xl">
         Appeal 00000005
       </span>
-      <h1 class="govuk-heading-xl">{{title}}</h1>
-
-      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+      <h1 class="govuk-heading-xl" style="margin-bottom:20px;">{{title}}</h1>
 
       {{ govukSummaryList({
         classes: "govuk-summary-list--no-border",
         rows: [
+        {
+          key: {
+            text: "Validation status"
+          },
+          value: {
+            html: "Valid"
+          },
+          actions: {
+            items: [
+              {
+                href: "change-status?reviewDecision=Valid",
+                text: "Change",
+                visuallyHiddenText: "name"
+              }
+            ]
+          }
+        },
           {
             key: {
               text: "Site address"
@@ -49,7 +64,6 @@
           }
         ]
       }) }}
-
 
       <!--
       <p class="govuk-body">
@@ -81,39 +95,6 @@
       <section>
         {% include "/elements/includes/appellant-case/uploaded-documents.html" %}
       </section>
-
-      <form method="post">
-
-      {{ govukRadios({
-        name: "reviewDecision",
-        fieldset: {
-          legend: {
-            text: "Review decision",
-            isPageHeading: true,
-            classes: "govuk-fieldset__legend--m"
-          }
-        },
-        items: [
-          {
-            value: "Valid",
-            text: "Valid"
-          },
-          {
-            value: "Invalid",
-            text: "Invalid"
-          },
-          {
-            value: "Incomplete",
-            text: "Incomplete"
-          }
-        ]
-      }) }}
-
-      {{ govukButton({
-        text: "Continue"
-      }) }}
-
-      </form>
 
     </div>
   </div>

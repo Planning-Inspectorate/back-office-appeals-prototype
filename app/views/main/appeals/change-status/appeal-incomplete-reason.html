@@ -1,0 +1,62 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Why is the appeal incomplete?" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+		<span class="govuk-caption-l">Appeal 1223443</span>
+      <form method="post">
+
+        {{ govukCheckboxes({
+          name: 'incomplete',
+          values: data['incomplete'],
+          fieldset: {
+            legend: {
+              text: "Why is the appeal incomplete?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "Select all that apply."
+          },
+          items: [
+            {
+              value: "Missing documents",
+              text: "Missing documents"
+            },
+            {
+                value: "Grounds and facts do not match",
+                text: "Grounds and facts do not match"
+            },
+            {
+              value: "Waiting for the appellant to pay the fee",
+              text: "Waiting for the appellant to pay the fee"
+            },
+            {
+              value: "Other",
+              text: "Other",
+              conditional: {
+                html: govukInput({
+                  name: "otherReason",
+                  label: {
+                    text: "Enter a reason"
+                  }
+                })
+              }
+           }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue",
+          href: "other-information"
+        }) }}
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

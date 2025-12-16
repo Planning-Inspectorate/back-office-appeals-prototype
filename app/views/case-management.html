@@ -20,8 +20,6 @@
     </ul>
   </div>
 
-  
-
     <div class="govuk-grid-column-three-quarters">
       <h1 class="govuk-heading-xl">
         {{ title }}
@@ -29,7 +27,6 @@
 
       <!-- written representations elements -->
       <section id="written-reps">
-
 
         {{ govukTable({
           firstCellIsHeader: true,
@@ -39,51 +36,72 @@
               classes: "govuk-!-width-one-half"
             },
             {
-              text: "Link to prototype"
+              text: "Jira ticket"
             },  
             {
               text: "Notes"
             }
           ],
           rows: [
-          [
+            [
               {
-                html: "<a href='enhancements/keyword-search/bo-home'>Advanced search</a> "
+                html: "<a href='enhancements/keyword-search/bo-home'>Advanced search</a>"
               },
               {
-                html: "<a href='https://pins-ds.atlassian.net/browse/A2-4584?atlOrigin=eyJpIjoiOWI1NzA5MDAwOTdmNDljY2ExYzgyYWM4NDE4NWM4NWIiLCJwIjoiaiJ9'>A2-4584</a> "
+                html: "<a href='https://pins-ds.atlassian.net/browse/A2-4584?atlOrigin=eyJpIjoiOWI1NzA5MDAwOTdmNDljY2ExYzgyYWM4NDE4NWM4NWIiLCJwIjoiaiJ9'>A2-4584</a>"
               },
               {
-                html: "<a href='https://app.mural.co/t/allpins6990/m/allpins6990/1755167208449/7f91005f18becfd34d812561af7e2b65c69d6119'>Mural workings</a> "
+                html: "<a href='https://app.mural.co/t/allpins6990/m/allpins6990/1755167208449/7f91005f18becfd34d812561af7e2b65c69d6119'>Mural workings</a>"
               }
             ],
             [
-            {
-              html: "<a href='main/appeals/site-visit/reminder/case-details'>Site visit reminder date</a>"
-            },
-            {
-              html: "<a href='https://pins-ds.atlassian.net/browse/A2-3327?atlOrigin=eyJpIjoiNWIyMDk2NDhkZTUxNGQzMzgwNTZjMjllYjQ4OGVmYmMiLCJwIjoiaiJ9'>A2-3327</a> "
-            },
-            {
-              html: "<a href='https://app.mural.co/t/allpins6990/m/allpins6990/1755167208449/7f91005f18becfd34d812561af7e2b65c69d6119'>Mural workings</a> "
-            }
-          ],
-          [
-          {
-            html: "<a href='https://pins-app-prototype-appeals-back-office.azurewebsites.net/elements/includes/start-full-case/v5/case-details-v2'>Case record management and transparency</a>"
-          },
-          {
-            html: "<a href='https://pins-ds.atlassian.net/browse/A2-4758'>A2-4758</a> "
-          },
-          {
-            html: ""
-          }
-        ]
+              {
+                html: "<a href='main/appeals/site-visit/reminder/case-details'>Site visit reminder date</a>"
+              },
+              {
+                html: "<a href='https://pins-ds.atlassian.net/browse/A2-3327?atlOrigin=eyJpIjoiNWIyMDk2NDhkZTUxNGQzMzgwNTZjMjllYjQ4OGVmYmMiLCJwIjoiaiJ9'>A2-3327</a>"
+              },
+              {
+                html: "<a href='https://app.mural.co/t/allpins6990/m/allpins6990/1755167208449/7f91005f18becfd34d812561af7e2b65c69d6119'>Mural workings</a>"
+              }
+            ],
+            [
+              {
+                html: "<a href='https://pins-app-prototype-appeals-back-office.azurewebsites.net/elements/includes/start-full-case/v5/case-details-v2'>Case record management and transparency</a>"
+              },
+              {
+                html: "<a href='https://pins-ds.atlassian.net/browse/A2-4758'>A2-4758</a>"
+              },
+              {
+                html: "Unused - see notes in ticket"
+              }
+            ],
+            [
+              {
+                html: 'Change validation status: 
+                <ul class="govuk-list govuk-list--bullet">
+                  <li>
+                    <a href="main/appeals/change-status/appellant-case--valid.html">Valid appeal</a>
+                  </li>
+                  <li>
+                    <a href="main/appeals/change-status/appellant-case--invalid.html">Invalid</a>
+                  </li>
+                  <li>
+                    <a href="main/appeals/change-status/appellant-case--incomplete.html">Incomplete appeal</a>
+                  </li>
+                </ul>'
+              },
+              {
+                html: '<a href="https://pins-ds.atlassian.net/browse/A2-758?atlOrigin=eyJpIjoiOTYxYjZlNzQ4N2MxNGYxNDhkZmFiNjczMDUxOTE1NjciLCJwIjoiaiJ9">A2-758</a>'
+              },
+              {
+                html: '<a href="https://app.mural.co/t/allpins6990/m/allpins6990/1755167208449/7f91005f18becfd34d812561af7e2b65c69d6119">Mural workings</a>'
+              }
+            ]
           ]
         }) }}
-
+        
       </section>
-
     </div>
   </div>
 

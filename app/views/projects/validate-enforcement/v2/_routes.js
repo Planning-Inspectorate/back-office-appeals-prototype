@@ -74,9 +74,9 @@ router.post('/cancel-appeal/cancel-reason', function (req, res) {
     } else if (reasons.includes('Waiting for the appellant to pay the fee')) {
       res.redirect('receipt-date');
     } else if (reasons.length === 0) {
-      res.redirect('other-information-incomplete');
+      res.redirect('other-information-incomplete-venf');
     } else {
-      res.redirect('other-information-incomplete');
+      res.redirect('other-information-incomplete-venf');
     }
   });
 

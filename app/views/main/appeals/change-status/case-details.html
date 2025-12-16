@@ -1,0 +1,58 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <!-- notifications -->
+    {% include "/elements/includes/case-details/notifications.html" %}
+
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <!--	<span class="govuk-caption-l">Appeal 2110166</span> -->
+    <span class="govuk-caption-xl">Appeal 2114328</span>
+  	<h1 class="govuk-heading-xl govuk-!-margin-bottom-2">
+      {{ title }}
+    </h1>
+
+    {% include "/elements/includes/case-details/status.html" %}
+
+    {% include "/elements/includes/case-details/meta-data.html" %}
+
+    <p class="govuk-body">
+      <a href="#" class="govuk-link">
+        Download case
+      </a>
+    </p>
+
+    {% include "/elements/includes/case-details/case-notes.html" %}
+
+    <!-- case sections -->
+    <section class="govuk-!-margin-top-6">
+
+      {% include "/elements/includes/case-details/overview.html" %}
+
+      {% include "/elements/includes/case-details/timetable.html" %}
+
+      {% include "/elements/includes/case-details/site.html" %}
+
+      {% include "/elements/includes/case-details/hearing.html" %}
+
+      {% include "/elements/includes/case-details/documentation.html" %}
+
+      {% include "/elements/includes/case-details/costs.html" %}
+
+      {% include "/elements/includes/case-details/contacts.html" %}
+
+      {% include "/elements/includes/case-details/team.html" %}
+
+      {% include "/elements/includes/case-details/case-management.html" %}
+
+      {% include "/elements/includes/case-details/cancel-appeal.html" %}
+
+    </section>
+
+
+  </div>
+</div>

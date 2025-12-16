@@ -1,0 +1,51 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Appellant case" %}
+{% set pageName = title %}
+{% set appealIs = 'enforcement' %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+     
+      <form method="post">
+
+      {{ govukRadios({
+        name: "reviewDecision",
+        fieldset: {
+          legend: {
+            text: "Change validation status",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "Valid",
+            text: "Valid",
+            checked: data.reviewDecision == "Valid"
+          },
+          {
+            value: "Invalid",
+            text: "Invalid",
+            checked: data.reviewDecision == "Invalid"
+          },
+          {
+            value: "Incomplete",
+            text: "Incomplete",
+            checked: data.reviewDecision == "Incomplete"
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -26,7 +26,22 @@ router.post('*', function(req, res, next){
 })
 
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-// CONSTRAINTS
+// Setting up a case
+// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+router.post('/case-setup', function (req, res) {
+
+  if (req.session.data['case-stage'] == 'validation') {
+    req.session.data.case = 'not-started';
+  } else {
+    req.session.data.case = 'started';
+  }
+
+  res.redirect('case-details');
+})
+
+// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+// Manage requested addresses
 // ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 router.post('/add-address', function (req, res) {
@@ -37,7 +52,6 @@ router.post('/check-answers', function (req, res) {
   req.flash('success', 'Address added')
   res.redirect('case-details?requested-addresses=true');
 })
-
 
 router.post('/confirm-remove-address', function (req, res) {
   req.flash('success', 'Address removed')

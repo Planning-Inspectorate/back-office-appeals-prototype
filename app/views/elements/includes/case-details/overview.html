@@ -33,16 +33,52 @@
     ],
     [
       {
-        text: "Procedure"
+        text: "Appeal procedure"
       },
       {
-        html: data['procedure'] or 'Written representations (part 1)'
+        html: 'Written representations (part 1)'
       },
       {
         html: "<a href='#'>Change</a>",
         format: "numeric"
       }
-    ] if data['procedure'],
+    ] if data['procedure'] == 'writtenPt1' and data['case'] == 'started',
+    [
+      {
+        text: "Appeal procedure"
+      },
+      {
+        html: 'Written representations (full)'
+      },
+      {
+        html: "<a href='#'>Change</a>",
+        format: "numeric"
+      }
+    ] if data['procedure'] == 'written' and data['case'] == 'started',
+    [
+      {
+        text: "Appeal procedure"
+      },
+      {
+        html: 'Hearing'
+      },
+      {
+        html: "<a href='#'>Change</a>",
+        format: "numeric"
+      }
+    ] if data['procedure'] == 'hearing' and data['case'] == 'started',
+    [
+      {
+        text: "Appeal procedure"
+      },
+      {
+        html: 'Inquiry'
+      },
+      {
+        html: "<a href='#'>Change</a>",
+        format: "numeric"
+      }
+    ] if data['procedure'] == 'inquiry' and data['case'] == 'started',
     [
       {
         text: "Allocation level"
@@ -102,8 +138,6 @@
       html: "<a href='#'>Change</a>",
       format: "numeric"
     }
-  ]if data['case-stage'] == 'complete'  
+  ]if data['case-stage'] == 'complete'
   ]
 }) }}
-
-

@@ -184,6 +184,29 @@
 
         {% endset -%}
 
+        <!-- appeal type -->
+        {{ govukRadios({
+          classes: "govuk-radios",
+          name: "appealIs",
+          fieldset: {
+            legend: {
+              text: "Appeal type",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Full planning",
+              text: "Full planning"
+            },
+            {
+              value: "Enforcement",
+              text: "Enforcement"
+            }
+          ]
+        }) }}
+
         <!-- procedure -->
         {{ govukRadios({
           classes: "govuk-radios",

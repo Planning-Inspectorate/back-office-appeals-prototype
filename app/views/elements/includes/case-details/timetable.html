@@ -49,49 +49,85 @@
           text: "Start date"
         },
         {
-          html: 'Not started'
+          html: 1 | daysAgo
         },
         {
-          html: "<a href='#'>Start</a>",
+          html: "<a href='#'>Change</a>",
           format: "numeric"
         }
       ],
       [
         {
-          text: "Allocation level"
+          text: "LPA questionnaire due"
         },
         {
-          html: "G<br>General"
+          html: 42 | daysInFuture
         },
         {
           html: "<a href='#'>Change</a>",
           format: "numeric"
         }
-      ] if data['allocation-level'],
+      ],
       [
         {
-          text: "Linked appeals"
+          text: "LPA statement due"
         },
         {
-          html: "No linked appeals"
+          html: 42 | daysInFuture
         },
         {
           html: "<a href='#'>Change</a>",
           format: "numeric"
         }
-      ] if data['linked-appeals'],
+      ] if appealIs != 'enforcement',
       [
         {
-          text: "Related appeals"
+          text: "Statements due"
         },
         {
-          html: "No related appeals"
+          html: 42 | daysInFuture
         },
         {
           html: "<a href='#'>Change</a>",
           format: "numeric"
         }
-      ] if data['related-appeals']
+      ] if data['procedure'] == 'written' and data['case'] == 'started' and appealIs == 'enforcement',
+      [
+        {
+          text: "Interested party comments due"
+        },
+        {
+          html: 42 | daysInFuture
+        },
+        {
+          html: "<a href='#'>Change</a>",
+          format: "numeric"
+        }
+      ],
+      [
+      {
+        text: "Planning obligation due"
+      },
+      {
+        html: 42 | daysInFuture
+      },
+      {
+        html: "<a href='#'>Change</a>",
+        format: "numeric"
+      }
+    ] if data['procedure'] == 'written' and data['case'] == 'started' and appealIs == 'enforcement',
+      [
+        {
+          text: "Final comments due"
+        },
+        {
+          html: 72 | daysInFuture
+        },
+        {
+          html: "<a href='#'>Change</a>",
+          format: "numeric"
+        }
+      ]
 
     ]
   }) }}

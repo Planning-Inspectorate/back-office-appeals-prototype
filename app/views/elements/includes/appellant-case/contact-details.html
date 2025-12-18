@@ -1,5 +1,6 @@
-{% if data['appealIs'] != 'enforcement'  %}
+{% if appealIs != 'Enforcement'  %}
 
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 
 {{ govukSummaryList({
   card: {

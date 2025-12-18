@@ -1,0 +1,45 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+{% set title = "Appellant case" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+        <!--	<span class="govuk-caption-l">Appeal 2110166</span> -->
+        <span class="govuk-caption-xl">Appeal 2114328</span>
+        <h1 class="govuk-heading-xl govuk-!-margin-bottom-2">
+          {{ title }}
+        </h1>
+        {% include "/elements/includes/appellant-case/meta-data.html" %}
+
+        </div>
+
+  <div class="govuk-grid-column-full">
+
+        <!-- appellant case sections -->
+
+    <section class="govuk-!-margin-top-6">
+
+    {% include "/elements/includes/appellant-case/before-you-start.html" %}
+
+    {% include "/elements/includes/appellant-case/contact-details.html" %}
+
+    {% include "/elements/includes/appellant-case/site-details.html" %}
+
+    {% include "/elements/includes/appellant-case/grounds.html" %}
+
+    {% include "/elements/includes/appellant-case/procedure.html" %}
+
+    {% include "/elements/includes/appellant-case/uploaded-documents.html" %}
+
+    </section>
+
+
+  </div>
+</div>
+
+
+
+
+  
+{% endblock %}

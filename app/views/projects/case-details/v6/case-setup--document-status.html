@@ -1,0 +1,221 @@
+{% extends "layouts/PINS-Simple.html" %}
+
+{% set title = "What is the status of the case?" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+{% set pageId = 'elements' %}
+
+{% block questions %}
+
+  <span class="govuk-caption-l">
+    Setting up a case
+  </span>
+
+  <h1 class="govuk-heading-xl">
+    Document status
+  </h1>
+
+  {% if (data['case-stage'] | default('') | trim | lower) not in ['', 'new'] %}
+
+    <!-- questionnaire status -->
+    {{ govukRadios({
+      classes: "govuk-radios",
+      name: "questionnaire",
+      fieldset: {
+        legend: {
+          text: "Questionnaire status",
+          isPageHeading: false,
+          classes: "govuk-fieldset__legend--l"
+        }
+      },
+      items: [
+        {
+          value: "waiting",
+          text: "Waiting for questionnaire"
+        },
+        {
+          value: "received",
+          text: "Questionnaire received"
+        },
+        {
+          value: "valid",
+          text: "Questionnaire valid"
+        }
+      ]
+    }) }}
+
+  {% endif %}
+
+  {% if data['procedure'] != 'writtenPt1' %}
+
+    {% if (data['case-stage'] | default('') | trim | lower) not in ['', 'new', 'questionnaire'] %}
+
+      <!-- LPA statement status -->
+      {{ govukRadios({
+        classes: "govuk-radios",
+        name: "lpa-statement",
+        fieldset: {
+          legend: {
+            text: "Local planning authority statement",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: null,
+            text: "Waiting for statement"
+          },
+          {
+            value: "received",
+            text: "Statement received"
+          },
+          {
+            value: "complete",
+            text: "Statement valid"
+          },
+          {
+            value: "not-received",
+            text: "No statement"
+          }
+        ]
+      }) }}
+
+      <!-- interested party comments status -->
+      {{ govukRadios({
+        classes: "govuk-radios",
+        name: "ipcomments",
+        fieldset: {
+          legend: {
+            text: "Interested party comments",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: null,
+            text: "Waiting for IP comments"
+          },
+          {
+            value: "received",
+            text: "Comments received"
+          },
+          {
+            value: "complete",
+            text: "Comments accepted"
+          },
+          {
+            value: "not-received",
+            text: "No comments"
+          }
+        ]
+      }) }}
+
+      {% if data['procedure'] == 'written' %}
+
+        {% if (data['case-stage'] | default('') | trim | lower) not in ['', 'new', 'questionnaire', 'statements'] %}
+
+          <!-- appellant final comments status -->
+          {{ govukRadios({
+            classes: "govuk-radios",
+            name: "appellant-final-comments",
+            fieldset: {
+              legend: {
+                text: "Appellant final comments",
+                isPageHeading: false,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            items: [
+              {
+                value: null,
+                text: "Waiting for final comments"
+              },
+              {
+                value: "received",
+                text: "Final comments received"
+              },
+              {
+                value: "complete",
+                text: "Final comments accepted"
+              },
+              {
+                value: "not-received",
+                text: "No final comments"
+              }
+            ]
+          }) }}
+
+          <!-- lpa final comments status -->
+          {{ govukRadios({
+            classes: "govuk-radios",
+            name: "lpa-final-comments",
+            fieldset: {
+              legend: {
+                text: "Local planning authority final comments",
+                isPageHeading: false,
+                classes: "govuk-fieldset__legend--l"
+              }
+            },
+            items: [
+              {
+                value: null,
+                text: "Waiting for final comments"
+              },
+              {
+                value: "received",
+                text: "Final comments received"
+              },
+              {
+                value: "complete",
+                text: "Final comments accepted"
+              },
+              {
+                value: "not-received",
+                text: "No final comments"
+              }
+            ]
+          }) }}
+
+        {% endif %}
+
+      {% endif %} <!-- procedure == written if -->
+
+
+
+    {% endif %} <!-- case stage if -->
+
+  {% endif %}
+
+
+  {% if data['procedure'] == 'inquiry' %}
+
+    <!-- proof of evidence status -->
+    {{ govukRadios({
+      classes: "govuk-radios",
+      name: "evidence",
+      fieldset: {
+        legend: {
+          text: "Proof of evidence",
+          isPageHeading: false,
+          classes: "govuk-fieldset__legend--l"
+        }
+      },
+      items: [
+        {
+          value: null,
+          text: "Waiting for evidence"
+        },
+        {
+          value: "received",
+          text: "Proof of evidence received"
+        },
+        {
+          value: "not-received",
+          text: "No proof of evidence"
+        }
+      ]
+    }) }}
+  {% endif %}
+
+{% endblock %}

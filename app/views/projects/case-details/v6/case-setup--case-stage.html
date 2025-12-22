@@ -1,0 +1,285 @@
+{% extends "layouts/PINS-Simple.html" %}
+
+{% set title = "What is the status of the case?" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+{% set pageId = 'elements' %}
+
+{% block questions %}
+
+  <span class="govuk-caption-l">
+    Setting up a case
+  </span>
+
+  {% set questionnaireStatus %}
+    <!-- questionnaire status -->
+    {{ govukRadios({
+      classes: "govuk-radios",
+      name: "questionnaire",
+      fieldset: {
+        legend: {
+          text: "Questionnaire status",
+          isPageHeading: false,
+          classes: "govuk-fieldset__legend--m"
+        }
+      },
+      items: [
+        {
+          value: "waiting",
+          text: "Waiting for questionnaire"
+        },
+        {
+          value: "received",
+          text: "Questionnaire received"
+        },
+        {
+          value: "valid",
+          text: "Questionnaire valid"
+        }
+      ]
+    }) }}
+  {% endset -%}
+
+
+  {% set statementStatus %}
+    <!-- LPA statement status -->
+    {{ govukRadios({
+      classes: "govuk-radios",
+      name: "lpa-statement",
+      fieldset: {
+        legend: {
+          text: "Local planning authority statement",
+          isPageHeading: false,
+          classes: "govuk-fieldset__legend--m"
+        }
+      },
+      items: [
+        {
+          value: null,
+          text: "Waiting for statement"
+        },
+        {
+          value: "received",
+          text: "Statement received"
+        },
+        {
+          value: "complete",
+          text: "Statement valid"
+        },
+        {
+          value: "not-received",
+          text: "No statement"
+        }
+      ]
+    }) }}
+
+    <!-- interested party comments status -->
+    {{ govukRadios({
+      classes: "govuk-radios",
+      name: "ipcomments",
+      fieldset: {
+        legend: {
+          text: "Interested party comments",
+          isPageHeading: false,
+          classes: "govuk-fieldset__legend--m"
+        }
+      },
+      items: [
+        {
+          value: null,
+          text: "Waiting for IP comments"
+        },
+        {
+          value: "received",
+          text: "Comments received"
+        },
+        {
+          value: "complete",
+          text: "Comments accepted"
+        },
+        {
+          value: "not-received",
+          text: "No comments"
+        }
+      ]
+    }) }}
+  {% endset -%}
+
+  {% set finalCommentStatus %}
+
+    <!-- appellant final comments status -->
+    {{ govukRadios({
+      classes: "govuk-radios",
+      name: "appellant-final-comments",
+      fieldset: {
+        legend: {
+          text: "Appellant final comments",
+          isPageHeading: false,
+          classes: "govuk-fieldset__legend--m"
+        }
+      },
+      items: [
+        {
+          value: null,
+          text: "Waiting for final comments"
+        },
+        {
+          value: "received",
+          text: "Final comments received"
+        },
+        {
+          value: "complete",
+          text: "Final comments accepted"
+        },
+        {
+          value: "not-received",
+          text: "No final comments"
+        }
+      ]
+    }) }}
+
+    <!-- lpa final comments status -->
+    {{ govukRadios({
+      classes: "govuk-radios",
+      name: "lpa-final-comments",
+      fieldset: {
+        legend: {
+          text: "Local planning authority final comments",
+          isPageHeading: false,
+          classes: "govuk-fieldset__legend--m"
+        }
+      },
+      items: [
+        {
+          value: null,
+          text: "Waiting for final comments"
+        },
+        {
+          value: "received",
+          text: "Final comments received"
+        },
+        {
+          value: "complete",
+          text: "Final comments accepted"
+        },
+        {
+          value: "not-received",
+          text: "No final comments"
+        }
+      ]
+    }) }}
+
+
+  {% endset -%}
+
+  {% set evidenceStatus %}
+
+    <!-- proof of evidence status -->
+    {{ govukRadios({
+      classes: "govuk-radios",
+      name: "evidence",
+      fieldset: {
+        legend: {
+          text: "Proof of evidence",
+          isPageHeading: false,
+          classes: "govuk-fieldset__legend--m"
+        }
+      },
+      items: [
+        {
+          value: null,
+          text: "Waiting for evidence"
+        },
+        {
+          value: "received",
+          text: "Proof of evidence received"
+        },
+        {
+          value: "not-received",
+          text: "No proof of evidence"
+        }
+      ]
+    }) }}
+
+  {% endset -%}
+
+
+  <!-- case stage -->
+  {{ govukRadios({
+    classes: "govuk-radios",
+    name: "case-stage",
+    fieldset: {
+      legend: {
+        text: "Case stage",
+        isPageHeading: true,
+        classes: "govuk-fieldset__legend--xl"
+      }
+    },
+    items: [
+      {
+        value: "validation",
+        text: "New"
+      },
+      {
+        value: "questionnaire",
+        text: "Questionnaire",
+        conditional: {
+          html: questionnaireStatus
+        }
+      },
+      {
+        value: "statements",
+        text: "Statements",
+        conditional: {
+          html: statementStatus
+        }
+      } if data['procedure'] != 'writtenPt1',
+      {
+        value: "setup-site-visit",
+        text: "Site visit ready to set up"
+      } if data['procedure'] != 'hearing' and data['procedure'] != 'inquiry',
+      {
+        value: "setup-hearing",
+        text: "Hearing ready to set up"
+      } if data['procedure'] == 'hearing',
+      {
+        value: "setup-inquiry",
+        text: "Inquiry ready to set up"
+      } if data['procedure'] == 'inquiry',
+      {
+        value: "awaiting-site-visit",
+        text: "Awaiting site visit"
+      } if data['procedure'] != 'hearing' and data['procedure'] != 'inquiry',
+      {
+        value: "awaiting-hearing",
+        text: "Awaiting hearing"
+      } if data['procedure'] == 'hearing',
+      {
+        value: "awaiting-inquiry",
+        text: "Awaiting inquiry"
+      } if data['procedure'] == 'inquiry',
+      {
+        value: "final-comments",
+        text: "Final comments",
+        conditional: {
+          html: finalCommentStatus
+        }
+      } if data['procedure'] != 'hearing' and data['procedure'] != 'inquiry' and data['procedure'] != 'writtenPt1',
+      {
+        value: "evidence",
+        text: "Evidence",
+        conditional: {
+          html: evidenceStatus
+        }
+      } if data['procedure'] == 'inquiry',
+      {
+        value: "determination",
+        text: "Issue decision"
+      },
+      {
+        value: "complete",
+        text: "Complete"
+      }
+    ]
+  }) }}
+
+{% endblock %}

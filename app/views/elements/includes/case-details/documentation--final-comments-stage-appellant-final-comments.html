@@ -1,0 +1,46 @@
+<!-- final comments row when in final comments stage -->
+{% if not data['appellant-final-comments'] or data['appellant-final-comments'] == 'waiting' or data['appellant-final-comments'] == 'not-received' %}
+
+  <!-- waiting for interested party comments -->
+
+  <tr class="govuk-table__row">
+    <th scope="row" class="govuk-table__header">Appellant final comments</th>
+    <td class="govuk-table__cell">Awaiting comments</td>
+    <td class="govuk-table__cell">Due by {{ 5 | daysInFuture}}</td>
+    <td class="govuk-table__cell govuk-!-text-align-right">
+      <!-- no action -->
+    </td>
+  </tr>
+
+{% elseif data['appellant-final-comments'] == 'received' %}
+
+  <!-- interested party comments is received -->
+
+  <tr class="govuk-table__row">
+    <th scope="row" class="govuk-table__header">Appellant final comments</th>
+    <td class="govuk-table__cell">Ready to review</td>
+    <td class="govuk-table__cell">{{ 0 | daysInFuture}}</td>
+    <td class="govuk-table__cell govuk-!-text-align-right">
+      <a href="appellant-case" data-cy="review-appellant-case" class="govuk-link">
+        Review<span class="govuk-visually-hidden"> appellant final comments</span>
+      </a>
+    </td>
+  </tr>
+
+{% else %}
+
+  <!-- appellant final comments is accepted -->
+
+  <tr class="govuk-table__row">
+    <th scope="row" class="govuk-table__header">Appellant final comments</th>
+    <td class="govuk-table__cell">Accepted</td>
+    <td class="govuk-table__cell">{{ 0 | daysInFuture}}</td>
+    <td class="govuk-table__cell govuk-!-text-align-right">
+      <a href="appellant-case" data-cy="review-appellant-case" class="govuk-link">
+        View<span class="govuk-visually-hidden"> appellant final comments</span>
+      </a>
+    </td>
+  </tr>
+
+{% endif %}
+<!-- ends IF for appellant final comments status -->

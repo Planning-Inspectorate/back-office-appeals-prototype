@@ -1,0 +1,36 @@
+{% extends "layouts/PINS-Simple.html" %}
+
+{% set title = "What is the planning type?" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+{% set pageId = 'elements' %}
+
+{% block questions %}
+
+  <span class="govuk-caption-l">
+    Setting up a case
+  </span>
+
+  <!-- appeal type -->
+  {{ govukRadios({
+    classes: "govuk-radios",
+    name: "appealIs",
+    fieldset: {
+      legend: {
+        text: title,
+        isPageHeading: true,
+        classes: "govuk-fieldset__legend--xl"
+      }
+    },
+    items: [
+      {
+        value: "Full planning",
+        text: "Full planning"
+      },
+      {
+        value: "Enforcement",
+        text: "Enforcement"
+      }
+    ]
+  }) }}
+
+{% endblock %}

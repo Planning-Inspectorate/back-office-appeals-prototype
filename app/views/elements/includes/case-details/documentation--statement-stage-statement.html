@@ -1,0 +1,46 @@
+<!-- ROW FOR LPA STATEMENT -->
+
+{% if not data['lpa-statement'] or data['lpa-statement'] == 'waiting' or data['lpa-statement'] == 'not-received' %}
+
+  <!-- waiting for lpa statment -->
+
+  <tr class="govuk-table__row">
+    <th scope="row" class="govuk-table__header">Local planning authority statement</th>
+    <td class="govuk-table__cell">Awaiting statement</td>
+    <td class="govuk-table__cell">Due by {{ 5 | daysInFuture}}</td>
+    <td class="govuk-table__cell govuk-!-text-align-right">
+      <!-- no action -->
+    </td>
+  </tr>
+
+{% elseif data['lpa-statement'] == 'received' %}
+
+  <!-- lpa statement is received -->
+
+  <tr class="govuk-table__row">
+    <th scope="row" class="govuk-table__header">Local planning authority statement</th>
+    <td class="govuk-table__cell">Ready to review</td>
+    <td class="govuk-table__cell">{{ 0 | daysInFuture}}</td>
+    <td class="govuk-table__cell govuk-!-text-align-right">
+      <a href="appellant-case" data-cy="review-appellant-case" class="govuk-link">
+        Review<span class="govuk-visually-hidden"> statement</span>
+      </a>
+    </td>
+  </tr>
+
+{% else %}
+
+  <!-- statement is valid -->
+
+  <tr class="govuk-table__row">
+    <th scope="row" class="govuk-table__header">Local planning authority statement</th>
+    <td class="govuk-table__cell">Valid</td>
+    <td class="govuk-table__cell">{{ 0 | daysInFuture}}</td>
+    <td class="govuk-table__cell govuk-!-text-align-right">
+      <a href="appellant-case" data-cy="review-appellant-case" class="govuk-link">
+        View<span class="govuk-visually-hidden"> statement</span>
+      </a>
+    </td>
+  </tr>
+
+{% endif %}

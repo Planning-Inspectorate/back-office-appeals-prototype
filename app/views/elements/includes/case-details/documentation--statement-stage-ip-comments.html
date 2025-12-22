@@ -1,0 +1,45 @@
+<!-- lpa statement row when in statement stage -->
+{% if not data['ipcomments'] or data['ipcomments'] == 'waiting' or data['ipcomments'] == 'not-received' %}
+
+  <!-- waiting for interested party comments -->
+
+  <tr class="govuk-table__row">
+    <th scope="row" class="govuk-table__header">Interested party comments</th>
+    <td class="govuk-table__cell">Awaiting comments</td>
+    <td class="govuk-table__cell">Due by {{ 5 | daysInFuture}}</td>
+    <td class="govuk-table__cell govuk-!-text-align-right">
+      <!-- no action -->
+    </td>
+  </tr>
+
+{% elseif data['ipcomments'] == 'received' %}
+
+  <!-- interested party comments is received -->
+
+  <tr class="govuk-table__row">
+    <th scope="row" class="govuk-table__header">Interested party comments</th>
+    <td class="govuk-table__cell">Ready to review</td>
+    <td class="govuk-table__cell">{{ 0 | daysInFuture}}</td>
+    <td class="govuk-table__cell govuk-!-text-align-right">
+      <a href="appellant-case" data-cy="review-appellant-case" class="govuk-link">
+        Review<span class="govuk-visually-hidden"> interested party comments</span>
+      </a>
+    </td>
+  </tr>
+
+{% else %}
+
+  <!-- interested party comments is accepted -->
+
+  <tr class="govuk-table__row">
+    <th scope="row" class="govuk-table__header">Interested party comments</th>
+    <td class="govuk-table__cell">Accepted</td>
+    <td class="govuk-table__cell">{{ 0 | daysInFuture}}</td>
+    <td class="govuk-table__cell govuk-!-text-align-right">
+      <a href="appellant-case" data-cy="review-appellant-case" class="govuk-link">
+        View<span class="govuk-visually-hidden"> interested party comments</span>
+      </a>
+    </td>
+  </tr>
+
+{% endif %}

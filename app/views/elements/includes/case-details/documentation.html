@@ -2,12 +2,10 @@
   Documentation
 </h2>
 
-<!-- documentation table with head -->
-
-<!-- ░░░░░░░░░░ -->
-<!-- table head -->
-
+<!-- documentation table -->
 <table class="govuk-table">
+
+  <!-- table head -->
   <thead class="govuk-table__head">
     <tr class="govuk-table__row">
       <th scope="col" class="govuk-table__header">Documentation</th>
@@ -17,572 +15,118 @@
     </tr>
   </thead>
 
-  <!-- ░░░░░░░░░░ -->
   <!-- table body -->
-
   <tbody class="govuk-table__body">
 
+    <!-- if the case is new -->
     {% if data['case-stage'] == 'validation' or not data['case-stage'] %}
-    <!-- appeal is in validation stage -->
 
-      <!-- new / validation stage documents -->
-      <!-- only show the new unvalidated appeal -->
+      <!-- appeal is in validation stage -->
+      {% include "/elements/includes/case-details/documentation--new.html" %}
 
-      <th scope="row" class="govuk-table__header">Appeal</th>
-      <td class="govuk-table__cell">Ready to review</td>
-      <td class="govuk-table__cell">{{ 2 | daysAgo }}</td>
-      <td class="govuk-table__cell govuk-!-text-align-right">
-        {% if data['appealIs'] == 'Enforcement' %}
-          <a href="enforcement-appeal" data-cy="review-appellant-case" class="govuk-link">
-        {% else %}
-          <a href="appellant-case" data-cy="review-appellant-case" class="govuk-link">
-        {% endif %}
-          Review<span class="govuk-visually-hidden"> appellant case</span>
-        </a>
-      </td>
-
+    <!-- case is not new -->
     {% else %}
 
-      <!-- Appeal is valid -->
-      <!-- Case has started -->
+      <!-- valid appeal -->
+      {% include "/elements/includes/case-details/documentation--valid-appeal.html" %}
 
-      <!-- Show the valid appeal -->
-
-      <th scope="row" class="govuk-table__header">Appeal</th>
-      <td class="govuk-table__cell">Valid</td>
-      <td class="govuk-table__cell">{{ 0 | daysAgo }}</td>
-      <td class="govuk-table__cell govuk-!-text-align-right">
-        <a href="/elements/includes/appellant-case.html" data-cy="review-appellant-case" class="govuk-link">
-          View<span class="govuk-visually-hidden"> appellant case</span>
-        </a>
-      </td>
-
+      <!-- case is valid and ready to start -->
       {% if data['case-stage'] == 'ready' %}
-      <!-- if the case stage is 'Ready to start' -->
 
-      <!-- in live we hide documents at this stage, I have raised a ticket to fix this -->
-      <!-- probably by hiding the documents at the validation stage -->
+        <!-- in live we hide documents at this stage, I have raised a ticket to fix this -->
+        <!-- probably by hiding the documents at the validation stage -->
+        <!-- we hide other documents -->
 
-      <!-- we hide other documents -->
-
-
+      <!-- case is in the questionnaire stage -->
       {% elseif data['case-stage'] == 'questionnaire' %}
-      <!-- appeal is in questionnaire stage -->
 
-        <!-- ROW FOR LPA QUESTIONNAIRE -->
+          <!-- questionnaire stage questionnaire row -->
+          {% include "/elements/includes/case-details/documentation--questionnaire-stage-questionnaire.html" %}
 
-        {% if not data['questionnaire'] or data['questionnaire'] == 'waiting' %}
-
-          <!-- waiting for questionnaire -->
-          <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">Local planning authority questionnaire</th>
-            <td class="govuk-table__cell">Awaiting questionnaire</td>
-            <td class="govuk-table__cell">Due by {{ 5 | daysInFuture}}</td>
-            <td class="govuk-table__cell govuk-!-text-align-right">
-              <!-- no action -->
-            </td>
-          </tr>
-
-        {% elseif data['questionnaire'] == 'received' %}
-
-          <!-- questionnaire is received -->
-          <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">Local planning authority questionnaire</th>
-            <td class="govuk-table__cell">Ready to review</td>
-            <td class="govuk-table__cell">{{ 0 | daysInFuture}}</td>
-            <td class="govuk-table__cell govuk-!-text-align-right">
-              <a href="appellant-case" data-cy="review-appellant-case" class="govuk-link">
-                Review<span class="govuk-visually-hidden"> questionnaire</span>
-              </a>
-            </td>
-          </tr>
-
-        {% else %}
-
-          <!-- questionnaire is valid -->
-          <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">Local planning authority questionnaire</th>
-            <td class="govuk-table__cell">Valid</td>
-            <td class="govuk-table__cell">{{ 0 | daysInFuture}}</td>
-            <td class="govuk-table__cell govuk-!-text-align-right">
-              <a href="appellant-case" data-cy="review-appellant-case" class="govuk-link">
-                View<span class="govuk-visually-hidden"> questionnaire</span>
-              </a>
-            </td>
-          </tr>
-
-        {% endif %}
-        <!-- ends if for questionnaire status -->
-
-
+      <!-- case is in the statements stage -->
       {% elseif data['case-stage'] == 'statements' %}
-      <!-- appeal is in statements stage -->
 
-        <!-- ROW FOR LPA QUESTIONNAIRE -->
+          <!-- complete quesitonnaire -->
+          {% include "/elements/includes/case-details/documentation--complete-questionnaire.html" %}
 
-        <!-- questionnaire is valid -->
-        <!-- we show valid quesitonnaire -->
-        <tr class="govuk-table__row">
-          <th scope="row" class="govuk-table__header">Local planning authority questionnaire</th>
-          <td class="govuk-table__cell">Valid</td>
-          <td class="govuk-table__cell">{{ 0 | daysInFuture}}</td>
-          <td class="govuk-table__cell govuk-!-text-align-right">
-            <a href="appellant-case" data-cy="review-appellant-case" class="govuk-link">
-              View<span class="govuk-visually-hidden"> questionnaire</span>
-            </a>
-          </td>
-        </tr>
+          <!-- statement stage statement row -->
+          {% include "/elements/includes/case-details/documentation--statement-stage-statement.html" %}
 
-        <!-- ROW FOR LPA STATEMENT -->
+          <!-- statement stage ip comments row -->
+          {% include "/elements/includes/case-details/documentation--statement-stage-ip-comments.html" %}
 
-        {% if not data['lpa-statement'] or data['lpa-statement'] == 'waiting' or data['lpa-statement'] == 'not-received' %}
+      <!-- written represenation procedure stages -->
+      <!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
 
-          <!-- waiting for lpa statment -->
-          <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">Local planning authority statement</th>
-            <td class="govuk-table__cell">Awaiting statement</td>
-            <td class="govuk-table__cell">Due by {{ 5 | daysInFuture}}</td>
-            <td class="govuk-table__cell govuk-!-text-align-right">
-              <!-- no action -->
-            </td>
-          </tr>
-
-        {% elseif data['lpa-statement'] == 'received' %}
-
-          <!-- lpa statement is received -->
-          <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">Local planning authority statement</th>
-            <td class="govuk-table__cell">Ready to review</td>
-            <td class="govuk-table__cell">{{ 0 | daysInFuture}}</td>
-            <td class="govuk-table__cell govuk-!-text-align-right">
-              <a href="appellant-case" data-cy="review-appellant-case" class="govuk-link">
-                Review<span class="govuk-visually-hidden"> statement</span>
-              </a>
-            </td>
-          </tr>
-
-        {% else %}
-
-          <!-- statement is valid -->
-          <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">Local planning authority statement</th>
-            <td class="govuk-table__cell">Valid</td>
-            <td class="govuk-table__cell">{{ 0 | daysInFuture}}</td>
-            <td class="govuk-table__cell govuk-!-text-align-right">
-              <a href="appellant-case" data-cy="review-appellant-case" class="govuk-link">
-                View<span class="govuk-visually-hidden"> statement</span>
-              </a>
-            </td>
-          </tr>
-
-        {% endif %}
-        <!-- ends if for statement status -->
-
-        <!-- ROW FOR INTERESTED PARTY COMMENTS -->
-
-        {% if not data['ipcomments'] or data['ipcomments'] == 'waiting' or data['ipcomments'] == 'not-received' %}
-
-          <!-- waiting for interested party comments -->
-          <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">Interested party comments</th>
-            <td class="govuk-table__cell">Awaiting comments</td>
-            <td class="govuk-table__cell">Due by {{ 5 | daysInFuture}}</td>
-            <td class="govuk-table__cell govuk-!-text-align-right">
-              <!-- no action -->
-            </td>
-          </tr>
-
-        {% elseif data['ipcomments'] == 'received' %}
-
-          <!-- interested party comments is received -->
-          <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">Interested party comments</th>
-            <td class="govuk-table__cell">Ready to review</td>
-            <td class="govuk-table__cell">{{ 0 | daysInFuture}}</td>
-            <td class="govuk-table__cell govuk-!-text-align-right">
-              <a href="appellant-case" data-cy="review-appellant-case" class="govuk-link">
-                Review<span class="govuk-visually-hidden"> interested party comments</span>
-              </a>
-            </td>
-          </tr>
-
-        {% else %}
-
-          <!-- interested party comments is accepted -->
-          <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">Interested party comments</th>
-            <td class="govuk-table__cell">Accepted</td>
-            <td class="govuk-table__cell">{{ 0 | daysInFuture}}</td>
-            <td class="govuk-table__cell govuk-!-text-align-right">
-              <a href="appellant-case" data-cy="review-appellant-case" class="govuk-link">
-                View<span class="govuk-visually-hidden"> interested party comments</span>
-              </a>
-            </td>
-          </tr>
-
-        {% endif %}
-        <!-- ends IF for interested party comments status -->
-
-
-
-
-      <!-- NEED TO ADD A CONDITION HERE FOR HEARINGS AND INQUIRIES -->
-
-      <!-- FINAL COMMENTS -->
-      <!-- FINAL COMMENTS -->
-      <!-- FINAL COMMENTS -->
-
-      <!-- WRITTEN REPS ONLY -->
-      <!-- WRITTEN REPS ONLY -->
-      <!-- WRITTEN REPS ONLY -->
-
-
+      <!-- case is in final comments stage -->
       {% elseif data['case-stage'] == 'final-comments' %}
-      <!-- appeal is in final comments stage -->
 
-        <!-- ROW FOR LPA QUESTIONNAIRE -->
+          <!-- complete quesitonnaire -->
+          {% include "/elements/includes/case-details/documentation--complete-questionnaire.html" %}
 
-        <!-- questionnaire is valid -->
-        <!-- we show valid quesitonnaire -->
-        <tr class="govuk-table__row">
-          <th scope="row" class="govuk-table__header">Local planning authority questionnaire</th>
-          <td class="govuk-table__cell">Complete</td>
-          <td class="govuk-table__cell">{{ 0 | daysInFuture}}</td>
-          <td class="govuk-table__cell govuk-!-text-align-right">
-            <a href="appellant-case" data-cy="review-appellant-case" class="govuk-link">
-              View<span class="govuk-visually-hidden"> questionnaire</span>
-            </a>
-          </td>
-        </tr>
+          <!-- complete statement -->
+          {% include "/elements/includes/case-details/documentation--complete-statement.html" %}
 
-        <!-- ROW FOR LPA STATEMENTS -->
+          <!-- complete ip comments -->
+          {% include "/elements/includes/case-details/documentation--complete-ip-comments.html" %}
 
-        {% if data['lpa-statement'] == 'not-received' %}
+          <!-- final comments stage appellant final comments -->
+          {% include "/elements/includes/case-details/documentation--final-comments-stage-appellant-final-comments.html" %}
 
-          <!-- statement was not received -->
-          <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">Local planning authority statement</th>
-            <td class="govuk-table__cell">Not received</td>
-            <td class="govuk-table__cell">{{ 0 | daysInFuture}}</td>
-            <td class="govuk-table__cell govuk-!-text-align-right">
-              <a href="appellant-case" data-cy="review-appellant-case" class="govuk-link">
-                Add<span class="govuk-visually-hidden"> statement</span>
-              </a>
-            </td>
-          </tr>
+          <!-- final comments stage lpa final comments -->
+          {% include "/elements/includes/case-details/documentation--final-comments-stage-lpa-final-comments.html" %}
 
-        {% else %}
+      <!-- hearing and inquiry procedure stages -->
+      <!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
 
-          <!-- statement is valid -->
-          <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">Local planning authority statement</th>
-            <td class="govuk-table__cell">Shared</td>
-            <td class="govuk-table__cell">{{ 0 | daysInFuture}}</td>
-            <td class="govuk-table__cell govuk-!-text-align-right">
-              <a href="appellant-case" data-cy="review-appellant-case" class="govuk-link">
-                View<span class="govuk-visually-hidden"> statement</span>
-              </a>
-            </td>
-          </tr>
+      <!-- case is hearing or inquiry and in the setup or waiting event stage -->
+      {% elseif data['case-stage'] == 'setup-hearing'
+             or data['case-stage'] == 'awaiting-hearing'
+             or data['case-stage'] == 'setup-inquiry'
+             or data['case-stage'] == 'awaiting-inquiry'
+             or data['case-stage'] == 'evidence' %}
 
-        {% endif %}
+          <!-- complete quesitonnaire -->
+          {% include "/elements/includes/case-details/documentation--complete-questionnaire.html" %}
 
-        <!-- ROW FOR IP COMMENTS -->
+          <!-- complete statement -->
+          {% include "/elements/includes/case-details/documentation--complete-statement.html" %}
 
-        {% if data['ipcomments'] == 'not-received' %}
+          <!-- complete statement -->
+          {% include "/elements/includes/case-details/documentation--complete-ip-comments.html" %}
 
-          <!-- interested party comments were not received -->
+          <!-- case is in proof of evidence stage -->
+          {% if data['case-stage'] == 'evidence' %}
 
-          <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">Interested party comments</th>
-            <td class="govuk-table__cell">Not received</td>
-            <td class="govuk-table__cell">{{ 0 | daysInFuture}}</td>
-            <td class="govuk-table__cell govuk-!-text-align-right">
-              <a href="appellant-case" data-cy="review-appellant-case" class="govuk-link">
-                Add<span class="govuk-visually-hidden"> interested party comments</span>
-              </a>
-            </td>
-          </tr>
+            <!-- proof of evidence stage proof of evidence row -->
+            {% include "/elements/includes/case-details/documentation--evidence-stage-evidence.html" %}
 
-        {% else %}
+          {% endif %}
 
-          <!-- interested party comments are received -->
-          <!-- interested party comments is accepted -->
+      <!-- common procedure stages -->
+      <!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
 
-          <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">Interested party comments</th>
-            <td class="govuk-table__cell">Shared</td>
-            <td class="govuk-table__cell">{{ 0 | daysInFuture}}</td>
-            <td class="govuk-table__cell govuk-!-text-align-right">
-              <a href="appellant-case" data-cy="review-appellant-case" class="govuk-link">
-                View<span class="govuk-visually-hidden"> interested party comments</span>
-              </a>
-            </td>
-          </tr>
-
-        {% endif %}
-
-        <!-- ROW FOR FINAL COMMENTS -->
-
-        <!-- ROW FOR APPELLANT FINAL COMMENTS -->
-
-        {% if not data['appellant-final-comments'] or data['appellant-final-comments'] == 'waiting' or data['appellant-final-comments'] == 'not-received' %}
-
-          <!-- waiting for interested party comments -->
-          <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">Appellant final comments</th>
-            <td class="govuk-table__cell">Awaiting comments</td>
-            <td class="govuk-table__cell">Due by {{ 5 | daysInFuture}}</td>
-            <td class="govuk-table__cell govuk-!-text-align-right">
-              <!-- no action -->
-            </td>
-          </tr>
-
-        {% elseif data['appellant-final-comments'] == 'received' %}
-
-          <!-- interested party comments is received -->
-          <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">Appellant final comments</th>
-            <td class="govuk-table__cell">Ready to review</td>
-            <td class="govuk-table__cell">{{ 0 | daysInFuture}}</td>
-            <td class="govuk-table__cell govuk-!-text-align-right">
-              <a href="appellant-case" data-cy="review-appellant-case" class="govuk-link">
-                Review<span class="govuk-visually-hidden"> appellant final comments</span>
-              </a>
-            </td>
-          </tr>
-
-        {% else %}
-
-          <!-- interested party comments is accepted -->
-          <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">Appellant final comments</th>
-            <td class="govuk-table__cell">Accepted</td>
-            <td class="govuk-table__cell">{{ 0 | daysInFuture}}</td>
-            <td class="govuk-table__cell govuk-!-text-align-right">
-              <a href="appellant-case" data-cy="review-appellant-case" class="govuk-link">
-                View<span class="govuk-visually-hidden"> appellant final comments</span>
-              </a>
-            </td>
-          </tr>
-
-        {% endif %}
-        <!-- ends IF for appellant final comments status -->
-
-        <!-- ROW FOR LPA FINAL COMMENTS -->
-
-        {% if not data['lpa-final-comments'] or data['lpa-final-comments'] == 'waiting' or data['lpa-final-comments'] == 'not-received' %}
-
-          <!-- waiting for interested party comments -->
-          <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">Local planning authority final comments</th>
-            <td class="govuk-table__cell">Awaiting comments</td>
-            <td class="govuk-table__cell">Due by {{ 5 | daysInFuture}}</td>
-            <td class="govuk-table__cell govuk-!-text-align-right">
-              <!-- no action -->
-            </td>
-          </tr>
-
-        {% elseif data['lpa-final-comments'] == 'received' %}
-
-          <!-- interested party comments is received -->
-          <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">Local planning authority final comments</th>
-            <td class="govuk-table__cell">Ready to review</td>
-            <td class="govuk-table__cell">{{ 0 | daysInFuture}}</td>
-            <td class="govuk-table__cell govuk-!-text-align-right">
-              <a href="appellant-case" data-cy="review-appellant-case" class="govuk-link">
-                Review<span class="govuk-visually-hidden"> local planning authority final comments</span>
-              </a>
-            </td>
-          </tr>
-
-        {% else %}
-
-          <!-- interested party comments is accepted -->
-          <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">Local planning authority final comments</th>
-            <td class="govuk-table__cell">Shared</td>
-            <td class="govuk-table__cell">{{ 0 | daysInFuture}}</td>
-            <td class="govuk-table__cell govuk-!-text-align-right">
-              <a href="appellant-case" data-cy="review-appellant-case" class="govuk-link">
-                View<span class="govuk-visually-hidden"> local planning authority final comments</span>
-              </a>
-            </td>
-          </tr>
-
-        {% endif %}
-        <!-- ends IF for appellant final comments status -->
-
-
+      <!-- case is in determination stage -->
 
       {% elseif data['case-stage'] == 'determination' %}
       <!-- appeal is in determination stage -->
 
-        <!-- ROW FOR LPA QUESTIONNAIRE -->
+          <!-- complete quesitonnaire -->
+          {% include "/elements/includes/case-details/documentation--complete-questionnaire.html" %}
 
-        <!-- questionnaire is valid -->
-        <!-- we show valid quesitonnaire -->
-        <tr class="govuk-table__row">
-          <th scope="row" class="govuk-table__header">Local planning authority questionnaire</th>
-          <td class="govuk-table__cell">Complete</td>
-          <td class="govuk-table__cell">{{ 30 | daysAgo }}</td>
-          <td class="govuk-table__cell govuk-!-text-align-right">
-            <a href="appellant-case" data-cy="review-appellant-case" class="govuk-link">
-              View<span class="govuk-visually-hidden"> questionnaire</span>
-            </a>
-          </td>
-        </tr>
+          <!-- complete statement -->
+          {% include "/elements/includes/case-details/documentation--complete-statement.html" %}
 
-        <!-- ROW FOR LPA STATEMENTS -->
+          <!-- complete statement -->
+          {% include "/elements/includes/case-details/documentation--complete-ip-comments.html" %}
 
-        {% if data['lpa-statement'] == 'not-received' %}
+          <!-- written only -->
+          {% if data['procedure'] == 'written' %}
 
-          <!-- statement was not received -->
-          <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">Local planning authority statement</th>
-            <td class="govuk-table__cell">Not received</td>
-            <td class="govuk-table__cell">{{ 20 | daysAgo }}</td>
-            <td class="govuk-table__cell govuk-!-text-align-right">
-              <a href="appellant-case" data-cy="review-appellant-case" class="govuk-link">
-                Add<span class="govuk-visually-hidden"> statement</span>
-              </a>
-            </td>
-          </tr>
+            <!-- complete final comments -->
+            {% include "/elements/includes/case-details/documentation--complete-final-comments.html" %}
 
-        {% else %}
-
-          <!-- statement is valid -->
-          <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">Local planning authority statement</th>
-            <td class="govuk-table__cell">Shared</td>
-            <td class="govuk-table__cell">{{ 20 | daysAgo }}</td>
-            <td class="govuk-table__cell govuk-!-text-align-right">
-              <a href="appellant-case" data-cy="review-appellant-case" class="govuk-link">
-                View<span class="govuk-visually-hidden"> statement</span>
-              </a>
-            </td>
-          </tr>
-
-        {% endif %}
-
-        <!-- ROW FOR IP COMMENTS -->
-
-        {% if data['ipcomments'] == 'not-received' %}
-
-          <!-- interested party comments were not received -->
-
-          <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">Interested party comments</th>
-            <td class="govuk-table__cell">Not received</td>
-            <td class="govuk-table__cell">{{ 20 | daysAgo }}</td>
-            <td class="govuk-table__cell govuk-!-text-align-right">
-              <a href="appellant-case" data-cy="review-appellant-case" class="govuk-link">
-                Add<span class="govuk-visually-hidden"> interested party comments</span>
-              </a>
-            </td>
-          </tr>
-
-        {% else %}
-
-          <!-- interested party comments are received -->
-          <!-- interested party comments is accepted -->
-
-          <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">Interested party comments</th>
-            <td class="govuk-table__cell">Shared</td>
-            <td class="govuk-table__cell">{{ 20 | daysAgo }}</td>
-            <td class="govuk-table__cell govuk-!-text-align-right">
-              <a href="appellant-case" data-cy="review-appellant-case" class="govuk-link">
-                View<span class="govuk-visually-hidden"> interested party comments</span>
-              </a>
-            </td>
-          </tr>
-
-        {% endif %}
-
-        <!-- ROW FOR FINAL COMMENTS -->
-
-        <!-- ROW FOR APPELLANT FINAL COMMENTS -->
-
-        {% if not data['appellant-final-comments'] or data['appellant-final-comments'] == 'waiting' or data['appellant-final-comments'] == 'not-received' %}
-
-          <!-- waiting for interested party comments -->
-          <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">Appellant final comments</th>
-            <td class="govuk-table__cell">Not received</td>
-            <td class="govuk-table__cell">Due by {{ 5 | daysAgo}}</td>
-            <td class="govuk-table__cell govuk-!-text-align-right">
-              <a href="appellant-case" data-cy="review-appellant-case" class="govuk-link">
-                Add<span class="govuk-visually-hidden"> appellant final comments</span>
-              </a>
-            </td>
-          </tr>
-
-        {% else %}
-
-          <!-- interested party comments is accepted -->
-          <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">Appellant final comments</th>
-            <td class="govuk-table__cell">Shared</td>
-            <td class="govuk-table__cell">{{ 2 | daysAgo }}</td>
-            <td class="govuk-table__cell govuk-!-text-align-right">
-              <a href="appellant-case" data-cy="review-appellant-case" class="govuk-link">
-                View<span class="govuk-visually-hidden"> appellant final comments</span>
-              </a>
-            </td>
-          </tr>
-
-        {% endif %}
-        <!-- ends IF for appellant final comments status -->
-
-        <!-- ROW FOR LPA FINAL COMMENTS -->
-
-        {% if not data['lpa-final-comments'] or data['lpa-final-comments'] == 'waiting' or data['lpa-final-comments'] == 'not-received' %}
-
-          <!-- waiting for interested party comments -->
-          <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">Local planning authority final comments</th>
-            <td class="govuk-table__cell">Not received</td>
-            <td class="govuk-table__cell">Due by {{ 5 | daysAgo}}</td>
-            <td class="govuk-table__cell govuk-!-text-align-right">
-              <a href="appellant-case" data-cy="review-appellant-case" class="govuk-link">
-                Add<span class="govuk-visually-hidden"> lpa final comments</span>
-              </a>
-            </td>
-          </tr>
-
-        {% else %}
-
-          <!-- interested party comments is accepted -->
-          <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">Local planning authority final comments</th>
-            <td class="govuk-table__cell">Shared</td>
-            <td class="govuk-table__cell">{{ 2 | daysAgo }}</td>
-            <td class="govuk-table__cell govuk-!-text-align-right">
-              <a href="appellant-case" data-cy="review-appellant-case" class="govuk-link">
-                View<span class="govuk-visually-hidden"> local planning authority final comments</span>
-              </a>
-            </td>
-          </tr>
-
-        {% endif %}
-        <!-- ends IF for appellant final comments status -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+          {% endif %}
 
 
 

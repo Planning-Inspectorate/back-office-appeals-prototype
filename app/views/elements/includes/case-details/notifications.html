@@ -122,13 +122,65 @@
               share<span class="govuk-visually-hidden"> IP comments and LPA statement</span></a>
           </p>
 
-          {{ govukNotificationBanner({
-            html: html
-          }) }}
-
         {% endset %}
 
+        {{ govukNotificationBanner({
+          html: html
+        }) }}
+
       {% endif %}
+    {% endif %}
+
+  {% elseif data['case-stage'] == 'setup-hearing' %}
+
+    {% set html %}
+      <p class="govuk-notification-banner__heading">
+        <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">
+          Add hearing address
+        </a>
+      </p>
+    {% endset %}
+
+    {{ govukNotificationBanner({
+      html: html
+    }) }}
+
+  {% elseif data['case-stage'] == 'awaiting-hearing' %}
+
+
+
+  {% elseif data['case-stage'] == 'setup-inquiry' %}
+
+    {% set html %}
+      <p class="govuk-notification-banner__heading">
+        <a href="/projects/cross-copy/v2/crosscopy-ipcomments" class="govuk-link govuk-link--no-visited-state">
+          Add inquiry address
+        </a>
+      </p>
+    {% endset %}
+
+    {{ govukNotificationBanner({
+      html: html
+    }) }}
+
+  {% elseif data['case-stage'] == 'awaiting-inquiry' %}
+
+
+  {% elseif data['case-stage'] == 'evidence' %}
+
+    <!-- proof of evidence -->
+    {% if data['evidence'] == 'received'%}
+
+      {% set html %}
+        <p class="govuk-notification-banner__heading">
+          <a class="govuk-notification-banner__link" href="#">Share proof of evidence</a>
+        </p>
+      {% endset %}
+
+      {{ govukNotificationBanner({
+        html: html
+      }) }}
+
     {% endif %}
 
   {% elseif data['case-stage'] == 'final-comments' %}
@@ -192,12 +244,12 @@
       <p class="govuk-notification-banner__heading">
         {% if data['appealIs'] == 'Enforcement'%}
         <a href="/main/appeals/decision/enforcement/decision" class="govuk-link govuk-link--no-visited-state">
-          {% else %} 
+          {% else %}
           <a href="/main/appeals/decision/enforcement/decision" class="govuk-link govuk-link--no-visited-state">
           {% endif %}
           Issue decision
         </a>
-        
+
       </p>
       {% endset %}
 
@@ -205,7 +257,7 @@
         html: html
       }) }}
 
-    
+
 
   {% elseif data['case-stage'] == 'complete' %}
     <!-- closed -->

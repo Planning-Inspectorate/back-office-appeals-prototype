@@ -1,0 +1,33 @@
+<!-- complete LPA statement -->
+
+{% if data['lpa-statement'] == 'not-received' %}
+
+  <!-- statement was not received -->
+
+  <tr class="govuk-table__row">
+    <th scope="row" class="govuk-table__header">Local planning authority statement</th>
+    <td class="govuk-table__cell">Not received</td>
+    <td class="govuk-table__cell">{{ 0 | daysInFuture}}</td>
+    <td class="govuk-table__cell govuk-!-text-align-right">
+      <a href="appellant-case" data-cy="review-appellant-case" class="govuk-link">
+        Add<span class="govuk-visually-hidden"> statement</span>
+      </a>
+    </td>
+  </tr>
+
+{% else %}
+
+  <!-- statement is valid -->
+
+  <tr class="govuk-table__row">
+    <th scope="row" class="govuk-table__header">Local planning authority statement</th>
+    <td class="govuk-table__cell">Shared</td>
+    <td class="govuk-table__cell">{{ 0 | daysInFuture}}</td>
+    <td class="govuk-table__cell govuk-!-text-align-right">
+      <a href="appellant-case" data-cy="review-appellant-case" class="govuk-link">
+        View<span class="govuk-visually-hidden"> statement</span>
+      </a>
+    </td>
+  </tr>
+
+{% endif %}

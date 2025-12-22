@@ -1,3 +1,5 @@
+<!-- shows the case status based on the variable 'case-stage' -->
+
 <!-- case status tag -->
 {% if data['case-stage'] == 'validation' %}
 
@@ -14,6 +16,34 @@
 {% elseif data['case-stage'] == 'statements' %}
 
   {{ caseStatus (caseStatus = 'statements') }}
+
+{% elseif data['case-stage'] == 'setup-site-visit' %}
+
+  {{ caseStatus (caseStatus = 'setupSiteVisit') }}
+
+{% elseif data['case-stage'] == 'awaiting-site-visit' %}
+
+  {{ caseStatus (caseStatus = 'awaitingSiteVisit') }}
+
+{% elseif data['case-stage'] == 'setup-hearing' %}
+
+  {{ caseStatus (caseStatus = 'setupHearing') }}
+
+{% elseif data['case-stage'] == 'awaiting-hearing' %}
+
+  {{ caseStatus (caseStatus = 'awaitingHearing') }}
+
+{% elseif data['case-stage'] == 'setup-inquiry' %}
+
+  {{ caseStatus (caseStatus = 'setupInquiry') }}
+
+{% elseif data['case-stage'] == 'awaiting-inquiry' %}
+
+  {{ caseStatus (caseStatus = 'awaitingInquiry') }}
+
+{% elseif data['case-stage'] == 'evidence' %}
+
+  {{ caseStatus (caseStatus = 'evidence') }}
 
 {% elseif data['case-stage'] == 'final-comments' %}
 

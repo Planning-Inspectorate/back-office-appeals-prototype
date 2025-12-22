@@ -1,0 +1,34 @@
+<!-- proof of evidence stage proof of evidence -->
+
+{% if not data['evidence'] or data['evidence'] == 'waiting' or data['evidence'] == 'not-received' %}
+
+  <!-- waiting for evidence -->
+
+  <tr class="govuk-table__row">
+    <th scope="row" class="govuk-table__header">Proof of evidence</th>
+    <td class="govuk-table__cell">Awaiting proof of evidence</td>
+    <td class="govuk-table__cell">Due by {{ 5 | daysInFuture}}</td>
+    <td class="govuk-table__cell govuk-!-text-align-right">
+      <a href="appellant-case" data-cy="review-appellant-case" class="govuk-link">
+        Add<span class="govuk-visually-hidden"> proof of evidence</span>
+      </a>
+    </td>
+  </tr>
+
+{% else %}
+
+  <!-- evidence is received -->
+  <!-- we don’t validate evidence -->
+
+  <tr class="govuk-table__row">
+    <th scope="row" class="govuk-table__header">Proof of evidence</th>
+    <td class="govuk-table__cell">Received</td>
+    <td class="govuk-table__cell">{{ 0 | daysInFuture}}</td>
+    <td class="govuk-table__cell govuk-!-text-align-right">
+      <a href="appellant-case" data-cy="review-appellant-case" class="govuk-link">
+        View<span class="govuk-visually-hidden"> proof of evidence</span>
+      </a>
+    </td>
+  </tr>
+
+{% endif %}

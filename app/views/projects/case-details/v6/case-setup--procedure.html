@@ -1,0 +1,44 @@
+{% extends "layouts/PINS-Simple.html" %}
+
+{% set title = "What is the procedure?" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+{% set pageId = 'elements' %}
+
+{% block questions %}
+
+  <span class="govuk-caption-l">
+    Setting up a case
+  </span>
+
+  <!-- procedure -->
+  {{ govukRadios({
+    classes: "govuk-radios",
+    name: "procedure",
+    fieldset: {
+      legend: {
+        text: title,
+        isPageHeading: true,
+        classes: "govuk-fieldset__legend--xl"
+      }
+    },
+    items: [
+      {
+        value: "writtenPt1",
+        text: "Written representations (part 1 only)"
+      },
+      {
+        value: "written",
+        text: "Written representations (full)"
+      },
+      {
+        value: "hearing",
+        text: "Hearing"
+      },
+      {
+        value: "inquiry",
+        text: "Inquiry"
+      }
+    ]
+  }) }}
+
+{% endblock %}

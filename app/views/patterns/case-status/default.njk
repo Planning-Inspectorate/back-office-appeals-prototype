@@ -86,6 +86,12 @@
       classes:'govuk-tag--yellow'
     }) }}
 
+  {% elseif caseStatus === "evidence" %}
+    {{ govukTag({
+      text: "Proof of evidence",
+      classes:'govuk-tag--green'
+    }) }}
+
   {% elseif caseStatus === "decision" %}
     {{ govukTag({
       text: "Issue decision",

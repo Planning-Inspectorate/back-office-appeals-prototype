@@ -1,0 +1,80 @@
+{% extends "layouts/PINS-Simple.html" %}
+
+{% set title = "What is the status of the case?" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+{% set pageId = 'elements' %}
+
+{% block questions %}
+
+  <span class="govuk-caption-l">
+    Setting up a case
+  </span>
+
+  <!-- case stage -->
+  {{ govukRadios({
+    classes: "govuk-radios",
+    name: "case-stage",
+    fieldset: {
+      legend: {
+        text: "Case stage",
+        isPageHeading: true,
+        classes: "govuk-fieldset__legend--xl"
+      }
+    },
+    items: [
+      {
+        value: "validation",
+        text: "New"
+      },
+      {
+        value: "questionnaire",
+        text: "Questionnaire"
+      },
+      {
+        value: "statements",
+        text: "Statements"
+      } if data['procedure'] != 'writtenPt1',
+      {
+        value: "setup-site-visit",
+        text: "Site visit ready to set up"
+      } if data['procedure'] != 'hearing' and data['procedure'] != 'inquiry',
+      {
+        value: "setup-hearing",
+        text: "Hearing ready to set up"
+      } if data['procedure'] == 'hearing',
+      {
+        value: "setup-inquiry",
+        text: "Inquiry ready to set up"
+      } if data['procedure'] == 'inquiry',
+      {
+        value: "awaiting-site-visit",
+        text: "Awaiting site visit"
+      } if data['procedure'] != 'hearing' and data['procedure'] != 'inquiry',
+      {
+        value: "awaiting-hearing",
+        text: "Awaiting hearing"
+      } if data['procedure'] == 'hearing',
+      {
+        value: "awaiting-inquiry",
+        text: "Awaiting inquiry"
+      } if data['procedure'] == 'inquiry',
+      {
+        value: "final-comments",
+        text: "Final comments"
+      } if data['procedure'] != 'hearing' and data['procedure'] != 'inquiry' and data['procedure'] != 'writtenPt1',
+      {
+        value: "evidence",
+        text: "Evidence"
+      } if data['procedure'] == 'inquiry',
+      {
+        value: "determination",
+        text: "Issue decision"
+      },
+      {
+        value: "complete",
+        text: "Complete"
+      }
+    ]
+  }) }}
+
+{% endblock %}

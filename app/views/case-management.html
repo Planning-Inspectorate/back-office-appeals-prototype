@@ -12,21 +12,26 @@
 
 {% block content %}
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-one-quarter">
-    <ul class="govuk-list govuk-list-bullet">
-      <li><a href="#common" class="govuk-link--no-visited-state govuk-link--no-underline">Case management</a></li>
-      <!-- <li><a href="#dev" class="govuk-link--no-visited-state govuk-link--no-underline">Ready for development</a></li> -->
-    </ul>
-  </div>
+	<div class="govuk-grid-row">
+	  <div class="govuk-grid-column-one-quarter">
+	    <ul class="govuk-list govuk-list-bullet">
+	      <li><a href="#common" class="govuk-link--no-visited-state govuk-link--no-underline">Case management</a></li>
+	      <!-- <li><a href="#dev" class="govuk-link--no-visited-state govuk-link--no-underline">Ready for development</a></li> -->
+	    </ul>
+	  </div>
 
     <div class="govuk-grid-column-three-quarters">
       <h1 class="govuk-heading-xl">
         {{ title }}
       </h1>
 
-      <!-- written representations elements -->
-      <section id="written-reps">
+			{{ govukButton({
+      	href: "/projects/case-management/v1/case-setup--planning-type",
+        text: "Set up a case view",
+        classes: "govuk-button--secondary"
+      }) }}
+
+      <section>
 
         {{ govukTable({
           firstCellIsHeader: true,
@@ -37,7 +42,7 @@
             },
             {
               text: "Jira ticket"
-            },  
+            },
             {
               text: "Notes"
             }
@@ -78,7 +83,7 @@
             ],
             [
               {
-                html: 'Change validation status: 
+                html: 'Change validation status:
                 <ul class="govuk-list govuk-list--bullet">
                   <li>
                     <a href="main/appeals/change-status/appellant-case--valid.html">Valid appeal</a>
@@ -100,8 +105,9 @@
             ]
           ]
         }) }}
-        
+
       </section>
+
     </div>
   </div>
 

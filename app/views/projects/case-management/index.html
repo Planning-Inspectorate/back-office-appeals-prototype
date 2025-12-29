@@ -1,70 +1,31 @@
 {% extends "layouts/PINS-Simple.html" %}
 
+{% set title = "Set up a case" %}
 {% set pageName="Case details" %}
 
 {% set back = false %}
 
 {% block content %}
 
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
-<span class="govuk-caption-l">Appeal a planning decision</span>
-<h1 class="govuk-heading-l">Case management (admin folder)</h1>
+      <span class="govuk-caption-l">Prototype helper</span>
+      <h1 class="govuk-heading-l">
+        {{ title }}
+      </h1>
 
-<p class="govuk-body-l">Case officers store a variety of different docs and files in a Horizon folder called Admin. Scope has been simplified to reflect work done in other areas of the service, and it includes: </p>
+      <p class="govuk-body-l">
+        A way to start a case so it’s configured to a particular planning type, procedure, case stage with the option to select document statuses.
+      </p>
 
-<ul class="govuk-list govuk-list--bullet">
-    <li>New 'Case management' accordion element in case detail page</li>
-    <li>Relocation of Case withdrawal and Case history links into Case management</li>
-    <li>Creation of two new pages to add and manage internal correspondence</li>
-</ul>
+      {{ govukButton({
+      	href: "/projects/case-management/v1/case-setup--planning-type",
+        text: "Set up a case view",
+        classes: "govuk-button--secondary"
+      }) }}
 
-{{ govukTable({
-  captionClasses: "govuk-table__caption--m",
-  firstCellIsHeader: true,
-
-  rows: [
-    [
-      {
-        text: "Typical user"
-      },
-      {
-        text: "Case officers"
-      }
-    ],
-    [
-      {
-        text: "User story"
-      },
-      {
-        text: "I can add and manage internal correspondence incoming from across PINS or from Inspectors."
-      }
-    ],
-    [
-      {
-        text: "Jira tickets"
-      },
-      {
-        html: '<a href="https://pins-ds.atlassian.net/browse/BOAT-1265">BOATD-1265: Creation of two new internal correspondence folders</a>, Design story: <a href="https://pins-ds.atlassian.net/browse/BDPAR-129">BOATD-94: Admin folder</a>'
-      }
-    ]
-  ]
-}) }}
-
-<h1 class="govuk-heading-m">Version 1
-  {{govukTag({
-      text: "In progress",
-      classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-    })}}
-</h1>
-
-<a href="v1/case.html" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
-    View prototype
-    <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
-      <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
-    </svg>
-</a>
-
-
-
+    </div>
+  </div>
 
 {% endblock %}

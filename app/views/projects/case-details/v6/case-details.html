@@ -1,0 +1,35 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Case details" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+{% set appealIs = 'Enforcement' %}
+{% set back = false %}
+
+{% set prototypeLinks = [
+  {
+    href: 'case-setup',
+    text: 'Configure the case'
+  },
+  {
+    href: '?debugger=true',
+    text: 'Turn on debugging'
+  } if not data['debugger'],
+  {
+    href: '?debugger=',
+    text: 'Turn off debugging'
+  } if data['debugger']
+] %}
+
+{% block content %}
+
+  {% if data['debugger'] %}
+    <p class="govuk-body-l">
+      Case stage is {{ data['case-stage'] }}<br>
+      Case is {{ data['case'] }}<br>
+      Procedure is {{ data['procedure'] }}<br>
+    </p>
+  {% endif %}
+
+  {% include "/elements/includes/case-details.html" %}
+
+{% endblock %}

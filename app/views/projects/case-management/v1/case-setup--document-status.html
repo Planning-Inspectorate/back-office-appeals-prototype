@@ -190,32 +190,35 @@
 
   {% if data['procedure'] == 'inquiry' %}
 
-    <!-- proof of evidence status -->
-    {{ govukRadios({
-      classes: "govuk-radios",
-      name: "evidence",
-      fieldset: {
-        legend: {
-          text: "Proof of evidence",
-          isPageHeading: false,
-          classes: "govuk-fieldset__legend--l"
-        }
-      },
-      items: [
-        {
-          value: null,
-          text: "Waiting for evidence"
+    {% if (data['case-stage'] | default('') | trim | lower) not in ['', 'new', 'questionnaire', 'statements'] %}
+      <!-- proof of evidence status -->
+      {{ govukRadios({
+        classes: "govuk-radios",
+        name: "evidence",
+        fieldset: {
+          legend: {
+            text: "Proof of evidence",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--l"
+          }
         },
-        {
-          value: "received",
-          text: "Proof of evidence received"
-        },
-        {
-          value: "not-received",
-          text: "No proof of evidence"
-        }
-      ]
-    }) }}
-  {% endif %}
+        items: [
+          {
+            value: null,
+            text: "Waiting for evidence"
+          },
+          {
+            value: "received",
+            text: "Proof of evidence received"
+          },
+          {
+            value: "not-received",
+            text: "No proof of evidence"
+          }
+        ]
+      }) }}
 
+    {% endif %}
+
+  {% endif %}
 {% endblock %}

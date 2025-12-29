@@ -1,0 +1,44 @@
+{% extends "layouts/PINS.html" %}
+
+{% set title = "Check details and add address" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = false %}
+
+{% block questions %}
+
+  <!--	<span class="govuk-caption-l">Appeal 2110166</span> -->
+  <span class="govuk-caption-l">Appeal 2114328 - Add requested site visit address</span>
+  <h1 class="govuk-heading-l">
+    {{ title }}
+  </h1>
+
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          text: "Requested address"
+        },
+        value: {
+          text: "17 Aubrey Road, Bristol, BS3 3EX"
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "name"
+            }
+          ]
+        }
+      }
+    ]
+  }) }}
+
+{% endblock %}
+
+{% block buttons %}
+  {{ govukButton({
+    text: "Add address"
+  }) }}
+{% endblock %}

@@ -1,5 +1,6 @@
-{% if appealIs != 'Enforcement'  %}
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% if appealIs != 'Enforcement'  %}
 
 {{ govukSummaryList({
   card: {
@@ -116,7 +117,7 @@
 {% endif %}
 
 
-{% if appealIs == 'enforcement' %}
+{% if appealIs == 'Enforcement' %}
 
 {{ govukSummaryList({
   card: {

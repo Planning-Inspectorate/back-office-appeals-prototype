@@ -1,0 +1,231 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName = "Check your answers" %}
+
+{% set dummydod = 'In facilisis ex eu pretium blandit. Curabitur lacinia accumsan turpis, et vestibulum magna gravida ac. Suspendisse vel enim tincidunt, tempor quam nec, elementum dui. Donec sed ligula non ligula fringilla iaculis. Integer nec sem vitae lorem pharetra scelerisque pretium eget enim. Nullam venenatis lectus non nisi sodales vestibulum. Ut tempor id mi quis finibus. Fusce cursus scelerisque justo, eu condimentum leo sagittis in. lectus. Fusce cursus scelerisque justo, eu condimentum leo sagittis in.\n\nMaecenas nec dictum ligula, vitae cursus lectus. Maecenas et pulvinar velit, vel ultrices tellus. Donec ullamcorper mi vitae orci convallis, a efficitur eros dapibus. Duis tortor ligula, feugiat vitae maximus in, aliquet eu magna. Suspendisse potenti. Fusce ac est ligula. Fusce consequat massa vitae sapien placerat dapibus. Phasellus et blandit odio. Aliquam id nibh gravida massa mollis lacinia.' %}
+{% set dummystatement = 'Suspendisse vel enim tincidunt, tempor quam nec, elementum dui. Donec sed ligula non ligula fringilla iaculis. Integer nec sem vitae lorem pharetra scelerisque pretium eget enim. Nullam venenatis lectus non nisi sodales vestibulum. Ut tempor id mi quis finibus. Fusce cursus scelerisque justo, eu condimentum leo sagittis in.\n\nMaecenas nec dictum ligula, vitae dapibus sed. Aliquam et lectus porttitor, rutrum nulla in, dignissim est. Aliquam a magna dignissim, molestie purus vitae, ultrices risus. Sed at ultrices elit, varius tincidunt ex. Nam fermentum eros a dui lobortis, non egestas enim blandit. Maecenas massa nibh, rhoncus sit amet magna vitae, ultrices condimentum nunc. Pellentesque fringilla nisi et nunc pulvinar feugiat. Sed a lorem sollicitudin, dapibus lectus et, pharetra est.' %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Appeal 2110166</span>
+      <h1 class="govuk-heading-l">
+        Appellant case
+      </h1>
+
+      {{ govukSummaryList({
+        classes: 'govuk-summary-list--no-border govuk-!-margin-top-6',
+        rows: [
+          {
+            key: {
+              text: "Site address"
+            },
+            value: {
+              text: "Address line 1, Address line 2, Town or city, Postcode"
+            }
+          },
+          {
+            key: {
+              text: "Local planning authority"
+            },
+            value: {
+              text: "Council name"
+            }
+          }
+        ]
+      }) }}
+
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      {{ govukSummaryList({
+        card: { title: { text: "Prepare appeal" } },
+        classes: "govuk-!-margin-bottom-9",
+        rows: [
+          {
+            key: { text: "Who made the application?" },
+            value: { html: data['appellant-check'] or 'A person' },
+            actions: { items: [ { href: "#", text: "Change", visuallyHiddenText: "who made the application" } ] }
+          },
+          {
+            key: { text: "Appellant name" },
+            value: { html: data['appellant-full-name'] or 'Jan Fisher' },
+            actions: { items: [ { href: "#", text: "Change", visuallyHiddenText: "appellant name" } ] }
+          } if data['appellant-check'] == 'A person',
+          {
+            key: { text: "You are one of the appellants" },
+            value: { html: data['agent-check'] or (data['appellant-full-name'] or 'Jan Fisher') },
+            actions: { items: [ { href: "#", text: "Change", visuallyHiddenText: "who you are" } ] }
+          } if data['appellant-check'] == 'A person',
+          {
+            key: { text: "Appellants" },
+            value: { html: 'Jan Fisher<br>Robin Fisher' },
+            actions: { items: [ { href: "#", text: "Change", visuallyHiddenText: "named on the application" } ] }
+          } if data['appellant-check'] == 'Joint application',
+          {
+            key: { text: "You are one of the appellants" },
+            value: { html: data['agent-check-joint-application'] or (data['appellant-full-name'] or 'Jan Fisher') },
+            actions: { items: [ { href: "#", text: "Change", visuallyHiddenText: "who your are" } ] }
+          } if data['appellant-check'] == 'Joint application',
+          {
+            key: { text: "Site address" },
+            value: { html: [
+              data['address-line-1'] or '3 Aubrey Road',
+              data['address-line-2'] or 'Bedminster',
+              data['address-town'] or 'Bristol',
+              data['address-postcode'] or 'BS3 3EX'
+            ] | join('<br>') | safe },
+            actions: { items: [ { href: "#", text: "Change", visuallyHiddenText: "address" } ] }
+          },
+          {
+            key: { text: "Site area" },
+            value: { html: (data['site-area-hectares'] or '2.4 hectares') + '<br>' + (data['site-area-square-metres'] or '24,000 square metres') },
+            actions: { items: [ { href: "#", text: "Change", visuallyHiddenText: "site area" } ] }
+          },
+          {
+            key: { text: "Green belt" },
+            value: { html: (data['green-belt'] or 'No') },
+            actions: { items: [ { href: "#", text: "Change", visuallyHiddenText: "customer reference" } ] }
+          },
+          {
+            key: { text: "Own all the land" },
+            value: { html: 'Yes' },
+            actions: { items: [ { href: "#", text: "Change", visuallyHiddenText: "own all the land" } ] }
+          },
+          {
+            key: { text: "Site part of an agricultural holding" },
+            value: { html: 'No' },
+            actions: { items: [ { href: "#", text: "Change", visuallyHiddenText: "agricultural holding" } ] }
+          },
+          {
+            key: { text: "Site of the appeal is visible from a public road or footpath" },
+            value: { html: (data['site-visibility'] or 'Yes') },
+            actions: { items: [ { href: "#", text: "Change", visuallyHiddenText: "visible from public road" } ] }
+          },
+          {
+            key: { text: "How is visibility restricted" },
+            value: { html: (data['site-visibility__details'] or 'It’s at the back') },
+            actions: { items: [ { href: "#", text: "Change", visuallyHiddenText: "visible from public road" } ] }
+          } if data['site-visibility'] == 'No',
+          {
+            key: { text: "Application reference" },
+            value: { html: data['application-reference'] or 'A person' },
+            actions: { items: [ { href: "#", text: "Change", visuallyHiddenText: "who made the application" } ] }
+          },
+          {
+            key: { text: "Date of application" },
+            value: { html: data['application-date'] or '31 October 2025' },
+            actions: { items: [ { href: "#", text: "Change", visuallyHiddenText: "date of application" } ] }
+          },
+          {
+            key: { text: "Description of development changed" },
+            value: { html: data['application-desc-correct'] or 'Yes' },
+            actions: { items: [ { href: "#", text: "Change", visuallyHiddenText: "date of application" } ] }
+          },
+          {
+            key: { text: "Description of development" },
+            value: { html: (data['description-detail'] or dummydod) | nl2br },
+            actions: { items: [ { href: "#", text: "Change", visuallyHiddenText: "date of application" } ] }
+          },
+          {
+            key: { text: "Appeal procedure" },
+            value: { html: data['procedure'] or 'Written representations' },
+            actions: { items: [ { href: "#", text: "Change", visuallyHiddenText: "appeal procedure" } ] }
+          },
+          {
+            key: { text: "Reason for " + (data['procedure'] or 'procedure') },
+            value: { html: data['procedure-reason'] or 'The appeal has complex factors.' },
+            actions: { items: [ { href: "#", text: "Change", visuallyHiddenText: "reason for procedure" } ] }
+          },
+          {
+            key: { text: "Days for inquiry" },
+            value: { html: (data['procedure-lenth'] or '3') + ' days' },
+            actions: { items: [ { href: "#", text: "Change", visuallyHiddenText: "days for inquiry" } ] }
+          } if data['procedure'] == 'Inquiry',
+          {
+            key: { text: "Witnesses for inquiry" },
+            value: { html: (data['procedure-witnesses'] or '5') + ' witnesses' },
+            actions: { items: [ { href: "#", text: "Change", visuallyHiddenText: "witnesses for inquiry" } ] }
+          } if data['procedure'] == 'Inquiry',
+          {
+            key: { text: "Appeal summary" },
+            value: { html: (data['appeal-summary'] or dummystatement) | nl2br },
+            actions: { items: [ { href: "#", text: "Change", visuallyHiddenText: "witnesses for inquiry" } ] }
+          },
+          {
+            key: { text: "Appeals near the site" },
+            value: { html: 'No' },
+            actions: { items: [ { href: "#", text: "Change", visuallyHiddenText: "witnesses for inquiry" } ] }
+          } if data['other-appeals-radio'] != 'Yes',
+          {
+            key: { text: "Appeals near the site" },
+            value: { html: '0176256<br>0176257' },
+            actions: { items: [ { href: "#", text: "Change", visuallyHiddenText: "witnesses for inquiry" } ] }
+          } if data['other-appeals-radio'] == 'Yes'
+        ]
+      }) }}
+
+      {{ govukSummaryList({
+        card: { title: { text: "Upload documents" } },
+        rows: [
+          {
+            key: { text: "Application" },
+            value: { html: "[Aubrey-Road-Application-2023.pdf](#)" },
+            actions: { items: [ { href: "#", text: "Change", visuallyHiddenText: "application" } ] }
+          },
+          {
+            key: { text: "Proof of agreement to change description of development" },
+            value: { html: "[Aubrey-Road-Description-Change.tiff](#)" },
+            actions: { items: [ { href: "#", text: "Change", visuallyHiddenText: "licence type" } ] }
+          } if data['application-desc-correct'] == 'No',
+          {
+            key: { text: "Decision letter" },
+            value: { html: "[Aubrey-Road-Bristol-Decision-Letter-2024.pdf](#)" },
+            actions: { items: [ { href: "#", text: "Change", visuallyHiddenText: "decision letter" } ] }
+          } if data['non-determined'] != 'Yes',
+          {
+            key: { text: "Planning obligation" },
+            value: { html: "[Aubrey-Road-Planning-Obligation-2023.pdf](#)" },
+            actions: { items: [ { href: "#", text: "Change", visuallyHiddenText: "licence period" } ] }
+          } if data['planning-obligation-status'] != 'Not started yet',
+          {
+            key: { text: "Separate ownership certificate" },
+            value: { html: "[Aubrey-Road-Ownership-2023.pdf](#)" },
+            actions: { items: [ { href: "#", text: "Change", visuallyHiddenText: "ownership certificate" } ] }
+          } if data['ownership-certificate-check'] != 'Yes',
+          {
+            key: { text: "Statement of common ground" },
+            value: { html: "[Aubrey-Road-Statement-of-common-ground-2023.pdf](#)" },
+            actions: { items: [ { href: "#", text: "Change", visuallyHiddenText: "ownership certificate" } ] }
+          } if data['procedure'] != 'Written representations',
+          {
+            key: { text: "Design and access statement" },
+            value: { html: "[Aubrey-Road-Design-Access-2023.pdf](#)" },
+            actions: { items: [ { href: "#", text: "Change", visuallyHiddenText: "design access statement" } ] }
+          } if data['design-access-check'] == 'Yes',
+          {
+            key: { text: "Application plans and drawings" },
+            value: { html: "[Aubrey-Road-Application-site-outline-2023.pdf](#)[Aubrey-Road-Application-block-plan-2023.pdf](#)[Aubrey-Road-Application-location-2023.pdf](#)" },
+            actions: { items: [ { href: "#", text: "Change", visuallyHiddenText: "application plans and drawings" } ] }
+          },
+          {
+            key: { text: "New plans and drawings" },
+            value: { html: "[Aubrey-Road-Application-block-plan-additions-2024.pdf](#)[Aubrey-Road-Application-location-2023.pdf](#)" },
+            actions: { items: [ { href: "#", text: "Change", visuallyHiddenText: "application plans and drawings" } ] }
+          },
+          {
+            key: { text: "Other documents" },
+            value: { html: "None" },
+            actions: { items: [ { href: "#", text: "Change", visuallyHiddenText: "application plans and drawings" } ] }
+          }
+        ]
+      }) }}
+
+    </div>
+  </div>
+{% endblock %}

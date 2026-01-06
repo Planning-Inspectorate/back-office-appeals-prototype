@@ -1,0 +1,20 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+	{% include "includes/header--back-office.html" %}
+{% endblock %}
+
+{% block footer %}
+  {% include "includes/footer.njk" %}
+{% endblock %}
+
+{% block pageScripts %}
+  {{ super() }}
+  <script>
+    var App = {}
+  </script>
+  <script src="/public/javascripts/components/add-another.js"></script>
+  <script src="/public/javascripts/components/filter-toggle-button.js"></script>
+  <script src="/public/javascripts/components/multi-file-upload.js"></script>
+  <script src="/public/javascripts/components/list-filter.js"></script>
+{% endblock %}

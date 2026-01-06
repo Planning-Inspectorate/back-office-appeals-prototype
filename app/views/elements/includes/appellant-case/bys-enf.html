@@ -1,0 +1,134 @@
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "Before you start"
+    }
+  },
+  rows: [
+    {
+      key: {
+        text: "Did you receive an enforcement notice?"
+      },
+      value: {
+        html: "Yes"
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "enforcement notice"
+            }
+          ]
+        }
+    },
+    {
+      key: {
+        text: "Which local planning authority (LPA) do you want to appeal against?"
+      },
+      value: {
+        html: "Barnet Council"
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "lpa"
+            }
+          ]
+        }
+    },
+    {
+      key: {
+        text: "Is your enforcement notice about a listed building?"
+      },
+      value: {
+        html: "No"
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "listed building"
+            }
+          ]
+        }
+    },
+    {
+      key: {
+        text: "What is the issue date on your enforcement notice?"
+      },
+      value: {
+        html: "5 January 2026"
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "issue date"
+            }
+          ]
+        }
+    },
+    {
+      key: {
+        text: "What is the effective date on your enforcement notice?"
+      },
+      value: {
+        html: "6 January 2026"
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "effective date"
+            }
+          ]
+        }
+    },
+    {
+      key: {
+        text: "When did you contact the Planning Inspectorate?"
+      },
+      value: {
+        html: "7 January 2026"
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "contact date"
+            }
+          ]
+        }
+    }
+    ,
+    {
+      key: {
+        text: "Communication with the Planning Inspectorate"
+      },
+      value: {
+        html: '<a href="#">comms.pdf</a>'
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "effective date"
+            }
+          ]
+        }
+    }
+
+  ]
+}) }}
+

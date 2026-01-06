@@ -3,13 +3,13 @@
 {{ govukSummaryList({
   card: {
     title: {
-      text: "3. Grounds of appeal and supporting facts"
+      text: "3. Grounds and facts"
     }
   },
   rows: [
 
       {
-        key: { html: 'Enter the description of the alleged breach	' },
+        key: { html: 'Description of the alleged breach	' },
         value:
           { html: 'The council alleges that I erected a single-storey timber outbuilding in my rear garden without planning permission. The structure is used solely as a small home office and does not contain any sleeping accommodation or plumbing.' },
         actions: {
@@ -20,12 +20,34 @@
       },
 
       {
-        key: { html: 'Choose your grounds of appeal' },
+        key: { html: 'Grounds of appeal' },
         value:
           { html: 'Ground (a)' },
         actions: {
           items: [
             { href: '/../projects/validate-enforcement/change-answers/grounds.html', html: 'Change' }
+          ]
+        }
+      },
+
+      {
+        key: { html: 'Facts for ground (a)' },
+        value:
+          { html: 'These are my facts' },
+        actions: {
+          items: [
+            { href: '#', html: 'Change' }
+          ]
+        }
+      },
+
+      {
+        key: { html: 'Ground (a) supporting documents' },
+        value:
+          { html: '<a href="#">evidence.pdf</a>' },
+        actions: {
+          items: [
+            { href: '#', html: 'Change' }
           ]
         }
       },
@@ -130,9 +152,9 @@
       },
 
       {
-        key: { html: 'Did you appeal the decision?' },
+        key: { html: 'What date was your decision due?' },
         value:
-          { html: 'No' },
+          { html: '6 January 2026' },
         actions: {
           items: [
             { href: '#', html: 'Change' }
@@ -141,20 +163,9 @@
       },
 
       {
-        key: { html: 'Facts for ground (a)' },
+        key: { html: 'When was the appeal decision?' },
         value:
-          { html: 'These are my facts' },
-        actions: {
-          items: [
-            { href: '#', html: 'Change' }
-          ]
-        }
-      },
-
-      {
-        key: { html: 'Do you have any ground (a) supporting documents?' },
-        value:
-          { html: 'No' },
+          { html: '7 January 2026' },
         actions: {
           items: [
             { href: '#', html: 'Change' }

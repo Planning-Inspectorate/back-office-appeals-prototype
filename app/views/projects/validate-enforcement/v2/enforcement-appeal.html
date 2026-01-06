@@ -2,7 +2,7 @@
 
 {% set title = "Appellant case" %}
 {% set pageName = title %}
-{% set appealIs = 'enforcement' %}
+{% set appealIs = 'Enforcement' %}
 
 {% block beforeContent %}
 {{ govukBackLink({
@@ -61,6 +61,10 @@
       <div class="govuk-grid-column-full">
 
       <!--Prepare appeal-->
+
+      <section>
+        {% include "/elements/includes/appellant-case/bys-enf.html" %}
+      </section>
 
       <section>
         {% include "/elements/includes/appellant-case/contact-details.html" %}

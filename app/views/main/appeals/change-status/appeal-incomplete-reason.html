@@ -23,36 +23,64 @@
             text: "Select all that apply."
           },
           items: [
-            {
-              value: "Missing documents",
-              text: "Missing documents"
-            },
-            {
-                value: "Grounds and facts do not match",
-                text: "Grounds and facts do not match"
-            },
-            {
-              value: "Waiting for the appellant to pay the fee",
-              text: "Waiting for the appellant to pay the fee"
-            },
-            {
-              value: "Other",
-              text: "Other",
-              conditional: {
-                html: govukInput({
-                  name: "otherReason",
-                  label: {
-                    text: "Enter a reason"
-                  }
-                })
-              }
-           }
-          ]
+          {
+            value: "Appellant name is not the same on the application form and appeal form",
+            text: "Appellant name is not the same on the application form and appeal form"
+          },
+          {
+              value: "Attachments and/or appendices have not been included to the full statement of case",
+              text: "Attachments and/or appendices have not been included to the full statement of case"
+          },
+          {
+            value: "LPA's decision notice is missing",
+            text: "LPA's decision notice is missing"
+          },
+          {
+            value: "LPA's decision notice is incorrect or incomplete",
+            text: "LPA's decision notice is incorrect or incomplete"
+          },
+          {
+              value: "Documents and/or plans referred in the application form, decision notice and appeal covering letter are missing",
+              text: "Documents and/or plans referred in the application form, decision notice and appeal covering letter are missing"
+          },
+          {
+            value: "Agricultural holding certificate and declaration have not been completed on the appeal form",
+            text: "Agricultural holding certificate and declaration have not been completed on the appeal form"
+          },
+          {
+            value: "The original application form is missing",
+            text: "The original application form is missing"
+          },
+          {
+            value: "The original application form is incomplete",
+            text: "The original application form is incomplete"
+          },
+          {
+            value: "Statement of case and ground of appeal are missing",
+            text: "Statement of case and ground of appeal are missing"
+          },
+          {
+            value: "Draft statement of common ground is missing",
+            text: "Draft statement of common ground is missing"
+          },
+          {
+            value: "Other reason",
+            text: "Other reason",
+            conditional: {
+              html: govukInput({
+                name: "otherReason",
+                label: {
+                  text: "Enter a reason"
+                }
+              })
+            }
+         }
+        ]
         }) }}
 
         {{ govukButton({
           text: "Continue",
-          href: "other-information"
+          href: "due-date"
         }) }}
 
       </form>

@@ -1,6 +1,6 @@
 {% extends "layouts/bo.html" %}
 
-{% set title = 'Check details and mark appeal as incomplete' %}
+{% set title = 'Check your answers before confirming your review' %}
 {% set pageName = title %}
 
 {% block beforeContent %}
@@ -16,12 +16,29 @@
 
     {{ govukSummaryList({
       rows: [
+      {
+        key: {
+          text: "Review outcome"
+        },
+        value: {
+          text: "Incomplete"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Change",
+              visuallyHiddenText: "Item label"
+            }
+          ]
+        }
+      },
         {
           key: {
-            text: "Incomplete reason"
+            text: "Incomplete reasons"
           },
           value: {
-            text: "Waiting for the appellant to pay the fee"
+            text: "The original application form is incomplete: lorem ipsum"
           },
           actions: {
             items: [
@@ -35,10 +52,10 @@
         },
         {
           key: {
-            text: "Other information"
+            text: "Updated due date"
           },
           value: {
-            text: "Additional info"
+            text: "12 January 2026"
           },
           actions: {
             items: [

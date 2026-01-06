@@ -1,0 +1,62 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Why is the appeal invalid?" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+		<span class="govuk-caption-l">Appeal 1223443</span>
+      <form method="post">
+
+        {{ govukCheckboxes({
+          name: 'invalid',
+          values: data['invalid'],
+          fieldset: {
+            legend: {
+              text: "Why is the appeal invalid?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "Select all that apply."
+          },
+          items: [
+            {
+              value: "Appeal has not been submitted on time",
+              text: "Appeal has not been submitted on time"
+            },
+            {
+                value: "Documents have not been submitted on time",
+                text: "Documents have not been submitted on time"
+            },
+            {
+              value: "The appellant does not have the right to appeal",
+              text: "The appellant does not have the right to appeal"
+            },
+            {
+              value: "Other reason",
+              text: "Other reason",
+              conditional: {
+                html: govukInput({
+                  name: "otherReason",
+                  label: {
+                    text: "Enter a reason"
+                  }
+                })
+              }
+           }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue",
+          href: "check-invalid"
+        }) }}
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

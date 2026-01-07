@@ -43,6 +43,16 @@
             {
                 value: "Ground (a) barred",
                 text: "Ground (a) barred"
+            },
+            {
+                value: "Other reason",
+                text: "Other reason",
+                conditional: {
+                  html: govukInput({
+                    name: "reason-text-other",
+                    label: { text: "Enter a reason" }
+                  })
+                }
             }
           ]
         }) }}

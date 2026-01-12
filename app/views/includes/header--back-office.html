@@ -1,3 +1,5 @@
+<!-- show environment banners -->
+
 {% if data['environment-banner'] %}
   {% if data['test-banner'] %}
     <div class="environment-banner environment-banner--test">
@@ -9,8 +11,14 @@
   </div>
 {% endif %}
 
-<!-- Custom styling -->
+  <!-- custom styling -->
+  <!-- we need to move these to the application SCSS -->
+
   <style>
+
+    /**************************************/
+    /*   styling for the service banner   */
+    /**************************************/
 
    .pins-header {
       min-height: 60px;
@@ -28,13 +36,20 @@
       }
     }
 
-    /* Center the content to 960px like your image version */
+    /* center the content to 960px like your image version */
+
     .pins-header__inner {
       max-width: 960px;
       margin: 0 auto;
     }
 
+    .planning-inspectorate-service-navigation--width {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
     /* Flex container for crest + text */
+
     .planning-inspectorate-logotype {
       display: flex;
       align-items: center;   /* vertical alignment */
@@ -46,7 +61,8 @@
       background: #f3f2f1;
     }
 
-    /* Crest color and box */
+    /* crest color */
+
     .pins-crest {
       display: inline-block;
       color: #000;           /* SVG uses currentColor via fill */
@@ -78,8 +94,66 @@
       .planning-inspectorate-logotype { border-left-color: #000; }
     }
 
+    /******************************************/
+    /*   styling for the service navigation   */
+    /******************************************/
 
-    /* styling for the service navigation */
+    .planning-inspectorate-service-navigation {
+      background: #f3f2f1;
+      font-family: Helvetica Neue, Arial, sans-serif;
+      line-height: 1.5rem;
+      font-size: 1.18rem;
+      padding: 1rem 2rem;
+    }
+
+    .planning-inspectorate-service-navigation--name {
+      font-weight: 600;
+      display: inline;
+      margin-right: 1.5rem;
+    }
+
+    .planning-inspectorate-service-navigation--list {
+      display: inline-block;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .planning-inspectorate-service-navigation--item {
+      display: inline-block;
+      margin-left: 0;
+      margin-left: 3vw;
+      <!-- @media(min-width: 40.0625em) {
+        margin-left: 2rem;
+      } -->
+    }
+
+    .planning-inspectorate-service-navigation--item:first-child {
+      margin-left: 0;
+    }
+
+    .planning-inspectorate-service-navigation--list
+    .planning-inspectorate-service-navigation--item
+    .planning-inspectorate-service-navigation--link {
+      color: black;
+      text-decoration-thickness: max(3px, .1875rem, .12em);
+    }
+
+    .planning-inspectorate-service-navigation--list
+    .planning-inspectorate-service-navigation--item
+    .planning-inspectorate-service-navigation--link:hover {
+      color: black;
+      text-decoration-thickness: max(3px, .1875rem, .12em);
+    }
+
+    .planning-inspectorate-service-navigation--link {
+      text-decoration: none;
+    }
+
+    .planning-inspectorate-service-navigation--link:hover {
+      text-decoration: underline;
+    }
+
 
     .govuk-service-navigation {
       font-family: Arial, sans-serif;
@@ -157,6 +231,31 @@
       <h1 class="department-name">Planning Inspectorate</h1>
     </header>
   </div>
+
+  <nav class="planning-inspectorate-service-navigation" aria-label="Service navigation">
+    <div class="planning-inspectorate-service-navigation--width">
+      <div class="planning-inspectorate-service-navigation--name">
+        Manage appeals
+      </div>
+      <ul class="planning-inspectorate-service-navigation--list">
+        <li class="planning-inspectorate-service-navigation--item">
+          <a href="#" class="planning-inspectorate-service-navigation--link">
+            Assigned to me
+          </a>
+        </li>
+        <li class="planning-inspectorate-service-navigation--item">
+          <a href="#" class="planning-inspectorate-service-navigation--link">
+            All appeals
+          </a>
+        </li>
+        <li class="planning-inspectorate-service-navigation--item">
+          <a href="#" class="planning-inspectorate-service-navigation--link">
+            Sign out
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
   <!-- <nav class="govuk-service-navigation" aria-label="Service navigation">
     <div class="govuk-service-navigation__service-name">Manage appeals</div>

@@ -31,6 +31,10 @@
   {% endif %}
 {% endset %}
 
+{# Linked Appeals Answer #}
+{% set linkedAppeals = data['linkedAppeals'] %}
+{% set linkedAnswer = linkedAppeals or "No" %}
+
       {{ govukSummaryList({
         rows: [
         {
@@ -69,6 +73,15 @@
                   text: "Change",
                   visuallyHiddenText: "legal interest information"
                 }
+              ]
+            }
+          },
+          {
+            key: { text: "Are there any other live appeals against the enforcement notice?" },
+            value: { text: linkedAnswer },
+            actions: {
+              items: [
+                { href: "linked-appeals-check", text: "Change", visuallyHiddenText: "linked appeals" }
               ]
             }
           }

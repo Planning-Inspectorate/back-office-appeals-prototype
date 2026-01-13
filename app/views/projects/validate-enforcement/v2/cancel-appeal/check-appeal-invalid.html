@@ -35,6 +35,10 @@
       {% endif %}
     {% endset %}
 
+    {# Linked Appeals Answer #}
+{% set linkedAppeals = data['linkedAppeals'] %}
+{% set linkedAnswer = linkedAppeals or "No" %}
+
     {# ------------------------------------------------ #}
     {# SUMMARY LIST                                      #}
     {# ------------------------------------------------ #}
@@ -64,6 +68,15 @@
                 text: "Change",
                 visuallyHiddenText: "invalid reason"
               }
+            ]
+          }
+        },
+        {
+          key: { text: "Are there any other live appeals against the enforcement notice?" },
+          value: { text: linkedAnswer },
+          actions: {
+            items: [
+              { href: "linked-appeals-check", text: "Change", visuallyHiddenText: "linked appeals" }
             ]
           }
         }

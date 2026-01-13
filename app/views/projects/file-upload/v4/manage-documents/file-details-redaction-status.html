@@ -1,0 +1,66 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Appellant Case" %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Appeal 12345 - Manage documents</span>
+    <h1 class="govuk-heading-l">Redaction status for appellant costs withdrawal</h1>
+
+	    <form action="/projects/file-upload/v4/manage-documents/file-details-redaction-status" method="post" class="govuk-!-margin-top-9" novalidate>
+
+	    <!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
+
+		<h1 class="govuk-heading-m">{% if data.currentFile %}{{ data.currentFile.name }}{% else %}Document-2.pdf{% endif %}</h1>
+		<p class="govuk-body govuk-!-font-size-16 govuk-!-margin-bottom-6">{{ data.currentFile.name }}</p>
+		
+
+	{{ govukRadios({
+	  name: "redaction",
+	  fieldset: {
+	   
+	  },
+	  items: [
+	    {
+	      value: "Redacted",
+	      text: "Redacted",
+	      checked: data['redaction'] == "Redacted"
+	    },
+	    {
+	      value: "Unredacted",
+	      text: "Unredacted",
+	      checked: data['redaction'] == "Unredacted"
+	    },
+	    {
+		  divider: "or"
+		},
+	    {
+	      value: "No redaction required",
+	      text: "No redaction required",
+	      checked: data['redaction'] == "No redaction required"
+	    }
+	  ]
+	}) }}
+
+
+	   {{ govukButton({
+        text: "Continue"
+      }) }}
+
+	  </form>
+
+
+  </div>
+</div>
+
+{% endblock %}

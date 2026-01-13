@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gov.UK Design Research Tool - Advanced Analytics</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* --- GOV.UK CORE STYLES --- */
+        body {
+            font-family: "GDS Transport", arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            margin: 0; background-color: #f3f2f1; color: #0b0c0c;
+            display: flex; flex-direction: column; height: 100vh;
+        }
+
+        .container { display: flex; flex: 1; overflow: hidden; }
+        .sidebar { width: 380px; background: #fff; border-right: 1px solid #b1b4b6; padding: 20px; overflow-y: auto; }
+        .preview-area { flex: 1; padding: 40px; background: #fff; overflow-y: auto; border-left: 1px solid #b1b4b6; }
+        
+        /* GDS Typography Scale */
+        .govuk-caption-l { font-size: 24px; color: #505a5f; display: block; margin-bottom: 5px; }
+        .govuk-heading-l { font-size: 36px; line-height: 1.1; font-weight: 700; margin: 0 0 20px 0; }
+        .govuk-heading-m { font-size: 24px; line-height: 1.25; font-weight: 700; margin: 25px 0 15px 0; }
+        .govuk-body { font-size: 19px; line-height: 1.5; margin: 0 0 15px 0; }
+        .govuk-hint { font-size: 19px; line-height: 1.5; color: #505a5f; margin: 0 0 15px 0; display: block; }
+        .govuk-inset-text { border-left: 10px solid #b1b4b6; padding: 15px; margin: 20px 0; background: #f3f2f1; font-size: 19px; }
+
+        /* Builder Components */
+        .content-block-item { background: #f8f8f8; padding: 15px; border: 1px solid #bfc1c3; margin-bottom: 20px; position: relative; }
+        .pos-badge { position: absolute; top: -10px; left: -10px; background: #0b0c0c; color: #fff; padding: 2px 10px; font-size: 12px; font-weight: bold; border-radius: 20px; }
+        .remove-btn { position: absolute; top: 10px; right: 10px; color: #d4351c; cursor: pointer; border:none; background:none; font-weight: bold; }
+        
+        .govuk-button { background-color: #00703c; color: #fff; border: none; box-shadow: 0 2px 0 #002d18; padding: 10px 20px; cursor: pointer; font-weight: 700; font-size: 16px; }
+        .govuk-button--secondary { background-color: #f3f2f1; color: #0b0c0c; box-shadow: 0 2px 0 #929191; }
+        .govuk-input, .govuk-select, .govuk-textarea { width: 100%; padding: 8px; border: 2px solid #0b0c0c; margin-bottom: 10px; box-sizing: border-box; font-size: 16px; }
+
+        /* Dashboard & Table */
+        .dashboard-wrapper { background: #f3f2f1; border-top: 4px solid #0b0c0c; padding: 30px; }
+        .chart-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; margin-bottom: 30px; }
+        .kpi-card { background: white; padding: 20px; border: 1px solid #b1b4b6; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        
+        table { width: 100%; border-collapse: collapse; background: white; }
+        th { text-align: left; padding: 12px; border-bottom: 3px solid #0b0c0c; background: #f8f8f8; }
+        td { padding: 15px; border-bottom: 1px solid #b1b4b6; vertical-align: top; }
+
+        /* Mini Screenshot Mockup */
+        .mini-preview-container { 
+            width: 180px; border: 1px solid #bfc1c3; padding: 10px; background: white; 
+            max-height: 120px; overflow: hidden; position: relative; zoom: 0.6;
+        }
+
+        /* Modal */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; align-items: center; justify-content: center; z-index: 2000; }
+        .modal-content { background: white; padding: 30px; width: 450px; border-top: 10px solid #1d70b8; }
+    </style>
+</head>
+<body>
+
+<div id="submitModal" class="modal-overlay">
+    <div class="modal-content">
+        <h2 class="govuk-heading-m">Submit Your Design</h2>
+        <label class="govuk-body">Name</label>
+        <input type="text" id="voterName" class="govuk-input" placeholder="e.g. Service Designer">
+        <label class="govuk-body">Rationale</label>
+        <textarea id="voterRationale" class="govuk-textarea" rows="3" placeholder="Why is this layout effective?"></textarea>
+        <button class="govuk-button" onclick="confirmSubmit()">Save and Record Vote</button>
+        <button class="govuk-button govuk-button--secondary" onclick="closeModal()">Cancel</button>
+    </div>
+</div>
+
+<div class="container">
+    <div class="sidebar">
+        <h2 class="govuk-heading-m">Layout Builder</h2>
+        <div id="blocksContainer"></div>
+        <button class="govuk-button govuk-button--secondary" style="width:100%" onclick="addBlock()">+ Add New Block</button>
+        <hr style="margin: 20px 0; border: 0; border-top: 1px solid #bfc1c3;">
+        <button class="govuk-button" style="width:100%" onclick="openModal()">Cast Vote</button>
+    </div>
+    <div class="preview-area"><div id="livePreview"></div></div>
+</div>
+
+<div class="dashboard-wrapper">
+    <div class="chart-grid">
+        <div class="kpi-card">
+            <h3 class="govuk-heading-s">Common Styles per Block (Grouped)</h3>
+            <div style="height: 350px;"><canvas id="groupedChart"></canvas></div>
+        </div>
+        <div class="kpi-card">
+            <h3 class="govuk-heading-s">Frequent Words per Block</h3>
+            <div id="wordAnalysis" style="font-size: 14px;"></div>
+        </div>
+    </div>
+
+    <div class="kpi-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+            <h2 class="govuk-heading-m">Full Audit History</h2>
+            <button class="govuk-button govuk-button--secondary" onclick="downloadCSV()">Download Dataset (CSV)</button>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 15%;">Contributor</th>
+                    <th style="width: 20%;">Visual Snapshot</th>
+                    <th style="width: 40%;">Block Content Details</th>
+                    <th style="width: 25%;">Rationales</th>
+                </tr>
+            </thead>
+            <tbody id="auditLog"></tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    let contentBlocks = [
+        { id: 1, text: "Application Step 1", type: "govuk-caption-l" },
+        { id: 2, text: "Check your eligibility", type: "govuk-heading-l" }
+    ];
+    let submissions = JSON.parse(localStorage.getItem('gov_design_votes_v9')) || [];
+    let groupedChart = null;
+
+    const gdsColors = {
+        'Caption': '#505a5f',
+        'Heading L': '#1d70b8',
+        'Heading M': '#00703c',
+        'Body': '#0b0c0c',
+        'Hint': '#b1b4b6',
+        'Inset': '#f47738'
+    };
+
+    function addBlock() {
+        contentBlocks.push({ id: Date.now(), text: "Enter description here...", type: "govuk-body" });
+        renderSidebar(); updatePreview();
+    }
+
+    function removeBlock(id) {
+        contentBlocks = contentBlocks.filter(b => b.id !== id);
+        renderSidebar(); updatePreview();
+    }
+
+    function updateBlock(id, key, value) {
+        const block = contentBlocks.find(b => b.id === id);
+        block[key] = value;
+        updatePreview();
+    }
+
+    function renderSidebar() {
+        const container = document.getElementById('blocksContainer');
+        container.innerHTML = '';
+        contentBlocks.forEach((block, index) => {
+            const div = document.createElement('div');
+            div.className = 'content-block-item';
+            div.innerHTML = `
+                <div class="pos-badge">Block ${index + 1}</div>
+                <button class="remove-btn" onclick="removeBlock(${block.id})">✕</button>
+                <select class="govuk-select" onchange="updateBlock(${block.id}, 'type', this.value)">
+                    <option value="govuk-caption-l" ${block.type==='govuk-caption-l'?'selected':''}>Caption</option>
+                    <option value="govuk-heading-l" ${block.type==='govuk-heading-l'?'selected':''}>Heading L</option>
+                    <option value="govuk-heading-m" ${block.type==='govuk-heading-m'?'selected':''}>Heading M</option>
+                    <option value="govuk-body" ${block.type==='govuk-body'?'selected':''}>Body Text</option>
+                    <option value="govuk-hint" ${block.type==='govuk-hint'?'selected':''}>Hint Text</option>
+                    <option value="govuk-inset-text" ${block.type==='govuk-inset-text'?'selected':''}>Inset Text</option>
+                </select>
+                <textarea class="govuk-textarea" oninput="updateBlock(${block.id}, 'text', this.value)">${block.text}</textarea>
+            `;
+            container.appendChild(div);
+        });
+    }
+
+    function generateHTML(blocks, isMini = false) {
+        return blocks.map(b => `<div class="${b.type}" style="${isMini ? 'font-size:10px !important; margin-bottom:4px !important;' : ''}">${b.text}</div>`).join('');
+    }
+
+    function updatePreview() {
+        document.getElementById('livePreview').innerHTML = generateHTML(contentBlocks);
+    }
+
+    function openModal() { document.getElementById('submitModal').style.display = 'flex'; }
+    function closeModal() { document.getElementById('submitModal').style.display = 'none'; }
+
+    function confirmSubmit() {
+        const name = document.getElementById('voterName').value;
+        const rationale = document.getElementById('voterRationale').value;
+        if(!name) return alert("Please enter your name.");
+
+        submissions.push({
+            name, rationale,
+            timestamp: new Date().toLocaleTimeString(),
+            elements: JSON.parse(JSON.stringify(contentBlocks))
+        });
+
+        localStorage.setItem('gov_design_votes_v9', JSON.stringify(submissions));
+        closeModal(); refreshDashboard();
+    }
+
+    function refreshDashboard() {
+        const styleMap = { 'govuk-caption-l': 'Caption', 'govuk-heading-l': 'Heading L', 'govuk-heading-m': 'Heading M', 'govuk-body': 'Body', 'govuk-hint': 'Hint', 'govuk-inset-text': 'Inset' };
+        const maxBlocks = Math.max(...submissions.map(s => s.elements.length), 3);
+        const labels = Array.from({length: maxBlocks}, (_, i) => `Block ${i+1}`);
+
+        // Update Grouped Bar Chart
+        groupedChart.data.labels = labels;
+        groupedChart.data.datasets = Object.values(styleMap).map(styleName => ({
+            label: styleName,
+            backgroundColor: gdsColors[styleName],
+            data: labels.map((_, i) => submissions.filter(s => s.elements[i] && styleMap[s.elements[i].type] === styleName).length)
+        }));
+        groupedChart.update();
+
+        // Update Keywords
+        const wordDiv = document.getElementById('wordAnalysis');
+        wordDiv.innerHTML = labels.map((label, i) => {
+            const words = {};
+            submissions.forEach(s => {
+                if (s.elements[i]) {
+                    s.elements[i].text.toLowerCase().split(/\W+/).forEach(w => {
+                        if (w.length > 3) words[w] = (words[w] || 0) + 1;
+                    });
+                }
+            });
+            const top = Object.entries(words).sort((a,b) => b[1]-a[1]).slice(0, 2);
+            return top.length ? `<div style="margin-bottom:8px;"><b>${label}:</b> ${top.map(t => `<span style="background:#1d70b8; color:white; padding:1px 5px; border-radius:3px; margin-right:4px;">${t[0]}</span>`).join('')}</div>` : '';
+        }).join('');
+
+        // Update Table with Visuals
+        document.getElementById('auditLog').innerHTML = submissions.map(s => `
+            <tr>
+                <td><strong>${s.name}</strong><br><small>${s.timestamp}</small></td>
+                <td><div class="mini-preview-container">${generateHTML(s.elements, true)}</div></td>
+                <td>${s.elements.map((el, i) => `<div style="margin-bottom:5px;"><b>B${i+1} (${styleMap[el.type]}):</b> ${el.text}</div>`).join('')}</td>
+                <td style="font-style:italic; color:#505a5f;">"${s.rationale}"</td>
+            </tr>
+        `).join('');
+    }
+
+    function downloadCSV() {
+        let csv = "Contributor,Rationale,Position,Style,Content\n";
+        submissions.forEach(s => s.elements.forEach((el, i) => {
+            csv += `"${s.name}","${s.rationale}","${i+1}","${el.type}","${el.text.replace(/"/g, '""')}"\n`;
+        }));
+        const blob = new Blob([csv], { type: 'text/csv' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'design_research_data.csv'; a.click();
+    }
+
+    window.onload = () => {
+        groupedChart = new Chart(document.getElementById('groupedChart').getContext('2d'), {
+            type: 'bar',
+            data: { labels: [], datasets: [] },
+            options: { 
+                responsive: true, 
+                maintainAspectRatio: false,
+                scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } }
+            }
+        });
+        renderSidebar(); updatePreview(); refreshDashboard();
+    };
+</script>
+</body>
+</html>

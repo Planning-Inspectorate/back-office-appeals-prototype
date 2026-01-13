@@ -11,7 +11,7 @@
 
 {% block content %}
 
-<div class="govuk-grid-row">
+<div class="govuk-grid-row"> 
   <div class="govuk-grid-column-two-thirds">
 
     <span class="govuk-caption-l">
@@ -23,6 +23,74 @@
     
     
     <section class="govuk-!-margin-bottom-6">
+
+  
+	<h2 class="govuk-heading-m">Version 4
+
+		  {{govukTag({
+          text: "In progress",
+          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+        })}}
+		<!-- Status tag options
+
+		{{govukTag({
+          text: "New",
+          classes: "govuk-!-margin-left-2 govuk-tag--green"
+        })}}
+
+        {{govukTag({
+          text: "In progress",
+          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+        })}}
+
+        {{govukTag({
+          text: "Ready for review",
+          classes: "govuk-!-margin-left-2 govuk-tag--blue"
+        })}}
+
+        {{govukTag({
+          text: "Ready for research",
+          classes: "govuk-!-margin-left-2 govuk-tag--green"
+        })}}
+
+        {{govukTag({
+          text: "Researched",
+          classes: " govuk-!-margin-left-2 govuk-tag--green"
+        })}}
+
+        -->
+
+	</h2>
+
+
+	{{ govukButton({
+	  text: "View prototype",
+	  href: "v4/manage-documents/multiple-document-upload.html",
+	  isStartButton: true
+	}) }}
+
+
+	<p class="govuk-body">Changes:</p>
+
+	<ul class="govuk-list govuk-list--bullet">
+        <li>
+         Added routes to the V4 folder to get the multiple document upload working
+        </li>
+        <li>
+        	Split the date received and redaction status into separate steps
+           <li>
+          Added place marker to indicate which file's details you are editing e.g. 'Add document details (1 of 3)'
+        </li>
+        </li>
+      </ul>
+
+
+    </section>
+    
+    
+    <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+	
+    
 
 	<h2 class="govuk-heading-m">Version 3
 

@@ -1,0 +1,87 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Appellant Case" %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Appeal 12345 - Manage documents</span>
+
+
+    <form class="form" action="/projects/file-upload/v4/manage-documents/file-details-date-received" method="post">
+
+      {% if data.dateErrorList and data.dateErrorList.length > 0 %}
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: data.dateErrorList
+        }) }}
+      {% endif %}
+
+      <div class="govuk-form-group{% if data.dateErrors and data.dateErrors.length > 0 %} govuk-form-group--error{% endif %}">
+        <fieldset class="govuk-fieldset" role="group" aria-describedby="document-name{% if data.dateErrors and data.dateErrors.length > 0 %} document-date-error{% endif %}">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">Date file received</h1>
+			{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+
+          </legend>
+		  <p class="govuk-body">Screenshot 2025-12-23 at 15.21.16.png</p>
+          <div id="document-name" class="govuk-hint">
+            For example, {{ data.exampleDate.day }} {{ data.exampleDate.month }} {{ data.exampleDate.year }}
+          </div>
+          {% if data.dateErrors and data.dateErrors.length > 0 %}
+            <p id="document-date-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span>
+              {% for error in data.dateErrors %}
+                {{ error.message }}{% if not loop.last %}, {% endif %}
+              {% endfor %}
+            </p>
+          {% endif %}
+          <div class="govuk-date-input" id="document-date">
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="document-date-day">
+                  Day
+                </label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2{% if data.dateErrors and data.dateErrors | selectattr('field', 'equalto', 'day') | list | length > 0 %} govuk-input--error{% endif %}" id="document-date-day" name="document-date-day" type="text" inputmode="numeric" value="{{ data['document-date-day'] }}">
+              </div>
+            </div>
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="document-date-month">
+                  Month
+                </label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2{% if data.dateErrors and data.dateErrors | selectattr('field', 'equalto', 'month') | list | length > 0 %} govuk-input--error{% endif %}" id="document-date-month" name="document-date-month" type="text" inputmode="numeric" value="{{ data['document-date-month'] }}">
+              </div>
+            </div>
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="document-date-year">
+                  Year
+                </label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-4{% if data.dateErrors and data.dateErrors | selectattr('field', 'equalto', 'year') | list | length > 0 %} govuk-input--error{% endif %}" id="document-date-year" name="document-date-year" type="text" inputmode="numeric" value="{{ data['document-date-year'] }}">
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      {% from "govuk/components/button/macro.njk" import govukButton %}
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

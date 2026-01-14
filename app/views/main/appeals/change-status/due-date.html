@@ -1,6 +1,6 @@
 {% extends "layouts/PINS.html" %}
 
-{% set pageName="Valid date" %}
+{% set pageName="Update appeal due date" %}
 
 {% block content %}
 
@@ -8,22 +8,18 @@
     <div class="govuk-grid-column-two-thirds">
 
 
-		<span class="govuk-caption-xl">Appeal 1223443</span>
+		<span class="govuk-caption-l">Appeal 1223443</span>
 
 
        <form method="post" validate>
-
-        <h1 class="govuk-heading-l">{{pageName}}</h1>
-
-        <p class="govuk-body">This is the date all case documentation was recevied and the appeal was valid.</p>
 
        {{ govukDateInput({
         id: "date",
         fieldset: {
           legend: {
-            text: "Enter valid date for case",
+            text: pageName,
             isPageHeading: true,
-            classes: "govuk-fieldset__legend--m"
+            classes: "govuk-fieldset__legend--l"
           }
         },
         hint: {
@@ -51,13 +47,9 @@
         ]
        }) }}
 
-       {{ govukInsetText({
-        text: "Confirming will inform the relevant parties of the valid date"
-       }) }}
-
         {{ govukButton({
-          text: "Confirm",
-          href: "case-details"
+          text: "Continue",
+          href: "check-incomplete"
         }) }}
 
 	  </form>

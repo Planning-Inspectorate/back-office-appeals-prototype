@@ -1,6 +1,9 @@
 {% set casenotes %}
 
+
   <form method="post" class="govuk-!-margin-bottom-6">
+
+    {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
 
     {{ govukTextarea({
       name: "casenotedetail",

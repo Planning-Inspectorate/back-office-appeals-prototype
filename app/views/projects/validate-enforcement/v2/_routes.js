@@ -31,11 +31,19 @@ router.post('/cancel-appeal/cancel-reason', function (req, res) {
       res.redirect('legal-interest-information')
     } else {
       // fallback or default route
-      res.redirect('check-appeal-invalid')
+      res.redirect('linked-appeals1')
     }
   })
 
+  router.post('/cancel-appeal/linked-appeals1', function (req, res) {
+    res.redirect('check-appeal-invalid')
+  })
+
   router.post('/cancel-appeal/legal-interest-information', function (req, res) {
+    res.redirect('linked-appeals2')
+  })
+
+  router.post('/cancel-appeal/linked-appeals2', function (req, res) {
     res.redirect('check-legal-interest')
   })
 

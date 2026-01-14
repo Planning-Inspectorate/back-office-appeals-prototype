@@ -1,8 +1,8 @@
-{% extends "layouts/bo.html" %}
+{% extends "layouts/manage-appeals.html" %}
 
 {% set title = "Appellant case" %}
 {% set pageName = title %}
-{% set appealIs = 'Enforcement' %}
+{% set appealIs = 'enforcement' %}
 
 {% block beforeContent %}
 {{ govukBackLink({
@@ -15,48 +15,21 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      {{ govukNotificationBanner({
+        type: "success",
+        text: "Appeal marked as invalid"
+      }) if flash.length}}
+
       <span class="govuk-caption-xl">
         Appeal 00000005
       </span>
-      <h1 class="govuk-heading-xl" style="margin-bottom:20px;">{{title}}</h1>
+      <h1 class="govuk-heading-xl">{{title}}</h1>
+
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 
       {{ govukSummaryList({
         classes: "govuk-summary-list--no-border",
         rows: [
-        {
-          key: {
-            text: "Validation status"
-          },
-          value: {
-            html: "Invalid"
-          },
-          actions: {
-            items: [
-              {
-                href: "change-status?reviewDecision=Invalid",
-                text: "Change",
-                visuallyHiddenText: "name"
-              }
-            ]
-          }
-        },
-        {
-          key: {
-            text: "Why is the appeal invalid?"
-          },
-          value: {
-            html: "The appellant does not have the right to appeal"
-          },
-          actions: {
-            items: [
-              {
-                href: "appeal-invalid-reason",
-                text: "Change",
-                visuallyHiddenText: "name"
-              }
-            ]
-          }
-        },
           {
             key: {
               text: "Site address"
@@ -108,6 +81,39 @@
       <section>
         {% include "/elements/includes/appellant-case/uploaded-documents.html" %}
       </section>
+
+      <form method="post">
+
+      {{ govukRadios({
+        name: "reviewDecision",
+        fieldset: {
+          legend: {
+            text: "Review decision",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+          {
+            value: "Valid",
+            text: "Valid"
+          },
+          {
+            value: "Invalid",
+            text: "Invalid"
+          },
+          {
+            value: "Incomplete",
+            text: "Incomplete"
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+      </form>
 
     </div>
   </div>

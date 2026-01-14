@@ -88,6 +88,16 @@
                 label: { text: "Enter a reason" }
               })
             }
+          },
+          {
+            value: "Other reason",
+            text: "Other reason",
+            conditional: {
+              html: govukInput({
+                name: "reason-text-other",
+                label: { text: "Enter a reason" }
+              })
+            }
           }
         ]
       }) }}

@@ -26,31 +26,28 @@
             {
               value: "Appeal not submitted on time",
               text: "Appeal not submitted on time"
-              
             },
             {
               value: "Documents not submitted on time",
               text: "Documents not submitted on time"
             },
             {
+              value: "Appellant does not have a legal interest in the land",
+              text: "Appellant does not have a legal interest in the land"
+            },
+            {
               value: "Appellant does not have the right to appeal",
               text: "Appellant does not have the right to appeal"
-            },
-            {
-                value: "Appellant does not have a legal interest in the land",
-                text: "Appellant does not have a legal interest in the land"
-            },
-            {
-                value: "Ground (a) barred",
-                text: "Ground (a) barred"
             },
             {
                 value: "Other reason",
                 text: "Other reason",
                 conditional: {
                   html: govukInput({
-                    name: "reason-text-other",
-                    label: { text: "Enter a reason" }
+                    name: "reasonA",
+                    label: {
+                      text: "Enter a reason"
+                    }
                   })
                 }
             }

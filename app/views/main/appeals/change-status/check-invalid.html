@@ -1,0 +1,130 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = 'Check your answers before confirming your review' %}
+{% set pageName = title %}
+
+{% block beforeContent %}
+  {{ govukBackLink({ text: "Back", href: 'javascript:history.back()' }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+
+    <span class="govuk-caption-l">Appeal 1223443</span>
+    <h1 class="govuk-heading-l">{{ title }}</h1>
+
+    {{ govukSummaryList({
+      rows: [
+      {
+        key: {
+          text: "Review outcome"
+        },
+        value: {
+          text: "Invalid"
+        },
+        actions: {
+          items: [
+            {
+              href: "Item URL",
+              text: "Change",
+              visuallyHiddenText: "Item label"
+            }
+          ]
+        }
+      },
+        {
+          key: {
+            text: "Invalid reasons"
+          },
+          value: {
+            text: "Waiting for the appellant to pay the fee"
+          },
+          actions: {
+            items: [
+              {
+                href: "Item URL",
+                text: "Change",
+                visuallyHiddenText: "Item label"
+              }
+            ]
+          }
+        }
+      ]
+    }) }}
+
+    {# ---------------- EMAIL PREVIEW ---------------- #}
+
+    {% set appellantEmail %}
+      <div class="app-email-preview">
+        <div class="app-email-preview__subject">
+          Subject: We need more information: 1223443
+        </div>
+
+        <div class="app-email-preview__body">
+          <p class="govuk-body">We have received your appeal and we need more information.</p>
+
+          <h2 class="govuk-heading-m">Appeal details</h2>
+          <div class="govuk-inset-text">
+            Appeal reference number: 1223443<br>
+            Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
+            Enforcement notice reference: LPA12345678
+          </div>
+
+          <h2 class="govuk-heading-m">Missing information</h2>
+          
+          <h3 class="govuk-heading-s">Missing documents</h3>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>
+              Grounds of appeal supporting documents: more info goes here
+            </li>
+            <li>
+              Planning obligation: more info goes here
+            </li>
+          </ul>
+
+          <h3 class="govuk-heading-s">Grounds and facts do not match</h3>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>
+              ground (b): reason goes here
+            </li>
+            <li>
+              ground (b): reason goes here
+            </li>
+          </ul>
+
+          <h3 class="govuk-heading-s">No application or fee</h3>
+
+          <p class="govuk-body">You need to submit an application to Barnet Council and pay the correct fee, then email your receipt to <a href="mailto:caseofficers@planninginspectorate.gov.uk">caseofficers@planninginspectorate.gov.uk</a>.</p>
+          
+          <h3 class="govuk-heading-s">Other</h3>
+          <p class="govuk-body">Other reasons here</p>
+
+          <h2 class="govuk-heading-m">Other information</h2>
+          <p class="govuk-body">Other info goes here</p>
+
+          <h2 class="govuk-heading-m">What happens next</h2>
+          <p class="govuk-body">You need to send the missing information by 30 November 2025.</p>
+
+          <p class="govuk-body">Planning Inspectorate</p>
+          <p class="govuk-body">
+            <a href="mailto:caseofficers@planninginspectorate.gov.uk">caseofficers@planninginspectorate.gov.uk</a>
+          </p>
+        </div>
+      </div>
+    {% endset %}
+
+    {{ govukDetails({ summaryText: "Preview email to appellant", html: appellantEmail }) }}
+
+    <p class="govuk-body">
+      We will mark the appeal as incomplete and send an email to the relevant parties.
+    </p>
+
+    <form method="post">
+      {{ govukButton({ text: "Mark appeal as invalid" }) }}
+    </form>
+
+  </div>
+</div>
+{% endblock %}
+

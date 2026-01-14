@@ -1,6 +1,6 @@
 {% extends "layouts/PINS.html" %}
 
-{% set pageName="Why is the appeal incomplete?" %}
+{% set pageName="Why is the appeal invalid?" %}
 
 {% block content %}
 
@@ -10,11 +10,11 @@
       <form method="post">
 
         {{ govukCheckboxes({
-          name: 'incomplete',
-          values: data['incomplete'],
+          name: 'invalid',
+          values: data['invalid'],
           fieldset: {
             legend: {
-              text: "Why is the appeal incomplete?",
+              text: "Why is the appeal invalid?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
@@ -24,16 +24,16 @@
           },
           items: [
             {
-              value: "Missing documents",
-              text: "Missing documents"
+              value: "Appeal has not been submitted on time",
+              text: "Appeal has not been submitted on time"
             },
             {
-                value: "Grounds and facts do not match",
-                text: "Grounds and facts do not match"
+                value: "Documents have not been submitted on time",
+                text: "Documents have not been submitted on time"
             },
             {
-              value: "Waiting for the appellant to pay the fee",
-              text: "Waiting for the appellant to pay the fee"
+              value: "The appellant does not have the right to appeal",
+              text: "The appellant does not have the right to appeal"
             },
             {
               value: "Other reason",
@@ -51,7 +51,8 @@
         }) }}
 
         {{ govukButton({
-          text: "Continue"
+          text: "Continue",
+          href: "check-invalid"
         }) }}
 
       </form>

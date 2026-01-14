@@ -1,249 +1,15 @@
-<!-- show environment banners -->
+  <!-- show environment banners -->
 
-{% if data['environment-banner'] %}
-  {% if data['test-banner'] %}
-    <div class="environment-banner environment-banner--test">
-      Test environment
-  {% else %}
-    <div class="environment-banner">
-      Training environment
+  {% if data['environment-banner'] %}
+    {% if data['test-banner'] %}
+      <div class="environment-banner environment-banner--test">
+        Test environment
+    {% else %}
+      <div class="environment-banner">
+        Training environment
+    {% endif %}
+    </div>
   {% endif %}
-  </div>
-{% endif %}
-
-  <!-- custom styling -->
-  <!-- we need to move these to the application SCSS -->
-
-  <style>
-
-    /**************************************/
-    /*   styling for the service banner   */
-    /**************************************/
-
-   .pins-header {
-      min-height: 60px;
-      padding: 1rem;
-      padding-bottom: 0rem;
-      padding-top: 1rem;
-      background: #f3f2f1;
-      border-bottom: 0.5rem solid #13a19b;
-      font-family: Helvetica Neue, Arial, sans-serif;
-    }
-    @media(min-width: 40.0625em) {
-      .pins-header {
-        padding-left: 2rem;
-        padding-right: 2rem;
-      }
-    }
-
-    /* center the content to 960px like your image version */
-
-    .pins-header__inner {
-      max-width: 960px;
-      margin: 0 auto;
-    }
-
-    .planning-inspectorate-service-navigation--width {
-      max-width: 960px;
-      margin: 0 auto;
-    }
-
-    /* Flex container for crest + text */
-
-    .planning-inspectorate-logotype {
-      display: flex;
-      align-items: center;   /* vertical alignment */
-      gap: 0.6rem;             /* space between logo and text */
-      padding: 0.4rem;
-      padding-top: 0;
-      padding-bottom: 0;
-      border-left: 0.15rem solid #00625E;
-      background: #f3f2f1;
-    }
-
-    /* crest color */
-
-    .pins-crest {
-      display: inline-block;
-      color: #000;           /* SVG uses currentColor via fill */
-    }
-
-    /* Ensure the SVG scales correctly and doesn’t crop/rotate */
-    .pins-crest svg {
-      height: 40px;          /* match the image height */
-      width: auto;
-      display: block;
-      fill: currentColor;    /* inherit from .pins-crest */
-      vertical-align: middle;
-    }
-
-    .department-name {
-      margin: 0;
-      font-family: system-ui, "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-      font-weight: 400;
-      font-size: clamp(18px, 3.5vw, 28px);
-      line-height: 1.1;
-      color: #000;
-    }
-
-    /* High-contrast mode awareness */
-    /* Make everything black? */
-
-    @media (prefers-contrast: more) {
-      .department-name { color: #000; }
-      .planning-inspectorate-logotype { border-left-color: #000; }
-    }
-
-    /******************************************/
-    /*   styling for the service navigation   */
-    /******************************************/
-
-    .planning-inspectorate-service-navigation {
-      background: #f3f2f1;
-      font-family: Helvetica Neue, Arial, sans-serif;
-      line-height: 1.5rem;
-      font-size: 1.18rem;
-      padding: 1rem;
-
-      @media(min-width: 40.0625em) {
-        padding-left: 2rem;
-      }
-    }
-
-
-
-    .planning-inspectorate-service-navigation--name {
-      font-weight: 600;
-      display: inline;
-      margin-right: 1.5rem;
-    }
-
-    .planning-inspectorate-service-navigation--list {
-      display: inline-block;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    .planning-inspectorate-service-navigation--item {
-      display: inline-block;
-      margin-left: 0;
-      margin-left: 3vw;
-    }
-
-    .planning-inspectorate-service-navigation--item:first-child {
-      margin-left: 0;
-    }
-
-    .planning-inspectorate-service-navigation--list
-    .planning-inspectorate-service-navigation--item
-    .planning-inspectorate-service-navigation--link {
-      color: black;
-      text-decoration-thickness: max(3px, .1875rem, .12em);
-    }
-
-    .planning-inspectorate-service-navigation--list
-    .planning-inspectorate-service-navigation--item
-    .planning-inspectorate-service-navigation--link:hover {
-      color: black;
-      text-decoration-thickness: max(3px, .1875rem, .12em);
-    }
-
-    .planning-inspectorate-service-navigation--link {
-      text-decoration: none;
-    }
-
-    .planning-inspectorate-service-navigation--link:hover {
-      text-decoration: underline;
-    }
-
-
-    .govuk-service-navigation {
-      font-family: Arial, sans-serif;
-      background: #f3f2f1;
-      border-bottom: 1px solid #b1b4b6;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 20px 15px;
-      max-width: 1200px;
-      margin: 0 auto;
-      font-size: 16px;
-      color: #0b0c0c;
-    }
-
-    .govuk-service-navigation__service-name {
-      font-weight: bold;
-      margin-right: 30px;
-      color: #000;
-      text-decoration: none;
-      padding-left: 15px; /* Match header left padding */
-    }
-
-    .govuk-service-navigation__list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      gap: 20px;
-    }
-
-    .govuk-service-navigation__item {
-      display: inline;
-    }
-
-    .govuk-service-navigation__item--active .govuk-service-navigation__link {
-      font-weight: bold;
-      text-decoration: underline;
-      border-bottom: 4px solid #000;
-    }
-
-    .govuk-service-navigation__link {
-      color: #000;
-      text-decoration: underline;
-      border-bottom: 4px solid transparent;
-      transition: color 0.2s, border-bottom-color 0.2s;
-    }
-
-    .govuk-service-navigation__link:hover {
-      color: #003078;
-      text-decoration: none;
-      border-bottom-color: #000;
-    }
-
-    @media (max-width: 600px) {
-      .govuk-service-navigation {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-      }
-    }
-
-    /* add in mobile presentation for the nav */
-    
-    @media(max-width: 40.0625em) {
-     .planning-inspectorate-service-navigation--name {
-       display: block;
-       margin-bottom: 0.5rem;
-       margin-right: 0;
-     }
-
-     .planning-inspectorate-service-navigation--list {
-       display: block;
-     }
-
-     .planning-inspectorate-service-navigation--item {
-       display: block;
-       margin-left: 0;
-       margin-bottom: 0.5rem;
-     }
-
-     .planning-inspectorate-service-navigation--item:last-child {
-       margin-bottom: 0;
-     }
-   }
-
-  </style>
 
   <div class="pins-header">
     <header role="banner" class="pins-header__inner">
@@ -261,11 +27,11 @@
 
   <nav class="planning-inspectorate-service-navigation" aria-label="Service navigation">
     <div class="planning-inspectorate-service-navigation--width">
-      <div class="planning-inspectorate-service-navigation--name">
+      <div class="planning-inspectorate-service-name">
         Manage appeals
       </div>
       <ul class="planning-inspectorate-service-navigation--list">
-        <li class="planning-inspectorate-service-navigation--item">
+        <li class="planning-inspectorate-service-navigation--item active">
           <a href="#" class="planning-inspectorate-service-navigation--link">
             Assigned to me
           </a>
@@ -283,18 +49,3 @@
       </ul>
     </div>
   </nav>
-
-  <!-- <nav class="govuk-service-navigation" aria-label="Service navigation">
-    <div class="govuk-service-navigation__service-name">Manage appeals</div>
-    <ul class="govuk-service-navigation__list">
-      <li class="govuk-service-navigation__item">
-        <a href="#" class="govuk-service-navigation__link">Assigned to me</a>
-      </li>
-      <li class="govuk-service-navigation__item govuk-service-navigation__item--active">
-        <a href="#" class="govuk-service-navigation__link">All cases</a>
-      </li>
-      <li class="govuk-service-navigation__item">
-        <a href="#" class="govuk-service-navigation__link">Sign out</a>
-      </li>
-    </ul>
-  </nav> -->

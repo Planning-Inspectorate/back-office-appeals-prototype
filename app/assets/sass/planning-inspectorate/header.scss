@@ -1,0 +1,170 @@
+/* Mobile-first base styles */
+
+// header styles / logo and department name
+
+.pins-header {
+  min-height: 60px;
+  padding: 1rem;
+  padding-bottom: 0rem;
+  padding-top: 1rem;
+  background: #f3f2f1;
+  border-bottom: 0.5rem solid #13a19b;
+  font-family: Helvetica Neue, Arial, sans-serif;
+}
+
+.pins-header__inner {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.planning-inspectorate-service-navigation--width {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.planning-inspectorate-logotype {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.4rem;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-left: 0.15rem solid #00625E;
+  background: #f3f2f1;
+}
+
+.pins-crest {
+  display: inline-block;
+  color: #000;
+}
+
+.pins-crest svg {
+  height: 40px;
+  width: auto;
+  display: block;
+  fill: currentColor;
+  vertical-align: middle;
+}
+
+.department-name {
+  margin: 0;
+  font-family: system-ui, "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  font-size: clamp(18px, 3.5vw, 28px);
+  line-height: 1.1;
+  color: #000;
+}
+
+// header styles / navigation
+
+.planning-inspectorate-service-navigation {
+  background: #f3f2f1;
+  font-family: Helvetica Neue, Arial, sans-serif;
+  line-height: 1.5rem;
+  font-size: 1.18rem;
+  padding: 1rem;
+}
+
+.planning-inspectorate-service-name {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.5rem;
+  margin-right: 0;
+}
+
+.planning-inspectorate-service-navigation--list {
+  display: block;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.planning-inspectorate-service-navigation--item {
+  display: block;
+  margin-left: 0;
+  margin-bottom: 0.5rem;
+}
+
+.planning-inspectorate-service-navigation--item:last-child {
+  margin-bottom: 0;
+}
+
+.planning-inspectorate-service-navigation--link {
+  color: black;
+  text-decoration: none;
+  padding: 0.5rem;
+  padding-left: 0;
+  display: inline-block;
+}
+
+.planning-inspectorate-service-navigation--link:hover {
+  text-decoration: underline;
+  color: black;
+  text-decoration-thickness: max(3px, .1875rem, .12em);
+}
+
+.planning-inspectorate-service-navigation--link:focus {
+  outline: 3px solid transparent;
+  color: #0b0c0c;
+  background-color: #ffdd00;
+  box-shadow: 0 -2px #ffdd00, 0 4px #0b0c0c;
+  text-decoration: none;
+}
+
+/* Active state styling */
+.planning-inspectorate-service-navigation--item.active .planning-inspectorate-service-navigation--link {
+  border-bottom: 4px solid #13a19b;
+}
+
+/* Remove black line from focus state when link is active */
+.planning-inspectorate-service-navigation--item.active .planning-inspectorate-service-navigation--link:focus {
+  box-shadow: 0 -2px #ffdd00;
+}
+
+/* Tablet/Desktop styles (min-width approach) */
+@media (min-width: 40.0625em) {
+  .pins-header {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .planning-inspectorate-service-navigation {
+    padding-left: 2rem;
+    padding-top: 0.2rem;
+    padding-bottom: 0;
+  }
+
+  .planning-inspectorate-service-name {
+    display: inline;
+    margin-right: 1.5rem;
+    margin-bottom: 0;
+  }
+
+  .planning-inspectorate-service-navigation--list {
+    display: inline-block;
+  }
+
+  .planning-inspectorate-service-navigation--item {
+    display: inline-block;
+    margin-left: 3vw;
+    margin-bottom: 0;
+  }
+
+  .planning-inspectorate-service-navigation--item:first-child {
+    margin-left: 0;
+  }
+
+  .planning-inspectorate-service-navigation--link {
+    padding: 0.5rem;
+  }
+}
+
+/* High-contrast mode */
+@media (prefers-contrast: more) {
+  .department-name {
+    color: #000;
+  }
+  .planning-inspectorate-logotype {
+    border-left-color: #000;
+  }
+}

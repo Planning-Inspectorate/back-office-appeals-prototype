@@ -3,16 +3,19 @@
 // https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images
 //
 
-
 @import "PINS-header";
 @import "pins/pins_tables";
 @import "pins/pins_code-snippet";
 @import "pins/pins_preview";
-@import "components/footer";
 
 @import "pins/pins_filters";
 
+// new planning inspectorate pattern styles
+@import "planning-inspectorate/header.scss";
+
 // extra styles for the footer component
+@import "components/footer";
+
 @import "components/upload";
 @import "components/add-another";
 @import "components/identity-bar";

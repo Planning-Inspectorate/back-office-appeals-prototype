@@ -1,6 +1,9 @@
 const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
 
+console.log('*** V4 ROUTES FILE LOADED ***')
+console.log('*** Router configured for: /projects/file-upload/v4/ ***')
+
 // GET: Clear all session data and show upload page
 router.get('/manage-documents/multiple-document-upload', function (req, res, next) {
   // Clear all uploaded files and session data for v4
@@ -142,7 +145,9 @@ function validateDateReceived(day, month, year) {
 
 // POST: Handle multi-file upload submission
 router.post('/manage-documents/multiple-document-upload', function (req, res) {
-  console.log('=== Upload POST received ===')
+  console.log('===========================================')
+  console.log('=== MULTIPLE DOCUMENT UPLOAD POST HIT ===')
+  console.log('===========================================')
   console.log('Body:', req.body)
   console.log('fileData:', req.body.fileData)
   

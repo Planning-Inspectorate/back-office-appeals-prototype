@@ -77,10 +77,10 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Handle form submission - serialize files to hidden input
   uploadForm.addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevent default first
     console.log('Form submit triggered. Files:', uploadedFiles.length);
     
     if (uploadedFiles.length === 0) {
-      e.preventDefault();
       alert('Please upload at least one file');
       return false;
     }
@@ -96,10 +96,11 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('Serialized file data:', fileDataJSON);
     document.getElementById('fileData').value = fileDataJSON;
     console.log('Hidden input value set:', document.getElementById('fileData').value);
+    console.log('Form action:', uploadForm.action);
     
-    // Allow natural form submission - don't prevent default or call submit()
-    console.log('Allowing form to submit naturally...');
-    return true;
+    // Now submit the form programmatically
+    console.log('Submitting form...');
+    uploadForm.submit();
   });
   
   // Handle file selection - automatically add files when selected

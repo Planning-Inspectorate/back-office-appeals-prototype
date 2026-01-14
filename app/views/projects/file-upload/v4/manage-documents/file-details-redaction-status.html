@@ -14,16 +14,19 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
+	<!-- heading set -->
     <span class="govuk-caption-l">Appeal 12345 - Manage documents</span>
-    <h1 class="govuk-heading-l">Redaction status for appellant costs withdrawal</h1>
+        <fieldset class="govuk-fieldset" role="group" aria-describedby="document-name{% if data.dateErrors and data.dateErrors.length > 0 %} document-date-error{% endif %}">
+            <h2 class="govuk-heading-l">Redaction status</h2>
+             <h3 class="govuk-heading-m">{{ data.currentFile.name }}</h3>
+             </fieldset>
 
-	    <form action="/projects/file-upload/v4/manage-documents/file-details-redaction-status" method="post" class="govuk-!-margin-top-9" novalidate>
+          <!-- heading set -->
+
+	    <form action="/projects/file-upload/v4/manage-documents/file-details-redaction-status" method="post"  novalidate>
 
 	    <!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
-
-		<h1 class="govuk-heading-m">{% if data.currentFile %}{{ data.currentFile.name }}{% else %}Document-2.pdf{% endif %}</h1>
-		<p class="govuk-body govuk-!-font-size-16 govuk-!-margin-bottom-6">{{ data.currentFile.name }}</p>
-		
+		 <label class="govuk-label govuk-label--s" for="example-2">Enter redaction status</label>          
 
 	{{ govukRadios({
 	  name: "redaction",

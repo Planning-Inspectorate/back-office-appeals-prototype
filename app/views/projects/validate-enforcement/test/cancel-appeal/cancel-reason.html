@@ -1,0 +1,50 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Why are you cancelling the appeal?" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+		<span class="govuk-caption-xl">Appeal 2110166</span>
+
+
+       <form method="post" validate>
+
+        {{ govukRadios({
+          name: "cancel-reason",
+          fieldset: {
+            legend: {
+              text: pageName,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Appeal invalid",
+              text: "Appeal invalid"
+            },
+            {
+              value: "LPA has withdrawn the enforcement notice",
+              text: "LPA has withdrawn the enforcement notice"
+            },
+            {
+              value: "Request to withdraw appeal",
+              text: "Request to withdraw appeal"
+            }
+          ]
+        }) }}
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+	  </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

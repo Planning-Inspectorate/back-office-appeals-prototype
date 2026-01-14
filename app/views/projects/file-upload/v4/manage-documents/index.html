@@ -1,0 +1,92 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Manage documents" %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+
+
+
+
+
+	<span class="govuk-caption-l">Manage documents</span>
+	<h1 class="govuk-heading-l">Appellant costs withdrawal document</h1>
+
+  </div>
+</div>
+
+
+<div class="govuk-grid-row  govuk-!-margin-top-0">
+  <div class="govuk-grid-column-full">
+
+    {% set tableRows = [] %}
+    {% if data.uploadedFiles and data.uploadedFiles.length > 0 %}
+      {% for file in data.uploadedFiles %}
+        {% set tableRows = (tableRows.push([
+          {
+            html: "<p><a href='document-details?fileId=" ~ file.id ~ "'>" ~ file.name ~ "</a></p><p class='govuk-body govuk-!-font-size-16'>File size: " ~ (file.size / 1024) | round(2) ~ " KB</p>"
+          },
+          {
+            text: file.dateReceived or "Not set"
+          },
+          {
+            text: file.redactionStatus or "Not set"
+          },
+          {
+            html: "<p><a href='document-details?fileId=" ~ file.id ~ "'>Manage</a></p>"
+          }
+        ]), tableRows) %}
+      {% endfor %}
+    {% else %}
+      {% set tableRows = (tableRows.push([
+        {
+          html: "<p>No documents uploaded yet</p>"
+        },
+        {
+          text: "-"
+        },
+        {
+          text: "-"
+        },
+        {
+          html: ""
+        }
+      ]), tableRows) %}
+    {% endif %}
+
+	{{ govukTable({
+	  firstCellIsHeader: false,
+	  head: [
+	    {
+	      text: "Document information"
+	    },
+	    {
+	      text: "Date received"
+	    },
+	    {
+	      text: "Redaction"
+	    },
+	    {
+	      text: "Actions"
+	    }
+	  ],
+	  rows: tableRows
+	}) }}
+
+
+
+  </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Appellant Case" %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+<!-- heading set -->
+	 <span class="govuk-caption-l">Appeal {% if data.appeal.id %}{{ data.appeal.id }}{% else %}12345{% endif %} - Manage documents</span>
+
+
+    <form action="/projects/file-upload/v4/manage-documents/file-details-redaction-status" method="post" class="form" novalidate>
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" role="group">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">Redaction status</h1>
+          </legend>
+		<h2 class="govuk-heading-m">{{ data.currentFile.name }}</h2>
+
+  
+		  <label class="govuk-label govuk-label" for="example">Enter redaction status</label>
+
+	    <!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
+
+		
+		
+
+	{{ govukRadios({
+	  name: "redaction",
+	  fieldset: {
+	   
+	  },
+	  items: [
+	    {
+	      value: "Redacted",
+	      text: "Redacted",
+	      checked: data['redaction'] == "Redacted"
+	    },
+	    {
+	      value: "Unredacted",
+	      text: "Unredacted",
+	      checked: data['redaction'] == "Unredacted"
+	    },
+	    {
+		  divider: "or"
+		},
+	    {
+	      value: "No redaction required",
+	      text: "No redaction required",
+	      checked: data['redaction'] == "No redaction required"
+	    }
+	  ]
+	}) }}
+
+</fieldset>
+</div>
+
+	   {{ govukButton({
+        text: "Continue"
+      }) }}
+
+	  </form>
+
+
+  </div>
+</div>
+
+{% endblock %}

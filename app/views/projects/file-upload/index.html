@@ -24,6 +24,105 @@
     
     <section class="govuk-!-margin-bottom-6">
 
+<<<<<<< Updated upstream
+=======
+  
+	<h2 class="govuk-heading-m">Version 4
+
+		  {{govukTag({
+          text: "In progress",
+          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+        })}}
+		<!-- Status tag options
+
+		{{govukTag({
+          text: "New",
+          classes: "govuk-!-margin-left-2 govuk-tag--green"
+        })}}
+
+        {{govukTag({
+          text: "In progress",
+          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+        })}}
+
+        {{govukTag({
+          text: "Ready for review",
+          classes: "govuk-!-margin-left-2 govuk-tag--blue"
+        })}}
+
+        {{govukTag({
+          text: "Ready for research",
+          classes: "govuk-!-margin-left-2 govuk-tag--green"
+        })}}
+
+        {{govukTag({
+          text: "Researched",
+          classes: " govuk-!-margin-left-2 govuk-tag--green"
+        })}}
+
+        -->
+
+	</h2>
+
+
+	{{ govukButton({
+	  text: "View prototype",
+	  href: "v4/manage-documents/multiple-document-upload.html",
+	  isStartButton: true
+	}) }}
+
+
+	
+        <h3 class="govuk-heading-s">Changes:</h3>
+
+
+	<ul class="govuk-list govuk-list--bullet">
+        <li>
+         Added routes to the V4 folder to get the multiple document upload working
+        </li>
+        <li>
+        On the file uploader - Changed the 'Choose files' button to a standard .GOV secondary button (rather than 'PINS-style')
+        </li>
+  
+        <li>
+        Split the date received and redaction status into separate steps
+        </li>
+      <li>
+        Removed the preselection of redaction status radio button in-line with .GOV guidance 'Do not pre-select radio options as this makes it more likely that users will: not realise they’ve missed a question or submit the wrong answer'
+        </li>
+          
+      </ul>
+
+      <h3 class="govuk-heading-s">Copy changes:</h3>
+	<p class="govuk-body">Changed the heading styles and wording on the date received and redaction pages</p>
+
+      	<ul class="govuk-list govuk-list--bullet">
+        <li>
+         The caption 'Appeal 12345 - Manage documents' is there to give context needed for agents working with multiple appeals.
+        </li>
+        <li>
+        	The H2 with file name is there to give context for multi file uploads.
+        <li>
+        The label 'Set date received' is needed to maintain accessibility for those using screenreaders
+        </li>
+        </li>
+                 <li>
+          Error messages for the multi-file upload form are 
+        <p class="govuk-body">
+  <a href="https://pins-ds.atlassian.net/wiki/spaces/BO/pages/edit-v2/1598718005#File-upload" class="govuk-link">available here</a>.
+</p>
+</li>
+      </ul>
+
+
+    </section>
+    
+    
+    <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+	
+    
+
+>>>>>>> Stashed changes
 	<h2 class="govuk-heading-m">Version 3
 
 		{{govukTag({

@@ -1,7 +1,13 @@
 {% extends "layouts/bo.html" %}
 
-{% set title = 'Check your answers'  %}
-{% set pageName = title %}
+{% set titles = {
+  "Appeal invalid": "Check details and mark appeal as invalid",
+  "LPA has withdrawn the enforcement notice": "Check details and withdraw enforcement notice",
+  "Request to withdraw appeal": "Check details and withdraw appeal"
+} %}
+
+{% set pageName = titles[data['cancel-reason']] or 'Check details and mark appeal as invalid' %}
+
 
 {% block beforeContent %}
 {{ govukBackLink({
@@ -15,47 +21,25 @@
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
       <span class="govuk-caption-l">Appeal 1223443</span>
-      {% if data['cancel-reason'] == 'Appeal invalid' %}
-      <h1 class="govuk-heading-l">
-         Check details and mark appeal as invalid
-      </h1>
-      {% elif data['cancel-reason'] == 'LPA has withdrawn the enforcement notice' %}
-      <h1 class="govuk-heading-l">
-        Check details and withdraw enforcement notice
-      </h1>
-      {% elif data['cancel-reason'] == 'Request to withdraw appeal' %}
-      <h1 class="govuk-heading-l">
-        Check details and withdraw appeal
-      </h1>
-      {% else %}
-      <h1 class="govuk-heading-l">
-        Check details and mark appeal as invalid
-      </h1>
-    {% endif %}
-
-    {% set cancelReasonsHtml %}
-    {% if data['cancel-reason'] %}
-    <ul class="govuk-list govuk-list--bullet">
-      {% for reason in data['cancel-reason'] %}
-      <li>{{ cancelreason }}</li>
-      {% endfor %}
-    </ul>
-    {% else %}
-    <span>Appeal invalid</span>
-    {% endif %}
-    {% endset %}
+      <h1 class="govuk-heading-l">{{pageName}}</h1>
+      
 
     {% set invalidReasonsHtml %}
     {% if data['invalid'] %}
     <ul class="govuk-list govuk-list--bullet">
       {% for reason in data['invalid'] %}
-      <li>{{ reason }}</li>
+        {% if reason == "Other reason" and data['reasonA'] %}
+          <li>Other: {{ data['reasonA'] }}</li>
+        {% else %}
+          <li>{{ reason }}</li>
+        {% endif %}
       {% endfor %}
     </ul>
     {% else %}
     <span>Appeal not submitted on time</span>
     {% endif %}
     {% endset %}
+    
     
     {# Linked Appeals Answer #}
     {% set linkedAppeals = data['linkedAppeals'] %}
@@ -65,7 +49,7 @@
         rows: [
           {
             key: { text: "Why are you cancelling the appeal?" },
-            value: { text: cancelReasonsHtml | safe },
+            value: { html: data['cancel-reason'] or "test" },
             actions: {
               items: [
                 {
@@ -88,7 +72,7 @@
                 }
               ]
             }
-          } if data['cancel-reason'] == 'Appeal invalid' else {},
+          } if data['cancel-reason'] == 'Appeal invalid',
           {
             key: { text: "Did the appellant send any information about their legal interest in the land?" },
             value: { text: data['legalInterest'] or "No"},
@@ -101,7 +85,8 @@
                 }
               ]
             }
-          } if data['invalid'] == 'Appellant does not have a legal interest in the land' else {},
+            } if data['invalid'] and 'Appellant does not have a legal interest in the land' in data['invalid'],
+
           {
             key: { text: "Are there any other live appeals against the enforcement notice?" },
             value: { text: linkedAnswer },
@@ -110,7 +95,7 @@
                 { href: "linked-appeals", text: "Change", visuallyHiddenText: "linked appeals" }
               ]
             }
-          } if data['cancel-reason'] == 'Appeal invalid' else {},
+          } if data['cancel-reason'] == 'Appeal invalid',
           {
             key: { text: "LPA enforcement notice withdrawal" },
             value: {
@@ -121,7 +106,7 @@
                 { href: "upload-withdrawal", text: "Change", visuallyHiddenText: "LPA withdrawal document" }
               ]
             }
-          } if data['cancel-reason'] == 'LPA has withdrawn the enforcement notice' else {},
+          } if data['cancel-reason'] == 'LPA has withdrawn the enforcement notice',
           {
             key: { text: "Withdraw request" },
             value: { html: '<p class="govuk-body"><a href="' + (data["withdrawal-upload"] or "#") + '">withdraw-request.pdf</a></p>' },
@@ -130,7 +115,7 @@
                 { href: "upload-withdraw-request", text: "Change", visuallyHiddenText: "cancel reason" }
               ]
             }
-          } if data['cancel-reason'] == 'Request to withdraw appeal' else {}
+          } if data['cancel-reason'] == 'Request to withdraw appeal'
         ]
       }) }}
 

@@ -16,7 +16,7 @@ router.post('/cancel-reason', function (req, res) {
   router.post('/appeal-invalid-reason', function (req, res) {
     const reasons = req.session.data['invalid'] || []  // always an array
     if (reasons.includes('Appellant does not have a legal interest in the land')) {
-      res.redirect('legal-interest-information')
+      res.redirect('legal-interest-information') 
     } else {
       // fallback or default route
       res.redirect('linked-appeals')

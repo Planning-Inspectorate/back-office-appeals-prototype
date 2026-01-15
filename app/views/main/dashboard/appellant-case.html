@@ -68,8 +68,13 @@
 				{% for status in statuses %}
 					{% set rows = rows | push([
 					{
-						html: '<a href="#">' ~ appealRef ~ '</a>'
-					},
+						html:
+							'<a href="/elements/includes/case-details' +
+							'?appealRef=' + appealRef +
+							'&appealType=' + (appealType | urlencode) +
+							'&status=' + (status | urlencode) +
+							'">' + appealRef + '</a>'
+						},
 					{
 						text: "LPA-" ~ appealRef
 					},

@@ -13,26 +13,20 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-<!-- heading set -->
-	 <span class="govuk-caption-l">Appeal {% if data.appeal.id %}{{ data.appeal.id }}{% else %}12345{% endif %} - Manage documents</span>
 
+	<!-- heading set -->
+    <span class="govuk-caption-l">Appeal 12345 - Manage documents</span>
+        <fieldset class="govuk-fieldset" role="group" aria-describedby="document-name{% if data.dateErrors and data.dateErrors.length > 0 %} document-date-error{% endif %}">
+            <h2 class="govuk-heading-l">Redaction status</h2>
+             <h3 class="govuk-heading-m">{{ data.currentFile.name }}</h3>
+             </fieldset>
 
-    <form action="/projects/file-upload/v4/manage-documents/file-details-redaction-status" method="post" class="form" novalidate>
+          <!-- heading set -->
 
-      <div class="govuk-form-group">
-        <fieldset class="govuk-fieldset" role="group">
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-            <h1 class="govuk-fieldset__heading">Redaction status</h1>
-          </legend>
-		<h2 class="govuk-heading-m">{{ data.currentFile.name }}</h2>
-
-  
-		  <label class="govuk-label govuk-label" for="example">Enter redaction status</label>
+	    <form action="/projects/file-upload/v4/manage-documents/file-details-redaction-status" method="post"  novalidate>
 
 	    <!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
-
-		
-		
+		 <label class="govuk-label govuk-label--s" for="example-2">Enter redaction status</label>          
 
 	{{ govukRadios({
 	  name: "redaction",
@@ -61,8 +55,6 @@
 	  ]
 	}) }}
 
-</fieldset>
-</div>
 
 	   {{ govukButton({
         text: "Continue"

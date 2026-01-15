@@ -11,7 +11,7 @@
 
 {% block content %}
 
-<div class="govuk-grid-row">
+<div class="govuk-grid-row"> 
   <div class="govuk-grid-column-two-thirds">
 
     <span class="govuk-caption-l">
@@ -24,159 +24,93 @@
     
     <section class="govuk-!-margin-bottom-6">
 
-<<<<<<< Updated upstream
-=======
   
-	<h2 class="govuk-heading-m">Version 4
+    <h2 class="govuk-heading-m">Version 4
 
-		  {{govukTag({
+          {{govukTag({
           text: "In progress",
           classes: "govuk-!-margin-left-2 govuk-tag--yellow"
         })}}
-		<!-- Status tag options
-
-		{{govukTag({
-          text: "New",
-          classes: "govuk-!-margin-left-2 govuk-tag--green"
-        })}}
-
-        {{govukTag({
-          text: "In progress",
-          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-        })}}
-
-        {{govukTag({
-          text: "Ready for review",
-          classes: "govuk-!-margin-left-2 govuk-tag--blue"
-        })}}
-
-        {{govukTag({
-          text: "Ready for research",
-          classes: "govuk-!-margin-left-2 govuk-tag--green"
-        })}}
-
-        {{govukTag({
-          text: "Researched",
-          classes: " govuk-!-margin-left-2 govuk-tag--green"
-        })}}
-
-        -->
-
-	</h2>
+        </h2>
 
 
-	{{ govukButton({
-	  text: "View prototype",
-	  href: "v4/manage-documents/multiple-document-upload.html",
-	  isStartButton: true
-	}) }}
+    {{ govukButton({
+      text: "View prototype",
+      href: "v4/manage-documents/multiple-document-upload.html",
+      isStartButton: true
+    }) }}
 
 
-	
+    
         <h3 class="govuk-heading-s">Changes:</h3>
 
 
-	<ul class="govuk-list govuk-list--bullet">
+    <ul class="govuk-list govuk-list--bullet">
         <li>
          Added routes to the V4 folder to get the multiple document upload working
         </li>
         <li>
-        On the file uploader - Changed the 'Choose files' button to a standard .GOV secondary button (rather than 'PINS-style')
+            Split the date received and redaction status into separate steps
         </li>
-  
-        <li>
-        Split the date received and redaction status into separate steps
+         <li>
+          Changed the button style in the multi doc upload to the standard.gov secondary button rather than the PINS class
         </li>
-      <li>
-        Removed the preselection of redaction status radio button in-line with .GOV guidance 'Do not pre-select radio options as this makes it more likely that users will: not realise they’ve missed a question or submit the wrong answer'
+         <li>
+          Font style for files added table changed to govuk-body to match GOV.UK styles
         </li>
-          
+         <li>
+          Removed default selection option on radio button for the redaction status page <a href="https://design-system.service.gov.uk/components/radios/#:~:text=Do%20not%20pre,answer">in line with .gov. guidance</a>
+        </li>
       </ul>
 
-      <h3 class="govuk-heading-s">Copy changes:</h3>
-	<p class="govuk-body">Changed the heading styles and wording on the date received and redaction pages</p>
+<h3 class="govuk-heading-s">Copy changes:</h3>
+<p class="govuk-body">Made in collaboration with content designers</p>
 
-      	<ul class="govuk-list govuk-list--bullet">
+    <ul class="govuk-list govuk-list--bullet">
         <li>
-         The caption 'Appeal 12345 - Manage documents' is there to give context needed for agents working with multiple appeals.
+         Caption text on manage documents pages changed to "Appeal 12345 - Manage documents" to match other pages and orient officers dealing with multiple appeals
         </li>
         <li>
-        	The H2 with file name is there to give context for multi file uploads.
+            Added label for redaction status and date received pages to clarify what information is needed and improve accessibility (using the complex question style)
+        </li>
         <li>
-        The label 'Set date received' is needed to maintain accessibility for those using screenreaders
+          Text for error messages on multi file upload are <a href="https://pins-ds.atlassian.net/wiki/spaces/BO/pages/edit-v2/1598718005#File-upload">here</a>
         </li>
-        </li>
-                 <li>
-          Error messages for the multi-file upload form are 
-        <p class="govuk-body">
-  <a href="https://pins-ds.atlassian.net/wiki/spaces/BO/pages/edit-v2/1598718005#File-upload" class="govuk-link">available here</a>.
-</p>
-</li>
+       
       </ul>
-
 
     </section>
     
     
     <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
-	
+    
     
 
->>>>>>> Stashed changes
-	<h2 class="govuk-heading-m">Version 3
-
-		{{govukTag({
-          text: "Researched",
-          classes: "govuk-!-margin-left-2 govuk-tag--green"
-        })}}
-
-		<!-- Status tag options
-
-		{{govukTag({
-          text: "New",
-          classes: "govuk-!-margin-left-2 govuk-tag--green"
-        })}}
-
-        {{govukTag({
-          text: "In progress",
-          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-        })}}
-
-        {{govukTag({
-          text: "Ready for review",
-          classes: "govuk-!-margin-left-2 govuk-tag--blue"
-        })}}
-
-        {{govukTag({
-          text: "Ready for research",
-          classes: "govuk-!-margin-left-2 govuk-tag--green"
-        })}}
+    <h2 class="govuk-heading-m">Version 3
 
         {{govukTag({
           text: "Researched",
-          classes: " govuk-!-margin-left-2 govuk-tag--green"
+          classes: "govuk-!-margin-left-2 govuk-tag--green"
         })}}
 
-        -->
-
-	</h2>
+        </h2>
 
 
-	{{ govukButton({
-	  text: "View prototype",
-	  href: "v3/lpa-questionnaire",
-	  isStartButton: true
-	}) }}
+    {{ govukButton({
+      text: "View prototype",
+      href: "v3/lpa-questionnaire",
+      isStartButton: true
+    }) }}
 
 
-	<p class="govuk-body">Changes:</p>
+    <p class="govuk-body">Changes:</p>
 
-	<ul class="govuk-list govuk-list--bullet">
+    <ul class="govuk-list govuk-list--bullet">
         <li>
           Added other option for redacted meta data
         </li>
         <li>
-        	Scenario where there is only one document version remaining to be removed
+            Scenario where there is only one document version remaining to be removed
         </li>
       </ul>
 
@@ -195,56 +129,27 @@
     
     
     <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
-	
+    
 
-	<h2 class="govuk-heading-m">Version 2
-
-		{{govukTag({
-          text: "Researched",
-          classes: " govuk-!-margin-left-2 govuk-tag--green"
-        })}}
-
-		<!-- Status tag options
-
-		{{govukTag({
-          text: "New",
-          classes: "govuk-!-margin-left-2 govuk-tag--green"
-        })}}
-
-        {{govukTag({
-          text: "In progress",
-          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-        })}}
-
-        {{govukTag({
-          text: "Ready for review",
-          classes: "govuk-!-margin-left-2 govuk-tag--blue"
-        })}}
-
-        {{govukTag({
-          text: "Ready for research",
-          classes: "govuk-!-margin-left-2 govuk-tag--green"
-        })}}
+    <h2 class="govuk-heading-m">Version 2
 
         {{govukTag({
           text: "Researched",
           classes: " govuk-!-margin-left-2 govuk-tag--green"
         })}}
 
-        -->
-
-	</h2>
+        </h2>
 
 
-	{{ govukButton({
-	  text: "View prototype",
-	  href: "v2/lpa-questionnaire",
-	  isStartButton: true
-	}) }}
+    {{ govukButton({
+      text: "View prototype",
+      href: "v2/lpa-questionnaire",
+      isStartButton: true
+    }) }}
 
-	<p class="govuk-body">Changes:</p>
+    <p class="govuk-body">Changes:</p>
 
-	<ul class="govuk-list govuk-list--bullet">
+    <ul class="govuk-list govuk-list--bullet">
         <li>
           Rework of view a document layout
         </li>
@@ -263,72 +168,43 @@
     <section class="govuk-!-margin-bottom-6">
 
 
-	<h2 class="govuk-heading-m">Version 1
-		{%- from "govuk/components/tag/macro.njk" import govukTag -%}
-
-		{{govukTag({
-          text: "Researched",
-          classes: " govuk-!-margin-left-2 govuk-tag--green"
-        })}}
-
-		<!-- Status tag options
-
-		{{govukTag({
-          text: "New",
-          classes: "govuk-!-margin-left-2 govuk-tag--green"
-        })}}
-
-        {{govukTag({
-          text: "In progress",
-          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
-        })}}
-
-        {{govukTag({
-          text: "Ready for review",
-          classes: "govuk-!-margin-left-2 govuk-tag--blue"
-        })}}
-
-        {{govukTag({
-          text: "Ready for research",
-          classes: "govuk-!-margin-left-2 govuk-tag--green"
-        })}}
+    <h2 class="govuk-heading-m">Version 1
+        {%- from "govuk/components/tag/macro.njk" import govukTag -%}
 
         {{govukTag({
           text: "Researched",
           classes: " govuk-!-margin-left-2 govuk-tag--green"
         })}}
 
-        -->
+        </h2>
 
-	</h2>
+    <p class="govuk-body">User can upload addition files to the LPA questionnaire.</p>
 
-	<p class="govuk-body">User can upload addition files to the LPA questionnaire.</p>
-
-	{{ govukButton({
-	  text: "View prototype",
-	  href: "v1/lpa-questionnaire",
-	  isStartButton: true
-	}) }}
+    {{ govukButton({
+      text: "View prototype",
+      href: "v1/lpa-questionnaire",
+      isStartButton: true
+    }) }}
 
 
-	<h3 class="govuk-heading-m">Scenario for UR</h3>
+    <h3 class="govuk-heading-m">Scenario for UR</h3>
 
-	<p>Case worker has received an email with 2 documents (PDFs) they need to add to the LPA questionnaire. Having navigated to LPA Questionnaire page, they need to successfully <strong>upload 2 files for a Tree Preservation Order</strong> and enter file details for for the two files.</p>
+    <p>Case worker has received an email with 2 documents (PDFs) they need to add to the LPA questionnaire. Having navigated to LPA Questionnaire page, they need to successfully <strong>upload 2 files for a Tree Preservation Order</strong> and enter file details for for the two files.</p>
 
-	<ul class="govuk-list">
-	  <li>
-	    <a class="govuk-link" href="v1/lpa-questionnaire.html">Test A</a> (preferred option)
-	  </li>
-	  <li>
-	    <a class="govuk-link" href="v1/B-test/lpa-questionnaire-B.html">Test B</a>
-	  </li>
-	  <li>
-	    Manage documents
-	    <ul>
-		    <li><a href="v1/manage-documents/option1.html">Option 1</a></li>
-		    <li><a href="v1/manage-documents/option2.html">Option 2</a></li>
-	  </li>
-	</ul>
+    <ul class="govuk-list">
+      <li>
+        <a class="govuk-link" href="v1/lpa-questionnaire.html">Test A</a> (preferred option)
+      </li>
+      <li>
+        <a class="govuk-link" href="v1/B-test/lpa-questionnaire-B.html">Test B</a>
+      </li>
+      <li>
+        Manage documents
+        <ul>
+            <li><a href="v1/manage-documents/option1.html">Option 1</a></li>
+            <li><a href="v1/manage-documents/option2.html">Option 2</a></li>
+      </li>
+    </ul>
 
 
     </section>

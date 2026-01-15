@@ -1,0 +1,245 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Appellant Case" %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Manage documents</span>
+    <h1 class="govuk-heading-l">Upload appellant costs withdrawal document</h1>
+  <div class="govuk-body pins-file-upload__instructions">
+    <p class="govuk-body govuk-!-margin-bottom-1">Each file must be a PDF, DOC, DOCX, PPT, PPTX, XLS, XLSX, MSG, JPG, JPEG, MPEG, MP3, MP4, MOV, PNG, TIF or TIFF and smaller than 100MB.</p>
+    <br>
+    <span>The total size of your uploaded files must be smaller than 1GB.</span>
+  </div>
+  
+  <form action="/projects/file-upload/v4/manage-documents/multiple-document-upload" method="post" id="uploadForm">
+    <div class="moj-multi-file-upload" data-module="moj-multi-file-upload">
+
+      
+
+      <!-- Dashed box upload area -->
+      <div class="moj-multi-file-upload__upload" style="border: 2px dashed #b1b4b6;padding-left: 16px; padding-top: 60px; padding-bottom: 60px; align-content: center; background-color: #ffffff; margin-bottom: 30px;">
+        <div class="govuk-form-group" style="margin-bottom: 0;">
+          <label class="govuk-button govuk-button--secondary" for="documents" style="margin-bottom: 0; cursor: pointer;">
+            Choose files
+          </label>
+          <p class="govuk-body" style="display: inline; margin-left: 10px;">or drop files</p>
+          <input class="govuk-file-upload moj-multi-file-upload__input" id="documents" name="documents" type="file" multiple="" style="position: absolute; left: -9999px;">
+        </div>
+      </div>
+      
+     
+       <!-- Uploaded files list -->
+      <div class="govuk-summary-list moj-multi-file-upload__list">
+      </div>
+
+    
+    <!-- Hidden input to store file data -->
+    <input type="hidden" name="fileData" id="fileData" value="">
+    
+    <button type="submit" class="govuk-button" data-module="govuk-button" id="continueBtn">
+      Continue
+    </button>
+  </form>
+  </div>
+</div>
+
+<script>
+// File storage using in-memory array
+let uploadedFiles = [];
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+  const fileInput = document.getElementById('documents');
+  const filesList = document.querySelector('.moj-multi-file-upload__list');
+  const uploadArea = document.querySelector('.moj-multi-file-upload__upload');
+  const uploadForm = document.getElementById('uploadForm');
+  const continueBtn = document.getElementById('continueBtn');
+  
+  console.log('File input found:', fileInput);
+  console.log('Files list found:', filesList);
+  console.log('Upload area found:', uploadArea);
+  
+  if (!fileInput) {
+    console.error('File input not found!');
+    return;
+  }
+  
+  // Handle form submission - serialize files to hidden input
+  uploadForm.addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevent default first
+    console.log('Form submit triggered. Files:', uploadedFiles.length);
+    
+    if (uploadedFiles.length === 0) {
+      alert('Please upload at least one file');
+      return false;
+    }
+    
+    // Serialize file data (name, size, id only - not actual file content for prototype)
+    const fileData = uploadedFiles.map(f => ({
+      id: f.id,
+      name: f.name,
+      size: f.size
+    }));
+    
+    const fileDataJSON = JSON.stringify(fileData);
+    console.log('Serialized file data:', fileDataJSON);
+    document.getElementById('fileData').value = fileDataJSON;
+    console.log('Hidden input value set:', document.getElementById('fileData').value);
+    console.log('Form action:', uploadForm.action);
+    
+    // Now submit the form programmatically
+    console.log('Submitting form...');
+    uploadForm.submit();
+  });
+  
+  // Handle file selection - automatically add files when selected
+  fileInput.addEventListener('change', function(e) {
+    console.log('Files selected via input!');
+    const files = fileInput.files;
+    console.log('Files selected:', files.length);
+    
+    if (files.length === 0) {
+      return;
+    }
+    
+    // Add files to storage
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      const fileId = Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+      uploadedFiles.push({
+        id: fileId,
+        name: file.name,
+        size: file.size,
+        file: file
+      });
+      console.log('Added file:', file.name);
+    }
+    
+    // Clear file input
+    fileInput.value = '';
+    
+    // Refresh display
+    displayFiles();
+  });
+  
+  // Drag and drop functionality
+  uploadArea.addEventListener('dragover', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    uploadArea.style.borderColor = '#0b0c0c';
+    uploadArea.style.backgroundColor = '#f8f8f8';
+  });
+  
+  uploadArea.addEventListener('dragleave', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    uploadArea.style.borderColor = '#b1b4b6';
+    uploadArea.style.backgroundColor = '#ffffff';
+  });
+  
+  uploadArea.addEventListener('drop', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    uploadArea.style.borderColor = '#b1b4b6';
+    uploadArea.style.backgroundColor = '#ffffff';
+    
+    const files = e.dataTransfer.files;
+    console.log('Files dropped:', files.length);
+    
+    if (files.length === 0) {
+      return;
+    }
+    
+    // Add files to storage
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      const fileId = Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+      uploadedFiles.push({
+        id: fileId,
+        name: file.name,
+        size: file.size,
+        file: file
+      });
+      console.log('Added file:', file.name);
+    }
+    
+    // Refresh display
+    displayFiles();
+  });
+  
+  // Display files in list
+  function displayFiles() {
+    console.log('Displaying files. Total:', uploadedFiles.length);
+    
+    if (uploadedFiles.length === 0) {
+      filesList.innerHTML = '';
+      return;
+    }
+    
+    // Build list HTML with heading
+    let listHTML = '<h2 class="govuk-heading-m">Files added</h2>';
+    uploadedFiles.forEach(function(file) {
+      const fileSizeKB = Math.round(file.size / 1024);
+      listHTML += `
+        <div class="govuk-summary-list__row" style="border-bottom: 1px solid #b1b4b6; padding: 0.6rem 0;">
+          <div style="display: flex; justify-content: space-between; padding-top: 15px; padding-bottom: 15px; align-items: center;">
+            <div>
+              ${escapeHtml(file.name)} (${fileSizeKB} KB)
+            </div>
+            <div>
+              <a href="#" class="govuk-link" data-file-id="${file.id}">
+                Remove
+              </a>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+    
+    filesList.innerHTML = listHTML;
+    
+    // Add event listeners to remove links
+    const removeLinks = filesList.querySelectorAll('[data-file-id]');
+    removeLinks.forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const fileId = this.getAttribute('data-file-id');
+        console.log('Removing file:', fileId);
+        removeFile(fileId);
+      });
+    });
+  }
+  
+  // Remove file from storage
+  function removeFile(fileId) {
+    uploadedFiles = uploadedFiles.filter(function(file) {
+      return file.id !== fileId;
+    });
+    displayFiles();
+  }
+  
+  // Escape HTML to prevent XSS
+  function escapeHtml(text) {
+    const map = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#039;'
+    };
+    return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+  }
+});
+</script>
+{% endblock %}

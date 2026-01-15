@@ -27,10 +27,19 @@
 
   <nav class="planning-inspectorate-service-navigation" aria-label="Service navigation">
     <div class="planning-inspectorate-service-navigation--width">
+
       <div class="planning-inspectorate-service-name">
         Manage appeals
       </div>
-      <ul class="planning-inspectorate-service-navigation--list">
+
+      <button class="planning-inspectorate-service-navigation--toggle" aria-expanded="false" aria-controls="service-nav-list">
+        <span class="planning-inspectorate-service-navigation--toggle-text">Menu</span>
+        <svg class="planning-inspectorate-service-navigation--toggle-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M8 11L3 6L4.5 4.5L8 8L11.5 4.5L13 6L8 11Z" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+        </svg>
+      </button>
+
+      <ul class="planning-inspectorate-service-navigation--list" id="service-nav-list">
         <li class="planning-inspectorate-service-navigation--item active">
           <a href="#" class="planning-inspectorate-service-navigation--link">
             Assigned to me
@@ -49,3 +58,27 @@
       </ul>
     </div>
   </nav>
+
+  <script type="text/javascript">
+
+    // Toggle mobile navigation
+    document.addEventListener('DOMContentLoaded', function() {
+      const toggle = document.querySelector('.planning-inspectorate-service-navigation--toggle');
+      const navList = document.querySelector('.planning-inspectorate-service-navigation--list');
+
+      if (toggle && navList) {
+        toggle.addEventListener('click', function() {
+          const isOpen = navList.classList.contains('is-open');
+
+          if (isOpen) {
+            navList.classList.remove('is-open');
+            toggle.setAttribute('aria-expanded', 'false');
+          } else {
+            navList.classList.add('is-open');
+            toggle.setAttribute('aria-expanded', 'true');
+          }
+        });
+      }
+    });
+
+  </script>

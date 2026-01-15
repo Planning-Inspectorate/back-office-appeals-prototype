@@ -1,7 +1,5 @@
 /* Mobile-first base styles */
-
 // header styles / logo and department name
-
 .pins-header {
   min-height: 60px;
   padding: 1rem;
@@ -56,13 +54,54 @@
 }
 
 // header styles / navigation
-
 .planning-inspectorate-service-navigation {
   background: #f3f2f1;
   font-family: Helvetica Neue, Arial, sans-serif;
   line-height: 2rem;
   font-size: 1.18rem;
   padding: 1rem;
+}
+
+// Mobile menu toggle button
+.planning-inspectorate-service-navigation--toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  border: none;
+  color: #1d70b8; // GOV.UK blue
+  font-size: 1.18rem;
+  font-weight: 700;
+  padding: 0;
+  cursor: pointer;
+  font-family: Helvetica Neue, Arial, sans-serif;
+  margin-bottom: 1rem;
+
+  &:hover {
+    text-decoration: underline;
+    text-decoration-thickness: max(3px, .1875rem, .12em);
+  }
+
+  &:focus {
+    outline: 3px solid transparent;
+    background-color: #ffdd00;
+    box-shadow: 0 -2px #ffdd00, 0 4px #0b0c0c;
+    text-decoration: none;
+  }
+}
+
+.planning-inspectorate-service-navigation--toggle-text {
+  font-weight: 700;
+}
+
+.planning-inspectorate-service-navigation--toggle-icon {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.05s ease;
+
+  .planning-inspectorate-service-navigation--toggle[aria-expanded="true"] & {
+    transform: rotate(180deg);
+  }
 }
 
 .planning-inspectorate-service-name {
@@ -73,10 +112,14 @@
 }
 
 .planning-inspectorate-service-navigation--list {
-  display: block;
+  display: none; // Hidden by default on mobile
   list-style: none;
   margin: 0;
   padding: 0;
+
+  &.is-open {
+    display: block;
+  }
 }
 
 .planning-inspectorate-service-navigation--item {
@@ -116,7 +159,7 @@
 /* Active state styling */
 .planning-inspectorate-service-navigation--item.active .planning-inspectorate-service-navigation--link {
   border-bottom: 4px solid #13a19b;
-  padding-bottom: 1rem; /* Push the border down to the edge */
+
 }
 
 /* Remove black line from focus state when link is active */
@@ -137,6 +180,11 @@
     padding-bottom: 0;
   }
 
+  // Hide toggle button on desktop
+  .planning-inspectorate-service-navigation--toggle {
+    display: none;
+  }
+
   .planning-inspectorate-service-name {
     display: inline;
     margin-right: 1.5rem;
@@ -144,7 +192,7 @@
   }
 
   .planning-inspectorate-service-navigation--list {
-    display: inline-block;
+    display: inline-block !important; // Always show on desktop
   }
 
   .planning-inspectorate-service-navigation--item {
@@ -158,9 +206,8 @@
   }
 
   .planning-inspectorate-service-navigation--item.active .planning-inspectorate-service-navigation--link {
-    padding-bottom: calc(1rem - 4px); /* Adjust for border width */
+    padding-bottom: calc(1rem - 4px);
   }
-
 }
 
 /* High-contrast mode */

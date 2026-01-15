@@ -1,0 +1,112 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "All appeals" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+{% set pageId = 'allAppeals' %}
+
+{% set back = false %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+	<div class="govuk-grid-column-two-thirds">
+
+		<h1 class="govuk-heading-l">
+			Search all cases
+		</h1>
+
+		<div id="event-name-hint" class="govuk-hint">
+			Enter the appeal reference, planning application reference or postcode (including spaces)
+		</div>
+
+		<form class="govuk-form-group" style="display: flex; gap: 8px; align-items: center; margin-bottom: 0px;" action="#" method="get">
+			<input class="govuk-input" id="keyword-search" name="keyword-search" type="text" autocomplete="off" style="margin-bottom: 0; width:100%;">
+			<button class="govuk-button" id="keyword-search-button" type="submit" style="margin-bottom: 0;">
+				Search
+			</button>
+		</form>
+
+		<hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+		{{ govukDetails({
+			summaryText: "Filters",
+			text: "Filters go here"
+		}) }}
+
+	</div>
+
+		<div class="govuk-grid-column-full-width">
+
+			{% set appealTypes = [
+				"Householder",
+				"Planning",
+				"Planning listed building and conservation",
+				"Advertisement",
+				"CAS advert",
+				"CAS planning",
+				"Enforcement",
+				"Enforcement listed building"
+			  ] %}
+			  
+			  {% set statuses = [
+				"Validation",
+				"Ready to start",
+				"LPA questionnaire",
+				"Statements",
+				"Evidence",
+				"Final comments",
+				"Issue decision",
+				"Complete",
+				"Withdrawn"
+			  ] %}
+			  
+			  {% set rows = [] %}
+				{% set appealRef = 1 %}
+
+				{% for appealType in appealTypes %}
+				{% for status in statuses %}
+					{% set rows = rows | push([
+					{
+						html: '<a href="#">' ~ appealRef ~ '</a>'
+					},
+					{
+						text: "LPA-" ~ appealRef
+					},
+					{
+						text: "22b The Peach Trees, Peckham, SE15 9HA"
+					},
+					{
+						text: "Barnet Council"
+					},
+					{
+						text: appealType
+					},
+					{
+						html: '<strong class="govuk-tag">' ~ status ~ '</strong>'
+					}
+					]) %}
+					{% set appealRef = appealRef + 1 %}
+				{% endfor %}
+				{% endfor %}
+
+
+			  {{ govukTable({
+				firstCellIsHeader: false,
+				head: [
+				  { text: "Appeal reference" },
+				  { text: "LPA reference" },
+				  { text: "Site address" },
+				  { text: "Local Planning Authority (LPA)" },
+				  { text: "Appeal type" },
+				  { text: "Status" }
+				],
+				rows: rows
+			  }) }}			  
+			  
+
+	</div>
+</div>
+
+
+{% endblock %}

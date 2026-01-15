@@ -60,7 +60,7 @@
 .planning-inspectorate-service-navigation {
   background: #f3f2f1;
   font-family: Helvetica Neue, Arial, sans-serif;
-  line-height: 1.5rem;
+  line-height: 2rem;
   font-size: 1.18rem;
   padding: 1rem;
 }
@@ -92,8 +92,6 @@
 .planning-inspectorate-service-navigation--link {
   color: black;
   text-decoration: none;
-  padding: 0.5rem;
-  padding-left: 0;
   display: inline-block;
 }
 
@@ -118,6 +116,7 @@
 /* Active state styling */
 .planning-inspectorate-service-navigation--item.active .planning-inspectorate-service-navigation--link {
   border-bottom: 4px solid #13a19b;
+  padding-bottom: 1rem; /* Push the border down to the edge */
 }
 
 /* Remove black line from focus state when link is active */
@@ -125,7 +124,7 @@
   box-shadow: 0 -2px #ffdd00;
 }
 
-/* Tablet/Desktop styles (min-width approach) */
+/* tablet and desktop styles (min-width approach) */
 @media (min-width: 40.0625em) {
   .pins-header {
     padding-left: 2rem;
@@ -133,8 +132,8 @@
   }
 
   .planning-inspectorate-service-navigation {
+    padding: 1rem;
     padding-left: 2rem;
-    padding-top: 0.2rem;
     padding-bottom: 0;
   }
 
@@ -150,7 +149,7 @@
 
   .planning-inspectorate-service-navigation--item {
     display: inline-block;
-    margin-left: 3vw;
+    margin-left: 1rem;
     margin-bottom: 0;
   }
 
@@ -158,9 +157,10 @@
     margin-left: 0;
   }
 
-  .planning-inspectorate-service-navigation--link {
-    padding: 0.5rem;
+  .planning-inspectorate-service-navigation--item.active .planning-inspectorate-service-navigation--link {
+    padding-bottom: calc(1rem - 4px); /* Adjust for border width */
   }
+
 }
 
 /* High-contrast mode */

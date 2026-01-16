@@ -51,21 +51,22 @@
 
     {# ----------------------- Grounds list ----------------------- #}
     {% set groundsHtml %}
-      {% if groundsSelected %}
-        <ul class="govuk-list govuk-list--bullet">
-          {% for ground in groundsSelected %}
-            {% set key = "reason" + (ground | replace("Ground ", "")) %}
-            {% if data[key] %}
-              <li>{{ ground }}: {{ data[key] }}</li>
-            {% else %}
-              <li>{{ ground }}</li>
-            {% endif %}
-          {% endfor %}
-        </ul>
-      {% else %}
-        Ground (b): my reason
-      {% endif %}
-    {% endset %}
+    {% if groundsSelected %}
+      <ul class="govuk-list govuk-list--bullet">
+        {% for ground in groundsSelected %}
+          {% set letter = ground | replace("Ground (", "") | replace(")", "") | upper %}
+          {% set key = "reason" + letter %}
+          {% if data[key] %}
+            <li>{{ ground }}: {{ data[key] }}</li>
+          {% else %}
+            <li>{{ ground }}</li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    {% else %}
+      Ground (b): my reason
+    {% endif %}
+  {% endset %}  
 
     {# ----------------------- Other info ----------------------- #}
     {% set otherInfo = "No" %}

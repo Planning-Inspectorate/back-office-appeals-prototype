@@ -1,0 +1,123 @@
+{% extends "layouts/bo.html" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Appeal 12345678</span>
+    <h1 class="govuk-heading-l">Upload cross-team correspondence</h1>
+
+    <p>
+      Each file must be a PDF, DOC, DOCX, PPT, PPTX, XLS, XLSX, MSG, JPG, JPEG, MPEG, MP3, MP4, MOV, PNG, TIF or TIFF
+      and smaller than 250MB.
+    </p>
+    <p>
+      The total size of your uploaded files must be smaller than 1GB.
+    </p>
+
+    <h2 class="govuk-heading-m">Upload cross-team correspondence</h2>
+
+    <div
+      class="moj-multi-file-upload__upload"
+      style="border: 2px dashed #b1b4b6; padding-left: 16px; padding-top: 60px; padding-bottom: 60px; background-color: #ffffff; margin-bottom: 30px;"
+    >
+      <div class="govuk-form-group" style="margin-bottom: 0;">
+        <label class="govuk-button govuk-button--secondary" for="documents">
+          Choose files
+        </label>
+        <p class="govuk-body" style="display: inline; margin-left: 10px;">
+          or drop files
+        </p>
+        <input
+          class="govuk-file-upload moj-multi-file-upload__input"
+          id="documents"
+          name="documents"
+          type="file"
+          multiple
+          style="position: absolute; left: -9999px;"
+        >
+      </div>
+    </div>
+
+    <table class="govuk-table">
+      <colgroup>
+        <col style="width: 30%;">
+        <col style="width: 45%;">
+        <col style="width: 5%;">
+      </colgroup>
+
+      <tbody class="govuk-table__body">
+
+        <tr class="govuk-table__row uploading-row" data-file="receipt1.jpg (0.2MB)">
+          <td class="govuk-table__cell">
+            receipt1.jpg (0.2MB)
+          </td>
+          <td class="govuk-table__cell">
+            Uploading: <span class="progress-percent">0%</span>
+          </td>
+          <td class="govuk-table__cell">
+            <a href="#" class="govuk-link">Cancel</a>
+          </td>
+        </tr>
+
+        <tr class="govuk-table__row uploading-row" data-file="receipt2.jpg (0.32MB)">
+          <td class="govuk-table__cell">
+            receipt2.jpg (0.32MB)
+          </td>
+          <td class="govuk-table__cell">
+            Uploading: <span class="progress-percent">0%</span>
+          </td>
+          <td class="govuk-table__cell">
+            <a href="#" class="govuk-link">Cancel</a>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <a href="#" class="govuk-button">Continue</a>
+
+  </div>
+</div>
+
+<script>
+  const rows = document.querySelectorAll('.uploading-row');
+  const fileCountText = document.getElementById('file-count');
+  let uploadedCount = 0;
+
+  rows.forEach((row, index) => {
+    let percent = 0;
+    const progressEl = row.querySelector('.progress-percent');
+
+    const interval = setInterval(() => {
+      percent++;
+      progressEl.textContent = percent + '%';
+
+      if (percent >= 100) {
+        clearInterval(interval);
+        uploadedCount++;
+
+        const fileName = row.dataset.file;
+
+        row.innerHTML = `
+          <td class="govuk-table__cell">
+            <a href="#" class="govuk-link">${fileName}</a>
+          </td>
+          <td class="govuk-table__cell">
+            <strong class="govuk-tag govuk-tag--green">Uploaded</strong>
+          </td>
+          <td class="govuk-table__cell">
+            <a href="#" class="govuk-link">Remove</a>
+          </td>
+        `;
+
+        fileCountText.textContent =
+          `${uploadedCount} of ${rows.length} files uploaded`;
+      }
+    }, 30 + index * 10);
+  });
+</script>
+
+
+{% endblock %}

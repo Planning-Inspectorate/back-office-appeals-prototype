@@ -44,7 +44,7 @@ router.post('/confirm-remove-address', function (req, res) {
   res.redirect('requested-addresses?address-removed=true');
 })
 
-router.post('/application-reference', function (req, res) {
+router.post('/Application-reference', function (req, res) {
   const referrer = req.query.referrer || 'case-details';
   res.redirect(referrer + '?application-reference-updated=true');
 })

@@ -1,0 +1,60 @@
+{% extends "layouts/PINS.html" %}
+
+{% set title = "Application reference number" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = true %}
+
+{% block questions %}
+
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+{{ govukInput({
+  label: {
+    text: "What is the application reference number?",
+    classes: "govuk-label--l",
+    isPageHeading: true
+  },
+  id: "application-reference",
+  name: "application-reference",
+  value: data['application-reference'] if data['application-reference'] else ''
+}) }}
+
+{% endblock %}
+
+{% block buttons %}
+  {% from "govuk/components/button/macro.njk" import govukButton %}
+
+  <input type="hidden" name="application-reference-updated" value="true">
+
+  {{ govukButton({
+    text: "Continue"
+  }) }}
+{% endblock %}
+
+{% block bodyEnd %}
+  <script>
+    document.querySelector('form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      const params = new URLSearchParams(window.location.search);
+      const referrer = params.get('referrer');
+      
+      const newParams = new URLSearchParams();
+      for (let [key, value] of formData) {
+        newParams.append(key, value);
+      }
+      
+      // Always add the success banner flag
+      newParams.append('application-reference-updated', 'true');
+      
+      // If there's a referrer, go back to it
+      if (referrer) {
+        window.location.href = referrer + '?' + newParams.toString();
+      } else {
+        // Default behavior: go to case-details
+        window.location.href = 'case-details?' + newParams.toString();
+      }
+    });
+  </script>
+{% endblock %}

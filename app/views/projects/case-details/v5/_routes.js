@@ -44,5 +44,28 @@ router.post('/confirm-remove-address', function (req, res) {
   res.redirect('requested-addresses?address-removed=true');
 })
 
+// Clear application-reference-updated flag after displaying the banner
+router.get('/case-details', function (req, res, next) {
+  // If the flag is set, clear it from session after this render
+  if (req.session.data['application-reference-updated']) {
+    // Store it temporarily for this render
+    res.locals.showBanner = true;
+    // Clear it so it won't show on refresh
+    delete req.session.data['application-reference-updated'];
+  }
+  next();
+})
+
+router.get('/enforcement-appeal', function (req, res, next) {
+  // If the flag is set, clear it from session after this render
+  if (req.session.data['application-reference-updated']) {
+    // Store it temporarily for this render
+    res.locals.showBanner = true;
+    // Clear it so it won't show on refresh
+    delete req.session.data['application-reference-updated'];
+  }
+  next();
+})
+
 // Add your routes above the module.exports line
 module.exports = router

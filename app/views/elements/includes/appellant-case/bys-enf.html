@@ -115,12 +115,12 @@
         text: "What is the application reference number?"
       },
       value: {
-        html: "123456789"
+        html: data['application-reference'] or '12345'
       },
       actions: {
           items: [
             {
-              href: "#",
+              href: "Application-reference?referrer=" + (referrer or path or "enforcement-appeal"),
               text: "Change",
               visuallyHiddenText: "ref number"
             }

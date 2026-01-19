@@ -9,6 +9,20 @@
     text: flash
   }) if flash.length }}
 
+  <!-- Application reference updated notification -->
+  {% if data['application-reference-updated'] and data['application-reference'] %}
+    {% set html %}
+      <h3 class="govuk-notification-banner__heading">
+        Application reference number updated
+      </h3>
+    {% endset %}
+
+    {{ govukNotificationBanner({
+      html: html,
+      type: "success"
+    }) }}
+  {% endif %}
+
   <!-- appeal ready to start -->
   {% if data['case-stage'] == 'ready' %}
 

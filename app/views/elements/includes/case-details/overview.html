@@ -17,23 +17,23 @@
         html: data['application-reference'] or '12345'
       },
       {
-        html: "<a href='#'>Change</a>",
+        html: "<a href=\"application-reference?referrer=case-details\">Change</a>",
         format: "numeric"
       }
     ] if appealIs != 'Enforcement',
     [
-    {
-      text: "Enforcement notice reference",
-      classes: "govuk-!-width-one-third"
-    },
-    {
-      html: data['application-reference'] or '12345'
-    },
-    {
-      html: "<a href='#'>Change</a>",
-      format: "numeric"
-    }
-  ] if appealIs == 'Enforcement',
+      {
+        text: "Enforcement notice reference",
+        classes: "govuk-!-width-one-third"
+      },
+      {
+        html: data['application-reference'] or '12345'
+      },
+      {
+        html: "<a href='#'>Change</a>",
+        format: "numeric"
+      }
+    ] if appealIs == 'Enforcement',
     [
       {
         text: "Appeal type"

@@ -44,6 +44,11 @@ router.post('/confirm-remove-address', function (req, res) {
   res.redirect('requested-addresses?address-removed=true');
 })
 
+router.post('/application-reference', function (req, res) {
+  const referrer = req.query.referrer || 'case-details';
+  res.redirect(referrer + '?application-reference-updated=true');
+})
+
 // Clear application-reference-updated flag after displaying the banner
 router.get('/case-details', function (req, res, next) {
   // If the flag is set, clear it from session after this render

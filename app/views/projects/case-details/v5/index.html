@@ -1,0 +1,154 @@
+{% extends "layouts/PINS-Simple.html" %}
+
+{% set title = "Case details" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">{{ title }}</h1>
+
+      <p class="govuk-body-l">
+        A look at how the Case details view changes throughout the different stages of an appeal.
+      </p>
+
+      <h2 class="govuk-heading-m">Version 5
+        {{govukTag({
+          text: "In progress",
+          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+        })}}
+      </h2>
+      <p class="govuk-body">
+        Minor updates - adding flow for editing application reference number.
+      </p>
+          <a href="https://pins-ds.atlassian.net/browse/A2-3325" class="govuk-link">
+          Jira ticket for task
+          </a>
+<p class="govuk-body govuk-!-margin-top-4">Relevant pages</p>        
+      
+        <li>
+          <a href="/projects/case-details/v5/case-details" class="govuk-link">
+          Case details
+          </a>
+        </li>
+         <li>
+          <a href="/projects/case-details/v5/application-reference" class="govuk-link">
+          Application reference
+          </a>
+        </li>
+         <li>
+          <a href="/projects/case-details/v5/enforcement-appeal" class="govuk-link">
+          Enforcement appeal
+          </a>
+        </li>
+            <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+      <p class="govuk-body">
+        Case details like-live (December 2025)
+      </p>
+      
+
+      <p class="govuk-body">
+        Some options for documentation:
+      </p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          <a href="v5/documentation-live" class="govuk-link">
+            Documentation like live (December 2025)
+          </a>
+        </li>
+        <li>
+          <a href="v5/documentation-parties" class="govuk-link">
+            Documentation by party
+          </a>
+        </li>
+        <li>
+          <a href="v5/documentation-evidence" class="govuk-link">
+            Documentation by evidence
+          </a>
+        </li>
+      </ul>
+
+      {{ govukButton({
+        text: "View prototype",
+        href: "/projects/case-details/v5/case-details.html",
+        isStartButton: true
+      }) }}
+
+<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+      <h2 class="govuk-heading-m">Version 4
+        {{govukTag({
+          text: "In progress",
+          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+        })}}
+      </h2>
+
+      <p class="govuk-body">
+        Horizontal nav to allow maximum width for content within the pages.
+      </p>
+
+      {{ govukButton({
+        text: "View prototype",
+        href: "/projects/case-details/v4/case-details.html",
+        isStartButton: true
+      }) }}
+
+      <h2 class="govuk-heading-m">Version 3
+        {{govukTag({
+          text: "In progress",
+          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+        })}}
+      </h2>
+
+      <p class="govuk-body">
+        What if we had pages for case details?
+      </p>
+
+      <a href="/projects/case-details/v3/case-details.html" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
+        View prototype
+        <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+          <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+        </svg>
+      </a>
+
+      <h2 class="govuk-heading-m">Version 2
+        {{govukTag({
+          text: "In progress",
+          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+        })}}
+      </h2>
+
+      <p class="govuk-body">
+        What if we removed the accordion and merged the documents into other sections?
+      </p>
+
+      <a href="/projects/case-details/v2/case-details.html" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
+        View prototype
+        <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+          <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+        </svg>
+      </a>
+
+      <h2 class="govuk-heading-m">Version 1
+        {{govukTag({
+          text: "In progress",
+          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+        })}}
+      </h2>
+
+      <a href="/projects/case-details/v1/case-details.html" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
+        View prototype
+        <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+          <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+        </svg>
+      </a>
+
+    </div>
+  </div>
+{% endblock %}

@@ -196,32 +196,8 @@ router.post('/manage-documents/multiple-document-upload', function (req, res) {
     console.warn('No fileData in request body!')
   }
 
-  // Check if there are any files with unset metadata (whether newly uploaded or existing)
-  const allFiles = req.session.data.uploadedFiles || []
-  const nextPage = getNextRequiredPage(allFiles, req.session.data.shownPages)
-  
-  if (nextPage) {
-    // Set the current file before redirecting so GET handler can use it
-    const nextFile = getNextFileNeedingMetadata(allFiles)
-    if (nextFile) {
-      req.session.data.currentFile = nextFile
-      
-      // Set file number counter for sequential upload flow
-      const currentSessionFiles = allFiles.filter(f => f.currentSession === true)
-      const currentIndex = currentSessionFiles.findIndex(f => f.id === nextFile.id)
-      req.session.data.currentFileNumber = currentIndex + 1
-      req.session.data.totalFiles = currentSessionFiles.length
-    }
-  }
-  
-  if (nextPage === 'date-received') {
-    return res.redirect('/projects/file-upload/v4/manage-documents/file-details-date-received')
-  } else if (nextPage === 'redaction-status') {
-    return res.redirect('/projects/file-upload/v4/manage-documents/file-details-redaction-status')
-  } else {
-    // All files complete - redirect to index
-    return res.redirect('/projects/file-upload/v4/manage-documents/index')
-  }
+  // Redirect to v4 manage-documents file-uploading page
+  return res.redirect('/projects/file-upload/v4/manage-documents/file-uploading')
 })
 
 // GET: Show date received page with current file
@@ -586,6 +562,98 @@ router.get('/manage-documents/remove-file/:fileId', function (req, res) {
   
   // Redirect back to upload page
   return res.redirect('/projects/file-upload/v4/manage-documents/multiple-document-upload')
+})
+
+module.exports = router
+
+//routes related to the file uploading progress indicator
+const govukPrototypeKit = require('govuk-prototype-kit')
+const router = govukPrototypeKit.requests.setupRouter()
+
+console.log('*** V5 ROUTES FILE LOADED ***')
+console.log('*** Router configured for: /projects/file-upload/v5/ ***')
+
+// GET: Show file uploading page
+router.get('/manage-documents/file-uploading', function (req, res, next) {
+  console.log('=== File uploading page GET ===')
+  
+  // Initialize uploaded files with receipt1.jpg and receipt2.jpg
+  if (!req.session.data.uploadedFiles) {
+    req.session.data.uploadedFiles = []
+  }
+  
+  // Add the two files if they don't exist
+  const hasReceipt1 = req.session.data.uploadedFiles.some(f => f.name === 'receipt1.jpg')
+  const hasReceipt2 = req.session.data.uploadedFiles.some(f => f.name === 'receipt2.jpg')
+  
+  if (!hasReceipt1) {
+    req.session.data.uploadedFiles.push({
+      id: 'receipt1-' + Date.now(),
+      name: 'receipt1.jpg',
+      size: 204800, // 0.2MB in bytes
+      uploadedAt: new Date().toISOString(),
+      dateReceived: null,
+      redactionStatus: null,
+      currentSession: true
+    })
+  }
+  
+  if (!hasReceipt2) {
+    req.session.data.uploadedFiles.push({
+      id: 'receipt2-' + Date.now() + 1,
+      name: 'receipt2.jpg',
+      size: 335544, // 0.32MB in bytes
+      uploadedAt: new Date().toISOString(),
+      dateReceived: null,
+      redactionStatus: null,
+      currentSession: true
+    })
+  }
+  
+  console.log('Files in session:', req.session.data.uploadedFiles.length)
+  next()
+})
+
+// Handle continue button on file-uploading page
+router.post('/manage-documents/file-uploading', function (req, res) {
+  console.log('=== File uploading POST - setting up sequential flow ===')
+  
+  const files = req.session.data.uploadedFiles || []
+  console.log('Files in session:', files.length)
+  
+  // Initialize tracking for sequential flow
+  if (!req.session.data.shownPages) {
+    req.session.data.shownPages = {}
+  }
+  
+  // Get the first file that needs metadata
+  const nextFile = getNextFileNeedingMetadata(files)
+  
+  if (nextFile) {
+    // Set the current file before redirecting
+    req.session.data.currentFile = nextFile
+    
+    // Set file number counter for sequential upload flow
+    const currentSessionFiles = files.filter(f => f.currentSession === true)
+    const currentIndex = currentSessionFiles.findIndex(f => f.id === nextFile.id)
+    req.session.data.currentFileNumber = currentIndex + 1
+    req.session.data.totalFiles = currentSessionFiles.length
+    
+    console.log('Set currentFile:', nextFile.name)
+    console.log('Set currentFileNumber:', req.session.data.currentFileNumber, 'of', req.session.data.totalFiles)
+  }
+  
+  // Determine which page to show first
+  const nextPage = getNextRequiredPage(files, req.session.data.shownPages)
+  
+  if (nextPage === 'date-received') {
+    return res.redirect('/projects/file-upload/v4/manage-documents/file-details-date-received')
+  } else if (nextPage === 'redaction-status') {
+    return res.redirect('/projects/file-upload/v4/manage-documents/file-details-redaction-status')
+  } else {
+    // All files complete - redirect to document details
+    return res.redirect('/projects/file-upload/v4/manage-documents/document-details')
+  }
 })
 
 module.exports = router

@@ -18,28 +18,18 @@
 
     <h2 class="govuk-heading-m">Upload cross-team correspondence</h2>
 
-    <div
-      class="moj-multi-file-upload__upload"
-      style="border: 2px dashed #b1b4b6; padding-left: 16px; padding-top: 60px; padding-bottom: 60px; background-color: #ffffff; margin-bottom: 30px;"
-    >
-      <div class="govuk-form-group" style="margin-bottom: 0;">
-        <label class="govuk-button govuk-button--secondary" for="documents">
-          Choose files
-        </label>
-        <p class="govuk-body" style="display: inline; margin-left: 10px;">
-          or drop files
-        </p>
-        <input
-          class="govuk-file-upload moj-multi-file-upload__input"
-          id="documents"
-          name="documents"
-          type="file"
-          multiple
-          style="position: absolute; left: -9999px;"
-        >
+      <!-- Dashed box upload area -->
+      <div class="moj-multi-file-upload__upload" style="border: 2px dashed #b1b4b6;padding-left: 16px; padding-top: 60px; padding-bottom: 60px; align-content: center; background-color: #ffffff; margin-bottom: 30px;">
+        <div class="govuk-form-group" style="margin-bottom: 0;">
+          <label class="govuk-button govuk-button--secondary" for="documents" style="margin-bottom: 0; cursor: pointer;">
+            Choose files
+          </label>
+          <p class="govuk-body" style="display: inline; margin-left: 10px;">or drop files</p>
+          <input class="govuk-file-upload moj-multi-file-upload__input" id="documents" name="documents" type="file" multiple="" style="position: absolute; left: -9999px;">
+        </div>
       </div>
-    </div>
-
+      <!-- End dashed box upload area -->
+  
     <table class="govuk-table">
       <colgroup>
         <col style="width: 30%;">
@@ -76,7 +66,11 @@
       </tbody>
     </table>
 
-    <a href="#" class="govuk-button">Continue</a>
+    <form action="/projects/file-upload/v4/manage-documents/file-uploading" method="post">
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+    </form>
 
   </div>
 </div>

@@ -1,0 +1,125 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Appellant case" %}
+{% set pageName = title %}
+{% set appealIs = 'Enforcement' %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: 'case-details'
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukNotificationBanner({
+        type: "success",
+        text: "Appeal marked as invalid"
+      }) if flash.length}}
+
+      <span class="govuk-caption-xl">
+        Appeal 00000005
+      </span>
+      <h1 class="govuk-heading-xl">{{title}}</h1>
+
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+      {{ govukSummaryList({
+        classes: "govuk-summary-list--no-border",
+        rows: [
+          {
+            key: {
+              text: "Site address"
+            },
+            value: {
+              html: "22b The Peach Trees, <br>Peckham, <br>SE15 9HA"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+
+      <!--
+      <p class="govuk-body">
+       <a href="/main/appeals/{{appeal.id}}/appeal-form/request-missing-information" class="govuk-link">Request missing information</a>
+      </p>-->
+
+      </div>
+
+      <div class="govuk-grid-column-full">
+
+      <!--Prepare appeal-->
+
+      <section>
+        {% include "/elements/includes/appellant-case/bys-enf.html" %}
+      </section>
+
+      <section>
+        {% include "/elements/includes/appellant-case/contact-details.html" %}
+      </section>
+
+      <section>
+        {% include "/elements/includes/appellant-case/site-details.html" %}
+      </section>
+
+      <section>
+        {% include "/elements/includes/appellant-case/grounds.html" %}
+      </section>
+
+      <section>
+        {% include "/elements/includes/appellant-case/procedure.html" %}
+      </section>
+
+      <section>
+        {% include "/elements/includes/appellant-case/uploaded-documents.html" %}
+      </section>
+
+      <form method="post">
+
+      {{ govukRadios({
+        name: "reviewDecision",
+        fieldset: {
+          legend: {
+            text: "Review decision",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+          {
+            value: "Valid",
+            text: "Valid"
+          },
+          {
+            value: "Invalid",
+            text: "Invalid"
+          },
+          {
+            value: "Incomplete",
+            text: "Incomplete"
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

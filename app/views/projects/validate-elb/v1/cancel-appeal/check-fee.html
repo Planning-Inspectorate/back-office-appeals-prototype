@@ -1,0 +1,122 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = 'Check details and cancel appeal'  %}
+{% set pageName = title %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: 'javascript:history.back()'
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <span class="govuk-caption-l">Appeal 1223443</span>
+      <h1 class="govuk-heading-l">
+        {{title}}
+      </h1>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: { text: "Why are you cancelling the appeal?" },
+            value: { text: "Did not submit application or pay fee" },
+            actions: {
+              items: [
+                {
+                  href: "cancel-reason",
+                  text: "Change",
+                  visuallyHiddenText: "Cancel reason"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      {{ govukDetails({
+        summaryText: "Preview email to appellant",
+        html: '
+          <div class="app-email-preview">
+            <div class="app-email-preview__subject">
+              Subject: Appeal cancelled: 1223443
+            </div>
+            <div class="app-email-preview__body">
+              <p class="govuk-body">
+                You did not submit a planning application and pay the fee by 14 November 2025. We have cancelled your appeal.
+              </p>
+
+              <p class="govuk-body">
+                The enforcement notice issued on 3 November 2025 now takes effect.
+              </p>
+
+              <h2 class="govuk-heading-m">
+                Appeal details
+              </h2>
+              <div class="govuk-inset-text">
+                Appeal reference number: 1223443<br>
+                Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
+                Enforcement notice reference: LPA12345678
+              </div>
+
+              <p class="govuk-body">
+                Planning Inspectorate
+              </p>
+              <p class="govuk-body"><a href="mailto:caseofficers@planninginspectorate.gov.uk">
+                caseofficers@planninginspectorate.gov.uk</a></p>
+
+            </div>
+          </div>'
+        })}}
+
+      {{ govukDetails({
+        summaryText: "Preview email to LPA",
+        html: '
+          <div class="app-email-preview">
+            <div class="app-email-preview__subject">
+              Subject: Appeal cancelled: 1223443
+            </div>
+            <div class="app-email-preview__body">
+              <p class="govuk-body">
+                The appellant did not submit a planning application and pay the fee by 14 November 2025. We have cancelled the appeal.
+              </p>
+
+              <p class="govuk-body">
+                The enforcement notice issued on 3 November 2025 now takes effect.
+              </p>
+
+              <h2 class="govuk-heading-m">
+                Appeal details
+              </h2>
+              <div class="govuk-inset-text">
+                Appeal reference number: 12345678<br>
+                Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
+                Enforcement notice reference: LPA12345678
+              </div>
+
+              <p class="govuk-body">
+                Planning Inspectorate
+              </p>
+              <p class="govuk-body"><a href="mailto:caseofficers@planninginspectorate.gov.uk">
+                caseofficers@planninginspectorate.gov.uk</a></p>
+
+            </div>
+          </div>'
+        })}}
+
+        <p class="govuk-body">
+          We will cancel the appeal and send an email to the relevant parties.
+        </p>
+
+      <form method="post">
+        {{ govukButton({
+          text: "Cancel appeal"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

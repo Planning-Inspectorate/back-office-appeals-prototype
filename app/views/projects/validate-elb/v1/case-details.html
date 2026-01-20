@@ -1,0 +1,68 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Case details" %}
+
+{% set pageName = title + ' - Planning Inspectorate'%}
+{% set back = false %}
+{% set appealIs = 'Enforcement' %}
+
+
+      {% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+      <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+        <div class="govuk-notification-banner__header">
+          <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">Important</h2>
+        </div>
+        <div class="govuk-notification-banner__content">
+          <p class="govuk-notification-banner__heading">
+            <a class="govuk-notification-banner__link" href="enforcement-appeal.html?case-stage=validation&appealIs=Enforcement">Validate appeal</a>
+          </p>
+        </div>
+      </div>
+
+      <span class="govuk-caption-xl">Appeal 00000005</span>
+    	<h1 class="govuk-heading-xl govuk-!-margin-bottom-2">
+        {{ title }}
+      </h1>
+      </div>
+
+      <div class="govuk-grid-column-full">
+
+      {% include "/elements/includes/case-details/status.html" %}
+
+      {% include "/elements/includes/case-details/meta-data.html" %}
+
+      <div class="govuk-button-group">
+        <a href="#" class="govuk-link">Download case</a>
+      </div>
+
+      {{ govukDetails({
+        summaryText: "Notes (1)",
+        text: "Note stuff here"
+      }) }}
+
+      {% include "/elements/includes/case-details/overview.html" %}
+
+      {% include "/elements/includes/case-details/timetable.html" %}
+
+      {% include "/elements/includes/case-details/documentation.html" %}
+
+      {% include "/elements/includes/case-details/costs.html" %}
+
+      {% include "/elements/includes/case-details/contacts.html" %}
+
+      {% include "/elements/includes/case-details/team.html" %}
+
+      {% include "/elements/includes/case-details/case-management.html" %}
+
+      <div class="app-panel">
+        <h2 class="govuk-heading-l">Cancel appeal</h2>
+          <p class="govuk-body"><a href="cancel-appeal/cancel-reason">Cancel appeal</a></p>
+        </div>
+
+    </div>
+  </div>
+{% endblock %}

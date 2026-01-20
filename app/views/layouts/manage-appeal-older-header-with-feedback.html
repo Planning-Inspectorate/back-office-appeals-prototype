@@ -1,0 +1,22 @@
+{#
+	For guidance on how to use layouts see:
+	https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
+	#}
+
+	{% extends "layouts/main.html" %}
+
+	{# Overrides the GOVUK standard header
+		 with a PINs back office header #}
+
+	{% block header %}
+		{% include "includes/PINS-header-nav.html" %}
+	{% endblock %}
+
+	{% block beforeContent %}
+		{{ govukPhaseBanner({
+			tag: {
+				text: "Beta"
+			},
+			html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+		}) }}
+	{% endblock %}

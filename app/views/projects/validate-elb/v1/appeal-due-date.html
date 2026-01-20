@@ -1,0 +1,59 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Update appeal due date" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+		<span class="govuk-caption-xl">Appeal 1223443</span>
+
+
+       <form method="post" validate>
+
+       {{ govukDateInput({
+        id: "date",
+        fieldset: {
+          legend: {
+            text: pageName,
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        hint: {
+          text: "For example, 31 3 2025"
+        },
+        items: [
+        {
+          name: "date[day]",
+          label: "Day",
+          value: data.date and data.date.day,
+          classes: "govuk-input--width-2"
+        },
+        {
+          name: "date[month]",
+          label: "Month",
+          value: data.date and data.date.month,
+          classes: "govuk-input--width-2"
+        },
+        {
+          name: "date[year]",
+          label: "Year",
+          value: data.date and data.date.year,
+          classes: "govuk-input--width-4"
+        }
+      ]
+       }) }}
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+	  </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

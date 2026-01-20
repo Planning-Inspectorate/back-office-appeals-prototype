@@ -1,0 +1,246 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = 'Check details and withdraw enforcement notice'  %}
+{% set pageName = title %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: 'javascript:history.back()'
+}) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Appeal {{ data['appealReference'] or '1223443' }}</span>
+    <h1 class="govuk-heading-l">{{ title }}</h1>
+
+    {# --- 1. Base summary list rows --- #}
+    {% set summaryRows = [
+      {
+        key: { text: "Why are you cancelling the appeal?" },
+        value: { text: data['cancel-reason'] or "Not provided" },
+        actions: {
+          items: [
+            { href: "cancel-reason", text: "Change", visuallyHiddenText: "cancel reason" }
+          ]
+        }
+      }
+    ] %}
+
+    {# --- 2. Conditional row for LPA reply --- #}
+    {% if data['cancel-reason'] in ["The enforcement notice is invalid", "LPA has withdrawn the enforcement notice"] %}
+  {% set summaryRows = summaryRows.concat([
+    {
+      key: { text: "LPA enforcement notice withdrawal" },
+      value: {
+        html: '<p class="govuk-body"><a href="' + (data["withdrawal-upload"] or "#") + '">withdrawal-request.pdf</a></p>'
+      },
+      actions: {
+        items: [
+          { href: "upload-withdrawal", text: "Change", visuallyHiddenText: "LPA withdrawal document" }
+        ]
+      }
+    }
+  ]) %}
+{% endif %}
+
+    {# --- 3. Conditional rows for invalid appeal route --- #}
+    {% if data['cancel-reason'] == "Appeal invalid" %}
+      {% set invalidReasonsHtml %}
+        {% if data['invalid'] %}
+          <ul class="govuk-list govuk-list--bullet">
+            {% for reason in data['invalid'] %}
+              <li>{{ reason }}</li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <span>No reasons selected</span>
+        {% endif %}
+      {% endset %}
+
+      {% set summaryRows = summaryRows.concat([
+        {
+          key: { text: "Why is the appeal invalid?" },
+          value: { html: invalidReasonsHtml },
+          actions: {
+            items: [{ href: "appeal-invalid-reason", text: "Change" }]
+          }
+        }
+      ]) %}
+
+      {% if "Appellant does not have a legal interest in the land" in data['invalid'] %}
+        {% set summaryRows = summaryRows.concat([
+          {
+            key: { text: "Does the appellant have a legal interest in the land?" },
+            value: { text: data['legalInterest'] or "Not provided" },
+            actions: {
+              items: [{ href: "legal-interest-information", text: "Change" }]
+            }
+          }
+        ]) %}
+      {% endif %}
+    {% endif %}
+
+    {{ govukSummaryList({ rows: summaryRows }) }}
+
+    {# --- 4. Conditional email previews --- #}
+
+    {% if data['cancel-reason'] == "The enforcement notice is invalid" %}
+      {{ govukDetails({
+        summaryText: "Preview email to appellant",
+        html: '
+          <div class="app-email-preview">
+            <div class="app-email-preview__subject">
+              Subject: Enforcement notice invalid: 12345678
+            </div>
+            <div class="app-email-preview__body">
+              <p class="govuk-body">
+                We have reviewed the enforcement notice and it is not valid.
+              </p>
+              <h2 class="govuk-heading-m">What happens next</h2>
+              <p>Contact <a href="mailto:caseofficers@planninginspectorate.gov.uk">
+              caseofficers@planninginspectorate.gov.uk</a> to confirm if you will withdraw this enforcement notice and serve another by 24 October 2025.</p>
+              <p class="govuk-body">Planning Inspectorate</p>
+            </div>
+          </div>'
+      }) }}
+    {% endif %}
+
+    {% if data['cancel-reason'] == "Appeal invalid" and "Appellant does not have a legal interest in the land" in data['invalid'] %}
+      {{ govukDetails({
+        summaryText: "Preview email to appellant",
+        html: '
+          <div class="app-email-preview">
+            <div class="app-email-preview__subject">
+              Subject: You cannot submit an enforcement appeal: 1223443
+            </div>
+            <div class="app-email-preview__body">
+              <p class="govuk-body">We have reviewed your appeal and you do not have a legal interest in the land.</p>
+              <p class="govuk-body">You can only submit an enforcement appeal if you are:</p>
+              <ul class="govuk-list govuk-list--bullet">
+                <li>someone with a legal interest in the land</li>
+                <li>a relevant occupier</li>
+              </ul>
+              <p>We will mark your appeal as invalid if you do not reply within 2 weeks.</p>
+              <p class="govuk-body">Planning Inspectorate</p>
+            </div>
+          </div>'
+      }) }}
+    {% endif %}
+
+    {% if data['cancel-reason'] == "LPA has withdrawn the enforcement notice" %}
+    {{ govukDetails({
+      summaryText: "Preview email to appellant",
+      html: '
+      <div class="app-email-preview">
+        <div class="app-email-preview__subject">
+          Subject: Enforcement notice withdrawn: 1223443
+        </div>
+        <div class="app-email-preview__body">
+          <p class="govuk-body">
+            Barnet Council has withdrawn the enforcement notice.
+          </p>
+
+          <p class="govuk-body">
+            The enforcment notice issued on 3 November 2025 will not take effect.
+          </p>
+
+          <h2 class="govuk-heading-m">
+            Appeal details
+          </h2>
+
+          <div class="govuk-inset-text">
+            Appeal reference number: 1223443<br>
+            Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
+            Enforcement notice reference: LPA12345678
+          </div>
+
+          <h2 class="govuk-heading-m">
+            What happens next
+          </h2>
+
+          <p class="govuk-body">
+            We have closed the appeal and cancelled the enforcement notice.
+          </p>
+
+          <p class="govuk-body">
+            If there are any costs applications, we will decide these separately.
+          </p>
+
+          <p class="govuk-body">
+            Planning Inspectorate
+          </p>
+
+          <p class="govuk-body"><a href="mailto:caseofficers@planninginspectorate.gov.uk">
+            caseofficers@planninginspectorate.gov.uk</a></p>
+
+        </div>
+      </div>'
+    }) }}
+
+    {{ govukDetails({
+      summaryText: "Preview email to LPA",
+      html: '
+      <div class="app-email-preview">
+        <div class="app-email-preview__subject">
+          Subject: Enforcement notice withdrawn: 1223443
+        </div>
+        <div class="app-email-preview__body">
+          <p class="govuk-body">
+            Barnet Council has withdrawn the enforcement notice.
+          </p>
+
+          <p class="govuk-body">
+            The enforcment notice issued on 3 November 2025 will not take effect.
+          </p>
+
+          <h2 class="govuk-heading-m">
+            Appeal details
+          </h2>
+
+          <div class="govuk-inset-text">
+            Appeal reference number: 1223443<br>
+            Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
+            Enforcement notice reference: LPA12345678
+          </div>
+
+          <h2 class="govuk-heading-m">
+            What happens next
+          </h2>
+
+          <p class="govuk-body">
+            We have closed the appeal and cancelled the enforcement notice.
+          </p>
+
+          <p class="govuk-body">
+            If there are any costs applications, we will decide these separately.
+          </p>
+
+          <p class="govuk-body">
+            Planning Inspectorate
+          </p>
+
+          <p class="govuk-body"><a href="mailto:caseofficers@planninginspectorate.gov.uk">
+            caseofficers@planninginspectorate.gov.uk</a></p>
+
+        </div>
+      </div>'
+    }) }}
+  {% endif %}
+
+<p class="govuk-body">
+  We will withdraw the enforcement notice and send an email to the relevant parties.
+</p>
+
+    {# --- 5. Final action --- #}
+    <form method="post">
+      {{ govukButton({ text: "Withdraw enforcement notice" }) }}
+    </form>
+
+  </div>
+</div>
+{% endblock %}
+

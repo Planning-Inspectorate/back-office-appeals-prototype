@@ -1,0 +1,166 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Grounds" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+       <form method="post" validate>
+        <span class="govuk-caption-xl">Appeal 2110166</span>
+        {{ govukCheckboxes({
+          name: 'grounds',
+          fieldset: {
+            legend: {
+              text: "Which grounds do not match the facts?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Ground (a)",
+              text: "Ground (a)",
+              conditional: {
+                html: govukInput({
+                  name: "reasonA",
+                  label: {
+                    text: "Enter a reason"
+                  }
+                })
+              }
+            },
+            {
+              value: "Ground (b)",
+              text: "Ground (b)",
+              conditional: {
+                html: govukInput({
+                  name: "reasonB",
+                  label: {
+                    text: "Enter a reason"
+                  }
+                })
+              }
+            },            {
+              value: "Ground (c)",
+              text: "Ground (c)",
+              conditional: {
+                html: govukInput({
+                  name: "reasonC",
+                  label: {
+                    text: "Enter a reason"
+                  }
+                })
+              }
+            },
+            {
+              value: "Ground (d)",
+              text: "Ground (d)",
+              conditional: {
+                html: govukInput({
+                  name: "reasonD",
+                  label: {
+                    text: "Enter a reason"
+                  }
+                })
+              }
+            },
+            {
+              value: "Ground (e)",
+              text: "Ground (e)",
+              conditional: {
+                html: govukInput({
+                  name: "reasonE",
+                  label: {
+                    text: "Enter a reason"
+                  }
+                })
+              }
+            },
+            {
+              value: "Ground (f)",
+              text: "Ground (f)",
+              conditional: {
+                html: govukInput({
+                  name: "reasonF",
+                  label: {
+                    text: "Enter a reason"
+                  }
+                })
+              }
+            },
+            {
+              value: "Ground (g)",
+              text: "Ground (g)",
+              conditional: {
+                html: govukInput({
+                  name: "reasonG",
+                  label: {
+                    text: "Enter a reason"
+                  }
+                })
+              }
+            },
+            {
+              value: "Ground (h)",
+              text: "Ground (h)",
+              conditional: {
+                html: govukInput({
+                  name: "reasonH",
+                  label: {
+                    text: "Enter a reason"
+                  }
+                })
+              }
+            },
+            {
+              value: "Ground (i)",
+              text: "Ground (i)",
+              conditional: {
+                html: govukInput({
+                  name: "reasonI",
+                  label: {
+                    text: "Enter a reason"
+                  }
+                })
+              }
+            },
+            {
+              value: "Ground (j)",
+              text: "Ground (j)",
+              conditional: {
+                html: govukInput({
+                  name: "reasonJ",
+                  label: {
+                    text: "Enter a reason"
+                  }
+                })
+              }
+            },
+            {
+              value: "Ground (k)",
+              text: "Ground (k)",
+              conditional: {
+                html: govukInput({
+                  name: "reasonK",
+                  label: {
+                    text: "Enter a reason"
+                  }
+                })
+              }
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+	  </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

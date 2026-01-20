@@ -1,0 +1,68 @@
+{% extends "layouts/PINS-Simple-post-mvp.html" %}
+
+{% set title = "Validate enforcement listed building appeal" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = false %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Appeal a planning decision</span>
+    <h1 class="govuk-heading-l">{{ title }}</h1>
+
+    {{ govukTable({
+      captionClasses: "govuk-table__caption--m",
+      firstCellIsHeader: true,
+
+      rows: [
+        [
+          {
+            text: "Typical user",
+            classes: "govuk-!-width-one-third"
+          },
+          {
+            text: "Case officers"
+          }
+        ],
+        [
+          {
+            text: "User story"
+          },
+          {
+            html: "As a CO, <br> I want to validate an enforcement listed building appeal,<br>
+              So that the case can progress and parties are notified about the progress of their appeal."
+          }
+        ],
+        [
+          {
+            text: "Jira ticket"
+          },
+          {
+            html: '<p class="govuk-body"><a href="https://pins-ds.atlassian.net/browse/A2-3912?atlOrigin=eyJpIjoiYTAwMTVhNzc4ZmRjNDIyYjgyNGY1OGZjMjk4ZjUxNWIiLCJwIjoiaiJ9</a>A2-3912">A2-3912</a></p>'
+          }
+        ]
+      ]
+    }) }}
+
+    <h2 class="govuk-heading-m">
+      Version 1
+      {{govukTag({
+          text: "Ready for review",
+          classes: "govuk-!-margin-left-2 govuk-tag--light-blue"
+      })}}
+    </h2>
+
+    {{ govukButton({
+      text: "View prototype",
+      href: "v1/case-details",
+      isStartButton: true
+    }) }}
+
+    </div>
+  </div>
+
+{% endblock %}

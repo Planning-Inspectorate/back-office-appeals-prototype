@@ -1,0 +1,207 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = 'Check details and mark enforcement notice as invalid' %}
+{% set pageName = title %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+text: "Back",
+href: 'javascript:history.back()'
+}) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+
+    <span class="govuk-caption-l">Appeal {{ data['appealReference'] or '1223443' }}</span>
+    <h1 class="govuk-heading-l">{{ title }}</h1>
+
+    {# --- List of invalid reasons --- #}
+    {% set enfInvalidReasons %}
+      {% if data['reason-enforcement-notice-invalid'] %}
+        <ul class="govuk-list govuk-list--bullet">
+          {% for reason in data['reason-enforcement-notice-invalid'] %}
+            <li>{{ reason }}</li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <span><ul class="govuk-list govuk-list--bullet">
+          <li>
+            There is a mistake in the wording: the notice does not correctly state what you are alleged to have done wrong.
+          </li>
+          <li>
+            The period for compliance is not clear: the notice does not specify how long you have to comply with its requirements.
+          </li>
+        </ul></span>
+      {% endif %}
+    {% endset %}
+
+    {% set otherInfo = "No" %}
+    {% if data['otherInformation'] == "Yes" %}
+    {% if data['otherInformationText'] %}
+    {% set otherInfo = "Yes: " + data['otherInformationText'] %}
+    {% else %}
+    {% set otherInfo = "Yes" %}
+    {% endif %}
+    {% endif %}
+
+
+    {# --- Base summary list rows --- #}
+    {% set summaryRows = [
+      {
+        key: { text: "Review decision" },
+        value: { text: "Invalid" },
+        actions: {
+          items: [{ href: "enforcement-appeal", text: "Change" }]
+        }
+      },
+      {
+        key: { text: "Is the enforcement notice invalid?" },
+        value: { text: "Yes" },
+        actions: {
+          items: [{ href: "enf-notice-invalid", text: "Change" }]
+        }
+      }
+    ] %}
+
+    {# --- Enforcement notice invalid reasons --- #}
+    {% if data['enfNotice'] == "Yes" %}
+      {% set reasonsHtml = "" %}
+      {% for reason in data['reason-enforcement-notice-invalid'] %}
+        {% set reasonKey = "reason-text-" + (reason | replace(" ", "-")) %}
+        {% set typed = data[reasonKey] %}
+        {% if typed %}
+          {% set reasonsHtml = reasonsHtml + "<li>" + reason + ": " + typed + "</li>" %}
+        {% else %}
+          {% set reasonsHtml = reasonsHtml + "<li>" + reason + "</li>" %}
+        {% endif %}
+      {% endfor %}
+
+      {% set summaryRows = summaryRows.concat([{
+        key: { text: "Why is the enforcement notice invalid?" },
+        value: {
+          html: "<ul class='govuk-list govuk-list--bullet'>" + reasonsHtml + "</ul>"
+        },
+        actions: {
+          items: [{ href: 'enforcement-invalid-reason', text: 'Change' }]
+        }
+      }]) %}
+    {% endif %}
+
+    {# --- Add other information summary row --- #}
+    {% set summaryRows = summaryRows.concat([
+      {
+        key: { text: "Do you want to add any other information?" },
+        value: { text: otherInfo },
+        actions: {
+          items: [
+            { href: "other-information-invalid", text: "Change", visuallyHiddenText: "other information" }
+          ]
+        }
+      }
+    ]) %}
+
+    {{ govukSummaryList({ rows: summaryRows }) }}
+
+    {# --- Email previews --- #}
+
+    {{ govukDetails({
+      summaryText: "Preview enforcement notice invalid email to appellant",
+      html: '
+        <div class="app-email-preview">
+          <div class="app-email-preview__subject">
+            Subject: Enforcement notice invalid: ' ~ (data["appealReference"] or "1223443") ~ '
+          </div>
+          <div class="app-email-preview__body">
+            <p class="govuk-body">We have reviewed your appeal and the enforcement notice is not valid.</p>
+            <h2 class="govuk-heading-m">Appeal details</h2>
+            <div class="govuk-inset-text">
+              Appeal reference number: ' ~ (data["appealReference"] or "1223443") ~ '<br>
+              Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
+              Enforcement notice reference: LPA12345678
+            </div>
+            <h2 class="govuk-heading-m">Reasons the enforcement notice is invalid</h2>
+            
+            <h3 class="govuk-heading-s">It does not specify the boundaries of the land</h3>
+            <p class="govuk-body">Reason</p>
+            <h3 class="govuk-heading-s">It states that the recipient needs to immediately stop enforcement activity</h3>
+            <p class="govuk-body">Reason</p>
+            <h3 class="govuk-heading-s">There is a mistake in the wording</h3>
+            <p class="govuk-body">Reason</p>
+            <h3 class="govuk-heading-s">No time between the effective date and the end of the compliance period</h3>
+            <p class="govuk-body">Reason</p>
+            <h3 class="govuk-heading-s">It does not specify a period for compliance (only a description)</h3>
+            <p class="govuk-body">Reason</p>
+            <h3 class="govuk-heading-s">It does not specify a period for compliance (completely missing)</h3>
+            <p class="govuk-body">Reason</p>
+            <h3 class="govuk-heading-s">The period for compliance is not clear</h3>
+            <p class="govuk-body">Reason</p>
+
+            <h2 class="govuk-heading-m">Other information</h2>
+            <p class="govuk-body">Other info goes here</p>
+
+            <h2 class="govuk-heading-m">What happens next</h2>
+              
+            <p class="govuk-body">We have closed the appeal. The enforcement notice will not take effect.</p>
+
+            <p class="govuk-body">Planning Inspectorate</p>
+            <p><a href="mailto:caseofficers@planninginspectorate.gov.uk">caseofficers@planninginspectorate.gov.uk</a>
+          </div>
+        </div>'
+    }) }}
+      {{ govukDetails({
+        summaryText: "Preview enforcement notice invalid email to LPA",
+        html: '
+          <div class="app-email-preview">
+            <div class="app-email-preview__subject">
+              Subject: Enforcement notice invalid: ' ~ (data["appealReference"] or "1223443") ~ '
+            </div>
+            <div class="app-email-preview__body">
+              <p class="govuk-body">We have reviewed the enforcement notice and it is not valid.</p>
+              <h2 class="govuk-heading-m">Appeal details</h2>
+              <div class="govuk-inset-text">
+                Appeal reference number: ' ~ (data["appealReference"] or "1223443") ~ '<br>
+                Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
+                Enforcement notice reference: LPA12345678
+              </div>
+
+              <h2 class="govuk-heading-m">Reasons the enforcement notice is invalid</h2>
+              
+              <h3 class="govuk-heading-s">It does not specify the boundaries of the land</h3>
+              <p class="govuk-body">Reason</p>
+              <h3 class="govuk-heading-s">It states that the recipient needs to immediately stop enforcement activity</h3>
+              <p class="govuk-body">Reason</p>
+              <h3 class="govuk-heading-s">There is a mistake in the wording</h3>
+              <p class="govuk-body">Reason</p>
+              <h3 class="govuk-heading-s">No time between the effective date and the end of the compliance period</h3>
+              <p class="govuk-body">Reason</p>
+              <h3 class="govuk-heading-s">It does not specify a period for compliance (only a description)</h3>
+              <p class="govuk-body">Reason</p>
+              <h3 class="govuk-heading-s">It does not specify a period for compliance (completely missing)</h3>
+              <p class="govuk-body">Reason</p>
+              <h3 class="govuk-heading-s">The period for compliance is not clear</h3>
+              <p class="govuk-body">Reason</p>
+
+              <h2 class="govuk-heading-m">Other information</h2>
+              <p class="govuk-body">Other info goes here</p>
+
+              <h2 class="govuk-heading-m">What happens next</h2>
+              
+              <p class="govuk-body">We have closed the appeal. The enforcement notice will not take effect.</p>
+              <p class="govuk-body">Planning Inspectorate</p>
+              <p><a href="mailto:caseofficers@planninginspectorate.gov.uk">caseofficers@planninginspectorate.gov.uk</a>
+            </div>
+          </div>'
+      }) }}
+
+    <p class="govuk-body">
+      We will mark the enforcement notice as invalid and send an email to the relevant parties.
+    </p>
+    <form method="post">
+      {{ govukButton({ text: "Mark enforcement notice as invalid" }) }}
+    </form>
+
+  </div>
+</div>
+{% endblock %}

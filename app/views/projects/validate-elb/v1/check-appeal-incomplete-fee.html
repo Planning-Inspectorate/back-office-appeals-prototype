@@ -1,0 +1,146 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = 'Check details and mark appeal as incomplete' %}
+{% set pageName = title %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back",
+  href: 'javascript:history.back()'
+}) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <span class="govuk-caption-l">Appeal 1223443</span>
+      <h1 class="govuk-heading-l">
+        {{ title }}
+      </h1>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: { text: "Review decision" },
+            value: { html: "Incomplete" },
+            actions: {
+              items: [
+                {
+                  href: "enforcement-appeal",
+                  text: "Change",
+                  visuallyHiddenText: "review decision"
+                }
+              ]
+            }
+          },
+          {
+            key: { text: "Why is the appeal incomplete?" },
+            value: { html: "Waiting for the appellant to pay the fee" },
+            actions: {
+              items: [
+                {
+                  href: "enforcement-incomplete-reason",
+                  text: "Change",
+                  visuallyHiddenText: "incomplete reason"
+                }
+              ]
+            }
+          },
+          {
+            key: { text: "Application receipt due date" },
+            value: { html: "20 November 2025" },
+            actions: {
+              items: [
+                {
+                  href: "receipt-date",
+                  text: "Change",
+                  visuallyHiddenText: "receipt date"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      {# ---------------- EMAIL PREVIEW — APPELLANT ---------------- #}
+      {% set appellantEmail %}
+      <div class="app-email-preview">
+        <div class="app-email-preview__subject">
+          Subject: Submit planning application: 1223443
+        </div>
+        <div class="app-email-preview__body">
+          <p class="govuk-body">
+            You must submit a planning application and pay the fee to Barnet Council by 30 November 2025.          
+          </p>
+
+          <h2 class="govuk-heading-m">Appeal details</h2>
+          <div class="govuk-inset-text">
+            Appeal reference number: 1223443<br>
+            Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
+            Enforcement reference: LPA12345678
+          </div>
+
+          <h2 class="govuk-heading-m">What happens next</h2>
+          <p class="govuk-body">After you submit your application and pay the fee, send an email to <a href="mailto:caseofficers@planninginspectorate.gov.uk">caseofficers@planninginspectorate.gov.uk</a> with your fee receipt.</p>
+
+          <p class="govuk-body">
+            If you do not submit your application and pay the fee by 30 November 2025 we will close your appeal.
+          </p>
+
+          <p class="govuk-body">Planning Inspectorate</p>
+
+        </div>
+      </div>
+      {% endset %}
+
+      {{ govukDetails({
+        summaryText: "Preview email to appellant",
+        html: appellantEmail
+      }) }}
+
+      {# ---------------- EMAIL PREVIEW — LPA ---------------- #}
+      {% set lpaEmail %}
+      <div class="app-email-preview">
+        <div class="app-email-preview__subject">
+          Subject: Fee request: 1223443
+        </div>
+        <div class="app-email-preview__body">
+          <p class="govuk-body">
+            We have asked the appellant to submit a plannning application and pay the fee by 30 November 2025.
+          </p>
+
+          <h2 class="govuk-heading-m">Appeal details</h2>
+          <div class="govuk-inset-text">
+            Appeal reference number: 1223443<br>
+            Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
+            Enforcement reference: LPA12345678
+          </div>
+
+          <h2 class="govuk-heading-m">What happens next</h2>
+          <p class="govuk-body">Send an email to <a href="mailto:caseofficers@planninginspectorate.gov.uk">caseofficers@planninginspectorate.gov.uk</a> to confirm when you receive the fee. Include the details of each appellant that pays the fee.</p>
+          <p class="govuk-body">If you do not receive an application and the correct fee by 30 November 2025, we will close the appeal.</p>
+
+          <p class="govuk-body">Planning Inspectorate</p>
+        </div>
+      </div>
+      {% endset %}
+
+      {{ govukDetails({
+        summaryText: "Preview email to LPA",
+        html: lpaEmail
+      }) }}
+
+      <p class="govuk-body">
+        We will mark the appeal as incomplete and send an email to the relevant parties.
+      </p>
+
+      <form method="post">
+        {{ govukButton({
+          text: "Mark appeal as incomplete"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

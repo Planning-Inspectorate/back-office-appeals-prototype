@@ -1,0 +1,99 @@
+{% extends "layouts/manage-appeal-older-header-with-feedback.html" %}
+
+{% set title = 'Appellant cost application documents' %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: 'manage-documents'
+  }) }}
+{% endblock %}
+
+{% set prototypeLinks = [
+  {
+    href: '?costs-doc-added=yes',
+    text: 'Added document'
+  } if data['costs-doc-added'] != 'yes',
+  {
+    href: '?costs-doc-added=',
+    text: 'No added document'
+  } if data['costs-doc-added'] == 'yes'
+] %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Appeal 0123456</span>
+	  <h1 class="govuk-heading-l">{{ title }}</h1>
+
+    {{ govukButton({
+      text: "Add document",
+      classes: "govuk-button--secondary"
+    }) }}
+
+  </div>
+  <div class="govuk-grid-column-full">
+
+    {{ govukTable({
+      caption: "Documents",
+      captionClasses: "govuk-table__caption--m",
+      firstCellIsHeader: true,
+      head: [
+        {
+          text: "Name",
+          classes: "govuk-!-width-one-half"
+        },
+        {
+          text: "Date received"
+        },
+        {
+          text: "Redaction status"
+        },
+        {
+          text: "Action",
+          format: "numeric"
+        }
+      ],
+      rows: [
+        [
+          {
+            html: govukTag({ text: 'Shared' }) + " <a href='#' class='govuk-link'>0123456 Costs application.doc</a> <p class='govuk-body'>(10KB)</p>"
+          },
+          {
+            html: 5 | daysAgo
+          },
+          {
+            text: "No redaction required"
+          },
+          {
+            html: "<a href='document-detail?share-status=true' class='govuk-link'>Manage</a>",
+            format: "numeric"
+          }
+        ],
+        [
+          {
+            html: "<a href='#' class='govuk-link'>0123456 Second costs application.doc</a>"
+          },
+          {
+            html: 5 | daysAgo
+          },
+          {
+            text: "No redaction required"
+          },
+          {
+            html: "<a href='document-detail?share-status=' class='govuk-link'>Manage and share</a>",
+            format: "numeric"
+          }
+        ] if data['costs-doc-added']
+      ]
+    }) }}
+
+	</div>
+</div>
+
+
+
+{% endblock %}

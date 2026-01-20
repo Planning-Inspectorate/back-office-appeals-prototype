@@ -1,0 +1,160 @@
+{% extends "layouts/manage-appeal-older-header-with-feedback.html" %}
+
+{% set title = 'Document details' %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set docname = '0123456 Costs Application' %}
+
+{% set back = true %}
+
+{% set prototypeLinks = [
+  {
+    href: '?share-status=true',
+    text: 'Shared document'
+  } if data['share-status'] != 'true',
+  {
+    href: '?share-status=',
+    text: 'Document not shared'
+  } if data['share-status'] == 'true'
+] %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Appeal 0123456 - Manage documents</span>
+      <h1 class="govuk-heading-l">
+        {{ title }}
+      </h1>
+
+      <h2 class="govuk-heading-m">
+        Current version
+      </h2>
+
+      {% if data['share-status'] %}
+        <p class="govuk-body">
+          {{ govukTag({ text: 'Shared' }) }}
+        </p>
+      {% else %}
+        <p class="govuk-body">
+          This document is not shared.
+        </p>
+        {{ govukButton({
+          text: "Share document"
+        }) }}
+      {% endif %}
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Name"
+            },
+            value: {
+              html: docname
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Date received"
+            },
+            value: {
+              text: 2 | daysAgo
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "date received"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Redaction status"
+            },
+            value: {
+              text: "No redaction required"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "address"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <!-- actions -->
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Upload new version",
+          classes: "govuk-button--secondary"
+        }) }}
+
+        {{ govukButton({
+          text: "Remove current version",
+          classes: "govuk-button--secondary"
+        }) }}
+      </div>
+
+      <h2 class="govuk-heading-m">
+        Document versions
+      </h2>
+
+      {% set versions %}
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Name</th>
+              <th scope="col" class="govuk-table__header">Uploaded</th>
+              <th scope="col" class="govuk-table__header">Redaction status</th>
+              <th scope="col" class="govuk-table__header">Action</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><strong class="govuk-tag">Shared</strong> <a class="govuk-link" href="#" target="_blank">{{ docname }}</a></td>
+              <td class="govuk-table__cell">6:58pm on 17 December 2025</td>
+              <td class="govuk-table__cell">No redaction required</td>
+              <td class="govuk-table__cell"><a class="govuk-link" href="#">Remove <span class="govuk-visually-hidden"> version 1 of oimg.jpg</span></a></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link" href="#" target="_blank">{{ docname }} draft</a></td>
+              <td class="govuk-table__cell">6:52pm on 17 December 2025</td>
+              <td class="govuk-table__cell">No redaction required</td>
+              <td class="govuk-table__cell"><a class="govuk-link" href="/appeals-service/appeal-details/57544/costs/appellant/application/manage-documents/84786/8ef60a0e-fc44-4825-9f13-8ee0ca9b73ca/1/delete">Remove <span class="govuk-visually-hidden"> version 1 of oimg.jpg</span></a></td>
+            </tr>
+          </tbody>
+        </table>
+
+      {% endset %}
+
+    </div>
+    <div class="govuk-grid-column-full">
+
+      {{ govukDetails({
+        summaryText: "Version history",
+        html: versions
+      }) }}
+
+    </div>
+  </div>
+{% endblock %}

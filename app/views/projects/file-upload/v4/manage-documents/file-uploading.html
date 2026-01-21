@@ -16,20 +16,22 @@
       The total size of your uploaded files must be smaller than 1GB.
     </p>
 
-    <h2 class="govuk-heading-m">Upload cross-team correspondence</h2>
+    <h2 class="govuk-heading-m">Upload files</h2>
 
-      <!-- Dashed box upload area -->
-     <div class="moj-multi-file-upload__upload" style="border: 2px dashed #b1b4b6;padding-left: 16px; padding-top: 60px; padding-bottom: 60px; align-items: center; background-color: #ffffff; margin-bottom: 30px; display: flex;">
-        <div class="govuk-form-group" style="margin-bottom: 0; display: flex; align-items: center;">
-          <label class="govuk-button govuk-button--secondary" for="documents" style="margin-bottom: 0; cursor: pointer;">
-            Choose files
-          </label>
-          <p class="govuk-body" style="margin: 0; margin-left: 10px;">or drop files</p>
-          <input class="govuk-file-upload moj-multi-file-upload__input" id="documents" name="documents" type="file" multiple="" style="position: absolute; left: -9999px;">
-        </div>
+    <!-- Dashed box upload area -->
+    <div class="moj-multi-file-upload__upload"
+      style="border: 2px dashed #b1b4b6;padding-left: 16px; padding-top: 60px; padding-bottom: 60px; align-items: center; background-color: #ffffff; margin-bottom: 30px; display: flex;">
+      <div class="govuk-form-group" style="margin-bottom: 0; display: flex; align-items: center;">
+        <label class="govuk-button govuk-button--secondary" for="documents" style="margin-bottom: 0; cursor: pointer;">
+          Choose files
+        </label>
+        <p class="govuk-body" style="margin: 0; margin-left: 10px;">or drop files</p>
+        <input class="govuk-file-upload moj-multi-file-upload__input" id="documents" name="documents" type="file"
+          multiple="" style="position: absolute; left: -9999px;">
       </div>
-      <!-- End dashed box upload area -->
-  
+    </div>
+    <!-- End dashed box upload area -->
+
     <table class="govuk-table">
       <colgroup>
         <col style="width: 30%;">
@@ -66,8 +68,18 @@
       </tbody>
     </table>
 
+    <h3 class="govuk-heading-s" aria-live="polite" id="file-count">
+      0 of 2 files uploaded
+    </h3>
+
+
+    <p class="govuk-body govuk-!-display-none" id="uploading-hint">
+      You can continue once all files have finished uploading.
+    </p>
+
     <form action="/projects/file-upload/v4/manage-documents/file-uploading" method="post">
-      <button type="submit" class="govuk-button" data-module="govuk-button">
+      <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button" disabled
+        aria-disabled="true">
         Continue
       </button>
     </form>
@@ -78,7 +90,15 @@
 <script>
   const rows = document.querySelectorAll('.uploading-row');
   const fileCountText = document.getElementById('file-count');
+  const uploadingHint = document.getElementById('uploading-hint');
+  const continueButton = document.getElementById('continue-button');
+
   let uploadedCount = 0;
+
+  // Show hint + disable button while uploading
+  uploadingHint.classList.remove('govuk-!-display-none');
+  continueButton.disabled = true;
+  continueButton.setAttribute('aria-disabled', 'true');
 
   rows.forEach((row, index) => {
     let percent = 0;
@@ -108,8 +128,15 @@
 
         fileCountText.textContent =
           `${uploadedCount} of ${rows.length} files uploaded`;
+
+        // All uploads finished
+        if (uploadedCount === rows.length) {
+          uploadingHint.classList.add('govuk-!-display-none');
+          continueButton.disabled = false;
+          continueButton.removeAttribute('aria-disabled');
+        }
       }
-    }, 30 + index * 10);
+    }, 40 + index * 20);
   });
 </script>
 

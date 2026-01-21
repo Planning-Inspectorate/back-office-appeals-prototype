@@ -83,29 +83,11 @@ document.addEventListener('DOMContentLoaded', function() {
     return;
   }
   
-  // Handle form submission - serialize files to hidden input
+  // Handle form submission - redirect to file-uploading page
   uploadForm.addEventListener('submit', function(e) {
-    e.preventDefault(); // Prevent default first
-    console.log('Form submit triggered. Files:', uploadedFiles.length);
-    
-    // Allow submission even with no files - will show receipt1.jpg and receipt2.jpg on next page
-    
-    // Serialize file data (name, size, id only - not actual file content for prototype)
-    const fileData = uploadedFiles.map(f => ({
-      id: f.id,
-      name: f.name,
-      size: f.size
-    }));
-    
-    const fileDataJSON = JSON.stringify(fileData);
-    console.log('Serialized file data:', fileDataJSON);
-    document.getElementById('fileData').value = fileDataJSON;
-    console.log('Hidden input value set:', document.getElementById('fileData').value);
-    console.log('Form action:', uploadForm.action);
-    
-    // Now submit the form programmatically
-    console.log('Submitting form...');
-    uploadForm.submit();
+    e.preventDefault();
+    // Redirect to file-uploading page (ignores actual uploaded files)
+    window.location.href = 'file-uploading';
   });
   
   // Handle file selection - automatically add files when selected

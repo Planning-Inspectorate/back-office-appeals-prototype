@@ -17,7 +17,7 @@
     <span class="govuk-caption-l">Appeal 12345 - Manage documents</span>
 
 
-    <form class="form" action="file-details-date-received" method="post">
+    <form class="form" action="/projects/file-upload/v4/manage-documents/file-details-date-received" method="post">
 
       {% if data.dateErrorList and data.dateErrorList.length > 0 %}
         {{ govukErrorSummary({

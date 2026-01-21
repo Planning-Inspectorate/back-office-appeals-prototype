@@ -200,6 +200,48 @@ router.post('/manage-documents/multiple-document-upload', function (req, res) {
   return res.redirect('/projects/file-upload/v4/manage-documents/file-uploading')
 })
 
+// GET: Show file uploading page with hardcoded files
+router.get('/manage-documents/file-uploading', function (req, res, next) {
+  console.log('=== File uploading page GET ===')
+  
+  // Initialize uploaded files with receipt1.jpg and receipt2.jpg
+  if (!req.session.data.uploadedFiles) {
+    req.session.data.uploadedFiles = []
+  }
+  
+  // Mark all existing files as not current session
+  req.session.data.uploadedFiles.forEach(file => {
+    file.currentSession = false
+  })
+  
+  // Clear shown pages tracking for new upload session
+  req.session.data.shownPages = {}
+  
+  // Add the two files for current session
+  req.session.data.uploadedFiles.push({
+    id: 'receipt1-' + Date.now(),
+    name: 'receipt1.jpg',
+    size: 204800, // 0.2MB in bytes
+    uploadedAt: new Date().toISOString(),
+    dateReceived: null,
+    redactionStatus: null,
+    currentSession: true
+  })
+  
+  req.session.data.uploadedFiles.push({
+    id: 'receipt2-' + Date.now() + 1,
+    name: 'receipt2.jpg',
+    size: 335544, // 0.32MB in bytes
+    uploadedAt: new Date().toISOString(),
+    dateReceived: null,
+    redactionStatus: null,
+    currentSession: true
+  })
+  
+  console.log('Files in session:', req.session.data.uploadedFiles.length)
+  next()
+})
+
 // GET: Show date received page with current file
 router.get('/manage-documents/file-details-date-received', function (req, res, next) {
   console.log('=== Date received GET ===')
@@ -408,8 +450,8 @@ router.post('/manage-documents/file-details-date-received', function (req, res) 
     req.session.data['redaction'] = ''
     return res.redirect('/projects/file-upload/v4/manage-documents/file-details-redaction-status')
   } else {
-    // All files complete - redirect to index
-    return res.redirect('/projects/file-upload/v4/manage-documents/index')
+    // All files complete - redirect to manage-documents
+    return res.redirect('/projects/file-upload/v4/manage-documents/')
   }
 })
 
@@ -545,8 +587,8 @@ router.post('/manage-documents/file-details-redaction-status', function (req, re
     req.session.data['redaction'] = ''
     return res.redirect('/projects/file-upload/v4/manage-documents/file-details-redaction-status')
   } else {
-    // All files complete - redirect to index
-    return res.redirect('/projects/file-upload/v4/manage-documents/index')
+    // All files complete - redirect to manage-documents
+    return res.redirect('/projects/file-upload/v4/manage-documents/')
   }
 })
 
@@ -564,57 +606,7 @@ router.get('/manage-documents/remove-file/:fileId', function (req, res) {
   return res.redirect('/projects/file-upload/v4/manage-documents/multiple-document-upload')
 })
 
-module.exports = router
-
-//routes related to the file uploading progress indicator
-const govukPrototypeKit = require('govuk-prototype-kit')
-const router = govukPrototypeKit.requests.setupRouter()
-
-console.log('*** V5 ROUTES FILE LOADED ***')
-console.log('*** Router configured for: /projects/file-upload/v5/ ***')
-
-// GET: Show file uploading page
-router.get('/manage-documents/file-uploading', function (req, res, next) {
-  console.log('=== File uploading page GET ===')
-  
-  // Initialize uploaded files with receipt1.jpg and receipt2.jpg
-  if (!req.session.data.uploadedFiles) {
-    req.session.data.uploadedFiles = []
-  }
-  
-  // Add the two files if they don't exist
-  const hasReceipt1 = req.session.data.uploadedFiles.some(f => f.name === 'receipt1.jpg')
-  const hasReceipt2 = req.session.data.uploadedFiles.some(f => f.name === 'receipt2.jpg')
-  
-  if (!hasReceipt1) {
-    req.session.data.uploadedFiles.push({
-      id: 'receipt1-' + Date.now(),
-      name: 'receipt1.jpg',
-      size: 204800, // 0.2MB in bytes
-      uploadedAt: new Date().toISOString(),
-      dateReceived: null,
-      redactionStatus: null,
-      currentSession: true
-    })
-  }
-  
-  if (!hasReceipt2) {
-    req.session.data.uploadedFiles.push({
-      id: 'receipt2-' + Date.now() + 1,
-      name: 'receipt2.jpg',
-      size: 335544, // 0.32MB in bytes
-      uploadedAt: new Date().toISOString(),
-      dateReceived: null,
-      redactionStatus: null,
-      currentSession: true
-    })
-  }
-  
-  console.log('Files in session:', req.session.data.uploadedFiles.length)
-  next()
-})
-
-// Handle continue button on file-uploading page
+// POST: Handle continue button on file-uploading page
 router.post('/manage-documents/file-uploading', function (req, res) {
   console.log('=== File uploading POST - setting up sequential flow ===')
   
@@ -651,8 +643,8 @@ router.post('/manage-documents/file-uploading', function (req, res) {
   } else if (nextPage === 'redaction-status') {
     return res.redirect('/projects/file-upload/v4/manage-documents/file-details-redaction-status')
   } else {
-    // All files complete - redirect to document details
-    return res.redirect('/projects/file-upload/v4/manage-documents/document-details')
+    // All files complete - redirect to manage-documents
+    return res.redirect('/projects/file-upload/v4/manage-documents/')
   }
 })
 

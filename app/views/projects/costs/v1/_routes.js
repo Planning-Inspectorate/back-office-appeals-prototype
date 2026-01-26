@@ -11,8 +11,9 @@ router.get('*', function(req, res, next){
 // ———————————————
 
 // something
-router.post('/page', function (req, res) {
-  res.redirect('another-page')
+router.post('/confirm-sharing', function (req, res) {
+  req.flash('success', 'Document shared')
+  res.redirect('document-detail?share-status=true&shared-latest-version=true')
 })
 
 

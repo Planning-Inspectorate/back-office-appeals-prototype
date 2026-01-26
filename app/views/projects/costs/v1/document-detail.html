@@ -13,6 +13,14 @@
     text: 'Shared document'
   } if data['share-status'] != 'true',
   {
+    href: '?shared-latest-version=',
+    text: 'Latest version not shared'
+  } if data['share-status'] == 'true' and data['shared-latest-version'],
+  {
+    href: '?shared-latest-version=true',
+    text: 'Latest version shared'
+  } if data['share-status'] == 'true' and not data['shared-latest-version'],
+  {
     href: '?share-status=',
     text: 'Document not shared'
   } if data['share-status'] == 'true'
@@ -23,6 +31,11 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      {{ govukNotificationBanner({
+        type: "success",
+        text: flash
+      }) if flash.length }}
+
       <span class="govuk-caption-l">Appeal 0123456 - Manage documents</span>
       <h1 class="govuk-heading-l">
         {{ title }}
@@ -32,7 +45,7 @@
         Current version
       </h2>
 
-      {% if data['share-status'] %}
+      {% if data['share-status'] and data['shared-latest-version'] %}
         <p class="govuk-body">
           {{ govukTag({ text: 'Shared' }) }}
         </p>
@@ -41,6 +54,7 @@
           This document is not shared.
         </p>
         {{ govukButton({
+          href: "confirm-sharing",
           text: "Share document"
         }) }}
       {% endif %}
@@ -131,13 +145,13 @@
           </thead>
           <tbody class="govuk-table__body">
             <tr class="govuk-table__row">
-              <td class="govuk-table__cell"><strong class="govuk-tag">Shared</strong> <a class="govuk-link" href="#" target="_blank">{{ docname }}</a></td>
+              <td class="govuk-table__cell">{% if data['shared-latest-version'] %}<strong class="govuk-tag">Shared</strong> {% endif %}<a class="govuk-link" href="#" target="_blank">{{ docname }}</a></td>
               <td class="govuk-table__cell">6:58pm on 17 December 2025</td>
               <td class="govuk-table__cell">No redaction required</td>
-              <td class="govuk-table__cell"><a class="govuk-link" href="#">Remove <span class="govuk-visually-hidden"> version 1 of oimg.jpg</span></a></td>
+              <td class="govuk-table__cell"><a class="govuk-link" href="#">Remove <span class="govuk-visually-hidden"> version 1 of {{ docname }}</span></a></td>
             </tr>
             <tr class="govuk-table__row">
-              <td class="govuk-table__cell"><a class="govuk-link" href="#" target="_blank">{{ docname }} draft</a></td>
+              <td class="govuk-table__cell">{% if data['share-status'] and not data['shared-latest-version'] %}<strong class="govuk-tag">Shared</strong> {% endif %}<a class="govuk-link" href="#" target="_blank">{{ docname }} draft</a></td>
               <td class="govuk-table__cell">6:52pm on 17 December 2025</td>
               <td class="govuk-table__cell">No redaction required</td>
               <td class="govuk-table__cell"><a class="govuk-link" href="/appeals-service/appeal-details/57544/costs/appellant/application/manage-documents/84786/8ef60a0e-fc44-4825-9f13-8ee0ca9b73ca/1/delete">Remove <span class="govuk-visually-hidden"> version 1 of oimg.jpg</span></a></td>
@@ -157,4 +171,5 @@
 
     </div>
   </div>
+
 {% endblock %}

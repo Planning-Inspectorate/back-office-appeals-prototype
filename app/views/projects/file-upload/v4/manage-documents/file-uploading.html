@@ -26,8 +26,13 @@
           Choose files
         </label>
         <p class="govuk-body" style="margin: 0; margin-left: 10px;">or drop files</p>
-        <input class="govuk-file-upload moj-multi-file-upload__input" id="documents" name="documents" type="file"
-          multiple="" style="position: absolute; left: -9999px;">
+        <input
+          class="govuk-file-upload moj-multi-file-upload__input"
+          id="documents"
+          name="documents"
+          type="file"
+          multiple
+          style="position: absolute; left: -9999px;">
       </div>
     </div>
     <!-- End dashed box upload area -->
@@ -67,15 +72,13 @@
 
       </tbody>
     </table>
-    <p class="govuk-body" aria-live="polite" id="file-count">0 of 2 files uploaded</p>
-
-    <p class="govuk-body govuk-!-display-none" id="uploading-hint">
-      You can continue once all files have finished uploading.
-    </p>
 
     <form action="/projects/file-upload/v4/manage-documents/file-uploading" method="post">
-      <button type="submit" class="govuk-button" data-module="govuk-button" id="continue-button" disabled
-        aria-disabled="true">
+      <button
+        type="submit"
+        class="govuk-button"
+        data-module="govuk-button"
+        id="continue-button">
         Continue
       </button>
     </form>
@@ -85,16 +88,6 @@
 
 <script>
   const rows = document.querySelectorAll('.uploading-row');
-  const fileCountText = document.getElementById('file-count');
-  const uploadingHint = document.getElementById('uploading-hint');
-  const continueButton = document.getElementById('continue-button');
-
-  let uploadedCount = 0;
-
-  // Show hint + disable button while uploading
-  uploadingHint.classList.remove('govuk-!-display-none');
-  continueButton.disabled = true;
-  continueButton.setAttribute('aria-disabled', 'true');
 
   rows.forEach((row, index) => {
     let percent = 0;
@@ -106,7 +99,6 @@
 
       if (percent >= 100) {
         clearInterval(interval);
-        uploadedCount++;
 
         const fileName = row.dataset.file;
 
@@ -121,20 +113,9 @@
             <a href="#" class="govuk-link">Remove</a>
           </td>
         `;
-
-        fileCountText.textContent =
-          `${uploadedCount} of ${rows.length} files uploaded`;
-
-        // All uploads finished
-        if (uploadedCount === rows.length) {
-          uploadingHint.classList.add('govuk-!-display-none');
-          continueButton.disabled = false;
-          continueButton.removeAttribute('aria-disabled');
-        }
       }
     }, 40 + index * 20);
   });
 </script>
-
 
 {% endblock %}

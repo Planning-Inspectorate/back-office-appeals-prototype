@@ -28,8 +28,8 @@
     <h2 class="govuk-heading-m">Version 4
 
           {{govukTag({
-          text: "In progress",
-          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+          text: "Ready",
+          classes: "govuk-!-margin-left-2 govuk-tag--light-blue"
         })}}
         </h2>
 
@@ -61,8 +61,8 @@
          <li>
           Removed default selection option on radio button for the redaction status page <a href="https://design-system.service.gov.uk/components/radios/#:~:text=Do%20not%20pre,answer">in line with .gov. guidance</a>
         </li>
-        <li>Added file upload progress indicators to multi file upload summary table</li>
       </ul>
+      
 
 <h3 class="govuk-heading-s">Copy changes:</h3>
 <p class="govuk-body">Made in collaboration with content designers</p>
@@ -79,6 +79,40 @@
         </li>
        
       </ul>
+
+      {{ govukDetails({
+        summaryText: "File upload progress indicator notes",
+        html: "
+          <ul class=\"govuk-list govuk-list--bullet\">
+            <li>
+              When files are selected, the % indicator is displayed beside each file while it is uploading, with a ‘Cancel’ link to cancel any in-progress uploads.
+            </li>
+            <li>
+              When an upload has completed, a green tag labelled ‘Uploaded’ is displayed, with a ‘Remove’ link to delete the file.
+            </li>
+            <li>
+              Keep the ‘Continue’ button visually enabled while files are uploading.
+            </li>
+            <li>
+              If a user attempts to continue while files are still uploading, block the action on click.
+            </li>
+            <li>
+              Show a clear message, ‘Wait for all files to finish uploading’, to explain why the user cannot proceed yet.
+            </li>
+            <li>
+              Note: the tech team need to investigate the interaction between displaying the error message when a user clicks Continue while files are still uploading and the requirement to reload the page to display the error.
+            </li>
+          </ul>
+      
+          <p class=\"govuk-body\">
+            This aligns with GOV.UK guidance by avoiding a silently disabled button. Users can still interact with the control, receive feedback about what’s happening, and it remains accessible for screen reader users.
+          </p>
+      
+          <p class=\"govuk-body\">
+            This component requires testing with users, and the design should <strong>also be applied to the single file upload component</strong>.
+          </p>
+        "
+      }) }}
 
     </section>
     

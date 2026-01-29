@@ -100,16 +100,15 @@
               Show a clear message, ‘Wait for all files to finish uploading’, to explain why the user cannot proceed yet.
             </li>
             <li>
-              Note: the tech team need to investigate the interaction between displaying the error message when a user clicks Continue while files are still uploading and the requirement to reload the page to display the error.
+              This aligns with GOV.UK guidance by avoiding a silently disabled button. Users can still interact with the control, receive feedback about what’s happening, and it remains accessible for screen reader users.
+            </li>
+            <li>
+              <strong>Note:</strong> the tech team need to investigate the interaction between displaying the error message when a user clicks Continue while files are still uploading and the requirement to reload the page to display the error.
             </li>
           </ul>
       
           <p class=\"govuk-body\">
-            This aligns with GOV.UK guidance by avoiding a silently disabled button. Users can still interact with the control, receive feedback about what’s happening, and it remains accessible for screen reader users.
-          </p>
-      
-          <p class=\"govuk-body\">
-            This component requires testing with users, and the design should <strong>also be applied to the single file upload component</strong>.
+            The design should be applied to the single file upload component, and both components should be tested with users.
           </p>
         "
       }) }}

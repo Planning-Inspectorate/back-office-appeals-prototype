@@ -87,6 +87,7 @@
 </div>
 
 <script>
+  // Handle upload progress simulation
   const rows = document.querySelectorAll('.uploading-row');
 
   rows.forEach((row, index) => {
@@ -110,12 +111,32 @@
             <strong class="govuk-tag govuk-tag--green">Uploaded</strong>
           </td>
           <td class="govuk-table__cell">
-            <a href="#" class="govuk-link">Remove</a>
+            <a href="#" class="govuk-link remove-link">Remove</a>
           </td>
         `;
       }
     }, 40 + index * 20);
   });
+
+  // 🔥 Handle Cancel / Remove clicks (works for both states)
+  document.addEventListener('click', function (e) {
+    const link = e.target.closest('.govuk-link');
+
+    if (!link) return;
+
+    const text = link.textContent.trim();
+
+    if (text === 'Cancel' || text === 'Remove') {
+      e.preventDefault();
+
+      const row = link.closest('.govuk-table__row');
+
+      if (row) {
+        row.remove();
+      }
+    }
+  });
 </script>
+
 
 {% endblock %}

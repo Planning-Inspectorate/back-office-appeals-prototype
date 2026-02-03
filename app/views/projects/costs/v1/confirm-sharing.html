@@ -17,59 +17,21 @@
         {{ title }}
       </h1>
 
-      <h2 class="govuk-heading-m">
-        Current version
-      </h2>
-
       {{ govukSummaryList({
         rows: [
           {
             key: {
-              text: "Name"
+              text: "Invite responses"
             },
             value: {
-              html: docname
+              html: invite-responses or 'Yes'
             },
             actions: {
               items: [
                 {
                   href: "#",
                   text: "Change",
-                  visuallyHiddenText: "name"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Date received"
-            },
-            value: {
-              text: 2 | daysAgo
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "date received"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Redaction status"
-            },
-            value: {
-              text: "No redaction required"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "address"
+                  visuallyHiddenText: "invite responses"
                 }
               ]
             }

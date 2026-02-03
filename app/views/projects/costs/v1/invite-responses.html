@@ -1,0 +1,49 @@
+{% extends "layouts/manage-appeal-older-header-with-feedback.html" %}
+
+{% set title = 'Do you want to invite responses?' %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set docname = '0123456 Costs Application' %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Appeal 0123456 - Manage documents</span>
+
+      <form method="post">
+
+        {{ govukRadios({
+          name: "invite-responses",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes"
+            },
+            {
+              value: "no",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Confirm and share document"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

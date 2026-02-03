@@ -10,12 +10,16 @@ router.get('*', function(req, res, next){
 // START OF ROUTES
 // ———————————————
 
-// something
+// Inviting resonses
+router.post('/invite-responses', function (req, res) {
+  res.redirect('confirm-sharing')
+})
+
+// Check answers / Confirm
 router.post('/confirm-sharing', function (req, res) {
   req.flash('success', 'Document shared')
   res.redirect('document-detail?share-status=true&shared-latest-version=true')
 })
-
 
 // Add your routes above the module.exports line
 module.exports = router

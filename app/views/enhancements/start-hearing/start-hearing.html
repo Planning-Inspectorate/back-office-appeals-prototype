@@ -33,7 +33,15 @@
             },
             {
               value: "Inquiry",
-              text: "Inquiry"
+              text: "Inquiry",
+              conditional: {
+                html: govukTextarea({
+                  label: {
+                    text: "Enter reason"                  
+                  },
+                rows: 2 
+                })
+              }
             }
           ]
         }) }}

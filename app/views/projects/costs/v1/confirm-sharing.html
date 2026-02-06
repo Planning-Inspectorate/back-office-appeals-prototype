@@ -24,7 +24,7 @@
               text: "Invite responses"
             },
             value: {
-              html: invite-responses or 'Yes'
+              html: data['invite-responses'] or 'Yes'
             },
             actions: {
               items: [
@@ -46,15 +46,22 @@
             Subject: We have received an application for costs against appeal 0123456.
           </p>
         </div>
-        <div class="app-email-preview__body">
 
-          <p class="govuk-body">
-            We have received an application for costs against appeal 0123456. You have 7 days to respond to this costs application: <a href="#" class="govuk-link">caseofficers@planninginspectorate.gov.uk</a>.
-          </p>
+        <div class="app-email-preview__body">
 
           <h2 class="govuk-heading-m">
             Appeal details
           </h2>
+
+          <p class="govuk-body">
+            We have received an application for an award of appeal costs against appeal 0123456.
+          </p>
+
+          {% if data['invite-responses'] != 'No' %}
+            <p class="govuk-body">
+              Send an email to <a href="#" class="govuk-link">caseofficers@planninginspectorate.gov.uk</a> by {{ 7 | daysInFuture }} if you to respond to this application.
+            </p>
+          {% endif %}
 
           <div class="govuk-inset-text">
             Appeal reference number: 7001224<br>
@@ -64,7 +71,7 @@
           </div>
 
           <p class="govuk-body">
-            The Planning Inspectorate<br>
+            Planning Inspectorate<br>
             caseofficers@planninginspectorate.gov.uk
           </p>
 

@@ -12,7 +12,7 @@
         {% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
 
         {% set html %}
-        <p class="govuk-notification-banner__heading">Site visit updated</p>
+        <p class="govuk-notification-banner__heading">Site visit set up</p>
         {% endset %}
 
         {{ govukNotificationBanner({
@@ -23,12 +23,33 @@
         </div>
 
         <div class="govuk-grid-column-full">
-            
 
-        <span class="govuk-caption-l">Appeal 6024299</span>
-        <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">Case details</h1>
+        <span class="govuk-caption-xl">Appeal 6024299</span>
+        <h1 class="govuk-heading-xl govuk-!-margin-bottom-2">
+        Case details
+      </h1>
 
+      {{ govukTag({
+        text: "Awaiting site visit", classes: "govuk-tag--yellow"
+      }) }}
+    
+      {% include "/elements/includes/case-details/meta-data.html" %}
+  
+      <p class="govuk-body">
+        <a href="#" class="govuk-link">
+          Download case
+        </a>
+      </p>
+  
+      {% include "/elements/includes/case-details/case-notes.html" %}
+
+        {% include "/elements/includes/case-details/overview.html" %}
+
+        {% include "/elements/includes/case-details/timetable.html" %}
+  
         <h1 class="govuk-heading-l">Site visit</h1>
+
+        <p class="govuk-body"><a href="#">Cancel site visit</a></p>
 
         {{ govukSummaryList({
             rows: [
@@ -102,6 +123,17 @@
                 }
             ]
         }) }}
+
+
+        {% include "/elements/includes/case-details/documentation.html" %}
+
+        {% include "/elements/includes/case-details/costs.html" %}
+  
+        {% include "/elements/includes/case-details/contacts.html" %}
+  
+        {% include "/elements/includes/case-details/team.html" %}
+  
+        {% include "/elements/includes/case-details/case-management.html" %}
 
 
     </div>

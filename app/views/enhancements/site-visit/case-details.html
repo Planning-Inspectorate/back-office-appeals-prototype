@@ -1,0 +1,69 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <!-- notifications -->
+    {% include "/elements/includes/case-details/notifications.html" %}
+
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <!--	<span class="govuk-caption-l">Appeal 2110166</span> -->
+    <span class="govuk-caption-xl">Appeal 2114328</span>
+  	<h1 class="govuk-heading-xl govuk-!-margin-bottom-2">
+      {{ title }}
+    </h1>
+
+    {% include "/elements/includes/case-details/status.html" %}
+
+    {% include "/elements/includes/case-details/meta-data.html" %}
+
+    <p class="govuk-body">
+      <a href="#" class="govuk-link">
+        Download case
+      </a>
+    </p>
+
+    {% include "/elements/includes/case-details/case-notes.html" %}
+
+    <!-- case sections -->
+    <section class="govuk-!-margin-top-6">
+
+      {% include "/elements/includes/case-details/overview.html" %}
+
+      {% include "/elements/includes/case-details/timetable.html" %}
+
+      {% include "/elements/includes/case-details/site.html" %}
+
+      <!-- only show the Hearing section if -->
+      <!-- the case is started and the procedure is a hearing -->
+
+      {% if data['procedure'] == 'hearing' and data['case'] == 'started' %}
+        {% include "/elements/includes/case-details/hearing.html" %}
+      {% endif %}
+
+      {% include "/elements/includes/case-details/documentation.html" %}
+
+      {% include "/elements/includes/case-details/costs.html" %}
+
+      {% include "/elements/includes/case-details/contacts.html" %}
+
+      {% include "/elements/includes/case-details/team.html" %}
+
+      {% include "/elements/includes/case-details/case-management.html" %}
+
+
+      <!-- show the cancel appeal option -->
+      <!-- when the case is started but not decided -->
+
+      {% if data['case'] == 'started' and data['case-stage'] != 'complete' %}
+        {% include "/elements/includes/case-details/cancel-appeal.html" %}
+      {% endif %}
+
+    </section>
+
+
+  </div>
+</div>

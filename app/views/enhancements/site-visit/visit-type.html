@@ -12,6 +12,7 @@
 
       <form method="post">
         <span class="govuk-caption-l">Appeal 6021709 - set up site visit</span>
+
         {{ govukRadios({
           name: "setupVisit[type]",
           fieldset: {
@@ -36,6 +37,15 @@
               text: "Access required"
             }
           ]
+        }) }}
+
+        {{ govukDetails({
+          summaryText: "Site information",
+          html: '<p class="govuk-body"><b>Site address:</b> 1234 street</p>
+          <p class="govuk-body"><b>Potential safety risks (LPA answer):</b> No</p>
+          <p class="govuk-body"><b>Potential safety risks (appellant answer):</b> No</p>
+          <p class="govuk-body"><b>Address of the neighbours land or property:</b> 123 Street</p>
+          <p class="govuk-body"><b>Interested party and neighbour addresses:</b> 123 Road</p>'
         }) }}
 
         {{ govukButton({

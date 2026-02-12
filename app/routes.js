@@ -332,31 +332,31 @@ router.get("/projects/closing-cases/v1/change-appeal-resubmit-process", (req, re
 
 // NEW HEARING FLOW
 
-router.post('/enhancements/start-hearing/start-hearing', function (req, res) {
+router.post('/enhancements/start-hearing/v1/start-hearing', function (req, res) {
 const answer = req.session.data['startCase']['procedure']
 
 if (answer === 'Hearing') {
-	res.redirect('/enhancements/start-hearing/know-hearing-date')   // go to hearing date and time
+	res.redirect('/enhancements/start-hearing/v1/know-hearing-date')   // go to hearing date and time
 } else {
 	// if nothing selected, reload the same page with error
-	res.redirect('/enhancements/start-hearing/start-hearing')
+	res.redirect('/enhancements/start-hearing/v1/tart-hearing')
 }
 })
 
-router.post('/enhancements/start-hearing/know-hearing-date', function (req, res) {
+router.post('/enhancements/start-hearing/v1/know-hearing-date', function (req, res) {
 	const answer = req.session.data['startCase']['knowDate']
 
 	if (answer === 'Yes') {
-		res.redirect('/enhancements/start-hearing/hearing-date')   // go to hearing date and time
+		res.redirect('/enhancements/start-hearing/v1/hearing-date')   // go to hearing date and time
 	} else {
 		// if nothing selected, reload the same page with error
-		res.redirect('/enhancements/start-hearing/check')
+		res.redirect('/enhancements/start-hearing/v1/check')
 	}
 	})
 
-router.post('/enhancements/start-hearing/hearing-date', function (req, res) {
+router.post('/enhancements/start-hearing/v1/hearing-date', function (req, res) {
 	// data is automatically stored in req.session.data
-	res.redirect('/enhancements/start-hearing/check')
+	res.redirect('/enhancements/start-hearing/v1/check')
 })
 
 

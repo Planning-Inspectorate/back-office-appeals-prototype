@@ -1,0 +1,71 @@
+
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Appellant Case" %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %} 
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <span class="govuk-caption-l">Appeal 12345 - Manage documents</span>
+    <h1 class="govuk-heading-l">Check your answers</h1>
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {% for file in data.uploadedFiles %}
+      <h2 class="govuk-heading-m govuk-!-margin-top-5 govuk-!-margin-bottom-4">Uploaded file {{ loop.index }}</h2>
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            File
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ file.name }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/projects/file-upload/v5/file-upload?from=check-answers">Change<span class="govuk-visually-hidden"> file {{ file.name }}</span></a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Date received
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ file.dateReceived or 'Not provided' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/projects/file-upload/v5/file-details-date-received?fileId={{ file.id }}&fileIndex={{ loop.index0 }}&from=check-answers">Change<span class="govuk-visually-hidden"> {{ file.name }} date received</span></a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Redaction status
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ file.redactionStatus or 'Not provided' }}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/projects/file-upload/v5/file-details-redaction-status?fileId={{ file.id }}&fileIndex={{ loop.index0 }}&from=check-answers">Change<span class="govuk-visually-hidden"> {{ file.name }} redaction status</span></a>
+          </dd>
+        </div>
+      </dl>
+    {% endfor %}
+
+    <form action="/projects/file-upload/v5/case-details" method="post">
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </form>
+  </div>
+</div>
+
+{% endblock %}

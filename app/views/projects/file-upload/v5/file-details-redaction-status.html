@@ -23,7 +23,7 @@
 
           <!-- heading set -->
 
-	    <form action="/projects/file-upload/v4/manage-documents/file-details-redaction-status" method="post"  novalidate>
+	    <form action="/projects/file-upload/v5/file-details-redaction-status" method="post"  novalidate>
 
 	    <!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
 		 <label class="govuk-label govuk-label--s" for="example-2">Enter redaction status</label>          
@@ -65,5 +65,13 @@
 
   </div>
 </div>
+
+<script>
+  // Refresh page once on load using URL parameter
+  if (!window.location.search.includes('refreshed=true')) {
+    const separator = window.location.search ? '&' : '?';
+    window.location.href = window.location.href + separator + 'refreshed=true';
+  }
+</script>
 
 {% endblock %}

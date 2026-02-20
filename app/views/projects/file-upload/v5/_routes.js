@@ -1,12 +1,12 @@
 const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
 
-console.log('*** V4 ROUTES FILE LOADED ***')
-console.log('*** Router configured for: /projects/file-upload/v4/ ***')
+console.log('*** V5 ROUTES FILE LOADED ***')
+console.log('*** Router configured for: /projects/file-upload/v5/ ***')
 
 // GET: Clear all session data and show upload page
-router.get('/manage-documents/multiple-document-upload', function (req, res, next) {
-  // Clear all uploaded files and session data for v4
+router.get('/file-upload', function (req, res, next) {
+  // Clear all uploaded files and session data for v5
   req.session.data.uploadedFiles = []
   req.session.data.currentFile = null
   req.session.data.editingFileId = null
@@ -19,12 +19,12 @@ router.get('/manage-documents/multiple-document-upload', function (req, res, nex
   req.session.data['document-date-year'] = ''
   req.session.data['redaction'] = ''
   
-  console.log('=== Cleared all v4 session data ===')
+  console.log('=== Cleared all v5 session data ===')
   next()
 })
 
 // GET: Show document details page (optionally filtered by fileId)
-router.get('/manage-documents/document-details', function (req, res, next) {
+router.get('/document-details', function (req, res, next) {
   const fileId = req.query.fileId
   if (fileId) {
     req.session.data.fileId = fileId
@@ -144,7 +144,7 @@ function validateDateReceived(day, month, year) {
 }
 
 // POST: Handle multi-file upload submission
-router.post('/manage-documents/multiple-document-upload', function (req, res) {
+router.post('/file-upload', function (req, res) {
   console.log('===========================================')
   console.log('=== MULTIPLE DOCUMENT UPLOAD POST HIT ===')
   console.log('===========================================')
@@ -196,71 +196,56 @@ router.post('/manage-documents/multiple-document-upload', function (req, res) {
     console.warn('No fileData in request body!')
   }
 
-  // Redirect to v4 manage-documents file-uploading page
-  return res.redirect('/projects/file-upload/v4/manage-documents/file-uploading')
+  // Determine which page to show first
+  const nextPage = getNextRequiredPage(req.session.data.uploadedFiles, req.session.data.shownPages)
+  
+  if (nextPage === 'date-received') {
+    return res.redirect('/projects/file-upload/v5/file-details-date-received')
+  } else if (nextPage === 'redaction-status') {
+    return res.redirect('/projects/file-upload/v5/file-details-redaction-status')
+  } else {
+    // All files complete - redirect to check-your-answers
+    return res.redirect('/projects/file-upload/v5/check-your-answers')
+  }
 })
 
 // GET: Show file uploading page with hardcoded files
-router.get('/manage-documents/file-uploading', function (req, res, next) {
-  console.log('=== File uploading page GET ===')
-  
-  // Initialize uploaded files with receipt1.jpg and receipt2.jpg
-  if (!req.session.data.uploadedFiles) {
-    req.session.data.uploadedFiles = []
-  }
-  
-  // Mark all existing files as not current session
-  req.session.data.uploadedFiles.forEach(file => {
-    file.currentSession = false
-  })
-  
-  // Clear shown pages tracking for new upload session
-  req.session.data.shownPages = {}
-  
-  // Add the two files for current session
-  req.session.data.uploadedFiles.push({
-    id: 'receipt1-' + Date.now(),
-    name: 'receipt1.jpg',
-    size: 204800, // 0.2MB in bytes
-    uploadedAt: new Date().toISOString(),
-    dateReceived: null,
-    redactionStatus: null,
-    currentSession: true
-  })
-  
-  req.session.data.uploadedFiles.push({
-    id: 'receipt2-' + Date.now() + 1,
-    name: 'receipt2.jpg',
-    size: 335544, // 0.32MB in bytes
-    uploadedAt: new Date().toISOString(),
-    dateReceived: null,
-    redactionStatus: null,
-    currentSession: true
-  })
-  
-  console.log('Files in session:', req.session.data.uploadedFiles.length)
-  next()
-})
-
 // GET: Show date received page with current file
-router.get('/manage-documents/file-details-date-received', function (req, res, next) {
+router.get('/file-details-date-received', function (req, res, next) {
   console.log('=== Date received GET ===')
   const files = req.session.data.uploadedFiles || []
+  const currentSessionFiles = files.filter(f => f.currentSession === true)
   console.log('Files in session:', files.length)
   
   // Check if editing a specific file via Change link
   const fileId = req.query.fileId
+  const fileIndex = req.query.fileIndex
   let currentFile
   
-  if (fileId) {
+  if (fileId || fileIndex !== undefined) {
     // Find the specific file being edited (regardless of session)
     currentFile = files.find(f => f.id === fileId)
+    if (!currentFile && fileId) {
+      currentFile = currentSessionFiles.find(f => f.id === fileId)
+    }
+    if (!currentFile && fileIndex !== undefined) {
+      const indexNum = parseInt(fileIndex, 10)
+      if (!isNaN(indexNum) && files[indexNum]) {
+        currentFile = files[indexNum]
+      } else if (!isNaN(indexNum) && currentSessionFiles[indexNum]) {
+        currentFile = currentSessionFiles[indexNum]
+      }
+    }
     console.log('Editing specific file with ID:', fileId)
     console.log('Found file:', currentFile ? currentFile.name : 'NOT FOUND')
     
     if (!currentFile) {
       console.log('File not found, redirecting to document-details')
-      return res.redirect('/projects/file-upload/v4/manage-documents/document-details')
+      if (req.query.from === 'check-answers' && currentSessionFiles.length > 0) {
+        currentFile = currentSessionFiles[0]
+      } else {
+        return res.redirect('/projects/file-upload/v5/document-details')
+      }
     }
     
     // Pre-populate form fields with existing values or today's date
@@ -270,8 +255,18 @@ router.get('/manage-documents/file-details-date-received', function (req, res, n
       req.session.data['document-date-month'] = dateParts[1] || ''
       req.session.data['document-date-year'] = dateParts[2] || ''
     } else {
-      // Autofill with today's date
+      // Autofill with today's date or last business day if weekend
       const today = new Date()
+      const dayOfWeek = today.getDay() // 0 = Sunday, 6 = Saturday
+      
+      if (dayOfWeek === 0) {
+        // Sunday - use Friday
+        today.setDate(today.getDate() - 2)
+      } else if (dayOfWeek === 6) {
+        // Saturday - use Friday
+        today.setDate(today.getDate() - 1)
+      }
+      
       req.session.data['document-date-day'] = today.getDate().toString()
       req.session.data['document-date-month'] = (today.getMonth() + 1).toString()
       req.session.data['document-date-year'] = today.getFullYear().toString()
@@ -279,7 +274,7 @@ router.get('/manage-documents/file-details-date-received', function (req, res, n
     
     // Set current file and editing flag IMMEDIATELY
     req.session.data.currentFile = currentFile
-    req.session.data.editingFileId = fileId
+    req.session.data.editingFileId = currentFile.id
   } else {
     // Regular sequential flow - only current session files
     currentFile = getNextFileNeedingMetadata(files)
@@ -293,7 +288,7 @@ router.get('/manage-documents/file-details-date-received', function (req, res, n
     // If no file to process, redirect to document details
     if (!currentFile) {
       console.log('No file to process, redirecting to document-details')
-      return res.redirect('/projects/file-upload/v4/manage-documents/document-details')
+      return res.redirect('/projects/file-upload/v5/document-details')
     }
     
     // Pre-populate form fields only if the file already has a date, otherwise use today's date
@@ -303,8 +298,18 @@ router.get('/manage-documents/file-details-date-received', function (req, res, n
       req.session.data['document-date-month'] = dateParts[1] || ''
       req.session.data['document-date-year'] = dateParts[2] || ''
     } else {
-      // Autofill with today's date for new files
+      // Autofill with today's date or last business day if weekend
       const today = new Date()
+      const dayOfWeek = today.getDay() // 0 = Sunday, 6 = Saturday
+      
+      if (dayOfWeek === 0) {
+        // Sunday - use Friday
+        today.setDate(today.getDate() - 2)
+      } else if (dayOfWeek === 6) {
+        // Saturday - use Friday
+        today.setDate(today.getDate() - 1)
+      }
+      
       req.session.data['document-date-day'] = today.getDate().toString()
       req.session.data['document-date-month'] = (today.getMonth() + 1).toString()
       req.session.data['document-date-year'] = today.getFullYear().toString()
@@ -315,7 +320,7 @@ router.get('/manage-documents/file-details-date-received', function (req, res, n
   }
   
   // Only show file number counter in sequential upload flow, not when editing via Change link
-  if (fileId) {
+  if (fileId || fileIndex !== undefined) {
     // When editing specific file, don't show "X of Y" counter
     req.session.data.currentFileNumber = null
     req.session.data.totalFiles = null
@@ -343,7 +348,7 @@ router.get('/manage-documents/file-details-date-received', function (req, res, n
 })
 
 // POST: Capture date received then determine next step
-router.post('/manage-documents/file-details-date-received', function (req, res) {
+router.post('/file-details-date-received', function (req, res) {
   const files = req.session.data.uploadedFiles || []
   const editingFileId = req.session.data.editingFileId
   
@@ -374,9 +379,9 @@ router.post('/manage-documents/file-details-date-received', function (req, res) 
       
       // Redirect back to the date page with errors
       if (editingFileId) {
-        return res.redirect('/projects/file-upload/v4/manage-documents/file-details-date-received?fileId=' + editingFileId)
+        return res.redirect('/projects/file-upload/v5/file-details-date-received?fileId=' + editingFileId)
       } else {
-        return res.redirect('/projects/file-upload/v4/manage-documents/file-details-date-received')
+        return res.redirect('/projects/file-upload/v5/file-details-date-received')
       }
     }
     
@@ -405,7 +410,7 @@ router.post('/manage-documents/file-details-date-received', function (req, res) 
 
   // If we were editing a specific file, return to document details
   if (editingFileId) {
-    return res.redirect('/projects/file-upload/v4/manage-documents/document-details')
+    return res.redirect('/projects/file-upload/v5/document-details')
   }
 
   // Regular flow: Check what this specific file needs next
@@ -422,7 +427,7 @@ router.post('/manage-documents/file-details-date-received', function (req, res) 
       // Clear redaction field so no radio is pre-selected
       req.session.data['redaction'] = ''
       
-      return res.redirect('/projects/file-upload/v4/manage-documents/file-details-redaction-status')
+      return res.redirect('/projects/file-upload/v5/file-details-redaction-status')
     }
   }
   
@@ -444,42 +449,59 @@ router.post('/manage-documents/file-details-date-received', function (req, res) 
   
   const nextPage = getNextRequiredPage(files, req.session.data.shownPages)
   if (nextPage === 'date-received') {
-    return res.redirect('/projects/file-upload/v4/manage-documents/file-details-date-received')
+    return res.redirect('/projects/file-upload/v5/file-details-date-received')
   } else if (nextPage === 'redaction-status') {
     // Clear redaction field before showing redaction-status page
     req.session.data['redaction'] = ''
-    return res.redirect('/projects/file-upload/v4/manage-documents/file-details-redaction-status')
+    return res.redirect('/projects/file-upload/v5/file-details-redaction-status')
   } else {
     // All files complete - redirect to manage-documents
-    return res.redirect('/projects/file-upload/v4/manage-documents/')
+    return res.redirect('/projects/file-upload/v5/check-your-answers')
   }
 })
 
 // GET: Show redaction status page with current file
-router.get('/manage-documents/file-details-redaction-status', function (req, res, next) {
+router.get('/file-details-redaction-status', function (req, res, next) {
   const files = req.session.data.uploadedFiles || []
+  const currentSessionFiles = files.filter(f => f.currentSession === true)
   
   // Check if editing a specific file via Change link
   const fileId = req.query.fileId
+  const fileIndex = req.query.fileIndex
   let currentFile
   
-  if (fileId) {
+  if (fileId || fileIndex !== undefined) {
     // Find the specific file being edited
     currentFile = files.find(f => f.id === fileId)
+    if (!currentFile && fileId) {
+      currentFile = currentSessionFiles.find(f => f.id === fileId)
+    }
+    if (!currentFile && fileIndex !== undefined) {
+      const indexNum = parseInt(fileIndex, 10)
+      if (!isNaN(indexNum) && files[indexNum]) {
+        currentFile = files[indexNum]
+      } else if (!isNaN(indexNum) && currentSessionFiles[indexNum]) {
+        currentFile = currentSessionFiles[indexNum]
+      }
+    }
     if (!currentFile) {
-      return res.redirect('/projects/file-upload/v4/manage-documents/document-details')
+      if (req.query.from === 'check-answers' && currentSessionFiles.length > 0) {
+        currentFile = currentSessionFiles[0]
+      } else {
+        return res.redirect('/projects/file-upload/v5/document-details')
+      }
     }
     
-    // Pre-populate redaction status with existing value
+    // Pre-populate redaction status with existing value or default to "No redaction required"
     if (currentFile.redactionStatus) {
       req.session.data['redaction'] = currentFile.redactionStatus
     } else {
-      req.session.data['redaction'] = ''
+      req.session.data['redaction'] = 'No redaction required'
     }
     
     // Set current file and editing flag IMMEDIATELY
     req.session.data.currentFile = currentFile
-    req.session.data.editingFileId = fileId
+    req.session.data.editingFileId = currentFile.id
   } else {
     // Regular flow - get next file needing metadata
     currentFile = getNextFileNeedingMetadata(files)
@@ -487,18 +509,22 @@ router.get('/manage-documents/file-details-redaction-status', function (req, res
     // If no file to process, redirect to document details
     if (!currentFile) {
       console.log('No file to process, redirecting to document-details')
-      return res.redirect('/projects/file-upload/v4/manage-documents/document-details')
+      return res.redirect('/projects/file-upload/v5/document-details')
     }
 
-    // Clear redaction status for new file
-    req.session.data['redaction'] = ''
+    // Set default redaction status for new file
+    if (currentFile.redactionStatus) {
+      req.session.data['redaction'] = currentFile.redactionStatus
+    } else {
+      req.session.data['redaction'] = 'No redaction required'
+    }
     
     // Set current file for sequential flow
     req.session.data.currentFile = currentFile
   }
   
   // Only show file number counter in sequential upload flow, not when editing via Change link
-  if (fileId) {
+  if (fileId || fileIndex !== undefined) {
     // When editing specific file, don't show "X of Y" counter
     req.session.data.currentFileNumber = null
     req.session.data.totalFiles = null
@@ -514,7 +540,7 @@ router.get('/manage-documents/file-details-redaction-status', function (req, res
 })
 
 // POST: Capture redaction status, then determine next step
-router.post('/manage-documents/file-details-redaction-status', function (req, res) {
+router.post('/file-details-redaction-status', function (req, res) {
   const files = req.session.data.uploadedFiles || []
   const editingFileId = req.session.data.editingFileId
   
@@ -545,7 +571,7 @@ router.post('/manage-documents/file-details-redaction-status', function (req, re
 
   // If we were editing a specific file, return to document details
   if (editingFileId) {
-    return res.redirect('/projects/file-upload/v4/manage-documents/document-details')
+    return res.redirect('/projects/file-upload/v5/document-details')
   }
 
   // Regular flow: Check what this specific file needs next
@@ -559,7 +585,7 @@ router.post('/manage-documents/file-details-redaction-status', function (req, re
       req.session.data.currentFileNumber = currentIndex + 1
       req.session.data.totalFiles = currentSessionFiles.length
       
-      return res.redirect('/projects/file-upload/v4/manage-documents/file-details-date-received')
+      return res.redirect('/projects/file-upload/v5/file-details-date-received')
     }
   }
   
@@ -581,19 +607,19 @@ router.post('/manage-documents/file-details-redaction-status', function (req, re
   
   const nextPage = getNextRequiredPage(files, req.session.data.shownPages)
   if (nextPage === 'date-received') {
-    return res.redirect('/projects/file-upload/v4/manage-documents/file-details-date-received')
+    return res.redirect('/projects/file-upload/v5/file-details-date-received')
   } else if (nextPage === 'redaction-status') {
     // Clear redaction field before showing redaction-status page
     req.session.data['redaction'] = ''
-    return res.redirect('/projects/file-upload/v4/manage-documents/file-details-redaction-status')
+    return res.redirect('/projects/file-upload/v5/file-details-redaction-status')
   } else {
-    // All files complete - redirect to manage-documents
-    return res.redirect('/projects/file-upload/v4/manage-documents/')
+    // All files complete - redirect to check-your-answers
+    return res.redirect('/projects/file-upload/v5/check-your-answers')
   }
 })
 
 // GET: Remove a file from the uploaded files list
-router.get('/manage-documents/remove-file/:fileId', function (req, res) {
+router.get('/remove-file/:fileId', function (req, res) {
   const fileId = req.params.fileId
   console.log('Removing file with ID:', fileId)
   
@@ -603,49 +629,23 @@ router.get('/manage-documents/remove-file/:fileId', function (req, res) {
   }
   
   // Redirect back to upload page
-  return res.redirect('/projects/file-upload/v4/manage-documents/multiple-document-upload')
+  return res.redirect('/projects/file-upload/v5/file-upload')
 })
 
-// POST: Handle continue button on file-uploading page
-router.post('/manage-documents/file-uploading', function (req, res) {
-  console.log('=== File uploading POST - setting up sequential flow ===')
-  
+// GET: Show check your answers page
+router.get('/check-your-answers', function (req, res, next) {
   const files = req.session.data.uploadedFiles || []
-  console.log('Files in session:', files.length)
+  const currentSessionFiles = files.filter(f => f.currentSession === true)
   
-  // Initialize tracking for sequential flow
-  if (!req.session.data.shownPages) {
-    req.session.data.shownPages = {}
-  }
+  req.session.data.uploadedFiles = currentSessionFiles
   
-  // Get the first file that needs metadata
-  const nextFile = getNextFileNeedingMetadata(files)
-  
-  if (nextFile) {
-    // Set the current file before redirecting
-    req.session.data.currentFile = nextFile
-    
-    // Set file number counter for sequential upload flow
-    const currentSessionFiles = files.filter(f => f.currentSession === true)
-    const currentIndex = currentSessionFiles.findIndex(f => f.id === nextFile.id)
-    req.session.data.currentFileNumber = currentIndex + 1
-    req.session.data.totalFiles = currentSessionFiles.length
-    
-    console.log('Set currentFile:', nextFile.name)
-    console.log('Set currentFileNumber:', req.session.data.currentFileNumber, 'of', req.session.data.totalFiles)
-  }
-  
-  // Determine which page to show first
-  const nextPage = getNextRequiredPage(files, req.session.data.shownPages)
-  
-  if (nextPage === 'date-received') {
-    return res.redirect('/projects/file-upload/v4/manage-documents/file-details-date-received')
-  } else if (nextPage === 'redaction-status') {
-    return res.redirect('/projects/file-upload/v4/manage-documents/file-details-redaction-status')
-  } else {
-    // All files complete - redirect to manage-documents
-    return res.redirect('/projects/file-upload/v4/manage-documents/')
-  }
+  next()
+})
+
+// POST: Continue from check your answers
+router.post('/check-your-answers', function (req, res) {
+  // Redirect to completion or next page
+  return res.redirect('/projects/file-upload/v5/document-details')
 })
 
 module.exports = router

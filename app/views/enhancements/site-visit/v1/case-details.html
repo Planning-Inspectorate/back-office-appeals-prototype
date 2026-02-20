@@ -1,0 +1,71 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Sucess" %}
+{% set pageName = title %}
+{% set back = false %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
+
+        {% set html %}
+        <p class="govuk-notification-banner__heading">
+            Site visit ready to set up</p>
+            <a class="govuk-notification-banner__link" href="visit-type">Set up site visit</a>
+        
+        {% endset %}
+
+        {{ govukNotificationBanner({
+        html: html
+        }) }}
+        </div>
+
+        <div class="govuk-grid-column-full">
+
+        <span class="govuk-caption-xl">Appeal 6024299</span>
+        <h1 class="govuk-heading-xl govuk-!-margin-bottom-2">
+        Case details
+      </h1>
+
+      {{ govukTag({
+        text: "Site visit ready to set up", classes: "govuk-tag--green"
+      }) }}
+    
+      {% include "/elements/includes/case-details/meta-data.html" %}
+  
+      <p class="govuk-body">
+        <a href="#" class="govuk-link">
+          Download case
+        </a>
+      </p>
+  
+      {% include "/elements/includes/case-details/case-notes.html" %}
+
+        {% include "/elements/includes/case-details/overview.html" %}
+
+        {% include "/elements/includes/case-details/timetable.html" %}
+  
+        <h1 class="govuk-heading-l">Site visit</h1>
+
+        {{ govukButton({
+            text: "Set up site visit",
+            href: "visit-type"
+        }) }}
+
+        {% include "/elements/includes/case-details/documentation.html" %}
+
+        {% include "/elements/includes/case-details/costs.html" %}
+  
+        {% include "/elements/includes/case-details/contacts.html" %}
+  
+        {% include "/elements/includes/case-details/team.html" %}
+  
+        {% include "/elements/includes/case-details/case-management.html" %}
+
+
+    </div>
+</div>
+{% endblock %}

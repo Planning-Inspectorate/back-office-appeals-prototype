@@ -1,0 +1,185 @@
+{# app/views/manage-appeals/index.njk #}
+{% extends "layouts/main.njk" %}
+
+{% block pageTitle %}Manage your appeals{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <span class="govuk-caption-l">Cambridgeshire and Peterborough Combined Authority</span>
+    <h1 class="govuk-heading-l">Manage your appeals</h1>
+
+    <form method="get" action="/manage-appeals" class="govuk-!-margin-bottom-2">
+      {{ govukInput({
+        id: "q",
+        name: "q",
+        value: q,
+        label: { text: "Search", classes: "govuk-label--s" },
+        hint: { text: "Enter keywords e.g. reference, site address, appellant" },
+        attributes: { "spellcheck": "false" }
+      }) }}
+
+      {{ govukButton({ text: "Search" }) }}
+
+      {# --- Filter drop-down (Details) --- #}
+      {% set filtersHtml %}
+        <div class="govuk-!-margin-top-2">
+
+          {{ govukCheckboxes({
+            idPrefix: "type",
+            name: "type",
+            fieldset: { legend: { text: "Appeal type", classes: "govuk-fieldset__legend--s" } },
+            items: [
+              { value: "Householder", text: "Householder", checked: checked("type", "Householder") },
+              { value: "s78", text: "s78", checked: checked("type", "s78") },
+              { value: "Advertisement", text: "Advertisement", checked: checked("type", "Advertisement") },
+              { value: "Listed building", text: "Listed building", checked: checked("type", "Listed building") },
+              { value: "Enforcement", text: "Enforcement", checked: checked("type", "Enforcement") },
+              { value: "Certificate of lawfulness", text: "Certificate of lawfulness", checked: checked("type", "Certificate of lawfulness") }
+            ]
+          }) }}
+
+          {{ govukCheckboxes({
+            idPrefix: "method",
+            name: "method",
+            fieldset: { legend: { text: "Determination method", classes: "govuk-fieldset__legend--s" } },
+            items: [
+              { value: "Written", text: "Written representations", checked: checked("method", "Written") },
+              { value: "Hearing", text: "Hearing", checked: checked("method", "Hearing") },
+              { value: "Inquiry", text: "Inquiry", checked: checked("method", "Inquiry") }
+            ]
+          }) }}
+
+          {{ govukCheckboxes({
+            idPrefix: "status",
+            name: "status",
+            fieldset: { legend: { text: "Status", classes: "govuk-fieldset__legend--s" } },
+            items: [
+              { value: "Overdue", text: "Overdue", checked: checked("status", "Overdue") },
+              { value: "Due soon", text: "Due soon", checked: checked("status", "Due soon") },
+              { value: "OK", text: "OK", checked: checked("status", "OK") }
+            ]
+          }) }}
+
+          <div class="govuk-button-group">
+            {{ govukButton({ text: "Apply filters" }) }}
+            <a class="govuk-link" href="/manage-appeals">Clear all</a>
+          </div>
+        </div>
+      {% endset %}
+
+      {{ govukDetails({
+        summaryText: "Filter search",
+        open: (data.type or data.method or data.status) ? true : false,
+        html: filtersHtml
+      }) }}
+
+    </form>
+
+    {# Applied filter chips #}
+    {% if appliedFilters.length %}
+      <div class="govuk-!-margin-bottom-4">
+        <p class="govuk-body-s govuk-!-margin-bottom-1">Filters applied:</p>
+        <ul class="govuk-list govuk-list--inline">
+          {% for f in appliedFilters %}
+            <li class="app-chip">
+              {{ f.group | capitalize }}: {{ f.value }}
+              <a class="govuk-link app-chip__remove" href="?{{ query | querystring({ (f.group): (query[f.group] | reject('equalto', f.value) | list) }) | safe }}" aria-label="Remove {{ f.value }} filter">✕</a>
+            </li>
+          {% endfor %}
+          <li><a href="/manage-appeals" class="govuk-link">Clear all</a></li>
+        </ul>
+      </div>
+    {% endif %}
+
+    <h2 class="govuk-heading-m">Active</h2>
+
+    {% set rows = [] %}
+    {% for a in items %}
+      {% set deadlineHtml %}
+        <div>{{ a.deadline | date("D MMMM YYYY") }}</div>
+        <strong class="govuk-tag {{ a.status.colour }} govuk-!-margin-top-1">{{ a.status.label }}</strong>
+      {% endset %}
+
+      {% set row = [
+        { html: '<a class="govuk-link" href="' + a.actionUrl + '">' + a.ref + '</a>' },
+        { text: a.address },
+        { text: a.type + (a.method ? ' • ' + a.method : '') },
+        { html: deadlineHtml | safe },
+        { text: (a.days >= 0 ? a.days + ' days' : (0 - a.days) + ' days overdue') },
+        { html: '<a class="govuk-link" href="' + a.actionUrl + '">Open case</a>' }
+      ] %}
+      {% set rows = (rows.push(row), rows) %}
+    {% endfor %}
+
+    {{ govukTable({
+      caption: "Active",
+      firstCellIsHeader: false,
+      head: [
+        { text: "Appeal" },
+        { text: "Address" },
+        { text: "Appeal type" },
+        { text: "Deadline" },
+        { text: "Days" },
+        { text: "Action" }
+      ],
+      rows: rows
+    }) }}
+
+    {# Pagination #}
+    {% if pageCount > 1 %}
+      <nav class="govuk-pagination" role="navigation" aria-label="results">
+        <div class="govuk-pagination__prev">
+          {% if page > 1 %}
+          <a class="govuk-link govuk-pagination__link" href="?{{ query | querystring({ page: page - 1 }) | safe }}" rel="prev">
+            <span class="govuk-pagination__link-title">Previous</span>
+            <span class="govuk-visually-hidden"> page</span>
+          </a>
+          {% endif %}
+        </div>
+        <ul class="govuk-pagination__list">
+          {% for i in range(1, pageCount) %}
+            <li class="govuk-pagination__item {% if i == page %}govuk-pagination__item--current{% endif %}">
+              {% if i == page %}
+                <a class="govuk-link govuk-pagination__link" href="#" aria-current="page">{{ i }}</a>
+              {% else %}
+                <a class="govuk-link govuk-pagination__link" href="?{{ query | querystring({ page: i }) | safe }}">{{ i }}</a>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+        <div class="govuk-pagination__next">
+          {% if page < pageCount %}
+          <a class="govuk-link govuk-pagination__link" href="?{{ query | querystring({ page: page + 1 }) | safe }}" rel="next">
+            <span class="govuk-pagination__link-title">Next</span>
+            <span class="govuk-visually-hidden"> page</span>
+          </a>
+          {% endif %}
+        </div>
+      </nav>
+    {% endif %}
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block styles %}
+  {{ super() }}
+  <style>
+    /* Tiny chip styling for applied filters */
+    .app-chip {
+      display: inline-block;
+      background: #f3f2f1;
+      border: 1px solid #b1b4b6;
+      border-radius: 4px;
+      padding: 2px 6px;
+      margin: 0 8px 8px 0;
+      font-size: 14px;
+    }
+    .app-chip__remove {
+      margin-left: 6px;
+    }
+  </style>
+{% endblock %}

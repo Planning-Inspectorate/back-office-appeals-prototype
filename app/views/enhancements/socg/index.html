@@ -1,0 +1,43 @@
+{% extends "layouts/PINS-Simple.html" %}
+
+{% set title = "Statement of common ground" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = true %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">{{ title }}</h1>
+
+    <p class="govuk-body-l">
+      As a Case Officer<br>
+      I want to add any statement of common ground to the appeal<br>
+      So that the Inspector can see all the evidence
+    </p>
+
+    {{ govukInsetText({
+      html: '<a href="https://app.mural.co/t/allpins6990/m/allpins6990/1755167208449/7f91005f18becfd34d812561af7e2b65c69d6119">Mural board workings</a>'
+    }) }}
+
+    <h2 class="govuk-heading-m">Version 1
+      {{govukTag({
+      text: "In progress",
+      classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+      })}}
+    </h2>
+
+    <a href="v1/case-details" role="button" draggable="false" class="govuk-button govuk-button--start"
+      data-module="govuk-button">
+      View prototype
+      <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19"
+        viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+        <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
+      </svg>
+    </a>
+
+  </div>
+</div>
+{% endblock %}

@@ -6,11 +6,11 @@
 {% block beforeContent %}
 
 {% set identityTitle %}
-
-  <span class="govuk-!-margin-right-1">Appeal 123456</span>
-  {# <b class="govuk-!-margin-right-1">{{name}}</b> #}
-  {{ govukTag({ text: "Ready for review", classes: 'govuk-tag--green' }) }}
+    <span class="govuk-!-margin-right-1">Appeal 123456</span>
+    {# <b class="govuk-!-margin-right-1">{{name}}</b> #}
+    {{ govukTag({ text: "Ready for review", classes: 'govuk-tag--green' }) }}
   {% endset %}
+
 
   {{ appIdentityBar({
     title: {
@@ -44,13 +44,17 @@
     }}
   </h1>
 
-  {% set active = "overview" %}
+  {% set active = 'representations' %}
   {% include "/projects/case-details/v4/navigation.html" %}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
+  <h1 class="govuk-heading-l">
+    Representations
+  </h1>
 
-      {% include "/projects/case-details/v4/case-details--overview.html" %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% include "/projects/case-details/v4/case-details--representations.html" %}
 
     </div>
   </div>

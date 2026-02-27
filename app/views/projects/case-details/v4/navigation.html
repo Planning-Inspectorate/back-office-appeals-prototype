@@ -1,0 +1,37 @@
+{{ xGovukSecondaryNavigation({
+  visuallyHiddenTitle: "Secondary menu",
+  classes: "govuk-!-margin-bottom-6",
+  items: [{
+    text: "Overview",
+    href: "case-details",
+    current: active == "overview"
+  }, {
+    text: "Appeal",
+    href: "appeal",
+    current: active == "appeal"
+  }, {
+    text: "Questionnaire",
+    href: "questionnaire",
+    current: active == "questionnaire"
+  }, {
+    text: "Representations",
+    href: "representations",
+    current: active == "representations"
+  }, {
+    text: "Site visit",
+    href: "site",
+    current: active == "site"
+  }, {
+    text: "Notes",
+    href: "case-notes",
+    current: active == "notes"
+  }, {
+    text: "Activity",
+    href: "activity",
+    current: active == "activity"
+  }, {
+    text: "Documents",
+    href: "documents",
+    current: active == "documents"
+  }]
+}) }}

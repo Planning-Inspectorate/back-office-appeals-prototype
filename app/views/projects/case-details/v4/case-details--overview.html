@@ -1,6 +1,4 @@
-<h2 class="govuk-visually-hidden">
-  Case overview
-</h2>
+<h2 class="govuk-heading-l">Overview</h2>
 
 {{ govukTable({
   captionClasses: "govuk-table__caption--m pins-summary-list--bottomless",
@@ -81,3 +79,19 @@
     ]
   ]
 }) }}
+
+{% include "/elements/includes/case-details/timetable.html" %}
+
+{% include "/elements/includes/case-details/contacts.html" %}
+
+{% include "/elements/includes/case-details/team.html" %}
+
+<h2 class="govuk-heading-m govuk-!-margin-top-9">
+  Withdraw appeal
+</h2>
+
+<p>
+  <a href="#">
+    Withdraw
+  </a>
+</p>

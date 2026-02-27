@@ -1,0 +1,50 @@
+{% extends "layouts/PINS-Simple-post-mvp.html" %}
+
+{% set title = 'Change procedure' %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set back = false %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">
+      Change local planning authority
+    </h1>
+
+ 
+    {% set version = "1" %}
+
+    <h2 class="govuk-heading-m">
+      Version {{version}}
+
+      {{govukTag({
+        text: "ready for research",
+        classes: "govuk-!-margin-left-2 govuk-tag--green"
+      })}}
+
+    </h2>
+
+    <p class="govuk-body">
+      Update to BO to allow Case Officer's to change LPA on an appeal. This is to allow for cases where the wrong LPA was selected at case setup, or where the appellant has changed their mind about which LPA they want to deal with their case.
+    </p>
+
+     <h2 class="govuk-heading-m">
+      Updated pages
+    </h2>
+<p><a href="case-details">Case details</a></p>
+<p><a href="lpa-name">Select LPA</a></p>
+<p><a href="check-your-answers">Check your answers</a></p>
+
+
+    {{ govukButton({
+      text: "View prototype",
+      href: "start",
+      isStartButton: true
+    }) }}
+   
+  </div>
+</div>
+
+{% endblock %}

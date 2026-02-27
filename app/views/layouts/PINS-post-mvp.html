@@ -27,3 +27,8 @@
 		}) }} #}
 
 {% endblock %}
+
+{% block pageScripts %}
+	{{ super() }}
+	<script src="/public/javascripts/components/accessible-autocomplete.min.js"></script>
+{% endblock %}

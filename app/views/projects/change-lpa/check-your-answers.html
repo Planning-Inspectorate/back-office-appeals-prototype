@@ -1,0 +1,62 @@
+ 
+{% extends "layouts/PINS-post-mvp.html" %}
+{% set title = "Check details and update local planning authority" %}
+{% set pageName = title + ' - Planning Inspectorate'%} 
+
+{% set prototypeLinks = [
+  {
+    href: '?redacted-statement-done=yes',
+    text: 'Redacted comment'
+  } if data['redacted-statement-done'] != 'yes',
+  {
+    href: '?redacted-statement-done=',
+    text: 'No redacted comment'
+  } if data['redacted-statement-done'] == 'yes'
+] %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal {{ data['appealReference'] or data['appeal-reference'] or '1234567' }}</span>
+      <h1 class="govuk-heading-l">{{ title }}</h1>
+
+      {{ govukSummaryList({
+        classes: "govuk-!-margin-bottom-6",
+        rows: [
+          {
+            key: {
+              text: "Local planning authority"
+            },
+            value: {
+              text: data['lpa-name'] or data['lpa'] or 'Shropshire Council'
+            }
+          }
+        ]
+      }) }}
+
+      <details class="govuk-details govuk-!-margin-bottom-3" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">Preview email to appellant</span>
+        </summary>
+        <div class="govuk-details__text">
+          <p class="govuk-body">Email preview will appear here.</p>
+        </div>
+      </details>
+
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">Preview email to LPA</span>
+        </summary>
+        <div class="govuk-details__text">
+          <p class="govuk-body">Email preview will appear here.</p>
+        </div>
+      </details>
+
+      <form action="/projects/change-lpa/check-your-answers" method="post" novalidate>
+        {{ govukButton({
+          text: "Update local planning authority"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

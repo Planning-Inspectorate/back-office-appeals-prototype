@@ -3,8 +3,29 @@
 // https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images
 //
 
+const initAccessibleAutocomplete = () => {
+  if (!window.accessibleAutocomplete) {
+    return
+  }
+
+  const selects = document.querySelectorAll('select.js-autocomplete')
+  selects.forEach((select) => {
+    if (select.dataset.autocompleteEnhanced === 'true') {
+      return
+    }
+
+    window.accessibleAutocomplete.enhanceSelectElement({
+      selectElement: select,
+      inputClasses: 'govuk-input'
+    })
+
+    select.dataset.autocompleteEnhanced = 'true'
+  })
+}
+
 window.GOVUKPrototypeKit.documentReady(() => {
   window.MOJFrontend.initAll()
+  initAccessibleAutocomplete()
 })
 
 // Read more links

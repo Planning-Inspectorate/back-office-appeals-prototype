@@ -94,6 +94,8 @@ require('./routes/cancel-inquiry')(router)
 require('./routes/add-inquiry-estimates')(router)
 require('./routes/edit-inquiry-estimates')(router)
 
+router.use('/projects/change-lpa', require('./views/projects/change-lpa/_routes'))
+
 require('./routes/interested-party-comments')(router)
 require('./routes/interested-party-comment--add')(router)
 require('./routes/interested-party-comment')(router)

@@ -1,0 +1,221 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Case history" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <!--	<span class="govuk-caption-l">Appeal 2110166</span> -->
+      <span class="govuk-caption-l">Appeal 2114328</span>
+    	<h1 class="govuk-heading-l">
+        {{ title }}
+      </h1>
+
+      <!-- case status tag -->
+      {% if data['case-stage'] == 'questionnaire' %}
+
+        <strong class="govuk-tag govuk-tag--yellow">
+          LPA questionnaire
+        </strong>
+
+      {% elseif data['case-stage'] == 'statements' %}
+
+        <strong class="govuk-tag govuk-tag--purple">
+          Statements
+        </strong>
+
+      {% elseif data['case-stage'] == 'final-comments' %}
+
+        <strong class="govuk-tag govuk-tag--orange">
+          Final comment review
+        </strong>
+
+      {% elseif data['case-stage'] == 'determination' %}
+
+        <strong class="govuk-tag govuk-tag--pink">
+          Issue decision
+        </strong>
+
+      {% elseif data['case-stage'] == 'closed' %}
+
+        <strong class="govuk-tag govuk-tag--green">
+          Complete
+        </strong>
+
+        {{ govukInsetText({
+          html: "
+          <p class='govuk-body'>
+            Completed "+ 1 | daysAgo + "
+          </p>
+          <p class='govuk-body'>
+            Decision: approved
+          </p>
+          <p class='govuk-body'>
+            <a href='#' class='govuk-link'>
+              View decision letter
+            </a>
+          </p>"
+        }) }}
+
+      {% else %}
+
+        <strong class="govuk-tag govuk-tag--green">
+          Ready to start
+        </strong>
+
+      {% endif %}
+
+    </div>
+
+    <div class="govuk-grid-column-full">
+      {% include "/includes/appeal-content/lpa-has-appeal-meta.html" %}
+      <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+      {{ govukTable({
+        caption: "Case history notes",
+        captionClasses: "govuk-table__caption--m govuk-visually-hidden",
+        firstCellIsHeader: false,
+        head: [
+          {
+            text: "Date and time",
+            classes: "govuk-!-width-one-quarter"
+          },
+          {
+            text: "Details"
+          },
+          {
+            text: "User"
+          }
+        ],
+        rows: [
+          [
+            {
+              text: 3 | daysAgo + ' 16:38'
+            },
+            {
+              html: "The case has progressed to " + caseStatus (caseStatus = 'statements')
+            },
+            {
+              text: "caseteamofficer@planninginspectorate.gov.uk"
+            }
+          ],
+          [
+            {
+              text: 37 | daysAgo + ' 16:42'
+            },
+            {
+              html: "LPA questionnaire updated"
+            },
+            {
+              text: "caseteamofficer@planninginspectorate.gov.uk"
+            }
+          ],
+          [
+            {
+              text: 37 | daysAgo + ' 16:37'
+            },
+            {
+              html: "Document <a href='#' class='govuk-link'>0123456-policy.pdf</a> uploaded (version 1)"
+            },
+            {
+              text: "caseteamofficer@planninginspectorate.gov.uk"
+            }
+          ],
+          [
+            {
+              text: 37 | daysAgo + ' 16:33'
+            },
+            {
+              html: "Document <a href='#' class='govuk-link'>0123456-policy.pdf</a> uploaded (version 1)"
+            },
+            {
+              text: "caseteamofficer@planninginspectorate.gov.uk"
+            }
+          ],
+          [
+            {
+              text: 37 | daysAgo + ' 13:16'
+            },
+            {
+              html: "The LPA questionnaire was received"
+            },
+            {
+              text: "planningteam@barnet.gov.uk"
+            }
+          ],
+          [
+            {
+              text: 41 | daysAgo + ' 09:32'
+            },
+            {
+              html: "The case has progressed to " + caseStatus (caseStatus = 'questionnaire')
+            },
+            {
+              text: "caseteamofficer@planninginspectorate.gov.uk"
+            }
+          ],
+          [
+            {
+              text: 44 | daysAgo + ' 17:52'
+            },
+            {
+              html: "The case has progressed to " + caseStatus (caseStatus = 'ready')
+            },
+            {
+              text: "caseteamofficer@planninginspectorate.gov.uk"
+            }
+          ],
+          [
+            {
+              text: 44 | daysAgo + ' 17:48'
+            },
+            {
+              html: "The case timeline was created"
+            },
+            {
+              text: "caseteamofficer@planninginspectorate.gov.uk"
+            }
+          ],
+          [
+            {
+              text: 44 | daysAgo + ' 13:16'
+            },
+            {
+              html: "The case has progressed to " + caseStatus (caseStatus = 'validation')
+            },
+            {
+              text: "caseteamofficer@planninginspectorate.gov.uk"
+            }
+          ],
+          [
+            {
+              text: 44 | daysAgo + ' 10:02'
+            },
+            {
+              html: "The case officer caseteamofficer@planninginspectorate.gov.uk was added to the team"
+            },
+            {
+              text: "caseteamofficer@planninginspectorate.gov.uk"
+            }
+          ],
+          [
+            {
+              text: 45 | daysAgo + ' 11:22'
+            },
+            {
+              html: "The appellant case was received"
+            },
+            {
+              text: "Appeal a planning decision service"
+            }
+          ]
+
+        ]
+      }) }}
+
+    </div>
+  </div>
+{% endblock %}

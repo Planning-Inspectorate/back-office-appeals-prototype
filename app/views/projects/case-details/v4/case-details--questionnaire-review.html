@@ -1,0 +1,39 @@
+<form action="/appellant-outcome" method="post" class="govuk-!-margin-top-9" novalidate>
+
+  <!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
+
+    {{ govukRadios({
+      name: "appelant-outcome",
+      fieldset: {
+        legend: {
+          text: "What is the outcome of your review?",
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--m"
+        }
+      },
+      items: [
+        {
+          value: "complete",
+          text: "Complete"
+        },
+        {
+          value: "incomplete",
+          text: "Incomplete"
+        }
+      ]
+    }) }}
+
+    {{ govukInsetText({
+      text: "Confirming this review will inform the relevant parties of the outcome."
+    }) }}
+
+    {{ govukWarningText({
+      text: "Do not select an outcome until you have reviewed all of the supporting documents and redacted any sensitive information.",
+      iconFallbackText: "Warning"
+    }) }}
+
+    {{ govukButton({
+      text: "Continue"
+    }) }}
+
+</form>

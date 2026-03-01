@@ -5,60 +5,98 @@
 {{ govukSummaryList({
   card: {
     title: {
-      text: "1. The appellant"
+      text: "Before you start"
+    }
+  },
+  rows: [{
+    key: {
+      text: "Planning authority"
+    },
+    value: {
+      text: "Cornwall Council"
+    },
+    actions: {
+      items: [{
+        href: "#",
+        text: "Change",
+        visuallyHiddenText: "local planning authority"
+      }]
+    }
+  }, {
+    key: {
+      text: "What type of application is your appeal about?"
+    },
+    value: {
+      text: "Full planning"
+    }
+  }, {
+    key: {
+      text: "Was your application granted or refused?"
+    },
+    value: {
+      text: "Granted with conditions"
+    },
+    actions: {
+      items: [{
+        href: "#",
+        text: "Change",
+        visuallyHiddenText: "whether your application was granted or refused"
+      }]
+    }
+  }, {
+    key: {
+      text: "What’s the date on the decision letter from the local planning authority?"
+    },
+    value: {
+      html: 74 | daysAgo
+    },
+    actions: {
+      items: [{
+        href: "#",
+        text: "Change",
+        visuallyHiddenText: "date on the decision letter"
+      }]
+    }
+  }, {
+    key: {
+      text: "Are you claiming costs as part of your appeal?"
+    },
+    value: {
+      text: "Yes"
+    }
+  }, {
+    key: {
+      text: "What is the application reference number?"
+    },
+    value: {
+      text: "CC/26-S7812347"
+    }
+  }]
+}) }}
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "Appellant details"
     }
   },
   rows: [
     {
       key: {
-        text: "Name"
+        text: "Appellant’s contact details"
       },
       value: {
-        html: "Jane Doe"
+        html: "Jan Doherty<br>jan.docco@gmail.com<br>07654321000"
       },
       actions: {
-          items: [
-            {
-              href: "#",
-              text: "Change",
-              visuallyHiddenText: "name"
-            }
-          ]
-        }
-    },
-    {
-      key: {
-        text: "Another individual"
-      },
-      value: {
-        html: "UK national resident in UK"
-      },
-      actions: {
-          items: [
-            {
-              href: "#",
-              text: "Change",
-              visuallyHiddenText: "Another individual"
-            }
-          ]
-        }
-    },
-    {
-      key: {
-        text: "Application reference"
-      },
-      value: {
-        html: "ABC123456"
-      },
-      actions: {
-          items: [
-            {
-              href: "#",
-              text: "Change",
-              visuallyHiddenText: "Application reference"
-            }
-          ]
-        }
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "name"
+          }
+        ]
+      }
     }
   ]
 }) }}
@@ -66,16 +104,16 @@
 {{ govukSummaryList({
   card: {
     title: {
-      text: "2. The appeal site"
+      text: "Site details"
     }
   },
   rows: [
     {
       key: {
-        text: "Site address"
+        text: "What is the address of the appeal site?"
       },
       value: {
-        html: "21 The pavement, Wandsworth, SW4 0HY"
+        html: "Salubrious Place, Saint Ives TR26 1HL"
       },
       actions: {
           items: [
@@ -89,10 +127,10 @@
     },
     {
       key: {
-        text: "Site fully owned"
+        text: "What is the area of the appeal site?"
       },
       value: {
-        html: "No"
+        html: "67 m²"
       },
       actions: {
           items: [
@@ -104,108 +142,144 @@
           ]
         }
     },
+
     {
-      key: {
-        text: "Site partially owned"
-      },
-      value: {
-        html: "Yes"
-      },
-      actions: {
-          items: [
-            {
-              href: "#",
-              text: "Change",
-              visuallyHiddenText: "Another individual"
-            }
-          ]
+        key: {
+            text: "Is the appeal site in a green belt?"
+        },
+        value: {
+            text: "Yes"
+        },
+        actions: {
+            items: [
+                {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "Is the appeal site in a green belt?"
+                }
+            ]
         }
     },
     {
-      key: {
-        text: "All owners known"
-      },
-      value: {
-        html: "No"
-      },
-      actions: {
-          items: [
-            {
-              href: "#",
-              text: "Change",
-              visuallyHiddenText: "Another individual"
-            }
-          ]
+        key: {
+            text: "Does the appellant own all of the land involved in the appeal?"
+        },
+        value: {
+            text: "Partially owned"
+        },
+        actions: {
+            items: [
+                {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "Does the appellant own all of the land involved in the appeal?"
+                }
+            ]
         }
     },
     {
-      key: {
-        text: "Attempted to identify owners"
-      },
-      value: {
-        html: "Yes"
-      },
-      actions: {
-          items: [
-            {
-              href: "#",
-              text: "Change",
-              visuallyHiddenText: "Another individual"
-            }
-          ]
+        key: {
+            text: "Does the appellant know who owns the land involved in the appeal?"
+        },
+        value: {
+            text: "Some"
+        },
+        actions: {
+            items: [
+                {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "Does the appellant know who owns the land involved in the appeal?"
+                }
+            ]
         }
     },
     {
-      key: {
-        text: "Advertised appeal"
-      },
-      value: {
-        html: "No"
-      },
-      actions: {
-          items: [
-            {
-              href: "#",
-              text: "Change",
-              visuallyHiddenText: "Another individual"
-            }
-          ]
+        key: {
+            text: "Is the appeal site part of an agricultural holding?"
+        },
+        value: {
+            text: "No"
+        },
+        actions: {
+            items: [
+                {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "Is the appeal site part of an agricultural holding?"
+                }
+            ]
         }
     },
     {
-      key: {
-        text: "Visibility"
-      },
-      value: {
-        html: "No"
-      },
-      actions: {
-          items: [
-            {
-              href: "#",
-              text: "Change",
-              visuallyHiddenText: "Another individual"
-            }
-          ]
+        key: {
+            text: "Are you a tenant of the agricultural holding?"
+        },
+        value: {
+            text: "Not answered"
+        },
+        actions: {
+            items: [
+                {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "Are you a tenant of the agricultural holding?"
+                }
+            ]
         }
     },
     {
-      key: {
-        text: "Site health and safety issuer"
-      },
-      value: {
-        html: "Yes"
-      },
-      actions: {
-          items: [
-            {
-              href: "#",
-              text: "Change",
-              visuallyHiddenText: "Another individual"
-            }
-          ]
+        key: {
+            text: "Are there any other tenants?"
+        },
+        value: {
+            text: "Not answered"
+        },
+        actions: {
+            items: [
+                {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "Are there any other tenants?"
+                }
+            ]
+        }
+    },
+    {
+        key: {
+            text: "Will an inspector need to access your land or property?"
+        },
+        value: {
+            html: "Yes<br>The appeal site is at the rear of a terraced property"
+        },
+        actions: {
+            items: [
+                {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "Will an inspector need to access your land or property?"
+                }
+            ]
+        }
+    },
+    {
+        key: {
+            text: "Are there any health and safety issues on the appeal site?"
+        },
+        value: {
+            html: "Yes<br>Dogs on site"
+        },
+        actions: {
+            items: [
+                {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "Are there any health and safety issues on the appeal site?"
+                }
+            ]
         }
     }
+
 
   ]
 }) }}
@@ -213,129 +287,480 @@
 {{ govukSummaryList({
   card: {
     title: {
-      text: "3. The appeal"
+      text: "Application details"
     }
   },
   rows: [
     {
       key: {
-        text: "Application form known"
+        text: "What date did you submit your application?"
       },
       value: {
-        html: "<a href='#'>application-form.pdf</a>"
+        text: "15 January 2026"
       },
       actions: {
-          items: [
-            {
-              href: "#",
-              text: "Change",
-              visuallyHiddenText: "Another individual"
-            }
-          ]
-        }
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "What date did you submit your application?"
+          }
+        ]
+      }
     },
     {
       key: {
-        text: "Decision letter"
+        text: "Enter the description of development that you submitted in your application"
       },
       value: {
-        html: "<a href='#'>decision-letter.pdf</a>"
+        text: "Change of use of ground floor retail unit (Use Class E) to provide 3 self‑contained residential flats (Use Class C3), including associated internal alterations."
       },
       actions: {
-          items: [
-            {
-              href: "#",
-              text: "Change",
-              visuallyHiddenText: "Another individual"
-            }
-          ]
-        }
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "Enter the description of development that you submitted in your application"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Are there other appeals linked to your development?"
+      },
+      value: {
+        html: "<ul class='govuk-list govuk-list--bullet'><li>7654321</li><li>1234567</li></ul>"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "Are there other appeals linked to your development?"
+          },
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "Add another appeal linked to your development"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Development type"
+      },
+      value: {
+        text: "Change of use"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "Development type"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "Appeal details"
+    }
+  },
+  rows: [
+    {
+      key: {
+        text: "How would you prefer us to decide your appeal?"
+      },
+      value: {
+        text: "Inquiry"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "how you would prefer us to decide your appeal"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Why would you prefer this appeal procedure?"
+      },
+      value: {
+        text: "Test why prefer inquiry testpropererwrwe5454354rty12345dfdfder6789aAbcdEF!'£$%QA"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "why you would prefer this appeal procedure"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "How many days would you expect the inquiry to last?"
+      },
+      value: {
+        text: "50 days"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "how many days you would expect the inquiry to last"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "How many witnesses would you expect to give evidence at the inquiry?"
+      },
+      value: {
+        text: "10"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "how many witnesses would give evidence at the inquiry"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "Upload documents"
+    }
+  },
+  rows: [
+    {
+      key: {
+        text: "Application form"
+      },
+      value: {
+        html: "<a class='govuk-link' href='#'>letter-confirming-planning-application.pdf</a>"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "application form"
+          },
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "application form"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Agreement to change the description of development"
+      },
+      value: {
+        html: "<a class='govuk-link' href='#'>additional-final-comments-1.pdf</a>"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "agreement to change the description of development"
+          },
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "agreement to change the description of development"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Decision letter from the local planning authority"
+      },
+      value: {
+        html: "<a class='govuk-link' href='#'>decision-letter.pdf</a>"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "decision letter from the local planning authority"
+          },
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "decision letter from the local planning authority"
+          }
+        ]
+      }
     },
     {
       key: {
         text: "Appeal statement"
       },
       value: {
-        html: "<a href='#'>application-statement.pdf</a>"
+        html: "<a class='govuk-link' href='#'>appeal-statement-valid.pdf</a>"
       },
       actions: {
-          items: [
-            {
-              href: "#",
-              text: "Change",
-              visuallyHiddenText: "Another individual"
-            }
-          ]
-        }
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "appeal statement"
+          },
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "appeal statement"
+          }
+        ]
+      }
     },
     {
       key: {
-        text: "Add new supporting documents"
+        text: "What is the status of your planning obligation?"
       },
       value: {
-        html: "Yes"
+        text: "Finalised"
       },
       actions: {
-          items: [
-            {
-              href: "#",
-              text: "Change",
-              visuallyHiddenText: "Another individual"
-            }
-          ]
-        }
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "status of your planning obligation"
+          }
+        ]
+      }
     },
     {
       key: {
-        text: "New supporting documents"
+        text: "Planning obligation"
       },
       value: {
-        html: "<a href='#'>other.pdf</a>"
+        html: "<a class='govuk-link' href='#'>additional-final-comments-2.pdf</a>"
       },
       actions: {
-          items: [
-            {
-              href: "#",
-              text: "Change",
-              visuallyHiddenText: "Another individual"
-            }
-          ]
-        }
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "planning obligation"
+          },
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "planning obligation"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Draft statement of common ground"
+      },
+      value: {
+        html: "<a class='govuk-link' href='#'>draft-statement-of-common-ground.pdf</a>"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "draft statement of common ground"
+          },
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "draft statement of common ground"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Separate ownership certificate and agricultural land declaration"
+      },
+      value: {
+        html: "<a class='govuk-link' href='#'>draft-planning-obligation.pdf</a>"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "separate ownership certificate and agricultural land declaration"
+          },
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "separate ownership certificate and agricultural land declaration"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Application for an award of appeal costs"
+      },
+      value: {
+        html: "<a class='govuk-link' href='#'>other-supporting-docs.pdf</a>"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "application for an award of appeal costs"
+          },
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "application for an award of appeal costs"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Design and access statement"
+      },
+      value: {
+        html: "<a class='govuk-link' href='#'>design-and-access-statement.pdf</a>"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "design and access statement"
+          },
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "design and access statement"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Plans, drawings and list of plans"
+      },
+      value: {
+        html: "<a class='govuk-link' href='#'>plans-drawings-and-supporting-documents.pdf</a>"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "plans, drawings and list of plans"
+          },
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "plans, drawings and list of plans"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "New plans or drawings"
+      },
+      value: {
+        html: "<a class='govuk-link' href='#'>plans-drawings.jpeg</a>"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "new plans or drawings"
+          },
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "new plans or drawings"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Other new supporting documents"
+      },
+      value: {
+        html: "<a class='govuk-link' href='#'>other-supporting-docs.pdf</a>"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "other new supporting documents"
+          },
+          {
+            href: "#",
+            text: "Add",
+            visuallyHiddenText: "other new supporting documents"
+          }
+        ]
+      }
     }
   ]
 }) }}
 
-<form action="/appellant-outcome" method="post" class="govuk-!-margin-top-9" novalidate>
 
-  <!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
-
-    {{ govukRadios({
-      name: "appelant-outcome",
-      fieldset: {
-        legend: {
-          text: "What is the outcome of your review?",
-          isPageHeading: true,
-          classes: "govuk-fieldset__legend--m"
-        }
-      },
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "Additional documents"
+    },
+    actions: {
       items: [
         {
-          value: "valid~/projects/appellant-case/valid/",
-          text: "Valid"
-        },
-        {
-          value: "invalid~/projects/appellant-case/invalid",
-          text: "Invalid"
-        },
-        {
-          value: "complete~/projects/appellant-case/incomplete",
-          text: "Incomplete"
+          href: "#",
+          text: "Add",
+          visuallyHiddenText: "additional documents"
         }
       ]
-    }) }}
-
-    {{ govukButton({
-      text: "Continue"
-    }) }}
-
-</form>
+    }
+  },
+  rows: [
+    {
+      key: {
+        text: "No documents",
+        classes: "govuk-!-font-weight-regular"
+      },
+      value: {
+        html: ""
+      }
+    }
+  ]
+}) }}

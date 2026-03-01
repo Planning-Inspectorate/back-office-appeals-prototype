@@ -1,0 +1,15 @@
+{% set html %}
+  <p class="govuk-notification-banner__heading">
+    <a class="govuk-notification-banner__link" href="#">Review LPA questionnaire</a>
+  </p>
+{% endset %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {{ govukNotificationBanner({
+      html: html
+    }) }}
+
+  </div>
+</div>

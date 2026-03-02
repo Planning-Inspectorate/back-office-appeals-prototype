@@ -40,7 +40,7 @@
             Date received
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ file.dateReceived or 'Not provided' }}
+            {{ file.dateReceived | slashDateToLong or 'Not provided' }}
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link" href="/projects/file-upload/v5/file-details-date-received?fileId={{ file.id }}&fileIndex={{ loop.index0 }}&from=check-answers">Change<span class="govuk-visually-hidden"> {{ file.name }} date received</span></a>

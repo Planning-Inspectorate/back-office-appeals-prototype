@@ -59,6 +59,19 @@ addFilter('daysInPastShort', (number) => {
 	return date
 })
 
+addFilter('slashDateToLong', (dateString) => {
+	if (!dateString) {
+		return dateString
+	}
+
+	const parsed = moment(dateString, ['D/M/YYYY', 'DD/MM/YYYY'], true)
+	if (!parsed.isValid()) {
+		return dateString
+	}
+
+	return parsed.format('D MMMM YYYY')
+})
+
 addFilter('whichDay',function (value) {
   const options = { weekday: 'long' }; // Format such as 'Monday', 'Tuesday', etc.
   const formatter = new Intl.DateTimeFormat('en-GB', options); // Localised datetime formatter

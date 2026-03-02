@@ -1,9 +1,7 @@
 {% extends "layouts/PINS-post-mvp.html" %}
 
 {% set title = "Appeal decision" %}
-
 {% set pageName = title + ' - Planning Inspectorate'%}
-
 {% set back = false %}
 
 {% block beforeContent %}
@@ -28,6 +26,13 @@
       <span class="govuk-caption-l">Appeal 7001224</span>
       <h1 class="govuk-heading-l">{{ title }}</h1>
 
+      {# --- Build the issued date value once, safely --- #}
+      {% set reason = (data['reason'] or '') | trim | lower %}
+      {% set issuedHtml = (2 | daysAgo) %}
+      {% if reason == 'other' %}
+        {% set issuedHtml = issuedHtml ~ " (reissued on " ~ (0 | daysAgo) ~ ")" %}
+      {% endif %}
+
       {{ govukSummaryList({
         rows: [
           {
@@ -35,19 +40,11 @@
             value: { text: "Dismissed" },
             actions: {}
           },
-      
           {
             key: { text: "Decision issued date" },
-            value: { html: (2 | daysAgo) },
+            value: { html: issuedHtml },
             actions: { items: [] }
-          } if data['reason'] != "Other",
-      
-          {
-            key: { text: "Decision issued date" },
-            value: { html: (2 | daysAgo) ~ " (reissued on " ~ (0 | daysAgo) ~ ")" },
-            actions: { items: [] }
-          } if data['reason'] == "Other",
-      
+          },
           {
             key: { text: "Decision letter" },
             value: {

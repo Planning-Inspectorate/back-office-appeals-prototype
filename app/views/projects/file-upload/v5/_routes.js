@@ -196,6 +196,23 @@ router.post('/file-upload', function (req, res) {
     console.warn('No fileData in request body!')
   }
 
+  if (req.session.data.uploadedFiles.length === 0) {
+    const now = new Date().toISOString()
+    const dummyFiles = ['receipt1.pdf', 'receipt2.pdf']
+    dummyFiles.forEach((name) => {
+      req.session.data.uploadedFiles.push({
+        id: Date.now() + '-' + Math.random().toString(36).substr(2, 9),
+        name,
+        size: 0,
+        uploadedAt: now,
+        dateReceived: null,
+        redactionStatus: null,
+        currentSession: true
+      })
+    })
+    console.log('No file data found. Added dummy files:', dummyFiles)
+  }
+
   // Determine which page to show first
   const nextPage = getNextRequiredPage(req.session.data.uploadedFiles, req.session.data.shownPages)
   

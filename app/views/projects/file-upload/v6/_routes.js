@@ -54,6 +54,29 @@ function getCurrentSessionFiles(files) {
   return currentSessionFiles
 }
 
+// Ensure uploaded files exist (fallback for environments where client JS/session fails)
+function ensureUploadedFiles(req) {
+  if (!req.session.data.uploadedFiles) {
+    req.session.data.uploadedFiles = []
+  }
+
+  if (req.session.data.uploadedFiles.length === 0) {
+    const now = new Date().toISOString()
+    const dummyFiles = ['receipt1.pdf', 'receipt2.pdf']
+    dummyFiles.forEach((name) => {
+      req.session.data.uploadedFiles.push({
+        id: Date.now() + '-' + Math.random().toString(36).substr(2, 9),
+        name,
+        size: 0,
+        uploadedAt: now,
+        dateReceived: null,
+        redactionStatus: null,
+        currentSession: true
+      })
+    })
+  }
+}
+
 // Helper to get the next file missing a date received (only from current session)
 function getNextFileMissingDate(files) {
   if (!files || files.length === 0) return null
@@ -288,6 +311,7 @@ router.post('/redaction-status-single-or-multiple', function (req, res) {
 
 // GET: Show date received page for all files
 router.get('/file-details-date-received-all', function (req, res, next) {
+  ensureUploadedFiles(req)
   const files = req.session.data.uploadedFiles || []
   const currentSessionFiles = getCurrentSessionFiles(files)
 
@@ -384,6 +408,7 @@ router.post('/file-details-date-received-all', function (req, res) {
 9
 // GET: Show redaction status page for all files
 router.get('/file-details-redaction-status-all', function (req, res, next) {
+  ensureUploadedFiles(req)
   const files = req.session.data.uploadedFiles || []
   const currentSessionFiles = getCurrentSessionFiles(files)
 
@@ -410,7 +435,7 @@ router.get('/file-details-redaction-status-all', function (req, res, next) {
 // POST: Capture redaction status for all files
 router.post('/file-details-redaction-status-all', function (req, res) {
   const files = req.session.data.uploadedFiles || []
-  const currentSessionFiles = files.filter(f => f.currentSession === true)
+  const currentSessionFiles = getCurrentSessionFiles(files)
 
   if (currentSessionFiles.length === 0) {
     return res.redirect('/projects/file-upload/v6/document-details')
@@ -438,8 +463,9 @@ router.post('/file-details-redaction-status-all', function (req, res) {
 // GET: Show date received page with current file
 router.get('/file-details-date-received', function (req, res, next) {
   console.log('=== Date received GET ===')
+  ensureUploadedFiles(req)
   const files = req.session.data.uploadedFiles || []
-  const currentSessionFiles = files.filter(f => f.currentSession === true)
+  const currentSessionFiles = getCurrentSessionFiles(files)
   console.log('Files in session:', files.length)
   
   // Check if editing a specific file via Change link
@@ -672,8 +698,9 @@ router.post('/file-details-date-received', function (req, res) {
 
 // GET: Show redaction status page with current file
 router.get('/file-details-redaction-status', function (req, res, next) {
+  ensureUploadedFiles(req)
   const files = req.session.data.uploadedFiles || []
-  const currentSessionFiles = files.filter(f => f.currentSession === true)
+  const currentSessionFiles = getCurrentSessionFiles(files)
   
   // Check if editing a specific file via Change link
   const fileId = req.query.fileId

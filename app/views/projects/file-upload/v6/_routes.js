@@ -811,8 +811,7 @@ router.get('/file-upload', function (req, res, next) {
 
   // POST: Continue from check your answers
   router.post('/check-your-answers', function (req, res) {
-    // Redirect to completion or next page
-    return res.redirect('/projects/file-upload/v6/document-details')
+    return res.redirect('/projects/file-upload/v6/case-details')
   })
 
 module.exports = router

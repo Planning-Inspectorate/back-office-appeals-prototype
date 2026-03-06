@@ -1,0 +1,50 @@
+{% extends "layouts/PINS.html" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Appeal 12345 - Manage documents</span>
+
+    <form class="form" action="/projects/file-upload/v6/file-details-date-received-receipt2" method="post">
+      <fieldset class="govuk-fieldset" role="group" aria-describedby="document-name">
+        <h1 class="govuk-heading-l">Date file received</h1>
+        <h2 class="govuk-heading-m">receipt-2.pdf</h2>
+
+        <label class="govuk-label govuk-label--s" for="document-date-day">Enter date received</label>
+        <div id="document-name" class="govuk-hint">
+          For example, {{ data.exampleDate.day }} {{ data.exampleDate.month }} {{ data.exampleDate.year }}
+        </div>
+
+        <div class="govuk-date-input" id="document-date-receipt-1">
+          <div class="govuk-date-input__item">
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-date-input__label" for="document-date-day">Day</label>
+              <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="document-date-day" name="document-date-day" type="text" inputmode="numeric" value="{{ data['document-date-day'] }}">
+            </div>
+          </div>
+          <div class="govuk-date-input__item">
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-date-input__label" for="document-date-month">Month</label>
+              <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="document-date-month" name="document-date-month" type="text" inputmode="numeric" value="{{ data['document-date-month'] }}">
+            </div>
+          </div>
+          <div class="govuk-date-input__item">
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-date-input__label" for="document-date-year">Year</label>
+              <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="document-date-year" name="document-date-year" type="text" inputmode="numeric" value="{{ data['document-date-year'] }}">
+            </div>
+          </div>
+        </div>
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </fieldset>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
+

@@ -136,18 +136,22 @@ const initMultiDocumentUploadV5 = () => {
       return
     }
 
-    files.forEach((file, index) => {
+    const fixedNames = ['receipt-1.pdf', 'receipt-2.pdf']
+    tableBody.innerHTML = ''
+    uploadedFiles.length = 0
+
+    fixedNames.forEach((fixedName, index) => {
       const fileId = Date.now() + '-' + Math.random().toString(36).substr(2, 9)
 
       const row = document.createElement('tr')
       row.className = 'govuk-table__row uploading-row'
-      row.dataset.file = file.name
+      row.dataset.file = fixedName
       row.dataset.fileId = fileId
-      row.dataset.fileSize = file.size
+      row.dataset.fileSize = 0
 
       row.innerHTML = `
         <td class="govuk-table__cell">
-          ${file.name} (${(file.size / 1024 / 1024).toFixed(2)}MB)
+          ${fixedName}
         </td>
         <td class="govuk-table__cell">
           Uploading: <span class="progress-percent">0%</span>
@@ -187,18 +191,22 @@ const initMultiDocumentUploadV5 = () => {
       return
     }
 
-    files.forEach((file, index) => {
+    const fixedNames = ['receipt-1.pdf', 'receipt-2.pdf']
+    tableBody.innerHTML = ''
+    uploadedFiles.length = 0
+
+    fixedNames.forEach((fixedName, index) => {
       const fileId = Date.now() + '-' + Math.random().toString(36).substr(2, 9)
 
       const row = document.createElement('tr')
       row.className = 'govuk-table__row uploading-row'
-      row.dataset.file = file.name
+      row.dataset.file = fixedName
       row.dataset.fileId = fileId
-      row.dataset.fileSize = file.size
+      row.dataset.fileSize = 0
 
       row.innerHTML = `
         <td class="govuk-table__cell">
-          ${file.name} (${(file.size / 1024 / 1024).toFixed(2)}MB)
+          ${fixedName}
         </td>
         <td class="govuk-table__cell">
           Uploading: <span class="progress-percent">0%</span>

@@ -1,0 +1,66 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Appellant Case" %}
+
+{% block backLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+	<!-- heading set -->
+    <span class="govuk-caption-l">Appeal 12345 - Manage documents</span>
+        <fieldset class="govuk-fieldset" role="group" aria-describedby="document-name{% if data.dateErrors and data.dateErrors.length > 0 %} document-date-error{% endif %}">
+            <h1 class="govuk-heading-l">Do you want to apply the same redaction status to all uploaded files?</h1>
+             </fieldset>
+
+          <!-- heading set -->
+
+	    <form action="/projects/file-upload/v6/redaction-status-single-or-multiple" method="post"  novalidate>
+
+	    <!-- this form is branching using https://github.com/abbott567/radio-button-redirect for simpler routing-->
+	{{ govukRadios({
+	  name: "redactionStatusBatchUpdate",
+	  fieldset: {
+	   
+	  },
+	  items: [
+	    {
+	      value: "Yes",
+	      text: "Yes",
+	      checked: data['redactionStatusBatchUpdate'] == "Yes"
+	    },
+	    {
+	      value: "No",
+	      text: "No",
+	      checked: data['redactionStatusBatchUpdate'] == "No"
+	    }
+	  ]
+	}) }}
+
+
+	   {{ govukButton({
+        text: "Continue"
+      }) }}
+
+	  </form>
+
+
+  </div>
+</div>
+
+<script>
+  // Refresh page once on load using URL parameter
+  if (!window.location.search.includes('refreshed=true')) {
+    const separator = window.location.search ? '&' : '?';
+    window.location.href = window.location.href + separator + 'refreshed=true';
+  }
+</script>
+
+{% endblock %}

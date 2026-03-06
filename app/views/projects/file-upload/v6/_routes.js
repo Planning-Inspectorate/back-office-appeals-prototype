@@ -56,24 +56,19 @@ function getCurrentSessionFiles(files) {
 
 // Ensure uploaded files exist (fallback for environments where client JS/session fails)
 function ensureUploadedFiles(req) {
-  if (!req.session.data.uploadedFiles) {
-    req.session.data.uploadedFiles = []
-  }
-
-  if (req.session.data.uploadedFiles.length === 0) {
+  if (!req.session.data.uploadedFiles || req.session.data.uploadedFiles.length === 0) {
     const now = new Date().toISOString()
     const dummyFiles = ['receipt1.pdf', 'receipt2.pdf']
-    dummyFiles.forEach((name) => {
-      req.session.data.uploadedFiles.push({
-        id: Date.now() + '-' + Math.random().toString(36).substr(2, 9),
-        name,
-        size: 0,
-        uploadedAt: now,
-        dateReceived: null,
-        redactionStatus: null,
-        currentSession: true
-      })
-    })
+
+    req.session.data.uploadedFiles = dummyFiles.map((name, index) => ({
+      id: `dummy-${index + 1}`,
+      name,
+      size: 0,
+      uploadedAt: now,
+      dateReceived: null,
+      redactionStatus: null,
+      currentSession: true
+    }))
   }
 }
 
@@ -207,61 +202,11 @@ router.post('/file-upload', function (req, res) {
   req.session.data.currentFileNumber = null
   req.session.data.totalFiles = null
   
-  // Initialize storage
-  if (!req.session.data.uploadedFiles) {
-    req.session.data.uploadedFiles = []
-  }
+  // Use fixed dummy files for this prototype flow
+  ensureUploadedFiles(req)
 
-  // Mark all existing files as not current session
-  req.session.data.uploadedFiles.forEach(file => {
-    file.currentSession = false
-  })
-  
   // Clear shown pages tracking for new upload session
   req.session.data.shownPages = {}
-
-  // Get file data from the form submission (simulated via hidden inputs from JS)
-  const fileData = req.body.fileData
-  
-  if (fileData) {
-    try {
-      const files = JSON.parse(fileData)
-      console.log('Parsed files:', files)
-      files.forEach(file => {
-        req.session.data.uploadedFiles.push({
-          id: file.id,
-          name: file.name,
-          size: file.size,
-          uploadedAt: new Date().toISOString(),
-          dateReceived: null,
-          redactionStatus: null,
-          currentSession: true
-        })
-      })
-      console.log('Total uploaded files in session:', req.session.data.uploadedFiles.length)
-    } catch (e) {
-      console.error('Error parsing file data:', e)
-    }
-  } else {
-    console.warn('No fileData in request body!')
-  }
-
-  if (req.session.data.uploadedFiles.length === 0) {
-    const now = new Date().toISOString()
-    const dummyFiles = ['receipt1.pdf', 'receipt2.pdf']
-    dummyFiles.forEach((name) => {
-      req.session.data.uploadedFiles.push({
-        id: Date.now() + '-' + Math.random().toString(36).substr(2, 9),
-        name,
-        size: 0,
-        uploadedAt: now,
-        dateReceived: null,
-        redactionStatus: null,
-        currentSession: true
-      })
-    })
-    console.log('No file data found. Added dummy files:', dummyFiles)
-  }
 
   // After Continue, route to single-or-multiple selection
   return res.redirect('/projects/file-upload/v6/date-received-single-or-multiple')

@@ -226,7 +226,7 @@ router.get('/file-upload', function (req, res, next) {
   })
 
   // POST: Receipt 1 (legacy typo) date received -> receipt 2
-  router.post('/file-details-date-received-reciept1', function (req, res) {
+  router.post('/file-details-date-received-receipt1', function (req, res) {
     setPrefilledDate(req)
     return res.redirect('/projects/file-upload/v6/file-details-date-received-receipt2')
   })
@@ -237,7 +237,7 @@ router.get('/file-upload', function (req, res, next) {
   })
 
   // POST: Receipt 2 (legacy typo) date received -> redaction status single or multiple
-  router.post('/file-details-date-received-reciept2', function (req, res) {
+  router.post('/file-details-date-received-receipt2', function (req, res) {
     return res.redirect('/projects/file-upload/v6/redaction-status-single-or-multiple')
   })
 
@@ -249,8 +249,17 @@ router.get('/file-upload', function (req, res, next) {
       return res.redirect('/projects/file-upload/v6/file-details-redaction-status-all')
     }
 
-    req.session.data.redactionStatusStep = 0
-    return res.redirect('/projects/file-upload/v6/file-details-redaction-status')
+    else return res.redirect('/projects/file-upload/v6/file-details-redaction-status-receipt1')
+  })
+
+  // POST: Receipt 1 redaction status -> receipt 2
+  router.post('/file-details-redaction-status-receipt1', function (req, res) {
+    return res.redirect('/projects/file-upload/v6/file-details-redaction-status-receipt2')
+  })
+
+  // POST: Receipt 2 redaction status -> check your answers
+  router.post('/file-details-redaction-status-receipt2', function (req, res) {
+    return res.redirect('/projects/file-upload/v6/check-your-answers')
   })
 
   // GET: Show date received page for all files

@@ -4,6 +4,11 @@ const router = govukPrototypeKit.requests.setupRouter()
 console.log('*** V5 ROUTES FILE LOADED ***')
 console.log('*** Router configured for: /projects/file-upload/v5/ ***')
 
+// Fallback: route any legacy receipt1 redaction posts to v6 flow
+router.post('/file-details-redaction-status-receipt1', function (req, res) {
+  return res.redirect('/projects/file-upload/v6/file-details-redaction-status-receipt2')
+})
+
 // GET: Clear all session data and show upload page
 router.get('/file-upload', function (req, res, next) {
   // Clear all uploaded files and session data for v5

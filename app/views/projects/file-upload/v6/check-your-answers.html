@@ -12,6 +12,22 @@
 
 {% block content %} 
 
+{% from "govuk/components/cookie-banner/macro.njk" import govukCookieBanner %}
+
+{% set html %}
+  <p class="govuk-body">We use some essential cookies to make this service work.</p>
+  <p class="govuk-body">We’d also like to use analytics cookies so we can understand how you use the service and make improvements.</p>
+{% endset %}
+
+{% set acceptHtml %}
+  <p class="govuk-body">You’ve accepted analytics cookies. You can <a class="govuk-link" href="#">change your cookie settings</a> at any time.</p>
+{% endset %}
+
+{% set rejectHtml %}
+  <p class="govuk-body">You’ve rejected analytics cookies. You can <a class="govuk-link" href="#">change your cookie settings</a> at any time.</p>
+{% endset %}
+
+
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <span class="govuk-caption-l">Appeal 12345 - Manage documents</span>
@@ -60,12 +76,14 @@
       </dl>
     {% endfor %}
 
+
     <form action="/projects/file-upload/v6/check-your-answers" method="post">
       {{ govukButton({
         text: "Continue"
       }) }}
     </form>
+        <p>This page is what would display for up to 5 files.<a href="check-your-answers-six-plus.html"> Preview how it would look with more than 5 files</a></p>
+
   </div>
 </div>
-
 {% endblock %}

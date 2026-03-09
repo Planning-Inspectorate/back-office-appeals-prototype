@@ -10,7 +10,7 @@
 
   {{ caseStatus (caseStatus = caseTag) }}
 
-  {% include "/includes/appeal-content/lpa-has-appeal-meta.html" %}
+  {% include "/includes-for-main/appeal-content/lpa-has-appeal-meta.html" %}
 
   {# {{ govukSummaryList ({
     classes: "govuk-summary-list--no-border",
@@ -47,7 +47,7 @@
     </p>
   </div>
 
-  {% include "/includes/appeal-content/lpa-has-appeal-meta.html" %}
+  {% include "/includes-for-main/appeal-content/lpa-has-appeal-meta.html" %}
 
   {# {{ govukSummaryList ({
     classes: "govuk-summary-list--no-border",
@@ -83,7 +83,7 @@
     </p> #}
   </div>
 
-  {% include "/includes/appeal-content/lpa-has-appeal-meta.html" %}
+  {% include "/includes-for-main/appeal-content/lpa-has-appeal-meta.html" %}
 
 {% elseif caseHeading === "withdrawn"%}
 
@@ -97,7 +97,7 @@
     </p>
   </div>
 
-  {% include "/includes/appeal-content/lpa-has-appeal-meta.html" %}
+  {% include "/includes-for-main/appeal-content/lpa-has-appeal-meta.html" %}
 
   {# {{ govukSummaryList ({
     classes: "govuk-summary-list--no-border",
@@ -127,7 +127,7 @@
       <p>Appeal transferred: {{ 1 | daysAgo }}</p>
     </div>
 
-    {% include "/includes/appeal-content/lpa-has-appeal-meta.html" %}
+    {% include "/includes-for-main/appeal-content/lpa-has-appeal-meta.html" %}
 
   {% endif %}
 

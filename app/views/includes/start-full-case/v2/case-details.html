@@ -9,6 +9,14 @@
     text: 'New appeal'
   },
   {
+    href: '?case-stage=awaitingTransfer',
+    text: 'Awaiting transfer'
+  },
+  {
+    href: '?case-stage=transferred',
+    text: 'Transferred'
+  },
+  {
     href: '?case-stage=questionnaire',
     text: 'Appeal started / Questionnaire stage'
   },
@@ -85,27 +93,23 @@
     text: 'LPA final comments complete'
   } if (data['lpa-final-comments'] == 'received') and (data['case-stage'] == 'final-comments'),
 
+  {
+    href: '?casenotes=header',
+    text: 'Case notes in header'
+  } if not (data['casenotes']) or (data['casenotes']) == 'sidebar',
+  {
+    href: '?casenotes=sidebar',
+    text: 'Case notes in sidebar'
+  } if not (data['casenotes']) or (data['casenotes']) == 'header',
+  {
+    href: '?casenotes=',
+    text: 'Hide case notes'
+  } if (data['casenotes'])
 
-  {
-    href: '?appealProcedure=Written representations',
-    text: 'Written reps'
-  },
-  {
-    href: '?appealProcedure=Hearing',
-    text: 'Hearing'
-  },
-  {
-    href: '?appealProcedure=Inquiry',
-    text: 'Inquiry'
-  }
 
 ] %}
 
 {% block content %}
-
-
-
-
   <div class="govuk-grid-row">
 
     <!-- header -->
@@ -114,7 +118,7 @@
       {{ govukNotificationBanner({
         type: "success",
         text: flash
-      }) if flash.length }}
+      }) if flash.length}}
 
 
       {% if data['case-stage'] == 'questionnaire' %}
@@ -156,6 +160,28 @@
             html: html
           }) }}
         {% endif %}
+
+      {% elseif data['case-stage'] == 'transferred' %}
+
+        <!-- show nothing -->
+
+      {% elseif data['case-stage'] == 'awaitingTransfer' %}
+
+        {% if data.appealProcedure == 'Hearing' %}
+          {% set procedureType = 'hearings' %}
+        {% else %}
+          {% set procedureType = 'enquiries' %}
+        {% endif %}
+
+        {% set html %}
+          {# <h2 class="govuk-notification-banner__heading"> You need to transfer the appeal to Horizon, then add the reference number to this case. </h2>
+          <p><a class="govuk-notification-banner__link" href="edit-horizon-reference">Add Horizon case number</a></p> #}
+          <h2 class="govuk-notification-banner__heading"> You need to transfer the appeal to Horizon, then mark the case as transferred. </h2>
+          <p><a class="govuk-notification-banner__link" href="edit-horizon-reference">Mark as transferred</a></p>
+        {% endset %}
+        {{ govukNotificationBanner({
+          html: html
+        }) }}
 
       {% elseif data['case-stage'] == 'statements' %}
 
@@ -271,6 +297,14 @@
 
         {{ caseStatus (caseStatus = 'questionnaire') }}
 
+      {% elseif data['case-stage'] == 'awaitingTransfer' %}
+
+        {{ caseStatus (caseStatus = 'awaitingTransfer') }}
+
+      {% elseif data['case-stage'] == 'transferred' %}
+
+        {{ caseStatus (caseStatus = 'transferred') }}
+
       {% elseif data['case-stage'] == 'statements' %}
 
         {{ caseStatus (caseStatus = 'statements') }}
@@ -312,9 +346,86 @@
 
     <!-- meta -->
     <div class="govuk-grid-column-full">
-      {% include "/includes/appeal-content/lpa-has-appeal-meta.html" %}
+      {% include "/includes-for-main/appeal-content/lpa-has-appeal-meta.html" %}
       <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
     </div>
+
+    {% if data['casenotes'] == 'header' %}
+
+      <div class="govuk-grid-column-two-thirds">
+
+        {% set casenotes %}
+
+          <form method="post">
+            {{ govukTextarea({
+              name: "moreDetail",
+              id: "more-detail",
+              label: {
+                text: 'Case notes',
+                classes: "govuk-visually-hidden",
+                isPageHeading: true
+              }
+            }) }}
+          </form>
+
+          {{ govukButton({
+            href: "case-details",
+            classes: "govuk-button--secondary govuk-!-margin-bottom-1",
+            text: "Add case note"
+          }) }}
+
+          <section>
+            <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+            <p class="govuk-body govuk-!-margin-bottom-1">
+              We should use WR and review at statements stage.
+            </p>
+            <p class="govuk-hint govuk-!-margin-bottom-6">
+              3.33pm on Friday {{ 2 | daysAgo }} by gem.dalgano
+            </p>
+          </section>
+
+          <section>
+            <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+            <p class="govuk-body govuk-!-margin-bottom-1">
+              Contacted the agent by email and post for the missing documents.
+            </p>
+            <p class="govuk-hint govuk-!-margin-bottom-6">
+              11.52am on Tuesday {{ 12 | daysAgo }} by gem.dalgano
+            </p>
+            <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+          </section>
+
+          <section>
+            <p class="govuk-body govuk-!-margin-bottom-1">
+              Contacted the agent by email and post for the missing documents.
+            </p>
+            <p class="govuk-hint govuk-!-margin-bottom-6">
+              11.04am on Tuesday {{ 12 | daysAgo }} by gem.dalgano
+            </p>
+            <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+          </section>
+
+          <section>
+            <p class="govuk-body govuk-!-margin-bottom-1">
+              Documents missing from the case.
+            </p>
+            <p class="govuk-hint govuk-!-margin-bottom-6">
+              11.52am on Tuesday {{ 19 | daysAgo }} by sam.griffin
+            </p>
+            <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+          </section>
+
+
+        {% endset %}
+
+        {{ govukDetails({
+          summaryText: "Case notes",
+          html: casenotes
+        }) }}
+
+      </div>
+
+    {% endif %}
 
     <!-- case sections -->
     <div class="govuk-grid-column-two-thirds">
@@ -348,16 +459,16 @@
                 ],
                 [
                   {
-                    text: "Appeal procedure"
+                    text: "Case procedure"
                   },
                   {
-                    text: data.appealProcedure or 'Written representations'
+                    text: "Written"
                   },
                   {
-                    html: "<a href='/projects/start-full-case/v1/edit-appeal-procedure'>Change</a>",
+                    html: "<a href='#'>Change</a>",
                     format: "numeric"
                   }
-                ] if data.appealProcedure,
+                ],
                 [
                   {
                     text: "Appellant name"
@@ -573,337 +684,6 @@
           </div>
         </div>
 
-        {% if data.appealProcedure == 'Hearing' %}
-          <div class="govuk-accordion__section">
-            <div class="govuk-accordion__section-header">
-              <h2 class="govuk-accordion__section-heading">
-                <span class="govuk-accordion__section-button" id="accordion-default-heading-4">
-                  Hearing
-                </span>
-              </h2>
-            </div>
-            <div id="accordion-default-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-4">
-
-              {% if not data.hearing or not data.hearingEstimates %}
-                <div class="govuk-button-group">
-                  {{ govukButton({
-                    text: 'Set up hearing',
-                    classes: 'govuk-button--secondary',
-                    href: 'add-hearing-details'
-                  }) if not data.hearing }}
-
-                  {{ govukButton({
-                    text: 'Cancel hearing',
-                    classes: 'govuk-button--secondary',
-                    href: 'cancel-hearing'
-                  }) if data.hearing }}
-
-                  {{ govukButton({
-                    text: 'Add hearing estimates',
-                    classes: 'govuk-button--secondary',
-                    href: 'add-hearing-estimates'
-                  }) if not data.hearingEstimates }}
-                </div>
-              {% endif %}
-
-              {% set hearingDates %}
-                <ul class="govuk-list govuk-list--bullet">
-                  {% for day in data.hearing.days %}
-                    <li>
-                      <p class="govuk-!-margin-bottom-0">
-                        {{day.date | isoDateFromDateInput | govukDate}}
-                        {% if day.startTime and not day.endTime %}
-                          at {{day.startTime}}
-                        {% endif %}
-                        {% if day.startTime and day.endTime %}
-                          between {{day.startTime}} and {{day.endTime}}
-                        {% endif %}
-                      </p>
-                    </li>
-                  {% endfor %}
-                </ul>
-              {% endset %}
-
-              {% set address %}
-                {% if data.hearing.address.line1 %}
-                  {{appAddress({ address: data.hearing.address })}}
-                {% else %}
-                  Not provided
-                {% endif %}
-
-
-
-              {% endset %}
-
-              {{ govukSummaryList({
-                rows: [
-                  {
-                    key: {
-                      text: "Hearing date and time"
-                    },
-                    value: {
-                      html: hearingDates
-                    },
-                    actions: {
-                      items: [
-                        {
-                          href: "/projects/start-full-case/v1/edit-hearing-details",
-                          text: "Change",
-                          visuallyHiddenText: "Hearing date"
-                        }
-                      ]
-                    }
-                  } if data.hearing,
-                  {
-                    key: {
-                      text: "Hearing address"
-                    },
-                    value: {
-                      html: address
-                    },
-                    actions: {
-                      items: [
-                        {
-                          href: "/projects/start-full-case/v1/edit-hearing-details/address",
-                          text: "Change",
-                          visuallyHiddenText: "Hearing address"
-                        }
-                      ]
-                    }
-                  } if data.hearing,
-                  {
-                    key: {
-                      text: "Estimated time to prepare for the hearing"
-                    },
-                    value: {
-                      html: data.hearingEstimates.estimatedPreparationTime | days
-                    },
-                    actions: {
-                      items: [
-                        {
-                          href: "/projects/start-full-case/v1/edit-hearing-estimates",
-                          text: "Change",
-                          visuallyHiddenText: "Estimated time to prepare for the hearing"
-                        }
-                      ]
-                    }
-                  } if data.hearingEstimates.estimatedPreparationTime,
-                  {
-                    key: {
-                      text: "Estimated sitting time for the hearing"
-                    },
-                    value: {
-                      html: data.hearingEstimates.estimatedHearingTime | days
-                    },
-                    actions: {
-                      items: [
-                        {
-                          href: "/projects/start-full-case/v1/edit-hearing-estimates",
-                          text: "Change",
-                          visuallyHiddenText: "Estimated sitting time for the hearing"
-                        }
-                      ]
-                    }
-                  } if data.hearingEstimates.estimatedHearingTime,
-                  {
-                    key: {
-                      text: "Estimated time to decide the hearing"
-                    },
-                    value: {
-                      html: data.hearingEstimates.estimatedReportingTime | days
-                    },
-                    actions: {
-                      items: [
-                        {
-                          href: "/projects/start-full-case/v1/edit-hearing-estimates",
-                          text: "Change",
-                          visuallyHiddenText: "Estimated time to decide the hearing"
-                        }
-                      ]
-                    }
-                  } if data.hearingEstimates.estimatedReportingTime
-                ]
-              }) }}
-            </div>
-          </div>
-        {% endif %}
-
-         {% if data.appealProcedure == 'Inquiry' %}
-          <div class="govuk-accordion__section">
-            <div class="govuk-accordion__section-header">
-              <h2 class="govuk-accordion__section-heading">
-                <span class="govuk-accordion__section-button" id="accordion-default-heading-4">
-                  Inquiry
-                </span>
-              </h2>
-            </div>
-            <div id="accordion-default-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-4">
-
-              {% if not data.inquiry or not data.inquiryEstimates %}
-                <div class="govuk-button-group">
-                  {{ govukButton({
-                    text: 'Add inquiry details',
-                    classes: 'govuk-button--secondary',
-                    href: 'add-inquiry-details'
-                  }) if not data.inquiry }}
-
-                  {{ govukButton({
-                    text: 'Add inquiry estimates',
-                    classes: 'govuk-button--secondary',
-                    href: 'add-inquiry-estimates'
-                  }) if not data.inquiryEstimates }}
-                </div>
-              {% endif %}
-
-              {% set address %}
-                {{appAddress({ address: data.inquiry.address })}}
-              {% endset %}
-
-              {{ govukSummaryList({
-                rows: [
-                  {
-                    key: {
-                      text: "Inquiry date"
-                    },
-                    value: {
-                      html: data.inquiry.date | isoDateFromDateInput | govukDate
-                    },
-                    actions: {
-                      items: [
-                        {
-                          href: "/projects/start-full-case/v1/edit-inquiry-details",
-                          text: "Change",
-                          visuallyHiddenText: "Inquiry date"
-                        }
-                      ]
-                    }
-                  } if data.inquiry.date,
-                  {
-                    key: {
-                      text: "Do you know the time of the inquiry?"
-                    },
-                    value: {
-                      html: data.inquiry.hasTime
-                    },
-                    actions: {
-                      items: [
-                        {
-                          href: "/projects/start-full-case/v1/edit-inquiry-details/has-time",
-                          text: "Change",
-                          visuallyHiddenText: "whether you know the inquiry time"
-                        }
-                      ]
-                    }
-                  } if data.inquiry.hasTime,
-                  {
-                    key: {
-                      text: "Inquiry time"
-                    },
-                    value: {
-                      html: data.inquiry.time
-                    },
-                    actions: {
-                      items: [
-                        {
-                          href: "/projects/start-full-case/v1/add-inquiry-details/time",
-                          text: "Change",
-                          visuallyHiddenText: "Inquiry time"
-                        }
-                      ]
-                    }
-                  } if data.inquiry.hasTime == 'Yes',
-                  {
-                    key: {
-                      text: "Do you know the address of where the inquiry will take place?
-"
-                    },
-                    value: {
-                      html: data.inquiry.hasAddress
-                    },
-                    actions: {
-                      items: [
-                        {
-                          href: "/projects/start-full-case/v1/edit-inquiry-details/has-address",
-                          text: "Change",
-                          visuallyHiddenText: "whether you know the inquiry address"
-                        }
-                      ]
-                    }
-                  } if data.inquiry.hasAddress,
-                  {
-                    key: {
-                      text: "Inquiry address"
-                    },
-                    value: {
-                      html: address
-                    },
-                    actions: {
-                      items: [
-                        {
-                          href: "/projects/start-full-case/v1/edit-inquiry-details/address",
-                          text: "Change",
-                          visuallyHiddenText: "Inquiry address"
-                        }
-                      ]
-                    }
-                  } if data.inquiry.hasAddress == 'Yes',
-                  {
-                    key: {
-                      text: "Estimated time to prepare for the inquiry"
-                    },
-                    value: {
-                      html: data.inquiryEstimates.estimatedPreparationTime | days
-                    },
-                    actions: {
-                      items: [
-                        {
-                          href: "/projects/start-full-case/v1/edit-inquiry-estimates",
-                          text: "Change",
-                          visuallyHiddenText: "Estimated time to prepare for the inquiry"
-                        }
-                      ]
-                    }
-                  } if data.inquiryEstimates.estimatedPreparationTime,
-                  {
-                    key: {
-                      text: "Estimated sitting time for the inquiry"
-                    },
-                    value: {
-                      html: data.inquiryEstimates.estimatedInquiryTime | days
-                    },
-                    actions: {
-                      items: [
-                        {
-                          href: "/projects/start-full-case/v1/edit-inquiry-estimates",
-                          text: "Change",
-                          visuallyHiddenText: "Estimated sitting time for the inquiry"
-                        }
-                      ]
-                    }
-                  } if data.inquiryEstimates.estimatedInquiryTime,
-                  {
-                    key: {
-                      text: "Estimated time to decide the inquiry"
-                    },
-                    value: {
-                      html: data.inquiryEstimates.estimatedReportingTime | days
-                    },
-                    actions: {
-                      items: [
-                        {
-                          href: "/projects/start-full-case/v1/edit-inquiry-estimates",
-                          text: "Change",
-                          visuallyHiddenText: "Estimated time to decide the inquiry"
-                        }
-                      ]
-                    }
-                  } if data.inquiryEstimates.estimatedReportingTime
-                ]
-              }) }}
-            </div>
-          </div>
-        {% endif %}
-
         <!-- timetable -->
         <div class="govuk-accordion__section">
           <div class="govuk-accordion__section-header">
@@ -921,25 +701,13 @@
               rows: [
                 [
                   {
-                    text: "Valid date"
-                  },
-                  {
-                    text: 38 | daysAgo
-                  },
-                  {
-                    html: "<a href='#'>Change</a>",
-                    format: "numeric"
-                  }
-                ],
-                [
-                  {
                     text: "Start date"
                   },
                   {
                     text: 38 | daysAgo
                   },
                   {
-                    html: "<a href='#'>Change</a>",
+                    html: "",
                     format: "numeric"
                   }
                 ],
@@ -963,34 +731,10 @@
                     text: -3 | daysAgo
                   },
                   {
-                    html: "<a href='site-visit.html'>Change</a>",
+                    html: "<a href='site-visit.html'>Manage</a>",
                     format: "numeric"
                   }
-                ] if 1==2,
-                [
-                  {
-                    text: "Hearing"
-                  },
-                  {
-                    text: -10 | daysAgo + ' at 9pm'
-                  },
-                  {
-                    html: "<a href='#'>Change</a>",
-                    format: "numeric"
-                  }
-                ] if data.appealProcedure == 'Hearing',
-                [
-                  {
-                    text: "Inquiry"
-                  },
-                  {
-                    text: -10 | daysAgo + ' at 9pm'
-                  },
-                  {
-                    html: "<a href='#'>Change</a>",
-                    format: "numeric"
-                  }
-                ] if data.appealProcedure == 'Inquiry'
+                ]
               ]
             }) }}
 
@@ -1007,81 +751,41 @@
             </h2>
           </div>
           <div id="accordion-default-content-3" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-3">
-            {{ govukTable({
-              firstCellIsHeader: true,
-              head: [
-                {
-                  text: "Documentation"
-                },
-                {
-                  text: "Status"
-                },
-                {
-                  text: "Received"
-                },
-                {
-                  text: "Action"
-                }
-              ],
-              rows: [
-                [
-                  {
-                    html: "Appellant case"
-                  },
-                  {
-                    html: "Received"
-                  },
-                  {
-                    html: 10 | daysAgo
-                  },
-                  {
-                    html: '<a href="#">View</a>'
-                  }
-                ],
-                [
-                  {
-                    html: "LPA questionnaire"
-                  },
-                  {
-                    html: "Received"
-                  },
-                  {
-                    html: 5 | daysAgo
-                  },
-                  {
-                    html: '<a href="#">View</a>'
-                  }
-                ],
-                [
-                  {
-                    html: "Appellant proof of evidence and witnesses"
-                  },
-                  {
-                    html: "Received"
-                  },
-                  {
-                    html: 3 | daysAgo
-                  },
-                  {
-                    html: '<a href="#">View</a>'
-                  }
-                ],
-                [
-                  {
-                    html: "LPA proof of evidence and witnesses"
-                  },
-                  {
-                    html: "Received"
-                  },
-                  {
-                    html: 1 | daysAgo
-                  },
-                  {
-                    html: '<a href="#">View</a>'
-                  }
-                ]
-              ]
-            }) }}
+            <table class="govuk-table">
+
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header">Documentation</th>
+                  <th scope="col" class="govuk-table__header">Status</th>
+                  <!-- <th scope="col" class="govuk-table__header">Received date</th> -->
+                  <th scope="col" class="govuk-table__header govuk-table__header--numeric">Action</th>
+                </tr>
+              </thead>
+
+              <tbody class="govuk-table__body">
+
+                {% if data['case-stage'] == 'questionnaire' %}
+                  <!-- questionnaire -->
+                  {% include "includes/appeal-content/case-documents/questionnaire.html" %}
+                {% elseif data['case-stage'] == 'statements' %}
+                  <!-- statements -->
+                  {% include "includes/appeal-content/case-documents/statements.html" %}
+                {% elseif data['case-stage'] == 'final-comments' %}
+                  <!-- final comments -->
+                  {% include "includes/appeal-content/case-documents/final-comments.html" %}
+                {% elseif data['case-stage'] == 'determination' %}
+                  <!-- determination -->
+                  {% include "includes/appeal-content/case-documents/determination.html" %}
+                {% elseif data['case-stage'] == 'closed' %}
+                  <!-- closed -->
+                  {% include "includes/appeal-content/case-documents/closed.html" %}
+                {% else %}
+                  <!-- new case -->
+                  {% include "includes/appeal-content/case-documents/new-case.html" %}
+                {% endif %}
+
+              </tbody>
+            </table>
           </div>
         </div>
 
@@ -1095,7 +799,7 @@
             </h2>
           </div>
           <div id="accordion-default-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-4">
-            {% include "/includes/audit/case-team-table.html" %}
+            {% include "/includes-for-main/audit/case-team-table.html" %}
           </div>
         </div>
 
@@ -1163,13 +867,67 @@
             </h2>
           </div>
           <div id="accordion-default-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-4">
-            {% include "/includes/appeal-content/case-management/case-management.html" %}
+            {% include "/includes-for-main/appeal-content/case-management/case-management.html" %}
           </div>
         </div>
 
       </div>
 
     </div>
+
+    {% if data['casenotes'] == 'sidebar' %}
+      <div class="govuk-grid-column-one-third">
+        <h2 class="govuk-heading-m">
+          Case notes
+        </h2>
+        <p class="govuk-body">
+          <a href="add-case-note" class="govuk-link govuk-link--no-visited-state">
+            Add a case note
+          </a>
+        </p>
+
+        <section>
+          <p class="govuk-body govuk-!-margin-bottom-1">
+            We should use WR and review at statements stage.
+          </p>
+          <p class="govuk-hint govuk-!-margin-bottom-6">
+            10:29am on Friday {{ 22 | daysAgo }} by gem.dalgano
+          </p>
+          <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+        </section>
+
+        <section>
+          <p class="govuk-body govuk-!-margin-bottom-1">
+            Contacted the agent by email and post for the missing documents.
+          </p>
+          <p class="govuk-hint govuk-!-margin-bottom-6">
+            10:29am on Tuesday {{ 12 | daysAgo }} by gem.dalgano
+          </p>
+          <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+        </section>
+
+        <section>
+          <p class="govuk-body govuk-!-margin-bottom-1">
+            Contacted the agent by email and post for the missing documents.
+          </p>
+          <p class="govuk-hint govuk-!-margin-bottom-6">
+            9:52am on Tuesday {{ 12 | daysAgo }} by gem.dalgano
+          </p>
+          <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+        </section>
+
+        <section>
+          <p class="govuk-body govuk-!-margin-bottom-1">
+            Documents missing from the case.
+          </p>
+          <p class="govuk-hint govuk-!-margin-bottom-6">
+            11:01am on Tuesday {{ 19 | daysAgo }} by sam.griffin
+          </p>
+          <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+        </section>
+
+      </div>
+    {% endif %}
 
   </div>
 {% endblock %}

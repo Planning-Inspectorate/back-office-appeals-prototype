@@ -72,7 +72,7 @@
 
       {% endif %}
 
-      {% include "/includes/appeal-content/lpa-has-appeal-meta.html" %}
+      {% include "/includes-for-main/appeal-content/lpa-has-appeal-meta.html" %}
       <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
       {% if data['status'] == 'determination' %}
@@ -146,7 +146,7 @@
         Case overview
       </h2>
 
-      {% include "/includes/audit/case-overview-table.html" %}
+      {% include "/includes-for-main/audit/case-overview-table.html" %}
 
       <h2 class='govuk-heading-l'>
         Case timetable
@@ -156,7 +156,7 @@
         html: "<p class='govuk-body'>Case not started</p><p><a href='appellant-case.html'>Start the review</a></p>"
       }) }} -->
 
-      {% include "/includes/appeal-content/case-timetable.html" %}
+      {% include "/includes-for-main/appeal-content/case-timetable.html" %}
 
       <h2 class='govuk-heading-l'>
         Case documentation
@@ -165,7 +165,7 @@
     </div>
     <div class="govuk-grid-column-one-half">
 
-      {% include "/includes/appeal-content/case-documentation-table.html" %}
+      {% include "/includes-for-main/appeal-content/case-documentation-table.html" %}
 
     </div>
     <div class="govuk-grid-column-two-thirds">
@@ -174,7 +174,7 @@
         Case team
       </h2>
 
-      {% include "/includes/audit/case-team-table.html" %}
+      {% include "/includes-for-main/audit/case-team-table.html" %}
 
     	<h3 class="govuk-heading-m govuk-!-margin-top-9">
         Audit history

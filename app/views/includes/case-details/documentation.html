@@ -22,13 +22,13 @@
     {% if data['case-stage'] == 'validation' or not data['case-stage'] %}
 
       <!-- appeal is in validation stage -->
-      {% include "/elements/includes/case-details/documentation--new.html" %}
+      {% include "/includes/case-details/documentation--new.html" %}
 
     <!-- case is not new -->
     {% else %}
 
       <!-- valid appeal -->
-      {% include "/elements/includes/case-details/documentation--valid-appeal.html" %}
+      {% include "/includes/case-details/documentation--valid-appeal.html" %}
 
       <!-- case is valid and ready to start -->
       {% if data['case-stage'] == 'ready' %}
@@ -41,19 +41,19 @@
       {% elseif data['case-stage'] == 'questionnaire' %}
 
           <!-- questionnaire stage questionnaire row -->
-          {% include "/elements/includes/case-details/documentation--questionnaire-stage-questionnaire.html" %}
+          {% include "/includes/case-details/documentation--questionnaire-stage-questionnaire.html" %}
 
       <!-- case is in the statements stage -->
       {% elseif data['case-stage'] == 'statements' %}
 
           <!-- complete quesitonnaire -->
-          {% include "/elements/includes/case-details/documentation--complete-questionnaire.html" %}
+          {% include "/includes/case-details/documentation--complete-questionnaire.html" %}
 
           <!-- statement stage statement row -->
-          {% include "/elements/includes/case-details/documentation--statement-stage-statement.html" %}
+          {% include "/includes/case-details/documentation--statement-stage-statement.html" %}
 
           <!-- statement stage ip comments row -->
-          {% include "/elements/includes/case-details/documentation--statement-stage-ip-comments.html" %}
+          {% include "/includes/case-details/documentation--statement-stage-ip-comments.html" %}
 
       <!-- written represenation procedure stages -->
       <!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
@@ -62,19 +62,19 @@
       {% elseif data['case-stage'] == 'final-comments' %}
 
           <!-- complete quesitonnaire -->
-          {% include "/elements/includes/case-details/documentation--complete-questionnaire.html" %}
+          {% include "/includes/case-details/documentation--complete-questionnaire.html" %}
 
           <!-- complete statement -->
-          {% include "/elements/includes/case-details/documentation--complete-statement.html" %}
+          {% include "/includes/case-details/documentation--complete-statement.html" %}
 
           <!-- complete ip comments -->
-          {% include "/elements/includes/case-details/documentation--complete-ip-comments.html" %}
+          {% include "/includes/case-details/documentation--complete-ip-comments.html" %}
 
           <!-- final comments stage appellant final comments -->
-          {% include "/elements/includes/case-details/documentation--final-comments-stage-appellant-final-comments.html" %}
+          {% include "/includes/case-details/documentation--final-comments-stage-appellant-final-comments.html" %}
 
           <!-- final comments stage lpa final comments -->
-          {% include "/elements/includes/case-details/documentation--final-comments-stage-lpa-final-comments.html" %}
+          {% include "/includes/case-details/documentation--final-comments-stage-lpa-final-comments.html" %}
 
       <!-- hearing and inquiry procedure stages -->
       <!-- ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
@@ -87,19 +87,19 @@
              or data['case-stage'] == 'evidence' %}
 
           <!-- complete quesitonnaire -->
-          {% include "/elements/includes/case-details/documentation--complete-questionnaire.html" %}
+          {% include "/includes/case-details/documentation--complete-questionnaire.html" %}
 
           <!-- complete statement -->
-          {% include "/elements/includes/case-details/documentation--complete-statement.html" %}
+          {% include "/includes/case-details/documentation--complete-statement.html" %}
 
           <!-- complete statement -->
-          {% include "/elements/includes/case-details/documentation--complete-ip-comments.html" %}
+          {% include "/includes/case-details/documentation--complete-ip-comments.html" %}
 
           <!-- case is in proof of evidence stage -->
           {% if data['case-stage'] == 'evidence' %}
 
             <!-- proof of evidence stage proof of evidence row -->
-            {% include "/elements/includes/case-details/documentation--evidence-stage-evidence.html" %}
+            {% include "/includes/case-details/documentation--evidence-stage-evidence.html" %}
 
           {% endif %}
 
@@ -112,19 +112,19 @@
       <!-- appeal is in determination stage -->
 
           <!-- complete quesitonnaire -->
-          {% include "/elements/includes/case-details/documentation--complete-questionnaire.html" %}
+          {% include "/includes/case-details/documentation--complete-questionnaire.html" %}
 
           <!-- complete statement -->
-          {% include "/elements/includes/case-details/documentation--complete-statement.html" %}
+          {% include "/includes/case-details/documentation--complete-statement.html" %}
 
           <!-- complete statement -->
-          {% include "/elements/includes/case-details/documentation--complete-ip-comments.html" %}
+          {% include "/includes/case-details/documentation--complete-ip-comments.html" %}
 
           <!-- written only -->
           {% if data['procedure'] == 'written' %}
 
             <!-- complete final comments -->
-            {% include "/elements/includes/case-details/documentation--complete-final-comments.html" %}
+            {% include "/includes/case-details/documentation--complete-final-comments.html" %}
 
           {% endif %}
 

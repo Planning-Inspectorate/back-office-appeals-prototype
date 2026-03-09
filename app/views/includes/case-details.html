@@ -2,7 +2,7 @@
   <div class="govuk-grid-column-two-thirds">
 
     <!-- notifications -->
-    {% include "/elements/includes/case-details/notifications.html" %}
+    {% include "/includes/case-details/notifications.html" %}
 
   </div>
 </div>
@@ -16,9 +16,9 @@
       {{ title }}
     </h1>
 
-    {% include "/elements/includes/case-details/status.html" %}
+    {% include "/includes/case-details/status.html" %}
 
-    {% include "/elements/includes/case-details/meta-data.html" %}
+    {% include "/includes/case-details/meta-data.html" %}
 
     <p class="govuk-body">
       <a href="#" class="govuk-link">
@@ -26,40 +26,40 @@
       </a>
     </p>
 
-    {% include "/elements/includes/case-details/case-notes.html" %}
+    {% include "/includes/case-details/case-notes.html" %}
 
     <!-- case sections -->
     <section class="govuk-!-margin-top-6">
 
-      {% include "/elements/includes/case-details/overview.html" %}
+      {% include "/includes/case-details/overview.html" %}
 
-      {% include "/elements/includes/case-details/timetable.html" %}
+      {% include "/includes/case-details/timetable.html" %}
 
-      {% include "/elements/includes/case-details/site.html" %}
+      {% include "/includes/case-details/site.html" %}
 
       <!-- only show the Hearing section if -->
       <!-- the case is started and the procedure is a hearing -->
 
       {% if data['procedure'] == 'hearing' and data['case'] == 'started' %}
-        {% include "/elements/includes/case-details/hearing.html" %}
+        {% include "/includes/case-details/hearing.html" %}
       {% endif %}
 
-      {% include "/elements/includes/case-details/documentation.html" %}
+      {% include "/includes/case-details/documentation.html" %}
 
-      {% include "/elements/includes/case-details/costs.html" %}
+      {% include "/includes/case-details/costs.html" %}
 
-      {% include "/elements/includes/case-details/contacts.html" %}
+      {% include "/includes/case-details/contacts.html" %}
 
-      {% include "/elements/includes/case-details/team.html" %}
+      {% include "/includes/case-details/team.html" %}
 
-      {% include "/elements/includes/case-details/case-management.html" %}
+      {% include "/includes/case-details/case-management.html" %}
 
 
       <!-- show the cancel appeal option -->
       <!-- when the case is started but not decided -->
 
       {% if data['case'] == 'started' and data['case-stage'] != 'complete' %}
-        {% include "/elements/includes/case-details/cancel-appeal.html" %}
+        {% include "/includes/case-details/cancel-appeal.html" %}
       {% endif %}
 
     </section>

@@ -1,0 +1,119 @@
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% if appealIs != 'Enforcement'  %}
+
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "1. Appellant details"
+    }
+  },
+  rows: [
+    {
+      key: {
+        text: "Was the application made in your name?"
+      },
+      value: {
+        html: "Yes"
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "application made in your name"
+            }
+          ]
+        }
+    },
+    {
+      key: {
+        text: "Name"
+      },
+      value: {
+        html: "Jane Doe"
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "name"
+            }
+          ]
+        }
+    },
+    {
+      key: {
+        text: "Phone number"
+      },
+      value: {
+        html: "077245551111"
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "phone number"
+            }
+          ]
+        }
+    }
+
+  ]
+}) }}
+
+{% endif %}
+
+
+{% if appealIs == 'Enforcement' %}
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "1. Appellant details"
+    }
+  },
+  rows: [
+
+      {
+        key: { html: 'Appellant contact details' },
+        value:
+          { html: 'Jan Fisher<br>test1@example.com<br>07917485900' },
+        actions: {
+          items: [
+            { href: '#', html: 'Change' }
+          ]
+        }
+      },
+
+      {
+        key: { html: 'Agent contact details' },
+        value:
+          { html: 'Lee Thornton<br>Lee Thornton Ltd<br>test2@example.com<br>07917485966' },
+        actions: {
+          items: [
+            { href: '#', html: 'Change' }
+          ]
+        }
+      }
+      ,
+
+      {
+        key: { html: 'Other appellants' },
+        value:
+          { html: 'No' },
+        actions: {
+          items: [
+            { href: '#', html: 'Change' }
+          ]
+        }
+      }
+
+      ]
+  }) }}
+      
+{% endif %}
+

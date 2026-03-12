@@ -1,0 +1,71 @@
+{% extends "layouts/PINS-Simple.html" %}
+
+{% set title = "Rule 6 statements" %}
+{% set pageName = title %}
+
+{% block beforeContent %}
+  {{ govukBreadcrumbs({
+    classes: 'govuk-!-margin-top-4 govuk-!-margin-bottom-0',
+      items: [
+        {
+          text: "00000012",
+          href: "/projects/start-full-case/v4/appeals/00000012"
+        },
+        {
+          text: "Statements",
+          href: "/projects/start-full-case/v4/appeals/00000012/statements"
+        },
+        {
+          text: title
+        }
+      ]
+    }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ govukNotificationBanner({
+        type: "success",
+        text: flash
+      }) if flash.length }}
+
+      <span class="govuk-caption-l">Appeal 00000012</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      {# <p class="govuk-!-margin-bottom-6"><a class="govuk-link" href="/projects/start-full-case/v4/rule-6-parties/new">Add Rule 6 statement</a></p> #}
+
+      {% if statements.length %}
+         <div class="app-list">
+          {% for item in statements %}
+            <div class="app-list__item">
+              {% if item.organisationName %}
+                <h2 class="govuk-heading-s govuk-!-margin-bottom-1">
+                  <a class="govuk-link--no-visited-state" href="/projects/start-full-case/v4/rule-6-statements/{{item.id}}">
+                    {{item.organisationName}}
+                  </a>
+                </h2>
+                <p class="govuk-!-margin-bottom-0">{{item.firstName}} {{item.lastName}}</p>
+              {% else %}
+                <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+                  <a class="govuk-link--no-visited-state" href="/projects/start-full-case/v4/rule-6-statements/{{item.id}}">
+                    {{item.firstName}} {{item.lastName}}
+                  </a>
+                </h2>
+              {% endif %}
+
+              {{ govukTag({
+                text: item.statement.status,
+                classes: "app-list__tag app-list__tag--top-right " + (item.statement.status | rule6StatementStatusColour)
+              }) }}
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p>There are no results.</p>
+      {% endif %}
+
+    </div>
+  </div>
+
+{% endblock %}

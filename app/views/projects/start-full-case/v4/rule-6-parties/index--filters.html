@@ -36,7 +36,7 @@
 
   <div class="app-filter-layout">
     <div class="app-filter-layout__filter">
-      {% include "includes/filter-panel.njk" %}
+      {% include "includes-for-main/filter-panel.njk" %}
     </div>
     <div class="app-filter-layout__content">
 
@@ -74,7 +74,7 @@
         <p>There are no results.</p>
       {% endif %}
 
-      {% include "includes/pagination.njk" %}
+      {% include "includes-for-main/pagination.njk" %}
     </div>
   </div>
 
@@ -87,19 +87,19 @@
 
 
       {% set tab1Html %}
-         {% include "../_includes/rule6-applications/awaiting-review.html" %}
+         {% include "../_includes-for-main/rule6-applications/awaiting-review.html" %}
       {% endset %}
 
       {% set tab2Html %}
-        {% include "../_includes/rule6-applications/invited.html" %}
+        {% include "../_includes-for-main/rule6-applications/invited.html" %}
       {% endset %}
 
       {% set tab3Html %}
-        {% include "../_includes/rule6-applications/accepted.html" %}
+        {% include "../_includes-for-main/rule6-applications/accepted.html" %}
       {% endset %}
 
       {% set tab4Html %}
-        {% include "../_includes/rule6-applications/rejected.html" %}
+        {% include "../_includes-for-main/rule6-applications/rejected.html" %}
       {% endset %}
 
       {{ govukTabs({

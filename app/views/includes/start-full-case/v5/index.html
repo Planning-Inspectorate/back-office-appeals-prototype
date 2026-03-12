@@ -17,11 +17,11 @@
 
   <div class="app-filter-layout">
     <div class="app-filter-layout__filter">
-      {% include "includes/case-filter-panel.njk" %}
+      {% include "includes-for-main/case-filter-panel.njk" %}
     </div>
     <div class="app-filter-layout__content">
 
-      {% include "includes/search-form.njk" %}
+      {% include "includes-for-main/search-form.njk" %}
 
       <div class="app-action-bar">
         <div class="app-action-bar__filter"></div>
@@ -91,7 +91,7 @@
         {# <p>There are no results.</p> #}
       {% endif %}
 
-      {% include "includes/pagination.njk" %}
+      {% include "includes-for-main/pagination.njk" %}
     </div>
   </div>
 

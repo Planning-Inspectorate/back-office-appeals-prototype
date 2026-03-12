@@ -1,0 +1,22 @@
+{{ govukSummaryList({
+  card: { title: { text: "Appeal process" } },
+  rows: [
+    {
+      key: {
+        html: 'Which procedure do you think is most appropriate for this appeal?'
+      },
+      value: { html: 'No' },
+      actions: { items: [{ href: 'appeal-process/procedure?cya=true', html: 'Change' }] }
+    },
+    {
+      key: { html: 'Are there any other ongoing appeals next to, or close to the site?' },
+      value: { html: 'No' },
+      actions: { items: [{ href: 'appeal-process/ongoing-appeals?cya=true', html: 'Change' }] }
+    },
+    {
+      key: { html: 'Are there any new conditions?' },
+      value: { html: 'No' },
+      actions: { items: [{ href: 'appeal-process/new-conditions?cya=true', html: 'Change' }] }
+    }
+  ]
+}) }}

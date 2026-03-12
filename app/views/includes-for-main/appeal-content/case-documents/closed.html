@@ -1,0 +1,216 @@
+<tr class="govuk-table__row">
+  <td class="govuk-table__cell">
+    Appellant case
+  </td>
+  <td class="govuk-table__cell">
+    Complete
+  </td>
+  <!-- <td class="govuk-table__cell">
+  </td> -->
+  <td class="govuk-table__cell govuk-!-text-align-right">
+    <a href="#">
+      Review
+    </a>
+  </td>
+</tr>
+
+<tr class="govuk-table__row">
+  <td class="govuk-table__cell">
+    LPA questionnaire
+  </td>
+  <td class="govuk-table__cell">
+    Complete
+  </td>
+  <!-- <td class="govuk-table__cell"></td> -->
+  <td class="govuk-table__cell govuk-!-text-align-right">
+    <a href="task-list">
+      Review
+    </a>
+  </td>
+</tr>
+
+<tr class="govuk-table__row">
+  <td class="govuk-table__cell">
+    Interested party comments
+  </td>
+  <td class="govuk-table__cell">
+    Not received
+  </td>
+  <!-- <td class="govuk-table__cell">
+  </td> -->
+  <td class="govuk-table__cell govuk-!-text-align-right">
+    <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=">
+      Review<span class="govuk-visually-hidden"> interested party comments</span>
+    </a>
+  </td>
+</tr>
+
+<tr class="govuk-table__row">
+  <td class="govuk-table__cell">
+    LPA statement
+  </td>
+  <td class="govuk-table__cell">
+    Not received
+  </td>
+  <!-- <td class="govuk-table__cell">
+  </td> -->
+  <td class="govuk-table__cell govuk-!-text-align-right">
+    <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=">
+      Review<span class="govuk-visually-hidden"> interested party comments</span>
+    </a>
+  </td>
+</tr>
+
+<tr class="govuk-table__row">
+  <td class="govuk-table__cell">
+    Appellant final comments
+  </td>
+  <td class="govuk-table__cell">
+    Not received
+  </td>
+  <!-- <td class="govuk-table__cell">
+  </td> -->
+  <td class="govuk-table__cell govuk-!-text-align-right">
+    <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=">
+      Review<span class="govuk-visually-hidden"> interested party comments</span>
+    </a>
+  </td>
+</tr>
+
+<tr class="govuk-table__row">
+  <td class="govuk-table__cell">
+    LPA final comments
+  </td>
+  <td class="govuk-table__cell">
+    Not received
+  </td>
+  <!-- <td class="govuk-table__cell">
+  </td> -->
+  <td class="govuk-table__cell govuk-!-text-align-right">
+    <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=">
+      Review<span class="govuk-visually-hidden"> interested party comments</span>
+    </a>
+  </td>
+</tr>
+
+<tr class="govuk-table__row">
+  <td class="govuk-table__cell">
+    S106 obligation
+  </td>
+  <td class="govuk-table__cell">
+    Not received
+  </td>
+  <!-- <td class="govuk-table__cell">
+  </td> -->
+  <td class="govuk-table__cell govuk-!-text-align-right">
+    <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=">
+      Review<span class="govuk-visually-hidden"> interested party comments</span>
+    </a>
+  </td>
+</tr>
+
+<tr class="govuk-table__row">
+  <td class="govuk-table__cell">
+    Environmental assessment
+  </td>
+  <td class="govuk-table__cell">
+    {% if data['environmental-statement-added'] == 'Yes' %}
+    <ul class="govuk-list govuk-list--number">
+      <li>
+        <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=">
+          Appeal environmental assessment matrix {{ 7 | daysAgoDayNumeric }}.{{ 0 | monthsAgoNumeric }}.{{ 0 | yearsAgo }}
+        </a>
+      </li>
+      <li>
+        <a href="ip-comments?redactedComment=&commentReview=&comment-withdrawn=&manual-ip-comment=&new-comment=">
+          Environmental considerations letter to LPA {{ 6 | daysAgoDayNumeric }}.{{ 0 | monthsAgoNumeric }}.{{ 0 | yearsAgo }}
+        </a>
+      </li>
+    </ul>
+
+    {% else %}
+      No documents
+    {% endif %}
+  </td>
+  <!-- <td class="govuk-table__cell">
+  </td> -->
+  <td class="govuk-table__cell govuk-!-text-align-right">
+    <a href="#" class="govuk-link govuk-link--no-visited-state">
+      {% if data['environmental-statement-added'] == 'Yes' %}
+        Change<span class="govuk-visually-hidden"> Environmental assessment</span>
+      {% else %}
+        Add<span class="govuk-visually-hidden"> Environmental assessment</span>
+      {% endif %}
+
+    </a>
+  </td>
+</tr>
+
+<tr class="govuk-table__row">
+  <td class="govuk-table__cell">
+    Costs (appellant)
+  </td>
+  <td class="govuk-table__cell">
+    Not received
+  </td>
+  <!-- <td class="govuk-table__cell">
+  </td> -->
+  <td class="govuk-table__cell govuk-!-text-align-right">
+    <a href="#">
+      Add
+    </a>
+  </td>
+</tr>
+
+<tr class="govuk-table__row">
+  <td class="govuk-table__cell">
+    Costs (LPA)
+  </td>
+  <td class="govuk-table__cell">
+    Not received
+  </td>
+  <!-- <td class="govuk-table__cell">
+  </td> -->
+  <td class="govuk-table__cell govuk-!-text-align-right">
+    <a href="#">
+      Add
+    </a>
+  </td>
+</tr>
+
+<tr class="govuk-table__row">
+  <td class="govuk-table__cell">
+    Appeal decision
+  </td>
+  <td class="govuk-table__cell">
+    <a href="#" class="govuk-link">
+      2114328-Appeal-decision-letter.doc
+    </a>
+  </td>
+  <!-- <td class="govuk-table__cell">
+  </td> -->
+  <td class="govuk-table__cell govuk-!-text-align-right">
+    <ul class="govuk-summary-list__actions-list">
+      <li class="govuk-summary-list__actions-list-item">
+        <a class="govuk-link" href="decision">View<span class="govuk-visually-hidden"> appeal decision</span></a>
+      </li>
+    </ul>
+
+  </td>
+</tr>
+
+<tr class="govuk-table__row pins-govuk-table__row--last">
+  <td class="govuk-table__cell">
+    Costs decision
+  </td>
+  <td class="govuk-table__cell">
+    Not applicable
+  </td>
+  <!-- <td class="govuk-table__cell">
+  </td> -->
+  <td class="govuk-table__cell govuk-!-text-align-right">
+    <a href="#">
+      Add
+    </a>
+  </td>
+</tr>

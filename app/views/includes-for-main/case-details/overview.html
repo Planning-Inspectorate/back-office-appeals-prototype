@@ -1,0 +1,158 @@
+<h2 class="govuk-heading-l">
+  Overview
+</h2>
+
+{% from "govuk/components/table/macro.njk" import govukTable %}
+
+{{ govukTable({
+  captionClasses: "govuk-table__caption--m pins-summary-list--bottomless",
+  firstCellIsHeader: true,
+  rows: [
+    [
+      {
+        text: "Planning application reference",
+        classes: "govuk-!-width-one-third"
+      },
+      {
+        html: data['application-reference'] or '12345'
+      },
+      {
+        html: "<a href=\"Application-reference?referrer=case-details\">Change</a>",
+        format: "numeric"
+      }
+    ] if appealIs != 'Enforcement',
+    [
+      {
+        text: "Enforcement notice reference",
+        classes: "govuk-!-width-one-third"
+      },
+      {
+        html: data['application-reference'] or '12345'
+      },
+      {
+        html: "<a href='#'>Change</a>",
+        format: "numeric"
+      }
+    ] if appealIs == 'Enforcement',
+    [
+      {
+        text: "Appeal type"
+      },
+      {
+        html: data['appealIs'] or 'Full planning'
+      },
+      {
+        html: "<a href='#'>Change</a>",
+        format: "numeric"
+      }
+    ],
+    [
+      {
+        text: "Appeal procedure"
+      },
+      {
+        html: 'Written representations (part 1)'
+      },
+      {
+        html: "<a href='#'>Change</a>",
+        format: "numeric"
+      }
+    ] if data['procedure'] == 'writtenPt1' and data['case'] == 'started',
+    [
+      {
+        text: "Appeal procedure"
+      },
+      {
+        html: 'Written representations (full)'
+      },
+      {
+        html: "<a href='#'>Change</a>",
+        format: "numeric"
+      }
+    ] if data['procedure'] == 'written' and data['case'] == 'started',
+    [
+      {
+        text: "Appeal procedure"
+      },
+      {
+        html: 'Hearing'
+      },
+      {
+        html: "<a href='#'>Change</a>",
+        format: "numeric"
+      }
+    ] if data['procedure'] == 'hearing' and data['case'] == 'started',
+    [
+      {
+        text: "Appeal procedure"
+      },
+      {
+        html: 'Inquiry'
+      },
+      {
+        html: "<a href='#'>Change</a>",
+        format: "numeric"
+      }
+    ] if data['procedure'] == 'inquiry' and data['case'] == 'started',
+    [
+      {
+        text: "Allocation level"
+      },
+      {
+        html: "G<br>General"
+      },
+      {
+        html: "<a href='#'>Change</a>",
+        format: "numeric"
+      }
+    ],
+    [
+      {
+        text: "Linked appeals"
+      },
+      {
+        html: "No linked appeals"
+      },
+      {
+        html: "<a href='#'>Change</a>",
+        format: "numeric"
+      }
+    ],
+    [
+      {
+        text: "Related appeals"
+      },
+      {
+        html: "No related appeals"
+      },
+      {
+        html: "<a href='#'>Change</a>",
+        format: "numeric"
+      }
+    ],
+    [
+      {
+        text: "Decision"
+      },
+      {
+        html: "Not issued yet"
+      },
+      {
+        html: "<a href='#'>Change</a>",
+        format: "numeric"
+      }
+    ]if data['case-stage'] == 'determination',
+    [
+    {
+      text: "Decision"
+    },
+    {
+      html: "Split decision"
+    },
+    {
+      html: "<a href='#'>Change</a>",
+      format: "numeric"
+    }
+  ]if data['case-stage'] == 'complete'
+  ]
+}) }}

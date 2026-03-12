@@ -1,0 +1,15 @@
+{% if appeal.status == 'Invalid' %}
+  {% set invalidInsetHtml %}
+    <ul class="govuk-list">
+      <li>
+        Marked as invalid on {{appeal.invalid.invalidDate | govukDate}}
+      </li>
+      <li>
+        <a href="/main/appeals/{{appeal.id}}/invalid">View details</a>
+      </li>
+    </ul>
+  {% endset %}
+  {{ govukInsetText({
+    html: invalidInsetHtml
+  }) }}
+{% endif %}

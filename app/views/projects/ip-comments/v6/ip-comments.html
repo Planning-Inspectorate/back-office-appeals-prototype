@@ -144,15 +144,15 @@
   <div class="govuk-grid-column-two-thirds">
 
       {% set reviewHtml %}
-        {% include "includes/ip-comments/waiting-comments.html" %}
+        {% include "includes-for-main/ip-comments/waiting-comments.html" %}
       {% endset %}
 
       {% set validHtml %}
-        {% include "includes/ip-comments/valid-comments.html" %}
+        {% include "includes-for-main/ip-comments/valid-comments.html" %}
       {% endset %}
 
       {% set rejectedHtml %}
-        {% include "includes/ip-comments/rejected-comments.html" %}
+        {% include "includes-for-main/ip-comments/rejected-comments.html" %}
       {% endset %}
 
       {% if data['comments-shared'] != 'yes' %}
@@ -194,7 +194,7 @@
         </div>
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-full">
-            {% include "includes/ip-comments/shared-comments.html" %}
+            {% include "includes-for-main/ip-comments/shared-comments.html" %}
       {% endif %}
 
     </div>

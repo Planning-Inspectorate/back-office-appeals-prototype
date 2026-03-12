@@ -9,14 +9,14 @@
 
 {% block content %}
   <div class="app-prompt-container">
-    {% include "includes/appeal/success-banner.njk" %}
-    {% include "includes/appeal/prompt.njk" %}
+    {% include "includes-for-main/appeal/success-banner.njk" %}
+    {% include "includes-for-main/appeal/prompt.njk" %}
   </div>
-  {% include "includes/appeal/h1.njk" %}
+  {% include "includes-for-main/appeal/h1.njk" %}
 
-  {% include "includes/appeal/decision-inset.njk" %}
-  {% include "includes/appeal/withdrawal-inset.njk" %}
-  {% include "includes/appeal/invalid-inset.njk" %}
+  {% include "includes-for-main/appeal/decision-inset.njk" %}
+  {% include "includes-for-main/appeal/withdrawal-inset.njk" %}
+  {% include "includes-for-main/appeal/invalid-inset.njk" %}
 
   <div class="govuk-button-group">
     <a href="#" class="govuk-link">Download appeal</a>
@@ -30,49 +30,49 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       {% set overviewHtml %}
-        {% include "includes/appeal/overview.html" %}
+        {% include "includes-for-main/appeal/overview.html" %}
       {% endset%}
       {% set decisionHtml %}
-        {% include "includes/appeal/decision.html" %}
+        {% include "includes-for-main/appeal/decision.html" %}
       {% endset%}
       {% set siteHtml %}
-        {% include "includes/appeal/site.html" %}
+        {% include "includes-for-main/appeal/site.html" %}
       {% endset%}
 
       {% set timetableHtml %}
-        {% include "includes/appeal/timetable.html" %}
+        {% include "includes-for-main/appeal/timetable.html" %}
       {% endset%}
 
       {% if appeal.procedure == 'Hearing' %}
         {% set hearingHtml %}
-          {% include "includes/appeal/hearing.html" %}
+          {% include "includes-for-main/appeal/hearing.html" %}
         {% endset%}
       {% endif %}
       {% if appeal.procedure == 'Inquiry' %}
         {% set cmcHtml %}
-          {% include "includes/appeal/cmc.html" %}
+          {% include "includes-for-main/appeal/cmc.html" %}
         {% endset%}
         {% set inquiryHtml %}
-          {% include "includes/appeal/inquiry.html" %}
+          {% include "includes-for-main/appeal/inquiry.html" %}
         {% endset%}
         {% set rule6PartiesHtml %}
-          {% include "includes/appeal/rule6-parties.html" %}
+          {% include "includes-for-main/appeal/rule6-parties.html" %}
         {% endset%}
       {% endif %}
       {% set documentationHtml %}
-        {% include "includes/appeal/documentation.html" %}
+        {% include "includes-for-main/appeal/documentation.html" %}
       {% endset%}
       {% set costsHtml %}
-        {% include "includes/appeal/costs.html" %}
+        {% include "includes-for-main/appeal/costs.html" %}
       {% endset%}
       {% set contactsHtml %}
-        {% include "includes/appeal/contacts.html" %}
+        {% include "includes-for-main/appeal/contacts.html" %}
       {% endset%}
       {% set teamHtml %}
-        {% include "includes/appeal/team.html" %}
+        {% include "includes-for-main/appeal/team.html" %}
       {% endset%}
       {% set caseManagementHtml %}
-        {% include "includes/appeal/case-management.html" %}
+        {% include "includes-for-main/appeal/case-management.html" %}
       {% endset%}
 
       {{ govukAccordion({

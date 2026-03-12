@@ -1,0 +1,248 @@
+{% extends "layouts/PINS-Simple.html" %}
+
+{% set title = "Hearing date and time" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <div class="app-add-another">
+        <span class="govuk-caption-l">Appeal 2114328</span>
+        <h1 class="govuk-heading-l app-add-another__heading" tabindex="-1">{{title}}</h1>
+        <form method="post">
+
+          {% if data.hearing.days.length %}
+            {% for day in data.hearing.days %}
+                {% call govukFieldset({
+                classes: 'app-add-another__item',
+                legend: {
+                  text: 'Day ' + loop.index,
+                  classes: 'app-add-another__title govuk-fieldset__legend--m',
+                  isPageHeading: false
+                },
+                attributes: {
+                  'data-label': 'Day %index%'
+                }
+              }) %}
+
+              <button type="button" class="govuk-button govuk-button--secondary app-add-another__remove-button">
+                Remove
+                <span class="govuk-visually-hidden">Day {{loop.index}}</span>
+              </button>
+
+              {{ govukDateInput({
+                id: 'hearing[days]['+loop.index0+'][date]',
+                fieldset: {
+                  legend: {
+                    text: "Date",
+                    classes: "govuk-fieldset__legend--s"
+                  }
+                },
+                attributes: {
+                  'data-label': 'Hearin date %index%'
+                },
+                hint: {
+                  text: "For example, 31 3 2025"
+                },
+                items: [
+                  {
+                    name: 'hearing[days]['+loop.index0+'][date][day]',
+                    label: "Day",
+                    classes: "govuk-input--width-2",
+                    attributes: {
+                      'data-name': 'hearing[days][%index%][date][day]',
+                      'data-id': 'hearing[days][%index%][date][day]'
+                    },
+                    value: data.hearing.days[loop.index0].date.day
+                  },
+                  {
+                    name: 'hearing[days]['+loop.index0+'][date][month]',
+                    label: "Month",
+                    classes: "govuk-input--width-2",
+                    attributes: {
+                      'data-name': 'hearing[days][%index%][date][month]',
+                      'data-id': 'hearing[days][%index%][date][month]'
+                    },
+                    value: data.hearing.days[loop.index0].date.month
+                  },
+                  {
+                    name: 'hearing[days]['+loop.index0+'][date][year]',
+                    label: "Year",
+                    classes: "govuk-input--width-4",
+                    attributes: {
+                      'data-name': 'hearing[days][%index%][date][year]',
+                      'data-id': 'hearing[days][%index%][date][year]'
+                    },
+                    value: data.hearing.days[loop.index0].date.year
+                  }
+                ]
+              }) }}
+
+
+
+              {{ govukInput({
+                id: 'hearing[days]['+loop.index0+'][startTime]',
+                name: 'hearing[days]['+loop.index0+'][startTime]',
+                label: {
+                  text: "Start time (if you know it)",
+                  classes: 'govuk-label--s'
+                },
+                hint: {
+                  text: "For example, 9am or 2:30pm - enter 12pm for midday"
+                },
+                classes: "govuk-input--width-4",
+                attributes: {
+                  'data-name': 'hearing[days][%index%][startTime]',
+                  'data-id': 'hearing[days][%index%][startTime]',
+                  'data-reset': 'false'
+                },
+                value: data.hearing.days[loop.index0].startTime
+              }) }}
+
+              {{ govukInput({
+                id: 'hearing[days]['+loop.index0+'][endTime]',
+                name: 'hearing[days]['+loop.index0+'][endTime]',
+                label: {
+                  text: "End time (if you know it)",
+                  classes: 'govuk-label--s'
+                },
+                hint: {
+                  text: "For example, 9am or 2:30pm - enter 12pm for midday"
+                },
+                classes: "govuk-input--width-4",
+                attributes: {
+                  'data-name': 'hearing[days][%index%][endTime]',
+                  'data-id': 'hearing[days][%index%][endTime]',
+                  'data-reset': 'false'
+                },
+                value: data.hearing.days[loop.index0].endTime
+              }) }}
+
+              {% endcall %}
+            {% endfor %}
+          {% else %}
+            {% call govukFieldset({
+              classes: 'app-add-another__item',
+              legend: {
+                text: 'Day 1',
+                classes: 'app-add-another__title govuk-fieldset__legend--m',
+                isPageHeading: false
+              },
+              attributes: {
+                'data-label': 'Day %index%'
+              }
+            }) %}
+
+            {{ govukDateInput({
+              id: "hearing[days][0][date]",
+              fieldset: {
+                legend: {
+                  text: "Date",
+                  classes: "govuk-fieldset__legend--s"
+                }
+              },
+              attributes: {
+                'data-label': 'Hearin date %index%'
+              },
+              hint: {
+                text: "For example, 31 3 2025"
+              },
+              items: [
+                {
+                  name: "hearing[days][0][date][day]",
+                  label: "Day",
+                  classes: "govuk-input--width-2",
+                  attributes: {
+                    'data-name': 'hearing[days][%index%][date][day]',
+                    'data-id': 'hearing[days][%index%][date][day]'
+                  }
+                },
+                {
+                  name: "hearing[days][0][date][month]",
+                  label: "Month",
+                  classes: "govuk-input--width-2",
+                  attributes: {
+                    'data-name': 'hearing[days][%index%][date][month]',
+                    'data-id': 'hearing[days][%index%][date][month]'
+                  }
+                },
+                {
+                  name: "hearing[days][0][date][year]",
+                  label: "Year",
+                  classes: "govuk-input--width-4",
+                  attributes: {
+                    'data-name': 'hearing[days][%index%][date][year]',
+                    'data-id': 'hearing[days][%index%][date][year]'
+                  }
+                }
+              ]
+            }) }}
+
+            {{ govukInput({
+              id: "hearing[days][0][startTime]",
+              name: "hearing[days][0][startTime]",
+              label: {
+                text: "Start time (if you know it)",
+                classes: 'govuk-label--s'
+              },
+              hint: {
+                text: "For example, 9am or 2:30pm - enter 12pm for midday"
+              },
+              classes: "govuk-input--width-4",
+              attributes: {
+                'data-name': 'hearing[days][%index%][startTime]',
+                'data-id': 'hearing[days][%index%][startTime]',
+                'data-reset': 'false'
+              },
+              value: '10am'
+            }) }}
+
+            {{ govukInput({
+              id: "hearing[days][0][endTime]",
+              name: "hearing[days][0][endTime]",
+              label: {
+                text: "End time (if you know it)",
+                classes: 'govuk-label--s'
+              },
+              hint: {
+                text: "For example, 9am or 2:30pm - enter 12pm for midday"
+              },
+              classes: "govuk-input--width-4",
+              attributes: {
+                'data-name': 'hearing[days][%index%][endTime]',
+                'data-id': 'hearing[days][%index%][endTime]',
+                'data-reset': 'false'
+              },
+              value: '4pm'
+            }) }}
+
+            {% endcall %}
+          {% endif %}
+          <div class="app-button-action">
+            {{ govukButton({
+              text: 'Add another day',
+              classes: 'govuk-button--secondary app-add-another__add-button'
+            }) }}
+          </div>
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+{% endblock %}
+
+{% block pageScripts %}
+  {{super()}}
+  <script>
+    new App.AddAnother({
+      container: $('.app-add-another')
+    });
+  </script>
+{% endblock %}

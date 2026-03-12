@@ -39,15 +39,15 @@
     <div class="govuk-grid-column-two-thirds">
 
       {% set reviewHtml %}
-        {% include "includes/rule-6-statements/waiting-statements.html" %}
+        {% include "includes-for-main/rule-6-statements/waiting-statements.html" %}
       {% endset %}
 
       {% set validHtml %}
-        {% include "includes/rule-6-statements/valid-statements.html" %}
+        {% include "includes-for-main/rule-6-statements/valid-statements.html" %}
       {% endset %}
 
       {% set rejectedHtml %}
-        {% include "includes/rule-6-statements/rejected-statements.html" %}
+        {% include "includes-for-main/rule-6-statements/rejected-statements.html" %}
       {% endset %}
 
       {% if data['statements-shared'] != 'yes' %}
@@ -89,7 +89,7 @@
         </div>
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-full">
-            {% include "includes/rule-6-statements/shared-statements.html" %}
+            {% include "includes-for-main/rule-6-statements/shared-statements.html" %}
       {% endif %}
 
     </div>

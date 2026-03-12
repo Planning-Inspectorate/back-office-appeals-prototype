@@ -1,0 +1,77 @@
+{% extends "layouts/PINS-Simple.html" %}
+
+{% set title = "Check details and update inquiry estimates" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal 2114328</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Estimated preparation time"
+            },
+            value: {
+              html: data.inquiryEstimates.estimatedPreparationTime | days
+            },
+            actions: {
+              items: [
+                {
+                  href: "/projects/start-full-case/v4/add-inquiry-estimates",
+                  text: "Change",
+                  visuallyHiddenText: "Estimated preparation time"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Estimated sitting time"
+            },
+            value: {
+              html: data.inquiryEstimates.estimatedInquiryTime | days
+            },
+            actions: {
+              items: [
+                {
+                  href: "/projects/start-full-case/v4/add-inquiry-estimates",
+                  text: "Change",
+                  visuallyHiddenText: "Estimated sitting time"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Estimated reporting time"
+            },
+            value: {
+              html: data.inquiryEstimates.estimatedReportingTime | days
+            },
+            actions: {
+              items: [
+                {
+                  href: "/projects/start-full-case/v4/add-inquiry-estimates",
+                  text: "Change",
+                  visuallyHiddenText: "Estimated reporting time"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <form method="post">
+        {{ govukButton({
+          text: "Update inquiry estimates"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,135 @@
+{% extends "layouts/PINS-Simple.html" %}
+
+{% set title = "Check details and add Rule 6 party" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  {% set address %}
+    {{appAddress({ address: data.hearing.address })}}
+  {% endset %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal 2114328</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Is the Rule 6 party an organisation?"
+            },
+            value: {
+              text: data.rule6application.hasOrganisation
+            },
+            actions: {
+              items: [
+                {
+                  href: "/projects/start-full-case/v4/rule-6-parties/new",
+                  text: "Change",
+                  visuallyHiddenText: "if the Rule 6 party represents an organisation"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Organisation name"
+            },
+            value: {
+              text: data.rule6application.organisationName
+            },
+            actions: {
+              items: [
+                {
+                  href: "/projects/start-full-case/v4/rule-6-parties/new",
+                  text: "Change",
+                  visuallyHiddenText: "Organisation name"
+                }
+              ]
+            }
+          } if data.rule6application.hasOrganisation == 'Yes',
+          {
+            key: {
+              text: "Name of representative"
+            },
+            value: {
+              text: data.rule6application.firstName + ' ' + data.rule6application.lastName
+            },
+            actions: {
+              items: [
+                {
+                  href: "/projects/start-full-case/v4/rule-6-parties/new/name",
+                  text: "Change",
+                  visuallyHiddenText: "Name"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Email address"
+            },
+            value: {
+              html: data.rule6application.emailAddress
+            },
+            actions: {
+              items: [
+                {
+                  href: "/projects/start-full-case/v4/rule-6-parties/new/email-addresss",
+                  text: "Change",
+                  visuallyHiddenText: "Email address"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Phone number"
+            },
+            value: {
+              text: data.rule6application.phone
+            },
+            actions: {
+              items: [
+                {
+                  href: "/projects/start-full-case/v4/rule-6-parties/new/phone",
+                  text: "Change",
+                  visuallyHiddenText: "Phone number"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Request for Rule 6 status"
+            },
+            value: {
+              html: '<a href="#">Screenshot (JPG, 12MB)</a>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "/projects/start-full-case/v4/rule-6-parties/new/phone",
+                  text: "Change",
+                  visuallyHiddenText: "Request for Rule 6 status"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      {# <p class="govuk-body">We’ll send an email to the Rule 6 party inviting them to create an account.</p> #}
+
+      <form method="post">
+        {{ govukButton({
+          text: "Add Rule 6 party"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

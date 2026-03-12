@@ -346,7 +346,7 @@
 
     <!-- meta -->
     <div class="govuk-grid-column-full">
-      {% include "/includes/appeal-content/lpa-has-appeal-meta.html" %}
+      {% include "/includes-for-main/appeal-content/lpa-has-appeal-meta.html" %}
       <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
     </div>
 
@@ -766,22 +766,22 @@
 
                 {% if data['case-stage'] == 'questionnaire' %}
                   <!-- questionnaire -->
-                  {% include "includes/appeal-content/case-documents/questionnaire.html" %}
+                  {% include "includes-for-main/appeal-content/case-documents/questionnaire.html" %}
                 {% elseif data['case-stage'] == 'statements' %}
                   <!-- statements -->
-                  {% include "includes/appeal-content/case-documents/statements.html" %}
+                  {% include "includes-for-main/appeal-content/case-documents/statements.html" %}
                 {% elseif data['case-stage'] == 'final-comments' %}
                   <!-- final comments -->
-                  {% include "includes/appeal-content/case-documents/final-comments.html" %}
+                  {% include "includes-for-main/appeal-content/case-documents/final-comments.html" %}
                 {% elseif data['case-stage'] == 'determination' %}
                   <!-- determination -->
-                  {% include "includes/appeal-content/case-documents/determination.html" %}
+                  {% include "includes-for-main/appeal-content/case-documents/determination.html" %}
                 {% elseif data['case-stage'] == 'closed' %}
                   <!-- closed -->
-                  {% include "includes/appeal-content/case-documents/closed.html" %}
+                  {% include "includes-for-main/appeal-content/case-documents/closed.html" %}
                 {% else %}
                   <!-- new case -->
-                  {% include "includes/appeal-content/case-documents/new-case.html" %}
+                  {% include "includes-for-main/appeal-content/case-documents/new-case.html" %}
                 {% endif %}
 
               </tbody>
@@ -799,7 +799,7 @@
             </h2>
           </div>
           <div id="accordion-default-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-4">
-            {% include "/includes/audit/case-team-table.html" %}
+            {% include "/includes-for-main/audit/case-team-table.html" %}
           </div>
         </div>
 
@@ -867,7 +867,7 @@
             </h2>
           </div>
           <div id="accordion-default-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-4">
-            {% include "/includes/appeal-content/case-management/case-management.html" %}
+            {% include "/includes-for-main/appeal-content/case-management/case-management.html" %}
           </div>
         </div>
 

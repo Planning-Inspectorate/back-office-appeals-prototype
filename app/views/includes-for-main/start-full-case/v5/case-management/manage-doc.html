@@ -1,0 +1,65 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set back = true %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <span class="govuk-caption-l">Manage documents</span>
+  <h1 class="govuk-heading-l">
+   filename.pdf
+  </h1>
+
+  {{ govukTable({
+    firstCellIsHeader: false,
+    rows: [
+      [
+        { text: "Name" },
+        { html: '<a href="#">filename.pdf</a>' },
+        { html: '<a href="#">Change</a>' }
+      ],
+      [
+        { text: "Version" },
+        { text: "1" },
+        { html: '' }
+      ],
+      [
+        { text: "Date received" },
+        { text: "9 December 2025" },
+        { html: '<a href="#">Change</a>' }
+      ],
+      [
+        { text: "Redaction status" },
+        { text: "No redaction required" },
+        { html: '<a href="#">Change</a>' }
+      ]
+    ]
+  }) }}
+  
+  <div class="govuk-button-group">
+    {{ govukButton({
+      text: "Upload new version"
+    }) }}
+  
+    {{ govukButton({
+      text: "Remove current version",
+      classes: "govuk-button--secondary"
+    }) }}
+  </div>
+  
+
+  <h2 class="govuk-heading-m">Document versions</h2>
+  <p class="govuk-body">View and remove versions of this document</p>
+
+
+  {{ govukDetails({
+    summaryText: "Version history",
+    text: "Text"
+  }) }}
+
+
+  </div>
+</div>
+{% endblock %}

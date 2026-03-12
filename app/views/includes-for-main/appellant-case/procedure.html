@@ -1,0 +1,35 @@
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "4. Procedure details"
+    }
+  },
+  rows: [
+
+      {
+        key: { html: 'How would you prefer us to decide your appeal?' },
+        value:
+          { html: 'Written representations' },
+        actions: {
+          items: [
+            { href: '#', html: 'Change' }
+          ]
+        }
+      },
+
+      {
+        key: { html: 'Are there other appeals linked to your development?' },
+        value:
+          { html: 'No' },
+        actions: {
+          items: [
+            { href: '#', html: 'Change' }
+          ]
+        }
+      }
+
+      ]
+  }) }}
+      

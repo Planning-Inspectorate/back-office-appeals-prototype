@@ -1,0 +1,61 @@
+
+{{ govukSummaryList({
+  card: { title: { text: "Planning officer’s report and supporting documents" } },
+  rows: [
+    {
+      key: { html: 'Do you have a planning officer\'s report?' },
+      value: { html: 'No' },
+      actions: { items: [{ href: 'po-report/planning-officer-report?cya=true', html: 'Change' }] }
+    },
+    {
+      key: { html: 'Do you have any relevant policies from your statutory development plan?' },
+      value: { html: 'No' },
+      actions: { items: [{ href: 'po-report/statutory-policies?cya=true', html: 'Change' }] }
+    },
+    {
+      key: { html: 'Do you have any other relevant policies to upload?' },
+      value: { html: 'No' },
+      actions: { items: [{ href: 'po-report/other-policies?cya=true', html: 'Change' }] }
+    },
+    {
+      key: { html: 'Did any supplementary planning documents inform the outcome of the planning application?' },
+      value: { html: 'No' },
+      actions: { items: [{ href: 'po-report/supplementary-docs?cya=true', html: 'Change' }] }
+    },
+    {
+      key: { html: 'Do you have a community infrastructure levy?' },
+      value: { html: 'No' },
+      actions: { items: [{ href: 'po-report/community-infrastructure-levy?cya=true', html: 'Change' }] }
+    },
+    {
+      key: { html: 'Do you have a local development order?' },
+      value: { html: 'No' },
+      actions: { items: [{ href: 'po-report/local-development-order?cya=true', html: 'Change' }] }
+    },
+    {
+      key: { html: 'Did you previously grant any planning permission for this development?' },
+      value: { html: 'No' },
+      actions: { items: [{ href: 'po-report/previous-permission?cya=true', html: 'Change' }] }
+    },
+    {
+      key: { html: 'Do you have your statement of case?' },
+      value: { html: 'No' },
+      actions: { items: [{ href: 'po-report/statement-of-case?cya=true', html: 'Change' }] }
+    },
+    {
+      key: { html: 'Was there an enforcement notice in force at the date of the application?' },
+      value: { html: 'No' },
+      actions: { items: [{ href: 'po-report/enforcement-notice?cya=true', html: 'Change' }] }
+    },
+    {
+      key: { html: 'Did you serve a planning contravention notice?' },
+      value: { html: 'No' },
+      actions: { items: [{ href: 'po-report/planning-contravention?cya=true', html: 'Change' }] }
+    },
+    {
+      key: { html: 'Will you carry out a consultation for potential planning permission?' },
+      value: { html: 'No' },
+      actions: { items: [{ href: 'po-report/consultation?cya=true', html: 'Change' }] }
+    }
+  ]
+}) }}

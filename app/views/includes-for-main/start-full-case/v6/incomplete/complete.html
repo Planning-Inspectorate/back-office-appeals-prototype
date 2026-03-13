@@ -1,0 +1,34 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Complete" %}
+
+{% set back = false %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {{ govukPanel({
+        titleText: "Appeal incomplete",
+        html: "Appeal ID<br><strong>2110166</strong>"
+      }) }}
+
+      <p class="govuk-body">The appeal has been reviewed.</p>
+
+      <h2 class="govuk-heading-m">What happens next</h2>
+
+      <p class="govuk-body">
+        We’ve sent an email to the appellant  and LPA to inform the case is incomplete, and let them know what to do next.
+      </p>
+
+    	<p class="govuk-body">
+    	   We also sent them a reminder about the appeal’s due date.
+      </p>
+
+      <p class="govuk-body">
+        <a href="appellant-case-incomplete" class="govuk-link">Go to case details</a>
+      </p>
+    </div>
+  </div>
+
+{% endblock %}

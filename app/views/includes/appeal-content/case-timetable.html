@@ -1,0 +1,64 @@
+{{ govukTable({
+	  captionClasses: "govuk-table__caption--m",
+	  firstCellIsHeader: true,
+	  rows: [
+	    [
+	      {
+	        text: "Start date"
+	      },
+	      {
+	        text: 38 | daysAgo
+	      },
+	      {
+	        html: "",
+					format: "numeric"
+	      }
+	    ],
+	    [
+	      {
+	        text: "LPA questionnaire due"
+	      },
+	      {
+	        text: 31 | daysAgo
+	      },
+	      {
+	        html: "<a href='#'>Change</a>",
+					format: "numeric"
+	      }
+	    ],
+	    [
+	      {
+	        text: "Statement due"
+	      },
+	      {
+	        text: 5 | daysAgo
+	      },
+	      {
+	        html: "<a href='#'>Change</a>",
+					format: "numeric"
+	      }
+	    ],[
+	      {
+	        text: "Interested party reps due"
+	      },
+	      {
+	        text: 5 | daysAgo
+	      },
+	      {
+	        html: "<a href='#'>Change</a>",
+					format: "numeric"
+	      }
+	    ],[
+	      {
+	        text: "Site visit"
+	      },
+	      {
+	        text: 3 | daysAgo
+	      },
+	      {
+	        html: "<a href='#'>Change</a>",
+					format: "numeric"
+	      }
+	    ]
+	  ]
+	}) }}

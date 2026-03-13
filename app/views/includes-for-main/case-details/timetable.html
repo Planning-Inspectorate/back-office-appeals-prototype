@@ -1,0 +1,137 @@
+<h2 class="govuk-heading-l">
+  Timetable
+</h2>
+
+{% from "govuk/components/table/macro.njk" import govukTable %}
+
+
+{% if data['case-stage'] == 'validation' %}
+
+  {{ govukTable({
+    captionClasses: "govuk-table__caption--m pins-summary-list--bottomless",
+    firstCellIsHeader: true,
+    rows: [
+      [
+        {
+          text: "Valid date",
+          classes: "govuk-!-width-one-third"
+        },
+        {
+          html: 'Not validated'
+        },
+        {
+          html: "<a href='enforcement-appeal'>Validate</a>",
+          format: "numeric"
+        }
+      ]
+    ]
+  }) }}
+
+{% else %}
+
+  {{ govukTable({
+    captionClasses: "govuk-table__caption--m pins-summary-list--bottomless",
+    firstCellIsHeader: true,
+    rows: [
+      [
+        {
+          text: "Valid date",
+          classes: "govuk-!-width-one-third"
+        },
+        {
+          html: 2 | daysAgo
+        },
+        {
+          html: "<a href='#'>Change</a>",
+          format: "numeric"
+        }
+      ],
+      [
+        {
+          text: "Start date"
+        },
+        {
+          html: 1 | daysAgo
+        },
+        {
+          html: "<a href='#'>Change</a>",
+          format: "numeric"
+        }
+      ],
+      [
+        {
+          text: "LPA questionnaire due"
+        },
+        {
+          html: 42 | daysInFuture
+        },
+        {
+          html: "<a href='#'>Change</a>",
+          format: "numeric"
+        }
+      ],
+      [
+        {
+          text: "LPA statement due"
+        },
+        {
+          html: 42 | daysInFuture
+        },
+        {
+          html: "<a href='#'>Change</a>",
+          format: "numeric"
+        }
+      ] if appealIs != 'enforcement',
+      [
+        {
+          text: "Statements due"
+        },
+        {
+          html: 42 | daysInFuture
+        },
+        {
+          html: "<a href='#'>Change</a>",
+          format: "numeric"
+        }
+      ] if data['procedure'] == 'written' and data['case'] == 'started' and appealIs == 'enforcement',
+      [
+        {
+          text: "Interested party comments due"
+        },
+        {
+          html: 42 | daysInFuture
+        },
+        {
+          html: "<a href='#'>Change</a>",
+          format: "numeric"
+        }
+      ],
+      [
+      {
+        text: "Planning obligation due"
+      },
+      {
+        html: 42 | daysInFuture
+      },
+      {
+        html: "<a href='#'>Change</a>",
+        format: "numeric"
+      }
+    ] if data['procedure'] == 'written' and data['case'] == 'started' and appealIs == 'enforcement',
+      [
+        {
+          text: "Final comments due"
+        },
+        {
+          html: 72 | daysInFuture
+        },
+        {
+          html: "<a href='#'>Change</a>",
+          format: "numeric"
+        }
+      ]
+
+    ]
+  }) }}
+
+{% endif %}

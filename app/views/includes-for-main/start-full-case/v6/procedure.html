@@ -1,0 +1,56 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Appeal procedure" %}
+
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Appeal 2110166</span>
+
+      <form method="post">
+
+        {{ govukRadios({
+          classes: "govuk-radios",
+          name: "procedure",
+          fieldset: {
+            legend: {
+              text: title,
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Part 1",
+              text: "Part 1"
+            },
+            {
+              value: "Written representations",
+              text: "Written representations"
+            },
+            {
+              value: "Hearing",
+              text: "Hearing"
+            },
+            {
+              value: "Inquiry",
+              text: "Inquiry"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          classes: "govuk-button",
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

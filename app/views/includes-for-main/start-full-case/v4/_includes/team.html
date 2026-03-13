@@ -1,0 +1,30 @@
+{{ govukTable({
+	  captionClasses: "govuk-table__caption--m",
+	  firstCellIsHeader: true,
+	  rows: [
+	    [
+	      {
+	        text: "Case officer"
+	      },
+	      {
+	        html: "Robert Williams<br>robert.williams@planninginspectorate.gov.uk</a> "
+	      },
+	      {
+	        html: "<a href='#'>Change</a>",
+					format: "numeric"
+	      }
+	    ],
+	    [
+	      {
+	        text: "Inspector"
+	      },
+	      {
+	        text: "Not assigned"
+	      },
+	      {
+	        html: "<a href='#'>Assign</a>",
+					format: "numeric"
+	      }
+	    ]
+	  ]
+	}) }}

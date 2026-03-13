@@ -1,0 +1,385 @@
+<div class="app-panel">
+  <h2 class="govuk-heading-l">Contacts</h2>
+
+  {% set appellant %}
+    {{appeal.appellant.firstName}} {{appeal.appellant.lastName}}<br>
+    {{appeal.appellant.emailAddress}}<br>
+    {{appeal.appellant.phone}}
+  {% endset %}
+
+  {% if appeal.agent %}
+    {% set agent %}
+      {{appeal.agent.firstName}} {{appeal.agent.lastName}}<br>
+      {{appeal.agent.emailAddress}}<br>
+      {{appeal.agent.phone}}
+    {% endset %}
+    {% set agentActions = [{
+      href: '/main/appeals/:appealId/edit-agent' | replace(':appealId', appeal.id),
+      text: "View",
+      visuallyHiddenText: "Agent details"
+    }] %}
+  {% else %}
+    {% set agent %}
+      No agent
+    {% endset %}
+    {% set agentActions = [{
+      href: '/main/appeals/:appealId/add-agent' | replace(':appealId', appeal.id),
+      text: "Add",
+      visuallyHiddenText: "Agent details"
+    }] %}
+  {% endif %}
+
+  {% if appeal.rule6Parties %}
+    {% set rule6Value = appeal.rule6Parties.length + " parties" %}
+    {% set rule6Actions = [{
+        href: "/main/appeals/:appealId/rule-6-parties/new" | replace(':appealId', appeal.id),
+        text: "Add",
+        visuallyHiddenText: "Rule 6 party"
+      }, {
+        href: "/main/appeals/:appealId/rule-6-parties" | replace(':appealId', appeal.id),
+        text: "View",
+        visuallyHiddenText: "Rule 6 party"
+      }]
+    %}
+  {% else %}
+    {% set rule6Value = "No parties"%}
+    {% set rule6Actions = [{
+        href: "/main/appeals/:appealId/rule-6-parties/new" | replace(':appealId', appeal.id),
+        text: "Add",
+        visuallyHiddenText: "Rule 6 party"
+      }]
+    %}
+  {% endif %}
+
+  {{ govukSummaryList({
+    classes: 'app-summary-list--wider-actions',
+    rows: [
+      {
+        key: {
+          text: "Appellant"
+        },
+        value: {
+          html: appellant
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "View",
+              visuallyHiddenText: "Appellant"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Agent"
+        },
+        value: {
+          html: agent
+        },
+        actions: {
+          items: agentActions
+        }
+      },
+      {
+        key: {
+          text: "LPA"
+        },
+        value: {
+          html: appeal.lpa.name +  '<br>' + appeal.lpa.emailAddress
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "View",
+              visuallyHiddenText: "LPA"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Rule 6 parties"
+        },
+        value: {
+          text: rule6Value
+        },
+        actions: {
+          items: rule6Actions
+        } if not appeal.isChildAppeal
+      } if appeal.procedure == 'Inquiry'
+    ]
+  }) }}
+
+</div>
+{#
+<div class="app-panel" style="display: block">
+  <h2 class="govuk-heading-l">Contacts</h2>
+
+  {{ govukSummaryList({
+    classes: 'app-summary-list--wider-actions',
+    rows: [
+      {
+        key: {
+          text: "Appellant"
+        },
+        value: {
+          html: "Fiona Shell"
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "View",
+              visuallyHiddenText: "Appellant"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Agent"
+        },
+        value: {
+          html: "Naomi Johnson"
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "View",
+              visuallyHiddenText: "Agent"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "LPA"
+        },
+        value: {
+          html: "Tim Cooper"
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "View",
+              visuallyHiddenText: "LPA"
+            }
+          ]
+        }
+      }
+    ]
+  }) }}
+
+</div>
+
+<div class="app-panel" style="display: block">
+  <h2 class="govuk-heading-l">Appellant</h2>
+
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          text: "First name"
+        },
+        value: {
+          text: "Ryan"
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "First name"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Last name"
+        },
+        value: {
+          text: "Marshall"
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "Last name"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Organisation name"
+        },
+        value: {
+          text: "Boom Ltd"
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "Organisation name"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Email address"
+        },
+        value: {
+          text: "ryan@example.com"
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "Organisation name"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Phone number"
+        },
+        value: {
+          text: "Not provided"
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "Organisation name"
+            }
+          ]
+        }
+      }
+    ]
+  }) }}
+</div>
+
+<div class="app-panel" style="display: block">
+  <h2 class="govuk-heading-l">Agent</h2>
+
+  <p class="govuk-body"><a href="#" class="govuk-link">Remove agent</a></p>
+
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          text: "First name"
+        },
+        value: {
+          text: "Ryan"
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "First name"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Last name"
+        },
+        value: {
+          text: "Marshall"
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "Last name"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Organisation name"
+        },
+        value: {
+          text: "Boom Ltd"
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "Organisation name"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Email address"
+        },
+        value: {
+          text: "ryan@example.com"
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "Organisation name"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Phone number"
+        },
+        value: {
+          text: "Not provided"
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "Organisation name"
+            }
+          ]
+        }
+      }
+    ]
+  }) }}
+</div>
+
+<div class="app-panel" style="display: block">
+  <h2 class="govuk-heading-l">LPA</h2>
+
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          text: "Name"
+        },
+        value: {
+          html: "Barnet Borough Council<br>appeals@barnet-borough.gov.uk"
+        }
+      }
+    ]
+  }) }}
+</div> #}

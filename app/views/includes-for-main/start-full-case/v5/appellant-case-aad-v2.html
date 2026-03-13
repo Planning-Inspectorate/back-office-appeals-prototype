@@ -1,0 +1,139 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "1223443" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+{% set back = false %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-full">
+    <span class="govuk-caption-xl">Appeal 123456</span>
+
+    <h1 class="govuk-heading-xl">Appellant case</h1>
+
+
+
+    {{ govukSummaryList({
+      classes: "govuk-summary-list--no-border",
+      rows: [
+        {
+          key: {
+            text: "Site address"
+          },
+          value: {
+            html: "72 Guild Street London SE23 6FH"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Change",
+                visuallyHiddenText: "name"
+              }
+            ]
+          }
+        }
+      ]
+    }) }}
+
+    {{ govukSummaryList({
+      card: {
+        title: {
+          text: "Before you start (details imported from LPA)"
+        }
+      },
+      rows: [
+        {
+          key: {
+            text: "Local planning authority"
+          },
+          value: {
+            html: "Barnet Council"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Change",
+                visuallyHiddenText: "granted or refused"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "What type of application is your appeal about?"
+          },
+          value: {
+            html: "Householder"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Change",
+                visuallyHiddenText: "granted or refused"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Was your application granted or refused?"
+          },
+          value: {
+            html: "Refused"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Change",
+                visuallyHiddenText: "granted or refused"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "What’s the date on the decision letter from the local planning authority?​	"
+          },
+          value: {
+            html: '<p class="govuk-body">12 Jan 2024<br>Changed by appellant to: 14 Jan 2024</p>'
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Change",
+                visuallyHiddenText: "decision date"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "What is the application number?"
+          },
+          value: {
+            html: "12345"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Change",
+                visuallyHiddenText: "granted or refused"
+              }
+            ]
+          }
+        }
+      ]
+    }) }}
+
+  </div>
+</div>
+{% endblock %}
+

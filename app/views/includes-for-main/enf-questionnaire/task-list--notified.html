@@ -1,0 +1,40 @@
+
+{{ govukSummaryList({
+  card: {
+    title: { text: "Notifying relevant parties of the appeal" }
+  },
+  rows: [
+    {
+      key: {
+        html: "Upload the list of people that you served the enforcement notice to"
+      },
+      value: {
+        html: "<a href='#' class='govuk-link'>Haggis Farm Cambridge enforcement notice December 2025.doc</a>"
+      },
+      actions: {
+        items: [
+          {
+            href: "notified/enforcement-list?cya=true",
+            html: "Upload"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: "Upload the appeal notification letter and the list of people that you notified"
+      },
+      value: {
+        html: "<a href='#' class='govuk-link'>Haggis Farm Cambridge enforcement appeal notice January 2025.doc</a>"
+      },
+      actions: {
+        items: [
+          {
+            href: "notified/notification-letter?cya=true",
+            html: "Upload"
+          }
+        ]
+      }
+    }
+  ]
+}) }}

@@ -1,0 +1,128 @@
+<h2 class="govuk-heading-l">
+  Site
+</h2>
+
+{% from "govuk/components/table/macro.njk" import govukTable %}
+
+{{ govukTable({
+  captionClasses: "govuk-table__caption--m",
+  firstCellIsHeader: true,
+  rows: [
+    [
+      {
+        text: "Date",
+        classes: "govuk-!-width-one-third"
+      },
+      {
+        text: 3 | daysInFuture
+      },
+      {
+        html: "<a href='site-visit.html'>Change</a>",
+        format: "numeric"
+      }
+    ] if data['case-status'] and data['case-status'] != 'validation' and data['case-status'] != 'ready',
+    [
+      {
+        text: "Time"
+      },
+      {
+        text: '10am'
+      },
+      {
+        html: "<a href='site-visit.html'>Change</a>",
+        format: "numeric"
+      }
+    ],
+    [
+      {
+        text: "Type",
+        classes: "govuk-!-width-one-third"
+      },
+      {
+        text: "Unaccompanied"
+      },
+      {
+        html: "<a href='site-visit.html'>Change</a>",
+        format: "numeric"
+      }
+    ]
+  ]
+}) }}
+
+<h3 class="govuk-heading-m">
+  Site visit requests
+</h3>
+
+{% if data['requested-addresses'] %}
+
+  {% set data = {
+    requestedAddresses: [
+      "17 Aubrey Road, Bristol, BS3 3EX",
+      "22 King Street, Bath, BA1 2AB"
+    ]
+  } %}
+
+  {% if (data.requestedAddresses | length) == 0 %}
+    {% set addresses %}
+      <span class="govuk-hint">No addresses added yet</span>
+    {% endset %}
+  {% elif (data.requestedAddresses | length) == 1 %}
+    {% set addresses = data.requestedAddresses[0] %}
+  {% else %}
+    {% set addresses %}
+      <ul class="govuk-list govuk-list--bullet">
+        {% for addr in data.requestedAddresses %}
+          <li>{{ addr }}</li>
+        {% endfor %}
+      </ul>
+    {% endset %}
+  {% endif %}
+
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: { text: "Addresses" },
+        value: {
+          html: addresses
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Add", visuallyHiddenText: "requested addresses"
+            },
+            {
+              href: "requested-addresses",
+              text: "Change", visuallyHiddenText: "requested addresses"
+            }
+          ]
+        }
+      }
+    ]
+  }) }}
+
+{% else %}
+
+
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          text: "Addresses"
+        },
+        value: {
+          html: 'No addresses requested'
+        },
+        actions: {
+          items: [
+            {
+              href: "add-address",
+              text: "Add", visuallyHiddenText: "requested addresses"
+            }
+          ]
+        }
+      }
+    ]
+  }) }}
+
+{% endif %}

@@ -1,0 +1,72 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Check details and assign inspector" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  {% set address %}
+    {{appAddress({ address: data.addHearing.address })}}
+  {% endset %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal {{appeal.id}} {% if appeal.isLeadAppeal %}(lead){% endif %}</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      {% set newCaseOfficer %}
+        {{newCaseOfficer.name}}<br>
+        {{newCaseOfficer.emailAddress}}
+      {% endset %}
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Inspector"
+            },
+            value: {
+              text: "Allan Poe"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/main/appeals/:appealId/case-officer/new" | replace(':appealId', appeal.id),
+                  text: "Change",
+                  visuallyHiddenText: "Case officer"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Email address"
+            },
+            value: {
+              text: "allan.poe@planninginspectorate.gov.uk"
+            },
+            actions: {
+              items: [
+                {
+                  href: "/main/appeals/:appealId/case-officer/new" | replace(':appealId', appeal.id),
+                  text: "Change",
+                  visuallyHiddenText: "Case officer"
+                }
+              ]
+            }
+          }
+
+        ]
+      }) }}
+
+      <form method="post">
+        {{ govukButton({
+          text: "Assign inspector"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

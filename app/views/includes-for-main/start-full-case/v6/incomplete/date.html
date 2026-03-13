@@ -1,0 +1,44 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Appellant case due date" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+		<span class="govuk-caption-xl">Appeal 2110166</span>
+		<h1 class="govuk-heading-xl">Update appeal due date</h1>
+
+       <form action="/projects/appellant-case/incomplete/check" method="post" class="govuk-!-margin-top-9" novalidate>
+
+
+		{{ govukDateInput({
+		  id: "passport-issued",
+		  hint: {
+		    text: "For example, 27 3 2007"
+		  }
+		}) }}
+		
+		<p class="govuk-body"> If the existing due date still applies, please skip to the confirmation screen.</p>		
+		
+		<div class="govuk-button-group">
+		  {{ govukButton({
+		    text: "Continue"
+		  }) }}
+		
+		  {{ govukButton({
+		    text: "Skip",
+		    classes: "govuk-button--secondary"
+		  }) }}
+		</div>
+		
+      
+      </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

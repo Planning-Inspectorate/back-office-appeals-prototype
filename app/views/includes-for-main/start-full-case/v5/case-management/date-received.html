@@ -1,0 +1,37 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set back = true %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+<span class="govuk-caption-l">filename1.pdf - cross-team correspondence</span>
+
+
+{{ govukDateInput({
+  id: "date-received",
+  namePrefix: "date-received",
+  fieldset: {
+    legend: {
+      text: "Date received",
+      classes: "govuk-fieldset__legend--l",
+      isPageHeading: true
+    }
+  },
+  hint: {
+    text: "For example, 27 3 2007"
+  }
+}) }}
+
+
+    {{ govukButton({
+      text: "Continue",
+      href:"correspondence-type"
+    }) }}
+
+  </div>
+</div>
+{% endblock %}

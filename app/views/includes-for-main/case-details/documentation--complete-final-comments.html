@@ -1,0 +1,62 @@
+<!-- complete final comments -->
+
+{% if not data['appellant-final-comments'] or data['appellant-final-comments'] == 'waiting' or data['appellant-final-comments'] == 'not-received' %}
+
+  <!-- no appellant final comments -->
+
+  <tr class="govuk-table__row">
+    <th scope="row" class="govuk-table__header">Appellant final comments</th>
+    <td class="govuk-table__cell">No final comments</td>
+    <td class="govuk-table__cell">{{ 0 | daysInFuture}}</td>
+    <td class="govuk-table__cell govuk-!-text-align-right">
+      <!-- no action -->
+    </td>
+  </tr>
+
+{% else %}
+
+  <!-- shared appellant final comments -->
+
+  <tr class="govuk-table__row">
+    <th scope="row" class="govuk-table__header">Appellant final comments</th>
+    <td class="govuk-table__cell">Shared</td>
+    <td class="govuk-table__cell">{{ 0 | daysInFuture}}</td>
+    <td class="govuk-table__cell govuk-!-text-align-right">
+      <a href="appellant-case" data-cy="review-appellant-case" class="govuk-link">
+        View<span class="govuk-visually-hidden"> appellant final comments</span>
+      </a>
+    </td>
+  </tr>
+
+{% endif %}
+
+
+{% if not data['lpa-final-comments'] or data['lpa-final-comments'] == 'waiting' or data['lpa-final-comments'] == 'not-received' %}
+
+  <!-- no lpa final comments -->
+
+  <tr class="govuk-table__row">
+    <th scope="row" class="govuk-table__header">Local planning authority final comments</th>
+    <td class="govuk-table__cell">No final comments</td>
+    <td class="govuk-table__cell">{{ 0 | daysInFuture}}</td>
+    <td class="govuk-table__cell govuk-!-text-align-right">
+      <!-- no action -->
+    </td>
+  </tr>
+
+{% else %}
+
+  <!-- shared lpa final comments -->
+
+  <tr class="govuk-table__row">
+    <th scope="row" class="govuk-table__header">Local planning authority final comments</th>
+    <td class="govuk-table__cell">Shared</td>
+    <td class="govuk-table__cell">{{ 0 | daysInFuture}}</td>
+    <td class="govuk-table__cell govuk-!-text-align-right">
+      <a href="appellant-case" data-cy="review-appellant-case" class="govuk-link">
+        View<span class="govuk-visually-hidden"> local planning authority final comments</span>
+      </a>
+    </td>
+  </tr>
+
+{% endif %}

@@ -1,0 +1,80 @@
+{% extends "layouts/PINS-Simple.html" %}
+
+{% set title = "Check details and update pre-inquiry meeting" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Appeal 2114328</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Date"
+            },
+            value: {
+              html: data.cmc.date | isoDateFromDateInput | govukDate
+            },
+            actions: {
+              items: [
+                {
+                  href: "/projects/start-full-case/v4/edit-cmc",
+                  text: "Change",
+                  visuallyHiddenText: "Date"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Time"
+            },
+            value: {
+              html: data.cmc.time
+            },
+            actions: {
+              items: [
+                {
+                  href: "/projects/start-full-case/v4/edit-cmc",
+                  text: "Change",
+                  visuallyHiddenText: "Time"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Location"
+            },
+            value: {
+              html: data.cmc.location
+            },
+            actions: {
+              items: [
+                {
+                  href: "/projects/start-full-case/v4/edit-cmc",
+                  text: "Change",
+                  visuallyHiddenText: "location"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <p>We’ll send an email to the appellant and LPA to tell them about the pre-inquiry meeting.</p>
+
+      <form method="post">
+        {{ govukButton({
+          text: "Update pre-inquiry meeting"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

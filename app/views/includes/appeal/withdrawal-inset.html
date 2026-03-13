@@ -1,0 +1,15 @@
+{% if appeal.status == 'Withdrawn' %}
+  {% set withdrawalInsetHtml %}
+    <ul class="govuk-list">
+      <li>
+        Withdrawn on {{appeal.withdrawal.withdrawnDate | govukDate}}
+      </li>
+      <li>
+        <a href="/main/appeals/{{appeal.id}}/withdrawal">View withdrawal</a>
+      </li>
+    </ul>
+  {% endset %}
+  {{ govukInsetText({
+    html: withdrawalInsetHtml
+  }) }}
+{% endif %}

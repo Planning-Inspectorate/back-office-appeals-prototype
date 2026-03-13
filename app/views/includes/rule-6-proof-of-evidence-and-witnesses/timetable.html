@@ -1,0 +1,116 @@
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Start date",
+				classes: "govuk-!-width-one-half"
+      },
+      value: {
+        text: 38 | daysAgo
+      }
+    },
+    {
+      key: {
+        text: "LPA questionnaire due"
+      },
+      value: {
+        text: 31 | daysAgo
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "LPA questionnaire due date"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Statement due"
+      },
+      value: {
+        text: 5 | daysInFuture
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "statement due date"
+          }
+        ]
+      }
+    } if data['due-date-updated'] != 'yes',
+    {
+      key: {
+        text: "Statement due"
+      },
+      value: {
+        text: 13 | daysInFuture
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "statement due date"
+          }
+        ]
+      }
+    } if data['due-date-updated'] == 'yes',
+    {
+      key: {
+        text: "Interested party comments due"
+      },
+      value: {
+        text: 5 | daysInFuture
+      },
+      actions: {
+        items: [
+          {
+            href: "update-IP-comments-due-date",
+            text: "Change",
+            visuallyHiddenText: "interested party comments due date"
+          }
+        ]
+      }
+    } if data['due-date-updated'] != 'yes',
+    {
+      key: {
+        text: "Interested party comments due"
+      },
+      value: {
+        text: 13 | daysInFuture
+      },
+      actions: {
+        items: [
+          {
+            href: "update-IP-comments-due-date",
+            text: "Change",
+            visuallyHiddenText: "interested party comments due date"
+          }
+        ]
+      }
+    } if data['due-date-updated'] == 'yes',
+    {
+			classes: "pins-summary-list__row--last",
+			key: {
+        text: "Site visit"
+      },
+      value: {
+        text: ""
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Manage",
+            visuallyHiddenText: "site visit"
+          }
+        ]
+      }
+    }
+  ]
+}) }}

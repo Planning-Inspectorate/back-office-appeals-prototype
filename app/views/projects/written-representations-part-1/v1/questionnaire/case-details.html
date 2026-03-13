@@ -689,22 +689,22 @@
 
                 {% if data['case-stage'] == 'questionnaire' %}
                   <!-- questionnaire -->
-                  {% include "includes/appeal-content/case-documents/questionnaire.html" %}
+                  {% include "includes-for-main/appeal-content/case-documents/questionnaire.html" %}
                 {% elseif data['case-stage'] == 'statements' %}
                   <!-- statements -->
-                  {% include "includes/appeal-content/case-documents/statements.html" %}
+                  {% include "includes-for-main/appeal-content/case-documents/statements.html" %}
                 {% elseif data['case-stage'] == 'final-comments' %}
                   <!-- final comments -->
-                  {% include "includes/appeal-content/case-documents/final-comments.html" %}
+                  {% include "includes-for-main/appeal-content/case-documents/final-comments.html" %}
                 {% elseif data['case-stage'] == 'determination' %}
                   <!-- determination -->
-                  {% include "includes/appeal-content/case-documents/determination.html" %}
+                  {% include "includes-for-main/appeal-content/case-documents/determination.html" %}
                 {% elseif data['case-stage'] == 'closed' %}
                   <!-- closed -->
-                  {% include "includes/appeal-content/case-documents/closed.html" %}
+                  {% include "includes-for-main/appeal-content/case-documents/closed.html" %}
                 {% else %}
                   <!-- new case -->
-                  {% include "includes/appeal-content/case-documents/new-case.html" %}
+                  {% include "includes-for-main/appeal-content/case-documents/new-case.html" %}
                 {% endif %}
 
               </tbody>

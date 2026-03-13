@@ -12,7 +12,7 @@
 
   <div class="app-filter-layout">
     <div class="app-filter-layout__filter">
-      {% include "includes/appeals/filter-panel.njk" %}
+      {% include "includes-for-main/appeals/filter-panel.njk" %}
     </div>
     <div class="app-filter-layout__content">
 
@@ -20,8 +20,8 @@
         <div class="app-action-bar__filter"></div>
       </div>
 
-      {% include "includes/appeals/search-form.njk" %}
-      {% include "includes/appeals/sort.njk" %}
+      {% include "includes-for-main/appeals/search-form.njk" %}
+      {% include "includes-for-main/appeals/sort.njk" %}
 
       {% if appeals.length %}
          <div class="app-list">
@@ -139,7 +139,7 @@
         <p>There are no results.</p>
       {% endif %}
 
-      {% include "includes/pagination.njk" %}
+      {% include "includes-for-main/pagination.njk" %}
     </div>
   </div>
 

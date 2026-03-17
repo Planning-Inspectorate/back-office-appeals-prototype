@@ -16,13 +16,17 @@
 
   <!-- filters for appeal type -->
   {{ govukSelect({
-    id: "sort",
-    name: "sort",
+    id: "type",
+    name: "type",
     classes: "govuk-!-margin-bottom-5",
     label: {
       text: "Type of appeal"
     },
     items: [
+      {
+        value: "",
+        text: "Select an option"
+      },
       {
         value: "Householder",
         text: "Householder (55)"
@@ -68,200 +72,1573 @@
 
   <hr class="govuk-section-break govuk-section-break--s govuk-section-break--visible">
 
-  <!-- filters for procedure -->
-  <details class="govuk-details govuk-!-margin-bottom-0 govuk-!-margin-top-3">
-    <summary class="govuk-details__summary">
-      <h3 class="govuk-heading-s">
-        Procedure
-      </h3>
-    </summary>
-    <fieldset class="govuk-fieldset planning-inspectorate-filter-panel" aria-describedby="procedure">
-      <div class="govuk-checkboxes govuk-checkboxes--small">
-        <div class="govuk-checkboxes__item">
-          <input class="govuk-checkboxes__input" id="written-reps" name="procedure" type="checkbox" value="Written representations">
-          <label class="govuk-label govuk-checkboxes__label" for="written-reps">
-            Written representations (105)
-          </label>
-        </div>
+  <section class="govuk-!-margin-top-5 govuk-!-margin-bottom-5">
 
-        <div class="govuk-checkboxes__item">
-          <input class="govuk-checkboxes__input" id="hearing" name="procedure" type="checkbox" value="Hearing">
-          <label class="govuk-label govuk-checkboxes__label" for="hearing">
-            Hearing (14)
-          </label>
-        </div>
+    {% if data['procedure'] == 'checkbox' %}
 
-        <div class="govuk-checkboxes__item">
-          <input class="govuk-checkboxes__input" id="inquiry" name="procedure" type="checkbox" value="Inquiry">
-          <label class="govuk-label govuk-checkboxes__label" for="inquiry">
-            Inquiry (33)
-          </label>
-        </div>
+      {{ govukCheckboxes({
+        name: "procedure",
+        classes: " govuk-checkboxes--small",
+        fieldset: {
+          legend: {
+            text: "Case procedure",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--s"
+          }
+        },
+        items: [
+          {
+            value: "Written representations",
+            text: "Written representations (105)"
+          },
+          {
+            value: "Hearing",
+            text: "Hearing (14)"
+          },
+          {
+            value: "Inquiry",
+            text: "Inquiry (33)"
+          }
+        ]
+      }) }}
 
-      </div>
-    </fieldset>
-  </details>
+  {% else %}
+
+      {{ govukRadios({
+        classes: "govuk-radios--small",
+        name: "procedure",
+        fieldset: {
+          legend: {
+            text: "Case procedure",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--s"
+          }
+        },
+        items: [
+          {
+            value: "Written representations",
+            text: "Written representations (105)"
+          },
+          {
+            value: "Hearing",
+            text: "Hearing (14)"
+          },
+          {
+            value: "Inquiry",
+            text: "Inquiry (33)"
+          }
+        ]
+      }) }}
+
+    {% endif %}
+
+  </section>
 
   <hr class="govuk-section-break govuk-section-break--s govuk-section-break--visible">
 
-  <!-- filters for appeal stage -->
-  <details class="govuk-details govuk-!-margin-top-3 govuk-!-margin-padding-0 govuk-!-margin-bottom-0" id="filter-panel--stage">
-    <summary class="govuk-details__summary">
-      <h3 class="govuk-heading-s">
-        Stage
-      </h3>
-    </summary>
+  <section class="govuk-!-margin-top-5 govuk-!-margin-bottom-5">
+
+    {{ govukCheckboxes({
+      name: "status",
+      classes: "govuk-checkboxes--small pins-checkboxes--columns",
+
+      fieldset: {
+        classes: "planning-inspectorate-filter-panel",
+        legend: {
+          text: "Case status",
+          isPageHeading: false,
+          classes: "govuk-fieldset__legend--s"
+        },
+        attributes: {
+          "aria-describedby": "status"
+        }
+      },
+      items: [
+        {
+          id: "stage-assign",
+          value: "Assign case officer",
+          text: "Assign case officer (10)"
+        },
+        {
+          id: "stage-validation",
+          value: "Validation",
+          text: "Validation (2)"
+        },
+        {
+          id: "stage-ready",
+          value: "Ready to start",
+          text: "Ready to start (1)"
+        },
+        {
+          id: "stage-questionnaire",
+          value: "LPA questionnaire",
+          text: "LPA questionnaire (12)"
+        },
+        {
+          id: "stage-statements",
+          value: "Statements",
+          text: "Statements (3)"
+        },
+        {
+          id: "stage-final-comments",
+          value: "Final comments",
+          text: "Final comments (5)"
+        },
+        {
+          id: "stage-evidence",
+          value: "Evidence",
+          text: "Evidence (1)"
+        },
+        {
+          id: "stage-setup-event",
+          value: "Event ready to set up",
+          text: "Event ready to set up (0)"
+        },
+        {
+          id: "stage-event",
+          value: "Awaiting event",
+          text: "Awaiting event (20)"
+        },
+        {
+          id: "stage-decision",
+          value: "Issue decision",
+          text: "Issue decision (22)"
+        },
+        {
+          id: "stage-complete",
+          value: "Complete",
+          text: "Complete (207)"
+        },
+        {
+          id: "stage-closed",
+          value: "Closed",
+          text: "Closed (17)"
+        },
+        {
+          id: "stage-withdrawn",
+          value: "Withdrawn",
+          text: "Withdrawn (31)"
+        },
+        {
+          id: "stage-invalid",
+          value: "Decision",
+          text: "Invalid (57)"
+        },
+        {
+          id: "stage-awaiting-transfer",
+          value: "Awaiting transfer",
+          text: "Awaiting transfer (1)"
+        },
+        {
+          id: "stage-transferred",
+          value: "Transferred",
+          text: "Transferred (19)"
+        }
+      ]
+    }) }}
+
+  </section>
+
+  <hr class="govuk-section-break govuk-section-break--s govuk-section-break--visible">
+
+  <section class="govuk-!-margin-top-5 govuk-!-margin-bottom-5">
 
     <div class="govuk-checkboxes govuk-checkboxes--small">
-      <fieldset class="govuk-fieldset planning-inspectorate-filter-panel aria-describedby="stage">
+      <fieldset class="govuk-fieldset planning-inspectorate-filter-panel aria-describedby="lpa">
 
-        <div class="govuk-checkboxes govuk-checkboxes--small pins-checkboxes--columns">
+        <!-- filters for local planning authority -->
+        <!-- this is a long list -->
 
-          <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="stage-assign" name="stage" type="checkbox" value="Assign case officer">
-            <label class="govuk-label govuk-checkboxes__label" for="stage-assign">
-              Assign case officer (10)
-            </label>
-          </div>
+        <section>
+          {{ govukSelect({
+            id: "lpa",
+            name: "lpa",
+            label: {
+              text: "Local planning authority"
+            },
+            items: [
+                {
+                  value: "",
+                  text: "Select an option"
+                },
+                {
+                  value: "Adur",
+                  text: "Adur"
+                },
+                {
+                  value: "Allerdale",
+                  text: "Allerdale"
+                },
+                {
+                  value: "Amber Valley",
+                  text: "Amber Valley"
+                },
+                {
+                  value: "Arun",
+                  text: "Arun"
+                },
+                {
+                  value: "Ashfield",
+                  text: "Ashfield"
+                },
+                {
+                  value: "Ashford",
+                  text: "Ashford"
+                },
+                {
+                  value: "Aylesbury Vale",
+                  text: "Aylesbury Vale"
+                },
+                {
+                  value: "Babergh",
+                  text: "Babergh"
+                },
+                {
+                  value: "Barking and Dagenham",
+                  text: "Barking and Dagenham"
+                },
+                {
+                  value: "Barnet",
+                  text: "Barnet"
+                },
+                {
+                  value: "Barnsley",
+                  text: "Barnsley"
+                },
+                {
+                  value: "Barrow-in-furness",
+                  text: "Barrow-in-furness"
+                },
+                {
+                  value: "Basildon",
+                  text: "Basildon"
+                },
+                {
+                  value: "Basingstoke and Deane",
+                  text: "Basingstoke and Deane"
+                },
+                {
+                  value: "Bassetlaw",
+                  text: "Bassetlaw"
+                },
+                {
+                  value: "Bath and North East Somerset",
+                  text: "Bath and North East Somerset"
+                },
+                {
+                  value: "Bedford",
+                  text: "Bedford"
+                },
+                {
+                  value: "Bexley",
+                  text: "Bexley"
+                },
+                {
+                  value: "Birmingham",
+                  text: "Birmingham"
+                },
+                {
+                  value: "Blaby",
+                  text: "Blaby"
+                },
+                {
+                  value: "Blackburn with Darwen",
+                  text: "Blackburn with Darwen"
+                },
+                {
+                  value: "Blackpool",
+                  text: "Blackpool"
+                },
+                {
+                  value: "Bolsover",
+                  text: "Bolsover"
+                },
+                {
+                  value: "Bolton",
+                  text: "Bolton"
+                },
+                {
+                  value: "Boston",
+                  text: "Boston"
+                },
+                {
+                  value: "Bournemouth",
+                  text: "Bournemouth"
+                },
+                {
+                  value: "Bracknell Forest",
+                  text: "Bracknell Forest"
+                },
+                {
+                  value: "Bradford",
+                  text: "Bradford"
+                },
+                {
+                  value: "Braintree",
+                  text: "Braintree"
+                },
+                {
+                  value: "Breckland",
+                  text: "Breckland"
+                },
+                {
+                  value: "Brent",
+                  text: "Brent"
+                },
+                {
+                  value: "Brentwood",
+                  text: "Brentwood"
+                },
+                {
+                  value: "Brighton and Hove",
+                  text: "Brighton and Hove"
+                },
+                {
+                  value: "Bristol",
+                  text: "Bristol"
+                },
+                {
+                  value: "Broadland",
+                  text: "Broadland"
+                },
+                {
+                  value: "Bromley",
+                  text: "Bromley"
+                },
+                {
+                  value: "Bromsgrove",
+                  text: "Bromsgrove"
+                },
+                {
+                  value: "Broxbourne",
+                  text: "Broxbourne"
+                },
+                {
+                  value: "Broxtowe",
+                  text: "Broxtowe"
+                },
+                {
+                  value: "Buckinghamshire",
+                  text: "Buckinghamshire"
+                },
+                {
+                  value: "Burnley",
+                  text: "Burnley"
+                },
+                {
+                  value: "Bury",
+                  text: "Bury"
+                },
+                {
+                  value: "Calderdale",
+                  text: "Calderdale"
+                },
+                {
+                  value: "Cambridge",
+                  text: "Cambridge"
+                },
+                {
+                  value: "Camden",
+                  text: "Camden"
+                },
+                {
+                  value: "Cannock Chase",
+                  text: "Cannock Chase"
+                },
+                {
+                  value: "Canterbury",
+                  text: "Canterbury"
+                },
+                {
+                  value: "Carlisle",
+                  text: "Carlisle"
+                },
+                {
+                  value: "Castle Point",
+                  text: "Castle Point"
+                },
+                {
+                  value: "Central Bedfordshire",
+                  text: "Central Bedfordshire"
+                },
+                {
+                  value: "Charnwood",
+                  text: "Charnwood"
+                },
+                {
+                  value: "Chelmsford",
+                  text: "Chelmsford"
+                },
+                {
+                  value: "Cheltenham",
+                  text: "Cheltenham"
+                },
+                {
+                  value: "Cherwell",
+                  text: "Cherwell"
+                },
+                {
+                  value: "Cheshire East",
+                  text: "Cheshire East"
+                },
+                {
+                  value: "Cheshire West and Chester",
+                  text: "Cheshire West and Chester"
+                },
+                {
+                  value: "Chesterfield",
+                  text: "Chesterfield"
+                },
+                {
+                  value: "Chichester",
+                  text: "Chichester"
+                },
+                {
+                  value: "Chiltern",
+                  text: "Chiltern"
+                },
+                {
+                  value: "Chorley",
+                  text: "Chorley"
+                },
+                {
+                  value: "City of London",
+                  text: "City of London"
+                },
+                {
+                  value: "Colchester",
+                  text: "Colchester"
+                },
+                {
+                  value: "Copeland",
+                  text: "Copeland"
+                },
+                {
+                  value: "Corby",
+                  text: "Corby"
+                },
+                {
+                  value: "Cornwall",
+                  text: "Cornwall"
+                },
+                {
+                  value: "Cotswold",
+                  text: "Cotswold"
+                },
+                {
+                  value: "County Durham",
+                  text: "County Durham"
+                },
+                {
+                  value: "Coventry",
+                  text: "Coventry"
+                },
+                {
+                  value: "Craven",
+                  text: "Craven"
+                },
+                {
+                  value: "Crawley",
+                  text: "Crawley"
+                },
+                {
+                  value: "Croydon",
+                  text: "Croydon"
+                },
+                {
+                  value: "Cumberland",
+                  text: "Cumberland"
+                },
+                {
+                  value: "Dacorum",
+                  text: "Dacorum"
+                },
+                {
+                  value: "Darlington",
+                  text: "Darlington"
+                },
+                {
+                  value: "Dartford",
+                  text: "Dartford"
+                },
+                {
+                  value: "Dartmoor National Park",
+                  text: "Dartmoor National Park"
+                },
+                {
+                  value: "Daventry",
+                  text: "Daventry"
+                },
+                {
+                  value: "Derby",
+                  text: "Derby"
+                },
+                {
+                  value: "Derbyshire Dales",
+                  text: "Derbyshire Dales"
+                },
+                {
+                  value: "Doncaster",
+                  text: "Doncaster"
+                },
+                {
+                  value: "Dorset",
+                  text: "Dorset"
+                },
+                {
+                  value: "Dover",
+                  text: "Dover"
+                },
+                {
+                  value: "Dudley",
+                  text: "Dudley"
+                },
+                {
+                  value: "Ealing",
+                  text: "Ealing"
+                },
+                {
+                  value: "East Cambridgeshire",
+                  text: "East Cambridgeshire"
+                },
+                {
+                  value: "East Devon",
+                  text: "East Devon"
+                },
+                {
+                  value: "East Hampshire",
+                  text: "East Hampshire"
+                },
+                {
+                  value: "East Hertfordshire",
+                  text: "East Hertfordshire"
+                },
+                {
+                  value: "East Lindsey",
+                  text: "East Lindsey"
+                },
+                {
+                  value: "East Northamptonshire",
+                  text: "East Northamptonshire"
+                },
+                {
+                  value: "East Riding of Yorkshire",
+                  text: "East Riding of Yorkshire"
+                },
+                {
+                  value: "East Staffordshire",
+                  text: "East Staffordshire"
+                },
+                {
+                  value: "East Suffolk",
+                  text: "East Suffolk"
+                },
+                {
+                  value: "Eastbourne",
+                  text: "Eastbourne"
+                },
+                {
+                  value: "Eastleigh",
+                  text: "Eastleigh"
+                },
+                {
+                  value: "Ebbsfleet Development Corporation",
+                  text: "Ebbsfleet Development Corporation"
+                },
+                {
+                  value: "Eden",
+                  text: "Eden"
+                },
+                {
+                  value: "Elmbridge",
+                  text: "Elmbridge"
+                },
+                {
+                  value: "Enfield",
+                  text: "Enfield"
+                },
+                {
+                  value: "Epping Forest",
+                  text: "Epping Forest"
+                },
+                {
+                  value: "Epsom and Ewell",
+                  text: "Epsom and Ewell"
+                },
+                {
+                  value: "Erewash",
+                  text: "Erewash"
+                },
+                {
+                  value: "Exeter",
+                  text: "Exeter"
+                },
+                {
+                  value: "Exmoor National Park",
+                  text: "Exmoor National Park"
+                },
+                {
+                  value: "Fareham",
+                  text: "Fareham"
+                },
+                {
+                  value: "Fenland",
+                  text: "Fenland"
+                },
+                {
+                  value: "Folkestone and Hythe",
+                  text: "Folkestone and Hythe"
+                },
+                {
+                  value: "Forest of Dean",
+                  text: "Forest of Dean"
+                },
+                {
+                  value: "Fylde",
+                  text: "Fylde"
+                },
+                {
+                  value: "Gateshead",
+                  text: "Gateshead"
+                },
+                {
+                  value: "Gedling",
+                  text: "Gedling"
+                },
+                {
+                  value: "Gloucester",
+                  text: "Gloucester"
+                },
+                {
+                  value: "Gosport",
+                  text: "Gosport"
+                },
+                {
+                  value: "Gravesham",
+                  text: "Gravesham"
+                },
+                {
+                  value: "Great Yarmouth",
+                  text: "Great Yarmouth"
+                },
+                {
+                  value: "Greenwich",
+                  text: "Greenwich"
+                },
+                {
+                  value: "Guildford",
+                  text: "Guildford"
+                },
+                {
+                  value: "Hackney",
+                  text: "Hackney"
+                },
+                {
+                  value: "Halton",
+                  text: "Halton"
+                },
+                {
+                  value: "Hambleton",
+                  text: "Hambleton"
+                },
+                {
+                  value: "Hammersmith and Fulham",
+                  text: "Hammersmith and Fulham"
+                },
+                {
+                  value: "Harborough",
+                  text: "Harborough"
+                },
+                {
+                  value: "Haringey",
+                  text: "Haringey"
+                },
+                {
+                  value: "Harlow",
+                  text: "Harlow"
+                },
+                {
+                  value: "Harrogate",
+                  text: "Harrogate"
+                },
+                {
+                  value: "Harrow",
+                  text: "Harrow"
+                },
+                {
+                  value: "Hart",
+                  text: "Hart"
+                },
+                {
+                  value: "Hartlepool",
+                  text: "Hartlepool"
+                },
+                {
+                  value: "Hastings",
+                  text: "Hastings"
+                },
+                {
+                  value: "Havant",
+                  text: "Havant"
+                },
+                {
+                  value: "Havering",
+                  text: "Havering"
+                },
+                {
+                  value: "Herefordshire",
+                  text: "Herefordshire"
+                },
+                {
+                  value: "Hertsmere",
+                  text: "Hertsmere"
+                },
+                {
+                  value: "High Peak",
+                  text: "High Peak"
+                },
+                {
+                  value: "Hillingdon",
+                  text: "Hillingdon"
+                },
+                {
+                  value: "Hinckley and Bosworth",
+                  text: "Hinckley and Bosworth"
+                },
+                {
+                  value: "Horsham",
+                  text: "Horsham"
+                },
+                {
+                  value: "Hounslow",
+                  text: "Hounslow"
+                },
+                {
+                  value: "Huntingdonshire",
+                  text: "Huntingdonshire"
+                },
+                {
+                  value: "Hyndburn",
+                  text: "Hyndburn"
+                },
+                {
+                  value: "Ipswich",
+                  text: "Ipswich"
+                },
+                {
+                  value: "Isle of Wight",
+                  text: "Isle of Wight"
+                },
+                {
+                  value: "Isles of Scilly",
+                  text: "Isles of Scilly"
+                },
+                {
+                  value: "Islington",
+                  text: "Islington"
+                },
+                {
+                  value: "Kensington and Chelsea",
+                  text: "Kensington and Chelsea"
+                },
+                {
+                  value: "Kettering",
+                  text: "Kettering"
+                },
+                {
+                  value: "Kingston upon Hull",
+                  text: "Kingston upon Hull"
+                },
+                {
+                  value: "Kingston upon Thames",
+                  text: "Kingston upon Thames"
+                },
+                {
+                  value: "King’s Lynn and West Norfolk",
+                  text: "King’s Lynn and West Norfolk"
+                },
+                {
+                  value: "Kirklees",
+                  text: "Kirklees"
+                },
+                {
+                  value: "Knowsley",
+                  text: "Knowsley"
+                },
+                {
+                  value: "Lake District National Park",
+                  text: "Lake District National Park"
+                },
+                {
+                  value: "Lambeth",
+                  text: "Lambeth"
+                },
+                {
+                  value: "Lancaster",
+                  text: "Lancaster"
+                },
+                {
+                  value: "Leeds",
+                  text: "Leeds"
+                },
+                {
+                  value: "Leicester",
+                  text: "Leicester"
+                },
+                {
+                  value: "Lewes",
+                  text: "Lewes"
+                },
+                {
+                  value: "Lewisham",
+                  text: "Lewisham"
+                },
+                {
+                  value: "Lichfield",
+                  text: "Lichfield"
+                },
+                {
+                  value: "Lincoln",
+                  text: "Lincoln"
+                },
+                {
+                  value: "Liverpool",
+                  text: "Liverpool"
+                },
+                {
+                  value: "London Legacy Development Corporation",
+                  text: "London Legacy Development Corporation"
+                },
+                {
+                  value: "Luton",
+                  text: "Luton"
+                },
+                {
+                  value: "Maidstone",
+                  text: "Maidstone"
+                },
+                {
+                  value: "Maldon",
+                  text: "Maldon"
+                },
+                {
+                  value: "Malvern Hills",
+                  text: "Malvern Hills"
+                },
+                {
+                  value: "Manchester",
+                  text: "Manchester"
+                },
+                {
+                  value: "Mansfield",
+                  text: "Mansfield"
+                },
+                {
+                  value: "Medway",
+                  text: "Medway"
+                },
+                {
+                  value: "Melton",
+                  text: "Melton"
+                },
+                {
+                  value: "Mendip",
+                  text: "Mendip"
+                },
+                {
+                  value: "Merton",
+                  text: "Merton"
+                },
+                {
+                  value: "Mid Devon",
+                  text: "Mid Devon"
+                },
+                {
+                  value: "Mid Suffolk",
+                  text: "Mid Suffolk"
+                },
+                {
+                  value: "Mid Sussex",
+                  text: "Mid Sussex"
+                },
+                {
+                  value: "Middlesbrough",
+                  text: "Middlesbrough"
+                },
+                {
+                  value: "Milton Keynes",
+                  text: "Milton Keynes"
+                },
+                {
+                  value: "Mole Valley",
+                  text: "Mole Valley"
+                },
+                {
+                  value: "New Forest",
+                  text: "New Forest"
+                },
+                {
+                  value: "New Forest National Park",
+                  text: "New Forest National Park"
+                },
+                {
+                  value: "Newark and Sherwood",
+                  text: "Newark and Sherwood"
+                },
+                {
+                  value: "Newcastle upon Tyne",
+                  text: "Newcastle upon Tyne"
+                },
+                {
+                  value: "Newcastle-under-lyme",
+                  text: "Newcastle-under-lyme"
+                },
+                {
+                  value: "Newham",
+                  text: "Newham"
+                },
+                {
+                  value: "North Devon",
+                  text: "North Devon"
+                },
+                {
+                  value: "North East Derbyshire",
+                  text: "North East Derbyshire"
+                },
+                {
+                  value: "North East Lincolnshire",
+                  text: "North East Lincolnshire"
+                },
+                {
+                  value: "North Hertfordshire",
+                  text: "North Hertfordshire"
+                },
+                {
+                  value: "North Kesteven",
+                  text: "North Kesteven"
+                },
+                {
+                  value: "North Lincolnshire",
+                  text: "North Lincolnshire"
+                },
+                {
+                  value: "North Norfolk",
+                  text: "North Norfolk"
+                },
+                {
+                  value: "North Northamptonshire",
+                  text: "North Northamptonshire"
+                },
+                {
+                  value: "North Somerset",
+                  text: "North Somerset"
+                },
+                {
+                  value: "North Tyneside",
+                  text: "North Tyneside"
+                },
+                {
+                  value: "North Warwickshire",
+                  text: "North Warwickshire"
+                },
+                {
+                  value: "North West Leicestershire",
+                  text: "North West Leicestershire"
+                },
+                {
+                  value: "North York Moors National Park",
+                  text: "North York Moors National Park"
+                },
+                {
+                  value: "North Yorkshire",
+                  text: "North Yorkshire"
+                },
+                {
+                  value: "Northampton",
+                  text: "Northampton"
+                },
+                {
+                  value: "Northumberland",
+                  text: "Northumberland"
+                },
+                {
+                  value: "Northumberland National Park",
+                  text: "Northumberland National Park"
+                },
+                {
+                  value: "Norwich",
+                  text: "Norwich"
+                },
+                {
+                  value: "Nottingham",
+                  text: "Nottingham"
+                },
+                {
+                  value: "Nuneaton and Bedworth",
+                  text: "Nuneaton and Bedworth"
+                },
+                {
+                  value: "Oadby and Wigston",
+                  text: "Oadby and Wigston"
+                },
+                {
+                  value: "Old Oak and Park Royal Development Corporation",
+                  text: "Old Oak and Park Royal Development Corporation"
+                },
+                {
+                  value: "Oldham",
+                  text: "Oldham"
+                },
+                {
+                  value: "Oxford",
+                  text: "Oxford"
+                },
+                {
+                  value: "Peak District National Park",
+                  text: "Peak District National Park"
+                },
+                {
+                  value: "Pendle",
+                  text: "Pendle"
+                },
+                {
+                  value: "Peterborough",
+                  text: "Peterborough"
+                },
+                {
+                  value: "Plymouth",
+                  text: "Plymouth"
+                },
+                {
+                  value: "Portsmouth",
+                  text: "Portsmouth"
+                },
+                {
+                  value: "Preston",
+                  text: "Preston"
+                },
+                {
+                  value: "Reading",
+                  text: "Reading"
+                },
+                {
+                  value: "Redbridge",
+                  text: "Redbridge"
+                },
+                {
+                  value: "Redcar and Cleveland",
+                  text: "Redcar and Cleveland"
+                },
+                {
+                  value: "Redditch",
+                  text: "Redditch"
+                },
+                {
+                  value: "Reigate and Banstead",
+                  text: "Reigate and Banstead"
+                },
+                {
+                  value: "Ribble Valley",
+                  text: "Ribble Valley"
+                },
+                {
+                  value: "Richmond upon Thames",
+                  text: "Richmond upon Thames"
+                },
+                {
+                  value: "Richmondshire",
+                  text: "Richmondshire"
+                },
+                {
+                  value: "Rochdale",
+                  text: "Rochdale"
+                },
+                {
+                  value: "Rochford",
+                  text: "Rochford"
+                },
+                {
+                  value: "Rossendale",
+                  text: "Rossendale"
+                },
+                {
+                  value: "Rother",
+                  text: "Rother"
+                },
+                {
+                  value: "Rotherham",
+                  text: "Rotherham"
+                },
+                {
+                  value: "Rugby",
+                  text: "Rugby"
+                },
+                {
+                  value: "Runnymede",
+                  text: "Runnymede"
+                },
+                {
+                  value: "Rushcliffe",
+                  text: "Rushcliffe"
+                },
+                {
+                  value: "Rushmoor",
+                  text: "Rushmoor"
+                },
+                {
+                  value: "Rutland",
+                  text: "Rutland"
+                },
+                {
+                  value: "Ryedale",
+                  text: "Ryedale"
+                },
+                {
+                  value: "Salford",
+                  text: "Salford"
+                },
+                {
+                  value: "Sandwell",
+                  text: "Sandwell"
+                },
+                {
+                  value: "Scarborough",
+                  text: "Scarborough"
+                },
+                {
+                  value: "Sedgemoor",
+                  text: "Sedgemoor"
+                },
+                {
+                  value: "Sefton",
+                  text: "Sefton"
+                },
+                {
+                  value: "Selby",
+                  text: "Selby"
+                },
+                {
+                  value: "Sevenoaks",
+                  text: "Sevenoaks"
+                },
+                {
+                  value: "Sheffield",
+                  text: "Sheffield"
+                },
+                {
+                  value: "Shropshire",
+                  text: "Shropshire"
+                },
+                {
+                  value: "Slough",
+                  text: "Slough"
+                },
+                {
+                  value: "Solihull",
+                  text: "Solihull"
+                },
+                {
+                  value: "Somerset",
+                  text: "Somerset"
+                },
+                {
+                  value: "Somerset West and Taunton",
+                  text: "Somerset West and Taunton"
+                },
+                {
+                  value: "South Bucks",
+                  text: "South Bucks"
+                },
+                {
+                  value: "South Cambridgeshire",
+                  text: "South Cambridgeshire"
+                },
+                {
+                  value: "South Derbyshire",
+                  text: "South Derbyshire"
+                },
+                {
+                  value: "South Downs National Park",
+                  text: "South Downs National Park"
+                },
+                {
+                  value: "South Gloucestershire",
+                  text: "South Gloucestershire"
+                },
+                {
+                  value: "South Hams",
+                  text: "South Hams"
+                },
+                {
+                  value: "South Holland",
+                  text: "South Holland"
+                },
+                {
+                  value: "South Kesteven",
+                  text: "South Kesteven"
+                },
+                {
+                  value: "South Lakeland",
+                  text: "South Lakeland"
+                },
+                {
+                  value: "South Norfolk",
+                  text: "South Norfolk"
+                },
+                {
+                  value: "South Northamptonshire",
+                  text: "South Northamptonshire"
+                },
+                {
+                  value: "South Oxfordshire",
+                  text: "South Oxfordshire"
+                },
+                {
+                  value: "South Ribble",
+                  text: "South Ribble"
+                },
+                {
+                  value: "South Somerset",
+                  text: "South Somerset"
+                },
+                {
+                  value: "South Staffordshire",
+                  text: "South Staffordshire"
+                },
+                {
+                  value: "South Tyneside",
+                  text: "South Tyneside"
+                },
+                {
+                  value: "Southampton",
+                  text: "Southampton"
+                },
+                {
+                  value: "Southend-on-sea",
+                  text: "Southend-on-sea"
+                },
+                {
+                  value: "Southwark",
+                  text: "Southwark"
+                },
+                {
+                  value: "Spelthorne",
+                  text: "Spelthorne"
+                },
+                {
+                  value: "St Albans",
+                  text: "St Albans"
+                },
+                {
+                  value: "St. Helens",
+                  text: "St. Helens"
+                },
+                {
+                  value: "Stafford",
+                  text: "Stafford"
+                },
+                {
+                  value: "Staffordshire Moorlands",
+                  text: "Staffordshire Moorlands"
+                },
+                {
+                  value: "Stevenage",
+                  text: "Stevenage"
+                },
+                {
+                  value: "Stockport",
+                  text: "Stockport"
+                },
+                {
+                  value: "Stockton-on-tees",
+                  text: "Stockton-on-tees"
+                },
+                {
+                  value: "Stoke-on-trent",
+                  text: "Stoke-on-trent"
+                },
+                {
+                  value: "Stratford-on-avon",
+                  text: "Stratford-on-avon"
+                },
+                {
+                  value: "Stroud",
+                  text: "Stroud"
+                },
+                {
+                  value: "Sunderland",
+                  text: "Sunderland"
+                },
+                {
+                  value: "Surrey Heath",
+                  text: "Surrey Heath"
+                },
+                {
+                  value: "Sutton",
+                  text: "Sutton"
+                },
+                {
+                  value: "Swale",
+                  text: "Swale"
+                },
+                {
+                  value: "Swindon",
+                  text: "Swindon"
+                },
+                {
+                  value: "Tameside",
+                  text: "Tameside"
+                },
+                {
+                  value: "Tamworth",
+                  text: "Tamworth"
+                },
+                {
+                  value: "Tandridge",
+                  text: "Tandridge"
+                },
+                {
+                  value: "Teignbridge",
+                  text: "Teignbridge"
+                },
+                {
+                  value: "Telford and Wrekin",
+                  text: "Telford and Wrekin"
+                },
+                {
+                  value: "Tendring",
+                  text: "Tendring"
+                },
+                {
+                  value: "Test Valley",
+                  text: "Test Valley"
+                },
+                {
+                  value: "Tewkesbury",
+                  text: "Tewkesbury"
+                },
+                {
+                  value: "Thanet",
+                  text: "Thanet"
+                },
+                {
+                  value: "The Broads Authority",
+                  text: "The Broads Authority"
+                },
+                {
+                  value: "Three Rivers",
+                  text: "Three Rivers"
+                },
+                {
+                  value: "Thurrock",
+                  text: "Thurrock"
+                },
+                {
+                  value: "Tonbridge and Malling",
+                  text: "Tonbridge and Malling"
+                },
+                {
+                  value: "Torbay",
+                  text: "Torbay"
+                },
+                {
+                  value: "Torridge",
+                  text: "Torridge"
+                },
+                {
+                  value: "Tower Hamlets",
+                  text: "Tower Hamlets"
+                },
+                {
+                  value: "Trafford",
+                  text: "Trafford"
+                },
+                {
+                  value: "Tunbridge Wells",
+                  text: "Tunbridge Wells"
+                },
+                {
+                  value: "Uttlesford",
+                  text: "Uttlesford"
+                },
+                {
+                  value: "Vale of White Horse",
+                  text: "Vale of White Horse"
+                },
+                {
+                  value: "Wakefield",
+                  text: "Wakefield"
+                },
+                {
+                  value: "Walsall",
+                  text: "Walsall"
+                },
+                {
+                  value: "Waltham Forest",
+                  text: "Waltham Forest"
+                },
+                {
+                  value: "Wandsworth",
+                  text: "Wandsworth"
+                },
+                {
+                  value: "Warrington",
+                  text: "Warrington"
+                },
+                {
+                  value: "Warwick",
+                  text: "Warwick"
+                },
+                {
+                  value: "Watford",
+                  text: "Watford"
+                },
+                {
+                  value: "Waverley",
+                  text: "Waverley"
+                },
+                {
+                  value: "Wealden",
+                  text: "Wealden"
+                },
+                {
+                  value: "Wellingborough",
+                  text: "Wellingborough"
+                },
+                {
+                  value: "Welwyn Hatfield",
+                  text: "Welwyn Hatfield"
+                },
+                {
+                  value: "West Berkshire",
+                  text: "West Berkshire"
+                },
+                {
+                  value: "West Devon",
+                  text: "West Devon"
+                },
+                {
+                  value: "West Lancashire",
+                  text: "West Lancashire"
+                },
+                {
+                  value: "West Lindsey",
+                  text: "West Lindsey"
+                },
+                {
+                  value: "West Northamptonshire",
+                  text: "West Northamptonshire"
+                },
+                {
+                  value: "West Oxfordshire",
+                  text: "West Oxfordshire"
+                },
+                {
+                  value: "West Suffolk",
+                  text: "West Suffolk"
+                },
+                {
+                  value: "Westminster",
+                  text: "Westminster"
+                },
+                {
+                  value: "Westmorland and Furness",
+                  text: "Westmorland and Furness"
+                },
+                {
+                  value: "Wigan",
+                  text: "Wigan"
+                },
+                {
+                  value: "Wiltshire",
+                  text: "Wiltshire"
+                },
+                {
+                  value: "Winchester",
+                  text: "Winchester"
+                },
+                {
+                  value: "Windsor and Maidenhead",
+                  text: "Windsor and Maidenhead"
+                },
+                {
+                  value: "Wirral",
+                  text: "Wirral"
+                },
+                {
+                  value: "Woking",
+                  text: "Woking"
+                },
+                {
+                  value: "Wokingham",
+                  text: "Wokingham"
+                },
+                {
+                  value: "Wolverhampton",
+                  text: "Wolverhampton"
+                },
+                {
+                  value: "Worcester",
+                  text: "Worcester"
+                },
+                {
+                  value: "Worthing",
+                  text: "Worthing"
+                },
+                {
+                  value: "Wychavon",
+                  text: "Wychavon"
+                },
+                {
+                  value: "Wycombe",
+                  text: "Wycombe"
+                },
+                {
+                  value: "Wyre Forest",
+                  text: "Wyre Forest"
+                },
+                {
+                  value: "Wyre",
+                  text: "Wyre"
+                },
+                {
+                  value: "York",
+                  text: "York"
+                },
+                {
+                  value: "Yorkshire Dales National Park",
+                  text: "Yorkshire Dales National Park"
+                }
+            ]
+          }) }}
 
-          <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="stage-validation" name="stage" type="checkbox" value="Validation">
-            <label class="govuk-label govuk-checkboxes__label" for="stage-validation">
-              Validation (2)
-            </label>
-          </div>
+        </section>
 
-          <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="stage-ready" name="stage" type="checkbox" value="Ready to start">
-            <label class="govuk-label govuk-checkboxes__label" for="stage-ready">
-              Ready to start (1)
-            </label>
-          </div>
-
-          <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="stage-questionnaire" name="stage" type="checkbox" value="LPA questionnaire">
-            <label class="govuk-label govuk-checkboxes__label" for="stage-questionnaire">
-              LPA questionnaire (12)
-            </label>
-          </div>
-
-          <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="stage-statements" name="stage" type="checkbox" value="Statements">
-            <label class="govuk-label govuk-checkboxes__label" for="stage-statements">
-              Statements (3)
-            </label>
-          </div>
-
-          <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="stage-final-comments" name="stage" type="checkbox" value="Final comments">
-            <label class="govuk-label govuk-checkboxes__label" for="stage-final-comments">
-              Final comments (5)
-            </label>
-          </div>
-
-          <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="stage-evidence" name="stage" type="checkbox" value="Evidence">
-            <label class="govuk-label govuk-checkboxes__label" for="stage-evidence">
-              Evidence (1)
-            </label>
-          </div>
-
-          <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="stage-setup-event" name="stage" type="checkbox" value="Event ready to set up">
-            <label class="govuk-label govuk-checkboxes__label" for="stage-setup-event">
-              Event ready to set up (0)
-            </label>
-          </div>
-
-          <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="stage-event" name="stage" type="checkbox" value="Awaiting event">
-            <label class="govuk-label govuk-checkboxes__label" for="stage-event">
-              Awaiting event (20)
-            </label>
-          </div>
-
-          <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="stage-decision" name="stage" type="checkbox" value="Issue decision">
-            <label class="govuk-label govuk-checkboxes__label" for="stage-decision">
-              Issue decision (22)
-            </label>
-          </div>
-
-          <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="stage-complete" name="stage" type="checkbox" value="Complete">
-            <label class="govuk-label govuk-checkboxes__label" for="stage-complete">
-              Complete (207)
-            </label>
-          </div>
-
-          <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="stage-closed" name="stage" type="checkbox" value="Closed">
-            <label class="govuk-label govuk-checkboxes__label" for="stage-closed">
-              Closed (17)
-            </label>
-          </div>
-
-          <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="stage-withdrawn" name="stage" type="checkbox" value="Withdrawn">
-            <label class="govuk-label govuk-checkboxes__label" for="stage-withdrawn">
-              Withdrawn (31)
-            </label>
-          </div>
-
-          <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="stage-invalid" name="stage" type="checkbox" value="Decision">
-            <label class="govuk-label govuk-checkboxes__label" for="stage-invalid">
-              Invalid (57)
-            </label>
-          </div>
-
-          <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="stage-awaiting-transfer" name="stage" type="checkbox" value="Awaiting transfer">
-            <label class="govuk-label govuk-checkboxes__label" for="stage-awaiting-transfer">
-              Awaiting transfer (1)
-            </label>
-          </div>
-
-          <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="stage-transferred" name="stage" type="checkbox" value="Transferred">
-            <label class="govuk-label govuk-checkboxes__label" for="stage-transferred">
-              Transferred (19)
-            </label>
-          </div>
-
-        </div>
       </fieldset>
 
     </div>
 
-  </details>
+  </section>
 
   <hr class="govuk-section-break govuk-section-break--s govuk-section-break--visible">
 
-
-  <!-- filters for appeal stage -->
-  <details class="govuk-details govuk-!-margin-top-3 govuk-!-margin-padding-0 govuk-!-margin-bottom-0" id="filter-panel--stage">
-    <summary class="govuk-details__summary">
-      <h3 class="govuk-heading-s">
-        Case team
-      </h3>
-    </summary>
+  <!-- details for case team -->
+  <section class="govuk-!-margin-top-5 govuk-!-margin-bottom-5">
 
     <div class="govuk-checkboxes govuk-checkboxes--small">
       <fieldset class="govuk-fieldset planning-inspectorate-filter-panel aria-describedby="stage">
 
-        <!-- filters for appeal type -->
+        <!-- filters for case team -->
         {{ govukSelect({
           id: "sort",
           name: "sort",
-          classes: "govuk-!-margin-bottom-5",
           label: {
             text: "Case team"
           },
           items: [
             {
-              value: "Not assigned",
-              text: "Not assigned (31)"
+              value: "",
+              text: "Select an option"
             },
             {
               value: "Major casework",
@@ -341,105 +1718,244 @@
 
     </div>
 
-  </details>
+  </section>
+
+  <hr class="govuk-section-break govuk-section-break--s govuk-section-break--visible">
+
+  <!-- filters for case officer -->
+  <section class="govuk-!-margin-top-5 govuk-!-margin-bottom-5">
+
+    <div class="govuk-checkboxes govuk-checkboxes--small">
+      <fieldset class="govuk-fieldset planning-inspectorate-filter-panel aria-describedby="case-officer">
+
+        <!-- filters for case team -->
+        {{ govukSelect({
+          id: "case-officer",
+          name: "case-officer",
+          label: {
+            text: "Case officer"
+          },
+          items: [
+            {
+              value: "",
+              text: "Select an option"
+            },
+            {
+              value: "Amina El-Sayed",
+              text: "Amina El-Sayed"
+            },
+            {
+              value: "Hiroshi Tanaka",
+              text: "Hiroshi Tanaka"
+            },
+            {
+              value: "Lucía Fernández",
+              text: "Lucía Fernández"
+            },
+            {
+              value: "Kwame Mensah",
+              text: "Kwame Mensah"
+            },
+            {
+              value: "Sofia Petrova",
+              text: "Sofia Petrova"
+            },
+            {
+              value: "Ravi Patel",
+              text: "Ravi Patel"
+            },
+            {
+              value: "Inês Rodrigues",
+              text: "Inês Rodrigues"
+            },
+            {
+              value: "Mateo Alvarez",
+              text: "Mateo Alvarez"
+            },
+            {
+              value: "Zainab Hassan",
+              text: "Zainab Hassan"
+            },
+            {
+              value: "Jonas Müller",
+              text: "Jonas Müller"
+            },
+            {
+              value: "Yuki Nakamura",
+              text: "Yuki Nakamura"
+            },
+            {
+              value: "Amadou Diallo",
+              text: "Amadou Diallo"
+            },
+            {
+              value: "Elena Popescu",
+              text: "Elena Popescu"
+            },
+            {
+              value: "Thiago Costa",
+              text: "Thiago Costa"
+            },
+            {
+              value: "Nour Ben Ali",
+              text: "Nour Ben Ali"
+            },
+            {
+              value: "Pavel Novák",
+              text: "Pavel Novák"
+            },
+            {
+              value: "Chen Wei",
+              text: "Chen Wei"
+            },
+            {
+              value: "Fatima Al-Mansoori",
+              text: "Fatima Al-Mansoori"
+            },
+            {
+              value: "Lars Johansen",
+              text: "Lars Johansen"
+            },
+            {
+              value: "María Quispe",
+              text: "María Quispe"
+            },
+            {
+              value: "Tawanda Moyo",
+              text: "Tawanda Moyo"
+            }
+          ]
+        }) }}
+
+      </fieldset>
+
+    </div>
+
+  </section>
+
+  <hr class="govuk-section-break govuk-section-break--s govuk-section-break--visible">
+
+  <section class="govuk-!-margin-top-5 govuk-!-margin-bottom-5">
+
+    {{ govukCheckboxes({
+      name: "inspector",
+      fieldset: {
+        classes: "planning-inspectorate-filter-panel govuk-!-margin-top-2",
+        attributes: {
+          "aria-describedby": "inspector"
+        }
+      },
+      items: [
+        {
+          id: "inspector-assigned",
+          value: "Inspector assigned",
+          text: "Inspector assigned"
+        }
+      ]
+    }) }}
+
+  </section>
 
   <hr class="govuk-section-break govuk-section-break--s govuk-section-break--visible">
 
   <!-- filters for appeal stage -->
-  <details class="govuk-details govuk-!-margin-top-3 govuk-!-margin-padding-0 govuk-!-margin-bottom-0" id="filter-panel--inspector">
-    <summary class="govuk-details__summary">
-      <h3 class="govuk-heading-s">
-        Inspector
-      </h3>
-    </summary>
+  <section class="govuk-!-margin-top-5 govuk-!-margin-bottom-5">
 
     <div class="govuk-checkboxes govuk-checkboxes--small">
       <fieldset class="govuk-fieldset planning-inspectorate-filter-panel aria-describedby="inspector">
 
         <!-- filters for inspector -->
         {{ govukSelect({
-          id: "inspector",
-          name: "inspector",
-          classes: "govuk-!-margin-bottom-5",
-          label: {
-            text: "Inspector"
+        id: "inspector",
+        name: "inspector",
+        label: {
+          text: "Inspector"
+        },
+        items: [
+          {
+            value: "",
+            text: "Select an option"
           },
-          items: [
-            {
-              value: "",
-              text: "All"
-            },
-            {
-              value: "Adam Price",
-              text: "Adam Price"
-            },
-            {
-              value: "Alex Jack",
-              text: "Alex Jack"
-            },
-            {
-              value: "Andrew Smith",
-              text: "Andrew Smith"
-            },
-            {
-              value: "Andrew Tucker",
-              text: "Andrew Tucker"
-            },
-            {
-              value: "Brett Highway",
-              text: "Brett Highway"
-            },
-            {
-              value: "Catherine Jack",
-              text: "Catherine Jack"
-            },
-            {
-              value: "David Smith",
-              text: "David Smith"
-            },
-            {
-              value: "Finn Bradford",
-              text: "Finn Bradford"
-            },
-            {
-              value: "Hilda Higenbottam",
-              text: "Hilda Higenbottam"
-            },
-            {
-              value: "Karen Taylor",
-              text: "Karen Taylor"
-            },
-            {
-              value: "Lakshmi Satti",
-              text: "Lakshmi Satti"
-            },
-            {
-              value: "Mark Yates",
-              text: "Mark Yates"
-            },
-
-            {
-              value: "Planning appeal decision supplier inspectors",
-              text: "Planning appeal decision supplier inspectors"
-            }
-          ]
-        }) }}
+          {
+            value: "Aisha Rahman",
+            text: "Aisha Rahman"
+          },
+          {
+            value: "Daniel O’Connell",
+            text: "Daniel O’Connell"
+          },
+          {
+            value: "Priya Patel",
+            text: "Priya Patel"
+          },
+          {
+            value: "Mohammed Khan",
+            text: "Mohammed Khan"
+          },
+          {
+            value: "Elena Rossi",
+            text: "Elena Rossi"
+          },
+          {
+            value: "Kwame Boateng",
+            text: "Kwame Boateng"
+          },
+          {
+            value: "Sofia Dimitriou",
+            text: "Sofia Dimitriou"
+          },
+          {
+            value: "Tariq Mahmood",
+            text: "Tariq Mahmood"
+          },
+          {
+            value: "Magdalena Kowalska",
+            text: "Magdalena Kowalska"
+          },
+          {
+            value: "Hassan Ali",
+            text: "Hassan Ali"
+          },
+          {
+            value: "Anika Schneider",
+            text: "Anika Schneider"
+          },
+          {
+            value: "Luis Fernández",
+            text: "Luis Fernández"
+          },
+          {
+            value: "Planning appeal decision supplier inspectors",
+            text: "Planning appeal decision supplier inspectors"
+          }
+        ]
+      }) }}
 
     </div>
-  </details>
+
+  </section>
 
   <hr class="govuk-section-break govuk-section-break--s govuk-section-break--visible">
 
-  <fieldset class="govuk-fieldset planning-inspectorate-filter-panel govuk-!-margin-top-2" aria-describedby="inspector">
-    <div class="govuk-checkboxes govuk-checkboxes--small">
-      <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="inspector-assigned" name="green-belt" type="checkbox" value="Green belt">
-        <label class="govuk-label govuk-checkboxes__label" for="green-belt">
-          Green belt
-        </label>
-      </div>
-    </div>
-  </fieldset>
+  <section class="govuk-!-margin-top-5 govuk-!-margin-bottom-5">
+
+    {{ govukCheckboxes({
+      name: "green-belt",
+      fieldset: {
+        attributes: {
+          "aria-describedby": "green-belt"
+        }
+      },
+      items: [
+        {
+          id: "green-belt",
+          value: "Green belt",
+          text: "Only green belt sites"
+        }
+      ]
+    }) }}
+
+  </section>
 
   <a href="applications-selected" class="govuk-button" style="margin-bottom:0px">
     Apply filters

@@ -1,0 +1,448 @@
+<h2 class="govuk-heading-m">
+  Filter
+</h2>
+
+<!-- filter controls -->
+<div class="govuk-button-group">
+  {{ govukButton({
+    text: "Apply filters"
+  }) }}
+
+  <a class="govuk-link" href="#">Cancel</a>
+</div>
+
+<!-- filters -->
+<form class="govuk-form-group planning-inspectorate-filter-form">
+
+  <!-- filters for appeal type -->
+  {{ govukSelect({
+    id: "sort",
+    name: "sort",
+    classes: "govuk-!-margin-bottom-5",
+    label: {
+      text: "Type of appeal"
+    },
+    items: [
+      {
+        value: "Householder",
+        text: "Householder (55)"
+      },
+      {
+        value: "Full planning",
+        text: "Full planning (104)"
+      },
+      {
+        value: "Planning listed building",
+        text: "Planning listed building and conservation area (4)"
+      },
+      {
+        value: "Enforcement",
+        text: "Enforcement notice (19)"
+      },
+      {
+        value: "Enforcement listed building",
+        text: "Enforcement notice listed building and conservation area (1)"
+      },
+      {
+        value: "CAS planning",
+        text: "CAS planning (30)"
+      },
+      {
+        value: "CAS advert",
+        text: "CAS advert (12)"
+      },
+      {
+        value: "Enforcement",
+        text: "Enforcement notice (19)"
+      },
+      {
+        value: "Advertising",
+        text: "Advertisement (3)"
+      },
+      {
+        value: "Lawful development certificate",
+        text: "Lawful development certificate (8)"
+      }
+    ]
+  }) }}
+
+  <hr class="govuk-section-break govuk-section-break--s govuk-section-break--visible">
+
+  <!-- filters for procedure -->
+  <details class="govuk-details govuk-!-margin-bottom-0 govuk-!-margin-top-3">
+    <summary class="govuk-details__summary">
+      <h3 class="govuk-heading-s">
+        Procedure
+      </h3>
+    </summary>
+    <fieldset class="govuk-fieldset planning-inspectorate-filter-panel" aria-describedby="procedure">
+      <div class="govuk-checkboxes govuk-checkboxes--small">
+        <div class="govuk-checkboxes__item">
+          <input class="govuk-checkboxes__input" id="written-reps" name="procedure" type="checkbox" value="Written representations">
+          <label class="govuk-label govuk-checkboxes__label" for="written-reps">
+            Written representations (105)
+          </label>
+        </div>
+
+        <div class="govuk-checkboxes__item">
+          <input class="govuk-checkboxes__input" id="hearing" name="procedure" type="checkbox" value="Hearing">
+          <label class="govuk-label govuk-checkboxes__label" for="hearing">
+            Hearing (14)
+          </label>
+        </div>
+
+        <div class="govuk-checkboxes__item">
+          <input class="govuk-checkboxes__input" id="inquiry" name="procedure" type="checkbox" value="Inquiry">
+          <label class="govuk-label govuk-checkboxes__label" for="inquiry">
+            Inquiry (33)
+          </label>
+        </div>
+
+      </div>
+    </fieldset>
+  </details>
+
+  <hr class="govuk-section-break govuk-section-break--s govuk-section-break--visible">
+
+  <!-- filters for appeal stage -->
+  <details class="govuk-details govuk-!-margin-top-3 govuk-!-margin-padding-0 govuk-!-margin-bottom-0" id="filter-panel--stage">
+    <summary class="govuk-details__summary">
+      <h3 class="govuk-heading-s">
+        Stage
+      </h3>
+    </summary>
+
+    <div class="govuk-checkboxes govuk-checkboxes--small">
+      <fieldset class="govuk-fieldset planning-inspectorate-filter-panel aria-describedby="stage">
+
+        <div class="govuk-checkboxes govuk-checkboxes--small pins-checkboxes--columns">
+
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="stage-assign" name="stage" type="checkbox" value="Assign case officer">
+            <label class="govuk-label govuk-checkboxes__label" for="stage-assign">
+              Assign case officer (10)
+            </label>
+          </div>
+
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="stage-validation" name="stage" type="checkbox" value="Validation">
+            <label class="govuk-label govuk-checkboxes__label" for="stage-validation">
+              Validation (2)
+            </label>
+          </div>
+
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="stage-ready" name="stage" type="checkbox" value="Ready to start">
+            <label class="govuk-label govuk-checkboxes__label" for="stage-ready">
+              Ready to start (1)
+            </label>
+          </div>
+
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="stage-questionnaire" name="stage" type="checkbox" value="LPA questionnaire">
+            <label class="govuk-label govuk-checkboxes__label" for="stage-questionnaire">
+              LPA questionnaire (12)
+            </label>
+          </div>
+
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="stage-statements" name="stage" type="checkbox" value="Statements">
+            <label class="govuk-label govuk-checkboxes__label" for="stage-statements">
+              Statements (3)
+            </label>
+          </div>
+
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="stage-final-comments" name="stage" type="checkbox" value="Final comments">
+            <label class="govuk-label govuk-checkboxes__label" for="stage-final-comments">
+              Final comments (5)
+            </label>
+          </div>
+
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="stage-evidence" name="stage" type="checkbox" value="Evidence">
+            <label class="govuk-label govuk-checkboxes__label" for="stage-evidence">
+              Evidence (1)
+            </label>
+          </div>
+
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="stage-setup-event" name="stage" type="checkbox" value="Event ready to set up">
+            <label class="govuk-label govuk-checkboxes__label" for="stage-setup-event">
+              Event ready to set up (0)
+            </label>
+          </div>
+
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="stage-event" name="stage" type="checkbox" value="Awaiting event">
+            <label class="govuk-label govuk-checkboxes__label" for="stage-event">
+              Awaiting event (20)
+            </label>
+          </div>
+
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="stage-decision" name="stage" type="checkbox" value="Issue decision">
+            <label class="govuk-label govuk-checkboxes__label" for="stage-decision">
+              Issue decision (22)
+            </label>
+          </div>
+
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="stage-complete" name="stage" type="checkbox" value="Complete">
+            <label class="govuk-label govuk-checkboxes__label" for="stage-complete">
+              Complete (207)
+            </label>
+          </div>
+
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="stage-closed" name="stage" type="checkbox" value="Closed">
+            <label class="govuk-label govuk-checkboxes__label" for="stage-closed">
+              Closed (17)
+            </label>
+          </div>
+
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="stage-withdrawn" name="stage" type="checkbox" value="Withdrawn">
+            <label class="govuk-label govuk-checkboxes__label" for="stage-withdrawn">
+              Withdrawn (31)
+            </label>
+          </div>
+
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="stage-invalid" name="stage" type="checkbox" value="Decision">
+            <label class="govuk-label govuk-checkboxes__label" for="stage-invalid">
+              Invalid (57)
+            </label>
+          </div>
+
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="stage-awaiting-transfer" name="stage" type="checkbox" value="Awaiting transfer">
+            <label class="govuk-label govuk-checkboxes__label" for="stage-awaiting-transfer">
+              Awaiting transfer (1)
+            </label>
+          </div>
+
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="stage-transferred" name="stage" type="checkbox" value="Transferred">
+            <label class="govuk-label govuk-checkboxes__label" for="stage-transferred">
+              Transferred (19)
+            </label>
+          </div>
+
+        </div>
+      </fieldset>
+
+    </div>
+
+  </details>
+
+  <hr class="govuk-section-break govuk-section-break--s govuk-section-break--visible">
+
+
+  <!-- filters for appeal stage -->
+  <details class="govuk-details govuk-!-margin-top-3 govuk-!-margin-padding-0 govuk-!-margin-bottom-0" id="filter-panel--stage">
+    <summary class="govuk-details__summary">
+      <h3 class="govuk-heading-s">
+        Case team
+      </h3>
+    </summary>
+
+    <div class="govuk-checkboxes govuk-checkboxes--small">
+      <fieldset class="govuk-fieldset planning-inspectorate-filter-panel aria-describedby="stage">
+
+        <!-- filters for appeal type -->
+        {{ govukSelect({
+          id: "sort",
+          name: "sort",
+          classes: "govuk-!-margin-bottom-5",
+          label: {
+            text: "Case team"
+          },
+          items: [
+            {
+              value: "Not assigned",
+              text: "Not assigned (31)"
+            },
+            {
+              value: "Major casework",
+              text: "Major casework (17)"
+            },
+            {
+              value: "Enforcement team 1",
+              text: "Enforcement team 1 (1)"
+            },
+            {
+              value: "Enforcement team 2",
+              text: "Enforcement team 2 (3)"
+            },
+            {
+              value: "Enforcement team 3",
+              text: "Enforcement team 3 (9)"
+            },
+            {
+              value: "Enforcement team 4",
+              text: "Enforcement team 4 (6)"
+            },
+            {
+              value: "West 1",
+              text: "West 1 (11)"
+            },
+            {
+              value: "West 2",
+              text: "West 2 (12)"
+            },
+            {
+              value: "West 3",
+              text: "West 3 (8)"
+            },
+            {
+              value: "West 4",
+              text: "West 4 (2)"
+            },
+            {
+              value: "North 1",
+              text: "North 1 (5)"
+            },
+            {
+              value: "North 2",
+              text: "North 2 (15)"
+            },
+            {
+              value: "North 3",
+              text: "North 3 (5)"
+            },
+            {
+              value: "North 4",
+              text: "North 4 (10)"
+            },
+            {
+              value: "East 1",
+              text: "East 1 (8)"
+            },
+            {
+              value: "East 2",
+              text: "East 2 (2)"
+            },
+            {
+              value: "East 3",
+              text: "East 3 (6)"
+            },
+            {
+              value: "East 4",
+              text: "East 4 (18)"
+            },
+            {
+              value: "Planning appeal decision suppliers (PADS)",
+              text: "Planning appeal decision suppliers (PADS) (24)"
+            }
+
+          ]
+        }) }}
+
+    </div>
+
+  </details>
+
+  <hr class="govuk-section-break govuk-section-break--s govuk-section-break--visible">
+
+  <!-- filters for appeal stage -->
+  <details class="govuk-details govuk-!-margin-top-3 govuk-!-margin-padding-0 govuk-!-margin-bottom-0" id="filter-panel--inspector">
+    <summary class="govuk-details__summary">
+      <h3 class="govuk-heading-s">
+        Inspector
+      </h3>
+    </summary>
+
+    <div class="govuk-checkboxes govuk-checkboxes--small">
+      <fieldset class="govuk-fieldset planning-inspectorate-filter-panel aria-describedby="inspector">
+
+        <!-- filters for inspector -->
+        {{ govukSelect({
+          id: "inspector",
+          name: "inspector",
+          classes: "govuk-!-margin-bottom-5",
+          label: {
+            text: "Inspector"
+          },
+          items: [
+            {
+              value: "",
+              text: "All"
+            },
+            {
+              value: "Adam Price",
+              text: "Adam Price"
+            },
+            {
+              value: "Alex Jack",
+              text: "Alex Jack"
+            },
+            {
+              value: "Andrew Smith",
+              text: "Andrew Smith"
+            },
+            {
+              value: "Andrew Tucker",
+              text: "Andrew Tucker"
+            },
+            {
+              value: "Brett Highway",
+              text: "Brett Highway"
+            },
+            {
+              value: "Catherine Jack",
+              text: "Catherine Jack"
+            },
+            {
+              value: "David Smith",
+              text: "David Smith"
+            },
+            {
+              value: "Finn Bradford",
+              text: "Finn Bradford"
+            },
+            {
+              value: "Hilda Higenbottam",
+              text: "Hilda Higenbottam"
+            },
+            {
+              value: "Karen Taylor",
+              text: "Karen Taylor"
+            },
+            {
+              value: "Lakshmi Satti",
+              text: "Lakshmi Satti"
+            },
+            {
+              value: "Mark Yates",
+              text: "Mark Yates"
+            },
+
+            {
+              value: "Planning appeal decision supplier inspectors",
+              text: "Planning appeal decision supplier inspectors"
+            }
+          ]
+        }) }}
+
+    </div>
+  </details>
+
+  <hr class="govuk-section-break govuk-section-break--s govuk-section-break--visible">
+
+  <fieldset class="govuk-fieldset planning-inspectorate-filter-panel govuk-!-margin-top-2" aria-describedby="inspector">
+    <div class="govuk-checkboxes govuk-checkboxes--small">
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="inspector-assigned" name="green-belt" type="checkbox" value="Green belt">
+        <label class="govuk-label govuk-checkboxes__label" for="green-belt">
+          Green belt
+        </label>
+      </div>
+    </div>
+  </fieldset>
+
+  <a href="applications-selected" class="govuk-button" style="margin-bottom:0px">
+    Apply filters
+  </a>
+
+</form>

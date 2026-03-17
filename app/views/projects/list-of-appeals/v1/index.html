@@ -34,12 +34,27 @@
 
     </div>
 
+    {% set filtersHtml %}
+      {% include "/includes-for-main/all-appeals/existing-filters.html" %}
+    {% endset %}
+
     <div class="govuk-grid-column-full">
 
       <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
-      <!-- filters -->
-      {% include "/includes-for-main/all-appeals/appeal-filters.html" %}
+      {% if data['filters'] == 'new' %}
+
+        <!-- filters -->
+        {% include "/includes-for-main/all-appeals/appeal-filters.html" %}
+
+      {% else %}
+
+        {{ govukDetails({
+          summaryText: "Filters",
+          html: filtersHtml
+        }) }}
+
+      {% endif %}
 
       <!-- list of appeals -->
       {% include "/includes-for-main/all-appeals/appeals.html" %}

@@ -1,0 +1,112 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "Check details and add statement of common ground" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form method="post">
+      <span class="govuk-caption-l">Appeal 6021709  - statement of common ground</span>
+
+      <h1 class="govuk-heading-l">{{ title }}</h1>
+
+      {{ govukSummaryList({
+        classes: "govuk-!-margin-bottom-9",
+        rows: [
+          {
+            key: {
+              text: "File"
+            },
+            value: {
+              html: '<a href="#">socg-draft.pdf</a>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "file"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Topic"
+            },
+            value: {
+              text: "General"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "topic"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Document status"
+            },
+            value: {
+              text: "Draft"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "status"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Date recevied"
+            },
+            value: {
+              html: "24 March 2026"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "date received"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      {{ govukDetails({
+        summaryText: "Preview email to appellant",
+        text: "Text"
+      }) }}
+
+      {{ govukDetails({
+        summaryText: "Preview email to LPA",
+        text: "Text"
+      }) }}
+
+      {{ govukButton({
+        text: "Add statement of common ground"
+      }) }}
+    
+
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}

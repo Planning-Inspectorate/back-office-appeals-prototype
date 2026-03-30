@@ -1,0 +1,72 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "What type of Statement of Common Ground are you uploading?" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form method="post">
+      <span class="govuk-caption-l">Appeal 6021709  - statement of common ground</span>
+
+      <h1 class="govuk-heading-l">
+        Topic
+      </h1>
+    
+      <p class="govuk-body">
+        You are adding details for:
+        <br>
+        <a href="#" class="govuk-link" target="_blank" rel="noopener noreferrer">
+          socg-highways-draft.pdf
+        </a>
+      </p>
+
+      {% set otherHtml %}
+      {{ govukInput({
+      id: "other",
+      name: "other",
+      spellcheck: false,
+      classes: "govuk-!-width-one-half",
+      label: {
+      text: "Enter topic"
+      }
+      }) }}
+      {% endset -%}
+
+      {{ govukRadios({
+      name: "topic",
+      fieldset: {
+      legend: {
+      text: "What topic does this statement of common ground cover?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--m"
+      }
+      },
+      items: [
+      {
+      value: "general",
+      text: "General (full statement of common ground)"
+      },
+      {
+      value: "other",
+      text: "Other",
+      checked: true,
+      conditional: {
+      html: otherHtml
+      }
+      }
+      ]
+      }) }}
+
+      {{ govukButton({
+      text: "Continue"
+      }) }}
+    </form>
+
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends "layouts/bo.html" %}
+
+{% set title = "What type of Statement of Common Ground are you uploading?" %}
+{% set pageName = title %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+        <span class="govuk-caption-l">Appeal 6021709 - statement of common ground</span>
+
+        <h1 class="govuk-heading-l">
+          Date received
+        </h1>
+
+        <p class="govuk-body">
+          You are adding details for:
+          <br>
+          <a href="#" class="govuk-link" target="_blank" rel="noopener noreferrer">
+            socg-highways-draft.pdf
+          </a>
+        </p>
+
+        {{ govukDateInput({
+          id: "date",
+          fieldset: {
+            legend: {
+              text: "Enter date received",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "For example, 31 3 1980"
+          },
+          items: [
+            {
+              name: "date",
+              label: "Day",
+              value: data.day,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "date",
+              label: "Month",
+              value: data.month,
+              classes: "govuk-input--width-2"
+            },
+            {
+              name: "date",
+              label: "Year",
+              value: data.year,
+              classes: "govuk-input--width-4"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

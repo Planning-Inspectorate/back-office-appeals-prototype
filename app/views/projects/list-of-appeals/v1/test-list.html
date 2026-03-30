@@ -1,0 +1,169 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Search all cases – Manage appeals – GOV.UK
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-width-container">
+    <a class="govuk-back-link" href="#">Back</a>
+
+    <main class="govuk-main-wrapper" id="main-content" role="main">
+      <h1 class="govuk-heading-l">Search all cases</h1>
+
+      <form method="get" action="#" class="govuk-!-margin-bottom-6">
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="q">
+            Search by appeal reference, application or enforcement reference, address, appellant name or LPA
+          </label>
+          <div class="govuk-input__wrapper">
+            <input class="govuk-input" id="q" name="q" type="text" value="">
+            <button class="govuk-button govuk-!-margin-bottom-0" type="submit">
+              Search
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Appeal reference</th>
+            <th scope="col" class="govuk-table__header">Application or enforcement reference</th>
+            <th scope="col" class="govuk-table__header">Site address</th>
+            <th scope="col" class="govuk-table__header">Local planning authority</th>
+            <th scope="col" class="govuk-table__header">LPA reference</th>
+            <th scope="col" class="govuk-table__header">Status</th>
+            <th scope="col" class="govuk-table__header">Action</th>
+          </tr>
+        </thead>
+
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">
+              <a class="govuk-link" href="#">6008123</a>
+            </td>
+            <td class="govuk-table__cell">APP/Q5300/W/26/3401123</td>
+            <td class="govuk-table__cell">Flat 3, 14 Clifton Crescent, Bristol BS8 4LP</td>
+            <td class="govuk-table__cell">Bristol City Council</td>
+            <td class="govuk-table__cell">24/01876/FUL</td>
+            <td class="govuk-table__cell">
+              <strong class="govuk-tag govuk-tag--green">Ready</strong>
+            </td>
+            <td class="govuk-table__cell"><a class="govuk-link" href="#">View</a></td>
+          </tr>
+
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a class="govuk-link" href="#">6008169</a></td>
+            <td class="govuk-table__cell">APP/Q3305/D/26/3401169</td>
+            <td class="govuk-table__cell">27 Meadow Lane, Harborne, Birmingham B17 9QX</td>
+            <td class="govuk-table__cell">Birmingham City Council</td>
+            <td class="govuk-table__cell">2024/09123/PA</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">In progress</strong></td>
+            <td class="govuk-table__cell"><a class="govuk-link" href="#">View</a></td>
+          </tr>
+
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a class="govuk-link" href="#">6008210</a></td>
+            <td class="govuk-table__cell">ENF/Q2605/C/26/3401210</td>
+            <td class="govuk-table__cell">Land at Old Mill Yard, Station Road, Ely CB7 4DT</td>
+            <td class="govuk-table__cell">East Cambridgeshire District Council</td>
+            <td class="govuk-table__cell">ENF/24/000187</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Overdue</strong></td>
+            <td class="govuk-table__cell"><a class="govuk-link" href="#">View</a></td>
+          </tr>
+
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a class="govuk-link" href="#">6008238</a></td>
+            <td class="govuk-table__cell">APP/G5750/W/26/3401238</td>
+            <td class="govuk-table__cell">2 The Spinney, West Bridgford, Nottingham NG2 6AE</td>
+            <td class="govuk-table__cell">Rushcliffe Borough Council</td>
+            <td class="govuk-table__cell">24/00761/FUL</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue">Awaiting LPA</strong></td>
+            <td class="govuk-table__cell"><a class="govuk-link" href="#">View</a></td>
+          </tr>
+
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a class="govuk-link" href="#">6008292</a></td>
+            <td class="govuk-table__cell">APP/Z4718/W/26/3401292</td>
+            <td class="govuk-table__cell">Unit 5, Riverside Industrial Estate, Selby YO8 8BJ</td>
+            <td class="govuk-table__cell">Selby District Council</td>
+            <td class="govuk-table__cell">2024/06114/FUL</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Ready</strong></td>
+            <td class="govuk-table__cell"><a class="govuk-link" href="#">View</a></td>
+          </tr>
+
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a class="govuk-link" href="#">6008320</a></td>
+            <td class="govuk-table__cell">APP/T0355/D/26/3401320</td>
+            <td class="govuk-table__cell">19 Park View, Kingston upon Thames KT1 2LN</td>
+            <td class="govuk-table__cell">Royal Borough of Kingston upon Thames</td>
+            <td class="govuk-table__cell">24/01298/HOU</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">In progress</strong></td>
+            <td class="govuk-table__cell"><a class="govuk-link" href="#">View</a></td>
+          </tr>
+
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a class="govuk-link" href="#">6008366</a></td>
+            <td class="govuk-table__cell">APP/X1118/W/26/3401366</td>
+            <td class="govuk-table__cell">41 Seaview Road, Southend-on-Sea SS1 2NB</td>
+            <td class="govuk-table__cell">Southend-on-Sea City Council</td>
+            <td class="govuk-table__cell">24/00452/FUL</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue">Awaiting LPA</strong></td>
+            <td class="govuk-table__cell"><a class="govuk-link" href="#">View</a></td>
+          </tr>
+
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a class="govuk-link" href="#">6008401</a></td>
+            <td class="govuk-table__cell">ENF/Q9999/C/26/3401401</td>
+            <td class="govuk-table__cell">Rear of 88 High Street, Guildford GU1 3EL</td>
+            <td class="govuk-table__cell">Guildford Borough Council</td>
+            <td class="govuk-table__cell">ENF/24/000301</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Overdue</strong></td>
+            <td class="govuk-table__cell"><a class="govuk-link" href="#">View</a></td>
+          </tr>
+
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a class="govuk-link" href="#">6008457</a></td>
+            <td class="govuk-table__cell">APP/H1840/W/26/3401457</td>
+            <td class="govuk-table__cell">3 Willow Close, Marple, Stockport SK6 7QJ</td>
+            <td class="govuk-table__cell">Stockport Metropolitan Borough Council</td>
+            <td class="govuk-table__cell">DC/090112</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">In progress</strong></td>
+            <td class="govuk-table__cell"><a class="govuk-link" href="#">View</a></td>
+          </tr>
+
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a class="govuk-link" href="#">6008510</a></td>
+            <td class="govuk-table__cell">APP/D0840/W/26/3401510</td>
+            <td class="govuk-table__cell">The Old Bakery, Church Street, Lewes BN7 2AH</td>
+            <td class="govuk-table__cell">Lewes District Council</td>
+            <td class="govuk-table__cell">SDNP/24/01987/FUL</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Ready</strong></td>
+            <td class="govuk-table__cell"><a class="govuk-link" href="#">View</a></td>
+          </tr>
+
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a class="govuk-link" href="#">6008574</a></td>
+            <td class="govuk-table__cell">APP/K5600/W/26/3401574</td>
+            <td class="govuk-table__cell">10 Northgate, Darlington DL1 1QU</td>
+            <td class="govuk-table__cell">Darlington Borough Council</td>
+            <td class="govuk-table__cell">24/00341/FUL</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue">Awaiting LPA</strong></td>
+            <td class="govuk-table__cell"><a class="govuk-link" href="#">View</a></td>
+          </tr>
+
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a class="govuk-link" href="#">6008619</a></td>
+            <td class="govuk-table__cell">APP/N4720/D/26/3401619</td>
+            <td class="govuk-table__cell">6 Quarry View, Ilkley LS29 8DN</td>
+            <td class="govuk-table__cell">City of Bradford Metropolitan District Council</td>
+            <td class="govuk-table__cell">24/01655/HOU</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">In progress</strong></td>
+            <td class="govuk-table__cell"><a class="govuk-link" href="#">View</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+  </div>
+{% endblock %}

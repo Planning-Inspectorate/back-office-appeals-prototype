@@ -99,7 +99,10 @@
         text: "Allocation level"
       },
       {
-        html: "G<br>General"
+        html:
+          "Not selected"
+          if (not data['case-stage'] or data['case-stage'] in ['validation', 'ready'])
+          else "G<br>General"
       },
       {
         html: "<a href='#'>Change</a>",

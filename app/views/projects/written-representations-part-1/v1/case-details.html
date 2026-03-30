@@ -66,17 +66,16 @@
     <!-- case sections -->
     <section class="govuk-!-margin-top-6">
 
-      {% include "/includes-for-main/case-details/overview.html" %}
-      {% include "/includes-for-main/case-details/timetable.html" %}
-      {% include "/includes-for-main/case-details/site.html" %}
+      {% include "/includes/case-details/overview.html" %}
+      {% include "/includes/case-details/timetable.html" %}
 
-      {% if data['procedure'] == 'hearing' %}
-        {% include "/includes-for-main/hearing.html" %}
+      {% if data['case-status'] and data['case-status'] != 'validation' and data['case-status'] != 'ready' %}
+         {% include "/includes/case-details/site.html" %}
       {% endif %}
 
-      {% include "/includes-for-main/case-details/documentation.html" %}
-      {% include "/includes-for-main/case-details/team.html" %}
-      {% include "/includes-for-main/case-details/case-management.html" %}
+      {% include "/includes/case-details/documentation.html" %}
+      {% include "/includes/case-details/team.html" %}
+      {% include "/includes/case-details/case-management.html" %}
 
     </section>
 

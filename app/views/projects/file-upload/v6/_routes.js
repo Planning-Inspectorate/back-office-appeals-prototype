@@ -807,6 +807,31 @@ router.get('/file-upload', function (req, res, next) {
     const month = (today.getMonth() + 1).toString()
     const year = today.getFullYear().toString()
     const todayValue = [day, month, year].join('/')
+
+    if (currentSessionFiles.length === 0) {
+      req.session.data.uploadedFiles = [
+        {
+          id: 'dummy-1',
+          name: 'receipt1.pdf',
+          size: 0,
+          uploadedAt: new Date().toISOString(),
+          dateReceived: todayValue,
+          redactionStatus: 'No redaction required',
+          currentSession: true
+        },
+        {
+          id: 'dummy-2',
+          name: 'receipt2.pdf',
+          size: 0,
+          uploadedAt: new Date().toISOString(),
+          dateReceived: todayValue,
+          redactionStatus: 'No redaction required',
+          currentSession: true
+        }
+      ]
+
+      return next()
+    }
   
     currentSessionFiles.forEach(file => {
       file.dateReceived = todayValue

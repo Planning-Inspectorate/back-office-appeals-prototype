@@ -1,13 +1,10 @@
 const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
 
-console.log('*** V6 ROUTES FILE LOADED ***')
-console.log('*** Router configured for: /projects/file-upload/v6/ ***')
 
 // GET: Clear all session data and show upload page
 router.get('/file-upload', function (req, res, next) {
   // Clear all uploaded files and session data for v6
-  req.session.data.uploadedFiles = []
   req.session.data.currentFile = null
   req.session.data.editingFileId = null
   req.session.data.currentFileNumber = null
@@ -26,17 +23,8 @@ router.get('/file-upload', function (req, res, next) {
   // GET: Show document details page (optionally filtered by fileId)
   router.get('/document-details', function (req, res, next) {
     ensureUploadedFiles(req)
-    const today = new Date()
-    const day = today.getDate().toString()
-    const month = (today.getMonth() + 1).toString()
-    const year = today.getFullYear().toString()
-    const todayValue = [day, month, year].join('/')
-
-    req.session.data.uploadedFiles.forEach(file => {
-      file.dateReceived = todayValue
-      file.redactionStatus = 'No redaction required'
-      file.currentSession = true
-    })
+    const files = getFiles()
+    getCurrentSessionFiles(files)
 
     const fileId = req.query.fileId
     if (fileId) {
@@ -47,35 +35,39 @@ router.get('/file-upload', function (req, res, next) {
     next()
   })
 
-  // Helper to get current session files (fallback to all files if none flagged)
-  function getCurrentSessionFiles(files) {
-    if (!files || files.length === 0) return []
-    const currentSessionFiles = files.filter(f => f.currentSession === true)
-    if (currentSessionFiles.length === 0 && files.length > 0) {
-      files.forEach(file => {
-        file.currentSession = true
-      })
-      return files
-    }
-    return currentSessionFiles
-  }
-
-  // Ensure uploaded files exist (fallback for environments where client JS/session fails)
-  function ensureUploadedFiles(req) {
-    if (!req.session.data.uploadedFiles || req.session.data.uploadedFiles.length === 0) {
-      const now = new Date().toISOString()
-      const dummyFiles = ['receipt1.pdf', 'receipt2.pdf']
-
-      req.session.data.uploadedFiles = dummyFiles.map((name, index) => ({
-        id: `dummy-${index + 1}`,
-        name,
+  // Static files for v6 prototype flow (no file storage)
+  function getFiles() {
+    const now = new Date().toISOString()
+    return [
+      {
+        id: 'dummy-1',
+        name: 'receipt-1.pdf',
         size: 0,
         uploadedAt: now,
         dateReceived: null,
         redactionStatus: null,
         currentSession: true
-      }))
-    }
+      },
+      {
+        id: 'dummy-2',
+        name: 'receipt-2.pdf',
+        size: 0,
+        uploadedAt: now,
+        dateReceived: null,
+        redactionStatus: null,
+        currentSession: true
+      }
+    ]
+  }
+
+  // Helper to get current session files
+  function getCurrentSessionFiles(files) {
+    return files || []
+  }
+
+  // No-op to preserve call sites
+  function ensureUploadedFiles(req) {
+    return req
   }
 
   // Set prefilled date fields and example date (same logic as date-received-all)
@@ -225,18 +217,7 @@ router.get('/file-upload', function (req, res, next) {
     return res.redirect('/projects/file-upload/v6/file-details-date-received-receipt2')
   })
 
-  // POST: Receipt 1 (legacy typo) date received -> receipt 2
-  router.post('/file-details-date-received-receipt1', function (req, res) {
-    setPrefilledDate(req)
-    return res.redirect('/projects/file-upload/v6/file-details-date-received-receipt2')
-  })
-
   // POST: Receipt 2 date received -> redaction status single or multiple
-  router.post('/file-details-date-received-receipt2', function (req, res) {
-    return res.redirect('/projects/file-upload/v6/redaction-status-single-or-multiple')
-  })
-
-  // POST: Receipt 2 (legacy typo) date received -> redaction status single or multiple
   router.post('/file-details-date-received-receipt2', function (req, res) {
     return res.redirect('/projects/file-upload/v6/redaction-status-single-or-multiple')
   })
@@ -265,7 +246,7 @@ router.get('/file-upload', function (req, res, next) {
   // GET: Show date received page for all files
   router.get('/file-details-date-received-all', function (req, res, next) {
     ensureUploadedFiles(req)
-    const files = req.session.data.uploadedFiles || []
+    const files = getFiles()
     const currentSessionFiles = getCurrentSessionFiles(files)
 
     if (currentSessionFiles.length === 0) {
@@ -312,7 +293,7 @@ router.get('/file-upload', function (req, res, next) {
   // POST: Capture date received for all files
   router.post('/file-details-date-received-all', function (req, res) {
     ensureUploadedFiles(req)
-    const files = req.session.data.uploadedFiles || []
+    const files = getFiles()
     const currentSessionFiles = getCurrentSessionFiles(files)
 
     const day = req.session.data['document-date-day']
@@ -359,7 +340,7 @@ router.get('/file-upload', function (req, res, next) {
   // GET: Show redaction status page for all files
   router.get('/file-details-redaction-status-all', function (req, res, next) {
     ensureUploadedFiles(req)
-    const files = req.session.data.uploadedFiles || []
+    const files = getFiles()
     const currentSessionFiles = getCurrentSessionFiles(files)
 
     if (currentSessionFiles.length === 0) {
@@ -384,7 +365,7 @@ router.get('/file-upload', function (req, res, next) {
 
   // POST: Capture redaction status for all files
   router.post('/file-details-redaction-status-all', function (req, res) {
-    const files = req.session.data.uploadedFiles || []
+    const files = getFiles()
     const currentSessionFiles = getCurrentSessionFiles(files)
 
     if (currentSessionFiles.length === 0) {
@@ -414,7 +395,7 @@ router.get('/file-upload', function (req, res, next) {
   router.get('/file-details-date-received', function (req, res, next) {
     console.log('=== Date received GET ===')
     ensureUploadedFiles(req)
-    const files = req.session.data.uploadedFiles || []
+    const files = getFiles()
     const currentSessionFiles = getCurrentSessionFiles(files)
     console.log('Files in session:', files.length)
   
@@ -567,7 +548,7 @@ router.get('/file-upload', function (req, res, next) {
   // POST: Capture date received then determine next step
   router.post('/file-details-date-received', function (req, res) {
     ensureUploadedFiles(req)
-    const files = req.session.data.uploadedFiles || []
+    const files = getFiles()
     const editingFileId = req.session.data.editingFileId
   
     let currentFile
@@ -646,7 +627,7 @@ router.get('/file-upload', function (req, res, next) {
   // GET: Show redaction status page with current file
   router.get('/file-details-redaction-status', function (req, res, next) {
     ensureUploadedFiles(req)
-    const files = req.session.data.uploadedFiles || []
+    const files = getFiles()
     const currentSessionFiles = getCurrentSessionFiles(files)
   
     // Check if editing a specific file via Change link
@@ -734,7 +715,7 @@ router.get('/file-upload', function (req, res, next) {
   // POST: Capture redaction status, then determine next step
   router.post('/file-details-redaction-status', function (req, res) {
     ensureUploadedFiles(req)
-    const files = req.session.data.uploadedFiles || []
+    const files = getFiles()
     const editingFileId = req.session.data.editingFileId
   
     let currentFile
@@ -787,11 +768,6 @@ router.get('/file-upload', function (req, res, next) {
     const fileId = req.params.fileId
     console.log('Removing file with ID:', fileId)
   
-    if (req.session.data.uploadedFiles) {
-      req.session.data.uploadedFiles = req.session.data.uploadedFiles.filter(f => f.id !== fileId)
-      console.log('Files remaining:', req.session.data.uploadedFiles.length)
-    }
-  
     // Redirect back to upload page
     return res.redirect('/projects/file-upload/v6/file-upload')
   })
@@ -799,46 +775,9 @@ router.get('/file-upload', function (req, res, next) {
   // GET: Show check your answers page
   router.get('/check-your-answers', function (req, res, next) {
     ensureUploadedFiles(req)
-    const files = req.session.data.uploadedFiles || []
+    const files = getFiles()
     const currentSessionFiles = getCurrentSessionFiles(files)
-  
-    const today = new Date()
-    const day = today.getDate().toString()
-    const month = (today.getMonth() + 1).toString()
-    const year = today.getFullYear().toString()
-    const todayValue = [day, month, year].join('/')
-
-    if (currentSessionFiles.length === 0) {
-      req.session.data.uploadedFiles = [
-        {
-          id: 'dummy-1',
-          name: 'receipt1.pdf',
-          size: 0,
-          uploadedAt: new Date().toISOString(),
-          dateReceived: todayValue,
-          redactionStatus: 'No redaction required',
-          currentSession: true
-        },
-        {
-          id: 'dummy-2',
-          name: 'receipt2.pdf',
-          size: 0,
-          uploadedAt: new Date().toISOString(),
-          dateReceived: todayValue,
-          redactionStatus: 'No redaction required',
-          currentSession: true
-        }
-      ]
-
-      return next()
-    }
-  
-    currentSessionFiles.forEach(file => {
-      file.dateReceived = todayValue
-      file.redactionStatus = 'No redaction required'
-    })
-  
-    req.session.data.uploadedFiles = currentSessionFiles
+    getCurrentSessionFiles(currentSessionFiles)
   
     next()
   })
@@ -847,5 +786,26 @@ router.get('/file-upload', function (req, res, next) {
   router.post('/check-your-answers', function (req, res) {
     return res.redirect('/projects/file-upload/v6/case-details')
   })
+
+  // POST: return to cya after editing receipt 2 date received 
+  router.post('/edit-file-details-date-received-receipt1', function (req, res) {
+    return res.redirect('/projects/file-upload/v6/check-your-answers')
+  })
+
+ // POST: return to cya after editing receipt 2 date received 
+  router.post('/edit-file-details-date-received-receipt2', function (req, res) {
+    return res.redirect('/projects/file-upload/v6/check-your-answers')
+  })
+
+   // POST: return to cya after editing receipt 1 redaction status
+  router.post('/edit-file-details-redaction-status-receipt1', function (req, res) {
+    return res.redirect('/projects/file-upload/v6/check-your-answers')
+  })
+
+ // POST: return to cya after editing receipt 2 redaction status
+  router.post('/edit-file-details-redaction-status-receipt2', function (req, res) {
+    return res.redirect('/projects/file-upload/v6/check-your-answers')
+  })
+
 
 module.exports = router

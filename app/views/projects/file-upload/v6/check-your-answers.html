@@ -12,43 +12,25 @@
 
 {% block content %} 
 
-{% from "govuk/components/cookie-banner/macro.njk" import govukCookieBanner %}
-
-{% set html %}
-  <p class="govuk-body">We use some essential cookies to make this service work.</p>
-  <p class="govuk-body">We’d also like to use analytics cookies so we can understand how you use the service and make improvements.</p>
-{% endset %}
-
-{% set acceptHtml %}
-  <p class="govuk-body">You’ve accepted analytics cookies. You can <a class="govuk-link" href="#">change your cookie settings</a> at any time.</p>
-{% endset %}
-
-{% set rejectHtml %}
-  <p class="govuk-body">You’ve rejected analytics cookies. You can <a class="govuk-link" href="#">change your cookie settings</a> at any time.</p>
-{% endset %}
-
-
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <span class="govuk-caption-l">Appeal 12345 - Manage documents</span>
     <h1 class="govuk-heading-l">Check your answers</h1>
   </div>
 </div>
-
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    {% for file in data.uploadedFiles %}
-      <h2 class="govuk-heading-m govuk-!-margin-top-5 govuk-!-margin-bottom-4">Uploaded file {{ loop.index }}</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-5 govuk-!-margin-bottom-4">Uploaded file 1</h2>
       <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             File
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ file.name }}
+            <span class="govuk-body">receipt-1.pdf</span>
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/projects/file-upload/v6/file-upload?from=check-answers">Change<span class="govuk-visually-hidden"> file {{ file.name }}</span></a>
+            <a class="govuk-link" href="/projects/file-upload/v6/file-upload-receipt-1">Change<span class="govuk-visually-hidden"> file {{ file.name }}</span></a>
           </dd>
         </div>
         <div class="govuk-summary-list__row">
@@ -56,10 +38,10 @@
             Date received
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ file.dateReceived | slashDateToLong or 'Not provided' }}
+           09 March 2026
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/projects/file-upload/v6/file-details-date-received?fileId={{ file.id }}&fileIndex={{ loop.index0 }}&from=check-answers">Change<span class="govuk-visually-hidden"> {{ file.name }} date received</span></a>
+            <a class="govuk-link" href="/projects/file-upload/v6/edit-file-details-date-received-receipt1">Change<span class="govuk-visually-hidden"> {{ file.name }} date received</span></a>
           </dd>
         </div>
         <div class="govuk-summary-list__row">
@@ -67,22 +49,60 @@
             Redaction status
           </dt>
           <dd class="govuk-summary-list__value">
-            {{ file.redactionStatus or 'Not provided' }}
+            No redaction required
           </dd>
           <dd class="govuk-summary-list__actions">
-            <a class="govuk-link" href="/projects/file-upload/v6/file-details-redaction-status?fileId={{ file.id }}&fileIndex={{ loop.index0 }}&from=check-answers">Change<span class="govuk-visually-hidden"> {{ file.name }} redaction status</span></a>
+            <a class="govuk-link" href="/projects/file-upload/v6/edit-file-details-redaction-status-receipt1">Change<span class="govuk-visually-hidden"> {{ file.name }} redaction status</span></a>
           </dd>
         </div>
       </dl>
-    {% endfor %}
 
+      
+  
+      <h2 class="govuk-heading-m govuk-!-margin-top-5 govuk-!-margin-bottom-4">Uploaded file 2</h2>
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            File
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <span class="govuk-body">receipt-2.pdf</span>
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/projects/file-upload/v6/file-upload-receipt-2">Change<span class="govuk-visually-hidden"> file {{ file.name }}</span></a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Date received
+          </dt>
+          <dd class="govuk-summary-list__value">
+           09 March 2026
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/projects/file-upload/v6/edit-file-details-date-received-receipt2">Change<span class="govuk-visually-hidden"> {{ file.name }} date received</span></a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Redaction status
+          </dt>
+          <dd class="govuk-summary-list__value">
+            No redaction required
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="/projects/file-upload/v6/edit-file-details-redaction-status-receipt2">Change<span class="govuk-visually-hidden"> {{ file.name }} redaction status</span></a>
+          </dd>
+      
+      </dl>
+    
 
     <form action="/projects/file-upload/v6/check-your-answers" method="post">
       {{ govukButton({
         text: "Continue"
       }) }}
     </form>
-        <p>This page is what would display for up to 5 files.<a href="check-your-answers-six-plus.html"> Preview how it would look with more than 5 files</a></p>
+        <p>This page is what would display for up to 7 files.<a href="check-your-answers-eight-plus.html"> Preview how it would look with more than 7 files</a></p>
 
   </div>
 </div>

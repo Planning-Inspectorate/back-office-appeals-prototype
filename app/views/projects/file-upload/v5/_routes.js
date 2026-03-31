@@ -203,7 +203,7 @@ router.post('/file-upload', function (req, res) {
 
   if (req.session.data.uploadedFiles.length === 0) {
     const now = new Date().toISOString()
-    const dummyFiles = ['receipt1.pdf', 'receipt2.pdf']
+    const dummyFiles = ['receipt-1.pdf', 'receipt-2.pdf']
     dummyFiles.forEach((name) => {
       req.session.data.uploadedFiles.push({
         id: Date.now() + '-' + Math.random().toString(36).substr(2, 9),

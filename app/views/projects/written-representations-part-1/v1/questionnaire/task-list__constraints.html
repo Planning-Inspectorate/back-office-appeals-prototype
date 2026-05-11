@@ -1,7 +1,7 @@
 {{ govukSummaryList({
   card: {
     title: {
-      text: "Constraints, designations and other issues"
+      text: "1. Constraints, designations and other issues"
     }
   },
   rows: [
@@ -26,14 +26,7 @@
         html: 'Changed listed buildings'
       },
       value: {
-        html: '
-          <ul class="govuk-list govuk-list--bullet">
-            <li>
-              <a href="#">1282049</a><br>
-              Grade II listed building<br>
-              150, York Road, Bedminster, Bristol, BS3 4AL
-            </li>
-          </ul>'
+        html: 'No'
       },
       actions: {
         items: [
@@ -59,35 +52,7 @@
           }
         ]
       }
-    } if data['answers'] == 'empty',
-    {
-      key: {
-        html: 'Affected listed buildings'
-      },
-      value: {
-        html: '
-          <ul class="govuk-list govuk-list--bullet">
-            <li>
-              <a href="#">1282050</a><br>
-              Grade II listed building<br>
-              151, York Road, Bedminster, Bristol, BS3 4AL
-            </li>
-            <li>
-              <a href="#">1282051</a><br>
-              Grade II listed building<br>
-              152, York Road, Bedminster, Bristol, BS3 4AL
-            </li>
-          </ul>'
-      },
-      actions: {
-        items: [
-          {
-            href: 'constraints/affected-listed-building-details?cya=true',
-            html: 'Change'
-          }
-        ]
-      }
-    } if data['answers'] != 'empty',
+    },
     {
       key: {
         html: 'Affected listed buildings'
@@ -125,28 +90,17 @@
         html: 'Conservation area map and guidance'
       },
       value: {
-        html: '<ol class="govuk-list govuk-list--number">
-                <li>
-                  <a href="#" class="govuk-link">BS3 4AL Conservation-map.pdf</a>
-                </li>
-                <li>
-                  <a href="#" class="govuk-link">BS3 4AL Conservation-guidance.doc</a>
-                </li>
-              </ol>'
+        html: 'No documents'
       },
       actions: {
         items: [
           {
-            href: 'notified/notified-who?cya=true',
-            html: 'Manage<span class="govuk-visually-hidden"> conservation area map and guidance</span>'
-          },
-          {
-            href: 'notified/notified-who?cya=true',
-            html: 'Add<span class="govuk-visually-hidden"> to conservation area map and guidance</span>'
+            href: 'constraints/affected-scheduled-monument-check?cya=true',
+            html: 'Change'
           }
         ]
       }
-    } if data['answers'] != 'empty',
+    },
     {
       key: {
         html: 'Conservation area map and guidance'
@@ -168,7 +122,7 @@
         html: 'Protected species'
       },
       value: {
-        html: 'Yes'
+        html: 'No'
       },
       actions: {
         items: [

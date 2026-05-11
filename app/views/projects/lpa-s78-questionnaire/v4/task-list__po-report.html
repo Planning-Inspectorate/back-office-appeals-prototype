@@ -1,8 +1,9 @@
 {% set levyDate = (data['community-infrastructure-date-day'] or '1') +' '+ (data['community-infrastructure-date-month'] | formatMonth or 'July') +' '+ (data['community-infrastructure-date-year'] or '2022') %}
 {{ govukSummaryList({
+  classes: 'govuk-!-margin-bottom-9',
   card: {
     title: {
-      text: "6. Planning officer’s report and supplementary documents"
+      text: "Planning officer’s report and supplementary documents"
     }
   },
   rows: [
@@ -11,7 +12,7 @@
         html: 'Planning officer’s report'
       },
       value: {
-        html: '<a href="" class="govuk-body">22b The Peach Trees SE15 9HA PO report 2026.doc</a>'
+        html: '<a href="" class="govuk-body">155 York Rd PO report 2024.pdf</a>'
       },
       actions: {
         items: [
@@ -31,7 +32,7 @@
         html: 'Policies from statutory development plan'
       },
       value: {
-        html: '<a href="" class="govuk-body">22b The Peach Trees SE15 9HA policy document 2026.pdf</a>'
+        html: '<a href="" class="govuk-body">155 York Rd policy document 2024.pdf</a>'
       },
       actions: {
         items: [
@@ -51,10 +52,15 @@
         html: 'Emerging plan'
       },
       value: {
-        html: 'No documents'
+        html: '<strong class="govuk-tag govuk-tag--red">Late</strong>
+        <a href="" class="govuk-body">155 York Rd EP 2024.pdf</a>'
       },
       actions: {
         items: [
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Manage<span class="govuk-visually-hidden"> emerging plan</span>'
+          },
           {
             href: 'notified/notified-who?cya=true',
             html: 'Add<span class="govuk-visually-hidden"> emerging plan</span>'
@@ -83,10 +89,24 @@
         html: 'Supplementary planning documents'
       },
       value: {
-        html: 'No documents'
+        html: '<ol class="govuk-list govuk-list--number">
+                <li>
+                  <a href="" class="govuk-link">Planning outline 155 York Rd 2024.pdf</a>
+                </li>
+                <li>
+                  <strong class="govuk-tag govuk-tag--red">Late</strong> <a href="" class="govuk-link">Materials plan 155 York Rd 2024.pdf</a>
+                </li>
+                <li>
+                  <strong class="govuk-tag govuk-tag--red">Late</strong> <a href="" class="govuk-link">Objections 155 York Rd 2024.pdf</a>
+                </li>
+              </ol>'
       },
       actions: {
         items: [
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Manage<span class="govuk-visually-hidden"> supplementary planning documents</span>'
+          },
           {
             href: 'notified/notified-who?cya=true',
             html: 'Add<span class="govuk-visually-hidden"> supplementary planning documents</span>'
@@ -115,7 +135,7 @@
         html: 'Community infrastructure levy'
       },
       value: {
-        html: '<a href="" class="govuk-body">22b The Peach Trees SE15 9HA CIL 2026.pdf</a>'
+        html: '<a href="" class="govuk-body">155 York Rd CIL 2024.pdf</a>'
       },
       actions: {
         items: [

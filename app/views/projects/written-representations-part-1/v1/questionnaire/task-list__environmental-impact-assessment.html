@@ -1,7 +1,7 @@
 {{ govukSummaryList({
   card: {
     title: {
-      text: "Environmental impact assessment"
+      text: "3. Environmental impact assessment"
     }
   },
   rows: [
@@ -10,7 +10,7 @@
         html: 'Schedule type'
       },
       value: {
-        html: 'Schedule '+ (data['environment-schedule'] or '1')
+        html: 'None'
       },
       actions: {
         items: [
@@ -23,23 +23,7 @@
     },
     {
       key: {
-        html: 'Description of development'
-      },
-      value: {
-        html: 'Tourism and leisure'
-      },
-      actions: {
-        items: [
-          {
-            href: 'environment/schedule-type?cya=true',
-            html: 'Change'
-          }
-        ]
-      }
-    } if data['environment-schedule'] == '2',
-    {
-      key: {
-        html: 'Affects a sensitive area'
+        html: 'Have you issued a screening opinion?'
       },
       value: {
         html: 'No'
@@ -52,26 +36,10 @@
           }
         ]
       }
-    } if data['answers'] == 'empty' and data['environment-schedule'] == '2',
+    },
     {
       key: {
-        html: 'Affects a sensitive area'
-      },
-      value: {
-        html: 'Yes<br>(text about the sensitive area)'
-      },
-      actions: {
-        items: [
-          {
-            href: 'environment/schedule-type?cya=true',
-            html: 'Change'
-          }
-        ]
-      }
-    } if data['answers'] != 'empty' and data['environment-schedule'] == '2',
-    {
-      key: {
-        html: 'Meets or exceeds the threshold or criteria in column 2?'
+        html: 'Did the applicant submit an environmental statement?'
       },
       value: {
         html: 'No'
@@ -84,86 +52,7 @@
           }
         ]
       }
-    } if data['environment-schedule'] == '2',
-    {
-      key: {
-        html: 'Screening opinion and correspondence'
-      },
-      value: {
-        html: 'No'
-      },
-      actions: {
-        items: [
-          {
-            href: 'environment/schedule-type?cya=true',
-            html: 'Add'
-          }
-        ]
-      }
-    } if data['answers'] == 'empty' and data['environment-schedule'] == '2',
-    {
-      key: {
-        html: 'Screening opinion and correspondence'
-      },
-      value: {
-        html: '<a href="#" class="govuk-link">screening-opinion-appeal-2110166.pdf</a>'
-      },
-      actions: {
-        items: [
-          {
-            href: 'environment/schedule-type?cya=true',
-            html: 'Manage'
-          },
-          {
-            href: 'environment/schedule-type?cya=true',
-            html: 'Add'
-          }
-        ]
-      }
-    } if data['answers'] != 'empty' and data['environment-schedule'] == '2',
-    {
-      key: {
-        html: 'Environmental assessment and supporting information'
-      },
-      value: {
-        html: '<a href="#" class="govuk-link">Environmental-statement-appeal-2110166.pdf</a>'
-      },
-      actions: {
-        items: [
-          {
-            href: 'notified/notified-who?cya=true',
-            html: 'Manage<span class="govuk-visually-hidden"> Environmental assessment and supporting information</span>'
-          },
-          {
-            href: 'notified/notified-who?cya=true',
-            html: 'Add<span class="govuk-visually-hidden"> Environmental assessment and supporting information</span>'
-          }
-        ]
-      }
-    } if data['answers'] != 'empty',
-    {
-      key: {
-        html: 'Screening direction'
-      },
-      value: {
-        html: '<ol class="govuk-list govuk-list--number">
-                 <li>
-                   <a href="#" class="govuk-link">Environmental-screening-direction-appeal-2110166.pdf</a>
-                 </li>
-               </ol>'
-      },
-      actions: {
-        items: [
-          {
-            href: '#',
-            html: 'Manage<span class="govuk-visually-hidden"> screening direction</span>'
-          },
-          {
-            href: '#',
-            html: 'Add<span class="govuk-visually-hidden"> screening direction</span>'
-          }
-        ]
-      }
-    } if data['answers'] == 'empty'
+    }
+    
   ]
 }) }}

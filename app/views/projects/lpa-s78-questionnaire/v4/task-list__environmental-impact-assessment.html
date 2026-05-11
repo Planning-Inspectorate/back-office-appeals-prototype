@@ -1,0 +1,144 @@
+{# ------------------------------
+    2. Environmental impact assessment
+    ------------------------------ #}
+<div class="govuk-summary-card">
+  <div class="govuk-summary-card__title-wrapper">
+    <h2 class="govuk-summary-card__title">2. Environmental impact assessment</h2>
+  </div>
+  <div class="govuk-summary-card__content">
+
+    {% set eiaRows = [
+      {
+        key: {
+          text: "What is the development category?"
+        },
+        value: {
+          text: "None"
+        },
+        actions: {
+          items: [ {
+            text: "Change",
+            href: lpaq.links.eia.developmentCategory
+          } ]
+        }
+      },
+      {
+        key: {
+          text: "Description of development"
+        },
+        value: {
+          text: "No documents"
+        },
+        actions: {
+          items: [ {
+            text: "Change",
+            href: "#"
+          } ]
+        }
+      },
+      {
+        key: {
+          text: "Is the development in, partly in, or likely to affect a sensitive area?"
+        },
+        value: {
+          text: "No"
+        },
+        actions: {
+          items: [ {
+            text: "Change",
+            href: "#"
+          } ]
+        }
+      },
+      {
+        key: {
+          text: "Does the development meet or exceed the threshold or criteria in column 2?"
+        },
+        value: {
+          text: "Not applicable"
+        },
+        actions: {
+          items: [ {
+            text: "Change",
+            href: "#"
+          } ]
+        }
+      },
+      {
+        key: {
+          text: "Did your screening opinion say the development needed an environmental statement?"
+        },
+        value: {
+          text: "No"
+        },
+        actions: {
+          items: [ {
+            text: "Change",
+            href: "#"
+          } ]
+        }
+      },
+      {
+        key: {
+          text: "Issued a screening opinion?"
+        },
+        value: {
+          text: "No documents"
+        },
+        actions: {
+          items: [ {
+            text: "Change",
+            href: "#"
+          } ]
+        }
+      },
+      {
+        key: {
+          text: "Scoping opinion"
+        },
+        value: {
+          text: "No documents"
+        },
+        actions: {
+          items: [ {
+            text: "Change",
+            href: "#"
+          } ]
+        }
+      },     
+      {
+        key: {
+          text: "Environmental statement and supporting information"
+        },
+        value: {
+          html: "No documents"
+        },
+        actions: {
+          items: [ {
+            text: "Change",
+            href: "#"
+          } ]
+        }
+      },
+      {
+        key: {
+          text: "Screening direction"
+        },
+        value: {
+          html: "No documents"
+        },
+        actions: {
+          items: [ {
+            text: "Change",
+            href: "#"
+          } ]
+        }
+      }
+    ] %}
+
+    {{ govukSummaryList({
+      rows: eiaRows
+    }) }}
+
+  </div>
+</div>

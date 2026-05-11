@@ -11,22 +11,22 @@
   rows: [
     {
       key: {
-        text: "Did you receive an enforcement notice?"
+        text: "Local planning authority"
       },
       value: {
-        html: "Yes"
+        html: "Barnet Council"
       },
       actions: {
           items: [
             {
               href: "#",
               text: "Change",
-              visuallyHiddenText: "enforcement notice"
+              visuallyHiddenText: "lpa"
             }
           ]
         }
     },
-    {
+        {
       key: {
         text: "Which local planning authority (LPA) do you want to appeal against?"
       },
@@ -62,17 +62,17 @@
     },
     {
       key: {
-        text: "What is the issue date on your enforcement notice?"
+        text: "What is your appeal about?"
       },
       value: {
-        html: "5 January 2026"
+        html: "An enforcement notice"
       },
       actions: {
           items: [
             {
               href: "#",
               text: "Change",
-              visuallyHiddenText: "issue date"
+              visuallyHiddenText: "appeal type"
             }
           ]
         }
@@ -143,16 +143,6 @@
   rows: [
     {
       key: {
-        text: "Enforcement notice"
-      },
-      value: {
-        html: "No"
-      },
-      actions: {
-      }
-    },
-    {
-      key: {
         text: "Local planning authority"
       },
       value: {
@@ -163,7 +153,7 @@
     },
     {
       key: {
-        text: "What type of application is your appeal about?"
+        text: "What is your appeal about?"
       },
       value: {
         html: "Full planning"
@@ -176,7 +166,7 @@
         text: "Was your application granted or refused?"
       },
       value: {
-        html: "Granted with conditions"
+        html: "Refused"
       },
       actions: {
         items: [
@@ -193,7 +183,7 @@
         text: "What date did you submit your planning application?"
       },
       value: {
-        html: data['application-date'] or '31 July 2025'
+        html: 40 | daysAgo
       },
       actions: {
         items: [

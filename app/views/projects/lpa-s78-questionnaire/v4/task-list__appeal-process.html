@@ -1,13 +1,14 @@
 {{ govukSummaryList({
+  classes: 'govuk-!-margin-bottom-9',
   card: {
     title: {
-      text: "8. Appeal process"
+      text: "Appeal process"
     }
   },
   rows: [
     {
       key: {
-        html: 'Which procedure do you think is most appropriate for this appeal?'
+        html: 'Procedure type'
       },
       value: {
         html: 'Written representations'
@@ -23,59 +24,17 @@
     },
     {
       key: {
-        html: 'Why would you prefer this procedure?'
+        html: 'Other appeals'
       },
       value: {
-        html: 'Not applicable'
-      },
-      actions: {
-        items: [
-          {
-            href: 'appeal-process/procedure-reason?cya=true',
-            html: 'Change'
-          }
-        ]
-      }
-    },
-        {
-      key: {
-        html: 'How many days would you expect the inquiry to last?'
-      },
-      value: {
-        html: 'Not applicable'
-      },
-      actions: {
-        items: [
-          {
-            href: 'appeal-process/inquiry-days?cya=true',
-            html: 'Change'
-          }
-        ]
-      }
-    },
-    {
-      key: {
-        html: 'Have there been any significant changes that would affect the application?'
-      },
-      value: {
-        html: 'No'
-
-      },
-      actions: {
-        items: [
-          {
-            href: 'appeal-process/significant-changes?cya=true',
-            html: 'Change'
-          }
-        ]
-      }
-    },
-    {
-      key: {
-        html: 'Are there any other ongoing appeals next to, or close to the site?'
-      },
-      value: {
-        html: 'No'
+        html: '<ul class="govuk-list govuk-list--bullet">
+                 <li>
+                   <a href="#" class="govuk-body">0123456</a>
+                 </li>
+                 <li>
+                   <a href="#" class="govuk-body">0127745</a>
+                 </li>
+               </ul>'
 
       },
       actions: {
@@ -86,7 +45,7 @@
           }
         ]
       }
-    },
+    } if data['answers'] != 'empty',
     {
       key: {
         html: 'Other appeals'
@@ -106,10 +65,10 @@
     } if data['answers'] == 'empty',
     {
       key: {
-        html: 'Are there any new conditions?'
+        html: 'Request new conditions'
       },
       value: {
-        html: 'No'
+        html: 'Some new conditions'
       },
       actions: {
         items: [
@@ -119,7 +78,7 @@
           }
         ]
       }
-    },
+    } if data['answers'] != 'empty',
     {
       key: {
         html: 'Extra conditions'

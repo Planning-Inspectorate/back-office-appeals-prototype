@@ -1,0 +1,466 @@
+{% extends "layouts/PINS.html" %}
+
+{% set title = 'LPA questionnaire' %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% macro documentsValue(docs) %}
+  {% if docs and docs.length %}
+    <ul class="govuk-list govuk-list--bullet">
+      {% for doc in docs %}
+        <li>
+          <a class="govuk-link" href="{{ doc.href }}">{{ doc.label }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    No documents
+  {% endif %}
+{% endmacro %}
+
+{% macro yesNoWithDetail(answer, detail) %}
+  {% if detail %}
+    <p class="govuk-body govuk-!-margin-bottom-1">{{ answer }}</p>
+    <p class="govuk-body govuk-!-margin-bottom-0">{{ detail }}</p>
+  {% else %}
+    {{ answer }}
+  {% endif %}
+{% endmacro %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Appeal 2110166</span>
+      <h1 class="govuk-heading-l">
+        {{ title }}
+      </h1>
+
+    </div>
+    <div class="govuk-grid-column-full">
+      {% include "/includes/appeal-content/lpa-s78-questionnaire-meta--2026" %}
+
+      {% include "projects/lpa-s78-questionnaire/v4/task-list__constraints" %}
+
+      {% include "projects/lpa-s78-questionnaire/v4/task-list__environmental-impact-assessment" %}
+
+      {% include "projects/lpa-s78-questionnaire/v4/task-list__notified" %}
+
+      
+
+
+      
+
+      {# ------------------------------
+         4. Consultation responses and representations
+         ------------------------------ #}
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">4. Consultation responses and representations</h2>
+        </div>
+        <div class="govuk-summary-card__content">
+
+          {% set consultationRows = [
+            {
+              key: {
+                text: "Representations from members of the public or other parties"
+              },
+              value: {
+                html: documentsValue(data['representationsDocs'] or []) | safe
+              },
+              actions: {
+                items: [ {
+                  text: "Add",
+                  href: lpaq.links.consultation.representationsDocs
+                } ]
+              }
+            },
+            {
+              key: {
+                text: "Consultation responses and standing advice"
+              },
+              value: {
+                html: documentsValue(data['responsesStandingAdviceDocs'] or []) | safe
+              },
+              actions: {
+                items: [ {
+                  text: "Add",
+                  href: lpaq.links.consultation.responsesStandingAdviceDocs
+                } ]
+              }
+            },
+            {
+              key: {
+                text: "Did you consult all the relevant statutory consultees about the development?"
+              },
+              value: {
+                text: data['consultedStatutoryConsultees'] or "No"
+              },
+              actions: {
+                items: [ {
+                  text: "Change",
+                  href: lpaq.links.consultation.consultedStatutoryConsultees
+                } ]
+              }
+            }
+          ] %}
+
+          {{ govukSummaryList({
+            rows: consultationRows
+          }) }}
+
+        </div>
+      </div>
+
+      {# ------------------------------
+         5. Planning officer’s report and supplementary documents
+         ------------------------------ #}
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">5. Planning officer’s report and supplementary documents</h2>
+        </div>
+        <div class="govuk-summary-card__content">
+
+          {% set officerReportRows = [
+            {
+              key: {
+                text: "Planning officer’s report"
+              },
+              value: {
+                html: documentsValue(data['planningOfficerReportDocs'] or []) | safe
+              },
+              actions: {
+                items: [ {
+                  text: "Add",
+                  href: lpaq.links.officerReport.planningOfficerReportDocs
+                } ]
+              }
+            },
+            {
+              key: {
+                text: "Relevant policies from statutory development plan"
+              },
+              value: {
+                html: documentsValue(data['statutoryPlanPoliciesDocs'] or []) | safe
+              },
+              actions: {
+                items: [ {
+                  text: "Add",
+                  href: lpaq.links.officerReport.statutoryPlanPoliciesDocs
+                } ]
+              }
+            },
+            {
+              key: {
+                text: "Supplementary planning documents"
+              },
+              value: {
+                html: documentsValue(data['supplementaryPlanningDocs'] or []) | safe
+              },
+              actions: {
+                items: [ {
+                  text: "Add",
+                  href: lpaq.links.officerReport.supplementaryPlanningDocs
+                } ]
+              }
+            },
+            {
+              key: {
+                text: "Emerging plan relevant to appeal"
+              },
+              value: {
+                html: documentsValue(data['emergingPlanDocs'] or []) | safe
+              },
+              actions: {
+                items: [ {
+                  text: "Add",
+                  href: lpaq.links.officerReport.emergingPlanDocs
+                } ]
+              }
+            },
+            {
+              key: {
+                text: "Other relevant policies"
+              },
+              value: {
+                html: documentsValue(data['otherRelevantPoliciesDocs'] or []) | safe
+              },
+              actions: {
+                items: [ {
+                  text: "Add",
+                  href: lpaq.links.officerReport.otherRelevantPoliciesDocs
+                } ]
+              }
+            },
+            {
+              key: {
+                text: "Community infrastructure levy"
+              },
+              value: {
+                html: documentsValue(data['cilDocs'] or []) | safe
+              },
+              actions: {
+                items: [ {
+                  text: "Add",
+                  href: lpaq.links.officerReport.cilDocs
+                } ]
+              }
+            },
+            {
+              key: {
+                text: "Is the community infrastructure levy formally adopted?"
+              },
+              value: {
+                text: data['cilAdopted'] or "Yes"
+              },
+              actions: {
+                items: [ {
+                  text: "Change",
+                  href: lpaq.links.officerReport.cilAdopted
+                } ]
+              }
+            },
+            {
+              key: {
+                text: "When was the community infrastructure levy formally adopted?"
+              },
+              value: {
+                text: data['cilAdoptedDate'] or "Not applicable"
+              },
+              actions: {
+                items: [ {
+                  text: "Change",
+                  href: lpaq.links.officerReport.cilAdoptedDate
+                } ]
+              }
+            },
+            {
+              key: {
+                text: "When do you expect to formally adopt the community infrastructure levy?"
+              },
+              value: {
+                text: data['cilExpectedAdoptionDate'] or "9 May 2023"
+              },
+              actions: {
+                items: [ {
+                  text: "Change",
+                  href: lpaq.links.officerReport.cilExpectedAdoptionDate
+                } ]
+              }
+            }
+          ] %}
+
+          {{ govukSummaryList({
+            rows: officerReportRows
+          }) }}
+
+        </div>
+      </div>
+
+      {# ------------------------------
+         6. Site access
+         ------------------------------ #}
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">6. Site access</h2>
+        </div>
+        <div class="govuk-summary-card__content">
+
+          {% set siteAccessRows = [
+            {
+              key: {
+                text: "Will the inspector need access to the appellant’s land or property?"
+              },
+              value: {
+                html: yesNoWithDetail(
+                  data['needsAppellantLandAccessAnswer'] or "Yes",
+                  data['needsAppellantLandAccessDetail'] or "There is a tall hedge around the site which obstructs the view of the site"
+                ) | safe
+              },
+              actions: {
+                items: [ {
+                  text: "Change",
+                  href: lpaq.links.siteAccess.needsAppellantLandAccess
+                } ]
+              }
+            },
+            {
+              key: {
+                text: "Will the inspector need to enter a neighbour’s land or property?"
+              },
+              value: {
+                text: data['needsNeighbourLandAccess'] or "No"
+              },
+              actions: {
+                items: [ {
+                  text: "Change",
+                  href: lpaq.links.siteAccess.needsNeighbourLandAccess
+                } ]
+              }
+            },
+            {
+              key: {
+                text: "Address of the neighbour’s land or property"
+              },
+              value: {
+                text: data['neighbourLandAddress'] or "None"
+              },
+              actions: {
+                items: [ {
+                  text: "Add",
+                  href: lpaq.links.siteAccess.neighbourLandAddress
+                } ]
+              }
+            },
+            {
+              key: {
+                text: "Are there any potential safety risks?"
+              },
+              value: {
+                html: yesNoWithDetail(
+                  data['safetyRisksAnswer'] or "Yes",
+                  data['safetyRisksDetail'] or "There may be no mobile reception at the site"
+                ) | safe
+              },
+              actions: {
+                items: [ {
+                  text: "Change",
+                  href: lpaq.links.siteAccess.safetyRisks
+                } ]
+              }
+            }
+          ] %}
+
+          {{ govukSummaryList({
+            rows: siteAccessRows
+          }) }}
+
+        </div>
+      </div>
+
+      {# ------------------------------
+         7. Appeal process
+         ------------------------------ #}
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">7. Appeal process</h2>
+        </div>
+        <div class="govuk-summary-card__content">
+
+          {% set appealProcessRows = [
+            {
+              key: {
+                text: "Which procedure do you think is most appropriate for this appeal?"
+              },
+              value: {
+                text: data['procedureType'] or "Inquiry"
+              },
+              actions: {
+                items: [ {
+                  text: "Change",
+                  href: lpaq.links.appealProcess.procedureType
+                } ]
+              }
+            },
+            {
+              key: {
+                text: "Why would you prefer this procedure?"
+              },
+              value: {
+                text: data['procedureReason'] or "Not applicable"
+              },
+              actions: {
+                items: [ {
+                  text: "Change",
+                  href: lpaq.links.appealProcess.procedureReason
+                } ]
+              }
+            },
+            {
+              key: {
+                text: "How many days would you expect the inquiry to last?"
+              },
+              value: {
+                text: data['expectedDays'] or "1 day"
+              },
+              actions: {
+                items: [ {
+                  text: "Change",
+                  href: lpaq.links.appealProcess.expectedDays
+                } ]
+              }
+            },
+            {
+              key: {
+                text: "Are there any other ongoing appeals next to, or close to the site?"
+              },
+              value: {
+                text: data['otherOngoingAppeals'] or "No"
+              },
+              actions: {
+                items: [ {
+                  text: "Add",
+                  href: lpaq.links.appealProcess.otherOngoingAppeals
+                } ]
+              }
+            },
+            {
+              key: {
+                text: "Are there any new conditions?"
+              },
+              value: {
+                text: data['newConditions'] or "No"
+              },
+              actions: {
+                items: [ {
+                  text: "Change",
+                  href: lpaq.links.appealProcess.newConditions
+                } ]
+              }
+            }
+          ] %}
+
+          {{ govukSummaryList({
+            rows: appealProcessRows
+          }) }}
+
+        </div>
+      </div>
+
+      {# ------------------------------
+         Additional documents
+         ------------------------------ #}
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">Additional documents</h2>
+        </div>
+        <div class="govuk-summary-card__content">
+
+          {% set additionalDocsRows = [
+            {
+              key: {
+                text: "Additional documents"
+              },
+              value: {
+                text: data['additionalDocumentsText'] or "None"
+              },
+              actions: {
+                items: [ {
+                  text: "Add",
+                  href: lpaq.links.additionalDocuments
+                } ]
+              }
+            }
+          ] %}
+
+          {{ govukSummaryList({
+            rows: additionalDocsRows
+          }) }}
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}

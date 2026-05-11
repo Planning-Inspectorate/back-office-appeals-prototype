@@ -1,0 +1,105 @@
+{% extends "layouts/PINS.html" %}
+
+{% set title = 'LPA questionnaire' %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <span class="govuk-caption-l">Appeal 6000063</span>
+    <h1 class="govuk-heading-l">{{ title }}</h1>
+  </div>
+
+  <div class="govuk-grid-column-full">
+
+    {% set constraintsRows = [
+      {
+        key: {
+          text: "Is planning appeal the correct type of appeal?"
+        },
+        value: {
+          text: data['correctAppealType'] or "Yes"
+        },
+        actions: {
+          items: [ {
+            text: "Change",
+            href: lpaq.links.constraints.correctAppealType
+          } ]
+        }
+      },
+      {
+        key: {
+          text: "Does the development change a listed building?"
+        },
+        value: {
+          text: data['changesListedBuilding'] or "No"
+        },
+        actions: {
+          items: [ {
+            text: "Add",
+            href: lpaq.links.constraints.changesListedBuilding
+          } ]
+        }
+      },
+      {
+        key: {
+          text: "Does the development affect the setting of listed buildings?"
+        },
+        value: {
+          text: data['affectsSettingOfListedBuildings'] or "No"
+        },
+        actions: {
+          items: [ {
+            text: "Add",
+            href: lpaq.links.constraints.affectsSettingOfListedBuildings
+          } ]
+        }        
+      },
+      {
+        key: {
+          text: "Would the development affect a scheduled monument?"
+        },
+        value: {
+          text: data['scheduledMonument'] or "Yes"
+        },
+        actions: {
+          items: [ {
+            text: "Change",
+            href: lpaq.links.constraints.scheduledMonument
+          } ]
+        }
+      },
+      {
+        key: {
+          text: "Would the development affect a protected species?"
+        },
+        value: {
+          text: data['protectedSpecies'] or "Yes"
+        },
+        actions: { items: [ { text: "Change", href: lpaq.links.constraints.protectedSpecies } ] }
+      },
+      {
+        key: {
+          text: "Green belt"
+        },
+        value: {
+          text: data['greenBelt'] or "Yes"
+       },
+        actions: { items: [ { text: "Change", href: lpaq.links.constraints.greenBelt } ] }
+      },
+      {
+        key: {
+          text: "Is the site in a national landscape?"
+        },
+        value: {
+          text: data['nationalLandscape'] or "Yes"
+        },
+        actions: { items: [ { text: "Change", href: lpaq.links.constraints.nationalLandscape } ] }
+      }
+    ] %}
+
+    {{ govukSummaryList({ rows: constraintsRows }) }}
+
+  </div>
+</div>
+{% endblock %}

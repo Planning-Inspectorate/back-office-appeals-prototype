@@ -1,0 +1,201 @@
+{# ------------------------------
+    1. Constraints, designations and other issues
+    ------------------------------ #}
+<div class="govuk-summary-card">
+  <div class="govuk-summary-card__title-wrapper">
+    <h2 class="govuk-summary-card__title">1. Constraints, designations and other issues</h2>
+  </div>
+  <div class="govuk-summary-card__content">
+
+    {% set constraintsRows = [
+      {
+        key: {
+          text: "Is planning appeal the correct type of appeal?"
+        },
+        value: {
+          html  : data['appropriate'] or "Yes"
+        },
+        actions: {
+          items: [ {
+            text: "Change",
+            href: "constraints/appropriate?cya=true"
+          } ]
+        }
+      },
+      {
+        key: {
+          text: "Does the development change a listed building?"
+        },
+        value: {
+          text: data['changesListedBuilding'] or "No"
+        },
+        actions: {
+          items: [ {
+            text: "Change",
+            href: lpaq.links.constraints.changesListedBuilding
+          } ]
+        }
+      },
+      {
+        key: {
+          text: "Does the development affect the setting of listed buildings?"
+        },
+        value: {
+          text: data['affectsSettingOfListedBuildings'] or "No"
+        },
+        actions: {
+          items: [ {
+            text: "Change",
+            href: lpaq.links.constraints.affectsSettingOfListedBuildings
+          } ]
+        }
+      },
+      {
+        key: {
+          text: "Would the development affect a scheduled monument?"
+        },
+        value: {
+          text: data['scheduledMonument'] or "Yes"
+        },
+        actions: {
+          items: [ {
+            text: "Change",
+            href: lpaq.links.constraints.scheduledMonument
+          } ]
+        }
+      },
+      {
+        key: {
+          text: "Conservation area map and guidance"
+        },
+        value: {
+          html: '<ol class="govuk-list govuk-list--number">
+                  <li>
+                    <a href="#" class="govuk-link">BS3 4AL Conservation-map.pdf</a>
+                  </li>
+                  <li>
+                    <a href="#" class="govuk-link">BS3 4AL Conservation-guidance.doc</a>
+                  </li>
+                </ol>'
+        },
+        actions: {
+          items: [ {
+            text: "Add",
+            href: lpaq.links.constraints.conservationAreaDocs
+          } ]
+        }
+      },
+      {
+        key: {
+          text: "Would the development affect a protected species?"
+        },
+        value: {
+          text: data['protectedSpecies'] or "Yes"
+        },
+        actions: {
+          items: [ {
+            text: "Change",
+            href: lpaq.links.constraints.protectedSpecies
+          } ]
+        }
+      },
+      {
+        key: {
+          text: "Green belt"
+        },
+        value: {
+          text: data['greenBelt'] or "Yes"
+        },
+        actions: {
+          items: [ {
+            text: "Change",
+            href: lpaq.links.constraints.greenBelt
+          } ]
+        }
+      },
+      {
+        key: {
+          text: "Is the site in a national landscape?"
+        },
+        value: {
+          text: data['nationalLandscape'] or "Yes"
+        },
+        actions: {
+          items: [ {
+            text: "Change",
+            href: lpaq.links.constraints.nationalLandscape
+          } ]
+        }
+      },
+      {
+        key: {
+          text: "Is the development in, near or likely to affect any designated sites?"
+        },
+        value: {
+          html:
+            '<ol class="govuk-list govuk-list--bullet">
+                  <li>
+                    SPA Ramsar (Ramsar special protection area)
+                  </li>
+                  <li>
+                    Other: Special protection area
+                  </li>
+                </ol>'
+        },
+        actions: {
+          items: [ {
+            text: "Change",
+            href: lpaq.links.constraints.designatedSites
+          } ]
+        }
+      },
+      {
+        key: {
+          text: "Tree Preservation Order"
+        },
+        value: {
+          html: documentsValue(data['tpoDocs'] or []) | safe
+        },
+        actions: {
+          items: [ {
+            text: "Add",
+            href: lpaq.links.constraints.tpoDocs
+          } ]
+        }
+      },
+      {
+        key: {
+          text: "Does the development relate to anyone claiming to be a Gypsy or Traveller?"
+        },
+        value: {
+          text: data['gypsyTraveller'] or "No"
+        },
+        actions: {
+          items: [ {
+            text: "Change",
+            href: lpaq.links.constraints.gypsyTraveller
+          } ]
+        }
+      },
+      {
+        key: {
+          text: "Definitive map and statement extract"
+        },
+        value: {
+          html: documentsValue(data['definitiveMapDocs'] or []) | safe
+        },
+        actions: {
+          items: [ {
+            text: "Add",
+            href: lpaq.links.constraints.definitiveMapDocs
+          } ]
+        }
+      }
+    ] %}
+
+    {{ govukSummaryList({
+      rows: constraintsRows
+    }) }}
+
+  </div>
+</div>

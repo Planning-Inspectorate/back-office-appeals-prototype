@@ -1,0 +1,26 @@
+{% set levyDate = (data['community-infrastructure-date-day'] or '1') +' '+ (data['community-infrastructure-date-month'] | formatMonth or 'July') +' '+ (data['community-infrastructure-date-year'] or '2022') %}
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "7. Additional documents"
+    }
+  },
+  rows: [
+    {
+      key: {
+        html: 'Supplementary documents'
+      },
+      value: {
+        html: 'No documents'
+      },
+      actions: {
+        items: [
+          {
+            href: '#',
+            html: 'Add<span class="govuk-visually-hidden"> supplementary documents</span>'
+          }
+        ]
+      }
+    }
+  ]
+}) }}

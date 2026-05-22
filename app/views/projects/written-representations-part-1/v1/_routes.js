@@ -22,19 +22,9 @@ router.post('/appellant-case', function (req, res) {
 })
 
 router.post('/valid-date', function (req, res) {
-  if (req.session.data['environmental-statement'] != 'No') {
-    res.redirect('environmental-services-team')
-  } else {
-    req.flash('success', 'Appeal validated')
-    res.redirect('appellant-case')
-  }
-})
-
-router.post('/environmental-services-team', function (req, res) {
   req.flash('success', 'Appeal validated')
   res.redirect('appellant-case?case-stage=ready')
 })
-
 
 // START A CASE / SET PROCEDURE
 // ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒

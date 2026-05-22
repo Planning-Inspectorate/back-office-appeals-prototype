@@ -1,4 +1,4 @@
-{% set dummydod = 'The proposed development comprises the construction of 120 new residential dwellings on a 10-hectare site located on the outskirts of the town centre. The scheme includes a mix of detached, semi-detached, and terraced houses, alongside low-rise apartment blocks, designed to accommodate a range of household sizes and needs. The development will be phased over three years and will incorporate sustainable building practices, including energy-efficient materials, solar panel installations, and rainwater harvesting systems.
+{% set dummydodMajor = 'The proposed development comprises the construction of 120 new residential dwellings on a 10-hectare site located on the outskirts of the town centre. The scheme includes a mix of detached, semi-detached, and terraced houses, alongside low-rise apartment blocks, designed to accommodate a range of household sizes and needs. The development will be phased over three years and will incorporate sustainable building practices, including energy-efficient materials, solar panel installations, and rainwater harvesting systems.
 
 Key features of the proposal include:
 
@@ -7,7 +7,8 @@ Integration with existing transport infrastructure, including new bus stops and 
 Affordable housing provision, with 30% of units designated for shared ownership or social rent.
 Environmental impact mitigation measures, such as tree planting and biodiversity corridors.' %}
 
-{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% set dummydod = 'Erection of a single‑storey building within the rear garden of 22b The Peace Trees, to provide ancillary accommodation associated with the existing residential use.' %}
+
 
 
 {{ govukSummaryList({
@@ -40,7 +41,7 @@ Environmental impact mitigation measures, such as tree planting and biodiversity
         text: "Development type"
       },
       value: {
-        html: "Major development"
+        html: "Minor development"
       },
       actions: {
           items: [

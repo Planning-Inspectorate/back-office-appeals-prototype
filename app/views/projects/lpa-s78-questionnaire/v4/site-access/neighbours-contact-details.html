@@ -1,0 +1,70 @@
+{% extends '_layouts/layout-main.html' %}
+
+{% set title = 'Add contact details' %}
+
+{% block questions %}
+  <!-- <span class="govuk-caption-l">
+    Tell us about you
+  </span> -->
+
+  {% call govukFieldset({
+    legend: {
+    html: title,
+    classes: 'govuk-fieldset__legend--l',
+    isPageHeading: true
+    }
+  }) %}
+    <!-- <p class="govuk-hint">This should match the name on the application to the local planning authority</p> -->
+
+    {{ govukInput({
+      id: 'neighbour-first-name',
+      name: 'neighbour-first-name',
+      value: data['neighbour-first-name'],
+      classes: 'govuk-!-width-three-quarters',
+      label: {
+        html: 'First name'
+      },
+      spellcheck: false
+    }) }}
+
+    {{ govukInput({
+      id: 'neighbour-last-name',
+      name: 'neighbour-last-name',
+      value: data['neighbour-last-name'],
+      classes: 'govuk-!-width-three-quarters',
+      label: {
+        html: 'Last name'
+      },
+      spellcheck: false
+    }) }}
+
+    <!-- {{ govukInput({
+      id: 'agency-name',
+      name: 'agency-name',
+      value: data['agency-name'],
+      label: {
+        html: 'Company name (optional)'
+      }
+    }) }} -->
+
+    {{ govukInput({
+      id: 'neighbour-contact-email',
+      name: 'neighbour-contact-email',
+      value: data['neighbour-contact-email'],
+      label: {
+        html: 'Email (optional)'
+      }
+    }) }}
+
+    {{ govukInput({
+      id: 'neighbour-contact-phone',
+      name: 'neighbour-contact-phone',
+      value: data['neighbour-contact-phone'],
+      classes: "govuk-input--width-10",
+      label: {
+        html: 'Phone (optional)'
+      }
+    }) }}
+
+  {% endcall %}
+{% endblock %}

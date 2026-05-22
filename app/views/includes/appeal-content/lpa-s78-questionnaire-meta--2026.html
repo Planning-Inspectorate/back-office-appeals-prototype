@@ -1,0 +1,50 @@
+{# Tweak the summary list to be smaller #}
+<style>
+  .appeal-details .govuk-summary-list__key,
+  .appeal-details .govuk-summary-list__value,
+  .appeal-details .govuk-summary-list__actions {
+    padding-top: .2rem;
+    padding-bottom: 0;
+  }
+  /* Give some space for the tag being inline now */
+  .app-task-list__section {
+    padding-right: 140px
+  }
+</style>
+
+<dl class="govuk-summary-list appeal-details govuk-summary-list--no-border">
+
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Case officer
+    </dt>
+    <dd class="govuk-summary-list__value">
+      Sammy Douglas
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> case officer</span></a>
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Site address
+    </dt>
+    <dd class="govuk-summary-list__value">
+      22a The Peach Trees London SE15 9HA
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> site address</span></a>
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Local planning authority
+    </dt>
+    <dd class="govuk-summary-list__value">
+      Southwark Council
+    </dd>
+    <!-- <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> local planning authority</span></a>
+    </dd> -->
+  </div>
+</dl>

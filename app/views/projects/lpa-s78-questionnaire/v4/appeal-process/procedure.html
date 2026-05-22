@@ -1,0 +1,48 @@
+{% extends "layouts/PINS.html" %}
+
+{% set title = 'Which procedure would you prefer?' %}
+
+{% block questions %}
+  {% set inquiryDays %}
+    {{ govukInput({
+      id: 'procedure-lenth',
+      name: 'procedure-lenth',
+      value: data['procedure-lenth'],
+      classes: 'govuk-input--width-3',
+      label: {
+        html: 'How many days would you expect the inquiry to last?'
+      }
+    }) }}
+  {% endset -%}
+  {{ govukRadios({
+    idPrefix: 'procedure',
+    name: 'procedure',
+    fieldset: {
+      legend: {
+        html: title,
+        classes: 'govuk-fieldset__legend--l',
+        isPageHeading: true
+      }
+    },
+    items: [
+      {
+        html: 'Written representations',
+        value: 'Written representations',
+        checked: checked('procedure','Written representations')
+      },
+      {
+        html: 'Hearing',
+        value: 'Hearing',
+        checked: checked('procedure','Hearing')
+      },
+      {
+        html: 'Inquiry',
+        value: 'Inquiry',
+        checked: checked('procedure','Inquiry'),
+        conditional: {
+          html: inquiryDays
+        }
+      }
+    ]
+  }) }}
+{% endblock %}

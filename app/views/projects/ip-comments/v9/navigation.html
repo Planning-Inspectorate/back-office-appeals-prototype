@@ -1,0 +1,17 @@
+{{ xGovukSecondaryNavigation({
+  visuallyHiddenTitle: "Secondary menu",
+  classes: "govuk-!-margin-bottom-6",
+  items: [{
+    text: "Awaiting review",
+    href: "ip-comments?tab=awaiting-review",
+    current: data.tab == "awaiting-review"
+  }, {
+    text: "Accepted",
+    href: "ip-comments?tab=valid-comments",
+    current: tab == "valid-comments"
+  }, {
+    text: "Rejected",
+    href: "ip-comments?tab=rejected-comments",
+    current: tab == "rejected-comments"
+  } ]
+}) }}

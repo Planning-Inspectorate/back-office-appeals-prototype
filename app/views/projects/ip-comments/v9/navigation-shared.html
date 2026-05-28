@@ -1,0 +1,13 @@
+{{ xGovukSecondaryNavigation({
+  visuallyHiddenTitle: "Secondary menu",
+  classes: "govuk-!-margin-bottom-6",
+  items: [{
+    text: "Shared",
+    href: "ip-comments-shared?tab=shared-comments",
+    current: tab == "shared-comments"
+  }, {
+    text: "Rejected",
+    href: "ip-comments-shared?tab=rejected-comments-shared",
+    current: tab == "rejected-comments-shared"
+  } ]
+}) }}

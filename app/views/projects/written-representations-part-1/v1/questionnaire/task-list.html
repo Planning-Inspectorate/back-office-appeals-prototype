@@ -49,40 +49,45 @@
     </div>
   </div>
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+  
+  {% if data['case-stage'] == 'questionnaire' %}
+    // only show this when the questionnaire is being reviewed
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
 
-      <form method="post">
+        <form method="post">
 
-          {{ govukRadios({
-            name: "lpaq-outcome",
-            fieldset: {
-              legend: {
-                text: "What’s the outcome of your review?",
-                isPageHeading: true,
-                classes: "govuk-fieldset__legend--m"
-              }
-            },
-            items: [
-              {
-                value: "LPA questionnaire is complete",
-                text: "LPA questionnaire is complete"
+            {{ govukRadios({
+              name: "lpaq-outcome",
+              fieldset: {
+                legend: {
+                  text: "What’s the outcome of your review?",
+                  isPageHeading: true,
+                  classes: "govuk-fieldset__legend--m"
+                }
               },
-              {
-                value: "LPA questionnaire is incomplete",
-                text: "LPA questionnaire is incomplete"
-              }
-            ]
-          }) }}
+              items: [
+                {
+                  value: "LPA questionnaire is complete",
+                  text: "LPA questionnaire is complete"
+                },
+                {
+                  value: "LPA questionnaire is incomplete",
+                  text: "LPA questionnaire is incomplete"
+                }
+              ]
+            }) }}
 
-          {{ govukButton({
-            text: "Continue"
-          }) }}
+            {{ govukButton({
+              text: "Continue"
+            }) }}
 
-  	  </form>
+        </form>
 
 
+      </div>
     </div>
-  </div>
+
+  {% endif %}
 
 {% endblock %}

@@ -14,211 +14,237 @@
     Document status
   </h1>
 
-  {% if (data['case-stage'] | default('') | trim | lower) not in ['', 'new'] %}
+  {% set stage = (data['case-stage'] | default('') | trim | lower) %}
+  {% set proc = data['procedure'] | default('') %}
 
-    <!-- questionnaire status -->
+  {# Questionnaire: Show for writtenPt1 at stages: questionnaire, setup-site-visit, awaiting-site-visit, determination, completed #}
+  {# Questionnaire: Show for written at stages: questionnaire, statements, final-comments, setup-site-visit, awaiting-site-visit, determination, completed #}
+  {# Questionnaire: Show for hearing at stages: questionnaire, statements, setup-hearing, awaiting-hearing, determination, completed #}
+  {# Questionnaire: Show for inquiry at stages: questionnaire, statements, setup-inquiry, awaiting-inquiry, evidence, determination, completed #}
+  
+  {% if (proc == 'writtenPt1' and stage in ['questionnaire', 'setup-site-visit', 'awaiting-site-visit', 'determination', 'completed']) 
+      or (proc == 'written' and stage in ['questionnaire', 'statements', 'final-comments', 'setup-site-visit', 'awaiting-site-visit', 'determination', 'completed'])
+      or (proc == 'hearing' and stage in ['questionnaire', 'statements', 'setup-hearing', 'awaiting-hearing', 'determination', 'completed'])
+      or (proc == 'inquiry' and stage in ['questionnaire', 'statements', 'setup-inquiry', 'awaiting-inquiry', 'evidence', 'determination', 'completed']) %}
+
+    {% if stage == 'questionnaire' %}
+      <!-- questionnaire status -->
+      {{ govukRadios({
+        classes: "govuk-radios",
+        name: "questionnaire",
+        fieldset: {
+          legend: {
+            text: "Questionnaire status",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "waiting",
+            text: "Waiting for questionnaire"
+          },
+          {
+            value: "received",
+            text: "Questionnaire received"
+          },
+          {
+            value: "valid",
+            text: "Questionnaire valid"
+          }
+        ]
+      }) }}
+    {% else %}
+      <!-- questionnaire status set to valid -->
+      {{ govukRadios({
+        classes: "govuk-radios",
+        name: "questionnaire",
+        fieldset: {
+          legend: {
+            text: "Questionnaire status",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "valid",
+            text: "Questionnaire valid",
+            checked: true
+          }
+        ]
+      }) }}
+    {% endif %}
+
+  {% endif %}
+
+  {# Statements + IP comments: Show for written at stages: statements, final-comments, setup-site-visit, awaiting-site-visit, determination, completed #}
+  {# Statements + IP comments: Show for hearing at stages: statements, setup-hearing, awaiting-hearing, determination, completed #}
+  {# Statements + IP comments: Show for inquiry at stages: statements, setup-inquiry, awaiting-inquiry, evidence, determination, completed #}
+  {% if (proc == 'written' and stage in ['statements', 'final-comments', 'setup-site-visit', 'awaiting-site-visit', 'determination', 'completed'])
+      or (proc == 'hearing' and stage in ['statements', 'setup-hearing', 'awaiting-hearing', 'determination', 'completed'])
+      or (proc == 'inquiry' and stage in ['statements', 'setup-inquiry', 'awaiting-inquiry', 'evidence', 'determination', 'completed']) %}
+
+    <!-- LPA statement status -->
     {{ govukRadios({
       classes: "govuk-radios",
-      name: "questionnaire",
+      name: "lpa-statement",
       fieldset: {
         legend: {
-          text: "Questionnaire status",
+          text: "Local planning authority statement",
           isPageHeading: false,
           classes: "govuk-fieldset__legend--l"
         }
       },
       items: [
         {
-          value: "waiting",
-          text: "Waiting for questionnaire"
+          value: null,
+          text: "Waiting for statement"
         },
         {
           value: "received",
-          text: "Questionnaire received"
+          text: "Statement received"
         },
         {
-          value: "valid",
-          text: "Questionnaire valid"
+          value: "complete",
+          text: "Statement valid"
+        },
+        {
+          value: "not-received",
+          text: "No statement"
+        }
+      ]
+    }) }}
+
+    <!-- interested party comments status -->
+    {{ govukRadios({
+      classes: "govuk-radios",
+      name: "ipcomments",
+      fieldset: {
+        legend: {
+          text: "Interested party comments",
+          isPageHeading: false,
+          classes: "govuk-fieldset__legend--l"
+        }
+      },
+      items: [
+        {
+          value: null,
+          text: "Waiting for IP comments"
+        },
+        {
+          value: "received",
+          text: "Comments received"
+        },
+        {
+          value: "complete",
+          text: "Comments accepted"
+        },
+        {
+          value: "not-received",
+          text: "No comments"
         }
       ]
     }) }}
 
   {% endif %}
 
-  {% if data['procedure'] != 'writtenPt1' %}
+  {# Final comments: Show for written at stages: final-comments, setup-site-visit, awaiting-site-visit, determination, completed #}
+  {% if proc == 'written' and stage in ['final-comments', 'setup-site-visit', 'awaiting-site-visit', 'determination', 'completed'] %}
 
-    {% if (data['case-stage'] | default('') | trim | lower) not in ['', 'new', 'questionnaire'] %}
-
-      <!-- LPA statement status -->
-      {{ govukRadios({
-        classes: "govuk-radios",
-        name: "lpa-statement",
-        fieldset: {
-          legend: {
-            text: "Local planning authority statement",
-            isPageHeading: false,
-            classes: "govuk-fieldset__legend--l"
-          }
+    <!-- appellant final comments status -->
+    {{ govukRadios({
+      classes: "govuk-radios",
+      name: "appellant-final-comments",
+      fieldset: {
+        legend: {
+          text: "Appellant final comments",
+          isPageHeading: false,
+          classes: "govuk-fieldset__legend--l"
+        }
+      },
+      items: [
+        {
+          value: null,
+          text: "Waiting for final comments"
         },
-        items: [
-          {
-            value: null,
-            text: "Waiting for statement"
-          },
-          {
-            value: "received",
-            text: "Statement received"
-          },
-          {
-            value: "complete",
-            text: "Statement valid"
-          },
-          {
-            value: "not-received",
-            text: "No statement"
-          }
-        ]
-      }) }}
-
-      <!-- interested party comments status -->
-      {{ govukRadios({
-        classes: "govuk-radios",
-        name: "ipcomments",
-        fieldset: {
-          legend: {
-            text: "Interested party comments",
-            isPageHeading: false,
-            classes: "govuk-fieldset__legend--l"
-          }
+        {
+          value: "received",
+          text: "Final comments received"
         },
-        items: [
-          {
-            value: null,
-            text: "Waiting for IP comments"
-          },
-          {
-            value: "received",
-            text: "Comments received"
-          },
-          {
-            value: "complete",
-            text: "Comments accepted"
-          },
-          {
-            value: "not-received",
-            text: "No comments"
-          }
-        ]
-      }) }}
+        {
+          value: "complete",
+          text: "Final comments accepted"
+        },
+        {
+          value: "not-received",
+          text: "No final comments"
+        }
+      ]
+    }) }}
 
-      {% if data['procedure'] == 'written' %}
-
-        {% if (data['case-stage'] | default('') | trim | lower) not in ['', 'new', 'questionnaire', 'statements'] %}
-
-          <!-- appellant final comments status -->
-          {{ govukRadios({
-            classes: "govuk-radios",
-            name: "appellant-final-comments",
-            fieldset: {
-              legend: {
-                text: "Appellant final comments",
-                isPageHeading: false,
-                classes: "govuk-fieldset__legend--l"
-              }
-            },
-            items: [
-              {
-                value: null,
-                text: "Waiting for final comments"
-              },
-              {
-                value: "received",
-                text: "Final comments received"
-              },
-              {
-                value: "complete",
-                text: "Final comments accepted"
-              },
-              {
-                value: "not-received",
-                text: "No final comments"
-              }
-            ]
-          }) }}
-
-          <!-- lpa final comments status -->
-          {{ govukRadios({
-            classes: "govuk-radios",
-            name: "lpa-final-comments",
-            fieldset: {
-              legend: {
-                text: "Local planning authority final comments",
-                isPageHeading: false,
-                classes: "govuk-fieldset__legend--l"
-              }
-            },
-            items: [
-              {
-                value: null,
-                text: "Waiting for final comments"
-              },
-              {
-                value: "received",
-                text: "Final comments received"
-              },
-              {
-                value: "complete",
-                text: "Final comments accepted"
-              },
-              {
-                value: "not-received",
-                text: "No final comments"
-              }
-            ]
-          }) }}
-
-        {% endif %}
-
-      {% endif %} <!-- procedure == written if -->
-
-
-
-    {% endif %} <!-- case stage if -->
+    <!-- lpa final comments status -->
+    {{ govukRadios({
+      classes: "govuk-radios",
+      name: "lpa-final-comments",
+      fieldset: {
+        legend: {
+          text: "Local planning authority final comments",
+          isPageHeading: false,
+          classes: "govuk-fieldset__legend--l"
+        }
+      },
+      items: [
+        {
+          value: null,
+          text: "Waiting for final comments"
+        },
+        {
+          value: "received",
+          text: "Final comments received"
+        },
+        {
+          value: "complete",
+          text: "Final comments accepted"
+        },
+        {
+          value: "not-received",
+          text: "No final comments"
+        }
+      ]
+    }) }}
 
   {% endif %}
 
+  {# Proof of evidence: Show for inquiry at stages: evidence, determination, completed #}
+  {% if proc == 'inquiry' and stage in ['evidence', 'determination', 'completed'] %}
 
-  {% if data['procedure'] == 'inquiry' %}
-
-    {% if (data['case-stage'] | default('') | trim | lower) not in ['', 'new', 'questionnaire', 'statements'] %}
-      <!-- proof of evidence status -->
-      {{ govukRadios({
-        classes: "govuk-radios",
-        name: "evidence",
-        fieldset: {
-          legend: {
-            text: "Proof of evidence",
-            isPageHeading: false,
-            classes: "govuk-fieldset__legend--l"
-          }
+    <!-- proof of evidence status -->
+    {{ govukRadios({
+      classes: "govuk-radios",
+      name: "evidence",
+      fieldset: {
+        legend: {
+          text: "Proof of evidence",
+          isPageHeading: false,
+          classes: "govuk-fieldset__legend--l"
+        }
+      },
+      items: [
+        {
+          value: null,
+          text: "Waiting for evidence"
         },
-        items: [
-          {
-            value: null,
-            text: "Waiting for evidence"
-          },
-          {
-            value: "received",
-            text: "Proof of evidence received"
-          },
-          {
-            value: "not-received",
-            text: "No proof of evidence"
-          }
-        ]
-      }) }}
-
-    {% endif %}
+        {
+          value: "received",
+          text: "Proof of evidence received"
+        },
+        {
+          value: "not-received",
+          text: "No proof of evidence"
+        }
+      ]
+    }) }}
 
   {% endif %}
 {% endblock %}

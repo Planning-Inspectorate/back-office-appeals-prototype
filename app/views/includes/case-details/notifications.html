@@ -147,6 +147,10 @@
       {% endif %}
     {% endif %}
 
+  {% elseif data['case-stage'] == 'awaiting-site-visit' %}
+
+  {% elseif data['case-stage'] == 'awaiting-site-visit' %}
+
   {% elseif data['case-stage'] == 'setup-hearing' %}
 
     {% set html %}
@@ -278,7 +282,7 @@
   {% elseif data['case-stage'] == 'complete' %}
     <!-- closed -->
 
-  {% else %}
+  {% elseif data['case-stage'] != 'awaiting-site-visit' %}
 
     <!-- must be a new case -->
     {% set html %}
@@ -297,3 +301,5 @@
   {% endif %}
 
 </section>
+
+

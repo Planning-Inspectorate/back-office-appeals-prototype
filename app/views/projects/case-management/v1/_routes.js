@@ -27,7 +27,7 @@ function redirectByPlanningType(req, res) {
   }
 
   if (req.session.data['appealIs'] === 'Full planning') {
-    return res.redirect('/projects/case-details/v5/case-details')
+    return res.redirect('/projects/case-details/v6/case-details')
   }
 
   // No fallback redirect here on purpose (as requested)
@@ -48,11 +48,25 @@ router.post('/case-setup--procedure', function (req, res) {
 })
 
 router.post('/case-setup--case-stage', function (req, res) {
-  if (req.session.data['case-stage'] == 'validation') {
+
+  const stage = req.session.data['case-stage'];
+  const procedure = (req.session.data['procedure'] || '').toLowerCase();
+
+  if (stage === 'validation' || stage === 'new') {
     req.session.data.case = 'not-started';
-    if (redirectByPlanningType(req, res)) return
+    if (redirectByPlanningType(req, res)) return;
+    return;
   } else {
     req.session.data.case = 'started';
+
+    // If the procedure is "written representations part 1" and
+    // the case stage is after questionnaire, skip the document
+    // status page and go straight to v6 case details.
+ 
+    if (procedure === 'writtenpt1' && stage == 'awaiting-site-visit') {
+      return res.redirect('/projects/case-details/v6/case-details');
+    }
+
     res.redirect('case-setup--document-status');
   }
 })

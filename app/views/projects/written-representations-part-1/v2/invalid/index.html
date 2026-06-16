@@ -1,0 +1,73 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Case details" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+		<span class="govuk-caption-xl">Appeal 2110166</span>
+		<h1 class="govuk-heading-xl">Why is the appeal invalid?</h1>
+
+
+       <form action="/projects/appellant-case/invalid/check" method="post" class="govuk-!-margin-top-9" validate>
+
+
+	    {% set textHtml %}
+
+	    {% from "govuk/components/character-count/macro.njk" import govukCharacterCount %}
+
+			{{ govukCharacterCount({
+			  name: "more-detail",
+			  id: "more-detail",
+			  maxlength: 300,
+			  label: {
+			    text: "List any other reasons?",
+			    classes: "govuk-label--s",
+			    isPageHeading: false
+			  },
+			  hint: {
+			    text: "Try to organise your list, for example using dashes or bullets"
+			  }
+			}) }}
+
+	 		{% endset -%}
+
+        {{ govukCheckboxes({
+          name: "reason-invalid",
+          items: [
+            {
+              value: "valid~/projects/appellant-case/valid/",
+              text: "Appeal has not been submitted on time"
+            },
+            {
+              value: "invalid~/projects/appellant-case/invalid",
+              text: "Documents have not been submitted on time"
+            },
+            {
+              value: "The appellant doesn’t have the right to appeal",
+              text: "The appellant doesn’t have the right to appeal"
+            },
+            {
+              value: "complete~/projects/appellant-case/complete",
+              text: "Other",
+		      conditional: {
+		        html: textHtml
+		      }
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+	  </form>
+
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,114 @@
+{% extends "layouts/PINS.html" %}
+
+{% set title = 'Neighbouring site' %}
+
+{% set prototypeLinks = [
+  {
+    href: '?affectedneighbours=yes',
+    text: 'Add a neighbour'
+  },
+  {
+    href: '?affectedneighbours=',
+    text: 'One neighbour'
+  }
+] %}
+
+{% block content %}
+
+  <form method="post">
+
+    <!-- appeal metadata -->
+    <div class="govuk-grid-row govuk-!-margin-bottom-6">
+      <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">
+          {{ title }}
+        </h1>
+
+      </div>
+      <div class="govuk-grid-column-full">
+
+        {{ govukSummaryList({
+          classes: 'appeal-details govuk-!-margin-bottom-0 govuk-!-margin-top-0',
+          rows: [
+
+            {
+              key: {
+                text: 'Site 1 details'
+              },
+              value: {
+                html: (data['neighbour-first-name'] or 'Sam') + ' ' + (data['neighbour-last-name'] or 'Fisher')+
+                      '<br>172, York Road, Bedminster, Bristol, BS3 4AL'
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Remove",
+                    visuallyHiddenText: 'neighbour at 172, York Road, Bedminster, Bristol, BS3 4AL'
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: 'Site 2 details'
+              },
+              value: {
+                html: (data['neighbour-first-name'] or 'Jan') + ' ' + (data['neighbour-last-name'] or 'Bishop')+
+                      '<br>174, York Road, Bedminster, Bristol, BS3 4AL'
+              },
+              actions: {
+                items: [
+                  {
+                    href: "?affectedneighbours=",
+                    text: "Remove",
+                    visuallyHiddenText: '156, York Road, Bedminster, Bristol, BS3 4AL'
+                  }
+                ]
+              }
+            } if data['affectedneighbours'] == 'yes'
+
+          ]
+        }) }}
+
+      </div>
+    </div>
+
+    {{ govukRadios({
+      idPrefix: 'add-neighbours',
+      name: 'add-neighbours',
+      fieldset: {
+        legend: {
+          html: 'Do you want to add another neighbouring site?',
+          classes: 'govuk-fieldset__legend--m',
+          isPageHeading: false
+        }
+      },
+      items: [
+        {
+          html: 'Yes',
+          value: 'Yes',
+          checked: checked('add-neighbours','Yes')
+        },
+        {
+          html: 'No',
+          value: 'No',
+          checked: checked('add-neighbours','No')
+        }
+      ]
+    }) }}
+
+    {{ govukButton({
+      html: 'Continue'
+    }) }}
+
+  </form>
+
+  <p class="govuk-body">
+    <a href="../task-list" class="govuk-link--no-visited-state">
+      Return to questionnaire homepage
+    </a>
+  </p>
+
+{% endblock %}

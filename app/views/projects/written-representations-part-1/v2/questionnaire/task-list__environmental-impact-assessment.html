@@ -1,0 +1,58 @@
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "3. Environmental impact assessment"
+    }
+  },
+  rows: [
+    {
+      key: {
+        html: 'Schedule type'
+      },
+      value: {
+        html: 'None'
+      },
+      actions: {
+        items: [
+          {
+            href: 'environment/schedule-type?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: 'Have you issued a screening opinion?'
+      },
+      value: {
+        html: 'No'
+      },
+      actions: {
+        items: [
+          {
+            href: 'environment/schedule-type?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: 'Did the applicant submit an environmental statement?'
+      },
+      value: {
+        html: 'No'
+      },
+      actions: {
+        items: [
+          {
+            href: 'environment/schedule-type?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    }
+    
+  ]
+}) }}

@@ -1,0 +1,106 @@
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "4. Notifying people about the application"
+    }
+  },
+  rows: [
+    {
+      key: {
+        html: 'List of neighbours’ addresses that you notified about the application'
+      },
+      value: {
+        html: '<a href="#" class="govuk-link">22b The Peach Trees SE15 9HA notified neighbours.odt</a>'
+      },
+      actions: {
+        items: [
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Manage<span class="govuk-visually-hidden"> who was notified</span>'
+          },
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Add<span class="govuk-visually-hidden"> who was notified</span>'
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: 'How did you notify relevant parties about this application?'
+      },
+      value: {
+        html: ' <ul class="govuk-list govuk-list--bullet">
+                  <li>
+                    A site notice
+                  </li>
+                </ul>'
+      },
+      actions: {
+        items: [
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Manage<span class="govuk-visually-hidden"> who was notified</span>'
+          },
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Add<span class="govuk-visually-hidden"> who was notified</span>'
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: 'Site notice'
+      },
+      value: {
+        html: '<a href="#" class="govuk-link">22b The Peach Trees SE15 9HA appeal site notice 2024.pdf</a>'
+      },
+      actions: {
+        items: [
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Manage<span class="govuk-visually-hidden"> site notice</span>'
+          },
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Add<span class="govuk-visually-hidden"> site notice</span>'
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: 'Letter or email notification'
+      },
+      value: {
+        html: 'No documents'
+      },
+      actions: {
+        items: [
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Add<span class="govuk-visually-hidden"> site notice</span>'
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: 'Press advert notification'
+      },
+      value: {
+        html: 'No documents'
+      },
+      actions: {
+        items: [
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Add'
+          }
+        ]
+      }
+    }
+
+  ]
+}) }}

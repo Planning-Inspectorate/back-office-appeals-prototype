@@ -1,0 +1,100 @@
+{% extends "layouts/PINS.html" %}
+
+{% set title = 'Listed building found' %}
+
+{% block content %}
+
+  <form method="post">
+
+    <div class="govuk-grid-row">
+
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l govuk-!-margin-bottom-0">
+          {{ title }}
+        </h1>
+      </div>
+
+      <div class="govuk-grid-column-full">
+
+        {# Tweak the summary list to be smaller #}
+
+        <style>
+          .appeal-details .govuk-summary-list__key,
+          .appeal-details .govuk-summary-list__value,
+          .appeal-details .govuk-summary-list__actions {
+            padding-top: 0;
+            padding-bottom: 0;
+          }
+          /* Give some space for the tag being inline now */
+          .app-task-list__section {
+            padding-right: 140px
+          }
+        </style>
+
+        <div class="govuk-inset-text">
+
+          {{ govukSummaryList({
+            classes: 'appeal-details govuk-summary-list--no-border govuk-!-margin-bottom-0',
+            rows: [
+
+                {
+                  key: {
+                    text: 'List Entry Number'
+                  },
+                  value: {
+                    text: data['historicenglandsearchnumber'] or '1282050'
+                  }
+                },          {
+                key: {
+                  text: 'Building grade'
+                },
+                value: {
+                  text: 'Grade II listed building'
+                }
+              },
+              {
+                key: {
+                  text: 'Building address'
+                },
+                value: {
+                  text: '155, York Road, Bedminster, Bristol, BS3 4AL'
+                }
+              }
+            ]
+          }) }}
+        </div>
+
+      </div>
+    </div>
+
+    {{ govukRadios({
+      idPrefix: 'affected-listed-building-building',
+      name: 'affected-listed-building-building',
+      fieldset: {
+        legend: {
+          html: 'Is this a listed building affected by development?',
+          classes: 'govuk-fieldset__legend--m',
+          isPageHeading: false
+        }
+      },
+      items: [
+        {
+          html: 'Yes',
+          value: 'Yes',
+          checked: checked('affected-listed-building-building','Yes')
+        },
+        {
+          html: 'No',
+          value: 'No',
+          checked: checked('affected-listed-building-building','No')
+        }
+      ]
+    }) }}
+
+    {{ govukButton({
+      html: 'Continue'
+    }) }}
+
+  </form>
+
+{% endblock %}

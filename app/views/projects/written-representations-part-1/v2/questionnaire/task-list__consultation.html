@@ -1,0 +1,107 @@
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "5. Consultation responses and representations"
+    }
+  },
+  rows: [
+
+    {
+      key: {
+        html: 'Statutory consultees'
+      },
+      value: {
+        html: 'London Fire Brigade consultation<br>
+          County Highways Authority consultation<br>
+          Environmental Health (noise and disturbance assessment)<br>
+          Peach Trees neighbourhood forum (comments)'
+      },
+      actions: {
+        items: [
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Change<span class="govuk-visually-hidden"> statutory consultees</span>'
+          }
+        ]
+      }
+    }, 
+    
+    {
+      key: {
+        html: 'Consultation and standing advice'
+      },
+      value: {
+        html: '<ol class="govuk-list govuk-list--number"><li><a href="" class="govuk-link">Consultation for 22b The Peach Trees SE15 9HA.pdf</a></li>
+               <li><a href="" class="govuk-link">Standing advice for 22b The Peach Trees SE15 9HA.pdf</a></li></ol>'
+      },
+      actions: {
+        items: [
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Manage<span class="govuk-visually-hidden"> consultation and standing advice</span>'
+          },
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Add<span class="govuk-visually-hidden"> consultation and standing advice</span>'
+          }
+        ]
+      }
+    } if data['answers'] != 'empty',
+    {
+      key: {
+        html: 'Consultation and standing advice'
+      },
+      value: {
+        html: 'Not applicable'
+      },
+      actions: {
+        items: [
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Add<span class="govuk-visually-hidden"> consultation and standing advice</span>'
+          }
+        ]
+      }
+    } if data['answers'] == 'empty',
+    {
+      key: {
+        html: 'Representations from other parties'
+      },
+      value: {
+        html: '<ol class="govuk-list govuk-list--number"><li><a href="" class="govuk-link">Representation A for 22b The Peach Trees SE15 9HA.pdf</a></li>
+               <li><a href="" class="govuk-link">Representation B for 22b The Peach Trees SE15 9HA.pdf</a></li>
+               <li><a href="" class="govuk-link">Representation C for 22b The Peach Trees SE15 9HA.pdf</a></li>
+               <li><a href="" class="govuk-link">Representation D for 22b The Peach Trees SE15 9HA.pdf</a></li>
+               <li><a href="" class="govuk-link">Representation E for 22b The Peach Trees SE15 9HA.pdf</a></li></ol>'
+      },
+      actions: {
+        items: [
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Manage<span class="govuk-visually-hidden"> representations from other parties</span>'
+          },
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Add<span class="govuk-visually-hidden"> representations from other parties</span>'
+          }
+        ]
+      }
+    } if data['answers'] != 'empty',
+    {
+      key: {
+        html: 'Representations from other parties'
+      },
+      value: {
+        html: 'Not applicable'
+      },
+      actions: {
+        items: [
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Add<span class="govuk-visually-hidden"> representations from other parties</span>'
+          }
+        ]
+      }
+    } if data['answers'] == 'empty'
+  ]
+}) }}

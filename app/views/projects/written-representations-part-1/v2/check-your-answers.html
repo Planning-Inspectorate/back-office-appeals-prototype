@@ -1,0 +1,49 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Check details and start case" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Appeal 2114328</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+      <form method="post">
+
+        {{ govukSummaryList({
+          classes: "govuk-!-margin-bottom-6",
+          rows: [
+            {
+              key: {
+                text: "Appeal procedure"
+              },
+              value: {
+                html: data['procedure'] or 'Written representations (part 1)'
+              },
+              actions: {
+                items: [
+                  {
+                    href: "procedure",
+                    text: "Change",
+                    visuallyHiddenText: "appeal procedure"
+                  }
+                ]
+              }
+            } if data['part1check'] !='Yes'
+
+          ]
+        })
+      }}
+
+      {{ govukButton({
+        text: "Start case"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,234 @@
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "1. Constraints, designations and other issues"
+    }
+  },
+  rows: [
+    {
+      key: {
+        html: 'Is the appeal type appropriate?'
+      },
+      value: {
+        html: 'Yes'
+      },
+      actions: {
+        items: [
+          {
+            href: 'constraints/appropriate?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: 'Changed listed buildings'
+      },
+      value: {
+        html: 'No'
+      },
+      actions: {
+        items: [
+          {
+            href: 'constraints/affected-listed-building-details?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    } if data['answers'] != 'empty',
+    {
+      key: {
+        html: 'Changed listed buildings'
+      },
+      value: {
+        html: 'No'
+      },
+      actions: {
+        items: [
+          {
+            href: 'constraints/affected-listed-building-details?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: 'Affected listed buildings'
+      },
+      value: {
+        html: 'No'
+      },
+      actions: {
+        items: [
+          {
+            href: 'constraints/affected-listed-building-details?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    } if data['answers'] == 'empty',
+    {
+      key: {
+        html: 'Affects a scheduled monument'
+      },
+      value: {
+        html: 'No'
+      },
+      actions: {
+        items: [
+          {
+            href: 'constraints/affected-scheduled-monument-check?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: 'Conservation area map and guidance'
+      },
+      value: {
+        html: 'No documents'
+      },
+      actions: {
+        items: [
+          {
+            href: 'constraints/affected-scheduled-monument-check?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: 'Conservation area map and guidance'
+      },
+      value: {
+        html: 'Not applicable'
+      },
+      actions: {
+        items: [
+          {
+            href: 'notified/notified-who?cya=true',
+            html: 'Add<span class="govuk-visually-hidden"> to conservation area map and guidance</span>'
+          }
+        ]
+      }
+    } if data['answers'] == 'empty',
+    {
+      key: {
+        html: 'Protected species'
+      },
+      value: {
+        html: 'No'
+      },
+      actions: {
+        items: [
+          {
+            href: 'constraints/protected-species?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: 'Green belt'
+      },
+      value: {
+        html: data['green-belt'] or 'No'
+      },
+      actions: {
+        items: [
+          {
+            href: 'constraints/green-belt?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: 'National landscape'
+      },
+      value: {
+        html: data['national-landscape'] or 'No'
+      },
+      actions: {
+        items: [
+          {
+            href: 'constraints/national-landscape?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: 'Designated sites'
+      },
+      value: {
+        html: 'No'
+      },
+      actions: {
+        items: [
+          {
+            href: 'constraints/designated-sites?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: 'Tree preservation order'
+      },
+      value: {
+        html: 'No'
+      },
+      actions: {
+        items: [
+          {
+            href: 'constraints/tree-preservation-order?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: 'Gypsy or traveller'
+      },
+      value: {
+        html: 'No'
+      },
+      actions: {
+        items: [
+          {
+            href: 'constraints/gypsy-or-traveller?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: 'Public right of way'
+      },
+      value: {
+        html: 'No'
+      },
+      actions: {
+        items: [
+          {
+            href: 'constraints/public-right-of-way?cya=true',
+            html: 'Change'
+          }
+        ]
+      }
+    }
+
+  ]
+}) }}

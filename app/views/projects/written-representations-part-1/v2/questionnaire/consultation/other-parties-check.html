@@ -1,0 +1,29 @@
+{% extends "layouts/PINS.html" %}
+
+{% set title = 'Did you receive representations from other parties?' %}
+
+{% block questions %}
+  {{ govukRadios({
+    idPrefix: 'other-parties-check',
+    name: 'other-parties-check',
+    fieldset: {
+      legend: {
+        html: title,
+        classes: 'govuk-fieldset__legend--l',
+        isPageHeading: true
+      }
+    },
+    items: [
+      {
+        html: 'Yes',
+        value: 'Yes',
+        checked: checked('other-parties-check','Yes')
+      },
+      {
+        html: 'No',
+        value: 'No',
+        checked: checked('other-parties-check','No')
+      }
+    ]
+  }) }}
+{% endblock %}

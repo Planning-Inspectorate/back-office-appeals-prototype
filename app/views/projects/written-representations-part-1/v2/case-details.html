@@ -1,0 +1,582 @@
+{% extends "layouts/PINS.html" %}
+
+{% set title = "Case details" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <!-- notifications -->
+    {# No notifications for this stage #}
+
+    <!--	<span class="govuk-caption-l">Appeal 2110166</span> -->
+    <span class="govuk-caption-xl">Appeal 2114328</span>
+  	<h1 class="govuk-heading-xl govuk-!-margin-bottom-2">
+      {{ title }}
+    </h1>
+
+    {{ caseStatus (caseStatus = 'awaitingSiteVisit') }}
+
+  </div>
+
+  <div class="govuk-grid-column-full">
+
+    {% include "/includes/appellant-case/meta-data.html" %}
+  
+  </div>
+
+  <div class="govuk-grid-column-two-thirds">
+
+    <p class="govuk-body">
+      <a href="#" class="govuk-link">
+        Download case
+      </a>
+    </p>
+
+    {% include "/includes-for-main/case-details/case-notes.html" %}
+
+  </div>
+
+  <div class="govuk-grid-column-full">
+
+    <!-- case sections -->
+    <section class="govuk-!-margin-top-6">
+{#
+
+
+
+
+
+  ------------------------------------------------------------
+  OVERVIEW
+  ------------------------------------------------------------
+
+
+
+
+
+#}
+
+
+      <h2 class="govuk-heading-l">
+        Overview
+      </h2>
+
+      {{ govukTable({
+        captionClasses: "govuk-table__caption--m pins-summary-list--bottomless",
+        firstCellIsHeader: true,
+        rows: [
+          [
+            {
+              text: "Planning application reference",
+              classes: "govuk-!-width-one-third"
+            },
+            {
+              text: 'SC/2026/0235/Full'
+            },
+            {
+              html: "<a href=\"Application-reference?referrer=case-details\">Change</a>",
+              format: "numeric"
+            }
+          ],
+          [
+            {
+              text: "Appeal type"
+            },
+            {
+              text: 'Full planning'
+            },
+            {
+              html: "<a href='#'>Change</a>",
+              format: "numeric"
+            }
+          ],
+          [
+            {
+              text: "Appeal procedure"
+            },
+            {
+              html: 'Written representations (part 1)'
+            },
+            {
+              html: "<a href='#'>Change</a>",
+              format: "numeric"
+            }
+          ],
+          [
+            {
+              text: "Allocation level"
+            },
+            {
+              html: "G<br>General"
+            },
+            {
+              html: "<a href='#'>Change</a>",
+              format: "numeric"
+            }
+          ],
+          [
+            {
+              text: "Linked appeals"
+            },
+            {
+              html: "No linked appeals"
+            },
+            {
+              html: "<a href='#'>Change</a>",
+              format: "numeric"
+            }
+          ],
+          [
+            {
+              text: "Related appeals"
+            },
+            {
+              html: "No related appeals"
+            },
+            {
+              html: "<a href='#'>Change</a>",
+              format: "numeric"
+            }
+          ]
+        ]
+      }) }}
+      
+      
+      
+
+      
+{#
+
+
+
+
+
+  ------------------------------------------------------------
+  TIMETABLE
+  ------------------------------------------------------------
+
+
+
+
+  
+#}
+      <h2 class="govuk-heading-l">
+        Timetable
+      </h2>
+
+      {{ govukTable({
+        captionClasses: "govuk-table__caption--m pins-summary-list--bottomless",
+        firstCellIsHeader: true,
+        rows: [
+          [
+            {
+              text: "Valid date",
+              classes: "govuk-!-width-one-third"
+            },
+            {
+              html: 20 | daysAgo
+            },
+            {
+              html: "<a href='#'>Change</a>",
+              format: "numeric"
+            }
+          ],
+          [
+            {
+              text: "Start date"
+            },
+            {
+              html: 19 | daysAgo
+            },
+            {
+              html: "<a href='#'>Change</a>",
+              format: "numeric"
+            }
+          ],
+          [
+            {
+              text: "LPA questionnaire due"
+            },
+            {
+              html: 12 | daysAgo
+            },
+            {
+              html: "<a href='#'>Change</a>",
+              format: "numeric"
+            }
+          ]
+
+        ]
+      }) }}
+
+
+{#
+
+
+
+
+
+  ------------------------------------------------------------
+  SITE
+  ------------------------------------------------------------
+
+
+
+
+  
+#}
+
+      <h2 class="govuk-heading-l">
+        Site
+      </h2>
+
+      {{ govukTable({
+        captionClasses: "govuk-table__caption--m",
+        firstCellIsHeader: true,
+        rows: [
+          [
+            {
+              text: "Date",
+              classes: "govuk-!-width-one-third"
+            },
+            {
+              text: 3 | daysInFuture
+            },
+            {
+              html: "<a href='site-visit.html'>Change</a>",
+              format: "numeric"
+            }
+          ],
+          [
+            {
+              text: "Time"
+            },
+            {
+              text: '10am'
+            },
+            {
+              html: "<a href='site-visit.html'>Change</a>",
+              format: "numeric"
+            }
+          ],
+          [
+            {
+              text: "Type",
+              classes: "govuk-!-width-one-third"
+            },
+            {
+              text: "Unaccompanied"
+            },
+            {
+              html: "<a href='site-visit.html'>Change</a>",
+              format: "numeric"
+            }
+          ]
+        ]
+      }) }}
+
+      <h3 class="govuk-heading-m">
+        Site visit requests
+      </h3>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Interested party and neighbour addresses",
+              classes: "govuk-!-width-one-third"
+            },
+            value: {
+              html: "<ul class='govuk-list govuk-list--bullet'>
+                      <li>22a The Peach Trees<br>
+                    Southwark<br>
+                    London SE15 9HA</li>
+                      <li>24 The Peach Trees<br>
+                    London SE15 9HA</li>
+                      <li>11 Peasdown Close<br>
+                    Southwark<br>
+                    London SE15 9HG</li>
+                    </ul>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Add",
+                  visuallyHiddenText: "neighbour addresses"
+                },
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "neighbour addresses"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+{#
+
+
+
+
+
+  ------------------------------------------------------------
+  DOCUMENTATION
+  ------------------------------------------------------------
+
+
+
+
+  
+#}
+      <h2 class="govuk-heading-l">
+        Documentation
+      </h2>
+
+      <!-- documentation table -->
+      <table class="govuk-table">
+
+        <!-- table head -->
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Documentation</th>
+            <th scope="col" class="govuk-table__header">Status</th>
+            <th scope="col" class="govuk-table__header">Date</th>
+            <th scope="col" class="govuk-table__header govuk-!-text-align-right">Action</th>
+          </tr>
+        </thead>
+
+        <!-- table body -->
+        <tbody class="govuk-table__body">
+          <!-- valid appeal submission -->
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">Appeal</th>
+            <td class="govuk-table__cell">Valid</td>
+            <td class="govuk-table__cell">{{ 20 | daysAgo }}</td>
+            <td class="govuk-table__cell govuk-!-text-align-right">
+              <a href="/projects/written-representations-part-1/v2/appellant-case" class="govuk-link">
+                View<span class="govuk-visually-hidden"> appellant case</span>
+              </a>
+            </td>
+          </tr> 
+          <!-- complete LPA questionnaire -->
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">Local planning authority questionnaire</th>
+            <td class="govuk-table__cell">Valid</td>
+            <td class="govuk-table__cell">{{ 10 | daysAgo }}</td>
+            <td class="govuk-table__cell govuk-!-text-align-right">
+              <a href="/projects/written-representations-part-1/v2/questionnaire/task-list" data-cy="review-appellant-case" class="govuk-link">
+                View<span class="govuk-visually-hidden"> questionnaire</span>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+{#
+
+
+
+
+
+  ------------------------------------------------------------
+  TEAM
+  ------------------------------------------------------------
+
+
+
+
+  
+#}      
+      <h2 class="govuk-heading-l">
+        Team
+      </h2>
+
+      {% from "govuk/components/table/macro.njk" import govukTable %}
+
+
+      {{ govukTable({
+        captionClasses: "govuk-table__caption--m",
+        firstCellIsHeader: true,
+        rows: [
+          [
+            {
+              text: "Case team",
+              classes: "govuk-!-width-one-third"
+            },
+            {
+              html: "East 1<br>east1@planninginspectorate.gov.uk</a> "
+            },
+            {
+              html: "<a href='#'>Change</a>",
+              format: "numeric"
+            }
+          ],
+          [
+            {
+              text: "Case officer",
+              classes: "govuk-!-width-one-third"
+            },
+            {
+              html: "Sammy Douglas<br>sammy.douglas@planninginspectorate.gov.uk</a> "
+            },
+            {
+              html: "<a href='#'>Change</a>",
+              format: "numeric"
+            }
+          ],
+          [
+            {
+              text: "Inspector"
+            },
+            {
+              html: "Rowen Arbor<br>rowen.arbor@planninginspectorate.gov.uk</a>"
+            },
+            {
+              html: "<a href='#'>Change</a>",
+              format: "numeric"
+            }
+          ]
+        ]
+      }) }}
+{#
+
+
+
+
+
+  ------------------------------------------------------------
+  CASE MANAGEMENT
+  ------------------------------------------------------------
+
+
+
+
+  
+#}
+      <h2 class="govuk-heading-l">
+        Case management
+      </h2>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Cross-team correspondence"
+            },
+            value: {
+              text: "1 document"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "cross-team correspondence"
+                },
+                {
+                  href: "#",
+                  text: "Add",
+                  visuallyHiddenText: "cross-team correspondence"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Inspector correspondence"
+            },
+            value: {
+              text: "No documents"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Add",
+                  visuallyHiddenText: "cross-team correspondence"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Main party correspondence"
+            },
+            value: {
+              text: "3 document"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "cross-team correspondence"
+                },
+                {
+                  href: "#",
+                  text: "Add",
+                  visuallyHiddenText: "cross-team correspondence"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Case history"
+            },
+            value: {
+              text: ""
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "case history"
+                },
+                {
+                  href: "#",
+                  text: "Add",
+                  visuallyHiddenText: "case history"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+{#
+
+
+
+
+
+  ------------------------------------------------------------
+  CANCEL APPEAL
+  ------------------------------------------------------------
+
+
+
+
+  
+#}
+
+    <div id="case-details-cancel-section">
+      <h3 class="govuk-heading-m">
+        Cancel appeal
+      </h3>
+    <div>
+    
+    <p class="govuk-body">
+      <a class="govuk-link" href="#">
+        Cancel appeal
+      </a>
+    </p>
+
+    <!-- end of case sections -->
+    </section>
+  </div>
+{% endblock %}

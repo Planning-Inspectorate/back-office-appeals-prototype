@@ -17,8 +17,10 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <span class="govuk-caption-xl">Appeal 2110166</span>
-    <h1 class="govuk-heading-xl">{{ title }}</h1>
+    <span class="govuk-caption-xl">Appeal 2114328</span>
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-2">{{ title }}</h1>
+
+    {{ caseStatus (caseStatus = 'awaitingSiteVisit') }}
 
   </div>
 
@@ -54,7 +56,110 @@
 
   
 #}    
-    {% include "/includes/appellant-case/before-you-start.html" %}
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "Before you start"
+    }
+  },
+  rows: [
+    {
+      key: {
+        text: "Local planning authority"
+      },
+      value: {
+        html: "Camden Council"
+      },
+      actions: {
+      }
+    },
+    {
+      key: {
+        text: "What is your appeal about?"
+      },
+      value: {
+        html: "Full planning"
+      },
+      actions: {
+      }
+    },
+     {
+      key: {
+        text: "Was your application granted or refused?"
+      },
+      value: {
+        html: "Refused"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "appeal decision"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "What date did you submit your planning application?"
+      },
+      value: {
+        html: 40 | daysAgo
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "application date"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Was your application granted or refused?"
+      },
+      value: {
+        html: "Refused"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "decision"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "What’s the date on the decision letter from the local planning authority?​"
+      },
+      value: {
+        html: 20 | daysAgo
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "decision date"
+          }
+        ]
+      }
+    }
+    
+    
+
+  ]
+}) }}
+
+
+
 {#
 
 
@@ -70,7 +175,36 @@
 
   
 #}
-    {% include "/includes/appellant-case/contact-details.html" %}
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "1. Appellant details"
+    }
+  },
+  rows: [
+    {
+      key: {
+        text: "Appellant’s contact details"
+      },
+      value: {
+        html: "Charlie O'Shae<br>oatsandbarley@hotmail.co.uk"
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "appellant's contact details"
+            }
+          ]
+        }
+
+    }
+
+  ]
+}) }}
+
 {#
 
 
@@ -86,7 +220,239 @@
 
   
 #}    
-    {% include "/includes/appellant-case/site-details.html" %}
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "2. Site details"
+    }
+  },
+  rows: [
+    {
+      key: {
+        text: "Site address"
+      },
+      value: {
+        html: "22b The Peach Trees London SE15 9HA"
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "Another individual"
+            }
+          ]
+        }
+    },
+    {
+      key: {
+        text: "What is the area of the appeal site?"
+      },
+      value: {
+        html: "22m²"
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "site area"
+            }
+          ]
+        }
+    },
+    {
+      key: {
+        text: "Is the appeal site in a green belt?"
+      },
+      value: {
+        html: "No"
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "green belt"
+            }
+          ]
+        }
+    },
+    {
+      key: {
+        text: "Does the appellant own all of the land involved in the appeal?"
+      },
+      value: {
+        html: "Fully owned"
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "site ownership"
+            }
+          ]
+        }
+    },
+    {
+      key: {
+        text: "Does the appellant know who owns the land involved in the appeal?"
+      },
+      value: {
+        html: "No data"
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "Another individual"
+            }
+          ]
+        }
+    },
+    {
+      key: {
+        text: "All owners known"
+      },
+      value: {
+        html: "No"
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "Another individual"
+            }
+          ]
+        }
+    } if data['1'],
+    {
+      key: {
+        text: "Attempted to identify owners"
+      },
+      value: {
+        html: "Yes"
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "Another individual"
+            }
+          ]
+        }
+    } if data['1'],
+    {
+      key: {
+        text: "Is the site part of an agricultural holding?"
+      },
+      value: {
+        html: "No"
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "Another individual"
+            }
+          ]
+        }
+    },
+    {
+      key: {
+        text: "Are you a tenant of the agricultural holding?"
+      },
+      value: {
+        html: "No"
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "Another individual"
+            }
+          ]
+        }
+    },
+    {
+      key: {
+        text: "Are there any other tenants?"
+      },
+      value: {
+        html: "No"
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "Another individual"
+            }
+          ]
+        }
+    },    
+    {
+      key: {
+        text: "Advertised appeal"
+      },
+      value: {
+        html: "No"
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "Another individual"
+            }
+          ]
+        }
+    } if data['1'],
+    {
+      key: {
+        text: "Will an inspector need to access your land or property?"
+      },
+      value: {
+        html: "No"
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "Another individual"
+            }
+          ]
+        }
+    },
+    {
+      key: {
+        text: "Are there any health and safety issues on the appeal site?"
+      },
+      value: {
+        html: "No"
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "Another individual"
+            }
+          ]
+        }
+    }
+
+  ]
+}) }}
+
 {#
 
 
@@ -102,7 +468,116 @@
 
   
 #}
-    {% include "/includes/appellant-case/application-details.html" %}
+
+{% set dummydodMajor = 'The proposed development comprises the construction of 120 new residential dwellings on a 10-hectare site located on the outskirts of the town centre. The scheme includes a mix of detached, semi-detached, and terraced houses, alongside low-rise apartment blocks, designed to accommodate a range of household sizes and needs. The development will be phased over three years and will incorporate sustainable building practices, including energy-efficient materials, solar panel installations, and rainwater harvesting systems.
+
+Key features of the proposal include:
+
+A central green space with pedestrian pathways and recreational areas.
+Integration with existing transport infrastructure, including new bus stops and cycle lanes.
+Affordable housing provision, with 30% of units designated for shared ownership or social rent.
+Environmental impact mitigation measures, such as tree planting and biodiversity corridors.' %}
+
+{% set dummydod = 'Erection of a single‑storey building within the rear garden of 22b The Peace Trees, to provide ancillary accommodation associated with the existing residential use.' %}
+
+
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "3. Application details"
+    }
+  },
+  classes: 'long-answers govuk-!-margin-bottom-9',
+  rows: [
+    {
+      key: {
+        text: "Application reference number"
+      },
+      value: {
+        html: data['application-reference'] or 'SY/200432P'
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "application reference number"
+            }
+          ]
+        }
+    } if data['1'],
+    {
+      key: {
+        text: "What date did you submit your application?"
+      },
+      value: {
+        html: 100 | daysAgo
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "application reference number"
+            }
+          ]
+        }
+    },
+    {
+      key: {
+        text: "Development type"
+      },
+      value: {
+        html: "Other minor developments"
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "development type"
+            }
+          ]
+        }
+    },
+    {
+      key: {
+        text: "Enter the description of development that you submitted in your application"
+      },
+      value: {
+        html: dummydod
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "description of development"
+            }
+          ]
+        }
+    },
+    {
+      key: {
+        text: "Did the local planning authority change the description of development?"
+      },
+      value: {
+        html: data['application-desc-changed'] or 'No'
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "description of development changed"
+            }
+          ]
+        }
+    }
+  ]
+}) }}
+
 {#
 
 
@@ -118,7 +593,91 @@
 
   
 #}
-    {% include "/includes/appellant-case/appeal-details.html" %}
+{% set dummygroundsMajor = '• The appellant contends that the local planning authority decision to refuse the application was flawed on the following grounds.
+• I believe this to be a misinterpretation of Policy - The authority incorrectly applied local planning policies, particularly in relation to the assessment of visual impact and neighbourhood character, leading to an unjustified refusal.
+• Failure to Consider Material Benefits — The decision did not adequately account for the positive contributions of the proposal, including improved site utilisation and enhanced accessibility for local residents.' %}
+
+{% set dummygrounds = 'The proposed development represents a modest, single‑storey ancillary building within the rear garden of an existing dwelling, the scale, siting and design of which would not result in material harm to the character and appearance of the area, the living conditions of neighbouring occupiers, or the proper planning of the site, and any perceived concerns regarding use or impact could be appropriately controlled by condition; the proposal therefore complies with the development plan when read as a whole and relevant national planning policy.' %}
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "4. Appeal details"
+    }
+  },
+  classes: 'long-answers',
+  rows: [
+    {
+      key: {
+        text: "Grounds of appeal"
+      },
+      value: {
+        html: dummygrounds
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "grounds of appeal"
+            }
+          ]
+        }
+    },
+    {
+      key: {
+        text: "Have there been any significant changes that would affect the application?"
+      },
+      value: {
+        html: data['localplanchange'] or 'There have been no significant changes'
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "significant change"
+            }
+          ]
+        }
+    },
+    {
+      key: {
+        text: "Appeal procedure"
+      },
+      value: {
+        html: data['procedure'] or 'Written representations'
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "appeal procedure"
+            }
+          ]
+        }
+    },
+    {
+      key: {
+        text: "Are there other appeals linked to your development?"
+      },
+      value: {
+        html: "No"
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "linked appeals"
+            }
+          ]
+        }
+    }
+  ]
+}) }}
+
 {#
 
 
@@ -134,7 +693,118 @@
 
   
 #}
-    {% include "/includes/appellant-case/uploaded-documents.html" %}
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "5. Uploaded documents"
+    }
+  },
+  rows: [
+    {
+      key: {
+        text: "Application form"
+      },
+      value: {
+        html: "<a href='#'> SY/200432P application form.pdf</a>"
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "Another individual"
+            }
+          ]
+        }
+    },
+    {
+      key: {
+        text: "Environmental statement"
+      },
+      value: {
+        html: "<a href='#'>Environmental statement for Dombey Street WC1N planning SY/200432P 3.6.2025.doc</a>"
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "Another individual"
+            }
+          ]
+        }
+    } if data['environmental-statement'] == 'Yes',
+    {
+      key: {
+        text: "Decision letter"
+      },
+      value: {
+        html: "<a href='#'>decision-letter.pdf</a>"
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "Another individual"
+            }
+          ]
+        }
+    },
+    {
+      key: {
+        text: "Planning obligation"
+      },
+      value: {
+        html: "<a href='#'>Community development - SY/200432P.doc</a>"
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "Another individual"
+            }
+          ]
+        }
+    },
+    {
+      key: {
+        text: "Separate ownership certificate and agricultural land declaration"
+      },
+      value: {
+        html: "No"
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "Another individual"
+            }
+          ]
+        }
+    },
+    {
+      key: {
+        text: "Costs application"
+      },
+      value: {
+        html: 'No'
+      },
+      actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "Another individual"
+            }
+          ]
+        }
+    }
+  ]
+}) }}
+
 {#
 
 

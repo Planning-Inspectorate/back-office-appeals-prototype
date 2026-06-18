@@ -1,0 +1,130 @@
+{% extends "layouts/PINS.html" %}
+
+{% set title = "Case history" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+
+{% set back = true %}
+
+{% block content %}
+
+  <!--	<span class="govuk-caption-l">Appeal 2110166</span> -->
+  <span class="govuk-caption-l">Appeal 2114328</span>
+  <h1 class="govuk-heading-l">
+    {{ title }}
+  </h1>
+
+{% from "govuk/components/table/macro.njk" import govukTable %}
+
+{{ govukTable({
+  captionClasses: "govuk-table__caption--m",
+  firstCellIsHeader: false,
+  head: [
+    {
+      text: "Date and time",
+      classes: "govuk-!-width-one-quarters"
+    },
+    {
+      text: "Details",
+      classes: "govuk-!-width-two-quarters"
+    },
+    {
+      text: "User",
+      classes: "govuk-!-width-one-quarters"
+    }
+  ],
+  rows: [
+    [
+      {
+        text: "16 January 2026 11:16am"
+      },
+      {
+        text: "Application reference number updated to '54321'"
+      },
+      {
+        text: "Oliver Rose"
+      }
+  ],
+  [
+      {
+        text: "16 January 2026 11:16am"
+      },
+      {
+        text: "Application reference number updated to '54321'"
+      },
+      {
+        text: "Oliver Rose"
+      }
+  ],
+  [
+      {
+        text: "16 January 2026 11:16am"
+      },
+      {
+        text: "Application reference number updated to '54321'"
+      },
+      {
+        text: "Oliver Rose"
+      }
+  ],
+  [
+      {
+        text: "16 January 2026 11:16am"
+      },
+      {
+        text: "Interested party comment rejected"
+      },
+      {
+        text: "Oliver Rose"
+      }
+  ],
+  [
+      {
+        text: "16 January 2026 11:16am"
+      },
+      {
+        text: "Interested party comment accepted"
+      },
+      {
+        text: "Oliver Rose"
+      }
+  ],
+  [
+      {
+        text: "16 January 2026 11:16am"
+      },
+      {
+        text: "Interested party comment accepted"
+      },
+      {
+        text: "Oliver Rose"
+      }
+  ],
+  [
+      {
+        text: "16 January 2026 11:16am"
+      },
+      {
+        text: "Interested party comment accepted"
+      },
+      {
+        text: "Oliver Rose"
+      }
+  ],
+    [
+      {
+        text: "16 January 2026 11:16am"
+      },
+      {
+        text: "Interested party comment accepted"
+      },
+      {
+        text: "Oliver Rose"
+      }
+    ]
+  ]  
+}) }}
+
+{% endblock %}
+
+

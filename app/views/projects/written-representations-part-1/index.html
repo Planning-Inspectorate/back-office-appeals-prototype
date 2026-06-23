@@ -9,10 +9,45 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-l">{{ title }}</h1>
+      <h1 class="govuk-heading-l">
+        {{ title }}
+      </h1>
 
-      <p class="govuk-body">
-        When we receive an S78 / full planning appeal that meets the criteria to be part 1 only.
+      <h2 class="govuk-heading-m">
+        Version 2
+      </h2>
+
+      <p class="govuk-body-l">
+        A ‘part 1’ appeal is picked up by an inspector, in preparation for the site visit.
+      </p>
+
+      <p class="govuk-body">Links to particular views:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          <a href="v2/appellant-case" class="govuk-link">
+            Appellant’s submission
+          </a>
+        </li>
+        <li>
+          <a href="v2/questionnaire/task-list" class="govuk-link">
+            LPA questionnaire
+          </a>
+        </li>
+      </ul>
+
+      <p class="govuk-body">Manage appeals, case details view:</p>
+
+      {{ govukButton({
+        text: "View prototype",
+        isStartButton: true,
+        href: '/projects/written-representations-part-1/v2/case-details.html'
+      }) }}
+
+      <h2 class="govuk-heading-m">Version 1</h2>
+
+      <p class="govuk-body-l">
+        We receive an S78 / full planning appeal that meets the criteria to be part 1 only.
       </p>
 
       <p class="govuk-body">Parts of the service:</p>

@@ -1,0 +1,76 @@
+{% extends "layouts/PINS-admin.html" %}
+
+{% set title = 'HAS / simple appeal' %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+{% set pageId = 'has' %}
+
+{% set back = false %}
+
+{% block header %}
+	{% include "includes/PINS-header-admin.html" %}
+{% endblock %}
+
+{% block content %}
+
+<h1 class="govuk-heading-l">
+  Select the documents you want to include
+</h1>
+
+<h2 class="govuk-heading-m">
+  Application form
+</h2>
+
+{{ govukCheckboxes({
+  idPrefix: "application-form",
+  name: "applicationForm",
+  items: [
+    {
+      value: "Plan.pdf",
+      text: "Plan.pdf"
+    }
+  ]
+}) }}
+
+<h2 class="govuk-heading-m">
+  Decision letter from the local planning authority
+</h2>
+
+{{ govukCheckboxes({
+  idPrefix: "decision-letter",
+  name: "decisionLetter",
+  items: [
+    {
+      value: "Plan 2.pdf",
+      text: "Plan 2.pdf"
+    }
+  ]
+}) }}
+
+<h2 class="govuk-heading-m">
+  Draft statement of common ground
+</h2>
+
+{{ govukCheckboxes({
+  idPrefix: "draft-common-ground",
+  name: "draftCommonGround",
+  items: [
+    {
+      value: "Screenshot 2026-06-18 at 18:46:59.png",
+      text: "Screenshot 2026-06-18 at 18:46:59.png"
+    },
+    {
+      value: "Screenshot 2026-06-18 at 18:47:59.png",
+      text: "Screenshot 2026-06-18 at 18:47:59.png"
+    },
+    {
+      value: "Screenshot 2026-06-18 at 17:37:25.png",
+      text: "Screenshot 2026-06-18 at 17:37:25.png"
+    },
+    {
+      value: "Screenshot 2026-06-22 at 16:55:42.png",
+      text: "Screenshot 2026-06-22 at 16:55:42.png"
+    }
+  ]
+}) }}
+
+{% endblock %}

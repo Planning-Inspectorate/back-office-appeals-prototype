@@ -1,0 +1,99 @@
+<!-- Custom styling -->
+<style>
+    .govuk-service-navigation {
+        font-family: Arial, sans-serif;
+        background: #f3f2f1;
+        border-bottom: 0.05rem solid #b1b4b6;
+        padding: 0rem 0.79rem;
+        font-size: 0.84rem;
+        color: #1a65a6;
+    }
+
+    /* Inner container for 960px layout */
+    .govuk-service-navigation__inner {
+        display: flex;
+        align-items: center;
+        /* justify-content: space-between; */
+        max-width: 61rem;
+        margin: 0 auto;
+    }
+
+    .govuk-service-navigation__service-name {
+        font-weight: bold;
+        margin-right: 1.58rem;
+        color: #1a65a6;
+        text-decoration: none;
+        padding-left: 0.79rem;
+    }
+
+    .govuk-service-navigation__service-name:link,
+    .govuk-service-navigation__service-name:visited,
+    .govuk-service-navigation__service-name:hover,
+    .govuk-service-navigation__service-name:active {
+        color: #1a65a6;
+    }
+
+    .govuk-service-navigation__list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        gap: 1.05rem;
+    }
+
+    .govuk-service-navigation__item {
+        display: inline;
+    }
+
+    .govuk-service-navigation__item--active .govuk-service-navigation__link {
+        font-weight: bold;
+        text-decoration: underline;
+        border-bottom: 0.21rem solid #1a65a6;
+    }
+
+    .govuk-service-navigation__link {
+        color: #1a65a6;
+        text-decoration: underline;
+        border-bottom: 0.21rem solid transparent;
+        transition: color 0.2s, border-bottom-color 0.2s;
+    }
+
+    .govuk-service-navigation__item--active {
+        border-bottom-color: #1a65a6;
+        border-bottom: 0.25rem solid;
+        font-weight: 400;
+    }
+
+    .govuk-service-navigation__link:hover {
+        color: #003078;
+        text-decoration: none;
+        border-bottom-color: #1a65a6;
+    }
+
+    @media (max-width: 31.58rem) {
+        .govuk-service-navigation__inner {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.53rem;
+        }
+    }
+</style>
+
+<nav class="govuk-service-navigation" aria-label="Service navigation">
+    <div class="govuk-service-navigation__inner">
+        <a href="#" class="govuk-service-navigation__service-name">{{ serviceName }}</a>
+
+        <ul class="govuk-service-navigation__list">
+            <li class="govuk-service-navigation__item">
+                <a href="#" class="govuk-service-navigation__link">Assigned to me</a>
+            </li>
+            <li class="govuk-service-navigation__item">
+			<!-- <li class="govuk-service-navigation__item govuk-service-navigation__item--active"> -->
+                <a href="#" class="govuk-service-navigation__link">All cases</a>
+            </li>
+            <li class="govuk-service-navigation__item">
+                <a href="#" class="govuk-service-navigation__link">Sign out</a>
+            </li>
+        </ul>
+    </div>
+</nav>

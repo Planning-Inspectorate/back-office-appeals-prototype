@@ -6,22 +6,21 @@
         border-bottom: 0.05rem solid #b1b4b6;
         padding: 0rem 0.79rem;
         font-size: 0.84rem;
-        color: #1a65a6;
+        color: #0b0c0c;
     }
 
-    /* Inner container for 960px layout */
     .govuk-service-navigation__inner {
         display: flex;
         align-items: center;
         /* justify-content: space-between; */
-        max-width: 61rem;
+        max-width:61rem;
         margin: 0 auto;
     }
 
     .govuk-service-navigation__service-name {
         font-weight: bold;
         margin-right: 1.58rem;
-        color: #1a65a6;
+        color: #0b0c0c;
         text-decoration: none;
         padding-left: 0.79rem;
     }
@@ -30,7 +29,7 @@
     .govuk-service-navigation__service-name:visited,
     .govuk-service-navigation__service-name:hover,
     .govuk-service-navigation__service-name:active {
-        color: #1a65a6;
+        color: #0b0c0c;
     }
 
     .govuk-service-navigation__list {
@@ -38,7 +37,7 @@
         padding: 0;
         margin: 0;
         display: flex;
-        gap: 1.05rem;
+        /* gap: 1.05rem; */
     }
 
     .govuk-service-navigation__item {
@@ -52,22 +51,23 @@
     }
 
     .govuk-service-navigation__link {
-        color: #1a65a6;
-        text-decoration: underline;
+        color: #0b0c0c !important;
+        text-decoration: none;
         border-bottom: 0.21rem solid transparent;
+        padding-bottom: 1.2rem;
         transition: color 0.2s, border-bottom-color 0.2s;
     }
 
     .govuk-service-navigation__item--active {
-        border-bottom-color: #1a65a6;
+        border-bottom-color: #0b0c0c;
         border-bottom: 0.25rem solid;
         font-weight: 400;
     }
 
     .govuk-service-navigation__link:hover {
-        color: #003078;
+        color: #0b0c0c;
         text-decoration: none;
-        border-bottom-color: #1a65a6;
+        border-bottom-color: #0b0c0c;
     }
 
     @media (max-width: 31.58rem) {
@@ -91,6 +91,18 @@
 			<!-- <li class="govuk-service-navigation__item govuk-service-navigation__item--active"> -->
                 <a href="#" class="govuk-service-navigation__link">All cases</a>
             </li>
+
+            {# active navigation for create case #}
+
+            {% if data['activeNavigation'] == 'createcase' %}
+                <li class="govuk-service-navigation__item">
+            {% else %}
+                <li class="govuk-service-navigation__item govuk-service-navigation__item--active">
+            {% endif %}
+                <a href="#" class="govuk-service-navigation__link">Create a case</a>
+            </li>
+            
+            
             <li class="govuk-service-navigation__item">
                 <a href="#" class="govuk-service-navigation__link">Sign out</a>
             </li>

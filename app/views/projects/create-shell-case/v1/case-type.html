@@ -1,0 +1,77 @@
+{% extends "layouts/bo-2026.html" %}
+
+{% set title = "Choose the case type" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set activeNavigation = 'createcase' %}
+
+{% set back = false %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <!-- notifications -->
+    {# No notifications for this stage #}
+
+    <span class="govuk-caption-l">Appeal 2110166</span>
+
+    <form method="post">
+      {{ govukRadios({
+        idPrefix: "case-type",
+        name: "case-type",
+        fieldset: {
+          legend: {
+            text: title,
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "Tree preservation order",
+            text: "Tree preservation order"
+          },
+          {
+            value: "Tree replacement notice",
+            text: "Tree replacement notice"
+          },
+          {
+            value: "High hedges",
+            text: "High hedges"
+          },
+          {
+            value: "Hedgerows",
+            text: "Hedgerows"
+          },
+          {
+            value: "Discontinuance notice",
+            text: "Discontinuance notice"
+          },
+          {
+            value: "Community infrastructure levy",
+            text: "Community infrastructure levy"
+          },
+          {
+            value: "Section 106 agreement",
+            text: "Section 106 agreement"
+          },
+          {
+            value: "Environmental",
+            text: "Environmental"
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue",
+        name: "continue",
+        type: "submit"
+      }) }}
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

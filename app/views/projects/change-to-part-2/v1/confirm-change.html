@@ -1,0 +1,97 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Confirm you want to change the procedure to written representations (part 2)" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set part2request %}
+  <div class="app-email-preview">
+    <div class="app-email-preview__subject">
+      Subject: We are reviewing the procedure type for appeal 2114328.
+    </div>
+    <div class="app-email-preview__body">
+      <p class="govuk-body">
+        We are reviewing the procedure for 2114328. You will need to provide additional documents.
+      </p>
+
+      <h2 class="govuk-heading-m">
+        Appeal details
+      </h2>
+
+      <div class="govuk-inset-text">
+        Appeal reference number: 2114328<br>
+        Address: 22b The Peach Trees, Peckham, SE15 9HA<br>
+        Planning application reference: SC/2026/0235/Full
+      </div>
+
+      <h2 class="govuk-heading-m">
+        What happens next
+      </h2>            
+
+      <p class="govuk-body">
+        Submit your additional documents to caseteam@planninginspectorate.gov.uk by {{ 7 | daysInFuture }}.
+      </p>
+
+      <p class="govuk-body">
+        You will need to send:
+      </p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          Your statement of case
+        </li>
+        <li>
+          Your design access statement
+        </li>
+        <li>
+          Your plans and drawings
+        </li>
+        <li>
+          other supporting application documents
+        </li>
+      </ul>
+
+      <p class="govuk-body">
+        We will send you an email when you can view information from other parties in the appeal service.
+      </p>
+
+      <p class="govuk-body">
+        The Planning Inspectorate<br>
+        [caseteam]@planninginspectorate.gov.uk
+      </p>
+
+    </div>
+  </div>
+{% endset %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Appeal 2114328 - change procedure</span>
+      <h1 class="govuk-heading-l">{{title}}</h1>
+
+    </div>
+    
+    <div class="govuk-grid-column-full">
+
+      {{ govukDetails({
+        summaryText: "Preview email to appellant",
+        html: part2request
+      }) }}
+    
+    </div>
+    
+    <div class="govuk-grid-column-two-thirds">
+
+      <form method="post">
+
+        {{ govukButton({
+          text: "Confirm procedure change"
+        }) }}
+        
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

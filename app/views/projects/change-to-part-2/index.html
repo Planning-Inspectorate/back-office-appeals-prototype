@@ -1,0 +1,30 @@
+{% extends "layouts/PINS-Simple.html" %}
+
+{% set title = "Change to part 2" %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        {{ title }}
+      </h1>
+
+      <h2 class="govuk-heading-m">Version 1</h2>
+
+      <p class="govuk-body-l">
+        Changing a validated part 1 case to part 2.
+      </p>
+
+      {{ govukButton({
+        text: "View prototype",
+        isStartButton: true,
+        href: '/projects/change-to-part-2/v1/index?procedure='
+      }) }}
+
+    </div>
+  </div>
+{% endblock %}

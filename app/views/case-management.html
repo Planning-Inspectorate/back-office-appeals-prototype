@@ -13,14 +13,8 @@
 {% block content %}
 
 	<div class="govuk-grid-row">
-	  <div class="govuk-grid-column-one-quarter">
-	    <ul class="govuk-list govuk-list-bullet">
-	      <li><a href="#common" class="govuk-link--no-visited-state govuk-link--no-underline">Case management</a></li>
-	      <!-- <li><a href="#dev" class="govuk-link--no-visited-state govuk-link--no-underline">Ready for development</a></li> -->
-	    </ul>
-	  </div>
 
-    <div class="govuk-grid-column-three-quarters">
+    <div class="govuk-grid-column-full">
       <h1 class="govuk-heading-xl">
         {{ title }}
       </h1>
@@ -49,6 +43,17 @@
           ],
           rows: [
 						[
+							{
+								html: "<a href='projects/change-to-part-2/'>Change validated case to part 2</a>"
+							},
+							{
+								html: "TBC"
+							},
+							{
+								html: "Create an empty case for a new appeal"
+							}
+						],
+            [
 							{
 								html: "<a href='projects/create-shell-case/'>Create new case</a>"
 							},

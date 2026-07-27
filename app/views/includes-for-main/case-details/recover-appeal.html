@@ -1,0 +1,39 @@
+{% if data['case'] == 'started' or data['case-stage'] != 'complete' %}
+
+  <h2 class="govuk-heading-l">
+    Recover appeal
+  </h2>
+
+  {% if data.appealRecovered == 'yes' %}
+
+  {% from "govuk/components/table/macro.njk" import govukTable %}
+    <div class="pins-panel">
+
+  {{ govukTable({
+    captionClasses: "govuk-table__caption--m",
+    firstCellIsHeader: true,
+    rows: [
+      [
+        {
+          text: "Appeal status",
+          classes: "govuk-!-width-one-third"
+        },
+        {
+          text: "Recovered",
+          classes: "govuk-!-width-two-third"
+        }
+      ]
+    ]
+  }) }}
+    
+  {% else %}
+
+  <p class="govuk-body">
+    <a href="/projects/recovery-appeal/recover-appeal" class="govuk-link">
+      Recover appeal
+    </a>
+  </p>
+  
+  {% endif %}
+
+{% endif %}

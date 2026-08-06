@@ -10,10 +10,20 @@
 
     <!-- notifications -->
     {# No notifications for this stage #}
-      {{ govukNotificationBanner({
-        type: "success",
-        text: flash
-      }) if flash.length }}
+    {{ govukNotificationBanner({
+      type: "success",
+      classes: "govuk-!-margin-bottom-6",
+      text: flash
+    }) if flash.length }}
+
+    {% call govukNotificationBanner() %}
+      <p class="govuk-notification-banner__heading">
+        Ready for decision
+      </p>
+      <p class="govuk-body">
+        <a class="govuk-notification-banner__link" href="#">issue decision</a>
+      </p>
+    {% endcall %}      
 
     <!--	<span class="govuk-caption-l">Appeal 2110166</span> -->
     <span class="govuk-caption-xl">Appeal 2114328</span>
@@ -21,7 +31,10 @@
       {{ title }}
     </h1>
 
-    <!-- {{ caseStatus (caseStatus = 'awaitingSiteVisit') }} -->
+    {{govukTag({
+      text: "Case open",
+      classes: "govuk-tag--yellow"
+    })}}
 
   </div>
 

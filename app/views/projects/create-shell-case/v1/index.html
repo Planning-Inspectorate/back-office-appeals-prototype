@@ -293,7 +293,7 @@
               html: "<a href='#'>Add</a>",
               format: "numeric"
             }
-          ],
+          ] if data['1'] == 2,
           [
             {
               text: "Start date"
@@ -303,6 +303,19 @@
             },
             {
               html: "<a href='#'>Add</a>",
+              format: "numeric"
+            }
+          ] if data['1'] == 2,
+          [
+            {
+              text: "Decision date",
+              classes: "govuk-!-width-one-third"
+            },
+            {
+              text: "Not decided"
+            },
+            {
+              html: "",
               format: "numeric"
             }
           ]

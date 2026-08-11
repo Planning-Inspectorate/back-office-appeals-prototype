@@ -1,0 +1,106 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName="Personal list" %}
+
+{% set back = false %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+  <h1 class="govuk-heading-l">National list</h1>
+
+
+	{{ govukInput({
+	  label: {
+	    text: "Search cases",
+	    classes: "govuk-label--m",
+	    isPageHeading: false
+	  },
+	  classes: "",
+	  hint: {
+	    text: "Enter appeal ID or postcode"
+	  },
+	  id: "account-number",
+	  name: "account-number",
+	  inputmode: "numeric",
+	  spellcheck: false
+	}) }}
+
+	{{ govukButton({
+	  text: "Search",
+	  href: "personal-list-mix-tab-search-res#all-cases"
+	}) }}
+	
+	<hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+	
+	<p class="govuk-!-font-size-16">Search results for: <strong>2110166</strong></p>
+		
+	<p class="govuk-!-margin-bottom-8 govuk-!-font-size-16"><a href="personal-list-mix-tabs">Clear search results</a></p>
+	
+
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+	  
+	  
+	  <div class="govuk-tabs" data-module="govuk-tabs">
+	  <ul class="govuk-tabs__list">
+	    <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+	      <a class="govuk-tabs__tab" href="#all-cases">
+	        All cases
+	      </a>
+	    </li>
+	    <li class="govuk-tabs__list-item">
+	      <a class="govuk-tabs__tab" href="#assigned-to-me">
+	        Assigned to me
+	      </a>
+	    </li>
+	  </ul>
+	  <div class="govuk-tabs__panel" id="all-cases">
+		  
+		 <table class="govuk-table">
+			<thead class="govuk-table__head">
+			<tr class="govuk-table__row">
+			  <th scope="col" class="govuk-table__header">Appeal ID</th>
+			  <th scope="col" class="govuk-table__header">Site address</th>
+			  <th scope="col" class="govuk-table__header">Local planning authority</th>
+			  <th scope="col" class="govuk-table__header">Appeal type</th>
+			  <th scope="col" class="govuk-table__header">Status</th>
+			</tr>
+			</thead>
+			<tbody class="govuk-table__body">
+			<tr class="govuk-table__row">
+			  <th scope="row" class="govuk-table__header"><a href="case.html">2110166</a></th>
+			  <td class="govuk-table__cell">Address line 1, Address line 2, Town or city, Postcode</td>
+			  <td class="govuk-table__cell">Council name</td>
+			  <td class="govuk-table__cell">Appeal type</td>
+			  <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Ready to start</strong></td>
+			</tr>
+			</tbody>
+		</table>
+		
+			
+	  </div>
+	  <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="assigned-to-me">
+		  
+		<p>No results found </p>
+	    
+	  </div>
+	</div>
+
+	
+	
+
+	 
+
+
+
+
+  </div>
+</div>
+
+{% endblock %}

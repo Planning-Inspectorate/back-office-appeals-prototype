@@ -1,0 +1,356 @@
+{% extends "layouts/PINS.html" %}
+
+{% set pageName = "Personal list" %}
+
+{% set back = false %}
+
+{% block content %}
+
+  <h1 class="govuk-heading-l">
+    Your appeals
+  </h1>
+
+  <p class="govuk-body govuk-!-margin-bottom-6">
+    <a href="#" class="govuk-link">View another case officer’s appeals</a>
+  </p>
+
+  <details class="govuk-details govuk-!-margin-bottom-6" open>
+    <summary class="govuk-details__summary">
+      <span class="govuk-details__summary-text">
+        Filters
+      </span>
+    </summary>
+
+    <div class="govuk-details__text">
+
+      <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+          <h2 class="govuk-fieldset__heading">
+            Case status
+          </h2>
+        </legend>
+
+        <p class="govuk-body">
+          <a href="#" class="govuk-link">
+            Select all
+          </a>
+        </p>
+        
+        <div class="govuk-checkboxes govuk-checkboxes--small pins-checkboxes--columns pins-form-highlight" data-module="govuk-checkboxes">
+
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="validation" type="checkbox">
+            <label class="govuk-label govuk-checkboxes__label" for="validation">
+              Validation (2)
+            </label>
+          </div>
+
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="ready-to-start" type="checkbox">
+            <label class="govuk-label govuk-checkboxes__label" for="ready-to-start">
+              Ready to start (1)
+            </label>
+          </div>
+
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="lpa-questionnaire" type="checkbox">
+            <label class="govuk-label govuk-checkboxes__label" for="lpa-questionnaire">
+              LPA questionnaire (12)
+            </label>
+          </div>
+
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="statements" type="checkbox">
+            <label class="govuk-label govuk-checkboxes__label" for="statements">
+              Statements (3)
+            </label>
+          </div>
+
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="final-comments" type="checkbox">
+            <label class="govuk-label govuk-checkboxes__label" for="final-comments">
+              Final comments (5)
+            </label>
+          </div>
+      
+
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="evidence" type="checkbox">
+            <label class="govuk-label govuk-checkboxes__label" for="evidence">
+              Evidence (1)
+            </label>
+          </div>
+
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="event-ready" type="checkbox">
+            <label class="govuk-label govuk-checkboxes__label" for="event-ready">
+              Event ready to set up (0)
+            </label>
+          </div>
+
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="awaiting-event" type="checkbox">
+            <label class="govuk-label govuk-checkboxes__label" for="awaiting-event">
+              Awaiting event (20)
+            </label>
+          </div>
+
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="issue-decision" type="checkbox">
+            <label class="govuk-label govuk-checkboxes__label" for="issue-decision">
+              Issue decision (22)
+            </label>
+          </div>
+
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="complete" type="checkbox">
+            <label class="govuk-label govuk-checkboxes__label" for="complete">
+              Complete (2)
+            </label>
+          </div>
+     
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="closed" type="checkbox">
+            <label class="govuk-label govuk-checkboxes__label" for="closed">
+              Closed (17)
+            </label>
+          </div>
+
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="withdrawn" type="checkbox">
+            <label class="govuk-label govuk-checkboxes__label" for="withdrawn">
+              Withdrawn (31)
+            </label>
+          </div>
+
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="awaiting-transfer" type="checkbox">
+            <label class="govuk-label govuk-checkboxes__label" for="awaiting-transfer">
+              Awaiting transfer (1)
+            </label>
+          </div>
+
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="transferred" type="checkbox">
+            <label class="govuk-label govuk-checkboxes__label" for="transferred">
+              Transferred (19)
+            </label>
+          </div>
+
+        </div>
+
+        <div class="govuk-button-group govuk-!-margin-top-4">
+          <button type="submit" class="govuk-button">
+            Apply filter
+          </button>
+
+          <a href="#" class="govuk-link">
+            Clear filter
+          </a>
+        </div>
+
+      </fieldset>
+
+    </div>
+  </details>
+
+  <table class="govuk-table">
+    <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+        <th class="govuk-table__header">Appeal reference</th>
+        <!-- <th class="govuk-table__header">Lead or child</th> -->
+        <th class="govuk-table__header">Action required</th>
+        <th class="govuk-table__header">Due by</th>
+        <th class="govuk-table__header">Case status</th>
+      </tr>
+    </thead>
+
+    <tbody class="govuk-table__body">
+
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell">
+          <a href="#" class="govuk-link">6061232</a>
+        </td>
+        <!-- <td class="govuk-table__cell"></td> -->
+        <td class="govuk-table__cell">
+          <a href="#" class="govuk-link">Issue decision</a><br>
+          <a href="#" class="govuk-link">Add number of residential units</a>
+        </td>
+        <td class="govuk-table__cell">{{ 2 | daysInFuture}}</td>
+        <td class="govuk-table__cell">
+          <strong class="govuk-tag govuk-tag--green">
+            Issue decision
+          </strong>
+        </td>
+      </tr>
+
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell">
+          <a href="#" class="govuk-link">6061211</a>
+        </td>
+        <!-- <td class="govuk-table__cell"></td> -->
+        <td class="govuk-table__cell">
+          <a href="#" class="govuk-link">Start case</a>
+        </td>
+        <td class="govuk-table__cell">{{ 2 | daysInFuture}}</td>
+        <td class="govuk-table__cell">
+          <strong class="govuk-tag govuk-tag--green">
+            Ready to start
+          </strong>
+        </td>
+      </tr>
+
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell">
+          <a href="#" class="govuk-link">6061243</a>
+        </td>
+        <!-- <td class="govuk-table__cell"></td> -->
+        <td class="govuk-table__cell">
+          <a href="#" class="govuk-link">Share IP comments and statements</a>
+        </td>
+        <td class="govuk-table__cell">{{ 4 | daysInFuture}}</td>
+        <td class="govuk-table__cell">
+          <strong class="govuk-tag govuk-tag--green">
+            Statements
+          </strong>
+        </td>
+      </tr>
+
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell">
+          <a href="#" class="govuk-link">6061232</a>
+        </td>
+        <!-- <td class="govuk-table__cell"></td> -->
+        <td class="govuk-table__cell">
+          <a href="#" class="govuk-link">Awaiting appellant update</a>
+        </td>
+        <td class="govuk-table__cell">{{ 5 | daysInFuture}}</td>
+        <td class="govuk-table__cell">
+          <strong class="govuk-tag govuk-tag--green">
+            Validation
+          </strong>
+        </td>
+      </tr>
+
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell">
+          <a href="#" class="govuk-link">6061245</a><strong class="govuk-tag govuk-tag--grey govuk-!-margin-left-2">Child</strong>
+        </td>
+        <!-- <td class="govuk-table__cell"></td> -->
+        <td class="govuk-table__cell">
+          
+        </td>
+        <td class="govuk-table__cell">{{ 5 | daysInFuture}}</td>
+        <td class="govuk-table__cell">
+          <strong class="govuk-tag govuk-tag--green">
+            Validation
+          </strong>
+        </td>
+      </tr>
+
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell">
+          <a href="#" class="govuk-link">6061249</a><strong class="govuk-tag govuk-tag--grey govuk-!-margin-left-2">Lead</strong>
+        </td>
+        <!-- <td class="govuk-table__cell"></td> -->
+        <td class="govuk-table__cell">
+          <a href="#" class="govuk-link">Review appellant case</a>
+        </td>
+        <td class="govuk-table__cell">{{ 6 | daysInFuture}}</td>
+        <td class="govuk-table__cell">
+          <strong class="govuk-tag govuk-tag--green">
+            Validation
+          </strong>
+        </td>
+      </tr>
+
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell">
+          <a href="#" class="govuk-link">6061146</a>
+        </td>
+        <!-- <td class="govuk-table__cell"></td> -->
+        <td class="govuk-table__cell">
+          <a href="#" class="govuk-link">Issue decision</a><br>
+          <a href="#" class="govuk-link">Add number of residential units</a>
+        </td>
+        <td class="govuk-table__cell">{{ 7 | daysInFuture}}</td>
+        <td class="govuk-table__cell">
+          <strong class="govuk-tag govuk-tag--green">
+            Issue decision
+          </strong>
+        </td>
+      </tr>
+
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell">
+          <a href="#" class="govuk-link">6061239</a>
+        </td>
+        <!-- <td class="govuk-table__cell"></td> -->
+        <td class="govuk-table__cell">
+          <a href="#" class="govuk-link">Issue decision</a><br>
+          <a href="#" class="govuk-link">Add number of residential units</a>
+        </td>
+        <td class="govuk-table__cell">{{ 9 | daysInFuture}}</td>
+        <td class="govuk-table__cell">
+          <strong class="govuk-tag govuk-tag--green">
+            Issue decision
+          </strong>
+        </td>
+      </tr>
+
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell">
+          <a href="#" class="govuk-link">6061202</a>
+        </td>
+        <!-- <td class="govuk-table__cell"></td> -->
+        <td class="govuk-table__cell">
+          <a href="#" class="govuk-link">Set up hearing</a><br>
+          <a href="#" class="govuk-link">Add number of residential units</a>
+        </td>
+        <td class="govuk-table__cell">{{ 9 | daysInFuture}}</td>
+        <td class="govuk-table__cell">
+          <strong class="govuk-tag govuk-tag--green">
+            Hearing ready to set up
+          </strong>
+        </td>
+      </tr>
+
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell">
+          <a href="#" class="govuk-link">6061199</a>
+        </td>
+        <!-- <td class="govuk-table__cell"></td> -->
+        <td class="govuk-table__cell">
+          Awaiting site visit<br>
+          <a href="#" class="govuk-link">Add number of residential units</a>
+        </td>
+        <td class="govuk-table__cell">{{ 12 | daysInFuture}}</td>
+        <td class="govuk-table__cell">
+          <strong class="govuk-tag govuk-tag--yellow">
+            Awaiting site visit
+          </strong>
+        </td>
+      </tr>
+
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell">
+          <a href="#" class="govuk-link">6061278</a>
+        </td>
+        <!-- <td class="govuk-table__cell"></td> -->
+        <td class="govuk-table__cell">
+          <a href="#" class="govuk-link">Issue decision</a>
+        </td>
+        <td class="govuk-table__cell">{{ 14 | daysInFuture}}</td>
+        <td class="govuk-table__cell">
+          <strong class="govuk-tag govuk-tag--green">
+            Issue decision
+          </strong>
+        </td>
+      </tr>
+
+ 
+
+    </tbody>
+  </table>
+
+{% endblock %}

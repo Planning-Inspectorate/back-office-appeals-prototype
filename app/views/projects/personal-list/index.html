@@ -18,7 +18,7 @@
       I want to view my personal list so that I can see all the cases that are assigned to me
     </p>
 
-    {% set version = "5" %}
+    {% set version = "6" %}
 
     <h2 class="govuk-heading-m">
       Version {{version}}
@@ -31,14 +31,30 @@
     </h2>
 
     <p class="govuk-body">
-      Adding filters following pilot service feedback.
+      Showing filters above the list, mini checkboxes in columns
     </p>
 
     {{ govukButton({
       text: "View prototype",
-      href: "v5/?appeal-status-validation=1&appeal-status-ready=1&appeal-status-questionnaire=1&appeal-status-event=1&appeal-status-decision=1",
+      href: "v6/?appeal-status-validation=1&appeal-status-ready=1&appeal-status-questionnaire=1&appeal-status-event=1&appeal-status-decision=1",
       isStartButton: true
     }) }}
+
+    {% set v5HTML %}
+
+      {% set version = "5" %}
+
+      <p class="govuk-body">
+        Adding filters following pilot service feedback.
+      </p>
+
+      {{ govukButton({
+        text: "View prototype",
+        href: "v5/?appeal-status-validation=1&appeal-status-ready=1&appeal-status-questionnaire=1&appeal-status-event=1&appeal-status-decision=1",
+        isStartButton: true
+      }) }}
+
+    {% endset -%}
 
     {% set v4HTML %}
 
@@ -119,6 +135,14 @@
       classes: 'govuk-!-margin-top-5',
       items: [
 
+          {
+            heading: {
+              html: 'Version 5 <strong class="govuk-tag govuk-tag--green govuk-!-margin-left-2">Ready for research</strong>'
+            },
+            content: {
+              html: v5HTML
+            }
+          },
           {
             heading: {
               html: 'Version 4 <strong class="govuk-tag govuk-tag--green govuk-!-margin-left-2">Ready for research</strong>'

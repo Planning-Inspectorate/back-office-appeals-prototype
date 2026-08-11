@@ -1,0 +1,58 @@
+<table class="govuk-table">
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Appeal reference</th>
+      <th scope="col" class="govuk-table__header govuk-!-width-one-third">Action required</th>
+      <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Due by</th>
+      <th scope="col" class="govuk-table__header">Case status</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+
+    {% if data['appeal-status-validation'] == true %}
+      <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__header"><a href="case.html?list=">2110166</a></th>
+        <td class="govuk-table__cell"><a href="#">Validate</a></td>
+        <td class="govuk-table__cell">{{ '3' | daysInFuture }}</td>
+        <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Validation</strong></td>
+      </tr>
+    {% endif %}
+
+    {% if data['appeal-status-ready'] == true %}
+      <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__header"><a href="case.html?list=">2110164</a></th>
+        <td class="govuk-table__cell"><a href="#">Start appeal</a></td>
+        <td class="govuk-table__cell">{{ '4' | daysInFuture }}</td>
+        <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Ready to start</strong></td>
+      </tr>
+    {% endif %}
+
+    {% if data['appeal-status-questionnaire'] == true %}
+      <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__header"><a href="case.html?status=lpa-questionnaire">2110167</a></th>
+        <td class="govuk-table__cell"><a href="#">Review questionnaire</a></td>
+        <td class="govuk-table__cell">{{ '5' | daysInFuture }}</td>
+        <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Questionnaire</strong></td>
+      </tr>
+    {% endif %}
+
+    {% if data['appeal-status-decision'] == true %}
+      <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__header"><a href="case.html?status=statement-review">1234560</a></th>
+        <td class="govuk-table__cell"><a href="#">Issue decision</a></td>
+        <td class="govuk-table__cell">{{ '20' | daysInFuture }}</td>
+        <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Issue decision</strong></td>
+      </tr>
+    {% endif %}
+
+    {% if data['appeal-status-event'] == true %}
+      <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__header"><a href="case.html?status=site-visit">1234561</a></th>
+        <td class="govuk-table__cell"></td>
+        <td class="govuk-table__cell">{{ '40' | daysInFuture }}</td>
+        <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">Waiting for event</strong></td>
+      </tr>
+    {% endif %}
+
+  </tbody>
+</table>

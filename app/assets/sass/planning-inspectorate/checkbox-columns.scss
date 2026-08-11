@@ -16,10 +16,23 @@
 @media (min-width: 48.0625em) {
   .pins-checkboxes--columns {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    grid-auto-flow: column;
+
+    grid-template-rows: repeat(5, auto);
   }
 }
 
 /* ensure each checkbox item stays as a single “block” in the grid */
 .pins-checkboxes--columns .govuk-checkboxes__item {
   margin-bottom: 0;
+}
+
+.pins-form-highlight {
+  background-color: #f3f2f1;
+  padding: 1rem;
+  margin-bottom: 1rem;
 }

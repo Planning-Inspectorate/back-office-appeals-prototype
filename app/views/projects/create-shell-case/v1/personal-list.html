@@ -1,0 +1,344 @@
+{% extends "layouts/bo-2026.html" %}
+
+{% set title = "Case details" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+      Your appeals
+    </h1>
+  
+    {{ govukTable({
+      head: [
+        {
+          text: "Appeal reference"
+        },
+        {
+          text: "Procedure"
+        },
+        {
+          text: "Action required"
+        },
+        {
+          text: "Due by"
+        },
+        {
+          text: "Case status"
+        }
+      ],
+      rows: [
+        [
+          {
+            html: '#6061232</a>'
+          },
+          {
+            text: "Written representations"
+          },
+          {
+            html: '<a href="#">Issue decisiond number of residential units</a>'
+          },
+          {
+            text: "8 August 2025"
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Issue decision</strong>'
+          }
+        ],
+        [
+          {
+            html: '#025be33468bb</a>'
+          },
+          {
+            text: "Written representations"
+          },
+          {
+            html: '#Start case</a>'
+          },
+          {
+            text: "7 December 2025"
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Ready to start</strong>'
+          }
+        ],
+        [
+          {
+            html: '#6000063</a>'
+          },
+          {
+            text: "Hearing"
+          },
+          {
+            html: '#Share IP comments and statements</a>'
+          },
+          {
+            text: "28 January 2026"
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Statements</strong>'
+          }
+        ],
+        [
+          {
+            html: '#6058353</a>'
+          },
+          {
+            text: "Written representations"
+          },
+          {
+            html: '#Issue decision</a><br>#Add number of residential units</a>'
+          },
+          {
+            text: "3 March 2026"
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Issue decision</strong>'
+          }
+        ],
+        [
+          {
+            html: '#6058369</a>'
+          },
+          {
+            text: "Written representations"
+          },
+          {
+            html: '#Issue decision</a><br>#Add number of residential units</a>'
+          },
+          {
+            text: "3 March 2026"
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Issue decision</strong>'
+          }
+        ],
+        [
+          {
+            html: '#6058357</a>'
+          },
+          {
+            text: "Hearing"
+          },
+          {
+            html: '#Set up hearing</a><br>#Add number of residential units</a>'
+          },
+          {
+            text: "10 March 2026"
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Hearing ready to set up</strong>'
+          }
+        ],
+        [
+          {
+            html: '#6059726</a>'
+          },
+          {
+            text: "Written representations"
+          },
+          {
+            text: "LPA questionnaire overdue"
+          },
+          {
+            text: "27 March 2026"
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">LPA questionnaire</strong>'
+          }
+        ],
+        [
+          {
+            html: '#6060197</a>'
+          },
+          {
+            text: "Written representations"
+          },
+          {
+            text: "LPA questionnaire overdue"
+          },
+          {
+            text: "17 April 2026"
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">LPA questionnaire</strong>'
+          }
+        ],
+        [
+          {
+            html: '#6060352</a>'
+          },
+          {
+            text: "Written representations"
+          },
+          {
+            html: '#Start case</a>'
+          },
+          {
+            text: "5 May 2026"
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Ready to start</strong>'
+          }
+        ],
+        [
+          {
+            html: '#6060990</a>'
+          },
+          {
+            text: "Inquiry"
+          },
+          {
+            html: '#Review appellant case</a>'
+          },
+          {
+            text: "7 May 2026"
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Validation</strong>'
+          }
+        ],
+        [
+          {
+            html: '#6061181</a>'
+          },
+          {
+            text: "Written representations"
+          },
+          {
+            text: "LPA questionnaire overdue"
+          },
+          {
+            text: "27 May 2026"
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">LPA questionnaire</strong>'
+          }
+        ],
+        [
+          {
+            html: '#6060281</a>'
+          },
+          {
+            text: "Written representations"
+          },
+          {
+            text: "LPA questionnaire overdue"
+          },
+          {
+            text: "12 June 2026"
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">LPA questionnaire</strong>'
+          }
+        ],
+        [
+          {
+            html: '#6056358</a>'
+          },
+          {
+            text: "Written representations"
+          },
+          {
+            html: 'Awaiting site visit<br>#Add number of residential units</a>'
+          },
+          {
+            text: "22 August 2026"
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--yellow">Awaiting site visit</strong>'
+          }
+        ],
+        [
+          {
+            html: '#6058870</a>'
+          },
+          {
+            text: "Written representations"
+          },
+          {
+            html: '#Issue decision</a>'
+          },
+          {
+            text: "15 September 2026"
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Issue decision</strong>'
+          }
+        ],
+        [
+          {
+            html: '#6057744</a>'
+          },
+          {
+            text: "Hearing"
+          },
+          {
+            html: '#Issue decision</a>'
+          },
+          {
+            text: "17 September 2026"
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Issue decision</strong>'
+          }
+        ],
+        [
+          {
+            html: '#6058004</a>'
+          },
+          {
+            text: "Written representations"
+          },
+          {
+            html: '#Issue decision</a>'
+          },
+          {
+            text: "28 September 2026"
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Issue decision</strong>'
+          }
+        ],
+        [
+          {
+            html: '#6061251</a>'
+          },
+          {
+            text: "Written representations"
+          },
+          {
+            text: "Awaiting site visit"
+          },
+          {
+            text: "28 April 2027"
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--yellow">Awaiting site visit</strong>'
+          }
+        ],
+        [
+          {
+            html: '#6061246</a>'
+          },
+          {
+            text: "Written representations"
+          },
+          {
+            text: "Awaiting site visit"
+          },
+          {
+            text: "29 April 2027"
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--yellow">Awaiting site visit</strong>'
+          }
+        ]
+      ]
+    }) }}
+    
+  </div>
+{% endblock %}

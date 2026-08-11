@@ -15,7 +15,7 @@ router.post('/case-type', function (req, res) {
 // check answers
 router.post('/check-answers', function (req, res) {
   req.flash('success', 'Case created')
-  res.redirect('index')
+  res.redirect('case-details')
 })
 
 

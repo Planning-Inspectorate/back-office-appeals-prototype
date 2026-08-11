@@ -84,28 +84,20 @@
         <a href="#" class="govuk-service-navigation__service-name">{{ serviceName }}</a>
 
         <ul class="govuk-service-navigation__list">
-            <li class="govuk-service-navigation__item">
+            <li class="govuk-service-navigation__item {% if activeNavigation == 'personallist' %}govuk-service-navigation__item--active{% endif %}">
                 <a href="#" class="govuk-service-navigation__link">Assigned to me</a>
             </li>
-            <li class="govuk-service-navigation__item">
-			<!-- <li class="govuk-service-navigation__item govuk-service-navigation__item--active"> -->
-                <a href="#" class="govuk-service-navigation__link">All cases</a>
+
+            <li class="govuk-service-navigation__item {% if activeNavigation == 'allcases' %}govuk-service-navigation__item--active{% endif %}">
+                <a href="index" class="govuk-service-navigation__link">All cases</a>
             </li>
 
-            {# active navigation for create case #}
-
-            {% if data['activeNavigation'] == 'createcase' %}
-                <li class="govuk-service-navigation__item">
-            {% else %}
-                <li class="govuk-service-navigation__item govuk-service-navigation__item--active">
-            {% endif %}
-                <a href="#" class="govuk-service-navigation__link">Create a case</a>
+            <li class="govuk-service-navigation__item {% if activeNavigation == 'createcase' %}govuk-service-navigation__item--active{% endif %}">
+                <a href="case-type" class="govuk-service-navigation__link">Create a case</a>
             </li>
-            
-            
-            <li class="govuk-service-navigation__item">
+            <!-- <li class="govuk-service-navigation__item">
                 <a href="#" class="govuk-service-navigation__link">Sign out</a>
-            </li>
+            </li> -->
         </ul>
     </div>
 </nav>

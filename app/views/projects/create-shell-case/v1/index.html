@@ -1,833 +1,616 @@
 {% extends "layouts/bo-2026.html" %}
 
 {% set title = "Case details" %}
-{% set pageName = title + ' - Planning Inspectorate'%}
+{% set pageName = title + ' - Planning Inspectorate' %}
+
+{% set back = false %}
+  
+{% set activeNavigation = 'allcases' %}
 
 {% block content %}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <!-- notifications -->
-    {# No notifications for this stage #}
-    {{ govukNotificationBanner({
-      type: "success",
-      classes: "govuk-!-margin-bottom-6",
-      text: flash
-    }) if flash.length }}
-
-    {% call govukNotificationBanner() %}
-      <p class="govuk-notification-banner__heading">
-        Ready for decision
-      </p>
-      <p class="govuk-body">
-        <a class="govuk-notification-banner__link" href="#">issue decision</a>
-      </p>
-    {% endcall %}      
-
-    <!--	<span class="govuk-caption-l">Appeal 2110166</span> -->
-    <span class="govuk-caption-xl">Appeal 2114328</span>
-  	<h1 class="govuk-heading-xl govuk-!-margin-bottom-2">
-      {{ title }}
+    <h1 class="govuk-heading-l">
+      Search all cases
     </h1>
 
-    {{govukTag({
-      text: "Case open",
-      classes: "govuk-tag--yellow"
-    })}}
+    {{ govukInput({
+      label: {
+        text: "Enter the appeal reference, planning application or enforcement reference, or postcode (including spaces)"
+      },
+      id: "search",
+      name: "search",
+      classes: "govuk-!-width-two-thirds"
+    }) }}
 
-  </div>
-
-  <div class="govuk-grid-column-full">
-
-    <style>
-      .appeal-details .govuk-summary-list__key,
-      .appeal-details .govuk-summary-list__value,
-      .appeal-details .govuk-summary-list__actions {
-        padding-top: .5rem;
-        padding-bottom: 0;
-      }
-    </style>
-
-    <dl class="govuk-summary-list appeal-details govuk-summary-list--no-border govuk-!-margin-top-6">
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key govuk-!-width-one-third">
-          Case officer
-        </dt>
-        <dd class="govuk-summary-list__value">
-          Not assigned
-        </dd>
-        <dd class="govuk-summary-list__actions">
-          <a href='#'>
-            Assign <span class="govuk-visually-hidden">case officer</span>
-          </a>
-        </dd>
-      </div>
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key govuk-!-width-one-third">
-          Appeal site
-        </dt>
-        <dd class="govuk-summary-list__value">
-          No site address
-        </dd>
-        <dd class="govuk-summary-list__actions">
-          <a href='#'>
-            Add<span class="govuk-visually-hidden"> appeal site</span>
-          </a>
-        </dd>
-      </div>
-        <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key govuk-!-width-one-third">
-          Local planning authority
-        </dt>
-        <dd class="govuk-summary-list__value">
-          No local planning authority
-        </dd>
-        <dd class="govuk-summary-list__actions">
-          <a href='#'>
-            Add<span class="govuk-visually-hidden"> local planning authority</span>
-          </a>
-        </dd>
-      </div>
-
-    </dl>
-
-  
-  </div>
-
-  <!-- download and case notes -->
-  <div class="govuk-grid-column-two-thirds">
-
-    <p class="govuk-body">
-      <a href="#" class="govuk-link">
-        Download case
-      </a>
-    </p>
-
-    {% set casenotes %}
-
-      <form method="post">
-
-        {{ govukTextarea({
-          name: "casenotedetail",
-          id: "casenotedetail",
-          label: {
-            text: 'Case notes',
-            classes: "govuk-visually-hidden",
-            isPageHeading: true
-          }
-        }) }}
-
-        {{ govukButton({
-          classes: "govuk-button--secondary govuk-!-margin-bottom-1",
-          text: "Add case note"
-        }) }}
-
-      </form>
-
-    {% endset %}
-
-    {{ govukDetails({
-      summaryText: "0 case notes",
-      html: casenotes
+    {{ govukButton({
+      text: "Search"
     }) }}
 
   </div>
-
   <div class="govuk-grid-column-full">
 
-    <!-- case sections -->
-    <section class="govuk-!-margin-top-6">
-{#
+    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
+    <details class="govuk-details govuk-!-margin-bottom-6">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          Filters
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        Filter options go here.
+      </div>
+    </details>
 
-
-
-
-  ------------------------------------------------------------
-  OVERVIEW
-  ------------------------------------------------------------
-
-
-
-
-
-#}
-
-<ul>
-  
-  
-  
-  <!-- <li>Processing state (decision issued only)</li> -->
-  
-  
-  <!-- <li>Decision outcome - which outcomes?</li> -->
-  
-  
-</ul>
-
-
-      <h2 class="govuk-heading-l">
-        Case
-      </h2>
-
-      {{ govukSummaryList({
-      classes: "pins-summary-list--bottomless",
+    {{ govukTable({
+      head: [
+        {
+          text: "Appeal reference"
+        },
+        {
+          text: "Application or enforcement reference"
+        },
+        {
+          text: "Site address"
+        },
+        {
+          text: "Local planning authority (LPA)"
+        },
+        {
+          text: "Appeal type"
+        },
+        {
+          text: "Status"
+        }
+      ],      
       rows: [
-        {
-          key: {
-            text: "Planning application reference"
+        [
+          {
+            html: '#6062210</a>'
           },
-          value: {
-            text: "SC/2026/0235/Full"
+          {
+            text: '26/001Y/32'
           },
-          actions: {
-            items: [
-              {
-                href: "Application-reference?referrer=case-details",
-                text: "Change"
-              }
-            ]
+          {
+            text: '14 Victoria Road, Bristol, BS8 4ET'
+          },
+          {
+            text: 'Bristol City Council'
+          },
+          {
+            text: 'Planning appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">LPA questionnaire</strong>'
           }
-        } if data['1'],
-        {
-          key: {
-            text: "Appeal type"
+        ],
+        [
+          {
+            html: '#6062209</a>'
           },
-          value: {
-            html: data['case-type'] or 'Tree preservation order'
+          {
+            text: '26/015K/18'
           },
-          actions: {
-            items: [
-              {
-                href: "#",
-                text: "Change"
-              }
-            ]
+          {
+            text: '78 High Street, Bath, BA1 1PQ'
+          },
+          {
+            text: 'Bath and North East Somerset Council'
+          },
+          {
+            text: 'Planning appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Ready to start</strong>'
           }
+        ],
+        [
+          {
+            html: '#6062208</a>'
+          },
+          {
+            text: '26/078T/45'
+          },
+          {
+            text: '2 Church Lane, Stroud, GL5 1AB'
+          },
+          {
+            text: 'Stroud District Council'
+          },
+          {
+            text: 'Planning appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Statements</strong>'
+          }
+        ],
+        [
+          {
+            html: '#6062207</a>'
+          },
+          {
+            text: '26/032B/76'
+          },
+          {
+            text: '55 Gloucester Road, Cheltenham, GL50 3AA'
+          },
+          {
+            text: 'Cheltenham Borough Council'
+          },
+          {
+            text: 'Planning appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Assign case officer</strong>'
+          }
+        ],
+        [
+          {
+            html: '#6062206</a>'
+          },
+          {
+            text: '26/044R/29'
+          },
+          {
+            text: 'Land south of Station Road, Swindon, SN1 4DE'
+          },
+          {
+            text: 'Swindon Borough Council'
+          },
+          {
+            text: 'Planning appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--blue">Complete</strong>'
+          }
+        ],
+        [
+          {
+            html: '#6062205</a>'
+          },
+          {
+            text: '26/019L/64'
+          },
+          {
+            text: '21 Manor Road, Exeter, EX1 2JD'
+          },
+          {
+            text: 'Exeter City Council'
+          },
+          {
+            text: 'Planning appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Validation</strong>'
+          }
+        ],
+        [
+          {
+            html: '#6062204</a>'
+          },
+          {
+            text: '26/051A/83'
+          },
+          {
+            text: '4 Park Avenue, Taunton, TA1 4EF'
+          },
+          {
+            text: 'Somerset Council'
+          },
+          {
+            text: 'Planning appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Statements</strong>'
+          }
+        ],
+        [
+          {
+            html: '#6062203</a>'
+          },
+          {
+            text: '26/012P/58'
+          },
+          {
+            text: '95 Kingsway, Cardiff, CF10 3BN'
+          },
+          {
+            text: 'Cardiff Council'
+          },
+          {
+            text: 'Planning appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--blue">Complete</strong>'
+          }
+        ],
+        [
+          {
+            html: '#6062202</a>'
+          },
+          {
+            text: '26/088C/07'
+          },
+          {
+            text: '33 Riverside Drive, Newport, NP20 2XY'
+          },
+          {
+            text: 'Newport City Council'
+          },
+          {
+            text: 'Planning appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Assign case officer</strong>'
+          }
+        ],
+        [
+          {
+            html: '#6062201</a>'
+          },
+          {
+            text: '26/027M/91'
+          },
+          {
+            text: '16 The Green, Hereford, HR1 2PQ'
+          },
+          {
+            text: 'Herefordshire Council'
+          },
+          {
+            text: 'Planning appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--grey">Invalid</strong>'
+          }
+        ],
+        [
+          {
+            html: '#6062200</a>'
+          },
+          {
+            text: '26/009H/73'
+          },
+          {
+            text: '7 Marine Parade, Weston-super-Mare, BS23 1BE'
+          },
+          {
+            text: 'North Somerset Council'
+          },
+          {
+            text: 'Planning appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Validation</strong>'
+          }
+        ],
+        [
+          {
+            html: '#6062199</a>'
+          },
+          {
+            text: '26/074N/11'
+          },
+          {
+            text: '42 Oakfield Road, Reading, RG1 7DT'
+          },
+          {
+            text: 'Reading Borough Council'
+          },
+          {
+            text: 'Planning appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Final comments</strong>'
+          }
+        ],
+        [
+          {
+            html: '#6062198</a>'
+          },
+          {
+            text: '26/062Q/54'
+          },
+          {
+            text: '120 London Road, Gloucester, GL1 3HJ'
+          },
+          {
+            text: 'Gloucester City Council'
+          },
+          {
+            text: 'Enforcement notice appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Statements</strong>'
+          }
+        ],
+        [
+          {
+            html: '#6062197</a>'
+          },
+          {
+            text: '26/003D/27'
+          },
+          {
+            text: '3 Market Square, Salisbury, SP1 1TT'
+          },
+          {
+            text: 'Wiltshire Council'
+          },
+          {
+            text: 'Householder appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">LPA questionnaire</strong>'
+          }
+        ],
+        [
+          {
+            html: '#6062196</a>'
+          },
+          {
+            text: '26/090W/36'
+          },
+          {
+            text: 'Land at Brook Farm, Yeovil, BA20 2FG'
+          },
+          {
+            text: 'Somerset Council'
+          },
+          {
+            text: 'Planning appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Inquiry ready to set up</strong>'
+          }
+        ],
+        [
+          {
+            html: '#6062195</a>'
+          },
+          {
+            text: '26/022J/15'
+          },
+          {
+            text: '12 Corn Street, Bristol, BS1 1HQ'
+          },
+          {
+            text: 'Bristol City Council'
+          },
+          {
+            text: 'Householder appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Ready to start</strong>'
+          }
+        ],
+        [
+          {
+            html: '#6062194</a>'
+          },
+          {
+            text: '26/035S/40'
+          },
+          {
+            text: '89 Castle Street, Worcester, WR1 3AA'
+          },
+          {
+            text: 'Worcester City Council'
+          },
+          {
+            text: 'Planning appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Statements</strong>'
+          }
+        ],
+        [
+          {
+            html: '#6062193</a>'
+          },
+          {
+            text: '26/011R/52'
+          },
+          {
+            text: 'Town Hall, Manchester, M1 1AA'
+          },
+          {
+            text: 'Manchester City Council'
+          },
+          {
+            text: 'Enforcement notice appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Validation</strong>'
+          }
+        ],
+        [
+          {
+            html: '#6062192</a>'
+          },
+          {
+            text: '26/097F/08'
+          },
+          {
+            text: '17 Harbour Road, Plymouth, PL1 2XY'
+          },
+          {
+            text: 'Plymouth City Council'
+          },
+          {
+            text: 'Planning appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--blue">Complete</strong>'
+          }
+        ],
+        [
+          {
+            html: '#6062191</a>'
+          },
+          {
+            text: '26/043T/67'
+          },
+          {
+            text: '6 Station Road, Chippenham, SN15 3QF'
+          },
+          {
+            text: 'Wiltshire Council'
+          },
+          {
+            text: 'Planning appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Assign case officer</strong>'
+          }
+        ],
+        [
+          {
+            html: '#6062190</a>'
+          },
+          {
+            text: '26/056V/21'
+          },
+          {
+            text: '22 The Square, Winchester, SO23 9EX'
+          },
+          {
+            text: 'Winchester City Council'
+          },
+          {
+            text: 'Planning appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Final comments</strong>'
+          }
+        ],
+        [
+          {
+            html: '#6062189</a>'
+          },
+          {
+            text: '26/066C/89'
+          },
+          {
+            text: '45 Queen Street, Oxford, OX1 1EP'
+          },
+          {
+            text: 'Oxford City Council'
+          },
+          {
+            text: 'Planning appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Statements</strong>'
+          }
+        ],
+        [
+          {
+            html: '#6062188</a>'
+          },
+          {
+            text: '26/014N/09'
+          },
+          {
+            text: '31 Fore Street, Tiverton, EX16 6LQ'
+          },
+          {
+            text: 'Mid Devon District Council'
+          },
+          {
+            text: 'Householder appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">LPA questionnaire</strong>'
+          }
+        ],
+        [
+          {
+            html: '#6062187</a>'
+          },
+          {
+            text: '26/081B/34'
+          },
+          {
+            text: '5 Bridge Street, Cambridge, CB2 1UF'
+          },
+          {
+            text: 'Cambridge City Council'
+          },
+          {
+            text: 'Planning appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Ready to start</strong>'
+          }
+        ],
+        [
+          {
+            html: '#6062186</a>'
+          },
+          {
+            text: '26/029G/78'
+          },
+          {
+            text: 'Land west of A38, Exeter, EX2 7HY'
+          },
+          {
+            text: 'East Devon District Council'
+          },
+          {
+            text: 'Planning appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Inquiry ready to set up</strong>'
+          }
+        ]
+      ]
+
+    }) }}
+
+
+    {{ govukPagination({
+      previous: {
+        href: "#"
+      },
+      next: {
+        href: "#"
+      },
+      items: [
+        {
+          number: 1,
+          href: "#"
         },
         {
-          key: {
-            text: "Appeal procedure"
-          },
-          value: {
-            text: "No procedure"
-          },
-          actions: {
-            items: [
-              {
-                href: "#",
-                text: "Add"
-              }
-            ]
-          }
+          ellipsis: true
         },
         {
-          key: {
-            text: "Allocation level"
-          },
-          value: {
-            text: "No allocation"
-          },
-          actions: {
-            items: [
-              {
-                href: "#",
-                text: "Add"
-              }
-            ]
-          }
+          number: 6,
+          href: "#"
+        },
+        {
+          number: 7,
+          current: true,
+          href: "#"
+        },
+        {
+          number: 8,
+          href: "#"
+        },
+        {
+          ellipsis: true
+        },
+        {
+          number: 42,
+          href: "#"
         }
       ]
     }) }}
-      
-      
-      
 
-      
-{#
-
-
-
-
-
-  ------------------------------------------------------------
-  TIMETABLE
-  ------------------------------------------------------------
-
-
-
-
-  
-#}
-      <h2 class="govuk-heading-l">
-        Timetable
-      </h2>
-  
-      {{ govukTable({
-        captionClasses: "govuk-table__caption--m pins-summary-list--bottomless",
-        firstCellIsHeader: true,
-        rows: [
-          [
-            {
-              text: "Received date",
-              classes: "govuk-!-width-one-third"
-            },
-            {
-              html: 12 | daysAgo
-            },
-            {
-              html: "<a href='#'>Change<span class='govuk-visually-hidden'> received date</span></a>",
-              format: "numeric"
-            }
-          ],
-          [
-            {
-              text: "Valid date",
-              classes: "govuk-!-width-one-third"
-            },
-            {
-              text: "No valid date"
-            },
-            {
-              html: "<a href='#'>Add</a>",
-              format: "numeric"
-            }
-          ] if data['1'] == 2,
-          [
-            {
-              text: "Start date"
-            },
-            {
-              html: "No start date"
-            },
-            {
-              html: "<a href='#'>Add</a>",
-              format: "numeric"
-            }
-          ] if data['1'] == 2,
-          [
-            {
-              text: "Decision date",
-              classes: "govuk-!-width-one-third"
-            },
-            {
-              text: "Not decided"
-            },
-            {
-              html: "",
-              format: "numeric"
-            }
-          ]
-        ]
-      }) }}
-
-
-{#
-
-
-
-
-
-  ------------------------------------------------------------
-  SITE
-  ------------------------------------------------------------
-
-
-
-
-  
-#}
-
-      <h2 class="govuk-heading-l">
-        Event
-      </h2>
-
-      {{ govukSummaryList({
-        rows: [
-          {
-            key: {
-              text: "Event date"
-            },
-            value: {
-              text: "No event date"
-            },
-            actions: {
-              items: [
-                {
-                  href: "site-visit.html",
-                  text: "Add",
-                  visuallyHiddenText: "event date"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Event time"
-            },
-            value: {
-              text: "No event time"
-            },
-            actions: {
-              items: [
-                {
-                  href: "site-visit.html",
-                  text: "Add",
-                  visuallyHiddenText: "event time"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Event type"
-            },
-            value: {
-              text: "No event type"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Add",
-                  visuallyHiddenText: "event type"
-                }
-              ]
-            }
-          }
-        ]
-      }) }}
-{#
-
-
-
-
-
-  ------------------------------------------------------------
-  DOCUMENTATION
-  ------------------------------------------------------------
-
-
-
-
-  
-#}
-{#
-      <h2 class="govuk-heading-l">
-        Documentation
-      </h2>
-
-      <!-- documentation table -->
-      <table class="govuk-table">
-
-        <!-- table head -->
-        <thead class="govuk-table__head">
-          <tr class="govuk-table__row">
-            <th scope="col" class="govuk-table__header">Documentation</th>
-            <th scope="col" class="govuk-table__header">Status</th>
-            <th scope="col" class="govuk-table__header">Date</th>
-            <th scope="col" class="govuk-table__header govuk-!-text-align-right">Action</th>
-          </tr>
-        </thead>
-
-        <!-- table body -->
-        <tbody class="govuk-table__body">
-          <!-- valid appeal submission -->
-          <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">Appeal</th>
-            <td class="govuk-table__cell">Valid</td>
-            <td class="govuk-table__cell">{{ 20 | daysAgo }}</td>
-            <td class="govuk-table__cell govuk-!-text-align-right">
-              <a href="/projects/written-representations-part-1/v2/appellant-case" class="govuk-link">
-                View<span class="govuk-visually-hidden"> appellant case</span>
-              </a>
-            </td>
-          </tr> 
-          <!-- complete LPA questionnaire -->
-          <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">Local planning authority questionnaire</th>
-            <td class="govuk-table__cell">Valid</td>
-            <td class="govuk-table__cell">{{ 10 | daysAgo }}</td>
-            <td class="govuk-table__cell govuk-!-text-align-right">
-              <a href="/projects/written-representations-part-1/v2/questionnaire/task-list" data-cy="review-appellant-case" class="govuk-link">
-                View<span class="govuk-visually-hidden"> questionnaire</span>
-              </a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-#}
-{#
-
-
-
-
-
-  ------------------------------------------------------------
-  COSTS
-  ------------------------------------------------------------
-
-
-
-
-  
-#}
-      <h2 class="govuk-heading-l">
-        Costs
-      </h2>
-
-      {{ govukTable({
-        captionClasses: "govuk-table__caption--m",
-        firstCellIsHeader: true,
-        rows: [
-          [
-            {
-              text: "Appellant application",
-              classes: "govuk-!-width-one-third"
-            },
-            {
-              text: 'No documents available'
-            },
-            {
-              html: "<a href='#'>Change</a>",
-              format: "numeric"
-            }
-          ],
-                    [
-            {
-              text: "Appellant withdrawal",
-              classes: "govuk-!-width-one-third"
-            },
-            {
-              text: 'No documents available'
-            },
-            {
-              html: "<a href='#'>Change</a>",
-              format: "numeric"
-            }
-          ],
-                    [
-            {
-              text: "Appellant correspondence",
-              classes: "govuk-!-width-one-third"
-            },
-            {
-              text: 'No documents available'
-            },
-            {
-              html: "<a href='#'>Change</a>",
-              format: "numeric"
-            }
-          ],
-          [
-            {
-              text: "LPA application",
-              classes: "govuk-!-width-one-third"
-            },
-            {
-              text: 'No documents available'
-            },
-            {
-              html: "<a href='#'>Change</a>",
-              format: "numeric"
-            }
-          ],
-                    [
-            {
-              text: "LPA withdrawal",
-              classes: "govuk-!-width-one-third"
-            },
-            {
-              text: 'No documents available'
-            },
-            {
-              html: "<a href='#'>Change</a>",
-              format: "numeric"
-            }
-          ],
-          [
-            {
-              text: "LPA correspondence",
-              classes: "govuk-!-width-one-third"
-            },
-            {
-              text: 'No documents available'
-            },
-            {
-              html: "<a href='#'>Change</a>",
-              format: "numeric"
-            }
-          ]
-          
-        ]
-      }) }}
-
-{#
-
-
-
-
-
-  ------------------------------------------------------------
-  CONTACTS
-  ------------------------------------------------------------
-
-
-
-
-  
-#}
-
-      <h2 class="govuk-heading-l">
-        Contacts
-      </h2>
-  
-      {{ govukSummaryList({
-        rows: [
-          {
-            key: {
-              text: "Appellant"
-            },
-            value: {
-              html: "No appellant"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  html: "Add",
-                  visuallyHiddenText: "appellant"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Agent"
-            },
-            value: {
-              text: "No agent"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  html: "Add",
-                  visuallyHiddenText: "agent"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "LPA"
-            },
-            value: {
-              html: "No local planning authority"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  html: "Add",
-                  visuallyHiddenText: "local planning authority"
-                }
-              ]
-            }
-          }
-        ]
-      }) }}
-
-
-
-
-{#
-
-
-
-
-
-  ------------------------------------------------------------
-  TEAM
-  ------------------------------------------------------------
-
-
-
-
-  
-#}      
-      <h2 class="govuk-heading-l">
-        Team
-      </h2>
-
-      {{ govukSummaryList({
-        rows: [
-          {
-            key: {
-              text: "Case team"
-            },
-            value: {
-              html: "No case team"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Add",
-                  visuallyHiddenText: "case team"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Case officer"
-            },
-            value: {
-              html: "Not assigned"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Add",
-                  visuallyHiddenText: "case officer"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Inspector"
-            },
-            value: {
-              html: "Not assigned"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Add",
-                  visuallyHiddenText: "inspector"
-                }
-              ]
-            }
-          }
-        ]
-      }) }}
-
-{#
-
-
-
-
-
-  ------------------------------------------------------------
-  CASE MANAGEMENT
-  ------------------------------------------------------------
-
-
-
-
-  
-#}
-      <h2 class="govuk-heading-l">
-        Case management
-      </h2>
-
-      {{ govukSummaryList({
-        rows: [
-          {
-            key: {
-              text: "Cross-team correspondence"
-            },
-            value: {
-              text: "No documents"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Add",
-                  visuallyHiddenText: "cross-team correspondence"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Inspector correspondence"
-            },
-            value: {
-              text: "No documents"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Add",
-                  visuallyHiddenText: "cross-team correspondence"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Main party correspondence"
-            },
-            value: {
-              text: "No documents"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Add",
-                  visuallyHiddenText: "cross-team correspondence"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Case history"
-            },
-            value: {
-              text: ""
-            }
-          }
-        ]
-      }) }}
-{#
-
-
-
-
-
-  ------------------------------------------------------------
-  CANCEL APPEAL
-  ------------------------------------------------------------
-
-
-
-
-  
-#}
-
-    <div id="case-details-cancel-section">
-      <h3 class="govuk-heading-m">
-        Cancel case
-      </h3>
-    <div>
-    
-    <p class="govuk-body">
-      <a class="govuk-link" href="#">
-        Cancel case
-      </a>
-    </p>
-
-    <!-- end of case sections -->
-    </section>
   </div>
+</div>
+
 {% endblock %}

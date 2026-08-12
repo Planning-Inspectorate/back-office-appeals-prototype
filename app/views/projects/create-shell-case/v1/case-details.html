@@ -176,20 +176,20 @@
       rows: [
         {
           key: {
-            text: "Planning application reference"
+            text: "Application reference"
           },
           value: {
-            text: "SC/2026/0235/Full"
+            text: "No application reference"
           },
           actions: {
             items: [
               {
-                href: "Application-reference?referrer=case-details",
-                text: "Change"
+                href: "",
+                text: "Add"
               }
             ]
           }
-        } if data['1'],
+        },
         {
           key: {
             text: "Appeal type"
@@ -237,12 +237,444 @@
               }
             ]
           }
+        },
+        {
+        key: {
+          text: "Related appeals"
+        },
+        value: {
+          text: "No related appeals"
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Add"
+            }
+          ]
+          }
+        },
+        {
+          key: {
+            text: "Is there a net gain or loss of residential units?"
+          },
+          value: {
+            text: "Not provided"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Add"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Decision"
+          },
+          value: {
+            text: "Not issues"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Issue decision"
+              }
+            ]
+          }
         }
       ]
     }) }}
       
       
+
+{#
+
+
+
+
+
+     
+ ------------------------------------------------------------
+  SITE
+  ------------------------------------------------------------
+
+
+
+
+
+
+
+#}
+
+
+      {% if data['procedure'] == 'Written representations' %}
+
+        <h2 class="govuk-heading-l">
+          Site visit
+        </h2>
+
+        {% if data['site-visit'] == true %}
+
+
+
+        {% else %}
+
+          <!-- <p class="govuk-body">
+            <a href="#" class="govuk-link">
+              Record missed site visit
+            </a>
+          </p> -->
+
+          <p class="govuk-body">
+            <button class="govuk-button" data-module="govuk-button">
+              Set up site visit
+            </button>
+          </p>
+
+          {# hiding these manual set up rows
+
+          {{ govukSummaryList({
+            rows: [
+              {
+                key: {
+                  text: "Event date"
+                },
+                value: {
+                  text: "No event date"
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "site-visit.html",
+                      text: "Add",
+                      visuallyHiddenText: "event date"
+                    }
+                  ]
+                }
+              },
+              {
+                key: {
+                  text: "Event time"
+                },
+                value: {
+                  text: "No event time"
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "site-visit.html",
+                      text: "Add",
+                      visuallyHiddenText: "event time"
+                    }
+                  ]
+                }
+              },
+              {
+                key: {
+                  text: "Event type"
+                },
+                value: {
+                  text: "No event type"
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Add",
+                      visuallyHiddenText: "event type"
+                    }
+                  ]
+                }
+              }
+            ]
+          }) }}
+
+          Hiding these manual set up rows
+          #}
+          
+        {% endif %}
+
+        <h3 class="govuk-heading-m">
+          Site visit requests
+        </h3>
       
+        {{ govukSummaryList({
+            rows: [
+              {
+                key: {
+                  text: "Interested party and neighbour addresses"
+                },
+                value: {
+                  text: "No addresses"
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "site-visit.html",
+                      text: "Add",
+                      visuallyHiddenText: "event date"
+                    }
+                  ]
+                }
+              }
+            ]
+          }) }}
+
+        {% elseif data['procedure'] == 'Hearing' %}
+
+
+          {% if data['hearing'] == true %}
+
+            <h2 class="govuk-heading-l">
+              Hearing
+            </h2>
+
+            {{ govukSummaryList({
+                rows: [
+                  {
+                    key: {
+                      text: "Date"
+                    },
+                    value: {
+                      text: "No date"
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "site-visit.html",
+                          text: "Add",
+                          visuallyHiddenText: "event date"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    key: {
+                      text: "Time"
+                    },
+                    value: {
+                      text: "No time"
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "site-visit.html",
+                          text: "Add",
+                          visuallyHiddenText: "event time"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    key: {
+                      text: "Do you know the estimated number of days needed to carry out the hearing?"
+                    },
+                    value: {
+                      text: "Not provided"
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "site-visit.html",
+                          text: "Add",
+                          visuallyHiddenText: "estimated number of days needed to carry out the hearing"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    key: {
+                      text: "Do you know the address of where the hearing will take place?"
+                    },
+                    value: {
+                      text: "Not provided"
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "#",
+                          text: "Add",
+                          visuallyHiddenText: "whether you know the address of where the hearing will take place"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    key: {
+                      text: "Address"
+                    },
+                    value: {
+                      text: "No address"
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "#",
+                          text: "Add",
+                          visuallyHiddenText: "event address"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }) }}
+
+            {% else %}
+
+              <h2 class="govuk-heading-l">
+                Hearing
+              </h2>
+
+              <button class="govuk-button" data-module="govuk-button">
+                Set up hearing
+              </button>  
+              
+            {% endif %}
+
+            <h3 class="govuk-heading-m">
+              Hearing estimates
+            </h3>
+
+            <p class="govuk-body">
+              <a href="#" class="govuk-link">
+                Add hearing estimates
+              </a>
+            </p>
+
+        {% elseif data['procedure'] == 'Inquiry' %}
+
+          <h2 class="govuk-heading-l">
+            Inquiry
+          </h2>
+
+          {% if data['inquiry'] == true %}
+
+            {{ govukSummaryList({
+                rows: [
+                  {
+                    key: {
+                      text: "Date"
+                    },
+                    value: {
+                      text: "No date"
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "site-visit.html",
+                          text: "Add",
+                          visuallyHiddenText: "event date"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    key: {
+                      text: "Time"
+                    },
+                    value: {
+                      text: "No time"
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "site-visit.html",
+                          text: "Add",
+                          visuallyHiddenText: "event time"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    key: {
+                      text: "Do you know the estimated number of days needed to carry out the inquiry?"
+                    },
+                    value: {
+                      text: "Not provided"
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "site-visit.html",
+                          text: "Add",
+                          visuallyHiddenText: "estimated number of days needed to carry out the inquiry"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    key: {
+                      text: "Do you know the address of where the inquiry will take place?"
+                    },
+                    value: {
+                      text: "Not provided"
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "#",
+                          text: "Add",
+                          visuallyHiddenText: "whether you know the address of where the hearing will take place"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    key: {
+                      text: "Address"
+                    },
+                    value: {
+                      text: "No address"
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "#",
+                          text: "Add",
+                          visuallyHiddenText: "event address"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }) }}
+
+            {% else %}
+
+              <button class="govuk-button" data-module="govuk-button">
+                Set up inquiry
+              </button>  
+            
+            {% endif %}
+
+
+            <h3 class="govuk-heading-m">
+              Inquiry estimates
+            </h3>
+
+            <p class="govuk-body">
+              <a href="#" class="govuk-link">
+                Add inquiry estimates
+              </a>
+            </p>
+
+        {% else %}
+
+
+          <h2 class="govuk-heading-l">
+            Event details
+          </h2>
+
+          <p class="govuk-body">
+            <a href="#" class="govuk-link">
+              Add a procedure</a> to show event details
+          </p>
+
+        {% endif %}
 
       
 {#
@@ -270,7 +702,7 @@
         rows: [
           [
             {
-              text: "Received date",
+              text: "Created date",
               classes: "govuk-!-width-one-third"
             },
             {
@@ -293,7 +725,7 @@
               html: "<a href='#'>Add</a>",
               format: "numeric"
             }
-          ] if data['1'] == 2,
+          ],
           [
             {
               text: "Start date"
@@ -305,7 +737,55 @@
               html: "<a href='#'>Add</a>",
               format: "numeric"
             }
-          ] if data['1'] == 2,
+          ],
+          [
+            {
+              text: "LPA questionnaire due"
+            },
+            {
+              html: "No questionnaire due date"
+            },
+            {
+              html: "<a href='#'>Add</a>",
+              format: "numeric"
+            }
+          ],
+          [
+            {
+              text: "LPA statement due"
+            },
+            {
+              html: "No statement due date"
+            },
+            {
+              html: "<a href='#'>Add</a>",
+              format: "numeric"
+            }
+          ],
+          [
+            {
+              text: "Interested party comments due"
+            },
+            {
+              html: "No statement due date"
+            },
+            {
+              html: "<a href='#'>Add</a>",
+              format: "numeric"
+            }
+          ],
+          [
+            {
+              text: "Final comments due"
+            },
+            {
+              html: "No final comments due date"
+            },
+            {
+              html: "<a href='#'>Add</a>",
+              format: "numeric"
+            }
+          ],
           [
             {
               text: "Decision date",
@@ -329,79 +809,7 @@
 
 
 
-  ------------------------------------------------------------
-  SITE
-  ------------------------------------------------------------
-
-
-
-
-  
-#}
-
-      <h2 class="govuk-heading-l">
-        Event
-      </h2>
-
-      {{ govukSummaryList({
-        rows: [
-          {
-            key: {
-              text: "Event date"
-            },
-            value: {
-              text: "No event date"
-            },
-            actions: {
-              items: [
-                {
-                  href: "site-visit.html",
-                  text: "Add",
-                  visuallyHiddenText: "event date"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Event time"
-            },
-            value: {
-              text: "No event time"
-            },
-            actions: {
-              items: [
-                {
-                  href: "site-visit.html",
-                  text: "Add",
-                  visuallyHiddenText: "event time"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Event type"
-            },
-            value: {
-              text: "No event type"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Add",
-                  visuallyHiddenText: "event type"
-                }
-              ]
-            }
-          }
-        ]
-      }) }}
-{#
-
-
-
+ 
 
 
   ------------------------------------------------------------
@@ -674,7 +1082,7 @@
               items: [
                 {
                   href: "#",
-                  text: "Add",
+                  text: "Assign",
                   visuallyHiddenText: "case team"
                 }
               ]
@@ -691,7 +1099,7 @@
               items: [
                 {
                   href: "#",
-                  text: "Add",
+                  text: "Assign",
                   visuallyHiddenText: "case officer"
                 }
               ]
@@ -708,7 +1116,7 @@
               items: [
                 {
                   href: "#",
-                  text: "Add",
+                  text: "Assign",
                   visuallyHiddenText: "inspector"
                 }
               ]
@@ -795,6 +1203,15 @@
             },
             value: {
               text: ""
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "View",
+                  visuallyHiddenText: "cross-team correspondence"
+                }
+              ]
             }
           }
         ]

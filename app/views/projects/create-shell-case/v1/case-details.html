@@ -697,27 +697,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       <h2 class="govuk-heading-l">
         Timetable
       </h2>
@@ -732,7 +711,7 @@
                 classes: "govuk-!-width-one-third"
               },
               value: {
-                html: 12 | daysAgo
+                html: 0 | daysAgo
               },
               actions: {
                 items: [
@@ -773,7 +752,7 @@
                 items: [
                   {
                     href: "#",
-                    text: "Change",
+                    text: "Add",
                     visuallyHiddenText: "start date"
                   }
                 ]
@@ -862,7 +841,7 @@
                 items: [
                   {
                     href: "#",
-                    text: "Change",
+                    text: "Add",
                     visuallyHiddenText: "start date"
                   }
                 ]
@@ -961,13 +940,13 @@
                 classes: "govuk-!-width-one-third"
               },
               value: {
-                html: 12 | daysAgo
+                html: 0 | daysAgo
               },
               actions: {
                 items: [
                   {
                     href: "#",
-                    text: "Change",
+                    text: "Add",
                     visuallyHiddenText: "created date"
                   }
                 ]
@@ -1133,13 +1112,13 @@
                 classes: "govuk-!-width-one-third"
               },
               value: {
-                html: 12 | daysAgo
+                html: 0 | daysAgo
               },
               actions: {
                 items: [
                   {
                     href: "#",
-                    text: "Change",
+                    text: "Add",
                     visuallyHiddenText: "created date"
                   }
                 ]
@@ -1319,7 +1298,6 @@
               Add a procedure</a> to create a timetable.
           </p>
 
-
       {% endif %}
 
 
@@ -1364,6 +1342,440 @@
 
   
 #}
+
+
+
+
+
+      <h2 class="govuk-heading-l">
+        Documentation
+      </h2>
+
+      {% if data['procedure'] == "Written representations (part 1)" %}
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Appeal",
+                classes: "govuk-!-width-one-third"
+              },
+              value: {
+                html: "No documents"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "appeal"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "LPA questionnaire"
+              },
+              value: {
+                html: "No documents"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "LPA questionnaire"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Environmental services team review"
+              },
+              value: {
+                html: "No documents"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "environmental services team review"
+                  }
+                ]
+              }
+            } if data['1'] == 2
+          ]
+        }) }}
+
+      {% elif data['procedure'] == "Written representations (part 2)" %}
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Appeal"
+              },
+              value: {
+                html: "No documents"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "appeal"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "LPA questionnaire"
+              },
+              value: {
+                html: "No documents"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "LPA questionnaire"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "LPA statement"
+              },
+              value: {
+                html: "No documents"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "LPA statement"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Interested party comments"
+              },
+              value: {
+                html: "No documents"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "interested party comments"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Appellant final comments"
+              },
+              value: {
+                html: "No documents"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "appellant final comments"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "LPA final comments"
+              },
+              value: {
+                html: "No documents"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "LPA final comments"
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
+
+      {% elif data['procedure'] == "Hearing" %}
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Appeal"
+              },
+              value: {
+                html: "No documents"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "appeal"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "LPA questionnaire"
+              },
+              value: {
+                html: "No documents"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "LPA questionnaire"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "LPA statement"
+              },
+              value: {
+                html: "No documents"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "LPA statement"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Interested party comments"
+              },
+              value: {
+                html: "No documents"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "interested party comments"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Environmental services team review"
+              },
+              value: {
+                html: "No documents"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "environmental services team review"
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
+
+      {% elif data['procedure'] == "Inquiry" %}
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Appeal"
+              },
+              value: {
+                html: "No documents"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "appeal"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "LPA questionnaire"
+              },
+              value: {
+                html: "No documents"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "LPA questionnaire"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "LPA statement"
+              },
+              value: {
+                html: "No documents"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "LPA statement"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Rule 6 group statement"
+              },
+              value: {
+                html: "No documents"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "Rule 6 group statement"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Interested party comments"
+              },
+              value: {
+                html: "No documents"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "interested party comments"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Appellant proof of evidence and witness"
+              },
+              value: {
+                html: "No documents"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "appellant proof of evidence and witness"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "LPA proof of evidence and witness"
+              },
+              value: {
+                html: "No documents"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "LPA proof of evidence and witness"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Rule 6 group proof of evidence and witness"
+              },
+              value: {
+                html: "No documents"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "Rule 6 group proof of evidence and witness"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Environmental services team review"
+              },
+              value: {
+                html: "No documents"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "environmental services team review"
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
+
+      {% endif %}
+
+
+
+
 {#
       <h2 class="govuk-heading-l">
         Documentation
@@ -1438,10 +1850,10 @@
               classes: "govuk-!-width-one-third"
             },
             {
-              text: 'No documents available'
+              html: "No documents"
             },
             {
-              html: "<a href='#' class='govuk-link'>Change</a>",
+              html: "<a href='#' class='govuk-link'>Add</a>",
               format: "numeric"
             }
           ],
@@ -1451,10 +1863,10 @@
               classes: "govuk-!-width-one-third"
             },
             {
-              text: 'No documents available'
+              html: "No documents"
             },
             {
-              html: "<a href='#' class='govuk-link'>Change</a>",
+              html: "<a href='#' class='govuk-link'>Add</a>",
               format: "numeric"
             }
           ],
@@ -1464,10 +1876,10 @@
               classes: "govuk-!-width-one-third"
             },
             {
-              text: 'No documents available'
+              html: "No documents"
             },
             {
-              html: "<a href='#' class='govuk-link'>Change</a>",
+              html: "<a href='#' class='govuk-link'>Add</a>",
               format: "numeric"
             }
           ],
@@ -1477,10 +1889,10 @@
               classes: "govuk-!-width-one-third"
             },
             {
-              text: 'No documents available'
+              html: "No documents"
             },
             {
-              html: "<a href='#' class='govuk-link'>Change</a>",
+              html: "<a href='#' class='govuk-link'>Add</a>",
               format: "numeric"
             }
           ],
@@ -1490,10 +1902,10 @@
               classes: "govuk-!-width-one-third"
             },
             {
-              text: 'No documents available'
+              html: "No documents"
             },
             {
-              html: "<a href='#' class='govuk-link'>Change</a>",
+              html: "<a href='#' class='govuk-link'>Add</a>",
               format: "numeric"
             }
           ],
@@ -1503,10 +1915,10 @@
               classes: "govuk-!-width-one-third"
             },
             {
-              text: 'No documents available'
+              html: "No documents"
             },
             {
-              html: "<a href='#' class='govuk-link'>Change</a>",
+              html: "<a href='#' class='govuk-link'>Add</a>",
               format: "numeric"
             }
           ]

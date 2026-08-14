@@ -211,13 +211,16 @@
             text: "Appeal procedure"
           },
           value: {
-            text: "No procedure"
+            html: data['procedure'] or "No procedure"
           },
           actions: {
             items: [
               {
-                href: "#",
+                href: "procedure",
                 text: "Add"
+              } if not data['procedure'] else {
+                href: "procedure",
+                text: "Change"
               }
             ]
           }
@@ -311,7 +314,7 @@
 #}
 
 
-      {% if data['procedure'] == 'Written representations' %}
+      {% if data['procedure'] == "Written representations (part 1)"  or data['procedure'] == "Written representations (part 2)" %}
 
         <h2 class="govuk-heading-l">
           Site visit
@@ -664,14 +667,13 @@
 
         {% else %}
 
-
           <h2 class="govuk-heading-l">
-            Event details
+            Event
           </h2>
 
           <p class="govuk-body">
-            <a href="#" class="govuk-link">
-              Add a procedure</a> to show event details
+            <a href="procedure" class="govuk-link">
+              Add a procedure</a> to show event details.
           </p>
 
         {% endif %}
@@ -692,116 +694,657 @@
 
   
 #}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       <h2 class="govuk-heading-l">
         Timetable
       </h2>
   
-      {{ govukTable({
-        captionClasses: "govuk-table__caption--m pins-summary-list--bottomless",
-        firstCellIsHeader: true,
-        rows: [
-          [
+      {% if data['procedure'] == "Written representations (part 1)" %}
+      
+        {{ govukSummaryList({
+          rows: [
             {
-              text: "Created date",
-              classes: "govuk-!-width-one-third"
+              key: {
+                text: "Created date",
+                classes: "govuk-!-width-one-third"
+              },
+              value: {
+                html: 12 | daysAgo
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "created date"
+                  }
+                ]
+              }
             },
             {
-              html: 12 | daysAgo
+              key: {
+                text: "Valid date",
+                classes: "govuk-!-width-one-third"
+              },
+              value: {
+                text: "No valid date"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "valid date"
+                  }
+                ]
+              }
             },
             {
-              html: "<a href='#'>Change<span class='govuk-visually-hidden'> received date</span></a>",
-              format: "numeric"
-            }
-          ],
-          [
-            {
-              text: "Valid date",
-              classes: "govuk-!-width-one-third"
+              key: {
+                text: "Start date"
+              },
+              value: {
+                text: "No start date"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "start date"
+                  }
+                ]
+              }
             },
             {
-              text: "No valid date"
+              key: {
+                text: "LPA questionnaire due"
+              },
+              value: {
+                text: "No questionnaire due date"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "LPA questionnaire due date"
+                  }
+                ]
+              }
             },
             {
-              html: "<a href='#'>Add</a>",
-              format: "numeric"
-            }
-          ],
-          [
-            {
-              text: "Start date"
-            },
-            {
-              html: "No start date"
-            },
-            {
-              html: "<a href='#'>Add</a>",
-              format: "numeric"
-            }
-          ],
-          [
-            {
-              text: "LPA questionnaire due"
-            },
-            {
-              html: "No questionnaire due date"
-            },
-            {
-              html: "<a href='#'>Add</a>",
-              format: "numeric"
-            }
-          ],
-          [
-            {
-              text: "LPA statement due"
-            },
-            {
-              html: "No statement due date"
-            },
-            {
-              html: "<a href='#'>Add</a>",
-              format: "numeric"
-            }
-          ],
-          [
-            {
-              text: "Interested party comments due"
-            },
-            {
-              html: "No statement due date"
-            },
-            {
-              html: "<a href='#'>Add</a>",
-              format: "numeric"
-            }
-          ],
-          [
-            {
-              text: "Final comments due"
-            },
-            {
-              html: "No final comments due date"
-            },
-            {
-              html: "<a href='#'>Add</a>",
-              format: "numeric"
-            }
-          ],
-          [
-            {
-              text: "Decision date",
-              classes: "govuk-!-width-one-third"
-            },
-            {
-              text: "Not decided"
-            },
-            {
-              html: "",
-              format: "numeric"
+              key: {
+                text: "Decision date",
+                classes: "govuk-!-width-one-third"
+              },
+              value: {
+                text: "Not decided"
+              },
+              actions: {
+                items: []
+              }
             }
           ]
-        ]
-      }) }}
+        }) }}
 
+      {% elif data['procedure'] == "Written representations (part 2)" %}
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Created date",
+                classes: "govuk-!-width-one-third"
+              },
+              value: {
+                html: 12 | daysAgo
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "created date"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Valid date",
+                classes: "govuk-!-width-one-third"
+              },
+              value: {
+                text: "No valid date"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "valid date"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Start date"
+              },
+              value: {
+                text: "No start date"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "start date"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "LPA questionnaire due"
+              },
+              value: {
+                text: "No questionnaire due date"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "LPA questionnaire due date"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "LPA statement due"
+              },
+              value: {
+                text: "No statement due date"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "LPA statement due date"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Interested party comments due"
+              },
+              value: {
+                text: "No comments due date"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "interested party comments due date"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Final comments due"
+              },
+              value: {
+                text: "No final comments due date"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "final comments due date"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Decision date",
+                classes: "govuk-!-width-one-third"
+              },
+              value: {
+                text: "Not decided"
+              },
+              actions: {
+                items: []
+              }
+            }
+          ]
+        }) }}
+
+      {% elif data['procedure'] == "Hearing" %}
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Created date",
+                classes: "govuk-!-width-one-third"
+              },
+              value: {
+                html: 12 | daysAgo
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "created date"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Valid date"
+              },
+              value: {
+                text: "No valid date"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "valid date"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Start date"
+              },
+              value: {
+                text: "No start date"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "start date"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "LPA questionnaire due"
+              },
+              value: {
+                text: "No questionnaire due date"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "LPA questionnaire due date"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "LPA statement due"
+              },
+              value: {
+                text: "No statement due date"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "LPA statement due date"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Interested party comments due"
+              },
+              value: {
+                text: "No comments due date"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "interested party comments due date"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Statement of common ground due"
+              },
+              value: {
+                text: "No statement of common ground due date"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "statement of common ground due date"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Planning obligation due"
+              },
+              value: {
+                text: "Not provided"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "planning obligation due date"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Hearing date"
+              },
+              value: {
+                text: "No hearing date"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "hearing date"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Decision date"
+              },
+              value: {
+                text: "Not decided"
+              },
+              actions: {
+                items: []
+              }
+            }
+          ]
+        }) }}
+
+      {% elif data['procedure'] == "Inquiry" %}
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Created date",
+                classes: "govuk-!-width-one-third"
+              },
+              value: {
+                html: 12 | daysAgo
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Change",
+                    visuallyHiddenText: "created date"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Valid date"
+              },
+              value: {
+                text: "No valid date"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "valid date"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Start date"
+              },
+              value: {
+                text: "No start date"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "start date"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "LPA questionnaire due"
+              },
+              value: {
+                text: "No questionnaire due date"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "LPA questionnaire due date"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "LPA statement due"
+              },
+              value: {
+                text: "No statement due date"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "LPA statement due date"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Interested party comments due"
+              },
+              value: {
+                text: "No comments due date"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "interested party comments due date"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Statement of common ground due"
+              },
+              value: {
+                text: "No statement of common ground due date"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "statement of common ground due date"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Proof of evidence and witness due"
+              },
+              value: {
+                text: "No proof of evidence due date"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "proof of evidence due date"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Case management conference due"
+              },
+              value: {
+                text: "No case management conference date"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "case management conference date"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Inquiry date"
+              },
+              value: {
+                text: "No inquiry date"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "inquiry date"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Decision date"
+              },
+              value: {
+                text: "Not decided"
+              },
+              actions: {
+                items: []
+              }
+            }
+          ]
+        }) }}
+
+      {% else %}
+
+          <p class="govuk-body">
+            <a href="procedure" class="govuk-link">
+              Add a procedure</a> to create a timetable.
+          </p>
+
+
+      {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 
 {#
 
@@ -898,7 +1441,7 @@
               text: 'No documents available'
             },
             {
-              html: "<a href='#'>Change</a>",
+              html: "<a href='#' class='govuk-link'>Change</a>",
               format: "numeric"
             }
           ],
@@ -911,7 +1454,7 @@
               text: 'No documents available'
             },
             {
-              html: "<a href='#'>Change</a>",
+              html: "<a href='#' class='govuk-link'>Change</a>",
               format: "numeric"
             }
           ],
@@ -924,7 +1467,7 @@
               text: 'No documents available'
             },
             {
-              html: "<a href='#'>Change</a>",
+              html: "<a href='#' class='govuk-link'>Change</a>",
               format: "numeric"
             }
           ],
@@ -937,11 +1480,11 @@
               text: 'No documents available'
             },
             {
-              html: "<a href='#'>Change</a>",
+              html: "<a href='#' class='govuk-link'>Change</a>",
               format: "numeric"
             }
           ],
-                    [
+          [
             {
               text: "LPA withdrawal",
               classes: "govuk-!-width-one-third"
@@ -950,7 +1493,7 @@
               text: 'No documents available'
             },
             {
-              html: "<a href='#'>Change</a>",
+              html: "<a href='#' class='govuk-link'>Change</a>",
               format: "numeric"
             }
           ],
@@ -963,7 +1506,7 @@
               text: 'No documents available'
             },
             {
-              html: "<a href='#'>Change</a>",
+              html: "<a href='#' class='govuk-link'>Change</a>",
               format: "numeric"
             }
           ]

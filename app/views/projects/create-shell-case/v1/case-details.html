@@ -60,21 +60,7 @@
     <span class="govuk-caption-xl">Appeal 2114328</span>
   	<h1 class="govuk-heading-xl govuk-!-margin-bottom-2">
       {{ title }}
-    </h1>
-
-    {% if data['status'] != "open" %}
-      {{govukTag({
-        text: "Ready to start",
-        classes: "govuk-tag--green"
-      })}}
-    {% else %}
-      {{govukTag({
-        text: "Case open",
-        classes: "govuk-tag--yellow"
-      })}}
-    {% endif %}
-
-    
+    </h1>   
 
   </div>
 

@@ -13,6 +13,12 @@ router.post('/case-type', function (req, res) {
 })
 
 // update procedure
+router.post('/set-procedure', function (req, res) {
+  req.flash('success', 'Case started')
+  res.redirect('case-details?status=open')
+})
+
+// update procedure
 router.post('/procedure', function (req, res) {
   res.redirect('case-details')
 })

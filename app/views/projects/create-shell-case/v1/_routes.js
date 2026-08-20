@@ -27,7 +27,7 @@ router.post('/procedure', function (req, res) {
 router.post('/check-answers', function (req, res) {
   req.flash('success', 'Case created')
   
-  req.session.data.casecreated = 'Yep'
+  req.session.data.casestarted = 'Yep'
 5
   res.redirect('case-details')
 })

@@ -1,0 +1,29 @@
+{{ govukNotificationBanner({
+  type: "success",
+  classes: "govuk-!-margin-bottom-6",
+  text: flash
+}) if flash.length }}
+
+{% if data['status'] != "open" %}
+  
+  {% call govukNotificationBanner() %}
+    <p class="govuk-notification-banner__heading">
+      Ready to start
+    </p>
+    <p class="govuk-body">
+      <a class="govuk-notification-banner__link" href="set-procedure">Start case</a>
+    </p>
+  {% endcall %}
+
+{% else %}
+  
+  {% call govukNotificationBanner() %}
+    <p class="govuk-notification-banner__heading">
+      Ready for decision
+    </p>
+    <p class="govuk-body">
+      <a class="govuk-notification-banner__link" href="#">Issue decision</a>
+    </p>
+  {% endcall %}
+
+{% endif %}

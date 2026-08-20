@@ -1,0 +1,533 @@
+<h2 class="govuk-heading-l">
+  Documentation
+</h2>
+
+{% if data['status'] == 'open' %}
+
+  {% if data['procedure'] == "Written representations (part 1)" %}
+
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "Appeal",
+            classes: "govuk-!-width-one-third"
+          },
+          value: {
+            html: "No documents"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Add",
+                visuallyHiddenText: "appeal"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "LPA questionnaire"
+          },
+          value: {
+            html: "No documents"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Add",
+                visuallyHiddenText: "LPA questionnaire"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Environmental services team review"
+          },
+          value: {
+            html: "No documents"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Add",
+                visuallyHiddenText: "environmental services team review"
+              }
+            ]
+          }
+        } if data['status'] == 'open'
+      ]
+    }) }}
+
+  {% elif data['procedure'] == "Written representations (part 2)" %}
+
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "Appeal"
+          },
+          value: {
+            html: "No documents"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Add",
+                visuallyHiddenText: "appeal"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "LPA questionnaire"
+          },
+          value: {
+            html: "No documents"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Add",
+                visuallyHiddenText: "LPA questionnaire"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "LPA statement"
+          },
+          value: {
+            html: "No documents"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Add",
+                visuallyHiddenText: "LPA statement"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Interested party comments"
+          },
+          value: {
+            html: "No documents"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Add",
+                visuallyHiddenText: "interested party comments"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Appellant final comments"
+          },
+          value: {
+            html: "No documents"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Add",
+                visuallyHiddenText: "appellant final comments"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "LPA final comments"
+          },
+          value: {
+            html: "No documents"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Add",
+                visuallyHiddenText: "LPA final comments"
+              }
+            ]
+          }
+        }
+      ]
+    }) }}
+
+  {% elif data['procedure'] == "Hearing" %}
+
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "Appeal"
+          },
+          value: {
+            html: "No documents"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Add",
+                visuallyHiddenText: "appeal"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "LPA questionnaire"
+          },
+          value: {
+            html: "No documents"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Add",
+                visuallyHiddenText: "LPA questionnaire"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "LPA statement"
+          },
+          value: {
+            html: "No documents"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Add",
+                visuallyHiddenText: "LPA statement"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Interested party comments"
+          },
+          value: {
+            html: "No documents"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Add",
+                visuallyHiddenText: "interested party comments"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Environmental services team review"
+          },
+          value: {
+            html: "No documents"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Add",
+                visuallyHiddenText: "environmental services team review"
+              }
+            ]
+          }
+        }
+      ]
+    }) }}
+
+  {% elif data['procedure'] == "Inquiry" %}
+
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "Appeal"
+          },
+          value: {
+            html: "No documents"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Add",
+                visuallyHiddenText: "appeal"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "LPA questionnaire"
+          },
+          value: {
+            html: "No documents"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Add",
+                visuallyHiddenText: "LPA questionnaire"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "LPA statement"
+          },
+          value: {
+            html: "No documents"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Add",
+                visuallyHiddenText: "LPA statement"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Rule 6 group statement"
+          },
+          value: {
+            html: "No documents"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Add",
+                visuallyHiddenText: "Rule 6 group statement"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Interested party comments"
+          },
+          value: {
+            html: "No documents"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Add",
+                visuallyHiddenText: "interested party comments"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Appellant proof of evidence and witness"
+          },
+          value: {
+            html: "No documents"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Add",
+                visuallyHiddenText: "appellant proof of evidence and witness"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "LPA proof of evidence and witness"
+          },
+          value: {
+            html: "No documents"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Add",
+                visuallyHiddenText: "LPA proof of evidence and witness"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Rule 6 group proof of evidence and witness"
+          },
+          value: {
+            html: "No documents"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Add",
+                visuallyHiddenText: "Rule 6 group proof of evidence and witness"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Environmental services team review"
+          },
+          value: {
+            html: "No documents"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Add",
+                visuallyHiddenText: "environmental services team review"
+              }
+            ]
+          }
+        }
+      ]
+    }) }}
+
+  {% else %}
+
+    <!-- <p class="govuk-body">
+      <a href="procedure" class="govuk-link">
+        Add a procedure</a> to show documentation.
+    </p> -->
+
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "Appeal",
+            classes: "govuk-!-width-one-third"
+          },
+          value: {
+            html: "No documents"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Add",
+                visuallyHiddenText: "appeal"
+              }
+            ]
+          }
+        }
+      ]
+    }) }}
+
+  {% endif %}
+
+{% else %}
+
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          text: "Appeal",
+          classes: "govuk-!-width-one-third"
+        },
+        value: {
+          html: "No documents"
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Add",
+              visuallyHiddenText: "appeal"
+            }
+          ]
+        }
+      }
+    ]
+  }) }}
+
+{% endif %} {# if status = ready #}
+
+
+
+
+{#
+<h2 class="govuk-heading-l">
+  Documentation
+</h2>
+
+<!-- documentation table -->
+<table class="govuk-table">
+
+  <!-- table head -->
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Documentation</th>
+      <th scope="col" class="govuk-table__header">Status</th>
+      <th scope="col" class="govuk-table__header">Date</th>
+      <th scope="col" class="govuk-table__header govuk-!-text-align-right">Action</th>
+    </tr>
+  </thead>
+
+  <!-- table body -->
+  <tbody class="govuk-table__body">
+    <!-- valid appeal submission -->
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Appeal</th>
+      <td class="govuk-table__cell">Valid</td>
+      <td class="govuk-table__cell">{{ 20 | daysAgo }}</td>
+      <td class="govuk-table__cell govuk-!-text-align-right">
+        <a href="/projects/written-representations-part-1/v2/appellant-case" class="govuk-link">
+          View<span class="govuk-visually-hidden"> appellant case</span>
+        </a>
+      </td>
+    </tr> 
+    <!-- complete LPA questionnaire -->
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Local planning authority questionnaire</th>
+      <td class="govuk-table__cell">Valid</td>
+      <td class="govuk-table__cell">{{ 10 | daysAgo }}</td>
+      <td class="govuk-table__cell govuk-!-text-align-right">
+        <a href="/projects/written-representations-part-1/v2/questionnaire/task-list" data-cy="review-appellant-case" class="govuk-link">
+          View<span class="govuk-visually-hidden"> questionnaire</span>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+#}

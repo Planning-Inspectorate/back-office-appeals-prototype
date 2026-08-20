@@ -1,6 +1,6 @@
-<h3 class="govuk-heading-m">
-  New
-</h3>
+<h2 class="govuk-heading-l">
+  Timetable
+</h2>
 
 {{ govukSummaryList({
   rows: [
@@ -11,15 +11,6 @@
       },
       value: {
         html: 0 | daysAgo
-      },
-      actions: {
-        items: [
-          {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "created date"
-          }
-        ]
       }
     },
     {
@@ -46,15 +37,6 @@
       },
       value: {
         html: 0 | daysAgo
-      },
-      actions: {
-        items: [
-          {
-            href: "#",
-            text: "Add",
-            visuallyHiddenText: "start date"
-          }
-        ]
       }
     } if data['status'] == 'open',
     {
@@ -158,7 +140,7 @@
           }
         ]
       }
-    } if data['status'] == 'open' and (data['procedure'] == "Written representations (part 2)" or data['procedure'] == "Hearing" or data['procedure'] == "Inquiry"),
+    } if data['status'] == 'open' and (data['procedure'] == "Written representations (part 2)" or data['procedure'] == "Inquiry"),
     {
       key: {
         text: "Proof of evidence and witness due"
@@ -226,23 +208,7 @@
           }
         ]
       }
-    } if data['status'] == 'open' and (data['procedure'] == "Inquiry"),   
-    {
-      key: {
-        text: "Decision date",
-        classes: "govuk-!-width-one-third"
-      },
-      value: {
-        text: "Not decided"
-      },
-      actions: {
-        items: [
-          {
-            href: "#",
-            text: "Issue decision"
-          }
-        ]
-      }
-    } if data['status'] == 'open'
+    } if data['status'] == 'open' and (data['procedure'] == "Inquiry")
+    
   ]
 }) }}

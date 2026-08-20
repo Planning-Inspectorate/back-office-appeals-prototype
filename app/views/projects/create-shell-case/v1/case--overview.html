@@ -1,0 +1,125 @@
+
+<h2 class="govuk-heading-l">
+  Overview
+</h2>
+
+{{ govukSummaryList({
+  classes: "pins-summary-list--bottomless",
+  rows: [
+    {
+      key: {
+        text: "Application reference"
+      },
+      value: {
+        text: "No application reference"
+      },
+      actions: {
+        items: [
+          {
+            href: "",
+            text: "Add"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Appeal type"
+      },
+      value: {
+        html: data['case-type'] or 'Tree preservation order'
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Appeal procedure"
+      },
+      value: {
+        html: data['procedure'] or "No procedure"
+      },
+      actions: {
+        items: [
+          {
+            href: "procedure",
+            text: "Add"
+          } if not data['procedure'] else {
+            href: "procedure",
+            text: "Change"
+          }
+        ]
+      }
+    } if data['status'] == 'open',
+    {
+      key: {
+        text: "Allocation level"
+      },
+      value: {
+        text: "No allocation"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Add"
+          }
+        ]
+      }
+    },
+    {
+    key: {
+      text: "Related appeals"
+    },
+    value: {
+      text: "No related appeals"
+    },
+    actions: {
+      items: [
+        {
+          href: "#",
+          text: "Add"
+        }
+      ]
+      }
+    },
+    {
+      key: {
+        text: "Is there a net gain or loss of residential units?"
+      },
+      value: {
+        text: "Not provided"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Add"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Decision"
+      },
+      value: {
+        text: "Not issues"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Issue decision"
+          }
+        ]
+      }
+    }
+  ]
+}) }}

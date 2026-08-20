@@ -3,38 +3,64 @@
 {% set title = "Case details" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
+{% set prototypeLinks =
+  [
+    {
+      href: '?status=open',
+      text: 'Case is open'
+    } if data['status'] == 'ready',
+    {
+      href: '?status=ready',
+      text: 'Go back to case ready to start'
+    } if data['status'] == 'open'
+  ]
+%}
+
+{% set back = false %}
+
 {% block content %}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
     <!-- notifications -->
-    {# No notifications for this stage #}
+    
     {{ govukNotificationBanner({
       type: "success",
       classes: "govuk-!-margin-bottom-6",
       text: flash
     }) if flash.length }}
 
-    {% call govukNotificationBanner() %}
-      <p class="govuk-notification-banner__heading">
-        Ready for decision
-      </p>
-      <p class="govuk-body">
-        <a class="govuk-notification-banner__link" href="#">issue decision</a>
-      </p>
-    {% endcall %}      
+    {% if data['status'] != "open" %}
+      
+      {% call govukNotificationBanner() %}
+        <p class="govuk-notification-banner__heading">
+          Ready to start
+        </p>
+        <p class="govuk-body">
+          <a class="govuk-notification-banner__link" href="set-procedure">Start case</a>
+        </p>
+      {% endcall %}
+    
+    {% else %}
+      
+      {% call govukNotificationBanner() %}
+        <p class="govuk-notification-banner__heading">
+          Ready for decision
+        </p>
+        <p class="govuk-body">
+          <a class="govuk-notification-banner__link" href="#">Issue decision</a>
+        </p>
+    {% endcall %}
+
+    {% endif %}
+    
 
     <!--	<span class="govuk-caption-l">Appeal 2110166</span> -->
     <span class="govuk-caption-xl">Appeal 2114328</span>
   	<h1 class="govuk-heading-xl govuk-!-margin-bottom-2">
       {{ title }}
-    </h1>
-
-    {{govukTag({
-      text: "Case open",
-      classes: "govuk-tag--yellow"
-    })}}
+    </h1>   
 
   </div>
 
@@ -176,20 +202,20 @@
       rows: [
         {
           key: {
-            text: "Planning application reference"
+            text: "Application reference"
           },
           value: {
-            text: "SC/2026/0235/Full"
+            text: "No application reference"
           },
           actions: {
             items: [
               {
-                href: "Application-reference?referrer=case-details",
-                text: "Change"
+                href: "",
+                text: "Add"
               }
             ]
           }
-        } if data['1'],
+        },
         {
           key: {
             text: "Appeal type"
@@ -211,13 +237,16 @@
             text: "Appeal procedure"
           },
           value: {
-            text: "No procedure"
+            html: data['procedure'] or "No procedure"
           },
           actions: {
             items: [
               {
-                href: "#",
+                href: "procedure",
                 text: "Add"
+              } if not data['procedure'] else {
+                href: "procedure",
+                text: "Change"
               }
             ]
           }
@@ -237,12 +266,443 @@
               }
             ]
           }
+        },
+        {
+        key: {
+          text: "Related appeals"
+        },
+        value: {
+          text: "No related appeals"
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Add"
+            }
+          ]
+          }
+        },
+        {
+          key: {
+            text: "Is there a net gain or loss of residential units?"
+          },
+          value: {
+            text: "Not provided"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Add"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Decision"
+          },
+          value: {
+            text: "Not issues"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Issue decision"
+              }
+            ]
+          }
         }
       ]
     }) }}
       
       
+
+{#
+
+
+
+
+
+     
+ ------------------------------------------------------------
+  SITE
+  ------------------------------------------------------------
+
+
+
+
+
+
+
+#}
+
+
+      {% if data['procedure'] == "Written representations (part 1)"  or data['procedure'] == "Written representations (part 2)" %}
+
+        <h2 class="govuk-heading-l">
+          Site visit
+        </h2>
+
+        {% if data['site-visit'] == true %}
+
+
+
+        {% else %}
+
+          <!-- <p class="govuk-body">
+            <a href="#" class="govuk-link">
+              Record missed site visit
+            </a>
+          </p> -->
+
+          <p class="govuk-body">
+            <button class="govuk-button" data-module="govuk-button">
+              Set up site visit
+            </button>
+          </p>
+
+          {# hiding these manual set up rows
+
+          {{ govukSummaryList({
+            rows: [
+              {
+                key: {
+                  text: "Event date"
+                },
+                value: {
+                  text: "No event date"
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "site-visit.html",
+                      text: "Add",
+                      visuallyHiddenText: "event date"
+                    }
+                  ]
+                }
+              },
+              {
+                key: {
+                  text: "Event time"
+                },
+                value: {
+                  text: "No event time"
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "site-visit.html",
+                      text: "Add",
+                      visuallyHiddenText: "event time"
+                    }
+                  ]
+                }
+              },
+              {
+                key: {
+                  text: "Event type"
+                },
+                value: {
+                  text: "No event type"
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Add",
+                      visuallyHiddenText: "event type"
+                    }
+                  ]
+                }
+              }
+            ]
+          }) }}
+
+          Hiding these manual set up rows
+          #}
+          
+        {% endif %}
+
+        <h3 class="govuk-heading-m">
+          Site visit requests
+        </h3>
       
+        {{ govukSummaryList({
+            rows: [
+              {
+                key: {
+                  text: "Interested party and neighbour addresses"
+                },
+                value: {
+                  text: "No addresses"
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "site-visit.html",
+                      text: "Add",
+                      visuallyHiddenText: "event date"
+                    }
+                  ]
+                }
+              }
+            ]
+          }) }}
+
+        {% elseif data['procedure'] == 'Hearing' %}
+
+
+          {% if data['hearing'] == true %}
+
+            <h2 class="govuk-heading-l">
+              Hearing
+            </h2>
+
+            {{ govukSummaryList({
+                rows: [
+                  {
+                    key: {
+                      text: "Date"
+                    },
+                    value: {
+                      text: "No date"
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "site-visit.html",
+                          text: "Add",
+                          visuallyHiddenText: "event date"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    key: {
+                      text: "Time"
+                    },
+                    value: {
+                      text: "No time"
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "site-visit.html",
+                          text: "Add",
+                          visuallyHiddenText: "event time"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    key: {
+                      text: "Do you know the estimated number of days needed to carry out the hearing?"
+                    },
+                    value: {
+                      text: "Not provided"
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "site-visit.html",
+                          text: "Add",
+                          visuallyHiddenText: "estimated number of days needed to carry out the hearing"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    key: {
+                      text: "Do you know the address of where the hearing will take place?"
+                    },
+                    value: {
+                      text: "Not provided"
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "#",
+                          text: "Add",
+                          visuallyHiddenText: "whether you know the address of where the hearing will take place"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    key: {
+                      text: "Address"
+                    },
+                    value: {
+                      text: "No address"
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "#",
+                          text: "Add",
+                          visuallyHiddenText: "event address"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }) }}
+
+            {% else %}
+
+              <h2 class="govuk-heading-l">
+                Hearing
+              </h2>
+
+              <button class="govuk-button" data-module="govuk-button">
+                Set up hearing
+              </button>  
+              
+            {% endif %}
+
+            <h3 class="govuk-heading-m">
+              Hearing estimates
+            </h3>
+
+            <p class="govuk-body">
+              <a href="#" class="govuk-link">
+                Add hearing estimates
+              </a>
+            </p>
+
+        {% elseif data['procedure'] == 'Inquiry' %}
+
+          <h2 class="govuk-heading-l">
+            Inquiry
+          </h2>
+
+          {% if data['inquiry'] == true %}
+
+            {{ govukSummaryList({
+                rows: [
+                  {
+                    key: {
+                      text: "Date"
+                    },
+                    value: {
+                      text: "No date"
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "site-visit.html",
+                          text: "Add",
+                          visuallyHiddenText: "event date"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    key: {
+                      text: "Time"
+                    },
+                    value: {
+                      text: "No time"
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "site-visit.html",
+                          text: "Add",
+                          visuallyHiddenText: "event time"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    key: {
+                      text: "Do you know the estimated number of days needed to carry out the inquiry?"
+                    },
+                    value: {
+                      text: "Not provided"
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "site-visit.html",
+                          text: "Add",
+                          visuallyHiddenText: "estimated number of days needed to carry out the inquiry"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    key: {
+                      text: "Do you know the address of where the inquiry will take place?"
+                    },
+                    value: {
+                      text: "Not provided"
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "#",
+                          text: "Add",
+                          visuallyHiddenText: "whether you know the address of where the hearing will take place"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    key: {
+                      text: "Address"
+                    },
+                    value: {
+                      text: "No address"
+                    },
+                    actions: {
+                      items: [
+                        {
+                          href: "#",
+                          text: "Add",
+                          visuallyHiddenText: "event address"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }) }}
+
+            {% else %}
+
+              <button class="govuk-button" data-module="govuk-button">
+                Set up inquiry
+              </button>  
+            
+            {% endif %}
+
+
+            <h3 class="govuk-heading-m">
+              Inquiry estimates
+            </h3>
+
+            <p class="govuk-body">
+              <a href="#" class="govuk-link">
+                Add inquiry estimates
+              </a>
+            </p>
+
+        {% else %}
+
+          <!-- <h2 class="govuk-heading-l">
+            Event
+          </h2>
+
+          <p class="govuk-body">
+            <a href="procedure" class="govuk-link">
+              Add a procedure</a> to show event details.
+          </p> -->
+
+        {% endif %}
 
       
 {#
@@ -260,67 +720,15 @@
 
   
 #}
+
+
+
       <h2 class="govuk-heading-l">
         Timetable
       </h2>
   
-      {{ govukTable({
-        captionClasses: "govuk-table__caption--m pins-summary-list--bottomless",
-        firstCellIsHeader: true,
-        rows: [
-          [
-            {
-              text: "Received date",
-              classes: "govuk-!-width-one-third"
-            },
-            {
-              html: 12 | daysAgo
-            },
-            {
-              html: "<a href='#'>Change<span class='govuk-visually-hidden'> received date</span></a>",
-              format: "numeric"
-            }
-          ],
-          [
-            {
-              text: "Valid date",
-              classes: "govuk-!-width-one-third"
-            },
-            {
-              text: "No valid date"
-            },
-            {
-              html: "<a href='#'>Add</a>",
-              format: "numeric"
-            }
-          ] if data['1'] == 2,
-          [
-            {
-              text: "Start date"
-            },
-            {
-              html: "No start date"
-            },
-            {
-              html: "<a href='#'>Add</a>",
-              format: "numeric"
-            }
-          ] if data['1'] == 2,
-          [
-            {
-              text: "Decision date",
-              classes: "govuk-!-width-one-third"
-            },
-            {
-              text: "Not decided"
-            },
-            {
-              html: "",
-              format: "numeric"
-            }
-          ]
-        ]
-      }) }}
+     {% include "/projects/create-shell-case/v1/case--timetable.html" %}
+    
 
 
 {#
@@ -329,79 +737,7 @@
 
 
 
-  ------------------------------------------------------------
-  SITE
-  ------------------------------------------------------------
-
-
-
-
-  
-#}
-
-      <h2 class="govuk-heading-l">
-        Event
-      </h2>
-
-      {{ govukSummaryList({
-        rows: [
-          {
-            key: {
-              text: "Event date"
-            },
-            value: {
-              text: "No event date"
-            },
-            actions: {
-              items: [
-                {
-                  href: "site-visit.html",
-                  text: "Add",
-                  visuallyHiddenText: "event date"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Event time"
-            },
-            value: {
-              text: "No event time"
-            },
-            actions: {
-              items: [
-                {
-                  href: "site-visit.html",
-                  text: "Add",
-                  visuallyHiddenText: "event time"
-                }
-              ]
-            }
-          },
-          {
-            key: {
-              text: "Event type"
-            },
-            value: {
-              text: "No event type"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Add",
-                  visuallyHiddenText: "event type"
-                }
-              ]
-            }
-          }
-        ]
-      }) }}
-{#
-
-
-
+ 
 
 
   ------------------------------------------------------------
@@ -413,6 +749,499 @@
 
   
 #}
+
+
+
+
+
+      <h2 class="govuk-heading-l">
+        Documentation
+      </h2>
+
+      {% if data['status'] == 'open' %}
+
+        {% if data['procedure'] == "Written representations (part 1)" %}
+
+          {{ govukSummaryList({
+            rows: [
+              {
+                key: {
+                  text: "Appeal",
+                  classes: "govuk-!-width-one-third"
+                },
+                value: {
+                  html: "No documents"
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Add",
+                      visuallyHiddenText: "appeal"
+                    }
+                  ]
+                }
+              },
+              {
+                key: {
+                  text: "LPA questionnaire"
+                },
+                value: {
+                  html: "No documents"
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Add",
+                      visuallyHiddenText: "LPA questionnaire"
+                    }
+                  ]
+                }
+              },
+              {
+                key: {
+                  text: "Environmental services team review"
+                },
+                value: {
+                  html: "No documents"
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Add",
+                      visuallyHiddenText: "environmental services team review"
+                    }
+                  ]
+                }
+              } if data['status'] == 'open'
+            ]
+          }) }}
+
+        {% elif data['procedure'] == "Written representations (part 2)" %}
+
+          {{ govukSummaryList({
+            rows: [
+              {
+                key: {
+                  text: "Appeal"
+                },
+                value: {
+                  html: "No documents"
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Add",
+                      visuallyHiddenText: "appeal"
+                    }
+                  ]
+                }
+              },
+              {
+                key: {
+                  text: "LPA questionnaire"
+                },
+                value: {
+                  html: "No documents"
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Add",
+                      visuallyHiddenText: "LPA questionnaire"
+                    }
+                  ]
+                }
+              },
+              {
+                key: {
+                  text: "LPA statement"
+                },
+                value: {
+                  html: "No documents"
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Add",
+                      visuallyHiddenText: "LPA statement"
+                    }
+                  ]
+                }
+              },
+              {
+                key: {
+                  text: "Interested party comments"
+                },
+                value: {
+                  html: "No documents"
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Add",
+                      visuallyHiddenText: "interested party comments"
+                    }
+                  ]
+                }
+              },
+              {
+                key: {
+                  text: "Appellant final comments"
+                },
+                value: {
+                  html: "No documents"
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Add",
+                      visuallyHiddenText: "appellant final comments"
+                    }
+                  ]
+                }
+              },
+              {
+                key: {
+                  text: "LPA final comments"
+                },
+                value: {
+                  html: "No documents"
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Add",
+                      visuallyHiddenText: "LPA final comments"
+                    }
+                  ]
+                }
+              }
+            ]
+          }) }}
+
+        {% elif data['procedure'] == "Hearing" %}
+
+          {{ govukSummaryList({
+            rows: [
+              {
+                key: {
+                  text: "Appeal"
+                },
+                value: {
+                  html: "No documents"
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Add",
+                      visuallyHiddenText: "appeal"
+                    }
+                  ]
+                }
+              },
+              {
+                key: {
+                  text: "LPA questionnaire"
+                },
+                value: {
+                  html: "No documents"
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Add",
+                      visuallyHiddenText: "LPA questionnaire"
+                    }
+                  ]
+                }
+              },
+              {
+                key: {
+                  text: "LPA statement"
+                },
+                value: {
+                  html: "No documents"
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Add",
+                      visuallyHiddenText: "LPA statement"
+                    }
+                  ]
+                }
+              },
+              {
+                key: {
+                  text: "Interested party comments"
+                },
+                value: {
+                  html: "No documents"
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Add",
+                      visuallyHiddenText: "interested party comments"
+                    }
+                  ]
+                }
+              },
+              {
+                key: {
+                  text: "Environmental services team review"
+                },
+                value: {
+                  html: "No documents"
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Add",
+                      visuallyHiddenText: "environmental services team review"
+                    }
+                  ]
+                }
+              }
+            ]
+          }) }}
+
+        {% elif data['procedure'] == "Inquiry" %}
+
+          {{ govukSummaryList({
+            rows: [
+              {
+                key: {
+                  text: "Appeal"
+                },
+                value: {
+                  html: "No documents"
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Add",
+                      visuallyHiddenText: "appeal"
+                    }
+                  ]
+                }
+              },
+              {
+                key: {
+                  text: "LPA questionnaire"
+                },
+                value: {
+                  html: "No documents"
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Add",
+                      visuallyHiddenText: "LPA questionnaire"
+                    }
+                  ]
+                }
+              },
+              {
+                key: {
+                  text: "LPA statement"
+                },
+                value: {
+                  html: "No documents"
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Add",
+                      visuallyHiddenText: "LPA statement"
+                    }
+                  ]
+                }
+              },
+              {
+                key: {
+                  text: "Rule 6 group statement"
+                },
+                value: {
+                  html: "No documents"
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Add",
+                      visuallyHiddenText: "Rule 6 group statement"
+                    }
+                  ]
+                }
+              },
+              {
+                key: {
+                  text: "Interested party comments"
+                },
+                value: {
+                  html: "No documents"
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Add",
+                      visuallyHiddenText: "interested party comments"
+                    }
+                  ]
+                }
+              },
+              {
+                key: {
+                  text: "Appellant proof of evidence and witness"
+                },
+                value: {
+                  html: "No documents"
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Add",
+                      visuallyHiddenText: "appellant proof of evidence and witness"
+                    }
+                  ]
+                }
+              },
+              {
+                key: {
+                  text: "LPA proof of evidence and witness"
+                },
+                value: {
+                  html: "No documents"
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Add",
+                      visuallyHiddenText: "LPA proof of evidence and witness"
+                    }
+                  ]
+                }
+              },
+              {
+                key: {
+                  text: "Rule 6 group proof of evidence and witness"
+                },
+                value: {
+                  html: "No documents"
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Add",
+                      visuallyHiddenText: "Rule 6 group proof of evidence and witness"
+                    }
+                  ]
+                }
+              },
+              {
+                key: {
+                  text: "Environmental services team review"
+                },
+                value: {
+                  html: "No documents"
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Add",
+                      visuallyHiddenText: "environmental services team review"
+                    }
+                  ]
+                }
+              }
+            ]
+          }) }}
+
+        {% else %}
+
+          <!-- <p class="govuk-body">
+            <a href="procedure" class="govuk-link">
+              Add a procedure</a> to show documentation.
+          </p> -->
+
+          {{ govukSummaryList({
+            rows: [
+              {
+                key: {
+                  text: "Appeal",
+                  classes: "govuk-!-width-one-third"
+                },
+                value: {
+                  html: "No documents"
+                },
+                actions: {
+                  items: [
+                    {
+                      href: "#",
+                      text: "Add",
+                      visuallyHiddenText: "appeal"
+                    }
+                  ]
+                }
+              }
+            ]
+          }) }}
+
+        {% endif %}
+
+      {% else %}
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Appeal",
+                classes: "govuk-!-width-one-third"
+              },
+              value: {
+                html: "No documents"
+              },
+              actions: {
+                items: [
+                  {
+                    href: "#",
+                    text: "Add",
+                    visuallyHiddenText: "appeal"
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
+      
+      {% endif %} {# if status = ready #}
+
+
+
+
 {#
       <h2 class="govuk-heading-l">
         Documentation
@@ -487,10 +1316,10 @@
               classes: "govuk-!-width-one-third"
             },
             {
-              text: 'No documents available'
+              html: "No documents"
             },
             {
-              html: "<a href='#'>Change</a>",
+              html: "<a href='#' class='govuk-link'>Add</a>",
               format: "numeric"
             }
           ],
@@ -500,10 +1329,10 @@
               classes: "govuk-!-width-one-third"
             },
             {
-              text: 'No documents available'
+              html: "No documents"
             },
             {
-              html: "<a href='#'>Change</a>",
+              html: "<a href='#' class='govuk-link'>Add</a>",
               format: "numeric"
             }
           ],
@@ -513,10 +1342,10 @@
               classes: "govuk-!-width-one-third"
             },
             {
-              text: 'No documents available'
+              html: "No documents"
             },
             {
-              html: "<a href='#'>Change</a>",
+              html: "<a href='#' class='govuk-link'>Add</a>",
               format: "numeric"
             }
           ],
@@ -526,23 +1355,23 @@
               classes: "govuk-!-width-one-third"
             },
             {
-              text: 'No documents available'
+              html: "No documents"
             },
             {
-              html: "<a href='#'>Change</a>",
+              html: "<a href='#' class='govuk-link'>Add</a>",
               format: "numeric"
             }
           ],
-                    [
+          [
             {
               text: "LPA withdrawal",
               classes: "govuk-!-width-one-third"
             },
             {
-              text: 'No documents available'
+              html: "No documents"
             },
             {
-              html: "<a href='#'>Change</a>",
+              html: "<a href='#' class='govuk-link'>Add</a>",
               format: "numeric"
             }
           ],
@@ -552,10 +1381,10 @@
               classes: "govuk-!-width-one-third"
             },
             {
-              text: 'No documents available'
+              html: "No documents"
             },
             {
-              html: "<a href='#'>Change</a>",
+              html: "<a href='#' class='govuk-link'>Add</a>",
               format: "numeric"
             }
           ]
@@ -674,7 +1503,7 @@
               items: [
                 {
                   href: "#",
-                  text: "Add",
+                  text: "Assign",
                   visuallyHiddenText: "case team"
                 }
               ]
@@ -691,7 +1520,7 @@
               items: [
                 {
                   href: "#",
-                  text: "Add",
+                  text: "Assign",
                   visuallyHiddenText: "case officer"
                 }
               ]
@@ -708,7 +1537,7 @@
               items: [
                 {
                   href: "#",
-                  text: "Add",
+                  text: "Assign",
                   visuallyHiddenText: "inspector"
                 }
               ]
@@ -795,6 +1624,15 @@
             },
             value: {
               text: ""
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "View",
+                  visuallyHiddenText: "cross-team correspondence"
+                }
+              ]
             }
           }
         ]

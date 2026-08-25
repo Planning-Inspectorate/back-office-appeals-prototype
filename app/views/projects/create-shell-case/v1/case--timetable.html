@@ -2,229 +2,428 @@
   Timetable
 </h2>
 
-{{ govukSummaryList({
-  rows: [
-    {
-      key: {
-        text: "Created date",
-        classes: "govuk-!-width-one-half"
+{% if data['mvp'] != 'no' %}
+
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          text: "Case started",
+          classes: "govuk-!-width-one-half"
+        },
+        value: {
+          text: "No date"
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Add",
+              visuallyHiddenText: "LPA questionnaire due date"
+            }
+          ]
+        }
       },
-      value: {
-        html: 0 | daysAgo
+      {
+        key: {
+          text: "LPA questionnaire due"
+        },
+        value: {
+          text: "No date"
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Add",
+              visuallyHiddenText: "LPA questionnaire due date"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "LPA statement due"
+        },
+        value: {
+          text: "No date"
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Add",
+              visuallyHiddenText: "LPA statement due date"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Interested party comments due"
+        },
+        value: {
+          text: "No date"
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Add",
+              visuallyHiddenText: "interested party comments due date"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Statement of common ground due"
+        },
+        value: {
+          text: "No date"
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Add",
+              visuallyHiddenText: "statement of common ground due date"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Final comments due"
+        },
+        value: {
+          text: "No date"
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Add",
+              visuallyHiddenText: "final comments due date"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Planning obligation due"
+        },
+        value: {
+          text: "No date"
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Add",
+              visuallyHiddenText: "planning obligation due date"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Proof of evidence and witness due"
+        },
+        value: {
+          text: "No date"
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Add",
+              visuallyHiddenText: "proof of evidence and witness due date"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Case management conference due"
+        },
+        value: {
+          text: "No date"
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Add",
+              visuallyHiddenText: "case management conference due date"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Hearing date"
+        },
+        value: {
+          text: "No date"
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Add",
+              visuallyHiddenText: "hearing date"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Inquiry date"
+        },
+        value: {
+          text: "No date"
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Add",
+              visuallyHiddenText: "inquiry date"
+            }
+          ]
+        }
       }
-    },
-    {
-      key: {
-        text: "Start date"
+    ]
+  }) }}
+
+{% else %}
+
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          text: "Created date",
+          classes: "govuk-!-width-one-half"
+        },
+        value: {
+          html: 0 | daysAgo
+        }
       },
-      value: {
-        html: 'Not started'
-      },
-      actions: {
-        items: [
-          {
-            href: "#",
-            text: "Start",
-            visuallyHiddenText: "start date"
-          }
-        ]
-      }
-    } if data['status'] != 'open',
-    {
-      key: {
-        text: "Start date"
-      },
-      value: {
-        html: 0 | daysAgo
-      }
-    } if data['status'] == 'open',
-    {
-      key: {
-        text: "LPA questionnaire due"
-      },
-      value: {
-        html: 5 | daysInFuture
-      },
-      actions: {
-        items: [
-          {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "LPA questionnaire due date"
-          }
-        ]
-      }
-    } if data['status'] == 'open',
-    {
-      key: {
-        text: "LPA statement due"
-      },
-      value: {
-        html: 10 | daysInFuture
-      },
-      actions: {
-        items: [
-          {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "LPA statement due date"
-          }
-        ]
-      }
-    } if data['status'] == 'open' and (data['procedure'] == "Written representations (part 2)" or data['procedure'] == "Hearing" or data['procedure'] == "Inquiry"),
-    {
-      key: {
-        text: "Interested party comments due"
-      },
-      value: {
-        html: 10 | daysInFuture
-      },
-      actions: {
-        items: [
-          {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "interested party comments due date"
-          }
-        ]
-      }
-    } if data['status'] == 'open' and (data['procedure'] == "Written representations (part 2)" or data['procedure'] == "Hearing" or data['procedure'] == "Inquiry"),
-    {
-      key: {
-        text: "Statement of common ground due"
-      },
-      value: {
-        html: "Hearing date not set"
-      },
-      actions: {
-        items: [
-          {
-            href: "#",
-            text: "Set up hearing",
-            visuallyHiddenText: "statement of common ground due date"
-          }
-        ]
-      }
-    } if data['status'] == 'open' and data['procedure'] == "Hearing",
-    {
-      key: {
-        text: "Statement of common ground due"
-      },
-      value: {
-        html: "Inquiry date not set"
-      },
-      actions: {
-        items: [
-          {
-            href: "#",
-            text: "Set up inquiry",
-            visuallyHiddenText: "statement of common ground due date"
-          }
-        ]
-      }
-    } if data['status'] == 'open' and (data['procedure'] == "Inquiry"),
-    {
-      key: {
-        text: "Final comments due"
-      },
-      value: {
-        html: 24 | daysInFuture
-      },
-      actions: {
-        items: [
-          {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "final comments due date"
-          }
-        ]
-      }
-    } if data['status'] == 'open' and data['procedure'] == "Written representations (part 2)",
-    {
-      key: {
-        text: "Planning obligation due"
-      },
-      value: {
-        html: "Inquiry date not set"
-      },
-      actions: {
-        items: [
-          {
-            href: "#",
-            text: "Set up inquiry",
-            visuallyHiddenText: "proof of evidence and witness due date"
-          }
-        ]
-      }
-    } if data['status'] == 'open' and data['procedure'] == "Inquiry",
-    {
-      key: {
-        text: "Proof of evidence and witness due"
-      },
-      value: {
-        html: "Inquiry date not set"
-      },
-      actions: {
-        items: [
-          {
-            href: "#",
-            text: "Set up inquiry",
-            visuallyHiddenText: "proof of evidence and witness due date"
-          }
-        ]
-      }
-    } if data['status'] == 'open' and (data['procedure'] == "Inquiry"),
-    {
-      key: {
-        text: "Case management conference due"
-      },
-      value: {
-        html: "Inquiry date not set"
-      },
-      actions: {
-        items: [
-          {
-            href: "#",
-            text: "Set up inquiry",
-            visuallyHiddenText: "case management conference due date"
-          }
-        ]
-      }
-    } if data['status'] == 'open' and (data['procedure'] == "Inquiry"), 
-    {
-      key: {
-        text: "Hearing date"
-      },
-      value: {
-        html: "Hearing date not set"
-      },
-      actions: {
-        items: [
-          {
-            href: "#",
-            text: "Set up hearing",
-            visuallyHiddenText: "hearing date"
-          }
-        ]
-      }
-    } if data['status'] == 'open' and (data['procedure'] == "Hearing"),
-    {
-      key: {
-        text: "Inquiry date"
-      },
-      value: {
-        html: "Inquiry date not set"
-      },
-      actions: {
-        items: [
-          {
-            href: "#",
-            text: "Set up inquiry",
-            visuallyHiddenText: "inquiry date"
-          }
-        ]
-      }
-    } if data['status'] == 'open' and (data['procedure'] == "Inquiry")
-    
-  ]
-}) }}
+      {
+        key: {
+          text: "Start date"
+        },
+        value: {
+          html: 'Not started'
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Start",
+              visuallyHiddenText: "start date"
+            }
+          ]
+        }
+      } if data['status'] != 'open',
+      {
+        key: {
+          text: "Start date"
+        },
+        value: {
+          html: 0 | daysAgo
+        }
+      } if data['status'] == 'open',
+      {
+        key: {
+          text: "LPA questionnaire due"
+        },
+        value: {
+          html: 5 | daysInFuture
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "LPA questionnaire due date"
+            }
+          ]
+        }
+      } if data['status'] == 'open',
+      {
+        key: {
+          text: "LPA statement due"
+        },
+        value: {
+          html: 10 | daysInFuture
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "LPA statement due date"
+            }
+          ]
+        }
+      } if data['status'] == 'open' and (data['procedure'] == "Written representations (part 2)" or data['procedure'] == "Hearing" or data['procedure'] == "Inquiry"),
+      {
+        key: {
+          text: "Interested party comments due"
+        },
+        value: {
+          html: 10 | daysInFuture
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "interested party comments due date"
+            }
+          ]
+        }
+      } if data['status'] == 'open' and (data['procedure'] == "Written representations (part 2)" or data['procedure'] == "Hearing" or data['procedure'] == "Inquiry"),
+      {
+        key: {
+          text: "Statement of common ground due"
+        },
+        value: {
+          html: "Hearing date not set"
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Set up hearing",
+              visuallyHiddenText: "statement of common ground due date"
+            }
+          ]
+        }
+      } if data['status'] == 'open' and data['procedure'] == "Hearing",
+      {
+        key: {
+          text: "Statement of common ground due"
+        },
+        value: {
+          html: "Inquiry date not set"
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Set up inquiry",
+              visuallyHiddenText: "statement of common ground due date"
+            }
+          ]
+        }
+      } if data['status'] == 'open' and (data['procedure'] == "Inquiry"),
+      {
+        key: {
+          text: "Final comments due"
+        },
+        value: {
+          html: 24 | daysInFuture
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Change",
+              visuallyHiddenText: "final comments due date"
+            }
+          ]
+        }
+      } if data['status'] == 'open' and data['procedure'] == "Written representations (part 2)",
+      {
+        key: {
+          text: "Planning obligation due"
+        },
+        value: {
+          html: "Inquiry date not set"
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Set up inquiry",
+              visuallyHiddenText: "proof of evidence and witness due date"
+            }
+          ]
+        }
+      } if data['status'] == 'open' and data['procedure'] == "Inquiry",
+      {
+        key: {
+          text: "Proof of evidence and witness due"
+        },
+        value: {
+          html: "Inquiry date not set"
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Set up inquiry",
+              visuallyHiddenText: "proof of evidence and witness due date"
+            }
+          ]
+        }
+      } if data['status'] == 'open' and (data['procedure'] == "Inquiry"),
+      {
+        key: {
+          text: "Case management conference due"
+        },
+        value: {
+          html: "Inquiry date not set"
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Set up inquiry",
+              visuallyHiddenText: "case management conference due date"
+            }
+          ]
+        }
+      } if data['status'] == 'open' and (data['procedure'] == "Inquiry"), 
+      {
+        key: {
+          text: "Hearing date"
+        },
+        value: {
+          html: "Hearing date not set"
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Set up hearing",
+              visuallyHiddenText: "hearing date"
+            }
+          ]
+        }
+      } if data['status'] == 'open' and (data['procedure'] == "Hearing"),
+      {
+        key: {
+          text: "Inquiry date"
+        },
+        value: {
+          html: "Inquiry date not set"
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Set up inquiry",
+              visuallyHiddenText: "inquiry date"
+            }
+          ]
+        }
+      } if data['status'] == 'open' and (data['procedure'] == "Inquiry")
+      
+    ]
+  }) }}
+
+{% endif %}

@@ -8,11 +8,19 @@
     {
       href: '?status=open',
       text: 'Case is open'
-    } if data['status'] == 'ready',
+    } if data['mvp'] == 'no' and (data['status'] == 'ready' or data['status'] is not defined),
     {
       href: '?status=ready',
       text: 'Go back to case ready to start'
-    } if data['status'] == 'open'
+    } if data['mvp'] == 'no' and data['status'] == 'open',
+    {
+      href: '?mvp=no',
+      text: 'Second phase of development view'
+    } if data['mvp'] != 'no',
+    {
+      href: '?mvp=yes',
+      text: 'Minimum viable product (MVP) view'
+    } if data['mvp'] == 'no'
   ]
 %}
 
@@ -26,7 +34,9 @@
     <div class="govuk-grid-column-two-thirds">
 
       <!-- notifications -->
-      {% include "/projects/create-shell-case/v1/case--notifications.html" %}      
+      {% if data['mvp'] and data['mvp'] != 'yes' %}
+        {% include "/projects/create-shell-case/v1/case--notifications.html" %}      
+      {% endif %}
   
       <!-- heading and status -->
       <section>
@@ -35,17 +45,20 @@
           {{ title }}
         </h1>
 
-        {% if data['status'] == 'open' %}
-          {{ govukTag({
-            text: "Case open",
-            classes: "govuk-tag--yellow"
-          }) }}
-        {% else %}   
-          {{ govukTag({
-            text: "Ready to start",
-            classes: "govuk-tag--green"
-          }) }}
+        {% if data['mvp'] and data['mvp'] != 'yes' %}
+          {% if data['status'] == 'open' %}
+            {{ govukTag({
+              text: "Case open",
+              classes: "govuk-tag--yellow"
+            }) }}
+          {% else %}   
+            {{ govukTag({
+              text: "Ready to start",
+              classes: "govuk-tag--green"
+            }) }}
+          {% endif %}
         {% endif %}
+
       </section>
     </div>
 
@@ -103,7 +116,9 @@
 
         {% include "/projects/create-shell-case/v1/case--site.html" %}    
 
-        {% include "/projects/create-shell-case/v1/case--documentation.html" %}
+        {% if data['mvp'] and data['mvp'] != 'yes' %}
+          {% include "/projects/create-shell-case/v1/case--documentation.html" %}
+        {% endif %}
 
         {% include "/projects/create-shell-case/v1/case--costs.html" %}
 

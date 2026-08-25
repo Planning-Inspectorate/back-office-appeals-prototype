@@ -7,7 +7,7 @@
     {
       key: {
         text: "Created date",
-        classes: "govuk-!-width-one-third"
+        classes: "govuk-!-width-one-half"
       },
       value: {
         html: 0 | daysAgo
@@ -15,8 +15,7 @@
     },
     {
       key: {
-        text: "Start date",
-        classes: "govuk-!-width-one-third"
+        text: "Start date"
       },
       value: {
         html: 'Not started'
@@ -140,7 +139,24 @@
           }
         ]
       }
-    } if data['status'] == 'open' and (data['procedure'] == "Written representations (part 2)" or data['procedure'] == "Inquiry"),
+    } if data['status'] == 'open' and data['procedure'] == "Written representations (part 2)",
+    {
+      key: {
+        text: "Planning obligation due"
+      },
+      value: {
+        html: "Inquiry date not set"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Set up inquiry",
+            visuallyHiddenText: "proof of evidence and witness due date"
+          }
+        ]
+      }
+    } if data['status'] == 'open' and data['procedure'] == "Inquiry",
     {
       key: {
         text: "Proof of evidence and witness due"

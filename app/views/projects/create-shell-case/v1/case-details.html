@@ -33,28 +33,25 @@
         <span class="govuk-caption-xl">Appeal 2114328</span>
         <h1 class="govuk-heading-xl govuk-!-margin-bottom-2">
           {{ title }}
-        </h1>   
+        </h1>
 
-        {% if data['status'] == 'ready' %}
-          {{ govukTag({
-            text: "Ready to start",
-            classes: "govuk-tag--green"
-          }) }}
-
-        {% else %}
+        {% if data['status'] == 'open' %}
           {{ govukTag({
             text: "Case open",
             classes: "govuk-tag--yellow"
           }) }}
+        {% else %}   
+          {{ govukTag({
+            text: "Ready to start",
+            classes: "govuk-tag--green"
+          }) }}
         {% endif %}
       </section>
-
     </div>
 
+    <!-- case metadata -->
     <div class="govuk-grid-column-full">
-      
       {% include "/projects/create-shell-case/v1/case--metadata.html" %}
-    
     </div>
 
     <!-- download and case notes -->

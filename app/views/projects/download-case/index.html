@@ -1,0 +1,30 @@
+{% extends "layouts/PINS-Simple.html" %}
+
+{% set title = "Download case files" %}
+
+{% set back = true %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        {{ title }}
+      </h1>
+
+      <h2 class="govuk-heading-m">Version 1</h2>
+
+      <p class="govuk-body-l">
+        Preparing case files for download.
+      </p>
+
+      {{ govukButton({
+        text: "View prototype",
+        isStartButton: true,
+        href: '/projects/download-case/v1/index'
+      }) }}
+
+    </div>
+  </div>
+{% endblock %}

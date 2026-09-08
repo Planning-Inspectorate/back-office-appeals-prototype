@@ -12,7 +12,46 @@
       <h1 class="govuk-heading-l">
         {{ title }}
       </h1>
+         <p class="govuk-body">
+        Case file packages can be very large and were causing the system to crash. These designs to reflect the new requirment to package case file downloads into a zip before downloading. 
+      </p>
+      <p class="govuk-body">
+        <a href="https://app.mural.co/t/allpins6990/m/allpins6990/1787654232304/69e250bc4d33390d7be91e1e652b452f624c0a53" target="_blank" rel="noopener noreferrer">Mural documentation</a> of design decisions and feedback. 
+      </p>
+ <p class="govuk-body">
+        <a href="https://pins-ds.atlassian.net/browse/A2-8906" target="_blank" rel="noopener noreferrer">Jira ticket</a> for the task 
+      </p>
 
+<hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+       <h2 class="govuk-heading-m">Version 2
+        {{govukTag({
+          text: "In progress",
+          classes: "govuk-!-margin-left-2 govuk-tag--yellow"
+        })}}
+      </h2>
+      <p class=" 	govuk-heading-s">
+        Changes
+      </p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>Updated wording to reflect latest round of feedback</li>
+        <li>Added the ability for the file status to change based on time elpased to make the prototype reflect a real-world scenario</li>
+      </ul> 
+   
+
+
+      {{ govukButton({
+        text: "View prototype",
+        isStartButton: true,
+        href: '/projects/download-case/v2/task-list'
+      }) }}
+
+<details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      Previous versions
+    </span>
+  </summary>
       <h2 class="govuk-heading-m">Version 1</h2>
 
       <p class="govuk-body-l">
@@ -27,4 +66,7 @@
 
     </div>
   </div>
+</details>
+
+
 {% endblock %}

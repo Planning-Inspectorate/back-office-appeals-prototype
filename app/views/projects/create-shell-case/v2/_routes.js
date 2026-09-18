@@ -32,5 +32,19 @@ router.post('/check-answers', function (req, res) {
   res.redirect('case-details')
 })
 
+// part 1 check (not used)
+router.post('/case-status', function (req, res) {
+  res.redirect('check-answers-case-status')
+})
+
+// check answers case status
+router.post('/check-answers-case-status', function (req, res) {
+  req.flash('success', 'Case status updated')
+  
+  req.session.data.casestarted = 'Yep'
+
+  res.redirect('case-details')
+})
+
 // Add your routes above the module.exports line
 module.exports = router

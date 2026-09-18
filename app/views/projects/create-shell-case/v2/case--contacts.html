@@ -1,0 +1,59 @@
+<h2 class="govuk-heading-l">
+  Contacts
+</h2>
+
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Appellant"
+      },
+      value: {
+        html: "No appellant"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            html: "Add",
+            visuallyHiddenText: "appellant"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Agent"
+      },
+      value: {
+        text: "No agent"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            html: "Add",
+            visuallyHiddenText: "agent"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "LPA"
+      },
+      value: {
+        html: "No local planning authority"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            html: "Add",
+            visuallyHiddenText: "local planning authority"
+          }
+        ]
+      }
+    }
+  ]
+}) }}

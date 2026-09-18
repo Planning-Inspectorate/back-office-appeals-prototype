@@ -1,0 +1,105 @@
+{% extends "layouts/bo-2026.html" %}
+
+{% set title = "Choose the case status" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set activeNavigation = 'createcase' %}
+
+{% set back = false %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <!-- notifications -->
+    {# No notifications for this stage #}
+
+    <span class="govuk-caption-l">Case status</span>
+
+    <form method="post">
+      {{ govukRadios({
+        idPrefix: "case-status",
+        name: "case-status",
+        fieldset: {
+          legend: {
+            text: title,
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "Ready to start",
+            text: "Ready to start"
+          },
+          {
+            value: "Validation",
+            text: "Validation"
+          },
+          {
+            value: "Evidence",
+            text: "Evidence"
+          },
+          {
+            value: "LPA Questionnaire",
+            text: "LPA Questionnaire"
+          },
+          {
+            value: "Statements",
+            text: "Statements"
+          },
+          {
+            value: "Final comments",
+            text: "Final comments"
+          },
+          {
+            value: "Set up site visit",
+            text: "Set up site visit"
+          },
+          {
+            value: "Awaiting site visit",
+            text: "Awaiting site visit"
+          },
+          {
+            value: "Set up hearing",
+            text: "Set up hearing"
+          },
+          {
+            value: "Awaiting hearing",
+            text: "Awaiting hearing"
+          },
+          {
+            value: "Set up inquiry",
+            text: "Set up inquiry"
+          },
+          {
+            value: "Awaiting inquiry",
+            text: "Awaiting inquiry"
+          },
+          {
+            value: "Issue decision",
+            text: "Issue decision"
+          },
+          {
+            value: "Invalid",
+            text: "Invalid"
+          },
+          {
+            value: "Withdrawn",
+            text: "Withdrawn"
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue",
+        name: "continue",
+        type: "submit"
+      }) }}
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

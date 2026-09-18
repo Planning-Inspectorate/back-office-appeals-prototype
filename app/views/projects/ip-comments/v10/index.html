@@ -1,0 +1,19 @@
+{% extends "layouts/PINS-post-mvp.html" %}
+
+{% set title = "Personal list" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+
+{% set back = false %}
+
+{% set prototypeLinks = [
+  {
+    href: '?comments-shared=',
+    text: 'Reset view'
+  } if data['comments-shared'] == 'yes' else {
+    href: '?comments-shared=yes',
+    text: 'Comments shared'
+  }
+] %}
+
+{% block content %}

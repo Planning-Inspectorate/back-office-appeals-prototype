@@ -645,4 +645,65 @@
   ]
 }) }}
 
+<hr class="govuk-section-break govuk-section-break--visible">
+
+<h2 class="govuk-heading-m govuk-!-margin-top-6">
+  Interested party 10
+</h2>
+
+{{ govukSummaryList({
+  classes: "govuk-summary-list--no-border",
+  rows: [
+    {
+      key: {
+        text: "Interested party"
+      },
+      value: {
+        text: "Sarah Philips"
+      }
+    },
+    {
+      key: {
+        text: "Date received"
+      },
+      value: {
+        text: "12 March 2026, 23:59"
+      }
+    },
+    {
+      key: {
+        text: "Email"
+      },
+      value: {
+        text: "sarah.phillips@example.com"
+      }
+    },
+    {
+      key: {
+        text: "Address"
+      },
+      value: {
+        html: "72 Guild Street,London SE23 6FH"
+      }
+    },
+    {
+      key: {
+        text: "Comment"
+      },
+      value: {
+        html: 'Lorem Ipsum dolor sit amet, consectetur adipiscing elit. Sed eget velit eget metus efficitur commodo.'
+      }
+    },
+    {
+      key: {
+        text: "Supporting documents"
+      },
+      value: {
+        html: '<ol><li><a href="#" class="govuk-link">document1.pdf</a></li><li><a href="#" class="govuk-link">document2.pdf</a></li></ol>'
+      }
+    }
+
+  ]
+}) }}
+
 <hr class="govuk-section-break govuk-section-break--visible govuk-!-margin-bottom-6">

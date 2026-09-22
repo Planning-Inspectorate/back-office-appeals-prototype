@@ -1,0 +1,47 @@
+{% extends "layouts/bo-2026.html" %}
+
+{% set title = "Check details and change case status" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set activeNavigation = 'casestatus' %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Case status</span>
+      <h1 class="govuk-heading-l">{{ title }}</h1>
+
+  	  <form method="post">
+
+        {{ govukSummaryList({
+          rows: [
+            {
+              key: {
+                text: "Case status"
+              },
+              value: {
+                html: data['case-status'] or 'Ready to start'
+              },
+              actions: {
+                items: [
+                  {
+                    href: "change-case-status",
+                    text: "Change",
+                    visuallyHiddenText: "case status"
+                  }
+                ]
+              }
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Change case status"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

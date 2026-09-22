@@ -39,24 +39,25 @@
       {% endif %}
   
       <!-- heading and status -->
+      {% set caseTagText = data['case-status'] or 'Ready to start' %}
+
       <section>
         <span class="govuk-caption-xl">Appeal 2114328</span>
         <h1 class="govuk-heading-xl govuk-!-margin-bottom-2">
           {{ title }}
         </h1>
 
-       
-          {% if data['status'] %}  
             {{ govukTag({
-              text: "Ready to start",
+              text: caseTagText,
               classes: "govuk-tag--green"
             }) }}
-          {% endif %}
-        {% endif %}
 
+            <a class="govuk-body govuk-link govuk-!-margin-left-2" href="/projects/create-shell-case/v2/case-status">
+              Change
+            </a>
       </section>
-    </div>
 
+    </div>
     <!-- case metadata -->
     <div class="govuk-grid-column-full">
       {% include "/projects/create-shell-case/v1/case--metadata.html" %}
@@ -105,23 +106,23 @@
     <div class="govuk-grid-column-full">
       <section class="govuk-!-margin-top-6">
 
-        {% include "/projects/create-shell-case/v1/case--overview.html" %}
+        {% include "/projects/create-shell-case/v2/case--overview.html" %}
         
-        {% include "/projects/create-shell-case/v1/case--timetable.html" %}
+        {% include "/projects/create-shell-case/v2/case--timetable.html" %}
 
-        {% include "/projects/create-shell-case/v1/case--site.html" %}    
+        {% include "/projects/create-shell-case/v2/case--site.html" %}    
 
         {% if data['mvp'] and data['mvp'] != 'yes' %}
-          {% include "/projects/create-shell-case/v1/case--documentation.html" %}
+          {% include "/projects/create-shell-case/v2/case--documentation.html" %}
         {% endif %}
 
-        {% include "/projects/create-shell-case/v1/case--costs.html" %}
+        {% include "/projects/create-shell-case/v2/case--costs.html" %}
 
-        {% include "/projects/create-shell-case/v1/case--contacts.html" %}
+        {% include "/projects/create-shell-case/v2/case--contacts.html" %}
 
-        {% include "/projects/create-shell-case/v1/case--team.html" %}
+        {% include "/projects/create-shell-case/v2/case--team.html" %}
 
-        {% include "/projects/create-shell-case/v1/case--management.html" %}
+        {% include "/projects/create-shell-case/v2/case--management.html" %}
 
         <div id="case-details-cancel-section">
           <h3 class="govuk-heading-m">

@@ -9,10 +9,6 @@ router.get('*', function(req, res, next){
 
 // part 1 check (not used)
 router.post('/case-type', function (req, res) {
-  res.redirect('case-submission-date')
-})
-
-router.post('/case-submission-date', function (req, res) {
   res.redirect('check-answers')
 })
 
@@ -30,6 +26,20 @@ router.post('/procedure', function (req, res) {
 // check answers
 router.post('/check-answers', function (req, res) {
   req.flash('success', 'Case created')
+  
+  req.session.data.casestarted = 'Yep'
+
+  res.redirect('case-details')
+})
+
+// part 1 check (not used)
+router.post('/case-status', function (req, res) {
+  res.redirect('check-answers-case-status')
+})
+
+// check answers case status
+router.post('/check-answers-case-status', function (req, res) {
+  req.flash('success', 'Case status updated')
   
   req.session.data.casestarted = 'Yep'
 

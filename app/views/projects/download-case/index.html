@@ -24,6 +24,61 @@
 
 <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
+       <h2 class="govuk-heading-m">Version 3
+        {{govukTag({
+          text: "Ready for development",
+          classes: "govuk-!-margin-left-2 govuk-tag--blue"
+        })}}
+      </h2>
+      <p class=" 	govuk-heading-s">
+        Changes
+      </p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>Updated wording to reflect outputs form the gureilla testing where we discovered that we should be more explicit about the process that the files were going through</li>
+        <li>Note for development to automatically refresh the section of the page where the download status and link are displayed</li>
+        <li>Note for development to include aria labels for when the message "Packaging files ready for download. Refresh in a few minutes." updates and the files become available  </li>
+        <li>Possible improvement to mark the download package with a message equivalent to 'updates available' based on the presence of updates posted to the case history - this work would require </li>
+
+      </ul> 
+
+     
+
+        <details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+        Possible improvements
+    </span>
+  </summary>   
+  
+In future, we may explore notifying users when a downloaded ZIP package could be out of date and prompting them to request an updated version.
+</p>
+
+<p>
+This was not included in MVP due to uncertainty around reliably detecting changes that affect ZIP contents. Potential inputs such as broadcasts, updated dates and case history are not currently considered sufficiently comprehensive.
+</p>
+
+<p>
+Implementing this now could result in both false positives (prompting updates when none are needed) and false negatives (failing to identify changes that affect package contents, such as some document redactions).
+</p>
+
+<p>
+If needed, this feature remains a potential post-MVP enhancement and could be revisited once a more reliable detection approach has been defined and validated.
+</p>
+</details>
+     
+
+      {{ govukButton({
+        text: "View prototype",
+        isStartButton: true,
+        href: '/projects/download-case/v3/task-list'
+      }) }}
+<details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      Previous versions
+    </span>
+  </summary>        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
        <h2 class="govuk-heading-m">Version 2
         {{govukTag({
           text: "In progress",
@@ -46,12 +101,9 @@
         href: '/projects/download-case/v2/task-list'
       }) }}
 
-<details class="govuk-details">
-  <summary class="govuk-details__summary">
-    <span class="govuk-details__summary-text">
-      Previous versions
-    </span>
-  </summary>
+        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+
       <h2 class="govuk-heading-m">Version 1</h2>
 
       <p class="govuk-body-l">

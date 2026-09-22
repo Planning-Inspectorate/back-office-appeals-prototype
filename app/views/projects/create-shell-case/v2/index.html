@@ -1,0 +1,697 @@
+{% extends "layouts/bo-2026.html" %}
+
+{% set title = "Case details" %}
+{% set pageName = title + ' - Planning Inspectorate' %}
+
+{% set back = false %}
+  
+{% set activeNavigation = 'allcases' %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">
+      Search all cases
+    </h1>
+
+    {{ govukInput({
+      label: {
+        text: "Enter the appeal reference, planning application or enforcement reference, or postcode (including spaces)"
+      },
+      id: "search",
+      name: "search",
+      classes: "govuk-!-width-two-thirds"
+    }) }}
+
+    {{ govukButton({
+      text: "Search"
+    }) }}
+
+    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+  </div>
+  <div class="govuk-grid-column-full">
+
+    <details class="govuk-details govuk-!-margin-bottom-6">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          Filters
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        Filter options go here.
+      </div>
+    </details>
+
+    {{ govukTable({
+      head: [
+        {
+          text: "Appeal reference"
+        },
+        {
+          text: "Application or enforcement reference"
+        },
+        {
+          text: "Site address"
+        },
+        {
+          text: "Local planning authority (LPA)"
+        },
+        {
+          text: "Appeal type"
+        },
+        {
+          text: "Status"
+        }
+      ],      
+      rows: [
+
+        [
+          {
+            html: '<a href="#" class="govuk-link">2114328</a>'
+          },
+          {
+            text: 'No reference'
+          },
+          {
+            text: 'No address'
+          },
+          {
+            text: 'No LPA'
+          },
+          {
+            html: data['case-type'] or 'Tree preservation order'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--yellow">Awaiting site visit</strong>'
+          }
+        ],
+                [
+          {
+            html: '<a href="#" class="govuk-link">2114328</a>'
+          },
+          {
+            text: 'TR33254'
+          },
+          {
+            text: 'No address'
+          },
+          {
+            text: 'No LPA'
+          },
+          {
+            html: 'Tree preservation order'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Issue decision</strong>'
+          }
+        ],
+                [
+          {
+            html: '<a href="#" class="govuk-link">2114328</a>'
+          },
+          {
+            text: 'No reference'
+          },
+          {
+            text: 'City Road, Bristol, BS1 5AH'
+          },
+          {
+            text: 'Bristol City Council'
+          },
+          {
+            html: 'Tree preservation order'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Ready to start</strong>'
+          }
+        ],
+                [
+          {
+            html: '<a href="#" class="govuk-link">2114321</a>'
+          },
+          {
+            text: 'S375930'
+          },
+          {
+            text: '2 Church Lane, Stroud, GL5 1AB'
+          },
+          {
+            text: 'No LPA'
+          },
+          {
+            html: 'Environmental appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Statements</strong>'
+          }
+        ],
+        [
+          {
+            html: '<a href="#" class="govuk-link">6062210</a>'
+          },
+          {
+            text: '26/001Y/32'
+          },
+          {
+            text: '14 Victoria Road, Bristol, BS8 4ET'
+          },
+          {
+            text: 'Bristol City Council'
+          },
+          {
+            text: 'Planning appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">LPA questionnaire</strong>'
+          }
+        ],
+        [
+          {
+            html: '<a href="#" class="govuk-link">6062209</a>'
+          },
+          {
+            text: '26/015K/18'
+          },
+          {
+            text: '78 High Street, Bath, BA1 1PQ'
+          },
+          {
+            text: 'Bath and North East Somerset Council'
+          },
+          {
+            text: 'Planning appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Ready to start</strong>'
+          }
+        ],
+        [
+          {
+            html: '<a href="#" class="govuk-link">6062208</a>'
+          },
+          {
+            text: '26/078T/45'
+          },
+          {
+            text: '2 Church Lane, Stroud, GL5 1AB'
+          },
+          {
+            text: 'Stroud District Council'
+          },
+          {
+            text: 'Planning appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Statements</strong>'
+          }
+        ],
+        [
+          {
+            html: '<a href="#" class="govuk-link">6062207</a>'
+          },
+          {
+            text: '26/032B/76'
+          },
+          {
+            text: '55 Gloucester Road, Cheltenham, GL50 3AA'
+          },
+          {
+            text: 'Cheltenham Borough Council'
+          },
+          {
+            text: 'Planning appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Assign case officer</strong>'
+          }
+        ],
+        [
+          {
+            html: '<a href="#" class="govuk-link">6062206</a>'
+          },
+          {
+            text: '26/044R/29'
+          },
+          {
+            text: 'Land south of Station Road, Swindon, SN1 4DE'
+          },
+          {
+            text: 'Swindon Borough Council'
+          },
+          {
+            text: 'Planning appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--blue">Complete</strong>'
+          }
+        ],
+        [
+          {
+            html: '<a href="#" class="govuk-link">6062205</a>'
+          },
+          {
+            text: '26/019L/64'
+          },
+          {
+            text: '21 Manor Road, Exeter, EX1 2JD'
+          },
+          {
+            text: 'Exeter City Council'
+          },
+          {
+            text: 'Planning appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Validation</strong>'
+          }
+        ],
+        [
+          {
+            html: '<a href="#" class="govuk-link">6062204</a>'
+          },
+          {
+            text: '26/051A/83'
+          },
+          {
+            text: '4 Park Avenue, Taunton, TA1 4EF'
+          },
+          {
+            text: 'Somerset Council'
+          },
+          {
+            text: 'Planning appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Statements</strong>'
+          }
+        ],
+        [
+          {
+            html: '<a href="#" class="govuk-link">6062203</a>'
+          },
+          {
+            text: '26/012P/58'
+          },
+          {
+            text: '95 Kingsway, Cardiff, CF10 3BN'
+          },
+          {
+            text: 'Cardiff Council'
+          },
+          {
+            text: 'Planning appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--blue">Complete</strong>'
+          }
+        ],
+        [
+          {
+            html: '<a href="#" class="govuk-link">6062202</a>'
+          },
+          {
+            text: '26/088C/07'
+          },
+          {
+            text: '33 Riverside Drive, Newport, NP20 2XY'
+          },
+          {
+            text: 'Newport City Council'
+          },
+          {
+            text: 'Planning appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Assign case officer</strong>'
+          }
+        ],
+        [
+          {
+            html: '<a href="#" class="govuk-link">6062201</a>'
+          },
+          {
+            text: '26/027M/91'
+          },
+          {
+            text: '16 The Green, Hereford, HR1 2PQ'
+          },
+          {
+            text: 'Herefordshire Council'
+          },
+          {
+            text: 'Planning appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--grey">Invalid</strong>'
+          }
+        ],
+        [
+          {
+            html: '<a href="#" class="govuk-link">6062200</a>'
+          },
+          {
+            text: '26/009H/73'
+          },
+          {
+            text: '7 Marine Parade, Weston-super-Mare, BS23 1BE'
+          },
+          {
+            text: 'North Somerset Council'
+          },
+          {
+            text: 'Planning appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Validation</strong>'
+          }
+        ],
+        [
+          {
+            html: '<a href="#" class="govuk-link">6062199</a>'
+          },
+          {
+            text: '26/074N/11'
+          },
+          {
+            text: '42 Oakfield Road, Reading, RG1 7DT'
+          },
+          {
+            text: 'Reading Borough Council'
+          },
+          {
+            text: 'Planning appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Final comments</strong>'
+          }
+        ],
+        [
+          {
+            html: '<a href="#" class="govuk-link">6062198</a>'
+          },
+          {
+            text: '26/062Q/54'
+          },
+          {
+            text: '120 London Road, Gloucester, GL1 3HJ'
+          },
+          {
+            text: 'Gloucester City Council'
+          },
+          {
+            text: 'Enforcement notice appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Statements</strong>'
+          }
+        ],
+        [
+          {
+            html: '<a href="#" class="govuk-link">6062197</a>'
+          },
+          {
+            text: '26/003D/27'
+          },
+          {
+            text: '3 Market Square, Salisbury, SP1 1TT'
+          },
+          {
+            text: 'Wiltshire Council'
+          },
+          {
+            text: 'Householder appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">LPA questionnaire</strong>'
+          }
+        ],
+        [
+          {
+            html: '<a href="#" class="govuk-link">6062196</a>'
+          },
+          {
+            text: '26/090W/36'
+          },
+          {
+            text: 'Land at Brook Farm, Yeovil, BA20 2FG'
+          },
+          {
+            text: 'Somerset Council'
+          },
+          {
+            text: 'Planning appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Inquiry ready to set up</strong>'
+          }
+        ],
+        [
+          {
+            html: '<a href="#" class="govuk-link">6062195</a>'
+          },
+          {
+            text: '26/022J/15'
+          },
+          {
+            text: '12 Corn Street, Bristol, BS1 1HQ'
+          },
+          {
+            text: 'Bristol City Council'
+          },
+          {
+            text: 'Householder appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Ready to start</strong>'
+          }
+        ],
+        [
+          {
+            html: '<a href="#" class="govuk-link">6062194</a>'
+          },
+          {
+            text: '26/035S/40'
+          },
+          {
+            text: '89 Castle Street, Worcester, WR1 3AA'
+          },
+          {
+            text: 'Worcester City Council'
+          },
+          {
+            text: 'Planning appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Statements</strong>'
+          }
+        ],
+        [
+          {
+            html: '<a href="#" class="govuk-link">6062193</a>'
+          },
+          {
+            text: '26/011R/52'
+          },
+          {
+            text: 'Town Hall, Manchester, M1 1AA'
+          },
+          {
+            text: 'Manchester City Council'
+          },
+          {
+            text: 'Enforcement notice appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Validation</strong>'
+          }
+        ],
+        [
+          {
+            html: '<a href="#" class="govuk-link">6062192</a>'
+          },
+          {
+            text: '26/097F/08'
+          },
+          {
+            text: '17 Harbour Road, Plymouth, PL1 2XY'
+          },
+          {
+            text: 'Plymouth City Council'
+          },
+          {
+            text: 'Planning appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--blue">Complete</strong>'
+          }
+        ],
+        [
+          {
+            html: '<a href="#" class="govuk-link">6062191</a>'
+          },
+          {
+            text: '26/043T/67'
+          },
+          {
+            text: '6 Station Road, Chippenham, SN15 3QF'
+          },
+          {
+            text: 'Wiltshire Council'
+          },
+          {
+            text: 'Planning appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Assign case officer</strong>'
+          }
+        ],
+        [
+          {
+            html: '<a href="#" class="govuk-link">6062190</a>'
+          },
+          {
+            text: '26/056V/21'
+          },
+          {
+            text: '22 The Square, Winchester, SO23 9EX'
+          },
+          {
+            text: 'Winchester City Council'
+          },
+          {
+            text: 'Planning appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Final comments</strong>'
+          }
+        ],
+        [
+          {
+            html: '<a href="#" class="govuk-link">6062189</a>'
+          },
+          {
+            text: '26/066C/89'
+          },
+          {
+            text: '45 Queen Street, Oxford, OX1 1EP'
+          },
+          {
+            text: 'Oxford City Council'
+          },
+          {
+            text: 'Planning appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Statements</strong>'
+          }
+        ],
+        [
+          {
+            html: '<a href="#" class="govuk-link">6062188</a>'
+          },
+          {
+            text: '26/014N/09'
+          },
+          {
+            text: '31 Fore Street, Tiverton, EX16 6LQ'
+          },
+          {
+            text: 'Mid Devon District Council'
+          },
+          {
+            text: 'Householder appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">LPA questionnaire</strong>'
+          }
+        ],
+        [
+          {
+            html: '<a href="#" class="govuk-link">6062187</a>'
+          },
+          {
+            text: '26/081B/34'
+          },
+          {
+            text: '5 Bridge Street, Cambridge, CB2 1UF'
+          },
+          {
+            text: 'Cambridge City Council'
+          },
+          {
+            text: 'Planning appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Ready to start</strong>'
+          }
+        ],
+        [
+          {
+            html: '<a href="#" class="govuk-link">6062186</a>'
+          },
+          {
+            text: '26/029G/78'
+          },
+          {
+            text: 'Land west of A38, Exeter, EX2 7HY'
+          },
+          {
+            text: 'East Devon District Council'
+          },
+          {
+            text: 'Planning appeal'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Inquiry ready to set up</strong>'
+          }
+        ]
+      ]
+
+    }) }}
+
+
+    {{ govukPagination({
+      previous: {
+        href: "#"
+      },
+      next: {
+        href: "#"
+      },
+      items: [
+        {
+          number: 1,
+          href: "#"
+        },
+        {
+          ellipsis: true
+        },
+        {
+          number: 6,
+          href: "#"
+        },
+        {
+          number: 7,
+          current: true,
+          href: "#"
+        },
+        {
+          number: 8,
+          href: "#"
+        },
+        {
+          ellipsis: true
+        },
+        {
+          number: 42,
+          href: "#"
+        }
+      ]
+    }) }}
+
+  </div>
+</div>
+
+{% endblock %}

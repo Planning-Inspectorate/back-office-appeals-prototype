@@ -1,0 +1,709 @@
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+<hr class="govuk-section-break govuk-section-break--visible">
+
+<h2 class="govuk-heading-m  govuk-!-margin-top-6 govuk-!-margin-bottom-2">
+  Interested party 1
+</h2>
+
+{{ govukSummaryList({
+  classes: "govuk-summary-list--no-border",
+  rows: [
+    {
+      key: {
+        text: "Interested party"
+      },
+      value: {
+        text: "Sarah Philips"
+      }
+    },
+    {
+      key: {
+        text: "Date received"
+      },
+      value: {
+        text: "9 March 2026, 13:59"
+      }
+    },
+    {
+      key: {
+        text: "Email"
+      },
+      value: {
+        text: "sarah.phillips@example.com"
+      }
+    },
+    {
+      key: {
+        text: "Address"
+      },
+      value: {
+        html: "72 Guild Street,London SE23 6FH"
+      }
+    },
+    {
+      key: {
+        text: "Comment"
+      },
+      value: {
+        html: 'Lorem Ipsum dolor sit amet, consectetur adipiscing elit. Donec suscipit auctor dui, sed efficitur ipsum. Donec a semper odio. In in nunc ac nisl efficitur efficitur. Sed eget velit eget metus efficitur commodo. Sed eget velit eget metus efficitur commodo. Sed eget velit eget metus efficitur. <a href="#" class="govuk-link">Read more</a>'
+      }
+    },
+    {
+      key: {
+        text: "Supporting documents"
+      },
+      value: {
+        html: '<ol><li><a href="#" class="govuk-link">document1.pdf</a></li><li><a href="#" class="govuk-link">document2.pdf</a></li></ol>'
+      }
+    }
+
+  ]
+}) }}
+
+<hr class="govuk-section-break govuk-section-break--visible">
+
+<h2 class="govuk-heading-m govuk-!-margin-top-6">
+  Interested party 2
+    <p>
+      <strong class="govuk-tag govuk-tag--blue govuk-!-margin-top-2">
+       Site visit requested
+      </strong>
+    </p>
+</h2>
+
+<dl class="govuk-summary-list govuk-summary-list--no-border">
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Interested party
+    </dt>
+    <dd class="govuk-summary-list__value">
+      Sarah Philips
+    </dd>
+  </div>
+   <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Date received
+    </dt>
+    <dd class="govuk-summary-list__value">
+      10 March 2026, 23:59
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Email
+    </dt>
+    <dd class="govuk-summary-list__value">
+      No email
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Address
+    </dt>
+    <dd class="govuk-summary-list__value">
+      No address
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Comment
+    </dt>
+    <dd class="govuk-summary-list__value">
+      Please visit the site to see the issues. I don't approve of this appeal
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Supporting documents
+    </dt>
+    <dd class="govuk-summary-list__value">
+      No documents
+    </dd>
+  </div>
+</dl>
+
+
+<hr class="govuk-section-break govuk-section-break--visible">
+
+{% set documentsHtml %}
+  <ol class="govuk-list govuk-list--number">
+    <li>
+      <a href="#" class="govuk-link">document1.pdf</a>
+    </li>
+    <li>
+      <a href="#" class="govuk-link">document2.pdf</a>
+    </li>
+    <li>
+      <a href="#" class="govuk-link">document3.pdf</a>
+    </li>
+    <li>
+      <a href="#" class="govuk-link">document4.pdf</a>
+    </li>
+    <li>
+      <a href="#" class="govuk-link">document5.pdf</a>
+    </li>
+
+    <!-- Class added to <li> instead of <a> -->
+    <li class="app-doc--hidden" style="display: none;">
+      <a href="#" class="govuk-link">document6.pdf</a>
+    </li>
+    <li class="app-doc--hidden" style="display: none;">
+      <a href="#" class="govuk-link">document7.pdf</a>
+    </li>
+    <li class="app-doc--hidden" style="display: none;">
+      <a href="#" class="govuk-link">document8.pdf</a>
+    </li>
+    <li class="app-doc--hidden" style="display: none;">
+      <a href="#" class="govuk-link">document9.pdf</a>
+    </li>
+    <li class="app-doc--hidden" style="display: none;">
+      <a href="#" class="govuk-link">document10.pdf</a>
+    </li>
+    <li class="app-doc--hidden" style="display: none;">
+      <a href="#" class="govuk-link">document11.pdf</a>
+    </li>
+    <li class="app-doc--hidden" style="display: none;">
+      <a href="#" class="govuk-link">document12.pdf</a>
+    </li>
+    <li class="app-doc--hidden" style="display: none;">
+      <a href="#" class="govuk-link">document13.pdf</a>
+    </li>
+    <li class="app-doc--hidden" style="display: none;">
+      <a href="#" class="govuk-link">document14.pdf</a>
+    </li>
+    <li class="app-doc--hidden" style="display: none;">
+      <a href="#" class="govuk-link">document15.pdf</a>
+    </li>
+    <li class="app-doc--hidden" style="display: none;">
+      <a href="#" class="govuk-link">document16.pdf</a>
+    </li>
+    <li class="app-doc--hidden" style="display: none;">
+      <a href="#" class="govuk-link">document17.pdf</a>
+    </li>
+    <li class="app-doc--hidden" style="display: none;">
+      <a href="#" class="govuk-link">document18.pdf</a>
+    </li>
+  </ol>
+
+  <a class="govuk-link" href="#" id="read-more-btn">Read more</a>
+{% endset %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const readMoreBtn = document.getElementById('read-more-btn');
+
+    if (readMoreBtn) {
+      readMoreBtn.addEventListener('click', function (e) {
+        e.preventDefault(); // Prevents page from jumping to top
+
+        const hiddenDocs = document.querySelectorAll('.app-doc--hidden');
+        
+        // Check if the first hidden item is currently hidden
+        const isHidden = hiddenDocs[0].style.display === 'none' || hiddenDocs[0].style.display === '';
+
+        if (isHidden) {
+          // Show all extra documents
+          hiddenDocs.forEach(function (doc) {
+            doc.style.display = 'list-item';
+          });
+          // Update button text to 'Close'
+          readMoreBtn.textContent = 'Close';
+        } else {
+          // Collapse extra documents
+          hiddenDocs.forEach(function (doc) {
+            doc.style.display = 'none';
+          });
+          // Reset button text back to 'Read more'
+          readMoreBtn.textContent = 'Read more';
+        }
+      });
+    }
+  });
+</script>
+
+<h2 class="govuk-heading-m govuk-!-margin-top-6">
+  Interested party 3
+</h2>
+
+{{ govukSummaryList({
+  classes: "govuk-summary-list--no-border",
+  rows: [
+    {
+      key: {
+        text: "Interested party"
+      },
+      value: {
+        text: "Sarah Philips"
+      }
+    },
+    {
+      key: {
+        text: "Date received"
+      },
+      value: {
+        text: "11 March 2026, 23:59"
+      }
+    },
+    {
+      key: {
+        text: "Email"
+      },
+      value: {
+        text: "No email"
+      }
+    },
+    {
+      key: {
+        text: "Address"
+      },
+      value: {
+        html: "No address"
+      }
+    },
+    {
+      key: {
+        text: "Comment"
+      },
+      value: {
+        html: "Added as a comment"
+      }
+    },
+    {
+      key: {
+        text: "Supporting documents"
+      },
+        value: {
+          html: documentsHtml
+        }
+        }]
+  }) }}
+
+<hr class="govuk-section-break govuk-section-break--visible">
+
+<h2 class="govuk-heading-m govuk-!-margin-top-6">
+  Interested party 4
+</h2>
+
+{{ govukSummaryList({
+  classes: "govuk-summary-list--no-border",
+  rows: [
+    {
+      key: {
+        text: "Interested party"
+      },
+      value: {
+        text: "Sarah Philips"
+      }
+    },
+    {
+      key: {
+        text: "Date received"
+      },
+      value: {
+        text: "12 March 2026, 23:59"
+      }
+    },
+    {
+      key: {
+        text: "Email"
+      },
+      value: {
+        text: "sarah.phillips@example.com"
+      }
+    },
+    {
+      key: {
+        text: "Address"
+      },
+      value: {
+        html: "72 Guild Street,London SE23 6FH"
+      }
+    },
+    {
+      key: {
+        text: "Comment"
+      },
+      value: {
+        html: 'Lorem Ipsum dolor sit amet, consectetur adipiscing elit. Sed eget velit eget metus efficitur commodo.'
+      }
+    },
+    {
+      key: {
+        text: "Supporting documents"
+      },
+      value: {
+        html: '<ol><li><a href="#" class="govuk-link">document1.pdf</a></li><li><a href="#" class="govuk-link">document2.pdf</a></li></ol>'
+      }
+    }
+
+  ]
+}) }}
+
+<hr class="govuk-section-break govuk-section-break--visible">
+
+<h2 class="govuk-heading-m govuk-!-margin-top-6">
+  Interested party 5
+</h2>
+
+{{ govukSummaryList({
+  classes: "govuk-summary-list--no-border",
+  rows: [
+    {
+      key: {
+        text: "Interested party"
+      },
+      value: {
+        text: "Sarah Philips"
+      }
+    },
+    {
+      key: {
+        text: "Date received"
+      },
+      value: {
+        text: "12 March 2026, 23:59"
+      }
+    },
+    {
+      key: {
+        text: "Email"
+      },
+      value: {
+        text: "sarah.phillips@example.com"
+      }
+    },
+    {
+      key: {
+        text: "Address"
+      },
+      value: {
+        html: "72 Guild Street,London SE23 6FH"
+      }
+    },
+    {
+      key: {
+        text: "Comment"
+      },
+      value: {
+        html: 'Lorem Ipsum dolor sit amet, consectetur adipiscing elit. Sed eget velit eget metus efficitur commodo.'
+      }
+    },
+    {
+      key: {
+        text: "Supporting documents"
+      },
+      value: {
+        html: '<ol><li><a href="#" class="govuk-link">document1.pdf</a></li><li><a href="#" class="govuk-link">document2.pdf</a></li></ol>'
+      }
+    }
+
+  ]
+}) }}
+
+<hr class="govuk-section-break govuk-section-break--visible">
+
+<h2 class="govuk-heading-m govuk-!-margin-top-6">
+  Interested party 6
+</h2>
+
+{{ govukSummaryList({
+  classes: "govuk-summary-list--no-border",
+  rows: [
+    {
+      key: {
+        text: "Interested party"
+      },
+      value: {
+        text: "Sarah Philips"
+      }
+    },
+    {
+      key: {
+        text: "Date received"
+      },
+      value: {
+        text: "12 March 2026, 23:59"
+      }
+    },
+    {
+      key: {
+        text: "Email"
+      },
+      value: {
+        text: "sarah.phillips@example.com"
+      }
+    },
+    {
+      key: {
+        text: "Address"
+      },
+      value: {
+        html: "72 Guild Street,London SE23 6FH"
+      }
+    },
+    {
+      key: {
+        text: "Comment"
+      },
+      value: {
+        html: 'Lorem Ipsum dolor sit amet, consectetur adipiscing elit. Sed eget velit eget metus efficitur commodo.'
+      }
+    },
+    {
+      key: {
+        text: "Supporting documents"
+      },
+      value: {
+        html: '<ol><li><a href="#" class="govuk-link">document1.pdf</a></li><li><a href="#" class="govuk-link">document2.pdf</a></li></ol>'
+      }
+    }
+
+  ]
+}) }}
+
+<hr class="govuk-section-break govuk-section-break--visible">
+
+<h2 class="govuk-heading-m govuk-!-margin-top-6">
+  Interested party 7
+</h2>
+
+{{ govukSummaryList({
+  classes: "govuk-summary-list--no-border",
+  rows: [
+    {
+      key: {
+        text: "Interested party"
+      },
+      value: {
+        text: "Sarah Philips"
+      }
+    },
+    {
+      key: {
+        text: "Date received"
+      },
+      value: {
+        text: "12 March 2026, 23:59"
+      }
+    },
+    {
+      key: {
+        text: "Email"
+      },
+      value: {
+        text: "sarah.phillips@example.com"
+      }
+    },
+    {
+      key: {
+        text: "Address"
+      },
+      value: {
+        html: "72 Guild Street,London SE23 6FH"
+      }
+    },
+    {
+      key: {
+        text: "Comment"
+      },
+      value: {
+        html: 'Lorem Ipsum dolor sit amet, consectetur adipiscing elit. Sed eget velit eget metus efficitur commodo.'
+      }
+    },
+    {
+      key: {
+        text: "Supporting documents"
+      },
+      value: {
+        html: '<a href="#" class="govuk-link">document1.pdf</a>'
+      }
+    }
+
+  ]
+}) }}
+
+<hr class="govuk-section-break govuk-section-break--visible">
+
+<h2 class="govuk-heading-m govuk-!-margin-top-6">
+  Interested party 8
+</h2>
+
+{{ govukSummaryList({
+  classes: "govuk-summary-list--no-border",
+  rows: [
+    {
+      key: {
+        text: "Interested party"
+      },
+      value: {
+        text: "Sarah Philips"
+      }
+    },
+    {
+      key: {
+        text: "Date received"
+      },
+      value: {
+        text: "12 March 2026, 23:59"
+      }
+    },
+    {
+      key: {
+        text: "Email"
+      },
+      value: {
+        text: "sarah.phillips@example.com"
+      }
+    },
+    {
+      key: {
+        text: "Address"
+      },
+      value: {
+        html: "72 Guild Street,London SE23 6FH"
+      }
+    },
+    {
+      key: {
+        text: "Comment"
+      },
+      value: {
+        html: 'Lorem Ipsum dolor sit amet, consectetur adipiscing elit. Sed eget velit eget metus efficitur commodo.'
+      }
+    },
+    {
+      key: {
+        text: "Supporting documents"
+      },
+      value: {
+        html: '<ol><li><a href="#" class="govuk-link">document1.pdf</a></li><li><a href="#" class="govuk-link">document2.pdf</a></li></ol>'
+      }
+    }
+
+  ]
+}) }}
+
+<hr class="govuk-section-break govuk-section-break--visible">
+
+<h2 class="govuk-heading-m govuk-!-margin-top-6">
+  Interested party 9
+</h2>
+
+{{ govukSummaryList({
+  classes: "govuk-summary-list--no-border",
+  rows: [
+    {
+      key: {
+        text: "Interested party"
+      },
+      value: {
+        text: "Sarah Philips"
+      }
+    },
+    {
+      key: {
+        text: "Date received"
+      },
+      value: {
+        text: "12 March 2026, 23:59"
+      }
+    },
+    {
+      key: {
+        text: "Email"
+      },
+      value: {
+        text: "sarah.phillips@example.com"
+      }
+    },
+    {
+      key: {
+        text: "Address"
+      },
+      value: {
+        html: "72 Guild Street,London SE23 6FH"
+      }
+    },
+    {
+      key: {
+        text: "Comment"
+      },
+      value: {
+        html: 'Lorem Ipsum dolor sit amet, consectetur adipiscing elit. Sed eget velit eget metus efficitur commodo.'
+      }
+    },
+    {
+      key: {
+        text: "Supporting documents"
+      },
+      value: {
+        html: '<ol><li><a href="#" class="govuk-link">document1.pdf</a></li><li><a href="#" class="govuk-link">document2.pdf</a></li></ol>'
+      }
+    }
+
+  ]
+}) }}
+
+<hr class="govuk-section-break govuk-section-break--visible">
+
+<h2 class="govuk-heading-m govuk-!-margin-top-6">
+  Interested party 10
+</h2>
+
+{{ govukSummaryList({
+  classes: "govuk-summary-list--no-border",
+  rows: [
+    {
+      key: {
+        text: "Interested party"
+      },
+      value: {
+        text: "Sarah Philips"
+      }
+    },
+    {
+      key: {
+        text: "Date received"
+      },
+      value: {
+        text: "12 March 2026, 23:59"
+      }
+    },
+    {
+      key: {
+        text: "Email"
+      },
+      value: {
+        text: "sarah.phillips@example.com"
+      }
+    },
+    {
+      key: {
+        text: "Address"
+      },
+      value: {
+        html: "72 Guild Street,London SE23 6FH"
+      }
+    },
+    {
+      key: {
+        text: "Comment"
+      },
+      value: {
+        html: 'Lorem Ipsum dolor sit amet, consectetur adipiscing elit. Sed eget velit eget metus efficitur commodo.'
+      }
+    },
+    {
+      key: {
+        text: "Supporting documents"
+      },
+      value: {
+        html: '<ol><li><a href="#" class="govuk-link">document1.pdf</a></li><li><a href="#" class="govuk-link">document2.pdf</a></li></ol>'
+      }
+    }
+
+  ]
+}) }}
+
+<hr class="govuk-section-break govuk-section-break--visible govuk-!-margin-bottom-6">

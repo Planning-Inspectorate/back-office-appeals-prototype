@@ -1,0 +1,59 @@
+<h2 class="govuk-heading-l">
+  Team
+</h2>
+
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Case team"
+      },
+      value: {
+        html: "No case team"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Assign",
+            visuallyHiddenText: "case team"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Case officer"
+      },
+      value: {
+        html: "Not assigned"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Assign",
+            visuallyHiddenText: "case officer"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Inspector"
+      },
+      value: {
+        html: "Not assigned"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Assign",
+            visuallyHiddenText: "inspector"
+          }
+        ]
+      }
+    }
+  ]
+}) }}

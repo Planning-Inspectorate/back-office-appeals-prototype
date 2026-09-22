@@ -1,0 +1,46 @@
+{% extends "layouts/bo-2026.html" %}
+
+{% set title = "What date was the appeal submitted?" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set activeNavigation = 'createcase' %}
+
+{% set back = false %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <!-- notifications -->
+    {# No notifications for this stage #}
+
+    <span class="govuk-caption-l">Create a case</span>
+
+    <form method="post">
+      {{ govukDateInput({
+        idPrefix: "case-submission-date",
+        name: "case-submission-date",
+        fieldset: {
+          legend: {
+            text: title,
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        hint: {
+          text: "For example, 19 9 2026"
+        }
+      }) }}
+
+      {{ govukButton({
+        text: "Continue",
+        name: "continue",
+        type: "submit"
+      }) }}
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

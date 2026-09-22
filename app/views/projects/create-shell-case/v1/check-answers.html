@@ -32,6 +32,23 @@
                   }
                 ]
               }
+            },
+            {
+              key: {
+                text: "Date submitted"
+              },
+              value: {
+                html: data['case-submission-date'] or 3 | daysAgo
+              },
+              actions: {
+                items: [
+                  {
+                    href: "change-procedure",
+                    text: "Change",
+                    visuallyHiddenText: "case submission date"
+                  }
+                ]
+              }
             }
           ]
         }) }}

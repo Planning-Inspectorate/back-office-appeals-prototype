@@ -7,8 +7,11 @@ router.get('*', function(req, res, next){
   next()
 })
 
-// part 1 check (not used)
 router.post('/case-type', function (req, res) {
+  res.redirect('case-submission-date')
+})
+
+router.post('/case-submission-date', function (req, res) {
   res.redirect('check-answers')
 })
 

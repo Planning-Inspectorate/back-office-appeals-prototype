@@ -32,12 +32,27 @@
       actions: {
         items: [
           {
-            href: "#",
+            href: "/projects/create-shell-case/v2/case-type",
             text: "Change"
           }
         ]
       }
     },
+    {
+      key: {
+        text: "Appeal sub type"
+      },
+      value: {
+        html: data['case-sub-type']
+      },
+      actions: {
+        items: [
+          {
+            href: "#"
+          }
+        ]
+      }
+    } if data['case-type'] == 'Environmental appeal',
     {
       key: {
         text: "Appeal procedure"

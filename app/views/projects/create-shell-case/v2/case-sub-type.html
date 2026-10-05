@@ -1,0 +1,83 @@
+{% extends "layouts/bo-2026-updated.html" %}
+
+{% set title = "Choose the case sub type" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set activeNavigation = 'createcase' %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <!-- notifications -->
+    {# No notifications for this stage #}
+
+    <span class="govuk-caption-l">Case type</span>
+
+    <form method="post">
+      {{ govukRadios({
+        idPrefix: "case-sub-type",
+        name: "case-sub-type",
+        fieldset: {
+          legend: {
+            text: title,
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "Anti-Pollution Works Notice",
+            text: "Anti-Pollution Works Notice"
+          },
+          {
+            value: "Contaminated Land",
+            text: "Contaminated Land"
+          },
+          {
+            value: "Marine Licensing",
+            text: "Marine Licensing"
+          },
+          {
+            value: "Waste Carriers",
+            text: "Waste Carriers"
+          },
+          {
+            value: "Water Abstraction",
+            text: "Water Abstraction"
+          },
+          {
+            value: "Environmental Liability",
+            text: "Environmental Liability"
+          },
+          {
+            value: "Environmental Permitting",
+            text: "Environmental Permitting"
+          },
+          {
+            value: "Hazardous Substances",
+            text: "Hazardous Substances"
+          },
+          {
+            value: "Silage and slurry",
+            text: "Silage and slurry"
+          },
+          {
+            value: "S78 minerals",
+            text: "S78 minerals"
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue",
+        name: "continue",
+        type: "submit"
+      }) }}
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

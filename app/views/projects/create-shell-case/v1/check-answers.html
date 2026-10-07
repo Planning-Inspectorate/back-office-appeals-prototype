@@ -1,4 +1,4 @@
-{% extends "layouts/bo-2026.html" %}
+{% extends "layouts/bo-2026-updated.html" %}
 
 {% set title = "Check details and create a new case" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
@@ -29,6 +29,23 @@
                     href: "change-procedure",
                     text: "Change",
                     visuallyHiddenText: "case type"
+                  }
+                ]
+              }
+            },
+            {
+              key: {
+                text: "Case submission date"
+              },
+              value: {
+                html: data['case-submission-date'] or 25 | daysAgo
+              },
+              actions: {
+                items: [
+                  {
+                    href: "case-submission-date",
+                    text: "Change",
+                    visuallyHiddenText: "case submission date"
                   }
                 ]
               }

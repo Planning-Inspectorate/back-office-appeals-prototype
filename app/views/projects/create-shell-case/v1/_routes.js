@@ -8,6 +8,10 @@ router.get('*', function(req, res, next){
 })
 
 router.post('/case-type', function (req, res) {
+  res.redirect('case-submission-date')
+})
+
+router.post('/case-submission-date', function (req, res) {
   res.redirect('check-answers')
 })
 

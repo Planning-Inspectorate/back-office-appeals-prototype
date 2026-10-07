@@ -5,8 +5,6 @@
 
 {% set activeNavigation = 'createcase' %}
 
-{% set back = false %}
-
 {% block content %}
 
 <div class="govuk-grid-row">
@@ -20,7 +18,7 @@
     <form method="post">
       {{ govukDateInput({
         idPrefix: "case-submission-date",
-        name: "case-submission-date",
+        namePrefix: "case-submission-date",
         fieldset: {
           legend: {
             text: title,
@@ -29,8 +27,25 @@
           }
         },
         hint: {
-          html: "For example, 22 "+ 1 | monthsAgoNumeric + " " + 0 | yearsAgo
+          html: "For example, 22" + (1 | monthsAgoNumeric) + " " + (0 | yearsAgo)
+        },
+        items: [
+        {
+          name: "day",
+          classes: "govuk-input--width-2",
+          value: data['case-submission-date-day']
+       },
+       {
+          name: "month",
+          classes: "govuk-input--width-2",
+          value: data['case-submission-date-month']
+       },
+       {
+          name: "year",
+          classes: "govuk-input--width-4",
+          value: data['case-submission-date-year']
         }
+      ]
       }) }}
 
       {{ govukButton({

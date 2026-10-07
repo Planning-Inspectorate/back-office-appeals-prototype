@@ -26,7 +26,7 @@
               actions: {
                 items: [
                   {
-                    href: "change-procedure",
+                    href: "case-type",
                     text: "Change",
                     visuallyHiddenText: "case type"
                   }
@@ -35,10 +35,29 @@
             },
             {
               key: {
+                text: "Case sub type"
+              },
+              value: {
+                html: data['case-sub-type']
+              },
+              actions: {
+                items: [
+                  {
+                    href: "case-sub-type",
+                    text: "Change",
+                    visuallyHiddenText: "case sub type"
+                  }
+                ]
+              }
+            } if data['case-type'] == 'Environmental appeal',
+            {
+              key: {
                 text: "Case submission date"
               },
               value: {
-                html: data['case-submission-date'] or 25 | daysAgo
+                html: (data['case-submission-date-day'] + " " + (data['case-submission-date-month'] | monthName) + " " + data['case-submission-date-year']) 
+        if (data['case-submission-date-day'] and data['case-submission-date-month'] and data['case-submission-date-year']) 
+        else 'Not provided'
               },
               actions: {
                 items: [

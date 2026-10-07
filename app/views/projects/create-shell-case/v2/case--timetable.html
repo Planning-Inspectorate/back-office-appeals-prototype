@@ -6,6 +6,24 @@
 
   {{ govukSummaryList({
     rows: [
+    {
+        key: {
+          text: "Case submission date",
+          classes: "govuk-!-width-one-half"
+        },
+        value: {
+          text: data['case-submission-date-day'] + " " + (data['case-submission-date-month'] | monthName) + " " + data['case-submission-date-year']
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Add",
+              visuallyHiddenText: "LPA questionnaire due date"
+            }
+          ]
+        }
+      },  
       {
         key: {
           text: "Case started",

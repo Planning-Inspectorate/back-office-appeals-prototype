@@ -7,7 +7,19 @@ router.get('*', function(req, res, next){
   next()
 })
 
+// Relative route for /case-type form submission
 router.post('/case-type', function (req, res) {
+  const caseType = req.session.data['case-type']
+
+  if (caseType === 'Environmental appeal') {
+    res.redirect('case-sub-type')
+  } else {
+    res.redirect('case-submission-date')
+  }
+})
+
+// Relative route for /case-sub-type form submission
+router.post('/case-sub-type', function (req, res) {
   res.redirect('case-submission-date')
 })
 

@@ -1,0 +1,205 @@
+{% extends "layouts/bo-2026-updated.html" %}
+
+{% set title = "Case details" %}
+{% set pageName = title + ' - Planning Inspectorate' %}
+
+{% set back = false %}
+  
+{% set activeNavigation = 'assignedtome' %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">
+      Your appeals
+    </h1>
+
+    <p class="govuk-body"> 
+      <a class="govuk-link" href="">View another case officer’s appeals</a>
+    </p>
+    <br>
+
+  </div>
+  <div class="govuk-grid-column-full">
+
+    <details class="govuk-details govuk-!-margin-bottom-6">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          Filters
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        Filter options go here.
+      </div>
+    </details>
+
+    {{ govukTable({
+      head: [
+        {
+          text: "Appeal reference"
+        },
+        {
+          text: "Lead or child"
+        },
+        {
+          text: "Action required"
+        },
+        {
+          text: "Due by"
+        },
+        {
+          text: "Case status"
+        }
+      ],      
+      rows: [
+
+        [
+          {
+            html: '<a href="#" class="govuk-link">2114328</a>'
+          },
+          {
+            text: ''
+          },
+          {
+            html: '<a href="#" class="govuk-link">Update case status</a>'
+          },
+          {
+            text: '10 Jan 2026'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--yellow">Awaiting site visit</strong>'
+          }
+        ],
+          [
+          {
+            html: '<a href="#" class="govuk-link">2114328</a>'
+          },
+          {
+            text: ''
+          },
+          {
+            html: '<a href="#" class="govuk-link">Review LPA questionnaire</a>'
+          },
+          {
+            text: '14 Feb 2026'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Issue decision</strong>'
+          }
+        ],
+          [
+          {
+            html: '<a href="#" class="govuk-link">2114328</a>'
+          },
+          {
+            text: ''
+          },
+          {
+            html: '<a href="#" class="govuk-link">Share comments</a>'
+          },
+          {
+            text: '26 Feb 2026'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Ready to start</strong>'
+          }
+        ],
+          [
+          {
+            html: '<a href="#" class="govuk-link">2114321</a>'
+          },
+          {
+            text: ''
+          },
+          {
+            html: '<a href="#" class="govuk-link">Progress to final comments</a>'
+          },
+          {
+            text: '4 Mar 2026'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Statements</strong>'
+          }
+        ],
+        [
+          {
+            html: '<a href="#" class="govuk-link">6062210</a>'
+          },
+          {
+            text: ''
+          },
+          {
+            html: '<a href="#" class="govuk-link">Start case</a>'
+          },
+          {
+            text: '18 Mar 2026'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">LPA questionnaire</strong>'
+          }
+        ],
+        [
+          {
+            html: '<a href="#" class="govuk-link">6062209</a>'
+          },
+          {
+            text: ''
+          },
+          {
+            html: '<a href="#" class="govuk-link">Update case status</a>'
+          },
+          {
+            text: '21 Apr 2026'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Ready to start</strong>'
+          }
+        ],
+        [
+          {
+            html: '<a href="#" class="govuk-link">6062187</a>'
+          },
+          {
+            text: ''
+          },
+          {
+            html: '<a href="#" class="govuk-link">Issue decision</a>'
+          },
+          {
+            text: '24 May 2026'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Ready to start</strong>'
+          }
+        ],
+        [
+          {
+            html: '<a href="#" class="govuk-link">6062186</a>'
+          },
+          {
+            text: ''
+          },
+          {
+            html: '<a href="#" class="govuk-link">Progress to proof of evidence and witnesses</a>
+            <p class="govuk-body govuk-!-margin-top-2">
+              <a href="#" class="govuk-link">Add number of residential units</a>
+            </p>'
+          },
+          {
+            text: '5 June 2026'
+          },
+          {
+            html: '<strong class="govuk-tag govuk-tag--green">Inquiry ready to set up</strong>'
+          }
+        ]
+      ]
+
+    }) }}
+
+
+  </div>
+</div>
+
+{% endblock %}

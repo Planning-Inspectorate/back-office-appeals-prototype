@@ -14,7 +14,7 @@
 
   	  <form method="post">
 
-        {{ govukSummaryList({
+    {{ govukSummaryList({
           rows: [
             {
               key: {
@@ -35,7 +35,7 @@
             },
             {
               key: {
-                text: "Case sub type"
+                text: "What is the environmental appeal type?"
               },
               value: {
                 html: data['case-sub-type']
@@ -49,7 +49,24 @@
                   }
                 ]
               }
-            } if data['case-type'] == 'Environmental appeal',
+            } if data['case-sub-type'] == 'Environmental permitting',
+            {
+              key: {
+                text: "What is the environmental permit appeal type?"
+              },
+              value: {
+                html: data['case-envi-permitting-sub-type']
+              },
+              actions: {
+                items: [
+                  {
+                    href: "case-envi-permitting-sub-type",
+                    text: "Change",
+                    visuallyHiddenText: "case environmental permitting sub type"
+                  }
+                ]
+              }
+            } if data['case-envi-permitting-sub-type'],
             {
               key: {
                 text: "Case submission date"

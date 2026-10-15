@@ -1,7 +1,5 @@
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 
-<hr class="govuk-section-break govuk-section-break--visible">
-
 <h2 class="govuk-heading-m  govuk-!-margin-top-6 govuk-!-margin-bottom-2">
   Interested party 1
 </h2>
@@ -54,7 +52,23 @@
         text: "Supporting documents"
       },
       value: {
-        html: '<ol><li><a href="#" class="govuk-link">document1.pdf</a></li><li><a href="#" class="govuk-link">document2.pdf</a></li></ol>'
+        html: '<ol>
+                 <li>
+                   <a href="#" class="govuk-link">document1.pdf</a>
+                  </li>
+                  <li>
+                    <a href="#" class="govuk-link">document2.pdf</a>
+                  </li>
+                  <li>
+                    <a href="#" class="govuk-link">document3.pdf</a>
+                  </li>
+                  <li>
+                    <a href="#" class="govuk-link">document4.pdf</a>
+                  </li>
+                  <li>
+                    <a href="#" class="govuk-link">document5.pdf</a>
+                  </li>
+               </ol>'
       }
     }
 
@@ -127,6 +141,12 @@
 <hr class="govuk-section-break govuk-section-break--visible">
 
 {% set documentsHtml %}
+
+ <govuk body>
+  Showing 5 of 18
+ </govuk>
+  
+ <p>
   <ol class="govuk-list govuk-list--number">
     <li>
       <a href="#" class="govuk-link">document1.pdf</a>
@@ -143,6 +163,7 @@
     <li>
       <a href="#" class="govuk-link">document5.pdf</a>
     </li>
+  </p>
 
     <!-- Class added to <li> instead of <a> -->
     <li class="app-doc--hidden" style="display: none;">
@@ -275,7 +296,16 @@
       },
         value: {
           html: documentsHtml
-        }
+        },
+        actions: {
+        items: [
+          {
+            href: "#",
+            text: "View all",
+            visuallyHiddenText: "view all supporting documents"
+          }
+        ]
+      }
         }]
   }) }}
 

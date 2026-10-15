@@ -2,7 +2,32 @@
   Documentation
 </h2>
 
-{% if data['status'] == 'open' %}
+{% if data['mvp'] == 'yes' %}
+
+  {{ govukSummaryList({
+    rows: [
+      {
+        key: {
+          text: "Appeal",
+          classes: "govuk-!-width-one-half"
+        },
+        value: {
+          html: "No documents"
+        },
+        actions: {
+          items: [
+            {
+              href: "#",
+              text: "Add",
+              visuallyHiddenText: "appeal"
+            }
+          ]
+        }
+      }
+    ]
+  }) }}
+
+{% elif data['status'] == 'open' %}
 
   {% if data['procedure'] == "Written representations (part 1)" %}
 

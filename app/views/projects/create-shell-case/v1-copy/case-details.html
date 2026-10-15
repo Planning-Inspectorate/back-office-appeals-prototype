@@ -1,0 +1,146 @@
+{% extends "layouts/bo-2026-updated.html" %}
+
+{% set title = "Case details" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set prototypeLinks =
+  [
+    {
+      href: '?status=open',
+      text: 'Case is open'
+    } if data['mvp'] == 'yes' and (data['status'] == 'ready' or data['status'] is not defined),
+    {
+      href: '?status=ready',
+      text: 'Go back to case ready to start'
+    } if data['mvp'] == 'no' and data['status'] == 'open',
+    {
+      href: '?mvp=no',
+      text: 'Second phase of development view'
+    } if data['mvp'] != 'no',
+    {
+      href: '?mvp=yes',
+      text: 'Minimum viable product (MVP) view'
+    } if data['mvp'] == 'no'
+  ]
+%}
+
+{% set back = false %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    
+    <!-- case header -->
+    <div class="govuk-grid-column-two-thirds">
+
+      <!-- notifications -->
+      {% if data['mvp'] and data['mvp'] != 'no' %}
+        {% include "/projects/create-shell-case/v1-copy/case--notifications.html" %}      
+      {% endif %}
+  
+      <!-- heading and status -->
+      <section>
+        <span class="govuk-caption-xl">Appeal 2114328</span>
+        <h1 class="govuk-heading-xl govuk-!-margin-bottom-2">
+          {{ title }}
+        </h1>
+
+        {% if data['mvp'] == 'yes' or data['status'] == 'open' %}
+          {{ govukTag({
+            text: "Case open",
+            classes: "govuk-tag--yellow"
+          }) }}
+        {% else %}
+          {% if data['status'] == 'ready' or data['status'] is not defined %}
+            {{ govukTag({
+              text: "Ready to start",
+              classes: "govuk-tag--green"
+            }) }}
+          {% endif %}
+        {% endif %}
+
+      </section>
+    </div>
+
+    <!-- case metadata -->
+    <div class="govuk-grid-column-full">
+      {% include "/projects/create-shell-case/v1/case--metadata.html" %}
+    </div>
+
+    <!-- download and case notes -->
+    <div class="govuk-grid-column-two-thirds">
+
+      <p class="govuk-body">
+        <a href="#" class="govuk-link">
+          Download case
+        </a>
+      </p>
+
+      {% set casenotes %}
+
+        <form method="post">
+
+          {{ govukTextarea({
+            name: "casenotedetail",
+            id: "casenotedetail",
+            label: {
+              text: 'Case notes',
+              classes: "govuk-visually-hidden",
+              isPageHeading: true
+            }
+          }) }}
+
+          {{ govukButton({
+            classes: "govuk-button--secondary govuk-!-margin-bottom-1",
+            text: "Add case note"
+          }) }}
+
+        </form>
+
+      {% endset %}
+
+      {{ govukDetails({
+        summaryText: "0 case notes",
+        html: casenotes
+      }) }}
+
+    </div>
+
+    <!-- case sections -->
+    <div class="govuk-grid-column-full">
+      <section class="govuk-!-margin-top-6">
+
+        {% include "/projects/create-shell-case/v1/case--overview.html" %}
+        
+        {% include "/projects/create-shell-case/v1/case--timetable.html" %}
+
+        {% include "/projects/create-shell-case/v1/case--site.html" %}    
+
+        {% if data['mvp'] %}
+          {% include "/projects/create-shell-case/v1/case--documentation.html" %}
+        {% endif %}
+
+        {% include "/projects/create-shell-case/v1/case--contacts.html" %}
+
+        {% include "/projects/create-shell-case/v1/case--team.html" %}
+
+        {% include "/projects/create-shell-case/v1/case--management.html" %}
+
+        <div id="case-details-cancel-section">
+          <h3 class="govuk-heading-m">
+            Cancel case
+          </h3>
+        <div>
+      
+        <p class="govuk-body">
+          <a class="govuk-link" href="#">
+            Cancel case
+          </a>
+        </p>
+
+      </section>
+    </div>
+
+  </div>
+
+{% endblock %}

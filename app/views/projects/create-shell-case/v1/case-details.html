@@ -46,18 +46,16 @@
         </h1>
 
         {% if data['mvp'] and data['mvp'] != 'yes' %}
-          {% if data['status'] == 'open' %}
+          {% if data['mvp'] == 'yes' or data['status'] == 'open' or data['status'] == 'ready' or data['status'] is not defined %}
             {{ govukTag({
               text: "Case open",
               classes: "govuk-tag--yellow"
             }) }}
           {% else %}
-            {% if data['status'] %}  
-              {{ govukTag({
-                text: "Ready to start",
-                classes: "govuk-tag--green"
-              }) }}
-            {% endif %}
+            {{ govukTag({
+              text: "Ready to start",
+              classes: "govuk-tag--green"
+            }) }}
           {% endif %}
         {% endif %}
 

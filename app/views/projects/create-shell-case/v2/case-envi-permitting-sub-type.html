@@ -1,0 +1,87 @@
+{% extends "layouts/bo-2026-updated.html" %}
+
+{% set title = "What is the environmental permit appeal type?" %}
+{% set pageName = title + ' - Planning Inspectorate'%}
+
+{% set activeNavigation = 'createcase' %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <!-- notifications -->
+    {# No notifications for this stage #}
+
+    <span class="govuk-caption-l">Create a case</span>
+
+    <form method="post">
+      {{ govukRadios({
+        idPrefix: "case-envi-permitting-sub-type",
+        name: "case-envi-permitting-sub-type",
+        fieldset: {
+          legend: {
+            text: title,
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "Closure notice",
+            text: "Closure notice"
+          },
+          {
+            value: "Conditions attached to a permit",
+            text: "Conditions attached to a permit"
+          },
+          {
+            value: "Decision to impose conditions",
+            text: "Decision to impose conditions by the regulator on an existing permit or as a result of a partial transfer, revocation or surrender"
+          },
+          {
+            value: "Deemed refusal",
+            text: "Deemed refusal"
+          },
+          {
+            value: "Deemed withdrawal",
+            text: "Deemed withdrawal"
+          },
+          {
+            value: "Enforcement notice",
+            text: "Enforcement notice"
+          },
+          {
+            value: "Floor risk activity",
+            text: "Floor risk activity"
+          },
+          {
+            value: "Prohibition notice",
+            text: "Prohibition notice"
+          },
+          {
+            value: "Refusal of a permit",
+            text: "Refusal of a permit"
+          },
+          {
+            value: "Revocation notice",
+            text: "Revocation notice"
+          },
+          {
+            value: "Suspension notice",
+            text: "Suspension notice"
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue",
+        name: "continue",
+        type: "submit"
+      }) }}
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

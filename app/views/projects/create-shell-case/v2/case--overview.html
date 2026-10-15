@@ -27,20 +27,21 @@
         text: "Appeal type"
       },
       value: {
-        html: data['case-type'] or 'Tree preservation order'
+        html: data['case-type']
       },
       actions: {
         items: [
           {
             href: "/projects/create-shell-case/v2/case-type",
-            text: "Change"
+            text: "Change",
+            visuallyHiddenText: "case type"
           }
         ]
       }
     },
     {
       key: {
-        text: "Appeal sub type"
+        text: "What is the environmental appeal type?"
       },
       value: {
         html: data['case-sub-type']
@@ -48,12 +49,29 @@
       actions: {
         items: [
           {
-            href: "#"
+            href: "#",
+            visuallyHiddenText: "case sub type"
           }
         ]
       }
-    } if data['case-type'] == 'Environmental appeal',
+    } if data['case-sub-type'] else undefined,
     {
+      key: {
+        text: "What is the environmental appeal permitting type?"
+      },
+      value: {
+        html: data['case-envi-permitting-sub-type']
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            visuallyHiddenText: "case environmental permitting sub type"
+          }
+        ]
+       }
+      } if data['case-envi-permitting-sub-type'] else undefined,
+     {
       key: {
         text: "Appeal procedure"
       },
@@ -125,7 +143,7 @@
         text: "Decision"
       },
       value: {
-        text: "Not issues"
+        text: "Not issued"
       },
       actions: {
         items: [

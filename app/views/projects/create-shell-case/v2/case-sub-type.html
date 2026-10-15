@@ -1,6 +1,6 @@
 {% extends "layouts/bo-2026-updated.html" %}
 
-{% set title = "Choose the case sub type" %}
+{% set title = "What is the environmental appeal type?" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% set activeNavigation = 'createcase' %}
@@ -13,7 +13,7 @@
     <!-- notifications -->
     {# No notifications for this stage #}
 
-    <span class="govuk-caption-l">Case type</span>
+    <span class="govuk-caption-l">Create a case</span>
 
     <form method="post">
       {{ govukRadios({
@@ -28,44 +28,48 @@
         },
         items: [
           {
-            value: "Anti-Pollution Works Notice",
-            text: "Anti-Pollution Works Notice"
+            value: "Anti-Pollution works notice",
+            text: "Anti-Pollution works notice"
           },
           {
-            value: "Contaminated Land",
-            text: "Contaminated Land"
+            value: "Contaminated land",
+            text: "Contaminated land"
           },
           {
-            value: "Marine Licensing",
-            text: "Marine Licensing"
+            value: "Environmental liability",
+            text: "Environmental liability"
           },
           {
-            value: "Waste Carriers",
-            text: "Waste Carriers"
+            value: "Environmental permitting",
+            text: "Environmental permitting"
           },
           {
-            value: "Water Abstraction",
-            text: "Water Abstraction"
+            value: "Hazardous substances",
+            text: "Hazardous substances"
           },
           {
-            value: "Environmental Liability",
-            text: "Environmental Liability"
+            value: "Marine licensing",
+            text: "Marine licensing"
           },
           {
-            value: "Environmental Permitting",
-            text: "Environmental Permitting"
-          },
-          {
-            value: "Hazardous Substances",
-            text: "Hazardous Substances"
+            value: "S78 minerals",
+            text: "S78 minerals"
           },
           {
             value: "Silage and slurry",
             text: "Silage and slurry"
           },
           {
-            value: "S78 minerals",
-            text: "S78 minerals"
+            value: "Site of special scientific interest (SSSI)",
+            text: "Site of special scientific interest (SSSI)"
+          },
+          {
+            value: "Waste carriers",
+            text: "Waste carriers"
+          },
+          {
+            value: "Water abstraction",
+            text: "Water abstraction"
           }
         ]
       }) }}

@@ -42,7 +42,7 @@ router.get('/case-details', function (req, res, next) {
   if (req.query && typeof req.query.mvp !== 'undefined') {
     req.session.data['mvp'] = req.query.mvp
   }
-  if (req.query && typeof req.query.status !== 'open') {
+  if (req.query && typeof req.query.status !== 'undefined') {
     req.session.data['status'] = req.query.status
   }
   next()

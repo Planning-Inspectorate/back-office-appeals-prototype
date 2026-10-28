@@ -1,6 +1,6 @@
 {% extends "layouts/bo-2026-updated.html" %}
 
-{% set title = "Check details and create a new case" %}
+{% set title = "Check details and create a new appeal" %}
 {% set pageName = title + ' - Planning Inspectorate'%}
 
 {% set activeNavigation = 'createcase' %}
@@ -9,7 +9,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <span class="govuk-caption-l">Create a case</span>
+      <span class="govuk-caption-l">Create an appeal</span>
       <h1 class="govuk-heading-l">{{ title }}</h1>
 
   	  <form method="post">
@@ -18,7 +18,7 @@
           rows: [
             {
               key: {
-                text: "Case type"
+                text: "Appeal type"
               },
               value: {
                 html: data['case-type'] or 'Tree preservation order'
@@ -35,7 +35,7 @@
             },
             {
               key: {
-                text: "What is the environmental appeal type?"
+                text: "Environmental appeal type"
               },
               value: {
                 html: data['case-sub-type']
@@ -52,7 +52,7 @@
             } if data['case-sub-type'] == 'Environmental permitting',
             {
               key: {
-                text: "What is the environmental permitting appeal type?"
+                text: "Environmental permitting appeal type"
               },
               value: {
                 html: data['case-envi-permitting-sub-type']
@@ -69,7 +69,7 @@
             } if data['case-envi-permitting-sub-type'],
             {
               key: {
-                text: "Case submission date"
+                text: "Appeal submission date"
               },
               value: {
                 html: (data['case-submission-date-day'] + " " + (data['case-submission-date-month'] | monthName) + " " + data['case-submission-date-year']) 
@@ -90,7 +90,7 @@
         }) }}
 
         {{ govukButton({
-          text: "Create case"
+          text: "Create appeal"
         }) }}
 
       </form>

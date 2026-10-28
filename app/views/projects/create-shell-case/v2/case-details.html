@@ -39,7 +39,7 @@
       {% endif %}
   
       <!-- heading and status -->
-      {% set caseTagText = data['case-status'] or 'Validation' %}
+      {% set caseTagText = data['case-status'] or 'LPA Questionnaire' %}
 
       <section>
         <span class="govuk-caption-xl">Appeal 2114328</span>
@@ -112,9 +112,7 @@
 
         {% include "/projects/create-shell-case/v2/case--site.html" %}    
 
-        {% if data['mvp'] and data['mvp'] != 'yes' %}
-          {% include "/projects/create-shell-case/v2/case--documentation.html" %}
-        {% endif %}
+        {% include "/projects/create-shell-case/v2/case--documentation.html" %}
 
         {% include "/projects/create-shell-case/v2/case--costs.html" %}
 

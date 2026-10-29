@@ -10,6 +10,17 @@ router.get('*', function(req, res, next){
 // Relative route for /case-type form submission
 router.post('/case-type', function (req, res) {
   const caseType = req.session.data['case-type']
+  const fromCaseDetails = req.query && req.query.from === 'case-details'
+
+  if (fromCaseDetails) {
+    if (caseType === 'Environmental appeal') {
+      return res.redirect('case-sub-type?from=case-details')
+    }
+
+    req.session.data['case-sub-type'] = undefined
+    req.session.data['case-envi-permitting-sub-type'] = undefined
+    return res.redirect('case-details')
+  }
 
   if (caseType === 'Environmental appeal') {
     res.redirect('case-sub-type')
@@ -21,6 +32,16 @@ router.post('/case-type', function (req, res) {
 // Relative route for /case-sub-type form submission
 router.post('/case-sub-type', function (req, res) {
   const caseSubType = req.session.data['case-sub-type']
+  const fromCaseDetails = req.query && req.query.from === 'case-details'
+
+  if (fromCaseDetails) {
+    if (caseSubType === 'Environmental permitting') {
+      return res.redirect('case-envi-permitting-sub-type?from=case-details')
+    }
+
+    req.session.data['case-envi-permitting-sub-type'] = undefined
+    return res.redirect('case-details')
+  }
 
   if (caseSubType === 'Environmental permitting') {
     res.redirect('case-envi-permitting-sub-type')
@@ -30,6 +51,12 @@ router.post('/case-sub-type', function (req, res) {
 })
 
 router.post('/case-envi-permitting-sub-type', function (req, res) {
+  const fromCaseDetails = req.query && req.query.from === 'case-details'
+
+  if (fromCaseDetails) {
+    return res.redirect('case-details')
+  }
+
   res.redirect('case-submission-date')
 })
 

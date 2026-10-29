@@ -40,6 +40,12 @@
   
       <!-- heading and status -->
       {% set caseTagText = data['case-status'] or 'LPA Questionnaire' %}
+      {% set caseTagClass = 'govuk-tag--green' %}
+      {% if data['case-status'] == 'Awaiting event' %}
+        {% set caseTagClass = 'govuk-tag--yellow' %}
+      {% elif data['case-status'] == 'Invalid' or data['case-status'] == 'Withdrawn' %}
+        {% set caseTagClass = 'govuk-tag--grey' %}
+      {% endif %}
 
       <section>
         <span class="govuk-caption-xl">Appeal 2114328</span>
@@ -49,7 +55,7 @@
 
             {{ govukTag({
               text: caseTagText,
-              classes: "govuk-tag--green"
+              classes: caseTagClass
             }) }}
 
             <a class="govuk-body govuk-link govuk-!-margin-left-2" href="/projects/create-shell-case/v2/case-status">

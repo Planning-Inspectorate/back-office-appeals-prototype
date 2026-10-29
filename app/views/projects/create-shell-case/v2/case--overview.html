@@ -1,4 +1,3 @@
-
 <h2 class="govuk-heading-l">
   Overview
 </h2>
@@ -32,7 +31,7 @@
       actions: {
         items: [
           {
-            href: "/projects/create-shell-case/v2/case-type",
+            href: "/projects/create-shell-case/v2/case-type?from=case-details",
             text: "Change",
             visuallyHiddenText: "case type"
           }
@@ -49,12 +48,13 @@
       actions: {
         items: [
           {
-            href: "#",
+            href: "/projects/create-shell-case/v2/case-sub-type?from=case-details",
+            text: "Change",
             visuallyHiddenText: "case sub type"
           }
         ]
       }
-    } if data['case-sub-type'] else undefined,
+    } if data['case-type'] == 'Environmental appeal' and data['case-sub-type'] else undefined,
     {
       key: {
         text: "Environmental appeal permitting type"
@@ -65,12 +65,13 @@
       actions: {
         items: [
           {
-            href: "#",
+            href: "/projects/create-shell-case/v2/case-envi-permitting-sub-type?from=case-details",
+            text: "Change",
             visuallyHiddenText: "case environmental permitting sub type"
           }
         ]
-       }
-      } if data['case-envi-permitting-sub-type'] else undefined,
+      }
+    } if data['case-type'] == 'Environmental appeal' and data['case-sub-type'] == 'Environmental permitting' and data['case-envi-permitting-sub-type'] else undefined,
      {
       key: {
         text: "Appeal procedure"
